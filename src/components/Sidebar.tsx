@@ -127,11 +127,13 @@ export function Sidebar({
     const hasAssemblyProps = sample.some(f => {
       const props = f.properties as Record<string, unknown>;
       // Assembly data has AC_NAME with value, constituency has ls_seat_name
-      return props.AC_NAME && typeof props.AC_NAME === 'string' && props.AC_NAME.trim() !== '';
+      const acName = props['AC_NAME'];
+      return acName && typeof acName === 'string' && acName.trim() !== '';
     });
     const hasConstituencyProps = sample.some(f => {
       const props = f.properties as Record<string, unknown>;
-      return props.ls_seat_name && typeof props.ls_seat_name === 'string';
+      const seatName = props['ls_seat_name'];
+      return seatName && typeof seatName === 'string';
     });
     // It's assembly data if it has AC_NAME values and NOT ls_seat_name
     return hasAssemblyProps && !hasConstituencyProps;

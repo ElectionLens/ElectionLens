@@ -2,7 +2,6 @@ import { useEffect, useRef, useMemo, useCallback } from 'react';
 import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import type { Layer, LeafletMouseEvent as LLeafletMouseEvent, LatLngBoundsExpression } from 'leaflet';
-import type { GeoJSON as GeoJSONType } from 'react-leaflet';
 import { getFeatureStyle, getHoverStyle, normalizeStateName } from '../utils/helpers';
 import { COLOR_PALETTES } from '../constants';
 import { clearAllCache } from '../utils/db';
@@ -25,11 +24,11 @@ import type {
 } from '../types';
 
 /** Leaflet layer with feature property */
-interface FeatureLayer extends Layer {
+interface FeatureLayer {
   feature?: Feature;
-  setStyle: (style: Record<string, unknown>) => void;
+  setStyle: (style: object) => void;
   bringToFront: () => void;
-  bindTooltip: (content: string, options?: Record<string, unknown>) => void;
+  bindTooltip: (content: string, options?: object) => FeatureLayer;
   on: (eventMap: Record<string, (e: LLeafletMouseEvent) => void>) => void;
 }
 
@@ -337,7 +336,7 @@ export function MapView({
   const styleIndex = useRef<number>(0);
   
   const onEachFeature = useCallback((feature: Feature, layer: Layer): void => {
-    const typedLayer = layer as FeatureLayer;
+    const typedLayer = layer as unknown as FeatureLayer;
     
     // Get feature name based on level
     let name: string;
@@ -396,9 +395,9 @@ export function MapView({
     styleIndex.current = 0;
   }, [geoJsonKey]);
   
-  const style = useCallback((): Record<string, unknown> => {
+  const style = useCallback(() => {
     const idx = styleIndex.current++;
-    return getFeatureStyle(idx, level);
+    return getFeatureStyle(idx, level) as object;
   }, [level]);
   
   const showViewToggle = Boolean(currentState && !currentPC && !currentDistrict);
@@ -442,7 +441,7 @@ export function MapView({
           <>
             <GeoJSON
               key={geoJsonKey}
-              ref={geoJsonRef as React.Ref<typeof GeoJSONType>}
+              ref={geoJsonRef as unknown as React.Ref<L.GeoJSON>}
               data={displayData as GeoJSON.FeatureCollection}
               style={style}
               onEachFeature={onEachFeature as (feature: GeoJSON.Feature, layer: Layer) => void}

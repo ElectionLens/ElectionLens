@@ -56,13 +56,15 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.d.ts",
-    "vite.config.ts"
+    "src/**/*.d.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
-    "coverage"
+    "coverage",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/test/**/*"
   ],
   "references": [
     { "path": "./tsconfig.node.json" }
