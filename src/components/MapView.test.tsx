@@ -1,28 +1,29 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MapView } from './MapView';
+import type { StatesGeoJSON, GeoJSONData, MapViewProps, ViewMode } from '../types';
 
-// Mock data
+// Mock data with proper type assertions
 const mockStatesGeoJSON = {
   type: 'FeatureCollection',
   features: [
     {
       type: 'Feature',
       properties: { shapeName: 'Tamil Nadu', ST_NM: 'Tamil Nadu' },
-      geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] }
+      geometry: { type: 'Polygon', coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]] }
     },
     {
       type: 'Feature',
       properties: { shapeName: 'Kerala', ST_NM: 'Kerala' },
-      geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] }
+      geometry: { type: 'Polygon', coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]] }
     },
     {
       type: 'Feature',
       properties: { shapeName: 'Karnataka', ST_NM: 'Karnataka' },
-      geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] }
+      geometry: { type: 'Polygon', coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]] }
     }
   ]
-};
+} as unknown as StatesGeoJSON;
 
 const mockConstituencyData = {
   type: 'FeatureCollection',
@@ -30,20 +31,20 @@ const mockConstituencyData = {
     {
       type: 'Feature',
       properties: { ls_seat_name: 'Chennai South', ls_seat_code: '1' },
-      geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] }
+      geometry: { type: 'Polygon', coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]] }
     },
     {
       type: 'Feature',
       properties: { ls_seat_name: 'Chennai Central', ls_seat_code: '2' },
-      geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] }
+      geometry: { type: 'Polygon', coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]] }
     },
     {
       type: 'Feature',
       properties: { PC_NAME: 'Chennai North', PC_No: '3' },
-      geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] }
+      geometry: { type: 'Polygon', coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]] }
     }
   ]
-};
+} as unknown as GeoJSONData;
 
 const mockDistrictData = {
   type: 'FeatureCollection',
@@ -51,20 +52,20 @@ const mockDistrictData = {
     {
       type: 'Feature',
       properties: { district: 'Chennai' },
-      geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] }
+      geometry: { type: 'Polygon', coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]] }
     },
     {
       type: 'Feature',
       properties: { NAME: 'Coimbatore' },
-      geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] }
+      geometry: { type: 'Polygon', coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]] }
     },
     {
       type: 'Feature',
       properties: { DISTRICT: 'Madurai' },
-      geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] }
+      geometry: { type: 'Polygon', coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]] }
     }
   ]
-};
+} as unknown as GeoJSONData;
 
 const mockAssemblyData = {
   type: 'FeatureCollection',
@@ -72,21 +73,21 @@ const mockAssemblyData = {
     {
       type: 'Feature',
       properties: { AC_NAME: 'Mylapore', AC_NO: '1' },
-      geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] }
+      geometry: { type: 'Polygon', coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]] }
     },
     {
       type: 'Feature',
       properties: { AC_NAME: 'Velachery', AC_NO: '2' },
-      geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] }
+      geometry: { type: 'Polygon', coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]] }
     }
   ]
-};
+} as unknown as GeoJSONData;
 
-const defaultProps = {
+const defaultProps: MapViewProps = {
   statesGeoJSON: mockStatesGeoJSON,
   currentData: null,
   currentState: null,
-  currentView: 'constituencies',
+  currentView: 'constituencies' as ViewMode,
   currentPC: null,
   currentDistrict: null,
   onStateClick: vi.fn(),
