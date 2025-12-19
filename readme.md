@@ -5,6 +5,9 @@ An interactive, offline-first web application for exploring India's electoral bo
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/85695e58-4a2f-4b81-8165-050d0dc940e7/deploy-status)](https://app.netlify.com/projects/electionlens/deploys)
+
+
 ## 🌟 Overview
 
 Election Lens provides a unified interface to navigate India's complex electoral geography - from states down to individual assembly constituencies. Unlike fragmented online resources, this tool connects all levels of electoral boundaries in a single, fast, mobile-friendly application.
