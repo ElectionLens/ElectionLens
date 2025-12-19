@@ -38,34 +38,37 @@ interface MockIndexedDB {
 const mockStore: MockIDBObjectStore = {
   get: vi.fn(() => ({ onsuccess: null, onerror: null, result: null })),
   put: vi.fn(),
-  count: vi.fn(() => ({ onsuccess: null, onerror: null, result: 0 }))
+  count: vi.fn(() => ({ onsuccess: null, onerror: null, result: 0 })),
 };
 
 const mockTransaction: MockIDBTransaction = {
   objectStore: vi.fn(() => mockStore),
   oncomplete: null,
-  onerror: null
+  onerror: null,
 };
 
 const mockDatabase: MockIDBDatabase = {
   objectStoreNames: { contains: () => false },
   createObjectStore: vi.fn(),
   transaction: vi.fn(() => mockTransaction),
-  close: vi.fn()
+  close: vi.fn(),
 };
 
 const mockIndexedDB: MockIndexedDB = {
-  open: vi.fn(() => ({
-    onerror: null,
-    onsuccess: null,
-    onupgradeneeded: null,
-    result: mockDatabase
-  } as MockIDBRequest)),
+  open: vi.fn(
+    () =>
+      ({
+        onerror: null,
+        onsuccess: null,
+        onupgradeneeded: null,
+        result: mockDatabase,
+      }) as MockIDBRequest
+  ),
   deleteDatabase: vi.fn(() => ({
     onsuccess: null,
     onerror: null,
-    onblocked: null
-  }))
+    onblocked: null,
+  })),
 };
 
 vi.stubGlobal('indexedDB', mockIndexedDB);
@@ -76,10 +79,11 @@ global.fetch = vi.fn((url: string | URL | Request): Promise<Response> => {
   if (urlString.includes('.geojson')) {
     return Promise.resolve({
       ok: true,
-      json: () => Promise.resolve({
-        type: 'FeatureCollection',
-        features: []
-      })
+      json: () =>
+        Promise.resolve({
+          type: 'FeatureCollection',
+          features: [],
+        }),
     } as Response);
   }
   return Promise.reject(new Error('Not found'));
@@ -98,33 +102,33 @@ vi.mock('leaflet', () => ({
       fitBounds: vi.fn(),
       addControl: vi.fn(),
       removeControl: vi.fn(),
-      removeLayer: vi.fn()
+      removeLayer: vi.fn(),
     })),
     tileLayer: vi.fn(() => ({
       addTo: vi.fn(),
-      bringToBack: vi.fn()
+      bringToBack: vi.fn(),
     })),
     geoJSON: vi.fn(() => ({
       addTo: vi.fn(),
       getBounds: vi.fn(() => ({
-        isValid: () => true
+        isValid: () => true,
       })),
       eachLayer: vi.fn(),
-      resetStyle: vi.fn()
+      resetStyle: vi.fn(),
     })),
     Control: {
-      extend: vi.fn(() => vi.fn())
+      extend: vi.fn(() => vi.fn()),
     },
     DomUtil: {
-      create: vi.fn(() => document.createElement('div'))
+      create: vi.fn(() => document.createElement('div')),
     },
     DomEvent: {
       stopPropagation: vi.fn(),
-      disableClickPropagation: vi.fn()
+      disableClickPropagation: vi.fn(),
     },
     control: {
-      scale: vi.fn(() => ({ addTo: vi.fn() }))
-    }
+      scale: vi.fn(() => ({ addTo: vi.fn() })),
+    },
   },
   map: vi.fn(),
   tileLayer: vi.fn(),
@@ -132,7 +136,7 @@ vi.mock('leaflet', () => ({
   Control: { extend: vi.fn(() => vi.fn()) },
   DomUtil: { create: vi.fn(() => document.createElement('div')) },
   DomEvent: { stopPropagation: vi.fn(), disableClickPropagation: vi.fn() },
-  control: { scale: vi.fn(() => ({ addTo: vi.fn() })) }
+  control: { scale: vi.fn(() => ({ addTo: vi.fn() })) },
 }));
 
 // Props types for mock components
@@ -146,9 +150,14 @@ interface MockGeoJSONProps {
 
 // Mock react-leaflet
 vi.mock('react-leaflet', () => ({
-  MapContainer: ({ children }: MockMapContainerProps) => <div data-testid="map-container">{children}</div>,
+  MapContainer: ({ children }: MockMapContainerProps) => (
+    <div data-testid="map-container">{children}</div>
+  ),
   TileLayer: () => <div data-testid="tile-layer" />,
-  GeoJSON: ({ data }: MockGeoJSONProps) => <div data-testid="geojson-layer" data-features={data?.features?.length ?? 0} />,
+  GeoJSON: ({ data }: MockGeoJSONProps) => (
+    <div data-testid="geojson-layer" data-features={data?.features?.length ?? 0} />
+  ),
+  ScaleControl: () => <div data-testid="scale-control" />,
   useMap: vi.fn(() => ({
     flyTo: vi.fn(),
     flyToBounds: vi.fn(),
@@ -157,8 +166,9 @@ vi.mock('react-leaflet', () => ({
     removeControl: vi.fn(),
     on: vi.fn(),
     off: vi.fn(),
-    removeLayer: vi.fn()
-  }))
+    removeLayer: vi.fn(),
+    eachLayer: vi.fn(),
+  })),
 }));
 
 // Suppress console warnings during tests
@@ -168,4 +178,3 @@ console.warn = (...args: unknown[]): void => {
   if (typeof firstArg === 'string' && firstArg.includes('IndexedDB')) return;
   originalWarn(...args);
 };
-
