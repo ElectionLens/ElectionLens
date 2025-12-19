@@ -150,10 +150,15 @@ export function Sidebar({
           return noA - noB;
         });
       
+      // Filter out features without valid names (pre-delimitation placeholders)
+      const validSorted = sorted.filter(({ feature }) => 
+        feature.properties.AC_NAME && feature.properties.AC_NAME.trim() !== ''
+      );
+      
       return (
         <div className="district-list">
-          <h3>Assembly Constituencies ({currentData.features.length})</h3>
-          {sorted.map(({ feature, index }) => {
+          <h3>Assembly Constituencies ({validSorted.length})</h3>
+          {validSorted.map(({ feature, index }) => {
             const name = feature.properties.AC_NAME ?? 'Unknown';
             const acNo = feature.properties.AC_NO ?? '';
             const color = getFeatureColor(index, 'assemblies');

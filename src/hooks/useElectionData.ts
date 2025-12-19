@@ -152,19 +152,27 @@ export function useElectionData(): UseElectionDataReturn {
         let features: AssemblyFeature[];
         if (Array.isArray(rawData)) {
           features = rawData.filter((f): f is AssemblyFeature => 
-            f !== null && f.properties !== undefined && f.geometry !== undefined
+            f !== null && 
+            f.properties !== undefined && 
+            f.geometry !== undefined &&
+            // Filter out features without AC_NAME (pre-delimitation placeholders)
+            Boolean(f.properties.AC_NAME)
           );
         } else if ('features' in rawData && rawData.features) {
           features = (rawData.features as AssemblyFeature[]).filter(
             (f): f is AssemblyFeature => 
-              f !== null && f.properties !== undefined && f.geometry !== undefined
+              f !== null && 
+              f.properties !== undefined && 
+              f.geometry !== undefined &&
+              // Filter out features without AC_NAME (pre-delimitation placeholders)
+              Boolean(f.properties.AC_NAME)
           );
         } else {
           features = [];
         }
         
         data = { type: 'FeatureCollection', features };
-        console.log('Assembly data loaded from file:', data.features.length);
+        console.log('Assembly data loaded from file:', data.features.length, '(filtered invalid features)');
         saveToDB(CACHE_KEYS.ASSEMBLY, data);
       }
       
