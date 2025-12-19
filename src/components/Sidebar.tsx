@@ -118,13 +118,23 @@ export function Sidebar({
   };
 
   /**
-   * Check if features have assembly properties (AC_NAME)
+   * Check if features are assembly data (have valid AC_NAME) vs constituency data (have ls_seat_name)
    */
   const isAssemblyData = (features: Feature[]): boolean => {
     if (!features.length) return false;
-    const firstProps = features[0]?.properties as AssemblyProperties;
-    // Check if it has AC_NAME property (assembly) vs ls_seat_name (constituency)
-    return 'AC_NAME' in firstProps || !('ls_seat_name' in firstProps);
+    // Check first few features for AC_NAME with actual value
+    const sample = features.slice(0, 5);
+    const hasAssemblyProps = sample.some(f => {
+      const props = f.properties as Record<string, unknown>;
+      // Assembly data has AC_NAME with value, constituency has ls_seat_name
+      return props.AC_NAME && typeof props.AC_NAME === 'string' && props.AC_NAME.trim() !== '';
+    });
+    const hasConstituencyProps = sample.some(f => {
+      const props = f.properties as Record<string, unknown>;
+      return props.ls_seat_name && typeof props.ls_seat_name === 'string';
+    });
+    // It's assembly data if it has AC_NAME values and NOT ls_seat_name
+    return hasAssemblyProps && !hasConstituencyProps;
   };
 
   /**
