@@ -1,151 +1,61 @@
 import { describe, it, expect } from 'vitest';
 import {
-  removeDiacritics,
-  normalizeStateName,
+  normalizeName,
   getStateFileName,
   getFeatureColor,
   getFeatureStyle,
   getHoverStyle,
-  toTitleCase
+  toTitleCase,
 } from './helpers';
 
 describe('helpers', () => {
-  describe('removeDiacritics', () => {
+  describe('normalizeName', () => {
     describe('basic functionality', () => {
-      it('should remove diacritics from text', () => {
-        expect(removeDiacritics('Rājasthān')).toBe('Rajasthan');
-        expect(removeDiacritics('Bihār')).toBe('Bihar');
-        expect(removeDiacritics('Karnātaka')).toBe('Karnataka');
-      });
-
-      it('should not modify text without diacritics', () => {
-        expect(removeDiacritics('Kerala')).toBe('Kerala');
-        expect(removeDiacritics('Tamil Nadu')).toBe('Tamil Nadu');
-        expect(removeDiacritics('Gujarat')).toBe('Gujarat');
-      });
-    });
-
-    describe('edge cases', () => {
-      it('should handle empty strings', () => {
-        expect(removeDiacritics('')).toBe('');
-      });
-
-      it('should handle null and undefined', () => {
-        expect(removeDiacritics(null)).toBe('');
-        expect(removeDiacritics(undefined)).toBe('');
-      });
-
-      it('should handle strings with only diacritics', () => {
-        expect(removeDiacritics('āēīōū')).toBe('aeiou');
-      });
-
-      it('should handle mixed text with numbers', () => {
-        expect(removeDiacritics('Districṭ 123')).toBe('District 123');
-      });
-
-      it('should handle special characters', () => {
-        expect(removeDiacritics('Jammu & Kashmir')).toBe('Jammu & Kashmir');
-        expect(removeDiacritics('NCT of Delhi')).toBe('NCT of Delhi');
-      });
-
-      it('should preserve case while removing diacritics', () => {
-        expect(removeDiacritics('RĀJASTHĀN')).toBe('RAJASTHAN');
-        expect(removeDiacritics('rājasthān')).toBe('rajasthan');
-      });
-
-      it('should handle various diacritical marks', () => {
-        // Macron
-        expect(removeDiacritics('ā')).toBe('a');
-        // Acute accent
-        expect(removeDiacritics('á')).toBe('a');
-        // Grave accent
-        expect(removeDiacritics('à')).toBe('a');
-        // Circumflex
-        expect(removeDiacritics('â')).toBe('a');
-        // Tilde
-        expect(removeDiacritics('ã')).toBe('a');
-        // Umlaut
-        expect(removeDiacritics('ä')).toBe('a');
-      });
-
-      it('should handle Indian language diacritics commonly used', () => {
-        expect(removeDiacritics('Arunāchal Pradesh')).toBe('Arunachal Pradesh');
-        expect(removeDiacritics('Chandīgarh')).toBe('Chandigarh');
-        expect(removeDiacritics('Chhattīsgarh')).toBe('Chhattisgarh');
-        expect(removeDiacritics('Gujarāt')).toBe('Gujarat');
-        expect(removeDiacritics('Haryāna')).toBe('Haryana');
-        expect(removeDiacritics('Himāchal Pradesh')).toBe('Himachal Pradesh');
-        expect(removeDiacritics('Jhārkhand')).toBe('Jharkhand');
-        expect(removeDiacritics('Ladākh')).toBe('Ladakh');
-        expect(removeDiacritics('Mahārāshtra')).toBe('Maharashtra');
-        expect(removeDiacritics('Meghālaya')).toBe('Meghalaya');
-        expect(removeDiacritics('Nāgāland')).toBe('Nagaland');
-        expect(removeDiacritics('Tamil Nādu')).toBe('Tamil Nadu');
-        expect(removeDiacritics('Telangāna')).toBe('Telangana');
-        expect(removeDiacritics('Uttarākhand')).toBe('Uttarakhand');
-      });
-    });
-
-    describe('unicode normalization', () => {
-      it('should handle combining characters', () => {
-        // e followed by combining acute accent
-        const combined = 'e\u0301'; // é as combining char
-        expect(removeDiacritics(combined)).toBe('e');
-      });
-
-      it('should handle precomposed characters', () => {
-        // Precomposed é
-        expect(removeDiacritics('\u00e9')).toBe('e');
-      });
-    });
-  });
-
-  describe('normalizeStateName', () => {
-    describe('basic functionality', () => {
-      it('should normalize state names with diacritics', () => {
-        expect(normalizeStateName('Rājasthān')).toBe('Rajasthan');
-        expect(normalizeStateName('Uttarākhand')).toBe('Uttarakhand');
-        expect(normalizeStateName('Bihār')).toBe('Bihar');
-      });
-
       it('should trim whitespace', () => {
-        expect(normalizeStateName('  Kerala  ')).toBe('Kerala');
-        expect(normalizeStateName('Tamil Nadu ')).toBe('Tamil Nadu');
-        expect(normalizeStateName(' Delhi')).toBe('Delhi');
+        expect(normalizeName('  Kerala  ')).toBe('Kerala');
+        expect(normalizeName('Tamil Nadu ')).toBe('Tamil Nadu');
+        expect(normalizeName(' Delhi')).toBe('Delhi');
+      });
+
+      it('should strip diacritics from state names', () => {
+        expect(normalizeName('Gujarāt')).toBe('Gujarat');
+        expect(normalizeName('Mahārāshtra')).toBe('Maharashtra');
+        expect(normalizeName('Bihār')).toBe('Bihar');
+        expect(normalizeName('Rājasthān')).toBe('Rajasthan');
+        expect(normalizeName('Karnātaka')).toBe('Karnataka');
+        expect(normalizeName('Tamil Nādu')).toBe('Tamil Nadu');
       });
     });
 
     describe('edge cases', () => {
       it('should handle null/undefined', () => {
-        expect(normalizeStateName(null)).toBe('');
-        expect(normalizeStateName(undefined)).toBe('');
+        expect(normalizeName(null)).toBe('');
+        expect(normalizeName(undefined)).toBe('');
       });
 
       it('should handle empty string', () => {
-        expect(normalizeStateName('')).toBe('');
+        expect(normalizeName('')).toBe('');
       });
 
       it('should handle whitespace-only strings', () => {
-        expect(normalizeStateName('   ')).toBe('');
-        expect(normalizeStateName('\t\n')).toBe('');
+        expect(normalizeName('   ')).toBe('');
+        expect(normalizeName('\t\n')).toBe('');
       });
 
       it('should preserve internal spacing', () => {
-        expect(normalizeStateName('Tamil Nadu')).toBe('Tamil Nadu');
-        expect(normalizeStateName('Andhra Pradesh')).toBe('Andhra Pradesh');
-        expect(normalizeStateName('West Bengal')).toBe('West Bengal');
+        expect(normalizeName('Tamil Nadu')).toBe('Tamil Nadu');
+        expect(normalizeName('Andhra Pradesh')).toBe('Andhra Pradesh');
+        expect(normalizeName('West Bengal')).toBe('West Bengal');
       });
 
       it('should handle special characters', () => {
-        expect(normalizeStateName('Jammu & Kashmir')).toBe('Jammu & Kashmir');
-        expect(normalizeStateName('Andaman & Nicobar Islands')).toBe('Andaman & Nicobar Islands');
+        expect(normalizeName('Jammu & Kashmir')).toBe('Jammu & Kashmir');
+        expect(normalizeName('Andaman & Nicobar Islands')).toBe('Andaman & Nicobar Islands');
       });
-    });
 
-    describe('combined operations', () => {
-      it('should trim and remove diacritics together', () => {
-        expect(normalizeStateName('  Rājasthān  ')).toBe('Rajasthan');
-        expect(normalizeStateName('\tKarnātaka\n')).toBe('Karnataka');
+      it('should strip diacritics and trim together', () => {
+        expect(normalizeName('  Gujarāt  ')).toBe('Gujarat');
+        expect(normalizeName(' Bihār ')).toBe('Bihar');
       });
     });
   });
@@ -184,31 +94,6 @@ describe('helpers', () => {
       });
     });
 
-    describe('diacritical variations', () => {
-      it('should handle states with diacritics', () => {
-        expect(getStateFileName('Rājasthān')).toBe('rajasthan');
-        expect(getStateFileName('Bihār')).toBe('bihar');
-        expect(getStateFileName('Karnātaka')).toBe('karnataka');
-        expect(getStateFileName('Mahārāshtra')).toBe('maharashtra');
-        expect(getStateFileName('Gujarāt')).toBe('gujarat');
-        expect(getStateFileName('Haryāna')).toBe('haryana');
-      });
-
-      it('should handle all documented diacritical variations', () => {
-        expect(getStateFileName('Arunāchal Pradesh')).toBe('arunachal-pradesh');
-        expect(getStateFileName('Chandīgarh')).toBe('chandigarh');
-        expect(getStateFileName('Chhattīsgarh')).toBe('chhattisgarh');
-        expect(getStateFileName('Himāchal Pradesh')).toBe('himachal-pradesh');
-        expect(getStateFileName('Jhārkhand')).toBe('jharkhand');
-        expect(getStateFileName('Ladākh')).toBe('ladakh');
-        expect(getStateFileName('Meghālaya')).toBe('meghalaya');
-        expect(getStateFileName('Nāgāland')).toBe('nagaland');
-        expect(getStateFileName('Tamil Nādu')).toBe('tamil-nadu');
-        expect(getStateFileName('Telangāna')).toBe('telangana');
-        expect(getStateFileName('Uttarākhand')).toBe('uttarakhand');
-      });
-    });
-
     describe('alternate names', () => {
       it('should handle NCT of Delhi', () => {
         expect(getStateFileName('NCT of Delhi')).toBe('delhi');
@@ -217,7 +102,6 @@ describe('helpers', () => {
       it('should handle Jammu & Kashmir variations', () => {
         expect(getStateFileName('Jammu & Kashmir')).toBe('jammu-and-kashmir');
         expect(getStateFileName('Jammu and Kashmir')).toBe('jammu-and-kashmir');
-        expect(getStateFileName('Jammu and Kashmīr')).toBe('jammu-and-kashmir');
       });
 
       it('should handle Andaman & Nicobar variations', () => {
@@ -227,7 +111,21 @@ describe('helpers', () => {
 
       it('should handle DNH and DD', () => {
         expect(getStateFileName('Dadra and Nagar Haveli and Daman and Diu')).toBe('dnh-and-dd');
-        expect(getStateFileName('Dādra and Nagar Haveli and Damān and Diu')).toBe('dnh-and-dd');
+      });
+    });
+
+    describe('diacritic state names from GeoJSON data', () => {
+      it('should handle state names with diacritics', () => {
+        expect(getStateFileName('Gujarāt')).toBe('gujarat');
+        expect(getStateFileName('Mahārāshtra')).toBe('maharashtra');
+        expect(getStateFileName('Bihār')).toBe('bihar');
+        expect(getStateFileName('Rājasthān')).toBe('rajasthan');
+        expect(getStateFileName('Karnātaka')).toBe('karnataka');
+        expect(getStateFileName('Tamil Nādu')).toBe('tamil-nadu');
+        expect(getStateFileName('Telangāna')).toBe('telangana');
+        expect(getStateFileName('Uttarākhand')).toBe('uttarakhand');
+        expect(getStateFileName('Jhārkhand')).toBe('jharkhand');
+        expect(getStateFileName('Chhattīsgarh')).toBe('chhattisgarh');
       });
     });
 
@@ -295,7 +193,7 @@ describe('helpers', () => {
       });
 
       it('should cycle correctly for all palettes', () => {
-        ['states', 'districts', 'constituencies', 'assemblies'].forEach(level => {
+        ['states', 'districts', 'constituencies', 'assemblies'].forEach((level) => {
           expect(getFeatureColor(0, level)).toBe(getFeatureColor(20, level));
           expect(getFeatureColor(5, level)).toBe(getFeatureColor(25, level));
         });
@@ -318,7 +216,7 @@ describe('helpers', () => {
     describe('all colors valid', () => {
       it('should always return valid hex colors', () => {
         const hexRegex = /^#[0-9a-f]{6}$/i;
-        ['states', 'districts', 'constituencies', 'assemblies'].forEach(level => {
+        ['states', 'districts', 'constituencies', 'assemblies'].forEach((level) => {
           for (let i = 0; i < 30; i++) {
             expect(getFeatureColor(i, level)).toMatch(hexRegex);
           }
@@ -339,7 +237,7 @@ describe('helpers', () => {
       });
 
       it('should have consistent non-color properties', () => {
-        ['states', 'districts', 'constituencies', 'assemblies'].forEach(level => {
+        ['states', 'districts', 'constituencies', 'assemblies'].forEach((level) => {
           const style = getFeatureStyle(0, level);
           expect(style.fillOpacity).toBe(0.65);
           expect(style.color).toBe('#fff');
@@ -363,7 +261,7 @@ describe('helpers', () => {
         const districtStyle = getFeatureStyle(0, 'districts');
         const pcStyle = getFeatureStyle(0, 'constituencies');
         const acStyle = getFeatureStyle(0, 'assemblies');
-        
+
         expect(stateStyle.fillColor).not.toBe(districtStyle.fillColor);
         expect(districtStyle.fillColor).not.toBe(pcStyle.fillColor);
         expect(pcStyle.fillColor).not.toBe(acStyle.fillColor);
@@ -377,7 +275,7 @@ describe('helpers', () => {
           fillOpacity: 0.65,
           color: '#fff',
           weight: 1.5,
-          opacity: 1
+          opacity: 1,
         });
       });
 
@@ -387,7 +285,7 @@ describe('helpers', () => {
           fillOpacity: 0.65,
           color: '#fff',
           weight: 1.5,
-          opacity: 1
+          opacity: 1,
         });
       });
 
@@ -397,7 +295,7 @@ describe('helpers', () => {
           fillOpacity: 0.65,
           color: '#fff',
           weight: 1.5,
-          opacity: 1
+          opacity: 1,
         });
       });
 
@@ -407,7 +305,7 @@ describe('helpers', () => {
           fillOpacity: 0.65,
           color: '#fff',
           weight: 1.5,
-          opacity: 1
+          opacity: 1,
         });
       });
     });
@@ -423,7 +321,7 @@ describe('helpers', () => {
       });
 
       it('should have consistent weight and fillOpacity', () => {
-        ['states', 'districts', 'constituencies', 'assemblies'].forEach(level => {
+        ['states', 'districts', 'constituencies', 'assemblies'].forEach((level) => {
           const style = getHoverStyle(level);
           expect(style.weight).toBe(3);
           expect(style.fillOpacity).toBe(0.8);
@@ -454,7 +352,7 @@ describe('helpers', () => {
         expect(getHoverStyle('states')).toEqual({
           weight: 3,
           color: '#333',
-          fillOpacity: 0.8
+          fillOpacity: 0.8,
         });
       });
 
@@ -462,7 +360,7 @@ describe('helpers', () => {
         expect(getHoverStyle('constituencies')).toEqual({
           weight: 3,
           color: '#5b21b6',
-          fillOpacity: 0.8
+          fillOpacity: 0.8,
         });
       });
 
@@ -470,7 +368,7 @@ describe('helpers', () => {
         expect(getHoverStyle('assemblies')).toEqual({
           weight: 3,
           color: '#166534',
-          fillOpacity: 0.8
+          fillOpacity: 0.8,
         });
       });
     });

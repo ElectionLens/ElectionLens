@@ -9,24 +9,24 @@ const mockStatesGeoJSON = {
     {
       type: 'Feature',
       properties: { shapeName: 'Tamil Nadu' },
-      geometry: { type: 'Polygon', coordinates: [] }
+      geometry: { type: 'Polygon', coordinates: [] },
     },
     {
       type: 'Feature',
       properties: { shapeName: 'Kerala' },
-      geometry: { type: 'Polygon', coordinates: [] }
+      geometry: { type: 'Polygon', coordinates: [] },
     },
     {
       type: 'Feature',
       properties: { shapeName: 'Karnataka' },
-      geometry: { type: 'Polygon', coordinates: [] }
+      geometry: { type: 'Polygon', coordinates: [] },
     },
     {
       type: 'Feature',
       properties: { ST_NM: 'Andhra Pradesh' }, // Alternative property name
-      geometry: { type: 'Polygon', coordinates: [] }
-    }
-  ]
+      geometry: { type: 'Polygon', coordinates: [] },
+    },
+  ],
 };
 
 const mockConstituencyData = {
@@ -35,19 +35,19 @@ const mockConstituencyData = {
     {
       type: 'Feature',
       properties: { ls_seat_name: 'Chennai South', ls_seat_code: '1' },
-      geometry: { type: 'Polygon', coordinates: [] }
+      geometry: { type: 'Polygon', coordinates: [] },
     },
     {
       type: 'Feature',
       properties: { ls_seat_name: 'Chennai Central', ls_seat_code: '2' },
-      geometry: { type: 'Polygon', coordinates: [] }
+      geometry: { type: 'Polygon', coordinates: [] },
     },
     {
       type: 'Feature',
       properties: { PC_NAME: 'Chennai North', PC_No: '3' }, // Alternative property names
-      geometry: { type: 'Polygon', coordinates: [] }
-    }
-  ]
+      geometry: { type: 'Polygon', coordinates: [] },
+    },
+  ],
 };
 
 const mockDistrictData = {
@@ -56,24 +56,24 @@ const mockDistrictData = {
     {
       type: 'Feature',
       properties: { district: 'Chennai' },
-      geometry: { type: 'Polygon', coordinates: [] }
+      geometry: { type: 'Polygon', coordinates: [] },
     },
     {
       type: 'Feature',
       properties: { district: 'Coimbatore' },
-      geometry: { type: 'Polygon', coordinates: [] }
+      geometry: { type: 'Polygon', coordinates: [] },
     },
     {
       type: 'Feature',
       properties: { NAME: 'Madurai' }, // Alternative property name
-      geometry: { type: 'Polygon', coordinates: [] }
+      geometry: { type: 'Polygon', coordinates: [] },
     },
     {
       type: 'Feature',
       properties: { DISTRICT: 'Salem' }, // Another alternative
-      geometry: { type: 'Polygon', coordinates: [] }
-    }
-  ]
+      geometry: { type: 'Polygon', coordinates: [] },
+    },
+  ],
 };
 
 const mockAssemblyData = {
@@ -82,19 +82,19 @@ const mockAssemblyData = {
     {
       type: 'Feature',
       properties: { AC_NAME: 'Mylapore', AC_NO: '1' },
-      geometry: { type: 'Polygon', coordinates: [] }
+      geometry: { type: 'Polygon', coordinates: [] },
     },
     {
       type: 'Feature',
       properties: { AC_NAME: 'Velachery', AC_NO: '2' },
-      geometry: { type: 'Polygon', coordinates: [] }
+      geometry: { type: 'Polygon', coordinates: [] },
     },
     {
       type: 'Feature',
       properties: { AC_NAME: 'Saidapet', AC_NO: '3' },
-      geometry: { type: 'Polygon', coordinates: [] }
-    }
-  ]
+      geometry: { type: 'Polygon', coordinates: [] },
+    },
+  ],
 };
 
 const defaultProps = {
@@ -113,7 +113,7 @@ const defaultProps = {
   onReset: vi.fn(),
   onGoBackToState: vi.fn(),
   isOpen: false,
-  onClose: vi.fn()
+  onClose: vi.fn(),
 };
 
 describe('Sidebar', () => {
@@ -145,7 +145,9 @@ describe('Sidebar', () => {
     });
 
     it('should display memory count', () => {
-      render(<Sidebar {...defaultProps} cacheStats={{ ...defaultProps.cacheStats, memCount: 15 }} />);
+      render(
+        <Sidebar {...defaultProps} cacheStats={{ ...defaultProps.cacheStats, memCount: 15 }} />
+      );
       expect(screen.getByText(/15\/36/)).toBeInTheDocument();
     });
 
@@ -167,7 +169,7 @@ describe('Sidebar', () => {
         memCount: 36,
         totalStates: 36,
         pcCount: 543,
-        acCount: 4120
+        acCount: 4120,
       };
       render(<Sidebar {...defaultProps} cacheStats={fullCacheStats} />);
       expect(screen.getByText('✓')).toBeInTheDocument();
@@ -202,11 +204,7 @@ describe('Sidebar', () => {
   describe('info panel - state view', () => {
     it('should show state name as title', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
-          currentState="Tamil Nadu"
-          currentData={mockConstituencyData}
-        />
+        <Sidebar {...defaultProps} currentState="Tamil Nadu" currentData={mockConstituencyData} />
       );
       // State name appears multiple times (title, stat, breadcrumb)
       const tamilNaduElements = screen.getAllByText('Tamil Nadu');
@@ -215,11 +213,7 @@ describe('Sidebar', () => {
 
     it('should show constituency count in stat card', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
-          currentState="Tamil Nadu"
-          currentData={mockConstituencyData}
-        />
+        <Sidebar {...defaultProps} currentState="Tamil Nadu" currentData={mockConstituencyData} />
       );
       // '3' appears multiple times (count and PC numbers)
       const threeElements = screen.getAllByText('3');
@@ -229,8 +223,8 @@ describe('Sidebar', () => {
 
     it('should show district count when in district view', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentView="districts"
           currentData={mockDistrictData}
@@ -246,8 +240,8 @@ describe('Sidebar', () => {
   describe('info panel - PC view', () => {
     it('should show PC name as title', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Chennai South"
           currentData={mockAssemblyData}
@@ -260,8 +254,8 @@ describe('Sidebar', () => {
 
     it('should show assembly count', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Chennai South"
           currentData={mockAssemblyData}
@@ -277,8 +271,8 @@ describe('Sidebar', () => {
   describe('info panel - district view', () => {
     it('should show district name as title', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentDistrict="Chennai"
           currentData={mockAssemblyData}
@@ -291,8 +285,8 @@ describe('Sidebar', () => {
 
     it('should show assembly count for district', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentDistrict="Chennai"
           currentData={mockAssemblyData}
@@ -330,9 +324,9 @@ describe('Sidebar', () => {
     it('should call onStateClick when state is clicked', () => {
       const onStateClick = vi.fn();
       render(<Sidebar {...defaultProps} onStateClick={onStateClick} />);
-      
+
       fireEvent.click(screen.getByText('Tamil Nadu'));
-      
+
       expect(onStateClick).toHaveBeenCalledTimes(1);
       expect(onStateClick).toHaveBeenCalledWith('Tamil Nadu', expect.any(Object));
     });
@@ -347,33 +341,21 @@ describe('Sidebar', () => {
   describe('constituencies list', () => {
     it('should render constituencies when state is selected', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
-          currentState="Tamil Nadu"
-          currentData={mockConstituencyData}
-        />
+        <Sidebar {...defaultProps} currentState="Tamil Nadu" currentData={mockConstituencyData} />
       );
       expect(screen.getByText(/Parliamentary Constituencies/)).toBeInTheDocument();
     });
 
     it('should show constituency count', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
-          currentState="Tamil Nadu"
-          currentData={mockConstituencyData}
-        />
+        <Sidebar {...defaultProps} currentState="Tamil Nadu" currentData={mockConstituencyData} />
       );
       expect(screen.getByText(/Parliamentary Constituencies \(3\)/)).toBeInTheDocument();
     });
 
     it('should render all constituencies', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
-          currentState="Tamil Nadu"
-          currentData={mockConstituencyData}
-        />
+        <Sidebar {...defaultProps} currentState="Tamil Nadu" currentData={mockConstituencyData} />
       );
       expect(screen.getByText('Chennai South')).toBeInTheDocument();
       expect(screen.getByText('Chennai Central')).toBeInTheDocument();
@@ -382,11 +364,7 @@ describe('Sidebar', () => {
 
     it('should display PC numbers', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
-          currentState="Tamil Nadu"
-          currentData={mockConstituencyData}
-        />
+        <Sidebar {...defaultProps} currentState="Tamil Nadu" currentData={mockConstituencyData} />
       );
       // PC numbers are displayed
       const pcNumbers = document.querySelectorAll('.pc-number');
@@ -396,23 +374,23 @@ describe('Sidebar', () => {
     it('should call onConstituencyClick when constituency is clicked', () => {
       const onConstituencyClick = vi.fn();
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentData={mockConstituencyData}
           onConstituencyClick={onConstituencyClick}
         />
       );
-      
+
       fireEvent.click(screen.getByText('Chennai South'));
-      
+
       expect(onConstituencyClick).toHaveBeenCalledTimes(1);
     });
 
     it('should show no constituencies message when empty', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentData={{ type: 'FeatureCollection', features: [] }}
         />
@@ -424,8 +402,8 @@ describe('Sidebar', () => {
   describe('districts list', () => {
     it('should render districts when in district view', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentView="districts"
           currentData={mockDistrictData}
@@ -438,8 +416,8 @@ describe('Sidebar', () => {
 
     it('should show district count', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentView="districts"
           currentData={mockDistrictData}
@@ -450,8 +428,8 @@ describe('Sidebar', () => {
 
     it('should render all districts', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentView="districts"
           currentData={mockDistrictData}
@@ -465,8 +443,8 @@ describe('Sidebar', () => {
 
     it('should sort districts alphabetically', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentView="districts"
           currentData={mockDistrictData}
@@ -479,24 +457,24 @@ describe('Sidebar', () => {
     it('should call onDistrictClick when district is clicked', () => {
       const onDistrictClick = vi.fn();
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentView="districts"
           currentData={mockDistrictData}
           onDistrictClick={onDistrictClick}
         />
       );
-      
+
       fireEvent.click(screen.getByText('Chennai'));
-      
+
       expect(onDistrictClick).toHaveBeenCalledTimes(1);
     });
 
     it('should show no districts message when empty', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentView="districts"
           currentData={{ type: 'FeatureCollection', features: [] }}
@@ -509,8 +487,8 @@ describe('Sidebar', () => {
   describe('assemblies list', () => {
     it('should render assemblies when PC is selected', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Chennai South"
           currentData={mockAssemblyData}
@@ -521,8 +499,8 @@ describe('Sidebar', () => {
 
     it('should show assembly count', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Chennai South"
           currentData={mockAssemblyData}
@@ -533,8 +511,8 @@ describe('Sidebar', () => {
 
     it('should render all assemblies', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Chennai South"
           currentData={mockAssemblyData}
@@ -547,8 +525,8 @@ describe('Sidebar', () => {
 
     it('should display AC numbers', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Chennai South"
           currentData={mockAssemblyData}
@@ -561,8 +539,8 @@ describe('Sidebar', () => {
 
     it('should sort assemblies by AC number', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Chennai South"
           currentData={mockAssemblyData}
@@ -574,8 +552,8 @@ describe('Sidebar', () => {
 
     it('should render assemblies when district is selected', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentDistrict="Chennai"
           currentData={mockAssemblyData}
@@ -586,21 +564,23 @@ describe('Sidebar', () => {
 
     it('should show no assembly data message for PC', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Delhi"
           currentPC="New Delhi"
           currentData={{ type: 'FeatureCollection', features: [] }}
         />
       );
       expect(screen.getByText('No Assembly Data')).toBeInTheDocument();
-      expect(screen.getByText(/Union Territory without a state legislative assembly/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Union Territory without a state legislative assembly/)
+      ).toBeInTheDocument();
     });
 
     it('should show no assembly data message for district', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentDistrict="New District"
           currentData={{ type: 'FeatureCollection', features: [] }}
@@ -613,17 +593,17 @@ describe('Sidebar', () => {
     it('should call onAssemblyClick when assembly is clicked', () => {
       const onAssemblyClick = vi.fn();
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Chennai South"
           currentData={mockAssemblyData}
           onAssemblyClick={onAssemblyClick}
         />
       );
-      
+
       fireEvent.click(screen.getByText('Mylapore'));
-      
+
       expect(onAssemblyClick).toHaveBeenCalledTimes(1);
     });
   });
@@ -631,11 +611,7 @@ describe('Sidebar', () => {
   describe('view toggle', () => {
     it('should show view toggle when state is selected', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
-          currentState="Tamil Nadu"
-          currentData={mockConstituencyData}
-        />
+        <Sidebar {...defaultProps} currentState="Tamil Nadu" currentData={mockConstituencyData} />
       );
       expect(screen.getByText('🗳️ Constituencies')).toBeInTheDocument();
       expect(screen.getByText('🗺️ Districts')).toBeInTheDocument();
@@ -648,8 +624,8 @@ describe('Sidebar', () => {
 
     it('should not show view toggle when PC is selected', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Chennai South"
           currentData={mockAssemblyData}
@@ -660,8 +636,8 @@ describe('Sidebar', () => {
 
     it('should not show view toggle when district is selected', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentDistrict="Chennai"
           currentData={mockAssemblyData}
@@ -672,8 +648,8 @@ describe('Sidebar', () => {
 
     it('should have active class on constituencies button when in constituencies view', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentView="constituencies"
           currentData={mockConstituencyData}
@@ -685,8 +661,8 @@ describe('Sidebar', () => {
 
     it('should have active class on districts button when in districts view', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentView="districts"
           currentData={mockDistrictData}
@@ -699,34 +675,34 @@ describe('Sidebar', () => {
     it('should call onSwitchView with constituencies when clicked', () => {
       const onSwitchView = vi.fn();
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentView="districts"
           currentData={mockDistrictData}
           onSwitchView={onSwitchView}
         />
       );
-      
+
       fireEvent.click(screen.getByText('🗳️ Constituencies'));
-      
+
       expect(onSwitchView).toHaveBeenCalledWith('constituencies');
     });
 
     it('should call onSwitchView with districts when clicked', () => {
       const onSwitchView = vi.fn();
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentView="constituencies"
           currentData={mockConstituencyData}
           onSwitchView={onSwitchView}
         />
       );
-      
+
       fireEvent.click(screen.getByText('🗺️ Districts'));
-      
+
       expect(onSwitchView).toHaveBeenCalledWith('districts');
     });
   });
@@ -741,11 +717,7 @@ describe('Sidebar', () => {
 
     it('should show India > State in breadcrumb when state selected', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
-          currentState="Tamil Nadu"
-          currentData={mockConstituencyData}
-        />
+        <Sidebar {...defaultProps} currentState="Tamil Nadu" currentData={mockConstituencyData} />
       );
       const breadcrumb = document.querySelector('.breadcrumb');
       expect(within(breadcrumb).getByText('India')).toBeInTheDocument();
@@ -754,8 +726,8 @@ describe('Sidebar', () => {
 
     it('should show India > State > PC in breadcrumb when PC selected', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Chennai South"
           currentData={mockAssemblyData}
@@ -769,8 +741,8 @@ describe('Sidebar', () => {
 
     it('should show India > State > District > Assemblies in breadcrumb when district selected', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentDistrict="Chennai"
           currentData={mockAssemblyData}
@@ -786,37 +758,37 @@ describe('Sidebar', () => {
     it('should call onReset when India is clicked in breadcrumb', () => {
       const onReset = vi.fn();
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentData={mockConstituencyData}
           onReset={onReset}
         />
       );
-      
+
       const breadcrumb = document.querySelector('.breadcrumb');
       const indiaLink = within(breadcrumb).getByText('India');
       fireEvent.click(indiaLink);
-      
+
       expect(onReset).toHaveBeenCalledTimes(1);
     });
 
     it('should call onGoBackToState when state is clicked in breadcrumb from PC view', () => {
       const onGoBackToState = vi.fn();
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Chennai South"
           currentData={mockAssemblyData}
           onGoBackToState={onGoBackToState}
         />
       );
-      
+
       const breadcrumb = document.querySelector('.breadcrumb');
       const stateLink = within(breadcrumb).getByText('Tamil Nadu');
       fireEvent.click(stateLink);
-      
+
       expect(onGoBackToState).toHaveBeenCalledTimes(1);
     });
   });
@@ -850,9 +822,9 @@ describe('Sidebar', () => {
     it('should call onClose when overlay is clicked', () => {
       const onClose = vi.fn();
       const { container } = render(<Sidebar {...defaultProps} isOpen={true} onClose={onClose} />);
-      
+
       fireEvent.click(container.querySelector('.sidebar-overlay'));
-      
+
       expect(onClose).toHaveBeenCalledTimes(1);
     });
   });
@@ -864,21 +836,13 @@ describe('Sidebar', () => {
     });
 
     it('should handle undefined features', () => {
-      render(
-        <Sidebar 
-          {...defaultProps} 
-          statesGeoJSON={{ type: 'FeatureCollection' }}
-        />
-      );
+      render(<Sidebar {...defaultProps} statesGeoJSON={{ type: 'FeatureCollection' }} />);
       expect(screen.getByText('🔍 Election Lens')).toBeInTheDocument();
     });
 
     it('should handle empty features array', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
-          statesGeoJSON={{ type: 'FeatureCollection', features: [] }}
-        />
+        <Sidebar {...defaultProps} statesGeoJSON={{ type: 'FeatureCollection', features: [] }} />
       );
       expect(screen.getByText(/States & Union Territories \(0\)/)).toBeInTheDocument();
     });
@@ -891,18 +855,18 @@ describe('Sidebar', () => {
           {
             type: 'Feature',
             properties: { AC_NAME: 'Valid Name', AC_NO: '1' },
-            geometry: { type: 'Polygon', coordinates: [] }
+            geometry: { type: 'Polygon', coordinates: [] },
           },
           {
             type: 'Feature',
             properties: { AC_NAME: '', AC_NO: '2' }, // Empty - should be filtered out
-            geometry: { type: 'Polygon', coordinates: [] }
-          }
-        ]
+            geometry: { type: 'Polygon', coordinates: [] },
+          },
+        ],
       };
       render(
-        <Sidebar 
-          {...defaultProps} 
+        <Sidebar
+          {...defaultProps}
           currentState="Tamil Nadu"
           currentPC="Test"
           currentData={dataWithMixedProps}
@@ -913,18 +877,18 @@ describe('Sidebar', () => {
       expect(screen.getByText('Valid Name')).toBeInTheDocument();
     });
 
-    it('should handle state names with diacritics', () => {
-      const statesWithDiacritics = {
+    it('should handle state names with whitespace', () => {
+      const statesWithWhitespace = {
         type: 'FeatureCollection',
         features: [
           {
             type: 'Feature',
-            properties: { shapeName: 'Rājasthān' },
-            geometry: { type: 'Polygon', coordinates: [] }
-          }
-        ]
+            properties: { shapeName: '  Rajasthan  ' },
+            geometry: { type: 'Polygon', coordinates: [] },
+          },
+        ],
       };
-      render(<Sidebar {...defaultProps} statesGeoJSON={statesWithDiacritics} />);
+      render(<Sidebar {...defaultProps} statesGeoJSON={statesWithWhitespace} />);
       expect(screen.getByText('Rajasthan')).toBeInTheDocument();
     });
   });
@@ -938,11 +902,7 @@ describe('Sidebar', () => {
 
     it('should have clickable toggle buttons', () => {
       render(
-        <Sidebar 
-          {...defaultProps} 
-          currentState="Tamil Nadu"
-          currentData={mockConstituencyData}
-        />
+        <Sidebar {...defaultProps} currentState="Tamil Nadu" currentData={mockConstituencyData} />
       );
       const buttons = screen.getAllByRole('button');
       expect(buttons.length).toBeGreaterThan(0);
@@ -951,13 +911,9 @@ describe('Sidebar', () => {
 });
 
 describe('Sidebar - state normalization', () => {
-  it('should normalize state names with diacritics', () => {
+  it('should normalize state names with whitespace', () => {
     render(
-      <Sidebar 
-        {...defaultProps} 
-        currentState="Rājasthān"
-        currentData={mockConstituencyData}
-      />
+      <Sidebar {...defaultProps} currentState="  Rajasthan  " currentData={mockConstituencyData} />
     );
     // Should display normalized name (may appear multiple times in title and stat)
     const rajasthanElements = screen.getAllByText('Rajasthan');

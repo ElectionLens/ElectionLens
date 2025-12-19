@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { initDB, getFromDB, saveToDB, getDBStats } from '../utils/db';
-import { normalizeStateName, getStateFileName, removeDiacritics } from '../utils/helpers';
-import { 
-  STATE_FILE_MAP, 
-  ASM_STATE_ALIASES, 
-  DISTRICT_NAME_MAPPINGS, 
+import { normalizeName, getStateFileName } from '../utils/helpers';
+import {
+  STATE_FILE_MAP,
+  ASM_STATE_ALIASES,
+  DISTRICT_NAME_MAPPINGS,
   PC_NAME_MAPPINGS,
-  PC_STATE_ALIASES 
+  PC_STATE_ALIASES,
 } from '../constants';
 import { BOUNDARIES, PARLIAMENT, ASSEMBLY, DISTRICTS, CACHE_KEYS } from '../constants/paths';
 import type {
@@ -20,7 +20,7 @@ import type {
   ConstituencyFeature,
   AssemblyFeature,
   UseElectionDataReturn,
-  GeoJSONData
+  GeoJSONData,
 } from '../types';
 
 /**
@@ -33,23 +33,24 @@ export function useElectionData(): UseElectionDataReturn {
   const [parliamentGeoJSON, setParliamentGeoJSON] = useState<ConstituenciesGeoJSON | null>(null);
   const [assemblyGeoJSON, setAssemblyGeoJSON] = useState<AssembliesGeoJSON | null>(null);
   const [districtsCache, setDistrictsCache] = useState<DistrictsCache>({});
-  
+
   // UI states
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [cacheStats, setCacheStats] = useState<CacheStats>({ 
-    dbCount: 0, 
-    memCount: 0, 
-    pcCount: 0, 
-    acCount: 0 
+  const [cacheStats, setCacheStats] = useState<CacheStats>({
+    dbCount: 0,
+    memCount: 0,
+    pcCount: 0,
+    acCount: 0,
   });
-  
+
   // Current navigation state
   const [currentState, setCurrentState] = useState<string | null>(null);
   const [currentView, setCurrentView] = useState<ViewMode>('constituencies');
   const [currentPC, setCurrentPC] = useState<string | null>(null);
   const [currentDistrict, setCurrentDistrict] = useState<string | null>(null);
-  
+  const [currentAssembly, setCurrentAssembly] = useState<string | null>(null);
+
   // Refs for caching
   const districtsCacheRef = useRef<DistrictsCache>({});
 
@@ -64,7 +65,7 @@ export function useElectionData(): UseElectionDataReturn {
       memCount: Object.keys(districtsCacheRef.current).length,
       totalStates,
       pcCount: parliamentGeoJSON?.features?.length ?? 0,
-      acCount: assemblyGeoJSON?.features?.length ?? 0
+      acCount: assemblyGeoJSON?.features?.length ?? 0,
     });
   }, [parliamentGeoJSON, assemblyGeoJSON]);
 
@@ -73,18 +74,18 @@ export function useElectionData(): UseElectionDataReturn {
    */
   const loadStatesData = useCallback(async (): Promise<StatesGeoJSON | null> => {
     try {
-      let data = await getFromDB(CACHE_KEYS.STATES) as StatesGeoJSON | null;
-      
+      let data = (await getFromDB(CACHE_KEYS.STATES)) as StatesGeoJSON | null;
+
       if (data) {
         console.log('States loaded from DB:', data.features.length);
       } else {
         const response = await fetch(BOUNDARIES.STATES);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        data = await response.json() as StatesGeoJSON;
+        data = (await response.json()) as StatesGeoJSON;
         console.log('States loaded from file:', data.features.length);
         saveToDB(CACHE_KEYS.STATES, data);
       }
-      
+
       setStatesGeoJSON(data);
       return data;
     } catch (err) {
@@ -99,34 +100,35 @@ export function useElectionData(): UseElectionDataReturn {
    */
   const loadParliamentData = useCallback(async (): Promise<ConstituenciesGeoJSON | null> => {
     try {
-      let data = await getFromDB(CACHE_KEYS.PARLIAMENT) as ConstituenciesGeoJSON | null;
-      
+      let data = (await getFromDB(CACHE_KEYS.PARLIAMENT)) as ConstituenciesGeoJSON | null;
+
       if (data) {
         console.log('Parliament data loaded from DB:', data.features.length);
       } else {
         const response = await fetch(PARLIAMENT.CONSTITUENCIES);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const rawData = await response.json() as GeoJSONData | ConstituencyFeature[];
-        
+        const rawData = (await response.json()) as GeoJSONData | ConstituencyFeature[];
+
         let features: ConstituencyFeature[];
         if (Array.isArray(rawData)) {
-          features = rawData.filter((f): f is ConstituencyFeature => 
-            f !== null && f.properties !== undefined && f.geometry !== undefined
+          features = rawData.filter(
+            (f): f is ConstituencyFeature =>
+              f !== null && f.properties !== undefined && f.geometry !== undefined
           );
         } else if ('features' in rawData && rawData.features) {
           features = (rawData.features as ConstituencyFeature[]).filter(
-            (f): f is ConstituencyFeature => 
+            (f): f is ConstituencyFeature =>
               f !== null && f.properties !== undefined && f.geometry !== undefined
           );
         } else {
           features = [];
         }
-        
+
         data = { type: 'FeatureCollection', features };
         console.log('Parliament data loaded from file:', data.features.length);
         saveToDB(CACHE_KEYS.PARLIAMENT, data);
       }
-      
+
       setParliamentGeoJSON(data);
       return data;
     } catch (err) {
@@ -139,9 +141,7 @@ export function useElectionData(): UseElectionDataReturn {
    * Filter valid assembly features (remove pre-delimitation placeholders)
    */
   const filterValidAssemblyFeatures = (features: AssemblyFeature[]): AssemblyFeature[] => {
-    return features.filter(f => 
-      f.properties.AC_NAME && f.properties.AC_NAME.trim() !== ''
-    );
+    return features.filter((f) => f.properties.AC_NAME && f.properties.AC_NAME.trim() !== '');
   };
 
   /**
@@ -149,8 +149,8 @@ export function useElectionData(): UseElectionDataReturn {
    */
   const loadAssemblyData = useCallback(async (): Promise<AssembliesGeoJSON | null> => {
     try {
-      let data = await getFromDB(CACHE_KEYS.ASSEMBLY) as AssembliesGeoJSON | null;
-      
+      let data = (await getFromDB(CACHE_KEYS.ASSEMBLY)) as AssembliesGeoJSON | null;
+
       if (data) {
         // Filter cached data too (in case old cache has invalid features)
         const validFeatures = filterValidAssemblyFeatures(data.features);
@@ -164,30 +164,35 @@ export function useElectionData(): UseElectionDataReturn {
       } else {
         const response = await fetch(ASSEMBLY.CONSTITUENCIES);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const rawData = await response.json() as GeoJSONData | AssemblyFeature[];
-        
+        const rawData = (await response.json()) as GeoJSONData | AssemblyFeature[];
+
         let features: AssemblyFeature[];
         if (Array.isArray(rawData)) {
-          features = rawData.filter((f): f is AssemblyFeature => 
-            f !== null && f.properties !== undefined && f.geometry !== undefined
+          features = rawData.filter(
+            (f): f is AssemblyFeature =>
+              f !== null && f.properties !== undefined && f.geometry !== undefined
           );
         } else if ('features' in rawData && rawData.features) {
           features = (rawData.features as AssemblyFeature[]).filter(
-            (f): f is AssemblyFeature => 
+            (f): f is AssemblyFeature =>
               f !== null && f.properties !== undefined && f.geometry !== undefined
           );
         } else {
           features = [];
         }
-        
+
         // Filter out pre-delimitation placeholders
         features = filterValidAssemblyFeatures(features);
-        
+
         data = { type: 'FeatureCollection', features };
-        console.log('Assembly data loaded from file:', data.features.length, '(filtered invalid features)');
+        console.log(
+          'Assembly data loaded from file:',
+          data.features.length,
+          '(filtered invalid features)'
+        );
         saveToDB(CACHE_KEYS.ASSEMBLY, data);
       }
-      
+
       setAssemblyGeoJSON(data);
       return data;
     } catch (err) {
@@ -201,21 +206,21 @@ export function useElectionData(): UseElectionDataReturn {
    */
   const preloadAllDistricts = useCallback(async (): Promise<void> => {
     const stateFiles = [...new Set(Object.values(STATE_FILE_MAP))];
-    
+
     const loadPromises = stateFiles.map(async (fileName): Promise<boolean> => {
       if (districtsCacheRef.current[fileName]) return true;
-      
+
       const cacheKey = CACHE_KEYS.getDistrictKey(fileName);
-      const cached = await getFromDB(cacheKey) as DistrictsGeoJSON | null;
+      const cached = (await getFromDB(cacheKey)) as DistrictsGeoJSON | null;
       if (cached) {
         districtsCacheRef.current[fileName] = cached;
         return true;
       }
-      
+
       try {
         const response = await fetch(DISTRICTS.getPath(fileName));
         if (response.ok) {
-          const data = await response.json() as DistrictsGeoJSON;
+          const data = (await response.json()) as DistrictsGeoJSON;
           districtsCacheRef.current[fileName] = data;
           saveToDB(cacheKey, data);
           return true;
@@ -225,11 +230,11 @@ export function useElectionData(): UseElectionDataReturn {
       }
       return false;
     });
-    
+
     const results = await Promise.all(loadPromises);
     const loaded = results.filter(Boolean).length;
     console.log(`Preloaded ${loaded} state district files`);
-    
+
     setDistrictsCache({ ...districtsCacheRef.current });
     updateCacheStats();
   }, [updateCacheStats]);
@@ -255,234 +260,268 @@ export function useElectionData(): UseElectionDataReturn {
   /**
    * Get constituencies for a given state
    */
-  const getConstituenciesForState = useCallback((stateName: string): ConstituencyFeature[] => {
-    if (!parliamentGeoJSON) return [];
-    
-    const normalized = removeDiacritics(normalizeStateName(stateName));
-    
-    return parliamentGeoJSON.features.filter((f): boolean => {
-      let pcState = f.properties.state_ut_name ?? f.properties.STATE_NAME ?? '';
-      const aliasedState = PC_STATE_ALIASES[pcState];
-      if (aliasedState) {
-        pcState = aliasedState;
-      }
-      return removeDiacritics(normalizeStateName(pcState)) === normalized;
-    });
-  }, [parliamentGeoJSON]);
+  const getConstituenciesForState = useCallback(
+    (stateName: string): ConstituencyFeature[] => {
+      if (!parliamentGeoJSON) return [];
+
+      const normalized = normalizeName(stateName);
+
+      return parliamentGeoJSON.features.filter((f): boolean => {
+        let pcState = f.properties.state_ut_name ?? f.properties.STATE_NAME ?? '';
+        const aliasedState = PC_STATE_ALIASES[pcState];
+        if (aliasedState) {
+          pcState = aliasedState;
+        }
+        return normalizeName(pcState) === normalized;
+      });
+    },
+    [parliamentGeoJSON]
+  );
 
   /**
    * Get assemblies for a parliamentary constituency
    */
-  const getAssembliesForPC = useCallback((pcName: string, stateName: string): AssemblyFeature[] => {
-    if (!assemblyGeoJSON) return [];
-    
-    let normalizedPC = pcName.toUpperCase().trim();
-    const normalizedState = removeDiacritics(normalizeStateName(stateName)).toUpperCase();
-    
-    const asmState = ASM_STATE_ALIASES[normalizedState] ?? normalizedState;
-    
-    const mappingKey = `${normalizedPC}|${normalizedState}`;
-    const mappedPC = PC_NAME_MAPPINGS[mappingKey];
-    if (mappedPC) {
-      normalizedPC = mappedPC;
-    }
-    
-    return assemblyGeoJSON.features.filter((f): boolean => {
-      // Skip features without valid AC_NAME
-      if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
-      
-      const asmPC = (f.properties.PC_NAME ?? '').toUpperCase().trim();
-      const asmStateName = (f.properties.ST_NAME ?? '').toUpperCase().trim();
-      
-      if (asmStateName !== asmState) return false;
-      
-      if (asmPC === normalizedPC) return true;
-      
-      // Check for SC/ST suffixes
-      if (asmPC === normalizedPC + ' (SC)' || 
+  const getAssembliesForPC = useCallback(
+    (pcName: string, stateName: string): AssemblyFeature[] => {
+      if (!assemblyGeoJSON) return [];
+
+      let normalizedPC = pcName.toUpperCase().trim();
+      const normalizedState = normalizeName(stateName).toUpperCase();
+
+      const asmState = ASM_STATE_ALIASES[normalizedState] ?? normalizedState;
+
+      const mappingKey = `${normalizedPC}|${normalizedState}`;
+      const mappedPC = PC_NAME_MAPPINGS[mappingKey];
+      if (mappedPC) {
+        normalizedPC = mappedPC;
+      }
+
+      return assemblyGeoJSON.features.filter((f): boolean => {
+        // Skip features without valid AC_NAME
+        if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
+
+        const asmPC = (f.properties.PC_NAME ?? '').toUpperCase().trim();
+        const asmStateName = (f.properties.ST_NAME ?? '').toUpperCase().trim();
+
+        if (asmStateName !== asmState) return false;
+
+        if (asmPC === normalizedPC) return true;
+
+        // Check for SC/ST suffixes
+        if (
+          asmPC === normalizedPC + ' (SC)' ||
           asmPC === normalizedPC + ' (ST)' ||
           asmPC === normalizedPC + '(SC)' ||
-          asmPC === normalizedPC + '(ST)') return true;
-      
-      // Check cleaned PC name
-      const cleanAsmPC = asmPC.replace(/\s*\([^)]*\)\s*$/, '').trim();
-      if (cleanAsmPC === normalizedPC) return true;
-      
-      // Check for prefix matching
-      if (asmPC.startsWith(normalizedPC) || normalizedPC.startsWith(asmPC)) {
-        const minLen = Math.min(asmPC.length, normalizedPC.length);
-        if (minLen >= 10) return true;
-      }
-      
-      return false;
-    });
-  }, [assemblyGeoJSON]);
+          asmPC === normalizedPC + '(ST)'
+        )
+          return true;
+
+        // Check cleaned PC name
+        const cleanAsmPC = asmPC.replace(/\s*\([^)]*\)\s*$/, '').trim();
+        if (cleanAsmPC === normalizedPC) return true;
+
+        // Check for prefix matching
+        if (asmPC.startsWith(normalizedPC) || normalizedPC.startsWith(asmPC)) {
+          const minLen = Math.min(asmPC.length, normalizedPC.length);
+          if (minLen >= 10) return true;
+        }
+
+        return false;
+      });
+    },
+    [assemblyGeoJSON]
+  );
 
   /**
    * Get assemblies for a district
    */
-  const getAssembliesForDistrict = useCallback((districtName: string, stateName: string): AssemblyFeature[] => {
-    if (!assemblyGeoJSON) return [];
-    
-    let normalizedDist = districtName.toUpperCase().trim();
-    const normalizedState = removeDiacritics(normalizeStateName(stateName)).toUpperCase().trim();
-    
-    const asmState = ASM_STATE_ALIASES[normalizedState] ?? normalizedState;
-    
-    const mappingKey = `${normalizedDist}|${normalizedState}`;
-    const mappedDist = DISTRICT_NAME_MAPPINGS[mappingKey];
-    if (mappedDist) {
-      normalizedDist = mappedDist;
-    }
-    
-    return assemblyGeoJSON.features.filter((f): boolean => {
-      // Skip features without valid AC_NAME
-      if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
-      
-      const asmDistRaw = (f.properties.DIST_NAME ?? '').toUpperCase();
-      const asmDist = asmDistRaw.replace(/[^A-Z]/g, '');
-      const asmStateName = (f.properties.ST_NAME ?? '').toUpperCase().trim();
-      
-      if (asmStateName !== asmState) return false;
-      
-      const cleanDist = normalizedDist.replace(/[^A-Z]/g, '');
-      return asmDist === cleanDist;
-    });
-  }, [assemblyGeoJSON]);
+  const getAssembliesForDistrict = useCallback(
+    (districtName: string, stateName: string): AssemblyFeature[] => {
+      if (!assemblyGeoJSON) return [];
+
+      let normalizedDist = districtName.toUpperCase().trim();
+      const normalizedState = normalizeName(stateName).toUpperCase().trim();
+
+      const asmState = ASM_STATE_ALIASES[normalizedState] ?? normalizedState;
+
+      const mappingKey = `${normalizedDist}|${normalizedState}`;
+      const mappedDist = DISTRICT_NAME_MAPPINGS[mappingKey];
+      if (mappedDist) {
+        normalizedDist = mappedDist;
+      }
+
+      return assemblyGeoJSON.features.filter((f): boolean => {
+        // Skip features without valid AC_NAME
+        if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
+
+        const asmDistRaw = (f.properties.DIST_NAME ?? '').toUpperCase();
+        const asmDist = asmDistRaw.replace(/[^A-Z]/g, '');
+        const asmStateName = (f.properties.ST_NAME ?? '').toUpperCase().trim();
+
+        if (asmStateName !== asmState) return false;
+
+        const cleanDist = normalizedDist.replace(/[^A-Z]/g, '');
+        return asmDist === cleanDist;
+      });
+    },
+    [assemblyGeoJSON]
+  );
 
   /**
    * Load district data for a state
    */
-  const loadDistrictsForState = useCallback(async (stateName: string): Promise<DistrictsGeoJSON | null> => {
-    const fileName = getStateFileName(stateName);
-    const filePath = DISTRICTS.getPath(fileName);
-    const cacheKey = CACHE_KEYS.getDistrictKey(fileName);
-    
-    console.log(`Loading districts for ${stateName} from ${filePath}`);
-    
-    setLoading(true);
-    
-    try {
-      let data: DistrictsGeoJSON | null = null;
-      
-      if (districtsCacheRef.current[fileName]) {
-        data = districtsCacheRef.current[fileName]!;
-      } else {
-        data = await getFromDB(cacheKey) as DistrictsGeoJSON | null;
-        if (data) {
-          districtsCacheRef.current[fileName] = data;
+  const loadDistrictsForState = useCallback(
+    async (stateName: string): Promise<DistrictsGeoJSON | null> => {
+      const fileName = getStateFileName(stateName);
+      const filePath = DISTRICTS.getPath(fileName);
+      const cacheKey = CACHE_KEYS.getDistrictKey(fileName);
+
+      console.log(`Loading districts for ${stateName} from ${filePath}`);
+
+      setLoading(true);
+
+      try {
+        let data: DistrictsGeoJSON | null = null;
+
+        if (districtsCacheRef.current[fileName]) {
+          data = districtsCacheRef.current[fileName]!;
+        } else {
+          data = (await getFromDB(cacheKey)) as DistrictsGeoJSON | null;
+          if (data) {
+            districtsCacheRef.current[fileName] = data;
+          }
         }
+
+        if (!data) {
+          const response = await fetch(filePath);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          data = (await response.json()) as DistrictsGeoJSON;
+          districtsCacheRef.current[fileName] = data;
+          saveToDB(cacheKey, data);
+        }
+
+        console.log(`Loaded ${data.features.length} districts`);
+
+        setDistrictsCache({ ...districtsCacheRef.current });
+        setCurrentState(stateName);
+        setCurrentView('districts');
+        setCurrentPC(null);
+        setCurrentDistrict(null);
+        setCurrentAssembly(null);
+        updateCacheStats();
+
+        return data;
+      } catch (err) {
+        console.error('Failed to load districts:', err);
+        setError(`Could not load districts for ${stateName}`);
+        return null;
+      } finally {
+        setLoading(false);
       }
-      
-      if (!data) {
-        const response = await fetch(filePath);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        data = await response.json() as DistrictsGeoJSON;
-        districtsCacheRef.current[fileName] = data;
-        saveToDB(cacheKey, data);
-      }
-      
-      console.log(`Loaded ${data.features.length} districts`);
-      
-      setDistrictsCache({ ...districtsCacheRef.current });
-      setCurrentState(stateName);
-      setCurrentView('districts');
-      setCurrentPC(null);
-      setCurrentDistrict(null);
-      updateCacheStats();
-      
-      return data;
-    } catch (err) {
-      console.error('Failed to load districts:', err);
-      setError(`Could not load districts for ${stateName}`);
-      return null;
-    } finally {
-      setLoading(false);
-    }
-  }, [updateCacheStats]);
+    },
+    [updateCacheStats]
+  );
 
   /**
    * Navigate to a state (constituencies view)
    */
-  const navigateToState = useCallback(async (stateName: string): Promise<ConstituenciesGeoJSON | DistrictsGeoJSON | null> => {
-    setLoading(true);
-    try {
-      if (!parliamentGeoJSON) {
-        await loadParliamentData();
+  const navigateToState = useCallback(
+    async (stateName: string): Promise<ConstituenciesGeoJSON | DistrictsGeoJSON | null> => {
+      setLoading(true);
+      try {
+        if (!parliamentGeoJSON) {
+          await loadParliamentData();
+        }
+
+        const constituencies = getConstituenciesForState(stateName);
+        console.log(`Found ${constituencies.length} constituencies for ${stateName}`);
+
+        if (constituencies.length === 0) {
+          // Switch to districts view if no constituencies
+          return loadDistrictsForState(stateName);
+        }
+
+        setCurrentState(stateName);
+        setCurrentView('constituencies');
+        setCurrentPC(null);
+        setCurrentDistrict(null);
+        setCurrentAssembly(null);
+
+        return { type: 'FeatureCollection', features: constituencies };
+      } finally {
+        setLoading(false);
       }
-      
-      const constituencies = getConstituenciesForState(stateName);
-      console.log(`Found ${constituencies.length} constituencies for ${stateName}`);
-      
-      if (constituencies.length === 0) {
-        // Switch to districts view if no constituencies
-        return loadDistrictsForState(stateName);
-      }
-      
-      setCurrentState(stateName);
-      setCurrentView('constituencies');
-      setCurrentPC(null);
-      setCurrentDistrict(null);
-      
-      return { type: 'FeatureCollection', features: constituencies };
-    } finally {
-      setLoading(false);
-    }
-  }, [parliamentGeoJSON, loadParliamentData, getConstituenciesForState, loadDistrictsForState]);
+    },
+    [parliamentGeoJSON, loadParliamentData, getConstituenciesForState, loadDistrictsForState]
+  );
 
   /**
    * Navigate to a parliamentary constituency (assembly view)
    */
-  const navigateToPC = useCallback(async (pcName: string, stateName: string): Promise<AssembliesGeoJSON> => {
-    setLoading(true);
-    try {
-      if (!assemblyGeoJSON) {
-        await loadAssemblyData();
+  const navigateToPC = useCallback(
+    async (pcName: string, stateName: string): Promise<AssembliesGeoJSON> => {
+      setLoading(true);
+      try {
+        if (!assemblyGeoJSON) {
+          await loadAssemblyData();
+        }
+
+        const assemblies = getAssembliesForPC(pcName, stateName);
+        console.log(`Found ${assemblies.length} assembly constituencies for ${pcName}`);
+
+        setCurrentPC(pcName);
+        setCurrentDistrict(null);
+        setCurrentAssembly(null); // Clear assembly when navigating to new PC
+
+        return { type: 'FeatureCollection', features: assemblies };
+      } finally {
+        setLoading(false);
       }
-      
-      const assemblies = getAssembliesForPC(pcName, stateName);
-      console.log(`Found ${assemblies.length} assembly constituencies for ${pcName}`);
-      
-      setCurrentPC(pcName);
-      setCurrentDistrict(null);
-      
-      return { type: 'FeatureCollection', features: assemblies };
-    } finally {
-      setLoading(false);
-    }
-  }, [assemblyGeoJSON, loadAssemblyData, getAssembliesForPC]);
+    },
+    [assemblyGeoJSON, loadAssemblyData, getAssembliesForPC]
+  );
 
   /**
    * Navigate to a district (assembly view)
    */
-  const navigateToDistrict = useCallback(async (districtName: string, stateName: string): Promise<AssembliesGeoJSON> => {
-    setLoading(true);
-    try {
-      if (!assemblyGeoJSON) {
-        await loadAssemblyData();
+  const navigateToDistrict = useCallback(
+    async (districtName: string, stateName: string): Promise<AssembliesGeoJSON> => {
+      setLoading(true);
+      try {
+        if (!assemblyGeoJSON) {
+          await loadAssemblyData();
+        }
+
+        const assemblies = getAssembliesForDistrict(districtName, stateName);
+        console.log(
+          `Found ${assemblies.length} assembly constituencies for district ${districtName}`
+        );
+
+        setCurrentDistrict(districtName);
+        setCurrentPC(null);
+        setCurrentAssembly(null); // Clear assembly when navigating to new district
+
+        return { type: 'FeatureCollection', features: assemblies };
+      } finally {
+        setLoading(false);
       }
-      
-      const assemblies = getAssembliesForDistrict(districtName, stateName);
-      console.log(`Found ${assemblies.length} assembly constituencies for district ${districtName}`);
-      
-      setCurrentDistrict(districtName);
-      setCurrentPC(null);
-      
-      return { type: 'FeatureCollection', features: assemblies };
-    } finally {
-      setLoading(false);
-    }
-  }, [assemblyGeoJSON, loadAssemblyData, getAssembliesForDistrict]);
+    },
+    [assemblyGeoJSON, loadAssemblyData, getAssembliesForDistrict]
+  );
 
   /**
    * Switch between districts and constituencies view
    */
-  const switchView = useCallback((view: ViewMode): void => {
-    if (!currentState) return;
-    setCurrentView(view);
-    setCurrentPC(null);
-    setCurrentDistrict(null);
-  }, [currentState]);
+  const switchView = useCallback(
+    (view: ViewMode): void => {
+      if (!currentState) return;
+      setCurrentView(view);
+      setCurrentPC(null);
+      setCurrentDistrict(null);
+      setCurrentAssembly(null);
+    },
+    [currentState]
+  );
 
   /**
    * Reset to India view
@@ -492,6 +531,7 @@ export function useElectionData(): UseElectionDataReturn {
     setCurrentView('constituencies');
     setCurrentPC(null);
     setCurrentDistrict(null);
+    setCurrentAssembly(null);
   }, []);
 
   /**
@@ -500,6 +540,14 @@ export function useElectionData(): UseElectionDataReturn {
   const goBackToState = useCallback((): void => {
     setCurrentPC(null);
     setCurrentDistrict(null);
+    setCurrentAssembly(null);
+  }, []);
+
+  /**
+   * Set current assembly (for deep linking)
+   */
+  const selectAssembly = useCallback((assemblyName: string | null): void => {
+    setCurrentAssembly(assemblyName);
   }, []);
 
   return {
@@ -508,21 +556,22 @@ export function useElectionData(): UseElectionDataReturn {
     parliamentGeoJSON,
     assemblyGeoJSON,
     districtsCache,
-    
+
     // State
     currentState,
     currentView,
     currentPC,
     currentDistrict,
+    currentAssembly,
     loading,
     error,
     cacheStats,
-    
+
     // Data getters
     getConstituenciesForState,
     getAssembliesForPC,
     getAssembliesForDistrict,
-    
+
     // Navigation
     navigateToState,
     navigateToPC,
@@ -531,9 +580,9 @@ export function useElectionData(): UseElectionDataReturn {
     switchView,
     resetView,
     goBackToState,
-    
+    selectAssembly,
+
     // Utils
-    updateCacheStats
+    updateCacheStats,
   };
 }
-
