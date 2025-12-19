@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🚀 Running pre-push checks..."
+
+# Run full test suite before pushing
+npm run test:run
+
+# Check if tests passed
+if [ $? -ne 0 ]; then
+    echo "❌ Tests failed. Please fix failing tests before pushing."
+    exit 1
+fi
+
+# Run lint check
+npm run lint
+
+if [ $? -ne 0 ]; then
+    echo "❌ Lint errors found. Please fix before pushing."
+    exit 1
+fi
+
+echo "✅ Pre-push checks passed! Pushing..."
