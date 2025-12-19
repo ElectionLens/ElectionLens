@@ -118,18 +118,29 @@ export function Sidebar({
   };
 
   /**
+   * Check if features have assembly properties (AC_NAME)
+   */
+  const isAssemblyData = (features: Feature[]): boolean => {
+    if (!features.length) return false;
+    const firstProps = features[0]?.properties as AssemblyProperties;
+    // Check if it has AC_NAME property (assembly) vs ls_seat_name (constituency)
+    return 'AC_NAME' in firstProps || !('ls_seat_name' in firstProps);
+  };
+
+  /**
    * Render the appropriate list based on current navigation level
    */
   const renderList = (): ReactNode => {
     // Show assemblies if we're in assembly view
     if (currentPC ?? currentDistrict) {
-      if (!currentData?.features?.length) {
+      // Verify we have assembly data, not constituency data (race condition protection)
+      if (!currentData?.features?.length || !isAssemblyData(currentData.features as Feature[])) {
         return (
           <div className="district-list">
             <h3>Assembly Constituencies</h3>
             <div className="no-data-message">
               <div className="no-data-icon">🏛️</div>
-              <strong>No Assembly Data</strong>
+              <strong>{currentData?.features?.length ? 'Loading...' : 'No Assembly Data'}</strong>
               <p>
                 {currentPC 
                   ? 'This is a Union Territory without a state legislative assembly, or assembly boundary data is not available.'
@@ -145,7 +156,8 @@ export function Sidebar({
       // Filter out features without valid names first (pre-delimitation placeholders)
       const validFeatures = (currentData as GeoJSONData).features.filter(f => {
         const props = (f as Feature<AssemblyProperties>).properties;
-        return props.AC_NAME && props.AC_NAME.trim() !== '';
+        const hasValidName = props.AC_NAME && props.AC_NAME.trim() !== '';
+        return hasValidName;
       });
       
       const sorted: SortedAssembly[] = validFeatures
