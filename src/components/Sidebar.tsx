@@ -1,6 +1,6 @@
-import { normalizeStateName, getFeatureColor } from '../utils/helpers';
+import { normalizeName, getFeatureColor } from '../utils/helpers';
+import { SearchBox } from './SearchBox';
 import type {
-  SidebarProps,
   InfoPanelContent,
   StateFeature,
   DistrictFeature,
@@ -11,9 +11,45 @@ import type {
   ConstituencyProperties,
   DistrictProperties,
   StateProperties,
+  StatesGeoJSON,
+  ConstituenciesGeoJSON,
+  AssembliesGeoJSON,
+  GeoJSONData,
+  ViewMode,
+  CacheStats,
   HexColor,
 } from '../types';
 import type { ReactNode, CSSProperties } from 'react';
+
+/** Extended Sidebar props with search and share */
+interface SidebarProps {
+  statesGeoJSON: StatesGeoJSON | null;
+  parliamentGeoJSON: ConstituenciesGeoJSON | null;
+  assemblyGeoJSON: AssembliesGeoJSON | null;
+  currentState: string | null;
+  currentView: ViewMode;
+  currentPC: string | null;
+  currentDistrict: string | null;
+  cacheStats: CacheStats;
+  currentData: GeoJSONData | null;
+  onStateClick: (stateName: string, feature: StateFeature) => void;
+  onDistrictClick: (districtName: string, feature: DistrictFeature) => void;
+  onConstituencyClick: (pcName: string, feature: ConstituencyFeature) => void;
+  onAssemblyClick?: (acName: string, feature: AssemblyFeature) => void;
+  onSwitchView: (view: ViewMode) => void;
+  onReset: () => void;
+  onGoBackToState: () => void;
+  onSearchStateSelect: (stateName: string, feature: StateFeature) => void;
+  onSearchConstituencySelect: (
+    pcName: string,
+    stateName: string,
+    feature: ConstituencyFeature
+  ) => void;
+  onSearchAssemblySelect: (acName: string, stateName: string, feature: AssemblyFeature) => void;
+  onShare: () => void;
+  isOpen: boolean;
+  onClose: () => void;
+}
 
 /** Extended CSS properties to allow custom CSS variables */
 interface ExtendedCSSProperties extends CSSProperties {
@@ -26,6 +62,8 @@ interface ExtendedCSSProperties extends CSSProperties {
  */
 export function Sidebar({
   statesGeoJSON,
+  parliamentGeoJSON,
+  assemblyGeoJSON,
   currentState,
   currentView,
   currentPC,
@@ -39,10 +77,14 @@ export function Sidebar({
   onSwitchView,
   onReset,
   onGoBackToState,
+  onSearchStateSelect,
+  onSearchConstituencySelect,
+  onSearchAssemblySelect,
+  onShare,
   isOpen,
   onClose,
 }: SidebarProps): JSX.Element {
-  const displayState = currentState ? normalizeStateName(currentState) : null;
+  const displayState = currentState ? normalizeName(currentState) : null;
 
   /**
    * Determine what to show in info panel based on current navigation
@@ -348,13 +390,13 @@ export function Sidebar({
             feature: feat,
           };
         })
-        .sort((a, b) => normalizeStateName(a.name).localeCompare(normalizeStateName(b.name)));
+        .sort((a, b) => normalizeName(a.name).localeCompare(normalizeName(b.name)));
 
       return (
         <div className="district-list">
           <h3>States & Union Territories ({states.length})</h3>
           {states.map(({ name, index, feature }) => {
-            const displayName = normalizeStateName(name);
+            const displayName = normalizeName(name);
             const color: HexColor = getFeatureColor(index, 'states');
             return (
               <div
@@ -387,7 +429,23 @@ export function Sidebar({
           <p>India Electoral Map</p>
         </div>
 
-        <div className="breadcrumb">{renderBreadcrumb()}</div>
+        <div className="breadcrumb">
+          <div className="breadcrumb-nav">{renderBreadcrumb()}</div>
+          {currentState && (
+            <button className="share-btn" onClick={onShare} title="Copy shareable link">
+              🔗
+            </button>
+          )}
+        </div>
+
+        <SearchBox
+          statesGeoJSON={statesGeoJSON}
+          parliamentGeoJSON={parliamentGeoJSON}
+          assemblyGeoJSON={assemblyGeoJSON}
+          onStateSelect={onSearchStateSelect}
+          onConstituencySelect={onSearchConstituencySelect}
+          onAssemblySelect={onSearchAssemblySelect}
+        />
 
         <div className="info-panel">
           <div className="info-title">{info.title}</div>

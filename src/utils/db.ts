@@ -59,18 +59,18 @@ export async function initDB(): Promise<IDBDatabase | null> {
  */
 export async function getFromDB(key: string): Promise<GeoJSONData | null> {
   if (!db) return null;
-  
+
   return new Promise((resolve) => {
     try {
       const transaction = db!.transaction([STORE_NAME], 'readonly');
       const store = transaction.objectStore(STORE_NAME);
       const request = store.get(key);
-      
+
       request.onsuccess = (): void => {
         const result = request.result as DBStoredItem<GeoJSONData> | undefined;
         resolve(result?.data ?? null);
       };
-      
+
       request.onerror = (): void => resolve(null);
     } catch (e) {
       resolve(null);
@@ -86,20 +86,20 @@ export async function getFromDB(key: string): Promise<GeoJSONData | null> {
  */
 export async function saveToDB(key: string, data: GeoJSONData): Promise<boolean> {
   if (!db) return false;
-  
+
   return new Promise((resolve) => {
     try {
       const transaction = db!.transaction([STORE_NAME], 'readwrite');
       const store = transaction.objectStore(STORE_NAME);
-      
+
       const item: DBStoredItem<GeoJSONData> = {
         id: key,
         data: data,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       };
-      
+
       store.put(item);
-      
+
       transaction.oncomplete = (): void => resolve(true);
       transaction.onerror = (): void => resolve(false);
     } catch (e) {
@@ -114,17 +114,17 @@ export async function saveToDB(key: string, data: GeoJSONData): Promise<boolean>
  */
 export async function getDBStats(): Promise<DBStats> {
   if (!db) return { count: 0 };
-  
+
   return new Promise((resolve) => {
     try {
       const transaction = db!.transaction([STORE_NAME], 'readonly');
       const store = transaction.objectStore(STORE_NAME);
       const countRequest = store.count();
-      
+
       countRequest.onsuccess = (): void => {
         resolve({ count: countRequest.result });
       };
-      
+
       countRequest.onerror = (): void => resolve({ count: 0 });
     } catch (e) {
       resolve({ count: 0 });
@@ -145,14 +145,14 @@ export async function clearAllCache(): Promise<void> {
   try {
     await new Promise<void>((resolve, reject) => {
       const req = indexedDB.deleteDatabase(DB_NAME);
-      
+
       req.onsuccess = (): void => {
         console.log('IndexedDB deleted');
         resolve();
       };
-      
+
       req.onerror = (): void => reject(req.error);
-      
+
       req.onblocked = (): void => {
         console.log('Database delete blocked, forcing reload');
         resolve();
@@ -181,4 +181,3 @@ export function getDB(): IDBDatabase | null {
 export function setDB(database: IDBDatabase | null): void {
   db = database;
 }
-

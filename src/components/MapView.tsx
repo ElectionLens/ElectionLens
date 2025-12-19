@@ -1,13 +1,16 @@
-import { useEffect, useRef, useMemo, useCallback } from 'react';
-import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { MapContainer, TileLayer, GeoJSON, useMap, ScaleControl } from 'react-leaflet';
 import L from 'leaflet';
-import type { Layer, LeafletMouseEvent as LLeafletMouseEvent, LatLngBoundsExpression } from 'leaflet';
-import { getFeatureStyle, getHoverStyle, normalizeStateName } from '../utils/helpers';
+import type {
+  Layer,
+  LeafletMouseEvent as LLeafletMouseEvent,
+  LatLngBoundsExpression,
+} from 'leaflet';
+import { getFeatureStyle, getHoverStyle, normalizeName } from '../utils/helpers';
 import { COLOR_PALETTES } from '../constants';
 import { clearAllCache } from '../utils/db';
 import type {
   MapViewProps,
-  MapControlsProps,
   FitBoundsProps,
   MapLevel,
   GeoJSONData,
@@ -20,8 +23,129 @@ import type {
   DistrictFeature,
   ConstituencyFeature,
   AssemblyFeature,
-  HexColor
+  HexColor,
+  ViewMode,
 } from '../types';
+
+/** Map toolbar props */
+interface MapToolbarProps {
+  currentView: ViewMode;
+  showViewToggle: boolean;
+  showBackButton: boolean;
+  onReset: () => void;
+  onSwitchView: (view: ViewMode) => void;
+  onGoBack: () => void;
+}
+
+/** Layer option */
+type LayerName = 'Streets' | 'Light' | 'Satellite' | 'Terrain';
+
+/**
+ * Map Toolbar Component - Rendered as React overlay at top center
+ */
+function MapToolbar({
+  currentView,
+  showViewToggle,
+  showBackButton,
+  onReset,
+  onSwitchView,
+  onGoBack,
+}: MapToolbarProps): JSX.Element {
+  const [activeLayer, setActiveLayer] = useState<LayerName>('Streets');
+  const [layerMenuOpen, setLayerMenuOpen] = useState(false);
+
+  const handleFullscreen = (): void => {
+    const mapContainer = document.querySelector('.map-container');
+    if (!document.fullscreenElement) {
+      mapContainer?.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  };
+
+  const handleClearCache = async (): Promise<void> => {
+    await clearAllCache();
+  };
+
+  const handleLayerChange = (layer: LayerName): void => {
+    setActiveLayer(layer);
+    setLayerMenuOpen(false);
+    // Dispatch custom event for the map to handle
+    window.dispatchEvent(new CustomEvent('changeBaseLayer', { detail: layer }));
+  };
+
+  const isDev =
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+  return (
+    <div className="map-toolbar">
+      {/* Left section - navigation */}
+      <div className="toolbar-section toolbar-left">
+        <button className="toolbar-btn" onClick={onReset} title="Reset to India">
+          🏠
+        </button>
+        {showBackButton && (
+          <button className="toolbar-btn" onClick={onGoBack} title="Go back">
+            ←
+          </button>
+        )}
+        <button className="toolbar-btn" onClick={handleFullscreen} title="Toggle fullscreen">
+          ⛶
+        </button>
+        {isDev && (
+          <button className="toolbar-btn" onClick={handleClearCache} title="Clear cache">
+            🗑️
+          </button>
+        )}
+      </div>
+
+      {/* Center section - view toggle */}
+      {showViewToggle && (
+        <div className="toolbar-section toolbar-center">
+          <button
+            className={`toolbar-btn toolbar-toggle ${currentView === 'constituencies' ? 'active' : ''}`}
+            onClick={() => onSwitchView('constituencies')}
+            title="Parliamentary Constituencies"
+          >
+            🗳️ PC
+          </button>
+          <button
+            className={`toolbar-btn toolbar-toggle ${currentView === 'districts' ? 'active' : ''}`}
+            onClick={() => onSwitchView('districts')}
+            title="Districts"
+          >
+            🗺️ Dist
+          </button>
+        </div>
+      )}
+
+      {/* Right section - layer switcher */}
+      <div className="toolbar-section toolbar-right">
+        <div className="toolbar-dropdown">
+          <button
+            className="toolbar-btn toolbar-dropdown-btn"
+            onClick={() => setLayerMenuOpen(!layerMenuOpen)}
+            title="Change map style"
+          >
+            🗺️
+          </button>
+          <div className={`toolbar-dropdown-menu ${layerMenuOpen ? 'visible' : ''}`}>
+            {(['Streets', 'Light', 'Satellite', 'Terrain'] as LayerName[]).map((layer) => (
+              <button
+                key={layer}
+                className={`toolbar-dropdown-item ${activeLayer === layer ? 'active' : ''}`}
+                onClick={() => handleLayerChange(layer)}
+              >
+                {layer}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /** Leaflet layer with feature property */
 interface FeatureLayer {
@@ -35,200 +159,123 @@ interface FeatureLayer {
 /** Leaflet GeoJSON ref type */
 type GeoJSONRef = L.GeoJSON | null;
 
+/** Layer URLs */
+const LAYER_URLS: Record<string, { url: string; maxZoom: number; subdomains?: string }> = {
+  Streets: {
+    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+    maxZoom: 19,
+    subdomains: 'abcd',
+  },
+  Light: {
+    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    maxZoom: 19,
+    subdomains: 'abcd',
+  },
+  Satellite: {
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    maxZoom: 19,
+  },
+  Terrain: {
+    url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+    maxZoom: 17,
+    subdomains: 'abc',
+  },
+};
+
 /**
- * Map controls component
- * Adds home button, clear cache button (dev mode), view toggle, coordinates, legend, and layer switcher
+ * Map controls component (Leaflet-based)
+ * Handles coordinates display, legend, and layer switching
  */
-function MapControls({ 
-  currentState, 
-  currentView, 
-  onReset, 
-  onSwitchView,
-  showViewToggle 
-}: MapControlsProps): null {
+function MapControls(): null {
   const map = useMap();
-  
-  // Home button control
+  const baseLayerRef = useRef<L.TileLayer | null>(null);
+
+  // Initialize and handle base layer switching
   useEffect(() => {
-    const HomeControl = L.Control.extend({
-      options: { position: 'topleft' as const },
-      onAdd: function(): HTMLElement {
-        const container = L.DomUtil.create('div', 'reset-control-container');
-        
-        const btn = L.DomUtil.create('button', 'reset-control', container);
-        btn.innerHTML = '🏠';
-        btn.title = 'Reset to full India map';
-        btn.onclick = (e: MouseEvent): void => {
-          L.DomEvent.stopPropagation(e);
-          onReset();
-        };
-        
-        // Dev mode: clear cache button
-        if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-          const clearBtn = L.DomUtil.create('button', 'reset-control', container);
-          clearBtn.innerHTML = '🗑️';
-          clearBtn.title = 'Clear cached map data';
-          clearBtn.onclick = async (e: MouseEvent): Promise<void> => {
-            L.DomEvent.stopPropagation(e);
-            await clearAllCache();
-          };
-        }
-        
-        return container;
+    // Find and store reference to the initial TileLayer
+    map.eachLayer((layer) => {
+      if (layer instanceof L.TileLayer && !baseLayerRef.current) {
+        baseLayerRef.current = layer;
       }
     });
-    
-    const homeControl = new HomeControl();
-    map.addControl(homeControl);
-    
-    return (): void => {
-      map.removeControl(homeControl);
-    };
-  }, [map, onReset]);
-  
-  // View toggle control
-  useEffect(() => {
-    if (!showViewToggle) return;
-    
-    const ViewToggleControl = L.Control.extend({
-      options: { position: 'topleft' as const },
-      onAdd: function(): HTMLElement {
-        const container = L.DomUtil.create('div', 'map-view-toggle visible');
-        container.id = 'mapViewToggle';
-        
-        const pcBtn = L.DomUtil.create('button', `map-toggle-btn ${currentView === 'constituencies' ? 'active' : ''}`, container);
-        pcBtn.innerHTML = '🗳️ Constituencies';
-        pcBtn.onclick = (e: MouseEvent): void => {
-          L.DomEvent.stopPropagation(e);
-          onSwitchView('constituencies');
-        };
-        
-        const distBtn = L.DomUtil.create('button', `map-toggle-btn ${currentView === 'districts' ? 'active' : ''}`, container);
-        distBtn.innerHTML = '🗺️ Districts';
-        distBtn.onclick = (e: MouseEvent): void => {
-          L.DomEvent.stopPropagation(e);
-          onSwitchView('districts');
-        };
-        
-        L.DomEvent.disableClickPropagation(container);
-        
-        return container;
+
+    const handleLayerChange = (e: Event): void => {
+      const layerName = (e as CustomEvent).detail as string;
+      const layerConfig = LAYER_URLS[layerName] ?? LAYER_URLS['Streets']!;
+
+      // Remove current base layer
+      if (baseLayerRef.current) {
+        map.removeLayer(baseLayerRef.current);
       }
-    });
-    
-    const viewToggle = new ViewToggleControl();
-    map.addControl(viewToggle);
-    
-    return (): void => {
-      map.removeControl(viewToggle);
+
+      // Create and add new base layer
+      const newLayer = L.tileLayer(layerConfig.url, {
+        maxZoom: layerConfig.maxZoom,
+        subdomains: layerConfig.subdomains ?? 'abc',
+      });
+
+      newLayer.addTo(map);
+      newLayer.bringToBack();
+      baseLayerRef.current = newLayer;
     };
-  }, [map, currentState, currentView, showViewToggle, onSwitchView]);
-  
-  // Coordinates display
+
+    window.addEventListener('changeBaseLayer', handleLayerChange);
+
+    return (): void => {
+      window.removeEventListener('changeBaseLayer', handleLayerChange);
+    };
+  }, [map]);
+
+  // Coordinates display (bottom right)
   useEffect(() => {
     const CoordsControl = L.Control.extend({
       options: { position: 'bottomright' as const },
-      onAdd: function(): HTMLElement {
+      onAdd: function (): HTMLElement {
         const container = L.DomUtil.create('div', 'coordinates-display');
         container.id = 'coordsDisplay';
         container.innerHTML = 'Lat: <span>--</span> | Lng: <span>--</span>';
         return container;
-      }
+      },
     });
-    
+
     const coordsControl = new CoordsControl();
     map.addControl(coordsControl);
-    
+
     const updateCoords = (e: LLeafletMouseEvent): void => {
       const el = document.getElementById('coordsDisplay');
       if (el) {
         el.innerHTML = `Lat: <span>${e.latlng.lat.toFixed(4)}</span> | Lng: <span>${e.latlng.lng.toFixed(4)}</span>`;
       }
     };
-    
+
     map.on('mousemove', updateCoords);
-    
+
     return (): void => {
       map.off('mousemove', updateCoords);
       map.removeControl(coordsControl);
     };
   }, [map]);
-  
-  // Legend control
+
+  // Legend control (bottom right)
   useEffect(() => {
     const LegendControl = L.Control.extend({
       options: { position: 'bottomright' as const },
-      onAdd: function(): HTMLElement {
+      onAdd: function (): HTMLElement {
         const container = L.DomUtil.create('div', 'map-legend');
         container.id = 'mapLegend';
         container.innerHTML = '<h4>Viewing</h4><div class="legend-content">India - States</div>';
         return container;
-      }
+      },
     });
-    
+
     const legendControl = new LegendControl();
     map.addControl(legendControl);
-    
+
     return (): void => {
       map.removeControl(legendControl);
     };
   }, [map]);
-  
-  // Layer switcher
-  useEffect(() => {
-    const baseLayers: Record<string, L.TileLayer> = {
-      'Streets': L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
-        subdomains: 'abcd'
-      }),
-      'Light': L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
-        subdomains: 'abcd'
-      }),
-      'Satellite': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 19
-      }),
-      'Terrain': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-        maxZoom: 17
-      })
-    };
-    
-    let currentBaseLayer: L.TileLayer | null = null;
-    
-    const LayerControl = L.Control.extend({
-      options: { position: 'topright' as const },
-      onAdd: function(): HTMLElement {
-        const container = L.DomUtil.create('div', 'layer-switcher');
-        
-        Object.keys(baseLayers).forEach((name, idx) => {
-          const btn = L.DomUtil.create('button', 'layer-btn' + (idx === 0 ? ' active' : ''), container);
-          btn.textContent = name;
-          btn.onclick = (e: MouseEvent): void => {
-            L.DomEvent.stopPropagation(e);
-            if (currentBaseLayer) {
-              map.removeLayer(currentBaseLayer);
-            }
-            currentBaseLayer = baseLayers[name]!;
-            currentBaseLayer.addTo(map);
-            currentBaseLayer.bringToBack();
-            container.querySelectorAll('.layer-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-          };
-        });
-        
-        L.DomEvent.disableClickPropagation(container);
-        return container;
-      }
-    });
-    
-    const layerControl = new LayerControl();
-    map.addControl(layerControl);
-    
-    return (): void => {
-      map.removeControl(layerControl);
-    };
-  }, [map]);
-  
+
   return null;
 }
 
@@ -238,24 +285,24 @@ function MapControls({
 function updateLegend(level: MapLevel, name: string, count: number): void {
   const legend = document.getElementById('mapLegend');
   if (!legend) return;
-  
+
   const levelNames: Record<MapLevel, string> = {
-    'states': '🇮🇳 States & UTs',
-    'districts': '🗺️ Districts',
-    'constituencies': '🗳️ Parliamentary',
-    'assemblies': '🏛️ Assembly'
+    states: '🇮🇳 States & UTs',
+    districts: '🗺️ Districts',
+    constituencies: '🗳️ Parliamentary',
+    assemblies: '🏛️ Assembly',
   };
-  
+
   const colors: HexColor[] = COLOR_PALETTES[level] ?? COLOR_PALETTES.states;
   const sampleColors = colors.slice(0, 4);
-  
+
   legend.innerHTML = `
     <h4>${levelNames[level] ?? 'Map'}</h4>
     <div class="legend-content">
       <div style="font-weight: 500; margin-bottom: 6px; color: #1f2937;">${name}</div>
       ${count ? `<div style="font-size: 0.7rem; color: #6b7280; margin-bottom: 8px;">${count} regions</div>` : ''}
       <div style="display: flex; gap: 3px;">
-        ${sampleColors.map(c => `<div class="legend-color" style="background: ${c}; width: 12px; height: 12px;"></div>`).join('')}
+        ${sampleColors.map((c) => `<div class="legend-color" style="background: ${c}; width: 12px; height: 12px;"></div>`).join('')}
         <span style="font-size: 0.65rem; color: #9ca3af; margin-left: 4px;">+ more</span>
       </div>
     </div>
@@ -267,7 +314,7 @@ function updateLegend(level: MapLevel, name: string, count: number): void {
  */
 function FitBounds({ geojson }: FitBoundsProps): null {
   const map = useMap();
-  
+
   useEffect(() => {
     if (geojson?.features?.length) {
       try {
@@ -281,7 +328,7 @@ function FitBounds({ geojson }: FitBoundsProps): null {
       }
     }
   }, [map, geojson]);
-  
+
   return null;
 }
 
@@ -301,107 +348,114 @@ export function MapView({
   onConstituencyClick,
   onAssemblyClick,
   onSwitchView,
-  onReset
+  onReset,
+  onGoBack,
 }: MapViewProps): JSX.Element {
   const geoJsonRef = useRef<GeoJSONRef>(null);
-  
+
   // Determine the level for styling
   const level = useMemo((): MapLevel => {
     if (currentPC ?? currentDistrict) return 'assemblies';
     if (currentState) return currentView === 'constituencies' ? 'constituencies' : 'districts';
     return 'states';
   }, [currentState, currentView, currentPC, currentDistrict]);
-  
+
   // Create unique key for GeoJSON to force re-render
   const geoJsonKey = useMemo((): string => {
     const dataHash = currentData?.features?.length ?? 0;
     return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${dataHash}`;
   }, [level, currentState, currentPC, currentDistrict, currentData]);
-  
+
   // Get the data to display
   const displayData = useMemo((): GeoJSONData | null => {
     if (currentPC ?? currentDistrict) return currentData;
     if (currentState) return currentData;
     return statesGeoJSON;
   }, [statesGeoJSON, currentData, currentState, currentPC, currentDistrict]);
-  
+
   // Update legend when view changes
   useEffect(() => {
-    const name = currentPC ?? currentDistrict ?? (currentState ? normalizeStateName(currentState) : 'India');
+    const name =
+      currentPC ?? currentDistrict ?? (currentState ? normalizeName(currentState) : 'India');
     const count = displayData?.features?.length ?? 0;
     updateLegend(level, name, count);
   }, [level, currentState, currentPC, currentDistrict, displayData]);
-  
+
   // Style function with index tracking
   const styleIndex = useRef<number>(0);
-  
-  const onEachFeature = useCallback((feature: Feature, layer: Layer): void => {
-    const typedLayer = layer as unknown as FeatureLayer;
-    
-    // Get feature name based on level
-    let name: string;
-    
-    if (level === 'states') {
-      const props = feature.properties as StateProperties;
-      name = normalizeStateName(props.shapeName ?? props.ST_NM ?? '');
-    } else if (level === 'districts') {
-      const props = feature.properties as DistrictProperties;
-      name = props.district ?? props.NAME ?? props.DISTRICT ?? 'Unknown';
-    } else if (level === 'constituencies') {
-      const props = feature.properties as ConstituencyProperties;
-      name = props.ls_seat_name ?? props.PC_NAME ?? 'Unknown';
-    } else {
-      const props = feature.properties as AssemblyProperties;
-      name = props.AC_NAME ?? 'Unknown';
-    }
-    
-    // Bind tooltip
-    typedLayer.bindTooltip(name, {
-      permanent: false,
-      direction: 'center',
-      sticky: false
-    });
-    
-    // Event handlers
-    typedLayer.on({
-      mouseover: (e: LLeafletMouseEvent): void => {
-        const l = e.target as FeatureLayer;
-        l.setStyle(getHoverStyle(level));
-        l.bringToFront();
-      },
-      mouseout: (e: LLeafletMouseEvent): void => {
-        if (geoJsonRef.current) {
-          geoJsonRef.current.resetStyle(e.target as Layer);
-        }
-      },
-      click: (): void => {
-        if (level === 'states') {
-          const props = feature.properties as StateProperties;
-          const originalName = props.shapeName ?? props.ST_NM ?? name;
-          onStateClick(originalName, feature as StateFeature);
-        } else if (level === 'districts') {
-          onDistrictClick(name, feature as DistrictFeature);
-        } else if (level === 'constituencies') {
-          onConstituencyClick(name, feature as ConstituencyFeature);
-        } else if (onAssemblyClick) {
-          onAssemblyClick(name, feature as AssemblyFeature);
-        }
+
+  const onEachFeature = useCallback(
+    (feature: Feature, layer: Layer): void => {
+      const typedLayer = layer as unknown as FeatureLayer;
+
+      // Get feature name based on level
+      let name: string;
+
+      if (level === 'states') {
+        const props = feature.properties as StateProperties;
+        name = normalizeName(props.shapeName ?? props.ST_NM ?? '');
+      } else if (level === 'districts') {
+        const props = feature.properties as DistrictProperties;
+        name = props.district ?? props.NAME ?? props.DISTRICT ?? 'Unknown';
+      } else if (level === 'constituencies') {
+        const props = feature.properties as ConstituencyProperties;
+        name = props.ls_seat_name ?? props.PC_NAME ?? 'Unknown';
+      } else {
+        const props = feature.properties as AssemblyProperties;
+        name = props.AC_NAME ?? 'Unknown';
       }
-    });
-  }, [level, onStateClick, onDistrictClick, onConstituencyClick, onAssemblyClick]);
-  
+
+      // Bind tooltip
+      typedLayer.bindTooltip(name, {
+        permanent: false,
+        direction: 'center',
+        sticky: false,
+      });
+
+      // Event handlers
+      typedLayer.on({
+        mouseover: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle(getHoverStyle(level));
+          l.bringToFront();
+        },
+        mouseout: (e: LLeafletMouseEvent): void => {
+          if (geoJsonRef.current) {
+            geoJsonRef.current.resetStyle(e.target as Layer);
+          }
+        },
+        click: (): void => {
+          if (level === 'states') {
+            const props = feature.properties as StateProperties;
+            const originalName = props.shapeName ?? props.ST_NM ?? name;
+            onStateClick(originalName, feature as StateFeature);
+          } else if (level === 'districts') {
+            onDistrictClick(name, feature as DistrictFeature);
+          } else if (level === 'constituencies') {
+            onConstituencyClick(name, feature as ConstituencyFeature);
+          } else if (onAssemblyClick) {
+            onAssemblyClick(name, feature as AssemblyFeature);
+          }
+        },
+      });
+    },
+    [level, onStateClick, onDistrictClick, onConstituencyClick, onAssemblyClick]
+  );
+
   // Reset style index when data changes
   useEffect(() => {
     styleIndex.current = 0;
   }, [geoJsonKey]);
-  
+
   const style = useCallback(() => {
     const idx = styleIndex.current++;
     return getFeatureStyle(idx, level) as object;
   }, [level]);
-  
+
   const showViewToggle = Boolean(currentState && !currentPC && !currentDistrict);
-  
+  // Show back button when not at home (India) level
+  const showBackButton = Boolean(currentState);
+
   if (!displayData) {
     return (
       <div className="map-container">
@@ -411,9 +465,19 @@ export function MapView({
       </div>
     );
   }
-  
+
   return (
     <div className="map-container">
+      {/* Top center toolbar */}
+      <MapToolbar
+        currentView={currentView}
+        showViewToggle={showViewToggle}
+        showBackButton={showBackButton}
+        onReset={onReset}
+        onSwitchView={onSwitchView}
+        onGoBack={onGoBack}
+      />
+
       <MapContainer
         center={[22, 82]}
         zoom={5}
@@ -428,15 +492,11 @@ export function MapView({
           subdomains="abcd"
           attribution='&copy; <a href="https://carto.com/">CARTO</a>'
         />
-        
-        <MapControls
-          currentState={currentState}
-          currentView={currentView}
-          onReset={onReset}
-          onSwitchView={onSwitchView}
-          showViewToggle={showViewToggle}
-        />
-        
+
+        <ScaleControl position="bottomleft" imperial={false} />
+
+        <MapControls />
+
         {displayData && (
           <>
             <GeoJSON
@@ -453,4 +513,3 @@ export function MapView({
     </div>
   );
 }
-
