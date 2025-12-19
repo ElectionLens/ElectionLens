@@ -8,13 +8,13 @@
 // ============================================================
 
 /** GeoJSON geometry types */
-export type GeometryType = 
-  | 'Point' 
-  | 'MultiPoint' 
-  | 'LineString' 
-  | 'MultiLineString' 
-  | 'Polygon' 
-  | 'MultiPolygon' 
+export type GeometryType =
+  | 'Point'
+  | 'MultiPoint'
+  | 'LineString'
+  | 'MultiLineString'
+  | 'Polygon'
+  | 'MultiPolygon'
   | 'GeometryCollection';
 
 /** GeoJSON Position (longitude, latitude, optional altitude) */
@@ -104,10 +104,10 @@ export interface AssemblyProperties {
 }
 
 /** Union of all feature properties */
-export type FeatureProperties = 
-  | StateProperties 
-  | DistrictProperties 
-  | ConstituencyProperties 
+export type FeatureProperties =
+  | StateProperties
+  | DistrictProperties
+  | ConstituencyProperties
   | AssemblyProperties;
 
 // ============================================================
@@ -153,10 +153,10 @@ export type ConstituenciesGeoJSON = FeatureCollection<ConstituencyFeature>;
 export type AssembliesGeoJSON = FeatureCollection<AssemblyFeature>;
 
 /** Generic GeoJSON data */
-export type GeoJSONData = 
-  | StatesGeoJSON 
-  | DistrictsGeoJSON 
-  | ConstituenciesGeoJSON 
+export type GeoJSONData =
+  | StatesGeoJSON
+  | DistrictsGeoJSON
+  | ConstituenciesGeoJSON
   | AssembliesGeoJSON;
 
 // ============================================================
@@ -260,23 +260,24 @@ export interface UseElectionDataReturn {
   parliamentGeoJSON: ConstituenciesGeoJSON | null;
   assemblyGeoJSON: AssembliesGeoJSON | null;
   districtsCache: DistrictsCache;
-  
+
   // Navigation state
   currentState: string | null;
   currentView: ViewMode;
   currentPC: string | null;
   currentDistrict: string | null;
-  
+  currentAssembly: string | null;
+
   // UI state
   loading: boolean;
   error: string | null;
   cacheStats: CacheStats;
-  
+
   // Data getters
   getConstituenciesForState: (stateName: string) => ConstituencyFeature[];
   getAssembliesForPC: (pcName: string, stateName: string) => AssemblyFeature[];
   getAssembliesForDistrict: (districtName: string, stateName: string) => AssemblyFeature[];
-  
+
   // Navigation actions
   navigateToState: (stateName: string) => Promise<ConstituenciesGeoJSON | DistrictsGeoJSON | null>;
   navigateToPC: (pcName: string, stateName: string) => Promise<AssembliesGeoJSON>;
@@ -285,7 +286,8 @@ export interface UseElectionDataReturn {
   switchView: (view: ViewMode) => void;
   resetView: () => void;
   goBackToState: () => void;
-  
+  selectAssembly: (assemblyName: string | null) => void;
+
   // Utils
   updateCacheStats: () => Promise<void>;
 }
@@ -328,6 +330,7 @@ export interface MapViewProps {
   onAssemblyClick?: (acName: string, feature: AssemblyFeature) => void;
   onSwitchView: (view: ViewMode) => void;
   onReset: () => void;
+  onGoBack: () => void;
 }
 
 /** MapControls component props */
@@ -437,4 +440,3 @@ export interface LeafletMouseEvent {
     lng: number;
   };
 }
-

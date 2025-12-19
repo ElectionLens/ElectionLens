@@ -2,25 +2,24 @@ import { STATE_FILE_MAP, COLOR_PALETTES } from '../constants';
 import type { MapLevel, FeatureStyle, HoverStyle, HexColor, ColorPalette } from '../types';
 
 /**
- * Remove diacritics from text (Rājasthān -> Rajasthan)
- * Uses Unicode normalization to decompose characters and remove combining marks
+ * Strip diacritics from text (internal use for data normalization)
+ * Converts characters like ā, ī, ū to a, i, u
  */
-export function removeDiacritics(str: string | null | undefined): string {
-  if (!str) return '';
+function stripDiacritics(str: string): string {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
 /**
- * Normalize state name by removing diacritics and trimming whitespace
+ * Normalize a name by stripping diacritics and trimming whitespace
+ * Ensures consistent display without special characters
  */
-export function normalizeStateName(name: string | null | undefined): string {
+export function normalizeName(name: string | null | undefined): string {
   if (!name) return '';
-  return removeDiacritics(name).trim();
+  return stripDiacritics(name).trim();
 }
 
 /**
  * Get the file name for a state's GeoJSON data
- * Handles diacritical variations and alternate names
  */
 export function getStateFileName(stateName: string | null | undefined): string {
   if (!stateName) return '';
@@ -31,14 +30,14 @@ export function getStateFileName(stateName: string | null | undefined): string {
   }
 
   // Try normalized name
-  const normalized = normalizeStateName(stateName);
+  const normalized = normalizeName(stateName);
   if (STATE_FILE_MAP[normalized]) {
     return STATE_FILE_MAP[normalized];
   }
 
   // Try to find by normalized match
   for (const [key, value] of Object.entries(STATE_FILE_MAP)) {
-    if (normalizeStateName(key) === normalized) {
+    if (normalizeName(key) === normalized) {
       return value;
     }
   }
