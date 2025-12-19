@@ -1,31 +1,65 @@
-import React, { useEffect, useRef, useMemo, useCallback } from 'react';
+import { useEffect, useRef, useMemo, useCallback } from 'react';
 import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import { getFeatureStyle, getHoverStyle, normalizeStateName, getFeatureColor } from '../utils/helpers';
+import type { Layer, LeafletMouseEvent as LLeafletMouseEvent, LatLngBoundsExpression } from 'leaflet';
+import type { GeoJSON as GeoJSONType } from 'react-leaflet';
+import { getFeatureStyle, getHoverStyle, normalizeStateName } from '../utils/helpers';
 import { COLOR_PALETTES } from '../constants';
 import { clearAllCache } from '../utils/db';
+import type {
+  MapViewProps,
+  MapControlsProps,
+  FitBoundsProps,
+  MapLevel,
+  GeoJSONData,
+  Feature,
+  StateProperties,
+  DistrictProperties,
+  ConstituencyProperties,
+  AssemblyProperties,
+  StateFeature,
+  DistrictFeature,
+  ConstituencyFeature,
+  AssemblyFeature,
+  HexColor
+} from '../types';
 
-// Map controls component
+/** Leaflet layer with feature property */
+interface FeatureLayer extends Layer {
+  feature?: Feature;
+  setStyle: (style: Record<string, unknown>) => void;
+  bringToFront: () => void;
+  bindTooltip: (content: string, options?: Record<string, unknown>) => void;
+  on: (eventMap: Record<string, (e: LLeafletMouseEvent) => void>) => void;
+}
+
+/** Leaflet GeoJSON ref type */
+type GeoJSONRef = L.GeoJSON | null;
+
+/**
+ * Map controls component
+ * Adds home button, clear cache button (dev mode), view toggle, coordinates, legend, and layer switcher
+ */
 function MapControls({ 
   currentState, 
   currentView, 
   onReset, 
   onSwitchView,
   showViewToggle 
-}) {
+}: MapControlsProps): null {
   const map = useMap();
   
+  // Home button control
   useEffect(() => {
-    // Home button control
     const HomeControl = L.Control.extend({
-      options: { position: 'topleft' },
-      onAdd: function() {
+      options: { position: 'topleft' as const },
+      onAdd: function(): HTMLElement {
         const container = L.DomUtil.create('div', 'reset-control-container');
         
         const btn = L.DomUtil.create('button', 'reset-control', container);
         btn.innerHTML = '🏠';
         btn.title = 'Reset to full India map';
-        btn.onclick = (e) => {
+        btn.onclick = (e: MouseEvent): void => {
           L.DomEvent.stopPropagation(e);
           onReset();
         };
@@ -35,7 +69,7 @@ function MapControls({
           const clearBtn = L.DomUtil.create('button', 'reset-control', container);
           clearBtn.innerHTML = '🗑️';
           clearBtn.title = 'Clear cached map data';
-          clearBtn.onclick = async (e) => {
+          clearBtn.onclick = async (e: MouseEvent): Promise<void> => {
             L.DomEvent.stopPropagation(e);
             await clearAllCache();
           };
@@ -48,7 +82,7 @@ function MapControls({
     const homeControl = new HomeControl();
     map.addControl(homeControl);
     
-    return () => {
+    return (): void => {
       map.removeControl(homeControl);
     };
   }, [map, onReset]);
@@ -58,21 +92,21 @@ function MapControls({
     if (!showViewToggle) return;
     
     const ViewToggleControl = L.Control.extend({
-      options: { position: 'topleft' },
-      onAdd: function() {
+      options: { position: 'topleft' as const },
+      onAdd: function(): HTMLElement {
         const container = L.DomUtil.create('div', 'map-view-toggle visible');
         container.id = 'mapViewToggle';
         
         const pcBtn = L.DomUtil.create('button', `map-toggle-btn ${currentView === 'constituencies' ? 'active' : ''}`, container);
         pcBtn.innerHTML = '🗳️ Constituencies';
-        pcBtn.onclick = (e) => {
+        pcBtn.onclick = (e: MouseEvent): void => {
           L.DomEvent.stopPropagation(e);
           onSwitchView('constituencies');
         };
         
         const distBtn = L.DomUtil.create('button', `map-toggle-btn ${currentView === 'districts' ? 'active' : ''}`, container);
         distBtn.innerHTML = '🗺️ Districts';
-        distBtn.onclick = (e) => {
+        distBtn.onclick = (e: MouseEvent): void => {
           L.DomEvent.stopPropagation(e);
           onSwitchView('districts');
         };
@@ -86,7 +120,7 @@ function MapControls({
     const viewToggle = new ViewToggleControl();
     map.addControl(viewToggle);
     
-    return () => {
+    return (): void => {
       map.removeControl(viewToggle);
     };
   }, [map, currentState, currentView, showViewToggle, onSwitchView]);
@@ -94,8 +128,8 @@ function MapControls({
   // Coordinates display
   useEffect(() => {
     const CoordsControl = L.Control.extend({
-      options: { position: 'bottomright' },
-      onAdd: function() {
+      options: { position: 'bottomright' as const },
+      onAdd: function(): HTMLElement {
         const container = L.DomUtil.create('div', 'coordinates-display');
         container.id = 'coordsDisplay';
         container.innerHTML = 'Lat: <span>--</span> | Lng: <span>--</span>';
@@ -106,7 +140,7 @@ function MapControls({
     const coordsControl = new CoordsControl();
     map.addControl(coordsControl);
     
-    const updateCoords = (e) => {
+    const updateCoords = (e: LLeafletMouseEvent): void => {
       const el = document.getElementById('coordsDisplay');
       if (el) {
         el.innerHTML = `Lat: <span>${e.latlng.lat.toFixed(4)}</span> | Lng: <span>${e.latlng.lng.toFixed(4)}</span>`;
@@ -115,7 +149,7 @@ function MapControls({
     
     map.on('mousemove', updateCoords);
     
-    return () => {
+    return (): void => {
       map.off('mousemove', updateCoords);
       map.removeControl(coordsControl);
     };
@@ -124,8 +158,8 @@ function MapControls({
   // Legend control
   useEffect(() => {
     const LegendControl = L.Control.extend({
-      options: { position: 'bottomright' },
-      onAdd: function() {
+      options: { position: 'bottomright' as const },
+      onAdd: function(): HTMLElement {
         const container = L.DomUtil.create('div', 'map-legend');
         container.id = 'mapLegend';
         container.innerHTML = '<h4>Viewing</h4><div class="legend-content">India - States</div>';
@@ -136,14 +170,14 @@ function MapControls({
     const legendControl = new LegendControl();
     map.addControl(legendControl);
     
-    return () => {
+    return (): void => {
       map.removeControl(legendControl);
     };
   }, [map]);
   
   // Layer switcher
   useEffect(() => {
-    const baseLayers = {
+    const baseLayers: Record<string, L.TileLayer> = {
       'Streets': L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         maxZoom: 19,
         subdomains: 'abcd'
@@ -160,22 +194,22 @@ function MapControls({
       })
     };
     
-    let currentBaseLayer = null;
+    let currentBaseLayer: L.TileLayer | null = null;
     
     const LayerControl = L.Control.extend({
-      options: { position: 'topright' },
-      onAdd: function() {
+      options: { position: 'topright' as const },
+      onAdd: function(): HTMLElement {
         const container = L.DomUtil.create('div', 'layer-switcher');
         
         Object.keys(baseLayers).forEach((name, idx) => {
           const btn = L.DomUtil.create('button', 'layer-btn' + (idx === 0 ? ' active' : ''), container);
           btn.textContent = name;
-          btn.onclick = (e) => {
+          btn.onclick = (e: MouseEvent): void => {
             L.DomEvent.stopPropagation(e);
             if (currentBaseLayer) {
               map.removeLayer(currentBaseLayer);
             }
-            currentBaseLayer = baseLayers[name];
+            currentBaseLayer = baseLayers[name]!;
             currentBaseLayer.addTo(map);
             currentBaseLayer.bringToBack();
             container.querySelectorAll('.layer-btn').forEach(b => b.classList.remove('active'));
@@ -191,7 +225,7 @@ function MapControls({
     const layerControl = new LayerControl();
     map.addControl(layerControl);
     
-    return () => {
+    return (): void => {
       map.removeControl(layerControl);
     };
   }, [map]);
@@ -199,23 +233,25 @@ function MapControls({
   return null;
 }
 
-// Update legend helper
-function updateLegend(level, name, count) {
+/**
+ * Update the legend element with current map level info
+ */
+function updateLegend(level: MapLevel, name: string, count: number): void {
   const legend = document.getElementById('mapLegend');
   if (!legend) return;
   
-  const levelNames = {
+  const levelNames: Record<MapLevel, string> = {
     'states': '🇮🇳 States & UTs',
     'districts': '🗺️ Districts',
     'constituencies': '🗳️ Parliamentary',
     'assemblies': '🏛️ Assembly'
   };
   
-  const colors = COLOR_PALETTES[level] || COLOR_PALETTES.states;
+  const colors: HexColor[] = COLOR_PALETTES[level] ?? COLOR_PALETTES.states;
   const sampleColors = colors.slice(0, 4);
   
   legend.innerHTML = `
-    <h4>${levelNames[level] || 'Map'}</h4>
+    <h4>${levelNames[level] ?? 'Map'}</h4>
     <div class="legend-content">
       <div style="font-weight: 500; margin-bottom: 6px; color: #1f2937;">${name}</div>
       ${count ? `<div style="font-size: 0.7rem; color: #6b7280; margin-bottom: 8px;">${count} regions</div>` : ''}
@@ -227,17 +263,19 @@ function updateLegend(level, name, count) {
   `;
 }
 
-// Fit bounds component
-function FitBounds({ geojson }) {
+/**
+ * Component to fit map bounds to GeoJSON data
+ */
+function FitBounds({ geojson }: FitBoundsProps): null {
   const map = useMap();
   
   useEffect(() => {
     if (geojson?.features?.length) {
       try {
-        const layer = L.geoJSON(geojson);
+        const layer = L.geoJSON(geojson as GeoJSON.FeatureCollection);
         const bounds = layer.getBounds();
         if (bounds.isValid()) {
-          map.flyToBounds(bounds, { padding: [30, 30], duration: 0.5 });
+          map.flyToBounds(bounds as LatLngBoundsExpression, { padding: [30, 30], duration: 0.5 });
         }
       } catch (e) {
         console.warn('Failed to fit bounds:', e);
@@ -248,7 +286,10 @@ function FitBounds({ geojson }) {
   return null;
 }
 
-// Main map component
+/**
+ * Main map component
+ * Renders the Leaflet map with GeoJSON layers
+ */
 export function MapView({
   statesGeoJSON,
   currentData,
@@ -262,83 +303,89 @@ export function MapView({
   onAssemblyClick,
   onSwitchView,
   onReset
-}) {
-  const geoJsonRef = useRef(null);
+}: MapViewProps): JSX.Element {
+  const geoJsonRef = useRef<GeoJSONRef>(null);
   
   // Determine the level for styling
-  const level = useMemo(() => {
-    if (currentPC || currentDistrict) return 'assemblies';
+  const level = useMemo((): MapLevel => {
+    if (currentPC ?? currentDistrict) return 'assemblies';
     if (currentState) return currentView === 'constituencies' ? 'constituencies' : 'districts';
     return 'states';
   }, [currentState, currentView, currentPC, currentDistrict]);
   
   // Create unique key for GeoJSON to force re-render
-  const geoJsonKey = useMemo(() => {
-    const dataHash = currentData?.features?.length || 0;
-    return `${level}-${currentState || 'india'}-${currentPC || ''}-${currentDistrict || ''}-${dataHash}`;
+  const geoJsonKey = useMemo((): string => {
+    const dataHash = currentData?.features?.length ?? 0;
+    return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${dataHash}`;
   }, [level, currentState, currentPC, currentDistrict, currentData]);
   
   // Get the data to display
-  const displayData = useMemo(() => {
-    if (currentPC || currentDistrict) return currentData;
+  const displayData = useMemo((): GeoJSONData | null => {
+    if (currentPC ?? currentDistrict) return currentData;
     if (currentState) return currentData;
     return statesGeoJSON;
   }, [statesGeoJSON, currentData, currentState, currentPC, currentDistrict]);
   
   // Update legend when view changes
   useEffect(() => {
-    const name = currentPC || currentDistrict || (currentState ? normalizeStateName(currentState) : 'India');
-    const count = displayData?.features?.length || 0;
+    const name = currentPC ?? currentDistrict ?? (currentState ? normalizeStateName(currentState) : 'India');
+    const count = displayData?.features?.length ?? 0;
     updateLegend(level, name, count);
   }, [level, currentState, currentPC, currentDistrict, displayData]);
   
   // Style function with index tracking
-  const styleIndex = useRef(0);
+  const styleIndex = useRef<number>(0);
   
-  const onEachFeature = useCallback((feature, layer) => {
+  const onEachFeature = useCallback((feature: Feature, layer: Layer): void => {
+    const typedLayer = layer as FeatureLayer;
+    
     // Get feature name based on level
-    let name, number;
+    let name: string;
+    
     if (level === 'states') {
-      name = normalizeStateName(feature.properties.shapeName || feature.properties.ST_NM);
+      const props = feature.properties as StateProperties;
+      name = normalizeStateName(props.shapeName ?? props.ST_NM ?? '');
     } else if (level === 'districts') {
-      name = feature.properties.district || feature.properties.NAME || feature.properties.DISTRICT || 'Unknown';
+      const props = feature.properties as DistrictProperties;
+      name = props.district ?? props.NAME ?? props.DISTRICT ?? 'Unknown';
     } else if (level === 'constituencies') {
-      name = feature.properties.ls_seat_name || feature.properties.PC_NAME || 'Unknown';
-      number = feature.properties.ls_seat_code || feature.properties.PC_No;
+      const props = feature.properties as ConstituencyProperties;
+      name = props.ls_seat_name ?? props.PC_NAME ?? 'Unknown';
     } else {
-      name = feature.properties.AC_NAME || 'Unknown';
-      number = feature.properties.AC_NO;
+      const props = feature.properties as AssemblyProperties;
+      name = props.AC_NAME ?? 'Unknown';
     }
     
     // Bind tooltip
-    layer.bindTooltip(name, {
+    typedLayer.bindTooltip(name, {
       permanent: false,
       direction: 'center',
       sticky: false
     });
     
     // Event handlers
-    layer.on({
-      mouseover: (e) => {
-        const l = e.target;
+    typedLayer.on({
+      mouseover: (e: LLeafletMouseEvent): void => {
+        const l = e.target as FeatureLayer;
         l.setStyle(getHoverStyle(level));
         l.bringToFront();
       },
-      mouseout: (e) => {
+      mouseout: (e: LLeafletMouseEvent): void => {
         if (geoJsonRef.current) {
-          geoJsonRef.current.resetStyle(e.target);
+          geoJsonRef.current.resetStyle(e.target as Layer);
         }
       },
-      click: () => {
-        const originalName = feature.properties.shapeName || feature.properties.ST_NM || name;
+      click: (): void => {
         if (level === 'states') {
-          onStateClick(originalName, feature);
+          const props = feature.properties as StateProperties;
+          const originalName = props.shapeName ?? props.ST_NM ?? name;
+          onStateClick(originalName, feature as StateFeature);
         } else if (level === 'districts') {
-          onDistrictClick(name, feature);
+          onDistrictClick(name, feature as DistrictFeature);
         } else if (level === 'constituencies') {
-          onConstituencyClick(name, feature);
+          onConstituencyClick(name, feature as ConstituencyFeature);
         } else if (onAssemblyClick) {
-          onAssemblyClick(name, feature);
+          onAssemblyClick(name, feature as AssemblyFeature);
         }
       }
     });
@@ -349,12 +396,12 @@ export function MapView({
     styleIndex.current = 0;
   }, [geoJsonKey]);
   
-  const style = useCallback((feature) => {
+  const style = useCallback((): Record<string, unknown> => {
     const idx = styleIndex.current++;
     return getFeatureStyle(idx, level);
   }, [level]);
   
-  const showViewToggle = currentState && !currentPC && !currentDistrict;
+  const showViewToggle = Boolean(currentState && !currentPC && !currentDistrict);
   
   if (!displayData) {
     return (
@@ -395,10 +442,10 @@ export function MapView({
           <>
             <GeoJSON
               key={geoJsonKey}
-              ref={geoJsonRef}
-              data={displayData}
+              ref={geoJsonRef as React.Ref<typeof GeoJSONType>}
+              data={displayData as GeoJSON.FeatureCollection}
               style={style}
-              onEachFeature={onEachFeature}
+              onEachFeature={onEachFeature as (feature: GeoJSON.Feature, layer: Layer) => void}
             />
             <FitBounds geojson={displayData} />
           </>

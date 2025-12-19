@@ -5,22 +5,22 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
     "test:run": "vitest run",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "lint": "eslint src --ext .js,.jsx",
-    "lint:fix": "eslint src --ext .js,.jsx --fix",
-    "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,css}\"",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css}\"",
     "typecheck": "tsc --noEmit",
-    "validate": "npm run lint && npm run test:run",
+    "validate": "npm run typecheck && npm run lint && npm run test:run",
     "prepare": "husky install || true",
     "clean": "rm -rf dist coverage node_modules/.cache",
-    "ci": "npm run lint && npm run test:coverage && npm run build"
+    "ci": "npm run typecheck && npm run lint && npm run test:coverage && npm run build"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
@@ -31,8 +31,11 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.0",
     "@testing-library/react": "^14.2.0",
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
+    "@types/leaflet": "^1.9.21",
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.7",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.2.0",
     "eslint": "^8.56.0",
@@ -42,14 +45,14 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.5.2",
     "prettier": "^3.7.4",
+    "typescript": "^5.9.3",
     "vite": "^5.0.8",
     "vitest": "^1.2.0"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": [
+    "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "prettier --write",
-      "vitest related --run"
+      "prettier --write"
     ],
     "src/**/*.css": [
       "prettier --write"

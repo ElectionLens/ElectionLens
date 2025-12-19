@@ -1,20 +1,29 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { MapView } from './components/MapView';
 import { useElectionData } from './hooks/useElectionData';
-import { getStateFileName } from './utils/helpers';
+import type {
+  GeoJSONData,
+  StateFeature,
+  DistrictFeature,
+  ConstituencyFeature,
+  AssemblyFeature,
+  ViewMode
+} from './types';
 
-function App() {
+/**
+ * Main application component
+ * Orchestrates data loading, navigation, and UI state
+ */
+function App(): JSX.Element {
   const {
     statesGeoJSON,
-    districtsCache,
     currentState,
     currentView,
     currentPC,
     currentDistrict,
     loading,
     cacheStats,
-    getConstituenciesForState,
     navigateToState,
     navigateToPC,
     navigateToDistrict,
@@ -25,22 +34,29 @@ function App() {
   } = useElectionData();
   
   // Mobile sidebar state
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   
   // Current displayed data
-  const [currentData, setCurrentData] = useState(null);
+  const [currentData, setCurrentData] = useState<GeoJSONData | null>(null);
   
-  // Toggle mobile sidebar
-  const toggleSidebar = useCallback(() => {
+  /**
+   * Toggle mobile sidebar visibility
+   */
+  const toggleSidebar = useCallback((): void => {
     setSidebarOpen(prev => !prev);
   }, []);
   
-  const closeSidebar = useCallback(() => {
+  /**
+   * Close mobile sidebar
+   */
+  const closeSidebar = useCallback((): void => {
     setSidebarOpen(false);
   }, []);
   
-  // Close sidebar on mobile after action
-  const closeSidebarOnMobile = useCallback(() => {
+  /**
+   * Close sidebar on mobile after action
+   */
+  const closeSidebarOnMobile = useCallback((): void => {
     if (window.innerWidth <= 768) {
       closeSidebar();
     }
@@ -48,11 +64,11 @@ function App() {
   
   // Load initial data and update on state changes
   useEffect(() => {
-    async function updateData() {
-      if (currentPC) {
+    async function updateData(): Promise<void> {
+      if (currentPC && currentState) {
         const data = await navigateToPC(currentPC, currentState);
         setCurrentData(data);
-      } else if (currentDistrict) {
+      } else if (currentDistrict && currentState) {
         const data = await navigateToDistrict(currentDistrict, currentState);
         setCurrentData(data);
       } else if (currentState) {
@@ -68,36 +84,49 @@ function App() {
       }
     }
     updateData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentState, currentView, currentPC, currentDistrict]);
   
-  // Handle state click
-  const handleStateClick = useCallback(async (stateName, feature) => {
+  /**
+   * Handle state click from map or sidebar
+   */
+  const handleStateClick = useCallback(async (stateName: string, _feature: StateFeature): Promise<void> => {
     closeSidebarOnMobile();
     const data = await navigateToState(stateName);
     setCurrentData(data);
   }, [navigateToState, closeSidebarOnMobile]);
   
-  // Handle district click
-  const handleDistrictClick = useCallback(async (districtName, feature) => {
+  /**
+   * Handle district click from map or sidebar
+   */
+  const handleDistrictClick = useCallback(async (districtName: string, _feature: DistrictFeature): Promise<void> => {
     closeSidebarOnMobile();
+    if (!currentState) return;
     const data = await navigateToDistrict(districtName, currentState);
     setCurrentData(data);
   }, [navigateToDistrict, currentState, closeSidebarOnMobile]);
   
-  // Handle constituency click
-  const handleConstituencyClick = useCallback(async (pcName, feature) => {
+  /**
+   * Handle constituency click from map or sidebar
+   */
+  const handleConstituencyClick = useCallback(async (pcName: string, _feature: ConstituencyFeature): Promise<void> => {
     closeSidebarOnMobile();
+    if (!currentState) return;
     const data = await navigateToPC(pcName, currentState);
     setCurrentData(data);
   }, [navigateToPC, currentState, closeSidebarOnMobile]);
   
-  // Handle assembly click (optional, for future use)
-  const handleAssemblyClick = useCallback((acName, feature) => {
+  /**
+   * Handle assembly click (optional, for future use)
+   */
+  const handleAssemblyClick = useCallback((acName: string, _feature: AssemblyFeature): void => {
     console.log('Clicked assembly:', acName);
   }, []);
   
-  // Handle view switch
-  const handleSwitchView = useCallback(async (view) => {
+  /**
+   * Handle view switch between constituencies and districts
+   */
+  const handleSwitchView = useCallback(async (view: ViewMode): Promise<void> => {
     switchView(view);
     if (currentState) {
       if (view === 'constituencies') {
@@ -110,14 +139,18 @@ function App() {
     }
   }, [switchView, currentState, navigateToState, loadDistrictsForState]);
   
-  // Handle reset
-  const handleReset = useCallback(() => {
+  /**
+   * Handle reset to India view
+   */
+  const handleReset = useCallback((): void => {
     resetView();
     setCurrentData(null);
   }, [resetView]);
   
-  // Handle go back to state
-  const handleGoBackToState = useCallback(async () => {
+  /**
+   * Handle go back to state from PC/district
+   */
+  const handleGoBackToState = useCallback(async (): Promise<void> => {
     goBackToState();
     if (currentState) {
       if (currentView === 'constituencies') {
@@ -136,6 +169,7 @@ function App() {
       <button 
         className={`mobile-toggle ${sidebarOpen ? 'active' : ''}`}
         onClick={toggleSidebar}
+        aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
       >
         <span>{sidebarOpen ? '✕' : '☰'}</span>
       </button>

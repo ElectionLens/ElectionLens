@@ -2,42 +2,100 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    es2021: true,
-    node: true,
+    es2020: true,
+    node: true
   },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking'
   ],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules', 'coverage'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
+    project: ['./tsconfig.json'],
+    tsconfigRootDir: __dirname,
     ecmaFeatures: {
-      jsx: true,
-    },
+      jsx: true
+    }
   },
-  plugins: ['react', 'react-hooks'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint'],
   settings: {
     react: {
-      version: 'detect',
-    },
+      version: 'detect'
+    }
   },
   rules: {
+    // TypeScript specific rules
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-unused-vars': ['warn', { 
+      argsIgnorePattern: '^_',
+      varsIgnorePattern: '^_'
+    }],
+    '@typescript-eslint/no-non-null-assertion': 'warn',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/no-floating-promises': 'warn',
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksVoidReturn: {
+          attributes: false
+        }
+      }
+    ],
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    
+    // React rules
+    'react/prop-types': 'off', // Using TypeScript for prop validation
+    'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
-    'react/prop-types': 'off',
-    'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    
+    // General rules
+    'no-console': ['warn', { allow: ['warn', 'error', 'log'] }],
+    'prefer-const': 'warn',
+    'no-unused-vars': 'off' // Using TypeScript rule instead
   },
   overrides: [
     {
-      files: ['**/*.test.{js,jsx}', '**/test/**/*.{js,jsx}'],
+      // Test files
+      files: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx', '**/test/**'],
       env: {
-        'vitest-globals/env': true,
+        jest: true
       },
       rules: {
-        'no-console': 'off',
-      },
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off'
+      }
     },
-  ],
+    {
+      // JavaScript files (legacy support during migration)
+      files: ['**/*.js', '**/*.jsx'],
+      extends: [
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'plugin:react/jsx-runtime',
+        'plugin:react-hooks/recommended'
+      ],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-var-requires': 'off'
+      }
+    }
+  ]
 };
