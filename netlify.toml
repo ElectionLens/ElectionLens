@@ -19,11 +19,11 @@
   HUSKY = "0"
 
 # Production context
-[context.production]
+[context.dev]
   command = "npm run build"
   
-[context.production.environment]
-  NODE_ENV = "production"
+[context.dev.environment]
+  NODE_ENV = "dev"
 
 # Deploy Preview context (for PRs)
 [context.deploy-preview]
