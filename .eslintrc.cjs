@@ -13,7 +13,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking'
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules', 'coverage'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules', 'coverage', '**/*.test.ts', '**/*.test.tsx', '**/test/**'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -69,20 +69,6 @@ module.exports = {
     'no-unused-vars': 'off' // Using TypeScript rule instead
   },
   overrides: [
-    {
-      // Test files
-      files: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx', '**/test/**'],
-      env: {
-        jest: true
-      },
-      rules: {
-        '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/no-non-null-assertion': 'off',
-        '@typescript-eslint/no-unsafe-assignment': 'off',
-        '@typescript-eslint/no-unsafe-member-access': 'off',
-        '@typescript-eslint/no-unsafe-call': 'off'
-      }
-    },
     {
       // JavaScript files (legacy support during migration)
       files: ['**/*.js', '**/*.jsx'],

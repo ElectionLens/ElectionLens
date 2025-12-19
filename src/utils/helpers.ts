@@ -1,11 +1,5 @@
 import { STATE_FILE_MAP, COLOR_PALETTES } from '../constants';
-import type { 
-  MapLevel, 
-  FeatureStyle, 
-  HoverStyle, 
-  HexColor,
-  ColorPalette 
-} from '../types';
+import type { MapLevel, FeatureStyle, HoverStyle, HexColor, ColorPalette } from '../types';
 
 /**
  * Remove diacritics from text (Rājasthān -> Rajasthan)
@@ -30,25 +24,25 @@ export function normalizeStateName(name: string | null | undefined): string {
  */
 export function getStateFileName(stateName: string | null | undefined): string {
   if (!stateName) return '';
-  
+
   // Direct lookup
   if (STATE_FILE_MAP[stateName]) {
     return STATE_FILE_MAP[stateName];
   }
-  
+
   // Try normalized name
   const normalized = normalizeStateName(stateName);
   if (STATE_FILE_MAP[normalized]) {
     return STATE_FILE_MAP[normalized];
   }
-  
+
   // Try to find by normalized match
   for (const [key, value] of Object.entries(STATE_FILE_MAP)) {
     if (normalizeStateName(key) === normalized) {
       return value;
     }
   }
-  
+
   // Generate from name as fallback
   return normalized.toLowerCase().replace(/\s+/g, '-');
 }
@@ -57,7 +51,7 @@ export function getStateFileName(stateName: string | null | undefined): string {
  * Get color for a feature based on index and map level
  * Colors cycle through the palette when index exceeds length
  */
-export function getFeatureColor(index: number, level: MapLevel | string | null | undefined): HexColor {
+export function getFeatureColor(index: number, level: MapLevel | null | undefined): HexColor {
   const palette: ColorPalette = COLOR_PALETTES[level as MapLevel] || COLOR_PALETTES.states;
   return palette[index % palette.length] as HexColor;
 }
@@ -66,14 +60,14 @@ export function getFeatureColor(index: number, level: MapLevel | string | null |
  * Get GeoJSON style for a feature
  * Returns Leaflet-compatible path options
  */
-export function getFeatureStyle(index: number, level: MapLevel | string): FeatureStyle {
+export function getFeatureStyle(index: number, level: MapLevel): FeatureStyle {
   const color = getFeatureColor(index, level);
   return {
     fillColor: color,
     fillOpacity: 0.65,
     color: '#fff',
     weight: 1.5,
-    opacity: 1
+    opacity: 1,
   };
 }
 
@@ -81,17 +75,17 @@ export function getFeatureStyle(index: number, level: MapLevel | string): Featur
  * Get hover style for a feature
  * Returns level-specific border color for visual feedback
  */
-export function getHoverStyle(level: MapLevel | string | null | undefined): HoverStyle {
+export function getHoverStyle(level: MapLevel | null | undefined): HoverStyle {
   const colorMap: Record<string, string> = {
     states: '#333',
     districts: '#333',
     constituencies: '#5b21b6',
-    assemblies: '#166534'
+    assemblies: '#166534',
   };
   return {
     weight: 3,
     color: colorMap[level as string] || '#333',
-    fillOpacity: 0.8
+    fillOpacity: 0.8,
   };
 }
 
@@ -103,4 +97,3 @@ export function toTitleCase(str: string | null | undefined): string {
   if (!str) return '';
   return str.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
 }
-
