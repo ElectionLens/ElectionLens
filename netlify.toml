@@ -1,0 +1,68 @@
+# Netlify Configuration
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Build command
+  command = "npm run build"
+  
+  # Directory to publish (Vite outputs to dist/)
+  publish = "dist"
+  
+  # Directory with package.json
+  base = "/"
+
+[build.environment]
+  # Node version
+  NODE_VERSION = "20"
+  
+  # Skip Husky hooks during Netlify build
+  HUSKY = "0"
+
+# Production context
+[context.production]
+  command = "npm run build"
+  
+[context.production.environment]
+  NODE_ENV = "production"
+
+# Deploy Preview context (for PRs)
+[context.deploy-preview]
+  command = "npm run build"
+
+# Branch deploy context
+[context.branch-deploy]
+  command = "npm run build"
+
+# Dev context (for netlify dev)
+[dev]
+  command = "npm run dev"
+  port = 3000
+  targetPort = 3000
+  autoLaunch = true
+
+# Redirects for SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security and caching
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.geojson"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/geo+json"
+
