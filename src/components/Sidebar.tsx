@@ -142,7 +142,13 @@ export function Sidebar({
       
       type SortedAssembly = { feature: Feature<AssemblyProperties>; index: number };
       
-      const sorted: SortedAssembly[] = [...(currentData as GeoJSONData).features]
+      // Filter out features without valid names first (pre-delimitation placeholders)
+      const validFeatures = (currentData as GeoJSONData).features.filter(f => {
+        const props = (f as Feature<AssemblyProperties>).properties;
+        return props.AC_NAME && props.AC_NAME.trim() !== '';
+      });
+      
+      const sorted: SortedAssembly[] = validFeatures
         .map((f, idx): SortedAssembly => ({ feature: f as Feature<AssemblyProperties>, index: idx }))
         .sort((a, b) => {
           const noA = parseInt(a.feature.properties.AC_NO ?? '0', 10);
@@ -150,16 +156,11 @@ export function Sidebar({
           return noA - noB;
         });
       
-      // Filter out features without valid names (pre-delimitation placeholders)
-      const validSorted = sorted.filter(({ feature }) => 
-        feature.properties.AC_NAME && feature.properties.AC_NAME.trim() !== ''
-      );
-      
       return (
         <div className="district-list">
-          <h3>Assembly Constituencies ({validSorted.length})</h3>
-          {validSorted.map(({ feature, index }) => {
-            const name = feature.properties.AC_NAME ?? 'Unknown';
+          <h3>Assembly Constituencies ({sorted.length})</h3>
+          {sorted.map(({ feature, index }) => {
+            const name = feature.properties.AC_NAME!; // Safe - already filtered
             const acNo = feature.properties.AC_NO ?? '';
             const color = getFeatureColor(index, 'assemblies');
             const style: ExtendedCSSProperties = { '--item-color': color };
