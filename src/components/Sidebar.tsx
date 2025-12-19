@@ -149,13 +149,8 @@ export function Sidebar({
           <div className="district-list">
             <h3>Assembly Constituencies</h3>
             <div className="no-data-message">
-              <div className="no-data-icon">🏛️</div>
-              <strong>{currentData?.features?.length ? 'Loading...' : 'No Assembly Data'}</strong>
-              <p>
-                {currentPC 
-                  ? 'This is a Union Territory without a state legislative assembly, or assembly boundary data is not available.'
-                  : 'This is a newer district created after delimitation, or assembly boundary data is not yet available for this district.'}
-              </p>
+              <div className="no-data-icon">⏳</div>
+              <strong>Loading assembly data...</strong>
             </div>
           </div>
         );
@@ -163,11 +158,10 @@ export function Sidebar({
       
       type SortedAssembly = { feature: Feature<AssemblyProperties>; index: number };
       
-      // Filter out features without valid names first (pre-delimitation placeholders)
+      // Filter out features without valid names (pre-delimitation placeholders)
       const validFeatures = (currentData as GeoJSONData).features.filter(f => {
         const props = (f as Feature<AssemblyProperties>).properties;
-        const hasValidName = props.AC_NAME && props.AC_NAME.trim() !== '';
-        return hasValidName;
+        return props.AC_NAME && props.AC_NAME.trim() !== '';
       });
       
       const sorted: SortedAssembly[] = validFeatures
@@ -182,14 +176,14 @@ export function Sidebar({
         <div className="district-list">
           <h3>Assembly Constituencies ({sorted.length})</h3>
           {sorted.map(({ feature, index }) => {
-            const name = feature.properties.AC_NAME!; // Safe - already filtered
+            const name = feature.properties.AC_NAME ?? '';
             const acNo = feature.properties.AC_NO ?? '';
             const color = getFeatureColor(index, 'assemblies');
             const style: ExtendedCSSProperties = { '--item-color': color };
             
             return (
               <div
-                key={`${name}-${acNo}`}
+                key={`assembly-${index}`}
                 className="assembly-item"
                 style={style}
                 onClick={() => onAssemblyClick?.(name, feature as AssemblyFeature)}
@@ -233,7 +227,7 @@ export function Sidebar({
             
             return (
               <div
-                key={`${name}-${pcNo}`}
+                key={`pc-${index}`}
                 className="constituency-item"
                 style={style}
                 onClick={() => onConstituencyClick(name, feature as ConstituencyFeature)}
@@ -277,7 +271,7 @@ export function Sidebar({
             const style: ExtendedCSSProperties = { '--item-color': color };
             return (
               <div
-                key={name}
+                key={`district-${index}`}
                 className="district-item"
                 style={style}
                 onClick={() => onDistrictClick(name, feature as DistrictFeature)}
@@ -316,7 +310,7 @@ export function Sidebar({
             const color: HexColor = getFeatureColor(index, 'states');
             return (
               <div
-                key={name}
+                key={`state-${index}`}
                 className="district-item"
                 onClick={() => onStateClick(name, feature as StateFeature)}
                 role="button"
