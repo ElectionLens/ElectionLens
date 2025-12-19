@@ -154,32 +154,30 @@ const mockDistrictGeoJSON = {
 beforeEach(() => {
   vi.clearAllMocks();
   
-  global.fetch = vi.fn((url) => {
-    if (url.includes('india_states.geojson')) {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockStatesGeoJSON)
-      });
+  // Helper to create a mock Response
+  const createMockResponse = (data: unknown) => ({
+    ok: true,
+    status: 200,
+    json: () => Promise.resolve(data),
+    text: () => Promise.resolve(JSON.stringify(data)),
+  } as Response);
+  
+  global.fetch = vi.fn((url: string | URL | Request) => {
+    const urlStr = url.toString();
+    // New reorganized paths
+    if (urlStr.includes('/boundaries/states.geojson')) {
+      return Promise.resolve(createMockResponse(mockStatesGeoJSON));
     }
-    if (url.includes('india_parliament_alternate.geojson')) {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockParliamentGeoJSON)
-      });
+    if (urlStr.includes('/parliament/constituencies.geojson')) {
+      return Promise.resolve(createMockResponse(mockParliamentGeoJSON));
     }
-    if (url.includes('india_assembly.geojson')) {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockAssemblyGeoJSON)
-      });
+    if (urlStr.includes('/assembly/constituencies.geojson')) {
+      return Promise.resolve(createMockResponse(mockAssemblyGeoJSON));
     }
-    if (url.includes('.geojson')) {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockDistrictGeoJSON)
-      });
+    if (urlStr.includes('/districts/') && urlStr.includes('.geojson')) {
+      return Promise.resolve(createMockResponse(mockDistrictGeoJSON));
     }
-    return Promise.reject(new Error('Not found'));
+    return Promise.reject(new Error(`Not found: ${urlStr}`));
   });
 });
 
