@@ -145,8 +145,26 @@ export function Sidebar({
   const renderList = (): ReactNode => {
     // Show assemblies if we're in assembly view
     if (currentPC ?? currentDistrict) {
+      // Check if we have no data at all (empty features)
+      if (!currentData?.features?.length) {
+        return (
+          <div className="district-list">
+            <h3>Assembly Constituencies</h3>
+            <div className="no-data-message">
+              <div className="no-data-icon">🏛️</div>
+              <strong>No Assembly Data</strong>
+              <p>
+                {currentPC 
+                  ? 'This is a Union Territory without a state legislative assembly, or assembly boundary data is not available.'
+                  : 'This is a newer district created after delimitation, or assembly boundary data is not yet available for this district.'}
+              </p>
+            </div>
+          </div>
+        );
+      }
+      
       // Verify we have assembly data, not constituency data (race condition protection)
-      if (!currentData?.features?.length || !isAssemblyData(currentData.features as Feature[])) {
+      if (!isAssemblyData(currentData.features as Feature[])) {
         return (
           <div className="district-list">
             <h3>Assembly Constituencies</h3>

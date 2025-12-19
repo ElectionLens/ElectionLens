@@ -884,12 +884,18 @@ describe('Sidebar', () => {
     });
 
     it('should handle missing property names gracefully', () => {
-      const dataWithMissingProps = {
+      // Data with some valid and some invalid features
+      const dataWithMixedProps = {
         type: 'FeatureCollection',
         features: [
           {
             type: 'Feature',
-            properties: {},
+            properties: { AC_NAME: 'Valid Name', AC_NO: '1' },
+            geometry: { type: 'Polygon', coordinates: [] }
+          },
+          {
+            type: 'Feature',
+            properties: { AC_NAME: '', AC_NO: '2' }, // Empty - should be filtered out
             geometry: { type: 'Polygon', coordinates: [] }
           }
         ]
@@ -899,11 +905,12 @@ describe('Sidebar', () => {
           {...defaultProps} 
           currentState="Tamil Nadu"
           currentPC="Test"
-          currentData={dataWithMissingProps}
+          currentData={dataWithMixedProps}
         />
       );
-      // Should show Unknown for missing AC_NAME
-      expect(screen.getByText('Unknown')).toBeInTheDocument();
+      // Only valid features should be shown (empty AC_NAME filtered out)
+      expect(screen.getByText('Assembly Constituencies (1)')).toBeInTheDocument();
+      expect(screen.getByText('Valid Name')).toBeInTheDocument();
     });
 
     it('should handle state names with diacritics', () => {

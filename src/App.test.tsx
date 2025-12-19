@@ -122,8 +122,8 @@ describe('App', () => {
     });
 
     it('should render mobile toggle button', () => {
-      render(<App />);
-      const toggleButton = screen.getByRole('button', { name: /☰|✕/ });
+      const { container } = render(<App />);
+      const toggleButton = container.querySelector('.mobile-toggle');
       expect(toggleButton).toBeInTheDocument();
     });
 
@@ -135,46 +135,47 @@ describe('App', () => {
 
   describe('mobile sidebar', () => {
     it('should show hamburger icon initially', () => {
-      render(<App />);
-      expect(screen.getByRole('button', { name: '☰' })).toBeInTheDocument();
+      const { container } = render(<App />);
+      const toggle = container.querySelector('.mobile-toggle');
+      expect(toggle).toBeInTheDocument();
+      expect(toggle?.textContent).toContain('☰');
     });
 
     it('should toggle to X icon when sidebar is opened', () => {
-      render(<App />);
+      const { container } = render(<App />);
       
-      const toggleButton = screen.getByRole('button', { name: '☰' });
+      const toggleButton = container.querySelector('.mobile-toggle') as HTMLElement;
       fireEvent.click(toggleButton);
       
-      expect(screen.getByRole('button', { name: '✕' })).toBeInTheDocument();
+      expect(toggleButton.textContent).toContain('✕');
     });
 
     it('should toggle back to hamburger when sidebar is closed', () => {
-      render(<App />);
+      const { container } = render(<App />);
+      const toggle = container.querySelector('.mobile-toggle') as HTMLElement;
       
       // Open
-      fireEvent.click(screen.getByRole('button', { name: '☰' }));
-      expect(screen.getByRole('button', { name: '✕' })).toBeInTheDocument();
+      fireEvent.click(toggle);
+      expect(toggle.textContent).toContain('✕');
       
       // Close
-      fireEvent.click(screen.getByRole('button', { name: '✕' }));
-      expect(screen.getByRole('button', { name: '☰' })).toBeInTheDocument();
+      fireEvent.click(toggle);
+      expect(toggle.textContent).toContain('☰');
     });
 
     it('should have active class when open', () => {
-      render(<App />);
+      const { container } = render(<App />);
+      const toggle = container.querySelector('.mobile-toggle') as HTMLElement;
       
-      const toggleButton = screen.getByRole('button', { name: '☰' });
-      fireEvent.click(toggleButton);
+      fireEvent.click(toggle);
       
-      const updatedToggle = screen.getByRole('button', { name: '✕' });
-      expect(updatedToggle).toHaveClass('active');
+      expect(toggle).toHaveClass('active');
     });
 
     it('should not have active class when closed', () => {
-      render(<App />);
-      
-      const toggleButton = screen.getByRole('button', { name: '☰' });
-      expect(toggleButton).not.toHaveClass('active');
+      const { container } = render(<App />);
+      const toggle = container.querySelector('.mobile-toggle');
+      expect(toggle).not.toHaveClass('active');
     });
   });
 
@@ -361,9 +362,10 @@ describe('App - responsive behavior', () => {
   });
 
   it('should have mobile toggle button', () => {
-    render(<App />);
+    const { container } = render(<App />);
     
-    const toggle = screen.getByRole('button', { name: /☰|✕/ });
+    const toggle = container.querySelector('.mobile-toggle');
+    expect(toggle).toBeInTheDocument();
     expect(toggle).toHaveClass('mobile-toggle');
   });
 
@@ -371,13 +373,13 @@ describe('App - responsive behavior', () => {
     // Set mobile viewport
     Object.defineProperty(window, 'innerWidth', { value: 375 });
     
-    render(<App />);
+    const { container } = render(<App />);
     
-    const toggle = screen.getByRole('button', { name: '☰' });
+    const toggle = container.querySelector('.mobile-toggle') as HTMLElement;
     fireEvent.click(toggle);
     
     // Sidebar should have open class
-    const sidebar = document.querySelector('.sidebar');
+    const sidebar = container.querySelector('.sidebar');
     expect(sidebar).toHaveClass('open');
   });
 });
@@ -440,24 +442,27 @@ describe('App - sidebar overlay behavior', () => {
   });
 
   it('should close sidebar when overlay is clicked', () => {
-    render(<App />);
+    const { container } = render(<App />);
     
     // Open sidebar
-    fireEvent.click(screen.getByRole('button', { name: '☰' }));
-    expect(document.querySelector('.sidebar.open')).toBeInTheDocument();
+    const toggle = container.querySelector('.mobile-toggle') as HTMLElement;
+    fireEvent.click(toggle);
+    expect(container.querySelector('.sidebar.open')).toBeInTheDocument();
     
     // Click overlay
-    fireEvent.click(document.querySelector('.sidebar-overlay'));
-    expect(document.querySelector('.sidebar.open')).not.toBeInTheDocument();
+    const overlay = container.querySelector('.sidebar-overlay') as HTMLElement;
+    fireEvent.click(overlay);
+    expect(container.querySelector('.sidebar.open')).not.toBeInTheDocument();
   });
 
   it('should have visible class on overlay when sidebar is open', () => {
-    render(<App />);
+    const { container } = render(<App />);
     
     // Open sidebar
-    fireEvent.click(screen.getByRole('button', { name: '☰' }));
+    const toggle = container.querySelector('.mobile-toggle') as HTMLElement;
+    fireEvent.click(toggle);
     
-    const overlay = document.querySelector('.sidebar-overlay');
+    const overlay = container.querySelector('.sidebar-overlay');
     expect(overlay).toHaveClass('visible');
   });
 });
@@ -480,18 +485,18 @@ describe('App - accessibility', () => {
 
 describe('App - edge cases', () => {
   it('should handle rapid toggle clicks', () => {
-    render(<App />);
+    const { container } = render(<App />);
     
-    const toggle = screen.getByRole('button', { name: '☰' });
+    const toggle = container.querySelector('.mobile-toggle') as HTMLElement;
     
-    // Rapid clicks
+    // Rapid clicks - toggle 4 times (open, close, open, close)
     fireEvent.click(toggle);
-    fireEvent.click(screen.getByRole('button', { name: '✕' }));
-    fireEvent.click(screen.getByRole('button', { name: '☰' }));
-    fireEvent.click(screen.getByRole('button', { name: '✕' }));
+    fireEvent.click(toggle);
+    fireEvent.click(toggle);
+    fireEvent.click(toggle);
     
-    // Should end in closed state
-    expect(screen.getByRole('button', { name: '☰' })).toBeInTheDocument();
+    // Should end in closed state (no 'active' class)
+    expect(toggle).not.toHaveClass('active');
   });
 
   it('should handle multiple state clicks', async () => {
@@ -547,9 +552,10 @@ describe('App - mobile sidebar close on action', () => {
   });
 
   it('should have mobile toggle visible', () => {
-    render(<App />);
+    const { container } = render(<App />);
     
-    const toggle = screen.getByRole('button', { name: '☰' });
+    const toggle = container.querySelector('.mobile-toggle');
+    expect(toggle).toBeInTheDocument();
     expect(toggle).toHaveClass('mobile-toggle');
   });
 });

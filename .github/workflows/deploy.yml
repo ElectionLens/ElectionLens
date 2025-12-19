@@ -40,9 +40,8 @@ jobs:
       - name: Run TypeScript type check
         run: npm run typecheck
       
-      # TODO: Fix tests after GeoJSON reorganization
-      # - name: Run tests
-      #   run: npm run test:run
+      - name: Run tests
+        run: npm run test:run
       
       - name: Build project
         run: npm run build
