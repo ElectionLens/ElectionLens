@@ -55,14 +55,43 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Cache static assets forever (hashed filenames)
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Cache GeoJSON data files (24 hours)
 [[headers]]
-  for = "/*.geojson"
+  for = "/data/geo/*"
   [headers.values]
     Cache-Control = "public, max-age=86400"
     Content-Type = "application/geo+json"
 
+# State boundaries (rarely change)
+[[headers]]
+  for = "/data/geo/boundaries/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+    Content-Type = "application/geo+json"
+
+# Parliament constituencies
+[[headers]]
+  for = "/data/geo/parliament/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+    Content-Type = "application/geo+json"
+
+# Assembly constituencies
+[[headers]]
+  for = "/data/geo/assembly/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+    Content-Type = "application/geo+json"
+
+# District data
+[[headers]]
+  for = "/data/geo/districts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+    Content-Type = "application/geo+json"

@@ -8,6 +8,7 @@ import {
   PC_NAME_MAPPINGS,
   PC_STATE_ALIASES 
 } from '../constants';
+import { BOUNDARIES, PARLIAMENT, ASSEMBLY, DISTRICTS, CACHE_KEYS } from '../constants/paths';
 import type {
   StatesGeoJSON,
   ConstituenciesGeoJSON,
@@ -72,16 +73,16 @@ export function useElectionData(): UseElectionDataReturn {
    */
   const loadStatesData = useCallback(async (): Promise<StatesGeoJSON | null> => {
     try {
-      let data = await getFromDB('india_states') as StatesGeoJSON | null;
+      let data = await getFromDB(CACHE_KEYS.STATES) as StatesGeoJSON | null;
       
       if (data) {
         console.log('States loaded from DB:', data.features.length);
       } else {
-        const response = await fetch('india_states.geojson');
+        const response = await fetch(BOUNDARIES.STATES);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         data = await response.json() as StatesGeoJSON;
         console.log('States loaded from file:', data.features.length);
-        saveToDB('india_states', data);
+        saveToDB(CACHE_KEYS.STATES, data);
       }
       
       setStatesGeoJSON(data);
@@ -98,12 +99,12 @@ export function useElectionData(): UseElectionDataReturn {
    */
   const loadParliamentData = useCallback(async (): Promise<ConstituenciesGeoJSON | null> => {
     try {
-      let data = await getFromDB('india_parliament_alt') as ConstituenciesGeoJSON | null;
+      let data = await getFromDB(CACHE_KEYS.PARLIAMENT) as ConstituenciesGeoJSON | null;
       
       if (data) {
         console.log('Parliament data loaded from DB:', data.features.length);
       } else {
-        const response = await fetch('india_parliament_alternate.geojson');
+        const response = await fetch(PARLIAMENT.CONSTITUENCIES);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const rawData = await response.json() as GeoJSONData | ConstituencyFeature[];
         
@@ -123,7 +124,7 @@ export function useElectionData(): UseElectionDataReturn {
         
         data = { type: 'FeatureCollection', features };
         console.log('Parliament data loaded from file:', data.features.length);
-        saveToDB('india_parliament_alt', data);
+        saveToDB(CACHE_KEYS.PARLIAMENT, data);
       }
       
       setParliamentGeoJSON(data);
@@ -135,16 +136,33 @@ export function useElectionData(): UseElectionDataReturn {
   }, []);
 
   /**
+   * Filter valid assembly features (remove pre-delimitation placeholders)
+   */
+  const filterValidAssemblyFeatures = (features: AssemblyFeature[]): AssemblyFeature[] => {
+    return features.filter(f => 
+      f.properties.AC_NAME && f.properties.AC_NAME.trim() !== ''
+    );
+  };
+
+  /**
    * Load assembly GeoJSON from cache or network
    */
   const loadAssemblyData = useCallback(async (): Promise<AssembliesGeoJSON | null> => {
     try {
-      let data = await getFromDB('india_assembly') as AssembliesGeoJSON | null;
+      let data = await getFromDB(CACHE_KEYS.ASSEMBLY) as AssembliesGeoJSON | null;
       
       if (data) {
+        // Filter cached data too (in case old cache has invalid features)
+        const validFeatures = filterValidAssemblyFeatures(data.features);
+        if (validFeatures.length !== data.features.length) {
+          console.log(`Assembly data filtered: ${data.features.length} → ${validFeatures.length}`);
+          data = { type: 'FeatureCollection', features: validFeatures };
+          // Update cache with filtered data
+          saveToDB(CACHE_KEYS.ASSEMBLY, data);
+        }
         console.log('Assembly data loaded from DB:', data.features.length);
       } else {
-        const response = await fetch('india_assembly.geojson');
+        const response = await fetch(ASSEMBLY.CONSTITUENCIES);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const rawData = await response.json() as GeoJSONData | AssemblyFeature[];
         
@@ -162,9 +180,12 @@ export function useElectionData(): UseElectionDataReturn {
           features = [];
         }
         
+        // Filter out pre-delimitation placeholders
+        features = filterValidAssemblyFeatures(features);
+        
         data = { type: 'FeatureCollection', features };
-        console.log('Assembly data loaded from file:', data.features.length);
-        saveToDB('india_assembly', data);
+        console.log('Assembly data loaded from file:', data.features.length, '(filtered invalid features)');
+        saveToDB(CACHE_KEYS.ASSEMBLY, data);
       }
       
       setAssemblyGeoJSON(data);
@@ -184,18 +205,19 @@ export function useElectionData(): UseElectionDataReturn {
     const loadPromises = stateFiles.map(async (fileName): Promise<boolean> => {
       if (districtsCacheRef.current[fileName]) return true;
       
-      const cached = await getFromDB(`districts_${fileName}`) as DistrictsGeoJSON | null;
+      const cacheKey = CACHE_KEYS.getDistrictKey(fileName);
+      const cached = await getFromDB(cacheKey) as DistrictsGeoJSON | null;
       if (cached) {
         districtsCacheRef.current[fileName] = cached;
         return true;
       }
       
       try {
-        const response = await fetch(`states/${fileName}.geojson`);
+        const response = await fetch(DISTRICTS.getPath(fileName));
         if (response.ok) {
           const data = await response.json() as DistrictsGeoJSON;
           districtsCacheRef.current[fileName] = data;
-          saveToDB(`districts_${fileName}`, data);
+          saveToDB(cacheKey, data);
           return true;
         }
       } catch {
@@ -266,6 +288,9 @@ export function useElectionData(): UseElectionDataReturn {
     }
     
     return assemblyGeoJSON.features.filter((f): boolean => {
+      // Skip features without valid AC_NAME
+      if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
+      
       const asmPC = (f.properties.PC_NAME ?? '').toUpperCase().trim();
       const asmStateName = (f.properties.ST_NAME ?? '').toUpperCase().trim();
       
@@ -311,6 +336,9 @@ export function useElectionData(): UseElectionDataReturn {
     }
     
     return assemblyGeoJSON.features.filter((f): boolean => {
+      // Skip features without valid AC_NAME
+      if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
+      
       const asmDistRaw = (f.properties.DIST_NAME ?? '').toUpperCase();
       const asmDist = asmDistRaw.replace(/[^A-Z]/g, '');
       const asmStateName = (f.properties.ST_NAME ?? '').toUpperCase().trim();
@@ -327,7 +355,10 @@ export function useElectionData(): UseElectionDataReturn {
    */
   const loadDistrictsForState = useCallback(async (stateName: string): Promise<DistrictsGeoJSON | null> => {
     const fileName = getStateFileName(stateName);
-    console.log(`Loading districts for ${stateName} from states/${fileName}.geojson`);
+    const filePath = DISTRICTS.getPath(fileName);
+    const cacheKey = CACHE_KEYS.getDistrictKey(fileName);
+    
+    console.log(`Loading districts for ${stateName} from ${filePath}`);
     
     setLoading(true);
     
@@ -337,18 +368,18 @@ export function useElectionData(): UseElectionDataReturn {
       if (districtsCacheRef.current[fileName]) {
         data = districtsCacheRef.current[fileName]!;
       } else {
-        data = await getFromDB(`districts_${fileName}`) as DistrictsGeoJSON | null;
+        data = await getFromDB(cacheKey) as DistrictsGeoJSON | null;
         if (data) {
           districtsCacheRef.current[fileName] = data;
         }
       }
       
       if (!data) {
-        const response = await fetch(`states/${fileName}.geojson`);
+        const response = await fetch(filePath);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         data = await response.json() as DistrictsGeoJSON;
         districtsCacheRef.current[fileName] = data;
-        saveToDB(`districts_${fileName}`, data);
+        saveToDB(cacheKey, data);
       }
       
       console.log(`Loaded ${data.features.length} districts`);

@@ -118,23 +118,39 @@ export function Sidebar({
   };
 
   /**
+   * Check if features are assembly data (have valid AC_NAME) vs constituency data (have ls_seat_name)
+   */
+  const isAssemblyData = (features: Feature[]): boolean => {
+    if (!features.length) return false;
+    // Check first few features for AC_NAME with actual value
+    const sample = features.slice(0, 5);
+    const hasAssemblyProps = sample.some(f => {
+      const props = f.properties as Record<string, unknown>;
+      // Assembly data has AC_NAME with value, constituency has ls_seat_name
+      return props.AC_NAME && typeof props.AC_NAME === 'string' && props.AC_NAME.trim() !== '';
+    });
+    const hasConstituencyProps = sample.some(f => {
+      const props = f.properties as Record<string, unknown>;
+      return props.ls_seat_name && typeof props.ls_seat_name === 'string';
+    });
+    // It's assembly data if it has AC_NAME values and NOT ls_seat_name
+    return hasAssemblyProps && !hasConstituencyProps;
+  };
+
+  /**
    * Render the appropriate list based on current navigation level
    */
   const renderList = (): ReactNode => {
     // Show assemblies if we're in assembly view
     if (currentPC ?? currentDistrict) {
-      if (!currentData?.features?.length) {
+      // Verify we have assembly data, not constituency data (race condition protection)
+      if (!currentData?.features?.length || !isAssemblyData(currentData.features as Feature[])) {
         return (
           <div className="district-list">
             <h3>Assembly Constituencies</h3>
             <div className="no-data-message">
-              <div className="no-data-icon">🏛️</div>
-              <strong>No Assembly Data</strong>
-              <p>
-                {currentPC 
-                  ? 'This is a Union Territory without a state legislative assembly, or assembly boundary data is not available.'
-                  : 'This is a newer district created after delimitation, or assembly boundary data is not yet available for this district.'}
-              </p>
+              <div className="no-data-icon">⏳</div>
+              <strong>Loading assembly data...</strong>
             </div>
           </div>
         );
@@ -142,7 +158,13 @@ export function Sidebar({
       
       type SortedAssembly = { feature: Feature<AssemblyProperties>; index: number };
       
-      const sorted: SortedAssembly[] = [...(currentData as GeoJSONData).features]
+      // Filter out features without valid names (pre-delimitation placeholders)
+      const validFeatures = (currentData as GeoJSONData).features.filter(f => {
+        const props = (f as Feature<AssemblyProperties>).properties;
+        return props.AC_NAME && props.AC_NAME.trim() !== '';
+      });
+      
+      const sorted: SortedAssembly[] = validFeatures
         .map((f, idx): SortedAssembly => ({ feature: f as Feature<AssemblyProperties>, index: idx }))
         .sort((a, b) => {
           const noA = parseInt(a.feature.properties.AC_NO ?? '0', 10);
@@ -152,16 +174,16 @@ export function Sidebar({
       
       return (
         <div className="district-list">
-          <h3>Assembly Constituencies ({currentData.features.length})</h3>
+          <h3>Assembly Constituencies ({sorted.length})</h3>
           {sorted.map(({ feature, index }) => {
-            const name = feature.properties.AC_NAME ?? 'Unknown';
+            const name = feature.properties.AC_NAME ?? '';
             const acNo = feature.properties.AC_NO ?? '';
             const color = getFeatureColor(index, 'assemblies');
             const style: ExtendedCSSProperties = { '--item-color': color };
             
             return (
               <div
-                key={`${name}-${acNo}`}
+                key={`assembly-${index}`}
                 className="assembly-item"
                 style={style}
                 onClick={() => onAssemblyClick?.(name, feature as AssemblyFeature)}
@@ -205,7 +227,7 @@ export function Sidebar({
             
             return (
               <div
-                key={`${name}-${pcNo}`}
+                key={`pc-${index}`}
                 className="constituency-item"
                 style={style}
                 onClick={() => onConstituencyClick(name, feature as ConstituencyFeature)}
@@ -249,7 +271,7 @@ export function Sidebar({
             const style: ExtendedCSSProperties = { '--item-color': color };
             return (
               <div
-                key={name}
+                key={`district-${index}`}
                 className="district-item"
                 style={style}
                 onClick={() => onDistrictClick(name, feature as DistrictFeature)}
@@ -288,7 +310,7 @@ export function Sidebar({
             const color: HexColor = getFeatureColor(index, 'states');
             return (
               <div
-                key={name}
+                key={`state-${index}`}
                 className="district-item"
                 onClick={() => onStateClick(name, feature as StateFeature)}
                 role="button"
