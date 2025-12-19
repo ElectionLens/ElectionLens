@@ -136,6 +136,15 @@ export function useElectionData(): UseElectionDataReturn {
   }, []);
 
   /**
+   * Filter valid assembly features (remove pre-delimitation placeholders)
+   */
+  const filterValidAssemblyFeatures = (features: AssemblyFeature[]): AssemblyFeature[] => {
+    return features.filter(f => 
+      f.properties.AC_NAME && f.properties.AC_NAME.trim() !== ''
+    );
+  };
+
+  /**
    * Load assembly GeoJSON from cache or network
    */
   const loadAssemblyData = useCallback(async (): Promise<AssembliesGeoJSON | null> => {
@@ -143,6 +152,14 @@ export function useElectionData(): UseElectionDataReturn {
       let data = await getFromDB(CACHE_KEYS.ASSEMBLY) as AssembliesGeoJSON | null;
       
       if (data) {
+        // Filter cached data too (in case old cache has invalid features)
+        const validFeatures = filterValidAssemblyFeatures(data.features);
+        if (validFeatures.length !== data.features.length) {
+          console.log(`Assembly data filtered: ${data.features.length} → ${validFeatures.length}`);
+          data = { type: 'FeatureCollection', features: validFeatures };
+          // Update cache with filtered data
+          saveToDB(CACHE_KEYS.ASSEMBLY, data);
+        }
         console.log('Assembly data loaded from DB:', data.features.length);
       } else {
         const response = await fetch(ASSEMBLY.CONSTITUENCIES);
@@ -152,24 +169,19 @@ export function useElectionData(): UseElectionDataReturn {
         let features: AssemblyFeature[];
         if (Array.isArray(rawData)) {
           features = rawData.filter((f): f is AssemblyFeature => 
-            f !== null && 
-            f.properties !== undefined && 
-            f.geometry !== undefined &&
-            // Filter out features without AC_NAME (pre-delimitation placeholders)
-            Boolean(f.properties.AC_NAME)
+            f !== null && f.properties !== undefined && f.geometry !== undefined
           );
         } else if ('features' in rawData && rawData.features) {
           features = (rawData.features as AssemblyFeature[]).filter(
             (f): f is AssemblyFeature => 
-              f !== null && 
-              f.properties !== undefined && 
-              f.geometry !== undefined &&
-              // Filter out features without AC_NAME (pre-delimitation placeholders)
-              Boolean(f.properties.AC_NAME)
+              f !== null && f.properties !== undefined && f.geometry !== undefined
           );
         } else {
           features = [];
         }
+        
+        // Filter out pre-delimitation placeholders
+        features = filterValidAssemblyFeatures(features);
         
         data = { type: 'FeatureCollection', features };
         console.log('Assembly data loaded from file:', data.features.length, '(filtered invalid features)');
@@ -276,6 +288,9 @@ export function useElectionData(): UseElectionDataReturn {
     }
     
     return assemblyGeoJSON.features.filter((f): boolean => {
+      // Skip features without valid AC_NAME
+      if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
+      
       const asmPC = (f.properties.PC_NAME ?? '').toUpperCase().trim();
       const asmStateName = (f.properties.ST_NAME ?? '').toUpperCase().trim();
       
@@ -321,6 +336,9 @@ export function useElectionData(): UseElectionDataReturn {
     }
     
     return assemblyGeoJSON.features.filter((f): boolean => {
+      // Skip features without valid AC_NAME
+      if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
+      
       const asmDistRaw = (f.properties.DIST_NAME ?? '').toUpperCase();
       const asmDist = asmDistRaw.replace(/[^A-Z]/g, '');
       const asmStateName = (f.properties.ST_NAME ?? '').toUpperCase().trim();
