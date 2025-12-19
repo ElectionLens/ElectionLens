@@ -1,7 +1,7 @@
 # ElectionLens Automation Makefile
 # Run 'make help' to see available commands
 
-.PHONY: install dev build test test-watch test-coverage test-ui lint lint-fix format format-check clean ci help setup-hooks validate check quick-check
+.PHONY: install dev build test test-watch test-coverage test-ui lint lint-fix format format-check clean ci help setup-hooks validate check quick-check typecheck tc types
 
 # Colors for terminal output
 GREEN := \033[0;32m
@@ -30,6 +30,7 @@ help:
 	@echo "  make test-related   Run tests related to changed files"
 	@echo ""
 	@echo "$(YELLOW)Code Quality:$(NC)"
+	@echo "  make typecheck      Run TypeScript type checking"
 	@echo "  make lint           Run ESLint"
 	@echo "  make lint-fix       Run ESLint with auto-fix"
 	@echo "  make format         Format code with Prettier"
@@ -129,6 +130,15 @@ test-related:
 # Code Quality
 # ============================================================
 
+# TypeScript type check
+typecheck:
+	@echo "$(GREEN)Running TypeScript type check...$(NC)"
+	npm run typecheck
+	@echo "$(GREEN)✓ TypeScript check passed$(NC)"
+
+# Shortcut aliases
+types: typecheck
+
 # Lint
 lint:
 	@echo "$(GREEN)Running ESLint...$(NC)"
@@ -168,10 +178,13 @@ format-check:
 quick-check:
 	@echo "$(GREEN)Running quick validation...$(NC)"
 	@echo ""
-	@echo "$(YELLOW)Step 1/2: Linting...$(NC)"
+	@echo "$(YELLOW)Step 1/3: TypeScript check...$(NC)"
+	npm run typecheck
+	@echo ""
+	@echo "$(YELLOW)Step 2/3: Linting...$(NC)"
 	npm run lint
 	@echo ""
-	@echo "$(YELLOW)Step 2/2: Testing...$(NC)"
+	@echo "$(YELLOW)Step 3/3: Testing...$(NC)"
 	npm run test:run
 	@echo ""
 	@echo "$(GREEN)✓ Quick check passed!$(NC)"
@@ -182,17 +195,20 @@ validate:
 	npm run validate
 	@echo "$(GREEN)✓ Validation passed!$(NC)"
 
-# Full check (lint + test + build)
+# Full check (typecheck + lint + test + build)
 check:
 	@echo "$(GREEN)Running full check...$(NC)"
 	@echo ""
-	@echo "$(YELLOW)Step 1/3: Linting...$(NC)"
+	@echo "$(YELLOW)Step 1/4: TypeScript check...$(NC)"
+	npm run typecheck
+	@echo ""
+	@echo "$(YELLOW)Step 2/4: Linting...$(NC)"
 	npm run lint
 	@echo ""
-	@echo "$(YELLOW)Step 2/3: Testing...$(NC)"
+	@echo "$(YELLOW)Step 3/4: Testing...$(NC)"
 	npm run test:run
 	@echo ""
-	@echo "$(YELLOW)Step 3/3: Building...$(NC)"
+	@echo "$(YELLOW)Step 4/4: Building...$(NC)"
 	npm run build
 	@echo ""
 	@echo "$(GREEN)════════════════════════════════════════$(NC)"
@@ -203,13 +219,16 @@ check:
 ci:
 	@echo "$(GREEN)Running CI pipeline...$(NC)"
 	@echo ""
-	@echo "$(YELLOW)Step 1/3: Linting...$(NC)"
+	@echo "$(YELLOW)Step 1/4: TypeScript check...$(NC)"
+	npm run typecheck
+	@echo ""
+	@echo "$(YELLOW)Step 2/4: Linting...$(NC)"
 	npm run lint
 	@echo ""
-	@echo "$(YELLOW)Step 2/3: Testing with coverage...$(NC)"
+	@echo "$(YELLOW)Step 3/4: Testing with coverage...$(NC)"
 	npm run test:coverage
 	@echo ""
-	@echo "$(YELLOW)Step 3/3: Building...$(NC)"
+	@echo "$(YELLOW)Step 4/4: Building...$(NC)"
 	npm run build
 	@echo ""
 	@echo "$(GREEN)════════════════════════════════════════$(NC)"

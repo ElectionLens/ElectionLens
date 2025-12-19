@@ -3,20 +3,30 @@
 
 echo "🚀 Running pre-push checks..."
 
-# Run full test suite before pushing
-npm run test:run
+# Run TypeScript type check
+echo "📘 Running TypeScript check..."
+npm run typecheck
 
-# Check if tests passed
 if [ $? -ne 0 ]; then
-    echo "❌ Tests failed. Please fix failing tests before pushing."
+    echo "❌ TypeScript errors found. Please fix before pushing."
     exit 1
 fi
 
 # Run lint check
+echo "🔍 Running lint check..."
 npm run lint
 
 if [ $? -ne 0 ]; then
     echo "❌ Lint errors found. Please fix before pushing."
+    exit 1
+fi
+
+# Run full test suite before pushing
+echo "🧪 Running tests..."
+npm run test:run
+
+if [ $? -ne 0 ]; then
+    echo "❌ Tests failed. Please fix failing tests before pushing."
     exit 1
 fi
 
