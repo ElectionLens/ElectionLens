@@ -1,5 +1,17 @@
-// State file name mappings (handles diacritics and variations)
-export const STATE_FILE_MAP = {
+import type { 
+  StateFileMap, 
+  ColorPalettes, 
+  StateAliasMap, 
+  DistrictNameMap, 
+  PCNameMap,
+  HexColor 
+} from '../types';
+
+/**
+ * State file name mappings (handles diacritics and variations)
+ * Maps state names to their GeoJSON file names without extension
+ */
+export const STATE_FILE_MAP: StateFileMap = {
   "Andaman and Nicobar Islands": "andaman-and-nicobar-islands",
   "Andaman & Nicobar Islands": "andaman-and-nicobar-islands",
   "Andhra Pradesh": "andhra-pradesh",
@@ -58,45 +70,53 @@ export const STATE_FILE_MAP = {
   "Uttarakhand": "uttarakhand",
   "Uttarākhand": "uttarakhand",
   "West Bengal": "west-bengal"
-};
+} as const;
 
-// Color palettes for each map level
-export const COLOR_PALETTES = {
+/**
+ * Color palettes for each map level
+ * Each palette contains 20 distinct colors
+ */
+export const COLOR_PALETTES: ColorPalettes = {
   states: [
     '#c2956e', '#a8b87c', '#d4a574', '#8fbc8f', '#c9a86c',
     '#b5a090', '#9db4a0', '#d9b38c', '#a5b89c', '#c4a87c',
     '#b8a080', '#8eb48e', '#d4b084', '#9cac8c', '#c8a470',
     '#b0a488', '#92b090', '#d0a87c', '#a0b094', '#c4a078'
-  ],
+  ] as HexColor[],
   districts: [
     '#5c9ead', '#7eb8c4', '#4a8fa3', '#6ab0be', '#3d8294',
     '#8dc4cf', '#5aa3b3', '#72bcc8', '#4895a7', '#64aebb',
     '#9dd0da', '#5298a8', '#80c0cc', '#4690a0', '#6cb4c2',
     '#a8d8e2', '#5890a0', '#88c8d4', '#4488a0', '#74b8c6'
-  ],
+  ] as HexColor[],
   constituencies: [
     '#9b7bb8', '#b894c8', '#8668a8', '#a882bc', '#7c5ca0',
     '#c4a4d4', '#9478b0', '#b088c0', '#8060a4', '#a07cb8',
     '#ccb0dc', '#9070a8', '#b890c8', '#7858a0', '#a880bc',
     '#d4b8e0', '#8868b0', '#c098d0', '#7450a0', '#ac88c4'
-  ],
+  ] as HexColor[],
   assemblies: [
     '#6b9b78', '#88b494', '#5a8a68', '#78a888', '#4a7a58',
     '#98c4a4', '#68987c', '#84b090', '#568864', '#74a484',
     '#a8d4b4', '#609070', '#90bc9c', '#4e8060', '#80ac8c',
     '#b0dcbc', '#588868', '#98c4a4', '#467858', '#88b494'
-  ]
+  ] as HexColor[]
 };
 
-// Assembly state name aliases (assembly file uses older names)
-export const ASM_STATE_ALIASES = {
+/**
+ * Assembly state name aliases (assembly file uses older names)
+ */
+export const ASM_STATE_ALIASES: StateAliasMap = {
   'ODISHA': 'ORISSA',
   'UTTARAKHAND': 'UTTARKHAND',
   'TELANGANA': 'ANDHRA PRADESH'
-};
+} as const;
 
-// District name mappings from district files to assembly file
-export const DISTRICT_NAME_MAPPINGS = {
+/**
+ * District name mappings from district files to assembly file
+ * Format: "DISTRICT_NAME|STATE_NAME": "ASSEMBLY_FILE_DISTRICT_NAME"
+ */
+export const DISTRICT_NAME_MAPPINGS: DistrictNameMap = {
   // Tamil Nadu - spelling variations
   'NILGIRIS|TAMIL NADU': 'THE NILGIRIS',
   'KANYAKUMARI|TAMIL NADU': 'KANNIYAKUMARI',
@@ -219,10 +239,13 @@ export const DISTRICT_NAME_MAPPINGS = {
   'PHERZAWL|MANIPUR': 'CHURACHANDPUR',
   'KAKCHING|MANIPUR': 'THOUBAL',
   'KAMJONG|MANIPUR': 'UKHRUL'
-};
+} as const;
 
-// PC name mappings for assembly matching
-export const PC_NAME_MAPPINGS = {
+/**
+ * PC name mappings for assembly matching
+ * Format: "PC_NAME|STATE_NAME": "ASSEMBLY_FILE_PC_NAME"
+ */
+export const PC_NAME_MAPPINGS: PCNameMap = {
   'DARRANG UDALGURI (EX MANGALDOI)|ASSAM': 'MANGALDOI',
   'DIPHU (EX AUTONOMOUS DISTRICT)|ASSAM': 'AUTONOMOUS DISTRICT',
   'KAZIRANGA (EX KALIABOR)|ASSAM': 'KALIABOR',
@@ -239,18 +262,28 @@ export const PC_NAME_MAPPINGS = {
   'THIRUVANANTHAPURAM|KERALA': 'THIRUVANANTHAPURA',
   'FATEHGARH SAHIB|PUNJAB': 'FATEHGARH SAHIB (SC',
   'NAINITAL-UDHAMSINGH NAGAR|UTTARAKHAND': 'NAINITAL-UDHAMSINGH NAG'
-};
+} as const;
 
-// Parliament state name aliases
-export const PC_STATE_ALIASES = {
+/**
+ * Parliament state name aliases
+ */
+export const PC_STATE_ALIASES: StateAliasMap = {
   'NCT of Delhi': 'Delhi',
   'Andaman & Nicobar': 'Andaman and Nicobar Islands',
   'Andaman & Nicobar Islands': 'Andaman and Nicobar Islands',
   'Jammu & Kashmir': 'Jammu and Kashmir'
-};
+} as const;
 
-// IndexedDB configuration
-export const DB_NAME = 'IndiaElectionMapDB';
-export const DB_VERSION = 1;
-export const STORE_NAME = 'geojson';
+// ============================================================
+// IndexedDB Configuration
+// ============================================================
+
+/** IndexedDB database name */
+export const DB_NAME = 'IndiaElectionMapDB' as const;
+
+/** IndexedDB database version */
+export const DB_VERSION = 1 as const;
+
+/** IndexedDB object store name */
+export const STORE_NAME = 'geojson' as const;
 
