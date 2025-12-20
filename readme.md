@@ -7,7 +7,7 @@ An interactive, offline-first web application for exploring India's electoral bo
 ![React](https://img.shields.io/badge/React-18-61DAFB.svg)
 ![Tests](https://img.shields.io/badge/tests-431%20passed-success.svg)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/85695e58-4a2f-4b81-8165-050d0dc940e7/deploy-status)](https://app.netlify.com/projects/electionlens/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4add6dfe-76a4-485d-b497-cfd002a4171e/deploy-status)](https://app.netlify.com/projects/electionlens/deploys)
 
 ## 🌟 Overview
 
