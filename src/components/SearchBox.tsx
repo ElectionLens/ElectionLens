@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
+import { Search, X, Map, Building2, Landmark } from 'lucide-react';
 import { normalizeName, toTitleCase } from '../utils/helpers';
 import type {
   StatesGeoJSON,
@@ -31,7 +32,7 @@ interface SearchBoxProps {
 
 /**
  * SearchBox component with typeahead functionality
- * Searches across states, constituencies, and assembly segments
+ * Searches across states, parliamentary constituencies, and assembly constituencies
  */
 export function SearchBox({
   statesGeoJSON,
@@ -214,15 +215,15 @@ export function SearchBox({
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  // Get icon for result type
-  const getTypeIcon = (type: SearchResult['type']): string => {
+  // Get icon for result type (CSS handles colors via data-type)
+  const getTypeIcon = (type: SearchResult['type']): JSX.Element => {
     switch (type) {
       case 'state':
-        return '🗺️';
+        return <Map size={14} />;
       case 'constituency':
-        return '🗳️';
+        return <Building2 size={14} />;
       case 'assembly':
-        return '🏛️';
+        return <Landmark size={12} />;
     }
   };
 
@@ -241,7 +242,9 @@ export function SearchBox({
   return (
     <div className="search-box">
       <div className="search-input-wrapper">
-        <span className="search-icon">🔍</span>
+        <span className="search-icon">
+          <Search size={16} />
+        </span>
         <input
           ref={inputRef}
           type="text"
@@ -271,7 +274,7 @@ export function SearchBox({
             }}
             aria-label="Clear search"
           >
-            ✕
+            <X size={12} />
           </button>
         )}
       </div>
@@ -282,6 +285,7 @@ export function SearchBox({
             <div
               key={`${result.type}-${result.name}-${result.state ?? ''}`}
               className={`search-result-item ${index === selectedIndex ? 'selected' : ''}`}
+              data-type={result.type}
               onClick={() => handleSelect(result)}
               onMouseEnter={() => setSelectedIndex(index)}
               role="option"

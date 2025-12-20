@@ -1,3 +1,13 @@
+import {
+  Map,
+  Building2,
+  Landmark,
+  Database,
+  Check,
+  Search as SearchIcon,
+  Link2,
+  Clock,
+} from 'lucide-react';
 import { normalizeName, getFeatureColor } from '../utils/helpers';
 import { SearchBox } from './SearchBox';
 import type {
@@ -96,7 +106,7 @@ export function Sidebar({
         statValue: displayState ?? '',
         statLabel: '',
         subValue: currentData?.features?.length ?? 0,
-        subLabel: 'Assembly Segments',
+        subLabel: 'Assembly Constituencies',
       };
     }
     if (currentDistrict) {
@@ -105,7 +115,7 @@ export function Sidebar({
         statValue: displayState ?? '',
         statLabel: '',
         subValue: currentData?.features?.length ?? 0,
-        subLabel: 'Assembly Segments',
+        subLabel: 'Assembly Constituencies',
       };
     }
     if (currentState) {
@@ -115,7 +125,7 @@ export function Sidebar({
         statValue: displayState ?? '',
         statLabel: '',
         subValue: count,
-        subLabel: currentView === 'constituencies' ? 'Lok Sabha Seats' : 'Districts',
+        subLabel: currentView === 'constituencies' ? 'Parliamentary Constituencies' : 'Districts',
       };
     }
     return {
@@ -196,7 +206,9 @@ export function Sidebar({
           <div className="district-list">
             <h3>Assembly Constituencies</h3>
             <div className="no-data-message">
-              <div className="no-data-icon">🏛️</div>
+              <div className="no-data-icon">
+                <Landmark size={40} />
+              </div>
               <strong>No Assembly Data</strong>
               <p>
                 {currentPC
@@ -214,7 +226,9 @@ export function Sidebar({
           <div className="district-list">
             <h3>Assembly Constituencies</h3>
             <div className="no-data-message">
-              <div className="no-data-icon">⏳</div>
+              <div className="no-data-icon">
+                <Clock size={40} />
+              </div>
               <strong>Loading assembly data...</strong>
             </div>
           </div>
@@ -257,7 +271,7 @@ export function Sidebar({
                 role="button"
                 tabIndex={0}
               >
-                <span className="color-dot"></span>
+                <Landmark size={14} className="item-icon" />
                 <span>{name}</span>
                 <span className="ac-number">{acNo}</span>
               </div>
@@ -316,7 +330,7 @@ export function Sidebar({
                 role="button"
                 tabIndex={0}
               >
-                <span className="color-dot"></span>
+                <Building2 size={16} className="item-icon" />
                 <span>{name}</span>
                 <span className="pc-number">{pcNo}</span>
               </div>
@@ -368,7 +382,7 @@ export function Sidebar({
                 role="button"
                 tabIndex={0}
               >
-                <span className="color-dot"></span>
+                <Map size={14} className="item-icon" />
                 <span>{name}</span>
               </div>
             );
@@ -401,12 +415,13 @@ export function Sidebar({
             return (
               <div
                 key={`state-${index}`}
-                className="district-item"
+                className="district-item state-item"
                 onClick={() => onStateClick(name, feature as StateFeature)}
                 role="button"
                 tabIndex={0}
+                style={{ '--item-color': color } as ExtendedCSSProperties}
               >
-                <span className="color-dot" style={{ background: color }}></span>
+                <Map size={16} className="item-icon" />
                 <span>{displayName}</span>
               </div>
             );
@@ -425,7 +440,13 @@ export function Sidebar({
     <>
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
-          <h1>🔍 Election Lens</h1>
+          <h1>
+            <SearchIcon
+              size={22}
+              style={{ display: 'inline', verticalAlign: 'middle', marginRight: '8px' }}
+            />
+            Election Lens
+          </h1>
           <p>India Electoral Map</p>
         </div>
 
@@ -433,7 +454,7 @@ export function Sidebar({
           <div className="breadcrumb-nav">{renderBreadcrumb()}</div>
           {currentState && (
             <button className="share-btn" onClick={onShare} title="Copy shareable link">
-              🔗
+              <Link2 size={16} />
             </button>
           )}
         </div>
@@ -466,13 +487,13 @@ export function Sidebar({
                 className={`toggle-btn ${currentView === 'constituencies' ? 'active' : ''}`}
                 onClick={() => onSwitchView('constituencies')}
               >
-                🗳️ Constituencies
+                <Building2 size={14} className="toggle-icon" /> Parliamentary Constituencies
               </button>
               <button
                 className={`toggle-btn ${currentView === 'districts' ? 'active' : ''}`}
                 onClick={() => onSwitchView('districts')}
               >
-                🗺️ Districts
+                <Map size={14} className="toggle-icon" /> Districts
               </button>
             </div>
           )}
@@ -481,16 +502,18 @@ export function Sidebar({
         </div>
 
         <div className="cache-status">
-          <strong>💾 DB:</strong> {cacheStats.dbCount} items
+          <Database size={12} className="cache-icon" />
+          <strong> DB:</strong> {cacheStats.dbCount}
           {' | '}
-          <strong>🗺️</strong> {cacheStats.memCount}/{cacheStats.totalStates}
+          <Map size={12} className="cache-icon state-icon" /> {cacheStats.memCount}/
+          {cacheStats.totalStates}
           {' | '}
-          <strong>🗳️ PC:</strong> {cacheStats.pcCount}
+          <Building2 size={12} className="cache-icon pc-icon" /> {cacheStats.pcCount}
           {' | '}
-          <strong>🏛️ AC:</strong> {cacheStats.acCount}
+          <Landmark size={11} className="cache-icon ac-icon" /> {cacheStats.acCount}
           {cacheStats.memCount >= (cacheStats.totalStates ?? 0) &&
             cacheStats.pcCount > 0 &&
-            cacheStats.acCount > 0 && <span style={{ color: '#22c55e' }}> ✓</span>}
+            cacheStats.acCount > 0 && <Check size={14} className="cache-check" />}
         </div>
       </div>
 

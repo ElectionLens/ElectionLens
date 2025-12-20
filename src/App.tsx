@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 import { Sidebar } from './components/Sidebar';
 import { MapView } from './components/MapView';
 import { useElectionData } from './hooks/useElectionData';
@@ -356,7 +357,7 @@ function App(): JSX.Element {
         onClick={toggleSidebar}
         aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
       >
-        <span>{sidebarOpen ? '✕' : '☰'}</span>
+        {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
       <div className="container">
