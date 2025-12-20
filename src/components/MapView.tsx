@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { MapContainer, TileLayer, GeoJSON, useMap, ScaleControl } from 'react-leaflet';
 import L from 'leaflet';
+import { Home, ChevronLeft, Maximize2, Trash2, Building2, Map, Layers } from 'lucide-react';
 import type {
   Layer,
   LeafletMouseEvent as LLeafletMouseEvent,
@@ -83,19 +84,19 @@ function MapToolbar({
       {/* Left section - navigation */}
       <div className="toolbar-section toolbar-left">
         <button className="toolbar-btn" onClick={onReset} title="Reset to India">
-          🏠
+          <Home size={18} />
         </button>
         {showBackButton && (
           <button className="toolbar-btn" onClick={onGoBack} title="Go back">
-            ←
+            <ChevronLeft size={18} />
           </button>
         )}
         <button className="toolbar-btn" onClick={handleFullscreen} title="Toggle fullscreen">
-          ⛶
+          <Maximize2 size={18} />
         </button>
         {isDev && (
           <button className="toolbar-btn" onClick={handleClearCache} title="Clear cache">
-            🗑️
+            <Trash2 size={18} />
           </button>
         )}
       </div>
@@ -108,14 +109,14 @@ function MapToolbar({
             onClick={() => onSwitchView('constituencies')}
             title="Parliamentary Constituencies"
           >
-            🗳️ PC
+            <Building2 size={14} /> PC
           </button>
           <button
             className={`toolbar-btn toolbar-toggle ${currentView === 'districts' ? 'active' : ''}`}
             onClick={() => onSwitchView('districts')}
             title="Districts"
           >
-            🗺️ Dist
+            <Map size={14} /> Dist
           </button>
         </div>
       )}
@@ -128,7 +129,7 @@ function MapToolbar({
             onClick={() => setLayerMenuOpen(!layerMenuOpen)}
             title="Change map style"
           >
-            🗺️
+            <Layers size={18} />
           </button>
           <div className={`toolbar-dropdown-menu ${layerMenuOpen ? 'visible' : ''}`}>
             {(['Streets', 'Light', 'Satellite', 'Terrain'] as LayerName[]).map((layer) => (
@@ -263,7 +264,8 @@ function MapControls(): null {
       onAdd: function (): HTMLElement {
         const container = L.DomUtil.create('div', 'map-legend');
         container.id = 'mapLegend';
-        container.innerHTML = '<h4>Viewing</h4><div class="legend-content">India - States</div>';
+        container.innerHTML =
+          '<h4 style="color: #f59e0b;">States View</h4><div class="legend-content"><div style="font-weight: 500; color: #1f2937;">India</div></div>';
         return container;
       },
     });
@@ -283,30 +285,69 @@ function MapControls(): null {
  * Update the legend element with current map level info
  */
 function updateLegend(level: MapLevel, name: string, count: number): void {
-  const legend = document.getElementById('mapLegend');
-  if (!legend) return;
+  // Retry to find legend element (may not exist immediately)
+  const tryUpdate = (): void => {
+    const legend = document.getElementById('mapLegend');
+    if (!legend) {
+      setTimeout(tryUpdate, 100);
+      return;
+    }
 
-  const levelNames: Record<MapLevel, string> = {
-    states: '🇮🇳 States & UTs',
-    districts: '🗺️ Districts',
-    constituencies: '🗳️ Parliamentary',
-    assemblies: '🏛️ Assembly',
+    // Consistent colors matching sidebar/search
+    const levelLabels: Record<MapLevel, { label: string; color: string }> = {
+      states: { label: 'States View', color: '#f59e0b' },
+      districts: { label: 'Districts View', color: '#f59e0b' },
+      constituencies: { label: 'Parliament View', color: '#8b5cf6' },
+      assemblies: { label: 'Assembly View', color: '#10b981' },
+    };
+
+    const { label, color } = levelLabels[level] ?? { label: 'Map', color: '#f59e0b' };
+    const colors: HexColor[] = COLOR_PALETTES[level] ?? COLOR_PALETTES.states;
+    const sampleColors = colors.slice(0, 5);
+
+    // Context-aware count label
+    const countLabels: Record<MapLevel, string> = {
+      states: 'States & UTs',
+      districts: 'Districts',
+      constituencies: 'Parliamentary Constituencies',
+      assemblies: 'Assembly Constituencies',
+    };
+    const countLabel = countLabels[level] ?? 'regions';
+
+    legend.innerHTML = `
+      <h4 style="color: ${color}; margin: 0 0 4px 0; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;">${label}</h4>
+      <div class="legend-content">
+        <div style="font-weight: 600; color: #1f2937; font-size: 0.85rem;">${name}</div>
+        ${count ? `<div style="font-size: 0.7rem; color: #6b7280; margin: 2px 0 4px;">${count} ${countLabel}</div>` : '<div style="margin-bottom: 4px;"></div>'}
+        <div id="legendHover" style="font-size: 0.75rem; color: #374151; min-height: 18px; padding: 2px 0; font-weight: 500; border-top: 1px solid #e5e7eb; margin-top: 4px;"></div>
+        <div style="display: flex; gap: 2px; margin-top: 4px;">
+          ${sampleColors.map((c) => `<div style="background: ${c}; width: 14px; height: 14px; border-radius: 2px;"></div>`).join('')}
+        </div>
+      </div>
+    `;
   };
 
-  const colors: HexColor[] = COLOR_PALETTES[level] ?? COLOR_PALETTES.states;
-  const sampleColors = colors.slice(0, 4);
+  tryUpdate();
+}
 
-  legend.innerHTML = `
-    <h4>${levelNames[level] ?? 'Map'}</h4>
-    <div class="legend-content">
-      <div style="font-weight: 500; margin-bottom: 6px; color: #1f2937;">${name}</div>
-      ${count ? `<div style="font-size: 0.7rem; color: #6b7280; margin-bottom: 8px;">${count} regions</div>` : ''}
-      <div style="display: flex; gap: 3px;">
-        ${sampleColors.map((c) => `<div class="legend-color" style="background: ${c}; width: 12px; height: 12px;"></div>`).join('')}
-        <span style="font-size: 0.65rem; color: #9ca3af; margin-left: 4px;">+ more</span>
-      </div>
-    </div>
-  `;
+/**
+ * Update the legend hover text when hovering over a feature
+ */
+function updateLegendHover(name: string): void {
+  const hoverEl = document.getElementById('legendHover');
+  if (hoverEl) {
+    hoverEl.textContent = name;
+  }
+}
+
+/**
+ * Clear the legend hover text
+ */
+function clearLegendHover(): void {
+  const hoverEl = document.getElementById('legendHover');
+  if (hoverEl) {
+    hoverEl.textContent = '';
+  }
 }
 
 /**
@@ -378,8 +419,13 @@ export function MapView({
     const name =
       currentPC ?? currentDistrict ?? (currentState ? normalizeName(currentState) : 'India');
     const count = displayData?.features?.length ?? 0;
+
+    // Update immediately and also after a short delay to ensure DOM is ready
     updateLegend(level, name, count);
-  }, [level, currentState, currentPC, currentDistrict, displayData]);
+    const timer = setTimeout(() => updateLegend(level, name, count), 200);
+
+    return () => clearTimeout(timer);
+  }, [level, currentState, currentView, currentPC, currentDistrict, displayData]);
 
   // Style function with index tracking
   const styleIndex = useRef<number>(0);
@@ -418,11 +464,13 @@ export function MapView({
           const l = e.target as FeatureLayer;
           l.setStyle(getHoverStyle(level));
           l.bringToFront();
+          updateLegendHover(name);
         },
         mouseout: (e: LLeafletMouseEvent): void => {
           if (geoJsonRef.current) {
             geoJsonRef.current.resetStyle(e.target as Layer);
           }
+          clearLegendHover();
         },
         click: (): void => {
           if (level === 'states') {
