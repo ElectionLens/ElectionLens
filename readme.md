@@ -3,10 +3,11 @@
 An interactive, offline-first web application for exploring India's electoral boundaries across multiple administrative levels.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Status](https://img.shields.io/badge/status-active-success.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)
+![React](https://img.shields.io/badge/React-18-61DAFB.svg)
+![Tests](https://img.shields.io/badge/tests-431%20passed-success.svg)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/85695e58-4a2f-4b81-8165-050d0dc940e7/deploy-status)](https://app.netlify.com/projects/electionlens/deploys)
-
 
 ## 🌟 Overview
 
@@ -28,6 +29,11 @@ Election Lens provides a unified interface to navigate India's complex electoral
 - Click any **District** → See its component Assembly segments
 - PC-to-AC and District-to-AC mapping in one tool
 
+### 🔍 Smart Search
+- Search across states, parliamentary constituencies, and assembly constituencies
+- Keyboard navigation with Arrow keys and Enter to select
+- Type-ahead filtering with instant results
+
 ### 📊 Smart Data Mapping
 - Handles **post-2014 district reorganizations**:
   - Telangana's 21 new districts (2016)
@@ -48,62 +54,90 @@ Election Lens provides a unified interface to navigate India's complex electoral
 - Works on phones, tablets, and desktops
 
 ### 🎨 Interactive Visual Features
-- Color-coded regions with consistent palettes
+- Unified color scheme (Amber for states, Violet for PC, Emerald for AC)
+- [Lucide React](https://lucide.dev/) icons throughout the UI
 - Hover highlighting with boundary emphasis
 - Animated zoom transitions
-- Live coordinate display (lat/lng)
-- Dynamic legend updates
-
-### 🔍 Clickable Sidebar Lists
-- Alphabetically sorted lists of all regions
-- Click to navigate directly from list
-- Color dots matching map regions
-- Synced highlighting between map and list
+- Dynamic legend with hover info
 
 ### 🧭 Breadcrumb Navigation
 - Always shows current location: `India › Tamil Nadu › Chennai › Mylapore`
 - Click any level to navigate back instantly
-
-### 🗂️ Multiple Base Map Layers
-- **Streets** - Default detailed view
-- **Light** - Minimal clean background
-- **Satellite** - Aerial imagery
-- **Terrain** - Topographic view
-
-### ⚡ Performance Optimizations
-- Parallel data loading for all states
-- Memory + IndexedDB dual-layer caching
-- Background preloading of district data
-- Sub-second state loading after initial cache
+- URL state syncing for deep linking
 
 ## 🚀 Getting Started
 
-### Quick Start
-1. Clone or download the repository
-2. Serve the files with any HTTP server:
-   ```bash
-   # Using Python
-   python3 -m http.server 8080
-   
-   # Using Node.js
-   npx serve
-   
-   # Using PHP
-   php -S localhost:8080
-   ```
-3. Open `http://localhost:8080` in your browser
+### Prerequisites
+- Node.js 18+ 
+- npm 9+
 
-### Files Structure
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/ElectionLens/ElectionLens.git
+cd ElectionLens
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
-├── index.html                      # Main application
-├── india_states.geojson           # State boundaries
-├── india_parliament.geojson       # Parliamentary constituencies
-├── india_parliament_alternate.geojson
-├── india_assembly.geojson         # Assembly constituencies
-└── states/                        # District-level data
-    ├── andhra-pradesh.geojson
-    ├── tamil-nadu.geojson
-    └── ... (36 state/UT files)
+
+Open `http://localhost:3000` in your browser.
+
+### Build for Production
+
+```bash
+npm run build
+npm run preview  # Preview production build
+```
+
+## 🧪 Testing
+
+### Unit Tests (Vitest)
+```bash
+npm run test          # Watch mode
+npm run test:run      # Single run
+npm run test:coverage # With coverage report
+```
+
+### E2E Tests (Playwright)
+```bash
+npm run e2e           # Run all e2e tests
+npm run e2e:ui        # Open Playwright UI
+npm run e2e:headed    # Run in visible browser
+npm run e2e:chromium  # Chromium only
+```
+
+**Test Coverage:**
+- 431 unit tests (67%+ function coverage)
+- 45 e2e tests covering all major user flows
+
+## 📁 Project Structure
+
+```
+├── src/
+│   ├── components/
+│   │   ├── MapView.tsx      # Leaflet map component
+│   │   ├── Sidebar.tsx      # Navigation sidebar
+│   │   └── SearchBox.tsx    # Global search
+│   ├── hooks/
+│   │   ├── useElectionData.ts  # Data fetching & caching
+│   │   └── useUrlState.ts      # URL state management
+│   ├── utils/
+│   │   ├── db.ts            # IndexedDB operations
+│   │   └── helpers.ts       # Utility functions
+│   ├── styles/
+│   │   └── index.css        # Tailwind + custom styles
+│   └── types/
+│       └── index.ts         # TypeScript types
+├── public/
+│   └── data/geo/            # GeoJSON data files
+├── e2e/                     # Playwright e2e tests
+└── scripts/
+    └── optimize-geojson.mjs # GeoJSON optimization
 ```
 
 ## 📊 Data Coverage
@@ -115,12 +149,35 @@ Election Lens provides a unified interface to navigate India's complex electoral
 | Assembly Constituencies | 4,000+ | Pre-2014 boundaries |
 | Districts | 700+ | Current boundaries |
 
-## 🔧 Developer Mode
+## 🛠️ Tech Stack
 
-When running on `localhost`:
-- **Clear Cache button** appears (🗑️ icon)
-- Cache status shows loaded items count
-- Console logging for debugging
+| Category | Technology |
+|----------|------------|
+| Framework | React 18 + TypeScript |
+| Build Tool | Vite 5 |
+| Mapping | Leaflet + React-Leaflet |
+| Icons | Lucide React |
+| Styling | Tailwind CSS v4 |
+| Storage | IndexedDB |
+| Unit Testing | Vitest + Testing Library |
+| E2E Testing | Playwright |
+| CI/CD | GitHub Actions + Netlify |
+
+## 📜 Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run test` | Run unit tests (watch mode) |
+| `npm run test:run` | Run unit tests once |
+| `npm run test:coverage` | Run tests with coverage |
+| `npm run e2e` | Run Playwright e2e tests |
+| `npm run lint` | Lint source files |
+| `npm run format` | Format with Prettier |
+| `npm run typecheck` | TypeScript type checking |
+| `npm run validate` | Run all checks |
 
 ## 📱 Browser Support
 
@@ -141,15 +198,21 @@ Requires IndexedDB support for offline caching.
 | Offline support | ✅ | ❌ | ❌ | ❌ |
 | Interactive boundaries | ✅ | ❌ | ❌ | Limited |
 | Mobile responsive | ✅ | ❌ | ✅ | Varies |
+| Global search | ✅ | ❌ | ❌ | ❌ |
 | All levels in one tool | ✅ | ❌ | ❌ | ❌ |
 
-## 🛠️ Technical Stack
+## 🤝 Contributing
 
-- **Leaflet.js** - Interactive mapping
-- **IndexedDB** - Client-side storage
-- **Vanilla JavaScript** - No framework dependencies
-- **CSS3** - Modern responsive styling
-- **GeoJSON** - Geographic data format
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+Please ensure:
+- All tests pass (`npm run validate`)
+- Code is formatted (`npm run format`)
+- Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/)
 
 ## 📄 License
 
@@ -159,9 +222,9 @@ MIT License - Feel free to use, modify, and distribute.
 
 - Map tiles by [CARTO](https://carto.com/), [OpenTopoMap](https://opentopomap.org/), [Esri](https://www.esri.com/)
 - Boundary data from various open sources
-- Built with [Leaflet](https://leafletjs.com/)
+- Built with [Leaflet](https://leafletjs.com/) and [React-Leaflet](https://react-leaflet.js.org/)
+- Icons by [Lucide](https://lucide.dev/)
 
 ---
 
 **Election Lens** - Making India's electoral geography accessible to everyone.
-
