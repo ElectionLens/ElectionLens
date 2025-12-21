@@ -487,8 +487,10 @@ function App(): JSX.Element {
                   // Remove reservation type suffixes like (BL), (SC), (ST), (GEN)
                   .replace(/\s*\((BL|SC|ST|GEN)\)\s*/gi, ' ')
                   .replace(/[()]/g, ' ') // Replace remaining parentheses with spaces
+                  .replace(/-/g, ' ') // Replace hyphens with spaces (Hubli-Dharwad -> Hubli Dharwad)
                   .replace(/\s+/g, ' ') // Normalize multiple spaces
                   .replace(/TIRUCHIRAPALLI(?!P)/g, 'TIRUCHIRAPPALLI') // Normalize single P to double P
+                  .replace(/VIJAYWADA/g, 'VIJAYAWADA') // Fix Vijayawada spelling
                   .trim()
               );
             };
