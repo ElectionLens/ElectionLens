@@ -1,13 +1,5 @@
-import {
-  Map,
-  Building2,
-  Landmark,
-  Database,
-  Check,
-  Search as SearchIcon,
-  Link2,
-  Clock,
-} from 'lucide-react';
+import { useState, useCallback } from 'react';
+import { Map, Building2, Landmark, Database, Check, Link2, Clock } from 'lucide-react';
 import { normalizeName, getFeatureColor } from '../utils/helpers';
 import { SearchBox } from './SearchBox';
 import type {
@@ -94,7 +86,14 @@ export function Sidebar({
   isOpen,
   onClose,
 }: SidebarProps): JSX.Element {
+  const [copied, setCopied] = useState(false);
   const displayState = currentState ? normalizeName(currentState) : null;
+
+  const handleShareClick = useCallback(() => {
+    onShare();
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, [onShare]);
 
   /**
    * Determine what to show in info panel based on current navigation
@@ -441,8 +440,11 @@ export function Sidebar({
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <h1>
-            <SearchIcon
-              size={22}
+            <img
+              src="/favicon.svg"
+              alt="Election Lens"
+              width={24}
+              height={24}
               style={{ display: 'inline', verticalAlign: 'middle', marginRight: '8px' }}
             />
             Election Lens
@@ -453,8 +455,12 @@ export function Sidebar({
         <div className="breadcrumb">
           <div className="breadcrumb-nav">{renderBreadcrumb()}</div>
           {currentState && (
-            <button className="share-btn" onClick={onShare} title="Copy shareable link">
-              <Link2 size={16} />
+            <button
+              className={`share-btn ${copied ? 'copied' : ''}`}
+              onClick={handleShareClick}
+              title={copied ? 'Copied!' : 'Copy shareable link'}
+            >
+              {copied ? <Check size={16} /> : <Link2 size={16} />}
             </button>
           )}
         </div>

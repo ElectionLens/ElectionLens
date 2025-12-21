@@ -1,0 +1,67 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f"/>
+      <stop offset="100%" style="stop-color:#0f2744"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff9933"/>
+      <stop offset="50%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#138808"/>
+    </linearGradient>
+    <linearGradient id="lensGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff9933"/>
+      <stop offset="50%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#138808"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- India flag stripe -->
+  <rect x="0" y="0" width="1200" height="8" fill="url(#accent)"/>
+  
+  <!-- Large magnifying glass logo -->
+  <g transform="translate(500, 120)">
+    <!-- Magnifying glass circle (lens) -->
+    <circle cx="100" cy="100" r="80" fill="none" stroke="url(#lensGrad)" stroke-width="12"/>
+    
+    <!-- Glass reflection -->
+    <circle cx="100" cy="100" r="60" fill="rgba(255,255,255,0.08)"/>
+    
+    <!-- India map simplified silhouette inside lens -->
+    <path d="M70 60 Q100 50 125 70 L135 95 Q145 120 130 145 L105 165 Q95 175 75 165 L55 140 Q45 115 55 90 Z" 
+          fill="rgba(255,255,255,0.25)"/>
+    
+    <!-- Vote checkmark on map -->
+    <path d="M65 110 L90 135 L135 85" stroke="#138808" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Magnifying glass handle -->
+    <line x1="160" y1="160" x2="220" y2="220" stroke="#0f2744" stroke-width="20" stroke-linecap="round"/>
+    <line x1="160" y1="160" x2="220" y2="220" stroke="#ff9933" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="white" text-anchor="middle">
+    Election Lens
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="460" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="rgba(255,255,255,0.8)" text-anchor="middle">
+    India Electoral Map &amp; Results
+  </text>
+  
+  <!-- Stats -->
+  <g transform="translate(300, 530)">
+    <text font-family="system-ui, sans-serif" font-size="20" fill="rgba(255,255,255,0.6)" text-anchor="middle">
+      <tspan x="0">🗳️ Assembly</tspan>
+      <tspan x="200">📊 Parliament</tspan>
+      <tspan x="400">📍 All States</tspan>
+      <tspan x="600">📈 Historical Data</tspan>
+    </text>
+  </g>
+  
+  <!-- Bottom stripe -->
+  <rect x="0" y="622" width="1200" height="8" fill="url(#accent)"/>
+</svg>

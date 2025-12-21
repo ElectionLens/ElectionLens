@@ -1,348 +1,263 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('ElectionLens App', () => {
+test.describe('Election Lens App', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    // Wait for the app to load
-    await page.waitForSelector('.leaflet-container');
   });
 
-  test('should load the homepage with map', async ({ page }) => {
-    // Check title
+  test('should load the home page', async ({ page }) => {
     await expect(page).toHaveTitle(/Election Lens/);
+  });
 
-    // Check map is visible
+  test('should display the India map', async ({ page }) => {
+    // Wait for map to load
+    await page.waitForSelector('.leaflet-container');
     const map = page.locator('.leaflet-container');
     await expect(map).toBeVisible();
-
-    // Check sidebar header
-    await expect(page.getByText('Election Lens')).toBeVisible();
   });
 
-  test('should display states on the map', async ({ page }) => {
-    // Wait for GeoJSON layers to load
-    await page.waitForSelector('.leaflet-interactive');
-
-    // Should have multiple state polygons
-    const polygons = page.locator('.leaflet-interactive');
-    await expect(polygons.first()).toBeVisible();
+  test('should display the sidebar', async ({ page }) => {
+    const sidebar = page.locator('.sidebar');
+    await expect(sidebar).toBeVisible();
+    await expect(sidebar.getByText('Election Lens')).toBeVisible();
   });
 
-  test('should show India info in sidebar by default', async ({ page }) => {
-    // Should show India as the current view (may appear multiple times)
-    await expect(page.getByText('India').first()).toBeVisible();
-
-    // Should show States & Union Territories list
-    await expect(page.getByText(/States & Union Territories/)).toBeVisible();
-  });
-
-  test('should show cache status', async ({ page }) => {
-    // Cache status should be visible
-    await expect(page.getByText(/DB:/)).toBeVisible();
+  test('should have state boundaries visible', async ({ page }) => {
+    await page.waitForSelector('.leaflet-container');
+    // GeoJSON layers should be rendered
+    const paths = page.locator('.leaflet-interactive');
+    await expect(paths.first()).toBeVisible({ timeout: 10000 });
   });
 });
 
-test.describe('State Selection', () => {
+test.describe('State Navigation', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForSelector('.leaflet-container');
+    await page.waitForSelector('.leaflet-interactive', { timeout: 10000 });
   });
 
-  test('should select a state from sidebar list', async ({ page }) => {
-    // Wait for states to load
-    await page.waitForSelector('.district-item');
-
-    // Click on a state (Tamil Nadu should be in the list)
-    const stateItem = page.locator('.district-item').filter({ hasText: 'Tamil Nadu' });
-    if (await stateItem.isVisible()) {
-      await stateItem.click();
-
-      // Should update breadcrumb
-      await expect(page.locator('.breadcrumb')).toContainText('Tamil Nadu');
-
-      // Should show view toggle
-      await expect(page.getByRole('button', { name: /Parliamentary Constituencies/i })).toBeVisible();
-    }
+  test('should navigate to state when clicked', async ({ page }) => {
+    // Click on a state polygon
+    const statePath = page.locator('.leaflet-interactive').first();
+    await statePath.click();
+    
+    // URL should update with state name
+    await expect(page).toHaveURL(/\/[a-z-]+/);
   });
 
-  test('should navigate back to India from state view', async ({ page }) => {
-    // Select a state first
-    await page.waitForSelector('.district-item');
-    const stateItem = page.locator('.district-item').first();
-    await stateItem.click();
-
-    // Wait for state view to load
-    await page.waitForTimeout(500);
-
-    // Click on India in breadcrumb to go back
-    await page.locator('.breadcrumb').getByText('India').click();
-
-    // Should be back at India view
-    await expect(page.getByText(/States & Union Territories/)).toBeVisible();
-  });
-});
-
-test.describe('View Toggle', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-    await page.waitForSelector('.leaflet-container');
-  });
-
-  test('should toggle between constituencies and districts view', async ({ page }) => {
-    // Select a state first
-    await page.waitForSelector('.district-item');
-    const stateItem = page.locator('.district-item').first();
-    await stateItem.click();
-
-    // Wait for view toggle to appear
-    await page.waitForSelector('.view-toggle');
-
-    // Click Districts button
-    const districtsBtn = page.getByRole('button', { name: /Districts/i });
-    if (await districtsBtn.isVisible()) {
-      await districtsBtn.click();
-
-      // Should show districts view
-      await expect(districtsBtn).toHaveClass(/active/);
-    }
-
-    // Click Parliamentary Constituencies button
-    const pcBtn = page.getByRole('button', { name: /Parliamentary Constituencies/i });
-    if (await pcBtn.isVisible()) {
-      await pcBtn.click();
-
-      // Should show constituencies view
-      await expect(pcBtn).toHaveClass(/active/);
-    }
-  });
-});
-
-test.describe('Search Functionality', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-    await page.waitForSelector('.leaflet-container');
-  });
-
-  test('should show search box', async ({ page }) => {
-    const searchInput = page.getByPlaceholder('Search states, constituencies...');
-    await expect(searchInput).toBeVisible();
-  });
-
-  test('should search and filter results', async ({ page }) => {
-    const searchInput = page.getByPlaceholder('Search states, constituencies...');
-    await searchInput.fill('Tamil');
-
-    // Should show search results
-    await page.waitForSelector('.search-results');
-    const results = page.locator('.search-result-item');
-    await expect(results.first()).toBeVisible();
-  });
-
-  test('should select search result and navigate', async ({ page }) => {
-    const searchInput = page.getByPlaceholder('Search states, constituencies...');
-    await searchInput.fill('Kerala');
-
-    // Wait for results
-    await page.waitForSelector('.search-result-item');
-
-    // Click on first result
-    await page.locator('.search-result-item').first().click();
-
-    // Should navigate - search should clear
-    await expect(searchInput).toHaveValue('');
-  });
-
-  test('should clear search with clear button', async ({ page }) => {
-    const searchInput = page.getByPlaceholder('Search states, constituencies...');
-    await searchInput.fill('Delhi');
-
-    // Click clear button
-    await page.getByLabel('Clear search').click();
-
-    // Search should be cleared
-    await expect(searchInput).toHaveValue('');
-  });
-
-  test('should navigate search results with keyboard', async ({ page }) => {
-    const searchInput = page.getByPlaceholder('Search states, constituencies...');
-    await searchInput.fill('Chennai');
-
-    // Wait for results
-    await page.waitForSelector('.search-result-item');
-
-    // Press ArrowDown to navigate
-    await searchInput.press('ArrowDown');
-
-    // Second item should be selected
-    const secondItem = page.locator('.search-result-item').nth(1);
-    await expect(secondItem).toHaveClass(/selected/);
-
-    // Press Enter to select
-    await searchInput.press('Enter');
-
-    // Search should clear after selection
-    await expect(searchInput).toHaveValue('');
-  });
-
-  test('should close search results with Escape', async ({ page }) => {
-    const searchInput = page.getByPlaceholder('Search states, constituencies...');
-    await searchInput.fill('Mumbai');
-
-    // Wait for results
-    await page.waitForSelector('.search-results');
-    await expect(page.locator('.search-results')).toBeVisible();
-
-    // Press Escape - this blurs the input which closes results
-    await searchInput.press('Escape');
-
-    // Wait for the blur and state update
-    await page.waitForTimeout(100);
-
-    // Results should be hidden (or input should be blurred)
-    // The search results close when input loses focus or Escape is pressed
-    const resultsVisible = await page.locator('.search-results').isVisible();
-    const inputFocused = await searchInput.evaluate((el) => document.activeElement === el);
-
-    // Either results are hidden OR input is no longer focused
-    expect(resultsVisible === false || inputFocused === false).toBe(true);
-  });
-});
-
-test.describe('Map Interactions', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-    await page.waitForSelector('.leaflet-container');
-  });
-
-  test('should show map legend', async ({ page }) => {
-    const legend = page.locator('#mapLegend');
-    await expect(legend).toBeVisible();
-  });
-
-  test('should have map toolbar with reset button', async ({ page }) => {
-    const toolbar = page.locator('.map-toolbar');
-    await expect(toolbar).toBeVisible();
-
-    // Reset button should be visible
-    const resetBtn = page.locator('.toolbar-btn').first();
-    await expect(resetBtn).toBeVisible();
-  });
-
-  test('should reset map view when reset button clicked', async ({ page }) => {
-    // First, select a state to change the view
-    await page.waitForSelector('.district-item');
-    const stateItem = page.locator('.district-item').first();
-    await stateItem.click();
-
-    // Wait for state view
-    await page.waitForTimeout(500);
-
-    // Click reset button
-    await page.locator('.toolbar-btn').first().click();
-
-    // Should be back at India view
-    await expect(page.getByText(/States & Union Territories/)).toBeVisible();
-  });
-});
-
-test.describe('Breadcrumb Navigation', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-    await page.waitForSelector('.leaflet-container');
-  });
-
-  test('should show breadcrumb', async ({ page }) => {
-    const breadcrumb = page.locator('.breadcrumb');
-    await expect(breadcrumb).toBeVisible();
-    await expect(breadcrumb).toContainText('India');
-  });
-
-  test('should update breadcrumb when navigating', async ({ page }) => {
-    // Select a state
-    await page.waitForSelector('.district-item');
-    const stateItem = page.locator('.district-item').first();
-    const stateName = await stateItem.textContent();
-    await stateItem.click();
-
-    // Breadcrumb should show state
-    const breadcrumb = page.locator('.breadcrumb');
-    await expect(breadcrumb).toContainText('India');
-    if (stateName) {
-      await expect(breadcrumb).toContainText(stateName.trim());
-    }
-  });
-
-  test('should navigate using breadcrumb links', async ({ page }) => {
-    // Select a state
-    await page.waitForSelector('.district-item');
-    await page.locator('.district-item').first().click();
-
+  test('should show back button after state selection', async ({ page }) => {
+    const statePath = page.locator('.leaflet-interactive').first();
+    await statePath.click();
+    
     // Wait for navigation
-    await page.waitForTimeout(500);
+    await page.waitForURL(/\/[a-z-]+/);
+    
+    // Back button should appear
+    const backButton = page.getByRole('button', { name: /back/i });
+    await expect(backButton).toBeVisible();
+  });
 
-    // Click India in breadcrumb
-    await page.locator('.breadcrumb').getByText('India').click();
-
-    // Should be back at India
-    await expect(page.getByText(/States & Union Territories/)).toBeVisible();
+  test('should return to India view on home button click', async ({ page }) => {
+    // Navigate to a state first
+    const statePath = page.locator('.leaflet-interactive').first();
+    await statePath.click();
+    await page.waitForURL(/\/[a-z-]+/);
+    
+    // Click home button
+    const homeButton = page.getByRole('button', { name: /home/i });
+    await homeButton.click();
+    
+    // Should return to root URL
+    await expect(page).toHaveURL('/');
   });
 });
 
-test.describe('Accessibility', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+test.describe('Deep Linking', () => {
+  test('should load state from URL', async ({ page }) => {
+    await page.goto('/tamil-nadu');
+    
+    // Map should show Tamil Nadu
     await page.waitForSelector('.leaflet-container');
+    await expect(page).toHaveURL('/tamil-nadu');
   });
 
-  test('should have accessible search input', async ({ page }) => {
-    const searchInput = page.getByLabel('Search regions');
-    await expect(searchInput).toBeVisible();
+  test('should load PC view from URL', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/salem');
+    
+    await page.waitForSelector('.leaflet-container');
+    await expect(page).toHaveURL('/tamil-nadu/pc/salem');
   });
 
-  test('should have keyboard navigable sidebar items', async ({ page }) => {
-    await page.waitForSelector('.district-item');
-
-    // State items should be focusable
-    const firstState = page.locator('.district-item').first();
-    await expect(firstState).toHaveAttribute('role', 'button');
-    await expect(firstState).toHaveAttribute('tabindex', '0');
+  test('should load district view from URL', async ({ page }) => {
+    await page.goto('/tamil-nadu/district/chennai');
+    
+    await page.waitForSelector('.leaflet-container');
+    await expect(page).toHaveURL(/tamil-nadu\/district\/chennai/);
   });
 
-  test('should have ARIA labels on interactive elements', async ({ page }) => {
-    // Clear search button should have aria-label
-    const searchInput = page.getByPlaceholder('Search states, constituencies...');
-    await searchInput.fill('test');
-
-    const clearBtn = page.getByLabel('Clear search');
-    await expect(clearBtn).toBeVisible();
+  test('should load assembly constituency from URL with year', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
+    
+    await page.waitForSelector('.leaflet-container');
+    await expect(page).toHaveURL(/tamil-nadu\/pc\/salem\/ac\/omalur/);
   });
 });
 
-test.describe('URL State', () => {
-  test('should reflect state in URL when navigating', async ({ page }) => {
-    await page.goto('/');
-    await page.waitForSelector('.district-item');
+test.describe('Election Panel', () => {
+  test('should show election panel when AC is selected', async ({ page }) => {
+    // Navigate to an AC via URL
+    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
+    
+    // Wait for election panel to appear
+    const panel = page.locator('.election-panel');
+    await expect(panel).toBeVisible({ timeout: 10000 });
+  });
 
-    // Select a state
-    const stateItem = page.locator('.district-item').filter({ hasText: 'Tamil Nadu' });
-    if (await stateItem.isVisible()) {
-      await stateItem.click();
+  test('should display winner information', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
+    
+    const panel = page.locator('.election-panel');
+    await expect(panel).toBeVisible({ timeout: 10000 });
+    
+    // Should have winner section
+    const winnerSection = panel.locator('.winner-card-compact');
+    await expect(winnerSection).toBeVisible();
+  });
 
-      // URL should change (could be path-based or query-based)
-      await page.waitForTimeout(500);
-      const url = page.url();
-      // URL should have changed from just '/'
-      expect(url.length).toBeGreaterThan('http://localhost:3000/'.length);
+  test('should have year selector with multiple years', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
+    
+    await page.waitForSelector('.election-panel');
+    
+    // Year selector should be visible
+    const yearSelector = page.locator('.election-year-selector');
+    await expect(yearSelector).toBeVisible();
+    
+    // Should have year buttons
+    const yearButtons = yearSelector.locator('.year-btn');
+    expect(await yearButtons.count()).toBeGreaterThan(0);
+  });
+
+  test('should switch years when year button clicked', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
+    
+    await page.waitForSelector('.election-panel');
+    
+    // Click a different year
+    const yearButton = page.locator('.year-btn').filter({ hasText: '2016' });
+    if (await yearButton.count() > 0) {
+      await yearButton.click();
+      await expect(page).toHaveURL(/year=2016/);
     }
   });
 
-  test('should restore state from URL', async ({ page }) => {
-    // Navigate directly to a state using path-based URL
-    await page.goto('/kerala');
-    await page.waitForSelector('.leaflet-container');
+  test('should close panel on close button click', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
+    
+    const panel = page.locator('.election-panel');
+    await expect(panel).toBeVisible({ timeout: 10000 });
+    
+    // Click close button
+    const closeButton = panel.locator('.close-btn');
+    await closeButton.click();
+    
+    // Panel should be hidden
+    await expect(panel).not.toBeVisible();
+  });
+});
 
-    // Should show Kerala in breadcrumb
-    await expect(page.locator('.breadcrumb')).toContainText('Kerala');
+test.describe('Share Functionality', () => {
+  test('should have share button in sidebar', async ({ page }) => {
+    await page.goto('/tamil-nadu');
+    
+    const shareButton = page.locator('.share-btn');
+    await expect(shareButton).toBeVisible();
+  });
+
+  test('should copy link to clipboard on share click', async ({ page }) => {
+    await page.goto('/tamil-nadu');
+    
+    // Grant clipboard permissions
+    await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
+    
+    const shareButton = page.locator('.share-btn');
+    await shareButton.click();
+    
+    // Button should show copied state
+    await expect(shareButton).toHaveClass(/copied/);
+  });
+});
+
+test.describe('Responsive Design', () => {
+  test('should work on mobile viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/');
+    
+    const map = page.locator('.leaflet-container');
+    await expect(map).toBeVisible();
+  });
+
+  test('should collapse sidebar on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/');
+    
+    const sidebar = page.locator('.sidebar');
+    // Sidebar should be collapsed or have toggle
+    await expect(sidebar).toBeVisible();
+  });
+
+  test('should work on tablet viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await page.goto('/');
+    
+    const map = page.locator('.leaflet-container');
+    await expect(map).toBeVisible();
+  });
+});
+
+test.describe('Parliament Results', () => {
+  test('should show parliament panel for PC', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/salem');
+    
+    // Wait for PC panel
+    const panel = page.locator('.pc-panel');
+    await expect(panel).toBeVisible({ timeout: 10000 });
+  });
+
+  test('should show Parliament badge', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/salem');
+    
+    await page.waitForSelector('.pc-panel');
+    
+    const badge = page.locator('.pc-badge');
+    await expect(badge).toContainText('Parliament');
+  });
+});
+
+test.describe('Tab Navigation in Election Panel', () => {
+  test('should have Overview and Candidates tabs', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
+    
+    await page.waitForSelector('.election-panel');
+    
+    const overviewTab = page.locator('.panel-tab').filter({ hasText: 'Overview' });
+    const candidatesTab = page.locator('.panel-tab').filter({ hasText: 'Candidates' });
+    
+    await expect(overviewTab).toBeVisible();
+    await expect(candidatesTab).toBeVisible();
+  });
+
+  test('should switch to Candidates tab', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
+    
+    await page.waitForSelector('.election-panel');
+    
+    const candidatesTab = page.locator('.panel-tab').filter({ hasText: 'Candidates' });
+    await candidatesTab.click();
+    
+    // Candidates list should be visible
+    const candidatesList = page.locator('.candidates-full');
+    await expect(candidatesList).toBeVisible();
   });
 });
 

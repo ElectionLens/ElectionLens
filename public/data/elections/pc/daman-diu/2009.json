@@ -1,0 +1,333 @@
+{
+  "DAMAN": {
+    "year": 2009,
+    "constituencyNo": 1,
+    "constituencyName": "DAMAN",
+    "constituencyNameOriginal": "Daman",
+    "constituencyType": "GEN",
+    "stateName": "Daman_&_Diu",
+    "validVotes": 68024,
+    "electors": 0,
+    "turnout": 0,
+    "enop": 1.95,
+    "totalCandidates": 7,
+    "candidates": [
+      {
+        "name": "LALUBHAI PATEL",
+        "party": "BJP",
+        "votes": 44546,
+        "position": 1,
+        "voteShare": 65.49,
+        "margin": 24838,
+        "marginPct": 36.51,
+        "sex": "M",
+        "age": null,
+        "depositLost": false,
+        "acWiseVotes": [
+          {
+            "acName": "Daman",
+            "votes": 31098,
+            "voteShare": 68.04
+          },
+          {
+            "acName": "Diu",
+            "votes": 13448,
+            "voteShare": 60.26
+          }
+        ]
+      },
+      {
+        "name": "DAHYABHAI VALLABHBHAI PATEL",
+        "party": "INC",
+        "votes": 19708,
+        "position": 2,
+        "voteShare": 28.97,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": false,
+        "acWiseVotes": [
+          {
+            "acName": "Daman",
+            "votes": 12250,
+            "voteShare": 26.8
+          },
+          {
+            "acName": "Diu",
+            "votes": 7458,
+            "voteShare": 33.42
+          }
+        ]
+      },
+      {
+        "name": "TANDEL GOPALBHAI KALYANBHAI",
+        "party": "NCP",
+        "votes": 2144,
+        "position": 3,
+        "voteShare": 3.15,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Daman",
+            "votes": 1420,
+            "voteShare": 3.11
+          },
+          {
+            "acName": "Diu",
+            "votes": 724,
+            "voteShare": 3.24
+          }
+        ]
+      },
+      {
+        "name": "SINDE SHAILESHBHAI",
+        "party": "IND",
+        "votes": 478,
+        "position": 4,
+        "voteShare": 0.7,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Daman",
+            "votes": 270,
+            "voteShare": 0.59
+          },
+          {
+            "acName": "Diu",
+            "votes": 208,
+            "voteShare": 0.93
+          }
+        ]
+      },
+      {
+        "name": "GOHEL GAUTAMKUMAR NATVARSINH",
+        "party": "IND",
+        "votes": 387,
+        "position": 5,
+        "voteShare": 0.57,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Daman",
+            "votes": 222,
+            "voteShare": 0.49
+          },
+          {
+            "acName": "Diu",
+            "votes": 165,
+            "voteShare": 0.74
+          }
+        ]
+      },
+      {
+        "name": "PANDEY DINESHBHAI",
+        "party": "IND",
+        "votes": 381,
+        "position": 6,
+        "voteShare": 0.56,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Daman",
+            "votes": 219,
+            "voteShare": 0.48
+          },
+          {
+            "acName": "Diu",
+            "votes": 162,
+            "voteShare": 0.73
+          }
+        ]
+      },
+      {
+        "name": "RAMESHBHAI D. SINGH",
+        "party": "SP",
+        "votes": 380,
+        "position": 7,
+        "voteShare": 0.56,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Daman",
+            "votes": 227,
+            "voteShare": 0.5
+          },
+          {
+            "acName": "Diu",
+            "votes": 153,
+            "voteShare": 0.69
+          }
+        ]
+      }
+    ],
+    "assemblyConstituencies": [
+      "Daman",
+      "Diu"
+    ],
+    "acWiseResults": {
+      "Daman": {
+        "acName": "Daman",
+        "acNo": 1,
+        "acType": "GEN",
+        "validVotes": 45706,
+        "candidates": [
+          {
+            "name": "LALUBHAI PATEL",
+            "party": "BJP",
+            "votes": 31098,
+            "position": 1,
+            "voteShare": 68.04,
+            "sex": "M",
+            "depositLost": false
+          },
+          {
+            "name": "DAHYABHAI VALLABHBHAI PATEL",
+            "party": "INC",
+            "votes": 12250,
+            "position": 2,
+            "voteShare": 26.8,
+            "sex": "M",
+            "depositLost": false
+          },
+          {
+            "name": "TANDEL GOPALBHAI KALYANBHAI",
+            "party": "NCP",
+            "votes": 1420,
+            "position": 3,
+            "voteShare": 3.11,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "SINDE SHAILESHBHAI",
+            "party": "IND",
+            "votes": 270,
+            "position": 4,
+            "voteShare": 0.59,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "RAMESHBHAI D. SINGH",
+            "party": "SP",
+            "votes": 227,
+            "position": 5,
+            "voteShare": 0.5,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "GOHEL GAUTAMKUMAR NATVARSINH",
+            "party": "IND",
+            "votes": 222,
+            "position": 6,
+            "voteShare": 0.49,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "PANDEY DINESHBHAI",
+            "party": "IND",
+            "votes": 219,
+            "position": 7,
+            "voteShare": 0.48,
+            "sex": "M",
+            "depositLost": true
+          }
+        ]
+      },
+      "Diu": {
+        "acName": "Diu",
+        "acNo": 2,
+        "acType": "GEN",
+        "validVotes": 22318,
+        "candidates": [
+          {
+            "name": "LALUBHAI PATEL",
+            "party": "BJP",
+            "votes": 13448,
+            "position": 1,
+            "voteShare": 60.26,
+            "sex": "M",
+            "depositLost": false
+          },
+          {
+            "name": "DAHYABHAI VALLABHBHAI PATEL",
+            "party": "INC",
+            "votes": 7458,
+            "position": 2,
+            "voteShare": 33.42,
+            "sex": "M",
+            "depositLost": false
+          },
+          {
+            "name": "TANDEL GOPALBHAI KALYANBHAI",
+            "party": "NCP",
+            "votes": 724,
+            "position": 3,
+            "voteShare": 3.24,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "SINDE SHAILESHBHAI",
+            "party": "IND",
+            "votes": 208,
+            "position": 4,
+            "voteShare": 0.93,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "GOHEL GAUTAMKUMAR NATVARSINH",
+            "party": "IND",
+            "votes": 165,
+            "position": 5,
+            "voteShare": 0.74,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "PANDEY DINESHBHAI",
+            "party": "IND",
+            "votes": 162,
+            "position": 6,
+            "voteShare": 0.73,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "RAMESHBHAI D. SINGH",
+            "party": "SP",
+            "votes": 153,
+            "position": 7,
+            "voteShare": 0.69,
+            "sex": "M",
+            "depositLost": true
+          }
+        ]
+      }
+    }
+  }
+}
