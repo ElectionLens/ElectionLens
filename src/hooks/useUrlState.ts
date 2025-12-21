@@ -8,6 +8,8 @@ export interface UrlState {
   pc: string | null;
   district: string | null;
   assembly: string | null;
+  year: number | null;
+  pcYear: number | null; // Parliament contribution year for AC view
 }
 
 /** Hook return type */
@@ -21,17 +23,30 @@ export interface UseUrlStateReturn {
 }
 
 /**
+ * Strip diacritics from text for clean URLs
+ * Converts characters like ā, ī, ū to a, i, u
+ */
+function stripDiacritics(str: string): string {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+/**
  * Encode a value for URL path segment
+ * Strips diacritics for clean, shareable ASCII-only URLs
+ * Preserves parentheses since they're valid URL characters (RFC 3986)
  */
 function encodePathSegment(value: string): string {
-  return encodeURIComponent(value.toLowerCase().replace(/\s+/g, '-'));
+  const encoded = encodeURIComponent(stripDiacritics(value).toLowerCase().replace(/\s+/g, '-'));
+  // Restore parentheses - they're valid sub-delimiters in URLs and look cleaner
+  return encoded.replace(/%28/g, '(').replace(/%29/g, ')');
 }
 
 /**
  * Decode a URL path segment
  */
 function decodePathSegment(segment: string): string {
-  return decodeURIComponent(segment).replace(/-/g, ' ');
+  // Replace hyphens with spaces, but preserve hyphens before numbers (e.g., indore-1)
+  return decodeURIComponent(segment).replace(/-(?!\d)/g, ' ');
 }
 
 /**
@@ -52,11 +67,14 @@ export function useUrlState(
   currentPC: string | null,
   currentDistrict: string | null,
   currentAssembly: string | null,
+  selectedYear: number | null,
+  selectedPCYear: number | null,
   onNavigate: (state: UrlState) => void | Promise<void>,
   isDataReady: boolean = true
 ): UseUrlStateReturn {
   const isInitialMount = useRef(true);
   const hasNavigatedFromUrl = useRef(false);
+  const isProcessingUrlNavigation = useRef(false);
   const lastUrl = useRef<string>('');
   const onNavigateRef = useRef(onNavigate);
 
@@ -71,6 +89,7 @@ export function useUrlState(
   const getUrlState = useCallback((): UrlState => {
     const path = window.location.pathname;
     const segments = path.split('/').filter(Boolean);
+    const searchParams = new URLSearchParams(window.location.search);
 
     const result: UrlState = {
       state: null,
@@ -78,7 +97,27 @@ export function useUrlState(
       pc: null,
       district: null,
       assembly: null,
+      year: null,
+      pcYear: null,
     };
+
+    // Parse year from query params
+    const yearParam = searchParams.get('year');
+    if (yearParam) {
+      const parsed = parseInt(yearParam, 10);
+      if (!isNaN(parsed)) {
+        result.year = parsed;
+      }
+    }
+
+    // Parse pcYear (parliament contribution year) from query params
+    const pcYearParam = searchParams.get('pcYear');
+    if (pcYearParam) {
+      const parsed = parseInt(pcYearParam, 10);
+      if (!isNaN(parsed)) {
+        result.pcYear = parsed;
+      }
+    }
 
     if (segments.length === 0) {
       return result;
@@ -142,10 +181,22 @@ export function useUrlState(
       }
     }
 
+    // Add query params for year and pcYear if present and we have an assembly selected
+    let fullPath = path;
+    if (state.assembly) {
+      const params = new URLSearchParams();
+      if (state.year) params.set('year', state.year.toString());
+      if (state.pcYear) params.set('pcYear', state.pcYear.toString());
+      const queryString = params.toString();
+      if (queryString) {
+        fullPath = `${path}?${queryString}`;
+      }
+    }
+
     // Only update if path changed
-    if (path !== lastUrl.current) {
-      lastUrl.current = path;
-      window.history.pushState({ ...state }, '', path);
+    if (fullPath !== lastUrl.current) {
+      lastUrl.current = fullPath;
+      window.history.pushState({ ...state }, '', fullPath);
     }
   }, []);
 
@@ -174,6 +225,17 @@ export function useUrlState(
       }
     }
 
+    // Add query params for year and pcYear if present and we have an assembly selected
+    if (state.assembly) {
+      const params = new URLSearchParams();
+      if (state.year) params.set('year', state.year.toString());
+      if (state.pcYear) params.set('pcYear', state.pcYear.toString());
+      const queryString = params.toString();
+      if (queryString) {
+        path = `${path}?${queryString}`;
+      }
+    }
+
     return `${base}${path}`;
   }, []);
 
@@ -181,28 +243,53 @@ export function useUrlState(
   useEffect(() => {
     if (isDataReady && !hasNavigatedFromUrl.current) {
       hasNavigatedFromUrl.current = true;
-      isInitialMount.current = false;
       const urlState = getUrlState();
 
       // Only navigate if URL has state info
       if (urlState.state) {
-        onNavigateRef.current(urlState);
+        // Mark that we're processing URL navigation to prevent URL updates during this time
+        isProcessingUrlNavigation.current = true;
+
+        // Use Promise.resolve to handle both sync and async navigation handlers
+        Promise.resolve(onNavigateRef.current(urlState)).finally(() => {
+          // Small delay to ensure all state updates have been processed
+          setTimeout(() => {
+            isProcessingUrlNavigation.current = false;
+            isInitialMount.current = false;
+            // Now sync the URL with the final state (in case there were any normalization changes)
+            lastUrl.current = window.location.pathname + window.location.search;
+          }, 100);
+        });
+      } else {
+        isInitialMount.current = false;
       }
     }
   }, [getUrlState, isDataReady]);
 
-  // Update URL when state changes
+  // Update URL when state changes (including year and pcYear)
   useEffect(() => {
-    if (!isInitialMount.current) {
+    // Don't update URL during initial mount or while processing URL-based navigation
+    if (!isInitialMount.current && !isProcessingUrlNavigation.current) {
       updateUrl({
         state: currentState,
         view: currentView,
         pc: currentPC,
         district: currentDistrict,
         assembly: currentAssembly,
+        year: selectedYear,
+        pcYear: selectedPCYear,
       });
     }
-  }, [currentState, currentView, currentPC, currentDistrict, currentAssembly, updateUrl]);
+  }, [
+    currentState,
+    currentView,
+    currentPC,
+    currentDistrict,
+    currentAssembly,
+    selectedYear,
+    selectedPCYear,
+    updateUrl,
+  ]);
 
   // Handle browser back/forward
   useEffect(() => {

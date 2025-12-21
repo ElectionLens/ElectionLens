@@ -1,8 +1,10 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Sidebar } from './components/Sidebar';
 import { MapView } from './components/MapView';
 import { useElectionData } from './hooks/useElectionData';
+import { useElectionResults } from './hooks/useElectionResults';
+import { useParliamentResults } from './hooks/useParliamentResults';
 import { useUrlState, type UrlState } from './hooks/useUrlState';
 import { normalizeName, toTitleCase } from './utils/helpers';
 import type {
@@ -40,6 +42,54 @@ function App(): JSX.Element {
     selectAssembly,
   } = useElectionData();
 
+  // Assembly election results hook
+  const {
+    currentResult: electionResult,
+    availableYears,
+    selectedYear,
+    getACResult,
+    setSelectedYear,
+    clearResult: clearElectionResult,
+    loadStateIndex,
+  } = useElectionResults();
+
+  // Parliamentary election results hook
+  const {
+    currentResult: pcElectionResult,
+    availableYears: pcAvailableYears,
+    selectedYear: pcSelectedYear,
+    getPCResult,
+    setSelectedYear: setPCSelectedYear,
+    clearResult: clearPCElectionResult,
+  } = useParliamentResults();
+
+  // State for AC's parliament contributions (all years)
+  const [parliamentContributions, setParliamentContributions] = useState<
+    Record<
+      number,
+      {
+        pcName: string;
+        year: number;
+        candidates: Array<{
+          name: string;
+          party: string;
+          votes: number;
+          voteShare: number;
+          position: number;
+        }>;
+        validVotes: number;
+      }
+    >
+  >({});
+
+  // Selected parliament year in AC panel (for URL state)
+  const [selectedACPCYear, setSelectedACPCYear] = useState<number | null>(null);
+
+  // Available parliament years for the current AC
+  const availablePCYears = Object.keys(parliamentContributions)
+    .map(Number)
+    .sort((a, b) => a - b);
+
   /**
    * Handle URL-based navigation (deep linking)
    */
@@ -72,18 +122,30 @@ function App(): JSX.Element {
         );
         setCurrentData(data);
         if (urlState.assembly) {
-          selectAssembly(toTitleCase(urlState.assembly.replace(/-/g, ' ')).toUpperCase());
+          // Convert assembly name to match GeoJSON format (Title Case, uppercase for comparison)
+          const acName = toTitleCase(urlState.assembly).toUpperCase();
+          selectAssembly(acName);
+          await getACResult(acName, matchedState, urlState.year ?? undefined);
+          // Set the PC year if provided in URL
+          if (urlState.pcYear) {
+            setSelectedACPCYear(urlState.pcYear);
+          }
         }
       } else if (urlState.district) {
         // First navigate to state districts, then to specific district
         await loadDistrictsForState(matchedState);
-        const data = await navigateToDistrict(
-          toTitleCase(urlState.district.replace(/-/g, ' ')),
-          matchedState
-        );
+        const districtName = toTitleCase(urlState.district);
+        const data = await navigateToDistrict(districtName, matchedState);
         setCurrentData(data);
         if (urlState.assembly) {
-          selectAssembly(toTitleCase(urlState.assembly.replace(/-/g, ' ')).toUpperCase());
+          // Convert assembly name to match GeoJSON format (Title Case, uppercase for comparison)
+          const acName = toTitleCase(urlState.assembly).toUpperCase();
+          selectAssembly(acName);
+          await getACResult(acName, matchedState, urlState.year ?? undefined);
+          // Set the PC year if provided in URL
+          if (urlState.pcYear) {
+            setSelectedACPCYear(urlState.pcYear);
+          }
         }
       } else if (urlState.view === 'districts') {
         const data = await loadDistrictsForState(matchedState);
@@ -101,6 +163,7 @@ function App(): JSX.Element {
       loadDistrictsForState,
       resetView,
       selectAssembly,
+      getACResult,
     ]
   );
 
@@ -113,6 +176,8 @@ function App(): JSX.Element {
     currentPC,
     currentDistrict,
     currentAssembly,
+    selectedYear,
+    selectedACPCYear,
     handleUrlNavigate,
     isDataReady
   );
@@ -122,6 +187,28 @@ function App(): JSX.Element {
 
   // Current displayed data
   const [currentData, setCurrentData] = useState<GeoJSONData | null>(null);
+
+  /**
+   * Update document title dynamically for SEO and browser tabs
+   */
+  useEffect(() => {
+    let title = 'Election Lens - India Electoral Map';
+
+    if (electionResult) {
+      // Constituency selected with election result
+      title = `${electionResult.constituencyNameOriginal} ${electionResult.year} Results | Election Lens`;
+    } else if (currentAssembly) {
+      title = `${currentAssembly} | Election Lens`;
+    } else if (currentPC) {
+      title = `${currentPC} PC, ${currentState} | Election Lens`;
+    } else if (currentDistrict) {
+      title = `${currentDistrict} District, ${currentState} | Election Lens`;
+    } else if (currentState) {
+      title = `${currentState} Elections | Election Lens`;
+    }
+
+    document.title = title;
+  }, [currentState, currentPC, currentDistrict, currentAssembly, electionResult]);
 
   /**
    * Toggle mobile sidebar visibility
@@ -177,10 +264,20 @@ function App(): JSX.Element {
   const handleStateClick = useCallback(
     async (stateName: string, _feature: StateFeature): Promise<void> => {
       closeSidebarOnMobile();
+      clearElectionResult();
+      clearPCElectionResult();
       const data = await navigateToState(stateName);
       setCurrentData(data);
+      // Pre-load election index for the state
+      loadStateIndex(stateName);
     },
-    [navigateToState, closeSidebarOnMobile]
+    [
+      navigateToState,
+      closeSidebarOnMobile,
+      loadStateIndex,
+      clearElectionResult,
+      clearPCElectionResult,
+    ]
   );
 
   /**
@@ -190,10 +287,20 @@ function App(): JSX.Element {
     async (districtName: string, _feature: DistrictFeature): Promise<void> => {
       closeSidebarOnMobile();
       if (!currentState) return;
+      selectAssembly(null); // Clear assembly when navigating to new district
+      clearElectionResult();
+      clearPCElectionResult();
       const data = await navigateToDistrict(districtName, currentState);
       setCurrentData(data);
     },
-    [navigateToDistrict, currentState, closeSidebarOnMobile]
+    [
+      navigateToDistrict,
+      currentState,
+      closeSidebarOnMobile,
+      selectAssembly,
+      clearElectionResult,
+      clearPCElectionResult,
+    ]
   );
 
   /**
@@ -203,21 +310,468 @@ function App(): JSX.Element {
     async (pcName: string, _feature: ConstituencyFeature): Promise<void> => {
       closeSidebarOnMobile();
       if (!currentState) return;
+      selectAssembly(null); // Clear assembly when navigating to new PC
+      clearElectionResult();
       const data = await navigateToPC(pcName, currentState);
       setCurrentData(data);
+      // Load PC election results
+      await getPCResult(pcName, currentState);
     },
-    [navigateToPC, currentState, closeSidebarOnMobile]
+    [
+      navigateToPC,
+      currentState,
+      closeSidebarOnMobile,
+      selectAssembly,
+      clearElectionResult,
+      getPCResult,
+    ]
   );
 
   /**
-   * Handle assembly click - select and update URL
+   * All available parliament election years
+   */
+  const PARLIAMENT_YEARS = [2009, 2014, 2019, 2024];
+
+  /**
+   * Get related states to search (for boundary changes like AP-Telangana)
+   */
+  const getRelatedStates = (state: string): string[] => {
+    const normalizedState = state.toUpperCase();
+    const related: Record<string, string[]> = {
+      'ANDHRA PRADESH': ['telangana'],
+      TELANGANA: ['andhra-pradesh'],
+      'MADHYA PRADESH': ['chhattisgarh'],
+      CHHATTISGARH: ['madhya-pradesh'],
+      BIHAR: ['jharkhand'],
+      JHARKHAND: ['bihar'],
+      'UTTAR PRADESH': ['uttarakhand'],
+      UTTARAKHAND: ['uttar-pradesh'],
+    };
+    return related[normalizedState] || [];
+  };
+
+  /**
+   * Load AC's contribution to all parliament elections
+   */
+  const loadAllParliamentContributions = useCallback(
+    async (acName: string, pcName: string, stateName: string) => {
+      const stateSlug = stateName
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(
+          /[āīūṭḍṇṃ]/g,
+          (c) => ({ ā: 'a', ī: 'i', ū: 'u', ṭ: 't', ḍ: 'd', ṇ: 'n', ṃ: 'm' })[c] || c
+        );
+      const relatedStates = getRelatedStates(stateName);
+
+      const contributions: Record<
+        number,
+        {
+          pcName: string;
+          year: number;
+          candidates: Array<{
+            name: string;
+            party: string;
+            votes: number;
+            voteShare: number;
+            position: number;
+          }>;
+          validVotes: number;
+        }
+      > = {};
+
+      // Load all parliament years in parallel
+      await Promise.all(
+        PARLIAMENT_YEARS.map(async (parliamentYear) => {
+          try {
+            const response = await fetch(`/data/elections/pc/${stateSlug}/${parliamentYear}.json`);
+
+            if (!response.ok) return;
+
+            const pcData = (await response.json()) as Record<
+              string,
+              {
+                constituencyName?: string;
+                constituencyNameOriginal?: string;
+                candidates: Array<{
+                  name: string;
+                  party: string;
+                  votes: number;
+                  voteShare: number;
+                  position: number;
+                  acWiseVotes?: Array<{
+                    acName: string;
+                    votes: number;
+                    voteShare: number;
+                  }>;
+                }>;
+              }
+            >;
+
+            // Helper to find AC in a PC's candidates
+            const findAcInPC = (
+              pcCandidates: (typeof pcData)[string]['candidates'],
+              acName: string,
+              normalizeAcName: (n: string) => string,
+              stripSpaces: (n: string) => string,
+              createFuzzyKey: (n: string) => string,
+              _similarityScore: (a: string, b: string) => number // Prefixed with _ to indicate intentionally unused
+            ) => {
+              const acKeyNormalized = normalizeAcName(acName);
+              const acKeyStripped = stripSpaces(acName);
+              const acKeyFuzzy = createFuzzyKey(acName);
+
+              for (const candidate of pcCandidates) {
+                if (!candidate.acWiseVotes) continue;
+
+                let acVotes = candidate.acWiseVotes.find((av) => {
+                  const avNameNormalized = normalizeAcName(av.acName);
+                  const avNameStripped = stripSpaces(av.acName);
+                  const avNameFuzzy = createFuzzyKey(av.acName);
+                  return (
+                    avNameNormalized === acKeyNormalized ||
+                    avNameStripped === acKeyStripped ||
+                    avNameFuzzy === acKeyFuzzy ||
+                    avNameNormalized.includes(acKeyNormalized) ||
+                    acKeyNormalized.includes(avNameNormalized)
+                  );
+                });
+
+                if (!acVotes && acKeyStripped.length >= 5) {
+                  let bestMatch: (typeof candidate.acWiseVotes)[0] | undefined;
+                  let bestScore = 0.8;
+                  for (const av of candidate.acWiseVotes) {
+                    const avStripped = stripSpaces(av.acName);
+                    const aChars = new Set(acKeyStripped.split(''));
+                    const bChars = new Set(avStripped.split(''));
+                    let common = 0;
+                    for (const c of aChars) {
+                      if (bChars.has(c)) common++;
+                    }
+                    const score = common / new Set([...aChars, ...bChars]).size;
+                    if (score > bestScore) {
+                      bestScore = score;
+                      bestMatch = av;
+                    }
+                  }
+                  acVotes = bestMatch;
+                }
+
+                if (acVotes) return { candidate, acVotes };
+              }
+              return null;
+            };
+
+            // Find the PC in the data - try multiple matching strategies
+            const pcKey = pcName.toUpperCase();
+            let pc = pcData[pcKey];
+
+            if (!pc) {
+              // Try finding by name fields
+              pc = Object.values(pcData).find(
+                (p) =>
+                  p.constituencyName?.toUpperCase() === pcKey ||
+                  p.constituencyNameOriginal?.toUpperCase() === pcKey ||
+                  p.constituencyName?.toUpperCase().includes(pcKey) ||
+                  pcKey.includes(p.constituencyName?.toUpperCase() || '')
+              ) as typeof pc;
+            }
+
+            // Extract AC-wise results from each candidate's acWiseVotes
+            // Normalize AC name for matching - handle spelling variations and format differences
+            const normalizeAcName = (name: string): string => {
+              return (
+                name
+                  .toUpperCase()
+                  .trim()
+                  // Remove reservation type suffixes like (BL), (SC), (ST), (GEN)
+                  .replace(/\s*\((BL|SC|ST|GEN)\)\s*/gi, ' ')
+                  .replace(/[()]/g, ' ') // Replace remaining parentheses with spaces
+                  .replace(/\s+/g, ' ') // Normalize multiple spaces
+                  .replace(/TIRUCHIRAPPALLI/g, 'TIRUCHIRAPALLI') // Normalize spelling
+                  .trim()
+              );
+            };
+
+            // Create a stripped version with no spaces for matching "Seelam Pur" vs "Seelampur"
+            const stripSpaces = (name: string): string => {
+              return normalizeAcName(name).replace(/\s+/g, '');
+            };
+
+            // Create a fuzzy key by removing vowels and normalizing consonants
+            const createFuzzyKey = (name: string): string => {
+              return stripSpaces(name)
+                .replace(/[?-]/g, '') // Remove special chars
+                .replace(/RURAL/g, 'GRAMIN') // Rural = Gramin
+                .replace(/GANJ$/g, 'GUNGE') // Tollyganj -> Tollygunge
+                .replace(/GUNGE$/g, 'GUNGE') // Standardize
+                .replace(/PURBA$/g, 'EAST') // Purba = East
+                .replace(/PASCHIM$/g, 'WEST') // Paschim = West
+                .replace(/DAKSHIN$/g, 'SOUTH') // Dakshin = South
+                .replace(/UTTAR$/g, 'NORTH') // Uttar = North
+                .replace(/SH/g, 'S') // Normalize SH to S (Sikaripara vs Shikaripara)
+                .replace(/PH/g, 'F') // Normalize PH to F
+                .replace(/TH/g, 'T') // Normalize TH to T
+                .replace(/Y/g, 'I') // Normalize Y to I
+                .replace(/W/g, 'V') // Normalize W to V (Sumawali vs Sumaoli)
+                .replace(/EE/g, 'I') // Normalize EE to I
+                .replace(/OO/g, 'U') // Normalize OO to U
+                .replace(/AA/g, 'A') // Normalize AA to A
+                .replace(/[AEIOU]/g, '') // Remove vowels
+                .substring(0, 12); // First 12 consonants for comparison
+            };
+
+            // Calculate similarity score between two strings using Levenshtein distance
+            const similarityScore = (a: string, b: string): number => {
+              if (a === b) return 1;
+              if (a.length === 0 || b.length === 0) return 0;
+
+              // Simple character-based similarity for speed
+              const aChars = new Set(a.split(''));
+              const bChars = new Set(b.split(''));
+              let common = 0;
+              for (const c of aChars) {
+                if (bChars.has(c)) common++;
+              }
+              const unionSize = new Set([...aChars, ...bChars]).size;
+              return unionSize > 0 ? common / unionSize : 0;
+            };
+
+            const acCandidates: Array<{
+              name: string;
+              party: string;
+              votes: number;
+              voteShare: number;
+              position: number;
+            }> = [];
+
+            // Determine which PC to search - first try specified PC, then search all PCs
+            const searchPCs: Array<{ pc: typeof pc; pcName: string }> = [];
+
+            if (pc && pc.candidates) {
+              searchPCs.push({ pc, pcName: pc.constituencyNameOriginal || pcName });
+            }
+
+            // If no match in specified PC, search ALL PCs in the state
+            let foundInPC: string | null = null;
+
+            for (const { pc: searchPC, pcName: searchPCName } of searchPCs) {
+              if (!searchPC?.candidates) continue;
+              searchPC.candidates.forEach((candidate) => {
+                if (candidate.acWiseVotes) {
+                  const result = findAcInPC(
+                    [candidate],
+                    acName,
+                    normalizeAcName,
+                    stripSpaces,
+                    createFuzzyKey,
+                    similarityScore
+                  );
+                  if (result) {
+                    acCandidates.push({
+                      name: result.candidate.name,
+                      party: result.candidate.party,
+                      votes: result.acVotes.votes,
+                      voteShare: result.acVotes.voteShare,
+                      position: 0,
+                    });
+                    foundInPC = searchPCName;
+                  }
+                }
+              });
+            }
+
+            // If still not found, search ALL PCs in state data
+            if (acCandidates.length === 0) {
+              for (const [, otherPC] of Object.entries(pcData)) {
+                if (!otherPC.candidates) continue;
+                for (const candidate of otherPC.candidates) {
+                  if (!candidate.acWiseVotes) continue;
+                  const result = findAcInPC(
+                    [candidate],
+                    acName,
+                    normalizeAcName,
+                    stripSpaces,
+                    createFuzzyKey,
+                    similarityScore
+                  );
+                  if (result) {
+                    acCandidates.push({
+                      name: result.candidate.name,
+                      party: result.candidate.party,
+                      votes: result.acVotes.votes,
+                      voteShare: result.acVotes.voteShare,
+                      position: 0,
+                    });
+                    foundInPC = otherPC.constituencyNameOriginal || 'Unknown PC';
+                  }
+                }
+                if (acCandidates.length > 0) break; // Found in another PC
+              }
+            }
+
+            // If still not found, try related states (for boundary changes like AP-Telangana)
+            if (acCandidates.length === 0 && relatedStates.length > 0) {
+              for (const relatedState of relatedStates) {
+                try {
+                  const relatedResponse = await fetch(
+                    `/data/elections/pc/${relatedState}/${parliamentYear}.json`
+                  );
+                  if (!relatedResponse.ok) continue;
+
+                  const relatedPcData = (await relatedResponse.json()) as Record<
+                    string,
+                    {
+                      constituencyName?: string;
+                      constituencyNameOriginal?: string;
+                      candidates: Array<{
+                        name: string;
+                        party: string;
+                        votes: number;
+                        voteShare: number;
+                        position: number;
+                        acWiseVotes?: Array<{
+                          acName: string;
+                          votes: number;
+                          voteShare: number;
+                        }>;
+                      }>;
+                    }
+                  >;
+
+                  for (const [, relatedPC] of Object.entries(relatedPcData)) {
+                    if (!relatedPC.candidates) continue;
+                    for (const candidate of relatedPC.candidates) {
+                      if (!candidate.acWiseVotes) continue;
+                      const result = findAcInPC(
+                        [candidate],
+                        acName,
+                        normalizeAcName,
+                        stripSpaces,
+                        createFuzzyKey,
+                        similarityScore
+                      );
+                      if (result) {
+                        acCandidates.push({
+                          name: result.candidate.name,
+                          party: result.candidate.party,
+                          votes: result.acVotes.votes,
+                          voteShare: result.acVotes.voteShare,
+                          position: 0,
+                        });
+                        foundInPC = relatedPC.constituencyNameOriginal || 'Unknown PC';
+                      }
+                    }
+                    if (acCandidates.length > 0) break;
+                  }
+                  if (acCandidates.length > 0) break;
+                } catch {
+                  // Silently fail for related state
+                }
+              }
+            }
+
+            if (acCandidates.length === 0) return;
+
+            // Sort by votes to get correct positions
+            acCandidates.sort((a, b) => b.votes - a.votes);
+            acCandidates.forEach((c, idx) => {
+              c.position = idx + 1;
+            });
+
+            contributions[parliamentYear] = {
+              pcName: foundInPC || pcName,
+              year: parliamentYear,
+              candidates: acCandidates,
+              validVotes: acCandidates.reduce((sum, c) => sum + c.votes, 0),
+            };
+          } catch (err) {
+            // Silently fail for individual years
+          }
+        })
+      );
+
+      setParliamentContributions(contributions);
+    },
+    []
+  );
+
+  /**
+   * Load parliament contributions when assembly is selected via deep link
+   * This effect runs when assemblyGeoJSON is loaded and there's a selected assembly
+   * but no parliament contributions yet
+   */
+  useEffect(() => {
+    if (
+      currentAssembly &&
+      currentState &&
+      assemblyGeoJSON &&
+      Object.keys(parliamentContributions).length === 0
+    ) {
+      // Find the AC feature to get PC_NAME
+      const acFeature = assemblyGeoJSON.features.find(
+        (f) => f.properties.AC_NAME?.toUpperCase() === currentAssembly.toUpperCase()
+      );
+      const pcName = acFeature?.properties.PC_NAME;
+      if (pcName) {
+        void loadAllParliamentContributions(currentAssembly, pcName, currentState);
+      }
+    }
+  }, [
+    currentAssembly,
+    currentState,
+    assemblyGeoJSON,
+    parliamentContributions,
+    loadAllParliamentContributions,
+  ]);
+
+  /**
+   * Handle assembly click - select, zoom, and show election results
    */
   const handleAssemblyClick = useCallback(
-    (acName: string, _feature: AssemblyFeature): void => {
+    async (acName: string, feature: AssemblyFeature): Promise<void> => {
       selectAssembly(acName);
+      clearPCElectionResult(); // Close PC panel to show AC panel
+      setParliamentContributions({}); // Clear previous contributions
+      setSelectedACPCYear(null); // Reset PC year selection
+
+      // Load election results for this AC - always show latest year
+      if (currentState) {
+        await getACResult(acName, currentState);
+
+        // Load all parliament contributions if we have PC info
+        const pcName = feature.properties.PC_NAME;
+        if (pcName) {
+          await loadAllParliamentContributions(acName, pcName, currentState);
+        }
+      }
     },
-    [selectAssembly]
+    [
+      selectAssembly,
+      currentState,
+      getACResult,
+      clearPCElectionResult,
+      loadAllParliamentContributions,
+    ]
   );
+
+  /**
+   * Handle closing the election panel
+   */
+  const handleCloseElectionPanel = useCallback((): void => {
+    selectAssembly(null);
+    clearElectionResult();
+    setSelectedACPCYear(null); // Reset PC year selection
+    // Note: Don't clear PC result when closing AC panel in PC view
+    // The PC panel should remain visible
+  }, [selectAssembly, clearElectionResult]);
+
+  /**
+   * Handle closing the PC election panel
+   */
+  const handleClosePCElectionPanel = useCallback((): void => {
+    clearPCElectionResult();
+  }, [clearPCElectionResult]);
 
   /**
    * Handle search selection - state
@@ -281,6 +835,8 @@ function App(): JSX.Element {
       pc: currentPC,
       district: currentDistrict,
       assembly: currentAssembly,
+      year: selectedYear,
+      pcYear: selectedACPCYear,
     });
 
     try {
@@ -290,7 +846,83 @@ function App(): JSX.Element {
     } catch (err) {
       console.error('Failed to copy URL:', err);
     }
-  }, [getShareableUrl, currentState, currentView, currentPC, currentDistrict, currentAssembly]);
+  }, [
+    getShareableUrl,
+    currentState,
+    currentView,
+    currentPC,
+    currentDistrict,
+    currentAssembly,
+    selectedYear,
+    selectedACPCYear,
+  ]);
+
+  /**
+   * Handle year change in assembly election results
+   */
+  const handleYearChange = useCallback(
+    async (year: number): Promise<void> => {
+      setSelectedYear(year);
+      if (currentAssembly && currentState) {
+        await getACResult(currentAssembly, currentState, year);
+      }
+    },
+    [setSelectedYear, currentAssembly, currentState, getACResult]
+  );
+
+  /**
+   * Handle year change in parliamentary election results
+   */
+  const handlePCYearChange = useCallback(
+    async (year: number): Promise<void> => {
+      setPCSelectedYear(year);
+      if (currentPC && currentState) {
+        await getPCResult(currentPC, currentState, year);
+      }
+    },
+    [setPCSelectedYear, currentPC, currentState, getPCResult]
+  );
+
+  /**
+   * Get current share URL for AC election results
+   */
+  const currentShareUrl = useMemo(() => {
+    if (!currentAssembly) return undefined;
+    return getShareableUrl({
+      state: currentState,
+      view: currentView,
+      pc: currentPC,
+      district: currentDistrict,
+      assembly: currentAssembly,
+      year: selectedYear,
+      pcYear: selectedACPCYear,
+    });
+  }, [
+    getShareableUrl,
+    currentState,
+    currentView,
+    currentPC,
+    currentDistrict,
+    currentAssembly,
+    selectedYear,
+    selectedACPCYear,
+  ]);
+
+  /**
+   * Get current share URL for PC election results
+   */
+  const currentPCShareUrl = useMemo(() => {
+    if (!currentPC) return undefined;
+    return getShareableUrl({
+      state: currentState,
+      view: currentView,
+      pc: currentPC,
+      district: null,
+      assembly: null,
+      year: pcSelectedYear,
+      pcYear: null,
+    });
+  }, [getShareableUrl, currentState, currentView, currentPC, pcSelectedYear]);
 
   /**
    * Handle view switch between constituencies and districts
@@ -316,14 +948,20 @@ function App(): JSX.Element {
    */
   const handleReset = useCallback((): void => {
     resetView();
+    selectAssembly(null);
+    clearElectionResult();
+    clearPCElectionResult();
+    setSelectedACPCYear(null);
     setCurrentData(null);
-  }, [resetView]);
+  }, [resetView, selectAssembly, clearElectionResult, clearPCElectionResult]);
 
   /**
    * Handle go back to state from PC/district
    */
   const handleGoBackToState = useCallback(async (): Promise<void> => {
     goBackToState();
+    clearElectionResult();
+    clearPCElectionResult();
     if (currentState) {
       if (currentView === 'constituencies') {
         const data = await navigateToState(currentState);
@@ -333,21 +971,50 @@ function App(): JSX.Element {
         setCurrentData(data);
       }
     }
-  }, [goBackToState, currentState, currentView, navigateToState, loadDistrictsForState]);
+  }, [
+    goBackToState,
+    currentState,
+    currentView,
+    navigateToState,
+    loadDistrictsForState,
+    clearElectionResult,
+    clearPCElectionResult,
+  ]);
 
   /**
    * Handle go back one navigation level
-   * PC/District view -> State view -> India view
+   * Assembly selected -> PC/District view -> State view -> India view
    */
   const handleGoBack = useCallback(async (): Promise<void> => {
-    if (currentPC || currentDistrict) {
-      // In PC or district view, go back to state
+    if (currentAssembly) {
+      // If assembly is selected, deselect it and stay in current view
+      selectAssembly(null);
+      clearElectionResult();
+      setParliamentContributions({});
+      setSelectedACPCYear(null); // Reset PC year selection
+
+      // If we're in PC view, reload the PC election result to show the parliament panel
+      if (currentPC && currentState) {
+        await getPCResult(currentPC, currentState);
+      }
+    } else if (currentPC || currentDistrict) {
+      // In PC or district view (no assembly selected), go back to state
       await handleGoBackToState();
     } else if (currentState) {
       // In state view, go back to India
       handleReset();
     }
-  }, [currentPC, currentDistrict, currentState, handleGoBackToState, handleReset]);
+  }, [
+    currentAssembly,
+    currentPC,
+    currentDistrict,
+    currentState,
+    handleGoBackToState,
+    handleReset,
+    selectAssembly,
+    clearElectionResult,
+    getPCResult,
+  ]);
 
   return (
     <>
@@ -393,6 +1060,18 @@ function App(): JSX.Element {
           currentView={currentView}
           currentPC={currentPC}
           currentDistrict={currentDistrict}
+          selectedAssembly={currentAssembly}
+          electionResult={electionResult}
+          shareUrl={currentShareUrl}
+          availableYears={availableYears}
+          selectedYear={selectedYear}
+          parliamentContributions={parliamentContributions}
+          availablePCYears={availablePCYears}
+          selectedACPCYear={selectedACPCYear}
+          pcElectionResult={pcElectionResult}
+          pcShareUrl={currentPCShareUrl}
+          pcAvailableYears={pcAvailableYears}
+          pcSelectedYear={pcSelectedYear}
           onStateClick={handleStateClick}
           onDistrictClick={handleDistrictClick}
           onConstituencyClick={handleConstituencyClick}
@@ -400,6 +1079,11 @@ function App(): JSX.Element {
           onSwitchView={handleSwitchView}
           onReset={handleReset}
           onGoBack={handleGoBack}
+          onCloseElectionPanel={handleCloseElectionPanel}
+          onYearChange={handleYearChange}
+          onACPCYearChange={setSelectedACPCYear}
+          onClosePCElectionPanel={handleClosePCElectionPanel}
+          onPCYearChange={handlePCYearChange}
         />
       </div>
 

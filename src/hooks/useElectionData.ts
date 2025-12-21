@@ -469,9 +469,11 @@ export function useElectionData(): UseElectionDataReturn {
         const assemblies = getAssembliesForPC(pcName, stateName);
         console.log(`Found ${assemblies.length} assembly constituencies for ${pcName}`);
 
+        setCurrentState(stateName);
+        setCurrentView('constituencies');
         setCurrentPC(pcName);
         setCurrentDistrict(null);
-        setCurrentAssembly(null); // Clear assembly when navigating to new PC
+        // Don't clear assembly here - let the caller handle it
 
         return { type: 'FeatureCollection', features: assemblies };
       } finally {
@@ -497,9 +499,11 @@ export function useElectionData(): UseElectionDataReturn {
           `Found ${assemblies.length} assembly constituencies for district ${districtName}`
         );
 
+        setCurrentState(stateName);
+        setCurrentView('districts');
         setCurrentDistrict(districtName);
         setCurrentPC(null);
-        setCurrentAssembly(null); // Clear assembly when navigating to new district
+        // Don't clear assembly here - let the caller handle it
 
         return { type: 'FeatureCollection', features: assemblies };
       } finally {
