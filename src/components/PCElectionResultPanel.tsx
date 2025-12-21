@@ -2,6 +2,7 @@ import { X, Award, TrendingUp, Vote, Link2, Check, Twitter, Users, BarChart3 } f
 import { useState, useCallback } from 'react';
 import type { PCElectionResult, PCElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName } from '../utils/partyData';
+import { trackShare } from '../utils/firebase';
 
 function formatNumber(num: number): string {
   return num.toLocaleString('en-IN');
@@ -67,6 +68,7 @@ export function PCElectionResultPanel({
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      trackShare('copy_link', 'parliament');
     } catch (err) {
       console.error('Failed to copy:', err);
     }
@@ -77,6 +79,7 @@ export function PCElectionResultPanel({
     const url = shareUrl ?? window.location.href;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     window.open(twitterUrl, '_blank', 'width=550,height=420');
+    trackShare('twitter', 'parliament');
   }, [result, shareUrl, stateName]);
 
   return (

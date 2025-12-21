@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/index.css';
+import { initializeFirebase } from './utils/firebase';
+
+// Initialize Firebase Analytics
+initializeFirebase();
 
 const rootElement = document.getElementById('root');
 

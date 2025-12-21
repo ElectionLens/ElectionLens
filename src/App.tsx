@@ -7,6 +7,7 @@ import { useElectionResults } from './hooks/useElectionResults';
 import { useParliamentResults } from './hooks/useParliamentResults';
 import { useUrlState, type UrlState } from './hooks/useUrlState';
 import { normalizeName, toTitleCase } from './utils/helpers';
+import { trackPageView, trackConstituencySelect } from './utils/firebase';
 import type {
   GeoJSONData,
   StateFeature,
@@ -15,6 +16,11 @@ import type {
   AssemblyFeature,
   ViewMode,
 } from './types';
+
+/**
+ * All available parliament election years (post-delimitation)
+ */
+const PARLIAMENT_YEARS = [2009, 2014, 2019, 2024];
 
 /**
  * Main application component
@@ -190,6 +196,7 @@ function App(): JSX.Element {
 
   /**
    * Update document title dynamically for SEO and browser tabs
+   * Also track page views for analytics
    */
   useEffect(() => {
     let title = 'Election Lens - India Electoral Map';
@@ -208,6 +215,9 @@ function App(): JSX.Element {
     }
 
     document.title = title;
+
+    // Track page view in Firebase Analytics
+    trackPageView(window.location.pathname, title);
   }, [currentState, currentPC, currentDistrict, currentAssembly, electionResult]);
 
   /**
@@ -254,7 +264,7 @@ function App(): JSX.Element {
         setCurrentData(null);
       }
     }
-    updateData();
+    void updateData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentState, currentView, currentPC, currentDistrict]);
 
@@ -269,7 +279,9 @@ function App(): JSX.Element {
       const data = await navigateToState(stateName);
       setCurrentData(data);
       // Pre-load election index for the state
-      loadStateIndex(stateName);
+      void loadStateIndex(stateName);
+      // Track analytics
+      trackConstituencySelect('state', stateName);
     },
     [
       navigateToState,
@@ -292,6 +304,8 @@ function App(): JSX.Element {
       clearPCElectionResult();
       const data = await navigateToDistrict(districtName, currentState);
       setCurrentData(data);
+      // Track analytics
+      trackConstituencySelect('district', districtName, currentState);
     },
     [
       navigateToDistrict,
@@ -316,6 +330,8 @@ function App(): JSX.Element {
       setCurrentData(data);
       // Load PC election results
       await getPCResult(pcName, currentState);
+      // Track analytics
+      trackConstituencySelect('pc', pcName, currentState);
     },
     [
       navigateToPC,
@@ -326,11 +342,6 @@ function App(): JSX.Element {
       getPCResult,
     ]
   );
-
-  /**
-   * All available parliament election years
-   */
-  const PARLIAMENT_YEARS = [2009, 2014, 2019, 2024];
 
   /**
    * Get related states to search (for boundary changes like AP-Telangana)
@@ -746,6 +757,9 @@ function App(): JSX.Element {
         if (pcName) {
           await loadAllParliamentContributions(acName, pcName, currentState);
         }
+
+        // Track analytics
+        trackConstituencySelect('assembly', acName, currentState);
       }
     },
     [
