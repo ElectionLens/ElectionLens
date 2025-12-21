@@ -29,6 +29,7 @@
     "e2e:report": "playwright show-report"
   },
   "dependencies": {
+    "firebase": "^12.7.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.468.0",
     "react": "^18.2.0",

@@ -1,7 +1,16 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { MapContainer, TileLayer, GeoJSON, useMap, ScaleControl } from 'react-leaflet';
 import L from 'leaflet';
-import { Home, ChevronLeft, Maximize2, Trash2, Building2, Map, Layers } from 'lucide-react';
+import {
+  Home,
+  ChevronLeft,
+  Maximize2,
+  Trash2,
+  Building2,
+  Map,
+  Layers,
+  MessageSquare,
+} from 'lucide-react';
 import type {
   Layer,
   LeafletMouseEvent as LLeafletMouseEvent,
@@ -12,6 +21,7 @@ import { COLOR_PALETTES } from '../constants';
 import { clearAllCache } from '../utils/db';
 import { ElectionResultPanel } from './ElectionResultPanel';
 import { PCElectionResultPanel } from './PCElectionResultPanel';
+import { FeedbackModal } from './FeedbackModal';
 import type {
   MapViewProps,
   FitBoundsProps,
@@ -38,6 +48,7 @@ interface MapToolbarProps {
   onReset: () => void;
   onSwitchView: (view: ViewMode) => void;
   onGoBack: () => void;
+  onFeedbackClick: () => void;
 }
 
 /** Layer option */
@@ -53,6 +64,7 @@ function MapToolbar({
   onReset,
   onSwitchView,
   onGoBack,
+  onFeedbackClick,
 }: MapToolbarProps): JSX.Element {
   const [activeLayer, setActiveLayer] = useState<LayerName>('Streets');
   const [layerMenuOpen, setLayerMenuOpen] = useState(false);
@@ -123,8 +135,15 @@ function MapToolbar({
         </div>
       )}
 
-      {/* Right section - layer switcher */}
+      {/* Right section - feedback and layer switcher */}
       <div className="toolbar-section toolbar-right">
+        <button
+          className="toolbar-btn feedback-btn"
+          onClick={onFeedbackClick}
+          title="Send feedback or report a bug"
+        >
+          <MessageSquare size={18} />
+        </button>
         <div className="toolbar-dropdown">
           <button
             className="toolbar-btn toolbar-dropdown-btn"
@@ -394,6 +413,8 @@ export function MapView({
   const pendingSelectedAssembly = useRef<string | null>(null);
   // Ref to always have latest selectedAssembly value in callbacks
   const selectedAssemblyRef = useRef<string | null>(selectedAssembly);
+  // Feedback modal state
+  const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
 
   // Sync refs with current selection state - must be synchronous before render
   selectedAssemblyRef.current = selectedAssembly;
@@ -656,6 +677,7 @@ export function MapView({
         onReset={onReset}
         onSwitchView={onSwitchView}
         onGoBack={onGoBack}
+        onFeedbackClick={() => setFeedbackModalOpen(true)}
       />
 
       <MapContainer
@@ -720,6 +742,9 @@ export function MapView({
           onYearChange={onPCYearChange}
         />
       )}
+
+      {/* Feedback Modal */}
+      <FeedbackModal isOpen={feedbackModalOpen} onClose={() => setFeedbackModalOpen(false)} />
     </div>
   );
 }
