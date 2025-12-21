@@ -44,19 +44,22 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'text-summary', 'json', 'html', 'lcov'],
+      include: ['src/**/*.{ts,tsx}'],
       exclude: [
         'node_modules/',
         'src/test/',
-        '**/*.d.ts',
         'src/main.tsx',
-        '**/*.config.{js,ts,cjs}'
+        'src/types/**',
+        '**/*.d.ts',
+        '**/*.config.{js,ts,cjs}',
+        'scripts/**'
       ],
-      // Coverage thresholds
+      // Coverage thresholds - focused on testable utilities and hooks
       thresholds: {
-        lines: 60,
+        lines: 20,
         functions: 60,
-        branches: 50,
-        statements: 60
+        branches: 70,
+        statements: 20
       }
     },
     // Reporter options

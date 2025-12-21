@@ -10,6 +10,8 @@ import type {
 import { getFeatureStyle, getHoverStyle, normalizeName } from '../utils/helpers';
 import { COLOR_PALETTES } from '../constants';
 import { clearAllCache } from '../utils/db';
+import { ElectionResultPanel } from './ElectionResultPanel';
+import { PCElectionResultPanel } from './PCElectionResultPanel';
 import type {
   MapViewProps,
   FitBoundsProps,
@@ -58,9 +60,9 @@ function MapToolbar({
   const handleFullscreen = (): void => {
     const mapContainer = document.querySelector('.map-container');
     if (!document.fullscreenElement) {
-      mapContainer?.requestFullscreen?.();
+      void mapContainer?.requestFullscreen?.();
     } else {
-      document.exitFullscreen?.();
+      void document.exitFullscreen?.();
     }
   };
 
@@ -83,14 +85,14 @@ function MapToolbar({
     <div className="map-toolbar">
       {/* Left section - navigation */}
       <div className="toolbar-section toolbar-left">
-        <button className="toolbar-btn" onClick={onReset} title="Reset to India">
-          <Home size={18} />
-        </button>
         {showBackButton && (
           <button className="toolbar-btn" onClick={onGoBack} title="Go back">
             <ChevronLeft size={18} />
           </button>
         )}
+        <button className="toolbar-btn" onClick={onReset} title="Reset to India">
+          <Home size={18} />
+        </button>
         <button className="toolbar-btn" onClick={handleFullscreen} title="Toggle fullscreen">
           <Maximize2 size={18} />
         </button>
@@ -153,8 +155,12 @@ interface FeatureLayer {
   feature?: Feature;
   setStyle: (style: object) => void;
   bringToFront: () => void;
-  bindTooltip: (content: string, options?: object) => FeatureLayer;
   on: (eventMap: Record<string, (e: LLeafletMouseEvent) => void>) => void;
+  bindTooltip: (content: string, options?: L.TooltipOptions) => FeatureLayer;
+  unbindTooltip: () => FeatureLayer;
+  openTooltip: () => FeatureLayer;
+  closeTooltip: () => FeatureLayer;
+  getTooltip: () => L.Tooltip | undefined;
 }
 
 /** Leaflet GeoJSON ref type */
@@ -183,13 +189,21 @@ const LAYER_URLS: Record<string, { url: string; maxZoom: number; subdomains?: st
   },
 };
 
+/** Props for MapControls component */
+interface MapControlsProps {
+  level: MapLevel;
+  name: string;
+  count: number;
+}
+
 /**
  * Map controls component (Leaflet-based)
  * Handles coordinates display, legend, and layer switching
  */
-function MapControls(): null {
+function MapControls({ level, name, count }: MapControlsProps): null {
   const map = useMap();
   const baseLayerRef = useRef<L.TileLayer | null>(null);
+  const legendControlRef = useRef<L.Control | null>(null);
 
   // Initialize and handle base layer switching
   useEffect(() => {
@@ -202,7 +216,10 @@ function MapControls(): null {
 
     const handleLayerChange = (e: Event): void => {
       const layerName = (e as CustomEvent).detail as string;
-      const layerConfig = LAYER_URLS[layerName] ?? LAYER_URLS['Streets']!;
+      const defaultLayer = LAYER_URLS['Streets'];
+      const layerConfig = LAYER_URLS[layerName] ?? defaultLayer;
+
+      if (!layerConfig) return;
 
       // Remove current base layer
       if (baseLayerRef.current) {
@@ -227,50 +244,19 @@ function MapControls(): null {
     };
   }, [map]);
 
-  // Coordinates display (bottom right)
-  useEffect(() => {
-    const CoordsControl = L.Control.extend({
-      options: { position: 'bottomright' as const },
-      onAdd: function (): HTMLElement {
-        const container = L.DomUtil.create('div', 'coordinates-display');
-        container.id = 'coordsDisplay';
-        container.innerHTML = 'Lat: <span>--</span> | Lng: <span>--</span>';
-        return container;
-      },
-    });
-
-    const coordsControl = new CoordsControl();
-    map.addControl(coordsControl);
-
-    const updateCoords = (e: LLeafletMouseEvent): void => {
-      const el = document.getElementById('coordsDisplay');
-      if (el) {
-        el.innerHTML = `Lat: <span>${e.latlng.lat.toFixed(4)}</span> | Lng: <span>${e.latlng.lng.toFixed(4)}</span>`;
-      }
-    };
-
-    map.on('mousemove', updateCoords);
-
-    return (): void => {
-      map.off('mousemove', updateCoords);
-      map.removeControl(coordsControl);
-    };
-  }, [map]);
-
-  // Legend control (bottom right)
+  // Legend control (bottom left)
   useEffect(() => {
     const LegendControl = L.Control.extend({
-      options: { position: 'bottomright' as const },
+      options: { position: 'bottomleft' as const },
       onAdd: function (): HTMLElement {
         const container = L.DomUtil.create('div', 'map-legend');
         container.id = 'mapLegend';
-        container.innerHTML =
-          '<h4 style="color: #f59e0b;">States View</h4><div class="legend-content"><div style="font-weight: 500; color: #1f2937;">India</div></div>';
         return container;
       },
     });
 
     const legendControl = new LegendControl();
+    legendControlRef.current = legendControl;
     map.addControl(legendControl);
 
     return (): void => {
@@ -278,22 +264,11 @@ function MapControls(): null {
     };
   }, [map]);
 
-  return null;
-}
-
-/**
- * Update the legend element with current map level info
- */
-function updateLegend(level: MapLevel, name: string, count: number): void {
-  // Retry to find legend element (may not exist immediately)
-  const tryUpdate = (): void => {
+  // Update legend content when props change
+  useEffect(() => {
     const legend = document.getElementById('mapLegend');
-    if (!legend) {
-      setTimeout(tryUpdate, 100);
-      return;
-    }
+    if (!legend) return;
 
-    // Consistent colors matching sidebar/search
     const levelLabels: Record<MapLevel, { label: string; color: string }> = {
       states: { label: 'States View', color: '#f59e0b' },
       districts: { label: 'Districts View', color: '#f59e0b' },
@@ -305,70 +280,75 @@ function updateLegend(level: MapLevel, name: string, count: number): void {
     const colors: HexColor[] = COLOR_PALETTES[level] ?? COLOR_PALETTES.states;
     const sampleColors = colors.slice(0, 5);
 
-    // Context-aware count label
     const countLabels: Record<MapLevel, string> = {
-      states: 'States & UTs',
-      districts: 'Districts',
-      constituencies: 'Parliamentary Constituencies',
-      assemblies: 'Assembly Constituencies',
+      states: 'states/UTs',
+      districts: 'districts',
+      constituencies: 'parliamentary',
+      assemblies: 'assembly',
     };
-    const countLabel = countLabels[level] ?? 'regions';
+    const countLabel = countLabels[level] ?? 'areas';
 
     legend.innerHTML = `
       <h4 style="color: ${color}; margin: 0 0 4px 0; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;">${label}</h4>
       <div class="legend-content">
         <div style="font-weight: 600; color: #1f2937; font-size: 0.85rem;">${name}</div>
         ${count ? `<div style="font-size: 0.7rem; color: #6b7280; margin: 2px 0 4px;">${count} ${countLabel}</div>` : '<div style="margin-bottom: 4px;"></div>'}
-        <div id="legendHover" style="font-size: 0.75rem; color: #374151; min-height: 18px; padding: 2px 0; font-weight: 500; border-top: 1px solid #e5e7eb; margin-top: 4px;"></div>
         <div style="display: flex; gap: 2px; margin-top: 4px;">
           ${sampleColors.map((c) => `<div style="background: ${c}; width: 14px; height: 14px; border-radius: 2px;"></div>`).join('')}
         </div>
       </div>
     `;
-  };
+  }, [level, name, count]);
 
-  tryUpdate();
+  return null;
+}
+
+/** Extended FitBounds props with optional selected feature */
+interface ExtendedFitBoundsProps extends FitBoundsProps {
+  selectedFeatureName?: string | null;
 }
 
 /**
- * Update the legend hover text when hovering over a feature
+ * Component to fit map bounds to GeoJSON data or selected feature
  */
-function updateLegendHover(name: string): void {
-  const hoverEl = document.getElementById('legendHover');
-  if (hoverEl) {
-    hoverEl.textContent = name;
-  }
-}
-
-/**
- * Clear the legend hover text
- */
-function clearLegendHover(): void {
-  const hoverEl = document.getElementById('legendHover');
-  if (hoverEl) {
-    hoverEl.textContent = '';
-  }
-}
-
-/**
- * Component to fit map bounds to GeoJSON data
- */
-function FitBounds({ geojson }: FitBoundsProps): null {
+function FitBounds({ geojson, selectedFeatureName }: ExtendedFitBoundsProps): null {
   const map = useMap();
 
   useEffect(() => {
-    if (geojson?.features?.length) {
-      try {
-        const layer = L.geoJSON(geojson as GeoJSON.FeatureCollection);
-        const bounds = layer.getBounds();
-        if (bounds.isValid()) {
-          map.flyToBounds(bounds as LatLngBoundsExpression, { padding: [30, 30], duration: 0.5 });
+    if (!geojson?.features?.length) return;
+
+    try {
+      // If a feature is selected, zoom to just that feature
+      if (selectedFeatureName) {
+        const selectedFeature = geojson.features.find((f) => {
+          const props = f.properties as AssemblyProperties;
+          return props.AC_NAME?.toUpperCase() === selectedFeatureName.toUpperCase();
+        });
+
+        if (selectedFeature) {
+          const featureLayer = L.geoJSON(selectedFeature as GeoJSON.Feature);
+          const bounds = featureLayer.getBounds();
+          if (bounds.isValid()) {
+            map.flyToBounds(bounds as LatLngBoundsExpression, {
+              padding: [80, 80],
+              duration: 0.6,
+              maxZoom: 12,
+            });
+          }
+          return;
         }
-      } catch (e) {
-        console.warn('Failed to fit bounds:', e);
       }
+
+      // Default: fit to all features
+      const layer = L.geoJSON(geojson as GeoJSON.FeatureCollection);
+      const bounds = layer.getBounds();
+      if (bounds.isValid()) {
+        map.flyToBounds(bounds as LatLngBoundsExpression, { padding: [30, 30], duration: 0.5 });
+      }
+    } catch (e) {
+      console.warn('Failed to fit bounds:', e);
     }
-  }, [map, geojson]);
+  }, [map, geojson, selectedFeatureName]);
 
   return null;
 }
@@ -384,6 +364,18 @@ export function MapView({
   currentView,
   currentPC,
   currentDistrict,
+  selectedAssembly,
+  electionResult,
+  shareUrl,
+  availableYears,
+  selectedYear,
+  parliamentContributions,
+  availablePCYears,
+  selectedACPCYear,
+  pcElectionResult,
+  pcShareUrl,
+  pcAvailableYears,
+  pcSelectedYear,
   onStateClick,
   onDistrictClick,
   onConstituencyClick,
@@ -391,8 +383,24 @@ export function MapView({
   onSwitchView,
   onReset,
   onGoBack,
+  onCloseElectionPanel,
+  onYearChange,
+  onACPCYearChange,
+  onClosePCElectionPanel,
+  onPCYearChange,
 }: MapViewProps): JSX.Element {
   const geoJsonRef = useRef<GeoJSONRef>(null);
+  // Track pending selected assembly to handle click -> mouseout race condition
+  const pendingSelectedAssembly = useRef<string | null>(null);
+  // Ref to always have latest selectedAssembly value in callbacks
+  const selectedAssemblyRef = useRef<string | null>(selectedAssembly);
+
+  // Sync refs with current selection state - must be synchronous before render
+  selectedAssemblyRef.current = selectedAssembly;
+  // Clear pending when selection is cleared to prevent stale tooltip
+  if (!selectedAssembly) {
+    pendingSelectedAssembly.current = null;
+  }
 
   // Determine the level for styling
   const level = useMemo((): MapLevel => {
@@ -401,11 +409,11 @@ export function MapView({
     return 'states';
   }, [currentState, currentView, currentPC, currentDistrict]);
 
-  // Create unique key for GeoJSON to force re-render
+  // Create unique key for GeoJSON to force re-render when data or selection changes
   const geoJsonKey = useMemo((): string => {
     const dataHash = currentData?.features?.length ?? 0;
-    return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${dataHash}`;
-  }, [level, currentState, currentPC, currentDistrict, currentData]);
+    return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${selectedAssembly ?? ''}-${dataHash}`;
+  }, [level, currentState, currentPC, currentDistrict, selectedAssembly, currentData]);
 
   // Get the data to display
   const displayData = useMemo((): GeoJSONData | null => {
@@ -414,18 +422,10 @@ export function MapView({
     return statesGeoJSON;
   }, [statesGeoJSON, currentData, currentState, currentPC, currentDistrict]);
 
-  // Update legend when view changes
-  useEffect(() => {
-    const name =
-      currentPC ?? currentDistrict ?? (currentState ? normalizeName(currentState) : 'India');
-    const count = displayData?.features?.length ?? 0;
-
-    // Update immediately and also after a short delay to ensure DOM is ready
-    updateLegend(level, name, count);
-    const timer = setTimeout(() => updateLegend(level, name, count), 200);
-
-    return () => clearTimeout(timer);
-  }, [level, currentState, currentView, currentPC, currentDistrict, displayData]);
+  // Compute legend info
+  const legendName =
+    currentPC ?? currentDistrict ?? (currentState ? normalizeName(currentState) : 'India');
+  const legendCount = displayData?.features?.length ?? 0;
 
   // Style function with index tracking
   const styleIndex = useRef<number>(0);
@@ -451,26 +451,90 @@ export function MapView({
         name = props.AC_NAME ?? 'Unknown';
       }
 
-      // Bind tooltip
+      // Apply selected style immediately when layer is added
+      // Use ref to get latest value since this callback might be called after state updates
+      const currentSelectedAssembly =
+        selectedAssemblyRef.current ?? pendingSelectedAssembly.current;
+      const isSelected =
+        currentSelectedAssembly &&
+        level === 'assemblies' &&
+        name.toUpperCase() === currentSelectedAssembly.toUpperCase();
+
+      if (isSelected) {
+        typedLayer.setStyle({
+          weight: 4,
+          color: '#065f46',
+          fillOpacity: 0.75,
+          opacity: 1,
+        });
+        typedLayer.bringToFront();
+      }
+
+      // Bind tooltip - permanent for selected assembly, hover for others
       typedLayer.bindTooltip(name, {
-        permanent: false,
+        permanent: Boolean(isSelected),
         direction: 'center',
-        sticky: false,
+        className: isSelected ? 'selected-tooltip' : 'hover-tooltip',
       });
 
       // Event handlers
       typedLayer.on({
         mouseover: (e: LLeafletMouseEvent): void => {
           const l = e.target as FeatureLayer;
+          // Check if THIS assembly is the selected one (use refs for latest values)
+          const activeAssembly = pendingSelectedAssembly.current ?? selectedAssemblyRef.current;
+          const isThisSelected =
+            activeAssembly &&
+            level === 'assemblies' &&
+            name.toUpperCase() === activeAssembly.toUpperCase();
+
+          // Skip hover style effects on the selected assembly only
+          if (isThisSelected) {
+            return;
+          }
+
           l.setStyle(getHoverStyle(level));
           l.bringToFront();
-          updateLegendHover(name);
         },
         mouseout: (e: LLeafletMouseEvent): void => {
+          // Check if THIS assembly is the selected one (use refs for latest values)
+          const activeAssembly = pendingSelectedAssembly.current ?? selectedAssemblyRef.current;
+          const isThisSelected =
+            activeAssembly &&
+            level === 'assemblies' &&
+            name.toUpperCase() === activeAssembly.toUpperCase();
+
+          // Skip mouseout style effects on the selected assembly
+          if (isThisSelected) {
+            return;
+          }
+
           if (geoJsonRef.current) {
             geoJsonRef.current.resetStyle(e.target as Layer);
+
+            // Re-apply style to selected assembly to fix shared border issue
+            if (activeAssembly && level === 'assemblies') {
+              geoJsonRef.current.eachLayer((lyr) => {
+                const feat = (lyr as unknown as { feature?: GeoJSON.Feature }).feature;
+                if (feat) {
+                  const props = feat.properties as AssemblyProperties;
+                  if (props.AC_NAME?.toUpperCase() === activeAssembly.toUpperCase()) {
+                    const typedLayer = lyr as unknown as {
+                      setStyle: (style: object) => void;
+                      bringToFront: () => void;
+                    };
+                    typedLayer.setStyle({
+                      weight: 4,
+                      color: '#065f46',
+                      fillOpacity: 0.75,
+                      opacity: 1,
+                    });
+                    typedLayer.bringToFront();
+                  }
+                }
+              });
+            }
           }
-          clearLegendHover();
         },
         click: (): void => {
           if (level === 'states') {
@@ -482,6 +546,8 @@ export function MapView({
           } else if (level === 'constituencies') {
             onConstituencyClick(name, feature as ConstituencyFeature);
           } else if (onAssemblyClick) {
+            // Set pending selected assembly immediately
+            pendingSelectedAssembly.current = name;
             onAssemblyClick(name, feature as AssemblyFeature);
           }
         },
@@ -495,10 +561,76 @@ export function MapView({
     styleIndex.current = 0;
   }, [geoJsonKey]);
 
-  const style = useCallback(() => {
-    const idx = styleIndex.current++;
-    return getFeatureStyle(idx, level) as object;
-  }, [level]);
+  // Apply selected style when assembly is selected (tooltips are handled in onEachFeature)
+  useEffect(() => {
+    if (selectedAssembly && level === 'assemblies') {
+      // Sync pending ref with actual state
+      pendingSelectedAssembly.current = selectedAssembly;
+
+      // Apply dark green border style and bring to front
+      const applyStyle = (): void => {
+        if (!geoJsonRef.current) return;
+
+        geoJsonRef.current.eachLayer((layer) => {
+          const feature = (layer as unknown as { feature?: GeoJSON.Feature }).feature;
+          if (feature) {
+            const props = feature.properties as AssemblyProperties;
+            const typedLayer = layer as unknown as {
+              setStyle: (style: object) => void;
+              bringToFront: () => void;
+            };
+
+            if (props.AC_NAME?.toUpperCase() === selectedAssembly.toUpperCase()) {
+              typedLayer.setStyle({
+                weight: 4,
+                color: '#065f46',
+                fillOpacity: 0.75,
+                opacity: 1,
+              });
+              typedLayer.bringToFront();
+            }
+          }
+        });
+      };
+
+      // Apply immediately and on next frame
+      applyStyle();
+      const rafId = requestAnimationFrame(applyStyle);
+
+      return () => cancelAnimationFrame(rafId);
+    } else if (!selectedAssembly) {
+      pendingSelectedAssembly.current = null;
+      if (geoJsonRef.current) {
+        geoJsonRef.current.resetStyle();
+      }
+    }
+    return undefined;
+  }, [selectedAssembly, level, geoJsonKey]);
+
+  // Style function that highlights selected assembly with dark green border
+  const style = useCallback(
+    (feature?: GeoJSON.Feature) => {
+      const idx = styleIndex.current++;
+      const baseStyle = getFeatureStyle(idx, level) as object;
+
+      // Highlight selected assembly with dark green border on all sides
+      if (selectedAssembly && level === 'assemblies' && feature) {
+        const props = feature.properties as AssemblyProperties;
+        if (props.AC_NAME?.toUpperCase() === selectedAssembly.toUpperCase()) {
+          return {
+            ...baseStyle,
+            weight: 4,
+            color: '#065f46', // Dark green border
+            fillOpacity: 0.75,
+            opacity: 1,
+          };
+        }
+      }
+
+      return baseStyle;
+    },
+    [level, selectedAssembly]
+  );
 
   const showViewToggle = Boolean(currentState && !currentPC && !currentDistrict);
   // Show back button when not at home (India) level
@@ -543,7 +675,7 @@ export function MapView({
 
         <ScaleControl position="bottomleft" imperial={false} />
 
-        <MapControls />
+        <MapControls level={level} name={legendName} count={legendCount} />
 
         {displayData && (
           <>
@@ -551,13 +683,43 @@ export function MapView({
               key={geoJsonKey}
               ref={geoJsonRef as unknown as React.Ref<L.GeoJSON>}
               data={displayData as GeoJSON.FeatureCollection}
-              style={style}
+              style={style as L.StyleFunction}
               onEachFeature={onEachFeature as (feature: GeoJSON.Feature, layer: Layer) => void}
             />
-            <FitBounds geojson={displayData} />
+            <FitBounds geojson={displayData} selectedFeatureName={selectedAssembly} />
           </>
         )}
       </MapContainer>
+
+      {/* AC Election Result Panel - Show when AC is selected */}
+      {electionResult && onCloseElectionPanel && (
+        <ElectionResultPanel
+          result={electionResult}
+          onClose={onCloseElectionPanel}
+          shareUrl={shareUrl}
+          stateName={currentState ?? undefined}
+          availableYears={availableYears ?? []}
+          selectedYear={selectedYear ?? undefined}
+          onYearChange={onYearChange}
+          parliamentContributions={parliamentContributions}
+          availablePCYears={availablePCYears}
+          selectedPCYear={selectedACPCYear}
+          onPCYearChange={onACPCYearChange}
+        />
+      )}
+
+      {/* PC Election Result Panel - Show when in PC view and no AC selected */}
+      {pcElectionResult && !electionResult && onClosePCElectionPanel && (
+        <PCElectionResultPanel
+          result={pcElectionResult}
+          onClose={onClosePCElectionPanel}
+          shareUrl={pcShareUrl}
+          stateName={currentState ?? undefined}
+          availableYears={pcAvailableYears ?? []}
+          selectedYear={pcSelectedYear ?? undefined}
+          onYearChange={onPCYearChange}
+        />
+      )}
     </div>
   );
 }

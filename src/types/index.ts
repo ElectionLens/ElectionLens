@@ -324,13 +324,51 @@ export interface MapViewProps {
   currentView: ViewMode;
   currentPC: string | null;
   currentDistrict: string | null;
+  selectedAssembly: string | null;
+  electionResult: ACElectionResult | null;
+  shareUrl?: string | undefined;
+  availableYears?: number[] | undefined;
+  selectedYear?: number | null | undefined;
+  /** AC's contributions to Parliament elections (all years) */
+  parliamentContributions?:
+    | Record<
+        number,
+        {
+          pcName: string;
+          year: number;
+          candidates: Array<{
+            name: string;
+            party: string;
+            votes: number;
+            voteShare: number;
+            position: number;
+          }>;
+          validVotes: number;
+        }
+      >
+    | undefined;
+  /** Available parliament years for this AC */
+  availablePCYears?: number[] | undefined;
+  /** Selected parliament year in AC panel */
+  selectedACPCYear?: number | null | undefined;
+  /** PC election result */
+  pcElectionResult?: PCElectionResult | null | undefined;
+  pcShareUrl?: string | undefined;
+  pcAvailableYears?: number[] | undefined;
+  pcSelectedYear?: number | null | undefined;
   onStateClick: (stateName: string, feature: StateFeature) => void;
   onDistrictClick: (districtName: string, feature: DistrictFeature) => void;
   onConstituencyClick: (pcName: string, feature: ConstituencyFeature) => void;
-  onAssemblyClick?: (acName: string, feature: AssemblyFeature) => void;
+  onAssemblyClick?: ((acName: string, feature: AssemblyFeature) => void) | undefined;
   onSwitchView: (view: ViewMode) => void;
   onReset: () => void;
   onGoBack: () => void;
+  onCloseElectionPanel?: (() => void) | undefined;
+  onYearChange?: ((year: number) => void) | undefined;
+  /** Callback for changing parliament year in AC panel */
+  onACPCYearChange?: ((year: number | null) => void) | undefined;
+  onClosePCElectionPanel?: (() => void) | undefined;
+  onPCYearChange?: ((year: number) => void) | undefined;
 }
 
 /** MapControls component props */
@@ -419,6 +457,126 @@ export type IDBDatabaseInstance = IDBDatabase | null;
 /** DB Stats result */
 export interface DBStats {
   count: number;
+}
+
+// ============================================================
+// Election Data Types
+// ============================================================
+
+/** Election candidate result */
+export interface ElectionCandidate {
+  position: number;
+  name: string;
+  party: string;
+  votes: number;
+  voteShare: number;
+  margin: number | null;
+  marginPct: number | null;
+  sex: string;
+  age: number | null;
+  depositLost: boolean;
+}
+
+/** Assembly constituency election result */
+export interface ACElectionResult {
+  year: number;
+  constituencyNo: number;
+  constituencyName: string;
+  constituencyNameOriginal: string;
+  constituencyType: 'GEN' | 'SC' | 'ST';
+  districtName: string;
+  validVotes: number;
+  electors: number;
+  turnout: number;
+  enop: number;
+  totalCandidates: number;
+  candidates: ElectionCandidate[];
+}
+
+/** Election results keyed by constituency name */
+export interface ElectionResultsByConstituency {
+  [constituencyName: string]: ACElectionResult;
+}
+
+// ============================================================
+// Parliamentary Election Data Types
+// ============================================================
+
+/** AC-wise votes for a candidate in PC election */
+export interface ACWiseCandidateVotes {
+  acName: string;
+  votes: number;
+  voteShare: number;
+}
+
+/** Parliamentary election candidate result */
+export interface PCElectionCandidate {
+  position: number;
+  name: string;
+  party: string;
+  votes: number;
+  voteShare: number;
+  margin: number | null;
+  marginPct: number | null;
+  sex: string;
+  age: number | null;
+  depositLost: boolean;
+  /** AC-wise breakdown of votes */
+  acWiseVotes?: ACWiseCandidateVotes[] | undefined;
+}
+
+/** AC contribution to PC election */
+export interface ACContributionToPC {
+  acName: string;
+  acNo: number;
+  electors: number;
+  validVotes: number;
+  turnout: number;
+  candidates: PCElectionCandidate[];
+}
+
+/** Parliamentary constituency election result */
+export interface PCElectionResult {
+  year: number;
+  constituencyNo: number;
+  constituencyName: string;
+  constituencyNameOriginal: string;
+  constituencyType: 'GEN' | 'SC' | 'ST';
+  stateName: string;
+  validVotes: number;
+  electors: number;
+  turnout: number;
+  enop: number;
+  totalCandidates: number;
+  candidates: PCElectionCandidate[];
+  /** Assembly constituencies that constitute this PC */
+  assemblyConstituencies: string[];
+  /** AC-wise breakdown of results */
+  acWiseResults?: { [acName: string]: ACContributionToPC };
+}
+
+/** PC election results keyed by PC name */
+export interface PCElectionResultsByConstituency {
+  [pcName: string]: PCElectionResult;
+}
+
+/** State election data index */
+export interface StateElectionIndex {
+  state: string;
+  stateCode: string;
+  delimitation: number;
+  availableYears: number[];
+  totalConstituencies: number;
+  lastUpdated: string;
+  source: string;
+}
+
+/** All years election data for a state */
+export interface StateElectionData {
+  index: StateElectionIndex;
+  years: {
+    [year: number]: ElectionResultsByConstituency;
+  };
 }
 
 // ============================================================

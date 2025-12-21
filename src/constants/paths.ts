@@ -6,6 +6,9 @@
 /** Base path for all geo data files */
 export const GEO_DATA_BASE = '/data/geo';
 
+/** Base path for election data files */
+export const ELECTION_DATA_BASE = '/data/elections';
+
 /** Boundary data paths */
 export const BOUNDARIES = {
   /** India states and union territories */
@@ -35,6 +38,49 @@ export const DISTRICTS = {
    * @returns Full path to the GeoJSON file
    */
   getPath: (stateSlug: string): string => `${GEO_DATA_BASE}/districts/${stateSlug}.geojson`,
+} as const;
+
+/** Assembly election data paths */
+export const ELECTIONS = {
+  /** Base path for assembly election files */
+  AC_BASE: `${ELECTION_DATA_BASE}/ac`,
+
+  /** Master index of all states with election data */
+  MASTER_INDEX: `${ELECTION_DATA_BASE}/ac/index.json`,
+
+  /**
+   * Get the index file path for a state's election data
+   * @param stateSlug - The state slug (e.g., "tamil-nadu")
+   */
+  getIndexPath: (stateSlug: string): string => `${ELECTION_DATA_BASE}/ac/${stateSlug}/index.json`,
+
+  /**
+   * Get the election results file path for a specific year
+   * @param stateSlug - The state slug
+   * @param year - The election year
+   */
+  getYearPath: (stateSlug: string, year: number): string =>
+    `${ELECTION_DATA_BASE}/ac/${stateSlug}/${year}.json`,
+} as const;
+
+/** Parliamentary election data paths */
+export const PC_ELECTIONS = {
+  /** Base path for parliamentary election files */
+  PC_BASE: `${ELECTION_DATA_BASE}/pc`,
+
+  /**
+   * Get the index file path for a state's PC election data
+   * @param stateSlug - The state slug (e.g., "tamil-nadu")
+   */
+  getIndexPath: (stateSlug: string): string => `${ELECTION_DATA_BASE}/pc/${stateSlug}/index.json`,
+
+  /**
+   * Get the PC election results file path for a specific year
+   * @param stateSlug - The state slug
+   * @param year - The election year
+   */
+  getYearPath: (stateSlug: string, year: number): string =>
+    `${ELECTION_DATA_BASE}/pc/${stateSlug}/${year}.json`,
 } as const;
 
 /** IndexedDB cache keys */
