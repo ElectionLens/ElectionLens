@@ -1080,7 +1080,8 @@ path:focus {
 
   /* Hide controls when sidebar is open on mobile */
   .container:has(.sidebar.open) .leaflet-control-zoom,
-  .container:has(.sidebar.open) .map-toolbar {
+  .container:has(.sidebar.open) .map-toolbar,
+  .container:has(.sidebar.open) .map-legend {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
