@@ -45,20 +45,22 @@ describe('Firebase utilities', () => {
   });
 
   describe('initializeFirebase', () => {
-    it('does not initialize when API key is missing', async () => {
+    it('initializes with fallback config when env vars are not set', async () => {
       // Re-import with fresh state
+      vi.resetModules();
       const firebaseModule = await import('./firebase');
 
-      // Mock env without API key
+      // Mock env without API key - should still work with fallback
       vi.stubEnv('VITE_FIREBASE_API_KEY', '');
       vi.stubEnv('VITE_FIREBASE_PROJECT_ID', '');
 
       firebaseModule.initializeFirebase();
 
-      expect(initializeApp).not.toHaveBeenCalled();
+      // Should initialize with fallback production config
+      expect(initializeApp).toHaveBeenCalled();
     });
 
-    it('initializes Firebase when config is available', async () => {
+    it('initializes Firebase with env config when available', async () => {
       vi.stubEnv('VITE_FIREBASE_API_KEY', 'test-api-key');
       vi.stubEnv('VITE_FIREBASE_PROJECT_ID', 'test-project-id');
       vi.stubEnv('VITE_FIREBASE_AUTH_DOMAIN', 'test.firebaseapp.com');
