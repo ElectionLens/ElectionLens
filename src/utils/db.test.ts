@@ -1,6 +1,15 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { getFromDB, saveToDB, getDBStats, getDB, setDB } from './db';
+import { getFromDB, saveToDB, getDBStats, getDB, setDB, initDB, clearAllCache } from './db';
 import type { GeoJSONData } from '../types';
+
+// Mock window methods
+const mockAlert = vi.fn();
+const mockReload = vi.fn();
+Object.defineProperty(global, 'alert', { value: mockAlert, writable: true });
+Object.defineProperty(global, 'location', {
+  value: { reload: mockReload },
+  writable: true,
+});
 
 // Mock IndexedDB for node environment
 const createMockStore = () => {
@@ -286,6 +295,247 @@ describe('db module', () => {
 
       const stats = await getDBStats();
       expect(stats).toEqual({ count: 0 });
+    });
+  });
+
+  describe('initDB', () => {
+    let originalIndexedDB: IDBFactory;
+
+    beforeEach(() => {
+      originalIndexedDB = global.indexedDB;
+    });
+
+    afterEach(() => {
+      global.indexedDB = originalIndexedDB;
+    });
+
+    it('should return null when indexedDB.open throws an error', async () => {
+      // Mock indexedDB to throw
+      global.indexedDB = {
+        open: vi.fn(() => {
+          throw new Error('IndexedDB not supported');
+        }),
+      } as unknown as IDBFactory;
+
+      const result = await initDB();
+      expect(result).toBeNull();
+    });
+
+    it('should return null on request error', async () => {
+      const mockRequest = {
+        onerror: null as ((event: Event) => void) | null,
+        onsuccess: null as ((event: Event) => void) | null,
+        onupgradeneeded: null as ((event: IDBVersionChangeEvent) => void) | null,
+      };
+
+      global.indexedDB = {
+        open: vi.fn(() => {
+          setTimeout(() => mockRequest.onerror?.(new Event('error')), 10);
+          return mockRequest;
+        }),
+      } as unknown as IDBFactory;
+
+      const result = await initDB();
+      expect(result).toBeNull();
+    });
+
+    it('should initialize successfully', async () => {
+      const mockDB = createMockDB();
+      const mockRequest = {
+        onerror: null as ((event: Event) => void) | null,
+        onsuccess: null as ((event: Event) => void) | null,
+        onupgradeneeded: null as ((event: IDBVersionChangeEvent) => void) | null,
+        result: mockDB,
+      };
+
+      global.indexedDB = {
+        open: vi.fn(() => {
+          setTimeout(() => {
+            mockRequest.onsuccess?.({ target: mockRequest } as unknown as Event);
+          }, 10);
+          return mockRequest;
+        }),
+      } as unknown as IDBFactory;
+
+      const result = await initDB();
+      expect(result).toBe(mockDB);
+    });
+
+    it('should create object store on upgrade', async () => {
+      const mockDB = {
+        ...createMockDB(),
+        objectStoreNames: {
+          contains: vi.fn(() => false),
+        },
+        createObjectStore: vi.fn(),
+      };
+
+      const mockRequest = {
+        onerror: null as ((event: Event) => void) | null,
+        onsuccess: null as ((event: Event) => void) | null,
+        onupgradeneeded: null as ((event: IDBVersionChangeEvent) => void) | null,
+        result: mockDB,
+      };
+
+      global.indexedDB = {
+        open: vi.fn(() => {
+          setTimeout(() => {
+            // First trigger upgrade
+            mockRequest.onupgradeneeded?.({
+              target: mockRequest,
+            } as unknown as IDBVersionChangeEvent);
+            // Then trigger success
+            mockRequest.onsuccess?.({ target: mockRequest } as unknown as Event);
+          }, 10);
+          return mockRequest;
+        }),
+      } as unknown as IDBFactory;
+
+      await initDB();
+      expect(mockDB.createObjectStore).toHaveBeenCalled();
+    });
+
+    it('should not create object store if it already exists', async () => {
+      const mockDB = {
+        ...createMockDB(),
+        objectStoreNames: {
+          contains: vi.fn(() => true),
+        },
+        createObjectStore: vi.fn(),
+      };
+
+      const mockRequest = {
+        onerror: null as ((event: Event) => void) | null,
+        onsuccess: null as ((event: Event) => void) | null,
+        onupgradeneeded: null as ((event: IDBVersionChangeEvent) => void) | null,
+        result: mockDB,
+      };
+
+      global.indexedDB = {
+        open: vi.fn(() => {
+          setTimeout(() => {
+            mockRequest.onupgradeneeded?.({
+              target: mockRequest,
+            } as unknown as IDBVersionChangeEvent);
+            mockRequest.onsuccess?.({ target: mockRequest } as unknown as Event);
+          }, 10);
+          return mockRequest;
+        }),
+      } as unknown as IDBFactory;
+
+      await initDB();
+      expect(mockDB.createObjectStore).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('clearAllCache', () => {
+    let originalIndexedDB: IDBFactory;
+
+    beforeEach(() => {
+      originalIndexedDB = global.indexedDB;
+      mockAlert.mockClear();
+      mockReload.mockClear();
+    });
+
+    afterEach(() => {
+      global.indexedDB = originalIndexedDB;
+    });
+
+    it('should close db and delete database', async () => {
+      const mockDB = createMockDB();
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const mockDeleteRequest = {
+        onsuccess: null as (() => void) | null,
+        onerror: null as (() => void) | null,
+        onblocked: null as (() => void) | null,
+      };
+
+      global.indexedDB = {
+        deleteDatabase: vi.fn(() => {
+          setTimeout(() => mockDeleteRequest.onsuccess?.(), 10);
+          return mockDeleteRequest;
+        }),
+      } as unknown as IDBFactory;
+
+      await clearAllCache();
+
+      expect(mockDB.close).toHaveBeenCalled();
+      expect(getDB()).toBeNull();
+      expect(mockAlert).toHaveBeenCalledWith(
+        'Cache cleared! Page will reload to fetch fresh data.'
+      );
+      expect(mockReload).toHaveBeenCalled();
+    });
+
+    it('should handle blocked database delete', async () => {
+      const mockDB = createMockDB();
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const mockDeleteRequest = {
+        onsuccess: null as (() => void) | null,
+        onerror: null as (() => void) | null,
+        onblocked: null as (() => void) | null,
+      };
+
+      global.indexedDB = {
+        deleteDatabase: vi.fn(() => {
+          setTimeout(() => mockDeleteRequest.onblocked?.(), 10);
+          return mockDeleteRequest;
+        }),
+      } as unknown as IDBFactory;
+
+      await clearAllCache();
+
+      expect(mockAlert).toHaveBeenCalled();
+      expect(mockReload).toHaveBeenCalled();
+    });
+
+    it('should handle delete error', async () => {
+      const mockDB = createMockDB();
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const mockDeleteRequest = {
+        onsuccess: null as (() => void) | null,
+        onerror: null as (() => void) | null,
+        onblocked: null as (() => void) | null,
+        error: new Error('Delete failed'),
+      };
+
+      global.indexedDB = {
+        deleteDatabase: vi.fn(() => {
+          setTimeout(() => mockDeleteRequest.onerror?.(), 10);
+          return mockDeleteRequest;
+        }),
+      } as unknown as IDBFactory;
+
+      // Should not throw, handles error gracefully
+      await clearAllCache();
+
+      expect(mockAlert).toHaveBeenCalled();
+      expect(mockReload).toHaveBeenCalled();
+    });
+
+    it('should work when db is null', async () => {
+      setDB(null);
+
+      const mockDeleteRequest = {
+        onsuccess: null as (() => void) | null,
+        onerror: null as (() => void) | null,
+        onblocked: null as (() => void) | null,
+      };
+
+      global.indexedDB = {
+        deleteDatabase: vi.fn(() => {
+          setTimeout(() => mockDeleteRequest.onsuccess?.(), 10);
+          return mockDeleteRequest;
+        }),
+      } as unknown as IDBFactory;
+
+      await clearAllCache();
+
+      expect(mockAlert).toHaveBeenCalled();
+      expect(mockReload).toHaveBeenCalled();
     });
   });
 });
