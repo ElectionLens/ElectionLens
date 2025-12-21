@@ -1,0 +1,142 @@
+{
+  "LAKSHADWEEP": {
+    "year": 2009,
+    "constituencyNo": 1,
+    "constituencyName": "LAKSHADWEEP",
+    "constituencyNameOriginal": "Lakshadweep",
+    "constituencyType": "GEN",
+    "stateName": "Lakshadweep",
+    "validVotes": 39498,
+    "electors": 0,
+    "turnout": 0,
+    "enop": 2.07,
+    "totalCandidates": 4,
+    "candidates": [
+      {
+        "name": "HAMDULLAH SAYEED",
+        "party": "INC",
+        "votes": 20492,
+        "position": 1,
+        "voteShare": 51.88,
+        "margin": 2198,
+        "marginPct": 5.56,
+        "sex": "M",
+        "age": null,
+        "depositLost": false,
+        "acWiseVotes": [
+          {
+            "acName": "Lakshadweep",
+            "votes": 20492,
+            "voteShare": 51.88
+          }
+        ]
+      },
+      {
+        "name": "DR. POOKUNHIKOYA",
+        "party": "NCP",
+        "votes": 18294,
+        "position": 2,
+        "voteShare": 46.32,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": false,
+        "acWiseVotes": [
+          {
+            "acName": "Lakshadweep",
+            "votes": 18294,
+            "voteShare": 46.32
+          }
+        ]
+      },
+      {
+        "name": "M.K. LUKMANUL HAKEEM",
+        "party": "CPM",
+        "votes": 467,
+        "position": 3,
+        "voteShare": 1.18,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Lakshadweep",
+            "votes": 467,
+            "voteShare": 1.18
+          }
+        ]
+      },
+      {
+        "name": "DR. K. P. MUTHUKOYA",
+        "party": "BJP",
+        "votes": 245,
+        "position": 4,
+        "voteShare": 0.62,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Lakshadweep",
+            "votes": 245,
+            "voteShare": 0.62
+          }
+        ]
+      }
+    ],
+    "assemblyConstituencies": [
+      "Lakshadweep"
+    ],
+    "acWiseResults": {
+      "Lakshadweep": {
+        "acName": "Lakshadweep",
+        "acNo": 1,
+        "acType": "ST",
+        "validVotes": 39498,
+        "candidates": [
+          {
+            "name": "HAMDULLAH SAYEED",
+            "party": "INC",
+            "votes": 20492,
+            "position": 1,
+            "voteShare": 51.88,
+            "sex": "M",
+            "depositLost": false
+          },
+          {
+            "name": "DR. POOKUNHIKOYA",
+            "party": "NCP",
+            "votes": 18294,
+            "position": 2,
+            "voteShare": 46.32,
+            "sex": "M",
+            "depositLost": false
+          },
+          {
+            "name": "M.K. LUKMANUL HAKEEM",
+            "party": "CPM",
+            "votes": 467,
+            "position": 3,
+            "voteShare": 1.18,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "DR. K. P. MUTHUKOYA",
+            "party": "BJP",
+            "votes": 245,
+            "position": 4,
+            "voteShare": 0.62,
+            "sex": "M",
+            "depositLost": true
+          }
+        ]
+      }
+    }
+  }
+}
