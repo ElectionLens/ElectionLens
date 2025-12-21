@@ -488,7 +488,7 @@ function App(): JSX.Element {
                   .replace(/\s*\((BL|SC|ST|GEN)\)\s*/gi, ' ')
                   .replace(/[()]/g, ' ') // Replace remaining parentheses with spaces
                   .replace(/\s+/g, ' ') // Normalize multiple spaces
-                  .replace(/TIRUCHIRAPPALLI/g, 'TIRUCHIRAPALLI') // Normalize spelling
+                  .replace(/TIRUCHIRAPALLI(?!P)/g, 'TIRUCHIRAPPALLI') // Normalize single P to double P
                   .trim()
               );
             };
