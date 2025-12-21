@@ -2808,13 +2808,12 @@ path:focus {
 
 /* Toolbar feedback button */
 .toolbar-btn.feedback-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: #667eea;
 }
 
 .toolbar-btn.feedback-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  background: rgba(102, 126, 234, 0.1);
+  color: #5a67d8;
 }
 
 @media (max-width: 768px) {
