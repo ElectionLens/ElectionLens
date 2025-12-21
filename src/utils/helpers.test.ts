@@ -44,6 +44,18 @@ describe('getStateFileName', () => {
     expect(getStateFileName(undefined)).toBe('');
   });
 
+  it('handles names with extra whitespace via normalization', () => {
+    // This tests the normalized lookup path (lines 33-36)
+    expect(getStateFileName('  Tamil Nadu')).toBe('tamil-nadu');
+    expect(getStateFileName('Kerala  ')).toBe('kerala');
+  });
+
+  it('handles normalized key matching via loop', () => {
+    // This tests the loop comparison path (lines 39-42)
+    // When input has diacritics not directly in map but matches a key with diacritics
+    expect(getStateFileName('  Arunāchal Pradesh  ')).toBe('arunachal-pradesh');
+  });
+
   it('generates slug from name as fallback', () => {
     const result = getStateFileName('Some New State');
     expect(result).toBe('some-new-state');

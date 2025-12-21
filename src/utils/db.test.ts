@@ -1,141 +1,291 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { DB_NAME, DB_VERSION, STORE_NAME } from '../constants';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { getFromDB, saveToDB, getDBStats, getDB, setDB } from './db';
+import type { GeoJSONData } from '../types';
 
-describe('IndexedDB Configuration', () => {
-  it('has correct database name', () => {
-    expect(DB_NAME).toBe('IndiaElectionMapDB');
-  });
+// Mock IndexedDB for node environment
+const createMockStore = () => {
+  const storage: Record<string, unknown> = {};
+  return {
+    get: vi.fn((key: string) => {
+      const request = {
+        result: storage[key],
+        onsuccess: null as (() => void) | null,
+        onerror: null as (() => void) | null,
+      };
+      setTimeout(() => request.onsuccess?.(), 0);
+      return request;
+    }),
+    put: vi.fn((item: { id: string; data: unknown }) => {
+      storage[item.id] = item;
+    }),
+    count: vi.fn(() => {
+      const request = {
+        result: Object.keys(storage).length,
+        onsuccess: null as (() => void) | null,
+        onerror: null as (() => void) | null,
+      };
+      setTimeout(() => request.onsuccess?.(), 0);
+      return request;
+    }),
+  };
+};
 
-  it('has correct database version', () => {
-    expect(DB_VERSION).toBe(1);
-  });
-
-  it('has correct store name', () => {
-    expect(STORE_NAME).toBe('geojson');
-  });
+const createMockTransaction = (store: ReturnType<typeof createMockStore>) => ({
+  objectStore: vi.fn(() => store),
+  oncomplete: null as (() => void) | null,
+  onerror: null as (() => void) | null,
 });
 
-describe('Cache Key Generation', () => {
-  it('generates consistent cache keys', () => {
-    // Test that cache keys follow the expected pattern
-    const stateKey = 'geo_boundaries_states';
-    const districtKey = 'geo_districts_tamil-nadu';
-    const assemblyKey = 'geo_assembly_constituencies';
-    const parliamentKey = 'geo_parliament_constituencies';
+const createMockDB = () => {
+  const store = createMockStore();
+  const transaction = createMockTransaction(store);
 
-    expect(stateKey).toMatch(/^geo_boundaries_/);
-    expect(districtKey).toMatch(/^geo_districts_/);
-    expect(assemblyKey).toMatch(/^geo_assembly_/);
-    expect(parliamentKey).toMatch(/^geo_parliament_/);
+  return {
+    transaction: vi.fn(() => {
+      // Trigger oncomplete after a small delay
+      setTimeout(() => transaction.oncomplete?.(), 0);
+      return transaction;
+    }),
+    close: vi.fn(),
+    objectStoreNames: {
+      contains: vi.fn(() => true),
+    },
+    createObjectStore: vi.fn(),
+    _store: store,
+    _transaction: transaction,
+  };
+};
+
+describe('db module', () => {
+  beforeEach(() => {
+    // Reset DB before each test
+    setDB(null);
   });
 
-  it('generates unique keys for different states', () => {
-    const tamilNaduKey = 'geo_districts_tamil-nadu';
-    const keralaKey = 'geo_districts_kerala';
-    const apKey = 'geo_districts_andhra-pradesh';
-
-    expect(tamilNaduKey).not.toBe(keralaKey);
-    expect(tamilNaduKey).not.toBe(apKey);
-    expect(keralaKey).not.toBe(apKey);
-  });
-});
-
-describe('Cache Data Structure', () => {
-  it('stores GeoJSON data with correct structure', () => {
-    const mockGeoJSON = {
-      type: 'FeatureCollection',
-      features: [
-        {
-          type: 'Feature',
-          properties: { name: 'Test' },
-          geometry: { type: 'Polygon', coordinates: [] },
-        },
-      ],
-    };
-
-    expect(mockGeoJSON.type).toBe('FeatureCollection');
-    expect(Array.isArray(mockGeoJSON.features)).toBe(true);
-    expect(mockGeoJSON.features[0].type).toBe('Feature');
+  afterEach(() => {
+    setDB(null);
+    vi.restoreAllMocks();
   });
 
-  it('validates GeoJSON feature structure', () => {
-    const feature = {
-      type: 'Feature',
-      properties: { ST_NAME: 'Tamil Nadu', DT_CODE: 1 },
-      geometry: { type: 'Polygon', coordinates: [[]] },
-    };
+  describe('getDB / setDB', () => {
+    it('should return null initially', () => {
+      expect(getDB()).toBeNull();
+    });
 
-    expect(feature.type).toBe('Feature');
-    expect(feature.properties).toBeDefined();
-    expect(feature.geometry).toBeDefined();
-    expect(feature.geometry.type).toBe('Polygon');
+    it('should set and get the database', () => {
+      const mockDB = createMockDB();
+      setDB(mockDB as unknown as IDBDatabase);
+      expect(getDB()).toBe(mockDB);
+    });
+
+    it('should allow setting to null', () => {
+      const mockDB = createMockDB();
+      setDB(mockDB as unknown as IDBDatabase);
+      expect(getDB()).toBe(mockDB);
+      setDB(null);
+      expect(getDB()).toBeNull();
+    });
   });
 
-  it('validates state feature properties', () => {
-    const stateFeature = {
-      type: 'Feature',
-      properties: {
-        ST_NAME: 'Tamil Nadu',
-        ST_CODE: 33,
-      },
-      geometry: { type: 'MultiPolygon', coordinates: [] },
-    };
+  describe('getFromDB', () => {
+    it('should return null when db is not initialized', async () => {
+      const result = await getFromDB('some-key');
+      expect(result).toBeNull();
+    });
 
-    expect(stateFeature.properties.ST_NAME).toBe('Tamil Nadu');
-    expect(stateFeature.properties.ST_CODE).toBe(33);
+    it('should retrieve data from the store when db is initialized', async () => {
+      const mockDB = createMockDB();
+      const mockData: GeoJSONData = {
+        type: 'FeatureCollection',
+        features: [],
+      };
+
+      // Preset data in the mock store
+      mockDB._store.get.mockImplementation(() => {
+        const request = {
+          result: { id: 'test-key', data: mockData, timestamp: Date.now() },
+          onsuccess: null as (() => void) | null,
+          onerror: null as (() => void) | null,
+        };
+        setTimeout(() => request.onsuccess?.(), 0);
+        return request;
+      });
+
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const result = await getFromDB('test-key');
+      expect(result).toEqual(mockData);
+    });
+
+    it('should return null when key is not found', async () => {
+      const mockDB = createMockDB();
+      mockDB._store.get.mockImplementation(() => {
+        const request = {
+          result: undefined,
+          onsuccess: null as (() => void) | null,
+          onerror: null as (() => void) | null,
+        };
+        setTimeout(() => request.onsuccess?.(), 0);
+        return request;
+      });
+
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const result = await getFromDB('non-existent-key');
+      expect(result).toBeNull();
+    });
+
+    it('should return null on error', async () => {
+      const mockDB = createMockDB();
+      mockDB._store.get.mockImplementation(() => {
+        const request = {
+          result: undefined,
+          onsuccess: null as (() => void) | null,
+          onerror: null as (() => void) | null,
+        };
+        setTimeout(() => request.onerror?.(), 0);
+        return request;
+      });
+
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const result = await getFromDB('error-key');
+      expect(result).toBeNull();
+    });
+
+    it('should handle transaction errors gracefully', async () => {
+      const mockDB = createMockDB();
+      mockDB.transaction.mockImplementation(() => {
+        throw new Error('Transaction failed');
+      });
+
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const result = await getFromDB('any-key');
+      expect(result).toBeNull();
+    });
   });
 
-  it('validates district feature properties', () => {
-    const districtFeature = {
-      type: 'Feature',
-      properties: {
-        ST_NAME: 'Tamil Nadu',
-        DIST_NAME: 'Chennai',
-        DT_CODE: 1,
-      },
-      geometry: { type: 'Polygon', coordinates: [] },
-    };
+  describe('saveToDB', () => {
+    it('should return false when db is not initialized', async () => {
+      const mockData: GeoJSONData = {
+        type: 'FeatureCollection',
+        features: [],
+      };
 
-    expect(districtFeature.properties.ST_NAME).toBe('Tamil Nadu');
-    expect(districtFeature.properties.DIST_NAME).toBe('Chennai');
-    expect(districtFeature.properties.DT_CODE).toBe(1);
+      const result = await saveToDB('test-key', mockData);
+      expect(result).toBe(false);
+    });
+
+    it('should save data successfully', async () => {
+      const mockDB = createMockDB();
+      const mockData: GeoJSONData = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            properties: { name: 'Test' },
+            geometry: { type: 'Point', coordinates: [0, 0] },
+          },
+        ],
+      };
+
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const result = await saveToDB('test-key', mockData);
+      expect(result).toBe(true);
+      expect(mockDB._store.put).toHaveBeenCalled();
+    });
+
+    it('should return false on transaction error', async () => {
+      const mockDB = createMockDB();
+      const mockTransaction = createMockTransaction(mockDB._store);
+      mockDB.transaction.mockImplementation(() => {
+        setTimeout(() => mockTransaction.onerror?.(), 0);
+        return mockTransaction;
+      });
+
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const mockData: GeoJSONData = {
+        type: 'FeatureCollection',
+        features: [],
+      };
+
+      const result = await saveToDB('test-key', mockData);
+      expect(result).toBe(false);
+    });
+
+    it('should handle exceptions gracefully', async () => {
+      const mockDB = createMockDB();
+      mockDB.transaction.mockImplementation(() => {
+        throw new Error('Transaction creation failed');
+      });
+
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const mockData: GeoJSONData = {
+        type: 'FeatureCollection',
+        features: [],
+      };
+
+      const result = await saveToDB('test-key', mockData);
+      expect(result).toBe(false);
+    });
   });
 
-  it('validates assembly feature properties', () => {
-    const assemblyFeature = {
-      type: 'Feature',
-      properties: {
-        ST_NAME: 'Tamil Nadu',
-        AC_NAME: 'Anna Nagar',
-        AC_NO: 1,
-        PC_NAME: 'Chennai North',
-        PC_NO: 1,
-        DIST_NAME: 'Chennai',
-      },
-      geometry: { type: 'Polygon', coordinates: [] },
-    };
+  describe('getDBStats', () => {
+    it('should return zero count when db is not initialized', async () => {
+      const stats = await getDBStats();
+      expect(stats).toEqual({ count: 0 });
+    });
 
-    expect(assemblyFeature.properties.AC_NAME).toBe('Anna Nagar');
-    expect(assemblyFeature.properties.PC_NAME).toBe('Chennai North');
-    expect(assemblyFeature.properties.DIST_NAME).toBe('Chennai');
-  });
-});
+    it('should return count from database', async () => {
+      const mockDB = createMockDB();
+      mockDB._store.count.mockImplementation(() => {
+        const request = {
+          result: 5,
+          onsuccess: null as (() => void) | null,
+          onerror: null as (() => void) | null,
+        };
+        setTimeout(() => request.onsuccess?.(), 0);
+        return request;
+      });
 
-describe('Cache Fallback Behavior', () => {
-  it('handles missing data gracefully', () => {
-    const cachedData = null;
-    const fallbackData = { type: 'FeatureCollection', features: [] };
+      setDB(mockDB as unknown as IDBDatabase);
 
-    const result = cachedData ?? fallbackData;
-    expect(result).toEqual(fallbackData);
-  });
+      const stats = await getDBStats();
+      expect(stats).toEqual({ count: 5 });
+    });
 
-  it('prefers cached data over fallback', () => {
-    const cachedData = { type: 'FeatureCollection', features: [{ id: 1 }] };
-    const fallbackData = { type: 'FeatureCollection', features: [] };
+    it('should return zero count on error', async () => {
+      const mockDB = createMockDB();
+      mockDB._store.count.mockImplementation(() => {
+        const request = {
+          result: 0,
+          onsuccess: null as (() => void) | null,
+          onerror: null as (() => void) | null,
+        };
+        setTimeout(() => request.onerror?.(), 0);
+        return request;
+      });
 
-    const result = cachedData ?? fallbackData;
-    expect(result).toEqual(cachedData);
-    expect(result.features).toHaveLength(1);
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const stats = await getDBStats();
+      expect(stats).toEqual({ count: 0 });
+    });
+
+    it('should handle exceptions gracefully', async () => {
+      const mockDB = createMockDB();
+      mockDB.transaction.mockImplementation(() => {
+        throw new Error('Transaction error');
+      });
+
+      setDB(mockDB as unknown as IDBDatabase);
+
+      const stats = await getDBStats();
+      expect(stats).toEqual({ count: 0 });
+    });
   });
 });

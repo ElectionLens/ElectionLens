@@ -189,13 +189,21 @@ const LAYER_URLS: Record<string, { url: string; maxZoom: number; subdomains?: st
   },
 };
 
+/** Props for MapControls component */
+interface MapControlsProps {
+  level: MapLevel;
+  name: string;
+  count: number;
+}
+
 /**
  * Map controls component (Leaflet-based)
  * Handles coordinates display, legend, and layer switching
  */
-function MapControls(): null {
+function MapControls({ level, name, count }: MapControlsProps): null {
   const map = useMap();
   const baseLayerRef = useRef<L.TileLayer | null>(null);
+  const legendControlRef = useRef<L.Control | null>(null);
 
   // Initialize and handle base layer switching
   useEffect(() => {
@@ -243,13 +251,12 @@ function MapControls(): null {
       onAdd: function (): HTMLElement {
         const container = L.DomUtil.create('div', 'map-legend');
         container.id = 'mapLegend';
-        container.innerHTML =
-          '<h4 style="color: #f59e0b;">States View</h4><div class="legend-content"><div style="font-weight: 500; color: #1f2937;">India</div></div>';
         return container;
       },
     });
 
     const legendControl = new LegendControl();
+    legendControlRef.current = legendControl;
     map.addControl(legendControl);
 
     return (): void => {
@@ -257,45 +264,43 @@ function MapControls(): null {
     };
   }, [map]);
 
-  return null;
-}
+  // Update legend content when props change
+  useEffect(() => {
+    const legend = document.getElementById('mapLegend');
+    if (!legend) return;
 
-/**
- * Update the legend element with current map level info
- */
-function updateLegend(level: MapLevel, name: string, count: number): void {
-  const legend = document.getElementById('mapLegend');
-  if (!legend) return;
+    const levelLabels: Record<MapLevel, { label: string; color: string }> = {
+      states: { label: 'States View', color: '#f59e0b' },
+      districts: { label: 'Districts View', color: '#f59e0b' },
+      constituencies: { label: 'Parliament View', color: '#8b5cf6' },
+      assemblies: { label: 'Assembly View', color: '#10b981' },
+    };
 
-  const levelLabels: Record<MapLevel, { label: string; color: string }> = {
-    states: { label: 'States View', color: '#f59e0b' },
-    districts: { label: 'Districts View', color: '#f59e0b' },
-    constituencies: { label: 'Parliament View', color: '#8b5cf6' },
-    assemblies: { label: 'Assembly View', color: '#10b981' },
-  };
+    const { label, color } = levelLabels[level] ?? { label: 'Map', color: '#f59e0b' };
+    const colors: HexColor[] = COLOR_PALETTES[level] ?? COLOR_PALETTES.states;
+    const sampleColors = colors.slice(0, 5);
 
-  const { label, color } = levelLabels[level] ?? { label: 'Map', color: '#f59e0b' };
-  const colors: HexColor[] = COLOR_PALETTES[level] ?? COLOR_PALETTES.states;
-  const sampleColors = colors.slice(0, 5);
+    const countLabels: Record<MapLevel, string> = {
+      states: 'states/UTs',
+      districts: 'districts',
+      constituencies: 'parliamentary',
+      assemblies: 'assembly',
+    };
+    const countLabel = countLabels[level] ?? 'areas';
 
-  const countLabels: Record<MapLevel, string> = {
-    states: 'States & UTs',
-    districts: 'Districts',
-    constituencies: 'Parliamentary Constituencies',
-    assemblies: 'Assembly Constituencies',
-  };
-  const countLabel = countLabels[level] ?? 'regions';
-
-  legend.innerHTML = `
-    <h4 style="color: ${color}; margin: 0 0 4px 0; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;">${label}</h4>
-    <div class="legend-content">
-      <div style="font-weight: 600; color: #1f2937; font-size: 0.85rem;">${name}</div>
-      ${count ? `<div style="font-size: 0.7rem; color: #6b7280; margin: 2px 0 4px;">${count} ${countLabel}</div>` : '<div style="margin-bottom: 4px;"></div>'}
-      <div style="display: flex; gap: 2px; margin-top: 4px;">
-        ${sampleColors.map((c) => `<div style="background: ${c}; width: 14px; height: 14px; border-radius: 2px;"></div>`).join('')}
+    legend.innerHTML = `
+      <h4 style="color: ${color}; margin: 0 0 4px 0; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;">${label}</h4>
+      <div class="legend-content">
+        <div style="font-weight: 600; color: #1f2937; font-size: 0.85rem;">${name}</div>
+        ${count ? `<div style="font-size: 0.7rem; color: #6b7280; margin: 2px 0 4px;">${count} ${countLabel}</div>` : '<div style="margin-bottom: 4px;"></div>'}
+        <div style="display: flex; gap: 2px; margin-top: 4px;">
+          ${sampleColors.map((c) => `<div style="background: ${c}; width: 14px; height: 14px; border-radius: 2px;"></div>`).join('')}
+        </div>
       </div>
-    </div>
-  `;
+    `;
+  }, [level, name, count]);
+
+  return null;
 }
 
 /** Extended FitBounds props with optional selected feature */
@@ -417,13 +422,10 @@ export function MapView({
     return statesGeoJSON;
   }, [statesGeoJSON, currentData, currentState, currentPC, currentDistrict]);
 
-  // Update legend when view changes
-  useEffect(() => {
-    const name =
-      currentPC ?? currentDistrict ?? (currentState ? normalizeName(currentState) : 'India');
-    const count = displayData?.features?.length ?? 0;
-    updateLegend(level, name, count);
-  }, [level, currentState, currentView, currentPC, currentDistrict, displayData]);
+  // Compute legend info
+  const legendName =
+    currentPC ?? currentDistrict ?? (currentState ? normalizeName(currentState) : 'India');
+  const legendCount = displayData?.features?.length ?? 0;
 
   // Style function with index tracking
   const styleIndex = useRef<number>(0);
@@ -673,7 +675,7 @@ export function MapView({
 
         <ScaleControl position="bottomleft" imperial={false} />
 
-        <MapControls />
+        <MapControls level={level} name={legendName} count={legendCount} />
 
         {displayData && (
           <>
