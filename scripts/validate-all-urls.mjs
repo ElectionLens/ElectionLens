@@ -123,10 +123,10 @@ for (const state of filteredStates) {
   console.log(`\n📍 ${state.name} (${state.id})`);
   console.log('-'.repeat(50));
 
-  // Get state's election data index
-  const stateSlug = slugify(state.name);
-  const acIndexPath = path.join(DATA_DIR, `elections/ac/${stateSlug}/index.json`);
-  const pcIndexPath = path.join(DATA_DIR, `elections/pc/${stateSlug}/index.json`);
+  // Get state's election data index (use state ID for folder path)
+  const stateId = state.id;
+  const acIndexPath = path.join(DATA_DIR, `elections/ac/${stateId}/index.json`);
+  const pcIndexPath = path.join(DATA_DIR, `elections/pc/${stateId}/index.json`);
   
   const acIndex = loadJSON(acIndexPath);
   const pcIndex = loadJSON(pcIndexPath);
@@ -139,10 +139,10 @@ for (const state of filteredStates) {
   const latestPCYear = pcYears[pcYears.length - 1];
   
   const acElectionData = latestACYear 
-    ? loadJSON(path.join(DATA_DIR, `elections/ac/${stateSlug}/${latestACYear}.json`))
+    ? loadJSON(path.join(DATA_DIR, `elections/ac/${stateId}/${latestACYear}.json`))
     : null;
   const pcElectionData = latestPCYear
-    ? loadJSON(path.join(DATA_DIR, `elections/pc/${stateSlug}/${latestPCYear}.json`))
+    ? loadJSON(path.join(DATA_DIR, `elections/pc/${stateId}/${latestPCYear}.json`))
     : null;
 
   // Get PCs for this state
@@ -171,12 +171,16 @@ for (const state of filteredStates) {
       errors.push('missing GeoJSON');
     }
     
-    // Check election data
-    const hasData = pcElectionData && Object.keys(pcElectionData).some(key => {
-      const normalized = key.toUpperCase().replace(/[^A-Z0-9]/g, '');
-      const pcNormalized = pc.name.toUpperCase().replace(/[^A-Z0-9]/g, '');
-      return normalized === pcNormalized || normalized.includes(pcNormalized) || pcNormalized.includes(normalized);
-    });
+    // Check election data (now keyed by schema ID)
+    const hasData = pcElectionData && (
+      pcElectionData[pc.id] || // Direct schema ID match
+      Object.keys(pcElectionData).some(key => {
+        // Fallback: fuzzy name match for legacy data
+        const normalized = key.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const pcNormalized = pc.name.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        return normalized === pcNormalized || normalized.includes(pcNormalized) || pcNormalized.includes(normalized);
+      })
+    );
     
     if (hasData || pcYears.length > 0) {
       stats.pcWithData++;
@@ -244,6 +248,7 @@ for (const state of filteredStates) {
     
     if (errors.length > 0) {
       stateACErrors++;
+      const stateSlug = slugify(state.name);
       const url = pc ? generateACUrl(state, pc, ac, latestACYear || 2024) : `/${stateSlug}/ac/${slugify(ac.name)}`;
       stats.acErrors.push({
         id: ac.id,
