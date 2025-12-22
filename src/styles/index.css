@@ -1381,6 +1381,22 @@ path:focus {
   border-bottom: 1px solid #e2e8f0;
 }
 
+/* Mobile: horizontal scroll instead of wrap */
+@media (max-width: 768px) {
+  .election-year-selector {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .election-year-selector::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .year-btn {
   flex-shrink: 0;
   padding: 6px 12px;
@@ -2253,9 +2269,10 @@ path:focus {
     right: 0;
     left: 0;
     width: 100%;
-    max-height: 70vh;
-    border-radius: 20px 20px 0 0;
-    animation: slideUp 0.3s ease-out;
+    max-height: 75vh;
+    border-radius: 16px 16px 0 0;
+    animation: slideUp 0.25s ease-out;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
   }
 
   @keyframes slideUp {
@@ -2269,26 +2286,106 @@ path:focus {
     }
   }
 
+  /* Compact header on mobile */
   .election-panel-header {
-    padding: 14px 16px;
+    padding: 8px 12px 10px;
   }
 
   .election-panel-title h3 {
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+  }
+
+  .constituency-type {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+
+  .title-badges {
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .pc-badge {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+
+  /* Compact winner card */
+  .winner-card {
+    margin: 8px 10px;
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .winner-info {
+    gap: 10px;
+  }
+
+  .winner-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+  }
+
+  .winner-name {
+    font-size: 1rem;
+    margin-bottom: 2px;
+  }
+
+  .winner-party {
+    font-size: 0.75rem;
+  }
+
+  .winner-stats {
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .stat-item {
+    padding: 6px 0;
+  }
+
+  .stat-value {
     font-size: 1rem;
   }
 
-  .winner-card {
-    margin: 12px;
-    padding: 14px;
+  .stat-label {
+    font-size: 0.65rem;
   }
 
+  /* Compact stats row */
   .constituency-stats {
-    margin: 0 12px 12px;
+    margin: 0 10px 8px;
+    gap: 6px;
   }
 
+  .constituency-stat {
+    padding: 8px 6px;
+    border-radius: 8px;
+  }
+
+  .constituency-stat-value {
+    font-size: 0.95rem;
+  }
+
+  .constituency-stat-label {
+    font-size: 0.6rem;
+  }
+
+  /* Compact candidates section */
   .candidates-section {
-    padding: 0 12px 16px;
-    max-height: 200px;
+    padding: 0 10px 12px;
+    max-height: 180px;
+  }
+
+  .candidates-section h4 {
+    font-size: 0.75rem;
+    margin-bottom: 6px;
+  }
+
+  .candidate-row {
+    padding: 8px 0;
   }
 }
 
@@ -2835,17 +2932,18 @@ path:focus {
 /* Bottom Sheet Drag Handle */
 .bottom-sheet-handle {
   display: none;
-  width: 36px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 2px;
-  margin: 0 auto 8px;
+  width: 40px;
+  height: 5px;
+  background: #cbd5e1;
+  border-radius: 3px;
+  margin: 12px auto 4px;
   cursor: grab;
+  flex-shrink: 0;
 }
 
 .bottom-sheet-handle:active {
   cursor: grabbing;
-  background: rgba(255, 255, 255, 0.6);
+  background: #94a3b8;
 }
 
 @media (max-width: 768px) {
@@ -2853,8 +2951,26 @@ path:focus {
     display: block;
   }
 
+  /* Compact mobile header */
   .election-panel-header {
-    padding-top: 8px;
+    padding: 10px 14px;
+  }
+
+  .election-panel-title h3 {
+    font-size: 1.05rem;
+    line-height: 1.2;
+  }
+
+  .election-panel-actions {
+    gap: 4px;
+  }
+
+  .election-panel-btn {
+    padding: 8px;
+  }
+
+  .election-panel-close {
+    padding: 8px;
   }
 }
 
@@ -2886,15 +3002,41 @@ path:focus {
 /* Enhanced Touch Targets (minimum 44px) */
 @media (max-width: 768px) {
   .year-btn {
-    min-height: 44px;
-    min-width: 60px;
-    padding: 10px 14px;
-    font-size: 0.85rem;
+    min-height: 36px;
+    min-width: auto;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    border-radius: 18px;
+  }
+
+  .year-btn.parliament-year {
+    font-size: 0.75rem;
+    padding: 8px 10px;
   }
 
   .panel-tab {
-    min-height: 44px;
-    padding: 10px 12px;
+    min-height: 40px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    gap: 4px;
+  }
+
+  .panel-tab svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Compact panel tabs container */
+  .panel-tabs {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  /* District footer - more compact */
+  .district-info {
+    padding: 8px 12px;
+    font-size: 0.7rem;
   }
 
   .election-panel-close {
