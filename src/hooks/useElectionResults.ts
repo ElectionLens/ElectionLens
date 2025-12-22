@@ -70,86 +70,15 @@ function getStateSlug(stateName: string): string {
 }
 
 /**
- * Known AC name mappings: GeoJSON name -> Election data name
- * Used for edge cases where automated matching fails
+ * Normalize AC name for matching
+ * Strips diacritics, removes parentheses (SC/ST suffixes), converts to uppercase
  */
-const AC_NAME_MAPPINGS: Record<string, string> = {
-  // Bihar
-  GORIAKOTHI: 'GORIYAKOTHI',
-  RUNNISAIDPUR: 'RUNNI SAIDPUR',
-  TRIVENIGANJ: 'TRIVENI GANJ',
-  // Chhattisgarh
-  DURGRURAL: 'DURG GRAMIN',
-  NARAYANPUR: 'NARAINPUR',
-  NAWAGARH: 'BINDRA NAWAGARH',
-  // Gujarat
-  KALAVAD: 'KALAWAD',
-  CHORYASI: 'CHORASI',
-  // Jharkhand
-  MANDU: 'MANDHU',
-  GOMIA: 'GOMIYA',
-  // Kerala
-  NEMMARA: 'NEMARA',
-  // Madhya Pradesh
-  SUMAWALI: 'SUMAOLI',
-  NARYOLI: 'NARYAWALI',
-  // Maharashtra
-  DEOLALI: 'DEOLI',
-  // Manipur
-  KEISAMTHONG: 'KEISHAMTHONG',
-  // Meghalaya
-  SOHING: 'SOHRA',
-  // Nagaland
-  SHAMTORRCHESSORE: 'SHAMATOR CHESSORE',
-  // Rajasthan
-  SAHARA: 'SAHADA',
-  KARANPUR: 'SRI KARANPUR',
-  GANGANAGAR: 'SRI GANGANAGAR',
-  NEEMAKATHANA: 'NEEMKATHANA',
-  LADNUN: 'LADNU',
-  RAMGARH: 'DANTA RAMGARH',
-  KAPASAN: 'KAPASIN',
-  // Tamil Nadu
-  ARAKKONAM: 'ARAKONAM',
-  EDAPPADI: 'EDAPADI',
-  SENTHAMANGALAM: 'SENTHAMAN GALAM',
-  VILUPPURAM: 'VILLUPURAM',
-  // Uttar Pradesh
-  PATIYALI: 'PATIALI',
-  PANIYRA: 'PANIARA',
-  MARIYAHU: 'MARIAHU',
-  // West Bengal
-  BAISNABNAGAR: 'BAISHNAB NAGAR',
-};
-
-/**
- * Create a canonical key for matching (removes all separators and special chars)
- */
-function createCanonicalKey(name: string): string {
+function normalizeACName(name: string): string {
   return stripDiacritics(name)
     .toUpperCase()
-    .replace(/\s*\([^)]*\)\s*/g, '') // Remove parentheses
-    .replace(/[^A-Z0-9]/g, ''); // Keep only alphanumeric
-}
-
-/**
- * Calculate similarity score between two strings (0-1)
- */
-function similarityScore(a: string, b: string): number {
-  if (a === b) return 1;
-  const longer = a.length > b.length ? a : b;
-  const shorter = a.length > b.length ? b : a;
-  if (longer.length === 0) return 1;
-
-  // Check if shorter is contained in longer
-  if (longer.includes(shorter)) return shorter.length / longer.length;
-
-  // Count matching characters
-  let matches = 0;
-  for (let i = 0; i < shorter.length; i++) {
-    if (longer.includes(shorter[i]!)) matches++;
-  }
-  return matches / longer.length;
+    .replace(/\s*\([^)]*\)\s*/g, '') // Remove parentheses like (SC), (ST)
+    .replace(/[^A-Z0-9]/g, '') // Keep only alphanumeric
+    .trim();
 }
 
 /** Options for getACResult */
@@ -372,11 +301,12 @@ export function useElectionResults(): UseElectionResultsReturn {
       }
       console.log('[getACResult] Results loaded, keys count:', Object.keys(results).length);
 
-      // Find the AC result - prioritize schema ID lookup (new format)
+      // Find the AC result using simplified lookup (schema ID or name matching)
       let result: ACElectionResult | undefined;
-      const keys = Object.keys(results);
+      const searchName = canonicalName ?? acName;
+      const normalizedSearch = normalizeACName(searchName);
 
-      // 1. Try schema ID first (new ID-based format: "TN-001")
+      // Strategy 1: Schema ID direct lookup (primary path for new data format)
       if (schemaId) {
         result = results[schemaId];
         if (result) {
@@ -384,64 +314,30 @@ export function useElectionResults(): UseElectionResultsReturn {
         }
       }
 
-      // 2. Try direct name match (legacy format: "GUMMIDIPUNDI")
+      // Strategy 2: Direct key match (for any legacy data)
       if (!result) {
-        const searchName = canonicalName ?? acName;
-        result = results[searchName.toUpperCase()];
+        result = results[searchName.toUpperCase().trim()];
         if (result) {
-          console.log('[getACResult] ✓ Direct name match:', searchName.toUpperCase());
+          console.log('[getACResult] ✓ Direct key match:', searchName.toUpperCase().trim());
         }
       }
 
-      // 3. Try canonical key match (handles diacritics, SC/ST suffixes)
+      // Strategy 3: Match by name properties (for schema ID-keyed data)
       if (!result) {
-        const searchName = canonicalName ?? acName;
-        const canonicalKey = createCanonicalKey(searchName);
-        const canonicalMatch = keys.find((k) => createCanonicalKey(k) === canonicalKey);
-        if (canonicalMatch) {
-          result = results[canonicalMatch];
-          console.log('[getACResult] ✓ Canonical match:', canonicalMatch);
-        }
-      }
+        for (const [key, value] of Object.entries(results)) {
+          if (!value || typeof value !== 'object') continue;
 
-      // 4. Try mapped name if available (legacy edge cases)
-      if (!result) {
-        const searchName = canonicalName ?? acName;
-        const canonicalKey = createCanonicalKey(searchName);
-        const mappedName = AC_NAME_MAPPINGS[canonicalKey];
-        if (mappedName) {
-          const mappedMatch = keys.find(
-            (k) =>
-              createCanonicalKey(k) === createCanonicalKey(mappedName) ||
-              k.toUpperCase().replace(/\s+/g, ' ').trim() === mappedName
-          );
-          if (mappedMatch) {
-            result = results[mappedMatch];
-            console.log('[getACResult] ✓ Mapped name match:', mappedMatch);
-          }
-        }
-      }
-
-      // 5. Try matching by result's name/constituencyName property (for schema ID-keyed data)
-      if (!result) {
-        const searchName = canonicalName ?? acName;
-        const canonicalKey = createCanonicalKey(searchName);
-
-        for (const [k, v] of Object.entries(results)) {
-          if (!v || typeof v !== 'object') continue;
-          const resultData = v;
-
-          // Check name, constituencyName, constituencyNameOriginal
+          // Check constituencyName, constituencyNameOriginal, name
           const namesToCheck = [
-            resultData.name,
-            resultData.constituencyName,
-            resultData.constituencyNameOriginal,
-          ].filter(Boolean) as string[];
+            value.constituencyName,
+            value.constituencyNameOriginal,
+            value.name,
+          ].filter((n): n is string => Boolean(n));
 
           for (const name of namesToCheck) {
-            if (createCanonicalKey(name) === canonicalKey) {
-              result = resultData;
-              console.log('[getACResult] ✓ Name property match:', k, name);
+            if (normalizeACName(name) === normalizedSearch) {
+              result = value;
+              console.log('[getACResult] ✓ Name property match:', key, '→', name);
               break;
             }
           }
@@ -449,84 +345,29 @@ export function useElectionResults(): UseElectionResultsReturn {
         }
       }
 
-      // 6. Try fuzzy match on name properties (similarity-based, threshold 0.7)
+      // Strategy 4: Partial match (one contains the other) - handles minor variations
       if (!result) {
-        const searchName = canonicalName ?? acName;
-        const canonicalKey = createCanonicalKey(searchName);
-        let bestMatch: string | null = null;
-        let bestScore = 0.7;
+        for (const [key, value] of Object.entries(results)) {
+          if (!value || typeof value !== 'object') continue;
 
-        for (const [k, v] of Object.entries(results)) {
-          if (!v || typeof v !== 'object') continue;
-          const resultData = v;
-
-          // Check similarity against name properties
           const namesToCheck = [
-            resultData.name,
-            resultData.constituencyName,
-            resultData.constituencyNameOriginal,
-          ].filter(Boolean) as string[];
+            value.constituencyName,
+            value.constituencyNameOriginal,
+            value.name,
+          ].filter((n): n is string => Boolean(n));
 
           for (const name of namesToCheck) {
-            const score = similarityScore(canonicalKey, createCanonicalKey(name));
-            if (score > bestScore) {
-              bestScore = score;
-              bestMatch = k;
+            const normalizedName = normalizeACName(name);
+            if (
+              normalizedName.includes(normalizedSearch) ||
+              normalizedSearch.includes(normalizedName)
+            ) {
+              result = value;
+              console.log('[getACResult] ✓ Partial match:', key, '→', name);
+              break;
             }
           }
-        }
-
-        if (bestMatch) {
-          result = results[bestMatch];
-          console.log(
-            '[getACResult] ✓ Fuzzy name match:',
-            bestMatch,
-            'score:',
-            bestScore.toFixed(2)
-          );
-        }
-      }
-
-      // If not found and state is Andhra Pradesh, try Telangana (due to 2014 state split)
-      if (!result && (slug === 'AP' || slug === 'andhra-pradesh')) {
-        const telanganaResults = await loadYearResults('Telangana', targetYear);
-        if (telanganaResults) {
-          const telKeys = Object.keys(telanganaResults);
-          const searchName = canonicalName ?? acName;
-          const searchCanonicalKey = createCanonicalKey(searchName);
-
-          // Try schema ID match first
-          if (schemaId) {
-            // Convert AP schema ID to TS (e.g., AP-001 -> TS-001)
-            const tsSchemaId = schemaId.replace(/^AP-/, 'TS-');
-            result = telanganaResults[tsSchemaId];
-          }
-
-          // Try canonical match in Telangana data
-          if (!result) {
-            const telCanonicalMatch = telKeys.find(
-              (k) => createCanonicalKey(k) === searchCanonicalKey
-            );
-            if (telCanonicalMatch) {
-              result = telanganaResults[telCanonicalMatch];
-            }
-          }
-
-          // Try similarity match in Telangana data
-          if (!result) {
-            let bestMatch: string | null = null;
-            let bestScore = 0.7;
-            telKeys.forEach((k) => {
-              const score = similarityScore(searchCanonicalKey, createCanonicalKey(k));
-              if (score > bestScore) {
-                bestScore = score;
-                bestMatch = k;
-              }
-            });
-            if (bestMatch) {
-              result = telanganaResults[bestMatch];
-            }
-          }
+          if (result) break;
         }
       }
 

@@ -335,9 +335,15 @@ describe('useElectionResults - getACResult matching strategies', () => {
   it('matches AC with reservation suffix variations', async () => {
     const mockIndex = { availableYears: [2021] };
     const mockResults = {
-      'GANGAVALLI (SC)': {
-        constituency: 'GANGAVALLI (SC)',
-        winner: { name: 'Test', party: 'INC', votes: 45000 },
+      'TN-042': {
+        constituencyName: 'GANGAVALLI (SC)',
+        constituencyNameOriginal: 'GANGAVALLI (SC)',
+        name: 'Gangavalli',
+        year: 2021,
+        constituencyNo: 42,
+        constituencyType: 'SC',
+        validVotes: 100000,
+        candidates: [{ name: 'Test', party: 'INC', votes: 45000 }],
       },
     };
 
@@ -348,7 +354,7 @@ describe('useElectionResults - getACResult matching strategies', () => {
     const { result } = renderHook(() => useElectionResults());
 
     await act(async () => {
-      // Query without reservation suffix
+      // Query without reservation suffix - should match by normalizing names
       await result.current.getACResult('GANGAVALLI', 'Tamil Nadu', 2021);
     });
 
@@ -425,7 +431,7 @@ describe('useElectionResults - getACResult matching strategies', () => {
     expect(mockFetch).toHaveBeenCalledTimes(2); // Once for index, once for results (cached on second call)
   });
 
-  it('matches AC with similar names using similarity scoring', async () => {
+  it('requires exact spelling match (no fuzzy matching)', async () => {
     const mockIndex = { availableYears: [2021] };
     const mockResults = {
       'TN-001': {
@@ -447,12 +453,44 @@ describe('useElectionResults - getACResult matching strategies', () => {
     const { result } = renderHook(() => useElectionResults());
 
     await act(async () => {
-      // Query with slightly different spelling (double L vs single L in TIRUCHIRAPPALLI)
+      // Query with slightly different spelling (double L vs single L) - should NOT match
+      // This validates that fuzzy matching has been removed in favor of schema ID lookups
       await result.current.getACResult('TIRUCHIRAPPALLI WEST', 'Tamil Nadu', 2021);
     });
 
-    // Should find the match using similarity scoring on name properties
+    // Should NOT find match - fuzzy matching removed, use schema IDs for reliable lookups
+    expect(result.current.currentResult).toBeNull();
+  });
+
+  it('matches AC with exact spelling via schema ID', async () => {
+    const mockIndex = { availableYears: [2021] };
+    const mockResults = {
+      'TN-001': {
+        constituencyName: 'TIRUCHIRAPALLI WEST',
+        constituencyNameOriginal: 'TIRUCHIRAPALLI WEST',
+        name: 'Tiruchirapalli West',
+        year: 2021,
+        constituencyNo: 1,
+        constituencyType: 'GEN',
+        validVotes: 100000,
+        candidates: [{ name: 'Test', party: 'DMK', votes: 50000 }],
+      },
+    };
+
+    mockFetch
+      .mockResolvedValueOnce({ ok: true, json: async () => mockIndex })
+      .mockResolvedValueOnce({ ok: true, json: async () => mockResults });
+
+    const { result } = renderHook(() => useElectionResults());
+
+    await act(async () => {
+      // Query with schema ID - should always match regardless of name spelling
+      await result.current.getACResult('any-name', 'Tamil Nadu', 2021, { schemaId: 'TN-001' });
+    });
+
+    // Should find match via schema ID
     expect(result.current.currentResult).not.toBeNull();
+    expect(result.current.currentResult?.constituencyName).toBe('TIRUCHIRAPALLI WEST');
   });
 });
 

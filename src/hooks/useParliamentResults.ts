@@ -82,23 +82,16 @@ function getStateSlug(stateName: string): string {
   return getStateId(stateName);
 }
 
-/** Name mappings for inconsistent naming between GeoJSON and election data */
-const PC_NAME_MAPPINGS: Record<string, string> = {
-  PONDICHERRY: 'PUDUCHERRY',
-  PONDICHERY: 'PUDUCHERRY',
-};
-
 /**
- * Create a canonical key for matching
+ * Normalize PC name for matching
+ * Strips diacritics, removes parentheses, converts to uppercase
  */
-function createCanonicalKey(name: string): string {
-  const key = stripDiacritics(name)
+function normalizePCName(name: string): string {
+  return stripDiacritics(name)
     .toUpperCase()
-    .replace(/\s*\([^)]*\)\s*/g, '') // Remove parentheses like (SC)/(ST)
-    .replace(/[^A-Z0-9]/g, ''); // Keep only alphanumeric (removes spaces, hyphens, etc.)
-
-  // Apply name mappings
-  return PC_NAME_MAPPINGS[key] ?? key;
+    .replace(/\s*\([^)]*\)\s*/g, '') // Remove parentheses like (SC), (ST)
+    .replace(/[^A-Z0-9]/g, '') // Keep only alphanumeric
+    .trim();
 }
 
 /** useParliamentResults hook return type */
@@ -286,87 +279,62 @@ export function useParliamentResults(): UseParliamentResultsReturn {
       }
       console.log('[getPCResult] Results loaded, keys count:', Object.keys(results).length);
 
-      // Find the PC result using multiple matching strategies
-      const canonicalSearch = createCanonicalKey(pcName);
-      console.log('[getPCResult] Searching for:', pcName, '-> canonical:', canonicalSearch);
+      // Find the PC result using simplified lookup
+      const normalizedSearch = normalizePCName(pcName);
+      console.log('[getPCResult] Searching for:', pcName, '-> normalized:', normalizedSearch);
 
-      // Try direct match first (legacy format)
+      // Strategy 1: Direct key match
       let result = results[pcName.toUpperCase().trim()];
       if (result) {
-        console.log('[getPCResult] ✓ Direct match');
+        console.log('[getPCResult] ✓ Direct key match');
       }
 
+      // Strategy 2: Match by name properties (for schema ID-keyed data)
       if (!result) {
-        const keys = Object.keys(results);
+        for (const [key, value] of Object.entries(results)) {
+          if (!value || typeof value !== 'object') continue;
 
-        // Try canonical key match
-        const canonicalMatch = keys.find((k) => createCanonicalKey(k) === canonicalSearch);
-        if (canonicalMatch) {
-          result = results[canonicalMatch];
-          console.log('[getPCResult] ✓ Canonical match:', canonicalMatch);
-        }
+          // Check constituencyName, constituencyNameOriginal, name
+          const namesToCheck = [
+            value.constituencyName,
+            value.constituencyNameOriginal,
+            value.name,
+          ].filter((n): n is string => Boolean(n));
 
-        // Try matching by result's name properties (for schema ID-keyed data)
-        if (!result) {
-          for (const [k, v] of Object.entries(results)) {
-            if (!v || typeof v !== 'object') continue;
-            const resultData = v;
-
-            // Check constituencyName, constituencyNameOriginal, name
-            const namesToCheck = [
-              resultData.constituencyName,
-              resultData.constituencyNameOriginal,
-              resultData.name,
-            ].filter((n): n is string => Boolean(n));
-
-            for (const name of namesToCheck) {
-              if (createCanonicalKey(name) === canonicalSearch) {
-                result = resultData;
-                console.log('[getPCResult] ✓ Name property match:', k, name);
-                break;
-              }
+          for (const name of namesToCheck) {
+            if (normalizePCName(name) === normalizedSearch) {
+              result = value;
+              console.log('[getPCResult] ✓ Name property match:', key, '→', name);
+              break;
             }
-            if (result) break;
           }
+          if (result) break;
         }
+      }
 
-        // Try partial match (one name contains the other)
-        if (!result) {
-          const partialMatch = keys.find((k) => {
-            const keyCanonical = createCanonicalKey(k);
-            return keyCanonical.includes(canonicalSearch) || canonicalSearch.includes(keyCanonical);
-          });
-          if (partialMatch) {
-            result = results[partialMatch];
-            console.log('[getPCResult] ✓ Partial match:', partialMatch);
-          }
-        }
+      // Strategy 3: Partial match (one contains the other)
+      if (!result) {
+        for (const [key, value] of Object.entries(results)) {
+          if (!value || typeof value !== 'object') continue;
 
-        // Try fuzzy match on name properties
-        if (!result) {
-          for (const [k, v] of Object.entries(results)) {
-            if (!v || typeof v !== 'object') continue;
-            const resultData = v;
+          const namesToCheck = [
+            value.constituencyName,
+            value.constituencyNameOriginal,
+            value.name,
+          ].filter((n): n is string => Boolean(n));
 
-            const namesToCheck = [
-              resultData.constituencyName,
-              resultData.constituencyNameOriginal,
-              resultData.name,
-            ].filter((n): n is string => Boolean(n));
-
-            for (const name of namesToCheck) {
-              const nameCanonical = createCanonicalKey(name);
-              if (
-                nameCanonical.includes(canonicalSearch) ||
-                canonicalSearch.includes(nameCanonical)
-              ) {
-                result = resultData;
-                console.log('[getPCResult] ✓ Fuzzy name match:', k, name);
-                break;
-              }
+          for (const name of namesToCheck) {
+            const normalizedName = normalizePCName(name);
+            if (
+              normalizedName.includes(normalizedSearch) ||
+              normalizedSearch.includes(normalizedName)
+            ) {
+              result = value;
+              console.log('[getPCResult] ✓ Partial match:', key, '→', name);
+              break;
             }
-            if (result) break;
           }
+          if (result) break;
         }
       }
 
@@ -400,13 +368,13 @@ export function useParliamentResults(): UseParliamentResultsReturn {
       if (!pcResult.acWiseResults) {
         // AC-wise breakdown not available in data
         // Create a placeholder showing that this AC is part of the PC
+        const normalizedSearch = normalizePCName(acName);
         const isACPartOfPC = pcResult.assemblyConstituencies?.some((ac) => {
-          const acCanonical = createCanonicalKey(ac);
-          const searchCanonical = createCanonicalKey(acName);
+          const normalizedAC = normalizePCName(ac);
           return (
-            acCanonical === searchCanonical ||
-            acCanonical.includes(searchCanonical) ||
-            searchCanonical.includes(acCanonical)
+            normalizedAC === normalizedSearch ||
+            normalizedAC.includes(normalizedSearch) ||
+            normalizedSearch.includes(normalizedAC)
           );
         });
 
@@ -431,7 +399,7 @@ export function useParliamentResults(): UseParliamentResultsReturn {
       }
 
       // Find the AC in the results
-      const canonicalSearch = createCanonicalKey(acName);
+      const normalizedSearch = normalizePCName(acName);
       const acKeys = Object.keys(pcResult.acWiseResults);
 
       let acContribution: ACContributionToPC | undefined;
@@ -440,8 +408,8 @@ export function useParliamentResults(): UseParliamentResultsReturn {
       acContribution = pcResult.acWiseResults[acName.toUpperCase()];
 
       if (!acContribution) {
-        // Try canonical match
-        const matchKey = acKeys.find((k) => createCanonicalKey(k) === canonicalSearch);
+        // Try normalized match
+        const matchKey = acKeys.find((k) => normalizePCName(k) === normalizedSearch);
         if (matchKey) {
           acContribution = pcResult.acWiseResults[matchKey];
         }

@@ -148,8 +148,8 @@ test.describe('Navigation Flow - State to PC to AC', () => {
     await expect(pcPanel).toBeVisible({ timeout: 15000 });
     
     // Navigate to AC
-    await page.goto('/bihar/pc/patna-sahib/ac/bankipore');
-    await expect(page).toHaveURL(/bihar\/pc\/patna-sahib\/ac\/bankipore/);
+    await page.goto('/bihar/pc/patna-sahib/ac/bankipur');
+    await expect(page).toHaveURL(/bihar\/pc\/patna-sahib\/ac\/bankipur/);
     
     // AC panel should show
     const acPanel = page.locator('.election-panel:not(.pc-panel)');
