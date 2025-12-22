@@ -149,6 +149,9 @@ export function ElectionResultPanel({
 
   return (
     <div className="election-panel">
+      {/* Mobile drag handle */}
+      <div className="bottom-sheet-handle" aria-hidden="true" />
+
       {/* Header */}
       <div className="election-panel-header">
         <div className="election-panel-title">
