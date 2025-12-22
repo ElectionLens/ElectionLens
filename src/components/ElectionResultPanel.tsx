@@ -1,5 +1,5 @@
 import { X, Award, TrendingUp, Vote, Link2, Check, Twitter, Users, BarChart3 } from 'lucide-react';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, memo } from 'react';
 import type { ACElectionResult, ElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName } from '../utils/partyData';
 import { trackShare } from '../utils/firebase';
@@ -515,7 +515,8 @@ export function ElectionResultPanel({
   );
 }
 
-function CandidateRowCompact({
+// Memoized candidate row for lists - prevents re-render when panel state changes
+const CandidateRowCompact = memo(function CandidateRowCompact({
   candidate,
   isWinner,
 }: {
@@ -543,9 +544,10 @@ function CandidateRowCompact({
       />
     </div>
   );
-}
+});
 
-function CandidateRow({
+// Memoized full candidate row - expensive due to complex styling
+const CandidateRow = memo(function CandidateRow({
   candidate,
   isWinner,
   isRunnerUp,
@@ -585,4 +587,4 @@ function CandidateRow({
       />
     </div>
   );
-}
+});

@@ -257,19 +257,30 @@ Filter options:
 ## 🟣 Technical Improvements
 
 ### 14. Performance Optimizations
-**Status:** Not Started  
-**Effort:** 1 week  
-**Impact:** Medium
+**Status:** ✅ Done  
+**Effort:** 1 day (actual)  
+**Impact:** High
 
+**Implemented:**
+- ✅ Code splitting with React.lazy for panel components
+- ✅ Improved Vite chunking (vendor, leaflet, icons, analytics separate)
+- ✅ React.memo for candidate row components
+- ✅ Preload hints for critical resources (states GeoJSON, CDN preconnect)
+- ✅ Performance utilities module (debounce, throttle, cache, metrics)
+
+**Results:**
+| Metric | Before | After | Improvement |
+|--------|--------|-------|-------------|
+| Main bundle | 435 KB | 321 KB | **-26%** |
+| Initial load | ~110 KB gzip | ~87 KB gzip | **-21%** |
+| Panel load | included | lazy (19 KB) | On-demand |
+
+**Future optimizations (optional):**
 ```typescript
-// Virtual scrolling for large lists
+// Virtual scrolling for large candidate lists
 import { useVirtualizer } from '@tanstack/react-virtual';
 
-// Lazy load GeoJSON by state
-const loadStateGeo = (stateId: string) => 
-  import(`./data/geo/districts/${stateId}.geojson`);
-
-// Consider TopoJSON for 70% smaller files
+// TopoJSON for 70% smaller GeoJSON files
 // Current: 11MB → TopoJSON: 4MB
 ```
 

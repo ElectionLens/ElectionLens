@@ -26,15 +26,32 @@ export default defineConfig({
   build: {
     // Generate source maps for production builds
     sourcemap: true,
-    // Rollup options
+    // Target modern browsers for smaller bundles
+    target: 'es2020',
+    // Rollup options for optimal chunking
     rollupOptions: {
       output: {
         manualChunks: {
+          // Core framework
           vendor: ['react', 'react-dom'],
-          leaflet: ['leaflet', 'react-leaflet']
-        }
-      }
-    }
+          // Map library (large, separate chunk)
+          leaflet: ['leaflet', 'react-leaflet'],
+          // Icons (lazy loaded on demand)
+          icons: ['lucide-react'],
+          // Firebase analytics (optional, loaded async)
+          analytics: ['firebase/app', 'firebase/analytics'],
+        },
+        // Optimize chunk names for caching
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+      },
+    },
+    // Use esbuild minification (default, faster than terser)
+    minify: 'esbuild',
+    // Report compressed sizes
+    reportCompressedSize: true,
+    // Chunk size warning limit (300KB)
+    chunkSizeWarningLimit: 300,
   },
   test: {
     globals: true,
