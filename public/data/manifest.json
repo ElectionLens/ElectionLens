@@ -1,0 +1,2480 @@
+{
+  "version": "2.0.0",
+  "generated": "2025-12-22T06:11:29.604Z",
+  "schema": {
+    "path": "schema.json",
+    "version": "1.0.0",
+    "size": 2231485,
+    "hash": "254a906a",
+    "counts": {
+      "states": 36,
+      "pcs": 545,
+      "acs": 4095,
+      "districts": 588
+    }
+  },
+  "geo": {
+    "boundaries": {
+      "states": {
+        "path": "geo/boundaries/states.geojson",
+        "size": 4484040,
+        "hash": "3507b782"
+      }
+    },
+    "parliament": {
+      "all": {
+        "path": "geo/parliament/constituencies.geojson",
+        "size": 7788647,
+        "hash": "1a47fb53"
+      }
+    },
+    "assembly": {
+      "all": {
+        "path": "geo/assembly/constituencies.geojson",
+        "size": 10348317,
+        "hash": "c44ca4a2"
+      }
+    },
+    "districts": {
+      "AN": {
+        "path": "geo/districts/AN.geojson",
+        "size": 74850,
+        "hash": "96d0127a"
+      },
+      "AP": {
+        "path": "geo/districts/AP.geojson",
+        "size": 1262850,
+        "hash": "9fb16ab0"
+      },
+      "AR": {
+        "path": "geo/districts/AR.geojson",
+        "size": 82016,
+        "hash": "de39ee65"
+      },
+      "AS": {
+        "path": "geo/districts/AS.geojson",
+        "size": 173914,
+        "hash": "31f2ed0f"
+      },
+      "BR": {
+        "path": "geo/districts/BR.geojson",
+        "size": 202232,
+        "hash": "dee233e9"
+      },
+      "CG": {
+        "path": "geo/districts/CG.geojson",
+        "size": 175486,
+        "hash": "fc1ad4f2"
+      },
+      "CH": {
+        "path": "geo/districts/CH.geojson",
+        "size": 1363,
+        "hash": "857fef69"
+      },
+      "DD": {
+        "path": "geo/districts/DD.geojson",
+        "size": 6329,
+        "hash": "d884be6d"
+      },
+      "DL": {
+        "path": "geo/districts/DL.geojson",
+        "size": 313136,
+        "hash": "3864d27c"
+      },
+      "GA": {
+        "path": "geo/districts/GA.geojson",
+        "size": 7251,
+        "hash": "124db0d1"
+      },
+      "GJ": {
+        "path": "geo/districts/GJ.geojson",
+        "size": 248256,
+        "hash": "1d46f882"
+      },
+      "HP": {
+        "path": "geo/districts/HP.geojson",
+        "size": 67741,
+        "hash": "a3f3fdfd"
+      },
+      "HR": {
+        "path": "geo/districts/HR.geojson",
+        "size": 103884,
+        "hash": "540d74e2"
+      },
+      "JH": {
+        "path": "geo/districts/JH.geojson",
+        "size": 139098,
+        "hash": "433a10d2"
+      },
+      "JK": {
+        "path": "geo/districts/JK.geojson",
+        "size": 72466,
+        "hash": "6b6dec99"
+      },
+      "KA": {
+        "path": "geo/districts/KA.geojson",
+        "size": 229526,
+        "hash": "5306d20f"
+      },
+      "KL": {
+        "path": "geo/districts/KL.geojson",
+        "size": 60093,
+        "hash": "cf58a9df"
+      },
+      "LA": {
+        "path": "geo/districts/LA.geojson",
+        "size": 32448,
+        "hash": "80e35a9d"
+      },
+      "LD": {
+        "path": "geo/districts/LD.geojson",
+        "size": 5880,
+        "hash": "bbc7a592"
+      },
+      "MH": {
+        "path": "geo/districts/MH.geojson",
+        "size": 325968,
+        "hash": "33c4dc83"
+      },
+      "ML": {
+        "path": "geo/districts/ML.geojson",
+        "size": 35326,
+        "hash": "317e9b84"
+      },
+      "MN": {
+        "path": "geo/districts/MN.geojson",
+        "size": 59511,
+        "hash": "20b874ee"
+      },
+      "MP": {
+        "path": "geo/districts/MP.geojson",
+        "size": 422428,
+        "hash": "2299c877"
+      },
+      "MZ": {
+        "path": "geo/districts/MZ.geojson",
+        "size": 185641,
+        "hash": "e83c7386"
+      },
+      "NL": {
+        "path": "geo/districts/NL.geojson",
+        "size": 33498,
+        "hash": "b5e121fb"
+      },
+      "OD": {
+        "path": "geo/districts/OD.geojson",
+        "size": 204083,
+        "hash": "4c2a7e7d"
+      },
+      "PB": {
+        "path": "geo/districts/PB.geojson",
+        "size": 117072,
+        "hash": "b101d029"
+      },
+      "PY": {
+        "path": "geo/districts/PY.geojson",
+        "size": 10781,
+        "hash": "9c524a22"
+      },
+      "RJ": {
+        "path": "geo/districts/RJ.geojson",
+        "size": 292915,
+        "hash": "4f41c139"
+      },
+      "SK": {
+        "path": "geo/districts/SK.geojson",
+        "size": 10560,
+        "hash": "f423ade5"
+      },
+      "TN": {
+        "path": "geo/districts/TN.geojson",
+        "size": 177698,
+        "hash": "0fca687f"
+      },
+      "TR": {
+        "path": "geo/districts/TR.geojson",
+        "size": 23533,
+        "hash": "8e035a5d"
+      },
+      "TS": {
+        "path": "geo/districts/TS.geojson",
+        "size": 155329,
+        "hash": "3c7d4f19"
+      },
+      "UK": {
+        "path": "geo/districts/UK.geojson",
+        "size": 74744,
+        "hash": "1f2bbaef"
+      },
+      "UP": {
+        "path": "geo/districts/UP.geojson",
+        "size": 478716,
+        "hash": "0eee8a53"
+      },
+      "WB": {
+        "path": "geo/districts/WB.geojson",
+        "size": 170030,
+        "hash": "252d985d"
+      }
+    }
+  },
+  "elections": {
+    "ac": {
+      "AP": {
+        "slug": "AP",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/ac/AP/2009.json",
+            "size": 535821,
+            "hash": "7e5474e8"
+          },
+          "2014": {
+            "path": "elections/ac/AP/2014.json",
+            "size": 538644,
+            "hash": "bfd44833"
+          },
+          "2019": {
+            "path": "elections/ac/AP/2019.json",
+            "size": 488565,
+            "hash": "0e4b42ac"
+          },
+          "2024": {
+            "path": "elections/ac/AP/2024.json",
+            "size": 552121,
+            "hash": "fa7bd8f9"
+          }
+        },
+        "index": {
+          "path": "elections/ac/AP/index.json",
+          "size": 300,
+          "hash": "98cc081c"
+        }
+      },
+      "AR": {
+        "slug": "AR",
+        "years": [
+          2009,
+          2014,
+          2019
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/ac/AR/2009.json",
+            "size": 66955,
+            "hash": "89ef5418"
+          },
+          "2014": {
+            "path": "elections/ac/AR/2014.json",
+            "size": 82524,
+            "hash": "21edb7b0"
+          },
+          "2019": {
+            "path": "elections/ac/AR/2019.json",
+            "size": 74056,
+            "hash": "58f0e415"
+          }
+        },
+        "index": {
+          "path": "elections/ac/AR/index.json",
+          "size": 301,
+          "hash": "a2032cdd"
+        }
+      },
+      "AS": {
+        "slug": "AS",
+        "years": [
+          2011,
+          2016,
+          2021
+        ],
+        "paths": {
+          "2011": {
+            "path": "elections/ac/AS/2011.json",
+            "size": 316137,
+            "hash": "2a4843f6"
+          },
+          "2016": {
+            "path": "elections/ac/AS/2016.json",
+            "size": 372475,
+            "hash": "db882b57"
+          },
+          "2021": {
+            "path": "elections/ac/AS/2021.json",
+            "size": 308639,
+            "hash": "c541673b"
+          }
+        },
+        "index": {
+          "path": "elections/ac/AS/index.json",
+          "size": 278,
+          "hash": "b1c3e82a"
+        }
+      },
+      "BR": {
+        "slug": "BR",
+        "years": [
+          2010,
+          2015,
+          2020,
+          2025
+        ],
+        "paths": {
+          "2010": {
+            "path": "elections/ac/BR/2010.json",
+            "size": 1046196,
+            "hash": "a8f67481"
+          },
+          "2015": {
+            "path": "elections/ac/BR/2015.json",
+            "size": 1093753,
+            "hash": "184bdb7a"
+          },
+          "2020": {
+            "path": "elections/ac/BR/2020.json",
+            "size": 1104444,
+            "hash": "6dc8db45"
+          },
+          "2025": {
+            "path": "elections/ac/BR/2025.json",
+            "size": 814474,
+            "hash": "ff5986ae"
+          }
+        },
+        "index": {
+          "path": "elections/ac/BR/index.json",
+          "size": 303,
+          "hash": "2f8a9b12"
+        }
+      },
+      "CG": {
+        "slug": "CG",
+        "years": [
+          2008,
+          2013,
+          2018,
+          2023
+        ],
+        "paths": {
+          "2008": {
+            "path": "elections/ac/CG/2008.json",
+            "size": 324851,
+            "hash": "4e82cba4"
+          },
+          "2013": {
+            "path": "elections/ac/CG/2013.json",
+            "size": 327766,
+            "hash": "3c3ff303"
+          },
+          "2018": {
+            "path": "elections/ac/CG/2018.json",
+            "size": 406419,
+            "hash": "fbb81e23"
+          },
+          "2023": {
+            "path": "elections/ac/CG/2023.json",
+            "size": 356479,
+            "hash": "44b98315"
+          }
+        },
+        "index": {
+          "path": "elections/ac/CG/index.json",
+          "size": 295,
+          "hash": "65e76b0d"
+        }
+      },
+      "DL": {
+        "slug": "DL",
+        "years": [
+          2008,
+          2013,
+          2015,
+          2020,
+          2025
+        ],
+        "paths": {
+          "2008": {
+            "path": "elections/ac/DL/2008.json",
+            "size": 261804,
+            "hash": "0c906c0b"
+          },
+          "2013": {
+            "path": "elections/ac/DL/2013.json",
+            "size": 264150,
+            "hash": "9a7903d6"
+          },
+          "2015": {
+            "path": "elections/ac/DL/2015.json",
+            "size": 227741,
+            "hash": "f2a8f6e6"
+          },
+          "2020": {
+            "path": "elections/ac/DL/2020.json",
+            "size": 208513,
+            "hash": "a684db60"
+          },
+          "2025": {
+            "path": "elections/ac/DL/2025.json",
+            "size": 220571,
+            "hash": "3791dbfa"
+          }
+        },
+        "index": {
+          "path": "elections/ac/DL/index.json",
+          "size": 312,
+          "hash": "150c9324"
+        }
+      },
+      "GA": {
+        "slug": "GA",
+        "years": [
+          2012,
+          2017,
+          2022
+        ],
+        "paths": {
+          "2012": {
+            "path": "elections/ac/GA/2012.json",
+            "size": 74854,
+            "hash": "0fff1d42"
+          },
+          "2017": {
+            "path": "elections/ac/GA/2017.json",
+            "size": 95623,
+            "hash": "d358dc53"
+          },
+          "2022": {
+            "path": "elections/ac/GA/2022.json",
+            "size": 98271,
+            "hash": "2959968b"
+          }
+        },
+        "index": {
+          "path": "elections/ac/GA/index.json",
+          "size": 273,
+          "hash": "ce182401"
+        }
+      },
+      "GJ": {
+        "slug": "GJ",
+        "years": [
+          2012,
+          2017,
+          2022
+        ],
+        "paths": {
+          "2012": {
+            "path": "elections/ac/GJ/2012.json",
+            "size": 529167,
+            "hash": "a3213002"
+          },
+          "2017": {
+            "path": "elections/ac/GJ/2017.json",
+            "size": 627057,
+            "hash": "7f63dcfa"
+          },
+          "2022": {
+            "path": "elections/ac/GJ/2022.json",
+            "size": 524379,
+            "hash": "822d9607"
+          }
+        },
+        "index": {
+          "path": "elections/ac/GJ/index.json",
+          "size": 282,
+          "hash": "14f8aa9f"
+        }
+      },
+      "HP": {
+        "slug": "HP",
+        "years": [
+          2012,
+          2017,
+          2022
+        ],
+        "paths": {
+          "2012": {
+            "path": "elections/ac/HP/2012.json",
+            "size": 149963,
+            "hash": "c2f016c2"
+          },
+          "2017": {
+            "path": "elections/ac/HP/2017.json",
+            "size": 136613,
+            "hash": "790a500c"
+          },
+          "2022": {
+            "path": "elections/ac/HP/2022.json",
+            "size": 138756,
+            "hash": "64abe8c1"
+          }
+        },
+        "index": {
+          "path": "elections/ac/HP/index.json",
+          "size": 299,
+          "hash": "266fbace"
+        }
+      },
+      "HR": {
+        "slug": "HR",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/ac/HR/2009.json",
+            "size": 361157,
+            "hash": "cca25b7a"
+          },
+          "2014": {
+            "path": "elections/ac/HR/2014.json",
+            "size": 420823,
+            "hash": "7d9db4bd"
+          },
+          "2019": {
+            "path": "elections/ac/HR/2019.json",
+            "size": 348440,
+            "hash": "324d1f57"
+          },
+          "2024": {
+            "path": "elections/ac/HR/2024.json",
+            "size": 314571,
+            "hash": "693913ce"
+          }
+        },
+        "index": {
+          "path": "elections/ac/HR/index.json",
+          "size": 306,
+          "hash": "48711db5"
+        }
+      },
+      "JH": {
+        "slug": "JH",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/ac/JH/2009.json",
+            "size": 433122,
+            "hash": "25b5b5b3"
+          },
+          "2014": {
+            "path": "elections/ac/JH/2014.json",
+            "size": 360343,
+            "hash": "26bbe548"
+          },
+          "2019": {
+            "path": "elections/ac/JH/2019.json",
+            "size": 360137,
+            "hash": "ee976ac0"
+          },
+          "2024": {
+            "path": "elections/ac/JH/2024.json",
+            "size": 365357,
+            "hash": "35c099c4"
+          }
+        },
+        "index": {
+          "path": "elections/ac/JH/index.json",
+          "size": 310,
+          "hash": "4a89702f"
+        }
+      },
+      "JK": {
+        "slug": "JK",
+        "years": [
+          2008,
+          2014,
+          2024
+        ],
+        "paths": {
+          "2008": {
+            "path": "elections/ac/JK/2008.json",
+            "size": 399382,
+            "hash": "7a9ea65b"
+          },
+          "2014": {
+            "path": "elections/ac/JK/2014.json",
+            "size": 282884,
+            "hash": "57e9145c"
+          },
+          "2024": {
+            "path": "elections/ac/JK/2024.json",
+            "size": 271722,
+            "hash": "bde8ce95"
+          }
+        },
+        "index": {
+          "path": "elections/ac/JK/index.json",
+          "size": 293,
+          "hash": "c5f12bcd"
+        }
+      },
+      "KA": {
+        "slug": "KA",
+        "years": [
+          2008,
+          2013,
+          2018,
+          2023
+        ],
+        "paths": {
+          "2008": {
+            "path": "elections/ac/KA/2008.json",
+            "size": 700084,
+            "hash": "3c765cd2"
+          },
+          "2013": {
+            "path": "elections/ac/KA/2013.json",
+            "size": 889717,
+            "hash": "16e7bba0"
+          },
+          "2018": {
+            "path": "elections/ac/KA/2018.json",
+            "size": 875355,
+            "hash": "abb0b444"
+          },
+          "2023": {
+            "path": "elections/ac/KA/2023.json",
+            "size": 811610,
+            "hash": "ae76326f"
+          }
+        },
+        "index": {
+          "path": "elections/ac/KA/index.json",
+          "size": 296,
+          "hash": "bc056349"
+        }
+      },
+      "KL": {
+        "slug": "KL",
+        "years": [
+          2011,
+          2016,
+          2021
+        ],
+        "paths": {
+          "2011": {
+            "path": "elections/ac/KL/2011.json",
+            "size": 318750,
+            "hash": "8dffc26a"
+          },
+          "2016": {
+            "path": "elections/ac/KL/2016.json",
+            "size": 419241,
+            "hash": "0d4933a9"
+          },
+          "2021": {
+            "path": "elections/ac/KL/2021.json",
+            "size": 318381,
+            "hash": "2dec87dc"
+          }
+        },
+        "index": {
+          "path": "elections/ac/KL/index.json",
+          "size": 280,
+          "hash": "0421a5ed"
+        }
+      },
+      "MH": {
+        "slug": "MH",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/ac/MH/2009.json",
+            "size": 1102063,
+            "hash": "0c63321d"
+          },
+          "2014": {
+            "path": "elections/ac/MH/2014.json",
+            "size": 1334163,
+            "hash": "0be35ce1"
+          },
+          "2019": {
+            "path": "elections/ac/MH/2019.json",
+            "size": 1013385,
+            "hash": "b89d3e8f"
+          },
+          "2024": {
+            "path": "elections/ac/MH/2024.json",
+            "size": 1289460,
+            "hash": "d4a9eb3b"
+          }
+        },
+        "index": {
+          "path": "elections/ac/MH/index.json",
+          "size": 315,
+          "hash": "f99b4c78"
+        }
+      },
+      "ML": {
+        "slug": "ML",
+        "years": [
+          2013,
+          2018,
+          2023
+        ],
+        "paths": {
+          "2013": {
+            "path": "elections/ac/ML/2013.json",
+            "size": 118843,
+            "hash": "3d9313bc"
+          },
+          "2018": {
+            "path": "elections/ac/ML/2018.json",
+            "size": 141649,
+            "hash": "01f408b2"
+          },
+          "2023": {
+            "path": "elections/ac/ML/2023.json",
+            "size": 126946,
+            "hash": "ee88b445"
+          }
+        },
+        "index": {
+          "path": "elections/ac/ML/index.json",
+          "size": 285,
+          "hash": "92c541ef"
+        }
+      },
+      "MN": {
+        "slug": "MN",
+        "years": [
+          2012,
+          2017,
+          2022
+        ],
+        "paths": {
+          "2012": {
+            "path": "elections/ac/MN/2012.json",
+            "size": 100635,
+            "hash": "4da08793"
+          },
+          "2017": {
+            "path": "elections/ac/MN/2017.json",
+            "size": 113726,
+            "hash": "3256871a"
+          },
+          "2022": {
+            "path": "elections/ac/MN/2022.json",
+            "size": 97540,
+            "hash": "cccb950a"
+          }
+        },
+        "index": {
+          "path": "elections/ac/MN/index.json",
+          "size": 281,
+          "hash": "da2eba5b"
+        }
+      },
+      "MP": {
+        "slug": "MP",
+        "years": [
+          2008,
+          2013,
+          2018,
+          2023
+        ],
+        "paths": {
+          "2008": {
+            "path": "elections/ac/MP/2008.json",
+            "size": 951888,
+            "hash": "337694bb"
+          },
+          "2013": {
+            "path": "elections/ac/MP/2013.json",
+            "size": 855617,
+            "hash": "b543d2a0"
+          },
+          "2018": {
+            "path": "elections/ac/MP/2018.json",
+            "size": 947937,
+            "hash": "bbd66168"
+          },
+          "2023": {
+            "path": "elections/ac/MP/2023.json",
+            "size": 587113,
+            "hash": "c993bfdd"
+          }
+        },
+        "index": {
+          "path": "elections/ac/MP/index.json",
+          "size": 306,
+          "hash": "0ba5b441"
+        }
+      },
+      "MZ": {
+        "slug": "MZ",
+        "years": [
+          2008,
+          2013,
+          2018,
+          2023
+        ],
+        "paths": {
+          "2008": {
+            "path": "elections/ac/MZ/2008.json",
+            "size": 71835,
+            "hash": "9f9d1d2a"
+          },
+          "2013": {
+            "path": "elections/ac/MZ/2013.json",
+            "size": 65792,
+            "hash": "bd6f87d5"
+          },
+          "2018": {
+            "path": "elections/ac/MZ/2018.json",
+            "size": 83884,
+            "hash": "b1c8946d"
+          },
+          "2023": {
+            "path": "elections/ac/MZ/2023.json",
+            "size": 63754,
+            "hash": "d8f28d39"
+          }
+        },
+        "index": {
+          "path": "elections/ac/MZ/index.json",
+          "size": 285,
+          "hash": "23b41ff4"
+        }
+      },
+      "NL": {
+        "slug": "NL",
+        "years": [
+          2008,
+          2013,
+          2018,
+          2023
+        ],
+        "paths": {
+          "2008": {
+            "path": "elections/ac/NL/2008.json",
+            "size": 82548,
+            "hash": "94212571"
+          },
+          "2013": {
+            "path": "elections/ac/NL/2013.json",
+            "size": 74678,
+            "hash": "3be98e5e"
+          },
+          "2018": {
+            "path": "elections/ac/NL/2018.json",
+            "size": 93759,
+            "hash": "1d9258a1"
+          },
+          "2023": {
+            "path": "elections/ac/NL/2023.json",
+            "size": 74777,
+            "hash": "65f94128"
+          }
+        },
+        "index": {
+          "path": "elections/ac/NL/index.json",
+          "size": 293,
+          "hash": "9654b6d3"
+        }
+      },
+      "OD": {
+        "slug": "OD",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/ac/OD/2009.json",
+            "size": 409236,
+            "hash": "db4bc214"
+          },
+          "2014": {
+            "path": "elections/ac/OD/2014.json",
+            "size": 484237,
+            "hash": "cc79a8f5"
+          },
+          "2019": {
+            "path": "elections/ac/OD/2019.json",
+            "size": 365168,
+            "hash": "d4f4314a"
+          },
+          "2024": {
+            "path": "elections/ac/OD/2024.json",
+            "size": 306556,
+            "hash": "ccc4e720"
+          }
+        },
+        "index": {
+          "path": "elections/ac/OD/index.json",
+          "size": 290,
+          "hash": "f295cb2e"
+        }
+      },
+      "PB": {
+        "slug": "PB",
+        "years": [
+          2012,
+          2017,
+          2022
+        ],
+        "paths": {
+          "2012": {
+            "path": "elections/ac/PB/2012.json",
+            "size": 337668,
+            "hash": "022a7f69"
+          },
+          "2017": {
+            "path": "elections/ac/PB/2017.json",
+            "size": 388377,
+            "hash": "21ad7f72"
+          },
+          "2022": {
+            "path": "elections/ac/PB/2022.json",
+            "size": 408331,
+            "hash": "430659d1"
+          }
+        },
+        "index": {
+          "path": "elections/ac/PB/index.json",
+          "size": 280,
+          "hash": "c16f3ada"
+        }
+      },
+      "PY": {
+        "slug": "PY",
+        "years": [
+          2011,
+          2016,
+          2021
+        ],
+        "paths": {
+          "2011": {
+            "path": "elections/ac/PY/2011.json",
+            "size": 62331,
+            "hash": "87c990bf"
+          },
+          "2016": {
+            "path": "elections/ac/PY/2016.json",
+            "size": 111865,
+            "hash": "7fe2193c"
+          },
+          "2021": {
+            "path": "elections/ac/PY/2021.json",
+            "size": 98987,
+            "hash": "36e47d55"
+          }
+        },
+        "index": {
+          "path": "elections/ac/PY/index.json",
+          "size": 287,
+          "hash": "8f12e2bc"
+        }
+      },
+      "RJ": {
+        "slug": "RJ",
+        "years": [
+          2008,
+          2013,
+          2018,
+          2023
+        ],
+        "paths": {
+          "2008": {
+            "path": "elections/ac/RJ/2008.json",
+            "size": 665598,
+            "hash": "4ce581a8"
+          },
+          "2013": {
+            "path": "elections/ac/RJ/2013.json",
+            "size": 695172,
+            "hash": "32c38d1a"
+          },
+          "2018": {
+            "path": "elections/ac/RJ/2018.json",
+            "size": 747578,
+            "hash": "db21aebb"
+          },
+          "2023": {
+            "path": "elections/ac/RJ/2023.json",
+            "size": 436934,
+            "hash": "85ed76f8"
+          }
+        },
+        "index": {
+          "path": "elections/ac/RJ/index.json",
+          "size": 296,
+          "hash": "8483c931"
+        }
+      },
+      "SK": {
+        "slug": "SK",
+        "years": [
+          2009,
+          2014,
+          2019
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/ac/SK/2009.json",
+            "size": 58239,
+            "hash": "f0a42b9a"
+          },
+          "2014": {
+            "path": "elections/ac/SK/2014.json",
+            "size": 54669,
+            "hash": "9fdd0765"
+          },
+          "2019": {
+            "path": "elections/ac/SK/2019.json",
+            "size": 53763,
+            "hash": "03c9883e"
+          }
+        },
+        "index": {
+          "path": "elections/ac/SK/index.json",
+          "size": 279,
+          "hash": "ab650af1"
+        }
+      },
+      "TN": {
+        "slug": "TN",
+        "years": [
+          2011,
+          2016,
+          2021
+        ],
+        "paths": {
+          "2011": {
+            "path": "elections/ac/TN/2011.json",
+            "size": 825459,
+            "hash": "828228a0"
+          },
+          "2016": {
+            "path": "elections/ac/TN/2016.json",
+            "size": 1145898,
+            "hash": "cdf206b3"
+          },
+          "2021": {
+            "path": "elections/ac/TN/2021.json",
+            "size": 1168174,
+            "hash": "2dda3bb5"
+          }
+        },
+        "index": {
+          "path": "elections/ac/TN/index.json",
+          "size": 288,
+          "hash": "c7640a6a"
+        }
+      },
+      "TR": {
+        "slug": "TR",
+        "years": [
+          2013,
+          2018,
+          2023
+        ],
+        "paths": {
+          "2013": {
+            "path": "elections/ac/TR/2013.json",
+            "size": 92324,
+            "hash": "89f7d726"
+          },
+          "2018": {
+            "path": "elections/ac/TR/2018.json",
+            "size": 121375,
+            "hash": "c8028194"
+          },
+          "2023": {
+            "path": "elections/ac/TR/2023.json",
+            "size": 97231,
+            "hash": "ff0b16ab"
+          }
+        },
+        "index": {
+          "path": "elections/ac/TR/index.json",
+          "size": 281,
+          "hash": "1ca51fd5"
+        }
+      },
+      "TS": {
+        "slug": "TS",
+        "years": [
+          2014,
+          2018,
+          2023
+        ],
+        "paths": {
+          "2014": {
+            "path": "elections/ac/TS/2014.json",
+            "size": 528124,
+            "hash": "1c2e9f0a"
+          },
+          "2018": {
+            "path": "elections/ac/TS/2018.json",
+            "size": 572511,
+            "hash": "b48d33c4"
+          },
+          "2023": {
+            "path": "elections/ac/TS/2023.json",
+            "size": 665452,
+            "hash": "13859d6a"
+          }
+        },
+        "index": {
+          "path": "elections/ac/TS/index.json",
+          "size": 280,
+          "hash": "2b639cb1"
+        }
+      },
+      "UK": {
+        "slug": "UK",
+        "years": [
+          2012,
+          2017,
+          2022
+        ],
+        "paths": {
+          "2012": {
+            "path": "elections/ac/UK/2012.json",
+            "size": 239791,
+            "hash": "6622f703"
+          },
+          "2017": {
+            "path": "elections/ac/UK/2017.json",
+            "size": 218778,
+            "hash": "f39eddca"
+          },
+          "2022": {
+            "path": "elections/ac/UK/2022.json",
+            "size": 200066,
+            "hash": "cc603bd2"
+          }
+        },
+        "index": {
+          "path": "elections/ac/UK/index.json",
+          "size": 289,
+          "hash": "63444e74"
+        }
+      },
+      "UP": {
+        "slug": "UP",
+        "years": [
+          2012,
+          2017,
+          2022
+        ],
+        "paths": {
+          "2012": {
+            "path": "elections/ac/UP/2012.json",
+            "size": 1990482,
+            "hash": "847903f0"
+          },
+          "2017": {
+            "path": "elections/ac/UP/2017.json",
+            "size": 1574386,
+            "hash": "b7303c93"
+          },
+          "2022": {
+            "path": "elections/ac/UP/2022.json",
+            "size": 1371845,
+            "hash": "6b4ba570"
+          }
+        },
+        "index": {
+          "path": "elections/ac/UP/index.json",
+          "size": 294,
+          "hash": "e3eace93"
+        }
+      },
+      "WB": {
+        "slug": "WB",
+        "years": [
+          2011,
+          2016,
+          2021
+        ],
+        "paths": {
+          "2011": {
+            "path": "elections/ac/WB/2011.json",
+            "size": 604955,
+            "hash": "e27220ef"
+          },
+          "2016": {
+            "path": "elections/ac/WB/2016.json",
+            "size": 731002,
+            "hash": "69fa19ad"
+          },
+          "2021": {
+            "path": "elections/ac/WB/2021.json",
+            "size": 700066,
+            "hash": "03152c8a"
+          }
+        },
+        "index": {
+          "path": "elections/ac/WB/index.json",
+          "size": 290,
+          "hash": "bdb48682"
+        }
+      }
+    },
+    "pc": {
+      "AN": {
+        "slug": "AN",
+        "years": [
+          2024
+        ],
+        "paths": {
+          "2024": {
+            "path": "elections/pc/AN/2024.json",
+            "size": 4317,
+            "hash": "ad79d19b"
+          }
+        },
+        "index": {
+          "path": "elections/pc/AN/index.json",
+          "size": 255,
+          "hash": "1fa1a503"
+        }
+      },
+      "AP": {
+        "slug": "AP",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/AP/2009.json",
+            "size": 900579,
+            "hash": "9cf5fc68"
+          },
+          "2014": {
+            "path": "elections/pc/AP/2014.json",
+            "size": 1044492,
+            "hash": "7c86bb64"
+          },
+          "2019": {
+            "path": "elections/pc/AP/2019.json",
+            "size": 1008074,
+            "hash": "dea75682"
+          },
+          "2024": {
+            "path": "elections/pc/AP/2024.json",
+            "size": 469581,
+            "hash": "06619b31"
+          }
+        },
+        "index": {
+          "path": "elections/pc/AP/index.json",
+          "size": 292,
+          "hash": "b35e0e35"
+        }
+      },
+      "AR": {
+        "slug": "AR",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/AR/2009.json",
+            "size": 97545,
+            "hash": "3cf1cdc6"
+          },
+          "2014": {
+            "path": "elections/pc/AR/2014.json",
+            "size": 156062,
+            "hash": "5767d9c8"
+          },
+          "2019": {
+            "path": "elections/pc/AR/2019.json",
+            "size": 163703,
+            "hash": "b493fd97"
+          },
+          "2024": {
+            "path": "elections/pc/AR/2024.json",
+            "size": 52856,
+            "hash": "e661bf76"
+          }
+        },
+        "index": {
+          "path": "elections/pc/AR/index.json",
+          "size": 297,
+          "hash": "57d70446"
+        }
+      },
+      "AS": {
+        "slug": "AS",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/AS/2009.json",
+            "size": 345307,
+            "hash": "90f25b4b"
+          },
+          "2014": {
+            "path": "elections/pc/AS/2014.json",
+            "size": 347053,
+            "hash": "9f51bb40"
+          },
+          "2019": {
+            "path": "elections/pc/AS/2019.json",
+            "size": 313481,
+            "hash": "bd5f6480"
+          },
+          "2024": {
+            "path": "elections/pc/AS/2024.json",
+            "size": 102566,
+            "hash": "2f09b4ec"
+          }
+        },
+        "index": {
+          "path": "elections/pc/AS/index.json",
+          "size": 274,
+          "hash": "3696976e"
+        }
+      },
+      "BR": {
+        "slug": "BR",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/BR/2009.json",
+            "size": 1697118,
+            "hash": "70657dd3"
+          },
+          "2014": {
+            "path": "elections/pc/BR/2014.json",
+            "size": 1459827,
+            "hash": "372b30d5"
+          },
+          "2019": {
+            "path": "elections/pc/BR/2019.json",
+            "size": 1682642,
+            "hash": "8acc6209"
+          },
+          "2024": {
+            "path": "elections/pc/BR/2024.json",
+            "size": 459137,
+            "hash": "9f6ca937"
+          }
+        },
+        "index": {
+          "path": "elections/pc/BR/index.json",
+          "size": 274,
+          "hash": "1ad1f6ed"
+        }
+      },
+      "CG": {
+        "slug": "CG",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/CG/2009.json",
+            "size": 594006,
+            "hash": "82b6f609"
+          },
+          "2014": {
+            "path": "elections/pc/CG/2014.json",
+            "size": 716151,
+            "hash": "5d7d5f67"
+          },
+          "2019": {
+            "path": "elections/pc/CG/2019.json",
+            "size": 590361,
+            "hash": "cb8bb65c"
+          },
+          "2024": {
+            "path": "elections/pc/CG/2024.json",
+            "size": 257132,
+            "hash": "6455d12a"
+          }
+        },
+        "index": {
+          "path": "elections/pc/CG/index.json",
+          "size": 288,
+          "hash": "2b15e3a7"
+        }
+      },
+      "CH": {
+        "slug": "CH",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/CH/2009.json",
+            "size": 25194,
+            "hash": "93808cfe"
+          },
+          "2014": {
+            "path": "elections/pc/CH/2014.json",
+            "size": 12439,
+            "hash": "330137ba"
+          },
+          "2019": {
+            "path": "elections/pc/CH/2019.json",
+            "size": 24614,
+            "hash": "15bd94e6"
+          },
+          "2024": {
+            "path": "elections/pc/CH/2024.json",
+            "size": 6237,
+            "hash": "b270eed1"
+          }
+        },
+        "index": {
+          "path": "elections/pc/CH/index.json",
+          "size": 283,
+          "hash": "a5c7ae7e"
+        }
+      },
+      "DD": {
+        "slug": "DD",
+        "years": [
+          2024
+        ],
+        "paths": {
+          "2024": {
+            "path": "elections/pc/DD/2024.json",
+            "size": 5425,
+            "hash": "e9be1e9b"
+          }
+        },
+        "index": {
+          "path": "elections/pc/DD/index.json",
+          "size": 279,
+          "hash": "b82e79f7"
+        }
+      },
+      "DL": {
+        "slug": "DL",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/DL/2009.json",
+            "size": 622105,
+            "hash": "38f28d75"
+          },
+          "2014": {
+            "path": "elections/pc/DL/2014.json",
+            "size": 604279,
+            "hash": "3316b06e"
+          },
+          "2019": {
+            "path": "elections/pc/DL/2019.json",
+            "size": 664238,
+            "hash": "0e541e54"
+          },
+          "2024": {
+            "path": "elections/pc/DL/2024.json",
+            "size": 49215,
+            "hash": "11ef59cf"
+          }
+        },
+        "index": {
+          "path": "elections/pc/DL/index.json",
+          "size": 262,
+          "hash": "5cc94d1a"
+        }
+      },
+      "GA": {
+        "slug": "GA",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/GA/2009.json",
+            "size": 141721,
+            "hash": "b7512ff9"
+          },
+          "2014": {
+            "path": "elections/pc/GA/2014.json",
+            "size": 161747,
+            "hash": "3a7eab73"
+          },
+          "2019": {
+            "path": "elections/pc/GA/2019.json",
+            "size": 111425,
+            "hash": "75bdbe45"
+          },
+          "2024": {
+            "path": "elections/pc/GA/2024.json",
+            "size": 40376,
+            "hash": "195036b1"
+          }
+        },
+        "index": {
+          "path": "elections/pc/GA/index.json",
+          "size": 269,
+          "hash": "129d734c"
+        }
+      },
+      "GJ": {
+        "slug": "GJ",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/GJ/2009.json",
+            "size": 1070750,
+            "hash": "47c5a3fa"
+          },
+          "2014": {
+            "path": "elections/pc/GJ/2014.json",
+            "size": 1062201,
+            "hash": "f46fd273"
+          },
+          "2019": {
+            "path": "elections/pc/GJ/2019.json",
+            "size": 1165403,
+            "hash": "0c4adf00"
+          },
+          "2024": {
+            "path": "elections/pc/GJ/2024.json",
+            "size": 275921,
+            "hash": "e30ad0ec"
+          }
+        },
+        "index": {
+          "path": "elections/pc/GJ/index.json",
+          "size": 278,
+          "hash": "d8c8d9af"
+        }
+      },
+      "HP": {
+        "slug": "HP",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/HP/2009.json",
+            "size": 206399,
+            "hash": "64e7617e"
+          },
+          "2014": {
+            "path": "elections/pc/HP/2014.json",
+            "size": 271038,
+            "hash": "85129a8b"
+          },
+          "2019": {
+            "path": "elections/pc/HP/2019.json",
+            "size": 318768,
+            "hash": "579a8611"
+          },
+          "2024": {
+            "path": "elections/pc/HP/2024.json",
+            "size": 80647,
+            "hash": "c537779a"
+          }
+        },
+        "index": {
+          "path": "elections/pc/HP/index.json",
+          "size": 295,
+          "hash": "4e4112ee"
+        }
+      },
+      "HR": {
+        "slug": "HR",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/HR/2009.json",
+            "size": 736237,
+            "hash": "92b846ef"
+          },
+          "2014": {
+            "path": "elections/pc/HR/2014.json",
+            "size": 839863,
+            "hash": "61e0dc02"
+          },
+          "2019": {
+            "path": "elections/pc/HR/2019.json",
+            "size": 820656,
+            "hash": "95d2793a"
+          },
+          "2024": {
+            "path": "elections/pc/HR/2024.json",
+            "size": 274409,
+            "hash": "5335716b"
+          }
+        },
+        "index": {
+          "path": "elections/pc/HR/index.json",
+          "size": 278,
+          "hash": "e8f8cb11"
+        }
+      },
+      "JH": {
+        "slug": "JH",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/JH/2009.json",
+            "size": 601616,
+            "hash": "0a581de9"
+          },
+          "2014": {
+            "path": "elections/pc/JH/2014.json",
+            "size": 612036,
+            "hash": "1bcf2915"
+          },
+          "2019": {
+            "path": "elections/pc/JH/2019.json",
+            "size": 581442,
+            "hash": "43a81318"
+          },
+          "2024": {
+            "path": "elections/pc/JH/2024.json",
+            "size": 212819,
+            "hash": "c01515c7"
+          }
+        },
+        "index": {
+          "path": "elections/pc/JH/index.json",
+          "size": 282,
+          "hash": "6bbb9461"
+        }
+      },
+      "JK": {
+        "slug": "JK",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/JK/2009.json",
+            "size": 413768,
+            "hash": "67cf0676"
+          },
+          "2014": {
+            "path": "elections/pc/JK/2014.json",
+            "size": 417866,
+            "hash": "5bad7f0b"
+          },
+          "2019": {
+            "path": "elections/pc/JK/2019.json",
+            "size": 449175,
+            "hash": "828f347c"
+          },
+          "2024": {
+            "path": "elections/pc/JK/2024.json",
+            "size": 225828,
+            "hash": "9b8cf8d3"
+          }
+        },
+        "index": {
+          "path": "elections/pc/JK/index.json",
+          "size": 297,
+          "hash": "a7302671"
+        }
+      },
+      "KA": {
+        "slug": "KA",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/KA/2009.json",
+            "size": 1391172,
+            "hash": "80f636ae"
+          },
+          "2014": {
+            "path": "elections/pc/KA/2014.json",
+            "size": 1497480,
+            "hash": "82a90a69"
+          },
+          "2019": {
+            "path": "elections/pc/KA/2019.json",
+            "size": 1634164,
+            "hash": "df8bb78c"
+          },
+          "2024": {
+            "path": "elections/pc/KA/2024.json",
+            "size": 542678,
+            "hash": "67522069"
+          }
+        },
+        "index": {
+          "path": "elections/pc/KA/index.json",
+          "size": 282,
+          "hash": "6cb82ef0"
+        }
+      },
+      "KL": {
+        "slug": "KL",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/KL/2009.json",
+            "size": 630190,
+            "hash": "f89705fd"
+          },
+          "2014": {
+            "path": "elections/pc/KL/2014.json",
+            "size": 831446,
+            "hash": "4ac93042"
+          },
+          "2019": {
+            "path": "elections/pc/KL/2019.json",
+            "size": 716190,
+            "hash": "023d0d08"
+          },
+          "2024": {
+            "path": "elections/pc/KL/2024.json",
+            "size": 202835,
+            "hash": "064673b4"
+          }
+        },
+        "index": {
+          "path": "elections/pc/KL/index.json",
+          "size": 276,
+          "hash": "46d9c488"
+        }
+      },
+      "LA": {
+        "slug": "LA",
+        "years": [
+          2024
+        ],
+        "paths": {
+          "2024": {
+            "path": "elections/pc/LA/2024.json",
+            "size": 1639,
+            "hash": "0e84c41f"
+          }
+        },
+        "index": {
+          "path": "elections/pc/LA/index.json",
+          "size": 215,
+          "hash": "04aebbdf"
+        }
+      },
+      "LD": {
+        "slug": "LD",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/LD/2009.json",
+            "size": 3310,
+            "hash": "48485dc2"
+          },
+          "2014": {
+            "path": "elections/pc/LD/2014.json",
+            "size": 5261,
+            "hash": "6457ba1a"
+          },
+          "2019": {
+            "path": "elections/pc/LD/2019.json",
+            "size": 5252,
+            "hash": "97ee1f14"
+          },
+          "2024": {
+            "path": "elections/pc/LD/2024.json",
+            "size": 1632,
+            "hash": "9fccc7b5"
+          }
+        },
+        "index": {
+          "path": "elections/pc/LD/index.json",
+          "size": 285,
+          "hash": "c8793b60"
+        }
+      },
+      "MH": {
+        "slug": "MH",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/MH/2009.json",
+            "size": 2095600,
+            "hash": "15a91a5f"
+          },
+          "2014": {
+            "path": "elections/pc/MH/2014.json",
+            "size": 2342985,
+            "hash": "5435b709"
+          },
+          "2019": {
+            "path": "elections/pc/MH/2019.json",
+            "size": 2319340,
+            "hash": "f4b8fa54"
+          },
+          "2024": {
+            "path": "elections/pc/MH/2024.json",
+            "size": 1010796,
+            "hash": "1f2bee17"
+          }
+        },
+        "index": {
+          "path": "elections/pc/MH/index.json",
+          "size": 286,
+          "hash": "3fc4903f"
+        }
+      },
+      "ML": {
+        "slug": "ML",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/ML/2009.json",
+            "size": 137654,
+            "hash": "faa79fcc"
+          },
+          "2014": {
+            "path": "elections/pc/ML/2014.json",
+            "size": 155561,
+            "hash": "488c1eff"
+          },
+          "2019": {
+            "path": "elections/pc/ML/2019.json",
+            "size": 137310,
+            "hash": "91bf07dd"
+          },
+          "2024": {
+            "path": "elections/pc/ML/2024.json",
+            "size": 39291,
+            "hash": "57d21279"
+          }
+        },
+        "index": {
+          "path": "elections/pc/ML/index.json",
+          "size": 281,
+          "hash": "acd1fb3a"
+        }
+      },
+      "MN": {
+        "slug": "MN",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/MN/2009.json",
+            "size": 183435,
+            "hash": "01c2d455"
+          },
+          "2014": {
+            "path": "elections/pc/MN/2014.json",
+            "size": 231492,
+            "hash": "a0659c5a"
+          },
+          "2019": {
+            "path": "elections/pc/MN/2019.json",
+            "size": 242246,
+            "hash": "4956c444"
+          },
+          "2024": {
+            "path": "elections/pc/MN/2024.json",
+            "size": 39165,
+            "hash": "02eddc13"
+          }
+        },
+        "index": {
+          "path": "elections/pc/MN/index.json",
+          "size": 277,
+          "hash": "a58c1b23"
+        }
+      },
+      "MP": {
+        "slug": "MP",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/MP/2009.json",
+            "size": 1373058,
+            "hash": "2974878e"
+          },
+          "2014": {
+            "path": "elections/pc/MP/2014.json",
+            "size": 1311609,
+            "hash": "d0c12595"
+          },
+          "2019": {
+            "path": "elections/pc/MP/2019.json",
+            "size": 1497843,
+            "hash": "bf956f89"
+          },
+          "2024": {
+            "path": "elections/pc/MP/2024.json",
+            "size": 417958,
+            "hash": "789a663f"
+          }
+        },
+        "index": {
+          "path": "elections/pc/MP/index.json",
+          "size": 292,
+          "hash": "e4817ef7"
+        }
+      },
+      "MZ": {
+        "slug": "MZ",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/MZ/2009.json",
+            "size": 65303,
+            "hash": "fc6b1b9a"
+          },
+          "2014": {
+            "path": "elections/pc/MZ/2014.json",
+            "size": 66031,
+            "hash": "e242be10"
+          },
+          "2019": {
+            "path": "elections/pc/MZ/2019.json",
+            "size": 108654,
+            "hash": "d0136d12"
+          },
+          "2024": {
+            "path": "elections/pc/MZ/2024.json",
+            "size": 29884,
+            "hash": "e9c48346"
+          }
+        },
+        "index": {
+          "path": "elections/pc/MZ/index.json",
+          "size": 277,
+          "hash": "34309d67"
+        }
+      },
+      "NL": {
+        "slug": "NL",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/NL/2009.json",
+            "size": 76054,
+            "hash": "d5da73d8"
+          },
+          "2014": {
+            "path": "elections/pc/NL/2014.json",
+            "size": 96529,
+            "hash": "37282cdd"
+          },
+          "2019": {
+            "path": "elections/pc/NL/2019.json",
+            "size": 118332,
+            "hash": "c7a743bd"
+          },
+          "2024": {
+            "path": "elections/pc/NL/2024.json",
+            "size": 21723,
+            "hash": "d61fd313"
+          }
+        },
+        "index": {
+          "path": "elections/pc/NL/index.json",
+          "size": 279,
+          "hash": "a968688e"
+        }
+      },
+      "OD": {
+        "slug": "OD",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/OD/2009.json",
+            "size": 472187,
+            "hash": "b399dd5e"
+          },
+          "2014": {
+            "path": "elections/pc/OD/2014.json",
+            "size": 638252,
+            "hash": "b8b72a23"
+          },
+          "2019": {
+            "path": "elections/pc/OD/2019.json",
+            "size": 576987,
+            "hash": "64978047"
+          },
+          "2024": {
+            "path": "elections/pc/OD/2024.json",
+            "size": 215921,
+            "hash": "5b976d83"
+          }
+        },
+        "index": {
+          "path": "elections/pc/OD/index.json",
+          "size": 276,
+          "hash": "01b4c35b"
+        }
+      },
+      "PB": {
+        "slug": "PB",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/PB/2009.json",
+            "size": 777783,
+            "hash": "2988d8ff"
+          },
+          "2014": {
+            "path": "elections/pc/PB/2014.json",
+            "size": 947575,
+            "hash": "12e8da5a"
+          },
+          "2019": {
+            "path": "elections/pc/PB/2019.json",
+            "size": 1035911,
+            "hash": "faffa260"
+          },
+          "2024": {
+            "path": "elections/pc/PB/2024.json",
+            "size": 410860,
+            "hash": "e81b685d"
+          }
+        },
+        "index": {
+          "path": "elections/pc/PB/index.json",
+          "size": 276,
+          "hash": "6e694389"
+        }
+      },
+      "PY": {
+        "slug": "PY",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/PY/2009.json",
+            "size": 305743,
+            "hash": "12abec29"
+          },
+          "2014": {
+            "path": "elections/pc/PY/2014.json",
+            "size": 339145,
+            "hash": "2d72c671"
+          },
+          "2019": {
+            "path": "elections/pc/PY/2019.json",
+            "size": 210795,
+            "hash": "a4e84f06"
+          },
+          "2024": {
+            "path": "elections/pc/PY/2024.json",
+            "size": 95670,
+            "hash": "0cc78317"
+          }
+        },
+        "index": {
+          "path": "elections/pc/PY/index.json",
+          "size": 283,
+          "hash": "159d6ac2"
+        }
+      },
+      "RJ": {
+        "slug": "RJ",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/RJ/2009.json",
+            "size": 1114333,
+            "hash": "ca260dd3"
+          },
+          "2014": {
+            "path": "elections/pc/RJ/2014.json",
+            "size": 1115539,
+            "hash": "9764b5b6"
+          },
+          "2019": {
+            "path": "elections/pc/RJ/2019.json",
+            "size": 896942,
+            "hash": "a91d4a2f"
+          },
+          "2024": {
+            "path": "elections/pc/RJ/2024.json",
+            "size": 305473,
+            "hash": "1d5b0057"
+          }
+        },
+        "index": {
+          "path": "elections/pc/RJ/index.json",
+          "size": 282,
+          "hash": "921168ef"
+        }
+      },
+      "SK": {
+        "slug": "SK",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/SK/2009.json",
+            "size": 85316,
+            "hash": "6174878c"
+          },
+          "2014": {
+            "path": "elections/pc/SK/2014.json",
+            "size": 87556,
+            "hash": "8553c085"
+          },
+          "2019": {
+            "path": "elections/pc/SK/2019.json",
+            "size": 140807,
+            "hash": "13c53d12"
+          },
+          "2024": {
+            "path": "elections/pc/SK/2024.json",
+            "size": 54430,
+            "hash": "e54b0011"
+          }
+        },
+        "index": {
+          "path": "elections/pc/SK/index.json",
+          "size": 275,
+          "hash": "56bf5583"
+        }
+      },
+      "TN": {
+        "slug": "TN",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/TN/2009.json",
+            "size": 2026741,
+            "hash": "2ce2dd91"
+          },
+          "2014": {
+            "path": "elections/pc/TN/2014.json",
+            "size": 2177710,
+            "hash": "f3bbb5d7"
+          },
+          "2019": {
+            "path": "elections/pc/TN/2019.json",
+            "size": 2116258,
+            "hash": "e502d6bf"
+          },
+          "2024": {
+            "path": "elections/pc/TN/2024.json",
+            "size": 859858,
+            "hash": "c9398cda"
+          }
+        },
+        "index": {
+          "path": "elections/pc/TN/index.json",
+          "size": 284,
+          "hash": "da71ade9"
+        }
+      },
+      "TR": {
+        "slug": "TR",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/TR/2009.json",
+            "size": 217691,
+            "hash": "493d9771"
+          },
+          "2014": {
+            "path": "elections/pc/TR/2014.json",
+            "size": 305832,
+            "hash": "a51b2c16"
+          },
+          "2019": {
+            "path": "elections/pc/TR/2019.json",
+            "size": 284024,
+            "hash": "152b5af7"
+          },
+          "2024": {
+            "path": "elections/pc/TR/2024.json",
+            "size": 67332,
+            "hash": "64b9a5af"
+          }
+        },
+        "index": {
+          "path": "elections/pc/TR/index.json",
+          "size": 277,
+          "hash": "a8822131"
+        }
+      },
+      "TS": {
+        "slug": "TS",
+        "years": [
+          2019,
+          2024
+        ],
+        "paths": {
+          "2019": {
+            "path": "elections/pc/TS/2019.json",
+            "size": 1303334,
+            "hash": "eb806f7b"
+          },
+          "2024": {
+            "path": "elections/pc/TS/2024.json",
+            "size": 532651,
+            "hash": "c2d981c6"
+          }
+        },
+        "index": {
+          "path": "elections/pc/TS/index.json",
+          "size": 242,
+          "hash": "a6e088b6"
+        }
+      },
+      "UK": {
+        "slug": "UK",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/UK/2009.json",
+            "size": 407717,
+            "hash": "6842b321"
+          },
+          "2014": {
+            "path": "elections/pc/UK/2014.json",
+            "size": 425557,
+            "hash": "7e4aa559"
+          },
+          "2019": {
+            "path": "elections/pc/UK/2019.json",
+            "size": 312413,
+            "hash": "d8497793"
+          },
+          "2024": {
+            "path": "elections/pc/UK/2024.json",
+            "size": 101688,
+            "hash": "3dd1368a"
+          }
+        },
+        "index": {
+          "path": "elections/pc/UK/index.json",
+          "size": 285,
+          "hash": "0895890e"
+        }
+      },
+      "UP": {
+        "slug": "UP",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/UP/2009.json",
+            "size": 2921885,
+            "hash": "866bfa26"
+          },
+          "2014": {
+            "path": "elections/pc/UP/2014.json",
+            "size": 2932612,
+            "hash": "ea74ee44"
+          },
+          "2019": {
+            "path": "elections/pc/UP/2019.json",
+            "size": 2291582,
+            "hash": "3e430782"
+          },
+          "2024": {
+            "path": "elections/pc/UP/2024.json",
+            "size": 688826,
+            "hash": "c7b6aed6"
+          }
+        },
+        "index": {
+          "path": "elections/pc/UP/index.json",
+          "size": 290,
+          "hash": "e5b51bf6"
+        }
+      },
+      "WB": {
+        "slug": "WB",
+        "years": [
+          2009,
+          2014,
+          2019,
+          2024
+        ],
+        "paths": {
+          "2009": {
+            "path": "elections/pc/WB/2009.json",
+            "size": 1091762,
+            "hash": "2a254fd4"
+          },
+          "2014": {
+            "path": "elections/pc/WB/2014.json",
+            "size": 1496059,
+            "hash": "1ea7b29c"
+          },
+          "2019": {
+            "path": "elections/pc/WB/2019.json",
+            "size": 1479562,
+            "hash": "741446e3"
+          },
+          "2024": {
+            "path": "elections/pc/WB/2024.json",
+            "size": 526615,
+            "hash": "1bb27542"
+          }
+        },
+        "index": {
+          "path": "elections/pc/WB/index.json",
+          "size": 286,
+          "hash": "6b7f8a37"
+        }
+      }
+    }
+  },
+  "stats": {
+    "totalFiles": 347,
+    "totalSize": 160995557,
+    "acStates": 31,
+    "pcStates": 36,
+    "acYears": 107,
+    "pcYears": 133,
+    "totalSizeFormatted": "153.5 MB"
+  }
+}

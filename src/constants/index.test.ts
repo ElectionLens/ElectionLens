@@ -12,27 +12,27 @@ import {
 } from './index';
 
 describe('STATE_FILE_MAP', () => {
-  it('contains mappings for major states', () => {
-    expect(STATE_FILE_MAP['Tamil Nadu']).toBe('tamil-nadu');
-    expect(STATE_FILE_MAP['Andhra Pradesh']).toBe('andhra-pradesh');
-    expect(STATE_FILE_MAP['Maharashtra']).toBe('maharashtra');
-    expect(STATE_FILE_MAP['Karnataka']).toBe('karnataka');
+  it('contains state ID mappings for major states', () => {
+    expect(STATE_FILE_MAP['Tamil Nadu']).toBe('TN');
+    expect(STATE_FILE_MAP['Andhra Pradesh']).toBe('AP');
+    expect(STATE_FILE_MAP['Maharashtra']).toBe('MH');
+    expect(STATE_FILE_MAP['Karnataka']).toBe('KA');
   });
 
   it('handles diacritic variations', () => {
-    expect(STATE_FILE_MAP['Tamil Nādu']).toBe('tamil-nadu');
-    expect(STATE_FILE_MAP['Mahārāshtra']).toBe('maharashtra');
+    expect(STATE_FILE_MAP['Tamil Nādu']).toBe('TN');
+    expect(STATE_FILE_MAP['Mahārāshtra']).toBe('MH');
   });
 
   it('handles Delhi variations', () => {
-    expect(STATE_FILE_MAP['Delhi']).toBe('delhi');
-    expect(STATE_FILE_MAP['NCT of Delhi']).toBe('delhi');
+    expect(STATE_FILE_MAP['Delhi']).toBe('DL');
+    expect(STATE_FILE_MAP['NCT of Delhi']).toBe('DL');
   });
 
   it('handles union territories', () => {
-    expect(STATE_FILE_MAP['Chandigarh']).toBe('chandigarh');
-    expect(STATE_FILE_MAP['Puducherry']).toBe('puducherry');
-    expect(STATE_FILE_MAP['Lakshadweep']).toBe('lakshadweep');
+    expect(STATE_FILE_MAP['Chandigarh']).toBe('CH');
+    expect(STATE_FILE_MAP['Puducherry']).toBe('PY');
+    expect(STATE_FILE_MAP['Lakshadweep']).toBe('LD');
   });
 });
 
