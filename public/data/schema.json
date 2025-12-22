@@ -14150,6 +14150,19 @@
         "DL-021"
       ],
       "delimitation": 2008
+    },
+    "JK-04": {
+      "id": "JK-04",
+      "stateId": "JK",
+      "pcNo": 4,
+      "name": "Udhampur",
+      "aliases": [
+        "Udhampur",
+        "UDHAMPUR"
+      ],
+      "type": "GEN",
+      "assemblyIds": [],
+      "delimitation": 2024
     }
   },
   "assemblyConstituencies": {
@@ -17330,12 +17343,13 @@
       "pcId": "JK-01",
       "districtId": "JK-D01",
       "acNo": 1,
-      "name": "KARNAH",
+      "name": "Karnah",
       "aliases": [
         "KARNAH",
         "JK-001",
         "jk-001",
-        "karnah"
+        "karnah",
+        "Karnah"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17346,12 +17360,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D01",
       "acNo": 3,
-      "name": "LOLAB",
+      "name": "Kupwara",
       "aliases": [
         "LOLAB",
         "JK-003",
         "jk-003",
-        "lolab"
+        "lolab",
+        "Kupwara",
+        "KUPWARA",
+        "Lolab"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17362,12 +17379,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D02",
       "acNo": 9,
-      "name": "GUREZ",
+      "name": "Uri",
       "aliases": [
         "GUREZ",
         "JK-009",
         "jk-009",
-        "gurez"
+        "gurez",
+        "Uri",
+        "URI",
+        "Gurez"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17378,12 +17398,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D01",
       "acNo": 2,
-      "name": "KUPWARA",
+      "name": "Trehgam",
       "aliases": [
         "KUPWARA",
         "JK-002",
         "jk-002",
-        "kupwara"
+        "kupwara",
+        "Trehgam",
+        "TREHGAM",
+        "Kupwara"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17394,12 +17417,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D02",
       "acNo": 10,
-      "name": "BANDIPORA",
+      "name": "Baramulla",
       "aliases": [
         "BANDIPORA",
         "JK-010",
         "jk-010",
-        "bandipora"
+        "bandipora",
+        "Baramulla",
+        "BARAMULLA",
+        "Bandipora"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17410,12 +17436,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D01",
       "acNo": 4,
-      "name": "HANDWARA",
+      "name": "Lolab",
       "aliases": [
         "HANDWARA",
         "JK-004",
         "jk-004",
-        "handwara"
+        "handwara",
+        "Lolab",
+        "LOLAB",
+        "Handwara"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17426,12 +17455,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D01",
       "acNo": 5,
-      "name": "LANGATE",
+      "name": "Handwara",
       "aliases": [
         "LANGATE",
         "JK-005",
         "jk-005",
-        "langate"
+        "langate",
+        "Handwara",
+        "HANDWARA",
+        "Langate"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17442,12 +17474,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D02",
       "acNo": 8,
-      "name": "SOPORE",
+      "name": "Rafiabad",
       "aliases": [
         "SOPORE",
         "JK-008",
         "jk-008",
-        "sopore"
+        "sopore",
+        "Rafiabad",
+        "RAFIABAD",
+        "Sopore"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17458,12 +17493,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D02",
       "acNo": 11,
-      "name": "SONAWARI",
+      "name": "Gulmarg",
       "aliases": [
         "SONAWARI",
         "JK-011",
         "jk-011",
-        "sonawari"
+        "sonawari",
+        "Gulmarg",
+        "GULMARG",
+        "Sonawari"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17474,12 +17512,15 @@
       "pcId": "JK-02",
       "districtId": "JK-D03",
       "acNo": 16,
-      "name": "KANGAN",
+      "name": "Gurez",
       "aliases": [
         "KANGAN",
         "JK-016",
         "jk-016",
-        "kangan"
+        "kangan",
+        "Gurez",
+        "GUREZ",
+        "Kangan"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17490,12 +17531,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D02",
       "acNo": 7,
-      "name": "RAFIABAD",
+      "name": "Sopore",
       "aliases": [
         "RAFIABAD",
         "JK-007",
         "jk-007",
-        "rafiabad"
+        "rafiabad",
+        "Sopore",
+        "SOPORE",
+        "Rafiabad"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17506,12 +17550,15 @@
       "pcId": "JK-02",
       "districtId": "JK-D03",
       "acNo": 17,
-      "name": "GANDERBAL",
+      "name": "Kangan",
       "aliases": [
         "GANDERBAL",
         "JK-017",
         "jk-017",
-        "ganderbal"
+        "ganderbal",
+        "Kangan",
+        "KANGAN",
+        "Ganderbal"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17522,14 +17569,17 @@
       "pcId": "JK-01",
       "districtId": "JK-D02",
       "acNo": 13,
-      "name": "BARAMULA",
+      "name": "Pattan",
       "aliases": [
         "BARAMULA",
         "BARAMULLA",
         "baramulla",
         "JK-013",
         "jk-013",
-        "baramula"
+        "baramula",
+        "Pattan",
+        "PATTAN",
+        "Baramulla"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17540,12 +17590,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D02",
       "acNo": 6,
-      "name": "URI",
+      "name": "Langate",
       "aliases": [
         "URI",
         "JK-006",
         "jk-006",
-        "uri"
+        "uri",
+        "Langate",
+        "LANGATE",
+        "Uri"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17556,12 +17609,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D02",
       "acNo": 15,
-      "name": "PATTAN",
+      "name": "Bandipora",
       "aliases": [
         "PATTAN",
         "JK-015",
         "jk-015",
-        "pattan"
+        "pattan",
+        "Bandipora",
+        "BANDIPORA",
+        "Pattan"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17571,12 +17627,16 @@
       "stateId": "JK",
       "districtId": "JK-D06",
       "acNo": 46,
-      "name": "PAHALGAM",
+      "name": "Shangus - Anantnag East",
       "aliases": [
         "PAHALGAM",
         "JK-046",
         "jk-046",
-        "pahalgam"
+        "pahalgam",
+        "Shangus - Anantnag East",
+        "SHANGUS - ANANTNAG EAST",
+        "SHANGUSANANTNAGEAST",
+        "Pahalgam"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17587,12 +17647,15 @@
       "pcId": "JK-04",
       "districtId": "JK-D09",
       "acNo": 51,
-      "name": "KISHTWAR",
+      "name": "Bhadarwah",
       "aliases": [
         "KISHTWAR",
         "JK-051",
         "jk-051",
-        "kishtwar"
+        "kishtwar",
+        "Bhadarwah",
+        "BHADARWAH",
+        "Kishtwar"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17603,12 +17666,15 @@
       "pcId": "JK-01",
       "districtId": "JK-D02",
       "acNo": 14,
-      "name": "GULMARG",
+      "name": "Sonawari",
       "aliases": [
         "GULMARG",
         "JK-014",
         "jk-014",
-        "gulmarg"
+        "gulmarg",
+        "Sonawari",
+        "SONAWARI",
+        "Gulmarg"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17619,12 +17685,15 @@
       "pcId": "JK-02",
       "districtId": "JK-D03",
       "acNo": 20,
-      "name": "EIDGAH",
+      "name": "Khanyar",
       "aliases": [
         "EIDGAH",
         "JK-020",
         "jk-020",
-        "eidgah"
+        "eidgah",
+        "Khanyar",
+        "KHANYAR",
+        "Eidgah"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17635,12 +17704,15 @@
       "pcId": "JK-02",
       "districtId": "JK-D03",
       "acNo": 19,
-      "name": "ZADIBAL",
+      "name": "Hazratbal",
       "aliases": [
         "ZADIBAL",
         "JK-019",
         "jk-019",
-        "zadibal"
+        "zadibal",
+        "Hazratbal",
+        "HAZRATBAL",
+        "Zadibal"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17651,12 +17723,15 @@
       "pcId": "JK-02",
       "districtId": "JK-D03",
       "acNo": 18,
-      "name": "HAZRATBAL",
+      "name": "Ganderbal",
       "aliases": [
         "HAZRATBAL",
         "JK-018",
         "jk-018",
-        "hazratbal"
+        "hazratbal",
+        "Ganderbal",
+        "GANDERBAL",
+        "Hazratbal"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17667,12 +17742,13 @@
       "pcId": "JK-02",
       "districtId": "JK-D04",
       "acNo": 28,
-      "name": "BEERWAH",
+      "name": "Beerwah",
       "aliases": [
         "BEERWAH",
         "JK-028",
         "jk-028",
-        "beerwah"
+        "beerwah",
+        "Beerwah"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17683,14 +17759,15 @@
       "pcId": "JK-02",
       "districtId": "JK-D04",
       "acNo": 27,
-      "name": "BADGAM",
+      "name": "Budgam",
       "aliases": [
         "BADGAM",
         "BUDGAM",
         "budgam",
         "JK-027",
         "jk-027",
-        "badgam"
+        "badgam",
+        "Budgam"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17701,14 +17778,19 @@
       "pcId": "JK-02",
       "districtId": "JK-D03",
       "acNo": 22,
-      "name": "HABBA KADA",
+      "name": "Lal Chowk",
       "aliases": [
         "HABBA KADA",
         "HABBA KADAL",
         "habba kadal",
         "JK-022",
         "jk-022",
-        "habba kada"
+        "habba kada",
+        "Lal Chowk",
+        "LAL CHOWK",
+        "LALCHOWK",
+        "Habbakadal",
+        "HABBAKADAL"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17719,14 +17801,17 @@
       "pcId": "JK-02",
       "districtId": "JK-D03",
       "acNo": 21,
-      "name": "KHANIYAR",
+      "name": "Habbakadal",
       "aliases": [
         "KHANIYAR",
         "KHANYAR",
         "khanyar",
         "JK-021",
         "jk-021",
-        "khaniyar"
+        "khaniyar",
+        "Habbakadal",
+        "HABBAKADAL",
+        "Khanyar"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17736,12 +17821,13 @@
       "stateId": "JK",
       "districtId": "JK-D05",
       "acNo": 32,
-      "name": "PAMPORE",
+      "name": "Pampore",
       "aliases": [
         "PAMPORE",
         "JK-032",
         "jk-032",
-        "pampore"
+        "pampore",
+        "Pampore"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17751,28 +17837,15 @@
       "stateId": "JK",
       "districtId": "JK-D05",
       "acNo": 31,
-      "name": "TRAL",
+      "name": "Chadoora",
       "aliases": [
         "TRAL",
         "JK-031",
         "jk-031",
-        "tral"
-      ],
-      "type": "GEN",
-      "delimitation": 2008
-    },
-    "JK-024": {
-      "id": "JK-024",
-      "stateId": "JK",
-      "pcId": "JK-02",
-      "districtId": "JK-D03",
-      "acNo": 24,
-      "name": "SONAWAR",
-      "aliases": [
-        "SONAWAR",
-        "JK-024",
-        "jk-024",
-        "sonawar"
+        "tral",
+        "Chadoora",
+        "CHADOORA",
+        "Tral"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17783,12 +17856,16 @@
       "pcId": "JK-02",
       "districtId": "JK-D04",
       "acNo": 26,
-      "name": "CHADOORA",
+      "name": "Central Shalteng",
       "aliases": [
         "CHADOORA",
         "JK-026",
         "jk-026",
-        "chadoora"
+        "chadoora",
+        "Central Shalteng",
+        "CENTRAL SHALTENG",
+        "CENTRALSHALTENG",
+        "Chadoora"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17799,14 +17876,16 @@
       "pcId": "JK-02",
       "districtId": "JK-D04",
       "acNo": 29,
-      "name": "KHAN SAHEB",
+      "name": "Khansahib",
       "aliases": [
         "KHAN SAHEB",
         "KHAN SAHIB",
         "khan sahib",
         "JK-029",
         "jk-029",
-        "khan saheb"
+        "khan saheb",
+        "Khansahib",
+        "KHANSAHIB"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17817,12 +17896,16 @@
       "pcId": "JK-05",
       "districtId": "JK-D11",
       "acNo": 87,
-      "name": "POONCH HAVELI",
+      "name": "Thannamandi",
       "aliases": [
         "POONCH HAVELI",
         "JK-087",
         "jk-087",
-        "poonch haveli"
+        "poonch haveli",
+        "Thannamandi",
+        "THANNAMANDI",
+        "Poonch Haveli",
+        "POONCHHAVELI"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17832,12 +17915,15 @@
       "stateId": "JK",
       "districtId": "JK-D05",
       "acNo": 33,
-      "name": "PULWAMA",
+      "name": "Tral",
       "aliases": [
         "PULWAMA",
         "JK-033",
         "jk-033",
-        "pulwama"
+        "pulwama",
+        "Tral",
+        "TRAL",
+        "Pulwama"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17847,27 +17933,15 @@
       "stateId": "JK",
       "districtId": "JK-D05",
       "acNo": 34,
-      "name": "RAJPORA",
+      "name": "Pulwama",
       "aliases": [
         "RAJPORA",
         "JK-034",
         "jk-034",
-        "rajpora"
-      ],
-      "type": "GEN",
-      "delimitation": 2008
-    },
-    "JK-045": {
-      "id": "JK-045",
-      "stateId": "JK",
-      "districtId": "JK-D06",
-      "acNo": 45,
-      "name": "BIJBEHARA",
-      "aliases": [
-        "BIJBEHARA",
-        "JK-045",
-        "jk-045",
-        "bijbehara"
+        "rajpora",
+        "Pulwama",
+        "PULWAMA",
+        "Rajpora"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17878,14 +17952,17 @@
       "pcId": "JK-05",
       "districtId": "JK-D11",
       "acNo": 85,
-      "name": "SURAN KOTE",
+      "name": "Rajouri",
       "aliases": [
         "SURAN KOTE",
         "JK-085",
         "jk-085",
         "SURANKOTE",
         "surankote",
-        "suran kote"
+        "suran kote",
+        "Rajouri",
+        "RAJOURI",
+        "Surankote"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17895,27 +17972,15 @@
       "stateId": "JK",
       "districtId": "JK-D05",
       "acNo": 36,
-      "name": "SHOPIAN",
+      "name": "Zainapora",
       "aliases": [
         "SHOPIAN",
         "JK-036",
         "jk-036",
-        "shopian"
-      ],
-      "type": "GEN",
-      "delimitation": 2008
-    },
-    "JK-044": {
-      "id": "JK-044",
-      "stateId": "JK",
-      "districtId": "JK-D06",
-      "acNo": 44,
-      "name": "SHANGUS",
-      "aliases": [
-        "SHANGUS",
-        "JK-044",
-        "jk-044",
-        "shangus"
+        "shopian",
+        "Zainapora",
+        "ZAINAPORA",
+        "Shopian"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17926,12 +17991,15 @@
       "pcId": "JK-05",
       "districtId": "JK-D11",
       "acNo": 86,
-      "name": "MENDHAR",
+      "name": "Budhal",
       "aliases": [
         "MENDHAR",
         "JK-086",
         "jk-086",
-        "mendhar"
+        "mendhar",
+        "Budhal",
+        "BUDHAL",
+        "Mendhar"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17941,12 +18009,15 @@
       "stateId": "JK",
       "districtId": "JK-D06",
       "acNo": 40,
-      "name": "ANANTNAG",
+      "name": "Devsar",
       "aliases": [
         "ANANTNAG",
         "JK-040",
         "jk-040",
-        "anantnag"
+        "anantnag",
+        "Devsar",
+        "DEVSAR",
+        "Anantnag"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17956,12 +18027,16 @@
       "stateId": "JK",
       "districtId": "JK-D06",
       "acNo": 38,
-      "name": "KULGAM",
+      "name": "D.H. Pora",
       "aliases": [
         "KULGAM",
         "JK-038",
         "jk-038",
-        "kulgam"
+        "kulgam",
+        "D.H. Pora",
+        "D.H. PORA",
+        "DHPORA",
+        "Kulgam"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17971,12 +18046,16 @@
       "stateId": "JK",
       "districtId": "JK-D06",
       "acNo": 43,
-      "name": "KOKERNAG",
+      "name": "Anantnag West",
       "aliases": [
         "KOKERNAG",
         "JK-043",
         "jk-043",
-        "kokernag"
+        "kokernag",
+        "Anantnag West",
+        "ANANTNAG WEST",
+        "ANANTNAGWEST",
+        "Kokernag"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -17986,12 +18065,15 @@
       "stateId": "JK",
       "districtId": "JK-D06",
       "acNo": 41,
-      "name": "DEVSAR",
+      "name": "Dooru",
       "aliases": [
         "DEVSAR",
         "JK-041",
         "jk-041",
-        "devsar"
+        "devsar",
+        "Dooru",
+        "DOORU",
+        "Devsar"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18002,12 +18084,15 @@
       "pcId": "JK-04",
       "districtId": "JK-D09",
       "acNo": 52,
-      "name": "INDERWAL",
+      "name": "Doda",
       "aliases": [
         "INDERWAL",
         "JK-052",
         "jk-052",
-        "inderwal"
+        "inderwal",
+        "Doda",
+        "DODA",
+        "Inderwal"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18017,14 +18102,17 @@
       "stateId": "JK",
       "districtId": "JK-D06",
       "acNo": 42,
-      "name": "DORU",
+      "name": "Kokernag",
       "aliases": [
         "DORU",
         "DOORU",
         "dooru",
         "JK-042",
         "jk-042",
-        "doru"
+        "doru",
+        "Kokernag",
+        "KOKERNAG",
+        "Dooru"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18035,14 +18123,20 @@
       "pcId": "JK-05",
       "districtId": "JK-D12",
       "acNo": 83,
-      "name": "RAJAURI",
+      "name": "Kalakote - Sunderbani",
       "aliases": [
         "RAJAURI",
         "RAJOURI",
         "rajouri",
         "JK-083",
         "jk-083",
-        "rajauri"
+        "rajauri",
+        "Kalakote - Sunderbani",
+        "KALAKOTE - SUNDERBANI",
+        "KALAKOTESUNDERBANI",
+        "Rajouri",
+        "RAJOURI(ST)",
+        "RAJOURIST"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18053,12 +18147,15 @@
       "pcId": "JK-04",
       "districtId": "JK-D09",
       "acNo": 56,
-      "name": "BANIHAL",
+      "name": "Gulabgarh",
       "aliases": [
         "BANIHAL",
         "JK-056",
         "jk-056",
-        "banihal"
+        "banihal",
+        "Gulabgarh",
+        "GULABGARH",
+        "Banihal"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18069,14 +18166,17 @@
       "pcId": "JK-04",
       "districtId": "JK-D10",
       "acNo": 57,
-      "name": "GULABGARH",
+      "name": "Reasi",
       "aliases": [
         "GULABGARH",
         "JK-057",
         "jk-057",
         "GULAB GARH",
         "gulab garh",
-        "gulabgarh"
+        "gulabgarh",
+        "Reasi",
+        "REASI",
+        "Gulabgarh"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18087,28 +18187,15 @@
       "pcId": "JK-04",
       "districtId": "JK-D09",
       "acNo": 55,
-      "name": "RAMBAN",
+      "name": "Banihal",
       "aliases": [
         "RAMBAN",
         "JK-055",
         "jk-055",
-        "ramban"
-      ],
-      "type": "GEN",
-      "delimitation": 2008
-    },
-    "JK-084": {
-      "id": "JK-084",
-      "stateId": "JK",
-      "pcId": "JK-05",
-      "districtId": "JK-D12",
-      "acNo": 84,
-      "name": "KALA KOTE",
-      "aliases": [
-        "KALA KOTE",
-        "JK-084",
-        "jk-084",
-        "kala kote"
+        "ramban",
+        "Banihal",
+        "BANIHAL",
+        "Ramban"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18119,14 +18206,17 @@
       "pcId": "JK-05",
       "districtId": "JK-D12",
       "acNo": 81,
-      "name": "NAUSHEHRA",
+      "name": "Akhnoor",
       "aliases": [
         "NAUSHEHRA",
         "NOWSHERA",
         "nowshera",
         "JK-081",
         "jk-081",
-        "naushehra"
+        "naushehra",
+        "Akhnoor",
+        "AKHNOOR",
+        "Nowshera"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18137,12 +18227,16 @@
       "pcId": "JK-04",
       "districtId": "JK-D09",
       "acNo": 53,
-      "name": "DODA",
+      "name": "Doda West",
       "aliases": [
         "DODA",
         "JK-053",
         "jk-053",
-        "doda"
+        "doda",
+        "Doda West",
+        "DODA WEST",
+        "DODAWEST",
+        "Doda"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18153,28 +18247,16 @@
       "pcId": "JK-04",
       "districtId": "JK-D10",
       "acNo": 58,
-      "name": "REASI",
+      "name": "Shri Mata Vaishno Devi",
       "aliases": [
         "REASI",
         "JK-058",
         "jk-058",
-        "reasi"
-      ],
-      "type": "GEN",
-      "delimitation": 2008
-    },
-    "JK-060": {
-      "id": "JK-060",
-      "stateId": "JK",
-      "pcId": "JK-04",
-      "districtId": "JK-D10",
-      "acNo": 60,
-      "name": "UDHAMPUR",
-      "aliases": [
-        "UDHAMPUR",
-        "JK-060",
-        "jk-060",
-        "udhampur"
+        "reasi",
+        "Shri Mata Vaishno Devi",
+        "SHRI MATA VAISHNO DEVI",
+        "SHRIMATAVAISHNODEVI",
+        "Reasi"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18185,12 +18267,13 @@
       "pcId": "JK-04",
       "districtId": "JK-D10",
       "acNo": 61,
-      "name": "CHENANI",
+      "name": "Chenani",
       "aliases": [
         "CHENANI",
         "JK-061",
         "jk-061",
-        "chenani"
+        "chenani",
+        "Chenani"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18201,12 +18284,16 @@
       "pcId": "JK-05",
       "districtId": "JK-D13",
       "acNo": 79,
-      "name": "AKHNOOR",
+      "name": "Jammu North",
       "aliases": [
         "AKHNOOR",
         "JK-079",
         "jk-079",
-        "akhnoor"
+        "akhnoor",
+        "Jammu North",
+        "JAMMU NORTH",
+        "JAMMUNORTH",
+        "Akhnoor"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18217,12 +18304,15 @@
       "pcId": "JK-05",
       "districtId": "JK-D13",
       "acNo": 80,
-      "name": "CHHAMB",
+      "name": "Marh",
       "aliases": [
         "CHHAMB",
         "JK-080",
         "jk-080",
-        "chhamb"
+        "chhamb",
+        "Marh",
+        "MARH",
+        "Chhamb"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18233,12 +18323,15 @@
       "pcId": "JK-05",
       "districtId": "JK-D13",
       "acNo": 70,
-      "name": "NAGROTA",
+      "name": "Samba",
       "aliases": [
         "NAGROTA",
         "JK-070",
         "jk-070",
-        "nagrota"
+        "nagrota",
+        "Samba",
+        "SAMBA",
+        "Nagrota"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18249,12 +18342,14 @@
       "pcId": "JK-04",
       "districtId": "JK-D10",
       "acNo": 62,
-      "name": "RAM NAGAR",
+      "name": "Ramnagar",
       "aliases": [
         "RAM NAGAR",
         "JK-062",
         "jk-062",
-        "ram nagar"
+        "ram nagar",
+        "Ramnagar",
+        "RAMNAGAR"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18265,12 +18360,15 @@
       "pcId": "JK-05",
       "districtId": "JK-D13",
       "acNo": 77,
-      "name": "MARH",
+      "name": "Nagrota",
       "aliases": [
         "MARH",
         "JK-077",
         "jk-077",
-        "marh"
+        "marh",
+        "Nagrota",
+        "NAGROTA",
+        "Marh"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18281,12 +18379,13 @@
       "pcId": "JK-04",
       "districtId": "JK-D14",
       "acNo": 63,
-      "name": "BANI",
+      "name": "Bani",
       "aliases": [
         "BANI",
         "JK-063",
         "jk-063",
-        "bani"
+        "bani",
+        "Bani"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18297,12 +18396,16 @@
       "pcId": "JK-05",
       "districtId": "JK-D13",
       "acNo": 73,
-      "name": "JAMMU WEST",
+      "name": "Suchetgarh",
       "aliases": [
         "JAMMU WEST",
         "JK-073",
         "jk-073",
-        "jammu west"
+        "jammu west",
+        "Suchetgarh",
+        "SUCHETGARH",
+        "Jammu West",
+        "JAMMUWEST"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18313,12 +18416,16 @@
       "pcId": "JK-05",
       "districtId": "JK-D13",
       "acNo": 72,
-      "name": "JAMMU EAST",
+      "name": "Bishnah",
       "aliases": [
         "JAMMU EAST",
         "JK-072",
         "jk-072",
-        "jammu east"
+        "jammu east",
+        "Bishnah",
+        "BISHNAH",
+        "Jammu East",
+        "JAMMUEAST"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18329,7 +18436,7 @@
       "pcId": "JK-05",
       "districtId": "JK-D13",
       "acNo": 68,
-      "name": "SAMBA",
+      "name": "Hiranagar",
       "aliases": [
         "SAMBA",
         "SAMBASC",
@@ -18338,7 +18445,10 @@
         "samba(sc)",
         "JK-068",
         "jk-068",
-        "samba"
+        "samba",
+        "Hiranagar",
+        "HIRANAGAR",
+        "Samba"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18349,14 +18459,17 @@
       "pcId": "JK-05",
       "districtId": "JK-D13",
       "acNo": 69,
-      "name": "VIJAYPUR",
+      "name": "Ramgarh",
       "aliases": [
         "VIJAYPUR",
         "JK-069",
         "jk-069",
         "VIJAY PUR",
         "vijay pur",
-        "vijaypur"
+        "vijaypur",
+        "Ramgarh",
+        "RAMGARH",
+        "Vijaypur"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18367,12 +18480,15 @@
       "pcId": "JK-04",
       "districtId": "JK-D14",
       "acNo": 66,
-      "name": "BILLAWAR",
+      "name": "Jasrota",
       "aliases": [
         "BILLAWAR",
         "JK-066",
         "jk-066",
-        "billawar"
+        "billawar",
+        "Jasrota",
+        "JASROTA",
+        "Billawar"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18383,12 +18499,17 @@
       "pcId": "JK-05",
       "districtId": "JK-D13",
       "acNo": 76,
-      "name": "SUCHET GARH",
+      "name": "Jammu East",
       "aliases": [
         "SUCHET GARH",
         "JK-076",
         "jk-076",
-        "suchet garh"
+        "suchet garh",
+        "Jammu East",
+        "JAMMU EAST",
+        "JAMMUEAST",
+        "Suchetgarh",
+        "SUCHETGARH"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18399,12 +18520,16 @@
       "pcId": "JK-05",
       "districtId": "JK-D13",
       "acNo": 74,
-      "name": "BISHNAH",
+      "name": "R.S. Pura - Jammu South",
       "aliases": [
         "BISHNAH",
         "JK-074",
         "jk-074",
-        "bishnah"
+        "bishnah",
+        "R.S. Pura - Jammu South",
+        "R.S. PURA - JAMMU SOUTH",
+        "RSPURAJAMMUSOUTH",
+        "Bishnah"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18415,12 +18540,15 @@
       "pcId": "JK-04",
       "districtId": "JK-D14",
       "acNo": 64,
-      "name": "BASOHLI",
+      "name": "Billawar",
       "aliases": [
         "BASOHLI",
         "JK-064",
         "jk-064",
-        "basohli"
+        "basohli",
+        "Billawar",
+        "BILLAWAR",
+        "Basohli"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18431,12 +18559,16 @@
       "pcId": "JK-04",
       "districtId": "JK-D14",
       "acNo": 67,
-      "name": "HIRA NAGAR",
+      "name": "Kathua",
       "aliases": [
         "HIRA NAGAR",
         "JK-067",
         "jk-067",
-        "hira nagar"
+        "hira nagar",
+        "Kathua",
+        "KATHUA",
+        "Hiranagar",
+        "HIRANAGAR"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -18447,12 +18579,15 @@
       "pcId": "JK-04",
       "districtId": "JK-D14",
       "acNo": 65,
-      "name": "KATHUA",
+      "name": "Basohli",
       "aliases": [
         "KATHUA",
         "JK-065",
         "jk-065",
-        "kathua"
+        "kathua",
+        "Basohli",
+        "BASOHLI",
+        "Kathua"
       ],
       "type": "GEN",
       "delimitation": 2008
@@ -85979,6 +86114,365 @@
       ],
       "type": "GEN",
       "delimitation": 2008
+    },
+    "JK-088": {
+      "id": "JK-088",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 88,
+      "name": "Surankote",
+      "aliases": [
+        "Surankote",
+        "SURANKOTE",
+        "Trehgam",
+        "TREHGAM"
+      ],
+      "type": "ST",
+      "delimitation": 2024
+    },
+    "JK-089": {
+      "id": "JK-089",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 89,
+      "name": "Poonch Haveli",
+      "aliases": [
+        "Poonch Haveli",
+        "POONCH HAVELI",
+        "POONCHHAVELI",
+        "Wagoora – Kreeri",
+        "WAGOORAKREERI"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-090": {
+      "id": "JK-090",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 90,
+      "name": "Mendhar",
+      "aliases": [
+        "Mendhar",
+        "MENDHAR",
+        "Lal Chowk",
+        "LALCHOWK"
+      ],
+      "type": "ST",
+      "delimitation": 2024
+    },
+    "JK-100": {
+      "id": "JK-100",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 100,
+      "name": "Bhadarwah",
+      "aliases": [
+        "Bhadarwah",
+        "BHADARWAH"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-105": {
+      "id": "JK-105",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 105,
+      "name": "Jasrota",
+      "aliases": [
+        "Jasrota",
+        "JASROTA"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-103": {
+      "id": "JK-103",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 103,
+      "name": "Udhampur West",
+      "aliases": [
+        "Udhampur West",
+        "UDHAMPURWEST"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-101": {
+      "id": "JK-101",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 101,
+      "name": "Doda West",
+      "aliases": [
+        "Doda West",
+        "DODAWEST"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-099": {
+      "id": "JK-099",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 99,
+      "name": "Padder-Nagseni",
+      "aliases": [
+        "Padder-Nagseni",
+        "PADDERNAGSENI"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-097": {
+      "id": "JK-097",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 97,
+      "name": "Srigufwara - Bijbehara",
+      "aliases": [
+        "Srigufwara - Bijbehara",
+        "SRIGUFWARABIJBEHARA"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-093": {
+      "id": "JK-093",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 93,
+      "name": "Chrar-i-Sharief",
+      "aliases": [
+        "Chrar-i-Sharief",
+        "CHRARISHARIEF"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-112": {
+      "id": "JK-112",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 112,
+      "name": "Thannamandi",
+      "aliases": [
+        "Thannamandi",
+        "THANNAMANDI"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-111": {
+      "id": "JK-111",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 111,
+      "name": "Budhal",
+      "aliases": [
+        "Budhal",
+        "BUDHAL"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-110": {
+      "id": "JK-110",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 110,
+      "name": "Kalakote - Sunderbani",
+      "aliases": [
+        "Kalakote - Sunderbani",
+        "KALAKOTESUNDERBANI"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-095": {
+      "id": "JK-095",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 95,
+      "name": "D.H. Pora",
+      "aliases": [
+        "D.H. Pora",
+        "DHPORA"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-102": {
+      "id": "JK-102",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 102,
+      "name": "Shri Mata Vaishno Devi",
+      "aliases": [
+        "Shri Mata Vaishno Devi",
+        "SHRIMATAVAISHNODEVI"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-098": {
+      "id": "JK-098",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 98,
+      "name": "Shangus - Anantnag East",
+      "aliases": [
+        "Shangus - Anantnag East",
+        "SHANGUSANANTNAGEAST"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-096": {
+      "id": "JK-096",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 96,
+      "name": "Anantnag West",
+      "aliases": [
+        "Anantnag West",
+        "ANANTNAGWEST"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-094": {
+      "id": "JK-094",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 94,
+      "name": "Zainapora",
+      "aliases": [
+        "Zainapora",
+        "ZAINAPORA"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-092": {
+      "id": "JK-092",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 92,
+      "name": "Central Shalteng",
+      "aliases": [
+        "Central Shalteng",
+        "CENTRALSHALTENG"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-106": {
+      "id": "JK-106",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 106,
+      "name": "Ramgarh",
+      "aliases": [
+        "Ramgarh",
+        "RAMGARH"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-109": {
+      "id": "JK-109",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 109,
+      "name": "Jammu North",
+      "aliases": [
+        "Jammu North",
+        "JAMMUNORTH"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-108": {
+      "id": "JK-108",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 108,
+      "name": "Bahu",
+      "aliases": [
+        "Bahu",
+        "BAHU"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-107": {
+      "id": "JK-107",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 107,
+      "name": "R.S. Pura - Jammu South",
+      "aliases": [
+        "R.S. Pura - Jammu South",
+        "RSPURAJAMMUSOUTH"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-104": {
+      "id": "JK-104",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 104,
+      "name": "Udhampur East",
+      "aliases": [
+        "Udhampur East",
+        "UDHAMPUREAST"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
+    },
+    "JK-091": {
+      "id": "JK-091",
+      "stateId": "JK",
+      "pcId": "",
+      "districtId": "",
+      "acNo": 91,
+      "name": "Channapora",
+      "aliases": [
+        "Channapora",
+        "Chanapora",
+        "CHANNAPORA",
+        "CHANAPORA"
+      ],
+      "type": "GEN",
+      "delimitation": 2024
     }
   },
   "districts": {
@@ -107698,5 +108192,99 @@
       "lalitpur|UP": "UP-D37",
       "sonbhadra|UP": "UP-D70"
     }
+  },
+  "acAliases": {
+    "BILLAWAR|JK": "JK-066",
+    "KANGAN|JK": "JK-016",
+    "LOLAB|JK": "JK-003",
+    "TRAL|JK": "JK-031",
+    "BHADARWAH|JK": "JK-100",
+    "NAGROTA|JK": "JK-070",
+    "KHANSAHIB|JK": "JK-029",
+    "NOWSHERA|JK": "JK-081",
+    "RAMBAN|JK": "JK-055",
+    "GULABGARH|JK": "JK-057",
+    "SAMBA|JK": "JK-068",
+    "SHOPIAN|JK": "JK-036",
+    "GULMARG|JK": "JK-014",
+    "HIRANAGAR|JK": "JK-067",
+    "JASROTA|JK": "JK-105",
+    "BANI|JK": "JK-063",
+    "BASOHLI|JK": "JK-064",
+    "UDHAMPURWEST|JK": "JK-103",
+    "CHENANI|JK": "JK-061",
+    "DODAWEST|JK": "JK-101",
+    "PADDERNAGSENI|JK": "JK-099",
+    "INDERWAL|JK": "JK-052",
+    "KISHTWAR|JK": "JK-051",
+    "SRIGUFWARABIJBEHARA|JK": "JK-097",
+    "PAHALGAM|JK": "JK-046",
+    "KOKERNAG|JK": "JK-043",
+    "DOORU|JK": "JK-042",
+    "PAMPORE|JK": "JK-032",
+    "HAZRATBAL|JK": "JK-018",
+    "SONAWARI|JK": "JK-011",
+    "GUREZ|JK": "JK-009",
+    "HANDWARA|JK": "JK-004",
+    "URI|JK": "JK-006",
+    "BARAMULLA|JK": "JK-013",
+    "WAGOORAKREERI|JK": "JK-089",
+    "SOPORE|JK": "JK-008",
+    "PATTAN|JK": "JK-015",
+    "BEERWAH|JK": "JK-028",
+    "CHRARISHARIEF|JK": "JK-093",
+    "SURANKOTE|JK": "JK-085",
+    "POONCHHAVELI|JK": "JK-087",
+    "MENDHAR|JK": "JK-086",
+    "THANNAMANDI|JK": "JK-112",
+    "BUDHAL|JK": "JK-111",
+    "KALAKOTESUNDERBANI|JK": "JK-110",
+    "BANIHAL|JK": "JK-056",
+    "REASI|JK": "JK-058",
+    "BISHNAH|JK": "JK-074",
+    "SUCHETGARH|JK": "JK-076",
+    "DHPORA|JK": "JK-095",
+    "KATHUA|JK": "JK-065",
+    "SHRIMATAVAISHNODEVI|JK": "JK-102",
+    "AKHNOOR|JK": "JK-079",
+    "RAJOURI|JK": "JK-083",
+    "ANANTNAG|JK": "JK-040",
+    "SHANGUSANANTNAGEAST|JK": "JK-098",
+    "ANANTNAGWEST|JK": "JK-096",
+    "ZAINAPORA|JK": "JK-094",
+    "RAJPORA|JK": "JK-034",
+    "PULWAMA|JK": "JK-033",
+    "BANDIPORA|JK": "JK-010",
+    "RAFIABAD|JK": "JK-007",
+    "LANGATE|JK": "JK-005",
+    "KARNAH|JK": "JK-001",
+    "TREHGAM|JK": "JK-088",
+    "KUPWARA|JK": "JK-002",
+    "KHANYAR|JK": "JK-021",
+    "EIDGAH|JK": "JK-020",
+    "HABBAKADAL|JK": "JK-022",
+    "ZADIBAL|JK": "JK-019",
+    "CENTRALSHALTENG|JK": "JK-092",
+    "GANDERBAL|JK": "JK-017",
+    "DODA|JK": "JK-053",
+    "VIJAYPUR|JK": "JK-069",
+    "RAMGARH|JK": "JK-106",
+    "JAMMUNORTH|JK": "JK-109",
+    "MARH|JK": "JK-077",
+    "JAMMUWEST|JK": "JK-073",
+    "BAHU|JK": "JK-108",
+    "JAMMUEAST|JK": "JK-072",
+    "CHHAMB|JK": "JK-080",
+    "RSPURAJAMMUSOUTH|JK": "JK-107",
+    "RAMNAGAR|JK": "JK-062",
+    "UDHAMPUREAST|JK": "JK-104",
+    "KULGAM|JK": "JK-038",
+    "DEVSAR|JK": "JK-041",
+    "LALCHOWK|JK": "JK-090",
+    "BUDGAM|JK": "JK-027",
+    "CHADOORA|JK": "JK-026",
+    "CHANAPORA|JK": "JK-091",
+    "RAJOURIST|JK": "JK-083",
+    "CHANNAPORA|JK": "JK-091"
   }
 }

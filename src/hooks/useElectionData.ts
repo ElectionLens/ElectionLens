@@ -296,7 +296,7 @@ export function useElectionData(): UseElectionDataReturn {
         normalizedPC = mappedPC;
       }
 
-      return assemblyGeoJSON.features.filter((f): boolean => {
+      const result = assemblyGeoJSON.features.filter((f): boolean => {
         // Skip features without valid AC_NAME
         if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
 
@@ -328,6 +328,7 @@ export function useElectionData(): UseElectionDataReturn {
 
         return false;
       });
+      return result;
     },
     [assemblyGeoJSON]
   );

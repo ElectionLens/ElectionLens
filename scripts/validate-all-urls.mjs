@@ -35,6 +35,9 @@ const stats = {
   pcErrors: [],
   acErrors: [],
   warnings: [],
+  // Per-state coverage tracking
+  stateGeoJSONCoverage: {}, // { stateId: { pcTotal, pcWithGeo, acTotal, acWithGeo } }
+  statesMissingGeoJSON: [], // States with 0% AC GeoJSON coverage
 };
 
 /**
@@ -217,6 +220,8 @@ for (const state of filteredStates) {
   let stateACErrors = 0;
   let statePCOk = 0;
   let stateACOk = 0;
+  let statePCWithGeo = 0;
+  let stateACWithGeo = 0;
 
   // Validate PCs
   for (const pc of statePCs) {
@@ -227,6 +232,7 @@ for (const state of filteredStates) {
     const geoFeature = pcGeoBySchemaId.get(pc.id);
     if (geoFeature) {
       stats.pcWithGeo++;
+      statePCWithGeo++;
     } else {
       errors.push('missing GeoJSON');
     }
@@ -279,6 +285,7 @@ for (const state of filteredStates) {
     const geoFeature = acGeoBySchemaId.get(ac.id);
     if (geoFeature) {
       stats.acWithGeo++;
+      stateACWithGeo++;
     } else {
       errors.push('missing GeoJSON');
     }
@@ -326,11 +333,36 @@ for (const state of filteredStates) {
     }
   }
 
+  // Track state-level GeoJSON coverage
+  stats.stateGeoJSONCoverage[state.id] = {
+    name: state.name,
+    pcTotal: statePCs.length,
+    pcWithGeo: statePCWithGeo,
+    acTotal: stateACs.length,
+    acWithGeo: stateACWithGeo,
+  };
+  
+  // Flag states with 0% AC GeoJSON (critical issue!)
+  if (stateACs.length > 0 && stateACWithGeo === 0) {
+    stats.statesMissingGeoJSON.push({
+      id: state.id,
+      name: state.name,
+      acCount: stateACs.length,
+    });
+  }
+
   // State summary
   const pcStatus = statePCErrors === 0 ? '✅' : '⚠️';
   const acStatus = stateACErrors === 0 ? '✅' : '⚠️';
+  const geoStatus = stateACs.length > 0 && stateACWithGeo === 0 ? '🚨' : '';
   console.log(`  ${pcStatus} PCs: ${statePCOk}/${statePCs.length} OK`);
-  console.log(`  ${acStatus} ACs: ${stateACOk}/${stateACs.length} OK`);
+  console.log(`  ${acStatus} ACs: ${stateACOk}/${stateACs.length} OK ${geoStatus}`);
+  
+  // Show GeoJSON coverage for this state if not 100%
+  if (stateACs.length > 0 && stateACWithGeo < stateACs.length) {
+    const acGeoCoverage = (stateACWithGeo / stateACs.length * 100).toFixed(0);
+    console.log(`  📍 GeoJSON: ${stateACWithGeo}/${stateACs.length} ACs (${acGeoCoverage}%)`);
+  }
   
   if (!acIndex && stateACs.length > 0) {
     stats.warnings.push(`${state.name}: No AC election index found at ${acIndexPath}`);
@@ -360,6 +392,16 @@ console.log(`  With GeoJSON: ${stats.acWithGeo} (${(stats.acWithGeo/stats.totalA
 console.log(`  With Election Data: ${stats.acWithData} (${(stats.acWithData/stats.totalACs*100).toFixed(1)}%)`);
 console.log(`  Data Lookup OK: ${stats.acDataLookupOk}/${stats.acWithData} (${stats.acWithData > 0 ? (stats.acDataLookupOk/stats.acWithData*100).toFixed(1) : 0}%)`);
 console.log(`  Errors: ${stats.acErrors.length}`);
+
+// Show states with missing GeoJSON (CRITICAL)
+if (stats.statesMissingGeoJSON.length > 0) {
+  console.log('\n🚨 CRITICAL: STATES WITH NO AC GeoJSON DATA:');
+  console.log('   These states will show "Unknown" on hover for ALL assemblies!\n');
+  stats.statesMissingGeoJSON.forEach(s => {
+    console.log(`   - ${s.name} (${s.id}): ${s.acCount} ACs have NO map boundaries`);
+  });
+  console.log('\n   Fix: Source GeoJSON boundaries from ECI/DataMeet and add to constituencies.geojson\n');
+}
 
 // Show errors
 if (stats.pcErrors.length > 0) {
@@ -420,7 +462,10 @@ fs.writeFileSync(reportPath, JSON.stringify({
     acWithData: stats.acWithData,
     acDataLookupOk: stats.acDataLookupOk,
     acErrors: stats.acErrors.length,
+    statesMissingGeoJSON: stats.statesMissingGeoJSON.length,
   },
+  statesMissingGeoJSON: stats.statesMissingGeoJSON,
+  stateGeoJSONCoverage: stats.stateGeoJSONCoverage,
   pcErrors: stats.pcErrors,
   acErrors: stats.acErrors,
   warnings: stats.warnings,
@@ -428,6 +473,7 @@ fs.writeFileSync(reportPath, JSON.stringify({
 console.log(`\n📄 Full report saved to: url-validation-report.json`);
 
 // Exit code logic
+// - States with 0% GeoJSON is CRITICAL (entire state broken!)
 // - Missing GeoJSON is a warning (AC won't show on map but data still loads)
 // - Missing election data is critical if there's no index at all  
 // - Data lookup failures are CRITICAL (panel won't show in app!)
@@ -453,12 +499,23 @@ const lookupSuccessRate = {
 const geoJSONThreshold = 95;
 const lookupThreshold = 99; // Must be able to find 99% of data
 
+const hasStatesMissingGeoJSON = stats.statesMissingGeoJSON.length > 0;
 const hasGeoJSONCoverageIssue = geoJSONCoverage.pc < geoJSONThreshold || 
                                 geoJSONCoverage.ac < geoJSONThreshold;
 const hasLookupIssue = lookupSuccessRate.pc < lookupThreshold || 
                        lookupSuccessRate.ac < lookupThreshold;
 
-if (hasLookupIssue) {
+// CRITICAL: States with no GeoJSON at all
+if (hasStatesMissingGeoJSON) {
+  const missingACs = stats.statesMissingGeoJSON.reduce((sum, s) => sum + s.acCount, 0);
+  console.log(`\n❌ VALIDATION FAILED - ${stats.statesMissingGeoJSON.length} state(s) have NO AC GeoJSON data!`);
+  console.log(`   ${missingACs} ACs will show "Unknown" on hover.\n`);
+  stats.statesMissingGeoJSON.forEach(s => {
+    console.log(`   - ${s.name}: ${s.acCount} ACs missing`);
+  });
+  console.log('\n   See ideas/missing-geojson-acs.md for details on sourcing GeoJSON data.\n');
+  process.exit(1);
+} else if (hasLookupIssue) {
   console.log(`\n❌ VALIDATION FAILED - Data lookup success rate below ${lookupThreshold}%`);
   console.log(`   PC: ${lookupSuccessRate.pc.toFixed(1)}%, AC: ${lookupSuccessRate.ac.toFixed(1)}%`);
   console.log(`   ${lookupFailures.length} constituencies would fail to show panels in the app!\n`);
