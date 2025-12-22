@@ -63,6 +63,12 @@ export function PCElectionResultPanel({
   // Mobile panel expansion state
   const [panelState, setPanelState] = useState<'peek' | 'half' | 'full'>('half');
 
+  // Check if we're on mobile portrait
+  const isMobilePortrait =
+    typeof window !== 'undefined' &&
+    window.innerWidth <= 768 &&
+    window.innerHeight > window.innerWidth;
+
   const handleDragHandleClick = useCallback(() => {
     setPanelState((prev) => {
       if (prev === 'peek') return 'half';
@@ -94,29 +100,31 @@ export function PCElectionResultPanel({
   }, [result, shareUrl, stateName]);
 
   return (
-    <div className={`election-panel pc-panel panel-${panelState}`}>
+    <div className={`election-panel pc-panel ${isMobilePortrait ? `panel-${panelState}` : ''}`}>
       {/* Mobile drag handle */}
-      <div
-        className="bottom-sheet-handle"
-        onClick={handleDragHandleClick}
-        role="button"
-        aria-label={`Panel is ${panelState}. Click to ${panelState === 'full' ? 'minimize' : 'expand'}`}
-      />
+      {isMobilePortrait && (
+        <div
+          className="bottom-sheet-handle"
+          onClick={handleDragHandleClick}
+          role="button"
+          aria-label={`Panel is ${panelState}. Click to ${panelState === 'full' ? 'minimize' : 'expand'}`}
+        />
+      )}
 
       {/* Header */}
       <div
         className="election-panel-header"
-        onClick={() => panelState === 'peek' && setPanelState('half')}
+        onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
       >
         <div className="election-panel-title">
           <h3>{result.constituencyNameOriginal}</h3>
           {/* Peek mode: show winner inline */}
-          {panelState === 'peek' && winner && (
+          {isMobilePortrait && panelState === 'peek' && winner && (
             <span className="peek-winner">
               🏆 {winner.name} ({winner.party}) - {winner.voteShare.toFixed(1)}%
             </span>
           )}
-          {panelState !== 'peek' && (
+          {(!isMobilePortrait || panelState !== 'peek') && (
             <div className="title-badges">
               <span className="pc-badge">Parliament</span>
               <span

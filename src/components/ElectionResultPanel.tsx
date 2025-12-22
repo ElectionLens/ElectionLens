@@ -95,6 +95,12 @@ export function ElectionResultPanel({
   // Mobile panel expansion state: 'peek' (minimal), 'half' (default), 'full' (all content)
   const [panelState, setPanelState] = useState<'peek' | 'half' | 'full'>('half');
 
+  // Check if we're on mobile portrait
+  const isMobilePortrait =
+    typeof window !== 'undefined' &&
+    window.innerWidth <= 768 &&
+    window.innerHeight > window.innerWidth;
+
   // Cycle through panel states on drag handle click
   const handleDragHandleClick = useCallback(() => {
     setPanelState((prev) => {
@@ -160,29 +166,31 @@ export function ElectionResultPanel({
   }, [result, shareUrl, stateName]);
 
   return (
-    <div className={`election-panel panel-${panelState}`}>
+    <div className={`election-panel ${isMobilePortrait ? `panel-${panelState}` : ''}`}>
       {/* Mobile drag handle - click to cycle states */}
-      <div
-        className="bottom-sheet-handle"
-        onClick={handleDragHandleClick}
-        role="button"
-        aria-label={`Panel is ${panelState}. Click to ${panelState === 'full' ? 'minimize' : 'expand'}`}
-      />
+      {isMobilePortrait && (
+        <div
+          className="bottom-sheet-handle"
+          onClick={handleDragHandleClick}
+          role="button"
+          aria-label={`Panel is ${panelState}. Click to ${panelState === 'full' ? 'minimize' : 'expand'}`}
+        />
+      )}
 
       {/* Header */}
       <div
         className="election-panel-header"
-        onClick={() => panelState === 'peek' && setPanelState('half')}
+        onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
       >
         <div className="election-panel-title">
           <h3>{result.constituencyNameOriginal}</h3>
           {/* Peek mode: show winner inline */}
-          {panelState === 'peek' && winner && (
+          {isMobilePortrait && panelState === 'peek' && winner && (
             <span className="peek-winner">
               🏆 {winner.name} ({winner.party}) - {winner.voteShare.toFixed(1)}%
             </span>
           )}
-          {panelState !== 'peek' && (
+          {(!isMobilePortrait || panelState !== 'peek') && (
             <span className={`constituency-type type-${constituencyType.toLowerCase()}`}>
               {constituencyType}
             </span>
