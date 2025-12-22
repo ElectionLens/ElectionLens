@@ -64,7 +64,30 @@ node scripts/add-jk-ac-geojson.mjs
 }
 ```
 
-### 4. Service Worker / PWA Support
+### 4. Vector Tiles for Fast Map Loading
+**Status:** ✅ Done  
+**Effort:** 1 day (actual)  
+**Impact:** High - 10x smaller tile size, crisp at any zoom
+
+**Implemented:**
+- ✅ VectorTileLayer component using protomaps-leaflet
+- ✅ Minimal, Light, and Dark themes
+- ✅ On-demand loading (126KB chunk only when selected)
+- ✅ Layer switcher in toolbar with "Fast" badge
+
+**Benefits:**
+- Vector tiles: ~160MB for all of India (vs ~1.6GB raster)
+- Crisp rendering at any zoom level
+- Dynamic styling (dark mode ready)
+- Lower bandwidth, faster loads
+
+**Usage:**
+```tsx
+// Select "Vector" in the layer dropdown (top right)
+// Marked with "Fast" badge
+```
+
+### 5. Service Worker / PWA Support
 **Status:** Not Started  
 **Effort:** 3 days  
 **Impact:** High - enables offline access
