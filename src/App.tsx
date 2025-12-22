@@ -139,6 +139,9 @@ function App(): JSX.Element {
           if (urlState.pcYear) {
             setSelectedACPCYear(urlState.pcYear);
           }
+        } else {
+          // No assembly selected - load PC election results for the PC view
+          await getPCResult(pcName, matchedState, urlState.year ?? undefined);
         }
       } else if (urlState.district) {
         // First navigate to state districts, then to specific district
@@ -174,6 +177,7 @@ function App(): JSX.Element {
       resetView,
       selectAssembly,
       getACResult,
+      getPCResult,
     ]
   );
 
