@@ -38,7 +38,18 @@
   <meta name="twitter:image:alt" content="Election Lens - India Electoral Map">
   
   <title>Election Lens - India Electoral Map</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- Preload critical resources -->
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preconnect" href="https://tile.openstreetmap.org" crossorigin>
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="https://tile.openstreetmap.org">
+  
+  <!-- Preload critical GeoJSON data -->
+  <link rel="preload" href="/data/geo/states.geojson" as="fetch" crossorigin>
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
   <div id="root"></div>

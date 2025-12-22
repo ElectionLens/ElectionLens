@@ -1,5 +1,5 @@
 import { X, Award, TrendingUp, Vote, Link2, Check, Twitter, Users, BarChart3 } from 'lucide-react';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, memo } from 'react';
 import type { PCElectionResult, PCElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName } from '../utils/partyData';
 import { trackShare } from '../utils/firebase';
@@ -309,7 +309,8 @@ export function PCElectionResultPanel({
   );
 }
 
-function CandidateRowCompact({
+// Memoized candidate row for PC lists - prevents re-render when panel state changes
+const CandidateRowCompact = memo(function CandidateRowCompact({
   candidate,
   isWinner,
 }: {
@@ -337,9 +338,10 @@ function CandidateRowCompact({
       />
     </div>
   );
-}
+});
 
-function PCCandidateRow({
+// Memoized full PC candidate row
+const PCCandidateRow = memo(function PCCandidateRow({
   candidate,
   isWinner,
   isRunnerUp,
@@ -379,4 +381,4 @@ function PCCandidateRow({
       />
     </div>
   );
-}
+});

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense } from 'react';
 import { MapContainer, TileLayer, GeoJSON, useMap, ScaleControl } from 'react-leaflet';
 import L from 'leaflet';
 import {
@@ -19,9 +19,36 @@ import type {
 import { getFeatureStyle, getHoverStyle, normalizeName } from '../utils/helpers';
 import { COLOR_PALETTES } from '../constants';
 import { clearAllCache } from '../utils/db';
-import { ElectionResultPanel } from './ElectionResultPanel';
-import { PCElectionResultPanel } from './PCElectionResultPanel';
 import { FeedbackModal } from './FeedbackModal';
+
+// Lazy load panel components - only loaded when user clicks a constituency
+const ElectionResultPanel = lazy(() =>
+  import('./ElectionResultPanel').then((m) => ({ default: m.ElectionResultPanel }))
+);
+const PCElectionResultPanel = lazy(() =>
+  import('./PCElectionResultPanel').then((m) => ({ default: m.PCElectionResultPanel }))
+);
+
+// Lightweight loading skeleton for panels
+const PanelSkeleton = () => (
+  <div className="election-panel" style={{ minHeight: '200px' }}>
+    <div className="election-panel-header">
+      <div style={{ height: '24px', width: '60%', background: '#e2e8f0', borderRadius: '4px' }} />
+    </div>
+    <div style={{ padding: '16px' }}>
+      <div
+        style={{
+          height: '16px',
+          width: '80%',
+          background: '#e2e8f0',
+          borderRadius: '4px',
+          marginBottom: '8px',
+        }}
+      />
+      <div style={{ height: '16px', width: '60%', background: '#e2e8f0', borderRadius: '4px' }} />
+    </div>
+  </div>
+);
 import type {
   MapViewProps,
   FitBoundsProps,
@@ -774,32 +801,36 @@ export function MapView({
 
       {/* AC Election Result Panel - Show when AC is selected */}
       {electionResult && onCloseElectionPanel && (
-        <ElectionResultPanel
-          result={electionResult}
-          onClose={onCloseElectionPanel}
-          shareUrl={shareUrl}
-          stateName={currentState ?? undefined}
-          availableYears={availableYears ?? []}
-          selectedYear={selectedYear ?? undefined}
-          onYearChange={onYearChange}
-          parliamentContributions={parliamentContributions}
-          availablePCYears={availablePCYears}
-          selectedPCYear={selectedACPCYear}
-          onPCYearChange={onACPCYearChange}
-        />
+        <Suspense fallback={<PanelSkeleton />}>
+          <ElectionResultPanel
+            result={electionResult}
+            onClose={onCloseElectionPanel}
+            shareUrl={shareUrl}
+            stateName={currentState ?? undefined}
+            availableYears={availableYears ?? []}
+            selectedYear={selectedYear ?? undefined}
+            onYearChange={onYearChange}
+            parliamentContributions={parliamentContributions}
+            availablePCYears={availablePCYears}
+            selectedPCYear={selectedACPCYear}
+            onPCYearChange={onACPCYearChange}
+          />
+        </Suspense>
       )}
 
       {/* PC Election Result Panel - Show when in PC view and no AC selected */}
       {pcElectionResult && !electionResult && onClosePCElectionPanel && (
-        <PCElectionResultPanel
-          result={pcElectionResult}
-          onClose={onClosePCElectionPanel}
-          shareUrl={pcShareUrl}
-          stateName={currentState ?? undefined}
-          availableYears={pcAvailableYears ?? []}
-          selectedYear={pcSelectedYear ?? undefined}
-          onYearChange={onPCYearChange}
-        />
+        <Suspense fallback={<PanelSkeleton />}>
+          <PCElectionResultPanel
+            result={pcElectionResult}
+            onClose={onClosePCElectionPanel}
+            shareUrl={pcShareUrl}
+            stateName={currentState ?? undefined}
+            availableYears={pcAvailableYears ?? []}
+            selectedYear={pcSelectedYear ?? undefined}
+            onYearChange={onPCYearChange}
+          />
+        </Suspense>
       )}
 
       {/* Feedback Modal */}
