@@ -22,9 +22,21 @@ coverage:
 ignore:
   - "node_modules/**"
   - "src/test/**"
-  - "src/main.jsx"
+  - "src/main.tsx"
+  - "src/types/**"
   - "**/*.config.js"
+  - "**/*.config.ts"
   - "**/*.d.ts"
+  - "scripts/**"
+  # UI components - tested via E2E tests (Playwright)
+  - "src/App.tsx"
+  - "src/components/MapView.tsx"
+  - "src/components/ElectionResultPanel.tsx"
+  - "src/components/PCElectionResultPanel.tsx"
+  - "src/components/SearchBox.tsx"
+  - "src/components/Sidebar.tsx"
+  # Complex data hook - tested via E2E tests
+  - "src/hooks/useElectionData.ts"
 
 # Comment on PR with coverage report
 comment:
