@@ -60,7 +60,7 @@ const stateACSamples = [
   { state: 'Rajasthan', url: '/rajasthan/pc/jaipur/ac/civil-lines' },
   { state: 'Gujarat', url: '/gujarat/pc/ahmedabad-east/ac/maninagar' },
   { state: 'Kerala', url: '/kerala/pc/thiruvananthapuram/ac/nemom' },
-  { state: 'Bihar', url: '/bihar/pc/patna-sahib/ac/bankipore' },
+  { state: 'Bihar', url: '/bihar/pc/patna-sahib/ac/bankipur' },
   { state: 'Madhya Pradesh', url: '/madhya-pradesh/pc/bhopal/ac/bhopal-uttar' },
   { state: 'Odisha', url: '/odisha/pc/bhubaneswar/ac/bhubaneswar-central' },
   { state: 'Punjab', url: '/punjab/pc/amritsar/ac/amritsar-north' },
@@ -197,7 +197,7 @@ test.describe('URL Validation - Edge Cases', () => {
   });
 
   test('handles ST constituency', async ({ page }) => {
-    await page.goto('/rajasthan/pc/banswara/ac/sajjangarh-(st)');
+    await page.goto('/rajasthan/pc/jaipur-rural/ac/jamwa-ramgarh-(st)');
 
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
 

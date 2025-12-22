@@ -62,8 +62,8 @@ test.describe('State Navigation', () => {
     // Wait for navigation
     await page.waitForURL(/\/[a-z-]+/, { timeout: 10000 });
     
-    // Back button should appear
-    const backButton = page.getByRole('button', { name: /back/i });
+    // Back button should appear (has title="Go back")
+    const backButton = page.locator('button[title="Go back"]');
     await expect(backButton).toBeVisible({ timeout: 5000 });
   });
 
