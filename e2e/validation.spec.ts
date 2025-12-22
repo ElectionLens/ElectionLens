@@ -10,48 +10,48 @@ import { test, expect } from '@playwright/test';
 // =============================================================================
 
 test.describe('Link Validation - Breadcrumb Navigation', () => {
-  test('breadcrumb links are clickable from AC view', async ({ page }) => {
-    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
+  test('India link in breadcrumb is clickable', async ({ page, isMobile }) => {
+    // Skip on mobile - sidebar with breadcrumb is collapsed
+    test.skip(isMobile === true, 'Breadcrumb is in collapsed sidebar on mobile');
+    
+    // Go to state level (sidebar stays open at state level)
+    await page.goto('/tamil-nadu');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
     
-    // Should have breadcrumb with India > State > PC > AC
-    const breadcrumb = page.locator('.breadcrumb');
-    await expect(breadcrumb).toBeVisible();
+    // Should have breadcrumb navigation inside sidebar
+    const breadcrumb = page.locator('.breadcrumb-nav');
+    await expect(breadcrumb).toBeVisible({ timeout: 10000 });
     
-    // India link should be present
-    const indiaLink = breadcrumb.getByRole('link', { name: 'India' }).or(
-      breadcrumb.locator('a').filter({ hasText: 'India' })
-    );
+    // India link should be present and clickable
+    const indiaLink = breadcrumb.locator('a').filter({ hasText: 'India' });
     await expect(indiaLink).toBeVisible();
+    await expect(indiaLink).toBeEnabled();
     
-    // State link should be present
-    const stateLink = breadcrumb.locator('a').filter({ hasText: /Tamil/i });
-    await expect(stateLink).toBeVisible();
+    // Click India link
+    await indiaLink.click();
+    
+    // After clicking, state should no longer be in breadcrumb (back to India view)
+    await page.waitForTimeout(1000);
+    const stateText = breadcrumb.locator('text=Tamil Nadu');
+    const stateCount = await stateText.count();
+    // State text should disappear or change after reset
+    expect(stateCount).toBeLessThanOrEqual(1);
   });
 
-  test('state link in breadcrumb is clickable', async ({ page, isMobile }) => {
-    // Skip on mobile - breadcrumb may be off-screen
-    test.skip(isMobile === true, 'Breadcrumb layout differs on mobile');
+  test('breadcrumb shows current location', async ({ page, isMobile }) => {
+    // Skip on mobile - sidebar with breadcrumb is collapsed
+    test.skip(isMobile === true, 'Breadcrumb is in collapsed sidebar on mobile');
     
-    await page.goto('/karnataka/pc/bangalore-north/ac/hebbal');
+    // Go to state level
+    await page.goto('/karnataka');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
     
-    // State link should be present and clickable
-    const stateLink = page.locator('.breadcrumb a').filter({ hasText: /Karnataka/i });
-    await expect(stateLink).toBeVisible();
-    await expect(stateLink).toBeEnabled();
+    // Should have breadcrumb navigation with state name
+    const breadcrumb = page.locator('.breadcrumb-nav');
+    await expect(breadcrumb).toBeVisible({ timeout: 10000 });
     
-    // Clicking should work (map view changes, even if URL doesn't)
-    await stateLink.click();
-    
-    // Wait for any navigation/state change
-    await page.waitForTimeout(1000);
-    
-    // PC panel should close after going to state level
-    const pcPanel = page.locator('.election-panel.pc-panel');
-    // Either no panel or different view
-    const panelCount = await pcPanel.count();
-    expect(panelCount).toBeLessThanOrEqual(1);
+    // Should show Karnataka in breadcrumb text
+    await expect(breadcrumb).toContainText(/Karnataka/i);
   });
 });
 

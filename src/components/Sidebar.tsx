@@ -1,5 +1,15 @@
 import { useState, useCallback } from 'react';
-import { Map, Building2, Landmark, Database, Check, Link2, Clock } from 'lucide-react';
+import {
+  Map,
+  Building2,
+  Landmark,
+  Database,
+  Check,
+  Link2,
+  Clock,
+  ChevronLeft,
+  ChevronRight,
+} from 'lucide-react';
 import { normalizeName, getFeatureColor } from '../utils/helpers';
 import { SearchBox } from './SearchBox';
 import type {
@@ -51,6 +61,8 @@ interface SidebarProps {
   onShare: () => void;
   isOpen: boolean;
   onClose: () => void;
+  isCollapsed?: boolean;
+  onToggleCollapse?: () => void;
 }
 
 /** Extended CSS properties to allow custom CSS variables */
@@ -85,6 +97,8 @@ export function Sidebar({
   onShare,
   isOpen,
   onClose,
+  isCollapsed = false,
+  onToggleCollapse,
 }: SidebarProps): JSX.Element {
   const [copied, setCopied] = useState(false);
   const displayState = currentState ? normalizeName(currentState) : null;
@@ -437,7 +451,18 @@ export function Sidebar({
 
   return (
     <>
-      <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+      <div className={`sidebar ${isOpen ? 'open' : ''} ${isCollapsed ? 'collapsed' : ''}`}>
+        {/* Desktop collapse toggle button */}
+        {onToggleCollapse && (
+          <button
+            className="sidebar-collapse-btn"
+            onClick={onToggleCollapse}
+            title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          >
+            {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+          </button>
+        )}
+
         <div className="sidebar-header">
           <h1>
             <img
@@ -447,80 +472,85 @@ export function Sidebar({
               height={24}
               style={{ display: 'inline', verticalAlign: 'middle', marginRight: '8px' }}
             />
-            Election Lens
+            {!isCollapsed && 'Election Lens'}
           </h1>
-          <p>India Electoral Map</p>
+          {!isCollapsed && <p>India Electoral Map</p>}
         </div>
 
-        <div className="breadcrumb">
-          <div className="breadcrumb-nav">{renderBreadcrumb()}</div>
-          {currentState && (
-            <button
-              className={`share-btn ${copied ? 'copied' : ''}`}
-              onClick={handleShareClick}
-              title={copied ? 'Copied!' : 'Copy shareable link'}
-            >
-              {copied ? <Check size={16} /> : <Link2 size={16} />}
-            </button>
-          )}
-        </div>
-
-        <SearchBox
-          statesGeoJSON={statesGeoJSON}
-          parliamentGeoJSON={parliamentGeoJSON}
-          assemblyGeoJSON={assemblyGeoJSON}
-          onStateSelect={onSearchStateSelect}
-          onConstituencySelect={onSearchConstituencySelect}
-          onAssemblySelect={onSearchAssemblySelect}
-        />
-
-        <div className="info-panel">
-          <div className="info-title">{info.title}</div>
-          <div className="info-stats">
-            <div className="stat-card">
-              <div className="stat-value">{info.statValue}</div>
-              <div className="stat-label">{info.statLabel}</div>
+        {/* Collapsible content - hidden when sidebar is collapsed */}
+        {!isCollapsed && (
+          <>
+            <div className="breadcrumb">
+              <div className="breadcrumb-nav">{renderBreadcrumb()}</div>
+              {currentState && (
+                <button
+                  className={`share-btn ${copied ? 'copied' : ''}`}
+                  onClick={handleShareClick}
+                  title={copied ? 'Copied!' : 'Copy shareable link'}
+                >
+                  {copied ? <Check size={16} /> : <Link2 size={16} />}
+                </button>
+              )}
             </div>
-            <div className="stat-card">
-              <div className="stat-value">{info.subValue}</div>
-              <div className="stat-label">{info.subLabel}</div>
+
+            <SearchBox
+              statesGeoJSON={statesGeoJSON}
+              parliamentGeoJSON={parliamentGeoJSON}
+              assemblyGeoJSON={assemblyGeoJSON}
+              onStateSelect={onSearchStateSelect}
+              onConstituencySelect={onSearchConstituencySelect}
+              onAssemblySelect={onSearchAssemblySelect}
+            />
+
+            <div className="info-panel">
+              <div className="info-title">{info.title}</div>
+              <div className="info-stats">
+                <div className="stat-card">
+                  <div className="stat-value">{info.statValue}</div>
+                  <div className="stat-label">{info.statLabel}</div>
+                </div>
+                <div className="stat-card">
+                  <div className="stat-value">{info.subValue}</div>
+                  <div className="stat-label">{info.subLabel}</div>
+                </div>
+              </div>
+
+              {showViewToggle && (
+                <div className="view-toggle">
+                  <button
+                    className={`toggle-btn ${currentView === 'constituencies' ? 'active' : ''}`}
+                    onClick={() => onSwitchView('constituencies')}
+                  >
+                    <Building2 size={14} className="toggle-icon" /> Parliamentary Constituencies
+                  </button>
+                  <button
+                    className={`toggle-btn ${currentView === 'districts' ? 'active' : ''}`}
+                    onClick={() => onSwitchView('districts')}
+                  >
+                    <Map size={14} className="toggle-icon" /> Districts
+                  </button>
+                </div>
+              )}
+
+              {renderList()}
             </div>
-          </div>
 
-          {showViewToggle && (
-            <div className="view-toggle">
-              <button
-                className={`toggle-btn ${currentView === 'constituencies' ? 'active' : ''}`}
-                onClick={() => onSwitchView('constituencies')}
-              >
-                <Building2 size={14} className="toggle-icon" /> Parliamentary Constituencies
-              </button>
-              <button
-                className={`toggle-btn ${currentView === 'districts' ? 'active' : ''}`}
-                onClick={() => onSwitchView('districts')}
-              >
-                <Map size={14} className="toggle-icon" /> Districts
-              </button>
+            <div className="cache-status">
+              <Database size={12} className="cache-icon" />
+              <strong> DB:</strong> {cacheStats.dbCount}
+              {' | '}
+              <Map size={12} className="cache-icon state-icon" /> {cacheStats.memCount}/
+              {cacheStats.totalStates}
+              {' | '}
+              <Building2 size={12} className="cache-icon pc-icon" /> {cacheStats.pcCount}
+              {' | '}
+              <Landmark size={11} className="cache-icon ac-icon" /> {cacheStats.acCount}
+              {cacheStats.memCount >= (cacheStats.totalStates ?? 0) &&
+                cacheStats.pcCount > 0 &&
+                cacheStats.acCount > 0 && <Check size={14} className="cache-check" />}
             </div>
-          )}
-
-          {renderList()}
-        </div>
-
-        <div className="cache-status">
-          <Database size={12} className="cache-icon" />
-          <strong> DB:</strong> {cacheStats.dbCount}
-          {' | '}
-          <Map size={12} className="cache-icon state-icon" /> {cacheStats.memCount}/
-          {cacheStats.totalStates}
-          {' | '}
-          <Building2 size={12} className="cache-icon pc-icon" /> {cacheStats.pcCount}
-          {' | '}
-          <Landmark size={11} className="cache-icon ac-icon" /> {cacheStats.acCount}
-          {cacheStats.memCount >= (cacheStats.totalStates ?? 0) &&
-            cacheStats.pcCount > 0 &&
-            cacheStats.acCount > 0 && <Check size={14} className="cache-check" />}
-        </div>
+          </>
+        )}
       </div>
 
       {/* Mobile overlay */}

@@ -322,9 +322,45 @@ function MapControls({ level, name, count }: MapControlsProps): null {
   return null;
 }
 
+/**
+ * Component to invalidate map size when panel state changes
+ * Leaflet needs to be notified when its container size changes
+ */
+function MapResizer({ hasPanelOpen }: { hasPanelOpen: boolean }): null {
+  const map = useMap();
+
+  useEffect(() => {
+    // Delay to let CSS transition complete (0.4s = 400ms)
+    const timer = setTimeout(() => {
+      map.invalidateSize({ animate: true });
+    }, 450); // Slightly longer than the 0.4s CSS transition
+
+    return () => clearTimeout(timer);
+  }, [map, hasPanelOpen]);
+
+  return null;
+}
+
 /** Extended FitBounds props with optional selected feature */
 interface ExtendedFitBoundsProps extends FitBoundsProps {
   selectedFeatureName?: string | null;
+}
+
+/**
+ * Get padding for map bounds based on screen size
+ * Portrait mobile: panel overlays map, need offset to push feature up
+ * Landscape/Desktop: map shrinks, standard padding works
+ */
+function getMapPadding(hasSelectedFeature: boolean): L.FitBoundsOptions['padding'] {
+  const isMobile = window.innerWidth <= 768;
+
+  if (hasSelectedFeature) {
+    // Landscape & Desktop: map shrinks with margin-right, standard padding
+    return isMobile ? ([40, 40] as [number, number]) : ([60, 60] as [number, number]);
+  }
+
+  // Default padding for fitting all features
+  return isMobile ? ([20, 20] as [number, number]) : ([30, 30] as [number, number]);
 }
 
 /**
@@ -348,11 +384,28 @@ function FitBounds({ geojson, selectedFeatureName }: ExtendedFitBoundsProps): nu
           const featureLayer = L.geoJSON(selectedFeature as GeoJSON.Feature);
           const bounds = featureLayer.getBounds();
           if (bounds.isValid()) {
-            map.flyToBounds(bounds as LatLngBoundsExpression, {
-              padding: [80, 80],
-              duration: 0.6,
-              maxZoom: 12,
-            });
+            const isMobile = window.innerWidth <= 768;
+            const isLandscape = window.innerWidth > window.innerHeight;
+
+            if (isMobile && !isLandscape) {
+              // Portrait mobile: offset center to push feature into top portion
+              // Panel overlays bottom ~45vh, so offset center DOWN so feature appears UP
+              const center = bounds.getCenter();
+              const latSpan = bounds.getNorth() - bounds.getSouth();
+              const offsetCenter = L.latLng(center.lat - latSpan * 0.4, center.lng);
+
+              const zoom = map.getBoundsZoom(bounds, false, L.point(30, 30));
+              const targetZoom = Math.min(zoom - 0.5, 11);
+
+              map.flyTo(offsetCenter, targetZoom, { duration: 0.5 });
+            } else {
+              // Landscape & Desktop: map shrinks with margin-right, so standard fit
+              map.flyToBounds(bounds as LatLngBoundsExpression, {
+                padding: [60, 60],
+                duration: 0.5,
+                maxZoom: 12,
+              });
+            }
           }
           return;
         }
@@ -362,7 +415,8 @@ function FitBounds({ geojson, selectedFeatureName }: ExtendedFitBoundsProps): nu
       const layer = L.geoJSON(geojson as GeoJSON.FeatureCollection);
       const bounds = layer.getBounds();
       if (bounds.isValid()) {
-        map.flyToBounds(bounds as LatLngBoundsExpression, { padding: [30, 30], duration: 0.5 });
+        const padding = getMapPadding(false);
+        map.flyToBounds(bounds as LatLngBoundsExpression, { padding, duration: 0.5 });
       }
     } catch (e) {
       console.warn('Failed to fit bounds:', e);
@@ -667,8 +721,11 @@ export function MapView({
     );
   }
 
+  // Determine if any panel is open (for desktop sidebar layout)
+  const hasPanelOpen = !!electionResult || !!pcElectionResult;
+
   return (
-    <div className="map-container">
+    <div className={`map-container ${hasPanelOpen ? 'panel-open' : ''}`}>
       {/* Top center toolbar */}
       <MapToolbar
         currentView={currentView}
@@ -696,6 +753,8 @@ export function MapView({
         />
 
         <ScaleControl position="bottomleft" imperial={false} />
+
+        <MapResizer hasPanelOpen={hasPanelOpen} />
 
         <MapControls level={level} name={legendName} count={legendCount} />
 
