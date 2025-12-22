@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>OG Image Preview - Take Screenshot</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #1a1a2e;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: white;
+    }
+    .instructions {
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 20px;
+      max-width: 600px;
+    }
+    .instructions h2 { margin-bottom: 10px; color: #ff9933; }
+    .instructions p { opacity: 0.8; line-height: 1.6; }
+    .instructions code { 
+      background: rgba(255,255,255,0.1); 
+      padding: 2px 6px; 
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .card-container {
+      width: 1200px;
+      height: 630px;
+      border: 2px solid #ff9933;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .size-info {
+      margin-top: 20px;
+      opacity: 0.6;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="instructions">
+    <h2>📸 Generate OG Image</h2>
+    <p>
+      Screenshot the card below at <code>1200×630px</code> and save as <code>og-image.png</code>
+    </p>
+    <p style="margin-top: 10px; font-size: 14px;">
+      Browser DevTools → Device Mode → Set to 1200×630 → Screenshot element
+    </p>
+  </div>
+  
+  <div class="card-container" id="og-card">
+    <img src="/og-image.svg" alt="Election Lens OG Image">
+  </div>
+  
+  <div class="size-info">
+    Dimensions: 1200 × 630 pixels (Twitter large card)
+  </div>
+</body>
+</html>
+
