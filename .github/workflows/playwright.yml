@@ -2,9 +2,9 @@ name: E2E Tests
 
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, develop, 'feature/**']
   pull_request:
-    branches: [main, master]
+    branches: [main, master, develop]
 
 env:
   CI: true

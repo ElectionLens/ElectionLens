@@ -46,16 +46,14 @@ describe('Path Constants', () => {
       expect(DISTRICTS.BASE).toBe('/data/geo/districts');
     });
 
-    it('generates correct path for state', () => {
-      expect(DISTRICTS.getPath('tamil-nadu')).toBe('/data/geo/districts/tamil-nadu.geojson');
-      expect(DISTRICTS.getPath('andhra-pradesh')).toBe(
-        '/data/geo/districts/andhra-pradesh.geojson'
-      );
+    it('generates correct path for state ID', () => {
+      expect(DISTRICTS.getPath('TN')).toBe('/data/geo/districts/TN.geojson');
+      expect(DISTRICTS.getPath('AP')).toBe('/data/geo/districts/AP.geojson');
     });
 
-    it('handles various state slugs', () => {
-      expect(DISTRICTS.getPath('kerala')).toBe('/data/geo/districts/kerala.geojson');
-      expect(DISTRICTS.getPath('nct-of-delhi')).toBe('/data/geo/districts/nct-of-delhi.geojson');
+    it('handles various state IDs', () => {
+      expect(DISTRICTS.getPath('KL')).toBe('/data/geo/districts/KL.geojson');
+      expect(DISTRICTS.getPath('DL')).toBe('/data/geo/districts/DL.geojson');
     });
   });
 

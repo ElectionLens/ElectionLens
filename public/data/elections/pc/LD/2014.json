@@ -1,0 +1,229 @@
+{
+  "LD-01": {
+    "year": 2014,
+    "constituencyNo": 1,
+    "constituencyName": "LAKSHADWEEP",
+    "constituencyNameOriginal": "Lakshadweep",
+    "constituencyType": "GEN",
+    "stateName": "Lakshadweep",
+    "validVotes": 43239,
+    "electors": 0,
+    "turnout": 0,
+    "enop": 2.14,
+    "totalCandidates": 7,
+    "candidates": [
+      {
+        "name": "MOHAMMED FAIZAL P.P.",
+        "party": "NCP",
+        "votes": 21665,
+        "position": 1,
+        "voteShare": 50.11,
+        "margin": 1535,
+        "marginPct": 3.55,
+        "sex": "M",
+        "age": null,
+        "depositLost": false,
+        "acWiseVotes": [
+          {
+            "acName": "Lakshadweep",
+            "votes": 21665,
+            "voteShare": 50.11
+          }
+        ]
+      },
+      {
+        "name": "HAMDULLAH SAYEED",
+        "party": "INC",
+        "votes": 20130,
+        "position": 2,
+        "voteShare": 46.56,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": false,
+        "acWiseVotes": [
+          {
+            "acName": "Lakshadweep",
+            "votes": 20130,
+            "voteShare": 46.56
+          }
+        ]
+      },
+      {
+        "name": "KOMALAM KOYA",
+        "party": "SP",
+        "votes": 488,
+        "position": 3,
+        "voteShare": 1.13,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Lakshadweep",
+            "votes": 488,
+            "voteShare": 1.13
+          }
+        ]
+      },
+      {
+        "name": "DR.ABDUL MUNEER",
+        "party": "CPM",
+        "votes": 465,
+        "position": 4,
+        "voteShare": 1.08,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Lakshadweep",
+            "votes": 465,
+            "voteShare": 1.08
+          }
+        ]
+      },
+      {
+        "name": "M.P. SAYED MOHAMMED KOYA",
+        "party": "BJP",
+        "votes": 187,
+        "position": 5,
+        "voteShare": 0.43,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Lakshadweep",
+            "votes": 187,
+            "voteShare": 0.43
+          }
+        ]
+      },
+      {
+        "name": "NAJMUDHEEN C.T",
+        "party": "CPI",
+        "votes": 181,
+        "position": 6,
+        "voteShare": 0.42,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Lakshadweep",
+            "votes": 181,
+            "voteShare": 0.42
+          }
+        ]
+      },
+      {
+        "name": "None of the Above",
+        "party": "NOTA",
+        "votes": 123,
+        "position": 7,
+        "voteShare": 0.28,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "NOTA",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "Lakshadweep",
+            "votes": 123,
+            "voteShare": 0.28
+          }
+        ]
+      }
+    ],
+    "assemblyConstituencies": [
+      "Lakshadweep"
+    ],
+    "acWiseResults": {
+      "Lakshadweep": {
+        "acName": "Lakshadweep",
+        "acNo": 1,
+        "acType": "ST",
+        "validVotes": 43239,
+        "candidates": [
+          {
+            "name": "MOHAMMED FAIZAL P.P.",
+            "party": "NCP",
+            "votes": 21665,
+            "position": 1,
+            "voteShare": 50.11,
+            "sex": "M",
+            "depositLost": false
+          },
+          {
+            "name": "HAMDULLAH SAYEED",
+            "party": "INC",
+            "votes": 20130,
+            "position": 2,
+            "voteShare": 46.56,
+            "sex": "M",
+            "depositLost": false
+          },
+          {
+            "name": "KOMALAM KOYA",
+            "party": "SP",
+            "votes": 488,
+            "position": 3,
+            "voteShare": 1.13,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "DR.ABDUL MUNEER",
+            "party": "CPM",
+            "votes": 465,
+            "position": 4,
+            "voteShare": 1.08,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "M.P. SAYED MOHAMMED KOYA",
+            "party": "BJP",
+            "votes": 187,
+            "position": 5,
+            "voteShare": 0.43,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "NAJMUDHEEN C.T",
+            "party": "CPI",
+            "votes": 181,
+            "position": 6,
+            "voteShare": 0.42,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "None of the Above",
+            "party": "NOTA",
+            "votes": 123,
+            "position": 7,
+            "voteShare": 0.28,
+            "sex": "NOTA",
+            "depositLost": true
+          }
+        ]
+      }
+    },
+    "schemaId": "LD-01",
+    "name": "Lakshadweep",
+    "type": "GEN"
+  }
+}

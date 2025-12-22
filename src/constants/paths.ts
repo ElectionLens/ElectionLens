@@ -1,6 +1,8 @@
 /**
  * GeoJSON Data File Paths
  * Centralized path configuration for all geographical data files
+ *
+ * Note: As of v2.0, paths use state IDs (TN, MH) instead of slugs (tamil-nadu, maharashtra)
  */
 
 /** Base path for all geo data files */
@@ -34,10 +36,10 @@ export const DISTRICTS = {
 
   /**
    * Get the full path for a state's district file
-   * @param stateSlug - The state slug (e.g., "tamil-nadu")
+   * @param stateId - The state ID (e.g., "TN") - preferred
    * @returns Full path to the GeoJSON file
    */
-  getPath: (stateSlug: string): string => `${GEO_DATA_BASE}/districts/${stateSlug}.geojson`,
+  getPath: (stateId: string): string => `${GEO_DATA_BASE}/districts/${stateId}.geojson`,
 } as const;
 
 /** Assembly election data paths */
@@ -50,17 +52,17 @@ export const ELECTIONS = {
 
   /**
    * Get the index file path for a state's election data
-   * @param stateSlug - The state slug (e.g., "tamil-nadu")
+   * @param stateId - The state ID (e.g., "TN")
    */
-  getIndexPath: (stateSlug: string): string => `${ELECTION_DATA_BASE}/ac/${stateSlug}/index.json`,
+  getIndexPath: (stateId: string): string => `${ELECTION_DATA_BASE}/ac/${stateId}/index.json`,
 
   /**
    * Get the election results file path for a specific year
-   * @param stateSlug - The state slug
+   * @param stateId - The state ID
    * @param year - The election year
    */
-  getYearPath: (stateSlug: string, year: number): string =>
-    `${ELECTION_DATA_BASE}/ac/${stateSlug}/${year}.json`,
+  getYearPath: (stateId: string, year: number): string =>
+    `${ELECTION_DATA_BASE}/ac/${stateId}/${year}.json`,
 } as const;
 
 /** Parliamentary election data paths */
@@ -70,17 +72,17 @@ export const PC_ELECTIONS = {
 
   /**
    * Get the index file path for a state's PC election data
-   * @param stateSlug - The state slug (e.g., "tamil-nadu")
+   * @param stateId - The state ID (e.g., "TN")
    */
-  getIndexPath: (stateSlug: string): string => `${ELECTION_DATA_BASE}/pc/${stateSlug}/index.json`,
+  getIndexPath: (stateId: string): string => `${ELECTION_DATA_BASE}/pc/${stateId}/index.json`,
 
   /**
    * Get the PC election results file path for a specific year
-   * @param stateSlug - The state slug
+   * @param stateId - The state ID
    * @param year - The election year
    */
-  getYearPath: (stateSlug: string, year: number): string =>
-    `${ELECTION_DATA_BASE}/pc/${stateSlug}/${year}.json`,
+  getYearPath: (stateId: string, year: number): string =>
+    `${ELECTION_DATA_BASE}/pc/${stateId}/${year}.json`,
 } as const;
 
 /** IndexedDB cache keys */

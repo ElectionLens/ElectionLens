@@ -1,0 +1,537 @@
+{
+  "CH-01": {
+    "year": 2014,
+    "constituencyNo": 1,
+    "constituencyName": "CHANDIGARH",
+    "constituencyNameOriginal": "CHANDIGARH",
+    "constituencyType": "GEN",
+    "stateName": "Chandigarh",
+    "validVotes": 453324,
+    "electors": 0,
+    "turnout": 0,
+    "enop": 3.24,
+    "totalCandidates": 18,
+    "candidates": [
+      {
+        "name": "KIRRON KHER",
+        "party": "BJP",
+        "votes": 191295,
+        "position": 1,
+        "voteShare": 42.2,
+        "margin": 69595,
+        "marginPct": 15.35,
+        "sex": "F",
+        "age": null,
+        "depositLost": false,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 191295,
+            "voteShare": 42.2
+          }
+        ]
+      },
+      {
+        "name": "PAWAN KUMAR BANSAL",
+        "party": "INC",
+        "votes": 121700,
+        "position": 2,
+        "voteShare": 26.85,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": false,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 121700,
+            "voteShare": 26.85
+          }
+        ]
+      },
+      {
+        "name": "GULKIRAT KAUR PANAG (GUL PANAG)",
+        "party": "AAAP",
+        "votes": 108636,
+        "position": 3,
+        "voteShare": 23.96,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "F",
+        "age": null,
+        "depositLost": false,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 108636,
+            "voteShare": 23.96
+          }
+        ]
+      },
+      {
+        "name": "JANNAT JAHAN-UL-HAQ (NAINA)",
+        "party": "BSP",
+        "votes": 15934,
+        "position": 4,
+        "voteShare": 3.51,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "F",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 15934,
+            "voteShare": 3.51
+          }
+        ]
+      },
+      {
+        "name": "None of the Above",
+        "party": "NOTA",
+        "votes": 3105,
+        "position": 5,
+        "voteShare": 0.68,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "NOTA",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 3105,
+            "voteShare": 0.68
+          }
+        ]
+      },
+      {
+        "name": "REENA SHARMA",
+        "party": "IND",
+        "votes": 2643,
+        "position": 6,
+        "voteShare": 0.58,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "F",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 2643,
+            "voteShare": 0.58
+          }
+        ]
+      },
+      {
+        "name": "SHAMSHER SINGH",
+        "party": "IND",
+        "votes": 2054,
+        "position": 7,
+        "voteShare": 0.45,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 2054,
+            "voteShare": 0.45
+          }
+        ]
+      },
+      {
+        "name": "KAWALJIT SINGH",
+        "party": "CPI(ML)(L)",
+        "votes": 1968,
+        "position": 8,
+        "voteShare": 0.43,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 1968,
+            "voteShare": 0.43
+          }
+        ]
+      },
+      {
+        "name": "PAWAN KUMAR SHARMA",
+        "party": "IND",
+        "votes": 997,
+        "position": 9,
+        "voteShare": 0.22,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 997,
+            "voteShare": 0.22
+          }
+        ]
+      },
+      {
+        "name": "RAMESH CHANDER",
+        "party": "IND",
+        "votes": 743,
+        "position": 10,
+        "voteShare": 0.16,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 743,
+            "voteShare": 0.16
+          }
+        ]
+      },
+      {
+        "name": "AJAY SINGLA",
+        "party": "IND",
+        "votes": 660,
+        "position": 11,
+        "voteShare": 0.15,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 660,
+            "voteShare": 0.15
+          }
+        ]
+      },
+      {
+        "name": "KHEM LAL BANSAL",
+        "party": "IVD",
+        "votes": 640,
+        "position": 12,
+        "voteShare": 0.14,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 640,
+            "voteShare": 0.14
+          }
+        ]
+      },
+      {
+        "name": "DEEPAK SHUKLA",
+        "party": "IND",
+        "votes": 613,
+        "position": 13,
+        "voteShare": 0.14,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 613,
+            "voteShare": 0.14
+          }
+        ]
+      },
+      {
+        "name": "DHARMENDER SINGH",
+        "party": "HEP",
+        "votes": 566,
+        "position": 14,
+        "voteShare": 0.12,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 566,
+            "voteShare": 0.12
+          }
+        ]
+      },
+      {
+        "name": "SURENDER KUMAR",
+        "party": "BMUP",
+        "votes": 550,
+        "position": 15,
+        "voteShare": 0.12,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 550,
+            "voteShare": 0.12
+          }
+        ]
+      },
+      {
+        "name": "SURINDER BHARDWAJ",
+        "party": "JD(U)",
+        "votes": 434,
+        "position": 16,
+        "voteShare": 0.1,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 434,
+            "voteShare": 0.1
+          }
+        ]
+      },
+      {
+        "name": "AMARJIT KAUR",
+        "party": "IND",
+        "votes": 397,
+        "position": 17,
+        "voteShare": 0.09,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "F",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 397,
+            "voteShare": 0.09
+          }
+        ]
+      },
+      {
+        "name": "JASMER SINGH",
+        "party": "IND",
+        "votes": 389,
+        "position": 18,
+        "voteShare": 0.09,
+        "margin": 0,
+        "marginPct": 0,
+        "sex": "M",
+        "age": null,
+        "depositLost": true,
+        "acWiseVotes": [
+          {
+            "acName": "CHANDIGARH",
+            "votes": 389,
+            "voteShare": 0.09
+          }
+        ]
+      }
+    ],
+    "assemblyConstituencies": [
+      "CHANDIGARH"
+    ],
+    "acWiseResults": {
+      "CHANDIGARH": {
+        "acName": "CHANDIGARH",
+        "acNo": 1,
+        "acType": "GEN",
+        "validVotes": 453324,
+        "candidates": [
+          {
+            "name": "KIRRON KHER",
+            "party": "BJP",
+            "votes": 191295,
+            "position": 1,
+            "voteShare": 42.2,
+            "sex": "F",
+            "depositLost": false
+          },
+          {
+            "name": "PAWAN KUMAR BANSAL",
+            "party": "INC",
+            "votes": 121700,
+            "position": 2,
+            "voteShare": 26.85,
+            "sex": "M",
+            "depositLost": false
+          },
+          {
+            "name": "GULKIRAT KAUR PANAG (GUL PANAG)",
+            "party": "AAAP",
+            "votes": 108636,
+            "position": 3,
+            "voteShare": 23.96,
+            "sex": "F",
+            "depositLost": false
+          },
+          {
+            "name": "JANNAT JAHAN-UL-HAQ (NAINA)",
+            "party": "BSP",
+            "votes": 15934,
+            "position": 4,
+            "voteShare": 3.51,
+            "sex": "F",
+            "depositLost": true
+          },
+          {
+            "name": "None of the Above",
+            "party": "NOTA",
+            "votes": 3105,
+            "position": 5,
+            "voteShare": 0.68,
+            "sex": "NOTA",
+            "depositLost": true
+          },
+          {
+            "name": "REENA SHARMA",
+            "party": "IND",
+            "votes": 2643,
+            "position": 6,
+            "voteShare": 0.58,
+            "sex": "F",
+            "depositLost": true
+          },
+          {
+            "name": "SHAMSHER SINGH",
+            "party": "IND",
+            "votes": 2054,
+            "position": 7,
+            "voteShare": 0.45,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "KAWALJIT SINGH",
+            "party": "CPI(ML)(L)",
+            "votes": 1968,
+            "position": 8,
+            "voteShare": 0.43,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "PAWAN KUMAR SHARMA",
+            "party": "IND",
+            "votes": 997,
+            "position": 9,
+            "voteShare": 0.22,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "RAMESH CHANDER",
+            "party": "IND",
+            "votes": 743,
+            "position": 10,
+            "voteShare": 0.16,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "AJAY SINGLA",
+            "party": "IND",
+            "votes": 660,
+            "position": 11,
+            "voteShare": 0.15,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "KHEM LAL BANSAL",
+            "party": "IVD",
+            "votes": 640,
+            "position": 12,
+            "voteShare": 0.14,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "DEEPAK SHUKLA",
+            "party": "IND",
+            "votes": 613,
+            "position": 13,
+            "voteShare": 0.14,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "DHARMENDER SINGH",
+            "party": "HEP",
+            "votes": 566,
+            "position": 14,
+            "voteShare": 0.12,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "SURENDER KUMAR",
+            "party": "BMUP",
+            "votes": 550,
+            "position": 15,
+            "voteShare": 0.12,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "SURINDER BHARDWAJ",
+            "party": "JD(U)",
+            "votes": 434,
+            "position": 16,
+            "voteShare": 0.1,
+            "sex": "M",
+            "depositLost": true
+          },
+          {
+            "name": "AMARJIT KAUR",
+            "party": "IND",
+            "votes": 397,
+            "position": 17,
+            "voteShare": 0.09,
+            "sex": "F",
+            "depositLost": true
+          },
+          {
+            "name": "JASMER SINGH",
+            "party": "IND",
+            "votes": 389,
+            "position": 18,
+            "voteShare": 0.09,
+            "sex": "M",
+            "depositLost": true
+          }
+        ]
+      }
+    },
+    "schemaId": "CH-01",
+    "name": "Chandigarh",
+    "type": "GEN"
+  }
+}
