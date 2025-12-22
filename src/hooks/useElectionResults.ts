@@ -115,6 +115,14 @@ function similarityScore(a: string, b: string): number {
   return matches / longer.length;
 }
 
+/** Options for getACResult */
+export interface GetACResultOptions {
+  /** Schema ID for direct lookup (e.g., "RJ-108") */
+  schemaId?: string;
+  /** Canonical AC name from schema (avoids fuzzy matching) */
+  canonicalName?: string;
+}
+
 /** useElectionResults hook return type */
 export interface UseElectionResultsReturn {
   /** Available election years for current state */
@@ -135,7 +143,8 @@ export interface UseElectionResultsReturn {
   getACResult: (
     acName: string,
     stateName: string,
-    year?: number
+    year?: number,
+    options?: GetACResultOptions
   ) => Promise<ACElectionResult | null>;
   /** Set selected year */
   setSelectedYear: (year: number) => void;
@@ -254,11 +263,29 @@ export function useElectionResults(): UseElectionResultsReturn {
 
   /**
    * Get election result for an AC
+   * @param acName - AC name to search for
+   * @param stateName - State name
+   * @param year - Optional year (defaults to latest)
+   * @param options - Optional schemaId or canonicalName for direct lookup
    */
   const getACResult = useCallback(
-    async (acName: string, stateName: string, year?: number): Promise<ACElectionResult | null> => {
+    async (
+      acName: string,
+      stateName: string,
+      year?: number,
+      options?: GetACResultOptions
+    ): Promise<ACElectionResult | null> => {
       const slug = getStateSlug(stateName);
-      console.log('[getACResult] State:', stateName, '=> Slug:', slug, '| AC:', acName);
+      const { schemaId, canonicalName } = options ?? {};
+      console.log(
+        '[getACResult] State:',
+        stateName,
+        '=> Slug:',
+        slug,
+        '| AC:',
+        acName,
+        schemaId ? `| schemaId: ${schemaId}` : ''
+      );
 
       // Load index if not already loaded
       let index = indexCache.current.get(slug);
@@ -309,14 +336,28 @@ export function useElectionResults(): UseElectionResultsReturn {
       console.log('[getACResult] Results loaded, keys count:', Object.keys(results).length);
 
       // Find the AC result using multiple matching strategies
-      const canonicalKey = createCanonicalKey(acName);
-      const fuzzyKey = createFuzzyKey(acName);
+      const searchName = canonicalName ?? acName;
+      const canonicalKey = createCanonicalKey(searchName);
+      const fuzzyKey = createFuzzyKey(searchName);
 
       // Check if there's a known mapping for this AC
       const mappedName = AC_NAME_MAPPINGS[canonicalKey];
 
-      // Try direct match first
-      let result = results[acName.toUpperCase()];
+      // Try direct match first (using canonical name if provided)
+      let result = results[searchName.toUpperCase()];
+
+      // If canonicalName was provided and we got a result, we're done (skip fuzzy matching)
+      if (canonicalName && result) {
+        console.log('[getACResult] Direct match with canonical name:', canonicalName);
+        setCurrentResult(result);
+        setSelectedYear(targetYear);
+        return result;
+      }
+
+      // Also try original acName if different from searchName
+      if (!result && canonicalName) {
+        result = results[acName.toUpperCase()];
+      }
 
       if (!result) {
         const keys = Object.keys(results);
