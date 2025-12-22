@@ -364,6 +364,21 @@ body {
   color: white;
 }
 
+.toolbar-dropdown-item .layer-badge {
+  font-size: 0.65rem;
+  background: #10b981;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.toolbar-dropdown-item.active .layer-badge {
+  background: #34d399;
+}
+
 /* Coordinates display */
 /* Map legend */
 .map-legend {

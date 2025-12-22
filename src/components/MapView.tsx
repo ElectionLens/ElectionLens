@@ -20,6 +20,7 @@ import { getFeatureStyle, getHoverStyle, normalizeName } from '../utils/helpers'
 import { COLOR_PALETTES } from '../constants';
 import { clearAllCache } from '../utils/db';
 import { FeedbackModal } from './FeedbackModal';
+import { VectorTileLayer } from './VectorTileLayer';
 
 // Lazy load panel components - only loaded when user clicks a constituency
 const ElectionResultPanel = lazy(() =>
@@ -79,7 +80,7 @@ interface MapToolbarProps {
 }
 
 /** Layer option */
-type LayerName = 'Streets' | 'Light' | 'Satellite' | 'Terrain';
+type LayerName = 'Streets' | 'Light' | 'Satellite' | 'Terrain' | 'Vector';
 
 /**
  * Map Toolbar Component - Rendered as React overlay at top center
@@ -180,15 +181,18 @@ function MapToolbar({
             <Layers size={18} />
           </button>
           <div className={`toolbar-dropdown-menu ${layerMenuOpen ? 'visible' : ''}`}>
-            {(['Streets', 'Light', 'Satellite', 'Terrain'] as LayerName[]).map((layer) => (
-              <button
-                key={layer}
-                className={`toolbar-dropdown-item ${activeLayer === layer ? 'active' : ''}`}
-                onClick={() => handleLayerChange(layer)}
-              >
-                {layer}
-              </button>
-            ))}
+            {(['Streets', 'Light', 'Satellite', 'Terrain', 'Vector'] as LayerName[]).map(
+              (layer) => (
+                <button
+                  key={layer}
+                  className={`toolbar-dropdown-item ${activeLayer === layer ? 'active' : ''}`}
+                  onClick={() => handleLayerChange(layer)}
+                >
+                  {layer}
+                  {layer === 'Vector' && <span className="layer-badge">Fast</span>}
+                </button>
+              )
+            )}
           </div>
         </div>
       </div>
@@ -212,8 +216,11 @@ interface FeatureLayer {
 /** Leaflet GeoJSON ref type */
 type GeoJSONRef = L.GeoJSON | null;
 
-/** Layer URLs */
-const LAYER_URLS: Record<string, { url: string; maxZoom: number; subdomains?: string }> = {
+/** Layer URLs - 'Vector' is handled separately by VectorTileLayer */
+const LAYER_URLS: Record<
+  string,
+  { url: string; maxZoom: number; subdomains?: string; isVector?: boolean }
+> = {
   Streets: {
     url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
     maxZoom: 19,
@@ -231,6 +238,11 @@ const LAYER_URLS: Record<string, { url: string; maxZoom: number; subdomains?: st
   Terrain: {
     url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
     maxZoom: 17,
+  },
+  Vector: {
+    url: '', // Handled by VectorTileLayer component
+    maxZoom: 19,
+    isVector: true,
     subdomains: 'abc',
   },
 };
@@ -262,17 +274,27 @@ function MapControls({ level, name, count }: MapControlsProps): null {
 
     const handleLayerChange = (e: Event): void => {
       const layerName = (e as CustomEvent).detail as string;
+
+      // Vector tiles are handled by React component, skip Leaflet layer logic
+      if (layerName === 'Vector') {
+        if (baseLayerRef.current) {
+          map.removeLayer(baseLayerRef.current);
+          baseLayerRef.current = null;
+        }
+        return;
+      }
+
       const defaultLayer = LAYER_URLS['Streets'];
       const layerConfig = LAYER_URLS[layerName] ?? defaultLayer;
 
-      if (!layerConfig) return;
+      if (!layerConfig || !layerConfig.url) return;
 
       // Remove current base layer
       if (baseLayerRef.current) {
         map.removeLayer(baseLayerRef.current);
       }
 
-      // Create and add new base layer
+      // Create and add new raster tile layer
       const newLayer = L.tileLayer(layerConfig.url, {
         maxZoom: layerConfig.maxZoom,
         subdomains: layerConfig.subdomains ?? 'abc',
@@ -496,6 +518,18 @@ export function MapView({
   const selectedAssemblyRef = useRef<string | null>(selectedAssembly);
   // Feedback modal state
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
+  // Base layer state - 'Vector' uses VectorTileLayer, others use TileLayer
+  const [baseLayer, setBaseLayer] = useState<LayerName>('Streets');
+
+  // Listen for layer change events from toolbar
+  useEffect(() => {
+    const handleLayerChange = (e: Event): void => {
+      const layerName = (e as CustomEvent).detail as LayerName;
+      setBaseLayer(layerName);
+    };
+    window.addEventListener('changeBaseLayer', handleLayerChange);
+    return () => window.removeEventListener('changeBaseLayer', handleLayerChange);
+  }, []);
 
   // Sync refs with current selection state - must be synchronous before render
   selectedAssemblyRef.current = selectedAssembly;
@@ -772,12 +806,21 @@ export function MapView({
         zoomControl={true}
         style={{ width: '100%', height: '100%' }}
       >
-        <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          maxZoom={19}
-          subdomains="abcd"
-          attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-        />
+        {/* Base layer - Vector tiles or Raster tiles */}
+        {baseLayer === 'Vector' ? (
+          <VectorTileLayer theme="minimal" />
+        ) : (
+          <TileLayer
+            key={baseLayer}
+            url={
+              LAYER_URLS[baseLayer]?.url ||
+              'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
+            }
+            maxZoom={LAYER_URLS[baseLayer]?.maxZoom || 19}
+            subdomains={LAYER_URLS[baseLayer]?.subdomains || 'abcd'}
+            attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+          />
+        )}
 
         <ScaleControl position="bottomleft" imperial={false} />
 

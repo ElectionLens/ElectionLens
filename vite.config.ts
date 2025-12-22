@@ -36,6 +36,8 @@ export default defineConfig({
           vendor: ['react', 'react-dom'],
           // Map library (large, separate chunk)
           leaflet: ['leaflet', 'react-leaflet'],
+          // Vector tiles (loaded on demand)
+          vectortiles: ['protomaps-leaflet', 'pmtiles'],
           // Icons (lazy loaded on demand)
           icons: ['lucide-react'],
           // Firebase analytics (optional, loaded async)
