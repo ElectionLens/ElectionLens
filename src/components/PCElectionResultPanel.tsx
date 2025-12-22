@@ -60,6 +60,17 @@ export function PCElectionResultPanel({
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [copied, setCopied] = useState(false);
 
+  // Mobile panel expansion state
+  const [panelState, setPanelState] = useState<'peek' | 'half' | 'full'>('half');
+
+  const handleDragHandleClick = useCallback(() => {
+    setPanelState((prev) => {
+      if (prev === 'peek') return 'half';
+      if (prev === 'half') return 'full';
+      return 'peek';
+    });
+  }, []);
+
   const winner = result.candidates[0];
 
   const handleCopyLink = useCallback(async () => {
@@ -83,22 +94,38 @@ export function PCElectionResultPanel({
   }, [result, shareUrl, stateName]);
 
   return (
-    <div className="election-panel pc-panel">
+    <div className={`election-panel pc-panel panel-${panelState}`}>
       {/* Mobile drag handle */}
-      <div className="bottom-sheet-handle" aria-hidden="true" />
+      <div
+        className="bottom-sheet-handle"
+        onClick={handleDragHandleClick}
+        role="button"
+        aria-label={`Panel is ${panelState}. Click to ${panelState === 'full' ? 'minimize' : 'expand'}`}
+      />
 
       {/* Header */}
-      <div className="election-panel-header">
+      <div
+        className="election-panel-header"
+        onClick={() => panelState === 'peek' && setPanelState('half')}
+      >
         <div className="election-panel-title">
           <h3>{result.constituencyNameOriginal}</h3>
-          <div className="title-badges">
-            <span className="pc-badge">Parliament</span>
-            <span
-              className={`constituency-type type-${result.constituencyType?.toLowerCase() ?? 'gen'}`}
-            >
-              {result.constituencyType ?? 'GEN'}
+          {/* Peek mode: show winner inline */}
+          {panelState === 'peek' && winner && (
+            <span className="peek-winner">
+              🏆 {winner.name} ({winner.party}) - {winner.voteShare.toFixed(1)}%
             </span>
-          </div>
+          )}
+          {panelState !== 'peek' && (
+            <div className="title-badges">
+              <span className="pc-badge">Parliament</span>
+              <span
+                className={`constituency-type type-${result.constituencyType?.toLowerCase() ?? 'gen'}`}
+              >
+                {result.constituencyType ?? 'GEN'}
+              </span>
+            </div>
+          )}
         </div>
         <div className="election-panel-actions">
           <button
