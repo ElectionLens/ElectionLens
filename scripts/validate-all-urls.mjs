@@ -28,12 +28,75 @@ const stats = {
   totalACs: 0,
   pcWithGeo: 0,
   pcWithData: 0,
+  pcDataLookupOk: 0,  // New: data can be found via hook lookup logic
   acWithGeo: 0,
   acWithData: 0,
+  acDataLookupOk: 0,  // New: data can be found via hook lookup logic
   pcErrors: [],
   acErrors: [],
   warnings: [],
+  // Per-state coverage tracking
+  stateGeoJSONCoverage: {}, // { stateId: { pcTotal, pcWithGeo, acTotal, acWithGeo } }
+  statesMissingGeoJSON: [], // States with 0% AC GeoJSON coverage
 };
+
+/**
+ * Simulate hook lookup logic - this is what actually happens in the app
+ * Returns the result if found, null otherwise
+ */
+function simulateHookLookup(data, name, schemaId) {
+  if (!data) return null;
+  
+  // Strategy 1: Direct schema ID match (primary path after migration)
+  if (schemaId && data[schemaId]) {
+    return { strategy: 'schemaId', key: schemaId };
+  }
+  
+  // Strategy 2: Direct name match
+  const upperName = name.toUpperCase().trim();
+  if (data[upperName]) {
+    return { strategy: 'directName', key: upperName };
+  }
+  
+  // Strategy 3: Search by name/constituencyName properties
+  const normalizedSearch = name.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  for (const [key, value] of Object.entries(data)) {
+    if (!value || typeof value !== 'object') continue;
+    
+    const namesToCheck = [
+      value.name,
+      value.constituencyName,
+      value.constituencyNameOriginal,
+    ].filter(Boolean);
+    
+    for (const n of namesToCheck) {
+      const normalized = n.toUpperCase().replace(/[^A-Z0-9]/g, '');
+      if (normalized === normalizedSearch) {
+        return { strategy: 'nameProperty', key, matchedName: n };
+      }
+    }
+  }
+  
+  // Strategy 4: Partial match on name properties
+  for (const [key, value] of Object.entries(data)) {
+    if (!value || typeof value !== 'object') continue;
+    
+    const namesToCheck = [
+      value.name,
+      value.constituencyName,
+      value.constituencyNameOriginal,
+    ].filter(Boolean);
+    
+    for (const n of namesToCheck) {
+      const normalized = n.toUpperCase().replace(/[^A-Z0-9]/g, '');
+      if (normalized.includes(normalizedSearch) || normalizedSearch.includes(normalized)) {
+        return { strategy: 'partialMatch', key, matchedName: n };
+      }
+    }
+  }
+  
+  return null;
+}
 
 function loadJSON(filePath) {
   try {
@@ -123,10 +186,10 @@ for (const state of filteredStates) {
   console.log(`\n📍 ${state.name} (${state.id})`);
   console.log('-'.repeat(50));
 
-  // Get state's election data index
-  const stateSlug = slugify(state.name);
-  const acIndexPath = path.join(DATA_DIR, `elections/ac/${stateSlug}/index.json`);
-  const pcIndexPath = path.join(DATA_DIR, `elections/pc/${stateSlug}/index.json`);
+  // Get state's election data index (use state ID for folder path)
+  const stateId = state.id;
+  const acIndexPath = path.join(DATA_DIR, `elections/ac/${stateId}/index.json`);
+  const pcIndexPath = path.join(DATA_DIR, `elections/pc/${stateId}/index.json`);
   
   const acIndex = loadJSON(acIndexPath);
   const pcIndex = loadJSON(pcIndexPath);
@@ -139,10 +202,10 @@ for (const state of filteredStates) {
   const latestPCYear = pcYears[pcYears.length - 1];
   
   const acElectionData = latestACYear 
-    ? loadJSON(path.join(DATA_DIR, `elections/ac/${stateSlug}/${latestACYear}.json`))
+    ? loadJSON(path.join(DATA_DIR, `elections/ac/${stateId}/${latestACYear}.json`))
     : null;
   const pcElectionData = latestPCYear
-    ? loadJSON(path.join(DATA_DIR, `elections/pc/${stateSlug}/${latestPCYear}.json`))
+    ? loadJSON(path.join(DATA_DIR, `elections/pc/${stateId}/${latestPCYear}.json`))
     : null;
 
   // Get PCs for this state
@@ -157,6 +220,8 @@ for (const state of filteredStates) {
   let stateACErrors = 0;
   let statePCOk = 0;
   let stateACOk = 0;
+  let statePCWithGeo = 0;
+  let stateACWithGeo = 0;
 
   // Validate PCs
   for (const pc of statePCs) {
@@ -167,21 +232,30 @@ for (const state of filteredStates) {
     const geoFeature = pcGeoBySchemaId.get(pc.id);
     if (geoFeature) {
       stats.pcWithGeo++;
+      statePCWithGeo++;
     } else {
       errors.push('missing GeoJSON');
     }
     
-    // Check election data
-    const hasData = pcElectionData && Object.keys(pcElectionData).some(key => {
-      const normalized = key.toUpperCase().replace(/[^A-Z0-9]/g, '');
-      const pcNormalized = pc.name.toUpperCase().replace(/[^A-Z0-9]/g, '');
-      return normalized === pcNormalized || normalized.includes(pcNormalized) || pcNormalized.includes(normalized);
-    });
-    
-    if (hasData || pcYears.length > 0) {
+    // Check election data exists
+    const hasData = pcElectionData && pcYears.length > 0;
+    if (hasData) {
       stats.pcWithData++;
     } else {
       errors.push('no election data');
+    }
+    
+    // NEW: Simulate hook lookup to verify data is actually findable
+    if (hasData) {
+      const lookupResult = simulateHookLookup(pcElectionData, pc.name, pc.id);
+      if (lookupResult) {
+        stats.pcDataLookupOk++;
+        if (verbose && lookupResult.strategy !== 'schemaId') {
+          console.log(`  ℹ️ PC ${pc.name}: found via ${lookupResult.strategy} (key: ${lookupResult.key})`);
+        }
+      } else {
+        errors.push('data lookup would FAIL in app');
+      }
     }
     
     if (errors.length > 0) {
@@ -211,32 +285,30 @@ for (const state of filteredStates) {
     const geoFeature = acGeoBySchemaId.get(ac.id);
     if (geoFeature) {
       stats.acWithGeo++;
+      stateACWithGeo++;
     } else {
       errors.push('missing GeoJSON');
     }
     
-    // Check election data - look for AC name in the data
-    let hasData = false;
-    if (acElectionData) {
-      // Try direct schema ID lookup
-      if (acElectionData[ac.id]) {
-        hasData = true;
-      } else {
-        // Try name matching
-        const acNames = [ac.name, ...(ac.aliases || [])].map(n => 
-          n.toUpperCase().replace(/[^A-Z0-9]/g, '')
-        );
-        hasData = Object.keys(acElectionData).some(key => {
-          const keyNorm = key.toUpperCase().replace(/[^A-Z0-9]/g, '');
-          return acNames.some(n => n === keyNorm || keyNorm.includes(n) || n.includes(keyNorm));
-        });
-      }
-    }
-    
-    if (hasData || acYears.length > 0) {
+    // Check election data exists
+    const hasData = acElectionData && acYears.length > 0;
+    if (hasData) {
       stats.acWithData++;
     } else {
       errors.push('no election data');
+    }
+    
+    // NEW: Simulate hook lookup to verify data is actually findable
+    if (hasData) {
+      const lookupResult = simulateHookLookup(acElectionData, ac.name, ac.id);
+      if (lookupResult) {
+        stats.acDataLookupOk++;
+        if (verbose && lookupResult.strategy !== 'schemaId') {
+          console.log(`  ℹ️ AC ${ac.name}: found via ${lookupResult.strategy} (key: ${lookupResult.key})`);
+        }
+      } else {
+        errors.push('data lookup would FAIL in app');
+      }
     }
     
     // Get PC for this AC
@@ -244,6 +316,7 @@ for (const state of filteredStates) {
     
     if (errors.length > 0) {
       stateACErrors++;
+      const stateSlug = slugify(state.name);
       const url = pc ? generateACUrl(state, pc, ac, latestACYear || 2024) : `/${stateSlug}/ac/${slugify(ac.name)}`;
       stats.acErrors.push({
         id: ac.id,
@@ -260,11 +333,36 @@ for (const state of filteredStates) {
     }
   }
 
+  // Track state-level GeoJSON coverage
+  stats.stateGeoJSONCoverage[state.id] = {
+    name: state.name,
+    pcTotal: statePCs.length,
+    pcWithGeo: statePCWithGeo,
+    acTotal: stateACs.length,
+    acWithGeo: stateACWithGeo,
+  };
+  
+  // Flag states with 0% AC GeoJSON (critical issue!)
+  if (stateACs.length > 0 && stateACWithGeo === 0) {
+    stats.statesMissingGeoJSON.push({
+      id: state.id,
+      name: state.name,
+      acCount: stateACs.length,
+    });
+  }
+
   // State summary
   const pcStatus = statePCErrors === 0 ? '✅' : '⚠️';
   const acStatus = stateACErrors === 0 ? '✅' : '⚠️';
+  const geoStatus = stateACs.length > 0 && stateACWithGeo === 0 ? '🚨' : '';
   console.log(`  ${pcStatus} PCs: ${statePCOk}/${statePCs.length} OK`);
-  console.log(`  ${acStatus} ACs: ${stateACOk}/${stateACs.length} OK`);
+  console.log(`  ${acStatus} ACs: ${stateACOk}/${stateACs.length} OK ${geoStatus}`);
+  
+  // Show GeoJSON coverage for this state if not 100%
+  if (stateACs.length > 0 && stateACWithGeo < stateACs.length) {
+    const acGeoCoverage = (stateACWithGeo / stateACs.length * 100).toFixed(0);
+    console.log(`  📍 GeoJSON: ${stateACWithGeo}/${stateACs.length} ACs (${acGeoCoverage}%)`);
+  }
   
   if (!acIndex && stateACs.length > 0) {
     stats.warnings.push(`${state.name}: No AC election index found at ${acIndexPath}`);
@@ -285,13 +383,25 @@ console.log('Parliament Constituencies (PC):');
 console.log(`  Total: ${stats.totalPCs}`);
 console.log(`  With GeoJSON: ${stats.pcWithGeo} (${(stats.pcWithGeo/stats.totalPCs*100).toFixed(1)}%)`);
 console.log(`  With Election Data: ${stats.pcWithData} (${(stats.pcWithData/stats.totalPCs*100).toFixed(1)}%)`);
+console.log(`  Data Lookup OK: ${stats.pcDataLookupOk}/${stats.pcWithData} (${stats.pcWithData > 0 ? (stats.pcDataLookupOk/stats.pcWithData*100).toFixed(1) : 0}%)`);
 console.log(`  Errors: ${stats.pcErrors.length}`);
 
 console.log('\nAssembly Constituencies (AC):');
 console.log(`  Total: ${stats.totalACs}`);
 console.log(`  With GeoJSON: ${stats.acWithGeo} (${(stats.acWithGeo/stats.totalACs*100).toFixed(1)}%)`);
 console.log(`  With Election Data: ${stats.acWithData} (${(stats.acWithData/stats.totalACs*100).toFixed(1)}%)`);
+console.log(`  Data Lookup OK: ${stats.acDataLookupOk}/${stats.acWithData} (${stats.acWithData > 0 ? (stats.acDataLookupOk/stats.acWithData*100).toFixed(1) : 0}%)`);
 console.log(`  Errors: ${stats.acErrors.length}`);
+
+// Show states with missing GeoJSON (CRITICAL)
+if (stats.statesMissingGeoJSON.length > 0) {
+  console.log('\n🚨 CRITICAL: STATES WITH NO AC GeoJSON DATA:');
+  console.log('   These states will show "Unknown" on hover for ALL assemblies!\n');
+  stats.statesMissingGeoJSON.forEach(s => {
+    console.log(`   - ${s.name} (${s.id}): ${s.acCount} ACs have NO map boundaries`);
+  });
+  console.log('\n   Fix: Source GeoJSON boundaries from ECI/DataMeet and add to constituencies.geojson\n');
+}
 
 // Show errors
 if (stats.pcErrors.length > 0) {
@@ -345,26 +455,32 @@ fs.writeFileSync(reportPath, JSON.stringify({
     totalPCs: stats.totalPCs,
     pcWithGeo: stats.pcWithGeo,
     pcWithData: stats.pcWithData,
+    pcDataLookupOk: stats.pcDataLookupOk,
     pcErrors: stats.pcErrors.length,
     totalACs: stats.totalACs,
     acWithGeo: stats.acWithGeo,
     acWithData: stats.acWithData,
+    acDataLookupOk: stats.acDataLookupOk,
     acErrors: stats.acErrors.length,
+    statesMissingGeoJSON: stats.statesMissingGeoJSON.length,
   },
+  statesMissingGeoJSON: stats.statesMissingGeoJSON,
+  stateGeoJSONCoverage: stats.stateGeoJSONCoverage,
   pcErrors: stats.pcErrors,
   acErrors: stats.acErrors,
   warnings: stats.warnings,
 }, null, 2));
 console.log(`\n📄 Full report saved to: url-validation-report.json`);
 
-// Exit code
-// Missing GeoJSON is a warning (AC won't show on map but data still loads)
-// Missing election data is critical if there's no index at all
-const criticalPCErrors = stats.pcErrors.filter(e => 
-  !e.errors.every(err => err === 'no election data') // OK if just no data for specific year
-);
-const criticalACErrors = stats.acErrors.filter(e => 
-  e.errors.includes('no schema entry') // Critical if AC not in schema
+// Exit code logic
+// - States with 0% GeoJSON is CRITICAL (entire state broken!)
+// - Missing GeoJSON is a warning (AC won't show on map but data still loads)
+// - Missing election data is critical if there's no index at all  
+// - Data lookup failures are CRITICAL (panel won't show in app!)
+
+// Count data lookup failures
+const lookupFailures = stats.pcErrors.concat(stats.acErrors).filter(e => 
+  e.errors.includes('data lookup would FAIL in app')
 );
 
 // Calculate coverage thresholds
@@ -373,24 +489,56 @@ const geoJSONCoverage = {
   ac: (stats.acWithGeo / stats.totalACs * 100),
 };
 
-// Fail if GeoJSON coverage drops below 95%
+// Calculate data lookup success rate
+const lookupSuccessRate = {
+  pc: stats.pcWithData > 0 ? (stats.pcDataLookupOk / stats.pcWithData * 100) : 100,
+  ac: stats.acWithData > 0 ? (stats.acDataLookupOk / stats.acWithData * 100) : 100,
+};
+
+// Thresholds
 const geoJSONThreshold = 95;
+const lookupThreshold = 99; // Must be able to find 99% of data
+
+const hasStatesMissingGeoJSON = stats.statesMissingGeoJSON.length > 0;
 const hasGeoJSONCoverageIssue = geoJSONCoverage.pc < geoJSONThreshold || 
                                 geoJSONCoverage.ac < geoJSONThreshold;
+const hasLookupIssue = lookupSuccessRate.pc < lookupThreshold || 
+                       lookupSuccessRate.ac < lookupThreshold;
 
-if (hasGeoJSONCoverageIssue) {
+// CRITICAL: States with no GeoJSON at all
+if (hasStatesMissingGeoJSON) {
+  const missingACs = stats.statesMissingGeoJSON.reduce((sum, s) => sum + s.acCount, 0);
+  console.log(`\n❌ VALIDATION FAILED - ${stats.statesMissingGeoJSON.length} state(s) have NO AC GeoJSON data!`);
+  console.log(`   ${missingACs} ACs will show "Unknown" on hover.\n`);
+  stats.statesMissingGeoJSON.forEach(s => {
+    console.log(`   - ${s.name}: ${s.acCount} ACs missing`);
+  });
+  console.log('\n   See ideas/missing-geojson-acs.md for details on sourcing GeoJSON data.\n');
+  process.exit(1);
+} else if (hasLookupIssue) {
+  console.log(`\n❌ VALIDATION FAILED - Data lookup success rate below ${lookupThreshold}%`);
+  console.log(`   PC: ${lookupSuccessRate.pc.toFixed(1)}%, AC: ${lookupSuccessRate.ac.toFixed(1)}%`);
+  console.log(`   ${lookupFailures.length} constituencies would fail to show panels in the app!\n`);
+  lookupFailures.slice(0, 10).forEach(e => {
+    console.log(`   - ${e.name} (${e.state})`);
+  });
+  if (lookupFailures.length > 10) {
+    console.log(`   ... and ${lookupFailures.length - 10} more`);
+  }
+  process.exit(1);
+} else if (hasGeoJSONCoverageIssue) {
   console.log(`\n❌ VALIDATION FAILED - GeoJSON coverage below ${geoJSONThreshold}%`);
   console.log(`   PC: ${geoJSONCoverage.pc.toFixed(1)}%, AC: ${geoJSONCoverage.ac.toFixed(1)}%\n`);
   process.exit(1);
-} else if (criticalPCErrors.length > 0 || criticalACErrors.length > 0) {
-  console.log('\n❌ VALIDATION FAILED - Critical schema errors found\n');
-  process.exit(1);
 } else {
-  const warningCount = stats.pcErrors.length + stats.acErrors.length;
+  const warningCount = stats.pcErrors.filter(e => !e.errors.includes('data lookup would FAIL in app')).length +
+                       stats.acErrors.filter(e => !e.errors.includes('data lookup would FAIL in app')).length;
   if (warningCount > 0) {
-    console.log(`\n⚠️ VALIDATION PASSED WITH WARNINGS (${warningCount} minor issues)\n`);
+    console.log(`\n⚠️ VALIDATION PASSED WITH WARNINGS (${warningCount} minor issues - missing GeoJSON)`);
+    console.log(`   Data Lookup Success: PC ${lookupSuccessRate.pc.toFixed(1)}%, AC ${lookupSuccessRate.ac.toFixed(1)}%\n`);
   } else {
-    console.log('\n✅ VALIDATION PASSED - All URLs have required data\n');
+    console.log('\n✅ VALIDATION PASSED - All URLs have required data and lookups work');
+    console.log(`   Data Lookup Success: PC ${lookupSuccessRate.pc.toFixed(1)}%, AC ${lookupSuccessRate.ac.toFixed(1)}%\n`);
   }
   process.exit(0);
 }

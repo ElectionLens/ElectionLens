@@ -30,13 +30,14 @@ describe('normalizeName', () => {
 });
 
 describe('getStateFileName', () => {
-  it('returns correct file names for known states', () => {
-    expect(getStateFileName('Tamil Nadu')).toBe('tamil-nadu');
-    expect(getStateFileName('Andhra Pradesh')).toBe('andhra-pradesh');
+  it('returns correct state IDs for known states', () => {
+    expect(getStateFileName('Tamil Nadu')).toBe('TN');
+    expect(getStateFileName('Andhra Pradesh')).toBe('AP');
+    expect(getStateFileName('Kerala')).toBe('KL');
   });
 
   it('handles diacritics in state names', () => {
-    expect(getStateFileName('Tamil Nādu')).toBe('tamil-nadu');
+    expect(getStateFileName('Tamil Nādu')).toBe('TN');
   });
 
   it('handles null and undefined', () => {
@@ -45,18 +46,16 @@ describe('getStateFileName', () => {
   });
 
   it('handles names with extra whitespace via normalization', () => {
-    // This tests the normalized lookup path (lines 33-36)
-    expect(getStateFileName('  Tamil Nadu')).toBe('tamil-nadu');
-    expect(getStateFileName('Kerala  ')).toBe('kerala');
+    expect(getStateFileName('  Tamil Nadu')).toBe('TN');
+    expect(getStateFileName('Kerala  ')).toBe('KL');
   });
 
   it('handles normalized key matching via loop', () => {
-    // This tests the loop comparison path (lines 39-42)
     // When input has diacritics not directly in map but matches a key with diacritics
-    expect(getStateFileName('  Arunāchal Pradesh  ')).toBe('arunachal-pradesh');
+    expect(getStateFileName('  Arunāchal Pradesh  ')).toBe('AR');
   });
 
-  it('generates slug from name as fallback', () => {
+  it('generates slug from name as fallback for unknown states', () => {
     const result = getStateFileName('Some New State');
     expect(result).toBe('some-new-state');
   });

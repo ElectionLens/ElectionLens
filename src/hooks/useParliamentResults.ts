@@ -23,12 +23,63 @@ function stripDiacritics(str: string): string {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
-/** State slug generator */
+/** State name to ID mapping (ISO 3166-2:IN codes) */
+const STATE_ID_MAP: Record<string, string> = {
+  'andaman and nicobar islands': 'AN',
+  'andaman & nicobar islands': 'AN',
+  'andhra pradesh': 'AP',
+  'arunachal pradesh': 'AR',
+  assam: 'AS',
+  bihar: 'BR',
+  chandigarh: 'CH',
+  chhattisgarh: 'CG',
+  chattisgarh: 'CG',
+  'dadra and nagar haveli and daman and diu': 'DD',
+  'dnh and dd': 'DD',
+  delhi: 'DL',
+  'nct of delhi': 'DL',
+  goa: 'GA',
+  gujarat: 'GJ',
+  haryana: 'HR',
+  'himachal pradesh': 'HP',
+  'jammu and kashmir': 'JK',
+  'jammu & kashmir': 'JK',
+  jharkhand: 'JH',
+  karnataka: 'KA',
+  kerala: 'KL',
+  ladakh: 'LA',
+  lakshadweep: 'LD',
+  'madhya pradesh': 'MP',
+  maharashtra: 'MH',
+  manipur: 'MN',
+  meghalaya: 'ML',
+  mizoram: 'MZ',
+  nagaland: 'NL',
+  odisha: 'OD',
+  orissa: 'OD',
+  puducherry: 'PY',
+  pondicherry: 'PY',
+  punjab: 'PB',
+  rajasthan: 'RJ',
+  sikkim: 'SK',
+  'tamil nadu': 'TN',
+  telangana: 'TS',
+  tripura: 'TR',
+  'uttar pradesh': 'UP',
+  uttarakhand: 'UK',
+  uttaranchal: 'UK',
+  'west bengal': 'WB',
+};
+
+/** Convert state name to state ID */
+function getStateId(stateName: string): string {
+  const normalized = stripDiacritics(stateName).toLowerCase().trim();
+  return STATE_ID_MAP[normalized] || normalized.toUpperCase().slice(0, 2);
+}
+
+/** @deprecated Use getStateId instead */
 function getStateSlug(stateName: string): string {
-  return stripDiacritics(stateName)
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '');
+  return getStateId(stateName);
 }
 
 /** Name mappings for inconsistent naming between GeoJSON and election data */
@@ -237,9 +288,13 @@ export function useParliamentResults(): UseParliamentResultsReturn {
 
       // Find the PC result using multiple matching strategies
       const canonicalSearch = createCanonicalKey(pcName);
+      console.log('[getPCResult] Searching for:', pcName, '-> canonical:', canonicalSearch);
 
-      // Try direct match first
+      // Try direct match first (legacy format)
       let result = results[pcName.toUpperCase().trim()];
+      if (result) {
+        console.log('[getPCResult] ✓ Direct match');
+      }
 
       if (!result) {
         const keys = Object.keys(results);
@@ -248,6 +303,31 @@ export function useParliamentResults(): UseParliamentResultsReturn {
         const canonicalMatch = keys.find((k) => createCanonicalKey(k) === canonicalSearch);
         if (canonicalMatch) {
           result = results[canonicalMatch];
+          console.log('[getPCResult] ✓ Canonical match:', canonicalMatch);
+        }
+
+        // Try matching by result's name properties (for schema ID-keyed data)
+        if (!result) {
+          for (const [k, v] of Object.entries(results)) {
+            if (!v || typeof v !== 'object') continue;
+            const resultData = v;
+
+            // Check constituencyName, constituencyNameOriginal, name
+            const namesToCheck = [
+              resultData.constituencyName,
+              resultData.constituencyNameOriginal,
+              resultData.name,
+            ].filter((n): n is string => Boolean(n));
+
+            for (const name of namesToCheck) {
+              if (createCanonicalKey(name) === canonicalSearch) {
+                result = resultData;
+                console.log('[getPCResult] ✓ Name property match:', k, name);
+                break;
+              }
+            }
+            if (result) break;
+          }
         }
 
         // Try partial match (one name contains the other)
@@ -258,6 +338,34 @@ export function useParliamentResults(): UseParliamentResultsReturn {
           });
           if (partialMatch) {
             result = results[partialMatch];
+            console.log('[getPCResult] ✓ Partial match:', partialMatch);
+          }
+        }
+
+        // Try fuzzy match on name properties
+        if (!result) {
+          for (const [k, v] of Object.entries(results)) {
+            if (!v || typeof v !== 'object') continue;
+            const resultData = v;
+
+            const namesToCheck = [
+              resultData.constituencyName,
+              resultData.constituencyNameOriginal,
+              resultData.name,
+            ].filter((n): n is string => Boolean(n));
+
+            for (const name of namesToCheck) {
+              const nameCanonical = createCanonicalKey(name);
+              if (
+                nameCanonical.includes(canonicalSearch) ||
+                canonicalSearch.includes(nameCanonical)
+              ) {
+                result = resultData;
+                console.log('[getPCResult] ✓ Fuzzy name match:', k, name);
+                break;
+              }
+            }
+            if (result) break;
           }
         }
       }
