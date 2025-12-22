@@ -266,4 +266,20 @@ describe('useUrlState - Additional Functionality', () => {
     const urlState = result.current.getUrlState();
     expect(urlState.assembly).toBe('vijayawada (west)');
   });
+
+  it('handles SC/ST suffix in assembly names correctly', () => {
+    // This is the exact URL pattern reported as breaking
+    window.location.pathname = '/rajasthan/pc/nagaur/ac/jayal-(sc)';
+    window.location.search = '?year=2023';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+
+    const urlState = result.current.getUrlState();
+    expect(urlState.state).toBe('rajasthan');
+    expect(urlState.pc).toBe('nagaur');
+    expect(urlState.assembly).toBe('jayal (sc)');
+    expect(urlState.year).toBe(2023);
+  });
 });

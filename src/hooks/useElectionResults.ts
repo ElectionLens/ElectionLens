@@ -275,10 +275,30 @@ export function useElectionResults(): UseElectionResultsReturn {
 
       // Determine year to use - always use latest if no year explicitly provided
       const lastAvailableYear = index.availableYears[index.availableYears.length - 1];
-      const targetYear = year ?? lastAvailableYear;
+      let targetYear = year ?? lastAvailableYear;
 
       if (targetYear === undefined || targetYear === null) return null;
-      if (!index.availableYears.includes(targetYear)) return null;
+
+      // If requested year is not available, fall back to the closest available year
+      if (!index.availableYears.includes(targetYear)) {
+        // Find the closest available year
+        const sortedYears = [...index.availableYears].sort((a, b) => a - b);
+        let closestYear = sortedYears[sortedYears.length - 1]; // Default to latest
+        let minDiff = Infinity;
+
+        for (const availableYear of sortedYears) {
+          const diff = Math.abs(availableYear - targetYear);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestYear = availableYear;
+          }
+        }
+
+        console.log(
+          `[getACResult] Year ${targetYear} not available, falling back to ${closestYear}`
+        );
+        targetYear = closestYear!;
+      }
 
       // Load results for the year
       const results = await loadYearResults(stateName, targetYear);

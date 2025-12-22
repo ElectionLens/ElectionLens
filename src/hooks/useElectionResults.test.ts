@@ -355,17 +355,29 @@ describe('useElectionResults - getACResult matching strategies', () => {
     expect(result.current.currentResult).not.toBeNull();
   });
 
-  it('returns null for year not in available years', async () => {
+  it('falls back to closest year when requested year is not available', async () => {
     const mockIndex = { availableYears: [2011, 2016, 2021] };
+    const mockResults = {
+      OMALUR: {
+        constituency: 'OMALUR',
+        winner: { name: 'Test', party: 'DMK', votes: 50000 },
+      },
+    };
 
-    mockFetch.mockResolvedValueOnce({ ok: true, json: async () => mockIndex });
+    mockFetch
+      .mockResolvedValueOnce({ ok: true, json: async () => mockIndex })
+      .mockResolvedValueOnce({ ok: true, json: async () => mockResults });
 
     const { result } = renderHook(() => useElectionResults());
 
+    let res: unknown;
     await act(async () => {
-      const res = await result.current.getACResult('OMALUR', 'Tamil Nadu', 2020);
-      expect(res).toBeNull();
+      // Request 2020, which is not available - should fall back to 2021 (closest)
+      res = await result.current.getACResult('OMALUR', 'Tamil Nadu', 2020);
     });
+
+    expect(res).not.toBeNull();
+    expect(result.current.selectedYear).toBe(2021); // Falls back to closest year
   });
 
   it('returns null when year results fail to load', async () => {
