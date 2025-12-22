@@ -2955,41 +2955,10 @@ path:focus {
 @media (max-width: 768px) {
   .bottom-sheet-handle {
     display: block;
-  }
-
-  /* Expand hint indicator */
-  .bottom-sheet-handle::after {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid #94a3b8;
-    opacity: 0.6;
-  }
-
-  .panel-full .bottom-sheet-handle::after {
-    border-bottom: none;
-    border-top: 5px solid #64748b;
-    top: 10px;
-  }
-
-  .panel-peek .bottom-sheet-handle::after {
-    animation: bounce-up 1.5s ease-in-out infinite;
-  }
-
-  @keyframes bounce-up {
-    0%,
-    100% {
-      transform: translateX(-50%) translateY(0);
-    }
-    50% {
-      transform: translateX(-50%) translateY(-3px);
-    }
+    width: 48px;
+    height: 5px;
+    background: #94a3b8;
+    margin: 8px auto 4px;
   }
 
   /* Compact mobile header */
@@ -3357,28 +3326,42 @@ path:focus {
     margin-top: 4px;
   }
 
-  /* Half mode - compact, shows winner + year selector only */
+  /* Half mode - shows winner + top candidates (no stats) */
   .election-panel.panel-half {
-    max-height: 45vh;
+    max-height: 55vh;
   }
 
+  /* Hide stats and extras in half mode - candidates are more important */
   .election-panel.panel-half .constituency-stats,
-  .election-panel.panel-half .candidates-section,
   .election-panel.panel-half .share-bar,
-  .election-panel.panel-half .district-info {
+  .election-panel.panel-half .district-info,
+  .election-panel.panel-half .pc-mp-info {
     display: none !important;
   }
 
-  /* Show a "tap for more" hint in half mode */
-  .election-panel.panel-half .winner-card::after {
-    content: 'Tap ▲ for details';
-    display: block;
-    text-align: center;
+  /* Limit candidates shown in half mode */
+  .election-panel.panel-half .candidates-section {
+    max-height: 140px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Fade out bottom of candidates list */
+  .election-panel.panel-half .candidates-section::after {
+    content: 'Expand for all candidates ▲';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(transparent, white 60%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 8px;
     font-size: 0.7rem;
-    color: #94a3b8;
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px dashed #e2e8f0;
+    color: #64748b;
+    pointer-events: none;
   }
 
   /* Full mode - all content */
