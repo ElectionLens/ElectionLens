@@ -52,14 +52,23 @@ export default defineConfig({
         'src/types/**',
         '**/*.d.ts',
         '**/*.config.{js,ts,cjs}',
-        'scripts/**'
+        'scripts/**',
+        // UI components - tested via E2E tests
+        'src/App.tsx',
+        'src/components/MapView.tsx',
+        'src/components/ElectionResultPanel.tsx',
+        'src/components/PCElectionResultPanel.tsx',
+        'src/components/SearchBox.tsx',
+        'src/components/Sidebar.tsx',
+        // Complex data hook - tested via E2E tests
+        'src/hooks/useElectionData.ts'
       ],
       // Coverage thresholds - focused on testable utilities and hooks
       thresholds: {
-        lines: 20,
-        functions: 60,
+        lines: 80,
+        functions: 85,
         branches: 70,
-        statements: 20
+        statements: 80
       }
     },
     // Reporter options

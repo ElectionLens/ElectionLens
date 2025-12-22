@@ -6,6 +6,7 @@ import { useElectionData } from './hooks/useElectionData';
 import { useElectionResults } from './hooks/useElectionResults';
 import { useParliamentResults } from './hooks/useParliamentResults';
 import { useUrlState, type UrlState } from './hooks/useUrlState';
+import { useSchema } from './hooks/useSchema';
 import { normalizeName, toTitleCase } from './utils/helpers';
 import { trackPageView, trackConstituencySelect } from './utils/firebase';
 import type {
@@ -68,6 +69,9 @@ function App(): JSX.Element {
     setSelectedYear: setPCSelectedYear,
     clearResult: clearPCElectionResult,
   } = useParliamentResults();
+
+  // Schema for canonical name resolution
+  const { getAC } = useSchema();
 
   // State for AC's parliament contributions (all years)
   const [parliamentContributions, setParliamentContributions] = useState<
@@ -750,7 +754,14 @@ function App(): JSX.Element {
 
       // Load election results for this AC - always show latest year
       if (currentState) {
-        await getACResult(acName, currentState);
+        // Try to use schema for direct lookup (avoids fuzzy matching)
+        const schemaId = feature.properties.schemaId;
+        const schemaAC = schemaId ? getAC(schemaId) : null;
+
+        await getACResult(acName, currentState, undefined, {
+          schemaId,
+          canonicalName: schemaAC?.name,
+        });
 
         // Load all parliament contributions if we have PC info
         const pcName = feature.properties.PC_NAME;
@@ -766,6 +777,7 @@ function App(): JSX.Element {
       selectAssembly,
       currentState,
       getACResult,
+      getAC,
       clearPCElectionResult,
       loadAllParliamentContributions,
     ]
