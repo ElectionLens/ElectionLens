@@ -3325,119 +3325,117 @@ path:focus {
   }
 }
 
-/* Bottom Sheet States - Collapsible Panel */
-@media (max-width: 768px) {
-  /* Peek mode - minimal, just header + winner summary */
-  .election-panel.panel-peek {
-    max-height: 100px;
-    overflow: hidden;
-  }
+/* ============================================
+   BOTTOM SHEET STATES - Works on all screen sizes
+   The panel-* classes are only added on mobile
+   ============================================ */
 
-  .election-panel.panel-peek .election-year-selector,
-  .election-panel.panel-peek .panel-tabs,
-  .election-panel.panel-peek .winner-card,
-  .election-panel.panel-peek .constituency-stats,
-  .election-panel.panel-peek .candidates-section,
-  .election-panel.panel-peek .election-panel-content,
-  .election-panel.panel-peek .pc-mp-info,
-  .election-panel.panel-peek .share-bar,
-  .election-panel.panel-peek .district-info {
-    display: none !important;
-  }
+/* PEEK MODE - minimal header only */
+.election-panel.panel-peek {
+  max-height: 100px !important;
+  overflow: hidden !important;
+}
 
-  .election-panel.panel-peek .election-panel-header {
-    cursor: pointer;
-  }
+.election-panel.panel-peek .election-year-selector,
+.election-panel.panel-peek .panel-tabs,
+.election-panel.panel-peek .winner-card,
+.election-panel.panel-peek .constituency-stats,
+.election-panel.panel-peek .candidates-section,
+.election-panel.panel-peek .election-panel-content,
+.election-panel.panel-peek .pc-mp-info,
+.election-panel.panel-peek .share-bar,
+.election-panel.panel-peek .district-info {
+  display: none !important;
+}
 
-  .election-panel.panel-peek .peek-winner {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
-    margin-top: 4px;
-  }
+.election-panel.panel-peek .election-panel-header {
+  cursor: pointer;
+}
 
-  /* Half mode - minimal: header + years + tabs + candidates ONLY */
-  .election-panel.panel-half {
-    max-height: 40vh !important;
-  }
+.election-panel.panel-peek .peek-winner {
+  display: block !important;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 4px;
+}
 
-  /* CRITICAL: Hide winner card and stats in half mode */
-  .election-panel.panel-half .winner-card {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-  }
+/* HALF MODE - header + years + tabs + candidates ONLY (no winner card, no stats) */
+.election-panel.panel-half {
+  max-height: 40vh !important;
+}
 
-  .election-panel.panel-half .constituency-stats {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-  }
+.election-panel.panel-half .winner-card {
+  display: none !important;
+}
 
-  .election-panel.panel-half .share-bar,
-  .election-panel.panel-half .district-info,
-  .election-panel.panel-half .pc-mp-info {
-    display: none !important;
-  }
+.election-panel.panel-half .constituency-stats {
+  display: none !important;
+}
 
-  /* Show candidates directly in half mode */
-  .election-panel.panel-half .candidates-section {
-    max-height: 150px;
-    overflow: hidden;
-    position: relative;
-    padding-top: 4px;
-    margin-top: 0;
-  }
+.election-panel.panel-half .share-bar,
+.election-panel.panel-half .district-info,
+.election-panel.panel-half .pc-mp-info {
+  display: none !important;
+}
 
-  /* Fade out bottom of candidates list */
-  .election-panel.panel-half .candidates-section::after {
-    content: 'Tap ═══ to expand';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 32px;
-    background: linear-gradient(transparent, white 40%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 4px;
-    font-size: 0.65rem;
-    color: #64748b;
-    pointer-events: none;
-  }
+.election-panel.panel-half .candidates-section {
+  max-height: 150px;
+  overflow: hidden;
+  position: relative;
+  padding-top: 4px;
+  margin-top: 0;
+}
 
-  /* Full mode - all content */
-  .election-panel.panel-full {
-    max-height: 85vh;
-  }
+.election-panel.panel-half .candidates-section::after {
+  content: 'Tap handle to expand ▲';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: linear-gradient(transparent, white 40%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 4px;
+  font-size: 0.65rem;
+  color: #64748b;
+  pointer-events: none;
+}
 
-  .election-panel.panel-full .candidates-section {
-    max-height: none;
-  }
+/* FULL MODE - everything visible */
+.election-panel.panel-full {
+  max-height: 85vh !important;
+}
 
-  /* Peek winner styling - hidden in non-peek modes */
-  .peek-winner {
-    display: none;
-  }
+.election-panel.panel-full .candidates-section {
+  max-height: none;
+}
 
-  /* Drag handle visual feedback for state */
-  .election-panel.panel-peek .bottom-sheet-handle {
-    background: #94a3b8;
-  }
+.election-panel.panel-full .candidates-section::after {
+  display: none;
+}
 
-  .election-panel.panel-full .bottom-sheet-handle {
-    background: #64748b;
-  }
+/* Peek winner - only visible in peek mode */
+.peek-winner {
+  display: none;
+}
 
-  /* Smooth transitions between states */
-  .election-panel {
-    transition: max-height 0.3s ease-out;
-  }
+/* Drag handle state colors */
+.election-panel.panel-peek .bottom-sheet-handle {
+  background: #94a3b8;
+}
+
+.election-panel.panel-full .bottom-sheet-handle {
+  background: #64748b;
+}
+
+/* Smooth transitions */
+.election-panel.panel-peek,
+.election-panel.panel-half,
+.election-panel.panel-full {
+  transition: max-height 0.3s ease-out;
 }
 
 /* Gesture hints */
