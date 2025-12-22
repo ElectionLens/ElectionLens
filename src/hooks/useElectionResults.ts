@@ -118,9 +118,9 @@ function similarityScore(a: string, b: string): number {
 /** Options for getACResult */
 export interface GetACResultOptions {
   /** Schema ID for direct lookup (e.g., "RJ-108") */
-  schemaId?: string;
+  schemaId?: string | undefined;
   /** Canonical AC name from schema (avoids fuzzy matching) */
-  canonicalName?: string;
+  canonicalName?: string | undefined;
 }
 
 /** useElectionResults hook return type */
