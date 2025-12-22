@@ -3357,25 +3357,28 @@ path:focus {
     margin-top: 4px;
   }
 
-  /* Half mode - default, shows key info */
+  /* Half mode - compact, shows winner + year selector only */
   .election-panel.panel-half {
-    max-height: 50vh;
+    max-height: 45vh;
   }
 
-  .election-panel.panel-half .candidates-section {
-    max-height: 100px;
-    overflow: hidden;
+  .election-panel.panel-half .constituency-stats,
+  .election-panel.panel-half .candidates-section,
+  .election-panel.panel-half .share-bar,
+  .election-panel.panel-half .district-info {
+    display: none !important;
   }
 
-  .election-panel.panel-half .candidates-section::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background: linear-gradient(transparent, white);
-    pointer-events: none;
+  /* Show a "tap for more" hint in half mode */
+  .election-panel.panel-half .winner-card::after {
+    content: 'Tap ▲ for details';
+    display: block;
+    text-align: center;
+    font-size: 0.7rem;
+    color: #94a3b8;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #e2e8f0;
   }
 
   /* Full mode - all content */
