@@ -328,6 +328,28 @@ interface ExtendedFitBoundsProps extends FitBoundsProps {
 }
 
 /**
+ * Get padding for map bounds based on screen size
+ * On mobile, we need more bottom padding to account for the bottom sheet panel
+ */
+function getMapPadding(hasSelectedFeature: boolean): L.FitBoundsOptions['padding'] {
+  const isMobile = window.innerWidth <= 768;
+
+  if (hasSelectedFeature) {
+    if (isMobile) {
+      // On mobile: [top, right, bottom, left] - more bottom padding for panel
+      // Panel takes ~75vh, so we need the feature in the top ~25% of screen
+      const viewportHeight = window.innerHeight;
+      const bottomPadding = Math.floor(viewportHeight * 0.6); // 60% of viewport for panel area
+      return [60, 30, bottomPadding, 30] as [number, number, number, number];
+    }
+    return [80, 80]; // Desktop: equal padding
+  }
+
+  // Default padding for fitting all features
+  return isMobile ? [20, 20, 20, 20] : [30, 30];
+}
+
+/**
  * Component to fit map bounds to GeoJSON data or selected feature
  */
 function FitBounds({ geojson, selectedFeatureName }: ExtendedFitBoundsProps): null {
@@ -348,9 +370,10 @@ function FitBounds({ geojson, selectedFeatureName }: ExtendedFitBoundsProps): nu
           const featureLayer = L.geoJSON(selectedFeature as GeoJSON.Feature);
           const bounds = featureLayer.getBounds();
           if (bounds.isValid()) {
+            const padding = getMapPadding(true);
             map.flyToBounds(bounds as LatLngBoundsExpression, {
-              padding: [80, 80],
-              duration: 0.6,
+              padding,
+              duration: 0.5,
               maxZoom: 12,
             });
           }
@@ -362,7 +385,8 @@ function FitBounds({ geojson, selectedFeatureName }: ExtendedFitBoundsProps): nu
       const layer = L.geoJSON(geojson as GeoJSON.FeatureCollection);
       const bounds = layer.getBounds();
       if (bounds.isValid()) {
-        map.flyToBounds(bounds as LatLngBoundsExpression, { padding: [30, 30], duration: 0.5 });
+        const padding = getMapPadding(false);
+        map.flyToBounds(bounds as LatLngBoundsExpression, { padding, duration: 0.5 });
       }
     } catch (e) {
       console.warn('Failed to fit bounds:', e);
