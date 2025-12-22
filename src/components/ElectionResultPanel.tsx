@@ -110,6 +110,16 @@ export function ElectionResultPanel({
   const currentPCContribution = selectedPCYear ? parliamentContributions[selectedPCYear] : null;
   const pcWinner = currentPCContribution?.candidates[0];
 
+  // Derive constituency type from name if not provided
+  const constituencyType =
+    result.constituencyType ??
+    (() => {
+      const name = result.constituencyNameOriginal ?? result.constituencyName ?? '';
+      if (name.includes('(SC)')) return 'SC';
+      if (name.includes('(ST)')) return 'ST';
+      return 'GEN';
+    })();
+
   // Create combined year items: assembly years and parliament years interleaved by chronological order
   type YearItem = { year: number; type: 'assembly' | 'parliament' };
   const allYearItems: YearItem[] = [
@@ -143,8 +153,8 @@ export function ElectionResultPanel({
       <div className="election-panel-header">
         <div className="election-panel-title">
           <h3>{result.constituencyNameOriginal}</h3>
-          <span className={`constituency-type type-${result.constituencyType.toLowerCase()}`}>
-            {result.constituencyType}
+          <span className={`constituency-type type-${constituencyType.toLowerCase()}`}>
+            {constituencyType}
           </span>
         </div>
         <div className="election-panel-actions">
