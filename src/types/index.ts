@@ -59,6 +59,8 @@ export interface StateProperties {
   ST_NM?: string;
   /** State code */
   stateCode?: string;
+  /** Schema ID for canonical lookup (e.g., "TN") */
+  schemaId?: string;
 }
 
 /** District feature properties */
@@ -71,6 +73,8 @@ export interface DistrictProperties {
   DISTRICT?: string;
   /** State name */
   state?: string;
+  /** Schema ID for canonical lookup (e.g., "TN-D01") */
+  schemaId?: string;
 }
 
 /** Parliamentary Constituency (PC) properties */
@@ -87,6 +91,8 @@ export interface ConstituencyProperties {
   state_ut_name?: string;
   /** Alternative state name field */
   STATE_NAME?: string;
+  /** Schema ID for canonical lookup (e.g., "TN-01") */
+  schemaId?: string;
 }
 
 /** Assembly Constituency (AC) properties */
@@ -101,6 +107,8 @@ export interface AssemblyProperties {
   PC_NAME?: string;
   /** District name */
   DIST_NAME?: string;
+  /** Schema ID for canonical lookup (e.g., "TN-001") */
+  schemaId?: string;
 }
 
 /** Union of all feature properties */
