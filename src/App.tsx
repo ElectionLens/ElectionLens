@@ -370,13 +370,17 @@ function App(): JSX.Element {
    */
   const loadAllParliamentContributions = useCallback(
     async (acName: string, pcName: string, stateName: string) => {
-      const stateSlug = stateName
-        .toLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(
-          /[āīūṭḍṇṃ]/g,
-          (c) => ({ ā: 'a', ī: 'i', ū: 'u', ṭ: 't', ḍ: 'd', ṇ: 'n', ṃ: 'm' })[c] || c
-        );
+      // Use state ID for folder path (e.g., "RJ" instead of "rajasthan")
+      const stateId = resolveStateName(stateName);
+      const stateSlug =
+        stateId ||
+        stateName
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .replace(
+            /[āīūṭḍṇṃ]/g,
+            (c) => ({ ā: 'a', ī: 'i', ū: 'u', ṭ: 't', ḍ: 'd', ṇ: 'n', ṃ: 'm' })[c] || c
+          );
       const relatedStates = getRelatedStates(stateName);
 
       const contributions: Record<
@@ -710,7 +714,7 @@ function App(): JSX.Element {
 
       setParliamentContributions(contributions);
     },
-    []
+    [resolveStateName]
   );
 
   /**
@@ -720,6 +724,12 @@ function App(): JSX.Element {
    */
   useEffect(() => {
     if (currentAssembly && currentState && Object.keys(parliamentContributions).length === 0) {
+      console.log(
+        '[Parliament] Attempting to load contributions for:',
+        currentAssembly,
+        currentState
+      );
+
       // Try to find the PC name from assemblyGeoJSON first
       let pcName: string | null = null;
 
@@ -728,17 +738,29 @@ function App(): JSX.Element {
           (f) => f.properties.AC_NAME?.toUpperCase() === currentAssembly.toUpperCase()
         );
         pcName = acFeature?.properties.PC_NAME ?? null;
+        if (pcName) {
+          console.log('[Parliament] Found PC from GeoJSON:', pcName);
+        }
       }
 
       // Fallback to schema if assemblyGeoJSON doesn't have the feature
       if (!pcName) {
         const stateId = resolveStateName(currentState);
+        console.log('[Parliament] Schema lookup - stateId:', stateId);
         if (stateId) {
           const acId = resolveACName(currentAssembly, stateId);
+          console.log('[Parliament] Schema lookup - acId:', acId);
           if (acId) {
             const acEntity = getAC(acId);
+            console.log(
+              '[Parliament] Schema lookup - acEntity:',
+              acEntity?.name,
+              'pcId:',
+              acEntity?.pcId
+            );
             if (acEntity?.pcId) {
               const pcEntity = getPC(acEntity.pcId);
+              console.log('[Parliament] Schema lookup - pcEntity:', pcEntity?.name);
               if (pcEntity) {
                 pcName = pcEntity.name.toUpperCase();
               }
@@ -748,7 +770,10 @@ function App(): JSX.Element {
       }
 
       if (pcName) {
+        console.log('[Parliament] Loading contributions for PC:', pcName);
         void loadAllParliamentContributions(currentAssembly, pcName, currentState);
+      } else {
+        console.log('[Parliament] Could not find PC name for assembly');
       }
     }
   }, [
