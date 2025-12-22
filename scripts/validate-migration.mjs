@@ -108,21 +108,22 @@ for (const tc of testCases) {
 // 4. Election data exists for key states
 console.log('\n4. ELECTION DATA AVAILABILITY');
 
+// State ID to name mapping for display
 const statesWithElections = [
-  'tamil-nadu',
-  'karnataka',
-  'maharashtra',
-  'rajasthan',
-  'uttar-pradesh',
-  'west-bengal',
-  'kerala',
-  'delhi',
+  { id: 'TN', name: 'Tamil Nadu' },
+  { id: 'KA', name: 'Karnataka' },
+  { id: 'MH', name: 'Maharashtra' },
+  { id: 'RJ', name: 'Rajasthan' },
+  { id: 'UP', name: 'Uttar Pradesh' },
+  { id: 'WB', name: 'West Bengal' },
+  { id: 'KL', name: 'Kerala' },
+  { id: 'DL', name: 'Delhi' },
 ];
 
-for (const state of statesWithElections) {
-  const indexPath = path.join(DATA_DIR, `elections/ac/${state}/index.json`);
+for (const { id, name } of statesWithElections) {
+  const indexPath = path.join(DATA_DIR, `elections/ac/${id}/index.json`);
   const index = loadJSON(indexPath);
-  check(`${state} has AC election data`, index !== null && index.availableYears?.length > 0,
+  check(`${name} (${id}) has AC election data`, index !== null && index.availableYears?.length > 0,
     index ? `years: ${index.availableYears?.join(', ')}` : 'missing');
 }
 
@@ -147,9 +148,9 @@ for (const pattern of duplicatePatterns) {
 console.log('\n6. DEEP LINK TEST CASES');
 
 const deepLinkTests = [
-  { url: '/rajasthan/pc/nagaur/ac/jayal-(sc)?year=2023', schemaId: 'RJ-108', year: 2023 },
-  { url: '/tamil-nadu/pc/salem/ac/omalur?year=2021', schemaId: 'TN-084', year: 2021 },
-  { url: '/karnataka/pc/bangalore-north/ac/k.r.-pura?year=2023', schemaId: 'KA-155', year: 2023 },
+  { url: '/rajasthan/pc/nagaur/ac/jayal-(sc)?year=2023', schemaId: 'RJ-108', stateId: 'RJ', year: 2023 },
+  { url: '/tamil-nadu/pc/salem/ac/omalur?year=2021', schemaId: 'TN-084', stateId: 'TN', year: 2021 },
+  { url: '/karnataka/pc/bangalore-north/ac/k.r.-pura?year=2023', schemaId: 'KA-155', stateId: 'KA', year: 2023 },
 ];
 
 for (const test of deepLinkTests) {
@@ -158,15 +159,10 @@ for (const test of deepLinkTests) {
   check(`Schema has ${test.schemaId}`, acEntity !== undefined, 
     acEntity ? acEntity.name : 'not found');
   
-  // Check election data exists for this year
-  const stateSlug = test.schemaId.substring(0, 2).toLowerCase();
-  const stateMap = { rj: 'rajasthan', tn: 'tamil-nadu', ka: 'karnataka' };
-  const stateName = stateMap[stateSlug];
-  if (stateName) {
-    const yearData = loadJSON(path.join(DATA_DIR, `elections/ac/${stateName}/${test.year}.json`));
-    const hasData = yearData && Object.keys(yearData).length > 0;
-    check(`Election data exists for ${stateName}/${test.year}`, hasData);
-  }
+  // Check election data exists for this year (using state ID, not slug)
+  const yearData = loadJSON(path.join(DATA_DIR, `elections/ac/${test.stateId}/${test.year}.json`));
+  const hasData = yearData && Object.keys(yearData).length > 0;
+  check(`Election data exists for ${test.stateId}/${test.year}`, hasData);
 }
 
 // ============================================================================
