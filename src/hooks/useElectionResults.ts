@@ -422,28 +422,68 @@ export function useElectionResults(): UseElectionResultsReturn {
         }
       }
 
-      // 5. Try fuzzy match (similarity-based, threshold 0.7)
+      // 5. Try matching by result's name/constituencyName property (for schema ID-keyed data)
+      if (!result) {
+        const searchName = canonicalName ?? acName;
+        const canonicalKey = createCanonicalKey(searchName);
+
+        for (const [k, v] of Object.entries(results)) {
+          if (!v || typeof v !== 'object') continue;
+          const resultData = v;
+
+          // Check name, constituencyName, constituencyNameOriginal
+          const namesToCheck = [
+            resultData.name,
+            resultData.constituencyName,
+            resultData.constituencyNameOriginal,
+          ].filter(Boolean) as string[];
+
+          for (const name of namesToCheck) {
+            if (createCanonicalKey(name) === canonicalKey) {
+              result = resultData;
+              console.log('[getACResult] ✓ Name property match:', k, name);
+              break;
+            }
+          }
+          if (result) break;
+        }
+      }
+
+      // 6. Try fuzzy match on name properties (similarity-based, threshold 0.7)
       if (!result) {
         const searchName = canonicalName ?? acName;
         const canonicalKey = createCanonicalKey(searchName);
         let bestMatch: string | null = null;
         let bestScore = 0.7;
 
-        keys.forEach((k) => {
-          // Skip schema ID keys for fuzzy matching
-          if (/^[A-Z]{2}-\d{2,3}$/.test(k)) return;
+        for (const [k, v] of Object.entries(results)) {
+          if (!v || typeof v !== 'object') continue;
+          const resultData = v;
 
-          const keyCanonical = createCanonicalKey(k);
-          const score = similarityScore(canonicalKey, keyCanonical);
-          if (score > bestScore) {
-            bestScore = score;
-            bestMatch = k;
+          // Check similarity against name properties
+          const namesToCheck = [
+            resultData.name,
+            resultData.constituencyName,
+            resultData.constituencyNameOriginal,
+          ].filter(Boolean) as string[];
+
+          for (const name of namesToCheck) {
+            const score = similarityScore(canonicalKey, createCanonicalKey(name));
+            if (score > bestScore) {
+              bestScore = score;
+              bestMatch = k;
+            }
           }
-        });
+        }
 
         if (bestMatch) {
           result = results[bestMatch];
-          console.log('[getACResult] ✓ Fuzzy match:', bestMatch, 'score:', bestScore.toFixed(2));
+          console.log(
+            '[getACResult] ✓ Fuzzy name match:',
+            bestMatch,
+            'score:',
+            bestScore.toFixed(2)
+          );
         }
       }
 

@@ -428,9 +428,15 @@ describe('useElectionResults - getACResult matching strategies', () => {
   it('matches AC with similar names using similarity scoring', async () => {
     const mockIndex = { availableYears: [2021] };
     const mockResults = {
-      'TIRUCHIRAPALLI WEST': {
-        constituency: 'TIRUCHIRAPALLI WEST',
-        winner: { name: 'Test', party: 'DMK', votes: 50000 },
+      'TN-001': {
+        constituencyName: 'TIRUCHIRAPALLI WEST',
+        constituencyNameOriginal: 'TIRUCHIRAPALLI WEST',
+        name: 'Tiruchirapalli West',
+        year: 2021,
+        constituencyNo: 1,
+        constituencyType: 'GEN',
+        validVotes: 100000,
+        candidates: [{ name: 'Test', party: 'DMK', votes: 50000 }],
       },
     };
 
@@ -441,11 +447,11 @@ describe('useElectionResults - getACResult matching strategies', () => {
     const { result } = renderHook(() => useElectionResults());
 
     await act(async () => {
-      // Query with slightly different spelling (double P vs single P)
+      // Query with slightly different spelling (double L vs single L in TIRUCHIRAPPALLI)
       await result.current.getACResult('TIRUCHIRAPPALLI WEST', 'Tamil Nadu', 2021);
     });
 
-    // Should find the match using similarity scoring
+    // Should find the match using similarity scoring on name properties
     expect(result.current.currentResult).not.toBeNull();
   });
 });
