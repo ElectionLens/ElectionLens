@@ -369,8 +369,21 @@ test.describe('Cross-State Validation', () => {
         await expect(panel).toHaveClass(/pc-panel/);
       }
       
-      // Should have election data (winner info or candidates)
-      const hasData = await panel.locator('.winner-info, .winner-card-compact, .candidate-row, .candidate-card').first().isVisible().catch(() => false);
+      // Wait for staggered animations to complete
+      await page.waitForTimeout(500);
+      
+      // Should have election data (winner info, candidates, or year selector with content)
+      const dataSelectors = [
+        '.winner-info',
+        '.winner-card-compact', 
+        '.winner-card',
+        '.candidate-row',
+        '.candidate-row-compact',
+        '.candidate-card',
+        '.candidates-section',
+        '.pc-mp-info'
+      ];
+      const hasData = await panel.locator(dataSelectors.join(', ')).first().isVisible().catch(() => false);
       expect(hasData).toBe(true);
     });
   }

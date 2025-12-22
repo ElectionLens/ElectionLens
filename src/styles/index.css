@@ -220,7 +220,10 @@ body {
 .map-container {
   flex: 1;
   position: relative;
-  transition: margin-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Smooth transition when panel opens/closes */
+  transition:
+    margin-right 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Desktop: shrink map when panel is open */
@@ -1366,18 +1369,66 @@ path:focus {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  animation: slideInFromRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideInFromRight 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  /* Smooth all transitions within panel */
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease-out;
 }
 
 @keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(60px) scale(0.98);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-5px) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Staggered content animations */
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateX(40px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
+}
+
+/* Panel content sections animate in sequence */
+.election-panel .election-panel-header {
+  animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.election-panel .election-year-selector {
+  animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.election-panel .panel-tabs {
+  animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.election-panel .winner-card,
+.election-panel .winner-card-compact {
+  animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+.election-panel .constituency-stats,
+.election-panel .stats-inline {
+  animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+.election-panel .candidates-section,
+.election-panel .candidates-preview {
+  animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
 }
 
 /* Copy toast notification */
@@ -2401,16 +2452,20 @@ path:focus {
     border-left: none;
     border-top: none;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     overflow-y: auto;
   }
 
   @keyframes slideUp {
-    from {
+    0% {
       opacity: 0;
-      transform: translateY(60px);
+      transform: translateY(80px) scale(0.98);
     }
-    to {
+    60% {
+      opacity: 1;
+      transform: translateY(-8px) scale(1);
+    }
+    100% {
       opacity: 1;
       transform: translateY(0);
     }
@@ -2419,28 +2474,20 @@ path:focus {
 
 @media (max-width: 768px) and (orientation: landscape) {
   .election-panel {
-    top: auto;
+    /* Landscape mobile: right sidebar */
+    top: 0;
     bottom: 0;
     right: 0;
-    left: 0;
-    width: 100%;
-    max-height: 75vh;
-    border-radius: 16px 16px 0 0;
-    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    left: auto;
+    width: 320px;
+    max-width: 45vw;
+    max-height: 100vh;
+    height: 100%;
+    border-radius: 0;
+    animation: slideInFromRight 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
     overflow: visible;
     overflow-y: auto;
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(60px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 }
 
