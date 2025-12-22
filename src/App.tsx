@@ -199,6 +199,9 @@ function App(): JSX.Element {
   // Mobile sidebar state
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
+  // Desktop sidebar collapsed state
+  const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
+
   // Current displayed data
   const [currentData, setCurrentData] = useState<GeoJSONData | null>(null);
 
@@ -241,6 +244,23 @@ function App(): JSX.Element {
   const closeSidebar = useCallback((): void => {
     setSidebarOpen(false);
   }, []);
+
+  /**
+   * Toggle desktop sidebar collapsed state
+   */
+  const toggleSidebarCollapsed = useCallback((): void => {
+    setSidebarCollapsed((prev) => !prev);
+  }, []);
+
+  /**
+   * Auto-collapse sidebar on desktop when election panel opens
+   */
+  useEffect(() => {
+    const hasPanelOpen = !!electionResult || !!pcElectionResult;
+    if (hasPanelOpen && window.innerWidth > 768) {
+      setSidebarCollapsed(true);
+    }
+  }, [electionResult, pcElectionResult]);
 
   /**
    * Close sidebar on mobile after action
@@ -797,6 +817,7 @@ function App(): JSX.Element {
    */
   const handleAssemblyClick = useCallback(
     async (acName: string, feature: AssemblyFeature): Promise<void> => {
+      closeSidebarOnMobile(); // Close sidebar on mobile to show map + panel
       selectAssembly(acName);
       clearPCElectionResult(); // Close PC panel to show AC panel
       setParliamentContributions({}); // Clear previous contributions
@@ -824,6 +845,7 @@ function App(): JSX.Element {
       }
     },
     [
+      closeSidebarOnMobile,
       selectAssembly,
       currentState,
       getACResult,
@@ -1129,6 +1151,8 @@ function App(): JSX.Element {
           onShare={handleShare}
           isOpen={sidebarOpen}
           onClose={closeSidebar}
+          isCollapsed={sidebarCollapsed}
+          onToggleCollapse={toggleSidebarCollapsed}
         />
 
         <MapView

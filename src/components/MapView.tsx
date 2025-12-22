@@ -322,6 +322,25 @@ function MapControls({ level, name, count }: MapControlsProps): null {
   return null;
 }
 
+/**
+ * Component to invalidate map size when panel state changes
+ * Leaflet needs to be notified when its container size changes
+ */
+function MapResizer({ hasPanelOpen }: { hasPanelOpen: boolean }): null {
+  const map = useMap();
+
+  useEffect(() => {
+    // Delay to let CSS transition complete (0.4s = 400ms)
+    const timer = setTimeout(() => {
+      map.invalidateSize({ animate: true });
+    }, 450); // Slightly longer than the 0.4s CSS transition
+
+    return () => clearTimeout(timer);
+  }, [map, hasPanelOpen]);
+
+  return null;
+}
+
 /** Extended FitBounds props with optional selected feature */
 interface ExtendedFitBoundsProps extends FitBoundsProps {
   selectedFeatureName?: string | null;
@@ -329,26 +348,19 @@ interface ExtendedFitBoundsProps extends FitBoundsProps {
 
 /**
  * Get padding for map bounds based on screen size
- * On mobile, we need more bottom padding to account for the bottom sheet panel
- * Panel default (half mode) takes ~40vh, so feature should be in top 60%
+ * Portrait mobile: panel overlays map, need offset to push feature up
+ * Landscape/Desktop: map shrinks, standard padding works
  */
 function getMapPadding(hasSelectedFeature: boolean): L.FitBoundsOptions['padding'] {
   const isMobile = window.innerWidth <= 768;
 
   if (hasSelectedFeature) {
-    if (isMobile) {
-      // On mobile: [top, right, bottom, left]
-      // Panel takes ~40vh in half mode, position feature in visible top area
-      const viewportHeight = window.innerHeight;
-      const bottomPadding = Math.floor(viewportHeight * 0.45); // 45% padding for panel
-      const topPadding = 80; // Space for toolbar
-      return [topPadding, 20, bottomPadding, 20] as [number, number, number, number];
-    }
-    return [80, 80]; // Desktop: equal padding
+    // Landscape & Desktop: map shrinks with margin-right, standard padding
+    return isMobile ? ([40, 40] as [number, number]) : ([60, 60] as [number, number]);
   }
 
   // Default padding for fitting all features
-  return isMobile ? [20, 20, 20, 20] : [30, 30];
+  return isMobile ? ([20, 20] as [number, number]) : ([30, 30] as [number, number]);
 }
 
 /**
@@ -372,12 +384,28 @@ function FitBounds({ geojson, selectedFeatureName }: ExtendedFitBoundsProps): nu
           const featureLayer = L.geoJSON(selectedFeature as GeoJSON.Feature);
           const bounds = featureLayer.getBounds();
           if (bounds.isValid()) {
-            const padding = getMapPadding(true);
-            map.flyToBounds(bounds as LatLngBoundsExpression, {
-              padding,
-              duration: 0.5,
-              maxZoom: 12,
-            });
+            const isMobile = window.innerWidth <= 768;
+            const isLandscape = window.innerWidth > window.innerHeight;
+
+            if (isMobile && !isLandscape) {
+              // Portrait mobile: offset center to push feature into top portion
+              // Panel overlays bottom ~45vh, so offset center DOWN so feature appears UP
+              const center = bounds.getCenter();
+              const latSpan = bounds.getNorth() - bounds.getSouth();
+              const offsetCenter = L.latLng(center.lat - latSpan * 0.4, center.lng);
+
+              const zoom = map.getBoundsZoom(bounds, false, L.point(30, 30));
+              const targetZoom = Math.min(zoom - 0.5, 11);
+
+              map.flyTo(offsetCenter, targetZoom, { duration: 0.5 });
+            } else {
+              // Landscape & Desktop: map shrinks with margin-right, so standard fit
+              map.flyToBounds(bounds as LatLngBoundsExpression, {
+                padding: [60, 60],
+                duration: 0.5,
+                maxZoom: 12,
+              });
+            }
           }
           return;
         }
@@ -693,8 +721,11 @@ export function MapView({
     );
   }
 
+  // Determine if any panel is open (for desktop sidebar layout)
+  const hasPanelOpen = !!electionResult || !!pcElectionResult;
+
   return (
-    <div className="map-container">
+    <div className={`map-container ${hasPanelOpen ? 'panel-open' : ''}`}>
       {/* Top center toolbar */}
       <MapToolbar
         currentView={currentView}
@@ -722,6 +753,8 @@ export function MapView({
         />
 
         <ScaleControl position="bottomleft" imperial={false} />
+
+        <MapResizer hasPanelOpen={hasPanelOpen} />
 
         <MapControls level={level} name={legendName} count={legendCount} />
 
