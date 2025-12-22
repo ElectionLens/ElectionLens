@@ -1256,7 +1256,8 @@ path:focus {
     0 10px 40px rgba(0, 0, 0, 0.2),
     0 0 0 1px rgba(0, 0, 0, 0.05);
   z-index: 1001;
-  overflow: hidden;
+  overflow: visible; /* Allow year selector to be visible */
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   animation: slideIn 0.3s ease-out;
@@ -1386,14 +1387,31 @@ path:focus {
   .election-year-selector {
     flex-wrap: nowrap;
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding: 8px 12px;
-    gap: 8px;
+    gap: 6px;
+    /* Ensure scrolling works */
+    max-width: 100%;
+    margin: 0;
   }
 
   .election-year-selector::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Fade hint on right edge when scrollable */
+  .election-year-selector::after {
+    content: '';
+    position: sticky;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    flex-shrink: 0;
+    background: linear-gradient(to right, transparent, #f1f5f9);
+    pointer-events: none;
   }
 }
 
@@ -2273,6 +2291,8 @@ path:focus {
     border-radius: 16px 16px 0 0;
     animation: slideUp 0.25s ease-out;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    overflow: visible;
+    overflow-y: auto;
   }
 
   @keyframes slideUp {
@@ -3337,14 +3357,27 @@ path:focus {
     margin-top: 4px;
   }
 
-  /* Half mode - minimal: header + years + candidates only */
+  /* Half mode - minimal: header + years + tabs + candidates ONLY */
   .election-panel.panel-half {
-    max-height: 40vh;
+    max-height: 40vh !important;
   }
 
-  /* Hide everything except header, years, tabs, and candidates in half mode */
-  .election-panel.panel-half .winner-card,
-  .election-panel.panel-half .constituency-stats,
+  /* CRITICAL: Hide winner card and stats in half mode */
+  .election-panel.panel-half .winner-card {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .election-panel.panel-half .constituency-stats {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+  }
+
   .election-panel.panel-half .share-bar,
   .election-panel.panel-half .district-info,
   .election-panel.panel-half .pc-mp-info {
@@ -3353,25 +3386,26 @@ path:focus {
 
   /* Show candidates directly in half mode */
   .election-panel.panel-half .candidates-section {
-    max-height: 120px;
+    max-height: 150px;
     overflow: hidden;
     position: relative;
-    padding-top: 8px;
+    padding-top: 4px;
+    margin-top: 0;
   }
 
   /* Fade out bottom of candidates list */
   .election-panel.panel-half .candidates-section::after {
-    content: 'Tap to expand ▲';
+    content: 'Tap ═══ to expand';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 36px;
-    background: linear-gradient(transparent, white 50%);
+    height: 32px;
+    background: linear-gradient(transparent, white 40%);
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding-bottom: 6px;
+    padding-bottom: 4px;
     font-size: 0.65rem;
     color: #64748b;
     pointer-events: none;
