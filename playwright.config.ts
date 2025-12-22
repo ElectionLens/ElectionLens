@@ -68,9 +68,11 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: process.env.CI ? 'npm run preview' : 'npm run dev',
-    url: process.env.BASE_URL || 'http://localhost:3000',
+    command: process.env.CI ? 'npm run preview -- --port 3000' : 'npm run dev',
+    url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120000,
+    timeout: 180000, // 3 minutes for CI builds
+    stdout: 'pipe',
+    stderr: 'pipe',
   },
 });
