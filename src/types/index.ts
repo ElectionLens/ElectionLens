@@ -499,6 +499,12 @@ export interface ACElectionResult {
   enop: number;
   totalCandidates: number;
   candidates: ElectionCandidate[];
+  /** Schema ID (e.g., "RJ-193") - added by migration */
+  schemaId?: string;
+  /** Canonical name from schema - added by migration */
+  name?: string;
+  /** Reservation type from schema - added by migration */
+  type?: 'GEN' | 'SC' | 'ST';
 }
 
 /** Election results keyed by constituency name */
