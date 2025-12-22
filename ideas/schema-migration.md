@@ -69,21 +69,27 @@ This document outlines the plan to consolidate ElectionLens data into a single s
 - [x] Create `generate-schema.mjs` script
 - [x] Generate initial `schema.json`
 
-### Phase 2: Add Schema IDs to Existing Files
-- [ ] Add `schemaId` to GeoJSON features
-- [ ] Add `schemaId` to election JSON entries
-- [ ] Maintain backward compatibility
+### Phase 2: Add Schema IDs to GeoJSON ✅
+- [x] Add `schemaId` to state boundaries (36/36)
+- [x] Add `schemaId` to parliament constituencies (545/545)
+- [x] Add `schemaId` to assembly constituencies (4148/4182 = 99.2%)
+- [x] Add `schemaId` to district boundaries (478/747 = 64%)
+- [x] Remove duplicate PC election folders
 
-### Phase 3: Update Frontend
-- [ ] Create `useSchema` hook to load and cache schema
+### Phase 3: Frontend Schema Hook ✅
+- [x] Create `useSchema` hook to load and cache schema
+- [x] Add entity lookups (getState, getPC, getAC, getDistrict)
+- [x] Add name resolution with fallbacks
+- [x] Add tests (12 test cases)
+
+### Phase 4: Integrate Schema into Existing Hooks 🔄
 - [ ] Update `useElectionData` to resolve IDs via schema
 - [ ] Update `useElectionResults` to use schema IDs
-- [ ] Remove `AC_NAME_MAPPINGS` and fuzzy matching
+- [ ] Remove `AC_NAME_MAPPINGS` and fuzzy matching constants
 
-### Phase 4: Optimize Data Files
-- [ ] Convert GeoJSON to use schema IDs only (remove redundant names)
+### Phase 5: Optimize Data Files (Optional)
 - [ ] Convert election files to use schema IDs as keys
-- [ ] Remove duplicate state folders in PC data
+- [ ] Remove redundant name fields from GeoJSON
 
 ## File Changes
 
@@ -139,14 +145,16 @@ const result = results[acId];
 | Phase | Effort | Status |
 |-------|--------|--------|
 | 1. Schema Generation | 2 hours | ✅ Done |
-| 2. Add Schema IDs | 4 hours | 🔄 Pending |
-| 3. Update Frontend | 8 hours | 🔄 Pending |
-| 4. Optimize Files | 4 hours | 🔄 Pending |
+| 2. Add Schema IDs to GeoJSON | 2 hours | ✅ Done |
+| 3. Frontend Schema Hook | 2 hours | ✅ Done |
+| 4. Integrate into Existing Hooks | 4 hours | 🔄 Pending |
+| 5. Optimize Files (Optional) | 4 hours | 🔄 Pending |
 
 ## Next Steps
 
-1. Review generated `schema.json` for accuracy
-2. Create script to add `schemaId` to GeoJSON files
-3. Create script to migrate election data keys
-4. Build `useSchema` hook with caching
+1. ~~Review generated `schema.json` for accuracy~~ ✅
+2. ~~Create script to add `schemaId` to GeoJSON files~~ ✅
+3. ~~Build `useSchema` hook with caching~~ ✅
+4. Update `useElectionResults` to use schemaId for direct lookups
+5. Remove fuzzy matching code from constants
 
