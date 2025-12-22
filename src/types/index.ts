@@ -567,6 +567,12 @@ export interface PCElectionResult {
   assemblyConstituencies: string[];
   /** AC-wise breakdown of results */
   acWiseResults?: { [acName: string]: ACContributionToPC };
+  /** Schema ID (e.g., "TN-25") - added by migration */
+  schemaId?: string;
+  /** Canonical name from schema - added by migration */
+  name?: string;
+  /** Reservation type from schema - added by migration */
+  type?: 'GEN' | 'SC' | 'ST';
 }
 
 /** PC election results keyed by PC name */
