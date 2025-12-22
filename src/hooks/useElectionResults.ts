@@ -10,12 +10,63 @@ function stripDiacritics(str: string): string {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
-/** State slug generator */
+/** State name to ID mapping (ISO 3166-2:IN codes) */
+const STATE_ID_MAP: Record<string, string> = {
+  'andaman and nicobar islands': 'AN',
+  'andaman & nicobar islands': 'AN',
+  'andhra pradesh': 'AP',
+  'arunachal pradesh': 'AR',
+  assam: 'AS',
+  bihar: 'BR',
+  chandigarh: 'CH',
+  chhattisgarh: 'CG',
+  chattisgarh: 'CG',
+  'dadra and nagar haveli and daman and diu': 'DD',
+  'dnh and dd': 'DD',
+  delhi: 'DL',
+  'nct of delhi': 'DL',
+  goa: 'GA',
+  gujarat: 'GJ',
+  haryana: 'HR',
+  'himachal pradesh': 'HP',
+  'jammu and kashmir': 'JK',
+  'jammu & kashmir': 'JK',
+  jharkhand: 'JH',
+  karnataka: 'KA',
+  kerala: 'KL',
+  ladakh: 'LA',
+  lakshadweep: 'LD',
+  'madhya pradesh': 'MP',
+  maharashtra: 'MH',
+  manipur: 'MN',
+  meghalaya: 'ML',
+  mizoram: 'MZ',
+  nagaland: 'NL',
+  odisha: 'OD',
+  orissa: 'OD',
+  puducherry: 'PY',
+  pondicherry: 'PY',
+  punjab: 'PB',
+  rajasthan: 'RJ',
+  sikkim: 'SK',
+  'tamil nadu': 'TN',
+  telangana: 'TS',
+  tripura: 'TR',
+  'uttar pradesh': 'UP',
+  uttarakhand: 'UK',
+  uttaranchal: 'UK',
+  'west bengal': 'WB',
+};
+
+/** Convert state name to state ID (replaces getStateSlug) */
+function getStateId(stateName: string): string {
+  const normalized = stripDiacritics(stateName).toLowerCase().trim();
+  return STATE_ID_MAP[normalized] || normalized.toUpperCase().slice(0, 2);
+}
+
+/** @deprecated Use getStateId instead */
 function getStateSlug(stateName: string): string {
-  return stripDiacritics(stateName)
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '');
+  return getStateId(stateName);
 }
 
 /**
@@ -79,20 +130,6 @@ function createCanonicalKey(name: string): string {
     .toUpperCase()
     .replace(/\s*\([^)]*\)\s*/g, '') // Remove parentheses
     .replace(/[^A-Z0-9]/g, ''); // Keep only alphanumeric
-}
-
-/**
- * Create a simplified key for fuzzy matching
- * Removes vowels and normalizes consonants for phonetic similarity
- */
-function createFuzzyKey(name: string): string {
-  return createCanonicalKey(name)
-    .replace(/TH/g, 'T') // Normalize TH to T
-    .replace(/PH/g, 'F') // Normalize PH to F
-    .replace(/Y/g, 'I') // Normalize Y to I
-    .replace(/W/g, 'V') // Normalize W to V
-    .replace(/[AEIOU]/g, '') // Remove vowels
-    .substring(0, 12); // First 12 consonants
 }
 
 /**
@@ -335,34 +372,43 @@ export function useElectionResults(): UseElectionResultsReturn {
       }
       console.log('[getACResult] Results loaded, keys count:', Object.keys(results).length);
 
-      // Find the AC result using multiple matching strategies
-      const searchName = canonicalName ?? acName;
-      const canonicalKey = createCanonicalKey(searchName);
-      const fuzzyKey = createFuzzyKey(searchName);
+      // Find the AC result - prioritize schema ID lookup (new format)
+      let result: ACElectionResult | undefined;
+      const keys = Object.keys(results);
 
-      // Check if there's a known mapping for this AC
-      const mappedName = AC_NAME_MAPPINGS[canonicalKey];
-
-      // Try direct match first (using canonical name if provided)
-      let result = results[searchName.toUpperCase()];
-
-      // If canonicalName was provided and we got a result, we're done (skip fuzzy matching)
-      if (canonicalName && result) {
-        console.log('[getACResult] Direct match with canonical name:', canonicalName);
-        setCurrentResult(result);
-        setSelectedYear(targetYear);
-        return result;
+      // 1. Try schema ID first (new ID-based format: "TN-001")
+      if (schemaId) {
+        result = results[schemaId];
+        if (result) {
+          console.log('[getACResult] ✓ Schema ID match:', schemaId);
+        }
       }
 
-      // Also try original acName if different from searchName
-      if (!result && canonicalName) {
-        result = results[acName.toUpperCase()];
-      }
-
+      // 2. Try direct name match (legacy format: "GUMMIDIPUNDI")
       if (!result) {
-        const keys = Object.keys(results);
+        const searchName = canonicalName ?? acName;
+        result = results[searchName.toUpperCase()];
+        if (result) {
+          console.log('[getACResult] ✓ Direct name match:', searchName.toUpperCase());
+        }
+      }
 
-        // Try mapped name if available
+      // 3. Try canonical key match (handles diacritics, SC/ST suffixes)
+      if (!result) {
+        const searchName = canonicalName ?? acName;
+        const canonicalKey = createCanonicalKey(searchName);
+        const canonicalMatch = keys.find((k) => createCanonicalKey(k) === canonicalKey);
+        if (canonicalMatch) {
+          result = results[canonicalMatch];
+          console.log('[getACResult] ✓ Canonical match:', canonicalMatch);
+        }
+      }
+
+      // 4. Try mapped name if available (legacy edge cases)
+      if (!result) {
+        const searchName = canonicalName ?? acName;
+        const canonicalKey = createCanonicalKey(searchName);
+        const mappedName = AC_NAME_MAPPINGS[canonicalKey];
         if (mappedName) {
           const mappedMatch = keys.find(
             (k) =>
@@ -371,79 +417,58 @@ export function useElectionResults(): UseElectionResultsReturn {
           );
           if (mappedMatch) {
             result = results[mappedMatch];
-          }
-        }
-
-        // Try canonical key match
-        if (!result) {
-          const canonicalMatch = keys.find((k) => createCanonicalKey(k) === canonicalKey);
-          if (canonicalMatch) {
-            result = results[canonicalMatch];
-          }
-        }
-
-        // Try fuzzy match
-        if (!result) {
-          const fuzzyMatch = keys.find((k) => createFuzzyKey(k) === fuzzyKey);
-          if (fuzzyMatch) {
-            result = results[fuzzyMatch];
-          }
-        }
-
-        // Try similarity-based match
-        if (!result) {
-          let bestMatch: string | null = null;
-          let bestScore = 0.7; // Minimum threshold
-
-          keys.forEach((k) => {
-            const keyCanonical = createCanonicalKey(k);
-            const score = similarityScore(canonicalKey, keyCanonical);
-            if (score > bestScore) {
-              bestScore = score;
-              bestMatch = k;
-            }
-          });
-
-          if (bestMatch) {
-            result = results[bestMatch];
-          }
-        }
-
-        // Try first word match as last resort
-        if (!result) {
-          const firstWord = canonicalKey.substring(0, Math.min(6, canonicalKey.length));
-          if (firstWord.length >= 4) {
-            const firstWordMatch = keys.find((k) => {
-              const keyCanonical = createCanonicalKey(k);
-              return (
-                keyCanonical.startsWith(firstWord) ||
-                firstWord.startsWith(keyCanonical.substring(0, firstWord.length))
-              );
-            });
-            if (firstWordMatch) {
-              result = results[firstWordMatch];
-            }
+            console.log('[getACResult] ✓ Mapped name match:', mappedMatch);
           }
         }
       }
 
+      // 5. Try fuzzy match (similarity-based, threshold 0.7)
+      if (!result) {
+        const searchName = canonicalName ?? acName;
+        const canonicalKey = createCanonicalKey(searchName);
+        let bestMatch: string | null = null;
+        let bestScore = 0.7;
+
+        keys.forEach((k) => {
+          // Skip schema ID keys for fuzzy matching
+          if (/^[A-Z]{2}-\d{2,3}$/.test(k)) return;
+
+          const keyCanonical = createCanonicalKey(k);
+          const score = similarityScore(canonicalKey, keyCanonical);
+          if (score > bestScore) {
+            bestScore = score;
+            bestMatch = k;
+          }
+        });
+
+        if (bestMatch) {
+          result = results[bestMatch];
+          console.log('[getACResult] ✓ Fuzzy match:', bestMatch, 'score:', bestScore.toFixed(2));
+        }
+      }
+
       // If not found and state is Andhra Pradesh, try Telangana (due to 2014 state split)
-      if (!result && slug === 'andhra-pradesh') {
+      if (!result && (slug === 'AP' || slug === 'andhra-pradesh')) {
         const telanganaResults = await loadYearResults('Telangana', targetYear);
         if (telanganaResults) {
           const telKeys = Object.keys(telanganaResults);
+          const searchName = canonicalName ?? acName;
+          const searchCanonicalKey = createCanonicalKey(searchName);
 
-          // Try canonical match in Telangana data
-          const telCanonicalMatch = telKeys.find((k) => createCanonicalKey(k) === canonicalKey);
-          if (telCanonicalMatch) {
-            result = telanganaResults[telCanonicalMatch];
+          // Try schema ID match first
+          if (schemaId) {
+            // Convert AP schema ID to TS (e.g., AP-001 -> TS-001)
+            const tsSchemaId = schemaId.replace(/^AP-/, 'TS-');
+            result = telanganaResults[tsSchemaId];
           }
 
-          // Try fuzzy match in Telangana data
+          // Try canonical match in Telangana data
           if (!result) {
-            const telFuzzyMatch = telKeys.find((k) => createFuzzyKey(k) === fuzzyKey);
-            if (telFuzzyMatch) {
-              result = telanganaResults[telFuzzyMatch];
+            const telCanonicalMatch = telKeys.find(
+              (k) => createCanonicalKey(k) === searchCanonicalKey
+            );
+            if (telCanonicalMatch) {
+              result = telanganaResults[telCanonicalMatch];
             }
           }
 
@@ -452,7 +477,7 @@ export function useElectionResults(): UseElectionResultsReturn {
             let bestMatch: string | null = null;
             let bestScore = 0.7;
             telKeys.forEach((k) => {
-              const score = similarityScore(canonicalKey, createCanonicalKey(k));
+              const score = similarityScore(searchCanonicalKey, createCanonicalKey(k));
               if (score > bestScore) {
                 bestScore = score;
                 bestMatch = k;

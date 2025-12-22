@@ -23,12 +23,63 @@ function stripDiacritics(str: string): string {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
-/** State slug generator */
+/** State name to ID mapping (ISO 3166-2:IN codes) */
+const STATE_ID_MAP: Record<string, string> = {
+  'andaman and nicobar islands': 'AN',
+  'andaman & nicobar islands': 'AN',
+  'andhra pradesh': 'AP',
+  'arunachal pradesh': 'AR',
+  assam: 'AS',
+  bihar: 'BR',
+  chandigarh: 'CH',
+  chhattisgarh: 'CG',
+  chattisgarh: 'CG',
+  'dadra and nagar haveli and daman and diu': 'DD',
+  'dnh and dd': 'DD',
+  delhi: 'DL',
+  'nct of delhi': 'DL',
+  goa: 'GA',
+  gujarat: 'GJ',
+  haryana: 'HR',
+  'himachal pradesh': 'HP',
+  'jammu and kashmir': 'JK',
+  'jammu & kashmir': 'JK',
+  jharkhand: 'JH',
+  karnataka: 'KA',
+  kerala: 'KL',
+  ladakh: 'LA',
+  lakshadweep: 'LD',
+  'madhya pradesh': 'MP',
+  maharashtra: 'MH',
+  manipur: 'MN',
+  meghalaya: 'ML',
+  mizoram: 'MZ',
+  nagaland: 'NL',
+  odisha: 'OD',
+  orissa: 'OD',
+  puducherry: 'PY',
+  pondicherry: 'PY',
+  punjab: 'PB',
+  rajasthan: 'RJ',
+  sikkim: 'SK',
+  'tamil nadu': 'TN',
+  telangana: 'TS',
+  tripura: 'TR',
+  'uttar pradesh': 'UP',
+  uttarakhand: 'UK',
+  uttaranchal: 'UK',
+  'west bengal': 'WB',
+};
+
+/** Convert state name to state ID */
+function getStateId(stateName: string): string {
+  const normalized = stripDiacritics(stateName).toLowerCase().trim();
+  return STATE_ID_MAP[normalized] || normalized.toUpperCase().slice(0, 2);
+}
+
+/** @deprecated Use getStateId instead */
 function getStateSlug(stateName: string): string {
-  return stripDiacritics(stateName)
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '');
+  return getStateId(stateName);
 }
 
 /** Name mappings for inconsistent naming between GeoJSON and election data */
