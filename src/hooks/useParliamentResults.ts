@@ -288,9 +288,13 @@ export function useParliamentResults(): UseParliamentResultsReturn {
 
       // Find the PC result using multiple matching strategies
       const canonicalSearch = createCanonicalKey(pcName);
+      console.log('[getPCResult] Searching for:', pcName, '-> canonical:', canonicalSearch);
 
-      // Try direct match first
+      // Try direct match first (legacy format)
       let result = results[pcName.toUpperCase().trim()];
+      if (result) {
+        console.log('[getPCResult] ✓ Direct match');
+      }
 
       if (!result) {
         const keys = Object.keys(results);
@@ -299,6 +303,31 @@ export function useParliamentResults(): UseParliamentResultsReturn {
         const canonicalMatch = keys.find((k) => createCanonicalKey(k) === canonicalSearch);
         if (canonicalMatch) {
           result = results[canonicalMatch];
+          console.log('[getPCResult] ✓ Canonical match:', canonicalMatch);
+        }
+
+        // Try matching by result's name properties (for schema ID-keyed data)
+        if (!result) {
+          for (const [k, v] of Object.entries(results)) {
+            if (!v || typeof v !== 'object') continue;
+            const resultData = v;
+
+            // Check constituencyName, constituencyNameOriginal, name
+            const namesToCheck = [
+              resultData.constituencyName,
+              resultData.constituencyNameOriginal,
+              resultData.name,
+            ].filter((n): n is string => Boolean(n));
+
+            for (const name of namesToCheck) {
+              if (createCanonicalKey(name) === canonicalSearch) {
+                result = resultData;
+                console.log('[getPCResult] ✓ Name property match:', k, name);
+                break;
+              }
+            }
+            if (result) break;
+          }
         }
 
         // Try partial match (one name contains the other)
@@ -309,6 +338,34 @@ export function useParliamentResults(): UseParliamentResultsReturn {
           });
           if (partialMatch) {
             result = results[partialMatch];
+            console.log('[getPCResult] ✓ Partial match:', partialMatch);
+          }
+        }
+
+        // Try fuzzy match on name properties
+        if (!result) {
+          for (const [k, v] of Object.entries(results)) {
+            if (!v || typeof v !== 'object') continue;
+            const resultData = v;
+
+            const namesToCheck = [
+              resultData.constituencyName,
+              resultData.constituencyNameOriginal,
+              resultData.name,
+            ].filter((n): n is string => Boolean(n));
+
+            for (const name of namesToCheck) {
+              const nameCanonical = createCanonicalKey(name);
+              if (
+                nameCanonical.includes(canonicalSearch) ||
+                canonicalSearch.includes(nameCanonical)
+              ) {
+                result = resultData;
+                console.log('[getPCResult] ✓ Fuzzy name match:', k, name);
+                break;
+              }
+            }
+            if (result) break;
           }
         }
       }
