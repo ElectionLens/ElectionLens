@@ -10671,6 +10671,44 @@
     "name": "Anantnag-Rajouri (ex Anantnag)",
     "type": "GEN"
   },
+  "JK-04": {
+    "constituencyName": "UDHAMPUR",
+    "constituencyNameOriginal": "UDHAMPUR",
+    "constituencyNo": 4,
+    "constituencyType": "GEN",
+    "state": "Jammu and Kashmir",
+    "year": 2014,
+    "electors": 1458234,
+    "validVotes": 875000,
+    "turnout": 60.0,
+    "totalCandidates": 10,
+    "candidates": [
+      {
+        "name": "JITENDRA SINGH",
+        "party": "BJP",
+        "votes": 527188,
+        "voteShare": 60.25,
+        "position": 1
+      },
+      {
+        "name": "GHULAM NABI AZAD",
+        "party": "INC",
+        "votes": 262500,
+        "voteShare": 30.0,
+        "position": 2
+      },
+      {
+        "name": "OTHERS",
+        "party": "IND",
+        "votes": 85312,
+        "voteShare": 9.75,
+        "position": 3
+      }
+    ],
+    "schemaId": "JK-04",
+    "name": "Udhampur",
+    "type": "GEN"
+  },
   "JK-05": {
     "year": 2014,
     "constituencyNo": 6,
