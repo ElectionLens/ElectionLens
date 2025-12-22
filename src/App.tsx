@@ -71,7 +71,7 @@ function App(): JSX.Element {
   } = useParliamentResults();
 
   // Schema for canonical name resolution
-  const { getAC } = useSchema();
+  const { getAC, getPC, resolveACName, resolveStateName } = useSchema();
 
   // State for AC's parliament contributions (all years)
   const [parliamentContributions, setParliamentContributions] = useState<
@@ -126,16 +126,15 @@ function App(): JSX.Element {
       if (urlState.pc) {
         // First navigate to state, then to PC
         await navigateToState(matchedState);
-        const data = await navigateToPC(
-          toTitleCase(urlState.pc.replace(/-/g, ' ')).toUpperCase(),
-          matchedState
-        );
+        const pcName = toTitleCase(urlState.pc.replace(/-/g, ' ')).toUpperCase();
+        const data = await navigateToPC(pcName, matchedState);
         setCurrentData(data);
         if (urlState.assembly) {
           // Convert assembly name to match GeoJSON format (Title Case, uppercase for comparison)
           const acName = toTitleCase(urlState.assembly).toUpperCase();
           selectAssembly(acName);
           await getACResult(acName, matchedState, urlState.year ?? undefined);
+          // Parliament contributions loaded by useEffect when currentAssembly changes
           // Set the PC year if provided in URL
           if (urlState.pcYear) {
             setSelectedACPCYear(urlState.pcYear);
@@ -152,6 +151,7 @@ function App(): JSX.Element {
           const acName = toTitleCase(urlState.assembly).toUpperCase();
           selectAssembly(acName);
           await getACResult(acName, matchedState, urlState.year ?? undefined);
+          // Parliament contributions loaded by useEffect when currentAssembly changes
           // Set the PC year if provided in URL
           if (urlState.pcYear) {
             setSelectedACPCYear(urlState.pcYear);
@@ -715,21 +715,38 @@ function App(): JSX.Element {
 
   /**
    * Load parliament contributions when assembly is selected via deep link
-   * This effect runs when assemblyGeoJSON is loaded and there's a selected assembly
-   * but no parliament contributions yet
+   * This effect runs when there's a selected assembly but no parliament contributions yet
+   * Uses assemblyGeoJSON or schema to find the PC name
    */
   useEffect(() => {
-    if (
-      currentAssembly &&
-      currentState &&
-      assemblyGeoJSON &&
-      Object.keys(parliamentContributions).length === 0
-    ) {
-      // Find the AC feature to get PC_NAME
-      const acFeature = assemblyGeoJSON.features.find(
-        (f) => f.properties.AC_NAME?.toUpperCase() === currentAssembly.toUpperCase()
-      );
-      const pcName = acFeature?.properties.PC_NAME;
+    if (currentAssembly && currentState && Object.keys(parliamentContributions).length === 0) {
+      // Try to find the PC name from assemblyGeoJSON first
+      let pcName: string | null = null;
+
+      if (assemblyGeoJSON) {
+        const acFeature = assemblyGeoJSON.features.find(
+          (f) => f.properties.AC_NAME?.toUpperCase() === currentAssembly.toUpperCase()
+        );
+        pcName = acFeature?.properties.PC_NAME ?? null;
+      }
+
+      // Fallback to schema if assemblyGeoJSON doesn't have the feature
+      if (!pcName) {
+        const stateId = resolveStateName(currentState);
+        if (stateId) {
+          const acId = resolveACName(currentAssembly, stateId);
+          if (acId) {
+            const acEntity = getAC(acId);
+            if (acEntity?.pcId) {
+              const pcEntity = getPC(acEntity.pcId);
+              if (pcEntity) {
+                pcName = pcEntity.name.toUpperCase();
+              }
+            }
+          }
+        }
+      }
+
       if (pcName) {
         void loadAllParliamentContributions(currentAssembly, pcName, currentState);
       }
@@ -740,6 +757,10 @@ function App(): JSX.Element {
     assemblyGeoJSON,
     parliamentContributions,
     loadAllParliamentContributions,
+    resolveStateName,
+    resolveACName,
+    getAC,
+    getPC,
   ]);
 
   /**
