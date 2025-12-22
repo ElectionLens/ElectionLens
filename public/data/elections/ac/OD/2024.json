@@ -13632,5 +13632,119 @@
     "schemaId": "OD-147",
     "name": "CHITRAKONDA (ST)",
     "type": "ST"
+  },
+  "OD-079": {
+    "constituencyName": "DHARMGARH",
+    "constituencyNameOriginal": "DHARAMGARH",
+    "year": 2024,
+    "electors": 261881,
+    "validVotes": 210054,
+    "turnout": 80.21,
+    "candidates": [
+      {
+        "name": "Sudhir Ranjan Pattjoshi",
+        "party": "BJP",
+        "votes": 87890,
+        "evmVotes": 87348,
+        "postalVotes": 542,
+        "voteShare": 41.84,
+        "position": 1,
+        "margin": 18927
+      },
+      {
+        "name": "Puspendra Singh Deo",
+        "party": "BJD",
+        "votes": 68963,
+        "evmVotes": 68426,
+        "postalVotes": 537,
+        "voteShare": 32.83,
+        "position": 2
+      },
+      {
+        "name": "Rasmirekha Rout",
+        "party": "INC",
+        "votes": 41269,
+        "evmVotes": 40787,
+        "postalVotes": 482,
+        "voteShare": 19.65,
+        "position": 3
+      },
+      {
+        "name": "Tirtharaj Durga",
+        "party": "BSP",
+        "votes": 2167,
+        "evmVotes": 2156,
+        "postalVotes": 11,
+        "voteShare": 1.03,
+        "position": 4
+      },
+      {
+        "name": "Tankadhar Sabar",
+        "party": "AIFB",
+        "votes": 1477,
+        "evmVotes": 1473,
+        "postalVotes": 4,
+        "voteShare": 0.7,
+        "position": 5
+      },
+      {
+        "name": "Santosh Kumar Bhoi",
+        "party": "SP",
+        "votes": 1270,
+        "evmVotes": 1265,
+        "postalVotes": 5,
+        "voteShare": 0.6,
+        "position": 6
+      },
+      {
+        "name": "Hemangini Hans",
+        "party": "IND",
+        "votes": 1269,
+        "evmVotes": 1264,
+        "postalVotes": 5,
+        "voteShare": 0.6,
+        "position": 7
+      },
+      {
+        "name": "Heramba Senapati",
+        "party": "IND",
+        "votes": 1156,
+        "evmVotes": 1150,
+        "postalVotes": 6,
+        "voteShare": 0.55,
+        "position": 8
+      },
+      {
+        "name": "Soumya Ranjan Naik",
+        "party": "IND",
+        "votes": 891,
+        "evmVotes": 886,
+        "postalVotes": 5,
+        "voteShare": 0.42,
+        "position": 9
+      },
+      {
+        "name": "Rupadhar Naik",
+        "party": "IND",
+        "votes": 879,
+        "evmVotes": 872,
+        "postalVotes": 7,
+        "voteShare": 0.42,
+        "position": 10
+      },
+      {
+        "name": "Prahalad Agrawal",
+        "party": "IND",
+        "votes": 718,
+        "evmVotes": 716,
+        "postalVotes": 2,
+        "voteShare": 0.34,
+        "position": 11
+      }
+    ],
+    "_unmatchedKey": true,
+    "schemaId": "OD-079",
+    "name": "Dharamgarh",
+    "type": "GEN"
   }
 }
