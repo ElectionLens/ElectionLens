@@ -3012,23 +3012,34 @@ path:focus {
 /* Enhanced Touch Targets (minimum 44px) */
 @media (max-width: 768px) {
   .year-btn {
-    min-height: 36px;
+    min-height: 32px;
     min-width: auto;
-    padding: 8px 12px;
-    font-size: 0.8rem;
+    padding: 6px 12px;
+    font-size: 0.75rem;
     white-space: nowrap;
-    border-radius: 18px;
+    border-radius: 16px;
+    border-width: 1.5px;
   }
 
+  /* Parliament year - subtle blue tint, no gradient */
   .year-btn.parliament-year {
-    font-size: 0.75rem;
-    padding: 8px 10px;
+    font-size: 0.7rem;
+    padding: 6px 8px;
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #1d4ed8;
+  }
+
+  .year-btn.parliament-year.active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: white;
   }
 
   .panel-tab {
-    min-height: 40px;
-    padding: 8px 10px;
-    font-size: 0.8rem;
+    min-height: 36px;
+    padding: 6px 8px;
+    font-size: 0.75rem;
     gap: 4px;
   }
 
@@ -3326,12 +3337,13 @@ path:focus {
     margin-top: 4px;
   }
 
-  /* Half mode - shows winner + top candidates (no stats) */
+  /* Half mode - minimal: header + years + candidates only */
   .election-panel.panel-half {
-    max-height: 55vh;
+    max-height: 40vh;
   }
 
-  /* Hide stats and extras in half mode - candidates are more important */
+  /* Hide everything except header, years, tabs, and candidates in half mode */
+  .election-panel.panel-half .winner-card,
   .election-panel.panel-half .constituency-stats,
   .election-panel.panel-half .share-bar,
   .election-panel.panel-half .district-info,
@@ -3339,27 +3351,28 @@ path:focus {
     display: none !important;
   }
 
-  /* Limit candidates shown in half mode */
+  /* Show candidates directly in half mode */
   .election-panel.panel-half .candidates-section {
-    max-height: 140px;
+    max-height: 120px;
     overflow: hidden;
     position: relative;
+    padding-top: 8px;
   }
 
   /* Fade out bottom of candidates list */
   .election-panel.panel-half .candidates-section::after {
-    content: 'Expand for all candidates ▲';
+    content: 'Tap to expand ▲';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 50px;
-    background: linear-gradient(transparent, white 60%);
+    height: 36px;
+    background: linear-gradient(transparent, white 50%);
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding-bottom: 8px;
-    font-size: 0.7rem;
+    padding-bottom: 6px;
+    font-size: 0.65rem;
     color: #64748b;
     pointer-events: none;
   }

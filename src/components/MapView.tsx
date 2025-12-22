@@ -330,17 +330,19 @@ interface ExtendedFitBoundsProps extends FitBoundsProps {
 /**
  * Get padding for map bounds based on screen size
  * On mobile, we need more bottom padding to account for the bottom sheet panel
+ * Panel default (half mode) takes ~40vh, so feature should be in top 60%
  */
 function getMapPadding(hasSelectedFeature: boolean): L.FitBoundsOptions['padding'] {
   const isMobile = window.innerWidth <= 768;
 
   if (hasSelectedFeature) {
     if (isMobile) {
-      // On mobile: [top, right, bottom, left] - more bottom padding for panel
-      // Panel takes ~75vh, so we need the feature in the top ~25% of screen
+      // On mobile: [top, right, bottom, left]
+      // Panel takes ~40vh in half mode, position feature in visible top area
       const viewportHeight = window.innerHeight;
-      const bottomPadding = Math.floor(viewportHeight * 0.6); // 60% of viewport for panel area
-      return [60, 30, bottomPadding, 30] as [number, number, number, number];
+      const bottomPadding = Math.floor(viewportHeight * 0.45); // 45% padding for panel
+      const topPadding = 80; // Space for toolbar
+      return [topPadding, 20, bottomPadding, 20] as [number, number, number, number];
     }
     return [80, 80]; // Desktop: equal padding
   }
