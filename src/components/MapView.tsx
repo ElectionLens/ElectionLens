@@ -16,7 +16,7 @@ import type {
   LeafletMouseEvent as LLeafletMouseEvent,
   LatLngBoundsExpression,
 } from 'leaflet';
-import { getFeatureStyle, getHoverStyle, normalizeName } from '../utils/helpers';
+import { getFeatureStyle, getHoverStyle, normalizeName, getStateFileName } from '../utils/helpers';
 import { COLOR_PALETTES } from '../constants';
 import { clearAllCache } from '../utils/db';
 import { FeedbackModal } from './FeedbackModal';
@@ -390,6 +390,26 @@ function MapResizer({ hasPanelOpen }: { hasPanelOpen: boolean }): null {
   return null;
 }
 
+/**
+ * Component to create custom panes for background layers
+ * Higher z-index panes ensure background layers receive click events
+ */
+function BackgroundPanes(): null {
+  const map = useMap();
+
+  useEffect(() => {
+    // Create pane for background context layers (states, PCs, districts)
+    // z-index 450 is above overlayPane (400) but below markerPane (600)
+    if (!map.getPane('backgroundPane')) {
+      const pane = map.createPane('backgroundPane');
+      pane.style.zIndex = '450';
+      pane.style.pointerEvents = 'auto';
+    }
+  }, [map]);
+
+  return null;
+}
+
 /** Extended FitBounds props with optional selected feature */
 interface ExtendedFitBoundsProps extends FitBoundsProps {
   selectedFeatureName?: string | null;
@@ -481,6 +501,8 @@ function FitBounds({ geojson, selectedFeatureName }: ExtendedFitBoundsProps): nu
  */
 export function MapView({
   statesGeoJSON,
+  parliamentGeoJSON,
+  districtsCache,
   currentData,
   currentState,
   currentView,
@@ -546,17 +568,250 @@ export function MapView({
   }, [currentState, currentView, currentPC, currentDistrict]);
 
   // Create unique key for GeoJSON to force re-render when data or selection changes
+  // Include first feature name to ensure uniqueness when different PCs have same assembly count
   const geoJsonKey = useMemo((): string => {
     const dataHash = currentData?.features?.length ?? 0;
-    return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${selectedAssembly ?? ''}-${dataHash}`;
+    const props = currentData?.features?.[0]?.properties as Record<string, unknown> | undefined;
+    const firstFeatureName = (props?.['AC_NAME'] ?? props?.['PC_NAME'] ?? '') as string;
+    return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${selectedAssembly ?? ''}-${dataHash}-${firstFeatureName}`;
   }, [level, currentState, currentPC, currentDistrict, selectedAssembly, currentData]);
 
-  // Get the data to display
+  // Get the data to display (primary layer - either states or current sub-region)
   const displayData = useMemo((): GeoJSONData | null => {
     if (currentPC ?? currentDistrict) return currentData;
     if (currentState) return currentData;
     return statesGeoJSON;
   }, [statesGeoJSON, currentData, currentState, currentPC, currentDistrict]);
+
+  // Background states - shown dimmed when zoomed into a state for context
+  const showBackgroundStates = Boolean(currentState) && statesGeoJSON;
+
+  // Style for background states (semi-transparent, clickable)
+  const backgroundStateStyle = useCallback(
+    (): L.PathOptions => ({
+      fillColor: '#f3f4f6',
+      fillOpacity: 0.7,
+      color: '#9ca3af',
+      weight: 1,
+      opacity: 0.8,
+    }),
+    []
+  );
+
+  // Click handler for background states (other states when zoomed into one)
+  const onBackgroundStateClick = useCallback(
+    (feature: Feature, layer: Layer): void => {
+      const typedLayer = layer as unknown as FeatureLayer;
+      const props = feature.properties as StateProperties;
+      const stateName = props.shapeName ?? props.ST_NM ?? '';
+      const normalizedName = normalizeName(stateName);
+
+      // Tooltip on hover
+      typedLayer.bindTooltip(`Go to ${normalizedName}`, {
+        permanent: false,
+        direction: 'center',
+        className: 'hover-tooltip background-state-tooltip',
+      });
+
+      typedLayer.on({
+        mouseover: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle({
+            fillColor: '#818cf8',
+            fillOpacity: 0.6,
+            color: '#6366f1',
+            weight: 2,
+          });
+        },
+        mouseout: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle(backgroundStateStyle());
+        },
+        click: (e: LLeafletMouseEvent): void => {
+          // Stop propagation to prevent other layers from receiving this click
+          L.DomEvent.stopPropagation(e);
+          // Navigate to clicked state
+          onStateClick(stateName, feature as StateFeature);
+        },
+      });
+    },
+    [onStateClick, backgroundStateStyle]
+  );
+
+  // Background PCs - shown when viewing assemblies within a PC
+  const showBackgroundPCs = Boolean(currentPC) && parliamentGeoJSON && currentState;
+
+  // Get other PCs in the same state (excluding current PC)
+  const backgroundPCsData = useMemo(() => {
+    if (!showBackgroundPCs || !parliamentGeoJSON || !currentState) return null;
+
+    const stateNormalized = normalizeName(currentState).toLowerCase();
+    const currentPCNormalized = currentPC?.toLowerCase() ?? '';
+
+    const otherPCs = parliamentGeoJSON.features.filter((f) => {
+      const props = f.properties;
+      const pcState = normalizeName(props.STATE_NAME ?? props.state_ut_name ?? '').toLowerCase();
+      const pcName = (props.ls_seat_name ?? props.PC_NAME ?? '').toLowerCase();
+
+      // Same state but different PC
+      return pcState === stateNormalized && pcName !== currentPCNormalized;
+    });
+
+    if (otherPCs.length === 0) return null;
+
+    return {
+      type: 'FeatureCollection' as const,
+      features: otherPCs,
+    };
+  }, [showBackgroundPCs, parliamentGeoJSON, currentState, currentPC]);
+
+  // Style for background PCs (light orange tint - same as districts for consistency)
+  const backgroundPCStyle = useCallback(
+    (): L.PathOptions => ({
+      fillColor: '#fed7aa',
+      fillOpacity: 0.6,
+      color: '#fdba74',
+      weight: 1,
+      opacity: 0.8,
+    }),
+    []
+  );
+
+  // Click handler for background PCs
+  const onBackgroundPCClick = useCallback(
+    (feature: Feature, layer: Layer): void => {
+      const typedLayer = layer as unknown as FeatureLayer;
+      const props = feature.properties as ConstituencyProperties;
+      const pcName = props.ls_seat_name ?? props.PC_NAME ?? '';
+
+      // Tooltip on hover
+      typedLayer.bindTooltip(`Go to ${pcName}`, {
+        permanent: false,
+        direction: 'center',
+        className: 'hover-tooltip background-state-tooltip',
+      });
+
+      typedLayer.on({
+        mouseover: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle({
+            fillColor: '#818cf8',
+            fillOpacity: 0.7,
+            color: '#6366f1',
+            weight: 2,
+          });
+        },
+        mouseout: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle(backgroundPCStyle());
+        },
+        click: (e: LLeafletMouseEvent): void => {
+          // Stop propagation to prevent other layers from receiving this click
+          L.DomEvent.stopPropagation(e);
+          // Navigate to clicked PC
+          onConstituencyClick(pcName, feature as ConstituencyFeature);
+        },
+      });
+    },
+    [onConstituencyClick, backgroundPCStyle]
+  );
+
+  // Background Districts - shown when viewing assemblies within a district
+  const showBackgroundDistricts = Boolean(currentDistrict) && districtsCache && currentState;
+
+  // Get other districts in the same state (excluding current district)
+  const backgroundDistrictsData = useMemo(() => {
+    console.log('[BackgroundDistricts] Check:', {
+      showBackgroundDistricts,
+      currentDistrict,
+      currentState,
+      hasCacheObj: !!districtsCache,
+      cacheKeys: districtsCache ? Object.keys(districtsCache) : [],
+    });
+
+    if (!showBackgroundDistricts || !districtsCache || !currentState) {
+      console.log('[BackgroundDistricts] Skipping - conditions not met');
+      return null;
+    }
+
+    // Get the state file name (e.g., "TN" for Tamil Nadu) to look up in cache
+    const stateFileName = getStateFileName(currentState);
+    console.log('[BackgroundDistricts] Looking for state file:', stateFileName);
+
+    if (!stateFileName || !districtsCache[stateFileName]) {
+      console.log('[BackgroundDistricts] No districts found in cache for', stateFileName);
+      return null;
+    }
+
+    const stateDistricts = districtsCache[stateFileName];
+    const currentDistrictNormalized = currentDistrict?.toLowerCase() ?? '';
+
+    const otherDistricts = stateDistricts.features.filter((f) => {
+      const props = f.properties;
+      const districtName = (props.district ?? props.NAME ?? props.DISTRICT ?? '').toLowerCase();
+
+      // Different district
+      return districtName !== currentDistrictNormalized;
+    });
+
+    if (otherDistricts.length === 0) return null;
+
+    return {
+      type: 'FeatureCollection' as const,
+      features: otherDistricts,
+    };
+  }, [showBackgroundDistricts, districtsCache, currentState, currentDistrict]);
+
+  // Style for background districts (light orange tint)
+  const backgroundDistrictStyle = useCallback(
+    (): L.PathOptions => ({
+      fillColor: '#fed7aa',
+      fillOpacity: 0.6,
+      color: '#fdba74',
+      weight: 1,
+      opacity: 0.8,
+    }),
+    []
+  );
+
+  // Click handler for background districts
+  const onBackgroundDistrictClick = useCallback(
+    (feature: Feature, layer: Layer): void => {
+      const typedLayer = layer as unknown as FeatureLayer;
+      const props = feature.properties as DistrictProperties;
+      const districtName = props.district ?? props.NAME ?? props.DISTRICT ?? '';
+
+      // Tooltip on hover
+      typedLayer.bindTooltip(`Go to ${districtName}`, {
+        permanent: false,
+        direction: 'center',
+        className: 'hover-tooltip background-state-tooltip',
+      });
+
+      typedLayer.on({
+        mouseover: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle({
+            fillColor: '#fb923c',
+            fillOpacity: 0.7,
+            color: '#f97316',
+            weight: 2,
+          });
+        },
+        mouseout: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle(backgroundDistrictStyle());
+        },
+        click: (e: LLeafletMouseEvent): void => {
+          // Stop propagation to prevent other layers from receiving this click
+          L.DomEvent.stopPropagation(e);
+          // Navigate to clicked district
+          onDistrictClick(districtName, feature as DistrictFeature);
+        },
+      });
+    },
+    [onDistrictClick, backgroundDistrictStyle]
+  );
 
   // Compute legend info
   const legendName =
@@ -825,9 +1080,11 @@ export function MapView({
         <ScaleControl position="bottomleft" imperial={false} />
 
         <MapResizer hasPanelOpen={hasPanelOpen} />
+        <BackgroundPanes />
 
         <MapControls level={level} name={legendName} count={legendCount} />
 
+        {/* Primary data layer - states, districts, PCs, or assemblies */}
         {displayData && (
           <>
             <GeoJSON
@@ -839,6 +1096,67 @@ export function MapView({
             />
             <FitBounds geojson={displayData} selectedFeatureName={selectedAssembly} />
           </>
+        )}
+
+        {/* Background states layer - uses backgroundPane for proper z-ordering */}
+        {/* Shows all states OTHER than the current one (including in PC/district views) */}
+        {showBackgroundStates && statesGeoJSON && (
+          <GeoJSON
+            key={`background-states-${currentState}`}
+            data={
+              {
+                type: 'FeatureCollection',
+                features: statesGeoJSON.features.filter((f) => {
+                  const props = f.properties;
+                  const name = normalizeName(props.shapeName ?? props.ST_NM ?? '');
+                  return (
+                    !currentState ||
+                    name.toLowerCase() !== normalizeName(currentState).toLowerCase()
+                  );
+                }),
+              } as GeoJSON.FeatureCollection
+            }
+            style={() => ({
+              ...backgroundStateStyle(),
+              interactive: true,
+            })}
+            pane="backgroundPane"
+            onEachFeature={
+              onBackgroundStateClick as (feature: GeoJSON.Feature, layer: Layer) => void
+            }
+          />
+        )}
+
+        {/* Background PCs layer - shows other PCs in the state when viewing assemblies */}
+        {backgroundPCsData && (
+          <GeoJSON
+            key={`background-pcs-${currentState}-${currentPC}-${selectedAssembly ?? 'none'}-${backgroundPCsData.features.length}`}
+            data={backgroundPCsData as GeoJSON.FeatureCollection}
+            style={() => ({
+              ...backgroundPCStyle(),
+              interactive: true,
+            })}
+            pane="backgroundPane"
+            onEachFeature={(feature: GeoJSON.Feature, layer: Layer) => {
+              onBackgroundPCClick(feature as Feature, layer);
+            }}
+          />
+        )}
+
+        {/* Background Districts layer - shows other districts when viewing assemblies in district view */}
+        {backgroundDistrictsData && (
+          <GeoJSON
+            key={`background-districts-${currentState}-${currentDistrict}-${selectedAssembly ?? 'none'}-${backgroundDistrictsData.features.length}-${String((backgroundDistrictsData.features[0]?.properties as Record<string, unknown>)?.['district'] ?? '')}`}
+            data={backgroundDistrictsData as GeoJSON.FeatureCollection}
+            style={() => ({
+              ...backgroundDistrictStyle(),
+              interactive: true,
+            })}
+            pane="backgroundPane"
+            onEachFeature={(feature: GeoJSON.Feature, layer: Layer) => {
+              onBackgroundDistrictClick(feature as Feature, layer);
+            }}
+          />
         )}
       </MapContainer>
 
