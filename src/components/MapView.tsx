@@ -481,6 +481,7 @@ function FitBounds({ geojson, selectedFeatureName }: ExtendedFitBoundsProps): nu
  */
 export function MapView({
   statesGeoJSON,
+  parliamentGeoJSON,
   currentData,
   currentState,
   currentView,
@@ -551,12 +552,141 @@ export function MapView({
     return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${selectedAssembly ?? ''}-${dataHash}`;
   }, [level, currentState, currentPC, currentDistrict, selectedAssembly, currentData]);
 
-  // Get the data to display
+  // Get the data to display (primary layer - either states or current sub-region)
   const displayData = useMemo((): GeoJSONData | null => {
     if (currentPC ?? currentDistrict) return currentData;
     if (currentState) return currentData;
     return statesGeoJSON;
   }, [statesGeoJSON, currentData, currentState, currentPC, currentDistrict]);
+
+  // Background states - shown dimmed when zoomed into a state for context
+  const showBackgroundStates = Boolean(currentState) && statesGeoJSON;
+
+  // Style for background states (semi-transparent, clickable)
+  const backgroundStateStyle = useCallback(
+    (): L.PathOptions => ({
+      fillColor: '#f3f4f6',
+      fillOpacity: 0.7,
+      color: '#9ca3af',
+      weight: 1,
+      opacity: 0.8,
+    }),
+    []
+  );
+
+  // Click handler for background states (other states when zoomed into one)
+  const onBackgroundStateClick = useCallback(
+    (feature: Feature, layer: Layer): void => {
+      const typedLayer = layer as unknown as FeatureLayer;
+      const props = feature.properties as StateProperties;
+      const stateName = props.shapeName ?? props.ST_NM ?? '';
+      const normalizedName = normalizeName(stateName);
+
+      // Tooltip on hover
+      typedLayer.bindTooltip(`Go to ${normalizedName}`, {
+        permanent: false,
+        direction: 'center',
+        className: 'hover-tooltip background-state-tooltip',
+      });
+
+      typedLayer.on({
+        mouseover: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle({
+            fillColor: '#818cf8',
+            fillOpacity: 0.6,
+            color: '#6366f1',
+            weight: 2,
+          });
+        },
+        mouseout: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle(backgroundStateStyle());
+        },
+        click: (): void => {
+          // Navigate to clicked state
+          onStateClick(stateName, feature as StateFeature);
+        },
+      });
+    },
+    [onStateClick, backgroundStateStyle]
+  );
+
+  // Background PCs - shown when viewing assemblies within a PC
+  const showBackgroundPCs = Boolean(currentPC) && parliamentGeoJSON && currentState;
+
+  // Get other PCs in the same state (excluding current PC)
+  const backgroundPCsData = useMemo(() => {
+    if (!showBackgroundPCs || !parliamentGeoJSON || !currentState) return null;
+
+    const stateNormalized = normalizeName(currentState).toLowerCase();
+    const currentPCNormalized = currentPC?.toLowerCase() ?? '';
+
+    const otherPCs = parliamentGeoJSON.features.filter((f) => {
+      const props = f.properties;
+      const pcState = normalizeName(props.STATE_NAME ?? props.state_ut_name ?? '').toLowerCase();
+      const pcName = (props.ls_seat_name ?? props.PC_NAME ?? '').toLowerCase();
+
+      // Same state but different PC
+      return pcState === stateNormalized && pcName !== currentPCNormalized;
+    });
+
+    if (otherPCs.length === 0) return null;
+
+    return {
+      type: 'FeatureCollection' as const,
+      features: otherPCs,
+    };
+  }, [showBackgroundPCs, parliamentGeoJSON, currentState, currentPC]);
+
+  // Style for background PCs (light purple tint)
+  const backgroundPCStyle = useCallback(
+    (): L.PathOptions => ({
+      fillColor: '#e0e7ff',
+      fillOpacity: 0.6,
+      color: '#a5b4fc',
+      weight: 1,
+      opacity: 0.8,
+    }),
+    []
+  );
+
+  // Click handler for background PCs
+  const onBackgroundPCClick = useCallback(
+    (feature: Feature, layer: Layer): void => {
+      const typedLayer = layer as unknown as FeatureLayer;
+      const props = feature.properties as ConstituencyProperties;
+      const pcName = props.ls_seat_name ?? props.PC_NAME ?? '';
+
+      // Tooltip on hover
+      typedLayer.bindTooltip(`Go to ${pcName}`, {
+        permanent: false,
+        direction: 'center',
+        className: 'hover-tooltip background-state-tooltip',
+      });
+
+      typedLayer.on({
+        mouseover: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle({
+            fillColor: '#818cf8',
+            fillOpacity: 0.7,
+            color: '#6366f1',
+            weight: 2,
+          });
+        },
+        mouseout: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle(backgroundPCStyle());
+        },
+        click: (): void => {
+          // Navigate to clicked PC
+          onConstituencyClick(pcName, feature as ConstituencyFeature);
+        },
+      });
+    },
+    [onConstituencyClick, backgroundPCStyle]
+  );
 
   // Compute legend info
   const legendName =
@@ -828,6 +958,7 @@ export function MapView({
 
         <MapControls level={level} name={legendName} count={legendCount} />
 
+        {/* Primary data layer - states, districts, PCs, or assemblies */}
         {displayData && (
           <>
             <GeoJSON
@@ -839,6 +970,41 @@ export function MapView({
             />
             <FitBounds geojson={displayData} selectedFeatureName={selectedAssembly} />
           </>
+        )}
+
+        {/* Background states layer - rendered AFTER primary so it's on top for click handling */}
+        {/* Only shows states OTHER than the current one */}
+        {showBackgroundStates && statesGeoJSON && !currentPC && (
+          <GeoJSON
+            key={`background-states-${currentState}`}
+            data={
+              {
+                type: 'FeatureCollection',
+                features: statesGeoJSON.features.filter((f) => {
+                  const props = f.properties;
+                  const name = normalizeName(props.shapeName ?? props.ST_NM ?? '');
+                  return (
+                    !currentState ||
+                    name.toLowerCase() !== normalizeName(currentState).toLowerCase()
+                  );
+                }),
+              } as GeoJSON.FeatureCollection
+            }
+            style={backgroundStateStyle as L.StyleFunction}
+            onEachFeature={
+              onBackgroundStateClick as (feature: GeoJSON.Feature, layer: Layer) => void
+            }
+          />
+        )}
+
+        {/* Background PCs layer - shows other PCs in the state when viewing assemblies */}
+        {backgroundPCsData && (
+          <GeoJSON
+            key={`background-pcs-${currentState}-${currentPC}`}
+            data={backgroundPCsData as GeoJSON.FeatureCollection}
+            style={backgroundPCStyle as L.StyleFunction}
+            onEachFeature={onBackgroundPCClick as (feature: GeoJSON.Feature, layer: Layer) => void}
+          />
         )}
       </MapContainer>
 

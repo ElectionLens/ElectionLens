@@ -795,6 +795,17 @@ body {
   text-shadow: none !important;
 }
 
+/* Background state tooltip - subtle purple for context states */
+.leaflet-tooltip.background-state-tooltip {
+  background: rgba(99, 102, 241, 0.95) !important;
+  color: white !important;
+  font-weight: 600;
+  font-size: 11px;
+  padding: 4px 10px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3) !important;
+}
+
 .leaflet-tooltip-pane {
   z-index: 650;
 }
