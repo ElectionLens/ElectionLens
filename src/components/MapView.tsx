@@ -1117,7 +1117,7 @@ export function MapView({
         {/* Background PCs layer - shows other PCs in the state when viewing assemblies */}
         {backgroundPCsData && (
           <GeoJSON
-            key={`background-pcs-${currentState}-${currentPC}-${selectedAssembly ?? 'none'}`}
+            key={`background-pcs-${currentState}-${currentPC}-${selectedAssembly ?? 'none'}-${backgroundPCsData.features.length}`}
             data={backgroundPCsData as GeoJSON.FeatureCollection}
             style={() => ({
               ...backgroundPCStyle(),
@@ -1133,7 +1133,7 @@ export function MapView({
         {/* Background Districts layer - shows other districts when viewing assemblies in district view */}
         {backgroundDistrictsData && (
           <GeoJSON
-            key={`background-districts-${currentState}-${currentDistrict}-${selectedAssembly ?? 'none'}`}
+            key={`background-districts-${currentState}-${currentDistrict}-${selectedAssembly ?? 'none'}-${backgroundDistrictsData.features.length}-${String((backgroundDistrictsData.features[0]?.properties as Record<string, unknown>)?.['district'] ?? '')}`}
             data={backgroundDistrictsData as GeoJSON.FeatureCollection}
             style={() => ({
               ...backgroundDistrictStyle(),
