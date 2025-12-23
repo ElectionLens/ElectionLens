@@ -390,6 +390,26 @@ function MapResizer({ hasPanelOpen }: { hasPanelOpen: boolean }): null {
   return null;
 }
 
+/**
+ * Component to create custom panes for background layers
+ * Higher z-index panes ensure background layers receive click events
+ */
+function BackgroundPanes(): null {
+  const map = useMap();
+
+  useEffect(() => {
+    // Create pane for background context layers (states, PCs, districts)
+    // z-index 450 is above overlayPane (400) but below markerPane (600)
+    if (!map.getPane('backgroundPane')) {
+      const pane = map.createPane('backgroundPane');
+      pane.style.zIndex = '450';
+      pane.style.pointerEvents = 'auto';
+    }
+  }, [map]);
+
+  return null;
+}
+
 /** Extended FitBounds props with optional selected feature */
 interface ExtendedFitBoundsProps extends FitBoundsProps {
   selectedFeatureName?: string | null;
@@ -1044,6 +1064,7 @@ export function MapView({
         <ScaleControl position="bottomleft" imperial={false} />
 
         <MapResizer hasPanelOpen={hasPanelOpen} />
+        <BackgroundPanes />
 
         <MapControls level={level} name={legendName} count={legendCount} />
 
@@ -1061,7 +1082,7 @@ export function MapView({
           </>
         )}
 
-        {/* Background states layer - rendered AFTER primary so it's on top for click handling */}
+        {/* Background states layer - uses backgroundPane for proper z-ordering */}
         {/* Only shows states OTHER than the current one */}
         {showBackgroundStates && statesGeoJSON && !currentPC && (
           <GeoJSON
@@ -1079,7 +1100,11 @@ export function MapView({
                 }),
               } as GeoJSON.FeatureCollection
             }
-            style={backgroundStateStyle as L.StyleFunction}
+            style={() => ({
+              ...backgroundStateStyle(),
+              interactive: true,
+            })}
+            pane="backgroundPane"
             onEachFeature={
               onBackgroundStateClick as (feature: GeoJSON.Feature, layer: Layer) => void
             }
@@ -1095,10 +1120,8 @@ export function MapView({
               ...backgroundPCStyle(),
               interactive: true,
             })}
+            pane="backgroundPane"
             onEachFeature={(feature: GeoJSON.Feature, layer: Layer) => {
-              const typedLayer = layer as unknown as FeatureLayer;
-              // Bring to front to ensure clicks register
-              typedLayer.bringToFront();
               onBackgroundPCClick(feature as Feature, layer);
             }}
           />
@@ -1113,10 +1136,8 @@ export function MapView({
               ...backgroundDistrictStyle(),
               interactive: true,
             })}
+            pane="backgroundPane"
             onEachFeature={(feature: GeoJSON.Feature, layer: Layer) => {
-              const typedLayer = layer as unknown as FeatureLayer;
-              // Bring to front to ensure clicks register
-              typedLayer.bringToFront();
               onBackgroundDistrictClick(feature as Feature, layer);
             }}
           />
