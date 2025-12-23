@@ -603,7 +603,9 @@ export function MapView({
           const l = e.target as FeatureLayer;
           l.setStyle(backgroundStateStyle());
         },
-        click: (): void => {
+        click: (e: LLeafletMouseEvent): void => {
+          // Stop propagation to prevent other layers from receiving this click
+          L.DomEvent.stopPropagation(e);
           // Navigate to clicked state
           onStateClick(stateName, feature as StateFeature);
         },
@@ -679,7 +681,9 @@ export function MapView({
           const l = e.target as FeatureLayer;
           l.setStyle(backgroundPCStyle());
         },
-        click: (): void => {
+        click: (e: LLeafletMouseEvent): void => {
+          // Stop propagation to prevent other layers from receiving this click
+          L.DomEvent.stopPropagation(e);
           // Navigate to clicked PC
           onConstituencyClick(pcName, feature as ConstituencyFeature);
         },
