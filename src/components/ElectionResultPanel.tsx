@@ -1,4 +1,15 @@
-import { X, Award, TrendingUp, Vote, Link2, Check, Twitter, Users, BarChart3 } from 'lucide-react';
+import {
+  X,
+  Award,
+  TrendingUp,
+  Vote,
+  Link2,
+  Check,
+  Twitter,
+  Users,
+  BarChart3,
+  Share2,
+} from 'lucide-react';
 import { useState, useCallback, memo } from 'react';
 import type { ACElectionResult, ElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName } from '../utils/partyData';
@@ -33,6 +44,7 @@ interface ElectionResultPanelProps {
   availablePCYears?: number[] | undefined;
   selectedPCYear?: number | null | undefined;
   onPCYearChange?: ((year: number | null) => void) | undefined;
+  pcContributionShareUrl?: string | undefined;
 }
 
 /** Remove diacritics from text (e.g., Tamil Nādu → Tamil Nadu) */
@@ -87,6 +99,7 @@ export function ElectionResultPanel({
   availablePCYears = [],
   selectedPCYear: selectedPCYearProp,
   onPCYearChange,
+  pcContributionShareUrl,
 }: ElectionResultPanelProps): JSX.Element {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [copied, setCopied] = useState(false);
@@ -156,6 +169,18 @@ export function ElectionResultPanel({
       console.error('Failed to copy:', err);
     }
   }, [shareUrl]);
+
+  const handleCopyPCLink = useCallback(async () => {
+    if (!pcContributionShareUrl) return;
+    try {
+      await navigator.clipboard.writeText(pcContributionShareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+      trackShare('copy_link', 'parliament');
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  }, [pcContributionShareUrl]);
 
   const handleShareToX = useCallback(() => {
     const text = generateShareText(result, stateName, true);
@@ -317,6 +342,16 @@ export function ElectionResultPanel({
                   <span className="label">Votes</span>
                   <span className="value">{formatNumber(currentPCContribution.validVotes)}</span>
                 </div>
+                {pcContributionShareUrl && (
+                  <button
+                    className="stat-inline share-pc-btn"
+                    onClick={handleCopyPCLink}
+                    title="Copy PC URL"
+                  >
+                    <Share2 size={12} />
+                    <span className="label">{copied ? 'Copied!' : 'Share'}</span>
+                  </button>
+                )}
               </div>
 
               {/* Parliament candidates preview */}

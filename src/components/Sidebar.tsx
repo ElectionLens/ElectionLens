@@ -26,6 +26,7 @@ import type {
   StatesGeoJSON,
   ConstituenciesGeoJSON,
   AssembliesGeoJSON,
+  DistrictsCache,
   GeoJSONData,
   ViewMode,
   CacheStats,
@@ -38,6 +39,7 @@ interface SidebarProps {
   statesGeoJSON: StatesGeoJSON | null;
   parliamentGeoJSON: ConstituenciesGeoJSON | null;
   assemblyGeoJSON: AssembliesGeoJSON | null;
+  districtsCache: DistrictsCache;
   currentState: string | null;
   currentView: ViewMode;
   currentPC: string | null;
@@ -58,6 +60,11 @@ interface SidebarProps {
     feature: ConstituencyFeature
   ) => void;
   onSearchAssemblySelect: (acName: string, stateName: string, feature: AssemblyFeature) => void;
+  onSearchDistrictSelect: (
+    districtName: string,
+    stateName: string,
+    feature: DistrictFeature
+  ) => void;
   onShare: () => void;
   isOpen: boolean;
   onClose: () => void;
@@ -78,6 +85,7 @@ export function Sidebar({
   statesGeoJSON,
   parliamentGeoJSON,
   assemblyGeoJSON,
+  districtsCache,
   currentState,
   currentView,
   currentPC,
@@ -94,6 +102,7 @@ export function Sidebar({
   onSearchStateSelect,
   onSearchConstituencySelect,
   onSearchAssemblySelect,
+  onSearchDistrictSelect,
   onShare,
   isOpen,
   onClose,
@@ -133,12 +142,18 @@ export function Sidebar({
     }
     if (currentState) {
       const count = currentData?.features?.length ?? 0;
+      let subLabel = 'Districts';
+      if (currentView === 'constituencies') {
+        subLabel = 'Parliamentary Constituencies';
+      } else if (currentView === 'assemblies') {
+        subLabel = 'Assembly Constituencies';
+      }
       return {
         title: displayState ?? '',
         statValue: displayState ?? '',
         statLabel: '',
         subValue: count,
-        subLabel: currentView === 'constituencies' ? 'Parliamentary Constituencies' : 'Districts',
+        subLabel,
       };
     }
     return {
@@ -404,6 +419,83 @@ export function Sidebar({
       );
     }
 
+    // Show all assemblies for state (AC view at state level)
+    if (currentState && currentView === 'assemblies') {
+      if (!currentData?.features?.length) {
+        return (
+          <div className="district-list">
+            <h3>Assembly Constituencies</h3>
+            <div className="no-data-message">
+              <div className="no-data-icon">
+                <Landmark size={40} />
+              </div>
+              <strong>Loading assembly data...</strong>
+            </div>
+          </div>
+        );
+      }
+
+      // Verify we have assembly data
+      if (!isAssemblyData(currentData.features as Feature[])) {
+        return (
+          <div className="district-list">
+            <h3>Assembly Constituencies</h3>
+            <div className="no-data-message">
+              <div className="no-data-icon">
+                <Clock size={40} />
+              </div>
+              <strong>Loading assembly data...</strong>
+            </div>
+          </div>
+        );
+      }
+
+      type SortedAssembly = { feature: Feature<AssemblyProperties>; index: number };
+
+      // Filter out features without valid names
+      const validFeatures = currentData.features.filter((f) => {
+        const props = (f as Feature<AssemblyProperties>).properties;
+        return props.AC_NAME && props.AC_NAME.trim() !== '';
+      });
+
+      const sorted: SortedAssembly[] = validFeatures
+        .map(
+          (f, idx): SortedAssembly => ({ feature: f as Feature<AssemblyProperties>, index: idx })
+        )
+        .sort((a, b) => {
+          const noA = parseInt(a.feature.properties.AC_NO ?? '0', 10);
+          const noB = parseInt(b.feature.properties.AC_NO ?? '0', 10);
+          return noA - noB;
+        });
+
+      return (
+        <div className="district-list">
+          <h3>Assembly Constituencies ({sorted.length})</h3>
+          {sorted.map(({ feature, index }) => {
+            const name = feature.properties.AC_NAME ?? '';
+            const acNo = feature.properties.AC_NO ?? '';
+            const color = getFeatureColor(index, 'assemblies');
+            const style: ExtendedCSSProperties = { '--item-color': color };
+
+            return (
+              <div
+                key={`assembly-${index}`}
+                className="assembly-item"
+                style={style}
+                onClick={() => onAssemblyClick?.(name, feature as AssemblyFeature)}
+                role="button"
+                tabIndex={0}
+              >
+                <Landmark size={14} className="item-icon" />
+                <span>{name}</span>
+                <span className="ac-number">{acNo}</span>
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+
     // Show states list (India view)
     if (statesGeoJSON?.features) {
       type StateItem = { name: string; index: number; feature: Feature<StateProperties> };
@@ -497,9 +589,11 @@ export function Sidebar({
               statesGeoJSON={statesGeoJSON}
               parliamentGeoJSON={parliamentGeoJSON}
               assemblyGeoJSON={assemblyGeoJSON}
+              districtsCache={districtsCache}
               onStateSelect={onSearchStateSelect}
               onConstituencySelect={onSearchConstituencySelect}
               onAssemblySelect={onSearchAssemblySelect}
+              onDistrictSelect={onSearchDistrictSelect}
             />
 
             <div className="info-panel">
@@ -520,14 +614,23 @@ export function Sidebar({
                   <button
                     className={`toggle-btn ${currentView === 'constituencies' ? 'active' : ''}`}
                     onClick={() => onSwitchView('constituencies')}
+                    title="Parliamentary Constituencies"
                   >
-                    <Building2 size={14} className="toggle-icon" /> Parliamentary Constituencies
+                    <Building2 size={14} className="toggle-icon" /> PC
                   </button>
                   <button
                     className={`toggle-btn ${currentView === 'districts' ? 'active' : ''}`}
                     onClick={() => onSwitchView('districts')}
+                    title="Districts"
                   >
                     <Map size={14} className="toggle-icon" /> Districts
+                  </button>
+                  <button
+                    className={`toggle-btn ${currentView === 'assemblies' ? 'active' : ''}`}
+                    onClick={() => onSwitchView('assemblies')}
+                    title="Assembly Constituencies"
+                  >
+                    <Landmark size={14} className="toggle-icon" /> AC
                   </button>
                 </div>
               )}

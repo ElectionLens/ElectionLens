@@ -591,6 +591,11 @@ body {
   background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
 }
 
+.search-result-item[data-type='district']:hover,
+.search-result-item[data-type='district'].selected {
+  background: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%);
+}
+
 /* Result icon box - matching sidebar item icons */
 .result-icon {
   flex-shrink: 0;
@@ -619,6 +624,10 @@ body {
 
 .search-result-item[data-type='assembly'] .result-icon {
   background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+}
+
+.search-result-item[data-type='district'] .result-icon {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
 }
 
 .search-result-item:hover .result-icon {
@@ -676,6 +685,11 @@ body {
   color: #047857;
 }
 
+.result-badge-district {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
 /* Unified color scheme for types */
 :root {
   --color-state: #f59e0b; /* Amber/Saffron */
@@ -694,6 +708,10 @@ body {
 
 .search-result-item[data-type='assembly'] {
   border-left: 3px solid var(--color-assembly);
+}
+
+.search-result-item[data-type='district'] {
+  border-left: 3px solid #3b82f6;
 }
 
 .search-no-results {
@@ -1790,6 +1808,27 @@ path:focus {
   font-size: 0.8rem;
   font-weight: 700;
   color: #1e293b;
+}
+
+/* Share PC Link button in stats-inline */
+.stat-inline.share-pc-btn {
+  cursor: pointer;
+  background: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 100%);
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.stat-inline.share-pc-btn:hover {
+  background: linear-gradient(135deg, #a5b4fc 0%, #818cf8 100%);
+  transform: translateY(-1px);
+}
+
+.stat-inline.share-pc-btn svg {
+  color: #4f46e5;
+}
+
+.stat-inline.share-pc-btn .label {
+  color: #4f46e5;
 }
 
 /* Candidates Preview */

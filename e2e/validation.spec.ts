@@ -220,6 +220,90 @@ test.describe('Navigation Flow - Deep Links', () => {
 });
 
 // =============================================================================
+// AC VIEW NAVIGATION TESTS
+// =============================================================================
+
+test.describe('Navigation Flow - AC View', () => {
+  test('AC view URL loads all assemblies for state', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    // Should show assemblies view
+    await expect(page).toHaveURL(/tamil-nadu\/ac/);
+    
+    // Wait for assemblies to load
+    await page.waitForFunction(() => {
+      const paths = document.querySelectorAll('.leaflet-interactive');
+      return paths.length > 50; // Tamil Nadu has 234 ACs
+    }, { timeout: 20000 });
+    
+    // Should have many assembly polygons
+    const paths = page.locator('path.leaflet-interactive');
+    const count = await paths.count();
+    expect(count).toBeGreaterThan(50);
+  });
+
+  test('AC view with specific assembly loads panel', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac/anna-nagar?year=2021');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    // Panel should show for the selected AC
+    const panel = page.locator('.election-panel');
+    await expect(panel).toBeVisible({ timeout: 15000 });
+    
+    // Should show assembly name
+    await expect(panel).toContainText(/Anna Nagar/i);
+  });
+
+  test('AC view URL pattern is correct', async ({ page }) => {
+    await page.goto('/karnataka/ac');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    await expect(page).toHaveURL(/karnataka\/ac$/);
+  });
+
+  test('navigating to AC in AC view shows panel', async ({ page }) => {
+    await page.goto('/maharashtra/ac/mumbai-colaba');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    const panel = page.locator('.election-panel');
+    await expect(panel).toBeVisible({ timeout: 15000 });
+  });
+});
+
+test.describe('Navigation Flow - AC View Toggle', () => {
+  test('AC button in toolbar navigates to AC view', async ({ page, isMobile }) => {
+    test.skip(isMobile === true, 'Toolbar not available on mobile');
+    
+    await page.goto('/kerala');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    // Click AC button in toolbar
+    const acButton = page.locator('.toolbar-btn[title="Assembly Constituencies"]');
+    await expect(acButton).toBeVisible();
+    await acButton.click();
+    
+    // Should navigate to AC view
+    await expect(page).toHaveURL(/kerala\/ac/, { timeout: 10000 });
+  });
+
+  test('AC toggle in sidebar shows AC view', async ({ page, isMobile }) => {
+    test.skip(isMobile === true, 'Sidebar view toggle not available on mobile');
+    
+    await page.goto('/gujarat');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    // Click AC toggle button in sidebar
+    const acToggle = page.locator('.toggle-btn').filter({ hasText: 'AC' });
+    await expect(acToggle).toBeVisible({ timeout: 10000 });
+    await acToggle.click();
+    
+    // Should navigate to AC view
+    await expect(page).toHaveURL(/gujarat\/ac/, { timeout: 10000 });
+  });
+});
+
+// =============================================================================
 // PANEL VALIDATION TESTS
 // =============================================================================
 

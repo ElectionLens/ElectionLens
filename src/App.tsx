@@ -43,6 +43,7 @@ function App(): JSX.Element {
     navigateToState,
     navigateToPC,
     navigateToDistrict,
+    navigateToAssemblies,
     loadDistrictsForState,
     switchView,
     resetView,
@@ -136,7 +137,7 @@ function App(): JSX.Element {
           selectAssembly(acName);
           await getACResult(acName, matchedState, urlState.year ?? undefined);
           // Parliament contributions loaded by useEffect when currentAssembly changes
-          // Set the PC year if provided in URL
+          // Set PC year if provided in URL (year=pc-YYYY format)
           if (urlState.pcYear) {
             setSelectedACPCYear(urlState.pcYear);
           }
@@ -156,7 +157,21 @@ function App(): JSX.Element {
           selectAssembly(acName);
           await getACResult(acName, matchedState, urlState.year ?? undefined);
           // Parliament contributions loaded by useEffect when currentAssembly changes
-          // Set the PC year if provided in URL
+          // Set PC year if provided in URL (year=pc-YYYY format)
+          if (urlState.pcYear) {
+            setSelectedACPCYear(urlState.pcYear);
+          }
+        }
+      } else if (urlState.view === 'assemblies') {
+        // All assemblies view for a state
+        const data = await navigateToAssemblies(matchedState);
+        setCurrentData(data);
+        if (urlState.assembly) {
+          // Specific assembly selected
+          const acName = toTitleCase(urlState.assembly).toUpperCase();
+          selectAssembly(acName);
+          await getACResult(acName, matchedState, urlState.year ?? undefined);
+          // Set PC year if provided in URL (year=pc-YYYY format)
           if (urlState.pcYear) {
             setSelectedACPCYear(urlState.pcYear);
           }
@@ -174,6 +189,7 @@ function App(): JSX.Element {
       navigateToState,
       navigateToPC,
       navigateToDistrict,
+      navigateToAssemblies,
       loadDistrictsForState,
       resetView,
       selectAssembly,
@@ -185,13 +201,17 @@ function App(): JSX.Element {
   // URL state management for deep linking
   // Wait for statesGeoJSON to be loaded before processing URL
   const isDataReady = Boolean(statesGeoJSON);
+  // Use the appropriate year based on context:
+  // - For AC view: use assembly year (selectedYear)
+  // - For PC view (no assembly): use parliament year (pcSelectedYear)
+  const urlYear = currentAssembly ? selectedYear : pcSelectedYear;
   const { getShareableUrl } = useUrlState(
     currentState,
     currentView,
     currentPC,
     currentDistrict,
     currentAssembly,
-    selectedYear,
+    urlYear,
     selectedACPCYear,
     handleUrlNavigate,
     isDataReady
@@ -285,7 +305,10 @@ function App(): JSX.Element {
         if (currentView === 'constituencies') {
           const data = await navigateToState(currentState);
           setCurrentData(data);
-        } else {
+        } else if (currentView === 'assemblies') {
+          const data = await navigateToAssemblies(currentState);
+          setCurrentData(data);
+        } else if (currentView === 'districts') {
           const data = await loadDistrictsForState(currentState);
           setCurrentData(data);
         }
@@ -749,12 +772,6 @@ function App(): JSX.Element {
    */
   useEffect(() => {
     if (currentAssembly && currentState && Object.keys(parliamentContributions).length === 0) {
-      console.log(
-        '[Parliament] Attempting to load contributions for:',
-        currentAssembly,
-        currentState
-      );
-
       // Try to find the PC name from assemblyGeoJSON first
       let pcName: string | null = null;
 
@@ -763,29 +780,17 @@ function App(): JSX.Element {
           (f) => f.properties.AC_NAME?.toUpperCase() === currentAssembly.toUpperCase()
         );
         pcName = acFeature?.properties.PC_NAME ?? null;
-        if (pcName) {
-          console.log('[Parliament] Found PC from GeoJSON:', pcName);
-        }
       }
 
       // Fallback to schema if assemblyGeoJSON doesn't have the feature
       if (!pcName) {
         const stateId = resolveStateName(currentState);
-        console.log('[Parliament] Schema lookup - stateId:', stateId);
         if (stateId) {
           const acId = resolveACName(currentAssembly, stateId);
-          console.log('[Parliament] Schema lookup - acId:', acId);
           if (acId) {
             const acEntity = getAC(acId);
-            console.log(
-              '[Parliament] Schema lookup - acEntity:',
-              acEntity?.name,
-              'pcId:',
-              acEntity?.pcId
-            );
             if (acEntity?.pcId) {
               const pcEntity = getPC(acEntity.pcId);
-              console.log('[Parliament] Schema lookup - pcEntity:', pcEntity?.name);
               if (pcEntity) {
                 pcName = pcEntity.name.toUpperCase();
               }
@@ -795,10 +800,7 @@ function App(): JSX.Element {
       }
 
       if (pcName) {
-        console.log('[Parliament] Loading contributions for PC:', pcName);
         void loadAllParliamentContributions(currentAssembly, pcName, currentState);
-      } else {
-        console.log('[Parliament] Could not find PC name for assembly');
       }
     }
   }, [
@@ -903,27 +905,43 @@ function App(): JSX.Element {
 
   /**
    * Handle search selection - assembly
-   * Navigate to the state, then to the PC containing the assembly, then select the assembly
+   * Navigate to the assemblies view and select the assembly
+   * URL: /state/ac/ac-name?year=YYYY
    */
   const handleSearchAssemblySelect = useCallback(
-    async (acName: string, stateName: string, feature: AssemblyFeature): Promise<void> => {
+    async (acName: string, stateName: string, _feature: AssemblyFeature): Promise<void> => {
       closeSidebarOnMobile();
 
-      // Get the PC name from the assembly feature
-      const pcName = feature.properties.PC_NAME ?? '';
+      // Navigate to assemblies view for the state
+      const data = await navigateToAssemblies(stateName);
+      setCurrentData(data);
 
-      // First navigate to the state to set currentState properly
-      await navigateToState(stateName);
-
-      if (pcName) {
-        // Navigate to the PC
-        const data = await navigateToPC(pcName, stateName);
-        setCurrentData(data);
-        // Then select the assembly
-        selectAssembly(acName);
-      }
+      // Select the assembly and get its election result
+      selectAssembly(acName);
+      await getACResult(acName, stateName);
     },
-    [navigateToState, navigateToPC, selectAssembly, closeSidebarOnMobile]
+    [navigateToAssemblies, selectAssembly, getACResult, closeSidebarOnMobile]
+  );
+
+  /**
+   * Handle search selection - district
+   * Navigate to the district view
+   * URL: /state/district/district-name
+   */
+  const handleSearchDistrictSelect = useCallback(
+    async (districtName: string, stateName: string, _feature: DistrictFeature): Promise<void> => {
+      closeSidebarOnMobile();
+      clearElectionResult();
+      clearPCElectionResult();
+
+      // Navigate to the district
+      const data = await navigateToDistrict(districtName, stateName);
+      setCurrentData(data);
+
+      // Track analytics
+      trackConstituencySelect('district', districtName, stateName);
+    },
+    [navigateToDistrict, closeSidebarOnMobile, clearElectionResult, clearPCElectionResult]
   );
 
   /**
@@ -937,13 +955,11 @@ function App(): JSX.Element {
       district: currentDistrict,
       assembly: currentAssembly,
       year: selectedYear,
-      pcYear: selectedACPCYear,
+      pcYear: null,
     });
 
     try {
       await navigator.clipboard.writeText(url);
-      // Show a brief notification (could add a toast here)
-      console.log('URL copied:', url);
     } catch (err) {
       console.error('Failed to copy URL:', err);
     }
@@ -955,7 +971,6 @@ function App(): JSX.Element {
     currentDistrict,
     currentAssembly,
     selectedYear,
-    selectedACPCYear,
   ]);
 
   /**
@@ -996,7 +1011,7 @@ function App(): JSX.Element {
       district: currentDistrict,
       assembly: currentAssembly,
       year: selectedYear,
-      pcYear: selectedACPCYear,
+      pcYear: null,
     });
   }, [
     getShareableUrl,
@@ -1006,6 +1021,29 @@ function App(): JSX.Element {
     currentDistrict,
     currentAssembly,
     selectedYear,
+  ]);
+
+  /**
+   * Get share URL for PC contribution in AC panel (year=pc-YYYY format)
+   */
+  const pcContributionShareUrl = useMemo(() => {
+    if (!currentAssembly || !selectedACPCYear) return undefined;
+    return getShareableUrl({
+      state: currentState,
+      view: currentView,
+      pc: currentPC,
+      district: currentDistrict,
+      assembly: currentAssembly,
+      year: null, // Don't include assembly year
+      pcYear: selectedACPCYear, // This will generate year=pc-YYYY
+    });
+  }, [
+    getShareableUrl,
+    currentState,
+    currentView,
+    currentPC,
+    currentDistrict,
+    currentAssembly,
     selectedACPCYear,
   ]);
 
@@ -1030,18 +1068,24 @@ function App(): JSX.Element {
    */
   const handleSwitchView = useCallback(
     async (view: ViewMode): Promise<void> => {
-      switchView(view);
-      if (currentState) {
-        if (view === 'constituencies') {
-          const data = await navigateToState(currentState);
-          setCurrentData(data);
-        } else {
-          const data = await loadDistrictsForState(currentState);
-          setCurrentData(data);
-        }
+      if (!currentState) {
+        switchView(view);
+        return;
+      }
+
+      // Each navigation function sets the view internally
+      if (view === 'constituencies') {
+        const data = await navigateToState(currentState);
+        setCurrentData(data);
+      } else if (view === 'assemblies') {
+        const data = await navigateToAssemblies(currentState);
+        setCurrentData(data);
+      } else if (view === 'districts') {
+        const data = await loadDistrictsForState(currentState);
+        setCurrentData(data);
       }
     },
-    [switchView, currentState, navigateToState, loadDistrictsForState]
+    [switchView, currentState, navigateToState, navigateToAssemblies, loadDistrictsForState]
   );
 
   /**
@@ -1067,7 +1111,10 @@ function App(): JSX.Element {
       if (currentView === 'constituencies') {
         const data = await navigateToState(currentState);
         setCurrentData(data);
-      } else {
+      } else if (currentView === 'assemblies') {
+        const data = await navigateToAssemblies(currentState);
+        setCurrentData(data);
+      } else if (currentView === 'districts') {
         const data = await loadDistrictsForState(currentState);
         setCurrentData(data);
       }
@@ -1077,6 +1124,7 @@ function App(): JSX.Element {
     currentState,
     currentView,
     navigateToState,
+    navigateToAssemblies,
     loadDistrictsForState,
     clearElectionResult,
     clearPCElectionResult,
@@ -1133,6 +1181,7 @@ function App(): JSX.Element {
           statesGeoJSON={statesGeoJSON}
           parliamentGeoJSON={parliamentGeoJSON}
           assemblyGeoJSON={assemblyGeoJSON}
+          districtsCache={districtsCache}
           currentState={currentState}
           currentView={currentView}
           currentPC={currentPC}
@@ -1149,6 +1198,7 @@ function App(): JSX.Element {
           onSearchStateSelect={handleSearchStateSelect}
           onSearchConstituencySelect={handleSearchConstituencySelect}
           onSearchAssemblySelect={handleSearchAssemblySelect}
+          onSearchDistrictSelect={handleSearchDistrictSelect}
           onShare={handleShare}
           isOpen={sidebarOpen}
           onClose={closeSidebar}
@@ -1173,6 +1223,7 @@ function App(): JSX.Element {
           parliamentContributions={parliamentContributions}
           availablePCYears={availablePCYears}
           selectedACPCYear={selectedACPCYear}
+          pcContributionShareUrl={pcContributionShareUrl}
           pcElectionResult={pcElectionResult}
           pcShareUrl={currentPCShareUrl}
           pcAvailableYears={pcAvailableYears}

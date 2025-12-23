@@ -166,7 +166,6 @@ export function useElectionResults(): UseElectionResultsReturn {
       try {
         const response = await fetch(ELECTIONS.getIndexPath(slug));
         if (!response.ok) {
-          console.log(`No election data for ${stateName}`);
           return null;
         }
 
@@ -183,8 +182,7 @@ export function useElectionResults(): UseElectionResultsReturn {
         }
 
         return index;
-      } catch (err) {
-        console.log(`Failed to load election index for ${stateName}:`, err);
+      } catch {
         return null;
       }
     },
@@ -243,27 +241,15 @@ export function useElectionResults(): UseElectionResultsReturn {
     ): Promise<ACElectionResult | null> => {
       const slug = getStateSlug(stateName);
       const { schemaId, canonicalName } = options ?? {};
-      console.log(
-        '[getACResult] State:',
-        stateName,
-        '=> Slug:',
-        slug,
-        '| AC:',
-        acName,
-        schemaId ? `| schemaId: ${schemaId}` : ''
-      );
 
       // Load index if not already loaded
       let index = indexCache.current.get(slug);
       if (!index) {
-        console.log('[getACResult] Loading index...');
         const loadedIndex = await loadStateIndex(stateName);
         if (!loadedIndex) {
-          console.log('[getACResult] FAILED to load index for', slug);
           return null;
         }
         index = loadedIndex;
-        console.log('[getACResult] Index loaded, years:', index.availableYears);
       }
 
       // Determine year to use - always use latest if no year explicitly provided
@@ -286,20 +272,14 @@ export function useElectionResults(): UseElectionResultsReturn {
             closestYear = availableYear;
           }
         }
-
-        console.log(
-          `[getACResult] Year ${targetYear} not available, falling back to ${closestYear}`
-        );
         targetYear = closestYear!;
       }
 
       // Load results for the year
       const results = await loadYearResults(stateName, targetYear);
       if (!results) {
-        console.log('[getACResult] FAILED to load results for year', targetYear);
         return null;
       }
-      console.log('[getACResult] Results loaded, keys count:', Object.keys(results).length);
 
       // Find the AC result using simplified lookup (schema ID or name matching)
       let result: ACElectionResult | undefined;
@@ -309,22 +289,16 @@ export function useElectionResults(): UseElectionResultsReturn {
       // Strategy 1: Schema ID direct lookup (primary path for new data format)
       if (schemaId) {
         result = results[schemaId];
-        if (result) {
-          console.log('[getACResult] ✓ Schema ID match:', schemaId);
-        }
       }
 
       // Strategy 2: Direct key match (for any legacy data)
       if (!result) {
         result = results[searchName.toUpperCase().trim()];
-        if (result) {
-          console.log('[getACResult] ✓ Direct key match:', searchName.toUpperCase().trim());
-        }
       }
 
       // Strategy 3: Match by name properties (for schema ID-keyed data)
       if (!result) {
-        for (const [key, value] of Object.entries(results)) {
+        for (const [, value] of Object.entries(results)) {
           if (!value || typeof value !== 'object') continue;
 
           // Check constituencyName, constituencyNameOriginal, name
@@ -337,7 +311,6 @@ export function useElectionResults(): UseElectionResultsReturn {
           for (const name of namesToCheck) {
             if (normalizeACName(name) === normalizedSearch) {
               result = value;
-              console.log('[getACResult] ✓ Name property match:', key, '→', name);
               break;
             }
           }
@@ -347,7 +320,7 @@ export function useElectionResults(): UseElectionResultsReturn {
 
       // Strategy 4: Partial match (one contains the other) - handles minor variations
       if (!result) {
-        for (const [key, value] of Object.entries(results)) {
+        for (const [, value] of Object.entries(results)) {
           if (!value || typeof value !== 'object') continue;
 
           const namesToCheck = [
@@ -363,7 +336,6 @@ export function useElectionResults(): UseElectionResultsReturn {
               normalizedSearch.includes(normalizedName)
             ) {
               result = value;
-              console.log('[getACResult] ✓ Partial match:', key, '→', name);
               break;
             }
           }

@@ -107,6 +107,67 @@ describe('useUrlState', () => {
     expect(urlState.year).toBe(2021);
   });
 
+  it('parses assemblies view URL correctly', () => {
+    window.location.pathname = '/tamil-nadu/ac';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+
+    const urlState = result.current.getUrlState();
+    expect(urlState.state).toBe('tamil nadu');
+    expect(urlState.view).toBe('assemblies');
+    expect(urlState.pc).toBeNull();
+    expect(urlState.district).toBeNull();
+    expect(urlState.assembly).toBeNull();
+  });
+
+  it('parses /state/pc URL as constituencies view', () => {
+    window.location.pathname = '/tamil-nadu/pc';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+
+    const urlState = result.current.getUrlState();
+    expect(urlState.state).toBe('tamil nadu');
+    expect(urlState.view).toBe('constituencies');
+    expect(urlState.pc).toBeNull();
+    expect(urlState.district).toBeNull();
+  });
+
+  it('parses assemblies view with specific AC URL correctly', () => {
+    window.location.pathname = '/tamil-nadu/ac/anna-nagar';
+    window.location.search = '?year=2021';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+
+    const urlState = result.current.getUrlState();
+    expect(urlState.state).toBe('tamil nadu');
+    expect(urlState.view).toBe('assemblies');
+    expect(urlState.assembly).toBe('anna nagar');
+    expect(urlState.year).toBe(2021);
+    expect(urlState.pcYear).toBeNull();
+  });
+
+  it('parses AC URL with PC year (year=pc-YYYY format)', () => {
+    window.location.pathname = '/andhra-pradesh/pc/ongole/ac/darsi';
+    window.location.search = '?year=pc-2024';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+
+    const urlState = result.current.getUrlState();
+    expect(urlState.state).toBe('andhra pradesh');
+    expect(urlState.pc).toBe('ongole');
+    expect(urlState.assembly).toBe('darsi');
+    expect(urlState.year).toBeNull();
+    expect(urlState.pcYear).toBe(2024);
+  });
+
   it('generates shareable URL for state', () => {
     const onNavigate = vi.fn();
     const { result } = renderHook(() =>
@@ -145,6 +206,25 @@ describe('useUrlState', () => {
     expect(url).toBe('http://localhost:3000/tamil-nadu/pc/salem');
   });
 
+  it('generates shareable URL for PC with year', () => {
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState('Tamil Nadu', 'constituencies', 'Salem', null, null, 2024, null, onNavigate)
+    );
+
+    const url = result.current.getShareableUrl({
+      state: 'Tamil Nadu',
+      view: 'constituencies',
+      pc: 'Salem',
+      district: null,
+      assembly: null,
+      year: 2024,
+      pcYear: null,
+    });
+
+    expect(url).toBe('http://localhost:3000/tamil-nadu/pc/salem?year=2024');
+  });
+
   it('generates shareable URL for assembly with year', () => {
     const onNavigate = vi.fn();
     const { result } = renderHook(() =>
@@ -162,6 +242,34 @@ describe('useUrlState', () => {
     });
 
     expect(url).toBe('http://localhost:3000/tamil-nadu/pc/salem/ac/omalur?year=2021');
+  });
+
+  it('generates shareable URL for assembly with PC year (year=pc-YYYY)', () => {
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(
+        'Andhra Pradesh',
+        'constituencies',
+        'Ongole',
+        null,
+        'Darsi',
+        null,
+        2024,
+        onNavigate
+      )
+    );
+
+    const url = result.current.getShareableUrl({
+      state: 'Andhra Pradesh',
+      view: 'constituencies',
+      pc: 'Ongole',
+      district: null,
+      assembly: 'Darsi',
+      year: null,
+      pcYear: 2024,
+    });
+
+    expect(url).toBe('http://localhost:3000/andhra-pradesh/pc/ongole/ac/darsi?year=pc-2024');
   });
 
   it('generates shareable URL for district', () => {
@@ -235,25 +343,6 @@ describe('useUrlState - Additional Functionality', () => {
     window.location = { ...mockLocation };
     window.history.replaceState = mockHistory.replaceState;
     window.history.pushState = mockHistory.pushState;
-  });
-
-  it('generates shareable URL with PC year', () => {
-    const onNavigate = vi.fn();
-    const { result } = renderHook(() =>
-      useUrlState('Tamil Nadu', 'constituencies', 'Salem', null, 'Omalur', 2021, 2024, onNavigate)
-    );
-
-    const url = result.current.getShareableUrl({
-      state: 'Tamil Nadu',
-      view: 'constituencies',
-      pc: 'Salem',
-      district: null,
-      assembly: 'Omalur',
-      year: 2021,
-      pcYear: 2024,
-    });
-
-    expect(url).toContain('pcYear=2024');
   });
 
   it('handles special characters in names', () => {

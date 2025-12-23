@@ -182,7 +182,6 @@ export function useParliamentResults(): UseParliamentResultsReturn {
       try {
         const response = await fetch(PC_ELECTIONS.getIndexPath(slug));
         if (!response.ok) {
-          console.log(`No PC election data for ${stateName}`);
           return null;
         }
 
@@ -199,8 +198,7 @@ export function useParliamentResults(): UseParliamentResultsReturn {
         }
 
         return index;
-      } catch (err) {
-        console.log(`Failed to load PC election index for ${stateName}:`, err);
+      } catch {
         return null;
       }
     },
@@ -249,19 +247,15 @@ export function useParliamentResults(): UseParliamentResultsReturn {
   const getPCResult = useCallback(
     async (pcName: string, stateName: string, year?: number): Promise<PCElectionResult | null> => {
       const slug = getStateSlug(stateName);
-      console.log('[getPCResult] State:', stateName, '=> Slug:', slug, '| PC:', pcName);
 
       // Load index if not already loaded
       let index = indexCache.current.get(slug);
       if (!index) {
-        console.log('[getPCResult] Loading index...');
         const loadedIndex = await loadStateIndex(stateName);
         if (!loadedIndex) {
-          console.log('[getPCResult] FAILED to load index for', slug);
           return null;
         }
         index = loadedIndex;
-        console.log('[getPCResult] Index loaded, years:', index.availableYears);
       }
 
       // Determine year to use - always use latest if no year explicitly provided
@@ -274,24 +268,18 @@ export function useParliamentResults(): UseParliamentResultsReturn {
       // Load results for the year
       const results = await loadYearResults(stateName, targetYear);
       if (!results) {
-        console.log('[getPCResult] FAILED to load results for year', targetYear);
         return null;
       }
-      console.log('[getPCResult] Results loaded, keys count:', Object.keys(results).length);
 
       // Find the PC result using simplified lookup
       const normalizedSearch = normalizePCName(pcName);
-      console.log('[getPCResult] Searching for:', pcName, '-> normalized:', normalizedSearch);
 
       // Strategy 1: Direct key match
       let result = results[pcName.toUpperCase().trim()];
-      if (result) {
-        console.log('[getPCResult] ✓ Direct key match');
-      }
 
       // Strategy 2: Match by name properties (for schema ID-keyed data)
       if (!result) {
-        for (const [key, value] of Object.entries(results)) {
+        for (const [, value] of Object.entries(results)) {
           if (!value || typeof value !== 'object') continue;
 
           // Check constituencyName, constituencyNameOriginal, name
@@ -304,7 +292,6 @@ export function useParliamentResults(): UseParliamentResultsReturn {
           for (const name of namesToCheck) {
             if (normalizePCName(name) === normalizedSearch) {
               result = value;
-              console.log('[getPCResult] ✓ Name property match:', key, '→', name);
               break;
             }
           }
@@ -314,7 +301,7 @@ export function useParliamentResults(): UseParliamentResultsReturn {
 
       // Strategy 3: Partial match (one contains the other)
       if (!result) {
-        for (const [key, value] of Object.entries(results)) {
+        for (const [, value] of Object.entries(results)) {
           if (!value || typeof value !== 'object') continue;
 
           const namesToCheck = [
@@ -330,7 +317,6 @@ export function useParliamentResults(): UseParliamentResultsReturn {
               normalizedSearch.includes(normalizedName)
             ) {
               result = value;
-              console.log('[getPCResult] ✓ Partial match:', key, '→', name);
               break;
             }
           }

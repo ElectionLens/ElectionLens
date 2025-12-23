@@ -9,7 +9,7 @@ export interface UrlState {
   district: string | null;
   assembly: string | null;
   year: number | null;
-  pcYear: number | null; // Parliament contribution year for AC view
+  pcYear: number | null; // Parliament year for AC view (from year=pc-YYYY format)
 }
 
 /** Hook return type */
@@ -102,20 +102,21 @@ export function useUrlState(
     };
 
     // Parse year from query params
+    // Format: year=2024 (assembly/parliament) or year=pc-2024 (parliament contribution in AC view)
     const yearParam = searchParams.get('year');
     if (yearParam) {
-      const parsed = parseInt(yearParam, 10);
-      if (!isNaN(parsed)) {
-        result.year = parsed;
-      }
-    }
-
-    // Parse pcYear (parliament contribution year) from query params
-    const pcYearParam = searchParams.get('pcYear');
-    if (pcYearParam) {
-      const parsed = parseInt(pcYearParam, 10);
-      if (!isNaN(parsed)) {
-        result.pcYear = parsed;
+      if (yearParam.startsWith('pc-')) {
+        // Parliament contribution year: year=pc-2024
+        const parsed = parseInt(yearParam.slice(3), 10);
+        if (!isNaN(parsed)) {
+          result.pcYear = parsed;
+        }
+      } else {
+        // Regular year
+        const parsed = parseInt(yearParam, 10);
+        if (!isNaN(parsed)) {
+          result.year = parsed;
+        }
       }
     }
 
@@ -139,12 +140,24 @@ export function useUrlState(
 
     if (secondSegment === 'districts') {
       result.view = 'districts';
-    } else if (secondSegment === 'pc' && segments[2]) {
-      result.pc = decodePathSegment(segments[2]);
-      // Check for assembly: /state/pc/pc-name/ac/ac-name
-      if (segments[3]?.toLowerCase() === 'ac' && segments[4]) {
-        result.assembly = decodePathSegment(segments[4]);
+    } else if (secondSegment === 'ac') {
+      // /state/ac/ - All assemblies view
+      result.view = 'assemblies';
+      // Check for specific assembly: /state/ac/ac-name
+      if (segments[2]) {
+        result.assembly = decodePathSegment(segments[2]);
       }
+    } else if (secondSegment === 'pc') {
+      // /state/pc - constituencies view (same as /state)
+      // /state/pc/pc-name - specific PC view
+      if (segments[2]) {
+        result.pc = decodePathSegment(segments[2]);
+        // Check for assembly: /state/pc/pc-name/ac/ac-name
+        if (segments[3]?.toLowerCase() === 'ac' && segments[4]) {
+          result.assembly = decodePathSegment(segments[4]);
+        }
+      }
+      // If no PC name, stays as constituencies view (default)
     } else if (secondSegment === 'district' && segments[2]) {
       result.view = 'districts';
       result.district = decodePathSegment(segments[2]);
@@ -176,21 +189,30 @@ export function useUrlState(
         if (state.assembly) {
           path += `/ac/${encodePathSegment(state.assembly)}`;
         }
+      } else if (state.view === 'assemblies') {
+        path += '/ac';
+        if (state.assembly) {
+          path += `/${encodePathSegment(state.assembly)}`;
+        }
       } else if (state.view === 'districts') {
         path += '/districts';
       }
     }
 
-    // Add query params for year and pcYear if present and we have an assembly selected
+    // Add query params for year
+    // - For AC view with pcYear: year=pc-YYYY (parliament contribution)
+    // - For AC view with year: year=YYYY (assembly year)
+    // - For PC view with year: year=YYYY (parliament year)
     let fullPath = path;
     if (state.assembly) {
-      const params = new URLSearchParams();
-      if (state.year) params.set('year', state.year.toString());
-      if (state.pcYear) params.set('pcYear', state.pcYear.toString());
-      const queryString = params.toString();
-      if (queryString) {
-        fullPath = `${path}?${queryString}`;
+      if (state.pcYear) {
+        fullPath = `${path}?year=pc-${state.pcYear}`;
+      } else if (state.year) {
+        fullPath = `${path}?year=${state.year}`;
       }
+    } else if (state.pc && state.year) {
+      // PC view - year is parliament year
+      fullPath = `${path}?year=${state.year}`;
     }
 
     // Only update if path changed
@@ -220,20 +242,29 @@ export function useUrlState(
         if (state.assembly) {
           path += `/ac/${encodePathSegment(state.assembly)}`;
         }
+      } else if (state.view === 'assemblies') {
+        path += '/ac';
+        if (state.assembly) {
+          path += `/${encodePathSegment(state.assembly)}`;
+        }
       } else if (state.view === 'districts') {
         path += '/districts';
       }
     }
 
-    // Add query params for year and pcYear if present and we have an assembly selected
+    // Add query params for year
+    // - For AC view with pcYear: year=pc-YYYY (parliament contribution)
+    // - For AC view with year: year=YYYY (assembly year)
+    // - For PC view with year: year=YYYY (parliament year)
     if (state.assembly) {
-      const params = new URLSearchParams();
-      if (state.year) params.set('year', state.year.toString());
-      if (state.pcYear) params.set('pcYear', state.pcYear.toString());
-      const queryString = params.toString();
-      if (queryString) {
-        path = `${path}?${queryString}`;
+      if (state.pcYear) {
+        path = `${path}?year=pc-${state.pcYear}`;
+      } else if (state.year) {
+        path = `${path}?year=${state.year}`;
       }
+    } else if (state.pc && state.year) {
+      // PC view - year is parliament year
+      path = `${path}?year=${state.year}`;
     }
 
     return `${base}${path}`;
@@ -266,7 +297,7 @@ export function useUrlState(
     }
   }, [getUrlState, isDataReady]);
 
-  // Update URL when state changes (including year and pcYear)
+  // Update URL when state changes
   useEffect(() => {
     // Don't update URL during initial mount or while processing URL-based navigation
     if (!isInitialMount.current && !isProcessingUrlNavigation.current) {
