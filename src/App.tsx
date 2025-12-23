@@ -1157,6 +1157,7 @@ function App(): JSX.Element {
 
         <MapView
           statesGeoJSON={statesGeoJSON}
+          parliamentGeoJSON={parliamentGeoJSON}
           currentData={currentData}
           currentState={currentState}
           currentView={currentView}

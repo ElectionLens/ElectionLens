@@ -327,6 +327,8 @@ export interface SidebarProps {
 /** MapView component props */
 export interface MapViewProps {
   statesGeoJSON: StatesGeoJSON | null;
+  /** Parliament constituencies GeoJSON for showing context */
+  parliamentGeoJSON: ConstituenciesGeoJSON | null;
   currentData: GeoJSONData | null;
   currentState: string | null;
   currentView: ViewMode;
