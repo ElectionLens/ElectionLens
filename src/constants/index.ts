@@ -174,7 +174,6 @@ export const COLOR_PALETTES: ColorPalettes = {
 export const ASM_STATE_ALIASES: StateAliasMap = {
   ODISHA: 'ORISSA',
   UTTARAKHAND: 'UTTARKHAND',
-  // Note: TELANGANA now exists in assembly GeoJSON as a separate state (was removed from alias)
   // J&K - app uses "JAMMU AND KASHMIR", GeoJSON uses "JAMMU & KASHMIR"
   'JAMMU AND KASHMIR': 'JAMMU & KASHMIR',
   'JAMMU AND KASHMĪR': 'JAMMU & KASHMIR',

@@ -45,19 +45,22 @@ describe('Firebase utilities', () => {
   });
 
   describe('initializeFirebase', () => {
-    it('initializes with fallback config when env vars are not set', async () => {
+    it('does not initialize when env vars are not set', async () => {
       // Re-import with fresh state
       vi.resetModules();
       const firebaseModule = await import('./firebase');
 
-      // Mock env without API key - should still work with fallback
+      // Mock env without API key - should NOT initialize
       vi.stubEnv('VITE_FIREBASE_API_KEY', '');
       vi.stubEnv('VITE_FIREBASE_PROJECT_ID', '');
 
+      const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
       firebaseModule.initializeFirebase();
 
-      // Should initialize with fallback production config
-      expect(initializeApp).toHaveBeenCalled();
+      // Should NOT initialize without env config
+      expect(initializeApp).not.toHaveBeenCalled();
+      expect(consoleSpy).toHaveBeenCalledWith('Firebase config not found, analytics disabled');
+      consoleSpy.mockRestore();
     });
 
     it('initializes Firebase with env config when available', async () => {

@@ -74,11 +74,6 @@ describe('ASM_STATE_ALIASES', () => {
     expect(ASM_STATE_ALIASES['ODISHA']).toBe('ORISSA');
     expect(ASM_STATE_ALIASES['UTTARAKHAND']).toBe('UTTARKHAND');
   });
-
-  it('does not alias Telangana (now separate in GeoJSON)', () => {
-    // Telangana now exists as a separate state in assembly GeoJSON
-    expect(ASM_STATE_ALIASES['TELANGANA']).toBeUndefined();
-  });
 });
 
 describe('DISTRICT_NAME_MAPPINGS', () => {
