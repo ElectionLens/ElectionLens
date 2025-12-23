@@ -146,14 +146,25 @@ export function useElectionData(): UseElectionDataReturn {
       let data = (await getFromDB(CACHE_KEYS.ASSEMBLY)) as AssembliesGeoJSON | null;
 
       if (data) {
-        // Filter cached data too (in case old cache has invalid features)
-        const validFeatures = filterValidAssemblyFeatures(data.features);
-        if (validFeatures.length !== data.features.length) {
-          data = { type: 'FeatureCollection', features: validFeatures };
-          // Update cache with filtered data
-          saveToDB(CACHE_KEYS.ASSEMBLY, data);
+        // Check if cache has TELANGANA - if not, cache is stale and needs refresh
+        const hasTelangana = data.features.some(
+          (f) => f.properties.ST_NAME?.toUpperCase() === 'TELANGANA'
+        );
+        if (!hasTelangana) {
+          console.log('[loadAssemblyData] Cache is stale (missing TELANGANA), fetching fresh data');
+          data = null; // Force fresh fetch
+        } else {
+          // Filter cached data too (in case old cache has invalid features)
+          const validFeatures = filterValidAssemblyFeatures(data.features);
+          if (validFeatures.length !== data.features.length) {
+            data = { type: 'FeatureCollection', features: validFeatures };
+            // Update cache with filtered data
+            saveToDB(CACHE_KEYS.ASSEMBLY, data);
+          }
         }
-      } else {
+      }
+
+      if (!data) {
         const response = await fetch(ASSEMBLY.CONSTITUENCIES);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const rawData = (await response.json()) as GeoJSONData | AssemblyFeature[];
