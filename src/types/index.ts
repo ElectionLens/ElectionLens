@@ -327,6 +327,10 @@ export interface SidebarProps {
 /** MapView component props */
 export interface MapViewProps {
   statesGeoJSON: StatesGeoJSON | null;
+  /** Parliament constituencies GeoJSON for showing context */
+  parliamentGeoJSON: ConstituenciesGeoJSON | null;
+  /** Districts cache for showing context when zoomed into a district */
+  districtsCache?: DistrictsCache | undefined;
   currentData: GeoJSONData | null;
   currentState: string | null;
   currentView: ViewMode;

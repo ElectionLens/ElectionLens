@@ -32,6 +32,7 @@ function App(): JSX.Element {
     statesGeoJSON,
     parliamentGeoJSON,
     assemblyGeoJSON,
+    districtsCache,
     currentState,
     currentView,
     currentPC,
@@ -1157,6 +1158,8 @@ function App(): JSX.Element {
 
         <MapView
           statesGeoJSON={statesGeoJSON}
+          parliamentGeoJSON={parliamentGeoJSON}
+          districtsCache={districtsCache}
           currentData={currentData}
           currentState={currentState}
           currentView={currentView}
