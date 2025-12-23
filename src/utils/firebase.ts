@@ -6,25 +6,14 @@ let app: FirebaseApp | null = null;
 let analytics: Analytics | null = null;
 let db: Firestore | null = null;
 
-// Production Firebase config (safe to expose - security comes from Firestore rules)
-const PROD_FIREBASE_CONFIG: FirebaseOptions = {
-  apiKey: 'AIzaSyCTgdX62xH-GTBucB1ebQ-wb4oFhWHa4tU',
-  authDomain: 'electionlens.firebaseapp.com',
-  projectId: 'electionlens',
-  storageBucket: 'electionlens.firebasestorage.app',
-  messagingSenderId: '1067390497294',
-  appId: '1:1067390497294:web:2492e8b9839eb50eb8825f',
-  measurementId: 'G-BZ4GKH5YDV',
-};
-
 /**
  * Initialize Firebase app and analytics
- * Uses environment variables if available, falls back to production config
+ * Requires environment variables to be set (see .env.example)
  */
 export function initializeFirebase(): void {
-  // Try environment variables first, fall back to production config
-  const apiKey = import.meta.env['VITE_FIREBASE_API_KEY'] || PROD_FIREBASE_CONFIG.apiKey;
-  const projectId = import.meta.env['VITE_FIREBASE_PROJECT_ID'] || PROD_FIREBASE_CONFIG.projectId;
+  // Get config from environment variables
+  const apiKey = import.meta.env['VITE_FIREBASE_API_KEY'];
+  const projectId = import.meta.env['VITE_FIREBASE_PROJECT_ID'];
 
   // Only initialize if we have the required config
   if (!apiKey || !projectId) {
@@ -34,16 +23,12 @@ export function initializeFirebase(): void {
 
   const firebaseConfig: FirebaseOptions = {
     apiKey,
-    authDomain: import.meta.env['VITE_FIREBASE_AUTH_DOMAIN'] || PROD_FIREBASE_CONFIG.authDomain,
+    authDomain: import.meta.env['VITE_FIREBASE_AUTH_DOMAIN'],
     projectId,
-    storageBucket:
-      import.meta.env['VITE_FIREBASE_STORAGE_BUCKET'] || PROD_FIREBASE_CONFIG.storageBucket,
-    messagingSenderId:
-      import.meta.env['VITE_FIREBASE_MESSAGING_SENDER_ID'] ||
-      PROD_FIREBASE_CONFIG.messagingSenderId,
-    appId: import.meta.env['VITE_FIREBASE_APP_ID'] || PROD_FIREBASE_CONFIG.appId,
-    measurementId:
-      import.meta.env['VITE_FIREBASE_MEASUREMENT_ID'] || PROD_FIREBASE_CONFIG.measurementId,
+    storageBucket: import.meta.env['VITE_FIREBASE_STORAGE_BUCKET'],
+    messagingSenderId: import.meta.env['VITE_FIREBASE_MESSAGING_SENDER_ID'],
+    appId: import.meta.env['VITE_FIREBASE_APP_ID'],
+    measurementId: import.meta.env['VITE_FIREBASE_MEASUREMENT_ID'],
   };
 
   try {
