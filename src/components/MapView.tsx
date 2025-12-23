@@ -568,9 +568,12 @@ export function MapView({
   }, [currentState, currentView, currentPC, currentDistrict]);
 
   // Create unique key for GeoJSON to force re-render when data or selection changes
+  // Include first feature name to ensure uniqueness when different PCs have same assembly count
   const geoJsonKey = useMemo((): string => {
     const dataHash = currentData?.features?.length ?? 0;
-    return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${selectedAssembly ?? ''}-${dataHash}`;
+    const props = currentData?.features?.[0]?.properties as Record<string, unknown> | undefined;
+    const firstFeatureName = (props?.['AC_NAME'] ?? props?.['PC_NAME'] ?? '') as string;
+    return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${selectedAssembly ?? ''}-${dataHash}-${firstFeatureName}`;
   }, [level, currentState, currentPC, currentDistrict, selectedAssembly, currentData]);
 
   // Get the data to display (primary layer - either states or current sub-region)
