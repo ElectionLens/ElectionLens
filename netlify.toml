@@ -25,13 +25,15 @@
 [context.dev.environment]
   NODE_ENV = "dev"
 
-# Deploy Preview context (for PRs)
+# Deploy Preview context (for PRs) - DISABLED
+# Skip deploy previews to save build minutes
 [context.deploy-preview]
-  command = "npm run build"
+  ignore = "exit 0"
 
-# Branch deploy context
+# Branch deploy context - DISABLED
+# Only deploy from main branch
 [context.branch-deploy]
-  command = "npm run build"
+  ignore = "exit 0"
 
 # Dev context (for netlify dev)
 [dev]
