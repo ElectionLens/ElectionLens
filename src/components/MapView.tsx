@@ -724,8 +724,11 @@ export function MapView({
     if (!showBackgroundDistricts || !districtsCache || !currentState) return null;
 
     // Get the state file name to look up in cache
-    const stateFileName = Object.keys(districtsCache).find((key) =>
-      key.toLowerCase().includes(currentState.toLowerCase().replace(/\s+/g, '-'))
+    // Use normalizeName to handle diacritics (e.g., "Tamil Nādu" -> "Tamil Nadu")
+    const normalizedStateName = normalizeName(currentState).toLowerCase().replace(/\s+/g, '-');
+    const stateFileName = Object.keys(districtsCache).find(
+      (key) =>
+        key.toLowerCase() === normalizedStateName || key.toLowerCase().includes(normalizedStateName)
     );
 
     if (!stateFileName || !districtsCache[stateFileName]) return null;
