@@ -16,7 +16,7 @@ import type {
   LeafletMouseEvent as LLeafletMouseEvent,
   LatLngBoundsExpression,
 } from 'leaflet';
-import { getFeatureStyle, getHoverStyle, normalizeName } from '../utils/helpers';
+import { getFeatureStyle, getHoverStyle, normalizeName, getStateFileName } from '../utils/helpers';
 import { COLOR_PALETTES } from '../constants';
 import { clearAllCache } from '../utils/db';
 import { FeedbackModal } from './FeedbackModal';
@@ -665,12 +665,12 @@ export function MapView({
     };
   }, [showBackgroundPCs, parliamentGeoJSON, currentState, currentPC]);
 
-  // Style for background PCs (light purple tint)
+  // Style for background PCs (light orange tint - same as districts for consistency)
   const backgroundPCStyle = useCallback(
     (): L.PathOptions => ({
-      fillColor: '#e0e7ff',
+      fillColor: '#fed7aa',
       fillOpacity: 0.6,
-      color: '#a5b4fc',
+      color: '#fdba74',
       weight: 1,
       opacity: 0.8,
     }),
@@ -721,17 +721,27 @@ export function MapView({
 
   // Get other districts in the same state (excluding current district)
   const backgroundDistrictsData = useMemo(() => {
-    if (!showBackgroundDistricts || !districtsCache || !currentState) return null;
+    console.log('[BackgroundDistricts] Check:', {
+      showBackgroundDistricts,
+      currentDistrict,
+      currentState,
+      hasCacheObj: !!districtsCache,
+      cacheKeys: districtsCache ? Object.keys(districtsCache) : [],
+    });
 
-    // Get the state file name to look up in cache
-    // Use normalizeName to handle diacritics (e.g., "Tamil Nādu" -> "Tamil Nadu")
-    const normalizedStateName = normalizeName(currentState).toLowerCase().replace(/\s+/g, '-');
-    const stateFileName = Object.keys(districtsCache).find(
-      (key) =>
-        key.toLowerCase() === normalizedStateName || key.toLowerCase().includes(normalizedStateName)
-    );
+    if (!showBackgroundDistricts || !districtsCache || !currentState) {
+      console.log('[BackgroundDistricts] Skipping - conditions not met');
+      return null;
+    }
 
-    if (!stateFileName || !districtsCache[stateFileName]) return null;
+    // Get the state file name (e.g., "TN" for Tamil Nadu) to look up in cache
+    const stateFileName = getStateFileName(currentState);
+    console.log('[BackgroundDistricts] Looking for state file:', stateFileName);
+
+    if (!stateFileName || !districtsCache[stateFileName]) {
+      console.log('[BackgroundDistricts] No districts found in cache for', stateFileName);
+      return null;
+    }
 
     const stateDistricts = districtsCache[stateFileName];
     const currentDistrictNormalized = currentDistrict?.toLowerCase() ?? '';
@@ -1089,8 +1099,8 @@ export function MapView({
         )}
 
         {/* Background states layer - uses backgroundPane for proper z-ordering */}
-        {/* Only shows states OTHER than the current one */}
-        {showBackgroundStates && statesGeoJSON && !currentPC && (
+        {/* Shows all states OTHER than the current one (including in PC/district views) */}
+        {showBackgroundStates && statesGeoJSON && (
           <GeoJSON
             key={`background-states-${currentState}`}
             data={
