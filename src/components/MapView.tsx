@@ -482,6 +482,7 @@ function FitBounds({ geojson, selectedFeatureName }: ExtendedFitBoundsProps): nu
 export function MapView({
   statesGeoJSON,
   parliamentGeoJSON,
+  districtsCache,
   currentData,
   currentState,
   currentView,
@@ -690,6 +691,90 @@ export function MapView({
       });
     },
     [onConstituencyClick, backgroundPCStyle]
+  );
+
+  // Background Districts - shown when viewing assemblies within a district
+  const showBackgroundDistricts = Boolean(currentDistrict) && districtsCache && currentState;
+
+  // Get other districts in the same state (excluding current district)
+  const backgroundDistrictsData = useMemo(() => {
+    if (!showBackgroundDistricts || !districtsCache || !currentState) return null;
+
+    // Get the state file name to look up in cache
+    const stateFileName = Object.keys(districtsCache).find((key) =>
+      key.toLowerCase().includes(currentState.toLowerCase().replace(/\s+/g, '-'))
+    );
+
+    if (!stateFileName || !districtsCache[stateFileName]) return null;
+
+    const stateDistricts = districtsCache[stateFileName];
+    const currentDistrictNormalized = currentDistrict?.toLowerCase() ?? '';
+
+    const otherDistricts = stateDistricts.features.filter((f) => {
+      const props = f.properties;
+      const districtName = (props.district ?? props.NAME ?? props.DISTRICT ?? '').toLowerCase();
+
+      // Different district
+      return districtName !== currentDistrictNormalized;
+    });
+
+    if (otherDistricts.length === 0) return null;
+
+    return {
+      type: 'FeatureCollection' as const,
+      features: otherDistricts,
+    };
+  }, [showBackgroundDistricts, districtsCache, currentState, currentDistrict]);
+
+  // Style for background districts (light orange tint)
+  const backgroundDistrictStyle = useCallback(
+    (): L.PathOptions => ({
+      fillColor: '#fed7aa',
+      fillOpacity: 0.6,
+      color: '#fdba74',
+      weight: 1,
+      opacity: 0.8,
+    }),
+    []
+  );
+
+  // Click handler for background districts
+  const onBackgroundDistrictClick = useCallback(
+    (feature: Feature, layer: Layer): void => {
+      const typedLayer = layer as unknown as FeatureLayer;
+      const props = feature.properties as DistrictProperties;
+      const districtName = props.district ?? props.NAME ?? props.DISTRICT ?? '';
+
+      // Tooltip on hover
+      typedLayer.bindTooltip(`Go to ${districtName}`, {
+        permanent: false,
+        direction: 'center',
+        className: 'hover-tooltip background-state-tooltip',
+      });
+
+      typedLayer.on({
+        mouseover: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle({
+            fillColor: '#fb923c',
+            fillOpacity: 0.7,
+            color: '#f97316',
+            weight: 2,
+          });
+        },
+        mouseout: (e: LLeafletMouseEvent): void => {
+          const l = e.target as FeatureLayer;
+          l.setStyle(backgroundDistrictStyle());
+        },
+        click: (e: LLeafletMouseEvent): void => {
+          // Stop propagation to prevent other layers from receiving this click
+          L.DomEvent.stopPropagation(e);
+          // Navigate to clicked district
+          onDistrictClick(districtName, feature as DistrictFeature);
+        },
+      });
+    },
+    [onDistrictClick, backgroundDistrictStyle]
   );
 
   // Compute legend info
@@ -1008,6 +1093,18 @@ export function MapView({
             data={backgroundPCsData as GeoJSON.FeatureCollection}
             style={backgroundPCStyle as L.StyleFunction}
             onEachFeature={onBackgroundPCClick as (feature: GeoJSON.Feature, layer: Layer) => void}
+          />
+        )}
+
+        {/* Background Districts layer - shows other districts when viewing assemblies in district view */}
+        {backgroundDistrictsData && (
+          <GeoJSON
+            key={`background-districts-${currentState}-${currentDistrict}`}
+            data={backgroundDistrictsData as GeoJSON.FeatureCollection}
+            style={backgroundDistrictStyle as L.StyleFunction}
+            onEachFeature={
+              onBackgroundDistrictClick as (feature: GeoJSON.Feature, layer: Layer) => void
+            }
           />
         )}
       </MapContainer>
