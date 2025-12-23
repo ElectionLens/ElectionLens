@@ -73,6 +73,7 @@ describe('ASM_STATE_ALIASES', () => {
   it('maps modern state names to legacy names', () => {
     expect(ASM_STATE_ALIASES['ODISHA']).toBe('ORISSA');
     expect(ASM_STATE_ALIASES['UTTARAKHAND']).toBe('UTTARKHAND');
+    expect(ASM_STATE_ALIASES['NCT OF DELHI']).toBe('DELHI');
   });
 });
 
@@ -111,6 +112,33 @@ describe('DISTRICT_NAME_MAPPINGS', () => {
     expect(DISTRICT_NAME_MAPPINGS['RAMANAGARA|KARNATAKA']).toBe('BANGALORE RURAL');
     // Chikkaballapura was carved from Kolar in 2007
     expect(DISTRICT_NAME_MAPPINGS['CHIKKABALLAPURA|KARNATAKA']).toBe('KOLAR');
+  });
+
+  it('handles Bihar Hindi district names', () => {
+    // West/East Champaran use Hindi names in assembly file
+    expect(DISTRICT_NAME_MAPPINGS['WEST CHAMPARAN|BIHAR']).toBe('PASHCHIM CHAMPARAN');
+    expect(DISTRICT_NAME_MAPPINGS['EAST CHAMPARAN|BIHAR']).toBe('PURBA CHAMPARAN');
+    expect(DISTRICT_NAME_MAPPINGS['KAIMUR|BIHAR']).toBe('KAIMUR (BHABUA) *');
+  });
+
+  it('handles West Bengal spelling differences', () => {
+    expect(DISTRICT_NAME_MAPPINGS['DARJEELING|WEST BENGAL']).toBe('DARJILING');
+    expect(DISTRICT_NAME_MAPPINGS['HOWRAH|WEST BENGAL']).toBe('HAORA');
+    expect(DISTRICT_NAME_MAPPINGS['HOOGHLY|WEST BENGAL']).toBe('HUGLI');
+    expect(DISTRICT_NAME_MAPPINGS['PURULIA|WEST BENGAL']).toBe('PURULIYA');
+    expect(DISTRICT_NAME_MAPPINGS['COOCH BEHAR|WEST BENGAL']).toBe('KOCH BIHAR');
+  });
+
+  it('handles Gujarat spelling differences', () => {
+    expect(DISTRICT_NAME_MAPPINGS['AHMEDABAD|GUJARAT']).toBe('AHMADABAD');
+    expect(DISTRICT_NAME_MAPPINGS['MEHSANA|GUJARAT']).toBe('MAHESANA');
+    expect(DISTRICT_NAME_MAPPINGS['KUTCH|GUJARAT']).toBe('KACHCHH');
+  });
+
+  it('handles Assam district name changes', () => {
+    expect(DISTRICT_NAME_MAPPINGS['SIVASAGAR|ASSAM']).toBe('SIBSAGAR');
+    expect(DISTRICT_NAME_MAPPINGS['DIMA HASAO|ASSAM']).toBe('NORTH CACHAR HILLS');
+    expect(DISTRICT_NAME_MAPPINGS['MORIGAON|ASSAM']).toBe('MARIGAON');
   });
 });
 
