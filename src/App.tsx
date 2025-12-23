@@ -124,6 +124,12 @@ function App(): JSX.Element {
           matchedState = found.properties.shapeName ?? found.properties.ST_NM ?? urlState.state;
         }
       }
+      console.log(
+        '[handleUrlNavigate] urlState.state:',
+        urlState.state,
+        '→ matchedState:',
+        matchedState
+      );
 
       if (urlState.pc) {
         // First navigate to state, then to PC
