@@ -187,12 +187,17 @@ jobs:
       - name: Validate all PC/AC URLs
         run: node scripts/validate-all-urls.mjs
       
-      - name: Upload validation report
+      - name: Validate district views
+        run: node scripts/validate-district-views.mjs
+      
+      - name: Upload validation reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: url-validation-report
-          path: url-validation-report.json
+          name: validation-reports
+          path: |
+            url-validation-report.json
+            district-validation-report.json
           retention-days: 7
 
   # ===========================================
