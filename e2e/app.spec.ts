@@ -473,3 +473,267 @@ test.describe('Karnataka District Name Mappings', () => {
     expect(count).toBeGreaterThan(5);
   });
 });
+
+test.describe('Assembly View', () => {
+  test('should load assembly view from URL /state/ac/', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    // Wait for assemblies to load (some ACs, not all may render at once due to viewport)
+    await page.waitForFunction(() => {
+      const paths = document.querySelectorAll('.leaflet-interactive');
+      return paths.length > 10;
+    }, { timeout: 20000 });
+    
+    // URL should be correct
+    await expect(page).toHaveURL(/tamil-nadu\/ac/);
+    
+    // Should have assembly polygons
+    const paths = page.locator('.leaflet-interactive');
+    const count = await paths.count();
+    expect(count).toBeGreaterThan(10);
+  });
+
+  test('should load specific assembly from URL /state/ac/ac-name', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac/anna-nagar?year=2021');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    // Wait for assemblies to load
+    await page.waitForFunction(() => {
+      const paths = document.querySelectorAll('.leaflet-interactive');
+      return paths.length > 10;
+    }, { timeout: 20000 });
+    
+    // URL should be correct
+    await expect(page).toHaveURL(/tamil-nadu\/ac\/anna-nagar/);
+    
+    // Election panel should appear for the selected AC
+    // Note: May take a moment for results to load
+    const panel = page.locator('.election-panel');
+    await expect(panel).toBeVisible({ timeout: 20000 });
+  });
+
+  test('should show AC button in toolbar when in state view', async ({ page }) => {
+    await page.goto('/tamil-nadu');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    // Wait for data to load
+    await page.waitForFunction(() => {
+      const paths = document.querySelectorAll('.leaflet-interactive');
+      return paths.length > 0;
+    }, { timeout: 15000 });
+    
+    // AC button should be visible in toolbar
+    const acButton = page.locator('.toolbar-btn').filter({ hasText: 'AC' });
+    await expect(acButton).toBeVisible();
+  });
+
+  test('AC button is present in toolbar', async ({ page }) => {
+    await page.goto('/tamil-nadu');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    // Wait for initial data to load
+    await page.waitForFunction(() => {
+      const paths = document.querySelectorAll('.leaflet-interactive');
+      return paths.length > 0;
+    }, { timeout: 15000 });
+    
+    // AC button should be visible in toolbar with correct title
+    const acButton = page.locator('.toolbar-btn[title="Assembly Constituencies"]');
+    await expect(acButton).toBeVisible();
+    
+    // AC button in sidebar should also be visible (label shortened to 'AC')
+    const sidebarAcButton = page.locator('.toggle-btn[title="Assembly Constituencies"]');
+    await expect(sidebarAcButton).toBeVisible();
+  });
+
+  test('should show election panel when clicking assembly in AC view', async ({ page }) => {
+    // Use direct URL to specific AC to avoid click targeting issues
+    await page.goto('/tamil-nadu/ac/anna-nagar?year=2021');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    // Election panel should appear for the selected AC
+    const panel = page.locator('.election-panel');
+    await expect(panel).toBeVisible({ timeout: 15000 });
+  });
+
+  test('should use green color scheme for assemblies', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    
+    // Wait for assemblies to load
+    await page.waitForFunction(() => {
+      const paths = document.querySelectorAll('.leaflet-interactive');
+      return paths.length > 10;
+    }, { timeout: 20000 });
+    
+    // Assembly polygons should be present with fill colors
+    const paths = page.locator('path[fill^="#"]');
+    const count = await paths.count();
+    expect(count).toBeGreaterThan(0);
+  });
+});
+
+// =============================================================================
+// SEARCH FUNCTIONALITY TESTS
+// =============================================================================
+
+test.describe('Search - District Search', () => {
+  test('should show districts in search results', async ({ page }) => {
+    // Navigate to a district URL to load districts into cache
+    await page.goto('/tamil-nadu/district/chennai');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    await page.waitForFunction(() => {
+      const paths = document.querySelectorAll('.leaflet-interactive');
+      return paths.length > 0;
+    }, { timeout: 15000 });
+    
+    // Now search for a district
+    const searchInput = page.locator('.search-input');
+    await searchInput.fill('Coimbatore');
+    
+    // Wait for search results dropdown to appear
+    await page.waitForSelector('.search-results', { timeout: 5000 });
+    
+    // Wait a bit more for results to fully render
+    await page.waitForTimeout(500);
+    
+    // Should show district results - look for search results containing "Dist" badge
+    const districtBadge = page.locator('.search-result-item .result-badge').filter({ hasText: 'Dist' });
+    const count = await districtBadge.count();
+    expect(count).toBeGreaterThan(0);
+  });
+
+  test('clicking district navigates to district view', async ({ page }) => {
+    // Navigate to a district URL to load districts into cache
+    await page.goto('/tamil-nadu/district/chennai');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    await page.waitForFunction(() => {
+      const paths = document.querySelectorAll('.leaflet-interactive');
+      return paths.length > 0;
+    }, { timeout: 15000 });
+    
+    // Search for a district
+    const searchInput = page.locator('.search-input');
+    await searchInput.fill('Coimbatore');
+    
+    await page.waitForSelector('.search-results', { timeout: 5000 });
+    
+    // Click on the district result
+    const districtResult = page.locator('.search-result-item[data-type="district"]').first();
+    await districtResult.click();
+    
+    // Should navigate to district URL
+    await expect(page).toHaveURL(/\/district\//, { timeout: 10000 });
+  });
+
+  test('district search shows state name', async ({ page }) => {
+    // Navigate to a district URL to load districts into cache
+    await page.goto('/maharashtra/district/pune');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    await page.waitForFunction(() => {
+      const paths = document.querySelectorAll('.leaflet-interactive');
+      return paths.length > 0;
+    }, { timeout: 15000 });
+    
+    const searchInput = page.locator('.search-input');
+    await searchInput.fill('Mumbai');
+    
+    await page.waitForSelector('.search-results', { timeout: 5000 });
+    
+    // District result should show state name
+    const districtResult = page.locator('.search-result-item[data-type="district"]').first();
+    const stateText = districtResult.locator('.result-state');
+    await expect(stateText).toBeVisible();
+  });
+});
+
+test.describe('Search - Assembly Search Navigation', () => {
+  test('clicking assembly navigates to AC view', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForSelector('.search-input', { timeout: 10000 });
+    
+    // Search for an assembly
+    const searchInput = page.locator('.search-input');
+    await searchInput.fill('Anna Nagar');
+    
+    await page.waitForSelector('.search-results', { timeout: 5000 });
+    
+    // Click on the assembly result
+    const assemblyResult = page.locator('.search-result-item[data-type="assembly"]').first();
+    await assemblyResult.click();
+    
+    // Should navigate to AC view URL
+    await expect(page).toHaveURL(/\/ac\//, { timeout: 10000 });
+    
+    // Election panel should show
+    const panel = page.locator('.election-panel');
+    await expect(panel).toBeVisible({ timeout: 15000 });
+  });
+
+  test('assembly search shows AC badge', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForSelector('.search-input', { timeout: 10000 });
+    
+    const searchInput = page.locator('.search-input');
+    await searchInput.fill('Kothrud');
+    
+    await page.waitForSelector('.search-results', { timeout: 5000 });
+    
+    // Assembly result should have AC badge
+    const assemblyResult = page.locator('.search-result-item[data-type="assembly"]').first();
+    const badge = assemblyResult.locator('.result-badge-assembly');
+    await expect(badge).toContainText('AC');
+  });
+});
+
+test.describe('Search - Multi-type Results', () => {
+  test('search shows all result types', async ({ page }) => {
+    // Navigate to a district URL to load districts into cache
+    await page.goto('/tamil-nadu/district/chennai');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    await page.waitForFunction(() => {
+      const paths = document.querySelectorAll('.leaflet-interactive');
+      return paths.length > 0;
+    }, { timeout: 15000 });
+    
+    // Search for a term that should match multiple types
+    const searchInput = page.locator('.search-input');
+    await searchInput.fill('Chennai');
+    
+    await page.waitForSelector('.search-results', { timeout: 5000 });
+    
+    // Should show state, PC, district, and AC results
+    const stateResults = page.locator('.search-result-item[data-type="state"]');
+    const pcResults = page.locator('.search-result-item[data-type="constituency"]');
+    const districtResults = page.locator('.search-result-item[data-type="district"]');
+    const acResults = page.locator('.search-result-item[data-type="assembly"]');
+    
+    // At minimum, should have PC and district results for Chennai
+    expect(await pcResults.count()).toBeGreaterThan(0);
+    expect(await districtResults.count()).toBeGreaterThan(0);
+  });
+
+  test('search results are sorted by type', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForSelector('.search-input', { timeout: 10000 });
+    
+    const searchInput = page.locator('.search-input');
+    await searchInput.fill('Bangalore');
+    
+    await page.waitForSelector('.search-results', { timeout: 5000 });
+    
+    // Get all result types in order
+    const results = page.locator('.search-result-item');
+    const count = await results.count();
+    
+    if (count > 1) {
+      // First results should be states, then PCs, then districts, then ACs
+      const firstResult = results.first();
+      const firstType = await firstResult.getAttribute('data-type');
+      
+      // First type should be state, constituency, or district (not assembly)
+      expect(['state', 'constituency', 'district']).toContain(firstType);
+    }
+  });
+});

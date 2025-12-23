@@ -10,6 +10,7 @@ import {
   Map,
   Layers,
   MessageSquare,
+  Landmark,
 } from 'lucide-react';
 import type {
   Layer,
@@ -159,6 +160,13 @@ function MapToolbar({
             title="Districts"
           >
             <Map size={14} /> Dist
+          </button>
+          <button
+            className={`toolbar-btn toolbar-toggle ${currentView === 'assemblies' ? 'active' : ''}`}
+            onClick={() => onSwitchView('assemblies')}
+            title="Assembly Constituencies"
+          >
+            <Landmark size={14} /> AC
           </button>
         </div>
       )}
@@ -516,6 +524,7 @@ export function MapView({
   parliamentContributions,
   availablePCYears,
   selectedACPCYear,
+  pcContributionShareUrl,
   pcElectionResult,
   pcShareUrl,
   pcAvailableYears,
@@ -563,6 +572,7 @@ export function MapView({
   // Determine the level for styling
   const level = useMemo((): MapLevel => {
     if (currentPC ?? currentDistrict) return 'assemblies';
+    if (currentView === 'assemblies') return 'assemblies';
     if (currentState) return currentView === 'constituencies' ? 'constituencies' : 'districts';
     return 'states';
   }, [currentState, currentView, currentPC, currentDistrict]);
@@ -721,25 +731,14 @@ export function MapView({
 
   // Get other districts in the same state (excluding current district)
   const backgroundDistrictsData = useMemo(() => {
-    console.log('[BackgroundDistricts] Check:', {
-      showBackgroundDistricts,
-      currentDistrict,
-      currentState,
-      hasCacheObj: !!districtsCache,
-      cacheKeys: districtsCache ? Object.keys(districtsCache) : [],
-    });
-
     if (!showBackgroundDistricts || !districtsCache || !currentState) {
-      console.log('[BackgroundDistricts] Skipping - conditions not met');
       return null;
     }
 
     // Get the state file name (e.g., "TN" for Tamil Nadu) to look up in cache
     const stateFileName = getStateFileName(currentState);
-    console.log('[BackgroundDistricts] Looking for state file:', stateFileName);
 
     if (!stateFileName || !districtsCache[stateFileName]) {
-      console.log('[BackgroundDistricts] No districts found in cache for', stateFileName);
       return null;
     }
 
@@ -1175,6 +1174,7 @@ export function MapView({
             availablePCYears={availablePCYears}
             selectedPCYear={selectedACPCYear}
             onPCYearChange={onACPCYearChange}
+            pcContributionShareUrl={pcContributionShareUrl}
           />
         </Suspense>
       )}
