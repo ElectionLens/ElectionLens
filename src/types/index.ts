@@ -175,7 +175,7 @@ export type GeoJSONData =
 export type MapLevel = 'states' | 'districts' | 'constituencies' | 'assemblies';
 
 /** View modes for state-level display */
-export type ViewMode = 'constituencies' | 'districts';
+export type ViewMode = 'constituencies' | 'districts' | 'assemblies';
 
 // ============================================================
 // Style Types
@@ -285,11 +285,13 @@ export interface UseElectionDataReturn {
   getConstituenciesForState: (stateName: string) => ConstituencyFeature[];
   getAssembliesForPC: (pcName: string, stateName: string) => AssemblyFeature[];
   getAssembliesForDistrict: (districtName: string, stateName: string) => AssemblyFeature[];
+  getAssembliesForState: (stateName: string) => AssemblyFeature[];
 
   // Navigation actions
   navigateToState: (stateName: string) => Promise<ConstituenciesGeoJSON | DistrictsGeoJSON | null>;
   navigateToPC: (pcName: string, stateName: string) => Promise<AssembliesGeoJSON>;
   navigateToDistrict: (districtName: string, stateName: string) => Promise<AssembliesGeoJSON>;
+  navigateToAssemblies: (stateName: string) => Promise<AssembliesGeoJSON>;
   loadDistrictsForState: (stateName: string) => Promise<DistrictsGeoJSON | null>;
   switchView: (view: ViewMode) => void;
   resetView: () => void;
@@ -363,6 +365,8 @@ export interface MapViewProps {
   availablePCYears?: number[] | undefined;
   /** Selected parliament year in AC panel */
   selectedACPCYear?: number | null | undefined;
+  /** Share URL for PC contribution in AC panel */
+  pcContributionShareUrl?: string | undefined;
   /** PC election result */
   pcElectionResult?: PCElectionResult | null | undefined;
   pcShareUrl?: string | undefined;

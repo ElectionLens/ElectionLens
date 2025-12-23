@@ -38,6 +38,9 @@ const stats = {
   // Per-state coverage tracking
   stateGeoJSONCoverage: {}, // { stateId: { pcTotal, pcWithGeo, acTotal, acWithGeo } }
   statesMissingGeoJSON: [], // States with 0% AC GeoJSON coverage
+  // AC View URL stats
+  acViewUrls: [],  // Sample AC view URLs
+  stateAcViewUrls: [],  // State-level AC view URLs
 };
 
 /**
@@ -129,6 +132,19 @@ function generatePCUrl(state, pc, year) {
   const stateSlug = slugify(state.name);
   const pcSlug = slugify(pc.name);
   return `/${stateSlug}/pc/${pcSlug}?year=${year}`;
+}
+
+// AC View URL (new format: /state/ac/ac-name)
+function generateACViewUrl(state, ac, year) {
+  const stateSlug = slugify(state.name);
+  const acSlug = slugify(ac.name);
+  return `/${stateSlug}/ac/${acSlug}?year=${year}`;
+}
+
+// State AC View URL (all assemblies for a state)
+function generateStateACViewUrl(state) {
+  const stateSlug = slugify(state.name);
+  return `/${stateSlug}/ac`;
 }
 
 // ============================================================================
@@ -351,6 +367,17 @@ for (const state of filteredStates) {
     });
   }
 
+  // Generate AC view URLs (new format: /state/ac and /state/ac/ac-name)
+  stats.stateAcViewUrls.push(generateStateACViewUrl(state));
+  
+  // Generate sample AC view URLs (first 3 ACs per state for verification)
+  const sampleACs = stateACs.slice(0, 3);
+  for (const ac of sampleACs) {
+    if (latestACYear) {
+      stats.acViewUrls.push(generateACViewUrl(state, ac, latestACYear));
+    }
+  }
+
   // State summary
   const pcStatus = statePCErrors === 0 ? '✅' : '⚠️';
   const acStatus = stateACErrors === 0 ? '✅' : '⚠️';
@@ -392,6 +419,14 @@ console.log(`  With GeoJSON: ${stats.acWithGeo} (${(stats.acWithGeo/stats.totalA
 console.log(`  With Election Data: ${stats.acWithData} (${(stats.acWithData/stats.totalACs*100).toFixed(1)}%)`);
 console.log(`  Data Lookup OK: ${stats.acDataLookupOk}/${stats.acWithData} (${stats.acWithData > 0 ? (stats.acDataLookupOk/stats.acWithData*100).toFixed(1) : 0}%)`);
 console.log(`  Errors: ${stats.acErrors.length}`);
+
+console.log('\nAC View URLs (new format /state/ac/):');
+console.log(`  State AC Views: ${stats.stateAcViewUrls.length} URLs`);
+console.log(`  Sample AC URLs: ${stats.acViewUrls.length} URLs`);
+if (verbose && stats.acViewUrls.length > 0) {
+  console.log('  Sample URLs:');
+  stats.acViewUrls.slice(0, 5).forEach(url => console.log(`    ${url}`));
+}
 
 // Show states with missing GeoJSON (CRITICAL)
 if (stats.statesMissingGeoJSON.length > 0) {
@@ -469,6 +504,11 @@ fs.writeFileSync(reportPath, JSON.stringify({
   pcErrors: stats.pcErrors,
   acErrors: stats.acErrors,
   warnings: stats.warnings,
+  // AC View URLs (new format)
+  acViewUrls: {
+    stateViews: stats.stateAcViewUrls,
+    sampleUrls: stats.acViewUrls.slice(0, 20), // Sample of AC view URLs
+  },
 }, null, 2));
 console.log(`\n📄 Full report saved to: url-validation-report.json`);
 

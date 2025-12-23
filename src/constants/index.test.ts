@@ -75,8 +75,9 @@ describe('ASM_STATE_ALIASES', () => {
     expect(ASM_STATE_ALIASES['UTTARAKHAND']).toBe('UTTARKHAND');
   });
 
-  it('handles Telangana to Andhra Pradesh mapping', () => {
-    expect(ASM_STATE_ALIASES['TELANGANA']).toBe('ANDHRA PRADESH');
+  it('does not alias Telangana (now separate in GeoJSON)', () => {
+    // Telangana now exists as a separate state in assembly GeoJSON
+    expect(ASM_STATE_ALIASES['TELANGANA']).toBeUndefined();
   });
 });
 

@@ -1,23 +1,26 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { Search, X, Map, Building2, Landmark } from 'lucide-react';
 import { normalizeName, toTitleCase } from '../utils/helpers';
+import { STATE_FILE_MAP } from '../constants';
 import type {
   StatesGeoJSON,
   ConstituenciesGeoJSON,
   AssembliesGeoJSON,
+  DistrictsCache,
   StateFeature,
   ConstituencyFeature,
   AssemblyFeature,
+  DistrictFeature,
 } from '../types';
 
 /** Search result item */
 interface SearchResult {
-  type: 'state' | 'constituency' | 'assembly';
+  type: 'state' | 'constituency' | 'assembly' | 'district';
   name: string;
   displayName: string;
   state?: string;
   pc?: string;
-  feature: StateFeature | ConstituencyFeature | AssemblyFeature;
+  feature: StateFeature | ConstituencyFeature | AssemblyFeature | DistrictFeature;
 }
 
 /** SearchBox props */
@@ -25,9 +28,11 @@ interface SearchBoxProps {
   statesGeoJSON: StatesGeoJSON | null;
   parliamentGeoJSON: ConstituenciesGeoJSON | null;
   assemblyGeoJSON: AssembliesGeoJSON | null;
+  districtsCache: DistrictsCache;
   onStateSelect: (stateName: string, feature: StateFeature) => void;
   onConstituencySelect: (pcName: string, stateName: string, feature: ConstituencyFeature) => void;
   onAssemblySelect: (acName: string, stateName: string, feature: AssemblyFeature) => void;
+  onDistrictSelect: (districtName: string, stateName: string, feature: DistrictFeature) => void;
 }
 
 /**
@@ -38,9 +43,11 @@ export function SearchBox({
   statesGeoJSON,
   parliamentGeoJSON,
   assemblyGeoJSON,
+  districtsCache,
   onStateSelect,
   onConstituencySelect,
   onAssemblySelect,
+  onDistrictSelect,
 }: SearchBoxProps): JSX.Element {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -86,6 +93,44 @@ export function SearchBox({
       });
     }
 
+    // Add districts from cache
+    if (districtsCache && Object.keys(districtsCache).length > 0) {
+      // Build reverse map: stateCode -> stateName
+      const stateCodeToName: Record<string, string> = {};
+      for (const [name, code] of Object.entries(STATE_FILE_MAP)) {
+        stateCodeToName[code] = name;
+      }
+
+      const seenDistricts = new Set<string>();
+      Object.entries(districtsCache).forEach(([stateKey, districtData]) => {
+        if (!districtData?.features) return;
+
+        // Get state name from the reverse map
+        const stateCode = stateKey.replace('.geojson', '');
+        const stateName = stateCodeToName[stateCode] ?? '';
+
+        if (!stateName) return; // Skip if we can't find the state name
+
+        districtData.features.forEach((f) => {
+          const props = f.properties;
+          const name = props.district ?? props.NAME ?? props.DISTRICT ?? '';
+          const distState = normalizeName(props.state ?? stateName);
+          const key = `${name}|${distState}`;
+
+          if (name && !seenDistricts.has(key)) {
+            seenDistricts.add(key);
+            results.push({
+              type: 'district',
+              name: name,
+              displayName: toTitleCase(normalizeName(name)),
+              state: distState,
+              feature: f,
+            });
+          }
+        });
+      });
+    }
+
     // Add assembly constituencies (limit to prevent performance issues)
     if (assemblyGeoJSON?.features) {
       const seen = new Set<string>();
@@ -111,7 +156,7 @@ export function SearchBox({
     }
 
     return results;
-  }, [statesGeoJSON, parliamentGeoJSON, assemblyGeoJSON]);
+  }, [statesGeoJSON, parliamentGeoJSON, assemblyGeoJSON, districtsCache]);
 
   // Filter results based on query
   const filteredResults = useMemo((): SearchResult[] => {
@@ -126,13 +171,13 @@ export function SearchBox({
       return normalizedName.includes(normalizedQuery) || normalizedState.includes(normalizedQuery);
     });
 
-    // Sort: exact matches first, then by type (state > constituency > assembly)
+    // Sort: exact matches first, then by type (state > constituency > district > assembly)
     matches.sort((a, b) => {
       const aExact = a.displayName.toLowerCase().startsWith(normalizedQuery);
       const bExact = b.displayName.toLowerCase().startsWith(normalizedQuery);
       if (aExact !== bExact) return aExact ? -1 : 1;
 
-      const typeOrder = { state: 0, constituency: 1, assembly: 2 };
+      const typeOrder = { state: 0, constituency: 1, district: 2, assembly: 3 };
       return typeOrder[a.type] - typeOrder[b.type];
     });
 
@@ -153,11 +198,13 @@ export function SearchBox({
           result.state ?? '',
           result.feature as ConstituencyFeature
         );
+      } else if (result.type === 'district') {
+        onDistrictSelect(result.name, result.state ?? '', result.feature as DistrictFeature);
       } else if (result.type === 'assembly') {
         onAssemblySelect(result.name, result.state ?? '', result.feature as AssemblyFeature);
       }
     },
-    [onStateSelect, onConstituencySelect, onAssemblySelect]
+    [onStateSelect, onConstituencySelect, onDistrictSelect, onAssemblySelect]
   );
 
   // Keyboard navigation
@@ -222,6 +269,8 @@ export function SearchBox({
         return <Map size={14} />;
       case 'constituency':
         return <Building2 size={14} />;
+      case 'district':
+        return <Map size={14} />;
       case 'assembly':
         return <Landmark size={12} />;
     }
@@ -234,6 +283,8 @@ export function SearchBox({
         return 'State';
       case 'constituency':
         return 'PC';
+      case 'district':
+        return 'Dist';
       case 'assembly':
         return 'AC';
     }
