@@ -1089,22 +1089,36 @@ export function MapView({
         {/* Background PCs layer - shows other PCs in the state when viewing assemblies */}
         {backgroundPCsData && (
           <GeoJSON
-            key={`background-pcs-${currentState}-${currentPC}`}
+            key={`background-pcs-${currentState}-${currentPC}-${selectedAssembly ?? 'none'}`}
             data={backgroundPCsData as GeoJSON.FeatureCollection}
-            style={backgroundPCStyle as L.StyleFunction}
-            onEachFeature={onBackgroundPCClick as (feature: GeoJSON.Feature, layer: Layer) => void}
+            style={() => ({
+              ...backgroundPCStyle(),
+              interactive: true,
+            })}
+            onEachFeature={(feature: GeoJSON.Feature, layer: Layer) => {
+              const typedLayer = layer as unknown as FeatureLayer;
+              // Bring to front to ensure clicks register
+              typedLayer.bringToFront();
+              onBackgroundPCClick(feature as Feature, layer);
+            }}
           />
         )}
 
         {/* Background Districts layer - shows other districts when viewing assemblies in district view */}
         {backgroundDistrictsData && (
           <GeoJSON
-            key={`background-districts-${currentState}-${currentDistrict}`}
+            key={`background-districts-${currentState}-${currentDistrict}-${selectedAssembly ?? 'none'}`}
             data={backgroundDistrictsData as GeoJSON.FeatureCollection}
-            style={backgroundDistrictStyle as L.StyleFunction}
-            onEachFeature={
-              onBackgroundDistrictClick as (feature: GeoJSON.Feature, layer: Layer) => void
-            }
+            style={() => ({
+              ...backgroundDistrictStyle(),
+              interactive: true,
+            })}
+            onEachFeature={(feature: GeoJSON.Feature, layer: Layer) => {
+              const typedLayer = layer as unknown as FeatureLayer;
+              // Bring to front to ensure clicks register
+              typedLayer.bringToFront();
+              onBackgroundDistrictClick(feature as Feature, layer);
+            }}
           />
         )}
       </MapContainer>
