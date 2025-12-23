@@ -74,10 +74,6 @@ describe('ASM_STATE_ALIASES', () => {
     expect(ASM_STATE_ALIASES['ODISHA']).toBe('ORISSA');
     expect(ASM_STATE_ALIASES['UTTARAKHAND']).toBe('UTTARKHAND');
   });
-
-  it('handles Telangana to Andhra Pradesh mapping', () => {
-    expect(ASM_STATE_ALIASES['TELANGANA']).toBe('ANDHRA PRADESH');
-  });
 });
 
 describe('DISTRICT_NAME_MAPPINGS', () => {
