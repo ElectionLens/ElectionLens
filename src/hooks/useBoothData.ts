@@ -148,33 +148,67 @@ export function useBoothData(): UseBoothDataReturn {
 
   /**
    * Merge booth list with results for display
+   * Includes booths from results that may not be in booth list
    */
-  const boothsWithResults: BoothWithResult[] = (boothList?.booths || []).map((booth) => {
-    const result = boothResults?.results[booth.id];
-    let winner: BoothWithResult['winner'] = undefined;
+  const boothsWithResults: BoothWithResult[] = (() => {
+    const boothMap = new Map<string, Booth>();
+    const resultsList: BoothWithResult[] = [];
 
-    if (result && boothResults) {
-      // Find winner for this booth
-      const maxVotes = Math.max(...result.votes.slice(0, -1)); // Exclude NOTA
-      const winnerIndex = result.votes.indexOf(maxVotes);
-      const candidate = boothResults.candidates[winnerIndex];
-
-      if (candidate && candidate.party !== 'NOTA') {
-        winner = {
-          name: candidate.name,
-          party: candidate.party,
-          votes: maxVotes,
-          percent: (maxVotes / result.total) * 100,
-        };
-      }
+    // First, add all booths from booth list
+    for (const booth of boothList?.booths || []) {
+      boothMap.set(booth.id, booth);
     }
 
-    return {
-      ...booth,
-      ...(result !== undefined && { result }),
-      ...(winner !== undefined && { winner }),
-    };
-  });
+    // Process all results (includes booths not in list)
+    const resultIds = Object.keys(boothResults?.results || {});
+
+    for (const boothId of resultIds) {
+      const result = boothResults?.results[boothId];
+      let booth = boothMap.get(boothId);
+
+      // If booth not in list, create a placeholder
+      if (!booth) {
+        const boothNo = boothId.replace('TN-001-', '');
+        booth = {
+          id: boothId,
+          boothNo: boothNo,
+          num: parseInt(boothNo.replace(/[^\d]/g, '')) || 0,
+          type: boothNo.includes('W') ? 'women' : boothNo.includes('M') ? 'auxiliary' : 'regular',
+          name: `Booth ${boothNo}`,
+          address: 'Gummidipoondi',
+          area: 'Gummidipoondi',
+        };
+      }
+
+      let winner: BoothWithResult['winner'] = undefined;
+
+      if (result && boothResults) {
+        // Find winner for this booth
+        const votesExcludingNota = result.votes.slice(0, -1);
+        const maxVotes = Math.max(...votesExcludingNota);
+        const winnerIndex = votesExcludingNota.indexOf(maxVotes);
+        const candidate = boothResults.candidates[winnerIndex];
+
+        if (candidate && candidate.party !== 'NOTA') {
+          winner = {
+            name: candidate.name,
+            party: candidate.party,
+            votes: maxVotes,
+            percent: result.total > 0 ? (maxVotes / result.total) * 100 : 0,
+          };
+        }
+      }
+
+      resultsList.push({
+        ...booth,
+        ...(result !== undefined && { result }),
+        ...(winner !== undefined && { winner }),
+      });
+    }
+
+    // Sort by booth number
+    return resultsList.sort((a, b) => a.num - b.num);
+  })();
 
   return {
     boothList,
