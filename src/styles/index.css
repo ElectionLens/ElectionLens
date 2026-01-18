@@ -3964,3 +3964,46 @@ path:focus {
     transform: none;
   }
 }
+
+/* ============================================
+   BOOTH MARKERS & POPUPS
+   ============================================ */
+
+/* Booth popup styling */
+.booth-popup .leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.booth-popup .leaflet-popup-content {
+  margin: 12px;
+}
+
+.booth-popup .leaflet-popup-tip {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Booth tooltip */
+.booth-tooltip {
+  background: rgba(0, 0, 0, 0.85);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.booth-tooltip::before {
+  border-top-color: rgba(0, 0, 0, 0.85);
+}
+
+/* Booth button in election panel */
+.election-panel-btn.booth-btn {
+  background: #10b981;
+  color: white;
+}
+
+.election-panel-btn.booth-btn:hover {
+  background: #059669;
+}

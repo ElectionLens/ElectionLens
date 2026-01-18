@@ -30,6 +30,11 @@ const ElectionResultPanel = lazy(() =>
 const PCElectionResultPanel = lazy(() =>
   import('./PCElectionResultPanel').then((m) => ({ default: m.PCElectionResultPanel }))
 );
+const BoothResultsPanel = lazy(() =>
+  import('./BoothResultsPanel').then((m) => ({ default: m.BoothResultsPanel }))
+);
+import { BoothMarkersLayer } from './BoothMarkersLayer';
+import { useBoothData } from '../hooks/useBoothData';
 
 // Lightweight loading skeleton for panels
 const PanelSkeleton = () => (
@@ -551,6 +556,49 @@ export function MapView({
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
   // Base layer state - 'Vector' uses VectorTileLayer, others use TileLayer
   const [baseLayer, setBaseLayer] = useState<LayerName>('Streets');
+  // Booth results panel state
+  const [showBoothPanel, setShowBoothPanel] = useState(false);
+  const [boothPanelAC, setBoothPanelAC] = useState<{
+    stateId: string;
+    acId: string;
+    acName: string;
+  } | null>(null);
+  const [boothSelectedYear, setBoothSelectedYear] = useState<number | null>(null);
+
+  // Booth data hook - MapView is the data owner, passes to both panel and markers
+  const {
+    boothList,
+    boothResults,
+    boothsWithResults,
+    availableYears: boothAvailableYears,
+    loading: boothLoading,
+    error: boothError,
+    loadBoothData,
+    loadBoothResults,
+  } = useBoothData();
+
+  // Load booth data when booth panel AC changes
+  useEffect(() => {
+    if (boothPanelAC) {
+      void loadBoothData(boothPanelAC.stateId, boothPanelAC.acId);
+      setBoothSelectedYear(null); // Reset year when AC changes
+    }
+  }, [boothPanelAC, loadBoothData]);
+
+  // Set initial year when available years load
+  useEffect(() => {
+    const firstYear = boothAvailableYears[0];
+    if (firstYear !== undefined && boothSelectedYear === null) {
+      setBoothSelectedYear(firstYear);
+    }
+  }, [boothAvailableYears, boothSelectedYear]);
+
+  // Load booth results when year changes
+  useEffect(() => {
+    if (boothPanelAC && boothSelectedYear) {
+      void loadBoothResults(boothPanelAC.stateId, boothPanelAC.acId, boothSelectedYear);
+    }
+  }, [boothPanelAC, boothSelectedYear, loadBoothResults]);
 
   // Listen for layer change events from toolbar
   useEffect(() => {
@@ -1157,6 +1205,11 @@ export function MapView({
             }}
           />
         )}
+
+        {/* Booth markers layer - show when booth panel is open */}
+        {showBoothPanel && boothsWithResults.length > 0 && (
+          <BoothMarkersLayer booths={boothsWithResults} visible={showBoothPanel} />
+        )}
       </MapContainer>
 
       {/* AC Election Result Panel - Show when AC is selected */}
@@ -1175,6 +1228,19 @@ export function MapView({
             selectedPCYear={selectedACPCYear}
             onPCYearChange={onACPCYearChange}
             pcContributionShareUrl={pcContributionShareUrl}
+            hasBoothData={electionResult.schemaId === 'TN-001'}
+            onShowBooths={
+              electionResult.schemaId === 'TN-001'
+                ? () => {
+                    setBoothPanelAC({
+                      stateId: 'TN',
+                      acId: 'TN-001',
+                      acName: electionResult.constituencyNameOriginal,
+                    });
+                    setShowBoothPanel(true);
+                  }
+                : undefined
+            }
           />
         </Suspense>
       )}
@@ -1190,6 +1256,27 @@ export function MapView({
             availableYears={pcAvailableYears ?? []}
             selectedYear={pcSelectedYear ?? undefined}
             onYearChange={onPCYearChange}
+          />
+        </Suspense>
+      )}
+
+      {/* Booth Results Panel - Show booth-wise data for specific ACs */}
+      {showBoothPanel && boothPanelAC && (
+        <Suspense fallback={<PanelSkeleton />}>
+          <BoothResultsPanel
+            acName={boothPanelAC.acName}
+            boothList={boothList}
+            boothResults={boothResults}
+            boothsWithResults={boothsWithResults}
+            availableYears={boothAvailableYears}
+            loading={boothLoading}
+            error={boothError}
+            selectedYear={boothSelectedYear}
+            onYearChange={setBoothSelectedYear}
+            onClose={() => {
+              setShowBoothPanel(false);
+              setBoothPanelAC(null);
+            }}
           />
         </Suspense>
       )}

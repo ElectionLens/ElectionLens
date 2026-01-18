@@ -9,6 +9,7 @@ import {
   Users,
   BarChart3,
   Share2,
+  MapPin,
 } from 'lucide-react';
 import { useState, useCallback, memo } from 'react';
 import type { ACElectionResult, ElectionCandidate } from '../types';
@@ -45,6 +46,10 @@ interface ElectionResultPanelProps {
   selectedPCYear?: number | null | undefined;
   onPCYearChange?: ((year: number | null) => void) | undefined;
   pcContributionShareUrl?: string | undefined;
+  /** Callback to show booth-wise results (if available for this AC) */
+  onShowBooths?: (() => void) | undefined;
+  /** Whether booth data is available for this AC */
+  hasBoothData?: boolean | undefined;
 }
 
 /** Remove diacritics from text (e.g., Tamil Nādu → Tamil Nadu) */
@@ -100,6 +105,8 @@ export function ElectionResultPanel({
   selectedPCYear: selectedPCYearProp,
   onPCYearChange,
   pcContributionShareUrl,
+  onShowBooths,
+  hasBoothData = false,
 }: ElectionResultPanelProps): JSX.Element {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [copied, setCopied] = useState(false);
@@ -236,6 +243,15 @@ export function ElectionResultPanel({
           >
             {copied ? <Check size={18} /> : <Link2 size={18} />}
           </button>
+          {hasBoothData && onShowBooths && (
+            <button
+              className="election-panel-btn booth-btn"
+              onClick={onShowBooths}
+              title="View booth-wise results"
+            >
+              <MapPin size={18} />
+            </button>
+          )}
           <button className="election-panel-close" onClick={onClose} title="Close">
             <X size={20} />
           </button>
