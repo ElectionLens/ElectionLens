@@ -552,40 +552,22 @@ export function MapView({
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
   // Base layer state - 'Vector' uses VectorTileLayer, others use TileLayer
   const [baseLayer, setBaseLayer] = useState<LayerName>('Streets');
-  // Booth data state
-  const [boothSelectedYear, setBoothSelectedYear] = useState<number | null>(null);
-
   // Booth data hook - loads booth data for selected assembly (only TN-001 for now)
-  const {
-    boothResults,
-    boothsWithResults,
-    availableYears: boothAvailableYears,
-    loadBoothData,
-    loadBoothResults,
-  } = useBoothData();
+  const { boothResults, boothsWithResults, loadBoothData, loadBoothResults } = useBoothData();
 
   // Load booth data when Gummidipoondi (TN-001) is selected
   useEffect(() => {
     if (electionResult?.schemaId === 'TN-001') {
       void loadBoothData('TN', 'TN-001');
-      setBoothSelectedYear(null);
     }
   }, [electionResult?.schemaId, loadBoothData]);
 
-  // Set initial year when available years load
+  // Load booth results when main year changes (sync with top panel year selector)
   useEffect(() => {
-    const firstYear = boothAvailableYears[0];
-    if (firstYear !== undefined && boothSelectedYear === null) {
-      setBoothSelectedYear(firstYear);
+    if (electionResult?.schemaId === 'TN-001' && selectedYear) {
+      void loadBoothResults('TN', 'TN-001', selectedYear);
     }
-  }, [boothAvailableYears, boothSelectedYear]);
-
-  // Load booth results when year changes
-  useEffect(() => {
-    if (electionResult?.schemaId === 'TN-001' && boothSelectedYear) {
-      void loadBoothResults('TN', 'TN-001', boothSelectedYear);
-    }
-  }, [electionResult?.schemaId, boothSelectedYear, loadBoothResults]);
+  }, [electionResult?.schemaId, selectedYear, loadBoothResults]);
 
   // Listen for layer change events from toolbar
   useEffect(() => {
@@ -1212,9 +1194,6 @@ export function MapView({
             pcContributionShareUrl={pcContributionShareUrl}
             boothResults={electionResult.schemaId === 'TN-001' ? boothResults : null}
             boothsWithResults={electionResult.schemaId === 'TN-001' ? boothsWithResults : []}
-            boothAvailableYears={electionResult.schemaId === 'TN-001' ? boothAvailableYears : []}
-            boothSelectedYear={boothSelectedYear}
-            onBoothYearChange={setBoothSelectedYear}
           />
         </Suspense>
       )}

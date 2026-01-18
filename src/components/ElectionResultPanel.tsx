@@ -51,9 +51,6 @@ interface ElectionResultPanelProps {
   /** Booth data for booth-wise view */
   boothResults?: BoothResults | null | undefined;
   boothsWithResults?: BoothWithResult[] | undefined;
-  boothAvailableYears?: number[] | undefined;
-  boothSelectedYear?: number | null | undefined;
-  onBoothYearChange?: ((year: number) => void) | undefined;
 }
 
 /** Remove diacritics from text (e.g., Tamil Nādu → Tamil Nadu) */
@@ -111,9 +108,6 @@ export function ElectionResultPanel({
   pcContributionShareUrl,
   boothResults,
   boothsWithResults = [],
-  boothAvailableYears = [],
-  boothSelectedYear,
-  onBoothYearChange,
 }: ElectionResultPanelProps): JSX.Element {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
@@ -568,9 +562,6 @@ export function ElectionResultPanel({
           <BoothWiseView
             boothResults={boothResults}
             boothsWithResults={boothsWithResults}
-            availableYears={boothAvailableYears}
-            selectedYear={boothSelectedYear}
-            onYearChange={onBoothYearChange}
             selectedBoothId={selectedBoothId}
             onBoothSelect={setSelectedBoothId}
             selectedBooth={selectedBooth}
@@ -673,9 +664,6 @@ const CandidateRow = memo(function CandidateRow({
 interface BoothWiseViewProps {
   boothResults: BoothResults | null | undefined;
   boothsWithResults: BoothWithResult[];
-  availableYears: number[];
-  selectedYear: number | null | undefined;
-  onYearChange: ((year: number) => void) | undefined;
   selectedBoothId: string | null;
   onBoothSelect: (boothId: string | null) => void;
   selectedBooth: BoothWithResult | null;
@@ -684,9 +672,6 @@ interface BoothWiseViewProps {
 function BoothWiseView({
   boothResults,
   boothsWithResults,
-  availableYears,
-  selectedYear,
-  onYearChange,
   selectedBoothId,
   onBoothSelect,
   selectedBooth,
@@ -707,21 +692,6 @@ function BoothWiseView({
 
   return (
     <div className="booth-wise-view">
-      {/* Year selector for booth data */}
-      {availableYears.length > 1 && (
-        <div className="booth-year-selector">
-          {availableYears.map((year) => (
-            <button
-              key={year}
-              className={`year-btn-small ${selectedYear === year ? 'active' : ''}`}
-              onClick={() => onYearChange?.(year)}
-            >
-              {year}
-            </button>
-          ))}
-        </div>
-      )}
-
       {/* Booth selector dropdown */}
       <div className="booth-selector">
         <label>Select Booth:</label>
