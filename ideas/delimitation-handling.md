@@ -14,6 +14,7 @@ Delimitation (redistricting) happens at different times across states:
 |-------|------|-----------------|--------|
 | National Delimitation | 2008 | All states | Current baseline |
 | Gujarat Delimitation | 2022 | Gujarat | 28 new/split ACs in Ahmedabad & Surat |
+| Assam Delimitation | 2023 | Assam | PC boundaries changed, 4 PCs renamed |
 | J&K Reorganization | 2024 | Jammu & Kashmir | 25 new ACs, complete restructuring |
 | Future Census-Based | ~2031 | All states | Expected national delimitation |
 

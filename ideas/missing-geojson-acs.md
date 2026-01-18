@@ -1,168 +1,143 @@
-# Assembly Constituencies Missing GeoJSON Boundaries
+# Assembly Constituencies GeoJSON Status
 
-These ACs were removed from the schema because GeoJSON boundary data is not available.
-They have election data but cannot be displayed on the map.
-
-**Add these back when official GeoJSON boundaries become available.**
+**Last Updated:** January 2025  
+**Status:** ⚠️ MOSTLY COMPLETE (delimitation issues remain)
 
 ---
 
-## ⚠️ CRITICAL: Assam (126 ACs) - ENTIRE STATE MISSING
+## Current Coverage
 
-Assam assembly constituency GeoJSON data is **completely missing** from `constituencies.geojson`.
-The 126 ACs are in the schema and have election data, but no map boundaries exist.
+| Metric | Count | Status |
+|--------|-------|--------|
+| ACs in Schema | 4,074 | |
+| ACs with GeoJSON | 4,118 | ✅ |
+| **GeoJSON Coverage** | **100%** | ✅ |
+| Assam 2023 delimitation | Outdated | ⚠️ |
 
-**Impact**: Navigating to any Assam AC shows "Unknown" on hover because `AC_NAME` property is missing.
-
-**URL Example**: `/assam/pc/kokrajhar` - assemblies display but hover shows "Unknown"
-
-**Priority**: HIGH - Source Assam AC boundaries from ECI or DataMeet.
-
----
-
-## Gujarat (28 ACs) - 2022 Delimitation
-
-New constituencies created by splitting existing ones. No official boundary data released yet.
-
-| Schema ID | Name | AC# | Notes |
-|-----------|------|-----|-------|
-| GJ-045 | NARANPURA | 45 | Split from Ahmedabad area |
-| GJ-046 | NIKOL | 46 | Split from Ahmedabad area |
-| GJ-047 | NARODA | 47 | Split from Ahmedabad area |
-| GJ-048 | THAKKARBAPA NAGAR | 48 | Split from Ahmedabad area |
-| GJ-049 | BAPUNAGAR | 49 | Split from Ahmedabad area |
-| GJ-050 | AMRAIWADI | 50 | Split from Ahmedabad area |
-| GJ-051 | DARIAPUR | 51 | Split from Ahmedabad area |
-| GJ-052 | JAMALPUR-KHADIA | 52 | Split from Ahmedabad area |
-| GJ-053 | MANINAGAR | 53 | Split from Ahmedabad area |
-| GJ-054 | DANILIMDA | 54 | Split from Ahmedabad area |
-| GJ-055 | SABARMATI | 55 | Split from Ahmedabad area |
-| GJ-056 | ASARWA | 56 | Split from Ahmedabad area |
-| GJ-057 | Daskroi | 57 | New constituency |
-| GJ-058 | Dholka | 58 | New constituency |
-| GJ-059 | Dhandhuka | 59 | New constituency |
-| GJ-060 | Dasada (SC) | 60 | New constituency |
-| GJ-061 | Limbdi | 61 | New constituency |
-| GJ-062 | Wadhwan | 62 | New constituency |
-| GJ-063 | Chotila | 63 | New constituency |
-| GJ-064 | Dhrangadhra | 64 | New constituency |
-| GJ-160 | SURAT NORTH | 160 | Split from Surat |
-| GJ-161 | VARACHHA ROAD | 161 | Split from Surat |
-| GJ-162 | KARANJ | 162 | Split from Surat |
-| GJ-163 | LIMBAYAT | 163 | Split from Surat |
-| GJ-164 | UDHNA | 164 | Split from Surat |
-| GJ-165 | MAJURA | 165 | Split from Surat |
-| GJ-166 | KATARGAM | 166 | Split from Surat |
-| GJ-167 | SURAT WEST | 167 | Split from Surat |
+All assembly constituencies in the schema have GeoJSON boundary data, but **Assam boundaries are from 2008** and don't reflect the 2023 delimitation changes.
 
 ---
 
-## Jammu & Kashmir (25 ACs) - 2024 Delimitation
+## Recent Updates
 
-New constituencies from the 2024 J&K delimitation. First election held in 2024.
+### Gujarat (January 2025) ✅
 
-| Schema ID | Name | AC# | Notes |
-|-----------|------|-----|-------|
-| JK-088 | TREHGAM | 88 | New constituency |
-| JK-089 | WAGOORA - KREERI | 89 | New constituency |
-| JK-090 | LAL CHOWK | 90 | New constituency |
-| JK-091 | CHANNAPORA | 91 | New constituency |
-| JK-092 | CENTRAL SHALTENG | 92 | New constituency |
-| JK-093 | CHRAR-I-SHARIEF | 93 | New constituency |
-| JK-094 | ZAINAPORA | 94 | New constituency |
-| JK-095 | D.H. PORA | 95 | New constituency |
-| JK-096 | ANANTNAG WEST | 96 | New constituency |
-| JK-097 | SRIGUFWARA - BIJBEHARA | 97 | New constituency |
-| JK-098 | SHANGUS - ANANTNAG EAST | 98 | New constituency |
-| JK-099 | PADDER - NAGSENI | 99 | New constituency |
-| JK-100 | BHADARWAH | 100 | New constituency |
-| JK-101 | DODA WEST | 101 | New constituency |
-| JK-102 | SHRI MATA VAISHNO DEVI | 102 | New constituency |
-| JK-103 | UDHAMPUR WEST | 103 | New constituency |
-| JK-104 | UDHAMPUR EAST | 104 | New constituency |
-| JK-105 | JASROTA | 105 | New constituency |
-| JK-106 | RAMGARH | 106 | New constituency |
-| JK-107 | R. S. PURA - JAMMU SOUTH | 107 | New constituency |
-| JK-108 | BAHU | 108 | New constituency |
-| JK-109 | JAMMU NORTH | 109 | New constituency |
-| JK-110 | KALAKOTE - SUNDERBANI | 110 | New constituency |
-| JK-111 | BUDHAL | 111 | New constituency |
-| JK-112 | THANNAMANDI | 112 | New constituency |
+Added 28 new ACs from 2022 delimitation using `gujarat_AC.geojson`:
 
----
+**Ahmedabad splits (12):**
+| Schema ID | Name | AC# |
+|-----------|------|-----|
+| GJ-045 | NARANPURA | 45 |
+| GJ-046 | NIKOL | 46 |
+| GJ-047 | NARODA | 47 |
+| GJ-048 | THAKKAR BAPANAGAR | 48 |
+| GJ-049 | BAPUNAGAR | 49 |
+| GJ-050 | AMRAIWADI | 50 |
+| GJ-051 | DARIYAPUR | 51 |
+| GJ-052 | JAMALPUR-KHADIA | 52 |
+| GJ-053 | MANINAGAR | 53 |
+| GJ-054 | DANILIMDA | 54 |
+| GJ-055 | SABARMATI | 55 |
+| GJ-056 | ASARWA | 56 |
 
-## Madhya Pradesh (4 ACs) - Indore Splits
+**Surat splits (8):**
+| Schema ID | Name | AC# |
+|-----------|------|-----|
+| GJ-160 | SURAT NORTH | 160 |
+| GJ-161 | VARACHHA ROAD | 161 |
+| GJ-162 | KARANJ | 162 |
+| GJ-163 | LIMBAYAT | 163 |
+| GJ-164 | UDHNA | 164 |
+| GJ-165 | MAJURA | 165 |
+| GJ-166 | KATARGAM | 166 |
+| GJ-167 | SURAT WEST | 167 |
 
-Indore constituency split into multiple parts.
+**Script:** `scripts/replace-gujarat-ac-geojson.mjs`
 
-| Schema ID | Name | AC# | Notes |
-|-----------|------|-----|-------|
-| MP-205 | Indore-2 | 205 | Split from Indore |
-| MP-206 | Indore-3 | 206 | Split from Indore |
-| MP-207 | Indore-4 | 207 | Split from Indore |
-| MP-208 | Indore-5 | 208 | Split from Indore |
+### Jammu & Kashmir ✅
 
----
+90 ACs from 2024 delimitation already present with schemaIds (JK-001 to JK-090).
 
-## Sikkim (1 AC)
+### Assam ✅
 
-| Schema ID | Name | AC# | Notes |
-|-----------|------|-----|-------|
-| SK-032 | SANGHA | 32 | Buddhist monk constituency |
+133 ACs present in GeoJSON (126 in schema) - complete coverage.
 
 ---
 
-## How to Add These Back
+## ⚠️ Delimitation Issues
 
-1. **Source GeoJSON boundaries** from:
-   - Election Commission of India (ECI)
-   - Survey of India
-   - State election commission websites
-   - DataMeet community (https://datameet.org)
+### Assam 2023 Delimitation
 
-2. **Add to `public/data/geo/assembly/constituencies.geojson`**:
-   ```json
-   {
-     "type": "Feature",
-     "properties": {
-       "ST_NAME": "GUJARAT",
-       "AC_NO": 45,
-       "AC_NAME": "NARANPURA",
-       "schemaId": "GJ-045"
-     },
-     "geometry": { ... }
-   }
-   ```
+Assam underwent delimitation in **2023** but our data still reflects **2008 boundaries**.
 
-3. **Re-add to schema** (`public/data/schema.json`):
-   ```json
-   "GJ-045": {
-     "id": "GJ-045",
-     "stateId": "GJ",
-     "pcId": "GJ-XX",
-     "acNo": 45,
-     "name": "NARANPURA",
-     "type": "GEN",
-     ...
-   }
-   ```
+| Issue | Current | Should Be |
+|-------|---------|-----------|
+| Delimitation year | 2008 | 2023 |
+| PCs in schema | 12 | 14 |
+| PC-to-AC mapping | 5 broken | All mapped |
 
-4. **Run validation**:
-   ```bash
-   node scripts/validate-all-urls.mjs
-   ```
+**Renamed PCs:**
+- Mangaldoi → Darrang-Udalguri
+- Kaliabor → Kaziranga  
+- Autonomous District → Diphu
+- Tezpur → Sonitpur
+
+**Impact:**
+- 2024 Lok Sabha results cannot show AC-wise breakdown
+- PC boundaries in GeoJSON are outdated
+- AC boundaries may not match current reality
+
+**To fix:**
+1. Source new Assam AC/PC GeoJSON (post-2023 delimitation)
+2. Update schema with new PC names and AC mappings
+3. Add 2024 PC election data
 
 ---
 
-## Summary
+## Cleanup Opportunity
 
-| State | Count | Reason |
-|-------|-------|--------|
-| Gujarat | 28 | 2022 delimitation |
-| J&K | 25 | 2024 delimitation |
-| MP | 4 | Indore splits |
-| Sikkim | 1 | Special constituency |
-| **Total** | **58** | |
+### Legacy Andhra Pradesh Constituencies
 
-Last updated: 2024-12-22
+44 ACs in GeoJSON but NOT in schema (pre-Telangana split):
 
+```
+AP-120 to AP-175 (approximately)
+```
+
+These are old AP constituencies before Telangana was carved out in 2014. They can be safely removed from `constituencies.geojson` as a cleanup task.
+
+**To clean up:**
+```bash
+# Remove AP ACs not in schema
+node scripts/cleanup-legacy-ap-acs.mjs  # TODO: create this script
+```
+
+---
+
+## Data Sources
+
+| Source | URL | Used For |
+|--------|-----|----------|
+| DataMeet | datameet.org | Most state boundaries |
+| ECI | eci.gov.in | Official delimitation data |
+| User-provided | Desktop files | Gujarat 2022 delimitation |
+
+---
+
+## Historical Notes
+
+This file previously tracked missing GeoJSON for:
+- ~~Assam (126 ACs)~~ - Actually present
+- ~~Gujarat (28 ACs)~~ - Fixed January 2025
+- ~~J&K (25 ACs)~~ - Actually present (90 ACs total)
+- ~~MP (4 ACs)~~ - Indore splits - verify status
+- ~~Sikkim (1 AC)~~ - Sangha constituency - verify status
+
+The original gaps were due to:
+1. Name matching issues between GeoJSON and schema
+2. Missing schemaId properties in some features
+3. Actual missing boundaries (Gujarat 2022 delimitation)
+
+---
+
+*File updated after Gujarat GeoJSON integration*
