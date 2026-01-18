@@ -10,11 +10,13 @@ import {
   BarChart3,
   Share2,
   MapPin,
+  ChevronDown,
 } from 'lucide-react';
-import { useState, useCallback, memo } from 'react';
+import { useState, useCallback, memo, useMemo } from 'react';
 import type { ACElectionResult, ElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName } from '../utils/partyData';
 import { trackShare } from '../utils/firebase';
+import type { BoothResults, BoothWithResult } from '../hooks/useBoothData';
 
 function formatNumber(num: number): string {
   return num.toLocaleString('en-IN');
@@ -46,10 +48,12 @@ interface ElectionResultPanelProps {
   selectedPCYear?: number | null | undefined;
   onPCYearChange?: ((year: number | null) => void) | undefined;
   pcContributionShareUrl?: string | undefined;
-  /** Callback to show booth-wise results (if available for this AC) */
-  onShowBooths?: (() => void) | undefined;
-  /** Whether booth data is available for this AC */
-  hasBoothData?: boolean | undefined;
+  /** Booth data for booth-wise view */
+  boothResults?: BoothResults | null | undefined;
+  boothsWithResults?: BoothWithResult[] | undefined;
+  boothAvailableYears?: number[] | undefined;
+  boothSelectedYear?: number | null | undefined;
+  onBoothYearChange?: ((year: number) => void) | undefined;
 }
 
 /** Remove diacritics from text (e.g., Tamil Nādu → Tamil Nadu) */
@@ -90,7 +94,7 @@ function generateShareText(
   return text.trim();
 }
 
-type TabType = 'overview' | 'candidates';
+type TabType = 'overview' | 'candidates' | 'booths';
 
 export function ElectionResultPanel({
   result,
@@ -105,10 +109,23 @@ export function ElectionResultPanel({
   selectedPCYear: selectedPCYearProp,
   onPCYearChange,
   pcContributionShareUrl,
-  onShowBooths,
-  hasBoothData = false,
+  boothResults,
+  boothsWithResults = [],
+  boothAvailableYears = [],
+  boothSelectedYear,
+  onBoothYearChange,
 }: ElectionResultPanelProps): JSX.Element {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
+  const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
+
+  // Check if booth data is available
+  const hasBoothData = boothsWithResults.length > 0;
+
+  // Get selected booth details
+  const selectedBooth = useMemo(() => {
+    if (!selectedBoothId) return null;
+    return boothsWithResults.find((b) => b.id === selectedBoothId) ?? null;
+  }, [selectedBoothId, boothsWithResults]);
   const [copied, setCopied] = useState(false);
   const [selectedPCYearInternal, setSelectedPCYearInternal] = useState<number | null>(null);
 
@@ -243,15 +260,6 @@ export function ElectionResultPanel({
           >
             {copied ? <Check size={18} /> : <Link2 size={18} />}
           </button>
-          {hasBoothData && onShowBooths && (
-            <button
-              className="election-panel-btn booth-btn"
-              onClick={onShowBooths}
-              title="View booth-wise results"
-            >
-              <MapPin size={18} />
-            </button>
-          )}
           <button className="election-panel-close" onClick={onClose} title="Close">
             <X size={20} />
           </button>
@@ -306,6 +314,15 @@ export function ElectionResultPanel({
             : result.totalCandidates}{' '}
           Candidates
         </button>
+        {hasBoothData && (
+          <button
+            className={`panel-tab ${activeTab === 'booths' ? 'active' : ''}`}
+            onClick={() => setActiveTab('booths')}
+          >
+            <MapPin size={14} />
+            Booths
+          </button>
+        )}
       </div>
 
       {/* Tab content */}
@@ -523,7 +540,7 @@ export function ElectionResultPanel({
               )}
             </div>
           </>
-        ) : (
+        ) : activeTab === 'candidates' ? (
           /* Full candidates list */
           <div className="candidates-full">
             <div className="candidates-table-full">
@@ -546,6 +563,18 @@ export function ElectionResultPanel({
               </div>
             </div>
           </div>
+        ) : (
+          /* Booth-wise view */
+          <BoothWiseView
+            boothResults={boothResults}
+            boothsWithResults={boothsWithResults}
+            availableYears={boothAvailableYears}
+            selectedYear={boothSelectedYear}
+            onYearChange={onBoothYearChange}
+            selectedBoothId={selectedBoothId}
+            onBoothSelect={setSelectedBoothId}
+            selectedBooth={selectedBooth}
+          />
         )}
       </div>
 
@@ -639,3 +668,206 @@ const CandidateRow = memo(function CandidateRow({
     </div>
   );
 });
+
+// Booth-wise view component
+interface BoothWiseViewProps {
+  boothResults: BoothResults | null | undefined;
+  boothsWithResults: BoothWithResult[];
+  availableYears: number[];
+  selectedYear: number | null | undefined;
+  onYearChange: ((year: number) => void) | undefined;
+  selectedBoothId: string | null;
+  onBoothSelect: (boothId: string | null) => void;
+  selectedBooth: BoothWithResult | null;
+}
+
+function BoothWiseView({
+  boothResults,
+  boothsWithResults,
+  availableYears,
+  selectedYear,
+  onYearChange,
+  selectedBoothId,
+  onBoothSelect,
+  selectedBooth,
+}: BoothWiseViewProps): JSX.Element {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Filter booths by search
+  const filteredBooths = useMemo(() => {
+    if (!searchQuery) return boothsWithResults;
+    const query = searchQuery.toLowerCase();
+    return boothsWithResults.filter(
+      (b) =>
+        b.boothNo.toLowerCase().includes(query) ||
+        b.name.toLowerCase().includes(query) ||
+        b.area.toLowerCase().includes(query)
+    );
+  }, [boothsWithResults, searchQuery]);
+
+  return (
+    <div className="booth-wise-view">
+      {/* Year selector for booth data */}
+      {availableYears.length > 1 && (
+        <div className="booth-year-selector">
+          {availableYears.map((year) => (
+            <button
+              key={year}
+              className={`year-btn-small ${selectedYear === year ? 'active' : ''}`}
+              onClick={() => onYearChange?.(year)}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Booth selector dropdown */}
+      <div className="booth-selector">
+        <label>Select Booth:</label>
+        <div className="booth-dropdown-wrapper">
+          <select
+            value={selectedBoothId ?? ''}
+            onChange={(e) => onBoothSelect(e.target.value || null)}
+            className="booth-dropdown"
+          >
+            <option value="">-- Select a booth --</option>
+            {filteredBooths.map((booth) => (
+              <option key={booth.id} value={booth.id}>
+                {booth.boothNo} - {booth.name.slice(0, 40)}
+                {booth.name.length > 40 ? '...' : ''}
+                {booth.type === 'women' ? ' 👩' : ''}
+              </option>
+            ))}
+          </select>
+          <ChevronDown size={16} className="dropdown-icon" />
+        </div>
+        <input
+          type="text"
+          placeholder="Search booth..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="booth-search"
+        />
+      </div>
+
+      {/* Summary stats */}
+      <div className="booth-stats-summary">
+        <div className="stat-item">
+          <span className="stat-label">Total Booths</span>
+          <span className="stat-value">{boothsWithResults.length}</span>
+        </div>
+        <div className="stat-item">
+          <span className="stat-label">Women Booths</span>
+          <span className="stat-value">
+            {boothsWithResults.filter((b) => b.type === 'women').length}
+          </span>
+        </div>
+        {boothResults && (
+          <div className="stat-item">
+            <span className="stat-label">Total Votes</span>
+            <span className="stat-value">
+              {formatNumber(
+                Object.values(boothResults.results).reduce((sum, r) => sum + r.total, 0)
+              )}
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Selected booth details */}
+      {selectedBooth ? (
+        <div className="selected-booth-details">
+          <div className="booth-header">
+            <h4>
+              Booth {selectedBooth.boothNo}
+              {selectedBooth.type === 'women' && <span className="women-badge">👩 Women</span>}
+            </h4>
+          </div>
+
+          <div className="booth-address">
+            <MapPin size={14} />
+            <div>
+              <div className="address-name">{selectedBooth.name}</div>
+              <div className="address-area">{selectedBooth.address}</div>
+              <div className="address-locality">{selectedBooth.area}</div>
+            </div>
+          </div>
+
+          {selectedBooth.result && boothResults && (
+            <>
+              <div className="booth-vote-summary">
+                <div className="vote-stat">
+                  <span className="label">Total Votes</span>
+                  <span className="value">{formatNumber(selectedBooth.result.total)}</span>
+                </div>
+                {selectedBooth.result.rejected > 0 && (
+                  <div className="vote-stat">
+                    <span className="label">Rejected</span>
+                    <span className="value">{selectedBooth.result.rejected}</span>
+                  </div>
+                )}
+                {selectedBooth.winner && (
+                  <div className="vote-stat winner">
+                    <span className="label">Winner</span>
+                    <span
+                      className="value party-badge"
+                      style={{ backgroundColor: getPartyColor(selectedBooth.winner.party) }}
+                    >
+                      {selectedBooth.winner.party} ({selectedBooth.winner.percent.toFixed(1)}%)
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Candidate-wise votes for this booth */}
+              <div className="booth-candidates">
+                <h5>Candidate-wise Votes</h5>
+                {boothResults.candidates.map((candidate, idx) => {
+                  const votes = selectedBooth.result?.votes[idx] ?? 0;
+                  const percent = selectedBooth.result
+                    ? (votes / selectedBooth.result.total) * 100
+                    : 0;
+                  const partyColor = getPartyColor(candidate.party);
+                  const isWinner = selectedBooth.winner?.party === candidate.party;
+
+                  return (
+                    <div
+                      key={candidate.slNo}
+                      className={`booth-candidate-row ${isWinner ? 'winner' : ''}`}
+                    >
+                      <div className="candidate-info">
+                        <span className="party-tag" style={{ backgroundColor: partyColor }}>
+                          {candidate.party}
+                        </span>
+                        <span className="candidate-name">{candidate.name}</span>
+                      </div>
+                      <div className="candidate-votes">
+                        <span className="votes">{formatNumber(votes)}</span>
+                        <span className="percent">{percent.toFixed(1)}%</span>
+                      </div>
+                      <div className="vote-bar-bg">
+                        <div
+                          className="vote-bar-fill"
+                          style={{
+                            width: `${Math.min(percent, 100)}%`,
+                            backgroundColor: partyColor,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
+        </div>
+      ) : (
+        <div className="no-booth-selected">
+          <MapPin size={24} />
+          <p>Select a booth from the dropdown to view detailed results</p>
+        </div>
+      )}
+    </div>
+  );
+}
