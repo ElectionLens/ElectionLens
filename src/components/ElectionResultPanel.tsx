@@ -579,6 +579,12 @@ export function ElectionResultPanel({
                   {result.turnout > 0 ? `${result.turnout.toFixed(1)}%` : '—'}
                 </span>
               </div>
+              {boothResults?.postal?.nota && boothResults.postal.nota > 0 && (
+                <div className="stat-inline nota">
+                  <span className="label">NOTA</span>
+                  <span className="value">{formatNumber(boothResults.postal.nota)}</span>
+                </div>
+              )}
             </div>
 
             {/* Top 3 candidates preview */}
@@ -774,12 +780,6 @@ function PostalBallotsView({ postal }: PostalBallotsViewProps): JSX.Element {
             </span>
             <span className="stat-label">of Total Votes</span>
           </div>
-          {postal.nota > 0 && (
-            <div className="postal-stat">
-              <span className="stat-value">{formatNumber(postal.nota)}</span>
-              <span className="stat-label">NOTA (Postal)</span>
-            </div>
-          )}
         </div>
       </div>
 

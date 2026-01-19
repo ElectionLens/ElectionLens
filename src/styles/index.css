@@ -1804,6 +1804,18 @@ path:focus {
   background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
 }
 
+.stat-inline.nota {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+}
+
+.stat-inline.nota .label {
+  color: #92400e;
+}
+
+.stat-inline.nota .value {
+  color: #78350f;
+}
+
 .stat-inline svg {
   color: #64748b;
 }
