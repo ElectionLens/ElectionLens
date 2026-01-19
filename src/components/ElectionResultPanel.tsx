@@ -358,7 +358,7 @@ export function ElectionResultPanel({
         {selectedPCYear && currentPCContribution ? (
           /* Parliament view */
           activeTab === 'overview' ? (
-            <>
+            <div className="overview-view">
               {/* Parliament Winner card */}
               {pcWinner && (
                 <div
@@ -445,7 +445,7 @@ export function ElectionResultPanel({
                   </button>
                 )}
               </div>
-            </>
+            </div>
           ) : activeTab === 'booths' ? (
             /* Booth-wise view (Parliament year) */
             <BoothWiseView
@@ -470,7 +470,7 @@ export function ElectionResultPanel({
             />
           ) : (
             /* Parliament full candidates list */
-            <div className="candidates-full">
+            <div className="candidates-view">
               <div className="candidates-table-full">
                 <div className="candidates-header">
                   <span className="col-pos">#</span>
@@ -516,7 +516,7 @@ export function ElectionResultPanel({
             </div>
           )
         ) : activeTab === 'overview' ? (
-          <>
+          <div className="overview-view">
             {/* Compact Winner card */}
             {winner && (
               <div
@@ -589,10 +589,10 @@ export function ElectionResultPanel({
                 </button>
               )}
             </div>
-          </>
+          </div>
         ) : activeTab === 'candidates' ? (
           /* Full candidates list */
-          <div className="candidates-full">
+          <div className="candidates-view">
             <div className="candidates-table-full">
               <div className="candidates-header">
                 <span className="col-pos">#</span>
