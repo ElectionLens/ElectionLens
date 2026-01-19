@@ -1119,6 +1119,11 @@ function BoothwiseAnalysis({
     const partyBoothWins: Record<string, number> = {};
     const partyTotalVotes: Record<string, number> = {};
     const partyMargins: Record<string, number[]> = {};
+    // Track which booths each party won
+    const partyBooths: Record<
+      string,
+      Array<{ booth: BoothWithResult; percent: number; margin: number }>
+    > = {};
 
     // Women's booth analysis
     const womenBooths = boothsWithResults.filter((b) => b.type === 'women');
@@ -1156,6 +1161,10 @@ function BoothwiseAnalysis({
 
       if (!partyMargins[winnerParty]) partyMargins[winnerParty] = [];
       partyMargins[winnerParty].push(margin);
+
+      // Track booths won by each party
+      if (!partyBooths[winnerParty]) partyBooths[winnerParty] = [];
+      partyBooths[winnerParty].push({ booth, percent: booth.winner.percent, margin });
 
       // Close contests (margin < 50 votes)
       if (margin < 50) {
@@ -1613,6 +1622,11 @@ function BoothwiseAnalysis({
       }
     }
 
+    // Sort booths within each party by vote percent descending
+    for (const party of Object.keys(partyBooths)) {
+      partyBooths[party]?.sort((a, b) => b.percent - a.percent);
+    }
+
     return {
       winnerParty,
       winnerBoothCount,
@@ -1620,6 +1634,7 @@ function BoothwiseAnalysis({
       runnerUpBoothCount,
       totalBooths: boothsWithData.length,
       partyBoothWins,
+      partyBooths,
       avgMargins,
       insights,
       closeContests: closeContests.length,
@@ -1633,6 +1648,21 @@ function BoothwiseAnalysis({
       strikeRates,
     };
   }, [boothResults, boothsWithResults]);
+
+  // State for expanded party sections
+  const [expandedParties, setExpandedParties] = useState<Set<string>>(new Set());
+
+  const togglePartyExpand = useCallback((party: string) => {
+    setExpandedParties((prev) => {
+      const next = new Set(prev);
+      if (next.has(party)) {
+        next.delete(party);
+      } else {
+        next.add(party);
+      }
+      return next;
+    });
+  }, []);
 
   if (!analysis) {
     return (
@@ -1763,6 +1793,94 @@ function BoothwiseAnalysis({
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Party Booth Breakdown */}
+      <div className="party-booth-breakdown">
+        <h5>
+          <MapPin size={16} />
+          Booths Won by Party
+        </h5>
+        <div className="party-booth-cards">
+          {Object.entries(analysis.partyBoothWins)
+            .sort((a, b) => b[1] - a[1])
+            .map(([party, count]) => {
+              const isExpanded = expandedParties.has(party);
+              const partyBoothList = analysis.partyBooths[party] || [];
+              const partyColor = getPartyColor(party);
+              const avgPercent =
+                partyBoothList.length > 0
+                  ? (
+                      partyBoothList.reduce((sum, b) => sum + b.percent, 0) / partyBoothList.length
+                    ).toFixed(1)
+                  : '0';
+              const avgMargin =
+                partyBoothList.length > 0
+                  ? Math.round(
+                      partyBoothList.reduce((sum, b) => sum + b.margin, 0) / partyBoothList.length
+                    )
+                  : 0;
+
+              return (
+                <div key={party} className={`party-booth-card ${isExpanded ? 'expanded' : ''}`}>
+                  <button
+                    className="party-booth-header"
+                    onClick={() => togglePartyExpand(party)}
+                    style={{ borderLeftColor: partyColor }}
+                  >
+                    <div className="party-info">
+                      <span className="party-badge" style={{ backgroundColor: partyColor }}>
+                        {party}
+                      </span>
+                      <span className="booth-count">{count} booths won</span>
+                    </div>
+                    <div className="party-stats">
+                      <span className="stat">Avg: {avgPercent}%</span>
+                      <span className="stat">+{formatNumber(avgMargin)}</span>
+                    </div>
+                    <ChevronDown
+                      size={18}
+                      className={`expand-icon ${isExpanded ? 'rotated' : ''}`}
+                    />
+                  </button>
+                  {isExpanded && (
+                    <div className="party-booth-list">
+                      <div className="booth-list-header">
+                        <span className="col-booth">Booth</span>
+                        <span className="col-vote">Vote %</span>
+                        <span className="col-margin">Margin</span>
+                      </div>
+                      <div className="booth-list-items">
+                        {partyBoothList.map(({ booth, percent, margin }) => (
+                          <button
+                            key={booth.id}
+                            className="booth-list-item"
+                            onClick={() => onBoothClick?.(booth.id)}
+                          >
+                            <span className="col-booth" title={booth.name}>
+                              {booth.boothNo}
+                              {booth.type === 'women' && <span className="women-badge">W</span>}
+                            </span>
+                            <span className="col-vote">
+                              {percent.toFixed(1)}%
+                              <div
+                                className="mini-bar"
+                                style={{
+                                  width: `${Math.min(percent, 100)}%`,
+                                  backgroundColor: partyColor,
+                                }}
+                              />
+                            </span>
+                            <span className="col-margin">+{formatNumber(margin)}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
         </div>
       </div>
 
