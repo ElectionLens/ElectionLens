@@ -17,7 +17,8 @@ BUILDING_KEYWORDS = [
     'school', 'college', 'building', 'office', 'hall', 'center', 'centre',
     'panchayat', 'government', 'govt', 'municipal', 'facing', 'wing', 
     'portion', 'terraced', 'tiled', 'floor', 'room', 'aided', 'elementary',
-    'primary', 'middle', 'high', 'anganwadi', 'r c c', 'rcc'
+    'primary', 'middle', 'high', 'anganwadi', 'r c c', 'rcc', 'block',
+    'north', 'south', 'east', 'west', 'street', 'road', 'chennai', 'post'
 ]
 
 def extract_pdf_text(pdf_path):
