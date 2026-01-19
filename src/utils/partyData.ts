@@ -103,7 +103,7 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
   PMK: {
     name: 'Pattali Makkal Katchi',
     shortName: 'PMK',
-    color: '#FFFF00',
+    color: '#D4A017', // Golden yellow for better visibility
     symbol: '🥭',
     symbolEmoji: '🥭',
   },
@@ -147,7 +147,7 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
   TDP: {
     name: 'Telugu Desam Party',
     shortName: 'TDP',
-    color: '#FFED00',
+    color: '#DAA520', // Goldenrod for better visibility
     symbol: '🚲',
     symbolEmoji: '🚲',
   },
@@ -377,7 +377,7 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
   AGP: {
     name: 'Asom Gana Parishad',
     shortName: 'AGP',
-    color: '#FFFFFF',
+    color: '#2E8B57', // Sea green for visibility
     symbol: '🐘',
     symbolEmoji: '🐘',
   },
