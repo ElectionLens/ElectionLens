@@ -306,6 +306,13 @@ export function useElectionResults(): UseElectionResultsReturn {
       const searchName = canonicalName ?? acName;
       const normalizedSearch = normalizeACName(searchName);
 
+      console.log('[getACResult] ==== SEARCH START ====');
+      console.log('[getACResult] acName:', acName);
+      console.log('[getACResult] canonicalName:', canonicalName);
+      console.log('[getACResult] searchName:', searchName);
+      console.log('[getACResult] normalizedSearch:', normalizedSearch);
+      console.log('[getACResult] schemaId:', schemaId);
+
       // Strategy 1: Schema ID direct lookup (primary path for new data format)
       if (schemaId) {
         result = results[schemaId];
