@@ -13,12 +13,14 @@ from pathlib import Path
 PDF_DIR = Path.home() / "Desktop" / "TN_PollingStations_English"
 BOOTHS_DIR = Path("public/data/booths/TN")
 
-# ACs that need sequential matching
+# ACs that need sequential matching - ALL ACs for comprehensive coverage
 PROBLEM_ACS = [
     'TN-159', 'TN-132', 'TN-129', 'TN-093', 'TN-135', 'TN-092',
     'TN-120', 'TN-067', 'TN-069', 'TN-095', 'TN-066', 'TN-094', 'TN-166',
-    # New problematic ACs
-    'TN-178', 'TN-182', 'TN-179', 'TN-183', 'TN-181', 'TN-180', 'TN-017', 'TN-025'
+    'TN-178', 'TN-182', 'TN-179', 'TN-183', 'TN-181', 'TN-180', 'TN-017', 'TN-025',
+    # Additional ACs with missing addresses
+    'TN-131', 'TN-021', 'TN-011', 'TN-020', 'TN-016', 'TN-022', 'TN-019', 'TN-008',
+    'TN-027', 'TN-030', 'TN-031', 'TN-032', 'TN-033', 'TN-035'
 ]
 
 BUILDING_KEYWORDS = [
