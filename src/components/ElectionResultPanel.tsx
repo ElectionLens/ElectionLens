@@ -960,7 +960,7 @@ function BoothWiseView({
                       votes: selectedBooth.result?.votes[idx] ?? 0,
                     }))
                     .sort((a, b) => b.votes - a.votes)
-                    .map(({ candidate, votes }) => {
+                    .map(({ candidate, votes, idx }) => {
                       const percent = selectedBooth.result?.total
                         ? (votes / selectedBooth.result.total) * 100
                         : 0;
@@ -969,7 +969,7 @@ function BoothWiseView({
 
                       return (
                         <div
-                          key={candidate.slNo}
+                          key={candidate.slNo ?? idx}
                           className={`booth-candidate-row ${isWinner ? 'winner' : ''}`}
                         >
                           <div className="candidate-info">
