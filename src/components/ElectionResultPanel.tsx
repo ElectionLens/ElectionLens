@@ -579,12 +579,18 @@ export function ElectionResultPanel({
                   {result.turnout > 0 ? `${result.turnout.toFixed(1)}%` : '—'}
                 </span>
               </div>
-              {boothResults?.postal?.nota && boothResults.postal.nota > 0 && (
-                <div className="stat-inline nota">
-                  <span className="label">NOTA</span>
-                  <span className="value">{formatNumber(boothResults.postal.nota)}</span>
-                </div>
-              )}
+              {(() => {
+                const notaCandidate = boothResults?.postal?.candidates?.find(
+                  (c) => c.party === 'NOTA' || c.name === 'NOTA'
+                );
+                const notaVotes = notaCandidate?.total ?? 0;
+                return notaVotes > 0 ? (
+                  <div className="stat-inline nota">
+                    <span className="label">NOTA</span>
+                    <span className="value">{formatNumber(notaVotes)}</span>
+                  </div>
+                ) : null;
+              })()}
             </div>
 
             {/* Top 3 candidates preview */}
