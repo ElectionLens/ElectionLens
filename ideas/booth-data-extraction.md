@@ -9,6 +9,61 @@
 | Bad (>30% error) | 48 | 20.7% |
 | **Total** | **232** | 100% |
 
+## Remaining 53 ACs Needing Manual Intervention
+
+### 17 Scanned PDFs (No Text Layer)
+These PDFs contain only images and **require manual CSV conversion**:
+
+| AC ID | Constituency |
+|-------|--------------|
+| TN-027 | Shozhinganallur |
+| TN-030 | Pallavaram |
+| TN-031 | Tambaram |
+| TN-032 | Chengalpattu |
+| TN-033 | Thiruporur |
+| TN-034 | Cheyyur |
+| TN-035 | Maduranthakam |
+| TN-040 | Katpadi |
+| TN-043 | Vellore |
+| TN-044 | Anaikattu |
+| TN-046 | Gudiyatham |
+| TN-047 | Vaniayambadi |
+| TN-049 | Jolarpet |
+| TN-108 | Udhagamandalam |
+| TN-109 | Gudalur |
+| TN-147 | Perambalur |
+| TN-148 | Kunnam |
+
+### 36 ACs with Parsing Problems
+These have extractable text but complex layouts:
+
+| AC ID | Constituency | Error |
+|-------|--------------|-------|
+| TN-070 | Gingee | 100% |
+| TN-071 | Mailam | 100% |
+| TN-073 | Vanur | 100% |
+| TN-074 | Villupuram | 100% |
+| TN-075 | Vikravandi | 100% |
+| TN-072 | Tindivanam | 111% |
+| TN-076 | Tirukkoyilur | 81% |
+| ... | (and 29 more) | ... |
+
+## How to Manually Convert PDFs to CSV
+
+1. Create folder: `~/Desktop/TN_Booth_CSVs/`
+
+2. Create CSV with format:
+```csv
+BoothNo,Candidate1,Candidate2,...,TotalValid,Rejected,NOTA,Total
+1,263,1,0,5,18,333,...,641,0,6,647
+2,325,3,1,11,33,305,...,687,0,7,694
+```
+
+3. Run import script:
+```bash
+python3 scripts/import-csv-booths.py AC070.csv TN-070
+```
+
 ## Extraction Scripts
 
 ### 1. `remap-all-booths.py`
