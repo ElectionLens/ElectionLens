@@ -1005,7 +1005,7 @@ interface BoothwiseAnalysisProps {
   boothResults: BoothResults | null | undefined;
   boothsWithResults: BoothWithResult[];
   onBoothClick?: (boothId: string) => void;
-  officialWinner?: string; // Official winner party from election results
+  officialWinner?: string | undefined; // Official winner party from election results
 }
 
 interface LinkedBooth {
