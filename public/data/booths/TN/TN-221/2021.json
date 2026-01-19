@@ -4,7 +4,7 @@
   "year": 2021,
   "electionType": "assembly",
   "date": "2021-04-06",
-  "totalBooths": 188,
+  "totalBooths": 191,
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
@@ -678,12 +678,13 @@
     },
     "TN-221-215": {
       "votes": [
-        215,
-        274,
-        272
+        196,
+        113,
+        22,
+        108
       ],
-      "total": 213,
-      "rejected": 213
+      "total": 184,
+      "rejected": 73
     },
     "TN-221-213": {
       "votes": [
@@ -755,11 +756,14 @@
     },
     "TN-221-123": {
       "votes": [
-        123,
-        121
+        76,
+        201,
+        84,
+        76,
+        34
       ],
-      "total": 157,
-      "rejected": 121
+      "total": 109,
+      "rejected": 87
     },
     "TN-221-93": {
       "votes": [
@@ -859,7 +863,7 @@
       "total": 130,
       "rejected": 129
     },
-    "TN-221-102": {
+    "TN-221-102A(W)": {
       "votes": [
         100
       ],
@@ -964,6 +968,14 @@
       "total": 421,
       "rejected": 793
     },
+    "TN-221-123A(W)": {
+      "votes": [
+        123,
+        121
+      ],
+      "total": 157,
+      "rejected": 121
+    },
     "TN-221-264": {
       "votes": [
         215,
@@ -995,11 +1007,12 @@
     },
     "TN-221-170": {
       "votes": [
-        170,
-        167
+        169,
+        168,
+        164
       ],
-      "total": 211,
-      "rejected": 167
+      "total": 167,
+      "rejected": 165
     },
     "TN-221-183": {
       "votes": [
@@ -1051,7 +1064,7 @@
       "total": 448,
       "rejected": 547
     },
-    "TN-221-139": {
+    "TN-221-139A(W)": {
       "votes": [
         139,
         138
@@ -1174,6 +1187,14 @@
       ],
       "total": 213,
       "rejected": 212
+    },
+    "TN-221-170A(W)": {
+      "votes": [
+        170,
+        167
+      ],
+      "total": 211,
+      "rejected": 167
     },
     "TN-221-134": {
       "votes": [
@@ -1323,7 +1344,7 @@
       "total": 249,
       "rejected": 248
     },
-    "TN-221-198": {
+    "TN-221-198A(W)": {
       "votes": [
         198,
         194
@@ -1358,7 +1379,7 @@
       "total": 258,
       "rejected": 257
     },
-    "TN-221-204": {
+    "TN-221-204A(W)": {
       "votes": [
         204,
         256,
@@ -1429,6 +1450,15 @@
       ],
       "total": 276,
       "rejected": 275
+    },
+    "TN-221-215A(W)": {
+      "votes": [
+        215,
+        274,
+        272
+      ],
+      "total": 213,
+      "rejected": 213
     },
     "TN-221-52": {
       "votes": [
@@ -1561,7 +1591,7 @@
       "total": 532,
       "rejected": 307
     },
-    "TN-221-251": {
+    "TN-221-251A(W)": {
       "votes": [
         251,
         321,
@@ -1771,7 +1801,7 @@
       "total": 374,
       "rejected": 373
     },
-    "TN-221-298": {
+    "TN-221-298A(W)": {
       "votes": [
         298,
         376,
@@ -1930,19 +1960,19 @@
   },
   "summary": {
     "totalVoters": 291931,
-    "totalVotes": 39109,
-    "turnoutPercent": 13.4,
+    "totalVotes": 39569,
+    "turnoutPercent": 13.55,
     "winner": {
       "name": "S.AYYADURAIPANDIAN",
       "party": "AMMK",
-      "votes": 36397
+      "votes": 36838
     },
     "runnerUp": {
       "name": "M.MUTHULAKSHMI",
       "party": "NTK",
-      "votes": 35859
+      "votes": 36341
     },
-    "margin": 538,
-    "marginPercent": 1.4
+    "margin": 497,
+    "marginPercent": 1.3
   }
 }

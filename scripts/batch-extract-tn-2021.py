@@ -50,68 +50,112 @@ def extract_pdf_text(pdf_path: Path) -> str:
         sys.exit(1)
 
 
+def generate_booth_metadata_from_results(results: dict, ac_id: str, ac_name: str) -> dict:
+    """Generate booth metadata from Form 20 results.
+    
+    Since the polling station PDFs have complex multi-line table formats
+    that are hard to parse, we generate basic booth metadata from the
+    Form 20 results which have reliable booth IDs.
+    """
+    booths = []
+    
+    for booth_id in sorted(results.keys(), key=lambda x: (
+        # Sort by numeric part, handling suffixes like M, W, A
+        int(re.search(r'\d+', x.split('-')[-1]).group()) if re.search(r'\d+', x.split('-')[-1]) else 0,
+        x  # Then alphabetically for same number
+    )):
+        # Extract booth number from ID (e.g., "TN-093-140" -> "140")
+        booth_no = booth_id.split('-')[-1]
+        
+        # Determine booth type from suffix
+        # Women's booths have (W), A(W), or just W suffix
+        # M suffix typically means "Men" or "Main"
+        booth_type = "regular"
+        booth_upper = booth_no.upper()
+        if '(W)' in booth_upper or 'A(W)' in booth_upper:
+            booth_type = "women"
+        elif booth_upper.endswith('W') and not booth_upper.endswith('AW'):
+            # Ends with W but not AW (which would be part of A(W) without parens)
+            booth_type = "women"
+        
+        # Extract numeric part for sorting
+        num_match = re.search(r'\d+', booth_no)
+        num = int(num_match.group()) if num_match else 0
+        
+        booth = {
+            "id": booth_id,
+            "boothNo": booth_no,
+            "num": num,
+            "type": booth_type,
+            "name": f"Booth {booth_no}",
+            "address": f"{ac_name} - Booth {booth_no}",
+            "area": ac_name
+        }
+        booths.append(booth)
+    
+    return {
+        "acId": ac_id,
+        "acName": ac_name,
+        "state": "Tamil Nadu",
+        "totalBooths": len(booths),
+        "lastUpdated": "2021-04-06",
+        "source": "Tamil Nadu CEO - Form 20",
+        "booths": booths
+    }
+
+
 def parse_polling_station_pdf(text: str, ac_id: str, ac_name: str) -> dict:
-    """Parse polling station details from PDF text."""
+    """Parse polling station details from PDF text.
+    
+    Note: This function attempts to parse the complex table format but may
+    not capture all details. Use generate_booth_metadata_from_results() as fallback.
+    """
     booths = []
     lines = text.split('\n')
     
-    # Track current booth being parsed
-    current_booth = None
-    booth_pattern = re.compile(
-        r'^\s*(\d+)\s+(\d+)\s+(.+)$'  # SlNo BoothNo RestOfLine
-    )
-    
+    # Simple pattern: line starting with booth number followed by text
     for line in lines:
-        # Skip headers and page numbers
-        if not line.strip():
-            continue
-        if 'Polling' in line and 'Station' in line:
-            continue
-        if 'Page' in line and 'of' in line:
-            continue
-        if re.match(r'^\s*1\s+2\s+3\s+4', line):  # Column headers
-            continue
-        if 'Total' in line and 'Electors' in line:
+        stripped = line.strip()
+        if not stripped:
             continue
             
-        # Try to match booth entry
-        match = booth_pattern.match(line)
-        if match:
-            sl_no = int(match.group(1))
-            booth_no = match.group(2).strip()
-            rest = match.group(3).strip()
+        # Skip headers
+        if any(h in stripped for h in ['LIST OF POLLING', 'Assembly Constituency', 
+                'Parliamentary', 'Sl No', 'Locality', 'Building', 'Polling Area',
+                'Whether for', 'voters or', 'Page ', ' of ']):
+            continue
+            
+        # Match booth line: number followed by school/location name
+        booth_match = re.match(r'^\s*(\d{1,3})\s+([A-Za-z][A-Za-z\s\.\,]+)', line)
+        if booth_match:
+            booth_no = booth_match.group(1)
+            name = booth_match.group(2).strip()
+            
+            try:
+                bn = int(booth_no)
+                if bn > 500 or bn < 1:
+                    continue
+            except:
+                continue
+            
+            # Skip if name is too short or looks like a header
+            if len(name) < 5 or name.lower().startswith('all voter'):
+                continue
             
             # Determine booth type
-            booth_type = "regular"
-            if '(W)' in rest or 'WOMEN' in rest.upper():
-                booth_type = "women"
-                
-            # Extract location and address
-            # Common format: "School Name, Building Details, Location -Pincode"
-            parts = rest.split(',')
-            name = parts[0].strip() if parts else rest
-            address = rest
+            booth_type = "women" if 'women only' in line.lower() else "regular"
             
-            # Extract area from address (usually before pincode)
-            area_match = re.search(r'([A-Za-z][A-Za-z\s]+?)[\s\-]+\d{6}', rest)
-            if area_match:
-                area = area_match.group(1).strip()
-            else:
-                # Try to get last word before any numbers
-                area_parts = re.findall(r'[A-Za-z]+(?:\s+[A-Za-z]+)?', rest)
-                area = area_parts[-1] if area_parts else ac_name
-            
-            # Clean up name
-            name = name[:100]
+            # Clean name
+            name = re.sub(r'\s*\d{6}\s*', '', name).strip()[:80]
             
             booth = {
                 "id": f"{ac_id}-{booth_no}",
                 "boothNo": booth_no,
-                "num": sl_no,
+                "num": int(booth_no),
                 "type": booth_type,
-                "name": name,
-                "address": address[:200] if address else name,
-                "area": area[:50] if area else ac_name
+                "name": name if name else f"Booth {booth_no}",
+                "address": name if name else f"Booth {booth_no}",
+                "area": ac_name
             }
             booths.append(booth)
     
@@ -161,16 +205,17 @@ def parse_form20_pdf(text: str, ac_id: str, ac_name: str, candidates_info: list)
             if sl_no > 500:  # Serial numbers shouldn't be this high
                 continue
                 
-            # Extract booth number (may have suffix like (A), (W), M, etc.)
+            # Extract booth number (may have suffix like A(W), M, (W), etc.)
             # Pattern: after serial number, get booth number with optional suffix
-            booth_match = re.match(r'^\s*\d+\s+(\d+(?:\s*\([AW]\))?(?:\s*[MW])?)', line)
+            # Examples: "1", "3M", "3A(W)", "10", "10A(W)"
+            booth_match = re.match(r'^\s*\d+\s+(\d+\s*(?:[A-Z]?\s*\([AW]\))?(?:\s*[MW])?)', line, re.IGNORECASE)
             if not booth_match:
                 continue
                 
             booth_no_raw = booth_match.group(1).strip()
-            # Normalize: remove spaces, convert (W) to W, (A) to A
+            # Normalize: remove spaces, keep A(W) format for women's booth detection
             booth_no = re.sub(r'\s+', '', booth_no_raw)
-            booth_no = booth_no.replace('(W)', 'W').replace('(A)', 'A').replace('(M)', 'M')
+            # Standardize: "3A(W)" stays as "3A(W)", "3 M" becomes "3M"
             
             # Get vote numbers - skip first two (SlNo and BoothNo)
             vote_numbers = [int(n) for n in numbers[2:]]
@@ -328,43 +373,41 @@ def process_constituency(ac_num: int, constituency_data: dict) -> bool:
     output_dir = OUTPUT_BASE / ac_id
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    # Extract and parse polling station data
-    if polling_pdf.exists():
-        print(f"  📄 Extracting polling stations...")
-        polling_text = extract_pdf_text(polling_pdf)
-        if polling_text:
-            booths_data = parse_polling_station_pdf(polling_text, ac_id, ac_name)
-            
-            booths_file = output_dir / "booths.json"
-            with open(booths_file, 'w') as f:
-                json.dump(booths_data, f, indent=2)
-            print(f"  ✅ Booths: {booths_data['totalBooths']} extracted → {booths_file.name}")
-    
-    # Extract and parse Form 20 data
+    # Extract and parse Form 20 data FIRST (we need this for booth metadata)
     print(f"  📄 Extracting Form 20 results...")
     form20_text = extract_pdf_text(form20_pdf)
-    if form20_text:
-        results_data = parse_form20_pdf(form20_text, ac_id, ac_name, candidates_info)
-        
-        # Enrich with election data
-        if ac_info:
-            results_data["summary"]["totalVoters"] = ac_info.get("electors", 0)
-            if results_data["summary"]["totalVoters"] > 0:
-                results_data["summary"]["turnoutPercent"] = round(
-                    (results_data["summary"]["totalVotes"] / results_data["summary"]["totalVoters"]) * 100, 2
-                )
-        
-        results_file = output_dir / "2021.json"
-        with open(results_file, 'w') as f:
-            json.dump(results_data, f, indent=2)
-        print(f"  ✅ Results: {results_data['totalBooths']} booths extracted → {results_file.name}")
-        
-        if results_data['totalBooths'] == 0:
-            print(f"  ⚠️ WARNING: No booth results extracted - PDF format may differ")
-            return False
-    else:
+    if not form20_text:
         print(f"  ❌ Failed to extract Form 20 text")
         return False
+        
+    results_data = parse_form20_pdf(form20_text, ac_id, ac_name, candidates_info)
+    
+    if results_data['totalBooths'] == 0:
+        print(f"  ⚠️ WARNING: No booth results extracted - PDF format may differ")
+        return False
+    
+    # Enrich with election data
+    if ac_info:
+        results_data["summary"]["totalVoters"] = ac_info.get("electors", 0)
+        if results_data["summary"]["totalVoters"] > 0:
+            results_data["summary"]["turnoutPercent"] = round(
+                (results_data["summary"]["totalVotes"] / results_data["summary"]["totalVoters"]) * 100, 2
+            )
+    
+    results_file = output_dir / "2021.json"
+    with open(results_file, 'w') as f:
+        json.dump(results_data, f, indent=2)
+    print(f"  ✅ Results: {results_data['totalBooths']} booths extracted → {results_file.name}")
+    
+    # Generate booth metadata from results (reliable source of booth IDs)
+    booths_data = generate_booth_metadata_from_results(
+        results_data.get("results", {}), ac_id, ac_name
+    )
+    
+    booths_file = output_dir / "booths.json"
+    with open(booths_file, 'w') as f:
+        json.dump(booths_data, f, indent=2)
+    print(f"  ✅ Booths: {booths_data['totalBooths']} metadata generated → {booths_file.name}")
     
     return True
 
