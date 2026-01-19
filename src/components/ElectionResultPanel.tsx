@@ -831,7 +831,7 @@ function BoothWiseView({
                     }))
                     .sort((a, b) => b.votes - a.votes)
                     .map(({ candidate, votes }) => {
-                      const percent = selectedBooth.result
+                      const percent = selectedBooth.result?.total
                         ? (votes / selectedBooth.result.total) * 100
                         : 0;
                       const partyColor = getPartyColor(candidate.party);
@@ -974,7 +974,8 @@ function BoothwiseAnalysis({
       // NEW: High NOTA detection (>2% or >50 votes)
       if (notaIndex >= 0) {
         const notaVotes = booth.result.votes[notaIndex] ?? 0;
-        const notaPercent = (notaVotes / booth.result.total) * 100;
+        const boothTotal = booth.result.total || 1; // Avoid division by zero
+        const notaPercent = (notaVotes / boothTotal) * 100;
         if (notaPercent > 2 || notaVotes > 50) {
           highNotaBooths.push({ booth, notaVotes, notaPercent });
         }
@@ -1002,15 +1003,16 @@ function BoothwiseAnalysis({
     const runnerUpBoothCount = sortedParties[1]?.[1] || 0;
 
     // NEW: Calculate Strike Rate for top parties (% of booths won)
+    const totalBoothCount = boothsWithData.length || 1; // Avoid division by zero
     const strikeRates = sortedParties.slice(0, 5).map(([party, wins]) => ({
       party,
       wins,
-      strikeRate: ((wins / boothsWithData.length) * 100).toFixed(1),
+      strikeRate: ((wins / totalBoothCount) * 100).toFixed(1),
       totalVotes: partyTotalVotes[party] || 0,
     }));
 
     // Calculate total votes to determine vote share
-    const grandTotalVotes = Object.values(partyTotalVotes).reduce((a, b) => a + b, 0);
+    const grandTotalVotes = Object.values(partyTotalVotes).reduce((a, b) => a + b, 0) || 1; // Avoid division by zero
 
     // Determine which parties to track for zero votes: top 2 + 3rd if >10%
     const partiesToTrackZero = new Set<string>();
@@ -1051,18 +1053,20 @@ function BoothwiseAnalysis({
     // Calculate average margins
     const avgMargins: Record<string, number> = {};
     for (const [party, margins] of Object.entries(partyMargins)) {
-      avgMargins[party] = Math.round(margins.reduce((a, b) => a + b, 0) / margins.length);
+      avgMargins[party] = Math.round(margins.reduce((a, b) => a + b, 0) / (margins.length || 1));
     }
 
     // Find strongest and weakest areas for winner
     const areaPerformance = Object.entries(areaWins)
-      .map(([area, wins]) => ({
-        area,
-        winnerWins: wins[winnerParty] || 0,
-        totalBooths: Object.values(wins).reduce((a, b) => a + b, 0),
-        winPercent:
-          ((wins[winnerParty] || 0) / Object.values(wins).reduce((a, b) => a + b, 0)) * 100,
-      }))
+      .map(([area, wins]) => {
+        const totalAreaBooths = Object.values(wins).reduce((a, b) => a + b, 0) || 1;
+        return {
+          area,
+          winnerWins: wins[winnerParty] || 0,
+          totalBooths: totalAreaBooths,
+          winPercent: ((wins[winnerParty] || 0) / totalAreaBooths) * 100,
+        };
+      })
       .filter((a) => a.totalBooths >= 3); // Only areas with 3+ booths
 
     const strongestAreas = areaPerformance
@@ -1076,7 +1080,7 @@ function BoothwiseAnalysis({
     const insights: AnalysisInsight[] = [];
 
     // Key victory insight with Strike Rate
-    const winnerStrikeRate = ((winnerBoothCount / boothsWithData.length) * 100).toFixed(1);
+    const winnerStrikeRate = ((winnerBoothCount / totalBoothCount) * 100).toFixed(1);
     const winnerBooths = boothsWithData
       .filter((b) => b.winner?.party === winnerParty)
       .sort((a, b) => (b.winner?.percent ?? 0) - (a.winner?.percent ?? 0));
@@ -1165,7 +1169,7 @@ function BoothwiseAnalysis({
         insights.push({
           type: 'strength',
           title: 'Landslide Victories',
-          description: `Secured ${winnerLandslides.length} booths with >60% vote share (${((winnerLandslides.length / boothsWithData.length) * 100).toFixed(1)}% of total). Strong base that can absorb swings.`,
+          description: `Secured ${winnerLandslides.length} booths with >60% vote share (${((winnerLandslides.length / totalBoothCount) * 100).toFixed(1)}% of total). Strong base that can absorb swings.`,
           value: `${winnerLandslides.length} booths`,
           icon: 'zap',
           linkedBooths: winnerLandslides.map((b) => ({
@@ -1361,7 +1365,7 @@ function BoothwiseAnalysis({
 
     // Competition analysis with strike rate comparison
     if (runnerUpParty) {
-      const runnerUpStrikeRate = ((runnerUpBoothCount / boothsWithData.length) * 100).toFixed(1);
+      const runnerUpStrikeRate = ((runnerUpBoothCount / totalBoothCount) * 100).toFixed(1);
       const competitionRatio = winnerBoothCount / (runnerUpBoothCount || 1);
       const runnerUpBooths = boothsWithData
         .filter((b) => b.winner?.party === runnerUpParty)
