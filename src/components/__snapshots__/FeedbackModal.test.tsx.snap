@@ -1,0 +1,323 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FeedbackModal Snapshots > matches snapshot for initial state 1`] = `
+<div
+  class="feedback-modal-overlay"
+>
+  <div
+    class="feedback-modal"
+  >
+    <div
+      class="feedback-modal-header"
+    >
+      <h2>
+        Send Feedback
+      </h2>
+      <button
+        class="feedback-modal-close"
+        title="Close"
+      >
+        <svg
+          class="lucide lucide-x"
+          fill="none"
+          height="20"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 6 6 18"
+          />
+          <path
+            d="m6 6 12 12"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="feedback-modal-content"
+    >
+      <div
+        class="feedback-section"
+      >
+        <label
+          class="feedback-label"
+        >
+          What type of feedback?
+        </label>
+        <div
+          class="feedback-type-grid"
+        >
+          <button
+            class="feedback-type-btn "
+          >
+            <span
+              class="feedback-type-icon"
+            >
+              <svg
+                class="lucide lucide-bug"
+                fill="none"
+                height="20"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m8 2 1.88 1.88"
+                />
+                <path
+                  d="M14.12 3.88 16 2"
+                />
+                <path
+                  d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1"
+                />
+                <path
+                  d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6"
+                />
+                <path
+                  d="M12 20v-9"
+                />
+                <path
+                  d="M6.53 9C4.6 8.8 3 7.1 3 5"
+                />
+                <path
+                  d="M6 13H2"
+                />
+                <path
+                  d="M3 21c0-2.1 1.7-3.9 3.8-4"
+                />
+                <path
+                  d="M20.97 5c0 2.1-1.6 3.8-3.5 4"
+                />
+                <path
+                  d="M22 13h-4"
+                />
+                <path
+                  d="M17.2 17c2.1.1 3.8 1.9 3.8 4"
+                />
+              </svg>
+            </span>
+            <span
+              class="feedback-type-label"
+            >
+              Bug Report
+            </span>
+            <span
+              class="feedback-type-desc"
+            >
+              Something is broken or not working
+            </span>
+          </button>
+          <button
+            class="feedback-type-btn "
+          >
+            <span
+              class="feedback-type-icon"
+            >
+              <svg
+                class="lucide lucide-lightbulb"
+                fill="none"
+                height="20"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"
+                />
+                <path
+                  d="M9 18h6"
+                />
+                <path
+                  d="M10 22h4"
+                />
+              </svg>
+            </span>
+            <span
+              class="feedback-type-label"
+            >
+              Feature Request
+            </span>
+            <span
+              class="feedback-type-desc"
+            >
+              Suggest a new feature
+            </span>
+          </button>
+          <button
+            class="feedback-type-btn "
+          >
+            <span
+              class="feedback-type-icon"
+            >
+              <svg
+                class="lucide lucide-database"
+                fill="none"
+                height="20"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <ellipse
+                  cx="12"
+                  cy="5"
+                  rx="9"
+                  ry="3"
+                />
+                <path
+                  d="M3 5V19A9 3 0 0 0 21 19V5"
+                />
+                <path
+                  d="M3 12A9 3 0 0 0 21 12"
+                />
+              </svg>
+            </span>
+            <span
+              class="feedback-type-label"
+            >
+              Data Issue
+            </span>
+            <span
+              class="feedback-type-desc"
+            >
+              Missing or incorrect election data
+            </span>
+          </button>
+          <button
+            class="feedback-type-btn "
+          >
+            <span
+              class="feedback-type-icon"
+            >
+              <svg
+                class="lucide lucide-message-square"
+                fill="none"
+                height="20"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+            </span>
+            <span
+              class="feedback-type-label"
+            >
+              Other
+            </span>
+            <span
+              class="feedback-type-desc"
+            >
+              General feedback or questions
+            </span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="feedback-section"
+      >
+        <label
+          class="feedback-label"
+          for="feedback-message"
+        >
+          Your message 
+          <span
+            class="required"
+          >
+            *
+          </span>
+        </label>
+        <textarea
+          class="feedback-textarea"
+          id="feedback-message"
+          placeholder="Share your thoughts..."
+          rows="4"
+        />
+      </div>
+      <div
+        class="feedback-section"
+      >
+        <label
+          class="feedback-label"
+          for="feedback-email"
+        >
+          Email 
+          <span
+            class="optional"
+          >
+            (optional)
+          </span>
+        </label>
+        <input
+          class="feedback-input"
+          id="feedback-email"
+          placeholder="your@email.com"
+          type="email"
+          value=""
+        />
+        <p
+          class="feedback-hint"
+        >
+          We'll only use this to follow up on your feedback
+        </p>
+      </div>
+      <div
+        class="feedback-actions"
+      >
+        <button
+          class="feedback-cancel-btn"
+        >
+          Cancel
+        </button>
+        <button
+          class="feedback-submit-btn"
+          disabled=""
+        >
+          <svg
+            class="lucide lucide-send"
+            fill="none"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"
+            />
+            <path
+              d="m21.854 2.147-10.94 10.939"
+            />
+          </svg>
+          Submit Feedback
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

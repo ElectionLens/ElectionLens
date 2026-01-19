@@ -300,3 +300,10 @@ describe('FeedbackModal', () => {
     });
   });
 });
+
+describe('FeedbackModal Snapshots', () => {
+  it('matches snapshot for initial state', () => {
+    const { container } = render(<FeedbackModal isOpen={true} onClose={() => {}} />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+});
