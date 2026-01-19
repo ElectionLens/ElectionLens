@@ -241,7 +241,7 @@ function App(): JSX.Element {
 
     if (electionResult) {
       // Constituency selected with election result
-      title = `${electionResult.constituencyNameOriginal} ${electionResult.year} Results | Election Lens`;
+      title = `${electionResult.constituencyNameOriginal ?? electionResult.name ?? electionResult.constituencyName ?? 'Constituency'} ${electionResult.year} Results | Election Lens`;
     } else if (currentAssembly) {
       title = `${currentAssembly} | Election Lens`;
     } else if (currentPC) {
