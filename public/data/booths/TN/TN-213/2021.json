@@ -2,63 +2,83 @@
   "candidates": [
     {
       "name": "MARKANDAYAN V",
-      "party": "DMK"
+      "party": "DMK",
+      "symbol": ""
     },
     {
       "name": "CHINNAPPAN P",
-      "party": "ADMK"
+      "party": "ADMK",
+      "symbol": ""
     },
     {
       "name": "BALAJI R",
-      "party": "NTK"
+      "party": "NTK",
+      "symbol": ""
     },
     {
       "name": "SEENI SELVI K",
-      "party": "AMMK"
+      "party": "AMMK",
+      "symbol": ""
     },
     {
       "name": "WILSON X",
-      "party": "MNM"
+      "party": "MNM",
+      "symbol": ""
     },
     {
       "name": "MUTHUKUMAR C",
-      "party": "Puthiya Tamilagam"
-    },
-    {
-      "name": "MANIKKARAJ A",
-      "party": "BSP"
+      "party": "Puthiya Tamilagam",
+      "symbol": ""
     },
     {
       "name": "KARUPPASAMY K",
-      "party": "Naam Indiar Party"
+      "party": "Naam Indiar Party",
+      "symbol": ""
+    },
+    {
+      "name": "MANIKKARAJ A",
+      "party": "BSP",
+      "symbol": ""
     },
     {
       "name": "MARIMUTHU S",
-      "party": "South India Forward Bloc"
+      "party": "South India Forward Bloc",
+      "symbol": ""
     },
     {
       "name": "MURUGANANTHAM M",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "CHELLADURAI S",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "ARUMUGAM S",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "ARUMUGAPERUMAL K",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "GANDHI M",
-      "party": "Bahujan Dravida Party"
+      "party": "Bahujan Dravida Party",
+      "symbol": ""
     },
     {
       "name": "RAJAMANI P",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -5526,18 +5546,18 @@
         "total": 1055
       },
       {
-        "name": "MANIKKARAJ A",
-        "party": "BSP",
-        "postal": 94,
-        "booth": 393,
-        "total": 487
-      },
-      {
         "name": "KARUPPASAMY K",
         "party": "Naam Indiar Party",
-        "postal": 114,
-        "booth": 499,
+        "postal": 220,
+        "booth": 393,
         "total": 613
+      },
+      {
+        "name": "MANIKKARAJ A",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 487,
+        "total": 487
       },
       {
         "name": "MARIMUTHU S",
@@ -5587,6 +5607,13 @@
         "postal": 20,
         "booth": 81,
         "total": 101
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1036,
+        "booth": 0,
+        "total": 1036
       }
     ]
   }

@@ -4,55 +4,73 @@
   "candidates": [
     {
       "name": "VARALAKSHMI.M",
-      "party": "DMK"
+      "party": "DMK",
+      "symbol": ""
     },
     {
       "name": "GAJENDRAN.M",
-      "party": "ADMK"
+      "party": "ADMK",
+      "symbol": ""
     },
     {
       "name": "SANJEEVINATHAN.K",
-      "party": "NTK"
+      "party": "NTK",
+      "symbol": ""
     },
     {
       "name": "MUTHAMILSELVAN.S",
-      "party": "IJK"
-    },
-    {
-      "name": "DILLIBABU.S",
-      "party": "Tipu Sultan Party"
+      "party": "IJK",
+      "symbol": ""
     },
     {
       "name": "SATHISHKUMAR.A",
-      "party": "AMMK"
-    },
-    {
-      "name": "VEERADOSS.E",
-      "party": "IND"
+      "party": "AMMK",
+      "symbol": ""
     },
     {
       "name": "ERANIAPPAN.S",
-      "party": "CPI(ML)(L)"
+      "party": "CPI(ML)(L)",
+      "symbol": ""
+    },
+    {
+      "name": "DILLIBABU.S",
+      "party": "Tipu Sultan Party",
+      "symbol": ""
+    },
+    {
+      "name": "VEERADOSS.E",
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "SEETHALAKSHMI.I",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "RAJAGOPAL.G",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "SARAVANAN.D",
-      "party": "All India Jananayaka Makkal Kazhagam"
+      "party": "All India Jananayaka Makkal Kazhagam",
+      "symbol": ""
     },
     {
       "name": "VASUMATHI.G",
-      "party": "Anaithu Makkal Arasiyal Katchi"
+      "party": "Anaithu Makkal Arasiyal Katchi",
+      "symbol": ""
     },
     {
       "name": "GOPALAKRISHNAN.N",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -5038,6 +5056,20 @@
         "total": 4146
       },
       {
+        "name": "SATHISHKUMAR.A",
+        "party": "AMMK",
+        "postal": 0,
+        "booth": 3069,
+        "total": 3069
+      },
+      {
+        "name": "ERANIAPPAN.S",
+        "party": "CPI(ML)(L)",
+        "postal": 0,
+        "booth": 684,
+        "total": 684
+      },
+      {
         "name": "DILLIBABU.S",
         "party": "Tipu Sultan Party",
         "postal": 0,
@@ -5045,25 +5077,11 @@
         "total": 404
       },
       {
-        "name": "SATHISHKUMAR.A",
-        "party": "AMMK",
-        "postal": 1240,
-        "booth": 1829,
-        "total": 3069
-      },
-      {
         "name": "VEERADOSS.E",
         "party": "IND",
         "postal": 0,
         "booth": 344,
         "total": 344
-      },
-      {
-        "name": "ERANIAPPAN.S",
-        "party": "CPI(ML)(L)",
-        "postal": 151,
-        "booth": 533,
-        "total": 684
       },
       {
         "name": "SEETHALAKSHMI.I",
@@ -5099,6 +5117,13 @@
         "postal": 0,
         "booth": 129,
         "total": 129
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 3075,
+        "booth": 0,
+        "total": 3075
       }
     ]
   }

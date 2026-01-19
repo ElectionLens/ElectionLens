@@ -3,32 +3,44 @@
   "year": 2021,
   "candidates": [
     {
-      "name": "KASILINGAM, S.",
-      "party": "DMK"
-    },
-    {
       "name": "PON.JAYASEELAN",
-      "party": "ADMK"
+      "party": "ADMK",
+      "symbol": ""
     },
     {
-      "name": "YOGESWARAN, A.",
-      "party": "DMDK"
+      "name": "KASILINGAM, S.",
+      "party": "DMK",
+      "symbol": ""
     },
     {
       "name": "KETHEESWARAN, R.",
-      "party": "NTK"
+      "party": "NTK",
+      "symbol": ""
     },
     {
-      "name": "JAYAPRAKASH, P.",
-      "party": "Tamilaga Makkal Thannurimai Katchi"
+      "name": "YOGESWARAN, A.",
+      "party": "DMDK",
+      "symbol": ""
     },
     {
       "name": "BABU, J.",
-      "party": "MNM"
+      "party": "MNM",
+      "symbol": ""
     },
     {
       "name": "SARAVANAN, M.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "JAYAPRAKASH, P.",
+      "party": "Tamilaga Makkal Thannurimai Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -1668,18 +1680,25 @@
   "postal": {
     "candidates": [
       {
+        "name": "PON.JAYASEELAN",
+        "party": "ADMK",
+        "postal": 71,
+        "booth": 64425,
+        "total": 64496
+      },
+      {
         "name": "KASILINGAM, S.",
         "party": "DMK",
-        "postal": 0,
-        "booth": 62551,
+        "postal": 4207,
+        "booth": 58344,
         "total": 62551
       },
       {
-        "name": "PON.JAYASEELAN",
-        "party": "ADMK",
-        "postal": 6152,
-        "booth": 58344,
-        "total": 64496
+        "name": "KETHEESWARAN, R.",
+        "party": "NTK",
+        "postal": 877,
+        "booth": 6440,
+        "total": 7317
       },
       {
         "name": "YOGESWARAN, A.",
@@ -1687,20 +1706,6 @@
         "postal": 0,
         "booth": 1173,
         "total": 1173
-      },
-      {
-        "name": "KETHEESWARAN, R.",
-        "party": "NTK",
-        "postal": 6114,
-        "booth": 1203,
-        "total": 7317
-      },
-      {
-        "name": "JAYAPRAKASH, P.",
-        "party": "Tamilaga Makkal Thannurimai Katchi",
-        "postal": 0,
-        "booth": 322,
-        "total": 322
       },
       {
         "name": "BABU, J.",
@@ -1712,9 +1717,23 @@
       {
         "name": "SARAVANAN, M.",
         "party": "IND",
-        "postal": 183,
-        "booth": 238,
+        "postal": 0,
+        "booth": 421,
         "total": 421
+      },
+      {
+        "name": "JAYAPRAKASH, P.",
+        "party": "Tamilaga Makkal Thannurimai Katchi",
+        "postal": 84,
+        "booth": 238,
+        "total": 322
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1017,
+        "booth": 0,
+        "total": 1017
       }
     ]
   }

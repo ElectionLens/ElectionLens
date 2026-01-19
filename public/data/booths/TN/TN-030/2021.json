@@ -3,92 +3,119 @@
   "year": 2021,
   "candidates": [
     {
-      "name": "RAJENDRAN",
-      "party": "ADMK"
+      "name": "KARUNANITHI",
+      "party": "DMK",
+      "symbol": ""
     },
     {
-      "name": "KARUNANITHI",
-      "party": "DMK"
+      "name": "RAJENDRAN",
+      "party": "ADMK",
+      "symbol": ""
     },
     {
       "name": "MINISHREE KANAGARAJ",
-      "party": "NTK"
+      "party": "NTK",
+      "symbol": ""
     },
     {
       "name": "SENTHIL KUMAR",
-      "party": "MNM"
-    },
-    {
-      "name": "GOKULKRISHNAN",
-      "party": "Tamil Nadu Ilangyar Katchi"
+      "party": "MNM",
+      "symbol": ""
     },
     {
       "name": "MURUGESAN",
-      "party": "DMDK"
-    },
-    {
-      "name": "KARTHICK",
-      "party": "BSP"
+      "party": "DMDK",
+      "symbol": ""
     },
     {
       "name": "SERMA SELVARAJ",
-      "party": "Desiya Makkal Sakthi Katchi"
+      "party": "Desiya Makkal Sakthi Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "KARTHICK",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
+      "name": "GOKULKRISHNAN",
+      "party": "Tamil Nadu Ilangyar Katchi",
+      "symbol": ""
     },
     {
       "name": "KUMARA DOSS",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "SADAM HUSSAIN",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "SATHYASEELAN",
-      "party": "LJP"
+      "party": "LJP",
+      "symbol": ""
     },
     {
       "name": "AJITHKUMAR",
-      "party": "Puthiya Tamilagam"
+      "party": "Puthiya Tamilagam",
+      "symbol": ""
     },
     {
       "name": "VEERALAKSHMI",
-      "party": "My India Party"
+      "party": "My India Party",
+      "symbol": ""
     },
     {
       "name": "BALAJI",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "KANAGARAJ",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "MICHAEL",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "RAMACHANDRAN.R",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "PERUMAL",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "SASIKUMAR LAKSHMIPATHY",
-      "party": "National Democratic Party of South India"
+      "party": "National Democratic Party of South India",
+      "symbol": ""
     },
     {
       "name": "SRIDHARAN",
-      "party": "Dravida Murpokku Makkal Katchi"
+      "party": "Dravida Murpokku Makkal Katchi",
+      "symbol": ""
     },
     {
       "name": "KUMAR",
-      "party": "Anna MGR Dravida Makkal Kalgam"
+      "party": "Anna MGR Dravida Makkal Kalgam",
+      "symbol": ""
     },
     {
       "name": "BHASKARAN",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -13542,18 +13569,18 @@
   "postal": {
     "candidates": [
       {
+        "name": "KARUNANITHI",
+        "party": "DMK",
+        "postal": 242,
+        "booth": 126185,
+        "total": 126427
+      },
+      {
         "name": "RAJENDRAN",
         "party": "ADMK",
         "postal": 0,
         "booth": 88646,
         "total": 88646
-      },
-      {
-        "name": "KARUNANITHI",
-        "party": "DMK",
-        "postal": 32435,
-        "booth": 93992,
-        "total": 126427
       },
       {
         "name": "MINISHREE KANAGARAJ",
@@ -13570,18 +13597,18 @@
         "total": 20612
       },
       {
-        "name": "GOKULKRISHNAN",
-        "party": "Tamil Nadu Ilangyar Katchi",
-        "postal": 0,
-        "booth": 432,
-        "total": 432
-      },
-      {
         "name": "MURUGESAN",
         "party": "DMDK",
-        "postal": 2972,
-        "booth": 746,
+        "postal": 723,
+        "booth": 2995,
         "total": 3718
+      },
+      {
+        "name": "SERMA SELVARAJ",
+        "party": "Desiya Makkal Sakthi Katchi",
+        "postal": 0,
+        "booth": 525,
+        "total": 525
       },
       {
         "name": "KARTHICK",
@@ -13591,11 +13618,11 @@
         "total": 519
       },
       {
-        "name": "SERMA SELVARAJ",
-        "party": "Desiya Makkal Sakthi Katchi",
-        "postal": 8,
-        "booth": 517,
-        "total": 525
+        "name": "GOKULKRISHNAN",
+        "party": "Tamil Nadu Ilangyar Katchi",
+        "postal": 0,
+        "booth": 432,
+        "total": 432
       },
       {
         "name": "KUMARA DOSS",
@@ -13694,6 +13721,13 @@
         "postal": 0,
         "booth": 41,
         "total": 41
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1945,
+        "booth": 0,
+        "total": 1945
       }
     ]
   }

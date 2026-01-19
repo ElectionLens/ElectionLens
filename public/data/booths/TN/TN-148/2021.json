@@ -3,92 +3,119 @@
   "year": 2021,
   "candidates": [
     {
-      "name": "RAMACHANDRAN, R.T.",
-      "party": "ADMK"
-    },
-    {
       "name": "SIVASANKAR, S.S.",
-      "party": "DMK"
+      "party": "DMK",
+      "symbol": ""
     },
     {
-      "name": "KAARTHIKEYAN, S.",
-      "party": "AMMK"
+      "name": "RAMACHANDRAN, R.T.",
+      "party": "ADMK",
+      "symbol": ""
     },
     {
       "name": "ARUL, P.",
-      "party": "NTK"
+      "party": "NTK",
+      "symbol": ""
     },
     {
-      "name": "BALAMURUGAN, S.",
-      "party": "IND"
+      "name": "KAARTHIKEYAN, S.",
+      "party": "AMMK",
+      "symbol": ""
     },
     {
       "name": "SELVARAJU, R.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
-      "name": "PRAKASH, M.R.",
-      "party": "IND"
+      "name": "BALAMURUGAN, S.",
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "SATHIK BASHA, A.S.",
-      "party": "MNM"
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "PRAKASH, M.R.",
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "PANDIYAN, S.",
-      "party": "BSP"
+      "party": "BSP",
+      "symbol": ""
     },
     {
       "name": "VINOTHKUMAR, M.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "PUGALENTHI, Dr.S.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "GOWTHAMAN, V.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "SURESHKUMAR, S.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "RAVANAN, M.",
-      "party": "New Generation People’s Party"
+      "party": "New Generation People’s Party",
+      "symbol": ""
     },
     {
       "name": "SELVAM, J.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "MANIKANDAN, K.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "ARUL, G.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "KALAIYARASI SARAVANAN",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "MATHIYAZHAGAN, S.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "KALAISELVI, J.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "KATHIRAVAN, C.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "MUTHAMILSELVAN, D.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -8520,6 +8547,13 @@
   "postal": {
     "candidates": [
       {
+        "name": "SIVASANKAR, S.S.",
+        "party": "DMK",
+        "postal": 159,
+        "booth": 103763,
+        "total": 103922
+      },
+      {
         "name": "RAMACHANDRAN, R.T.",
         "party": "ADMK",
         "postal": 0,
@@ -8527,32 +8561,18 @@
         "total": 97593
       },
       {
-        "name": "SIVASANKAR, S.S.",
-        "party": "DMK",
-        "postal": 1442,
-        "booth": 102480,
-        "total": 103922
+        "name": "ARUL, P.",
+        "party": "NTK",
+        "postal": 483,
+        "booth": 8871,
+        "total": 9354
       },
       {
         "name": "KAARTHIKEYAN, S.",
         "party": "AMMK",
-        "postal": 0,
-        "booth": 2118,
-        "total": 2118
-      },
-      {
-        "name": "ARUL, P.",
-        "party": "NTK",
-        "postal": 7454,
+        "postal": 218,
         "booth": 1900,
-        "total": 9354
-      },
-      {
-        "name": "BALAMURUGAN, S.",
-        "party": "IND",
-        "postal": 0,
-        "booth": 934,
-        "total": 934
+        "total": 2118
       },
       {
         "name": "SELVARAJU, R.",
@@ -8562,18 +8582,25 @@
         "total": 977
       },
       {
-        "name": "PRAKASH, M.R.",
+        "name": "BALAMURUGAN, S.",
         "party": "IND",
-        "postal": 492,
-        "booth": 112,
-        "total": 604
+        "postal": 0,
+        "booth": 934,
+        "total": 934
       },
       {
         "name": "SATHIK BASHA, A.S.",
         "party": "MNM",
-        "postal": 240,
-        "booth": 499,
+        "postal": 627,
+        "booth": 112,
         "total": 739
+      },
+      {
+        "name": "PRAKASH, M.R.",
+        "party": "IND",
+        "postal": 105,
+        "booth": 499,
+        "total": 604
       },
       {
         "name": "PANDIYAN, S.",
@@ -8672,6 +8699,13 @@
         "postal": 0,
         "booth": 40,
         "total": 40
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 753,
+        "booth": 0,
+        "total": 753
       }
     ]
   }

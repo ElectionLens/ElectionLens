@@ -3,40 +3,54 @@
   "year": 2021,
   "candidates": [
     {
-      "name": "Ilayaraja S",
-      "party": "BSP"
-    },
-    {
-      "name": "Anbu Tamilsekaran P",
-      "party": "MNM"
-    },
-    {
-      "name": "Vinoth M",
-      "party": "IND"
-    },
-    {
-      "name": "Babu E",
-      "party": "IND"
+      "name": "Babu M",
+      "party": "VCK",
+      "symbol": ""
     },
     {
       "name": "Kanitha S",
-      "party": "ADMK"
+      "party": "ADMK",
+      "symbol": ""
     },
     {
       "name": "Rajesh R",
-      "party": "NTK"
+      "party": "NTK",
+      "symbol": ""
     },
     {
       "name": "Siva A",
-      "party": "DMDK"
+      "party": "DMDK",
+      "symbol": ""
     },
     {
-      "name": "Babu M",
-      "party": "VCK"
+      "name": "Anbu Tamilsekaran P",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "Ilayaraja S",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
+      "name": "Vinoth M",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Babu E",
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Amarnath B",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -870,38 +884,17 @@
   "postal": {
     "candidates": [
       {
-        "name": "Ilayaraja S",
-        "party": "BSP",
-        "postal": 0,
-        "booth": 964,
-        "total": 964
-      },
-      {
-        "name": "Anbu Tamilsekaran P",
-        "party": "MNM",
-        "postal": 0,
-        "booth": 1968,
-        "total": 1968
-      },
-      {
-        "name": "Vinoth M",
-        "party": "IND",
-        "postal": 0,
-        "booth": 403,
-        "total": 403
-      },
-      {
-        "name": "Babu E",
-        "party": "IND",
-        "postal": 0,
-        "booth": 263,
-        "total": 263
+        "name": "Babu M",
+        "party": "VCK",
+        "postal": 24,
+        "booth": 82726,
+        "total": 82750
       },
       {
         "name": "Kanitha S",
         "party": "ADMK",
-        "postal": 50622,
-        "booth": 28086,
+        "postal": 20492,
+        "booth": 58216,
         "total": 78708
       },
       {
@@ -919,11 +912,32 @@
         "total": 3054
       },
       {
-        "name": "Babu M",
-        "party": "VCK",
-        "postal": 79167,
-        "booth": 3583,
-        "total": 82750
+        "name": "Anbu Tamilsekaran P",
+        "party": "MNM",
+        "postal": 0,
+        "booth": 1968,
+        "total": 1968
+      },
+      {
+        "name": "Ilayaraja S",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 964,
+        "total": 964
+      },
+      {
+        "name": "Vinoth M",
+        "party": "IND",
+        "postal": 0,
+        "booth": 403,
+        "total": 403
+      },
+      {
+        "name": "Babu E",
+        "party": "IND",
+        "postal": 0,
+        "booth": 263,
+        "total": 263
       },
       {
         "name": "Amarnath B",
@@ -931,6 +945,13 @@
         "postal": 0,
         "booth": 216,
         "total": 216
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1141,
+        "booth": 0,
+        "total": 1141
       }
     ]
   }

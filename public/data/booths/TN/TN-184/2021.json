@@ -2,55 +2,73 @@
   "candidates": [
     {
       "name": "S.Mangudi",
-      "party": "INC"
+      "party": "INC",
+      "symbol": ""
     },
     {
       "name": "H.Raja",
-      "party": "BJP"
+      "party": "BJP",
+      "symbol": ""
     },
     {
       "name": "Dherpoki V Pandi",
-      "party": "AMMK"
+      "party": "AMMK",
+      "symbol": ""
     },
     {
       "name": "N.Durai Manickam",
-      "party": "NTK"
+      "party": "NTK",
+      "symbol": ""
     },
     {
       "name": "S.Rajkumar",
-      "party": "MNM"
-    },
-    {
-      "name": "N.Baluswamy",
-      "party": "BSP"
+      "party": "MNM",
+      "symbol": ""
     },
     {
       "name": "B.Vanitha",
-      "party": "Puthiya Tamilagam"
+      "party": "Puthiya Tamilagam",
+      "symbol": ""
+    },
+    {
+      "name": "N.Baluswamy",
+      "party": "BSP",
+      "symbol": ""
     },
     {
       "name": "N.Meenal",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "K.Velu",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "M.Naina Mohamed",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "A.Ganesan",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Rajkumar.G",
-      "party": "Anna MGR Dravida Makkal Kalgam"
+      "party": "Anna MGR Dravida Makkal Kalgam",
+      "symbol": ""
     },
     {
       "name": "A.Paramasivam",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -6591,18 +6609,18 @@
         "total": 8351
       },
       {
-        "name": "N.Baluswamy",
-        "party": "BSP",
-        "postal": 652,
-        "booth": 0,
-        "total": 652
-      },
-      {
         "name": "B.Vanitha",
         "party": "Puthiya Tamilagam",
-        "postal": 25,
-        "booth": 677,
+        "postal": 702,
+        "booth": 0,
         "total": 702
+      },
+      {
+        "name": "N.Baluswamy",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 652,
+        "total": 652
       },
       {
         "name": "N.Meenal",
@@ -6645,6 +6663,13 @@
         "postal": 32,
         "booth": 160,
         "total": 192
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1349,
+        "booth": 0,
+        "total": 1349
       }
     ]
   }

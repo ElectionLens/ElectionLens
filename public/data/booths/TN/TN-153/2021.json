@@ -1,52 +1,69 @@
 {
   "candidates": [
     {
-      "name": "JAGAN.K",
-      "party": "PMK"
+      "name": "SABA.RAJENDRAN",
+      "party": "DMK",
+      "symbol": ""
     },
     {
-      "name": "SABA.RAJENDRAN",
-      "party": "DMK"
+      "name": "JAGAN.K",
+      "party": "PMK",
+      "symbol": ""
     },
     {
       "name": "RAMESH.K",
-      "party": "NTK"
+      "party": "NTK",
+      "symbol": ""
     },
     {
       "name": "BAKTHARATCHAGAN.R",
-      "party": "AMMK"
-    },
-    {
-      "name": "KANAGARAJI.C",
-      "party": "BSP"
+      "party": "AMMK",
+      "symbol": ""
     },
     {
       "name": "ILANGOVAN.R",
-      "party": "IJK"
+      "party": "IJK",
+      "symbol": ""
     },
     {
       "name": "RAJENDRAN .B",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "VADUGANATHAN.R",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "KANAGARAJI.C",
+      "party": "BSP",
+      "symbol": ""
     },
     {
       "name": "DHILIBAN.U",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "DHANASEKARAN.S",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "DHURGA.K",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "BOOBALAN.E",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -5328,18 +5345,18 @@
   "postal": {
     "candidates": [
       {
+        "name": "SABA.RAJENDRAN",
+        "party": "DMK",
+        "postal": 139,
+        "booth": 75038,
+        "total": 75177
+      },
+      {
         "name": "JAGAN.K",
         "party": "PMK",
         "postal": 0,
         "booth": 74200,
         "total": 74200
-      },
-      {
-        "name": "SABA.RAJENDRAN",
-        "party": "DMK",
-        "postal": 215,
-        "booth": 74962,
-        "total": 75177
       },
       {
         "name": "RAMESH.K",
@@ -5356,32 +5373,32 @@
         "total": 2230
       },
       {
-        "name": "KANAGARAJI.C",
-        "party": "BSP",
-        "postal": 0,
-        "booth": 455,
-        "total": 455
-      },
-      {
         "name": "ILANGOVAN.R",
         "party": "IJK",
-        "postal": 36,
-        "booth": 975,
+        "postal": 0,
+        "booth": 1011,
         "total": 1011
       },
       {
         "name": "RAJENDRAN .B",
         "party": "IND",
-        "postal": 32,
-        "booth": 524,
+        "postal": 0,
+        "booth": 556,
         "total": 556
       },
       {
         "name": "VADUGANATHAN.R",
         "party": "IND",
-        "postal": 27,
-        "booth": 492,
+        "postal": 0,
+        "booth": 519,
         "total": 519
+      },
+      {
+        "name": "KANAGARAJI.C",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 455,
+        "total": 455
       },
       {
         "name": "DHILIBAN.U",
@@ -5410,6 +5427,13 @@
         "postal": 3,
         "booth": 88,
         "total": 91
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1171,
+        "booth": 0,
+        "total": 1171
       }
     ]
   }

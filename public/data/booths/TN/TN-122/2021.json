@@ -5,13 +5,13 @@
   "totalBooths": 483,
   "candidates": [
     {
-      "name": "Kuruchi Prabhakaran",
-      "party": "DMK",
+      "name": "Damodaran.S",
+      "party": "ADMK",
       "symbol": ""
     },
     {
-      "name": "Damodaran.S",
-      "party": "ADMK",
+      "name": "Kuruchi Prabhakaran",
+      "party": "DMK",
       "symbol": ""
     },
     {
@@ -72,6 +72,11 @@
     {
       "name": "Atheeswaran.S",
       "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
       "symbol": ""
     }
   ],
@@ -9740,18 +9745,18 @@
   "postal": {
     "candidates": [
       {
-        "name": "Kuruchi Prabhakaran",
-        "party": "DMK",
-        "postal": 0,
-        "booth": 100442,
-        "total": 100442
-      },
-      {
         "name": "Damodaran.S",
         "party": "ADMK",
-        "postal": 2607,
-        "booth": 98930,
+        "postal": 1060,
+        "booth": 100477,
         "total": 101537
+      },
+      {
+        "name": "Kuruchi Prabhakaran",
+        "party": "DMK",
+        "postal": 1512,
+        "booth": 98930,
+        "total": 100442
       },
       {
         "name": "Siva.A",
@@ -9836,6 +9841,13 @@
         "postal": 1,
         "booth": 49,
         "total": 50
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 2280,
+        "booth": 0,
+        "total": 2280
       }
     ]
   }

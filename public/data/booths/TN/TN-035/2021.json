@@ -3,44 +3,59 @@
   "year": 2021,
   "candidates": [
     {
-      "name": "Sumitha. P",
-      "party": "NTK"
-    },
-    {
       "name": "Maragatham. K",
-      "party": "ADMK"
-    },
-    {
-      "name": "Madhanraj. M",
-      "party": "BSP"
+      "party": "ADMK",
+      "symbol": ""
     },
     {
       "name": "Sathya. C.E",
-      "party": "DMK"
+      "party": "DMK",
+      "symbol": ""
     },
     {
-      "name": "Tamizhselvan. S",
-      "party": "IND"
+      "name": "Sumitha. P",
+      "party": "NTK",
+      "symbol": ""
     },
     {
       "name": "Moorthi . N",
-      "party": "DMDK"
-    },
-    {
-      "name": "Kothandan. A",
-      "party": "Desiya Sirupanmayinar Makkal Iyakkam"
+      "party": "DMDK",
+      "symbol": ""
     },
     {
       "name": "Dinesh. K",
-      "party": "MNM"
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "Tamizhselvan. S",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Madhanraj. M",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
+      "name": "Kothandan. A",
+      "party": "Desiya Sirupanmayinar Makkal Iyakkam",
+      "symbol": ""
     },
     {
       "name": "Ranjitham. M",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Subash. S",
-      "party": "Makkal Munnetra Peravai"
+      "party": "Makkal Munnetra Peravai",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -4593,39 +4608,25 @@
   "postal": {
     "candidates": [
       {
-        "name": "Sumitha. P",
-        "party": "NTK",
-        "postal": 0,
-        "booth": 9293,
-        "total": 9293
-      },
-      {
         "name": "Maragatham. K",
         "party": "ADMK",
-        "postal": 456,
-        "booth": 86190,
+        "postal": 155,
+        "booth": 86491,
         "total": 86646
-      },
-      {
-        "name": "Madhanraj. M",
-        "party": "BSP",
-        "postal": 0,
-        "booth": 587,
-        "total": 587
       },
       {
         "name": "Sathya. C.E",
         "party": "DMK",
-        "postal": 76241,
-        "booth": 6835,
+        "postal": 0,
+        "booth": 83076,
         "total": 83076
       },
       {
-        "name": "Tamizhselvan. S",
-        "party": "IND",
-        "postal": 0,
-        "booth": 639,
-        "total": 639
+        "name": "Sumitha. P",
+        "party": "NTK",
+        "postal": 2112,
+        "booth": 7181,
+        "total": 9293
       },
       {
         "name": "Moorthi . N",
@@ -4635,18 +4636,32 @@
         "total": 2137
       },
       {
+        "name": "Dinesh. K",
+        "party": "MNM",
+        "postal": 0,
+        "booth": 1488,
+        "total": 1488
+      },
+      {
+        "name": "Tamizhselvan. S",
+        "party": "IND",
+        "postal": 0,
+        "booth": 639,
+        "total": 639
+      },
+      {
+        "name": "Madhanraj. M",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 587,
+        "total": 587
+      },
+      {
         "name": "Kothandan. A",
         "party": "Desiya Sirupanmayinar Makkal Iyakkam",
         "postal": 0,
         "booth": 251,
         "total": 251
-      },
-      {
-        "name": "Dinesh. K",
-        "party": "MNM",
-        "postal": 1020,
-        "booth": 468,
-        "total": 1488
       },
       {
         "name": "Ranjitham. M",
@@ -4661,6 +4676,13 @@
         "postal": 0,
         "booth": 121,
         "total": 121
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1371,
+        "booth": 0,
+        "total": 1371
       }
     ]
   }

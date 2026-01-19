@@ -4,55 +4,73 @@
   "candidates": [
     {
       "name": "A.P.Nandakumar",
-      "party": "DMK"
+      "party": "DMK",
+      "symbol": ""
     },
     {
       "name": "D.Velazhagan",
-      "party": "ADMK"
-    },
-    {
-      "name": "M.Senthil Kumar",
-      "party": "IND"
+      "party": "ADMK",
+      "symbol": ""
     },
     {
       "name": "A.Sumithra",
-      "party": "NTK"
+      "party": "NTK",
+      "symbol": ""
     },
     {
-      "name": "P Venkatesan",
-      "party": "IND"
+      "name": "M.Senthil Kumar",
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "V.D.Sathish Kumar",
-      "party": "AMMK"
+      "party": "AMMK",
+      "symbol": ""
     },
     {
-      "name": "M RajBabu",
-      "party": "IND"
+      "name": "P Venkatesan",
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "K.Rajasekar",
-      "party": "IJK"
+      "party": "IJK",
+      "symbol": ""
+    },
+    {
+      "name": "M RajBabu",
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "T.Mathan Kumar",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "N.Kirubakaran",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "K.Naveenkumar",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "R Karunamoorthy",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "M.Arun",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -4772,6 +4790,13 @@
         "total": 88799
       },
       {
+        "name": "A.Sumithra",
+        "party": "NTK",
+        "postal": 753,
+        "booth": 7372,
+        "total": 8125
+      },
+      {
         "name": "M.Senthil Kumar",
         "party": "IND",
         "postal": 0,
@@ -4779,25 +4804,25 @@
         "total": 1357
       },
       {
-        "name": "A.Sumithra",
-        "party": "NTK",
-        "postal": 4811,
-        "booth": 3314,
-        "total": 8125
+        "name": "V.D.Sathish Kumar",
+        "party": "AMMK",
+        "postal": 984,
+        "booth": 156,
+        "total": 1140
       },
       {
         "name": "P Venkatesan",
         "party": "IND",
-        "postal": 312,
-        "booth": 156,
+        "postal": 49,
+        "booth": 419,
         "total": 468
       },
       {
-        "name": "V.D.Sathish Kumar",
-        "party": "AMMK",
-        "postal": 721,
-        "booth": 419,
-        "total": 1140
+        "name": "K.Rajasekar",
+        "party": "IJK",
+        "postal": 0,
+        "booth": 328,
+        "total": 328
       },
       {
         "name": "M RajBabu",
@@ -4805,13 +4830,6 @@
         "postal": 0,
         "booth": 179,
         "total": 179
-      },
-      {
-        "name": "K.Rajasekar",
-        "party": "IJK",
-        "postal": 91,
-        "booth": 237,
-        "total": 328
       },
       {
         "name": "T.Mathan Kumar",
@@ -4847,6 +4865,13 @@
         "postal": 0,
         "booth": 44,
         "total": 44
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1791,
+        "booth": 0,
+        "total": 1791
       }
     ]
   }

@@ -3,40 +3,54 @@
   "year": 2021,
   "candidates": [
     {
-      "name": "GUNASEKARAN, A.",
-      "party": "NCP"
-    },
-    {
-      "name": "MAHESHWARI, M.",
-      "party": "NTK"
-    },
-    {
-      "name": "RAJENDRAN, K.",
-      "party": "DMDK"
+      "name": "PRABHAHARAN, M.",
+      "party": "DMK",
+      "symbol": ""
     },
     {
       "name": "THAMIZHSELVAN, R.",
-      "party": "ADMK"
+      "party": "ADMK",
+      "symbol": ""
     },
     {
-      "name": "RADHIKA, T.",
-      "party": "Puthiya Tamilagam"
+      "name": "MAHESHWARI, M.",
+      "party": "NTK",
+      "symbol": ""
     },
     {
       "name": "RAJENDRAN, K.",
-      "party": "BSP"
+      "party": "DMDK",
+      "symbol": ""
     },
     {
       "name": "SASIKALA, M.",
-      "party": "IJK"
+      "party": "IJK",
+      "symbol": ""
     },
     {
-      "name": "PRABHAHARAN, M.",
-      "party": "DMK"
+      "name": "RADHIKA, T.",
+      "party": "Puthiya Tamilagam",
+      "symbol": ""
+    },
+    {
+      "name": "RAJENDRAN, K.",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
+      "name": "GUNASEKARAN, A.",
+      "party": "NCP",
+      "symbol": ""
     },
     {
       "name": "SATHISH, S.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -4510,17 +4524,24 @@
   "postal": {
     "candidates": [
       {
-        "name": "GUNASEKARAN, A.",
-        "party": "NCP",
-        "postal": 0,
-        "booth": 409,
-        "total": 409
+        "name": "PRABHAHARAN, M.",
+        "party": "DMK",
+        "postal": 154,
+        "booth": 121936,
+        "total": 122090
+      },
+      {
+        "name": "THAMIZHSELVAN, R.",
+        "party": "ADMK",
+        "postal": 19503,
+        "booth": 71553,
+        "total": 91056
       },
       {
         "name": "MAHESHWARI, M.",
         "party": "NTK",
-        "postal": 0,
-        "booth": 18673,
+        "postal": 7501,
+        "booth": 11172,
         "total": 18673
       },
       {
@@ -4531,11 +4552,11 @@
         "total": 2932
       },
       {
-        "name": "THAMIZHSELVAN, R.",
-        "party": "ADMK",
-        "postal": 42310,
-        "booth": 48746,
-        "total": 91056
+        "name": "SASIKALA, M.",
+        "party": "IJK",
+        "postal": 0,
+        "booth": 1080,
+        "total": 1080
       },
       {
         "name": "RADHIKA, T.",
@@ -4552,18 +4573,11 @@
         "total": 520
       },
       {
-        "name": "SASIKALA, M.",
-        "party": "IJK",
-        "postal": 200,
-        "booth": 880,
-        "total": 1080
-      },
-      {
-        "name": "PRABHAHARAN, M.",
-        "party": "DMK",
-        "postal": 121245,
-        "booth": 845,
-        "total": 122090
+        "name": "GUNASEKARAN, A.",
+        "party": "NCP",
+        "postal": 0,
+        "booth": 409,
+        "total": 409
       },
       {
         "name": "SATHISH, S.",
@@ -4571,6 +4585,13 @@
         "postal": 0,
         "booth": 379,
         "total": 379
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1884,
+        "booth": 0,
+        "total": 1884
       }
     ]
   }

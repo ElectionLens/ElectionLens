@@ -3,92 +3,119 @@
   "year": 2021,
   "candidates": [
     {
-      "name": "Chinnaiyah.T.K.M",
-      "party": "ADMK"
-    },
-    {
       "name": "Raja.S.R",
-      "party": "DMK"
+      "party": "DMK",
+      "symbol": ""
     },
     {
-      "name": "Laksmanan N.",
-      "party": "IND"
-    },
-    {
-      "name": "Harikrishnan.R",
-      "party": "BSP"
-    },
-    {
-      "name": "Abdulnazar P A",
-      "party": "Tamil Nadu Ilangyar Katchi"
-    },
-    {
-      "name": "Karikalan.M",
-      "party": "AMMK"
-    },
-    {
-      "name": "Sureshkumar.T",
-      "party": "NTK"
+      "name": "Chinnaiyah.T.K.M",
+      "party": "ADMK",
+      "symbol": ""
     },
     {
       "name": "Elango.Siva",
-      "party": "MNM"
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "Sureshkumar.T",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "Karikalan.M",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "Abdulnazar P A",
+      "party": "Tamil Nadu Ilangyar Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "Harikrishnan.R",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
+      "name": "Laksmanan N.",
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Sigamani S",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "KRISHNA T V N H S R.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "KAMATCHI U.",
-      "party": "Anaithu Makkal Arasiyal Katchi"
+      "party": "Anaithu Makkal Arasiyal Katchi",
+      "symbol": ""
     },
     {
       "name": "Sivaraman.S",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Rathinakumar R.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Anand Prabhu B.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Kannairam.B",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Manojkumar A.",
-      "party": "SHS"
+      "party": "SHS",
+      "symbol": ""
     },
     {
       "name": "Venkatesan.C",
-      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi"
+      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+      "symbol": ""
     },
     {
       "name": "Venkatesan Balaji B.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Justin Charles.P",
-      "party": "RPI(A)"
+      "party": "RPI(A)",
+      "symbol": ""
     },
     {
       "name": "Ramu A",
-      "party": "National Democratic Party of South India"
+      "party": "National Democratic Party of South India",
+      "symbol": ""
     },
     {
       "name": "Thangaraj V.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Balakrishnan G.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -4308,6 +4335,13 @@
   "postal": {
     "candidates": [
       {
+        "name": "Raja.S.R",
+        "party": "DMK",
+        "postal": 79,
+        "booth": 116761,
+        "total": 116840
+      },
+      {
         "name": "Chinnaiyah.T.K.M",
         "party": "ADMK",
         "postal": 0,
@@ -4315,39 +4349,11 @@
         "total": 80016
       },
       {
-        "name": "Raja.S.R",
-        "party": "DMK",
+        "name": "Elango.Siva",
+        "party": "MNM",
         "postal": 0,
-        "booth": 116840,
-        "total": 116840
-      },
-      {
-        "name": "Laksmanan N.",
-        "party": "IND",
-        "postal": 0,
-        "booth": 264,
-        "total": 264
-      },
-      {
-        "name": "Harikrishnan.R",
-        "party": "BSP",
-        "postal": 0,
-        "booth": 317,
-        "total": 317
-      },
-      {
-        "name": "Abdulnazar P A",
-        "party": "Tamil Nadu Ilangyar Katchi",
-        "postal": 0,
-        "booth": 1351,
-        "total": 1351
-      },
-      {
-        "name": "Karikalan.M",
-        "party": "AMMK",
-        "postal": 0,
-        "booth": 4207,
-        "total": 4207
+        "booth": 22530,
+        "total": 22530
       },
       {
         "name": "Sureshkumar.T",
@@ -4357,11 +4363,32 @@
         "total": 19494
       },
       {
-        "name": "Elango.Siva",
-        "party": "MNM",
+        "name": "Karikalan.M",
+        "party": "AMMK",
         "postal": 0,
-        "booth": 22530,
-        "total": 22530
+        "booth": 4207,
+        "total": 4207
+      },
+      {
+        "name": "Abdulnazar P A",
+        "party": "Tamil Nadu Ilangyar Katchi",
+        "postal": 0,
+        "booth": 1351,
+        "total": 1351
+      },
+      {
+        "name": "Harikrishnan.R",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 317,
+        "total": 317
+      },
+      {
+        "name": "Laksmanan N.",
+        "party": "IND",
+        "postal": 0,
+        "booth": 264,
+        "total": 264
       },
       {
         "name": "Sigamani S",
@@ -4460,6 +4487,13 @@
         "postal": 0,
         "booth": 46,
         "total": 46
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 2284,
+        "booth": 0,
+        "total": 2284
       }
     ]
   }

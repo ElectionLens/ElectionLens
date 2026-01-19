@@ -4,71 +4,93 @@
   "candidates": [
     {
       "name": "Karthikeyan .P",
-      "party": "DMK"
+      "party": "DMK",
+      "symbol": ""
     },
     {
       "name": "Appu S.R.K",
-      "party": "ADMK"
-    },
-    {
-      "name": "Vijayaraj .K",
-      "party": "IND"
-    },
-    {
-      "name": "Dharmalingam .V.D",
-      "party": "AMMK"
-    },
-    {
-      "name": "Vishnumohan .E",
-      "party": "IND"
+      "party": "ADMK",
+      "symbol": ""
     },
     {
       "name": "Poonkundran .N",
-      "party": "NTK"
-    },
-    {
-      "name": "Naresh Kumar .R",
-      "party": "Tamil Nadu Ilangyar Katchi"
+      "party": "NTK",
+      "symbol": ""
     },
     {
       "name": "Vikram Chakravarthy .G",
-      "party": "MNM"
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "Naresh Kumar .R",
+      "party": "Tamil Nadu Ilangyar Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "Dharmalingam .V.D",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "Vishnumohan .E",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Vijayaraj .K",
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Senthilkumar .P",
-      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi"
+      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+      "symbol": ""
     },
     {
       "name": "Syed Jalaluddin .M",
-      "party": "Tipu Sultan Party"
+      "party": "Tipu Sultan Party",
+      "symbol": ""
     },
     {
       "name": "Panneer Sevlan .N",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Naseer K",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Manogaran S",
-      "party": "Kamarajar Deseeya Congress"
+      "party": "Kamarajar Deseeya Congress",
+      "symbol": ""
     },
     {
       "name": "Srinivasan .N",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Sathishkumar .S",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Karthikeyan .R",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "Karthick .E",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -2994,11 +3016,25 @@
         "total": 75118
       },
       {
-        "name": "Vijayaraj .K",
-        "party": "IND",
+        "name": "Poonkundran .N",
+        "party": "NTK",
+        "postal": 2421,
+        "booth": 6109,
+        "total": 8530
+      },
+      {
+        "name": "Vikram Chakravarthy .G",
+        "party": "MNM",
+        "postal": 448,
+        "booth": 6795,
+        "total": 7243
+      },
+      {
+        "name": "Naresh Kumar .R",
+        "party": "Tamil Nadu Ilangyar Katchi",
         "postal": 0,
-        "booth": 224,
-        "total": 224
+        "booth": 928,
+        "total": 928
       },
       {
         "name": "Dharmalingam .V.D",
@@ -3015,25 +3051,11 @@
         "total": 367
       },
       {
-        "name": "Poonkundran .N",
-        "party": "NTK",
-        "postal": 7301,
-        "booth": 1229,
-        "total": 8530
-      },
-      {
-        "name": "Naresh Kumar .R",
-        "party": "Tamil Nadu Ilangyar Katchi",
-        "postal": 16,
-        "booth": 912,
-        "total": 928
-      },
-      {
-        "name": "Vikram Chakravarthy .G",
-        "party": "MNM",
-        "postal": 6556,
-        "booth": 687,
-        "total": 7243
+        "name": "Vijayaraj .K",
+        "party": "IND",
+        "postal": 0,
+        "booth": 224,
+        "total": 224
       },
       {
         "name": "Senthilkumar .P",
@@ -3097,6 +3119,13 @@
         "postal": 0,
         "booth": 36,
         "total": 36
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1441,
+        "booth": 0,
+        "total": 1441
       }
     ]
   }

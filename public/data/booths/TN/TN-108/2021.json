@@ -4,39 +4,53 @@
   "candidates": [
     {
       "name": "GANESH, R.",
-      "party": "INC"
+      "party": "INC",
+      "symbol": ""
     },
     {
       "name": "BHOJARAJAN, M.",
-      "party": "BJP"
-    },
-    {
-      "name": "LAKSHMANAN, T.",
-      "party": "AMMK"
+      "party": "BJP",
+      "symbol": ""
     },
     {
       "name": "JAYAKUMAR, A.",
-      "party": "NTK"
-    },
-    {
-      "name": "VINOTHKUMAR, M.A.",
-      "party": "IND"
+      "party": "NTK",
+      "symbol": ""
     },
     {
       "name": "Dr.SURESH BABU, S.",
-      "party": "MNM"
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "LAKSHMANAN, T.",
+      "party": "AMMK",
+      "symbol": ""
     },
     {
       "name": "AROKIYANATHAN, B.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "VINOTHKUMAR, M.A.",
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "KRISHNAMURTHI, B.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "A. SARDAR BABU, B.COM.",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -2284,6 +2298,20 @@
         "total": 60182
       },
       {
+        "name": "JAYAKUMAR, A.",
+        "party": "NTK",
+        "postal": 34,
+        "booth": 6347,
+        "total": 6381
+      },
+      {
+        "name": "Dr.SURESH BABU, S.",
+        "party": "MNM",
+        "postal": 0,
+        "booth": 4935,
+        "total": 4935
+      },
+      {
         "name": "LAKSHMANAN, T.",
         "party": "AMMK",
         "postal": 0,
@@ -2291,11 +2319,11 @@
         "total": 1273
       },
       {
-        "name": "JAYAKUMAR, A.",
-        "party": "NTK",
-        "postal": 1417,
-        "booth": 4964,
-        "total": 6381
+        "name": "AROKIYANATHAN, B.",
+        "party": "IND",
+        "postal": 0,
+        "booth": 514,
+        "total": 514
       },
       {
         "name": "VINOTHKUMAR, M.A.",
@@ -2303,20 +2331,6 @@
         "postal": 0,
         "booth": 431,
         "total": 431
-      },
-      {
-        "name": "Dr.SURESH BABU, S.",
-        "party": "MNM",
-        "postal": 3200,
-        "booth": 1735,
-        "total": 4935
-      },
-      {
-        "name": "AROKIYANATHAN, B.",
-        "party": "IND",
-        "postal": 0,
-        "booth": 514,
-        "total": 514
       },
       {
         "name": "KRISHNAMURTHI, B.",
@@ -2331,6 +2345,13 @@
         "postal": 0,
         "booth": 225,
         "total": 225
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1376,
+        "booth": 0,
+        "total": 1376
       }
     ]
   }

@@ -4,55 +4,73 @@
   "candidates": [
     {
       "name": "G.SENDHIL KUMAR",
-      "party": "ADMK"
-    },
-    {
-      "name": "D.Ramu",
-      "party": "BSP"
-    },
-    {
-      "name": "M.GNANA DOSS",
-      "party": "MNM"
-    },
-    {
-      "name": "T.S.VAKEEL AHMED",
-      "party": "AIMIM"
-    },
-    {
-      "name": "M.SURESH",
-      "party": "IND"
+      "party": "ADMK",
+      "symbol": ""
     },
     {
       "name": "N.MOHAMMED NAYEEM",
-      "party": "IUML"
+      "party": "IUML",
+      "symbol": ""
     },
     {
       "name": "A.J.DEVENDHIRAN",
-      "party": "NTK"
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "T.S.VAKEEL AHMED",
+      "party": "AIMIM",
+      "symbol": ""
+    },
+    {
+      "name": "M.GNANA DOSS",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "D.Ramu",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
+      "name": "M.SURESH",
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "B.JAGAN",
-      "party": "Akhil Bharat Hindu Mahasabha"
+      "party": "Akhil Bharat Hindu Mahasabha",
+      "symbol": ""
     },
     {
       "name": "P.ABDUL WAHID",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "DELHI RAJI.S",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "C.M.MOHAMMED HUSSAIN",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
     },
     {
       "name": "R.Sekar",
-      "party": "All India Youth Development Party"
+      "party": "All India Youth Development Party",
+      "symbol": ""
     },
     {
       "name": "SYED MOHAMMED SALEEM",
-      "party": "IND"
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NOTA",
+      "party": "NOTA",
+      "symbol": ""
     }
   ],
   "results": {
@@ -4549,18 +4567,18 @@
         "total": 88018
       },
       {
-        "name": "D.Ramu",
-        "party": "BSP",
-        "postal": 0,
-        "booth": 721,
-        "total": 721
+        "name": "N.MOHAMMED NAYEEM",
+        "party": "IUML",
+        "postal": 13267,
+        "booth": 69847,
+        "total": 83114
       },
       {
-        "name": "M.GNANA DOSS",
-        "party": "MNM",
+        "name": "A.J.DEVENDHIRAN",
+        "party": "NTK",
         "postal": 0,
-        "booth": 1868,
-        "total": 1868
+        "booth": 11226,
+        "total": 11226
       },
       {
         "name": "T.S.VAKEEL AHMED",
@@ -4570,25 +4588,25 @@
         "total": 1897
       },
       {
+        "name": "M.GNANA DOSS",
+        "party": "MNM",
+        "postal": 297,
+        "booth": 1571,
+        "total": 1868
+      },
+      {
+        "name": "D.Ramu",
+        "party": "BSP",
+        "postal": 196,
+        "booth": 525,
+        "total": 721
+      },
+      {
         "name": "M.SURESH",
         "party": "IND",
-        "postal": 0,
-        "booth": 362,
-        "total": 362
-      },
-      {
-        "name": "N.MOHAMMED NAYEEM",
-        "party": "IUML",
-        "postal": 82589,
-        "booth": 525,
-        "total": 83114
-      },
-      {
-        "name": "A.J.DEVENDHIRAN",
-        "party": "NTK",
-        "postal": 10981,
+        "postal": 117,
         "booth": 245,
-        "total": 11226
+        "total": 362
       },
       {
         "name": "B.JAGAN",
@@ -4631,6 +4649,13 @@
         "postal": 0,
         "booth": 133,
         "total": 133
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 1492,
+        "booth": 0,
+        "total": 1492
       }
     ]
   }
