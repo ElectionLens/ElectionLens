@@ -467,6 +467,7 @@ export function ElectionResultPanel({
                 setSelectedBoothId(boothId);
                 setActiveTab('booths');
               }}
+              officialWinner={result.candidates[0]?.party}
             />
           ) : (
             /* Parliament full candidates list */
@@ -625,6 +626,7 @@ export function ElectionResultPanel({
               setSelectedBoothId(boothId);
               setActiveTab('booths');
             }}
+            officialWinner={result.candidates[0]?.party}
           />
         ) : (
           /* Booth-wise view */
@@ -1003,6 +1005,7 @@ interface BoothwiseAnalysisProps {
   boothResults: BoothResults | null | undefined;
   boothsWithResults: BoothWithResult[];
   onBoothClick?: (boothId: string) => void;
+  officialWinner?: string; // Official winner party from election results
 }
 
 interface LinkedBooth {
@@ -1094,6 +1097,7 @@ function BoothwiseAnalysis({
   boothResults,
   boothsWithResults,
   onBoothClick,
+  officialWinner,
 }: BoothwiseAnalysisProps): JSX.Element {
   const analysis = useMemo(() => {
     if (!boothResults || boothsWithResults.length === 0) {
@@ -1184,12 +1188,17 @@ function BoothwiseAnalysis({
       });
     }
 
-    // Find overall winner
+    // Sort parties by booth wins
     const sortedParties = Object.entries(partyBoothWins).sort((a, b) => b[1] - a[1]);
-    const winnerParty = sortedParties[0]?.[0] || '';
-    const winnerBoothCount = sortedParties[0]?.[1] || 0;
-    const runnerUpParty = sortedParties[1]?.[0] || '';
-    const runnerUpBoothCount = sortedParties[1]?.[1] || 0;
+    
+    // Use official winner if provided, otherwise fall back to booth wins leader
+    const winnerParty = officialWinner || sortedParties[0]?.[0] || '';
+    const winnerBoothCount = partyBoothWins[winnerParty] || 0;
+    
+    // Runner-up is the party with most booth wins that isn't the winner
+    const runnerUpEntry = sortedParties.find(([party]) => party !== winnerParty);
+    const runnerUpParty = runnerUpEntry?.[0] || '';
+    const runnerUpBoothCount = runnerUpEntry?.[1] || 0;
 
     // NEW: Calculate Strike Rate for top parties (% of booths won)
     const totalBoothCount = boothsWithData.length || 1; // Avoid division by zero
