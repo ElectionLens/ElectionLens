@@ -4674,7 +4674,35 @@ path:focus {
   margin-top: 8px;
 }
 
-.insight-booths::-webkit-scrollbar {
+.expand-collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #e0e7ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #4f46e5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.expand-collapse-btn:hover {
+  background: #c7d2fe;
+  border-color: #a5b4fc;
+}
+
+.expand-collapse-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.expand-collapse-btn svg.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.insight-booths-unused::-webkit-scrollbar {
   width: 4px;
 }
 
