@@ -4019,9 +4019,6 @@ path:focus {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  flex: 1;
-  overflow-y: auto;
-  min-height: 0; /* Allow flex child to shrink */
 }
 
 .booth-year-selector {
@@ -4269,9 +4266,7 @@ path:focus {
 }
 
 .booth-candidates-scroll {
-  max-height: 220px;
-  overflow-y: auto;
-  padding-right: 4px;
+  /* No nested scroll - uses main panel scroll */
 }
 
 .booth-candidates-scroll::-webkit-scrollbar {
@@ -4395,9 +4390,6 @@ path:focus {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  flex: 1;
-  overflow-y: auto;
-  min-height: 0; /* Allow flex child to shrink */
 }
 
 .analysis-empty {
@@ -4680,9 +4672,6 @@ path:focus {
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 8px;
-  max-height: 120px;
-  overflow-y: auto;
-  padding-right: 4px;
 }
 
 .insight-booths::-webkit-scrollbar {
@@ -4930,9 +4919,6 @@ path:focus {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  flex: 1;
-  overflow-y: auto;
-  min-height: 0; /* Allow flex child to shrink */
 }
 
 .postal-summary {
