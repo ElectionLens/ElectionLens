@@ -1,0 +1,243 @@
+import { useState, useCallback } from 'react';
+
+// Types for booth data
+export interface Booth {
+  id: string;
+  boothNo: string;
+  num: number;
+  type: 'regular' | 'women' | 'auxiliary' | 'special';
+  name: string;
+  address: string;
+  area: string;
+  location?: { lat: number; lng: number };
+}
+
+export interface BoothList {
+  acId: string;
+  acName: string;
+  state: string;
+  totalBooths: number;
+  lastUpdated: string;
+  source: string;
+  booths: Booth[];
+}
+
+export interface Candidate {
+  slNo: number;
+  name: string;
+  party: string;
+  symbol: string;
+}
+
+export interface BoothResult {
+  votes: number[];
+  total: number;
+  rejected: number;
+}
+
+export interface PostalCandidate {
+  name: string;
+  party: string;
+  postal: number;
+  booth: number;
+  total: number;
+}
+
+export interface PostalData {
+  candidates: PostalCandidate[];
+  totalValid: number;
+  rejected: number;
+  nota: number;
+  total: number;
+}
+
+export interface BoothResults {
+  acId: string;
+  acName: string;
+  year: number;
+  electionType: 'assembly' | 'parliament';
+  pcName?: string;
+  date: string;
+  totalBooths: number;
+  source: string;
+  candidates: Candidate[];
+  results: Record<string, BoothResult>;
+  summary: {
+    totalVoters: number;
+    totalVotes: number;
+    turnoutPercent: number;
+    winner: { name: string; party: string; votes: number };
+    runnerUp: { name: string; party: string; votes: number };
+    margin: number;
+    marginPercent: number;
+  };
+  postal?: PostalData;
+}
+
+// Merged booth data for display
+export interface BoothWithResult extends Booth {
+  result?: BoothResult;
+  winner?: { name: string; party: string; votes: number; percent: number };
+}
+
+interface UseBoothDataReturn {
+  boothList: BoothList | null;
+  boothResults: BoothResults | null;
+  boothsWithResults: BoothWithResult[];
+  availableYears: number[];
+  loading: boolean;
+  error: string | null;
+  loadBoothData: (stateId: string, acId: string) => Promise<void>;
+  loadBoothResults: (stateId: string, acId: string, year: number) => Promise<void>;
+}
+
+/**
+ * Hook for loading and managing booth-wise election data
+ */
+export function useBoothData(): UseBoothDataReturn {
+  const [boothList, setBoothList] = useState<BoothList | null>(null);
+  const [boothResults, setBoothResults] = useState<BoothResults | null>(null);
+  const [availableYears, setAvailableYears] = useState<number[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  /**
+   * Load booth list for an AC
+   */
+  const loadBoothData = useCallback(async (stateId: string, acId: string) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      // Load booth list
+      const boothPath = `/data/booths/${stateId}/${acId}/booths.json`;
+      const response = await fetch(boothPath);
+
+      if (!response.ok) {
+        throw new Error(`Booth data not available for ${acId}`);
+      }
+
+      const data: BoothList = await response.json();
+      setBoothList(data);
+
+      // Check available years by trying to fetch index or scanning
+      const years: number[] = [];
+      for (const year of [2024, 2021, 2019, 2016, 2014, 2011]) {
+        try {
+          const yearResponse = await fetch(`/data/booths/${stateId}/${acId}/${year}.json`, {
+            method: 'HEAD',
+          });
+          if (yearResponse.ok) {
+            years.push(year);
+          }
+        } catch {
+          // Year not available
+        }
+      }
+      setAvailableYears(years);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load booth data');
+      setBoothList(null);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  /**
+   * Load booth results for a specific year
+   */
+  const loadBoothResults = useCallback(async (stateId: string, acId: string, year: number) => {
+    try {
+      const resultsPath = `/data/booths/${stateId}/${acId}/${year}.json`;
+      const response = await fetch(resultsPath);
+
+      if (!response.ok) {
+        throw new Error(`Results not available for ${year}`);
+      }
+
+      const data: BoothResults = await response.json();
+      setBoothResults(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load results');
+      setBoothResults(null);
+    }
+  }, []);
+
+  /**
+   * Merge booth list with results for display
+   * Includes booths from results that may not be in booth list
+   */
+  const boothsWithResults: BoothWithResult[] = (() => {
+    const boothMap = new Map<string, Booth>();
+    const resultsList: BoothWithResult[] = [];
+
+    // First, add all booths from booth list
+    for (const booth of boothList?.booths || []) {
+      boothMap.set(booth.id, booth);
+    }
+
+    // Process all results (includes booths not in list)
+    const resultIds = Object.keys(boothResults?.results || {});
+    const acId = boothResults?.acId || boothList?.acId || '';
+    const acName = boothResults?.acName || boothList?.acName || '';
+
+    for (const boothId of resultIds) {
+      const result = boothResults?.results[boothId];
+      let booth = boothMap.get(boothId);
+
+      // If booth not in list, create a placeholder using actual AC info
+      if (!booth) {
+        // Extract booth number by removing AC prefix (e.g., "TN-123-45" -> "45")
+        const boothNo = boothId.replace(`${acId}-`, '');
+        booth = {
+          id: boothId,
+          boothNo: boothNo,
+          num: parseInt(boothNo.replace(/[^\d]/g, '')) || 0,
+          type: boothNo.includes('W') ? 'women' : boothNo.includes('M') ? 'auxiliary' : 'regular',
+          name: `Polling Station ${boothNo}, ${acName}`,
+          address: `Polling Station ${boothNo}, ${acName}`,
+          area: acName,
+        };
+      }
+
+      let winner: BoothWithResult['winner'] = undefined;
+
+      if (result && boothResults) {
+        // Find winner for this booth
+        const votesExcludingNota = result.votes.slice(0, -1);
+        const maxVotes = Math.max(...votesExcludingNota);
+        const winnerIndex = votesExcludingNota.indexOf(maxVotes);
+        const candidate = boothResults.candidates[winnerIndex];
+
+        if (candidate && candidate.party !== 'NOTA') {
+          winner = {
+            name: candidate.name,
+            party: candidate.party,
+            votes: maxVotes,
+            percent: result.total > 0 ? (maxVotes / result.total) * 100 : 0,
+          };
+        }
+      }
+
+      resultsList.push({
+        ...booth,
+        ...(result !== undefined && { result }),
+        ...(winner !== undefined && { winner }),
+      });
+    }
+
+    // Sort by booth number
+    return resultsList.sort((a, b) => a.num - b.num);
+  })();
+
+  return {
+    boothList,
+    boothResults,
+    boothsWithResults,
+    availableYears,
+    loading,
+    error,
+    loadBoothData,
+    loadBoothResults,
+  };
+}

@@ -1645,14 +1645,15 @@ path:focus {
 /* Panel Tabs */
 .panel-tabs {
   display: flex;
-  gap: 4px;
+  flex-wrap: wrap;
+  gap: 6px;
   padding: 8px 12px;
   background: #f8fafc;
   border-bottom: 1px solid #e2e8f0;
 }
 
 .panel-tab {
-  flex: 1;
+  flex: 0 0 auto; /* Don't shrink, don't grow */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1664,6 +1665,7 @@ path:focus {
   font-size: 0.75rem;
   font-weight: 600;
   color: #64748b;
+  white-space: nowrap;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -1686,7 +1688,16 @@ path:focus {
 .panel-tab-content {
   flex: 1;
   overflow-y: auto;
+  min-height: 0; /* Allow flex child to shrink */
+}
+
+/* Overview and Candidates views need padding */
+.overview-view,
+.candidates-view {
   padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 /* Compact Winner Card */
@@ -3962,5 +3973,1158 @@ path:focus {
   .panel-tab:active,
   .share-bar-btn:active {
     transform: none;
+  }
+}
+
+/* ============================================
+   BOOTH MARKERS & POPUPS
+   ============================================ */
+
+/* Booth popup styling */
+.booth-popup .leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.booth-popup .leaflet-popup-content {
+  margin: 12px;
+}
+
+.booth-popup .leaflet-popup-tip {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Booth tooltip */
+.booth-tooltip {
+  background: rgba(0, 0, 0, 0.85);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.booth-tooltip::before {
+  border-top-color: rgba(0, 0, 0, 0.85);
+}
+
+/* Booth button in election panel */
+/* ============================================
+   BOOTH-WISE VIEW IN ELECTION PANEL
+   ============================================ */
+
+.booth-wise-view {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.booth-year-selector {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.booth-year-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: #374151;
+}
+
+.booth-year-btn:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.booth-year-btn.active {
+  background: #10b981;
+  border-color: #10b981;
+  color: white;
+}
+
+.booth-year-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.booth-year-label .year-badge {
+  background: #10b981;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.booth-year-label .election-type {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #f3f4f6;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.year-btn-small {
+  padding: 4px 10px;
+  font-size: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.year-btn-small.active {
+  background: #10b981;
+  color: white;
+  border-color: #10b981;
+}
+
+.booth-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.booth-selector label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.booth-dropdown-wrapper {
+  position: relative;
+}
+
+.booth-dropdown {
+  width: 100%;
+  padding: 10px 32px 10px 12px;
+  font-size: 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.booth-dropdown:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  pointer-events: none;
+}
+
+.booth-stats-summary {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  background: #f0fdf4;
+  border-radius: 8px;
+}
+
+.booth-stats-summary .stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.booth-stats-summary .stat-label {
+  font-size: 10px;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.booth-stats-summary .stat-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #047857;
+}
+
+.selected-booth-details {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.selected-booth-details .booth-header {
+  padding: 12px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.selected-booth-details .booth-header h4 {
+  margin: 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.women-badge {
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.booth-address {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.booth-address svg {
+  color: #6b7280;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.address-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+}
+
+.address-area {
+  font-size: 12px;
+  color: #4b5563;
+  margin-top: 2px;
+}
+
+.address-locality {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+.booth-vote-summary {
+  display: flex;
+  gap: 16px;
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.booth-vote-summary .vote-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.booth-vote-summary .label {
+  font-size: 10px;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.booth-vote-summary .value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.booth-vote-summary .value.party-badge {
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.booth-candidates {
+  padding: 12px;
+}
+
+.booth-candidates h5 {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.booth-candidates-scroll {
+  /* No nested scroll - uses main panel scroll */
+}
+
+.booth-candidates-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.booth-candidates-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.booth-candidates-scroll::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.booth-candidates-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+.booth-candidate-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.booth-candidate-row:last-child {
+  border-bottom: none;
+}
+
+.booth-candidate-row.winner {
+  background: #f0fdf4;
+  margin: 0 -12px;
+  padding: 8px 12px;
+}
+
+.booth-candidate-row .candidate-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.booth-candidate-row .party-tag {
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.booth-candidate-row .candidate-name {
+  font-size: 12px;
+  color: #374151;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.booth-candidate-row .candidate-votes {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.booth-candidate-row .votes {
+  font-weight: 600;
+  color: #111827;
+  min-width: 50px;
+}
+
+.booth-candidate-row .percent {
+  color: #6b7280;
+  min-width: 45px;
+  text-align: right;
+}
+
+.booth-candidate-row .vote-bar-bg {
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.booth-candidate-row .vote-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.no-booth-selected {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+.no-booth-selected svg {
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.no-booth-selected p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* ========================================
+   Boothwise Analysis Styles
+   ======================================== */
+
+.boothwise-analysis {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.analysis-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+.analysis-empty svg {
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.analysis-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.analysis-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #374151;
+}
+
+.analysis-title h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.analysis-title svg {
+  color: #f59e0b;
+}
+
+.analysis-summary-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.summary-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary-stat.winner {
+  font-weight: 600;
+}
+
+.summary-stat .party {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+.summary-stat .count {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.summary-stat.winner .count {
+  color: #374151;
+  font-weight: 500;
+}
+
+.analysis-summary-stats .vs {
+  font-size: 11px;
+  color: #9ca3af;
+  text-transform: uppercase;
+}
+
+/* Booth Distribution Bar */
+.booth-distribution {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.distribution-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.distribution-bar {
+  display: flex;
+  height: 28px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.distribution-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.distribution-segment:hover {
+  filter: brightness(1.1);
+}
+
+.segment-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.distribution-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.legend-party {
+  color: #374151;
+  font-weight: 500;
+}
+
+.legend-count {
+  color: #9ca3af;
+}
+
+/* Key Insights */
+.analysis-insights h5 {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6b7280;
+}
+
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insight-card {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.insight-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.insight-card.strength {
+  border-left: 3px solid #10b981;
+}
+
+.insight-card.weakness {
+  border-left: 3px solid #ef4444;
+}
+
+.insight-card.opportunity {
+  border-left: 3px solid #f59e0b;
+}
+
+.insight-card.insight {
+  border-left: 3px solid #6366f1;
+}
+
+.insight-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.insight-card.strength .insight-icon {
+  color: #10b981;
+}
+
+.insight-card.weakness .insight-icon {
+  color: #ef4444;
+}
+
+.insight-card.opportunity .insight-icon {
+  color: #f59e0b;
+}
+
+.insight-card.insight .insight-icon {
+  color: #6366f1;
+}
+
+.insight-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.insight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.insight-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.insight-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: #10b981;
+  background: #10b98115;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.insight-card.weakness .insight-value {
+  color: #ef4444;
+  background: #ef444415;
+}
+
+.insight-card.opportunity .insight-value {
+  color: #f59e0b;
+  background: #f59e0b15;
+}
+
+.insight-card.insight .insight-value {
+  color: #6366f1;
+  background: #6366f115;
+}
+
+.insight-description {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+/* Linked Booths in Insights */
+.insight-booths {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.expand-collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #e0e7ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #4f46e5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.expand-collapse-btn:hover {
+  background: #c7d2fe;
+  border-color: #a5b4fc;
+}
+
+.expand-collapse-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.expand-collapse-btn svg.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.insight-booths-unused::-webkit-scrollbar {
+  width: 4px;
+}
+
+.insight-booths::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.insight-booths::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+.insight-booths::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+.booth-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.booth-link:hover {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+  color: #111827;
+}
+
+.booth-link:active {
+  transform: scale(0.98);
+}
+
+.booth-link svg {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.booth-link-name {
+  font-weight: 600;
+}
+
+.booth-link-detail {
+  color: #6b7280;
+  font-size: 10px;
+}
+
+.insight-card.strength .booth-link:hover {
+  background: #d1fae5;
+  border-color: #10b981;
+}
+
+.insight-card.weakness .booth-link:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+}
+
+.insight-card.weakness .booth-link svg {
+  color: #ef4444;
+}
+
+.insight-card.opportunity .booth-link:hover {
+  background: #fef3c7;
+  border-color: #f59e0b;
+}
+
+.insight-card.opportunity .booth-link svg {
+  color: #f59e0b;
+}
+
+.insight-card.insight .booth-link:hover {
+  background: #e0e7ff;
+  border-color: #6366f1;
+}
+
+.insight-card.insight .booth-link svg {
+  color: #6366f1;
+}
+
+/* Quick Stats */
+.analysis-quick-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.quick-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 12px 8px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.quick-stat .stat-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.quick-stat .stat-label {
+  font-size: 10px;
+  color: #9ca3af;
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+.quick-stat.highlight-nota {
+  background: #fef3c7;
+}
+
+.quick-stat.highlight-nota .stat-number {
+  color: #d97706;
+}
+
+.quick-stat.highlight-zero {
+  background: #fee2e2;
+}
+
+.quick-stat.highlight-zero .stat-number {
+  color: #dc2626;
+}
+
+/* Strike Rate Table */
+.strike-rate-table {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.strike-rate-table h5 {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6b7280;
+}
+
+.strike-rate-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.strike-rate-row {
+  display: grid;
+  grid-template-columns: 20px 50px 70px 45px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: white;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.strike-rate-row.winner {
+  background: #ecfdf5;
+  border: 1px solid #10b981;
+}
+
+.sr-rank {
+  font-weight: 600;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.strike-rate-row.winner .sr-rank {
+  color: #10b981;
+}
+
+.sr-party {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sr-booths {
+  color: #6b7280;
+  font-size: 11px;
+}
+
+.sr-rate {
+  font-weight: 700;
+  color: #374151;
+  text-align: right;
+}
+
+.strike-rate-row.winner .sr-rate {
+  color: #10b981;
+}
+
+.sr-bar {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.sr-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* Updated Quick Stats for 6 items */
+.analysis-quick-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+@media (max-width: 400px) {
+  .analysis-quick-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Postal Ballots View */
+.postal-ballots-view {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.postal-summary {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #86efac;
+}
+
+.postal-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #166534;
+}
+
+.postal-summary-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.postal-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.postal-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.postal-stat .stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #15803d;
+}
+
+.postal-stat .stat-label {
+  font-size: 11px;
+  color: #166534;
+  margin-top: 4px;
+}
+
+.postal-candidates {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.postal-candidates-header {
+  display: grid;
+  grid-template-columns: 24px 70px 1fr 1fr 1fr;
+  gap: 6px;
+  padding: 10px 12px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.postal-candidates-header span {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.postal-candidates-header .col-postal,
+.postal-candidates-header .col-booth,
+.postal-candidates-header .col-total {
+  text-align: right;
+}
+
+.postal-candidates-list {
+  /* No nested scroll - uses main panel scroll */
+}
+
+.postal-candidate-row {
+  display: grid;
+  grid-template-columns: 24px 70px 1fr 1fr 1fr;
+  gap: 6px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 13px;
+  align-items: center;
+}
+
+.postal-candidate-row:last-child {
+  border-bottom: none;
+}
+
+.postal-candidate-row.winner {
+  background: #f0fdf4;
+}
+
+.postal-candidate-row .col-rank {
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+.postal-candidate-row.winner .col-rank {
+  color: #16a34a;
+}
+
+.postal-candidate-row .col-name {
+  font-weight: 500;
+  color: #374151;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.postal-candidate-row .col-party {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+}
+
+.postal-candidate-row .col-postal {
+  font-weight: 600;
+  color: #15803d;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.postal-candidate-row .col-postal .postal-pct {
+  font-size: 10px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.postal-candidate-row .col-booth,
+.postal-candidate-row .col-total {
+  text-align: right;
+  color: #6b7280;
+}
+
+.postal-candidate-row .col-total {
+  font-weight: 600;
+  color: #374151;
+}
+
+.postal-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  background: #fef3c7;
+  border-radius: 8px;
+  font-size: 11px;
+  color: #92400e;
+  line-height: 1.4;
+}
+
+.postal-note svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+@media (max-width: 400px) {
+  .postal-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .postal-candidates-header,
+  .postal-candidate-row {
+    grid-template-columns: 20px 55px 1fr 1fr 1fr;
+    gap: 4px;
   }
 }

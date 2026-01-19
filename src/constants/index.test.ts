@@ -75,6 +75,11 @@ describe('ASM_STATE_ALIASES', () => {
     expect(ASM_STATE_ALIASES['UTTARAKHAND']).toBe('UTTARKHAND');
     expect(ASM_STATE_ALIASES['NCT OF DELHI']).toBe('DELHI');
   });
+
+  it('does not alias Telangana (now separate in GeoJSON)', () => {
+    // Telangana now exists as a separate state in assembly GeoJSON
+    expect(ASM_STATE_ALIASES['TELANGANA']).toBeUndefined();
+  });
 });
 
 describe('DISTRICT_NAME_MAPPINGS', () => {

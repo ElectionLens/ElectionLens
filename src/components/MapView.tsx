@@ -30,6 +30,7 @@ const ElectionResultPanel = lazy(() =>
 const PCElectionResultPanel = lazy(() =>
   import('./PCElectionResultPanel').then((m) => ({ default: m.PCElectionResultPanel }))
 );
+import { useBoothData } from '../hooks/useBoothData';
 
 // Lightweight loading skeleton for panels
 const PanelSkeleton = () => (
@@ -551,6 +552,26 @@ export function MapView({
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
   // Base layer state - 'Vector' uses VectorTileLayer, others use TileLayer
   const [baseLayer, setBaseLayer] = useState<LayerName>('Streets');
+  // Booth data hook - loads booth data for selected assembly
+  const { boothResults, boothsWithResults, loadBoothData, loadBoothResults } = useBoothData();
+
+  // Load booth data when a Tamil Nadu AC is selected
+  useEffect(() => {
+    if (electionResult?.schemaId?.startsWith('TN-')) {
+      void loadBoothData('TN', electionResult.schemaId);
+    }
+  }, [electionResult?.schemaId, loadBoothData]);
+
+  // Load booth results when year changes (uses top panel year selector - either Assembly or PC year)
+  useEffect(() => {
+    if (electionResult?.schemaId?.startsWith('TN-')) {
+      // Use PC year if selected, otherwise use Assembly year
+      const yearToLoad = selectedACPCYear ?? selectedYear;
+      if (yearToLoad) {
+        void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
+      }
+    }
+  }, [electionResult?.schemaId, selectedYear, selectedACPCYear, loadBoothResults]);
 
   // Listen for layer change events from toolbar
   useEffect(() => {
@@ -1175,6 +1196,8 @@ export function MapView({
             selectedPCYear={selectedACPCYear}
             onPCYearChange={onACPCYearChange}
             pcContributionShareUrl={pcContributionShareUrl}
+            boothResults={electionResult.schemaId?.startsWith('TN-') ? boothResults : null}
+            boothsWithResults={electionResult.schemaId?.startsWith('TN-') ? boothsWithResults : []}
           />
         </Suspense>
       )}

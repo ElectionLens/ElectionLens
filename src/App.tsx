@@ -124,6 +124,12 @@ function App(): JSX.Element {
           matchedState = found.properties.shapeName ?? found.properties.ST_NM ?? urlState.state;
         }
       }
+      console.log(
+        '[handleUrlNavigate] urlState.state:',
+        urlState.state,
+        '→ matchedState:',
+        matchedState
+      );
 
       if (urlState.pc) {
         // First navigate to state, then to PC
@@ -295,21 +301,56 @@ function App(): JSX.Element {
   // Load initial data and update on state changes
   useEffect(() => {
     async function updateData(): Promise<void> {
+      console.log(
+        '[useEffect updateData] currentState:',
+        currentState,
+        'currentView:',
+        currentView,
+        'currentPC:',
+        currentPC,
+        'currentDistrict:',
+        currentDistrict
+      );
       if (currentPC && currentState) {
         const data = await navigateToPC(currentPC, currentState);
+        console.log(
+          '[useEffect updateData] navigateToPC result:',
+          data?.features?.length,
+          'features'
+        );
         setCurrentData(data);
       } else if (currentDistrict && currentState) {
         const data = await navigateToDistrict(currentDistrict, currentState);
+        console.log(
+          '[useEffect updateData] navigateToDistrict result:',
+          data?.features?.length,
+          'features'
+        );
         setCurrentData(data);
       } else if (currentState) {
         if (currentView === 'constituencies') {
           const data = await navigateToState(currentState);
+          console.log(
+            '[useEffect updateData] navigateToState result:',
+            data?.features?.length,
+            'features'
+          );
           setCurrentData(data);
         } else if (currentView === 'assemblies') {
           const data = await navigateToAssemblies(currentState);
+          console.log(
+            '[useEffect updateData] navigateToAssemblies result:',
+            data?.features?.length,
+            'features'
+          );
           setCurrentData(data);
         } else if (currentView === 'districts') {
           const data = await loadDistrictsForState(currentState);
+          console.log(
+            '[useEffect updateData] loadDistrictsForState result:',
+            data?.features?.length,
+            'features'
+          );
           setCurrentData(data);
         }
       } else {

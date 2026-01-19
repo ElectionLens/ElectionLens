@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2025-12-22T06:25:35.441Z",
+  "lastUpdated": "2026-01-18T21:04:57.826Z",
   "sources": {
     "geo": "Survey of India / DataMeet",
     "elections": "ECI / TCPD"
@@ -32,11 +32,11 @@
     },
     "MH": {
       "id": "MH",
-      "name": "Mahārāshtra",
+      "name": "Mah\u0101r\u0101shtra",
       "aliases": [
-        "Mahārāshtra",
+        "Mah\u0101r\u0101shtra",
         "maharashtra",
-        "MAHĀRĀSHTRA"
+        "MAH\u0100R\u0100SHTRA"
       ],
       "isoCode": "IN-MH",
       "censusCode": "",
@@ -56,11 +56,11 @@
     },
     "NL": {
       "id": "NL",
-      "name": "Nāgāland",
+      "name": "N\u0101g\u0101land",
       "aliases": [
-        "Nāgāland",
+        "N\u0101g\u0101land",
         "nagaland",
-        "NĀGĀLAND"
+        "N\u0100G\u0100LAND"
       ],
       "isoCode": "IN-NL",
       "censusCode": "",
@@ -122,11 +122,11 @@
     },
     "TN": {
       "id": "TN",
-      "name": "Tamil Nādu",
+      "name": "Tamil N\u0101du",
       "aliases": [
-        "Tamil Nādu",
+        "Tamil N\u0101du",
         "tamil nadu",
-        "TAMIL NĀDU"
+        "TAMIL N\u0100DU"
       ],
       "isoCode": "IN-TN",
       "censusCode": "",
@@ -145,11 +145,11 @@
     },
     "CG": {
       "id": "CG",
-      "name": "Chhattīsgarh",
+      "name": "Chhatt\u012bsgarh",
       "aliases": [
-        "Chhattīsgarh",
+        "Chhatt\u012bsgarh",
         "chhattisgarh",
-        "CHHATTĪSGARH",
+        "CHHATT\u012aSGARH",
         "chattisgarh"
       ],
       "isoCode": "IN-CT",
@@ -170,18 +170,18 @@
     },
     "GJ": {
       "id": "GJ",
-      "name": "Gujarāt",
+      "name": "Gujar\u0101t",
       "aliases": [
-        "Gujarāt",
+        "Gujar\u0101t",
         "gujarat",
-        "GUJARĀT"
+        "GUJAR\u0100T"
       ],
       "isoCode": "IN-GJ",
       "censusCode": "",
       "type": "state",
       "loksabhaSeats": 26,
-      "assemblySeats": 181,
-      "delimitation": 2008,
+      "assemblySeats": 182,
+      "delimitation": 2022,
       "elections": {
         "assembly": [
           2012,
@@ -313,11 +313,11 @@
     },
     "BR": {
       "id": "BR",
-      "name": "Bihār",
+      "name": "Bih\u0101r",
       "aliases": [
-        "Bihār",
+        "Bih\u0101r",
         "bihar",
-        "BIHĀR"
+        "BIH\u0100R"
       ],
       "isoCode": "IN-BR",
       "censusCode": "",
@@ -337,11 +337,11 @@
     },
     "LA": {
       "id": "LA",
-      "name": "Ladākh",
+      "name": "Lad\u0101kh",
       "aliases": [
-        "Ladākh",
+        "Lad\u0101kh",
         "ladakh",
-        "LADĀKH"
+        "LAD\u0100KH"
       ],
       "isoCode": "IN-LA",
       "censusCode": "",
@@ -356,11 +356,11 @@
     },
     "RJ": {
       "id": "RJ",
-      "name": "Rājasthān",
+      "name": "R\u0101jasth\u0101n",
       "aliases": [
-        "Rājasthān",
+        "R\u0101jasth\u0101n",
         "rajasthan",
-        "RĀJASTHĀN"
+        "R\u0100JASTH\u0100N"
       ],
       "isoCode": "IN-RJ",
       "censusCode": "",
@@ -380,11 +380,11 @@
     },
     "TS": {
       "id": "TS",
-      "name": "Telangāna",
+      "name": "Telang\u0101na",
       "aliases": [
-        "Telangāna",
+        "Telang\u0101na",
         "telangana",
-        "TELANGĀNA"
+        "TELANG\u0100NA"
       ],
       "isoCode": "IN-TG",
       "censusCode": "",
@@ -451,11 +451,11 @@
     },
     "AR": {
       "id": "AR",
-      "name": "Arunāchal Pradesh",
+      "name": "Arun\u0101chal Pradesh",
       "aliases": [
-        "Arunāchal Pradesh",
+        "Arun\u0101chal Pradesh",
         "arunachal pradesh",
-        "ARUNĀCHAL PRADESH"
+        "ARUN\u0100CHAL PRADESH"
       ],
       "isoCode": "IN-AR",
       "censusCode": "",
@@ -474,11 +474,11 @@
     },
     "ML": {
       "id": "ML",
-      "name": "Meghālaya",
+      "name": "Megh\u0101laya",
       "aliases": [
-        "Meghālaya",
+        "Megh\u0101laya",
         "meghalaya",
-        "MEGHĀLAYA"
+        "MEGH\u0100LAYA"
       ],
       "isoCode": "IN-ML",
       "censusCode": "",
@@ -497,11 +497,11 @@
     },
     "JH": {
       "id": "JH",
-      "name": "Jhārkhand",
+      "name": "Jh\u0101rkhand",
       "aliases": [
-        "Jhārkhand",
+        "Jh\u0101rkhand",
         "jharkhand",
-        "JHĀRKHAND"
+        "JH\u0100RKHAND"
       ],
       "isoCode": "IN-JH",
       "censusCode": "",
@@ -567,11 +567,11 @@
     },
     "KA": {
       "id": "KA",
-      "name": "Karnātaka",
+      "name": "Karn\u0101taka",
       "aliases": [
-        "Karnātaka",
+        "Karn\u0101taka",
         "karnataka",
-        "KARNĀTAKA"
+        "KARN\u0100TAKA"
       ],
       "isoCode": "IN-KA",
       "censusCode": "",
@@ -591,11 +591,11 @@
     },
     "UK": {
       "id": "UK",
-      "name": "Uttarākhand",
+      "name": "Uttar\u0101khand",
       "aliases": [
-        "Uttarākhand",
+        "Uttar\u0101khand",
         "uttarakhand",
-        "UTTARĀKHAND",
+        "UTTAR\u0100KHAND",
         "uttarkhand",
         "uttaranchal"
       ],
@@ -616,11 +616,11 @@
     },
     "DD": {
       "id": "DD",
-      "name": "Dādra and Nagar Haveli and Damān and Diu",
+      "name": "D\u0101dra and Nagar Haveli and Dam\u0101n and Diu",
       "aliases": [
-        "Dādra and Nagar Haveli and Damān and Diu",
+        "D\u0101dra and Nagar Haveli and Dam\u0101n and Diu",
         "dadra and nagar haveli and daman and diu",
-        "DĀDRA AND NAGAR HAVELI AND DAMĀN AND DIU",
+        "D\u0100DRA AND NAGAR HAVELI AND DAM\u0100N AND DIU",
         "dnh and dd",
         "dadra nagar haveli",
         "daman and diu",
@@ -709,11 +709,11 @@
     },
     "CH": {
       "id": "CH",
-      "name": "Chandīgarh",
+      "name": "Chand\u012bgarh",
       "aliases": [
-        "Chandīgarh",
+        "Chand\u012bgarh",
         "chandigarh",
-        "CHANDĪGARH"
+        "CHAND\u012aGARH"
       ],
       "isoCode": "IN-CH",
       "censusCode": "",
@@ -749,11 +749,11 @@
     },
     "HP": {
       "id": "HP",
-      "name": "Himāchal Pradesh",
+      "name": "Him\u0101chal Pradesh",
       "aliases": [
-        "Himāchal Pradesh",
+        "Him\u0101chal Pradesh",
         "himachal pradesh",
-        "HIMĀCHAL PRADESH"
+        "HIM\u0100CHAL PRADESH"
       ],
       "isoCode": "IN-HP",
       "censusCode": "",
@@ -772,11 +772,11 @@
     },
     "JK": {
       "id": "JK",
-      "name": "Jammu and Kashmīr",
+      "name": "Jammu and Kashm\u012br",
       "aliases": [
-        "Jammu and Kashmīr",
+        "Jammu and Kashm\u012br",
         "jammu and kashmir",
-        "JAMMU AND KASHMĪR",
+        "JAMMU AND KASHM\u012aR",
         "jammu kashmir"
       ],
       "isoCode": "IN-JK",
@@ -819,11 +819,11 @@
     },
     "HR": {
       "id": "HR",
-      "name": "Haryāna",
+      "name": "Hary\u0101na",
       "aliases": [
-        "Haryāna",
+        "Hary\u0101na",
         "haryana",
-        "HARYĀNA"
+        "HARY\u0100NA"
       ],
       "isoCode": "IN-HR",
       "censusCode": "",
@@ -2369,7 +2369,15 @@
         "TN-152",
         "TN-151"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-151",
+        "TN-152",
+        "TN-153",
+        "TN-154",
+        "TN-155",
+        "TN-156"
+      ]
     },
     "KL-10": {
       "id": "KL-10",
@@ -2416,7 +2424,15 @@
         "TN-121",
         "TN-120"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-115",
+        "TN-116",
+        "TN-117",
+        "TN-118",
+        "TN-120",
+        "TN-121"
+      ]
     },
     "KL-13": {
       "id": "KL-13",
@@ -2463,7 +2479,15 @@
         "TN-132",
         "TN-130"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-127",
+        "TN-128",
+        "TN-129",
+        "TN-130",
+        "TN-131",
+        "TN-132"
+      ]
     },
     "TN-19": {
       "id": "TN-19",
@@ -2486,7 +2510,15 @@
         "TN-111",
         "TN-112"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-107",
+        "TN-108",
+        "TN-109",
+        "TN-110",
+        "TN-111",
+        "TN-112"
+      ]
     },
     "TN-16": {
       "id": "TN-16",
@@ -2509,7 +2541,15 @@
         "TN-094",
         "TN-095"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-087",
+        "TN-092",
+        "TN-093",
+        "TN-094",
+        "TN-095",
+        "TN-096"
+      ]
     },
     "TN-21": {
       "id": "TN-21",
@@ -2532,7 +2572,15 @@
         "TN-126",
         "TN-124"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-119",
+        "TN-122",
+        "TN-123",
+        "TN-124",
+        "TN-125",
+        "TN-126"
+      ]
     },
     "KL-05": {
       "id": "KL-05",
@@ -2579,7 +2627,15 @@
         "TN-091",
         "TN-090"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-084",
+        "TN-086",
+        "TN-088",
+        "TN-089",
+        "TN-090",
+        "TN-091"
+      ]
     },
     "AN-01": {
       "id": "AN-01",
@@ -2621,7 +2677,15 @@
         "TN-102",
         "TN-101"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-097",
+        "TN-098",
+        "TN-099",
+        "TN-100",
+        "TN-101",
+        "TN-102"
+      ]
     },
     "KA-01": {
       "id": "KA-01",
@@ -2754,7 +2818,15 @@
         "TN-059",
         "TN-085"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-057",
+        "TN-058",
+        "TN-059",
+        "TN-060",
+        "TN-061",
+        "TN-085"
+      ]
     },
     "TN-39": {
       "id": "TN-39",
@@ -2777,7 +2849,15 @@
         "TN-231",
         "TN-230"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-229",
+        "TN-230",
+        "TN-231",
+        "TN-232",
+        "TN-233",
+        "TN-234"
+      ]
     },
     "TN-02": {
       "id": "TN-02",
@@ -2924,7 +3004,15 @@
         "TN-205",
         "TN-204"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-195",
+        "TN-196",
+        "TN-204",
+        "TN-205",
+        "TN-206",
+        "TN-207"
+      ]
     },
     "KL-19": {
       "id": "KL-19",
@@ -3368,7 +3456,15 @@
         "TN-070",
         "TN-071"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-066",
+        "TN-067",
+        "TN-068",
+        "TN-069",
+        "TN-070",
+        "TN-071"
+      ]
     },
     "KL-04": {
       "id": "KL-04",
@@ -3415,7 +3511,15 @@
         "TN-082",
         "TN-081"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-078",
+        "TN-079",
+        "TN-080",
+        "TN-081",
+        "TN-082",
+        "TN-083"
+      ]
     },
     "TN-11": {
       "id": "TN-11",
@@ -3438,7 +3542,15 @@
         "TN-064",
         "TN-063"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-049",
+        "TN-050",
+        "TN-062",
+        "TN-063",
+        "TN-064",
+        "TN-065"
+      ]
     },
     "TN-08": {
       "id": "TN-08",
@@ -3484,7 +3596,15 @@
         "TN-074",
         "TN-077"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-072",
+        "TN-073",
+        "TN-074",
+        "TN-075",
+        "TN-076",
+        "TN-077"
+      ]
     },
     "KL-12": {
       "id": "KL-12",
@@ -3794,7 +3914,15 @@
         "TN-197",
         "TN-201"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-190",
+        "TN-197",
+        "TN-198",
+        "TN-199",
+        "TN-200",
+        "TN-201"
+      ]
     },
     "AP-05": {
       "id": "AP-05",
@@ -5150,7 +5278,15 @@
         "TN-216",
         "TN-215"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-213",
+        "TN-214",
+        "TN-215",
+        "TN-216",
+        "TN-217",
+        "TN-218"
+      ]
     },
     "AP-20": {
       "id": "AP-20",
@@ -5201,7 +5337,15 @@
         "TN-226",
         "TN-228"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-223",
+        "TN-224",
+        "TN-225",
+        "TN-226",
+        "TN-227",
+        "TN-228"
+      ]
     },
     "TN-35": {
       "id": "TN-35",
@@ -5224,7 +5368,15 @@
         "TN-212",
         "TN-211"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-183",
+        "TN-208",
+        "TN-209",
+        "TN-210",
+        "TN-211",
+        "TN-212"
+      ]
     },
     "TN-32": {
       "id": "TN-32",
@@ -5247,7 +5399,15 @@
         "TN-193",
         "TN-192"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-188",
+        "TN-189",
+        "TN-191",
+        "TN-192",
+        "TN-193",
+        "TN-194"
+      ]
     },
     "TN-37": {
       "id": "TN-37",
@@ -5271,7 +5431,15 @@
         "TN-222",
         "TN-223"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-202",
+        "TN-203",
+        "TN-219",
+        "TN-220",
+        "TN-221",
+        "TN-222"
+      ]
     },
     "AP-09": {
       "id": "AP-09",
@@ -5321,7 +5489,15 @@
         "TN-186",
         "TN-187"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-181",
+        "TN-182",
+        "TN-184",
+        "TN-185",
+        "TN-186",
+        "TN-187"
+      ]
     },
     "RJ-06": {
       "id": "RJ-06",
@@ -5437,7 +5613,15 @@
         "TN-143",
         "TN-137"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-137",
+        "TN-143",
+        "TN-144",
+        "TN-145",
+        "TN-146",
+        "TN-147"
+      ]
     },
     "BR-27": {
       "id": "BR-27",
@@ -5718,7 +5902,15 @@
         "TN-165",
         "TN-169"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-163",
+        "TN-164",
+        "TN-165",
+        "TN-166",
+        "TN-168",
+        "TN-169"
+      ]
     },
     "TN-30": {
       "id": "TN-30",
@@ -5741,7 +5933,15 @@
         "TN-176",
         "TN-177"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-167",
+        "TN-173",
+        "TN-174",
+        "TN-175",
+        "TN-176",
+        "TN-177"
+      ]
     },
     "TN-23": {
       "id": "TN-23",
@@ -5764,7 +5964,15 @@
         "TN-138",
         "TN-179"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-133",
+        "TN-134",
+        "TN-135",
+        "TN-136",
+        "TN-138",
+        "TN-179"
+      ]
     },
     "TN-24": {
       "id": "TN-24",
@@ -5787,7 +5995,15 @@
         "TN-178",
         "TN-180"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-139",
+        "TN-140",
+        "TN-141",
+        "TN-142",
+        "TN-178",
+        "TN-180"
+      ]
     },
     "BR-26": {
       "id": "BR-26",
@@ -6023,7 +6239,15 @@
         "TN-113",
         "TN-114"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-103",
+        "TN-104",
+        "TN-105",
+        "TN-106",
+        "TN-113",
+        "TN-114"
+      ]
     },
     "TN-27": {
       "id": "TN-27",
@@ -6046,7 +6270,15 @@
         "TN-148",
         "TN-149"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-148",
+        "TN-149",
+        "TN-150",
+        "TN-157",
+        "TN-158",
+        "TN-159"
+      ]
     },
     "TN-28": {
       "id": "TN-28",
@@ -6069,7 +6301,15 @@
         "TN-171",
         "TN-172"
       ],
-      "delimitation": 2008
+      "delimitation": 2008,
+      "assemblyConstituencies": [
+        "TN-160",
+        "TN-161",
+        "TN-162",
+        "TN-170",
+        "TN-171",
+        "TN-172"
+      ]
     },
     "UP-78": {
       "id": "UP-78",
@@ -21864,7 +22104,8 @@
         "cheyyar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-12"
     },
     "TN-033": {
       "id": "TN-033",
@@ -21915,7 +22156,8 @@
         "arani"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-12"
     },
     "TN-047": {
       "id": "TN-047",
@@ -21951,7 +22193,8 @@
         "kalasapakkam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-11"
     },
     "TN-056": {
       "id": "TN-056",
@@ -21985,7 +22228,8 @@
         "polur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-12"
     },
     "TN-035": {
       "id": "TN-035",
@@ -22040,7 +22284,8 @@
         "jolarpet"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-11"
     },
     "TN-050": {
       "id": "TN-050",
@@ -22056,7 +22301,8 @@
         "TIRUPPATTUR"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-11"
     },
     "TN-053": {
       "id": "TN-053",
@@ -22093,7 +22339,8 @@
         "vandavasi (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-12"
     },
     "TN-062": {
       "id": "TN-062",
@@ -22113,7 +22360,8 @@
         "chengam (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-11"
     },
     "TN-034": {
       "id": "TN-034",
@@ -22152,7 +22400,8 @@
         "palacodu"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-10"
     },
     "TN-051": {
       "id": "TN-051",
@@ -22189,7 +22438,8 @@
         "gingee"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-12"
     },
     "TN-064": {
       "id": "TN-064",
@@ -22206,7 +22456,8 @@
         "kilpennathur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-11"
     },
     "TN-071": {
       "id": "TN-071",
@@ -22223,7 +22474,8 @@
         "mailam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-12"
     },
     "TN-058": {
       "id": "TN-058",
@@ -22240,7 +22492,8 @@
         "pennagaram"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-10"
     },
     "TN-072": {
       "id": "TN-072",
@@ -22260,7 +22513,8 @@
         "tindivanam (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-13"
     },
     "TN-063": {
       "id": "TN-063",
@@ -22277,7 +22531,8 @@
         "tiruvannamalai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-11"
     },
     "TN-061": {
       "id": "TN-061",
@@ -22297,7 +22552,8 @@
         "harur (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-10"
     },
     "TN-060": {
       "id": "TN-060",
@@ -22314,7 +22570,8 @@
         "pappireddippatti"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-10"
     },
     "TN-059": {
       "id": "TN-059",
@@ -22331,7 +22588,8 @@
         "dharmapuri"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-10"
     },
     "TN-073": {
       "id": "TN-073",
@@ -22351,7 +22609,8 @@
         "vanur (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-13"
     },
     "TN-075": {
       "id": "TN-075",
@@ -22368,7 +22627,8 @@
         "vikravandi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-13"
     },
     "TN-076": {
       "id": "TN-076",
@@ -22385,7 +22645,8 @@
         "tirukkoyilur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-13"
     },
     "TN-078": {
       "id": "TN-078",
@@ -22404,7 +22665,8 @@
         "rishivandiyam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-14"
     },
     "TN-079": {
       "id": "TN-079",
@@ -22421,7 +22683,8 @@
         "sankarapuram"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-14"
     },
     "TN-084": {
       "id": "TN-084",
@@ -22438,7 +22701,8 @@
         "omalur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-15"
     },
     "TN-105": {
       "id": "TN-105",
@@ -22455,7 +22719,8 @@
         "anthiyur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-18"
     },
     "TN-085": {
       "id": "TN-085",
@@ -22472,7 +22737,8 @@
         "mettur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-10"
     },
     "TN-074": {
       "id": "TN-074",
@@ -22491,7 +22757,8 @@
         "viluppuram"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-13"
     },
     "TN-083": {
       "id": "TN-083",
@@ -22511,7 +22778,8 @@
         "yercaud (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-14"
     },
     "TN-077": {
       "id": "TN-077",
@@ -22530,7 +22798,8 @@
         "ulundurpettai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-13"
     },
     "TN-155": {
       "id": "TN-155",
@@ -22547,7 +22816,8 @@
         "cuddalore"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-26"
     },
     "TN-107": {
       "id": "TN-107",
@@ -22564,7 +22834,8 @@
         "bhavanisagar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-19"
     },
     "TN-154": {
       "id": "TN-154",
@@ -22581,7 +22852,8 @@
         "panruti"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-26"
     },
     "TN-086": {
       "id": "TN-086",
@@ -22600,7 +22872,8 @@
         "edappadi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-15"
     },
     "TN-080": {
       "id": "TN-080",
@@ -22620,7 +22893,8 @@
         "kallakurichi (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-14"
     },
     "TN-082": {
       "id": "TN-082",
@@ -22640,7 +22914,8 @@
         "attur(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-14"
     },
     "TN-109": {
       "id": "TN-109",
@@ -22660,7 +22935,8 @@
         "gudalur (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-19"
     },
     "TN-153": {
       "id": "TN-153",
@@ -22677,7 +22953,8 @@
         "neyveli"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-26"
     },
     "TN-088": {
       "id": "TN-088",
@@ -22699,7 +22976,8 @@
         "tn-088"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-15"
     },
     "TN-156": {
       "id": "TN-156",
@@ -22716,7 +22994,8 @@
         "kurinjipadi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-26"
     },
     "TN-089": {
       "id": "TN-089",
@@ -22738,7 +23017,8 @@
         "tn-089"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-15"
     },
     "TN-087": {
       "id": "TN-087",
@@ -22755,7 +23035,8 @@
         "sankari"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-16"
     },
     "TN-104": {
       "id": "TN-104",
@@ -22772,7 +23053,8 @@
         "bhavani"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-18"
     },
     "TN-091": {
       "id": "TN-091",
@@ -22789,7 +23071,8 @@
         "veerapandi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-15"
     },
     "TN-081": {
       "id": "TN-081",
@@ -22809,7 +23092,8 @@
         "gangavalli (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-14"
     },
     "TN-090": {
       "id": "TN-090",
@@ -22831,7 +23115,8 @@
         "tn-090"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-15"
     },
     "TN-108": {
       "id": "TN-108",
@@ -22848,7 +23133,8 @@
         "udhagamandalam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-19"
     },
     "TN-152": {
       "id": "TN-152",
@@ -22865,7 +23151,8 @@
         "vriddhachalam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-26"
     },
     "TN-110": {
       "id": "TN-110",
@@ -22882,7 +23169,8 @@
         "coonoor"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-19"
     },
     "TN-092": {
       "id": "TN-092",
@@ -22902,7 +23190,8 @@
         "rasipuram (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-16"
     },
     "TN-106": {
       "id": "TN-106",
@@ -22919,7 +23208,8 @@
         "gobichettipalayam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-18"
     },
     "TN-151": {
       "id": "TN-151",
@@ -22939,7 +23229,8 @@
         "tittakudi (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-26"
     },
     "TN-157": {
       "id": "TN-157",
@@ -22956,7 +23247,8 @@
         "bhuvanagiri"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-27"
     },
     "TN-158": {
       "id": "TN-158",
@@ -22973,7 +23265,8 @@
         "chidambaram"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-27"
     },
     "TN-096": {
       "id": "TN-096",
@@ -22992,7 +23285,8 @@
         "tiruchengodu"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-16"
     },
     "TN-147": {
       "id": "TN-147",
@@ -23012,7 +23306,8 @@
         "perambalur (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-25"
     },
     "TN-097": {
       "id": "TN-097",
@@ -23029,7 +23324,8 @@
         "kumarapalayam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-17"
     },
     "TN-093": {
       "id": "TN-093",
@@ -23050,7 +23346,8 @@
         "senthamangalam(st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-16"
     },
     "TN-099": {
       "id": "TN-099",
@@ -23072,7 +23369,8 @@
         "tn-099"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-17"
     },
     "TN-111": {
       "id": "TN-111",
@@ -23091,7 +23389,8 @@
         "mettuppalayam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-19"
     },
     "TN-159": {
       "id": "TN-159",
@@ -23111,7 +23410,8 @@
         "kattumannarkoil(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-27"
     },
     "TN-103": {
       "id": "TN-103",
@@ -23128,7 +23428,8 @@
         "perundurai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-18"
     },
     "TN-094": {
       "id": "TN-094",
@@ -23145,7 +23446,8 @@
         "namakkal"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-16"
     },
     "TN-095": {
       "id": "TN-095",
@@ -23164,7 +23466,8 @@
         "paramathi-velur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-16"
     },
     "TN-098": {
       "id": "TN-098",
@@ -23186,7 +23489,8 @@
         "tn-098"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-17"
     },
     "TN-146": {
       "id": "TN-146",
@@ -23206,7 +23510,8 @@
         "thuraiyur (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-25"
     },
     "TN-150": {
       "id": "TN-150",
@@ -23223,7 +23528,8 @@
         "jayankondam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-27"
     },
     "TN-160": {
       "id": "TN-160",
@@ -23244,7 +23550,8 @@
         "sirkazhi (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-28"
     },
     "TN-148": {
       "id": "TN-148",
@@ -23261,7 +23568,8 @@
         "kunnam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-27"
     },
     "TN-112": {
       "id": "TN-112",
@@ -23281,7 +23589,8 @@
         "avanashi (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-19"
     },
     "TN-113": {
       "id": "TN-113",
@@ -23303,7 +23612,8 @@
         "tn-113"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-18"
     },
     "TN-100": {
       "id": "TN-100",
@@ -23322,7 +23632,8 @@
         "modakkurichi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-17"
     },
     "TN-149": {
       "id": "TN-149",
@@ -23339,7 +23650,8 @@
         "ariyalur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-27"
     },
     "TN-117": {
       "id": "TN-117",
@@ -23356,7 +23668,8 @@
         "kavundampalayam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-20"
     },
     "TN-116": {
       "id": "TN-116",
@@ -23373,7 +23686,8 @@
         "sulur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-20"
     },
     "TN-102": {
       "id": "TN-102",
@@ -23390,7 +23704,8 @@
         "kangayam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-17"
     },
     "TN-161": {
       "id": "TN-161",
@@ -23407,7 +23722,8 @@
         "mayiladuthurai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-28"
     },
     "TN-145": {
       "id": "TN-145",
@@ -23424,7 +23740,8 @@
         "musiri"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-25"
     },
     "TN-114": {
       "id": "TN-114",
@@ -23446,7 +23763,8 @@
         "tn-114"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-18"
     },
     "TN-170": {
       "id": "TN-170",
@@ -23465,7 +23783,8 @@
         "thiruvidaimarudur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-28"
     },
     "TN-115": {
       "id": "TN-115",
@@ -23482,7 +23801,8 @@
         "palladam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-20"
     },
     "TN-162": {
       "id": "TN-162",
@@ -23499,7 +23819,8 @@
         "poompuhar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-28"
     },
     "TN-144": {
       "id": "TN-144",
@@ -23516,7 +23837,8 @@
         "manachanallur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-25"
     },
     "TN-134": {
       "id": "TN-134",
@@ -23533,7 +23855,8 @@
         "aravakurichi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-23"
     },
     "TN-119": {
       "id": "TN-119",
@@ -23550,7 +23873,8 @@
         "thondamuthur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-21"
     },
     "TN-118": {
       "id": "TN-118",
@@ -23571,7 +23895,8 @@
         "coimbatore(north)"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-20"
     },
     "TN-143": {
       "id": "TN-143",
@@ -23588,7 +23913,8 @@
         "lalgudi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-25"
     },
     "TN-121": {
       "id": "TN-121",
@@ -23605,7 +23931,8 @@
         "singanallur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-20"
     },
     "TN-135": {
       "id": "TN-135",
@@ -23622,7 +23949,8 @@
         "karur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-23"
     },
     "TN-120": {
       "id": "TN-120",
@@ -23643,7 +23971,8 @@
         "coimbatore(south)"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-20"
     },
     "TN-171": {
       "id": "TN-171",
@@ -23660,7 +23989,8 @@
         "kumbakonam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-28"
     },
     "TN-122": {
       "id": "TN-122",
@@ -23677,7 +24007,8 @@
         "kinathukadavu"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-21"
     },
     "TN-172": {
       "id": "TN-172",
@@ -23694,7 +24025,8 @@
         "papanasam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-28"
     },
     "TN-136": {
       "id": "TN-136",
@@ -23714,7 +24046,8 @@
         "krishnarayapuram(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-23"
     },
     "TN-137": {
       "id": "TN-137",
@@ -23731,7 +24064,8 @@
         "kulithalai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-25"
     },
     "TN-101": {
       "id": "TN-101",
@@ -23751,7 +24085,8 @@
         "dharapuram (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-17"
     },
     "TN-123": {
       "id": "TN-123",
@@ -23768,7 +24103,8 @@
         "pollachi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-21"
     },
     "TN-139": {
       "id": "TN-139",
@@ -23785,7 +24121,8 @@
         "srirangam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-24"
     },
     "TN-173": {
       "id": "TN-173",
@@ -23802,7 +24139,8 @@
         "thiruvaiyaru"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-30"
     },
     "TN-163": {
       "id": "TN-163",
@@ -23819,7 +24157,8 @@
         "nagapattinam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-29"
     },
     "TN-141": {
       "id": "TN-141",
@@ -23827,24 +24166,21 @@
       "pcId": "TN-24",
       "districtId": "TN-D15",
       "acNo": 141,
-      "name": "Tiruchirappalli West",
+      "name": "Tiruchirappalli East",
       "aliases": [
-        "Tiruchirappalli West",
-        "TIRUCHIRAPPALLI WEST",
-        "TN-140",
-        "tn-140",
+        "Tiruchirappalli East",
         "TIRUCHIRAPPALLI EAST",
-        "tiruchirappalli east",
         "TIRUCHIRAPPALLI (East)",
         "TIRUCHIRAPPALLI (EAST)",
+        "tiruchirappalli east",
         "tiruchirappalli (east)",
-        "Tiruchirappalli East",
         "TN-141",
-        "tn-141",
-        "tiruchirappalli west"
+        "tn-141"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "slug": "tiruchirappalli-east",
+      "parliamentaryConstituency": "TN-24"
     },
     "TN-133": {
       "id": "TN-133",
@@ -23861,7 +24197,8 @@
         "vedasandur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-23"
     },
     "TN-125": {
       "id": "TN-125",
@@ -23880,7 +24217,8 @@
         "udumalaipettai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-21"
     },
     "TN-140": {
       "id": "TN-140",
@@ -23888,24 +24226,21 @@
       "pcId": "TN-24",
       "districtId": "TN-D15",
       "acNo": 140,
-      "name": "Tiruchirappalli East",
+      "name": "Tiruchirappalli West",
       "aliases": [
-        "Tiruchirappalli East",
-        "TIRUCHIRAPPALLI EAST",
-        "TN-141",
-        "tn-141",
+        "Tiruchirappalli West",
         "TIRUCHIRAPPALLI WEST",
-        "tiruchirappalli west",
         "TIRUCHIRAPPALLI (West)",
         "TIRUCHIRAPPALLI (WEST)",
+        "tiruchirappalli west",
         "tiruchirappalli (west)",
-        "Tiruchirappalli West",
         "TN-140",
-        "tn-140",
-        "tiruchirappalli east"
+        "tn-140"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "slug": "tiruchirappalli-west",
+      "parliamentaryConstituency": "TN-24"
     },
     "TN-142": {
       "id": "TN-142",
@@ -23924,7 +24259,8 @@
         "thiruverumbur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-24"
     },
     "TN-168": {
       "id": "TN-168",
@@ -23941,7 +24277,8 @@
         "thiruvarur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-29"
     },
     "TN-164": {
       "id": "TN-164",
@@ -23961,7 +24298,8 @@
         "kilvelur (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-29"
     },
     "TN-174": {
       "id": "TN-174",
@@ -23978,7 +24316,8 @@
         "thanjavur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-30"
     },
     "TN-167": {
       "id": "TN-167",
@@ -23995,7 +24334,8 @@
         "mannargudi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-30"
     },
     "TN-175": {
       "id": "TN-175",
@@ -24014,7 +24354,8 @@
         "orathanadu"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-30"
     },
     "TN-128": {
       "id": "TN-128",
@@ -24031,7 +24372,8 @@
         "oddanchatram"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-22"
     },
     "TN-138": {
       "id": "TN-138",
@@ -24048,7 +24390,8 @@
         "manapparai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-23"
     },
     "TN-179": {
       "id": "TN-179",
@@ -24065,7 +24408,8 @@
         "viralimalai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-23"
     },
     "TN-126": {
       "id": "TN-126",
@@ -24082,7 +24426,8 @@
         "madathukulam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-21"
     },
     "TN-124": {
       "id": "TN-124",
@@ -24102,7 +24447,8 @@
         "valparai (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-21"
     },
     "TN-178": {
       "id": "TN-178",
@@ -24122,7 +24468,8 @@
         "gandharvakottai(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-24"
     },
     "TN-166": {
       "id": "TN-166",
@@ -24143,7 +24490,8 @@
         "thiruthuraipoondi(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-29"
     },
     "TN-165": {
       "id": "TN-165",
@@ -24160,7 +24508,8 @@
         "vedaranyam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-29"
     },
     "TN-180": {
       "id": "TN-180",
@@ -24177,7 +24526,8 @@
         "pudukkottai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-24"
     },
     "TN-127": {
       "id": "TN-127",
@@ -24194,7 +24544,8 @@
         "palani"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-22"
     },
     "TN-129": {
       "id": "TN-129",
@@ -24211,7 +24562,8 @@
         "athoor"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-22"
     },
     "TN-176": {
       "id": "TN-176",
@@ -24228,7 +24580,8 @@
         "pattukkottai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-30"
     },
     "TN-177": {
       "id": "TN-177",
@@ -24245,7 +24598,8 @@
         "peravurani"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-30"
     },
     "TN-131": {
       "id": "TN-131",
@@ -24262,7 +24616,8 @@
         "natham"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-22"
     },
     "TN-132": {
       "id": "TN-132",
@@ -24279,7 +24634,8 @@
         "dindigul"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-22"
     },
     "TN-181": {
       "id": "TN-181",
@@ -24296,7 +24652,8 @@
         "thirumayam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-31"
     },
     "TN-185": {
       "id": "TN-185",
@@ -24315,7 +24672,8 @@
         "tn-185"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-31"
     },
     "TN-182": {
       "id": "TN-182",
@@ -24332,7 +24690,8 @@
         "alangudi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-31"
     },
     "TN-188": {
       "id": "TN-188",
@@ -24349,7 +24708,8 @@
         "melur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-32"
     },
     "TN-130": {
       "id": "TN-130",
@@ -24370,7 +24730,8 @@
         "nilakkottai (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-22"
     },
     "TN-199": {
       "id": "TN-199",
@@ -24387,7 +24748,8 @@
         "periyakulam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-33"
     },
     "TN-183": {
       "id": "TN-183",
@@ -24406,7 +24768,8 @@
         "aranthangi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-35"
     },
     "TN-200": {
       "id": "TN-200",
@@ -24423,7 +24786,8 @@
         "bodinayakanur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-33"
     },
     "TN-190": {
       "id": "TN-190",
@@ -24443,7 +24807,8 @@
         "sholavandan(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-33"
     },
     "TN-184": {
       "id": "TN-184",
@@ -24460,7 +24825,8 @@
         "karaikudi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-31"
     },
     "TN-198": {
       "id": "TN-198",
@@ -24477,7 +24843,8 @@
         "andipatti"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-33"
     },
     "TN-189": {
       "id": "TN-189",
@@ -24494,7 +24861,8 @@
         "madurai east"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-32"
     },
     "TN-197": {
       "id": "TN-197",
@@ -24511,7 +24879,8 @@
         "usilampatti"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-33"
     },
     "TN-186": {
       "id": "TN-186",
@@ -24528,7 +24897,8 @@
         "sivaganga"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-31"
     },
     "TN-194": {
       "id": "TN-194",
@@ -24545,7 +24915,8 @@
         "madurai west"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-32"
     },
     "TN-201": {
       "id": "TN-201",
@@ -24562,7 +24933,8 @@
         "cumbum"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-33"
     },
     "TN-196": {
       "id": "TN-196",
@@ -24579,7 +24951,8 @@
         "thirumangalam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-34"
     },
     "TN-191": {
       "id": "TN-191",
@@ -24596,7 +24969,8 @@
         "madurai north"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-32"
     },
     "TN-195": {
       "id": "TN-195",
@@ -24613,7 +24987,8 @@
         "thiruparankundram"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-34"
     },
     "TN-193": {
       "id": "TN-193",
@@ -24630,7 +25005,8 @@
         "madurai central"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-32"
     },
     "TN-192": {
       "id": "TN-192",
@@ -24647,7 +25023,8 @@
         "madurai south"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-32"
     },
     "TN-210": {
       "id": "TN-210",
@@ -24664,7 +25041,8 @@
         "tiruvadanai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-35"
     },
     "TN-187": {
       "id": "TN-187",
@@ -24684,7 +25062,8 @@
         "manamadurai(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-31"
     },
     "TN-208": {
       "id": "TN-208",
@@ -24701,7 +25080,8 @@
         "tiruchuli"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-35"
     },
     "TN-203": {
       "id": "TN-203",
@@ -24721,7 +25101,8 @@
         "srivilliputhur(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-37"
     },
     "TN-206": {
       "id": "TN-206",
@@ -24738,7 +25119,8 @@
         "virudhunagar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-34"
     },
     "TN-209": {
       "id": "TN-209",
@@ -24758,7 +25140,8 @@
         "paramakudi (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-35"
     },
     "TN-207": {
       "id": "TN-207",
@@ -24777,7 +25160,8 @@
         "aruppukkottai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-34"
     },
     "TN-205": {
       "id": "TN-205",
@@ -24794,7 +25178,8 @@
         "sivakasi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-34"
     },
     "TN-202": {
       "id": "TN-202",
@@ -24811,7 +25196,8 @@
         "rajapalayam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-37"
     },
     "TN-212": {
       "id": "TN-212",
@@ -24830,7 +25216,8 @@
         "mudhukulathur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-35"
     },
     "TN-204": {
       "id": "TN-204",
@@ -24847,7 +25234,8 @@
         "sattur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-34"
     },
     "TN-220": {
       "id": "TN-220",
@@ -24867,7 +25255,8 @@
         "vasudevanallur(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-37"
     },
     "TN-211": {
       "id": "TN-211",
@@ -24884,7 +25273,8 @@
         "ramanathapuram"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-35"
     },
     "TN-213": {
       "id": "TN-213",
@@ -24901,7 +25291,8 @@
         "vilathikulam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-36"
     },
     "TN-219": {
       "id": "TN-219",
@@ -24921,7 +25312,8 @@
         "sankarankovil(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-37"
     },
     "TN-218": {
       "id": "TN-218",
@@ -24938,7 +25330,8 @@
         "kovilpatti"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-36"
     },
     "TN-221": {
       "id": "TN-221",
@@ -24955,7 +25348,8 @@
         "kadayanallur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-37"
     },
     "TN-222": {
       "id": "TN-222",
@@ -24972,7 +25366,8 @@
         "tenkasi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-37"
     },
     "TN-217": {
       "id": "TN-217",
@@ -24992,7 +25387,8 @@
         "ottapidaram(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-36"
     },
     "TN-224": {
       "id": "TN-224",
@@ -25009,7 +25405,8 @@
         "tirunelveli"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-38"
     },
     "TN-223": {
       "id": "TN-223",
@@ -25026,7 +25423,8 @@
         "alangulam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-38"
     },
     "TN-225": {
       "id": "TN-225",
@@ -25043,7 +25441,8 @@
         "ambasamudram"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-38"
     },
     "TN-227": {
       "id": "TN-227",
@@ -25060,7 +25459,8 @@
         "nanguneri"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-38"
     },
     "TN-214": {
       "id": "TN-214",
@@ -25077,7 +25477,8 @@
         "thoothukkudi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-36"
     },
     "TN-226": {
       "id": "TN-226",
@@ -25096,7 +25497,8 @@
         "palayamkottai"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-38"
     },
     "TN-216": {
       "id": "TN-216",
@@ -25113,7 +25515,8 @@
         "srivaikuntam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-36"
     },
     "TN-215": {
       "id": "TN-215",
@@ -25130,7 +25533,8 @@
         "tiruchendur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-36"
     },
     "TN-233": {
       "id": "TN-233",
@@ -25147,7 +25551,8 @@
         "vilavancode"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-39"
     },
     "TN-232": {
       "id": "TN-232",
@@ -25164,7 +25569,8 @@
         "padmanabhapuram"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-39"
     },
     "TN-229": {
       "id": "TN-229",
@@ -25181,7 +25587,8 @@
         "kanniyakumari"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-39"
     },
     "TN-228": {
       "id": "TN-228",
@@ -25198,7 +25605,8 @@
         "radhapuram"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-38"
     },
     "TN-234": {
       "id": "TN-234",
@@ -25215,7 +25623,8 @@
         "killiyoor"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-39"
     },
     "TN-231": {
       "id": "TN-231",
@@ -25232,7 +25641,8 @@
         "colachel"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-39"
     },
     "TN-230": {
       "id": "TN-230",
@@ -25249,7 +25659,8 @@
         "nagercoil"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-39"
     },
     "WB-001": {
       "id": "WB-001",
@@ -42108,7 +42519,7 @@
       "pcId": "GJ-02",
       "districtId": "GJ-D02",
       "acNo": 8,
-      "name": "Tharad",
+      "name": "THARAD",
       "aliases": [
         "Tharad",
         "THARAD",
@@ -42117,7 +42528,7 @@
         "tharad"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-007": {
       "id": "GJ-007",
@@ -42125,7 +42536,7 @@
       "pcId": "GJ-02",
       "districtId": "GJ-D02",
       "acNo": 7,
-      "name": "Vav",
+      "name": "VAV",
       "aliases": [
         "Vav",
         "VAV",
@@ -42134,7 +42545,7 @@
         "vav"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-009": {
       "id": "GJ-009",
@@ -42142,7 +42553,7 @@
       "pcId": "GJ-02",
       "districtId": "GJ-D02",
       "acNo": 9,
-      "name": "Dhanera",
+      "name": "DHANERA",
       "aliases": [
         "Dhanera",
         "DHANERA",
@@ -42151,7 +42562,7 @@
         "dhanera"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-010": {
       "id": "GJ-010",
@@ -42159,7 +42570,7 @@
       "pcId": "GJ-02",
       "districtId": "GJ-D02",
       "acNo": 10,
-      "name": "Danta (ST)",
+      "name": "DANTA",
       "aliases": [
         "Danta (ST)",
         "Danta",
@@ -42171,7 +42582,7 @@
         "danta (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-014": {
       "id": "GJ-014",
@@ -42179,7 +42590,7 @@
       "pcId": "GJ-02",
       "districtId": "GJ-D02",
       "acNo": 14,
-      "name": "Deodar",
+      "name": "DEODAR",
       "aliases": [
         "Deodar",
         "DEODAR",
@@ -42188,7 +42599,7 @@
         "deodar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-013": {
       "id": "GJ-013",
@@ -42196,7 +42607,7 @@
       "pcId": "GJ-02",
       "districtId": "GJ-D02",
       "acNo": 13,
-      "name": "Deesa",
+      "name": "DEESA",
       "aliases": [
         "Deesa",
         "DEESA",
@@ -42205,7 +42616,7 @@
         "deesa"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-029": {
       "id": "GJ-029",
@@ -42213,7 +42624,7 @@
       "pcId": "GJ-05",
       "districtId": "GJ-D05",
       "acNo": 29,
-      "name": "Khedbrahma(ST)",
+      "name": "KHEDBRAHMA",
       "aliases": [
         "Khedbrahma(ST)",
         "Khedbrahma",
@@ -42225,7 +42636,7 @@
         "khedbrahma(st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-012": {
       "id": "GJ-012",
@@ -42233,7 +42644,7 @@
       "pcId": "GJ-02",
       "districtId": "GJ-D02",
       "acNo": 12,
-      "name": "Palanpur",
+      "name": "PALANPUR",
       "aliases": [
         "Palanpur",
         "PALANPUR",
@@ -42242,7 +42653,7 @@
         "palanpur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-011": {
       "id": "GJ-011",
@@ -42250,7 +42661,7 @@
       "pcId": "GJ-03",
       "districtId": "GJ-D02",
       "acNo": 11,
-      "name": "Vadgam (SC)",
+      "name": "VADGAM",
       "aliases": [
         "Vadgam (SC)",
         "Vadgam",
@@ -42262,7 +42673,7 @@
         "vadgam (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-015": {
       "id": "GJ-015",
@@ -42270,7 +42681,7 @@
       "pcId": "GJ-03",
       "districtId": "GJ-D02",
       "acNo": 15,
-      "name": "Kankrej",
+      "name": "KANKREJ",
       "aliases": [
         "Kankrej",
         "KANKREJ",
@@ -42279,7 +42690,7 @@
         "kankrej"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-003": {
       "id": "GJ-003",
@@ -42287,7 +42698,7 @@
       "pcId": "GJ-01",
       "districtId": "GJ-D01",
       "acNo": 3,
-      "name": "Bhuj",
+      "name": "BHUJ",
       "aliases": [
         "Bhuj",
         "BHUJ",
@@ -42296,7 +42707,7 @@
         "bhuj"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-019": {
       "id": "GJ-019",
@@ -42304,7 +42715,7 @@
       "pcId": "GJ-03",
       "districtId": "GJ-D03",
       "acNo": 19,
-      "name": "Sidhpur",
+      "name": "SIDHPUR",
       "aliases": [
         "Sidhpur",
         "SIDHPUR",
@@ -42313,7 +42724,7 @@
         "sidhpur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-001": {
       "id": "GJ-001",
@@ -42321,7 +42732,7 @@
       "pcId": "GJ-01",
       "districtId": "GJ-D01",
       "acNo": 1,
-      "name": "Abdasa",
+      "name": "ABDASA",
       "aliases": [
         "Abdasa",
         "ABDASA",
@@ -42330,7 +42741,7 @@
         "abdasa"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-018": {
       "id": "GJ-018",
@@ -42338,7 +42749,7 @@
       "pcId": "GJ-03",
       "districtId": "GJ-D03",
       "acNo": 18,
-      "name": "Patan",
+      "name": "PATAN",
       "aliases": [
         "Patan",
         "PATAN",
@@ -42347,7 +42758,7 @@
         "patan"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-016": {
       "id": "GJ-016",
@@ -42355,7 +42766,7 @@
       "pcId": "GJ-03",
       "districtId": "GJ-D03",
       "acNo": 16,
-      "name": "Radhanpur",
+      "name": "RADHANPUR",
       "aliases": [
         "Radhanpur",
         "RADHANPUR",
@@ -42364,7 +42775,7 @@
         "radhanpur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-020": {
       "id": "GJ-020",
@@ -42372,7 +42783,7 @@
       "pcId": "GJ-03",
       "districtId": "GJ-D04",
       "acNo": 20,
-      "name": "Kheralu",
+      "name": "KHERALU",
       "aliases": [
         "Kheralu",
         "KHERALU",
@@ -42381,7 +42792,7 @@
         "kheralu"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-006": {
       "id": "GJ-006",
@@ -42389,7 +42800,7 @@
       "pcId": "GJ-01",
       "districtId": "GJ-D01",
       "acNo": 6,
-      "name": "Rapar",
+      "name": "RAPAR",
       "aliases": [
         "Rapar",
         "RAPAR",
@@ -42398,7 +42809,7 @@
         "rapar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-028": {
       "id": "GJ-028",
@@ -42406,7 +42817,7 @@
       "pcId": "GJ-05",
       "districtId": "GJ-D05",
       "acNo": 28,
-      "name": "Idar (SC)",
+      "name": "IDAR",
       "aliases": [
         "Idar (SC)",
         "Idar",
@@ -42418,7 +42829,7 @@
         "idar (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-017": {
       "id": "GJ-017",
@@ -42426,7 +42837,7 @@
       "pcId": "GJ-03",
       "districtId": "GJ-D03",
       "acNo": 17,
-      "name": "Chanasma",
+      "name": "CHANASMA",
       "aliases": [
         "Chanasma",
         "CHANASMA",
@@ -42435,7 +42846,7 @@
         "chanasma"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-021": {
       "id": "GJ-021",
@@ -42443,7 +42854,7 @@
       "pcId": "GJ-04",
       "districtId": "GJ-D04",
       "acNo": 21,
-      "name": "Unjha",
+      "name": "UNJHA",
       "aliases": [
         "Unjha",
         "UNJHA",
@@ -42452,7 +42863,7 @@
         "unjha"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-030": {
       "id": "GJ-030",
@@ -42460,7 +42871,7 @@
       "pcId": "GJ-05",
       "districtId": "GJ-D05",
       "acNo": 30,
-      "name": "Bhiloda (ST)",
+      "name": "BHILODA",
       "aliases": [
         "Bhiloda (ST)",
         "Bhiloda",
@@ -42472,7 +42883,7 @@
         "bhiloda (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-022": {
       "id": "GJ-022",
@@ -42480,7 +42891,7 @@
       "pcId": "GJ-04",
       "districtId": "GJ-D04",
       "acNo": 22,
-      "name": "Visnagar",
+      "name": "VISNAGAR",
       "aliases": [
         "Visnagar",
         "VISNAGAR",
@@ -42489,7 +42900,7 @@
         "visnagar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-026": {
       "id": "GJ-026",
@@ -42497,7 +42908,7 @@
       "pcId": "GJ-04",
       "districtId": "GJ-D04",
       "acNo": 26,
-      "name": "Vijapur",
+      "name": "VIJAPUR",
       "aliases": [
         "Vijapur",
         "VIJAPUR",
@@ -42506,7 +42917,7 @@
         "vijapur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-023": {
       "id": "GJ-023",
@@ -42514,7 +42925,7 @@
       "pcId": "GJ-04",
       "districtId": "GJ-D04",
       "acNo": 23,
-      "name": "Becharaji",
+      "name": "BECHARAJI",
       "aliases": [
         "Becharaji",
         "BECHARAJI",
@@ -42523,7 +42934,7 @@
         "becharaji"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-027": {
       "id": "GJ-027",
@@ -42531,7 +42942,7 @@
       "pcId": "GJ-05",
       "districtId": "GJ-D05",
       "acNo": 27,
-      "name": "Himatnagar",
+      "name": "HIMATNAGAR",
       "aliases": [
         "Himatnagar",
         "HIMATNAGAR",
@@ -42540,7 +42951,7 @@
         "himatnagar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-005": {
       "id": "GJ-005",
@@ -42548,7 +42959,7 @@
       "pcId": "GJ-01",
       "districtId": "GJ-D01",
       "acNo": 5,
-      "name": "Gandhidham(SC)",
+      "name": "GANDHIDHAM",
       "aliases": [
         "Gandhidham(SC)",
         "Gandhidham",
@@ -42560,7 +42971,7 @@
         "gandhidham(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-025": {
       "id": "GJ-025",
@@ -42568,7 +42979,7 @@
       "pcId": "GJ-04",
       "districtId": "GJ-D04",
       "acNo": 25,
-      "name": "Mahesana",
+      "name": "MAHESANA",
       "aliases": [
         "Mahesana",
         "MAHESANA",
@@ -42579,7 +42990,7 @@
         "mahesana"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-004": {
       "id": "GJ-004",
@@ -42587,7 +42998,7 @@
       "pcId": "GJ-01",
       "districtId": "GJ-D01",
       "acNo": 4,
-      "name": "Anjar",
+      "name": "ANJAR",
       "aliases": [
         "Anjar",
         "ANJAR",
@@ -42596,7 +43007,7 @@
         "anjar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-031": {
       "id": "GJ-031",
@@ -42604,7 +43015,7 @@
       "pcId": "GJ-05",
       "districtId": "GJ-D05",
       "acNo": 31,
-      "name": "Modasa",
+      "name": "MODASA",
       "aliases": [
         "Modasa",
         "MODASA",
@@ -42613,7 +43024,7 @@
         "modasa"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-037": {
       "id": "GJ-037",
@@ -42621,7 +43032,7 @@
       "pcId": "GJ-04",
       "districtId": "GJ-D06",
       "acNo": 37,
-      "name": "Mansa",
+      "name": "MANSA",
       "aliases": [
         "Mansa",
         "MANSA",
@@ -42630,7 +43041,7 @@
         "mansa"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-039": {
       "id": "GJ-039",
@@ -42638,7 +43049,7 @@
       "pcId": "GJ-09",
       "districtId": "GJ-D07",
       "acNo": 39,
-      "name": "Viramgam",
+      "name": "VIRAMGAM",
       "aliases": [
         "Viramgam",
         "VIRAMGAM",
@@ -42647,7 +43058,7 @@
         "viramgam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-033": {
       "id": "GJ-033",
@@ -42655,7 +43066,7 @@
       "pcId": "GJ-05",
       "districtId": "GJ-D05",
       "acNo": 33,
-      "name": "Prantij",
+      "name": "PRANTIJ",
       "aliases": [
         "Prantij",
         "PRANTIJ",
@@ -42664,7 +43075,7 @@
         "prantij"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-032": {
       "id": "GJ-032",
@@ -42672,7 +43083,7 @@
       "pcId": "GJ-05",
       "districtId": "GJ-D05",
       "acNo": 32,
-      "name": "Bayad",
+      "name": "BAYAD",
       "aliases": [
         "Bayad",
         "BAYAD",
@@ -42681,7 +43092,7 @@
         "bayad"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-024": {
       "id": "GJ-024",
@@ -42689,7 +43100,7 @@
       "pcId": "GJ-04",
       "districtId": "GJ-D04",
       "acNo": 24,
-      "name": "Kadi (SC)",
+      "name": "KADI",
       "aliases": [
         "Kadi (SC)",
         "Kadi",
@@ -42701,7 +43112,7 @@
         "kadi (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-002": {
       "id": "GJ-002",
@@ -42709,7 +43120,7 @@
       "pcId": "GJ-01",
       "districtId": "GJ-D01",
       "acNo": 2,
-      "name": "Mandvi",
+      "name": "MANDVI",
       "aliases": [
         "Mandvi",
         "MANDVI",
@@ -42718,7 +43129,7 @@
         "mandvi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-122": {
       "id": "GJ-122",
@@ -42726,7 +43137,7 @@
       "pcId": "GJ-18",
       "districtId": "GJ-D17",
       "acNo": 122,
-      "name": "Lunawada",
+      "name": "LUNAWADA",
       "aliases": [
         "Lunawada",
         "LUNAWADA",
@@ -42735,7 +43146,7 @@
         "lunawada"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-123": {
       "id": "GJ-123",
@@ -42743,7 +43154,7 @@
       "pcId": "GJ-19",
       "districtId": "GJ-D17",
       "acNo": 123,
-      "name": "Santrampur",
+      "name": "SANTRAMPUR",
       "aliases": [
         "Santrampur",
         "SANTRAMPUR",
@@ -42752,7 +43163,7 @@
         "santrampur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-035": {
       "id": "GJ-035",
@@ -42760,7 +43171,7 @@
       "pcId": "GJ-07",
       "districtId": "GJ-D06",
       "acNo": 35,
-      "name": "Gandhinagar(South)",
+      "name": "GANDHINAGAR(SOUTH)",
       "aliases": [
         "Gandhinagar(South)",
         "Gandhinagar",
@@ -42773,7 +43184,7 @@
         "gandhinagar(south)"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-038": {
       "id": "GJ-038",
@@ -42781,7 +43192,7 @@
       "pcId": "GJ-06",
       "districtId": "GJ-D06",
       "acNo": 38,
-      "name": "Kalol",
+      "name": "KALOL",
       "aliases": [
         "Kalol",
         "Kalol",
@@ -42789,7 +43200,7 @@
         "KALOL"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-036": {
       "id": "GJ-036",
@@ -42797,7 +43208,7 @@
       "pcId": "GJ-06",
       "districtId": "GJ-D06",
       "acNo": 36,
-      "name": "Gandhinagar(North)",
+      "name": "GANDHINAGAR(NORTH)",
       "aliases": [
         "Gandhinagar(North)",
         "Gandhinagar",
@@ -42810,7 +43221,7 @@
         "gandhinagar(north)"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-034": {
       "id": "GJ-034",
@@ -42818,7 +43229,7 @@
       "pcId": "GJ-07",
       "districtId": "GJ-D06",
       "acNo": 34,
-      "name": "Dahegam",
+      "name": "DAHEGAM",
       "aliases": [
         "Dahegam",
         "DAHEGAM",
@@ -42829,7 +43240,7 @@
         "dahegam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-065": {
       "id": "GJ-065",
@@ -42837,7 +43248,7 @@
       "pcId": "GJ-01",
       "districtId": "GJ-D09",
       "acNo": 65,
-      "name": "Morbi",
+      "name": "MORBI",
       "aliases": [
         "Morbi",
         "MORBI",
@@ -42848,7 +43259,7 @@
         "morbi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-129": {
       "id": "GJ-129",
@@ -42856,7 +43267,7 @@
       "pcId": "GJ-19",
       "districtId": "GJ-D18",
       "acNo": 129,
-      "name": "Fatepura (ST)",
+      "name": "FATEPURA",
       "aliases": [
         "Fatepura (ST)",
         "Fatepura",
@@ -42868,7 +43279,7 @@
         "fatepura (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-121": {
       "id": "GJ-121",
@@ -42876,7 +43287,7 @@
       "pcId": "GJ-18",
       "districtId": "GJ-D16",
       "acNo": 121,
-      "name": "Balasinor",
+      "name": "BALASINOR",
       "aliases": [
         "Balasinor",
         "BALASINOR",
@@ -42885,7 +43296,7 @@
         "balasinor"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-120": {
       "id": "GJ-120",
@@ -42893,7 +43304,7 @@
       "pcId": "GJ-17",
       "districtId": "GJ-D16",
       "acNo": 120,
-      "name": "Kapadvanj",
+      "name": "KAPADVANJ",
       "aliases": [
         "Kapadvanj",
         "KAPADVANJ",
@@ -42904,7 +43315,7 @@
         "kapadvanj"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-041": {
       "id": "GJ-041",
@@ -42912,7 +43323,7 @@
       "pcId": "GJ-06",
       "districtId": "GJ-D07",
       "acNo": 41,
-      "name": "Ghatlodia",
+      "name": "GHATLODIA",
       "aliases": [
         "Ghatlodia",
         "GHATLODIA",
@@ -42921,7 +43332,7 @@
         "ghatlodia"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-040": {
       "id": "GJ-040",
@@ -42929,7 +43340,7 @@
       "pcId": "GJ-06",
       "districtId": "GJ-D07",
       "acNo": 40,
-      "name": "Sanand",
+      "name": "SANAND",
       "aliases": [
         "Sanand",
         "SANAND",
@@ -42938,7 +43349,7 @@
         "sanand"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-044": {
       "id": "GJ-044",
@@ -42946,7 +43357,7 @@
       "pcId": "GJ-08",
       "districtId": "GJ-D07",
       "acNo": 44,
-      "name": "Ellisbridge",
+      "name": "ELLISBRIDGE",
       "aliases": [
         "Ellisbridge",
         "ELLISBRIDGE",
@@ -42957,7 +43368,7 @@
         "ellisbridge"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-125": {
       "id": "GJ-125",
@@ -42965,7 +43376,7 @@
       "pcId": "GJ-18",
       "districtId": "GJ-D17",
       "acNo": 125,
-      "name": "Morva Hadaf",
+      "name": "MORVA HADAF",
       "aliases": [
         "Morva Hadaf",
         "MORVA HADAF",
@@ -42974,7 +43385,7 @@
         "morva hadaf"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-130": {
       "id": "GJ-130",
@@ -42982,7 +43393,7 @@
       "pcId": "GJ-19",
       "districtId": "GJ-D18",
       "acNo": 130,
-      "name": "Jhalod (ST)",
+      "name": "JHALOD",
       "aliases": [
         "Jhalod (ST)",
         "Jhalod",
@@ -42994,7 +43405,7 @@
         "jhalod (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-066": {
       "id": "GJ-066",
@@ -43002,7 +43413,7 @@
       "pcId": "GJ-10",
       "districtId": "GJ-D09",
       "acNo": 66,
-      "name": "Tankara",
+      "name": "TANKARA",
       "aliases": [
         "Tankara",
         "TANKARA",
@@ -43011,7 +43422,7 @@
         "tankara"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-076": {
       "id": "GJ-076",
@@ -43019,7 +43430,7 @@
       "pcId": "GJ-12",
       "districtId": "GJ-D10",
       "acNo": 76,
-      "name": "Kalavad (SC)",
+      "name": "KALAVAD",
       "aliases": [
         "Kalavad (SC)",
         "Kalavad",
@@ -43032,7 +43443,7 @@
         "kalavad (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-077": {
       "id": "GJ-077",
@@ -43040,7 +43451,7 @@
       "pcId": "GJ-12",
       "districtId": "GJ-D10",
       "acNo": 77,
-      "name": "Jamnagar",
+      "name": "JAMNAGAR",
       "aliases": [
         "Jamnagar",
         "JAMNAGAR",
@@ -43051,7 +43462,7 @@
         "jamnagar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-042": {
       "id": "GJ-042",
@@ -43059,7 +43470,7 @@
       "pcId": "GJ-06",
       "districtId": "GJ-D07",
       "acNo": 42,
-      "name": "Vejalpur",
+      "name": "VEJALPUR",
       "aliases": [
         "Vejalpur",
         "VEJALPUR",
@@ -43068,7 +43479,7 @@
         "vejalpur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-124": {
       "id": "GJ-124",
@@ -43076,7 +43487,7 @@
       "pcId": "GJ-18",
       "districtId": "GJ-D17",
       "acNo": 124,
-      "name": "Shehra",
+      "name": "SHEHRA",
       "aliases": [
         "Shehra",
         "SHEHRA",
@@ -43085,7 +43496,7 @@
         "shehra"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-043": {
       "id": "GJ-043",
@@ -43093,7 +43504,7 @@
       "pcId": "GJ-07",
       "districtId": "GJ-D07",
       "acNo": 43,
-      "name": "Vatva",
+      "name": "VATVA",
       "aliases": [
         "Vatva",
         "VATVA",
@@ -43102,7 +43513,7 @@
         "vatva"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-131": {
       "id": "GJ-131",
@@ -43110,7 +43521,7 @@
       "pcId": "GJ-19",
       "districtId": "GJ-D18",
       "acNo": 131,
-      "name": "Limkheda (ST)",
+      "name": "LIMKHEDA",
       "aliases": [
         "Limkheda (ST)",
         "Limkheda",
@@ -43122,7 +43533,7 @@
         "limkheda (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-117": {
       "id": "GJ-117",
@@ -43130,7 +43541,7 @@
       "pcId": "GJ-17",
       "districtId": "GJ-D16",
       "acNo": 117,
-      "name": "Mehmedabad",
+      "name": "MEHMEDABAD",
       "aliases": [
         "Mehmedabad",
         "MEHMEDABAD",
@@ -43141,7 +43552,7 @@
         "mehmedabad"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-119": {
       "id": "GJ-119",
@@ -43149,7 +43560,7 @@
       "pcId": "GJ-18",
       "districtId": "GJ-D16",
       "acNo": 119,
-      "name": "Thasra",
+      "name": "THASRA",
       "aliases": [
         "Thasra",
         "THASRA",
@@ -43158,7 +43569,7 @@
         "thasra"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-067": {
       "id": "GJ-067",
@@ -43166,7 +43577,7 @@
       "pcId": "GJ-10",
       "districtId": "GJ-D09",
       "acNo": 67,
-      "name": "Wankaner",
+      "name": "WANKANER",
       "aliases": [
         "Wankaner",
         "WANKANER",
@@ -43175,7 +43586,7 @@
         "wankaner"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-132": {
       "id": "GJ-132",
@@ -43183,7 +43594,7 @@
       "pcId": "GJ-19",
       "districtId": "GJ-D18",
       "acNo": 132,
-      "name": "Dahod (ST)",
+      "name": "DAHOD",
       "aliases": [
         "Dahod (ST)",
         "Dahod",
@@ -43195,7 +43606,7 @@
         "dahod (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-118": {
       "id": "GJ-118",
@@ -43203,7 +43614,7 @@
       "pcId": "GJ-17",
       "districtId": "GJ-D16",
       "acNo": 118,
-      "name": "Mahudha",
+      "name": "MAHUDHA",
       "aliases": [
         "Mahudha",
         "MAHUDHA",
@@ -43212,7 +43623,7 @@
         "mahudha"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-126": {
       "id": "GJ-126",
@@ -43220,7 +43631,7 @@
       "pcId": "GJ-18",
       "districtId": "GJ-D17",
       "acNo": 126,
-      "name": "Godhra",
+      "name": "GODHRA",
       "aliases": [
         "Godhra",
         "GODHRA",
@@ -43229,7 +43640,7 @@
         "godhra"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-115": {
       "id": "GJ-115",
@@ -43237,7 +43648,7 @@
       "pcId": "GJ-17",
       "districtId": "GJ-D16",
       "acNo": 115,
-      "name": "Matar",
+      "name": "MATAR",
       "aliases": [
         "Matar",
         "MATAR",
@@ -43246,7 +43657,7 @@
         "matar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-134": {
       "id": "GJ-134",
@@ -43254,7 +43665,7 @@
       "pcId": "GJ-19",
       "districtId": "GJ-D18",
       "acNo": 134,
-      "name": "Devgadhbaria",
+      "name": "DEVGADHBARIA",
       "aliases": [
         "Devgadhbaria",
         "DEVGADHBARIA",
@@ -43265,7 +43676,7 @@
         "devgadhbaria"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-135": {
       "id": "GJ-135",
@@ -43273,7 +43684,7 @@
       "pcId": "GJ-20",
       "districtId": "GJ-D19",
       "acNo": 135,
-      "name": "Savli",
+      "name": "SAVLI",
       "aliases": [
         "Savli",
         "SAVLI",
@@ -43282,7 +43693,7 @@
         "savli"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-082": {
       "id": "GJ-082",
@@ -43290,7 +43701,7 @@
       "pcId": "GJ-12",
       "districtId": "GJ-D10",
       "acNo": 82,
-      "name": "Dwarka",
+      "name": "DWARKA",
       "aliases": [
         "Dwarka",
         "DWARKA",
@@ -43299,7 +43710,7 @@
         "dwarka"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-133": {
       "id": "GJ-133",
@@ -43307,7 +43718,7 @@
       "pcId": "GJ-19",
       "districtId": "GJ-D18",
       "acNo": 133,
-      "name": "Garbada (ST)",
+      "name": "GARBADA",
       "aliases": [
         "Garbada (ST)",
         "Garbada",
@@ -43319,7 +43730,7 @@
         "garbada (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-111": {
       "id": "GJ-111",
@@ -43327,7 +43738,7 @@
       "pcId": "GJ-16",
       "districtId": "GJ-D15",
       "acNo": 111,
-      "name": "Umreth",
+      "name": "UMRETH",
       "aliases": [
         "Umreth",
         "UMRETH",
@@ -43336,7 +43747,7 @@
         "umreth"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-116": {
       "id": "GJ-116",
@@ -43344,7 +43755,7 @@
       "pcId": "GJ-17",
       "districtId": "GJ-D16",
       "acNo": 116,
-      "name": "Nadiad",
+      "name": "NADIAD",
       "aliases": [
         "Nadiad",
         "NADIAD",
@@ -43353,7 +43764,7 @@
         "nadiad"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-078": {
       "id": "GJ-078",
@@ -43361,7 +43772,7 @@
       "pcId": "GJ-12",
       "districtId": "GJ-D10",
       "acNo": 78,
-      "name": "Jamnagar North",
+      "name": "JAMNAGAR NORTH",
       "aliases": [
         "Jamnagar North",
         "JAMNAGAR NORTH",
@@ -43370,7 +43781,7 @@
         "jamnagar north"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-127": {
       "id": "GJ-127",
@@ -43378,7 +43789,7 @@
       "pcId": "GJ-18",
       "districtId": "GJ-D17",
       "acNo": 127,
-      "name": "Kalol",
+      "name": "KALOL",
       "aliases": [
         "Kalol",
         "KALOL",
@@ -43389,7 +43800,7 @@
         "gj-127"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-079": {
       "id": "GJ-079",
@@ -43397,7 +43808,7 @@
       "pcId": "GJ-12",
       "districtId": "GJ-D10",
       "acNo": 79,
-      "name": "Jamnagar South",
+      "name": "JAMNAGAR SOUTH",
       "aliases": [
         "Jamnagar South",
         "JAMNAGAR SOUTH",
@@ -43406,7 +43817,7 @@
         "jamnagar south"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-081": {
       "id": "GJ-081",
@@ -43414,7 +43825,7 @@
       "pcId": "GJ-12",
       "districtId": "GJ-D10",
       "acNo": 81,
-      "name": "Khambhalia",
+      "name": "KHAMBHALIA",
       "aliases": [
         "Khambhalia",
         "KHAMBHALIA",
@@ -43423,7 +43834,7 @@
         "khambhalia"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-114": {
       "id": "GJ-114",
@@ -43431,7 +43842,7 @@
       "pcId": "GJ-16",
       "districtId": "GJ-D15",
       "acNo": 114,
-      "name": "Sojitra",
+      "name": "SOJITRA",
       "aliases": [
         "Sojitra",
         "SOJITRA",
@@ -43440,7 +43851,7 @@
         "sojitra"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-080": {
       "id": "GJ-080",
@@ -43448,7 +43859,7 @@
       "pcId": "GJ-12",
       "districtId": "GJ-D10",
       "acNo": 80,
-      "name": "Jamjodhpur",
+      "name": "JAMJODHPUR",
       "aliases": [
         "Jamjodhpur",
         "JAMJODHPUR",
@@ -43457,7 +43868,7 @@
         "jamjodhpur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-113": {
       "id": "GJ-113",
@@ -43465,7 +43876,7 @@
       "pcId": "GJ-16",
       "districtId": "GJ-D15",
       "acNo": 113,
-      "name": "Petlad",
+      "name": "PETLAD",
       "aliases": [
         "Petlad",
         "PETLAD",
@@ -43474,7 +43885,7 @@
         "petlad"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-112": {
       "id": "GJ-112",
@@ -43482,7 +43893,7 @@
       "pcId": "GJ-16",
       "districtId": "GJ-D15",
       "acNo": 112,
-      "name": "Anand",
+      "name": "ANAND",
       "aliases": [
         "Anand",
         "ANAND",
@@ -43491,7 +43902,7 @@
         "anand"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-110": {
       "id": "GJ-110",
@@ -43499,7 +43910,7 @@
       "pcId": "GJ-16",
       "districtId": "GJ-D15",
       "acNo": 110,
-      "name": "Anklav",
+      "name": "ANKLAV",
       "aliases": [
         "Anklav",
         "ANKLAV",
@@ -43508,7 +43919,7 @@
         "anklav"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-128": {
       "id": "GJ-128",
@@ -43516,7 +43927,7 @@
       "pcId": "GJ-21",
       "districtId": "GJ-D17",
       "acNo": 128,
-      "name": "Halol",
+      "name": "HALOL",
       "aliases": [
         "Halol",
         "HALOL",
@@ -43525,7 +43936,7 @@
         "halol"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-108": {
       "id": "GJ-108",
@@ -43533,7 +43944,7 @@
       "pcId": "GJ-16",
       "districtId": "GJ-D15",
       "acNo": 108,
-      "name": "Khambhat",
+      "name": "KHAMBHAT",
       "aliases": [
         "Khambhat",
         "KHAMBHAT",
@@ -43542,7 +43953,7 @@
         "khambhat"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-137": {
       "id": "GJ-137",
@@ -43550,7 +43961,7 @@
       "pcId": "GJ-21",
       "districtId": "GJ-D19",
       "acNo": 137,
-      "name": "Chhota Udaipur (ST",
+      "name": "CHHOTA UDAIPUR (ST",
       "aliases": [
         "Chhota Udaipur (ST",
         "CHHOTA UDAIPUR (ST",
@@ -43561,7 +43972,7 @@
         "chhota udaipur (st"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-071": {
       "id": "GJ-071",
@@ -43569,7 +43980,7 @@
       "pcId": "GJ-10",
       "districtId": "GJ-D09",
       "acNo": 71,
-      "name": "Rajkot Rural(SC)",
+      "name": "RAJKOT RURAL",
       "aliases": [
         "Rajkot Rural(SC)",
         "Rajkot Rural",
@@ -43581,7 +43992,7 @@
         "rajkot rural(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-070": {
       "id": "GJ-070",
@@ -43589,7 +44000,7 @@
       "pcId": "GJ-10",
       "districtId": "GJ-D09",
       "acNo": 70,
-      "name": "Rajkot South",
+      "name": "RAJKOT SOUTH",
       "aliases": [
         "Rajkot South",
         "RAJKOT SOUTH",
@@ -43598,7 +44009,7 @@
         "rajkot south"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-136": {
       "id": "GJ-136",
@@ -43606,7 +44017,7 @@
       "pcId": "GJ-20",
       "districtId": "GJ-D19",
       "acNo": 136,
-      "name": "Vaghodia",
+      "name": "VAGHODIA",
       "aliases": [
         "Vaghodia",
         "VAGHODIA",
@@ -43615,7 +44026,7 @@
         "vaghodia"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-069": {
       "id": "GJ-069",
@@ -43623,7 +44034,7 @@
       "pcId": "GJ-10",
       "districtId": "GJ-D09",
       "acNo": 69,
-      "name": "Rajkot West",
+      "name": "RAJKOT WEST",
       "aliases": [
         "Rajkot West",
         "RAJKOT WEST",
@@ -43632,7 +44043,7 @@
         "rajkot west"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-109": {
       "id": "GJ-109",
@@ -43640,7 +44051,7 @@
       "pcId": "GJ-16",
       "districtId": "GJ-D15",
       "acNo": 109,
-      "name": "Borsad",
+      "name": "BORSAD",
       "aliases": [
         "Borsad",
         "BORSAD",
@@ -43649,7 +44060,7 @@
         "borsad"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-107": {
       "id": "GJ-107",
@@ -43657,7 +44068,7 @@
       "pcId": "GJ-15",
       "districtId": "GJ-D14",
       "acNo": 107,
-      "name": "Botad",
+      "name": "BOTAD",
       "aliases": [
         "Botad",
         "BOTAD",
@@ -43666,7 +44077,7 @@
         "botad"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-068": {
       "id": "GJ-068",
@@ -43674,7 +44085,7 @@
       "pcId": "GJ-10",
       "districtId": "GJ-D09",
       "acNo": 68,
-      "name": "Rajkot East",
+      "name": "RAJKOT EAST",
       "aliases": [
         "Rajkot East",
         "RAJKOT EAST",
@@ -43683,7 +44094,7 @@
         "rajkot east"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-072": {
       "id": "GJ-072",
@@ -43691,7 +44102,7 @@
       "pcId": "GJ-10",
       "districtId": "GJ-D09",
       "acNo": 72,
-      "name": "Jasdan",
+      "name": "JASDAN",
       "aliases": [
         "Jasdan",
         "JASDAN",
@@ -43700,7 +44111,7 @@
         "jasdan"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-142": {
       "id": "GJ-142",
@@ -43708,7 +44119,7 @@
       "pcId": "GJ-20",
       "districtId": "GJ-D19",
       "acNo": 142,
-      "name": "Sayajigunj",
+      "name": "SAYAJIGUNJ",
       "aliases": [
         "Sayajigunj",
         "SAYAJIGUNJ",
@@ -43719,7 +44130,7 @@
         "sayajigunj"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-139": {
       "id": "GJ-139",
@@ -43727,7 +44138,7 @@
       "pcId": "GJ-21",
       "districtId": "GJ-D19",
       "acNo": 139,
-      "name": "Sankheda(ST)",
+      "name": "SANKHEDA",
       "aliases": [
         "Sankheda(ST)",
         "Sankheda",
@@ -43739,7 +44150,7 @@
         "sankheda(st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-146": {
       "id": "GJ-146",
@@ -43747,7 +44158,7 @@
       "pcId": "GJ-21",
       "districtId": "GJ-D19",
       "acNo": 146,
-      "name": "Padra",
+      "name": "PADRA",
       "aliases": [
         "Padra",
         "PADRA",
@@ -43756,7 +44167,7 @@
         "padra"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-141": {
       "id": "GJ-141",
@@ -43764,7 +44175,7 @@
       "pcId": "GJ-20",
       "districtId": "GJ-D19",
       "acNo": 141,
-      "name": "Vadodara City(SC)",
+      "name": "VADODARA CITY",
       "aliases": [
         "Vadodara City(SC)",
         "Vadodara City",
@@ -43776,7 +44187,7 @@
         "vadodara city(sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-144": {
       "id": "GJ-144",
@@ -43784,7 +44195,7 @@
       "pcId": "GJ-20",
       "districtId": "GJ-D19",
       "acNo": 144,
-      "name": "Raopura",
+      "name": "RAOPURA",
       "aliases": [
         "Raopura",
         "RAOPURA",
@@ -43793,7 +44204,7 @@
         "raopura"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-143": {
       "id": "GJ-143",
@@ -43801,7 +44212,7 @@
       "pcId": "GJ-20",
       "districtId": "GJ-D19",
       "acNo": 143,
-      "name": "Akota",
+      "name": "AKOTA",
       "aliases": [
         "Akota",
         "AKOTA",
@@ -43810,7 +44221,7 @@
         "akota"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-138": {
       "id": "GJ-138",
@@ -43818,7 +44229,7 @@
       "pcId": "GJ-21",
       "districtId": "GJ-D19",
       "acNo": 138,
-      "name": "Jetpur (ST)",
+      "name": "JETPUR",
       "aliases": [
         "Jetpur (ST)",
         "Jetpur",
@@ -43834,7 +44245,7 @@
         "gj-138"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-140": {
       "id": "GJ-140",
@@ -43842,7 +44253,7 @@
       "pcId": "GJ-21",
       "districtId": "GJ-D19",
       "acNo": 140,
-      "name": "Dabhoi",
+      "name": "DABHOI",
       "aliases": [
         "Dabhoi",
         "DABHOI",
@@ -43851,7 +44262,7 @@
         "dabhoi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-073": {
       "id": "GJ-073",
@@ -43859,7 +44270,7 @@
       "pcId": "GJ-11",
       "districtId": "GJ-D09",
       "acNo": 73,
-      "name": "Gondal",
+      "name": "GONDAL",
       "aliases": [
         "Gondal",
         "GONDAL",
@@ -43868,7 +44279,7 @@
         "gondal"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-150": {
       "id": "GJ-150",
@@ -43876,7 +44287,7 @@
       "pcId": "GJ-22",
       "districtId": "GJ-D21",
       "acNo": 150,
-      "name": "Jambusar",
+      "name": "JAMBUSAR",
       "aliases": [
         "Jambusar",
         "JAMBUSAR",
@@ -43885,7 +44296,7 @@
         "jambusar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-145": {
       "id": "GJ-145",
@@ -43893,7 +44304,7 @@
       "pcId": "GJ-20",
       "districtId": "GJ-D19",
       "acNo": 145,
-      "name": "Manjalpur",
+      "name": "MANJALPUR",
       "aliases": [
         "Manjalpur",
         "MANJALPUR",
@@ -43902,7 +44313,7 @@
         "manjalpur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-074": {
       "id": "GJ-074",
@@ -43910,7 +44321,7 @@
       "pcId": "GJ-11",
       "districtId": "GJ-D09",
       "acNo": 74,
-      "name": "Jetpur",
+      "name": "JETPUR",
       "aliases": [
         "Jetpur",
         "JETPUR",
@@ -43922,7 +44333,7 @@
         "jetpur (st)"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-083": {
       "id": "GJ-083",
@@ -43930,7 +44341,7 @@
       "pcId": "GJ-11",
       "districtId": "GJ-D11",
       "acNo": 83,
-      "name": "Porbandar",
+      "name": "PORBANDAR",
       "aliases": [
         "Porbandar",
         "PORBANDAR",
@@ -43939,7 +44350,7 @@
         "porbandar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-106": {
       "id": "GJ-106",
@@ -43947,7 +44358,7 @@
       "pcId": "GJ-15",
       "districtId": "GJ-D14",
       "acNo": 106,
-      "name": "Gadhada (SC)",
+      "name": "GADHADA",
       "aliases": [
         "Gadhada (SC)",
         "Gadhada",
@@ -43959,7 +44370,7 @@
         "gadhada (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-075": {
       "id": "GJ-075",
@@ -43967,7 +44378,7 @@
       "pcId": "GJ-11",
       "districtId": "GJ-D09",
       "acNo": 75,
-      "name": "Dhoraji",
+      "name": "DHORAJI",
       "aliases": [
         "Dhoraji",
         "DHORAJI",
@@ -43976,7 +44387,7 @@
         "dhoraji"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-103": {
       "id": "GJ-103",
@@ -43984,7 +44395,7 @@
       "pcId": "GJ-15",
       "districtId": "GJ-D14",
       "acNo": 103,
-      "name": "Bhavnagar Rural",
+      "name": "BHAVNAGAR RURAL",
       "aliases": [
         "Bhavnagar Rural",
         "BHAVNAGAR RURAL",
@@ -43993,7 +44404,7 @@
         "bhavnagar rural"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-147": {
       "id": "GJ-147",
@@ -44001,7 +44412,7 @@
       "pcId": "GJ-22",
       "districtId": "GJ-D19",
       "acNo": 147,
-      "name": "Karjan",
+      "name": "KARJAN",
       "aliases": [
         "Karjan",
         "KARJAN",
@@ -44010,7 +44421,7 @@
         "karjan"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-096": {
       "id": "GJ-096",
@@ -44018,7 +44429,7 @@
       "pcId": "GJ-14",
       "districtId": "GJ-D13",
       "acNo": 96,
-      "name": "Lathi",
+      "name": "LATHI",
       "aliases": [
         "Lathi",
         "LATHI",
@@ -44027,7 +44438,7 @@
         "lathi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-084": {
       "id": "GJ-084",
@@ -44035,7 +44446,7 @@
       "pcId": "GJ-11",
       "districtId": "GJ-D11",
       "acNo": 84,
-      "name": "Kutiyana",
+      "name": "KUTIYANA",
       "aliases": [
         "Kutiyana",
         "KUTIYANA",
@@ -44044,7 +44455,7 @@
         "kutiyana"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-148": {
       "id": "GJ-148",
@@ -44052,7 +44463,7 @@
       "pcId": "GJ-21",
       "districtId": "GJ-D20",
       "acNo": 148,
-      "name": "Nandod (ST)",
+      "name": "NANDOD",
       "aliases": [
         "Nandod (ST)",
         "Nandod",
@@ -44064,7 +44475,7 @@
         "nandod (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-095": {
       "id": "GJ-095",
@@ -44072,7 +44483,7 @@
       "pcId": "GJ-14",
       "districtId": "GJ-D13",
       "acNo": 95,
-      "name": "Amreli",
+      "name": "AMRELI",
       "aliases": [
         "Amreli",
         "AMRELI",
@@ -44081,7 +44492,7 @@
         "amreli"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-151": {
       "id": "GJ-151",
@@ -44089,7 +44500,7 @@
       "pcId": "GJ-22",
       "districtId": "GJ-D21",
       "acNo": 151,
-      "name": "Vagra",
+      "name": "VAGRA",
       "aliases": [
         "Vagra",
         "VAGRA",
@@ -44098,7 +44509,7 @@
         "vagra"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-152": {
       "id": "GJ-152",
@@ -44106,7 +44517,7 @@
       "pcId": "GJ-22",
       "districtId": "GJ-D21",
       "acNo": 152,
-      "name": "Jhagadia (ST)",
+      "name": "JHAGADIA",
       "aliases": [
         "Jhagadia (ST)",
         "Jhagadia",
@@ -44118,7 +44529,7 @@
         "jhagadia (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-085": {
       "id": "GJ-085",
@@ -44126,7 +44537,7 @@
       "pcId": "GJ-11",
       "districtId": "GJ-D12",
       "acNo": 85,
-      "name": "Manavadar",
+      "name": "MANAVADAR",
       "aliases": [
         "Manavadar",
         "MANAVADAR",
@@ -44135,7 +44546,7 @@
         "manavadar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-105": {
       "id": "GJ-105",
@@ -44143,7 +44554,7 @@
       "pcId": "GJ-15",
       "districtId": "GJ-D14",
       "acNo": 105,
-      "name": "Bhavnagar West",
+      "name": "BHAVNAGAR WEST",
       "aliases": [
         "Bhavnagar West",
         "BHAVNAGAR WEST",
@@ -44152,7 +44563,7 @@
         "bhavnagar west"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-104": {
       "id": "GJ-104",
@@ -44160,7 +44571,7 @@
       "pcId": "GJ-15",
       "districtId": "GJ-D14",
       "acNo": 104,
-      "name": "Bhavnagar East",
+      "name": "BHAVNAGAR EAST",
       "aliases": [
         "Bhavnagar East",
         "BHAVNAGAR EAST",
@@ -44169,7 +44580,7 @@
         "bhavnagar east"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-102": {
       "id": "GJ-102",
@@ -44177,7 +44588,7 @@
       "pcId": "GJ-15",
       "districtId": "GJ-D14",
       "acNo": 102,
-      "name": "Palitana",
+      "name": "PALITANA",
       "aliases": [
         "Palitana",
         "PALITANA",
@@ -44186,7 +44597,7 @@
         "palitana"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-086": {
       "id": "GJ-086",
@@ -44194,7 +44605,7 @@
       "pcId": "GJ-13",
       "districtId": "GJ-D12",
       "acNo": 86,
-      "name": "Junagadh",
+      "name": "JUNAGADH",
       "aliases": [
         "Junagadh",
         "JUNAGADH",
@@ -44203,7 +44614,7 @@
         "junagadh"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-087": {
       "id": "GJ-087",
@@ -44211,7 +44622,7 @@
       "pcId": "GJ-13",
       "districtId": "GJ-D12",
       "acNo": 87,
-      "name": "Visavadar",
+      "name": "VISAVADAR",
       "aliases": [
         "Visavadar",
         "VISAVADAR",
@@ -44220,7 +44631,7 @@
         "visavadar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-101": {
       "id": "GJ-101",
@@ -44228,7 +44639,7 @@
       "pcId": "GJ-14",
       "districtId": "GJ-D14",
       "acNo": 101,
-      "name": "Gariadhar",
+      "name": "GARIADHAR",
       "aliases": [
         "Gariadhar",
         "GARIADHAR",
@@ -44237,7 +44648,7 @@
         "gariadhar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-153": {
       "id": "GJ-153",
@@ -44245,7 +44656,7 @@
       "pcId": "GJ-22",
       "districtId": "GJ-D21",
       "acNo": 153,
-      "name": "Bharuch",
+      "name": "BHARUCH",
       "aliases": [
         "Bharuch",
         "BHARUCH",
@@ -44254,7 +44665,7 @@
         "bharuch"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-094": {
       "id": "GJ-094",
@@ -44262,7 +44673,7 @@
       "pcId": "GJ-14",
       "districtId": "GJ-D13",
       "acNo": 94,
-      "name": "Dhari",
+      "name": "DHARI",
       "aliases": [
         "Dhari",
         "DHARI",
@@ -44271,7 +44682,7 @@
         "dhari"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-097": {
       "id": "GJ-097",
@@ -44279,7 +44690,7 @@
       "pcId": "GJ-14",
       "districtId": "GJ-D13",
       "acNo": 97,
-      "name": "Savarkundla",
+      "name": "SAVARKUNDLA",
       "aliases": [
         "Savarkundla",
         "SAVARKUNDLA",
@@ -44288,7 +44699,7 @@
         "savarkundla"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-149": {
       "id": "GJ-149",
@@ -44296,7 +44707,7 @@
       "pcId": "GJ-22",
       "districtId": "GJ-D20",
       "acNo": 149,
-      "name": "Dediapada(ST)",
+      "name": "DEDIAPADA",
       "aliases": [
         "Dediapada(ST)",
         "Dediapada",
@@ -44308,7 +44719,7 @@
         "dediapada(st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-154": {
       "id": "GJ-154",
@@ -44316,7 +44727,7 @@
       "pcId": "GJ-22",
       "districtId": "GJ-D21",
       "acNo": 154,
-      "name": "Ankleshwar",
+      "name": "ANKLESHWAR",
       "aliases": [
         "Ankleshwar",
         "ANKLESHWAR",
@@ -44325,7 +44736,7 @@
         "ankleshwar"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-088": {
       "id": "GJ-088",
@@ -44333,7 +44744,7 @@
       "pcId": "GJ-11",
       "districtId": "GJ-D12",
       "acNo": 88,
-      "name": "Keshod",
+      "name": "KESHOD",
       "aliases": [
         "Keshod",
         "KESHOD",
@@ -44342,7 +44753,7 @@
         "keshod"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-100": {
       "id": "GJ-100",
@@ -44350,7 +44761,7 @@
       "pcId": "GJ-15",
       "districtId": "GJ-D14",
       "acNo": 100,
-      "name": "Talaja",
+      "name": "TALAJA",
       "aliases": [
         "Talaja",
         "TALAJA",
@@ -44359,7 +44770,7 @@
         "talaja"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-156": {
       "id": "GJ-156",
@@ -44367,7 +44778,7 @@
       "pcId": "GJ-23",
       "districtId": "GJ-D22",
       "acNo": 156,
-      "name": "Mangrol (ST)",
+      "name": "MANGROL",
       "aliases": [
         "Mangrol (ST)",
         "Mangrol",
@@ -44383,7 +44794,7 @@
         "gj-156"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-172": {
       "id": "GJ-172",
@@ -44391,7 +44802,7 @@
       "pcId": "GJ-23",
       "districtId": "GJ-D22",
       "acNo": 172,
-      "name": "Nizar (ST)",
+      "name": "NIZAR",
       "aliases": [
         "Nizar (ST)",
         "Nizar",
@@ -44403,7 +44814,7 @@
         "nizar (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-091": {
       "id": "GJ-091",
@@ -44411,7 +44822,7 @@
       "pcId": "GJ-13",
       "districtId": "GJ-D12",
       "acNo": 91,
-      "name": "Talala",
+      "name": "TALALA",
       "aliases": [
         "Talala",
         "TALALA",
@@ -44420,7 +44831,7 @@
         "talala"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-155": {
       "id": "GJ-155",
@@ -44428,7 +44839,7 @@
       "pcId": "GJ-24",
       "districtId": "GJ-D22",
       "acNo": 155,
-      "name": "Olpad",
+      "name": "OLPAD",
       "aliases": [
         "Olpad",
         "OLPAD",
@@ -44437,7 +44848,7 @@
         "olpad"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-157": {
       "id": "GJ-157",
@@ -44445,7 +44856,7 @@
       "pcId": "GJ-23",
       "districtId": "GJ-D22",
       "acNo": 157,
-      "name": "Mandvi (ST)",
+      "name": "MANDVI",
       "aliases": [
         "Mandvi (ST)",
         "Mandvi",
@@ -44458,7 +44869,7 @@
         "gj-157"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-089": {
       "id": "GJ-089",
@@ -44466,7 +44877,7 @@
       "pcId": "GJ-13",
       "districtId": "GJ-D12",
       "acNo": 89,
-      "name": "Mangrol",
+      "name": "MANGROL",
       "aliases": [
         "Mangrol",
         "MANGROL",
@@ -44478,7 +44889,7 @@
         "mangrol (st)"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-158": {
       "id": "GJ-158",
@@ -44486,7 +44897,7 @@
       "pcId": "GJ-23",
       "districtId": "GJ-D22",
       "acNo": 158,
-      "name": "Kamrej",
+      "name": "KAMREJ",
       "aliases": [
         "Kamrej",
         "KAMREJ",
@@ -44495,7 +44906,7 @@
         "kamrej"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-093": {
       "id": "GJ-093",
@@ -44503,7 +44914,7 @@
       "pcId": "GJ-13",
       "districtId": "GJ-D12",
       "acNo": 93,
-      "name": "Una",
+      "name": "UNA",
       "aliases": [
         "Una",
         "UNA",
@@ -44512,7 +44923,7 @@
         "una"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-099": {
       "id": "GJ-099",
@@ -44520,7 +44931,7 @@
       "pcId": "GJ-14",
       "districtId": "GJ-D14",
       "acNo": 99,
-      "name": "Mahuva",
+      "name": "MAHUVA",
       "aliases": [
         "Mahuva",
         "MAHUVA",
@@ -44529,7 +44940,7 @@
         "mahuva"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-159": {
       "id": "GJ-159",
@@ -44537,7 +44948,7 @@
       "pcId": "GJ-24",
       "districtId": "GJ-D22",
       "acNo": 159,
-      "name": "Surat East",
+      "name": "SURAT EAST",
       "aliases": [
         "Surat East",
         "SURAT EAST",
@@ -44546,7 +44957,7 @@
         "surat east"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-098": {
       "id": "GJ-098",
@@ -44554,7 +44965,7 @@
       "pcId": "GJ-14",
       "districtId": "GJ-D13",
       "acNo": 98,
-      "name": "Rajula",
+      "name": "RAJULA",
       "aliases": [
         "Rajula",
         "RAJULA",
@@ -44563,7 +44974,7 @@
         "rajula"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-171": {
       "id": "GJ-171",
@@ -44571,7 +44982,7 @@
       "pcId": "GJ-23",
       "districtId": "GJ-D22",
       "acNo": 171,
-      "name": "Vyara (ST)",
+      "name": "VYARA",
       "aliases": [
         "Vyara (ST)",
         "Vyara",
@@ -44583,7 +44994,7 @@
         "vyara (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-090": {
       "id": "GJ-090",
@@ -44591,7 +45002,7 @@
       "pcId": "GJ-13",
       "districtId": "GJ-D12",
       "acNo": 90,
-      "name": "Somnath",
+      "name": "SOMNATH",
       "aliases": [
         "Somnath",
         "SOMNATH",
@@ -44600,7 +45011,7 @@
         "somnath"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-170": {
       "id": "GJ-170",
@@ -44608,7 +45019,7 @@
       "pcId": "GJ-23",
       "districtId": "GJ-D22",
       "acNo": 170,
-      "name": "Mahuva (ST)",
+      "name": "MAHUVA",
       "aliases": [
         "Mahuva (ST)",
         "Mahuva",
@@ -44621,7 +45032,7 @@
         "gj-170"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-169": {
       "id": "GJ-169",
@@ -44629,7 +45040,7 @@
       "pcId": "GJ-23",
       "districtId": "GJ-D22",
       "acNo": 169,
-      "name": "Bardoli (SC)",
+      "name": "BARDOLI",
       "aliases": [
         "Bardoli (SC)",
         "Bardoli",
@@ -44641,7 +45052,7 @@
         "bardoli (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-168": {
       "id": "GJ-168",
@@ -44649,7 +45060,7 @@
       "pcId": "GJ-25",
       "districtId": "GJ-D22",
       "acNo": 168,
-      "name": "Choryasi",
+      "name": "CHORYASI",
       "aliases": [
         "Choryasi",
         "CHORYASI",
@@ -44660,7 +45071,7 @@
         "choryasi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-092": {
       "id": "GJ-092",
@@ -44668,7 +45079,7 @@
       "pcId": "GJ-13",
       "districtId": "GJ-D12",
       "acNo": 92,
-      "name": "Kodinar (SC)",
+      "name": "KODINAR",
       "aliases": [
         "Kodinar (SC)",
         "Kodinar",
@@ -44680,7 +45091,7 @@
         "kodinar (sc)"
       ],
       "type": "SC",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-174": {
       "id": "GJ-174",
@@ -44688,7 +45099,7 @@
       "pcId": "GJ-25",
       "districtId": "GJ-D24",
       "acNo": 174,
-      "name": "Jalalpore",
+      "name": "JALALPORE",
       "aliases": [
         "Jalalpore",
         "JALALPORE",
@@ -44697,7 +45108,7 @@
         "jalalpore"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-175": {
       "id": "GJ-175",
@@ -44705,7 +45116,7 @@
       "pcId": "GJ-25",
       "districtId": "GJ-D24",
       "acNo": 175,
-      "name": "Navsari",
+      "name": "NAVSARI",
       "aliases": [
         "Navsari",
         "NAVSARI",
@@ -44714,7 +45125,7 @@
         "navsari"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-173": {
       "id": "GJ-173",
@@ -44722,7 +45133,7 @@
       "pcId": "GJ-26",
       "districtId": "GJ-D23",
       "acNo": 173,
-      "name": "Dangs (ST)",
+      "name": "DANGS",
       "aliases": [
         "Dangs (ST)",
         "Dangs",
@@ -44734,7 +45145,7 @@
         "dangs (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-176": {
       "id": "GJ-176",
@@ -44742,7 +45153,7 @@
       "pcId": "GJ-25",
       "districtId": "GJ-D24",
       "acNo": 176,
-      "name": "Gandevi (ST)",
+      "name": "GANDEVI",
       "aliases": [
         "Gandevi (ST)",
         "Gandevi",
@@ -44754,7 +45165,7 @@
         "gandevi (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-177": {
       "id": "GJ-177",
@@ -44762,7 +45173,7 @@
       "pcId": "GJ-26",
       "districtId": "GJ-D24",
       "acNo": 177,
-      "name": "Vansda (ST)",
+      "name": "VANSDA",
       "aliases": [
         "Vansda (ST)",
         "Vansda",
@@ -44774,7 +45185,7 @@
         "vansda (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-179": {
       "id": "GJ-179",
@@ -44782,7 +45193,7 @@
       "pcId": "GJ-26",
       "districtId": "GJ-D25",
       "acNo": 179,
-      "name": "Valsad",
+      "name": "VALSAD",
       "aliases": [
         "Valsad",
         "VALSAD",
@@ -44791,7 +45202,7 @@
         "valsad"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-178": {
       "id": "GJ-178",
@@ -44799,7 +45210,7 @@
       "pcId": "GJ-26",
       "districtId": "GJ-D25",
       "acNo": 178,
-      "name": "Dharampur",
+      "name": "DHARAMPUR",
       "aliases": [
         "Dharampur",
         "DHARAMPUR",
@@ -44808,7 +45219,7 @@
         "dharampur"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-180": {
       "id": "GJ-180",
@@ -44816,7 +45227,7 @@
       "pcId": "GJ-26",
       "districtId": "GJ-D25",
       "acNo": 180,
-      "name": "Pardi",
+      "name": "PARDI",
       "aliases": [
         "Pardi",
         "PARDI",
@@ -44825,7 +45236,7 @@
         "pardi"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-181": {
       "id": "GJ-181",
@@ -44833,7 +45244,7 @@
       "pcId": "GJ-26",
       "districtId": "GJ-D25",
       "acNo": 181,
-      "name": "Kaprada (ST)",
+      "name": "KAPRADA",
       "aliases": [
         "Kaprada (ST)",
         "Kaprada",
@@ -44845,7 +45256,7 @@
         "kaprada (st)"
       ],
       "type": "ST",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "GJ-182": {
       "id": "GJ-182",
@@ -44853,7 +45264,7 @@
       "pcId": "GJ-26",
       "districtId": "GJ-D24",
       "acNo": 182,
-      "name": "Umbergaon",
+      "name": "UMBERGAON",
       "aliases": [
         "Umbergaon",
         "UMBERGAON",
@@ -44862,7 +45273,7 @@
         "umbergaon"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2022
     },
     "HR-001": {
       "id": "HR-001",
@@ -84073,7 +84484,8 @@
         "nannilam"
       ],
       "type": "GEN",
-      "delimitation": 2008
+      "delimitation": 2008,
+      "parliamentaryConstituency": "TN-29"
     },
     "TS-082": {
       "id": "TS-082",
@@ -86142,7 +86554,7 @@
         "Poonch Haveli",
         "POONCH HAVELI",
         "POONCHHAVELI",
-        "Wagoora – Kreeri",
+        "Wagoora \u2013 Kreeri",
         "WAGOORAKREERI"
       ],
       "type": "GEN",
@@ -86473,6 +86885,400 @@
       ],
       "type": "GEN",
       "delimitation": 2024
+    },
+    "GJ-050": {
+      "id": "GJ-050",
+      "stateId": "GJ",
+      "pcId": "GJ-08",
+      "districtId": null,
+      "acNo": 50,
+      "name": "AMRAIWADI",
+      "aliases": [
+        "Amraiwadi",
+        "AMRAIWADI"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-052": {
+      "id": "GJ-052",
+      "stateId": "GJ",
+      "pcId": "GJ-08",
+      "districtId": null,
+      "acNo": 52,
+      "name": "JAMALPUR-KHADIA",
+      "aliases": [
+        "Jamalpur-Khadia",
+        "JAMALPUR-KHADIA"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-167": {
+      "id": "GJ-167",
+      "stateId": "GJ",
+      "pcId": "GJ-24",
+      "districtId": null,
+      "acNo": 167,
+      "name": "SURAT WEST",
+      "aliases": [
+        "Surat West",
+        "SURAT WEST"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-162": {
+      "id": "GJ-162",
+      "stateId": "GJ",
+      "pcId": "GJ-24",
+      "districtId": null,
+      "acNo": 162,
+      "name": "KARANJ",
+      "aliases": [
+        "Karanj",
+        "KARANJ"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-047": {
+      "id": "GJ-047",
+      "stateId": "GJ",
+      "pcId": "GJ-07",
+      "districtId": null,
+      "acNo": 47,
+      "name": "NARODA",
+      "aliases": [
+        "Naroda",
+        "NARODA"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-161": {
+      "id": "GJ-161",
+      "stateId": "GJ",
+      "pcId": "GJ-24",
+      "districtId": null,
+      "acNo": 161,
+      "name": "VARACHHA ROAD",
+      "aliases": [
+        "Varachha Road",
+        "VARACHHA ROAD"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-165": {
+      "id": "GJ-165",
+      "stateId": "GJ",
+      "pcId": "GJ-24",
+      "districtId": null,
+      "acNo": 165,
+      "name": "MAJURA",
+      "aliases": [
+        "Majura",
+        "MAJURA"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-164": {
+      "id": "GJ-164",
+      "stateId": "GJ",
+      "pcId": "GJ-24",
+      "districtId": null,
+      "acNo": 164,
+      "name": "UDHNA",
+      "aliases": [
+        "Udhna",
+        "UDHNA"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-163": {
+      "id": "GJ-163",
+      "stateId": "GJ",
+      "pcId": "GJ-24",
+      "districtId": null,
+      "acNo": 163,
+      "name": "LIMBAYAT",
+      "aliases": [
+        "Limbayat",
+        "LIMBAYAT"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-160": {
+      "id": "GJ-160",
+      "stateId": "GJ",
+      "pcId": "GJ-24",
+      "districtId": null,
+      "acNo": 160,
+      "name": "SURAT NORTH",
+      "aliases": [
+        "Surat North",
+        "SURAT NORTH"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-166": {
+      "id": "GJ-166",
+      "stateId": "GJ",
+      "pcId": "GJ-24",
+      "districtId": null,
+      "acNo": 166,
+      "name": "KATARGAM",
+      "aliases": [
+        "Katargam",
+        "KATARGAM"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-045": {
+      "id": "GJ-045",
+      "stateId": "GJ",
+      "pcId": "GJ-06",
+      "districtId": null,
+      "acNo": 45,
+      "name": "NARANPURA",
+      "aliases": [
+        "Naranpura",
+        "NARANPURA"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-055": {
+      "id": "GJ-055",
+      "stateId": "GJ",
+      "pcId": "GJ-06",
+      "districtId": null,
+      "acNo": 55,
+      "name": "SABARMATI",
+      "aliases": [
+        "Sabarmati",
+        "SABARMATI"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-060": {
+      "id": "GJ-060",
+      "stateId": "GJ",
+      "pcId": "GJ-09",
+      "districtId": null,
+      "acNo": 60,
+      "name": "DASADA",
+      "aliases": [
+        "Dasada",
+        "DASADA",
+        "Dasada (SC)",
+        "DASADA (SC)"
+      ],
+      "type": "SC",
+      "delimitation": 2022
+    },
+    "GJ-056": {
+      "id": "GJ-056",
+      "stateId": "GJ",
+      "pcId": "GJ-08",
+      "districtId": null,
+      "acNo": 56,
+      "name": "ASARWA",
+      "aliases": [
+        "Asarwa",
+        "ASARWA"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-051": {
+      "id": "GJ-051",
+      "stateId": "GJ",
+      "pcId": "GJ-08",
+      "districtId": null,
+      "acNo": 51,
+      "name": "DARIYAPUR",
+      "aliases": [
+        "Dariyapur",
+        "DARIYAPUR"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-064": {
+      "id": "GJ-064",
+      "stateId": "GJ",
+      "pcId": "GJ-09",
+      "districtId": null,
+      "acNo": 64,
+      "name": "DHRANGADHRA",
+      "aliases": [
+        "Dhrangadhra",
+        "DHRANGADHRA"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-054": {
+      "id": "GJ-054",
+      "stateId": "GJ",
+      "pcId": "GJ-08",
+      "districtId": null,
+      "acNo": 54,
+      "name": "DANILIMDA",
+      "aliases": [
+        "Danilimda",
+        "DANILIMDA"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-048": {
+      "id": "GJ-048",
+      "stateId": "GJ",
+      "pcId": "GJ-07",
+      "districtId": null,
+      "acNo": 48,
+      "name": "THAKKAR BAPANAGAR",
+      "aliases": [
+        "Thakkar Bapanagar",
+        "THAKKAR BAPANAGAR"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-046": {
+      "id": "GJ-046",
+      "stateId": "GJ",
+      "pcId": "GJ-07",
+      "districtId": null,
+      "acNo": 46,
+      "name": "NIKOL",
+      "aliases": [
+        "Nikol",
+        "NIKOL"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-049": {
+      "id": "GJ-049",
+      "stateId": "GJ",
+      "pcId": "GJ-07",
+      "districtId": null,
+      "acNo": 49,
+      "name": "BAPUNAGAR",
+      "aliases": [
+        "Bapunagar",
+        "BAPUNAGAR"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-062": {
+      "id": "GJ-062",
+      "stateId": "GJ",
+      "pcId": "GJ-09",
+      "districtId": null,
+      "acNo": 62,
+      "name": "WADHWAN",
+      "aliases": [
+        "Wadhwan",
+        "WADHWAN"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-053": {
+      "id": "GJ-053",
+      "stateId": "GJ",
+      "pcId": "GJ-08",
+      "districtId": null,
+      "acNo": 53,
+      "name": "MANINAGAR",
+      "aliases": [
+        "Maninagar",
+        "MANINAGAR"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-057": {
+      "id": "GJ-057",
+      "stateId": "GJ",
+      "pcId": "GJ-17",
+      "districtId": null,
+      "acNo": 57,
+      "name": "DASKROI",
+      "aliases": [
+        "Daskroi",
+        "DASKROI"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-063": {
+      "id": "GJ-063",
+      "stateId": "GJ",
+      "pcId": "GJ-09",
+      "districtId": null,
+      "acNo": 63,
+      "name": "CHOTILA",
+      "aliases": [
+        "Chotila",
+        "CHOTILA"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-058": {
+      "id": "GJ-058",
+      "stateId": "GJ",
+      "pcId": "GJ-17",
+      "districtId": null,
+      "acNo": 58,
+      "name": "DHOLKA",
+      "aliases": [
+        "Dholka",
+        "DHOLKA"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-061": {
+      "id": "GJ-061",
+      "stateId": "GJ",
+      "pcId": "GJ-09",
+      "districtId": null,
+      "acNo": 61,
+      "name": "LIMBDI",
+      "aliases": [
+        "Limbdi",
+        "LIMBDI"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
+    },
+    "GJ-059": {
+      "id": "GJ-059",
+      "stateId": "GJ",
+      "pcId": "GJ-09",
+      "districtId": null,
+      "acNo": 59,
+      "name": "DHANDHUKA",
+      "aliases": [
+        "Dhandhuka",
+        "DHANDHUKA"
+      ],
+      "type": "GEN",
+      "delimitation": 2022
     }
   },
   "districts": {
@@ -97598,18 +98404,18 @@
       "puducherry": "PY",
       "pondicherry": "PY",
       "maharashtra": "MH",
-      "mahārāshtra": "MH",
+      "mah\u0101r\u0101shtra": "MH",
       "nagaland": "NL",
-      "nāgāland": "NL",
+      "n\u0101g\u0101land": "NL",
       "lakshadweep": "LD",
       "uttar pradesh": "UP",
       "tamil nadu": "TN",
-      "tamil nādu": "TN",
+      "tamil n\u0101du": "TN",
       "chhattisgarh": "CG",
-      "chhattīsgarh": "CG",
+      "chhatt\u012bsgarh": "CG",
       "chattisgarh": "CG",
       "gujarat": "GJ",
-      "gujarāt": "GJ",
+      "gujar\u0101t": "GJ",
       "delhi": "DL",
       "nct of delhi": "DL",
       "sikkim": "SK",
@@ -97618,31 +98424,31 @@
       "odisha": "OD",
       "orissa": "OD",
       "bihar": "BR",
-      "bihār": "BR",
+      "bih\u0101r": "BR",
       "ladakh": "LA",
-      "ladākh": "LA",
+      "lad\u0101kh": "LA",
       "rajasthan": "RJ",
-      "rājasthān": "RJ",
+      "r\u0101jasth\u0101n": "RJ",
       "telangana": "TS",
-      "telangāna": "TS",
+      "telang\u0101na": "TS",
       "andhra pradesh": "AP",
       "mizoram": "MZ",
       "arunachal pradesh": "AR",
-      "arunāchal pradesh": "AR",
+      "arun\u0101chal pradesh": "AR",
       "meghalaya": "ML",
-      "meghālaya": "ML",
+      "megh\u0101laya": "ML",
       "jharkhand": "JH",
-      "jhārkhand": "JH",
+      "jh\u0101rkhand": "JH",
       "assam": "AS",
       "manipur": "MN",
       "karnataka": "KA",
-      "karnātaka": "KA",
+      "karn\u0101taka": "KA",
       "uttarakhand": "UK",
-      "uttarākhand": "UK",
+      "uttar\u0101khand": "UK",
       "uttarkhand": "UK",
       "uttaranchal": "UK",
       "dadra and nagar haveli and daman and diu": "DD",
-      "dādra and nagar haveli and damān and diu": "DD",
+      "d\u0101dra and nagar haveli and dam\u0101n and diu": "DD",
       "dnh and dd": "DD",
       "dadra nagar haveli": "DD",
       "daman and diu": "DD",
@@ -97651,18 +98457,18 @@
       "goa": "GA",
       "kerala": "KL",
       "chandigarh": "CH",
-      "chandīgarh": "CH",
+      "chand\u012bgarh": "CH",
       "andaman and nicobar islands": "AN",
       "andaman and nicobar": "AN",
       "andaman nicobar": "AN",
       "himachal pradesh": "HP",
-      "himāchal pradesh": "HP",
+      "him\u0101chal pradesh": "HP",
       "jammu and kashmir": "JK",
-      "jammu and kashmīr": "JK",
+      "jammu and kashm\u012br": "JK",
       "jammu kashmir": "JK",
       "punjab": "PB",
       "haryana": "HR",
-      "haryāna": "HR"
+      "hary\u0101na": "HR"
     },
     "pcByName": {
       "BHIWANIMAHENDRAGARH|HR": "HR-08",
