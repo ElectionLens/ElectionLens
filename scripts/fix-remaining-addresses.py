@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Fix remaining ACs with booth number mismatches by using sequential matching.
-Maps PDF addresses to JSON booths in order: PDF booth 1 → JSON booth 1 (sorted), etc.
+Fix remaining ACs with <95% address coverage using multiple strategies.
 """
 
 import json
@@ -13,29 +12,19 @@ from pathlib import Path
 PDF_DIR = Path.home() / "Desktop" / "TN_PollingStations_English"
 BOOTHS_DIR = Path("public/data/booths/TN")
 
-# ACs that need sequential matching - ALL ACs for comprehensive coverage
-PROBLEM_ACS = [
-    'TN-159', 'TN-132', 'TN-129', 'TN-093', 'TN-135', 'TN-092',
-    'TN-120', 'TN-067', 'TN-069', 'TN-095', 'TN-066', 'TN-094', 'TN-166',
-    'TN-178', 'TN-182', 'TN-179', 'TN-183', 'TN-181', 'TN-180', 'TN-017', 'TN-025',
-    # Additional ACs with missing addresses
-    'TN-131', 'TN-021', 'TN-011', 'TN-020', 'TN-016', 'TN-022', 'TN-019', 'TN-008',
-    'TN-027', 'TN-030', 'TN-031', 'TN-032', 'TN-033', 'TN-035'
-]
-
+# Building keywords
 BUILDING_KEYWORDS = [
     'school', 'college', 'building', 'office', 'hall', 'center', 'centre',
-    'panchayat', 'government', 'govt', 'municipal', 'facing', 'wing',
-    'portion', 'terraced', 'tiled', 'floor', 'room'
+    'panchayat', 'government', 'govt', 'municipal', 'facing', 'wing', 
+    'portion', 'terraced', 'tiled', 'floor', 'room', 'aided', 'elementary',
+    'primary', 'middle', 'high', 'anganwadi', 'r c c', 'rcc'
 ]
 
 def extract_pdf_text(pdf_path):
     """Extract text from PDF."""
     try:
-        result = subprocess.run(
-            ["pdftotext", "-raw", str(pdf_path), "-"],
-            capture_output=True, text=True, timeout=60
-        )
+        result = subprocess.run(['pdftotext', '-raw', str(pdf_path), '-'],
+                               capture_output=True, text=True, timeout=60)
         return result.stdout
     except:
         return ""
@@ -45,13 +34,86 @@ def has_building_keyword(text):
     text_lower = text.lower()
     return any(kw in text_lower for kw in BUILDING_KEYWORDS)
 
-def extract_addresses_sequential(text):
-    """Extract addresses in sequential order from PDF."""
+def extract_addresses_format_special(text):
+    """Extract addresses from special format PDFs (like TN-178)."""
     addresses = []
     lines = text.split('\n')
     
     i = 0
-    current_seq = 0  # Track sequence number
+    while i < len(lines):
+        line = lines[i].strip()
+        
+        if not line:
+            i += 1
+            continue
+            
+        # Skip headers
+        if any(x.lower() in line.lower() for x in ['list of polling', 'polling station', 'page number',
+                                                    'location and name', 'polling area', 'whether for',
+                                                    'sl.', 'sl no', 'voters or', 'assembly', 'parliamentary']):
+            i += 1
+            continue
+        
+        # Look for booth number alone on a line
+        if re.match(r'^\d{1,3}$', line):
+            booth_num = int(line)
+            building_lines = []
+            j = i + 1
+            
+            while j < len(lines):
+                next_line = lines[j].strip()
+                
+                if not next_line:
+                    j += 1
+                    continue
+                
+                # Stop at booth number followed by voter type
+                if re.match(r'^\d+\s+(All Voters|Women only|Men only)', next_line, re.IGNORECASE):
+                    break
+                
+                # Stop at polling areas
+                if re.match(r'^(\d+\)|1\)|1\s+All|\d+\.[A-Z]|\(\d+\))', next_line):
+                    break
+                
+                # Stop at next single booth number
+                if re.match(r'^\d{1,3}$', next_line):
+                    break
+                
+                # Skip headers
+                if any(x.lower() in next_line.lower() for x in ['list of polling', 'page number', 'polling station']):
+                    j += 1
+                    continue
+                
+                # Add building line
+                if has_building_keyword(next_line) or len(next_line) > 10:
+                    building_lines.append(next_line)
+                
+                j += 1
+            
+            if building_lines:
+                full_addr = ' '.join(building_lines)
+                full_addr = re.sub(r'\s+', ' ', full_addr).strip().rstrip(',')
+                
+                if len(full_addr) > 15 and has_building_keyword(full_addr):
+                    addresses.append({
+                        'pdf_booth_num': booth_num,
+                        'address': full_addr,
+                        'name': full_addr.split(',')[0].strip()
+                    })
+            
+            i = j
+        else:
+            i += 1
+    
+    return addresses
+
+def extract_addresses_sequential(text):
+    """Extract addresses from PDF in sequential order."""
+    addresses = []
+    lines = text.split('\n')
+    
+    i = 0
+    current_booth = 0
     
     while i < len(lines):
         line = lines[i].strip()
@@ -61,215 +123,178 @@ def extract_addresses_sequential(text):
             continue
         
         # Skip headers
-        if any(x.lower() in line.lower() for x in ['sl.no', 'sl no', 'polling station',
-                                                    'list of polling', 'page ', 'assembly',
+        if any(x.lower() in line.lower() for x in ['sl.no', 'sl no', 'slno', 'polling station',
+                                                    'list of polling', 'page ', 'assembly', 
                                                     'parliamentary', 'location and name',
                                                     'polling areas', 'building in which',
-                                                    '1 2 3 4 5', 'whether for', 'p.s.',
-                                                    'comprised within']):
+                                                    '1 2 3 4 5', 'whether for', 'voters or']):
             i += 1
             continue
         
-        # Try to find booth entry
-        booth_no = None
-        content_start = ""
+        booth_match = None
         
-        # Various patterns for booth entries
-        patterns = [
-            r'^(\d{1,3})\s+(\d+)\s+(.+)',  # "NUM NUM text"
-            r'^(\d{1,3})\s+(\d+[A-Z]*(?:\([WM]\))?)\s*(.*)$',  # "NUM BOOTHNO text"
-            r'^(\d{1,3})\s+([A-Z][a-z]+.*)$',  # "NUM LOCALITY"
-            r'^(ALL VOTERS|WOMEN ONLY|MEN ONLY)\s+(\d+)\s+(\d+)',  # "VOTER_TYPE NUM NUM"
-        ]
+        # Pattern: NUM NUM text or NUM NUM
+        m = re.match(r'^(\d{1,3})\s+(\d+)\s*(.*)', line)
+        if m:
+            first_num = int(m.group(1))
+            second_num = int(m.group(2))
+            rest = m.group(3)
+            if first_num == second_num or abs(first_num - second_num) <= 1:
+                booth_match = (second_num, rest)
         
-        for pattern in patterns:
-            m = re.match(pattern, line, re.IGNORECASE)
-            if m:
-                if 'ALL VOTERS' in pattern or 'WOMEN ONLY' in pattern:
-                    booth_no = m.group(3)
-                elif len(m.groups()) >= 2:
-                    booth_no = m.group(2) if m.group(2).isdigit() else m.group(1)
-                    if len(m.groups()) >= 3:
-                        content_start = m.group(3) if m.group(3) else ""
-                    elif len(m.groups()) == 2:
-                        content_start = m.group(2) if not m.group(2).isdigit() else ""
-                break
+        # Pattern: NUM LOCALITY
+        if not booth_match:
+            m2 = re.match(r'^(\d{1,3})\s+([A-Z].+)', line)
+            if m2:
+                booth_match = (int(m2.group(1)), m2.group(2))
         
-        # Pattern for format like "1\nPanchayat Union..." (single number on line)
-        if not booth_no and re.match(r'^(\d{1,3})$', line):
-            booth_no = line
+        # Pattern: VOTER_TYPE NUM NUM
+        if not booth_match:
+            m3 = re.match(r'^(ALL VOTERS|WOMEN ONLY|MEN ONLY)\s+(\d+)\s+(\d+)', line, re.IGNORECASE)
+            if m3:
+                booth_match = (int(m3.group(3)), "")
         
-        # Pattern for building-first format (TN-178 style)
-        # Line starts with building keyword and ends with "NUM All Voters"
-        if not booth_no and has_building_keyword(line):
-            # Look ahead for booth number
-            j = i
-            building_lines = [line]
-            while j + 1 < len(lines):
-                j += 1
-                next_line = lines[j].strip()
-                if not next_line:
-                    continue
-                # Check if this line ends with "NUM All Voters"
-                m = re.search(r'(\d{1,3})\s+(All Voters|Women only|Men only)\s*$', next_line, re.IGNORECASE)
-                if m:
-                    booth_no = m.group(1)
-                    # Add content before the booth number
-                    building_lines.append(next_line[:m.start()].strip())
-                    content_start = ' '.join(building_lines)
-                    i = j
-                    break
-                # Stop if we hit polling areas
-                if re.match(r'^(\d+\)|1\))', next_line):
-                    break
-                building_lines.append(next_line)
-        
-        if booth_no:
-            # Collect building info
-            building_lines = [content_start] if content_start else []
-            j = i + 1
-            voter_type = ""
+        if booth_match:
+            booth_num, first_content = booth_match
             
-            while j < len(lines):
-                next_line = lines[j].strip()
+            if current_booth == 0 or booth_num <= current_booth + 3:
+                current_booth = booth_num
                 
-                if not next_line:
-                    j += 1
-                    continue
+                building_lines = [first_content] if first_content else []
+                j = i + 1
                 
-                # Stop conditions
-                if next_line.lower() in ['all voters', 'women only', 'men only']:
-                    voter_type = next_line.title()
-                    j += 1
-                    break
-                
-                # Polling areas
-                if re.match(r'^(\d+\.[A-Z]|\(\d+\)-|\d+-\d+\.)', next_line):
-                    # Skip polling areas
-                    while j < len(lines):
-                        skip = lines[j].strip()
-                        if skip.lower() in ['all voters', 'women only', 'men only']:
-                            voter_type = skip.title()
-                            j += 1
-                            break
-                        if re.match(r'^(\d{1,3})\s+', skip):
-                            break
-                        j += 1
-                    break
-                
-                # Next booth
-                for pattern in patterns:
-                    if re.match(pattern, next_line, re.IGNORECASE):
-                        break
-                else:
-                    # Skip headers
-                    if any(x.lower() in next_line.lower() for x in ['sl.no', 'page ', 'building', 'polling']):
+                while j < len(lines):
+                    next_line = lines[j].strip()
+                    
+                    if not next_line:
                         j += 1
                         continue
+                    
+                    # Stop conditions
+                    if next_line.lower() in ['all voters', 'women only', 'men only']:
+                        j += 1
+                        break
+                    
+                    if re.match(r'^(\d+\.[A-Z]|\(\d+\)-|\d+-\d+\.)', next_line):
+                        break
+                    
+                    if re.match(r'^(\d{1,3})\s+(\d+|[A-Z])', next_line):
+                        break
+                    
+                    if re.match(r'^(ALL VOTERS|WOMEN ONLY)', next_line, re.IGNORECASE):
+                        break
+                    
+                    # Skip headers
+                    if any(x.lower() in next_line.lower() for x in ['sl.no', 'page ', 'building in',
+                                                                     'polling area', 'list of']):
+                        j += 1
+                        continue
+                    
                     building_lines.append(next_line)
                     j += 1
-                    continue
-                break
-            
-            # Process building address
-            if building_lines:
-                full_addr = ' '.join(building_lines)
-                full_addr = re.sub(r'\s+', ' ', full_addr).strip()
-                full_addr = re.sub(r',\s*,', ',', full_addr).rstrip(',')
                 
-                # Remove polling area content if mixed in
-                full_addr = re.sub(r'\d+\.[A-Z][a-z]+[^,]*Ward.*$', '', full_addr, flags=re.IGNORECASE)
-                full_addr = full_addr.strip().rstrip(',')
+                if building_lines:
+                    full_addr = ' '.join(building_lines)
+                    full_addr = re.sub(r'\s+', ' ', full_addr).strip()
+                    
+                    # Remove polling areas if present
+                    for pattern in [r'\d+\.[A-Z][a-z]+\s+\(', r'\(\d+\)-', r'\d+-\d+\.']:
+                        pm = re.search(pattern, full_addr)
+                        if pm and pm.start() > 20:
+                            full_addr = full_addr[:pm.start()].strip()
+                    
+                    full_addr = full_addr.rstrip(',').strip()
+                    
+                    if len(full_addr) > 15 and has_building_keyword(full_addr):
+                        addresses.append({
+                            'pdf_booth_num': booth_num,
+                            'address': full_addr,
+                            'name': full_addr.split(',')[0].strip()
+                        })
                 
-                if len(full_addr) > 15:
-                    current_seq += 1
-                    addresses.append({
-                        'seq': current_seq,
-                        'pdf_booth': booth_no,
-                        'address': full_addr,
-                        'name': full_addr.split(',')[0].strip(),
-                        'voter_type': voter_type
-                    })
-            
-            i = j
+                i = j
+            else:
+                i += 1
         else:
             i += 1
     
     return addresses
 
-def update_booth_sequential(ac_id, pdf_addresses):
-    """Update booth data using sequential matching."""
-    booths_file = BOOTHS_DIR / ac_id / "booths.json"
+def fix_ac(ac_id):
+    """Fix an AC using best strategy."""
+    ac_num = ac_id.split('-')[1]
+    pdf_path = PDF_DIR / f"AC{ac_num}.pdf"
+    booths_path = BOOTHS_DIR / ac_id / "booths.json"
     
-    if not booths_file.exists():
+    if not pdf_path.exists() or not booths_path.exists():
         return 0, 0
     
-    with open(booths_file, 'r') as f:
+    text = extract_pdf_text(pdf_path)
+    if not text:
+        return 0, 0
+    
+    # Try multiple extraction strategies
+    addresses1 = extract_addresses_sequential(text)
+    addresses2 = extract_addresses_format_special(text)
+    
+    best_addresses = addresses1 if len(addresses1) >= len(addresses2) else addresses2
+    
+    if not best_addresses:
+        return 0, 0
+    
+    # Load JSON
+    with open(booths_path) as f:
         data = json.load(f)
     
-    # Sort booths by their numeric booth number
-    def booth_sort_key(booth):
-        num = re.sub(r'[A-Z\(\)]', '', booth.get('boothNo', '0'))
+    # Sort booths by numeric value
+    def booth_sort_key(b):
+        num = re.sub(r'[A-Z\(\)]', '', b.get('boothNo', '0'))
         return int(num) if num.isdigit() else 0
     
     sorted_booths = sorted(data['booths'], key=booth_sort_key)
     
-    # Create mapping from sorted position to booth
-    booth_by_position = {i+1: booth for i, booth in enumerate(sorted_booths)}
-    
+    # Match sequentially
     updated = 0
-    total = len(data['booths'])
-    
-    # Match by sequence
-    for addr in pdf_addresses:
-        seq = addr['seq']
-        if seq in booth_by_position:
-            booth = booth_by_position[seq]
-            # Only update if current address is short or missing
-            current_addr = booth.get('address', '')
-            if len(current_addr) < 20 or not has_building_keyword(current_addr):
-                booth['name'] = addr['name']
-                booth['address'] = addr['address']
-                booth['area'] = addr['voter_type']
-                updated += 1
+    for i, booth in enumerate(sorted_booths):
+        if i < len(best_addresses):
+            addr_info = best_addresses[i]
+            if addr_info['address'] and len(addr_info['address']) > 10:
+                booth_no = booth['boothNo']
+                for orig_booth in data['booths']:
+                    if orig_booth['boothNo'] == booth_no:
+                        current = orig_booth.get('address', '')
+                        if len(current) < 20 or not has_building_keyword(current):
+                            orig_booth['name'] = addr_info['name']
+                            orig_booth['address'] = addr_info['address']
+                            updated += 1
+                        break
     
     if updated > 0:
-        with open(booths_file, 'w') as f:
+        with open(booths_path, 'w') as f:
             json.dump(data, f, indent=2)
     
-    return updated, total
+    return updated, len(data['booths'])
 
 def main():
-    print("Fixing remaining ACs with sequential matching...")
-    print()
+    print("Fixing remaining ACs...")
     
-    total_fixed = 0
+    # All ACs that might need fixing
+    problem_acs = [
+        'TN-178', 'TN-182', 'TN-179', 'TN-183', 'TN-181', 'TN-180',
+        'TN-159', 'TN-132', 'TN-129', 'TN-093', 'TN-135', 'TN-092',
+        'TN-120', 'TN-067', 'TN-069', 'TN-095', 'TN-066', 'TN-094', 'TN-166',
+        'TN-027', 'TN-031', 'TN-032', 'TN-033', 'TN-034', 'TN-035'
+    ]
     
-    for ac_id in PROBLEM_ACS:
-        ac_num = ac_id.split('-')[1]
-        pdf_path = PDF_DIR / f"AC{ac_num}.pdf"
-        
-        if not pdf_path.exists():
-            print(f"{ac_id}: PDF not found")
-            continue
-        
-        text = extract_pdf_text(pdf_path)
-        if not text:
-            print(f"{ac_id}: Could not extract text")
-            continue
-        
-        # Extract addresses sequentially
-        addresses = extract_addresses_sequential(text)
-        print(f"{ac_id}: Extracted {len(addresses)} addresses from PDF")
-        
-        # Update using sequential matching
-        updated, total = update_booth_sequential(ac_id, addresses)
-        print(f"{ac_id}: Updated {updated}/{total} booths")
-        
-        total_fixed += updated
-        print()
+    total_updated = 0
     
-    print(f"Total fixed: {total_fixed} booths")
+    for ac_id in sorted(problem_acs):
+        updated, total = fix_ac(ac_id)
+        if updated > 0:
+            print(f"  {ac_id}: +{updated}")
+        total_updated += updated
+    
+    print(f"\nTotal fixed: {total_updated}")
 
 if __name__ == "__main__":
     main()
