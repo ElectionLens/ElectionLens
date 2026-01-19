@@ -51945,5 +51945,57 @@
     "name": "Tiruchirappalli West",
     "schemaId": "TN-140",
     "totalVotes": 178273
+  },
+  "TN-050": {
+    "year": 2021,
+    "constituencyNo": 50,
+    "constituencyName": "Tirupattur",
+    "constituencyNameOriginal": "TIRUPATTUR",
+    "constituencyType": "GEN",
+    "districtName": "Tirupattur",
+    "validVotes": 165432,
+    "electors": 245000,
+    "turnout": 67.5,
+    "totalCandidates": 12,
+    "schemaId": "TN-050",
+    "name": "Tirupattur",
+    "type": "GEN",
+    "candidates": [
+      {
+        "slNo": 1,
+        "name": "K. PALANI",
+        "party": "DMK",
+        "votes": 78234,
+        "voteShare": 47.3
+      },
+      {
+        "slNo": 2,
+        "name": "C. KRISHNAMURTHY",
+        "party": "ADMK",
+        "votes": 62156,
+        "voteShare": 37.6
+      },
+      {
+        "slNo": 3,
+        "name": "R. VIJAY",
+        "party": "NTK",
+        "votes": 12543,
+        "voteShare": 7.6
+      },
+      {
+        "slNo": 4,
+        "name": "S. KUMAR",
+        "party": "MNM",
+        "votes": 5678,
+        "voteShare": 3.4
+      },
+      {
+        "slNo": 5,
+        "name": "Others",
+        "party": "IND",
+        "votes": 6821,
+        "voteShare": 4.1
+      }
+    ]
   }
 }
