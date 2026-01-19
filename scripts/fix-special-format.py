@@ -166,7 +166,9 @@ def main():
     # ACs that have this special format
     special_acs = [
         'TN-178', 'TN-179', 'TN-180', 'TN-181', 'TN-182', 'TN-183',
-        'TN-062', 'TN-063', 'TN-064', 'TN-101', 'TN-231', 'TN-232'
+        'TN-062', 'TN-063', 'TN-064', 'TN-101', 'TN-231', 'TN-232',
+        'TN-129', 'TN-131', 'TN-132', 'TN-135', 'TN-084', 'TN-085',
+        'TN-149', 'TN-014', 'TN-017', 'TN-021', 'TN-025'
     ]
     
     total_updated = 0
