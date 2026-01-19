@@ -2,7 +2,7 @@
   "acId": "TN-116",
   "acName": "SULUR",
   "state": "Tamil Nadu",
-  "totalBooths": 324,
+  "totalBooths": 463,
   "lastUpdated": "2021-04-06",
   "source": "Tamil Nadu CEO - Form 20",
   "booths": [
@@ -11,8 +11,17 @@
       "boothNo": "1",
       "num": 1,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Pathuvampalli (R.V) and (P) Pathuvampalli Ward No.1 , 2.Pathuvampalli (R.V) School, Paduvampalli-641 659   and (P) Pathuvampalli Arijana Colony Ward No.1 , 3.Paduvampalli (R.V) and (P) Jangamanayakarpalayam Ward No.2",
+      "name": "Booth 1",
+      "address": "SULUR - Booth 1",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-1A",
+      "boothNo": "1A",
+      "num": 1,
+      "type": "regular",
+      "name": "Booth 1A",
+      "address": "SULUR - Booth 1A",
       "area": "SULUR"
     },
     {
@@ -29,8 +38,8 @@
       "boothNo": "3",
       "num": 3,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Paduvampalli (R.V) and (P) Sundamettupudhur Ward No.4 , 2.Paduvampalli School, Selambarayampalayam-   (R.V) and (P) Selambarayampalayam Ward No.3 , 3.Paduvampalli (R.V) and (P)",
+      "name": "Booth 3",
+      "address": "SULUR - Booth 3",
       "area": "SULUR"
     },
     {
@@ -38,8 +47,8 @@
       "boothNo": "4",
       "num": 4,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Pathuvampalli (R.V) and (P) Rayarpalayam Ward No.6 , 2.Pathuvampalli (R.V) School ,M.Rayarpalayam-641 659 and (P) Anna Nagar Arijana Colony Ward No.6",
+      "name": "Booth 4",
+      "address": "SULUR - Booth 4",
       "area": "SULUR"
     },
     {
@@ -47,35 +56,53 @@
       "boothNo": "5",
       "num": 5,
       "type": "regular",
-      "name": "Panchayat Union Middle School, , 1.Kaduvettipalayam (R.V) and (P) Nallagoundenpalayam Ward No.1 , Nallagoundan palayam-641659 2.Kaduvettipalayam (R.V) and (P) Muthugoundenputhur Ward No.2 ",
-      "address": "3.Kaduvettipalayam (R.V) and (P) Nallagoundenpalayam Arijana Colony Ward No.1",
-      "area": "Middle"
+      "name": "Booth 5",
+      "address": "SULUR - Booth 5",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-6",
       "boothNo": "6",
       "num": 6,
       "type": "regular",
-      "name": "Panchayat Union Middle School, , 1.Kaduvettipalayam (R.V) and (P) Kaduvettipalayam Ward No.3 , Kaduvettipalayam-641659 2.Kaduvettipalayam (R.V) and (P) Kaduvettipalayam Arijana Colony Ward No.3",
-      "address": "Panchayat Union Middle School",
-      "area": "Middle"
+      "name": "Booth 6",
+      "address": "SULUR - Booth 6",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-6A",
+      "boothNo": "6A",
+      "num": 6,
+      "type": "regular",
+      "name": "Booth 6A",
+      "address": "SULUR - Booth 6A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-7",
       "boothNo": "7",
       "num": 7,
       "type": "regular",
-      "name": "Panchayat Union Middle School, , 1.Kaduvettipalayam (R.V) and (P) Chandrapuram Ward No.5 , 2.Kaduvettipalayam All Voters Kaduvettipalayam-641661 (R.V) and (P) Chandrapuram Arijana Colony Ward No.5 , 3.Kaduvettipalayam(R.V)",
-      "address": "and (P) Molakkalipalayam Ward No.4 , 4.Kaduvettipalayam (R.V) and (P) Molakalipalayam Arijana Colony Ward No.4 , 5.Kaduvettipalayam (R.V) and (P) Chandrapuram Ward No.5 station No.   which Polling Station located                                                                                         Voters or Men only or Women only",
-      "area": "Middle"
+      "name": "Booth 7",
+      "address": "SULUR - Booth 7",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-8",
       "boothNo": "8",
       "num": 8,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Moppiripalayam (T.P) Vinayakar Kovil Street Ward No-1 , 2.Moppiripalayam School, Valayapalayam-641 659      (T.P) Annur Main Road Ward No-1 , 3.Moppiripalayam (T.P) Mahaliamman Kovil Street Ward No-2 , 4.Moppiripalayam (T.P) Sellandiamman Kovil Street Ward No-2 , 5.Moppiriyapalayam (T.P) Pattatharasiyamman Kovil Street Ward No-2 , 6.Moppiripalayam(T.P) Thottasalai Street Ward No-1 , 7.Moppiripalayam (T.P) Molakalipalayam Ward No-1",
+      "name": "Booth 8",
+      "address": "SULUR - Booth 8",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-8A",
+      "boothNo": "8A",
+      "num": 8,
+      "type": "regular",
+      "name": "Booth 8A",
+      "address": "SULUR - Booth 8A",
       "area": "SULUR"
     },
     {
@@ -83,44 +110,71 @@
       "boothNo": "9",
       "num": 9,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Moppiripalayam (T.P) Pattatharasiamman Kovil Street Ward No-4 , Ganapathipalayam ,Ganapathy      2.Moppiripalayam (T.P) Thottasalai Ganapathipalayam Ward No-4 , palayam-641 659                  3.Moppiripalayam (T.P) M.G.R Colony Ward No-4 , 4.Moppiripalayam (T.P) Ganesar Street Ward No-3",
-      "area": "Middle"
+      "name": "Booth 9",
+      "address": "SULUR - Booth 9",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-9A",
+      "boothNo": "9A",
+      "num": 9,
+      "type": "regular",
+      "name": "Booth 9A",
+      "address": "SULUR - Booth 9A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-10",
       "boothNo": "10",
       "num": 10,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Moppiripalayam (T.P) Murugan Kovil Street Ward No.7 , 2.Moppiripalayam (T.P) School ,Solakattupalayam-641 659 Robertson Street Ward No.6 , 3.Moppiripalayam (T.P) Perumal Kovil Street Ward No.6 , 4.Moppiripalayam (T.P) Moppiripalayam Ward No.6",
-      "area": "Middle"
+      "name": "Booth 10",
+      "address": "SULUR - Booth 10",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-10A",
+      "boothNo": "10A",
+      "num": 10,
+      "type": "regular",
+      "name": "Booth 10A",
+      "address": "SULUR - Booth 10A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-11",
       "boothNo": "11",
       "num": 11,
       "type": "regular",
-      "name": "Panchayat Union Middle School 1.Moppiripalayam (T.P) Vinayakar Kovil Street Ward No.5 , 2.Moppiripalayam Ganapathipalayam (T.P) Thottasalai Ward No.5 , 3.Moppiripalayam (T.P) Mariyamman Kovil Street Ganapathipalayam-641 659 Ward No-5 , 4.Moppiripalayam (T.P) Moppiripalayam Ward No-5",
-      "address": "Panchayat Union Middle School",
-      "area": "Middle"
+      "name": "Booth 11",
+      "address": "SULUR - Booth 11",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-12",
       "boothNo": "12",
       "num": 12,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Moppiripalayam (T.P) Bharathi Street Ward No-9 , 2.Moppiripalayam(T.P) School ,Vagarayampalayam-641       Soundamman Kovil Street Ward No - 9 , 3.Moppiripalayam (T.P) South Pillaiyar 659                                Kovil Street Ward No-9 , 4.Moppiripalayam (T.P) Anna Street Ward No-9 , 5.Moppiripalayam (T.P) Vivekanandhar Street -9 , 6.Moppiripalayam (T.P) Chennappachettiyar Street Ward No -9 , 7.Moppiripalayam (T.P) Thiyaki Kumaran Street Ward No - 10 , 8.Moppiripalayam (T.P) Lalbhagathursasthiru Street Ward No - 10 , 9.Moppiripalayam (T.P) Gandhi Kadai Veethi Ward No - 10, 10.Moppiripalayam (T.P) Thiru V.K Street Ward No - 8",
-      "area": "Middle"
+      "name": "Booth 12",
+      "address": "SULUR - Booth 12",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-12A",
+      "boothNo": "12A",
+      "num": 12,
+      "type": "regular",
+      "name": "Booth 12A",
+      "address": "SULUR - Booth 12A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-13",
       "boothNo": "13",
       "num": 13,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Moppiripalayam (T.P) Kumaran Street Ward No - 10 , 2.Moppiripalayam (T.P) School ,Vagarayampalayam-641       Vagarayampalayam Thottasalai Ward No -11 659 station No.   which Polling Station located                                                                                         Voters or Men only or Women only",
+      "name": "Booth 13",
+      "address": "SULUR - Booth 13",
       "area": "SULUR"
     },
     {
@@ -128,8 +182,17 @@
       "boothNo": "14",
       "num": 14,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Moppiripalayam (T.P) Thottasalai Ward No -11 School, IV RoomWest facing, Vagarayampalayam-641 659",
+      "name": "Booth 14",
+      "address": "SULUR - Booth 14",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-14A",
+      "boothNo": "14A",
+      "num": 14,
+      "type": "regular",
+      "name": "Booth 14A",
+      "address": "SULUR - Booth 14A",
       "area": "SULUR"
     },
     {
@@ -137,8 +200,8 @@
       "boothNo": "15",
       "num": 15,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Moppiripalayam (T.P) Thiruvalluvar Street Ward No - 8 , 2.Moppiripalayam (T.P) School Vagarayampalayam            Ramar Kovil Street -8 , 3.Moppiripalayam (T.P) Kakkan Street Ward No -12 , ,Vagarayampalayam-641 659          4.Moppiriyapalayam (T.P) Parumal Kovil Street Ward No-12 , 5.Moppiriyapalayam (T.P) Nehuru Street Ward No -12",
+      "name": "Booth 15",
+      "address": "SULUR - Booth 15",
       "area": "SULUR"
     },
     {
@@ -146,8 +209,8 @@
       "boothNo": "16",
       "num": 16,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Moppiripalayam (T.P) Mariyamman Kovil Street Ward No-5 , School Vagarayampalayam            2.Moppiriyapalayam (T.P) Sasthiri Street Ward No -13 , 3.Moppiriyapalayam (T.P) ,Vagarayampalayam-641 659          Thittasalai Ward No - 13",
+      "name": "Booth 16",
+      "address": "SULUR - Booth 16",
       "area": "SULUR"
     },
     {
@@ -155,8 +218,8 @@
       "boothNo": "17",
       "num": 17,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Moppiripalayam (T.P) Thiruvalluvar Street Ward No -14 , 2.Moppiripalayam School, ,M.Pappampatty-641 659     (T.P) Mahaliamman Kovil Street No -14 , 3.Moppiripalayam (T.P) Pillaiyar Kovil Street Ward No -14 , 4.Moppiripalayam (T.P) Pattatharasiamman Kovil Street Ward No -15 , 5.Moppiripalayam (T.P) Bharathi Street Ward No -14 , 6.Moppiripalayam (T.P) Karupparayan Kovil Street Ward No -14 , 7.Moppiripalayam (T.P) Thottathusalai Ward No -15 , 8.Moppiripalayam (T.P) Gandhi Nagar Arijana Queters Ward No -15 , 9.Moppiripalayam (T.P) Kattapomman Street -14 , 10.Moppiripalayam (T.P) Pappampatti Ward -14",
+      "name": "Booth 17",
+      "address": "SULUR - Booth 17",
       "area": "SULUR"
     },
     {
@@ -164,44 +227,62 @@
       "boothNo": "18",
       "num": 18,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kittampalayam (R.V) and (P) Vadugampalayam Ward No-2 , 2.Kittampalayam G Vadugapalayam - 641659           (R.V) and (P) Wadukapalayam Arijana Colony Ward No - 2",
-      "area": "Middle"
+      "name": "Booth 18",
+      "address": "SULUR - Booth 18",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-19",
       "boothNo": "19",
       "num": 19,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kittampalayam (R.V) and (P) Vadugampalayam Ward No-2 G Vadugapalayam - 641659",
-      "area": "Middle"
+      "name": "Booth 19",
+      "address": "SULUR - Booth 19",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-20",
       "boothNo": "20",
       "num": 20,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kittampalayam (R.V) and (P) Kulathupalayam Ward No - 1 , 2.Kittampalayam School Kulathupalayam-641 659      (R.V) and (P) Kulathupalayam Arijana Colony Ward No- 2 , 3.Kittampalayam (R.V) ,Kulathupalayam-641 659            and (P) Wadukapalayam Arijana Colony Ward No - 2",
-      "area": "Middle"
+      "name": "Booth 20",
+      "address": "SULUR - Booth 20",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-21",
       "boothNo": "21",
       "num": 21,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kittampalayam (R.V) and (P) Kittampalayam Ward No - 3 , 2.Kittampalayam ,Kittampalayam-641 659             (R.V) and (P) Arijana Colony Ward No - 3 station No.   which Polling Station located                                                                                    Voters or Men only or Women only",
-      "area": "Middle"
+      "name": "Booth 21",
+      "address": "SULUR - Booth 21",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-21A",
+      "boothNo": "21A",
+      "num": 21,
+      "type": "regular",
+      "name": "Booth 21A",
+      "address": "SULUR - Booth 21A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-22",
       "boothNo": "22",
       "num": 22,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Semmandampalayam (R.V) and (P) Munukattipalayam Ward No - 1 , School, ,Kothapalayam-641 668      2.SemmandamPalayam (R.V) and (P) Kothapalayam Ward No - 2 , 3.SemmandamPalayam (R.V) and (P) Kurukkupalayam Ward No - 3 , 4.Semmandampalayam (R.V) and (P) Moonukattipalayam Arijana Colony Ward No - 1 , 5.SemmandamPalayam (R.V) and (P) Kothapalayam Arijana Colony Ward No - 2 , 6.SemmandamPalayam (R.V) and (P) Kurukkupalayam Arijana Colony Ward No- 3",
+      "name": "Booth 22",
+      "address": "SULUR - Booth 22",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-22A",
+      "boothNo": "22A",
+      "num": 22,
+      "type": "regular",
+      "name": "Booth 22A",
+      "address": "SULUR - Booth 22A",
       "area": "SULUR"
     },
     {
@@ -209,80 +290,107 @@
       "boothNo": "23",
       "num": 23,
       "type": "regular",
-      "name": "Govt.high.sec.school.east facing",
-      "address": "1.Semmandampalayam (R.V) and (P) SemmandamPalayam Ward No - 8 seemandampalayam-641659",
-      "area": "Govt.high.sec."
+      "name": "Booth 23",
+      "address": "SULUR - Booth 23",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-24",
       "boothNo": "24",
       "num": 24,
       "type": "regular",
-      "name": "Govt.high.sec.school, I Room east 1.Semmandampalayam (RV) and (P) Semmandampalayam Ward No-",
-      "address": "facing seemandampalayam-          81.SemmandamPalayam (P) Inthra Colony Ward No - 8 , 2.SemmandamPalayam 641659                            (P) Semmandampalayam 4.Arijana Colony Ward No - 8",
-      "area": "I Room east"
+      "name": "Booth 24",
+      "address": "SULUR - Booth 24",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-25",
       "boothNo": "25",
       "num": 25,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.SemmandamPalayam (P) Ananthapuram Ward No - 7 , 2.SemmandamPalayam School                             (P) Pallarnatham Ward No - 9 , 3.SemmandamPalayam (P) ,Semmandampalayampudur-641         Semmandampalayamputhur Ward No-6 , 4.Semmandampalayam Panchayat 668                                Anandhapuram Harijana Colony Ward No 7",
-      "area": "I Room east"
+      "name": "Booth 25",
+      "address": "SULUR - Booth 25",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-26",
       "boothNo": "26",
       "num": 26,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Semmandampalayam (R.V) and (P) Vadukankalipalayam Ward No - 4 ,Vadugankalipalayam-641 668",
-      "area": "Middle"
+      "name": "Booth 26",
+      "address": "SULUR - Booth 26",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-26A",
+      "boothNo": "26A",
+      "num": 26,
+      "type": "regular",
+      "name": "Booth 26A",
+      "address": "SULUR - Booth 26A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-27",
       "boothNo": "27",
       "num": 27,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Semmandampalayam (R.V) and (P) East Street Vadukankalipalayam Ward No 4 , ,Vadugankalipalayam-641 668        2.Semmandampalayam (R.V) and (P) Vellanchattipalayam Ward No -5 , 3.Semmandampalayam (R.V) and (P) Vellanchattipalayam Arijana Colony Ward No -5",
-      "area": "Middle"
+      "name": "Booth 27",
+      "address": "SULUR - Booth 27",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-28",
       "boothNo": "28",
       "num": 28,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Karumathampatti (T.P) Thannipanthal Ward No - 1 , 2.Karumathampatti (T.P) K.Rayarpalayam                     Rayarpalayamvirivu Ward No -1 , 3.Karumathampatti (T.P) Rayarpalayam Arijana ,K.Rayarpalayam 641659             Colony Ward No -1 , 4.Karumathampatti (T.P) Rayarpalayam South Street Ward No -1 station No.   which Polling Station located                                                                                       Voters or Men only or Women only",
-      "area": "Middle"
+      "name": "Booth 28",
+      "address": "SULUR - Booth 28",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-29",
       "boothNo": "29",
       "num": 29,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Karumathampatti (T.P) Jayhinth Nagar Ward No - 2 , 2.Karumathampatti (T.P) K.Rayarpalayam                     Rayarpalayam No.3 Ward No -18 , 3.Karumathampatti (T.P) Rayarpalayam No.4 ,K.Rayarpalayam 641659             Ward No -18 , 4.Karumathampatti (T.P) Rayarpalayam No.5 Ward No-18",
-      "area": "Middle"
+      "name": "Booth 29",
+      "address": "SULUR - Booth 29",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-29A",
+      "boothNo": "29A",
+      "num": 29,
+      "type": "regular",
+      "name": "Booth 29A",
+      "address": "SULUR - Booth 29A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-30",
       "boothNo": "30",
       "num": 30,
       "type": "regular",
-      "name": "St.Marys High School",
-      "address": "1.Karumathampatti (T.P) Karumathampatti W.NO17 , 2.Karumathampatti (T.P) ,Karumathampatty                   Avinashi Road Ward No 17 , 3.Karumathampatti (T.P) Charch Street W.No17",
-      "area": "Middle"
+      "name": "Booth 30",
+      "address": "SULUR - Booth 30",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-31",
       "boothNo": "31",
       "num": 31,
       "type": "regular",
-      "name": "St.Marys High School,South east",
-      "address": "1.Karumathampatti (T.P) Policeline W.NO16 , 2.KARUMATHAMPATTI (T.) side facing north                  MARIAMMAN KOVIL STREET W.NO.17 , 3.KARUMATHAMPATTI (T.P) Karumathampatty-641659             AVARANKADU STREET W.NO.17 , 4.KARUMATHAMPATTI (T.P) PILLAIYAR KOVIL STREET W.NO.17,5.Karumathampatti(T.P) Amali Nagar ward no-17,6.Karumathampatti(T.P) Perumal Kovil street ward no-17",
+      "name": "Booth 31",
+      "address": "SULUR - Booth 31",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-31A",
+      "boothNo": "31A",
+      "num": 31,
+      "type": "regular",
+      "name": "Booth 31A",
+      "address": "SULUR - Booth 31A",
       "area": "SULUR"
     },
     {
@@ -290,8 +398,8 @@
       "boothNo": "32",
       "num": 32,
       "type": "regular",
-      "name": "St.Marys High School, I Room",
-      "address": "1.Karumathampatti (T.P) Sarathambal Nagar Ward No -17 , 2.Karumathampatti South east side facing north       (T.P) Konguma Nagar Ward No -17 Karumathampatty-641659",
+      "name": "Booth 32",
+      "address": "SULUR - Booth 32",
       "area": "SULUR"
     },
     {
@@ -299,8 +407,17 @@
       "boothNo": "33",
       "num": 33,
       "type": "regular",
-      "name": "St.Marys High School, ",
-      "address": "1.Karumathampatti (T.P) Karumathampattipudur Ward No - 16 Karumathampatty",
+      "name": "Booth 33",
+      "address": "SULUR - Booth 33",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-33A",
+      "boothNo": "33A",
+      "num": 33,
+      "type": "regular",
+      "name": "Booth 33A",
+      "address": "SULUR - Booth 33A",
       "area": "SULUR"
     },
     {
@@ -308,8 +425,17 @@
       "boothNo": "34",
       "num": 34,
       "type": "regular",
-      "name": "St.Marys High School, III Room",
-      "address": "1.Karumathampatti (T.P) Theeranchinnamalai Nagar Ward No -16 , South east side facing north       2.Karumathampatti (T.P) Johnson Pettai Ward No -17 , 3.Karumathampatti (T.P) Karumathampatty-641659             Palamarathottam Ward No -17 , 4.Karumathampatti (T.P) Lakshmi Vengadeshvara Nagar Ward No-17 , 5.Karumathampatti (T.P) BalajiNagar Ward No-17 , 6.Karumathampatti (T.P) Somanur Road Ward No -17,7.Karumathampatti (T.P) Poonthottam Ward No-17 , 8.Karumathampatti (T.P) Teacher Colony Ward No -17",
+      "name": "Booth 34",
+      "address": "SULUR - Booth 34",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-34A",
+      "boothNo": "34A",
+      "num": 34,
+      "type": "regular",
+      "name": "Booth 34A",
+      "address": "SULUR - Booth 34A",
       "area": "SULUR"
     },
     {
@@ -317,62 +443,116 @@
       "boothNo": "35",
       "num": 35,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Karumathampatti (T.P) Elachipalayam Ward No -2 ,Elachipalayam-641 659",
-      "area": "Middle"
+      "name": "Booth 35",
+      "address": "SULUR - Booth 35",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-35A",
+      "boothNo": "35A",
+      "num": 35,
+      "type": "regular",
+      "name": "Booth 35A",
+      "address": "SULUR - Booth 35A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-36",
       "boothNo": "36",
       "num": 36,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Senniyandavar Kovil Street Ward No -2, 2.Karumathampatti (T.P) Karuvelangadu ,Elachipalayam-641 659             Ward No -2 , 3.Karumathampatti (T.P) Arijana Colony Ward No - 2 station No.   which Polling Station located                                                                                     Voters or Men only or Women only",
-      "area": "Middle"
+      "name": "Booth 36",
+      "address": "SULUR - Booth 36",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-36A",
+      "boothNo": "36A",
+      "num": 36,
+      "type": "regular",
+      "name": "Booth 36A",
+      "address": "SULUR - Booth 36A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-37",
       "boothNo": "37",
       "num": 37,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Karumathampatti (T.P) Sengudanthali Ward No -2 , 2.Karumathampatti (T.P) ,Elachipalayam                     Kallikurai Thottam Ward No -2 , 3.Karumathampatti (T.P) Thangamani Mill Housing Unit Ward No - 2 , 4.Karumathampatti (T.P) Arijana Colony Ward No -3",
-      "area": "Middle"
+      "name": "Booth 37",
+      "address": "SULUR - Booth 37",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-38",
       "boothNo": "38",
       "num": 38,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Karumathampatti (T.P) Subbarayanputhur (Somanur) Ward No - 4 , II Room facing east rc building    2.Karumathampatti (T.P) Subbarayanputhur No-2(Somanur) Ward No - 4 , Subarayanpudur-641 659             3.Karumathampatti (T.P) Vaikkalpalayam (Somanur) Ward No - 4,5.Karumathampatti (T.P) Sedapalayam 2 (Somanur) Ward No - 5",
-      "area": "Middle"
+      "name": "Booth 38",
+      "address": "SULUR - Booth 38",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-38A",
+      "boothNo": "38A",
+      "num": 38,
+      "type": "regular",
+      "name": "Booth 38A",
+      "address": "SULUR - Booth 38A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-39",
       "boothNo": "39",
       "num": 39,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Karumathampatti (T.P) Sedapalayam 1 (Somanur) Ward No -5 , III Room Facing east rc building   2.Karumathampatti (T.P) Sedapalayam 2 (Somanur) Ward No - 5 , Subarayanpudur-641 659             3.Karumathampatti (T.P) Sedapalayam 3 (Somanur) Ward No - 5",
-      "area": "Middle"
+      "name": "Booth 39",
+      "address": "SULUR - Booth 39",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-39A",
+      "boothNo": "39A",
+      "num": 39,
+      "type": "regular",
+      "name": "Booth 39A",
+      "address": "SULUR - Booth 39A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-40",
       "boothNo": "40",
       "num": 40,
       "type": "regular",
-      "name": "St.Joseph Primary School, ",
-      "address": "1.Karumathampatti (T.P) K.R Mill Road (Somanur) Ward No - 7 , Somanur-641668                     2.Karumathampatti (T.P) Church Street (Somanur) Ward No - 9 , 3.Karumathampatti (T.P) Somanur Ward No -9",
-      "area": "Middle"
+      "name": "Booth 40",
+      "address": "SULUR - Booth 40",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-40A",
+      "boothNo": "40A",
+      "num": 40,
+      "type": "regular",
+      "name": "Booth 40A",
+      "address": "SULUR - Booth 40A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-41",
       "boothNo": "41",
       "num": 41,
       "type": "regular",
-      "name": "St.Joseph Primary School, ",
-      "address": "1.Karumathampatti (T.P) Athuppalayam (Somanur) Ward No - 8 , Somanur-641668                     2.Karumathampatti (T.P) Perumal Kovil Street (Somanur) Ward No - 8 , 3.Karumathampatti (T.P) Athuppalayam Arijana Colony (Somanur) Ward No - 8",
+      "name": "Booth 41",
+      "address": "SULUR - Booth 41",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-41A",
+      "boothNo": "41A",
+      "num": 41,
+      "type": "regular",
+      "name": "Booth 41A",
+      "address": "SULUR - Booth 41A",
       "area": "SULUR"
     },
     {
@@ -380,8 +560,8 @@
       "boothNo": "42",
       "num": 42,
       "type": "regular",
-      "name": "St.Joseph Primary School",
-      "address": "1.Karumathampatti (T.P) Inthira Colony (Somanur) Ward No - 6 , ,Somanur",
+      "name": "Booth 42",
+      "address": "SULUR - Booth 42",
       "area": "SULUR"
     },
     {
@@ -389,8 +569,8 @@
       "boothNo": "43",
       "num": 43,
       "type": "regular",
-      "name": "St.Joseph Primary School",
-      "address": "1.Karumathampatti (T.P) Inthira Colony (Somanur) Ward No - 6 , ,Somanur",
+      "name": "Booth 43",
+      "address": "SULUR - Booth 43",
       "area": "SULUR"
     },
     {
@@ -398,8 +578,17 @@
       "boothNo": "44",
       "num": 44,
       "type": "regular",
-      "name": "St.Joseph Primary School",
-      "address": "1.Karumathampatti (T.P) Somanur Ward - 7 ,Somanur-641668",
+      "name": "Booth 44",
+      "address": "SULUR - Booth 44",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-44A",
+      "boothNo": "44A",
+      "num": 44,
+      "type": "regular",
+      "name": "Booth 44A",
+      "address": "SULUR - Booth 44A",
       "area": "SULUR"
     },
     {
@@ -407,8 +596,17 @@
       "boothNo": "45",
       "num": 45,
       "type": "regular",
-      "name": "St.Joseph Primary School, ",
-      "address": "1.Karumathampatti (T.P) Selvapuram Colony (Somanur) Ward No -11 , Somanur-641668                     2.Karumathampatti (T.P) Udayar Street (Somanur) Ward No - 9 , 3.Karumathampatti (T.P) Gandthi Nagar (Somanur) Ward No -11 station No.   which Polling Station located                                                                                       Voters or Men only or Women only",
+      "name": "Booth 45",
+      "address": "SULUR - Booth 45",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-45A",
+      "boothNo": "45A",
+      "num": 45,
+      "type": "regular",
+      "name": "Booth 45A",
+      "address": "SULUR - Booth 45A",
       "area": "SULUR"
     },
     {
@@ -416,8 +614,17 @@
       "boothNo": "46",
       "num": 46,
       "type": "regular",
-      "name": "St.Josph Girls Higher Secondary",
-      "address": "1.Karumathampatti (T.P) Somanur Ward.No - 10 , 2.Karumathampatti (T.P) Mill School , Somanur                   Road (Somanur) Ward.No - 11 , 3.Karumathampatti (T.P) Mainroad (Somanur) Ward.No - 11 , 4.Karumathampatti (T.P) Maikkalpalayam (Somanur) Ward.No-11 , 5.Karumathampatti (T.P) Athumedu Kamaraj Nagar (Somanur) Ward.No-11",
+      "name": "Booth 46",
+      "address": "SULUR - Booth 46",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-46A",
+      "boothNo": "46A",
+      "num": 46,
+      "type": "regular",
+      "name": "Booth 46A",
+      "address": "SULUR - Booth 46A",
       "area": "SULUR"
     },
     {
@@ -425,8 +632,17 @@
       "boothNo": "47",
       "num": 47,
       "type": "regular",
-      "name": "St.Josph Girls Higher Secondary",
-      "address": "1.Karumathampatti ( T.P) Kirishnapuram (Somanur) Ward.No -12 School ,Somanur-641668",
+      "name": "Booth 47",
+      "address": "SULUR - Booth 47",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-47A",
+      "boothNo": "47A",
+      "num": 47,
+      "type": "regular",
+      "name": "Booth 47A",
+      "address": "SULUR - Booth 47A",
       "area": "SULUR"
     },
     {
@@ -434,8 +650,17 @@
       "boothNo": "48",
       "num": 48,
       "type": "regular",
-      "name": "St.Josph Girls Higher Secondary",
-      "address": "1.Karumathampatti ( T.P ) Power House, Telgu Nagar, (Somanur) Ward No-12 , School ,Somanur-641668             2.KARUMATHAMPATTI ( T.P ) POOLAKKADU EAST SEDAPALAYAM ROAD W.NO 12,3.Senthil Nagar (somanur) Ward. No - 13",
+      "name": "Booth 48",
+      "address": "SULUR - Booth 48",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-48A",
+      "boothNo": "48A",
+      "num": 48,
+      "type": "regular",
+      "name": "Booth 48A",
+      "address": "SULUR - Booth 48A",
       "area": "SULUR"
     },
     {
@@ -443,8 +668,17 @@
       "boothNo": "49",
       "num": 49,
       "type": "regular",
-      "name": "St.Josph Girls Higher Secondary",
-      "address": "1.Karumathampatti ( T.P ) Kirishnapuram (Somanur) Ward .No - 28 School ,Somanur",
+      "name": "Booth 49",
+      "address": "SULUR - Booth 49",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-49A",
+      "boothNo": "49A",
+      "num": 49,
+      "type": "regular",
+      "name": "Booth 49A",
+      "address": "SULUR - Booth 49A",
       "area": "SULUR"
     },
     {
@@ -452,8 +686,17 @@
       "boothNo": "50",
       "num": 50,
       "type": "regular",
-      "name": "St.Joseph primary School, I Room",
-      "address": "1.Karumathampatti ( T.P ) Railway Quaters (P) Ward.No - 12 , 2.Karumathampatti ( krishna puram RC buiding east      T.P ) Thottiyangadu Sodapalayam Road (Somanur) , 3.Karumathampatti ( T.P ) facing-641668                      Nalla Thannithottam (Somanur) Ward.No -12 , 4.Karumathampatti ( T.P ) Powerhouse Road (Somanur) Ward.No - 12 , 5.Karumathampatti ( T.P ) Om sakthi Nagar (Somanur) Ward.No - 12 , 6.Karumathampatti ( T.P ) Avarapalaiyatha Thottam (Somanur) Ward .No - 12 , 7.Karumathampatti ( T.P ) Kasthuri Mill (Somanur) Ward. No - 12 , 8.Karumathampatti ( T.P ) Ganesapuram (Somanur) Ward.No - 14 , 9.Karumathampatti ( T.P ) Uppukarar Thottam (Somanur) Ward.No - 12 ,",
+      "name": "Booth 50",
+      "address": "SULUR - Booth 50",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-50A",
+      "boothNo": "50A",
+      "num": 50,
+      "type": "regular",
+      "name": "Booth 50A",
+      "address": "SULUR - Booth 50A",
       "area": "SULUR"
     },
     {
@@ -461,8 +704,17 @@
       "boothNo": "51",
       "num": 51,
       "type": "regular",
-      "name": "St.Joseph primary School krishna",
-      "address": "1.Karumathampatti ( T.P ) Senthil Nagar (somanur) Ward. No - 13 puram RC buiding east facing- 641668",
+      "name": "Booth 51",
+      "address": "SULUR - Booth 51",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-51A",
+      "boothNo": "51A",
+      "num": 51,
+      "type": "regular",
+      "name": "Booth 51A",
+      "address": "SULUR - Booth 51A",
       "area": "SULUR"
     },
     {
@@ -470,8 +722,8 @@
       "boothNo": "52",
       "num": 52,
       "type": "regular",
-      "name": "St.Joseph primary School, VI",
-      "address": "1.Karumathampatti ( T. P ) Senthil Nagar (Somanur) Ward.No - 15 , Room krishna puram RC buiding east facing-641668 station No.   which Polling Station located                                                                                       Voters or Men only or Women only",
+      "name": "Booth 52",
+      "address": "SULUR - Booth 52",
       "area": "SULUR"
     },
     {
@@ -479,8 +731,8 @@
       "boothNo": "53",
       "num": 53,
       "type": "regular",
-      "name": "St.Joseph primary School, V",
-      "address": "1.Karumathampatti ( T.P ) Pulakkadu Thottam (Somanur) Ward .No - 12 , Room krishna puram RC buiding      2.Karumathampatti ( T.P ) Barathiyar Nagar (Somanur) W.No12, east facing-641668                 3.Karumathampatti ( T,P ) Karumathampatti Road (somanur) Ward.No - 15 , 4.Karumathampatti ( T.P ) Thannerthotti Road (Somanur) Ward.No - 15 , 5.Karumathampatti ( T.P ) Madathuvathiyar Thottam (Somanur) Ward.No- 15 , 6.Karumathampatti ( T.P ) Senthil Nagar 3rd Street (Somanur) Ward.No -15 , 7.Karumathampatti ( T.P ) Nehuru Street (Somanur) Ward.No - 15 , 8.Karumathampatti ( T.P) New Colony (Somanur) Ward.No -15",
+      "name": "Booth 53",
+      "address": "SULUR - Booth 53",
       "area": "SULUR"
     },
     {
@@ -488,8 +740,8 @@
       "boothNo": "54",
       "num": 54,
       "type": "regular",
-      "name": "St.Joseph primary School krishna",
-      "address": "1.Karumathampatti ( T.P ) Barathi Nagar puthiya Colony (somanur) Ward.No -13 , puram RC buiding east facing-      2.Karumathampatti ( T.P ) E.BColony (Somanur) Ward.No - 13 , 641668                             3.Karumathampatti Spl (P) Somanur Ward.No - 13 , 4.Karumathampatti ( T.P ) Sivasakthi Road (Somanur) Ward.No - 13 , 5.Karumathampatti ( T.P ) Thammbikadu Thottam (Somanur) Ward.No - 13 , 6.Karumathampatti ( T.P) C.R Road (Somanur) Ward .NO - 13 , 7.Karumathampatti ( T.P ) PIllayar Kovil Street (Somanur) Ward.No - 14",
+      "name": "Booth 54",
+      "address": "SULUR - Booth 54",
       "area": "SULUR"
     },
     {
@@ -497,44 +749,44 @@
       "boothNo": "55",
       "num": 55,
       "type": "regular",
-      "name": "Panchayat Union high School",
-      "address": "1.Kaniyur (R.V) and (P) Sangothipalayam Ward . No -1 , north facing east side Sellappampalayam 641659",
-      "area": "high"
+      "name": "Booth 55",
+      "address": "SULUR - Booth 55",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-56",
       "boothNo": "56",
       "num": 56,
       "type": "regular",
-      "name": "Panchayat Union high School, II",
-      "address": "1.Kaniure (R.V) and (P) Sellappampalayam Ward.No - 2 , Room north facing Sellappampalayam 641659",
-      "area": "II"
+      "name": "Booth 56",
+      "address": "SULUR - Booth 56",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-57",
       "boothNo": "57",
       "num": 57,
       "type": "regular",
-      "name": "Panchayat Union high School, III",
-      "address": "1.Kaniyur (R.V) and (P) Arisana Colony Ward.No - 2, 2.Kaniyur (R.V) and (P) Room north facing                  Ponnandampalayam Ward.No -1 Sellappampalayam 641659",
-      "area": "III"
+      "name": "Booth 57",
+      "address": "SULUR - Booth 57",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-58",
       "boothNo": "58",
       "num": 58,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kaniyur (R.V) and (P) Thattampudhur Ward No -3 , 2.Kaniyur (R.V) and (P) School ,Kaniyur                    Puthupalayam Ward No - 4",
-      "area": "III"
+      "name": "Booth 58",
+      "address": "SULUR - Booth 58",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-59",
       "boothNo": "59",
       "num": 59,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kaniyur (R.V) and (P) Kumar Nagar Ward No - 4 , School ,Kaniyur",
+      "name": "Booth 59",
+      "address": "SULUR - Booth 59",
       "area": "SULUR"
     },
     {
@@ -542,8 +794,8 @@
       "boothNo": "60",
       "num": 60,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kaniyur (R.V) and (P) Thaneer Panthal Ward No - 3 School ,Kaniyur station No.   which Polling Station located                                                                                      Voters or Men only or Women only",
+      "name": "Booth 60",
+      "address": "SULUR - Booth 60",
       "area": "SULUR"
     },
     {
@@ -551,8 +803,17 @@
       "boothNo": "61",
       "num": 61,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kaniyur (R.V) and (P) Kollupalayam Ward No - 4 , 2.Kaniyur (R.V) and (P) School, ,Kaniyur                   Kaniyur Ward No - 5 , 3.Kaniyur (R.V) and P) Inthira Nagar Ward No -5",
+      "name": "Booth 61",
+      "address": "SULUR - Booth 61",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-61A",
+      "boothNo": "61A",
+      "num": 61,
+      "type": "regular",
+      "name": "Booth 61A",
+      "address": "SULUR - Booth 61A",
       "area": "SULUR"
     },
     {
@@ -560,89 +821,125 @@
       "boothNo": "62",
       "num": 62,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kaniyur (R.V) and (P) Unjampalayam Ward No -6 ,Unjappalayam",
-      "area": "Middle"
+      "name": "Booth 62",
+      "address": "SULUR - Booth 62",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-62A",
+      "boothNo": "62A",
+      "num": 62,
+      "type": "regular",
+      "name": "Booth 62A",
+      "address": "SULUR - Booth 62A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-63",
       "boothNo": "63",
       "num": 63,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kaniyur (R.V) and (P) Thottathusalaikal Ward No -6,2.Kaniyur (R.V) and (P) East Facing II Room                Ellai Kadu Arunthathiyar Colony Ward No - 6,3.Kaniyur (R.V) and (P) Unjappalayam                       Arunthathiyar Colony Ward No - 6",
-      "area": "Middle"
+      "name": "Booth 63",
+      "address": "SULUR - Booth 63",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-63A",
+      "boothNo": "63A",
+      "num": 63,
+      "type": "regular",
+      "name": "Booth 63A",
+      "address": "SULUR - Booth 63A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-64",
       "boothNo": "64",
       "num": 64,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1., 2.Kaniyur (R.V) and (P) Indhira Nagar Ward No -6 , East Facing III Room Unjappalayam",
-      "area": "Middle"
+      "name": "Booth 64",
+      "address": "SULUR - Booth 64",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-65",
       "boothNo": "65",
       "num": 65,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Karavalimathappur (R.V) and (P) Thottipalayam Ward No - 1 ,Thottipalayam",
-      "area": "Middle"
+      "name": "Booth 65",
+      "address": "SULUR - Booth 65",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-65A",
+      "boothNo": "65A",
+      "num": 65,
+      "type": "regular",
+      "name": "Booth 65A",
+      "address": "SULUR - Booth 65A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-66",
       "boothNo": "66",
       "num": 66,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Karavalimathappur (R.V) and (P) Thottipalayam Ward No - ,Thottipalayam                     1,2.Karavalimathappur (R.V) and (P) Ellapalayam Ward No - 3",
-      "area": "Middle"
+      "name": "Booth 66",
+      "address": "SULUR - Booth 66",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-67",
       "boothNo": "67",
       "num": 67,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Karavalimathappur (R.V) and (P) Thottipalayam Arijana Colony Ward No -1 ,Thottipalayam",
-      "area": "Middle"
+      "name": "Booth 67",
+      "address": "SULUR - Booth 67",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-68",
       "boothNo": "68",
       "num": 68,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Karavalimathappur (R.V) and (P) Karavalimathappur Ward No - 3 ,Karavalimadapur",
-      "area": "Middle"
+      "name": "Booth 68",
+      "address": "SULUR - Booth 68",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-69",
       "boothNo": "69",
       "num": 69,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Karavalimathappur (R.V) and (P) Karavalimathappur Ward No - 4 , ,Karavalimadapur                   2.Karavalimathappur (R.V) and (P) Arijana Colony Ward No -4",
-      "area": "Middle"
+      "name": "Booth 69",
+      "address": "SULUR - Booth 69",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-69A",
+      "boothNo": "69A",
+      "num": 69,
+      "type": "regular",
+      "name": "Booth 69A",
+      "address": "SULUR - Booth 69A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-70",
       "boothNo": "70",
       "num": 70,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Rasipalayam (R.V) and (P) Arugampalayam Ward No - 4 School,facing north Arugampalayam",
-      "area": "Middle"
+      "name": "Booth 70",
+      "address": "SULUR - Booth 70",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-71",
       "boothNo": "71",
       "num": 71,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Rasipalayam (R.V) and (P) Arugampalayam Ward No - 5 , 2.Rasipalayam (R.V) School,facing north                and (P) Arugampalayam Ward No - 6 , 3.Karavalimathappur (R.V) and (P) Arijana Arugampalayam                      Colony Ward No - 4",
+      "name": "Booth 71",
+      "address": "SULUR - Booth 71",
       "area": "SULUR"
     },
     {
@@ -650,80 +947,89 @@
       "boothNo": "72",
       "num": 72,
       "type": "regular",
-      "name": "Government High School ",
-      "address": "1.Rasipalayam (R.V) and (P) Rasipalayam Ward No -1 Rasipalayam station No.   which Polling Station located                                                                                          Voters or Men only or Women only",
-      "area": "High"
+      "name": "Booth 72",
+      "address": "SULUR - Booth 72",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-73",
       "boothNo": "73",
       "num": 73,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Rasipalayam (R.V) and (P) Rasipalayam Ward No - 2 Rasipalayam ,Rasipalayam-641402",
-      "area": "High"
+      "name": "Booth 73",
+      "address": "SULUR - Booth 73",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-74",
       "boothNo": "74",
       "num": 74,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Rasipalayam (R.V) and (P) Rasipalayam Ward No - 3 Rasipalayam ,Rasipalayam - 641402",
-      "area": "High"
+      "name": "Booth 74",
+      "address": "SULUR - Booth 74",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-75",
       "boothNo": "75",
       "num": 75,
       "type": "regular",
-      "name": "Panchayat Union middle",
-      "address": "1.Arasur (R.V) and (P) Oothupalayam Ward No - 7 School,tiled building facing north Uthupalayam 641407",
-      "area": "High"
+      "name": "Booth 75",
+      "address": "SULUR - Booth 75",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-76",
       "boothNo": "76",
       "num": 76,
       "type": "regular",
-      "name": "Panchayat Union middle",
-      "address": "1.Arasur (R.V) and (P) Sangothipalayam Ward No - 2, 2.Arasur (R.V) and (P) School,tiled building facing north   Kollupalayam Arijana Colony Ward No - 6 Uthupalayam 641408",
-      "area": "No"
+      "name": "Booth 76",
+      "address": "SULUR - Booth 76",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-77",
       "boothNo": "77",
       "num": 77,
       "type": "regular",
-      "name": "Panchayat Union middle School",
-      "address": "1.Arasur (R.V) and (P) Kollupalayam Ward No - 6 , III Room tiled building facing north Uthupalayam 641409",
-      "area": "middle"
+      "name": "Booth 77",
+      "address": "SULUR - Booth 77",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-78",
       "boothNo": "78",
       "num": 78,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "1.Arasur (R.V) and (P) Sengodagoundenputhur Ward No - 10 , 2.Arasur (R.V) and ,Sengodagoundanpudur                 (P) Supparayanpalayam Ward No - 9",
-      "area": "Ele."
+      "name": "Booth 78",
+      "address": "SULUR - Booth 78",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-78A",
+      "boothNo": "78A",
+      "num": 78,
+      "type": "regular",
+      "name": "Booth 78A",
+      "address": "SULUR - Booth 78A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-79",
       "boothNo": "79",
       "num": 79,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Arasur (R.V) and (P) Pothiyampalayam Ward No - 1,2.Arasur (R.V) and (P) School, north facingArasur           Arijana Colony Ward No -5 , 3.Arasur (R.V) and (P) Adidravidar Colony Ward No - 5 , 4.Arasur (R.V) and (P) E.B. Housing Unit Ward No - 5 , 5.Arasur (R.V) and (P) Premier Mill Quaters",
-      "area": "Ele."
+      "name": "Booth 79",
+      "address": "SULUR - Booth 79",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-80",
       "boothNo": "80",
       "num": 80,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Arasur (R.V) and (P) West Arasur Ward No - 3 School ,Arasur",
+      "name": "Booth 80",
+      "address": "SULUR - Booth 80",
       "area": "SULUR"
     },
     {
@@ -731,8 +1037,8 @@
       "boothNo": "81",
       "num": 81,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Arasur (R.V) and (P) West Arasur Ward No - 3, 2.Arasur (R.V) and (P) West School, North facing V Room          Arasur Arijana Colony Ward No - 3, 3.Anna Nagar Ward No-3 Arasur",
+      "name": "Booth 81",
+      "address": "SULUR - Booth 81",
       "area": "SULUR"
     },
     {
@@ -740,8 +1046,17 @@
       "boothNo": "82",
       "num": 82,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Arasur (R.V) and (P) Nadu Arasur Ward No - 4 , 2.Arasur (R.V) and (P) Nadu School ,Arasur-641407                Arasur Arijana Colony Ward No - 4 station No.   which Polling Station located                                                                                     Voters or Men only or Women only",
+      "name": "Booth 82",
+      "address": "SULUR - Booth 82",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-82A",
+      "boothNo": "82A",
+      "num": 82,
+      "type": "regular",
+      "name": "Booth 82A",
+      "address": "SULUR - Booth 82A",
       "area": "SULUR"
     },
     {
@@ -749,8 +1064,8 @@
       "boothNo": "83",
       "num": 83,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Arasur (R.V) and (P) Thennampalayam Ward No - 8 , School North Facing Arasur- 641407",
+      "name": "Booth 83",
+      "address": "SULUR - Booth 83",
       "area": "SULUR"
     },
     {
@@ -758,8 +1073,8 @@
       "boothNo": "84",
       "num": 84,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Arasur (R.V) and (P) East Arasur No-1 Ward No - 5 Schooleastern wing facing South Arasur-641407",
+      "name": "Booth 84",
+      "address": "SULUR - Booth 84",
       "area": "SULUR"
     },
     {
@@ -767,8 +1082,8 @@
       "boothNo": "85",
       "num": 85,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Arasur (R.V) and (P) East Arasur No-1 Ward No - 5 School, II Room eastern wing facing South Arasur-641407",
+      "name": "Booth 85",
+      "address": "SULUR - Booth 85",
       "area": "SULUR"
     },
     {
@@ -776,8 +1091,17 @@
       "boothNo": "86",
       "num": 86,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Neelambur (R.V) and Muthugoundanpudur (P) Muthalipalayam Ward No - 1 School, ,Muthalipalayam",
+      "name": "Booth 86",
+      "address": "SULUR - Booth 86",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-86A",
+      "boothNo": "86A",
+      "num": 86,
+      "type": "regular",
+      "name": "Booth 86A",
+      "address": "SULUR - Booth 86A",
       "area": "SULUR"
     },
     {
@@ -785,8 +1109,17 @@
       "boothNo": "87",
       "num": 87,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Neelambur (R.V) and Muthugoundanpudur (P) Ganganayar Nagar Ward No - 1 , School, ,Muthalipalayam            2.Neelambur (R.V) and Muthugoundanpudhur (P) Anna Nagar Ward No - 1 , 3.Neelambur (R.V) and Muthugoundanpudhur (P) Velayuthan Nagar Ward No - 1 ,",
+      "name": "Booth 87",
+      "address": "SULUR - Booth 87",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-87A",
+      "boothNo": "87A",
+      "num": 87,
+      "type": "regular",
+      "name": "Booth 87A",
+      "address": "SULUR - Booth 87A",
       "area": "SULUR"
     },
     {
@@ -794,8 +1127,17 @@
       "boothNo": "88",
       "num": 88,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Neelabur (R.V) and Muthugoundanpudhur (P) Visaka Nagar Ward No - 1 , School, ,Muthalipalayam            2.Muthugoundanpudur (P) Bakkiyalakshmi Nagar Ward No - 1 , 3.Muthugoundanpudhur Panchayat Arijana Colony Ward No - 1 , 4.Muthugoundapudhur (P) Amman Nagar Ward No - 1",
+      "name": "Booth 88",
+      "address": "SULUR - Booth 88",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-88A",
+      "boothNo": "88A",
+      "num": 88,
+      "type": "regular",
+      "name": "Booth 88A",
+      "address": "SULUR - Booth 88A",
       "area": "SULUR"
     },
     {
@@ -803,161 +1145,215 @@
       "boothNo": "89",
       "num": 89,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Neelambur (R.V) and Muthugoundanpudur (P) Kurambapalayam Ward No - 2 ,Kurumbapalayam",
-      "area": "Middle"
+      "name": "Booth 89",
+      "address": "SULUR - Booth 89",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-89A",
+      "boothNo": "89A",
+      "num": 89,
+      "type": "regular",
+      "name": "Booth 89A",
+      "address": "SULUR - Booth 89A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-90",
       "boothNo": "90",
       "num": 90,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Neelambur (R.V) and Muthugoundenpudur (P) Kurumbapalayam Ward No - 2 , ,Kurumbapalayam                    2.Neelambur (R.V) and Muthugoundanpudur (P) Kanni Amman Kovil Street Ward No - 2 , 3.Neelambur (R.V) and Muthugounda pudur Panchayat Rangammal Kovil Street Ward No - 2 , 4.Neelambur (R.V) and Muthugoundanpudur (P) East Street Ward No - 2 , 5.Neelambur (R.V) and Muthugoundanpudur (P) Pillaiyar Kovil Street Ward No - 2 station No.   which Polling Station located                                                                                        Voters or Men only or Women only",
-      "area": "Middle"
+      "name": "Booth 90",
+      "address": "SULUR - Booth 90",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-91",
       "boothNo": "91",
       "num": 91,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Neelambur (R.V) and Muthugoundanpudur (P) Sakthi Nagar Ward No - 2 , ,Kurumbapalayam                    2.Neelambur (R.V) and Muthugoundanpudur (P) West Street Ward No - 2 , 3.Neelambur Muthugoundanpudur (P) Batharakaliamman Kovil Street Ward No - 2 , 4.Neelambur (R.V) and Muthugoundanpudur (P) Muthalipalayam Pirivu N.H.Road Ward No-2 , 5.Neelambur (R.V) and Muhugoundanpudhur (P) Lakshmi Nagar Ward No - 2 , 6.Neelambur (R.V) and Muthugoundanpudhur (P) Krishnasamy Nagar Ward No - 2 , 7.Neelambur Muthugoundamurpudur (P) Chandramagar Ward No - 2 , 8.Neelambur (R.V) and Muthugoundenpudur (P) Siva Nagar Ward No - 2",
-      "area": "Middle"
+      "name": "Booth 91",
+      "address": "SULUR - Booth 91",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-92",
       "boothNo": "92",
       "num": 92,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Neelambur (R.V) and Muthugoundanpudur (P) Muthugoundanpudur Ward No - 3 ,Muthugoundanpudur",
-      "area": "Middle"
+      "name": "Booth 92",
+      "address": "SULUR - Booth 92",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-92A",
+      "boothNo": "92A",
+      "num": 92,
+      "type": "regular",
+      "name": "Booth 92A",
+      "address": "SULUR - Booth 92A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-93",
       "boothNo": "93",
       "num": 93,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Neelambur (R.V) and Muthugoundanpudhur (P) Muthugoundanpudhur Ward No - ,Muthugoundanpudur                 4 , 2.Neelambur Muthugoundanpudur (P) Govt Colony Muthugoundanpudhur Ward No - 4",
-      "area": "Middle"
+      "name": "Booth 93",
+      "address": "SULUR - Booth 93",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-93A",
+      "boothNo": "93A",
+      "num": 93,
+      "type": "regular",
+      "name": "Booth 93A",
+      "address": "SULUR - Booth 93A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-94",
       "boothNo": "94",
       "num": 94,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Neelambur (R.V) and Muthugoundenpudhur (P) Kaliyapuram Ward No - 4 ,Muthugoundanpudur",
-      "area": "Middle"
+      "name": "Booth 94",
+      "address": "SULUR - Booth 94",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-95",
       "boothNo": "95",
       "num": 95,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Neelambur (R.V) and (P) Athinarayanapuram Kulathur Ward No - 2 School, ,Athinarayanapuram",
-      "area": "Middle"
+      "name": "Booth 95",
+      "address": "SULUR - Booth 95",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-96",
       "boothNo": "96",
       "num": 96,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Neelambur (R.V) and (P) Arijana Colony Ward No - 2 , 2.Neelambur (R.V) and School, ,Athinarayanapuram         (P) Kamatchiamman Kovil Street , 3.Neelambur (R.V) and (P) Perumal Kovil Street",
-      "area": "Middle"
+      "name": "Booth 96",
+      "address": "SULUR - Booth 96",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-97",
       "boothNo": "97",
       "num": 97,
       "type": "regular",
-      "name": "Government high School",
-      "address": "1.Neelambur (R.V) and (P) West Street Ward No - 1 Neelambur - 641062",
-      "area": "high"
+      "name": "Booth 97",
+      "address": "SULUR - Booth 97",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-98",
       "boothNo": "98",
       "num": 98,
       "type": "regular",
-      "name": "Government high School",
-      "address": "1.Neelambur (R.V) and (P) West Street Ward No - 1 Neelambur - 641062",
-      "area": "high"
+      "name": "Booth 98",
+      "address": "SULUR - Booth 98",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-99",
       "boothNo": "99",
       "num": 99,
       "type": "regular",
-      "name": "Government high School",
-      "address": "1.Neelambur (R.V) and (P) Neelambur East Street Ward No - 1 , 2.Neelambur (R.V) Neelambur - 641062                 and (P) Subbaiyan Thottam Ward No - 1 , 3.Neelambur (R.V) and (P) Mariyamman Kovil Street Ward No - 1 station No.   which Polling Station located                                                                                          Voters or Men only or Women only",
-      "area": "high"
+      "name": "Booth 99",
+      "address": "SULUR - Booth 99",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-100",
       "boothNo": "100",
       "num": 100,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Neelambur (R.V) and (P) Jeeva Street Ward No - 1 , 2.Neelambur (R.V) and (P) ,Neelambur                          Kuttai Street Ward No - 1 , 3.Neelambur (R.V) and (P) Avinashi Main Road Ward No - 1",
-      "area": "Middle"
+      "name": "Booth 100",
+      "address": "SULUR - Booth 100",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-101",
       "boothNo": "101",
       "num": 101,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Neelampur (R.V) and (P) Neelampur Ward No - 1 ,Neelambur",
-      "area": "Middle"
+      "name": "Booth 101",
+      "address": "SULUR - Booth 101",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-101A",
+      "boothNo": "101A",
+      "num": 101,
+      "type": "regular",
+      "name": "Booth 101A",
+      "address": "SULUR - Booth 101A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-102",
       "boothNo": "102",
       "num": 102,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Neelampur (R.V) and (P) Arijana Colony Ward No -1 , 2.Neelampur (R.V) and (P) ,Neelambur                          Lakshmi Nagar Ward No - 1",
-      "area": "Middle"
+      "name": "Booth 102",
+      "address": "SULUR - Booth 102",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-103",
       "boothNo": "103",
       "num": 103,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Neelambur (R.V) and (P) Venkattapuram Pillaiyar Kovil Street Venkattapuram ,Neelambur                          Ward No- 3",
-      "area": "Middle"
+      "name": "Booth 103",
+      "address": "SULUR - Booth 103",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-104",
       "boothNo": "104",
       "num": 104,
       "type": "regular",
-      "name": "Government high School",
-      "address": "1.Neelambur (R.V) and (P) Venkattapuram Ward No - 3 Neelambur - 641062",
-      "area": "high"
+      "name": "Booth 104",
+      "address": "SULUR - Booth 104",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-105",
       "boothNo": "105",
       "num": 105,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Mylampattii (R.V) and (P) Mylampattii Ward No - 1 , 2.Mayilampatti (R.V) and School East facing south side       (P) Ambethkar Nagar Ward No - 3 Karayampalayam",
-      "area": "high"
+      "name": "Booth 105",
+      "address": "SULUR - Booth 105",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-105A",
+      "boothNo": "105A",
+      "num": 105,
+      "type": "regular",
+      "name": "Booth 105A",
+      "address": "SULUR - Booth 105A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-106",
       "boothNo": "106",
       "num": 106,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Mayilampatti (R.V) and (P) Karaiyampalayam Ward No - 2 , School East facing south side Karayampalayam",
+      "name": "Booth 106",
+      "address": "SULUR - Booth 106",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-106A",
+      "boothNo": "106A",
+      "num": 106,
+      "type": "regular",
+      "name": "Booth 106A",
+      "address": "SULUR - Booth 106A",
       "area": "SULUR"
     },
     {
@@ -965,8 +1361,17 @@
       "boothNo": "107",
       "num": 107,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "3.Mayilampatti (R.V) and (P) Mahalalkshmi Nagar Ward No - 2 , 4.Myilampatti School, II Room East facing south   (R.V) and (P) Arijana Colony Ward No - 2,2.Mayilampatti (R.V) and (P) Kilakku side Karayampalayam                 Thottangal Ward No - 2 , 3.Mayilampatti (R.V) and (P) Dhanam Nagar Ward No - 2",
+      "name": "Booth 107",
+      "address": "SULUR - Booth 107",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-107A",
+      "boothNo": "107A",
+      "num": 107,
+      "type": "regular",
+      "name": "Booth 107A",
+      "address": "SULUR - Booth 107A",
       "area": "SULUR"
     },
     {
@@ -974,8 +1379,8 @@
       "boothNo": "108",
       "num": 108,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Irugur (R.V) and Chinniyampalayam(P) Chinniyampalayam -1 Ward No - 1 School west facing Rc Building Chinniyampalayam",
+      "name": "Booth 108",
+      "address": "SULUR - Booth 108",
       "area": "SULUR"
     },
     {
@@ -983,8 +1388,8 @@
       "boothNo": "109",
       "num": 109,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Irugur (R.V) and Chinniyampalayam(P) Chinniyampalayam -2 Ward No - 1 School west facing Rc Building Chinniyampalayam",
+      "name": "Booth 109",
+      "address": "SULUR - Booth 109",
       "area": "SULUR"
     },
     {
@@ -992,8 +1397,8 @@
       "boothNo": "110",
       "num": 110,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Irugur (R.V) Chinniampalayam(P) Mariyamman Kovil Street Ward No - 1 , School ,Chinniyampalayam            2.Irugur (R.V) Chinniampalayam(P) Thiyagigal Street Ward No - 1 , 3.Irugur (R.V) and Chinniyampalayam(P) Eri medu Avinashi Road Ward No - 1 station No.   which Polling Station located                                                                                           Voters or Men only or Women only",
+      "name": "Booth 110",
+      "address": "SULUR - Booth 110",
       "area": "SULUR"
     },
     {
@@ -1001,8 +1406,17 @@
       "boothNo": "111",
       "num": 111,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Irugur (T.P) Chinniyampalayam (P) Chinniyampalayam Ward No - 1,2,3 School ,Chinniyampalayam",
+      "name": "Booth 111",
+      "address": "SULUR - Booth 111",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-111A",
+      "boothNo": "111A",
+      "num": 111,
+      "type": "regular",
+      "name": "Booth 111A",
+      "address": "SULUR - Booth 111A",
       "area": "SULUR"
     },
     {
@@ -1010,8 +1424,17 @@
       "boothNo": "112",
       "num": 112,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Irugur (T.P) Chinniampalayam (P) P.N.P. Colony Ward No - 1 , 2.Irugur (T.P) School ,Chinniyampalayam           Chinniyampalayam (P) Chinna Thottam Ward No - 1 , 3.Irugur (T.P) and Chinniyampalayam (P) Balathandayutham Street Ward No - 3 , 4.Irugur (T.P) and Chinniyampalayam panchayat (P) Thiyagigal Street Ward No - 3",
+      "name": "Booth 112",
+      "address": "SULUR - Booth 112",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-112A",
+      "boothNo": "112A",
+      "num": 112,
+      "type": "regular",
+      "name": "Booth 112A",
+      "address": "SULUR - Booth 112A",
       "area": "SULUR"
     },
     {
@@ -1019,62 +1442,89 @@
       "boothNo": "113",
       "num": 113,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Irugur (T.P) and Chinniyampalayam (P) Ramasamy Nagar Venkitapuram Ward ,Venkittapuam                      No -4 , 2.Irugur (T.P) and Chinniyampalayam (P) Chinniampalayam Avinashi Road , 3.Irugur (T.P) and Chinniyampalayam (P) Krishnagounder Colony Venkitapuram , 4.Irugur (T.P) and Chinniyampalayam (P) Teachers Colony Venkitapuram",
-      "area": "Middle"
+      "name": "Booth 113",
+      "address": "SULUR - Booth 113",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-113A",
+      "boothNo": "113A",
+      "num": 113,
+      "type": "regular",
+      "name": "Booth 113A",
+      "address": "SULUR - Booth 113A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-114",
       "boothNo": "114",
       "num": 114,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Irugur (T.P) and Chinniyampalayam (P) Venkittapuram Ward No - 4 , 2.Irugur ,Venkittapuam - 641062             (T.P) and Chinniyampalayam (P) Thekku Thottam Kulathur Venkitapuram",
-      "area": "Middle"
+      "name": "Booth 114",
+      "address": "SULUR - Booth 114",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-115",
       "boothNo": "115",
       "num": 115,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Irugur (T.P)Chinniyampalayam (P) Venkittapuram Ward No - 4 , 2.Irugur (T.P) ,Venkittapuram                     and Chinniyampalayam (P) Krishnagoundan Nagar Ward No - 4",
-      "area": "Middle"
+      "name": "Booth 115",
+      "address": "SULUR - Booth 115",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-116",
       "boothNo": "116",
       "num": 116,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Irugur (T.P) and Chinniampalayam (P) Irugur Teachers Colony Ward No - 4 , ,Venkittapuram",
-      "area": "Middle"
+      "name": "Booth 116",
+      "address": "SULUR - Booth 116",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-116A",
+      "boothNo": "116A",
+      "num": 116,
+      "type": "regular",
+      "name": "Booth 116A",
+      "address": "SULUR - Booth 116A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-117",
       "boothNo": "117",
       "num": 117,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Irugur (T.P) and Chinniampalayam (P) Ramasamy Gounder Street Ward No - 4 ,Venkittapuram",
-      "area": "Middle"
+      "name": "Booth 117",
+      "address": "SULUR - Booth 117",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-118",
       "boothNo": "118",
       "num": 118,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Irugur (T.P) Makaliyamman Koil Street Ward No -14 , 2.Irugur (T.P) Madurai School, ,Irugur (South)            Veeran Kovil Street Ward No - 14 , 3.Irugur (T.P) Pillaiyar Kovil Street Ward No - 14 , 4.Irugur (T.P) Manickam Colony Ward No - 14 , 5.Irugur (T.P) Dharmaraj Colony Ward No - 14 , 6.Irugur (T.P) Marimuthu Teachers Street Ward No - 14",
-      "area": "Middle"
+      "name": "Booth 118",
+      "address": "SULUR - Booth 118",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-118A",
+      "boothNo": "118A",
+      "num": 118,
+      "type": "regular",
+      "name": "Booth 118A",
+      "address": "SULUR - Booth 118A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-119",
       "boothNo": "119",
       "num": 119,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Irugur (T.P) Ramasamy Teachers Street Ward No - 14 , 2.Irugur (T.P) E.B Colony School, ,Irugur (South)            Ward No - 14 , 3.Irugur (T.P) New Colony Ward No - 14 , 4.Irugur (T.P) Irugur E.B. Colony Ward No - 14 station No.   which Polling Station located                                                                                            Voters or Men only or Women only",
+      "name": "Booth 119",
+      "address": "SULUR - Booth 119",
       "area": "SULUR"
     },
     {
@@ -1082,8 +1532,17 @@
       "boothNo": "120",
       "num": 120,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Irugur (T.P) Irugur Athappagounder Road Ward No - 12 , 2.Irugur (T.P) Angappa School, ,Irugur (N)                Pannadi lane Ward No - 12 , 3.Irugur (T.P) Krishnan Lane Ward No - 12 , 4.Irugur (T.P) Muthaliyar Thottam Ward No - 13 , 5.Irugur (T.P) Madurai Meenachi Lane Ward No - 12 , 6.Irugur (T.P) Subbaiyan Street Ward No - 12 , 7.Irugur (T.P) Irugur Ward No - 13 , 8.Irugur (T.P) Power House Nagar Ward No - 13 , 9.Irugur (T.P) Mahaliyamman Kovil Ward No - 13 , 10.Irugur (T.P) Itteri Street Ward No -13 , 11.Irugur (T.P) Angannan Lane Ward No - 13 , 12.Irugur (T.P) Vellingiri Lane Ward No - 13",
+      "name": "Booth 120",
+      "address": "SULUR - Booth 120",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-120A",
+      "boothNo": "120A",
+      "num": 120,
+      "type": "regular",
+      "name": "Booth 120A",
+      "address": "SULUR - Booth 120A",
       "area": "SULUR"
     },
     {
@@ -1091,8 +1550,17 @@
       "boothNo": "121",
       "num": 121,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Irugur (T.P) Athappagoundenpudhur Ward No - 3 , 2.Irugur (T.P) Deepam Nagar School, ,Irugur (N)                Ward No - 13 , 3.Irugur (T.P) Muthusamy Asari Lane Ward No - 15 , 4.Irugur (T.P) Pillaiyar Kovil Street Ward No - 15 , 5.Irugur (T.P) Devana Gounder Street Ward No - 15 , 6.Irugur(T.P) Maniyam Maruthachala Dever Lane Ward No - 15 , 7.Irugur (T.P) Palani Gounder Lane Ward No - 15 , 8.Irugur (T.P) Muthukumara Devar Lane Ward No -15 , 9.Irugur (T.P) Marker Road Ward No - 15",
+      "name": "Booth 121",
+      "address": "SULUR - Booth 121",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-121A",
+      "boothNo": "121A",
+      "num": 121,
+      "type": "regular",
+      "name": "Booth 121A",
+      "address": "SULUR - Booth 121A",
       "area": "SULUR"
     },
     {
@@ -1100,161 +1568,260 @@
       "boothNo": "122",
       "num": 122,
       "type": "regular",
-      "name": "P.U.Ele School , Irugur(N)-641103 1.Irugur (T.P) Maruthachalamoorthy Lane Ward No -17 , 2.Irugur (T.P) Mahaliyamman Kovil Lane Ward No - 17 , 3.Irugur (T.P) Ginning Factory Ward No",
-      "address": "- 17 , 4.Irugur (T.P) Maruthachaladevar Lane Ward No - 17 , 5.Irugur (T.P) Vedasamydevar Lane Ward No - 17 , 6.Irugur (T.P) Palanimalaidevar Street Ward No - 17",
-      "area": "P.U.Ele"
+      "name": "Booth 122",
+      "address": "SULUR - Booth 122",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-122A",
+      "boothNo": "122A",
+      "num": 122,
+      "type": "regular",
+      "name": "Booth 122A",
+      "address": "SULUR - Booth 122A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-123",
       "boothNo": "123",
       "num": 123,
       "type": "regular",
-      "name": "P.U.Ele School , Irugur (N)",
-      "address": "1.Irugur (T.P) Muthukumaradevar Lane Ward No - 15, 2.Irugur (T.P) Ayyanar 641103                            Kovil Street Ward No - 16, 3..Irugur (T.P) Palaniyandavar Kovil Street Ward No -17 , 4.Irugur (T.P) D.S.K Ward No - 16 , 5.Irugur (T.P) Ramadevar Line Ward No - 16 , 6.Irugur (T.P) Thenpalanidevar Lane Ward No - 16 , 7.Irugur (T.P) Kanakku Pillai Ayyavu Lane Ward No -10 , 8.Irigur (T.P) Krishnasamy Devar Lane Ward No - 10 , 9.Irugur (T.P) Ginning Factory Lane Ward No - 10 , 10.Irugur (T.P) Poosari Palanimalaidevar Lane - 10, 11.Irugur(T.P) Muthukumaradevar Lane Ward No - 16 station No.   which Polling Station located                                                                                         Voters or Men only or Women only",
-      "area": "P.U.Ele"
+      "name": "Booth 123",
+      "address": "SULUR - Booth 123",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-123A",
+      "boothNo": "123A",
+      "num": 123,
+      "type": "regular",
+      "name": "Booth 123A",
+      "address": "SULUR - Booth 123A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-124",
       "boothNo": "124",
       "num": 124,
       "type": "regular",
-      "name": "P.U.Ele School,Irugur(N)-641103 1.Irugur (T.P) Mahakavi Nagar Ward No - 18, 2.Irugur (T.P) Anna Nagar Ward No - All Voters",
-      "address": "18, 3.Irugur (T.P) Irugur Ward No - 18, 4.Irugur (T.P) Anganadevar Lane Ward No - 18, 5. OVERSEAS ELECTORS",
-      "area": "P.U.Ele"
+      "name": "Booth 124",
+      "address": "SULUR - Booth 124",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-124A",
+      "boothNo": "124A",
+      "num": 124,
+      "type": "regular",
+      "name": "Booth 124A",
+      "address": "SULUR - Booth 124A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-125",
       "boothNo": "125",
       "num": 125,
       "type": "regular",
-      "name": "P.U.Ele School , Irugur(S)-641103 1.Irugur (T.P) Palani Lane Ward No - 18 , 2.Irugur (T.P) Veerappachetti Street Ward No - 18 , 3.Irugur (T.P) Ayyanar Kovil Street Ward No - 16 , 4.Irugur (T.P) Ginning Factory Street Ward No - 18 , 5.Irugur (T.P) Bajanai Kovil Street Ward No -",
-      "address": "10 , 6.Irugur (T.P) Mannudaiyar Lane Ward No - 16 , 7.Irugur (T.P) Chinnappadevar Lane Ward No - 16 , 8.Irugur (T.P) Subbaiyadevar Lane Ward No - 18 , 9.Irugur (T.P) D.S Krishnasamy Lane Ward No - 18,",
-      "area": "P.U.Ele"
+      "name": "Booth 125",
+      "address": "SULUR - Booth 125",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-125A",
+      "boothNo": "125A",
+      "num": 125,
+      "type": "regular",
+      "name": "Booth 125A",
+      "address": "SULUR - Booth 125A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-126",
       "boothNo": "126",
       "num": 126,
       "type": "regular",
-      "name": "P.U.Ele School ,Irugur(N)641103 1.Irugur (T.P) Murugappadevar Lane Ward No - 16 , 2.Irugur (T.P) Lachumanadevar Lane Ward No -18 , 3.Irugur (T.P) Palanimalaidevar Lane Ward No - 18 , 4.Irugur (T.P) Sivasakthi Nagar Ward No - 18 , 5.Irugur(T.P) Palaniyappadevar Lane Ward No -18 , 6.Irugur (T.P) Ganapathidevar Lane Ward No - 18 , 7.Irugur (T.P) Bajanaikovil Street Ward No - 9 , 8.Irugur (T.P) Market Pallam Ward No - 11 , 9.Irugur (T.P) Subramaniadevar Street Ward No -11 ",
-      "address": "10.Irugur (T.P) Kalianna Gounder Street Ward No - 11",
-      "area": "P.U.Ele"
+      "name": "Booth 126",
+      "address": "SULUR - Booth 126",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-126A",
+      "boothNo": "126A",
+      "num": 126,
+      "type": "regular",
+      "name": "Booth 126A",
+      "address": "SULUR - Booth 126A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-127",
       "boothNo": "127",
       "num": 127,
       "type": "regular",
-      "name": "P.U.Ele School ,Irugur (S)-641103 1.Irugur(T.P) Andiyannadevar Lane Ward No - 10 , 2.Irugur (T.P) Market Street Ward No - 10 , 3.Irugur (T.P) Bagavathidevar Street Ward No - 10 , 4.Irugur (T.P) Perumalmuthaliyar Street Ward No - 10 , 5.Irugur (T.P) Veerappapillai Lane Ward No - 10 , 6.Irugur (T.P) Eswaran Kovil Street Ward No - 11 , 7.Irugur (T.P) Vannar Pallam Ward No - 10 , 8.Irugur (T.P) Ahragaram Street Ward No - 10 , 9.Irugur",
-      "address": "(T.P) Irugur Ward No - 10",
-      "area": "P.U.Ele"
+      "name": "Booth 127",
+      "address": "SULUR - Booth 127",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-128",
       "boothNo": "128",
       "num": 128,
       "type": "regular",
-      "name": "P.U.Ele School, North Facing",
-      "address": "1.Irugur (T.P) Market Street Ward No - 8 , 2.Irugur (T.P) Irugur Ravathur Kulatheri Irugur (S) 641103                 Road Ward No - 8 , 3.Irugur (T.P) High School Road Ward No - 8 , 4.Irugur (T.P) Vedar Lane Ward No - 8 , 5.Irugur (T.P) Kanna Ramasamydevar Street Ward No - 8 , 6.Irugur (T.P) Level Crossing Road Ward No - 8 , 7.Irugur (T.P) Valluvar Street Ward No -11,8.Irugur (T.P) Indra Nagar Ward No - 9 station No.   which Polling Station located                                                                                          Voters or Men only or Women only",
-      "area": "North Facing"
+      "name": "Booth 128",
+      "address": "SULUR - Booth 128",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-128A",
+      "boothNo": "128A",
+      "num": 128,
+      "type": "regular",
+      "name": "Booth 128A",
+      "address": "SULUR - Booth 128A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-129",
       "boothNo": "129",
       "num": 129,
       "type": "regular",
-      "name": "P.U.Ele School ,Irugur (S)",
-      "address": "1.Irugur (T.P) Ginning Factory Road Ward No - 9 , 2.Irugur (T.P) Bajanai Kovil Street Ward No - 9 , 3.Irugur (T.P) Poosari Palanimalaidevar Lane - 9 , 4.Irugur (T.P) Ponnur Amman Kovil Street No - 9 , 5.Irugur (T.P) Mukkantha Rakkanna Devar Street Ward No - 9 , 6.Irugur (T.P) Angalamman Kovil Street Ward No - 9 , 7.Irugur(T.P) Saravana Gounder Thottam Ward No - 9",
-      "area": "P.U.Ele"
+      "name": "Booth 129",
+      "address": "SULUR - Booth 129",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-129A",
+      "boothNo": "129A",
+      "num": 129,
+      "type": "regular",
+      "name": "Booth 129A",
+      "address": "SULUR - Booth 129A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-130",
       "boothNo": "130",
       "num": 130,
       "type": "regular",
-      "name": "P.U.Ele School ,Irugur (S)",
-      "address": "1.Irugur (T.P) N.G.R Puram Ward No - 8 , 2.Irugur (T.P) Samiyar Medai Ward No - 9",
-      "area": "P.U.Ele"
+      "name": "Booth 130",
+      "address": "SULUR - Booth 130",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-130A",
+      "boothNo": "130A",
+      "num": 130,
+      "type": "regular",
+      "name": "Booth 130A",
+      "address": "SULUR - Booth 130A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-131",
       "boothNo": "131",
       "num": 131,
       "type": "regular",
-      "name": "P.U.Ele School, North Facing",
-      "address": "1.Irugur (T.P) Irugur Ondipudhur Road Ward No - 9 , Irugur (S) 641103",
-      "area": "North Facing"
+      "name": "Booth 131",
+      "address": "SULUR - Booth 131",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-132",
       "boothNo": "132",
       "num": 132,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Irugur (T.P) Muthusamy Chettiyar Street Ward No - 7 , 2.Irugur (T.P) Harijan ,Kamatchipuram                   Colony Ward No - 7 , 3.Irugur (T.P) Kallukuzhi Naidu Street Ward No - 7 , 4.Irugur (T.P) M.G.R Nagar Ward No - 7 , 5.Irugur (T.P) Ambethkar Nagar Ward No - 7 , 6.Irugur (T.P) Anna Nagar Ward No - 7",
-      "area": "Middle"
+      "name": "Booth 132",
+      "address": "SULUR - Booth 132",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-132A",
+      "boothNo": "132A",
+      "num": 132,
+      "type": "regular",
+      "name": "Booth 132A",
+      "address": "SULUR - Booth 132A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-133",
       "boothNo": "133",
       "num": 133,
       "type": "regular",
-      "name": "Panchayat Union Middle School, , 1.Irugur (T.P) Ramachandran Naidu Street Ward No - 6 , 2.Irugur (T.P) Ramadevar All Voters Kamatchipuram Street Ward No - 6 , 3.Irugur (T.P) Jagamalai Muthaliyar Street Ward No - 6 ",
-      "address": "4.Irugur (T.P) Duraisamy Naidu Street Ward No - 6, 5.Irugur(T.P) Ponnappa Gounder Street Ward - 7",
-      "area": "Middle"
+      "name": "Booth 133",
+      "address": "SULUR - Booth 133",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-133A",
+      "boothNo": "133A",
+      "num": 133,
+      "type": "regular",
+      "name": "Booth 133A",
+      "address": "SULUR - Booth 133A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-134",
       "boothNo": "134",
       "num": 134,
       "type": "regular",
-      "name": "Panchayat Union Middle School, , 1.Irugur (T.P) Thoppu Street Ward No - 6 , 2.Irugur (T.P) Rayappasamydevar Street All Voters Kamatchipuram Ward No - 6 , 3.Irugur (T.P) Rayappasamy Devar Street Ward No - 6 , 4.Irugur",
-      "address": "(T.P) Rayappasamy Dever Street 3 Ward No - 6 , 5.Irugur (T.P) Rayappasamy Dever Street - 4 , 6.Irugur (T.P) Jagamalai Muthaliyar Street 2 Ward No - 6",
-      "area": "Middle"
+      "name": "Booth 134",
+      "address": "SULUR - Booth 134",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-135",
       "boothNo": "135",
       "num": 135,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Irugur (T.P) Noyyal Street Ward No - 5 , 2.Irugur (T.P) Harimill Road Ward No - ,Kamatchipuram                     5 , 3.Irugur (T.P) Duraisamy Naidu Street Ward No - 5 , 4.Irugur (T.P) Vivekanandar Street Ward No - 5 , 5.Irugur (T.P) Thagoor Street Ward No - 5 , 6.Irugur (T.P) Trichy Road Kambar Street Ward No - 5 , 7.Irugur (T.P) Trichy Road Tiruvalluvar Street Ward No - 5 , 8.Irugur (T.P) Trichy Road Barathyiar Road Ward No - 5 , 9.Irugur (T.P) Trichy Road Keeraithottam Ward No - 5 station No.   which Polling Station located                                                                                             Voters or Men only or Women only",
-      "area": "Middle"
+      "name": "Booth 135",
+      "address": "SULUR - Booth 135",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-136",
       "boothNo": "136",
       "num": 136,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Irugur (T.P) Commodiya Mill Lane Ward No - 5 2.Irugur (T.P) Trichy Main Road ,Kamatchipuram                     Ward No - 5, 3.Irugur (T.P) Surya Nagar Ward No - 5",
-      "area": "Middle"
+      "name": "Booth 136",
+      "address": "SULUR - Booth 136",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-137",
       "boothNo": "137",
       "num": 137,
       "type": "regular",
-      "name": "Panchayat Union Middle School, ",
-      "address": "1.Irugur (T.P) Athapagoundenputhur Road Ward No - 1 , 2.Irugur (T.P) Pillayar Athappagoundanpudur                Koil Street Ward No - 1 , 3.Irugur (T.P) Arunthadiyar Lane Ward No - 1",
-      "area": "Middle"
+      "name": "Booth 137",
+      "address": "SULUR - Booth 137",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-138",
       "boothNo": "138",
       "num": 138,
       "type": "regular",
-      "name": "Panchayat Union Middle School, , 1.Irugur (T.P) Lakhsmanagoundar Street Ward No - 2 , 2.Irugur (T.P) Vayaburi Athappagoundanpudur Gounder Street Ward No - 2 , 3.Irugur (T.P) Rangasamy Street Ward No - 2 ",
-      "address": "4.Irugur (T.P) AngannaGounder Street Ward No - 2 , 5.Irugur (T.P) Ganapathy Gounder Street Ward No - 2 , 6.Irugur (T.P) Nanjappa Gounder Streer Ward No - 2 , 7.Irugur (T.P) Marappa Gounder Street Ward No - 2 , 8.Irugur (T.P) Arumugagoundar Street Ward No - 2 , 9.Irugur (T.P) Annamalai Goundar Street Ward No - 2 , 10.Irugur (T.P) Ponnegoundar Street Ward No - 2 , 11.Irugur (T.P) Ramanna Gounder Street Ward No - 1 , 12.Irugur (T.P) Atthappa GounderPuthur Ward No 1 , 13.Irugur (T.P) Ramasamy Gounder Street Ward No - 1 , 14.Irugur (T.P) AyyanKoil Road Ward No - 1 , 15.Irugur (T.P) Porumi Thootam Ward No - 1 , 16.Irugur (T.P) Amman Koil Street Ward No - 1",
-      "area": "Middle"
+      "name": "Booth 138",
+      "address": "SULUR - Booth 138",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-138A",
+      "boothNo": "138A",
+      "num": 138,
+      "type": "regular",
+      "name": "Booth 138A",
+      "address": "SULUR - Booth 138A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-139",
       "boothNo": "139",
       "num": 139,
       "type": "regular",
-      "name": "Aided Elementary School",
-      "address": "1.Irugur (T.P) Chinniya Gounder Street Ward NO-4 , 2.Irugur (T.P) Railway Feeder ,Ravathur                          Road Ward No - 4 , 3.Irugur (T.P) Mahaliamman Kovil Street Ward No - 4 , 4.Irugoor ( T.P ) Krishangoundar Street Ward No 4 , 5.Irugur( T.P ) Pillaiyar Kovil Street Ward No - 4 , 6.Irugur ( T.P ) Oorgounder Street Ward No - 4 , 7.Irugur ( T.P ) Rangana Gounder Street Ward No - 4 , 8.Irugur ( T.P ) Narayana Gounder Street Ward No - 4 , 9.Irugur ( T.P ) Mutthaiya Gounder Street Ward No - 4 , 10.Irugur ( T.P ) Atthappagoundenputhur Ravathur Road Ward No - 4 , 11.Irugur ( T.P ) Irugur Ravathur Itterai Street Ward No - 4 , station No.   which Polling Station located                                                                                            Voters or Men only or Women only",
+      "name": "Booth 139",
+      "address": "SULUR - Booth 139",
       "area": "SULUR"
     },
     {
@@ -1262,8 +1829,8 @@
       "boothNo": "140",
       "num": 140,
       "type": "regular",
-      "name": "Aided Elementary School",
-      "address": "1.Irugur ( T.P ) Oorvali Thottathupathai Ward No - 4 , 2.Irugoor ( T.P ) Chinnan ,Ravathur                          Street Ward No - 3 , 3.Irugur( T.P ) Pallanivannan Lane Ward No -3 , 4.Irugur ( T.P ) Chennimalai Gounder Street Ward No -3 , 5.Irugur ( T.P ) Thannasipalani Street Ward No - 3 , 6.Irugur ( T.P ) Subban Lane Ward No -3 , 7.Irugur ( T.P ) Vellappa Goundar Lane Ward No - 4 , 8.Irugur ( T.P ) Royappa Gounder Lane Ward No - 4 , 9.Irugur ( T.P ) Kuttai Thottathupathai Ward No -4 , 10.Irugur ( T.P ) Pattatharasiamman Koil Street Ward No -3 , 11.Irugur ( T.P ) Chenthamarai Thottam Ward No - 4 , 12.Irugur ( T.P ) Karunanithi Nagar Ward No - 3",
+      "name": "Booth 140",
+      "address": "SULUR - Booth 140",
       "area": "SULUR"
     },
     {
@@ -1271,26 +1838,26 @@
       "boothNo": "141",
       "num": 141,
       "type": "regular",
-      "name": "Govt.Girls",
-      "address": "1.Sulur ( T.P ) Rakkan Lane Ward No - 8 , 2.Sulur ( T.P ) Londan Mission School Hr.Sec.School,Sulur.Sulur east-    Street Ward No - 8 , 3.Sulur ( T. P ) Nalli Lane Ward No - 8 , 4.Sulur ( T.P ) west new building east portion     Jesurathinam Street Ward No - 8 , 5.Sulur ( T.P ) Thandal Karuppan Street Ward facing south Sulur 641402          No - 8 , 6.Sulur ( T.P ) Rasi lean ward no 8 , 7.Sulur ( T.P ) Angamuthulean Ward No - 8 , 8.Sulur ( T.P ) Appusamikovil Street Ward No - 8 , 9.Sulur( T.P ) Uruman Lane Ward No - 8 , 10.Sulur ( T.P ) Rayan Lane Ward No - 8",
-      "area": "east"
+      "name": "Booth 141",
+      "address": "SULUR - Booth 141",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-142",
       "boothNo": "142",
       "num": 142,
       "type": "regular",
-      "name": "Govt.Girls",
-      "address": "1.Sulur ( T.P ) Market Road Ward No - 7 , 2.Sulur ( T.P ) Trichy Road Ward No - 7 Hr.Sec.School,Sulur.Sulur east-    , 3.Sulur ( T.P ) Vedan lane Ward No - 1 , 4.Sulur ( T.P ) Maran Lane Ward No - 1 , west new building east portion     5.Sulur ( T.P ) Vaiyaburi St Ward No -1 , 6.Sulur ( T.P ) Mahali Street Ward No - 1 facing south Sulur 641402          , 7.Sulur ( T.P ) Chinnakannan Street Ward No - 1 , 8.Sulur ( T.P ) Arumuagam Street Ward No - 1 , 9.Sulur ( T.P ) Kathiravan Street No - 1 , 10.Sulur ( T.P ) Angalamman Kovil Street Ward No - 9",
-      "area": "east"
+      "name": "Booth 142",
+      "address": "SULUR - Booth 142",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-143",
       "boothNo": "143",
       "num": 143,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur ( T.P ) Periyar Nagar Ward No - 8 , 2.Sulur (T.P ) S.L.V Nagar Ward No - 8 School ,S.L.V. Nagar, Sulur        , 3.Sulur ( T.P ) Nalvar Nagar Ward No - 8 , 4.Sulur ( T.P ) Kalaimagal Nagar Ward No -8 , 5.Sulur ( T.P ) R.V.S.Nagar Ward No - 8 , 6.Sulur ( T.P) Nagammal Nagar Ward No -8 , 7.Sulur ( T.P ) Perumal Kovil Street Ward No -8",
+      "name": "Booth 143",
+      "address": "SULUR - Booth 143",
       "area": "SULUR"
     },
     {
@@ -1298,35 +1865,44 @@
       "boothNo": "144",
       "num": 144,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Sulur ( T.P ) Thirumagal Nagar Ward No - 18 , 2.Sulur ( T.P ) Sengathurai Road North facing building S.L.V.       Ward No -1 , 3.Sulur Spl (P) Bahavathsingh Ward No.18 Nagar, Sulur-641402 station No.   which Polling Station located                                                                                            Voters or Men only or Women only",
-      "area": "Middle"
+      "name": "Booth 144",
+      "address": "SULUR - Booth 144",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-144A",
+      "boothNo": "144A",
+      "num": 144,
+      "type": "regular",
+      "name": "Booth 144A",
+      "address": "SULUR - Booth 144A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-145",
       "boothNo": "145",
       "num": 145,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Sulur ( T.P ) S.V. K Nagar Ward No -3 , 2.Sulur( T.P ) S.L.S Nagar Ward No -3 , VI Room North facing building      3.Sulur ( T.P ) K .P. K Thottam Ward No -3 S.L.V. Nagar, Sulur-641402",
-      "area": "Middle"
+      "name": "Booth 145",
+      "address": "SULUR - Booth 145",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-146",
       "boothNo": "146",
       "num": 146,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur ( T.P ) Mathialagan nagar 2st ward no2 , 2.Sulur ( T.P ) Mathiyalagan School ,S.L.V Nagar, Sulur         Nagar 3rd Cross Street Ward No - 2 , 3.Sulur ( T.P ) Mathiyalagan Nagar 5th Lane Street Ward No - 2 , 4.Sulur ( T.P ) Mathiaylagan Nagar 4th Lane Street Ward No -2",
-      "area": "Middle"
+      "name": "Booth 146",
+      "address": "SULUR - Booth 146",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-147",
       "boothNo": "147",
       "num": 147,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur ( T.P ) Mathiyalagan Nagar Main Street Ward No - 2 , 2.Sulur ( T.P ) School ,S.L.V Nagar, Sulur-        Mathiyalagan Nagar Ward No -2 , 3.Sulur ( T.P ) Trichy Road Ward No - 2 , 641402                             4.Sulur ( T.P ) Sagaya Annai Nagar Ward No -2 , 5.Sulur ( T.P ) Mathiyalagan Nagar 1st Cross Street Ward No -2",
+      "name": "Booth 147",
+      "address": "SULUR - Booth 147",
       "area": "SULUR"
     },
     {
@@ -1334,17 +1910,26 @@
       "boothNo": "148",
       "num": 148,
       "type": "regular",
-      "name": "Govt.Girls",
-      "address": "1.Sulur ( T.P ) Boyar Lane Ward No -6 , 2.Sulur ( T.P ) Karunaiyammal Pillaiyar Hr.Sec.School,Sulur.Sulur east-    Kovil Street Ward No -6 , 3.Sulur ( T.P ) Panchayat Office Street Ward No - 6 , west new building east portion     4.Sulur ( T.P ) Rangasamy Pillai Street Ward No - 6 , 5.Sulur ( T.P ) A.D.Pillaiyar facing south Sulur 641402          Kovil Street Ward No - 9 , 6.Sulur ( T.P ) Sukuli Lane Ward No -9 , 7.Sulur ( T.P ) Muthan Lane Ward No -9 , 8.Sulur ( T.P ) Athavannan Lane Ward No -9 , 9.Sulur ( T.P ) Nagappa Chettiyar Street Ward No -6 , 10.Sulur ( T.P ) Kurunji kaliyanna Devar Street Ward No -6",
-      "area": "east"
+      "name": "Booth 148",
+      "address": "SULUR - Booth 148",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-149",
       "boothNo": "149",
       "num": 149,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) Kanni Nanjappachattiyar Street W.NO9 , 2.Sulur (T.P) Arasakuravan School, ,Sulur (North)             Street Ward No -9 , 3.Sulur (T.P) Kongalamman Kovil Street Ward No - 7 , 4.Sulur (T.P) Kattery Devar Street Ward No -7 , 5.Sulur (T.P) Thrumoorthypillai Street Ward No - 6 , 6.Sulur (T.P) Thanneer Kattirayan Street Ward No -7 , 7.Sulur (T.P) Karuppan Santhu Ward No-7 , 8.Sulur (T.P) Pechimuthu Santhu Ward No -7 , 9.Sulur (T.P) Solaipalani Santhu Ward No -7 , 10.Sulur (T.P) Muthupallan Santhu Ward No -7 , 11.Sulur (T.P) Chinnavalayan Santhu Ward No-7 , 12.Sulur (T.P) Ramasami Pillai Santhu Ward No -7 , 13.Sulur (T.P) Sulur Ward No-7 , 14.Sulur (T.P) K.N.C Street Ward No -7 , 15.Sulur (T.P) K.P.G Nagar Ward No -3 , 16.Sulur (T.P) Chinnakka Krishnadevar Santhu Ward No -11 station No.   which Polling Station located                                                                                         Voters or Men only or Women only",
+      "name": "Booth 149",
+      "address": "SULUR - Booth 149",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-149A",
+      "boothNo": "149A",
+      "num": 149,
+      "type": "regular",
+      "name": "Booth 149A",
+      "address": "SULUR - Booth 149A",
       "area": "SULUR"
     },
     {
@@ -1352,8 +1937,8 @@
       "boothNo": "150",
       "num": 150,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) Trichy Road Ward No -5 School, ,Sulur (North)",
+      "name": "Booth 150",
+      "address": "SULUR - Booth 150",
       "area": "SULUR"
     },
     {
@@ -1361,8 +1946,8 @@
       "boothNo": "151",
       "num": 151,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) Raja Lay out Ward No -5 , 2.Sulur (T.P) Mariyappadevar Street Ward School, ,Sulur (North)641402      No -5 , 3.Sulur (T.P) Karuppadevar St. Ward No.5 , 4.Sulur (T.P) Anna Nagar Ward No -3 , 5.Sulur (T.P) Josphin Nagar Ward No -3 , 6.Sulur (T.P) K.V.K Thottam Ward No -3",
+      "name": "Booth 151",
+      "address": "SULUR - Booth 151",
       "area": "SULUR"
     },
     {
@@ -1370,62 +1955,107 @@
       "boothNo": "152",
       "num": 152,
       "type": "regular",
-      "name": "Government Boys Higher",
-      "address": "1.Sulur (T.P) Muthiraan Krishnadevar Street Ward No -4 , 2.Sulur (T.P) Pulikkara Secondary School ,Sulur east-west Palaniappa devar streetW.no.5 , 3.Sulur (T.P) Nataraja Nagar Ward No.5 , 4.Sulur new building facing north room    (T.P) Maruthadevar Lane Ward No.5 , 5.Sulur (T.P) Nanjappagounder Street Ward no.28 Sulur-641402                No.4 , 6.Sulur (T.P) Balagurunatha Josiyuar Street Ward No.4 , 7.Sulur (T.P) Annamalaidevar Lane Ward No.6 , 8.Sulur (T.P) Kuppannapillai Lane Ward No.16 , 9.Sulur (T.P) Adimadaiyan Pillaiyar Kovil Street Ward No.16 , 10.Sulur (T.P) Kalaiannadevar street W.No.16 , 11.Sulur (T.P) Sikkanna Annamalaith devar lean W.No.16",
-      "area": "east"
+      "name": "Booth 152",
+      "address": "SULUR - Booth 152",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-152A",
+      "boothNo": "152A",
+      "num": 152,
+      "type": "regular",
+      "name": "Booth 152A",
+      "address": "SULUR - Booth 152A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-153",
       "boothNo": "153",
       "num": 153,
       "type": "regular",
-      "name": "Government Boys Higher",
-      "address": "1.Sulur (T.P) Trichy Road Ward No.4 , 2.Sulur (T.P) Palaniyappa Nagar Ward No.4 Secondary School ,Sulur east-west , 3.Sulur (T.P) P.K.T.Nagar Ward No.4 , 4.Sulur (T.P) Guruvammal Nagar Ward new building facing north room    No.4 , 5.Sulur (T.P) Saraswathi Nagar Ward No.4, no.28 Sulur-641402",
-      "area": "east"
+      "name": "Booth 153",
+      "address": "SULUR - Booth 153",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-153A",
+      "boothNo": "153A",
+      "num": 153,
+      "type": "regular",
+      "name": "Booth 153A",
+      "address": "SULUR - Booth 153A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-154",
       "boothNo": "154",
       "num": 154,
       "type": "regular",
-      "name": "Government Boys Higher",
-      "address": "1.Sulur (T.P) G.K.S Nagar Ward No.3 , 2.Sulur (T.P) Annamalai Chettiyar Lane Secondary School ,Sulur           Ward No.11 , 3.Sulur (T.P) Annamadam Street Ward No.11 , 4.Sulur (T.P) Maniam Rayadevar Lane Ward No.11 , 5.Sulur Spl (P) G.K.S Nagar Extension Ward No.3, 6.Sulur (T.P) Palaiya Kirama savade Street W.no.17",
-      "area": "No."
+      "name": "Booth 154",
+      "address": "SULUR - Booth 154",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-154A",
+      "boothNo": "154A",
+      "num": 154,
+      "type": "regular",
+      "name": "Booth 154A",
+      "address": "SULUR - Booth 154A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-155",
       "boothNo": "155",
       "num": 155,
       "type": "regular",
-      "name": "Government Boys Higher",
-      "address": "1.Sulur (T.P) Vadarimuthu Kumaradevar lean W.no.17 , 2.Sulur (T.P) Secondary School North facing     Kamachidevar Lane Ward No.17 , 3.Sulur (T.P) Murugaiya Pillai Street Ward Sulur-641402                      No.17 , 4.Sulur (T.P) South Car Street Ward No.17 , 5.Sulur (T.P) Pillaiyar Kovil Street Ward No.17 , 6.Sulur (T.P) Perumal Naicker Koil Street Ward No.17 , 7.Sulur (T.P) Ganga Naicker Street Ward No.17 , 8.Sulur (T.P) Old Post Office Street Ward No.17 , 9.Sulur (T.P) Kooli Arunachaladevar Lane Ward No.17, 10.Sulur Spl (P) M.G.R Nagar Ward No.18 station No.   which Polling Station located                                                                                           Voters or Men only or Women only",
-      "area": "No."
+      "name": "Booth 155",
+      "address": "SULUR - Booth 155",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-155A",
+      "boothNo": "155A",
+      "num": 155,
+      "type": "regular",
+      "name": "Booth 155A",
+      "address": "SULUR - Booth 155A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-156",
       "boothNo": "156",
       "num": 156,
       "type": "regular",
-      "name": "Government Girls Higher",
-      "address": "1.Sulur (T.P) Gandhasamy Pillai Street Ward No.10 , 2.Sulur (T.P) East Car Street Secondary School ,Sulur            Ward No.10",
-      "area": "No."
+      "name": "Booth 156",
+      "address": "SULUR - Booth 156",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-157",
       "boothNo": "157",
       "num": 157,
       "type": "regular",
-      "name": "Government Girls Higher",
-      "address": "1.Sulur (T.P) Ramasami Ayyar Street Ward No.10 , 2.Sulur (T.P) Palaniyappa Secondary School ,Sulur            Udaiyar Lane Ward No.10 , 3.Sulur (T.P) Karuppa Boyan Lane Ward No.10 , 4.Sulur (T.P) Kuppa Naicker Street Ward No.10 , 5.Sulur (T.P) Sri Kandaiyar Street Ward No.10 , 6.Sulur (T.P) Vathiyar Karuppannadevar Lane Ward No.11",
-      "area": "No."
+      "name": "Booth 157",
+      "address": "SULUR - Booth 157",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-158",
       "boothNo": "158",
       "num": 158,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) Kalangal Road Ward No.12 , School, ,Sulur (South)",
+      "name": "Booth 158",
+      "address": "SULUR - Booth 158",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-158A",
+      "boothNo": "158A",
+      "num": 158,
+      "type": "regular",
+      "name": "Booth 158A",
+      "address": "SULUR - Booth 158A",
       "area": "SULUR"
     },
     {
@@ -1433,8 +2063,8 @@
       "boothNo": "159",
       "num": 159,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) Valli Nagar Ward No.12 , 2.Sulur (T.P) Arima Nagar Ward No.12 , School, ,Sulur (South)             3.Sulur (T.P) S.R.S Puram Ward No.12",
+      "name": "Booth 159",
+      "address": "SULUR - Booth 159",
       "area": "SULUR"
     },
     {
@@ -1442,8 +2072,17 @@
       "boothNo": "160",
       "num": 160,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) Trichy Road Ward No.12 , 2.Sulur (T.P) Maruthadevar Street Ward School, ,Sulur (South)             No.12 , 3.Sulur (T.P) Hospital Street Ward No.12",
+      "name": "Booth 160",
+      "address": "SULUR - Booth 160",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-160A",
+      "boothNo": "160A",
+      "num": 160,
+      "type": "regular",
+      "name": "Booth 160A",
+      "address": "SULUR - Booth 160A",
       "area": "SULUR"
     },
     {
@@ -1451,8 +2090,8 @@
       "boothNo": "161",
       "num": 161,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) Karaiayarayathevar Street Ward No.12 , 2.Sulur (T.P) Chennimalai School, ,Sulur (South)             Karuppadevar Street Ward.12 , 3.Sulure (T.P) Paruvai karuppadevar Street W.No.12",
+      "name": "Booth 161",
+      "address": "SULUR - Booth 161",
       "area": "SULUR"
     },
     {
@@ -1460,8 +2099,8 @@
       "boothNo": "162",
       "num": 162,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulure (T.P) Chairman Karuppanadevar Street W.no.14 , 2.Sulure (T.P) School, Sulur (South)              Gopalpillai Street W.No.14",
+      "name": "Booth 162",
+      "address": "SULUR - Booth 162",
       "area": "SULUR"
     },
     {
@@ -1469,8 +2108,17 @@
       "boothNo": "163",
       "num": 163,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) Bank Karupannathevar Street Ward No.14 , 2.Sulur (T.P) Kuppudevar School, ,Sulur (South)             Street Ward No.14 , 3.Sulur(T.P) S.K.K.Layout Ward No.13 , 4.Sulure (T.P) S.V.L Nagar Ward No.13 ,",
+      "name": "Booth 163",
+      "address": "SULUR - Booth 163",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-163A",
+      "boothNo": "163A",
+      "num": 163,
+      "type": "regular",
+      "name": "Booth 163A",
+      "address": "SULUR - Booth 163A",
       "area": "SULUR"
     },
     {
@@ -1478,8 +2126,17 @@
       "boothNo": "164",
       "num": 164,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) S.K.K. Nagar Ward No.13 , 2.Sulur (T.P) S.L.V Nagar Ward No.13 , School, ,Sulur (South)             3.Sulur (T.P) Bharathi Nagar Ward No.15 , 4.Sulur(T.P) Indhira Nagar Ward No.3, 5.Sulur (T.P) Karunanithi Nagar Ward No.13",
+      "name": "Booth 164",
+      "address": "SULUR - Booth 164",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-164A",
+      "boothNo": "164A",
+      "num": 164,
+      "type": "regular",
+      "name": "Booth 164A",
+      "address": "SULUR - Booth 164A",
       "area": "SULUR"
     },
     {
@@ -1487,8 +2144,8 @@
       "boothNo": "165",
       "num": 165,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) Palaniappa Thevar Street Ward No.15 School, ,Sulur (South)-641402",
+      "name": "Booth 165",
+      "address": "SULUR - Booth 165",
       "area": "SULUR"
     },
     {
@@ -1496,8 +2153,17 @@
       "boothNo": "166",
       "num": 166,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) Nehru Nagar Ward No.15 , 2.Sulur (T.P) K.K.Sami Nagar Ward No.13 School, ,Sulur (South) station No.   which Polling Station located                                                                                            Voters or Men only or Women only",
+      "name": "Booth 166",
+      "address": "SULUR - Booth 166",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-166A",
+      "boothNo": "166A",
+      "num": 166,
+      "type": "regular",
+      "name": "Booth 166A",
+      "address": "SULUR - Booth 166A",
       "area": "SULUR"
     },
     {
@@ -1505,8 +2171,8 @@
       "boothNo": "167",
       "num": 167,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) Sulur Ward No.4 , 2.Sulur (T.P) Venkatramaayyar Layout Ward No.15 School, ,Sulur (South)             , 3.Sulur (T.P) Siruvani Tank Street Ward No.15 , 4.Sulur (T.P) Police Station Street Ward No.15 , 5.Sulur (T.P) A.K. Ramasami Nagar Ward No.15 , 6.Sulur (T.P) Trichy Road Ward No.15 , 7.Sulur (T.P) S.R.S Nagar Ward No.18",
+      "name": "Booth 167",
+      "address": "SULUR - Booth 167",
       "area": "SULUR"
     },
     {
@@ -1514,44 +2180,89 @@
       "boothNo": "168",
       "num": 168,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Sulur (T.P) P.T.O Colony Ward No.13 , 2.Sulur (T.P) Block Quaters Street Ward School, ,Sulur (South)             No.13 , 3.Sulur (T.P) Primary School Street Ward No.13 , 4.Sulur (T.P) S.K. Subramaniam Nagar Ward No.13 , 5.Sulur (T.P) Suganthi Nagar Ward No.13 , 6.Sulur (T.P) Kamatchi Devar Layout Ward No.13",
-      "area": "No."
+      "name": "Booth 168",
+      "address": "SULUR - Booth 168",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-168A",
+      "boothNo": "168A",
+      "num": 168,
+      "type": "regular",
+      "name": "Booth 168A",
+      "address": "SULUR - Booth 168A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-169",
       "boothNo": "169",
       "num": 169,
       "type": "regular",
-      "name": "Government Boys Higher",
-      "address": "1.Kannampalayam (T.P) Matha Kovil Street Ward No.9 , 2.Kannampalayam (T.P) Secondary School, East - West      Ramegounder Street Ward No.9 , 3.Kannampalayam (T.P) Kankkupillai Street New Building Room No-5             Ward No.8 , 4.Kannampalayam (T.P) Kuttiya Gounder Street Ward No.7 , Kannampalayam                      5.Kannampalayam (T.P) Pongiya Gounder Street Ward No.8 , 6.Kannampalayam (T.P) Venkataraya Gounder Street Ward No.8 , 7.Kannampalayam Spl (P) Chinna Rame Gounder Street Ward No.13,8.Kannampalayam (T.P) Thandalkaramuthan Street Ward No.6",
-      "area": "East"
+      "name": "Booth 169",
+      "address": "SULUR - Booth 169",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-169A",
+      "boothNo": "169A",
+      "num": 169,
+      "type": "regular",
+      "name": "Booth 169A",
+      "address": "SULUR - Booth 169A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-170",
       "boothNo": "170",
       "num": 170,
       "type": "regular",
-      "name": "Government Boys Higher",
-      "address": "1.Kannampalayam (T.P) Arunachala Boyan Street Ward No.9 , 2.Kannampalayam Secondary School, East - West      (T.P) Karuvaluran Street Ward No.9 , 3.Kannampalayam (T.P) Palaniyandi Street New Building Room No-5             Ward No.9 , 4.Kannampalayam (T.P) Kulaivannan Street Ward No.9 , Kannampalayam                      5.Kannampalayam (T.P) Appachi Gounder Street Ward No.10, 6.Kannampalayam (T.P) Mulakkadu Ward No.13",
-      "area": "East"
+      "name": "Booth 170",
+      "address": "SULUR - Booth 170",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-170A",
+      "boothNo": "170A",
+      "num": 170,
+      "type": "regular",
+      "name": "Booth 170A",
+      "address": "SULUR - Booth 170A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-171",
       "boothNo": "171",
       "num": 171,
       "type": "regular",
-      "name": "Government Boys Higher",
-      "address": "1.Kannampalayam (T.P) Kannampalayam Ward No.6 , 2.Kannampalayam (T.P) Secondary School, East - West      Chennimalai Gounder Street Ward No.7 , 3.Kannampalayam (T.P) Thiyagi Palani New Building Room No-5             Gounder Street Ward No.7 , 4.Kannampalayam (T.P) Aruputha Muthaliyar Street Kannampalayam                      Ward No.9 , 5.Kannampalayam (T.P) Kumara Gounder Street , 6.Kannampalayam (T.P) Ganapathy Pandaram Street station No.   which Polling Station located                                                                                    Voters or Men only or Women only",
-      "area": "East"
+      "name": "Booth 171",
+      "address": "SULUR - Booth 171",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-171A",
+      "boothNo": "171A",
+      "num": 171,
+      "type": "regular",
+      "name": "Booth 171A",
+      "address": "SULUR - Booth 171A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-172",
       "boothNo": "172",
       "num": 172,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kannampalayam (T.P) Kattukara Muthan Street Ward No.6 , 2.Kannampalayam School, , Kannampalayam            (T.P) Poosari Chinnarangan Street Ward No.5 , 3.Kannampalayam (T.P) Periyarayan Street Ward No.6 , 4.Kannampalayam (T.P) Sarvamatha Colony Ward No.10 , 5.Kannampalayam (T.P) Kadakkadu Appachi Gounder Street.5,6.Kannampalayam (T.P) Thiru V.Ka Nagar Ward No.11, 7.Kannampalayam (T.P) Mahalakshmi Nagar",
+      "name": "Booth 172",
+      "address": "SULUR - Booth 172",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-172A",
+      "boothNo": "172A",
+      "num": 172,
+      "type": "regular",
+      "name": "Booth 172A",
+      "address": "SULUR - Booth 172A",
       "area": "SULUR"
     },
     {
@@ -1559,8 +2270,17 @@
       "boothNo": "173",
       "num": 173,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kannampalayam (T.P) Pallapalayam Ward No.6 , 2.Kannampalayam (T.P) V.O.C School, , Kannampalayam            Nagar Ward No.10 , 3.Kannampalayam (T.P) Nanjappa devar Nagar Ward No.10 , 4.Kannampalayam (T.P) E.B Colony Ward No.10,",
+      "name": "Booth 173",
+      "address": "SULUR - Booth 173",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-173A",
+      "boothNo": "173A",
+      "num": 173,
+      "type": "regular",
+      "name": "Booth 173A",
+      "address": "SULUR - Booth 173A",
       "area": "SULUR"
     },
     {
@@ -1568,8 +2288,17 @@
       "boothNo": "174",
       "num": 174,
       "type": "regular",
-      "name": "V.L.B Government Aidded",
-      "address": "1.Kannampalayam (T.P) Ranganathapuram Ward No.2 School ,Ranganathapuram - 641402",
+      "name": "Booth 174",
+      "address": "SULUR - Booth 174",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-174A",
+      "boothNo": "174A",
+      "num": 174,
+      "type": "regular",
+      "name": "Booth 174A",
+      "address": "SULUR - Booth 174A",
       "area": "SULUR"
     },
     {
@@ -1577,8 +2306,17 @@
       "boothNo": "175",
       "num": 175,
       "type": "regular",
-      "name": "V.L.B Government Aidded",
-      "address": "1.Kannampalayam (T.P) Roja Nagar Ward No.4 , 2.Kannampalayam (T.P) K.N.K School ,Ranganathapuram -          Nagar Ward No.4 , 3.Kannampalayam (T.P) Senthil Nagar Ward No.4 , 641402                             4.Kannampalayam (T.P) Thottangal Ward No.4 , 5.Kannampalayam (T.P) Sivagami Nagar Ward No.4",
+      "name": "Booth 175",
+      "address": "SULUR - Booth 175",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-175A",
+      "boothNo": "175A",
+      "num": 175,
+      "type": "regular",
+      "name": "Booth 175A",
+      "address": "SULUR - Booth 175A",
       "area": "SULUR"
     },
     {
@@ -1586,8 +2324,17 @@
       "boothNo": "176",
       "num": 176,
       "type": "regular",
-      "name": "V.L.B Government Aidded",
-      "address": "1.Kannampalayam (T.P) Sengaliappan Nagar Ward No.4 , 2.Kannampalayam (T.P) School ,Ranganathapuram -          Amarjothi Nagar Ward No.4 641402",
+      "name": "Booth 176",
+      "address": "SULUR - Booth 176",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-176A",
+      "boothNo": "176A",
+      "num": 176,
+      "type": "regular",
+      "name": "Booth 176A",
+      "address": "SULUR - Booth 176A",
       "area": "SULUR"
     },
     {
@@ -1595,8 +2342,17 @@
       "boothNo": "177",
       "num": 177,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Kannampalayam (T.P) Thottangal Ward No.12 School ,Kannampalayam",
+      "name": "Booth 177",
+      "address": "SULUR - Booth 177",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-177A",
+      "boothNo": "177A",
+      "num": 177,
+      "type": "regular",
+      "name": "Booth 177A",
+      "address": "SULUR - Booth 177A",
       "area": "SULUR"
     },
     {
@@ -1604,8 +2360,8 @@
       "boothNo": "178",
       "num": 178,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Kannampalayam (T.P) Anna Nagar Arijana Colony Ward No.6 School ,Kannampalayam",
+      "name": "Booth 178",
+      "address": "SULUR - Booth 178",
       "area": "SULUR"
     },
     {
@@ -1613,8 +2369,17 @@
       "boothNo": "179",
       "num": 179,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Kannampalayam (T.P) Thottangal Indira Nagar Ward No.1 , 2.Kannampalayam School ,Kannampalayam              (T.P) Manoj Nagar Ward No.1 , 3.Kannampalayam (T.P) Karuvelathottangal Ward No.1 , 4.Kannampalayam (T.P) Sarathambal Nagar Ward No.1 , 5.Kannampalayam (T.P) Kallangadu Thottangal Ward No.1 station No.   which Polling Station located                                                                                     Voters or Men only or Women only",
+      "name": "Booth 179",
+      "address": "SULUR - Booth 179",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-179A",
+      "boothNo": "179A",
+      "num": 179,
+      "type": "regular",
+      "name": "Booth 179A",
+      "address": "SULUR - Booth 179A",
       "area": "SULUR"
     },
     {
@@ -1622,8 +2387,17 @@
       "boothNo": "180",
       "num": 180,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kannampalayam (T.P) Alagathiri Thottam Ward No.1 , 2.Kannampalayam (T.P) School, north Facing               Nakkan Thottam Ward No.1 , 3.Kannampalayam (T.P) North Thottam Ward No.1 , Selvarajapuram-641402              4.Kannampalayam (T.P) Komali Thottam Ward No.3 , 5.Kannampalayam (T.P) Indira Nagar Ward No.1 , ,6.Kannampalayam (T.P) Bakkimalli Thottam Ward No.1 ,",
+      "name": "Booth 180",
+      "address": "SULUR - Booth 180",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-180A",
+      "boothNo": "180A",
+      "num": 180,
+      "type": "regular",
+      "name": "Booth 180A",
+      "address": "SULUR - Booth 180A",
       "area": "SULUR"
     },
     {
@@ -1631,8 +2405,17 @@
       "boothNo": "181",
       "num": 181,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kannampalayam (T.P) Selvarajpuram Ward No.14, 2.Kannampalayam (T.P) School, north Facing               Aavilichetti Thottam Ward No.1 , 3.Kannampalayam (T.P) Jayalakshami Nagar Selvarajapuram-641402              W.No.1 , 4.Kannampalayam (T.P) Ramaiya Nagar Ward No.14 , 5.Kannampalayam (T.P) Srikrishna Nagar Ward No.1",
+      "name": "Booth 181",
+      "address": "SULUR - Booth 181",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-181A",
+      "boothNo": "181A",
+      "num": 181,
+      "type": "regular",
+      "name": "Booth 181A",
+      "address": "SULUR - Booth 181A",
       "area": "SULUR"
     },
     {
@@ -1640,8 +2423,17 @@
       "boothNo": "182",
       "num": 182,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kannampalayam (T.P) Thottangal Ward No.14 , 2.Kannampalayam (T.P) School, ,Selvarajapuram 641402     Chinthamaniputhur Ward No.15 , 3.Kannampalayam (T.P) Selvalakshami Nagar Ward No.1",
+      "name": "Booth 182",
+      "address": "SULUR - Booth 182",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-182A",
+      "boothNo": "182A",
+      "num": 182,
+      "type": "regular",
+      "name": "Booth 182A",
+      "address": "SULUR - Booth 182A",
       "area": "SULUR"
     },
     {
@@ -1649,8 +2441,8 @@
       "boothNo": "183",
       "num": 183,
       "type": "regular",
-      "name": "Kathirimills Higher Secondary",
-      "address": "1.Pallapalayam (T.P) Trichy Road Ward No.1 , 2.Pallapalayam (T.P) School ,Odderpalayam               Dr.Radhakirishnan Street Ward No.1 , 3.Pallapalayam (T.P) Saithiya Narayanapuram Ward No.1,4.Pallapalayam (T.P) Nehru Street Ward No.1 ,",
+      "name": "Booth 183",
+      "address": "SULUR - Booth 183",
       "area": "SULUR"
     },
     {
@@ -1658,8 +2450,8 @@
       "boothNo": "184",
       "num": 184,
       "type": "regular",
-      "name": "Kathirimills Higher Secondary",
-      "address": "1.Pallapalayam (T.P) Bharathi Street Ward No.1 , 2.Pallapalayam (T.P) V.O.C School ,Odderpalayam               Street Ward No.1 ,",
+      "name": "Booth 184",
+      "address": "SULUR - Booth 184",
       "area": "SULUR"
     },
     {
@@ -1667,8 +2459,17 @@
       "boothNo": "185",
       "num": 185,
       "type": "regular",
-      "name": "Kathirimills Higher Secondary",
-      "address": "1.Pallappayam (T.P) Chinthamanipudur South Ward No.2 , 2.Pallappayam (T.P) School ,Odderpalayam               Nethaji Street Ward No.2 , 3.Pallappayam (T.P) Thottangal Ward No.3 , 4.Pallappayam (T.P) Avarankodi Thoppu Ward No.3",
+      "name": "Booth 185",
+      "address": "SULUR - Booth 185",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-185A",
+      "boothNo": "185A",
+      "num": 185,
+      "type": "regular",
+      "name": "Booth 185A",
+      "address": "SULUR - Booth 185A",
       "area": "SULUR"
     },
     {
@@ -1676,8 +2477,8 @@
       "boothNo": "186",
       "num": 186,
       "type": "regular",
-      "name": "Kathirimills Higher Secondary",
-      "address": "1.Pallappayam (T.P) Meenachiamman Nagar Ward No.3 , 2.Pallappayam (T.P) School ,Odderpalayam               Gandhi Nagar Ward No.1 , 3.Pallappayam (T.P) Rose Garden Ward No.3 , 4.Pallappayam (T.P) Jallymedu Ward No.2 , 5.Pallappayam (T.P) Arul Murugan Nagar Ward No.3 , 6.Pallappayam (T.P) Savithiri Garden Ward No.3 station No.   which Polling Station located                                                                                          Voters or Men only or Women only",
+      "name": "Booth 186",
+      "address": "SULUR - Booth 186",
       "area": "SULUR"
     },
     {
@@ -1685,26 +2486,44 @@
       "boothNo": "187",
       "num": 187,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Pallapalayam (T.P) Vedappan Street Ward No.6 , 2.Pallapalayam (T.P) Eswaran North Facing Pallapalayam          Kovil Street Ward No.6 , 3.Pallapalayam (T.P) Panchayat Office Street Ward No.9 , 4.Pallapalayam (T.P) Mariyamman Kovil Street Ward No.6 , 5.Pallapalayam (T.P) Angappan Street Ward No.7 , 6.Pallapalayam (T.P) Angathdevar Street Ward No.7 , 7.Pallapalayam (T.P) Nanjappadever Street Ward No.8 , 8.Pallapalayam (T.P) Maniyakarar Street Ward No.9, 9.Pallapalayam (T.P) Pattakkarar STreet W.No.9",
-      "area": "Middle"
+      "name": "Booth 187",
+      "address": "SULUR - Booth 187",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-187A",
+      "boothNo": "187A",
+      "num": 187,
+      "type": "regular",
+      "name": "Booth 187A",
+      "address": "SULUR - Booth 187A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-188",
       "boothNo": "188",
       "num": 188,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Pallapalayam (T.P) Palaniyandavar Kovil Street Ward No.9 , 2.Pallapalayam (T.P) North Facing Pallapalayam          Muthukirishnadevar Street Ward No.9 , 3.Pallapalayam (T.P) Arunthathiyar Street Ward No.8 , 4.Pallapalayam (T.P) Muthuramalingadevar Street Ward No.9, 5.Pallapalayam (T.P) Papampatti Road Ward No.10 , 6.Pallapalayam (T.P) Thachan Thottam Ward No.10",
-      "area": "Middle"
+      "name": "Booth 188",
+      "address": "SULUR - Booth 188",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-188A",
+      "boothNo": "188A",
+      "num": 188,
+      "type": "regular",
+      "name": "Booth 188A",
+      "address": "SULUR - Booth 188A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-189",
       "boothNo": "189",
       "num": 189,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Pallapalayam (T.P) Manikkavasagar Street Ward No.4 , 2.Pallapalayam (T.P) School, ,Barathipuram-641 103      Thiruvalluvar Street Ward No.4 , 3.Pallapalayam (T.P) Agasthiyar Street Ward No.4 , 4.Pallapalayam (T.P) Sekilar Street Ward No.4 , 5.Pallapalayam (T.P) Arunagirinathar Street Ward No.4",
+      "name": "Booth 189",
+      "address": "SULUR - Booth 189",
       "area": "SULUR"
     },
     {
@@ -1712,8 +2531,17 @@
       "boothNo": "190",
       "num": 190,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Pallapalayam (T.P) Elangovadigal Street Ward No.5 , 2.Pallapalayam (T.P) School, North Facing               Thulasi Street Ward No.5 Barathipuram-641 103",
+      "name": "Booth 190",
+      "address": "SULUR - Booth 190",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-190A",
+      "boothNo": "190A",
+      "num": 190,
+      "type": "regular",
+      "name": "Booth 190A",
+      "address": "SULUR - Booth 190A",
       "area": "SULUR"
     },
     {
@@ -1721,35 +2549,71 @@
       "boothNo": "191",
       "num": 191,
       "type": "regular",
-      "name": "Govt High School, North Facing",
-      "address": "1.Pallapalayam (T.P) Pallapalayam Ward No-4 , 2.Pallapalayam (T.P) Teachers Barathipuram-641 103               Colony Ward No-4 , 3.Pallapalayam (T.P) Arijana Colony Ward No.4, 4.Pallapalayam (T.P) Kalidasan Street Ward No.5 , 5.Pallapalayam (T.P) Ravendranaththagur Street Ward No.5 , 6.Pallapalayam (T.P) Kambar Street Ward No.5",
-      "area": "North Facing"
+      "name": "Booth 191",
+      "address": "SULUR - Booth 191",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-191A",
+      "boothNo": "191A",
+      "num": 191,
+      "type": "regular",
+      "name": "Booth 191A",
+      "address": "SULUR - Booth 191A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-192",
       "boothNo": "192",
       "num": 192,
       "type": "regular",
-      "name": "Govt High School, North Facing",
-      "address": "1.Pallapalayam (T.P) Santhanalakshami Nagar Ward No.5 , 2.Pallapalayam (T.P) Barathipuram-641 103               Thirunavukarasu Street Ward No.5 , 3.Pallapalayam (T.P) Bharathipuram Extension W.No.4, 4.Pallapalayam (T.P) Valmigi Street Ward No.5",
-      "area": "North Facing"
+      "name": "Booth 192",
+      "address": "SULUR - Booth 192",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-192A",
+      "boothNo": "192A",
+      "num": 192,
+      "type": "regular",
+      "name": "Booth 192A",
+      "address": "SULUR - Booth 192A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-193",
       "boothNo": "193",
       "num": 193,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Pattanam (R.V) and (P) Pattanamputhur Ward No.1 School, ,Pattanampudur-641 016 station No.   which Polling Station located                                                                                        Voters or Men only or Women only",
-      "area": "North Facing"
+      "name": "Booth 193",
+      "address": "SULUR - Booth 193",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-193A",
+      "boothNo": "193A",
+      "num": 193,
+      "type": "regular",
+      "name": "Booth 193A",
+      "address": "SULUR - Booth 193A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-194",
       "boothNo": "194",
       "num": 194,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Pattanam (R.V) and (P) Pattanampudhur Ward No.2 School, ,Pattanampudur-641 016",
+      "name": "Booth 194",
+      "address": "SULUR - Booth 194",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-194A",
+      "boothNo": "194A",
+      "num": 194,
+      "type": "regular",
+      "name": "Booth 194A",
+      "address": "SULUR - Booth 194A",
       "area": "SULUR"
     },
     {
@@ -1757,8 +2621,17 @@
       "boothNo": "195",
       "num": 195,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Pattanam (R.V) and (P) Pattanam Ward No-5 , 2.Pattanam (R.V) and (P) School ,Pattanam-641 016       Karpagavinayagam Nagar Ward No-6",
+      "name": "Booth 195",
+      "address": "SULUR - Booth 195",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-195A",
+      "boothNo": "195A",
+      "num": 195,
+      "type": "regular",
+      "name": "Booth 195A",
+      "address": "SULUR - Booth 195A",
       "area": "SULUR"
     },
     {
@@ -1766,44 +2639,89 @@
       "boothNo": "196",
       "num": 196,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Pattanam (R.V) and (P) Palli Street , 2.Pattanam (R.V) and (P) Kaveri Nagar , ,Pattanam-641 016              3.Pattanam (R.V) and (P) Srinivasa Garden",
-      "area": "High"
+      "name": "Booth 196",
+      "address": "SULUR - Booth 196",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-196A",
+      "boothNo": "196A",
+      "num": 196,
+      "type": "regular",
+      "name": "Booth 196A",
+      "address": "SULUR - Booth 196A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-197",
       "boothNo": "197",
       "num": 197,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Pattanam (R.V) and (P) Perumal Kovil Street , 2.Pattanam (R.V) and (P) ,Pattanam-641 016              Aishwarya Nagar , 3.Pattanam (R.V) and (P) Vishnu Nagar",
-      "area": "High"
+      "name": "Booth 197",
+      "address": "SULUR - Booth 197",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-197A",
+      "boothNo": "197A",
+      "num": 197,
+      "type": "regular",
+      "name": "Booth 197A",
+      "address": "SULUR - Booth 197A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-198",
       "boothNo": "198",
       "num": 198,
       "type": "regular",
-      "name": "Panchayat Elementary School",
-      "address": "1.Pattanam (R.V) and (P) Nagammanaickenpalayam Ward No-7 , 2.Pattanam (R.V) ,Nagamanaickenpalayam - 641016 and (P) Arijana Colony Ward No-7 , 3.Pattanam (R.V) and (P) Manga Thottam Ward No-7 , 4.Pattanam (R.V) and (P) Thottangal Ward No-4",
-      "area": "Elementary"
+      "name": "Booth 198",
+      "address": "SULUR - Booth 198",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-198A",
+      "boothNo": "198A",
+      "num": 198,
+      "type": "regular",
+      "name": "Booth 198A",
+      "address": "SULUR - Booth 198A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-199",
       "boothNo": "199",
       "num": 199,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Pattanam (R.V) and (P) Pattanam Ward No-4 School ,Pattanam-641 016",
-      "area": "Elementary"
+      "name": "Booth 199",
+      "address": "SULUR - Booth 199",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-199A",
+      "boothNo": "199A",
+      "num": 199,
+      "type": "regular",
+      "name": "Booth 199A",
+      "address": "SULUR - Booth 199A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-200",
       "boothNo": "200",
       "num": 200,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Pattanam (R.V) and (P) Ram Dev Garden , 2.Pattanam (R.V) and (P) Indra Nagar School ,Pattanam-641 016       East , 3.Pattanam (R.V) and (P) Indra Nagar West , 4.Pattanam (R.V) and (P) Mariyamman Kovil North Street , 5.Pattanam (R.V) and (P) A.S Nagar",
+      "name": "Booth 200",
+      "address": "SULUR - Booth 200",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-200A",
+      "boothNo": "200A",
+      "num": 200,
+      "type": "regular",
+      "name": "Booth 200A",
+      "address": "SULUR - Booth 200A",
       "area": "SULUR"
     },
     {
@@ -1811,35 +2729,53 @@
       "boothNo": "201",
       "num": 201,
       "type": "regular",
-      "name": "Government High School East",
-      "address": "1.Pattanam (R.V) and (P) Sri Nagar , 2.Pattanam (R.V) and (P) North Street , building Pattanam - 641 016        3.Pattanam (R.V) and (P) Kamatchiamman Kovil Street",
-      "area": "East"
+      "name": "Booth 201",
+      "address": "SULUR - Booth 201",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-202",
       "boothNo": "202",
       "num": 202,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Peedampalli (R.V) and (P) Naduppalayam Ward No-1 School, ,Nadupalayam-641 016",
-      "area": "East"
+      "name": "Booth 202",
+      "address": "SULUR - Booth 202",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-203",
       "boothNo": "203",
       "num": 203,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Peedampalli (R.V) and (P) Naduppalayam Ward No-2 , 2.Peedampalli (R.V) and School, ,Nadupalayam-641 016       (P) Arijana Colony Ward No-1",
-      "area": "East"
+      "name": "Booth 203",
+      "address": "SULUR - Booth 203",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-203A",
+      "boothNo": "203A",
+      "num": 203,
+      "type": "regular",
+      "name": "Booth 203A",
+      "address": "SULUR - Booth 203A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-204",
       "boothNo": "204",
       "num": 204,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Peedampalli (R.V) and (P) Raja street Ward No-4 , 2.Peedampalli (R.V) and (P) School, ,Peedampalli-641 016       Maniyakarar Thottam Ward No-3 , 3.Peedampalli (R.V) and (P) Vaithiyar Street Ward No-4 , 4.Peedampalli (R.V) and (P) Cheran Nagar Ward No-4 , 5.Peedampalli (R.V) and (P) Duraisami Nagar Ward No-4 , 6.Peedampalli (R.V) and (P) Nadu Street Ward No -3 , 7.Peedampalli (R.V) and (P) North street Ward No-3 station No.   which Polling Station located                                                                                        Voters or Men only or Women only",
+      "name": "Booth 204",
+      "address": "SULUR - Booth 204",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-204A",
+      "boothNo": "204A",
+      "num": 204,
+      "type": "regular",
+      "name": "Booth 204A",
+      "address": "SULUR - Booth 204A",
       "area": "SULUR"
     },
     {
@@ -1847,8 +2783,17 @@
       "boothNo": "205",
       "num": 205,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Peedampalli (R.V) and (P) Navalar Street Ward No-5 , 2.Peedampalli (R.V) and School, ,Peedampalli-641 016       (P) Raja Nagar Ward No-5 , 3.Peedampalli (R.V) and (P) West Thottam Ward No-5 , 4.Peedampalli (R.V) and (P) South Thottam Ward No-5 , 5.Peedampalli (R.V) and (P) East Thottam Ward No-5",
+      "name": "Booth 205",
+      "address": "SULUR - Booth 205",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-205A",
+      "boothNo": "205A",
+      "num": 205,
+      "type": "regular",
+      "name": "Booth 205A",
+      "address": "SULUR - Booth 205A",
       "area": "SULUR"
     },
     {
@@ -1856,53 +2801,107 @@
       "boothNo": "206",
       "num": 206,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Kalangal (R.V) and (P) East Street Ward No-5 , ,Kalangal-641 402",
-      "area": "High"
+      "name": "Booth 206",
+      "address": "SULUR - Booth 206",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-206A",
+      "boothNo": "206A",
+      "num": 206,
+      "type": "regular",
+      "name": "Booth 206A",
+      "address": "SULUR - Booth 206A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-207",
       "boothNo": "207",
       "num": 207,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Kalangal (R.V) and (P) Anna Nagar Ward No-2 , 2.Kalangal (R.V) and (P) Anna ,Kalangal-641 402                  Nagar Arijana Colony Ward No-2",
-      "area": "High"
+      "name": "Booth 207",
+      "address": "SULUR - Booth 207",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-207A",
+      "boothNo": "207A",
+      "num": 207,
+      "type": "regular",
+      "name": "Booth 207A",
+      "address": "SULUR - Booth 207A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-208",
       "boothNo": "208",
       "num": 208,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Kalangal (R.V) and (P) Kasikavundanpudhur Ward No-4 , 2.Kalangal (R.V) and ,Kalangal-641 402                  (P) Indira Nagar Ward No-4",
-      "area": "High"
+      "name": "Booth 208",
+      "address": "SULUR - Booth 208",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-208A",
+      "boothNo": "208A",
+      "num": 208,
+      "type": "regular",
+      "name": "Booth 208A",
+      "address": "SULUR - Booth 208A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-209",
       "boothNo": "209",
       "num": 209,
       "type": "regular",
-      "name": "Panchayat Union Elementry",
-      "address": "1.Kalangal (R.V) and (P) Kalangal Ward No-1 School , Kalangal - 641402",
-      "area": "High"
+      "name": "Booth 209",
+      "address": "SULUR - Booth 209",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-209A",
+      "boothNo": "209A",
+      "num": 209,
+      "type": "regular",
+      "name": "Booth 209A",
+      "address": "SULUR - Booth 209A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-210",
       "boothNo": "210",
       "num": 210,
       "type": "regular",
-      "name": "Panchayat Union Elementry",
-      "address": "1.Kalangal (R.V) and (P) Maduraiveeran Kovil Street Ward No-3 , 2.Kalangal (R.V) School , Kalangal - 641402         and (P) Kalangal Ward No-3",
-      "area": "High"
+      "name": "Booth 210",
+      "address": "SULUR - Booth 210",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-210A",
+      "boothNo": "210A",
+      "num": 210,
+      "type": "regular",
+      "name": "Booth 210A",
+      "address": "SULUR - Booth 210A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-211",
       "boothNo": "211",
       "num": 211,
       "type": "regular",
-      "name": "Panchayat Union elementary",
-      "address": "1.Kangayampalayam (R.V) and (P) Kangayampalayam Ward No-1 School, Kangeyampalayam - 641401",
+      "name": "Booth 211",
+      "address": "SULUR - Booth 211",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-211A",
+      "boothNo": "211A",
+      "num": 211,
+      "type": "regular",
+      "name": "Booth 211A",
+      "address": "SULUR - Booth 211A",
       "area": "SULUR"
     },
     {
@@ -1910,8 +2909,8 @@
       "boothNo": "212",
       "num": 212,
       "type": "regular",
-      "name": "Panchayat Union elementary",
-      "address": "1.Kangayampalayam (R.V) and (P) Kangayampalayam Ward No-2 School, kangayampalayam - 641402",
+      "name": "Booth 212",
+      "address": "SULUR - Booth 212",
       "area": "SULUR"
     },
     {
@@ -1919,125 +2918,170 @@
       "boothNo": "213",
       "num": 213,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Kangayampalayam (R.V) and (P) Kangayampalayam Ward No-3 , ,Kangeyampalayam-641 401           2.Kangeyampalayam (R.V) and (P) Kamarajar Colony Ward No-3",
-      "area": "High"
+      "name": "Booth 213",
+      "address": "SULUR - Booth 213",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-213A",
+      "boothNo": "213A",
+      "num": 213,
+      "type": "regular",
+      "name": "Booth 213A",
+      "address": "SULUR - Booth 213A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-214",
       "boothNo": "214",
       "num": 214,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Kangayampalayam (R.V) and (P) Nehru Nagar Ward No-3 , 2.Kangayampalayam ,Kangeyampalayam-641 401           R.V) and (P) Vignesh Nagar , 3.Kangayampalayam (R.V) and (P) Balaji Nagar Ward No-3 , 4.Kangayampalayam (R.V) and (P) Kumaran Nagar Ward No-3, 5.Kangayampalayam (R.V) and (P) M.E.S Colony Ward No-3",
-      "area": "High"
+      "name": "Booth 214",
+      "address": "SULUR - Booth 214",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-214A",
+      "boothNo": "214A",
+      "num": 214,
+      "type": "regular",
+      "name": "Booth 214A",
+      "address": "SULUR - Booth 214A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-215",
       "boothNo": "215",
       "num": 215,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Kangayampalayam (R.V) and (P) Arijana Colony Ward No-3 , ,Kangeyampalayam-641 401           2.Kangayampalayam (R.V) and (P) Airport Colony Ward No-3 , 3.Kangayampalayam (R.V) and (P) Thottathusalai Ward No-3 station No.   which Polling Station located                                                                                      Voters or Men only or Women only",
-      "area": "High"
+      "name": "Booth 215",
+      "address": "SULUR - Booth 215",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-216",
       "boothNo": "216",
       "num": 216,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kadampadi (R.V) and (P) Sengathdurai Ward No-2 ,Senkadurai-641 401",
-      "area": "Middle"
+      "name": "Booth 216",
+      "address": "SULUR - Booth 216",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-217",
       "boothNo": "217",
       "num": 217,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kadampadi (R.V) and (P) Kumarapalayam Ward No-1 , 2.Kadampadi (R.V) and ,Senkadurai-641 401                (P) Kumarapalayam Arijana Colony Ward No-2",
-      "area": "Middle"
+      "name": "Booth 217",
+      "address": "SULUR - Booth 217",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-218",
       "boothNo": "218",
       "num": 218,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kadampadi (R.V) and (P) Sengathurai Ward No-3 , 2.Kadampadi (R.V) and (P) ,Senkadurai-641 401                Sengathurai Arijana colony Ward No-3",
-      "area": "Middle"
+      "name": "Booth 218",
+      "address": "SULUR - Booth 218",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-219",
       "boothNo": "219",
       "num": 219,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kadampadi (R.V) and (P) Sengathurai Ward No-4 ,Senkadurai-641 401",
-      "area": "Middle"
+      "name": "Booth 219",
+      "address": "SULUR - Booth 219",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-220",
       "boothNo": "220",
       "num": 220,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kadampadi (R.V) and (P) Kadampadiputhur Ward No-5 , 2.Kadampadi (R.V) and ,Kadambadi-641 401                 (P) Divine Garden Ward No-5 , 3.Kadampadi (R.V) and (P) Padi Nagar",
-      "area": "Middle"
+      "name": "Booth 220",
+      "address": "SULUR - Booth 220",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-221",
       "boothNo": "221",
       "num": 221,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kadampadi (R.V) and (P) Defence Colony Ward No-5 , 2.Kadampadi (R.V) and ,Kadambadi-641 401                 (P) P.N.P Nagar Ward No-5 , 3.Kadampadi (R.V) and (P) Pappan Thottam , 4.Kadampadi (R.V) and (P) Kudarathottam , 5.Kadampadi(R.V) and (P) Thennaimarathottam",
-      "area": "Middle"
+      "name": "Booth 221",
+      "address": "SULUR - Booth 221",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-222",
       "boothNo": "222",
       "num": 222,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kadampadi (R.V) and (P) Kadampadi Ward No-6 School,Kadambadi - 641401",
-      "area": "Middle"
+      "name": "Booth 222",
+      "address": "SULUR - Booth 222",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-222A",
+      "boothNo": "222A",
+      "num": 222,
+      "type": "regular",
+      "name": "Booth 222A",
+      "address": "SULUR - Booth 222A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-223",
       "boothNo": "223",
       "num": 223,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kadampadi (R.V) and (P) Kadampadi Ward No-6 , 2.Kadampadi (R.V) and (P) ,Kadambadi-641 401                 Thiruvalluvar Nagar Ward No-7 , 3.Kadampadi (R.V) and (P) Indira Nagar Ward No-7",
-      "area": "Middle"
+      "name": "Booth 223",
+      "address": "SULUR - Booth 223",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-224",
       "boothNo": "224",
       "num": 224,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kadampadi (R.V) and (P) Kadampadi Arijana Colony Ward No-7 , 2.Kadampadi ,Kadambadi-641 401                 (R.V) and (P) Bharathi Nagar Ward No-7 , 3.Kadampadi (R.V) and (P) Rajalingam Nagar Wad No-7",
-      "area": "Middle"
+      "name": "Booth 224",
+      "address": "SULUR - Booth 224",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-224A",
+      "boothNo": "224A",
+      "num": 224,
+      "type": "regular",
+      "name": "Booth 224A",
+      "address": "SULUR - Booth 224A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-225",
       "boothNo": "225",
       "num": 225,
       "type": "regular",
-      "name": "St.Joseph Middle School",
-      "address": "1.Samalapuram (T.P) Samalapuram Ward No-1 , 2.Samalapuram (T.P) Easwaran ,Pallapalayam-641 663              Kovil Street Ward No -1 , 3.Samalapuram (T.P) West Street Ward No-2 , 4.Samalapuram(T.P) Anna Street Ward No-2",
-      "area": "Middle"
+      "name": "Booth 225",
+      "address": "SULUR - Booth 225",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-225A",
+      "boothNo": "225A",
+      "num": 225,
+      "type": "regular",
+      "name": "Booth 225A",
+      "address": "SULUR - Booth 225A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-226",
       "boothNo": "226",
       "num": 226,
       "type": "regular",
-      "name": "St.Joseph Middle School",
-      "address": "1.Samalapuram (T.P) Thottathu Salai Street Ward No-3 , 2.Samalapuram (T.P) ,Pallapalayam-641 663              Karupparayan Kovil Street Ward No-5 , 3.Samalapuram (T.P) Arijana Street Ward No-3 station No.   which Polling Station located                                                                                   Voters or Men only or Women only",
+      "name": "Booth 226",
+      "address": "SULUR - Booth 226",
       "area": "SULUR"
     },
     {
@@ -2045,8 +3089,8 @@
       "boothNo": "227",
       "num": 227,
       "type": "regular",
-      "name": "St.Joseph Middle School",
-      "address": "1.Samalapuram (T.P) Kamarajar Street Ward No-2 , 2.Samalapuram (T.P) Pillaiyar ,Pallapalayam-641 663          Kovil Street Ward No-2 , 3.Samalapuram (T.P) Raj Vaikkal Street Ward No-2 , 4.Samalapuram (T.P) Anna Nagar Ward No- 3 ,",
+      "name": "Booth 227",
+      "address": "SULUR - Booth 227",
       "area": "SULUR"
     },
     {
@@ -2054,8 +3098,17 @@
       "boothNo": "228",
       "num": 228,
       "type": "regular",
-      "name": "St.Joseph Middle School",
-      "address": "1.Samalapuram (T.P) Church Street Ward No-3 , 2.Samalapuram (T.P) Main Road ,Pallapalayam-641 663          Ward No-3",
+      "name": "Booth 228",
+      "address": "SULUR - Booth 228",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-228A",
+      "boothNo": "228A",
+      "num": 228,
+      "type": "regular",
+      "name": "Booth 228A",
+      "address": "SULUR - Booth 228A",
       "area": "SULUR"
     },
     {
@@ -2063,8 +3116,17 @@
       "boothNo": "229",
       "num": 229,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) Vinayagar Kovil Street Ward No-4 , 2.Samalapuram (T.P) School, ,Velayuthampalayam-641 Kalaignar Street Ward No-4 , 3.Samalapuram (T.P) Shanthi Nagar Ward No-4 , 663                            4.Samalapuram (T.P) Kulanthai Velauthasami Street Ward No-4 , 5.Samalapuram (T.P) Paramasivanpalayam Ward No-4",
+      "name": "Booth 229",
+      "address": "SULUR - Booth 229",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-229A",
+      "boothNo": "229A",
+      "num": 229,
+      "type": "regular",
+      "name": "Booth 229A",
+      "address": "SULUR - Booth 229A",
       "area": "SULUR"
     },
     {
@@ -2072,8 +3134,17 @@
       "boothNo": "230",
       "num": 230,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) Mariamman Kovil Street Ward No-5 , 2.Samalapuram (T.P) School, ,Velayuthampalayam-641 Karupparayan Kovil Street Ward No-5 , 3.Samalapuram (T.P) Perumal Kovil Street 663                            Ward No-5 , 4.Samalapuram (T.P) West Street Ward No-5",
+      "name": "Booth 230",
+      "address": "SULUR - Booth 230",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-230A",
+      "boothNo": "230A",
+      "num": 230,
+      "type": "regular",
+      "name": "Booth 230A",
+      "address": "SULUR - Booth 230A",
       "area": "SULUR"
     },
     {
@@ -2081,8 +3152,8 @@
       "boothNo": "231",
       "num": 231,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) Nehru Street Ward No-5 , 2.Samalapuram (T.P) Arijana School, ,Kalipalayam-641 663   Colony Ward No-7 , 3.Samalapuram (T.P) Kalipalayam Ward No-7 ,",
+      "name": "Booth 231",
+      "address": "SULUR - Booth 231",
       "area": "SULUR"
     },
     {
@@ -2090,8 +3161,8 @@
       "boothNo": "232",
       "num": 232,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) North Street Ward No-7 , 2.Samalapuram (T.P) Jallimedu School, ,Kalipalayam-641 663   Street Ward No-7 , 3.Samalapuram (T.P) Mantha Kovil Street Ward No-7 , 4.Samalapuram (T.P) chavadi Streetn Ward No-7",
+      "name": "Booth 232",
+      "address": "SULUR - Booth 232",
       "area": "SULUR"
     },
     {
@@ -2099,8 +3170,8 @@
       "boothNo": "233",
       "num": 233,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) West Street Ward No-9 School, ,Kalipalayam-641 663",
+      "name": "Booth 233",
+      "address": "SULUR - Booth 233",
       "area": "SULUR"
     },
     {
@@ -2108,8 +3179,17 @@
       "boothNo": "234",
       "num": 234,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) Perumal Kovil Street Ward No-7 , 2.Samalapuram (T.P) School, ,Kalipalayam-641 663   Samalapuram Ward No-8 , 3.Samalapuram (T.P) Ayyan Koil Street Ward No-8 , 4.Samalapuram (T.P) Pillaiyar Kovil Street Ward No-8 , 5.Samalapuram (T.P) Mariamman Kovil Street Ward No -8 , 6.Samalapuram (T.P) Ayyampalayam Ward No -8",
+      "name": "Booth 234",
+      "address": "SULUR - Booth 234",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-234A",
+      "boothNo": "234A",
+      "num": 234,
+      "type": "regular",
+      "name": "Booth 234A",
+      "address": "SULUR - Booth 234A",
       "area": "SULUR"
     },
     {
@@ -2117,8 +3197,17 @@
       "boothNo": "235",
       "num": 235,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) Karupparayan Kovil Street Ward No-9 , 2.Samalapuram (T.P) School, ,Samalapuram-641 663   Water Tank Street Ward No-9 ,",
+      "name": "Booth 235",
+      "address": "SULUR - Booth 235",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-235A",
+      "boothNo": "235A",
+      "num": 235,
+      "type": "regular",
+      "name": "Booth 235A",
+      "address": "SULUR - Booth 235A",
       "area": "SULUR"
     },
     {
@@ -2126,8 +3215,8 @@
       "boothNo": "236",
       "num": 236,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) West Street Ward No-9 , 2.Samalapuram (T.P) Naduvalvu School, ,Samalapuram-641 663   Street Ward No-9 , 3.Samalapuram T.P) East Street Ward No-9 , 4.Samalapuram (T.P) South Street Ward No-9 station No.   which Polling Station located                                                                                        Voters or Men only or Women only",
+      "name": "Booth 236",
+      "address": "SULUR - Booth 236",
       "area": "SULUR"
     },
     {
@@ -2135,8 +3224,17 @@
       "boothNo": "237",
       "num": 237,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) Ratchakar Street Ward No-10 , 2.Samalapuram (T.P) East School ,Karugampalayam-641 663 Street Ward No-10 , 3.Samalapuram (T.P) South Street Ward No-10 , 4.Samalapuram (T.P) Arijana Colony Ward No-10",
+      "name": "Booth 237",
+      "address": "SULUR - Booth 237",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-237A",
+      "boothNo": "237A",
+      "num": 237,
+      "type": "regular",
+      "name": "Booth 237A",
+      "address": "SULUR - Booth 237A",
       "area": "SULUR"
     },
     {
@@ -2144,8 +3242,17 @@
       "boothNo": "238",
       "num": 238,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) Annur Street Ward No-10 , 2.Samalapuram (T.P) West Street School ,Karugampalayam-641 663 Ward No-10",
+      "name": "Booth 238",
+      "address": "SULUR - Booth 238",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-238A",
+      "boothNo": "238A",
+      "num": 238,
+      "type": "regular",
+      "name": "Booth 238A",
+      "address": "SULUR - Booth 238A",
       "area": "SULUR"
     },
     {
@@ -2153,8 +3260,17 @@
       "boothNo": "239",
       "num": 239,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) Mariamman Kovil Street Ward No-10 , 2.Samalapuram (T.P) School ,Karugampalayam-641 663 West Street Ward No-10",
+      "name": "Booth 239",
+      "address": "SULUR - Booth 239",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-239A",
+      "boothNo": "239A",
+      "num": 239,
+      "type": "regular",
+      "name": "Booth 239A",
+      "address": "SULUR - Booth 239A",
       "area": "SULUR"
     },
     {
@@ -2162,8 +3278,17 @@
       "boothNo": "240",
       "num": 240,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Samalapuram (T.P) Ram Nagar Ward No-10 , 2.Samalapuram (T.P) Samalapuram School, ,Karugampalayam-641        Ward No-10 , 3.Samalapuram (T.P) Sendevipalayam Ward No-10 , 4.Samalapuram 663                                (T.P) Bharathi Nagar Ward No-10 , 5.Samalapuram (T.P) Thiruvalluvar Street Ward No-10",
+      "name": "Booth 240",
+      "address": "SULUR - Booth 240",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-240A",
+      "boothNo": "240A",
+      "num": 240,
+      "type": "regular",
+      "name": "Booth 240A",
+      "address": "SULUR - Booth 240A",
       "area": "SULUR"
     },
     {
@@ -2171,8 +3296,17 @@
       "boothNo": "241",
       "num": 241,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kallapalayam (R.V) and (P) Kallapalayam Ward No -1 , 2.Kallapalayam (R.V) School, , Kallapalayam             and (P) Kallapalayam Ward No-3 , 3.Kallapalayam (R.V) and (P) Harijana Colony Ward No -1",
+      "name": "Booth 241",
+      "address": "SULUR - Booth 241",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-241A",
+      "boothNo": "241A",
+      "num": 241,
+      "type": "regular",
+      "name": "Booth 241A",
+      "address": "SULUR - Booth 241A",
       "area": "SULUR"
     },
     {
@@ -2180,8 +3314,8 @@
       "boothNo": "242",
       "num": 242,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kallapalayam (R.V) and (P) Kallapalayam Ward No- 2 School, , Kallapalayam",
+      "name": "Booth 242",
+      "address": "SULUR - Booth 242",
       "area": "SULUR"
     },
     {
@@ -2189,8 +3323,8 @@
       "boothNo": "243",
       "num": 243,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kallapalayam (R.V) and (P) Chinnakuyilai Ward No-4 , 2.Kallapalayam (R.V) School, , Chinnakuilai             and (P) Harijana Colony Ward No-4",
+      "name": "Booth 243",
+      "address": "SULUR - Booth 243",
       "area": "SULUR"
     },
     {
@@ -2198,44 +3332,53 @@
       "boothNo": "244",
       "num": 244,
       "type": "regular",
-      "name": "Panchayat Union Middle School, ",
-      "address": "1.Pappampatti (R.V) and (P) Papampatti Ward No-1 Pappampatty",
-      "area": "Middle"
+      "name": "Booth 244",
+      "address": "SULUR - Booth 244",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-244A",
+      "boothNo": "244A",
+      "num": 244,
+      "type": "regular",
+      "name": "Booth 244A",
+      "address": "SULUR - Booth 244A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-245",
       "boothNo": "245",
       "num": 245,
       "type": "regular",
-      "name": "Panchayat Union Middle School, ",
-      "address": "1.Pappampatti (R.V) and (P) Pappampatti Ward No-2 , 2.Pappampatti (R.V) and (P) Pappampatty 641016                 Pappampatti Ward No-3",
-      "area": "Middle"
+      "name": "Booth 245",
+      "address": "SULUR - Booth 245",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-246",
       "boothNo": "246",
       "num": 246,
       "type": "regular",
-      "name": "Panchayat Union Middle School, ",
-      "address": "1.Pappampatti (R.V) and (P) Pappampatti Ward No-4 , 2.Papampatti (R.V) and (P) Pappampatty                        Papampatti Ward No-5 ,3Pappampatti (R.V) and (P) Arijana Colony Ward No-6",
-      "area": "Middle"
+      "name": "Booth 246",
+      "address": "SULUR - Booth 246",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-247",
       "boothNo": "247",
       "num": 247,
       "type": "regular",
-      "name": "Panchayat Union Middle School, , 1.Papampatti (R.V) and (P) Papampatti Ward No-6 , 2.Papampatti (R.V) and (P) Pappampatty Arijana Colony Ward No-5",
-      "address": "station No.   which Polling Station located                                                                                           Voters or Men only or Women only",
-      "area": "Middle"
+      "name": "Booth 247",
+      "address": "SULUR - Booth 247",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-248",
       "boothNo": "248",
       "num": 248,
       "type": "regular",
-      "name": "Sri Venkateswara High school, ",
-      "address": "1.Appanaickenpatti (R.V) and (P) Appanaickenpatti Ward No-1 Appanaickanpatty 641402",
+      "name": "Booth 248",
+      "address": "SULUR - Booth 248",
       "area": "SULUR"
     },
     {
@@ -2243,8 +3386,8 @@
       "boothNo": "249",
       "num": 249,
       "type": "regular",
-      "name": "Sri Venkateswara High school, ",
-      "address": "1.Appanaickenpatti R.V) and (P) Appanaickenpatti Ward No-3 Appanaickanpatty 641402",
+      "name": "Booth 249",
+      "address": "SULUR - Booth 249",
       "area": "SULUR"
     },
     {
@@ -2252,8 +3395,8 @@
       "boothNo": "250",
       "num": 250,
       "type": "regular",
-      "name": "Sri Venkateswara High",
-      "address": "1.Appanaickenpatti (R.V) and (P) Appanaickenpatti-1 Ward No-2 school,south portion facing west Appanaickanpatty 641402",
+      "name": "Booth 250",
+      "address": "SULUR - Booth 250",
       "area": "SULUR"
     },
     {
@@ -2261,8 +3404,8 @@
       "boothNo": "251",
       "num": 251,
       "type": "regular",
-      "name": "Sri Venkateswara High",
-      "address": "1.Appanaickenpatti (R.V) and (P) Appanaickenpatti-2 Ward No-2 school,south portion facing west Appanaickanpatty 641402",
+      "name": "Booth 251",
+      "address": "SULUR - Booth 251",
       "area": "SULUR"
     },
     {
@@ -2270,8 +3413,8 @@
       "boothNo": "252",
       "num": 252,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Appanaickenpatti (R.V) and (P) Appanaickenpattiputhur Ward No-4 School Appanaiceknpattypudur ,Appanaickanpattypudur -641402",
+      "name": "Booth 252",
+      "address": "SULUR - Booth 252",
       "area": "SULUR"
     },
     {
@@ -2279,8 +3422,17 @@
       "boothNo": "253",
       "num": 253,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Selakkarisal (R.V) and (P) Chitthanaickanpalayam Ward No-1 , 2.Selekarichel School, ,Sithanaickanpalayam       (R.V) and (P) Chithanaickanpalayam Ward No-2",
+      "name": "Booth 253",
+      "address": "SULUR - Booth 253",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-253A",
+      "boothNo": "253A",
+      "num": 253,
+      "type": "regular",
+      "name": "Booth 253A",
+      "address": "SULUR - Booth 253A",
       "area": "SULUR"
     },
     {
@@ -2288,8 +3440,8 @@
       "boothNo": "254",
       "num": 254,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Selekarichel (R.V) and (P) Arijana Colony Ward No-3 School, ,Sithanaickanpalayam",
+      "name": "Booth 254",
+      "address": "SULUR - Booth 254",
       "area": "SULUR"
     },
     {
@@ -2297,44 +3449,53 @@
       "boothNo": "255",
       "num": 255,
       "type": "regular",
-      "name": "Panchayat Union Middle School, ",
-      "address": "1.Selekarichel (R.V) and (P) Selekarichel Ward No-4 , 2.Selekarichel (R.V) and (P) Selakarichal                       Selekarichel Ward No-5",
-      "area": "Middle"
+      "name": "Booth 255",
+      "address": "SULUR - Booth 255",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-256",
       "boothNo": "256",
       "num": 256,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Selekarichel (R.V) and (P) Selekarichel Ward No-6 Selakarichal , Selakarichal",
-      "area": "Middle"
+      "name": "Booth 256",
+      "address": "SULUR - Booth 256",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-256A",
+      "boothNo": "256A",
+      "num": 256,
+      "type": "regular",
+      "name": "Booth 256A",
+      "address": "SULUR - Booth 256A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-257",
       "boothNo": "257",
       "num": 257,
       "type": "regular",
-      "name": "Panchayat Union Middle School, 1.Selakarachal (R.V) and (P) Selakarachal Harijana Colony Ward No 7 Selakarichal ,Selakarichal -641658",
-      "address": "Panchayat Union Middle School",
-      "area": "Middle"
+      "name": "Booth 257",
+      "address": "SULUR - Booth 257",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-258",
       "boothNo": "258",
       "num": 258,
       "type": "regular",
-      "name": "S.R.N.V Higher Secondary School 1.Selekarichel (R.V) and (P) Lakshaminayakkanpalayam Ward No-8 , 2.Selekarichel All Voters",
-      "address": ",Lakshminaickenpalayam 641658 (R.V) and (P) Thimmanayakkanpalayam Ward No-10 station No.   which Polling Station located                                                                                      Voters or Men only or Women only",
-      "area": "Middle"
+      "name": "Booth 258",
+      "address": "SULUR - Booth 258",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-259",
       "boothNo": "259",
       "num": 259,
       "type": "regular",
-      "name": "S.R.N.V Higher Secondary School 1.Selekarichel (R.V) and (P) Harijana Colony Ward No- 9 , 2.Selekarichel (R.V) and All Voters",
-      "address": ",Lakshminaickenpalayam 641658 (P) Veerapoosaripalayam Ward No-10 , 3.Selekarichel (R.V) and (P) Aarijanacolony Ward No-10",
+      "name": "Booth 259",
+      "address": "SULUR - Booth 259",
       "area": "SULUR"
     },
     {
@@ -2342,8 +3503,17 @@
       "boothNo": "260",
       "num": 260,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Edayapalayam (R.V) and (P) Edayapalayam Ward No-1,2.Edayapalayam (R.V) School,Edayarpalayam               and (P) Thottasalaikal Ward No-1",
+      "name": "Booth 260",
+      "address": "SULUR - Booth 260",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-260A",
+      "boothNo": "260A",
+      "num": 260,
+      "type": "regular",
+      "name": "Booth 260A",
+      "address": "SULUR - Booth 260A",
       "area": "SULUR"
     },
     {
@@ -2351,8 +3521,17 @@
       "boothNo": "261",
       "num": 261,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Edayapalayam (R.V) and (P) Edayapalayam Ward No-3,2.Edayarpalayam (R.V) School,Edayarpalayam               and (P) Thottasalaikal Ward No-3,3.Edayapalayam (R.V) and (P) Edayapalayam Ward No-2",
+      "name": "Booth 261",
+      "address": "SULUR - Booth 261",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-261A",
+      "boothNo": "261A",
+      "num": 261,
+      "type": "regular",
+      "name": "Booth 261A",
+      "address": "SULUR - Booth 261A",
       "area": "SULUR"
     },
     {
@@ -2360,8 +3539,8 @@
       "boothNo": "262",
       "num": 262,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Pachapalayam (R.V) and (P) Thekani Harijana Colony Ward No-4 , School,Thekani                     2.Pachaiyampalayam (R.V) and(P) Thegani W.No4 , 3.Pachaiyampalayam (R.V) and (P) Thegani W.No5",
+      "name": "Booth 262",
+      "address": "SULUR - Booth 262",
       "area": "SULUR"
     },
     {
@@ -2369,62 +3548,71 @@
       "boothNo": "263",
       "num": 263,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Pachaiyampalayam (R.V) andv(P) Periyakuyilai Ward.No-1 , 4.Pachayampalayam Periyakuilai                       (R.V) and (P) Periyakuyilai Arijana Colony Ward No-3",
-      "area": "Middle"
+      "name": "Booth 263",
+      "address": "SULUR - Booth 263",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-264",
       "boothNo": "264",
       "num": 264,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Pachaiyampalayam (R.V) and (P) Periyakuyilai Ward.No-2 , 2.Pachaiyampalayam Periyakuilai                       (R.V) and (P) Periyakuyilai Ward.No-3 ,",
-      "area": "Middle"
+      "name": "Booth 264",
+      "address": "SULUR - Booth 264",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-265",
       "boothNo": "265",
       "num": 265,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Bogampatti (R.V) and (P) Bogampatti W.No-1 , 2.Bogampatti (R.V) and (P) ,Bogampatty                        Arijanacolony W.No-2",
-      "area": "Middle"
+      "name": "Booth 265",
+      "address": "SULUR - Booth 265",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-266",
       "boothNo": "266",
       "num": 266,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Bogampatti (R.V) and (P) Bogampatti W.No-2 , ,Bogampatty",
-      "area": "Middle"
+      "name": "Booth 266",
+      "address": "SULUR - Booth 266",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-267",
       "boothNo": "267",
       "num": 267,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Pogampatty(R.V) and (P) Ponnakani Ward No- 3 , 2.Bogampatti (R.V) and (P) Ponnakani ,Ponnakani               Harijana Colony Ward No- 3",
-      "area": "High"
+      "name": "Booth 267",
+      "address": "SULUR - Booth 267",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-268",
       "boothNo": "268",
       "num": 268,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Vadavalli (R.V) and (P) Vellappanaickkenpalayam W.No-1 , 2.Vadavalli (R.V) School, ,Velappanaickenpalayam     and (P) Arijanacolony W.No1 , 3.Vadavalli (R.V) and (P) Ponnakaninagar W.No1",
-      "area": "High"
+      "name": "Booth 268",
+      "address": "SULUR - Booth 268",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-268A",
+      "boothNo": "268A",
+      "num": 268,
+      "type": "regular",
+      "name": "Booth 268A",
+      "address": "SULUR - Booth 268A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-269",
       "boothNo": "269",
       "num": 269,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Vadavalli (R.V) and (P) Vadavalli Ward No - 3 , 2.Vadavalli (R.V) and (P) School,Akkanaickenpalayam -        Arijanacolony W.No3 , 3.Vadavalli (R.V) and (P) Rajnagar W.No3 , 4.Vadavalli 641669                             (R.V) and (P) Thottipalayam Ward no 3",
+      "name": "Booth 269",
+      "address": "SULUR - Booth 269",
       "area": "SULUR"
     },
     {
@@ -2432,8 +3620,8 @@
       "boothNo": "270",
       "num": 270,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Vadavalli (R.V) and (P) Akkanaickenpalayam Ward No-2 , 2.Vadavalli (R.V) and School,Ackkanaickenpalayam         (P) Akkanaickempalayam Arijanacolony Ward no 2 station No.   which Polling Station located                                                                                          Voters or Men only or Women only",
+      "name": "Booth 270",
+      "address": "SULUR - Booth 270",
       "area": "SULUR"
     },
     {
@@ -2441,8 +3629,8 @@
       "boothNo": "271",
       "num": 271,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Varappatti (R.V) and (P) Puliyamarathupalayam Harijana Colony North Street School ,Puliamarathupalayam        Ward No-1 , 2.Varappatti (R.V) and (P) Puliyamarathupalayam Harijana Colony South Street Ward No-1 , 3.Varappatti (R.V) and (P) Puliyamarathupalayam North Street Ward No -1",
+      "name": "Booth 271",
+      "address": "SULUR - Booth 271",
       "area": "SULUR"
     },
     {
@@ -2450,8 +3638,8 @@
       "boothNo": "272",
       "num": 272,
       "type": "regular",
-      "name": "Government Aided Elementary",
-      "address": "1.Varappatti (R.V) and (P) Sadaiyanchettipalayam W.No-2 , 2.Varappatti (R.V) and School,Chandrapuram                (P) Kanthampalayam W.No-3 , 3.Varappatti (R.V) and (P) Kanthapalayam Arijana Colony W.No-3",
+      "name": "Booth 272",
+      "address": "SULUR - Booth 272",
       "area": "SULUR"
     },
     {
@@ -2459,8 +3647,8 @@
       "boothNo": "273",
       "num": 273,
       "type": "regular",
-      "name": "Government Aided Elementary",
-      "address": "1.Varappatti (R.V) and (P) Chandirapuram W.No-4 , 2.Varappatti (R.V) and (P) School,Chandrapuram                Chandirapuram Arijana Colony W.No-4",
+      "name": "Booth 273",
+      "address": "SULUR - Booth 273",
       "area": "SULUR"
     },
     {
@@ -2468,35 +3656,44 @@
       "boothNo": "274",
       "num": 274,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Varappatti (R.V) and (P) Sulthanpettai W.No-7 Sultanpet , Sultanpet - 641669",
-      "area": "High"
+      "name": "Booth 274",
+      "address": "SULUR - Booth 274",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-274A",
+      "boothNo": "274A",
+      "num": 274,
+      "type": "regular",
+      "name": "Booth 274A",
+      "address": "SULUR - Booth 274A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-275",
       "boothNo": "275",
       "num": 275,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.Varappatti (R.V) and (P) Sultanpettai West , 2.Varappatti (R.V) and (P) Arijana Sultanpet,Sultanpet - 641669       Colony W.No-7",
-      "area": "High"
+      "name": "Booth 275",
+      "address": "SULUR - Booth 275",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-276",
       "boothNo": "276",
       "num": 276,
       "type": "regular",
-      "name": "Govt Aided Welfare Elementary",
-      "address": "1.Varappatti (R.V) and (P) Varappatti W.No-8 , 2.Varappatti (R.V) and (P) School ,Kulathupalayam             Poosaripalayam W.No-5",
-      "area": "High"
+      "name": "Booth 276",
+      "address": "SULUR - Booth 276",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-277",
       "boothNo": "277",
       "num": 277,
       "type": "regular",
-      "name": "Govt Aided Welfare Elementary",
-      "address": "1.Varappatti (R.V) and (P) Kulathupalayam W.No-6 , 2.Varappatti (R.V) and (P) School ,Kulathupalayam             Kulathupalayam Arijana Colony W.No-6",
+      "name": "Booth 277",
+      "address": "SULUR - Booth 277",
       "area": "SULUR"
     },
     {
@@ -2504,8 +3701,8 @@
       "boothNo": "278",
       "num": 278,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Vadhambacheri (R.V) and (P) Vadugapalayam V. Mettur Ward No -1 (From S.no School, Sowdeswari Nagar           1 to 650)",
+      "name": "Booth 278",
+      "address": "SULUR - Booth 278",
       "area": "SULUR"
     },
     {
@@ -2513,8 +3710,8 @@
       "boothNo": "279",
       "num": 279,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Vadhambacheri (R.V) and (P) Vadugapalayam V. Mettur Ward No -1 (From S.no School, Sowdeswari Nagar           1 to 1292)",
+      "name": "Booth 279",
+      "address": "SULUR - Booth 279",
       "area": "SULUR"
     },
     {
@@ -2522,8 +3719,8 @@
       "boothNo": "280",
       "num": 280,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Vadhambacheri (R.V) and (P) Harijana Colony Ward No-1 , 2.Vadhambacheri School,Sowdeswari Nagar            (R.V) and (P) Sowdeshwari Nagar Ward No-2 , 3.Vadambacheri (R.V) and (P) M.G.R Nagar Ward No.3 Vadugampalayam V.Mettur",
+      "name": "Booth 280",
+      "address": "SULUR - Booth 280",
       "area": "SULUR"
     },
     {
@@ -2531,8 +3728,8 @@
       "boothNo": "281",
       "num": 281,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Vathambachery (R.V) and (P) Nalligoundampalayam W.No-2 , 2.Vathambachery School,Periyasedapalayam           (R.V) and (P) Goundampalayam Ward No - 2 station No.   which Polling Station located                                                                                    Voters or Men only or Women only",
+      "name": "Booth 281",
+      "address": "SULUR - Booth 281",
       "area": "SULUR"
     },
     {
@@ -2540,8 +3737,8 @@
       "boothNo": "282",
       "num": 282,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Vathambachery (R.V) and (P) Periyasedapalayam Ward No-3 , School,Periyasedapalayam",
+      "name": "Booth 282",
+      "address": "SULUR - Booth 282",
       "area": "SULUR"
     },
     {
@@ -2549,8 +3746,8 @@
       "boothNo": "283",
       "num": 283,
       "type": "regular",
-      "name": "S.C.M Higher Secondary School ",
-      "address": "1.Vathampachery (R.V) and (P) Chennasedapalayaam W.No-4 Chinnasedapalayam",
+      "name": "Booth 283",
+      "address": "SULUR - Booth 283",
       "area": "SULUR"
     },
     {
@@ -2558,8 +3755,8 @@
       "boothNo": "284",
       "num": 284,
       "type": "regular",
-      "name": "S.C.M Higher Secondary School ",
-      "address": "1.Vathambachery (R.V) and (P) Anna Nagar W.No-4 , 2.Vadhampacheri (R.V) and Chinnasedapalayam                  (P) S.R.C. Colony Ward No- 4",
+      "name": "Booth 284",
+      "address": "SULUR - Booth 284",
       "area": "SULUR"
     },
     {
@@ -2567,8 +3764,17 @@
       "boothNo": "285",
       "num": 285,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Vatampachery (R.V) and (P) Nallurpalayam W.No-5 , 2.Vathambachery (R.V) and School ,Nallurpalayam              (P) Nallurpalayam Arijana Colony W.No-5",
+      "name": "Booth 285",
+      "address": "SULUR - Booth 285",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-285A",
+      "boothNo": "285A",
+      "num": 285,
+      "type": "regular",
+      "name": "Booth 285A",
+      "address": "SULUR - Booth 285A",
       "area": "SULUR"
     },
     {
@@ -2576,44 +3782,44 @@
       "boothNo": "286",
       "num": 286,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Vathampachery (R.V) and (P) Odakkalpalayam Ward No-6 ,Oddakkalpalayam",
-      "area": "Middle"
+      "name": "Booth 286",
+      "address": "SULUR - Booth 286",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-287",
       "boothNo": "287",
       "num": 287,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Vathampachery (R.V) and (P) Harijana Colony Ward No-6 ,Oddakkalpalayam",
-      "area": "Middle"
+      "name": "Booth 287",
+      "address": "SULUR - Booth 287",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-288",
       "boothNo": "288",
       "num": 288,
       "type": "regular",
-      "name": "Government Adidravidar welfare",
-      "address": "1.Vadavedampatti (R.V) and (P) Vadavedampatti Arijana Colony W.No-2 , Elementary school,                 2.Vadavadampatti (R.V) and (P) Vadavadampatti Ward No- 2 Vadavedampatty",
-      "area": "Middle"
+      "name": "Booth 288",
+      "address": "SULUR - Booth 288",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-289",
       "boothNo": "289",
       "num": 289,
       "type": "regular",
-      "name": "Government Adidravidar welfare",
-      "address": "1.Vadavedampatti (R.V) and (P) Vadavedampatti W.No-1 , Elementary school, Vadavedampatty",
-      "area": "school,"
+      "name": "Booth 289",
+      "address": "SULUR - Booth 289",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-290",
       "boothNo": "290",
       "num": 290,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Vadavedampatti (R.V) and (P) Karumburavipalayam W.No-3 , 2.Vadavedampatti School ,Karumpuravipalayam -       (R.V) and (P) Arijanacolony W.No-3 641671",
+      "name": "Booth 290",
+      "address": "SULUR - Booth 290",
       "area": "SULUR"
     },
     {
@@ -2621,35 +3827,35 @@
       "boothNo": "291",
       "num": 291,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kumarapalayam (R.V) and (P) Senjeri W.No-1 ,Senjeri",
-      "area": "Middle"
+      "name": "Booth 291",
+      "address": "SULUR - Booth 291",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-292",
       "boothNo": "292",
       "num": 292,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kumarapalayam (R.V) and (P) Senjari Arijana Colony W.No-1 , (From 695 to ,Senjeri                           996) 2.Kumarapalayam (R.V) and (P) Senjeri Thotta Veedugal Ward No- 3",
-      "area": "Middle"
+      "name": "Booth 292",
+      "address": "SULUR - Booth 292",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-293",
       "boothNo": "293",
       "num": 293,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Kumarapalayam (R.V) and (P) Malaiyadipalayam Thottaveedugal W.No-3 , School, Malaiyadipalayam           2.Kumarapalayam (R.V) and (P) Malaiyadipalayam W.No-3 , 3.Kumarapalayam (R.V) and (P) Kurinjinagar W.No3 station No.   which Polling Station located                                                                                    Voters or Men only or Women only",
-      "area": "Middle"
+      "name": "Booth 293",
+      "address": "SULUR - Booth 293",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-294",
       "boothNo": "294",
       "num": 294,
       "type": "regular",
-      "name": "T.E.L.C Elementary School",
-      "address": "1.Kumarapalayam (R.V) and (P) Chelliyakavundanputhur W.No-2 , Kumarapalayam                      2.Kumarapalayam (R.V) and (P) Arugampalayam W.No-3 , 3.Kumarapalayam (R.V) and (P) Sellikavundanputhur Arijana Colony W.No-2 , 4.Kumarapalayam (R.V) and (P) Arugampalayam Arijana Colony W.No-3 , 5.Kumarapalayam (R.V) and (P) Thottathu Veedugal W.No-3",
+      "name": "Booth 294",
+      "address": "SULUR - Booth 294",
       "area": "SULUR"
     },
     {
@@ -2657,8 +3863,8 @@
       "boothNo": "295",
       "num": 295,
       "type": "regular",
-      "name": "T.E.L.C Elementary School",
-      "address": "1.Kumarapalayam (R.V)and (P) Kumarapalayam W.No-2 Kumarapalayam 641669",
+      "name": "Booth 295",
+      "address": "SULUR - Booth 295",
       "area": "SULUR"
     },
     {
@@ -2666,8 +3872,8 @@
       "boothNo": "296",
       "num": 296,
       "type": "regular",
-      "name": "T.E.L.C Elementary School",
-      "address": "1.Kumarapalayam (P) Palaiyurr W.No-1 , 2.Kumarapalayam (P) Kumarapalayam Kumarapalayam 641669               Arijana Colony W.No-2 , 3.Kumarapalayam (P) Thottathu Veedugal W.No-2",
+      "name": "Booth 296",
+      "address": "SULUR - Booth 296",
       "area": "SULUR"
     },
     {
@@ -2675,35 +3881,35 @@
       "boothNo": "297",
       "num": 297,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Poorandampalayam (R.V) and (P) Poorandampalayam W.No-2 , Poorandampalayam                   2.Poorandampalayam(R.V) and (P) Poorandampalayam W.No-3",
-      "area": "Middle"
+      "name": "Booth 297",
+      "address": "SULUR - Booth 297",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-298",
       "boothNo": "298",
       "num": 298,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Poorandampalayam (R.V) and (P) Poorandampalayam W.No-1 Poorandampalayam",
-      "area": "Middle"
+      "name": "Booth 298",
+      "address": "SULUR - Booth 298",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-299",
       "boothNo": "299",
       "num": 299,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Poorandampalayam (R.V) and (P) Arijana Colony W.No-2 , 2.Poorandampalayam ,Poorandampalayam                  (R.V) and (P) Sindhu Nagar W.No-3 , 3.Poorandampalayam(R.V) and (P) Mettul akshminaickenpalayam Ward No- 3 , 4.Poorandampalayam (R.V) and (P) Mettul akshminaickenpalayam Arijana Colony Ward No-3",
-      "area": "Middle"
+      "name": "Booth 299",
+      "address": "SULUR - Booth 299",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-300",
       "boothNo": "300",
       "num": 300,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Poorandampalayam (R.V) and (P) Pacharpalayam W.No-4 , 2.Poorandampalayam School, ,Pacharpalayam             (R.V) and (P) Pacharpalayam Arijana Colony W.No-4",
+      "name": "Booth 300",
+      "address": "SULUR - Booth 300",
       "area": "SULUR"
     },
     {
@@ -2711,8 +3917,17 @@
       "boothNo": "301",
       "num": 301,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Malaiyapalayam (R.V) and (P) Chandamanaickenpalayam Ward No -1 , School,Nagarakalandai              2.Malaiyapalayam (R.V) and (P) Nagarakalanthai W.No-4 , 3.Malaiyapalayam ,Nagarakalandai - 642202           (R.V) and (P) Santhamanayakkanpalayam Arijana Colony W.No-1 , 4.Malaiyapalayam (R.V) and (P) Nagarakalnthai Arijana Colony W.No-4 , 5.Malaiyapalayam (R.V) and (P) M.G.R Nagar W.No-4",
+      "name": "Booth 301",
+      "address": "SULUR - Booth 301",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-301A",
+      "boothNo": "301A",
+      "num": 301,
+      "type": "regular",
+      "name": "Booth 301A",
+      "address": "SULUR - Booth 301A",
       "area": "SULUR"
     },
     {
@@ -2720,8 +3935,8 @@
       "boothNo": "302",
       "num": 302,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Malaiyapalayam (R.V) and (P) Malaiyapalam W.No-2 School, ,Malaipalayam station No.   which Polling Station located                                                                                             Voters or Men only or Women only",
+      "name": "Booth 302",
+      "address": "SULUR - Booth 302",
       "area": "SULUR"
     },
     {
@@ -2729,8 +3944,8 @@
       "boothNo": "303",
       "num": 303,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Malaiyapalayam (R.V) and (P) Thottathu Salai Malaiyapalayam Ward No.2 , School, ,Malaipalayam              2.Malaiyapalayam (R.V) and (P) Malaiyapalayam Arijana Colony W.No-2 , 3.Malaiyapalayam (R.V) and (P) Pachapalayam Arijana Colony W.No-2",
+      "name": "Booth 303",
+      "address": "SULUR - Booth 303",
       "area": "SULUR"
     },
     {
@@ -2738,8 +3953,8 @@
       "boothNo": "304",
       "num": 304,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Malaipalayam (R.V) and (P) Malaiyadipalayam W.No-3 , 2.Malaiyapalayam (R.V) School, ,Malaiyadipalayam          and (P) Gandhi Nagar W.No-3",
+      "name": "Booth 304",
+      "address": "SULUR - Booth 304",
       "area": "SULUR"
     },
     {
@@ -2747,8 +3962,8 @@
       "boothNo": "305",
       "num": 305,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.S.Ayyampalayam (R.V) and (P) Manthiripalayam W.No-1 , 2.S.Ayyampalayam School, ,Mandiripalayaym           (R.V) and (P) Manthiripalayam W.No-2 , 3.S.Ayyampalayam (R.V) and (P) Arijana Colony W.No-2 , 4.S.Ayyampalayam (R.V) and (P) Chirstians Colony W.No-2",
+      "name": "Booth 305",
+      "address": "SULUR - Booth 305",
       "area": "SULUR"
     },
     {
@@ -2756,71 +3971,71 @@
       "boothNo": "306",
       "num": 306,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.S.Ayyampalayam (R.V) and (P) S.Ayyampalayam W.No-3 , 2.S.Ayyampalayam ,S.Ayyampalayam                    (R.V) and (P) Arijanacolony W.No-3",
-      "area": "Middle"
+      "name": "Booth 306",
+      "address": "SULUR - Booth 306",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-307",
       "boothNo": "307",
       "num": 307,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.S.Ayyampalayam (R.V) and (P) Thottathsalaikal W.No-4 ,S.Ayyampalayam",
-      "area": "Middle"
+      "name": "Booth 307",
+      "address": "SULUR - Booth 307",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-308",
       "boothNo": "308",
       "num": 308,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kammalapatti (R.V) and (P) Varapalayam W.No.1, 2. Kammalapatti (R.V) and ,Kammalapatty                      (P) Periyakammalapatti W.No.2,,",
-      "area": "Middle"
+      "name": "Booth 308",
+      "address": "SULUR - Booth 308",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-309",
       "boothNo": "309",
       "num": 309,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1. Kammalapatti (R.V) and (P) Varapalayam Arijanacolony W.No.1, 2. ,Kammalapatty                      Kammalapatti (R.V) and (P) Varapalayam Thottathusalaikal W.No.1,,3. Kammalapatti (R.V) and (P) Periyakammalapatti Arijana Colony W.No.2,,4. Kammalapatti (R.V) and (P) Periyakammalapatti Thottathusalaikal W.No.2 5.3.Kamalapatti (R.V) and (P) Thottathusalaikal W.No-3",
-      "area": "Middle"
+      "name": "Booth 309",
+      "address": "SULUR - Booth 309",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-310",
       "boothNo": "310",
       "num": 310,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "1.Kamalapatti (R.V) and (P) Chinna Kamalapatti W.No-3 , 2.Kamalapatti (R.V) and ,Kammalapatty                      (P) Arijana Colony W.No-3",
-      "area": "Middle"
+      "name": "Booth 310",
+      "address": "SULUR - Booth 310",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-311",
       "boothNo": "311",
       "num": 311,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Jallipatti (R.V) and (P) Jallipatti W.No-2 , School, Jallipatty",
-      "area": "Middle"
+      "name": "Booth 311",
+      "address": "SULUR - Booth 311",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-312",
       "boothNo": "312",
       "num": 312,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Jallipatti (R.V) and (P) Arijana Colony W.No-1 School, Jallipatty",
-      "area": "Middle"
+      "name": "Booth 312",
+      "address": "SULUR - Booth 312",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-313",
       "boothNo": "313",
       "num": 313,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Jallipatti (R.V) and (P) Salapalayam W.No-4 , 2.Jallipatti (R.V) and (P) Thottathu School, Jallipatty                 Salaikal W.No-3 station No.   which Polling Station located                                                                                         Voters or Men only or Women only",
+      "name": "Booth 313",
+      "address": "SULUR - Booth 313",
       "area": "SULUR"
     },
     {
@@ -2828,8 +4043,17 @@
       "boothNo": "314",
       "num": 314,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Senjaripudur (R.V) and (P) Chinnaputhur W.No-1 , 2.Senjariputhur (R.V) and (P) School ,Senjeriputhur              Arijana Colony East W.No-1 , 3.Senjariputhur (R.V) and (P) Arijana Colony West W.No-1 , 4.Senjariputhur (R.V) and (P) Thalakkarai Arijana Colony W.No-2",
+      "name": "Booth 314",
+      "address": "SULUR - Booth 314",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-314A",
+      "boothNo": "314A",
+      "num": 314,
+      "type": "regular",
+      "name": "Booth 314A",
+      "address": "SULUR - Booth 314A",
       "area": "SULUR"
     },
     {
@@ -2837,8 +4061,8 @@
       "boothNo": "315",
       "num": 315,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Senjariputhur (R.V) and (P) West Street Senjariputhur School ,Senjeriputhur",
+      "name": "Booth 315",
+      "address": "SULUR - Booth 315",
       "area": "SULUR"
     },
     {
@@ -2846,8 +4070,8 @@
       "boothNo": "316",
       "num": 316,
       "type": "regular",
-      "name": "Government Higher Secondary",
-      "address": "1.Senjariputhur (R.V) and (P) East Street Senjeriputhur School ,Senjeriputhur",
+      "name": "Booth 316",
+      "address": "SULUR - Booth 316",
       "area": "SULUR"
     },
     {
@@ -2855,8 +4079,17 @@
       "boothNo": "317",
       "num": 317,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Senjariputhur (R.V) and (P) S.P. Vadugapalayam W.No-3 , 2.Senjariputhur (R.V) School, ,S.P.Vadugapalayam         and (P) Arijanacolony Merkku Ward No-3 , 3.Senjariputhur (R.V) and (P) Arijana Colony East W.No-3",
+      "name": "Booth 317",
+      "address": "SULUR - Booth 317",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-317A",
+      "boothNo": "317A",
+      "num": 317,
+      "type": "regular",
+      "name": "Booth 317A",
+      "address": "SULUR - Booth 317A",
       "area": "SULUR"
     },
     {
@@ -2864,8 +4097,8 @@
       "boothNo": "318",
       "num": 318,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Thalakkarai (R.V) and (P) Vadugapalayam W.No-1 , 2.Thalakkarai (R.V) and (P) School, ,T.Vadugapalayam           Thalakkarai W.No-2 , 3.Thalakkarai (R.V) and (P) T.Vadugapalayam Arijanacolony W.No-1 , 4.Thalakkarai (R.V) and (P) Salaiyur W.No-2 , 5.Thalakkarai (R.V) and (P) Thalakkarai Arijanacolony W.No-2 , 6.Thalakkarai (R.V) and (P) Thalakkarai Thottangal W.No-2",
+      "name": "Booth 318",
+      "address": "SULUR - Booth 318",
       "area": "SULUR"
     },
     {
@@ -2873,8 +4106,17 @@
       "boothNo": "319",
       "num": 319,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.Thalakkarai (R.V) and (P) Karaiampalayam W.No-3 , 2.Thalakkarai (R.V) and (P) School, ,Karaiyampalayam           Pacha Kavundan palayam W.No-4 , 3.Thalakkarai (R.V) and (P) Karaiyampalayam Arijana Colony W.No-3 , 4.Thalakkarai (R.V) and (P) Karaiyampalayam Thottangal W.No3 , 5.Thalakkarai (R.V) and (P) Pacha Kavundanpalayam Arijanacolony W.No4 , 6.Thalakkarai (R.V) and (P) Pachagoundanpalayam Thottangal Ward No 4",
+      "name": "Booth 319",
+      "address": "SULUR - Booth 319",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-319A",
+      "boothNo": "319A",
+      "num": 319,
+      "type": "regular",
+      "name": "Booth 319A",
+      "address": "SULUR - Booth 319A",
       "area": "SULUR"
     },
     {
@@ -2882,8 +4124,8 @@
       "boothNo": "320",
       "num": 320,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.J.Krishnapuram (R.V) and (P) Chinnamanaiyakan palayam W.No.1 , School,                            2.J.Krishnapuram (R.V) and (P) Arijanacolony W.No.1 ,Chinnamanaickenpalayam",
+      "name": "Booth 320",
+      "address": "SULUR - Booth 320",
       "area": "SULUR"
     },
     {
@@ -2891,26 +4133,35 @@
       "boothNo": "321",
       "num": 321,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.J.krishnapuram (R.V) and (P) J.krishnapuram W.No-2 , 2.J.Krishnapuram (R.V) ,J.Krishnapuram                    and (P) Arijana Colony W.No-2",
-      "area": "High"
+      "name": "Booth 321",
+      "address": "SULUR - Booth 321",
+      "area": "SULUR"
+    },
+    {
+      "id": "TN-116-321A",
+      "boothNo": "321A",
+      "num": 321,
+      "type": "regular",
+      "name": "Booth 321A",
+      "address": "SULUR - Booth 321A",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-322",
       "boothNo": "322",
       "num": 322,
       "type": "regular",
-      "name": "Government High School",
-      "address": "1.J.Krishnapuram (R.V) and (P) Vanjipuram W.No.3 , 2.J.Krishnapuram (R.V) and ,J.Krishnapuram                    (P) Arijanacolony W.No-3 station No.   which Polling Station located                                                                                      Voters or Men only or Women only",
-      "area": "High"
+      "name": "Booth 322",
+      "address": "SULUR - Booth 322",
+      "area": "SULUR"
     },
     {
       "id": "TN-116-323",
       "boothNo": "323",
       "num": 323,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.J.Krishnapuram (R.V) and (P) Vanjipuram W.No.4 , 2.J.Krishnapuram (R.V) and School, ,Salaipudur                (P) Arijanacolony W.No-4",
+      "name": "Booth 323",
+      "address": "SULUR - Booth 323",
       "area": "SULUR"
     },
     {
@@ -2918,8 +4169,8 @@
       "boothNo": "324",
       "num": 324,
       "type": "regular",
-      "name": "Panchayat Union Elementary",
-      "address": "1.J.krishnapuram (R.V) and (P) Valasupalayam W.No-5 , 2.J.Krishnapuram (R.V) School Valasupalayam               and (P) Arijanacolony W.No-5 ,Valasupalayam - 641671",
+      "name": "Booth 324",
+      "address": "SULUR - Booth 324",
       "area": "SULUR"
     }
   ]

@@ -2,7 +2,7 @@
   "acId": "TN-201",
   "acName": "CUMBUM",
   "state": "Tamil Nadu",
-  "totalBooths": 295,
+  "totalBooths": 392,
   "lastUpdated": "2021-04-06",
   "source": "Tamil Nadu CEO - Form 20",
   "booths": [
@@ -11,44 +11,80 @@
       "boothNo": "1",
       "num": 1,
       "type": "regular",
-      "name": "St.Therasa Middle School",
-      "address": "St.Therasa Middle School North Side, Thevaram",
-      "area": "Side,"
+      "name": "Booth 1",
+      "address": "CUMBUM - Booth 1",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-1A",
+      "boothNo": "1A",
+      "num": 1,
+      "type": "regular",
+      "name": "Booth 1A",
+      "address": "CUMBUM - Booth 1A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-2",
       "boothNo": "2",
       "num": 2,
       "type": "regular",
-      "name": "St.Therasa Middle School",
-      "address": "St.Therasa Middle School South Building, Thevaram",
-      "area": "School"
+      "name": "Booth 2",
+      "address": "CUMBUM - Booth 2",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-2A",
+      "boothNo": "2A",
+      "num": 2,
+      "type": "regular",
+      "name": "Booth 2A",
+      "address": "CUMBUM - Booth 2A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-3",
       "boothNo": "3",
       "num": 3,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School Eastern Portion, South Side, Thevaram",
-      "area": "School,"
+      "name": "Booth 3",
+      "address": "CUMBUM - Booth 3",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-4",
       "boothNo": "4",
       "num": 4,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, Eastern Side, South Side, Eastern Last, Thevaram",
-      "area": "School"
+      "name": "Booth 4",
+      "address": "CUMBUM - Booth 4",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-4A",
+      "boothNo": "4A",
+      "num": 4,
+      "type": "regular",
+      "name": "Booth 4A",
+      "address": "CUMBUM - Booth 4A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-5",
       "boothNo": "5",
       "num": 5,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School West Building, Thevaram",
+      "name": "Booth 5",
+      "address": "CUMBUM - Booth 5",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-5A",
+      "boothNo": "5A",
+      "num": 5,
+      "type": "regular",
+      "name": "Booth 5A",
+      "address": "CUMBUM - Booth 5A",
       "area": "CUMBUM"
     },
     {
@@ -56,62 +92,98 @@
       "boothNo": "6",
       "num": 6,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, North Block, West Northern Portion, Thevaram",
-      "area": "School,"
+      "name": "Booth 6",
+      "address": "CUMBUM - Booth 6",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-7",
       "boothNo": "7",
       "num": 7,
       "type": "regular",
-      "name": "Govt.Hr Sec. School",
-      "address": "Govt.Hr Sec. School, Northern Building, East side, Thevaram LIST OF POLLING STATIONS Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 7",
+      "address": "CUMBUM - Booth 7",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-8",
       "boothNo": "8",
       "num": 8,
       "type": "regular",
-      "name": "Govt. Hr. Sec. School, Main",
-      "address": "Govt. Hr. Sec. School, Main Building, Eastern Portion, Thevaram",
-      "area": "Side,"
+      "name": "Booth 8",
+      "address": "CUMBUM - Booth 8",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-8A",
+      "boothNo": "8A",
+      "num": 8,
+      "type": "regular",
+      "name": "Booth 8A",
+      "address": "CUMBUM - Booth 8A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-9",
       "boothNo": "9",
       "num": 9,
       "type": "regular",
-      "name": "Govt. Hr. Sec. School",
-      "address": "Govt. Hr. Sec. School Northern Side, West Portion, Thevaram",
-      "area": "Side,"
+      "name": "Booth 9",
+      "address": "CUMBUM - Booth 9",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-10",
       "boothNo": "10",
       "num": 10,
       "type": "regular",
-      "name": "Govt. Hr. Sec. School",
-      "address": "Govt. Hr. Sec. School Western Side, Important Building, Thevaram",
-      "area": "Hr.Sec.School,"
+      "name": "Booth 10",
+      "address": "CUMBUM - Booth 10",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-10A",
+      "boothNo": "10A",
+      "num": 10,
+      "type": "regular",
+      "name": "Booth 10A",
+      "address": "CUMBUM - Booth 10A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-11",
       "boothNo": "11",
       "num": 11,
       "type": "regular",
-      "name": "Ka.Su.Valluvar Ele. School South Block, Eastern Portion, Street",
-      "address": "Ka.Su.Valluvar Ele. School South Block, Eastern Portion, Street",
-      "area": "Street"
+      "name": "Booth 11",
+      "address": "CUMBUM - Booth 11",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-11A",
+      "boothNo": "11A",
+      "num": 11,
+      "type": "regular",
+      "name": "Booth 11A",
+      "address": "CUMBUM - Booth 11A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-12",
       "boothNo": "12",
       "num": 12,
       "type": "regular",
-      "name": "Ka.Su.Valluvar Ele. School",
-      "address": "Ka.Su.Valluvar Ele. School South Block, Eastern Portion, Street 1, Ward No.9, Thevaram 13 K.S.Valluvan Ele. School East Block, North Side, Thevaram 14 K.S.Valluvan Ele. School South Block, West Side, Thevaram",
+      "name": "Booth 12",
+      "address": "CUMBUM - Booth 12",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-12A",
+      "boothNo": "12A",
+      "num": 12,
+      "type": "regular",
+      "name": "Booth 12A",
+      "address": "CUMBUM - Booth 12A",
       "area": "CUMBUM"
     },
     {
@@ -137,80 +209,107 @@
       "boothNo": "15",
       "num": 15,
       "type": "regular",
-      "name": "Noon Meal Centre Street",
-      "address": "Noon Meal Centre Street",
-      "area": "Street"
+      "name": "Booth 15",
+      "address": "CUMBUM - Booth 15",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-16",
       "boothNo": "16",
       "num": 16,
       "type": "regular",
-      "name": "Panchayat Union Ele. School,",
-      "address": "Panchayat Union Ele. School,",
-      "area": "School,"
+      "name": "Booth 16",
+      "address": "CUMBUM - Booth 16",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-17",
       "boothNo": "17",
       "num": 17,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School, North Side, Thamminayakkanpatti",
-      "area": "School"
+      "name": "Booth 17",
+      "address": "CUMBUM - Booth 17",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-18",
       "boothNo": "18",
       "num": 18,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School West Side, Thamminayakkanpatti",
-      "area": "School"
+      "name": "Booth 18",
+      "address": "CUMBUM - Booth 18",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-19",
       "boothNo": "19",
       "num": 19,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School North Block, West Side, Thamminayakkanpatti Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 19",
+      "address": "CUMBUM - Booth 19",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-20",
       "boothNo": "20",
       "num": 20,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, North Face Building, Eastern side Chokkalingapuram Chokkalingapuram ,",
-      "area": "Block,"
+      "name": "Booth 20",
+      "address": "CUMBUM - Booth 20",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-20A",
+      "boothNo": "20A",
+      "num": 20,
+      "type": "regular",
+      "name": "Booth 20A",
+      "address": "CUMBUM - Booth 20A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-21",
       "boothNo": "21",
       "num": 21,
       "type": "regular",
-      "name": "Sri Rengasamy Memorial Higher Secondary School",
-      "address": "Sri Rengasamy Memorial Higher Secondary School, East Block, Lakshminayakkanpatti.",
-      "area": "School,"
+      "name": "Booth 21",
+      "address": "CUMBUM - Booth 21",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-21A",
+      "boothNo": "21A",
+      "num": 21,
+      "type": "regular",
+      "name": "Booth 21A",
+      "address": "CUMBUM - Booth 21A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-22",
       "boothNo": "22",
       "num": 22,
       "type": "regular",
-      "name": "Sri Rengasamy Memorial Elementary School",
-      "address": "Sri Rengasamy Memorial Elementary School, North Block, Eastern Side, Lakshminayakkanpatti",
-      "area": ","
+      "name": "Booth 22",
+      "address": "CUMBUM - Booth 22",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-23",
       "boothNo": "23",
       "num": 23,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School, South Face Building Chellayepuram Number Name of the Polling station Polling Station Area",
+      "name": "Booth 23",
+      "address": "CUMBUM - Booth 23",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-23A",
+      "boothNo": "23A",
+      "num": 23,
+      "type": "regular",
+      "name": "Booth 23A",
+      "address": "CUMBUM - Booth 23A",
       "area": "CUMBUM"
     },
     {
@@ -218,80 +317,107 @@
       "boothNo": "24",
       "num": 24,
       "type": "regular",
-      "name": "Amala Annai R.C. Hr.Sec.School",
-      "address": "Amala Annai R.C. Hr.Sec.School, Northern Block, Eastern Side, T.Sinthalaicheri",
-      "area": "Hr.Sec.School,"
+      "name": "Booth 24",
+      "address": "CUMBUM - Booth 24",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-25",
       "boothNo": "25",
       "num": 25,
       "type": "regular",
-      "name": "Amala Annai R.C. Hr.Sec.School",
-      "address": "Amala Annai R.C. Hr.Sec.School, Northern Block, Western Side, T.Sinthalaicheri",
-      "area": "Hr.Sec.School,"
+      "name": "Booth 25",
+      "address": "CUMBUM - Booth 25",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-26",
       "boothNo": "26",
       "num": 26,
       "type": "regular",
-      "name": "Amala Annai R.C. Hr.Sec.School",
-      "address": "Amala Annai R.C. Hr.Sec.School, Northern Block, East Block Northern Side, T.Sinthalaicheri",
-      "area": "Hr.Sec.School,"
+      "name": "Booth 26",
+      "address": "CUMBUM - Booth 26",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-26A",
+      "boothNo": "26A",
+      "num": 26,
+      "type": "regular",
+      "name": "Booth 26A",
+      "address": "CUMBUM - Booth 26A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-27",
       "boothNo": "27",
       "num": 27,
       "type": "regular",
-      "name": "Amala Annai R.C. Hr.Sec.School",
-      "address": "Amala Annai R.C. Hr.Sec.School, Southern Side, 9th Std. Room, T.Sinthalaicheri",
-      "area": "School,"
+      "name": "Booth 27",
+      "address": "CUMBUM - Booth 27",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-27A",
+      "boothNo": "27A",
+      "num": 27,
+      "type": "regular",
+      "name": "Booth 27A",
+      "address": "CUMBUM - Booth 27A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-28",
       "boothNo": "28",
       "num": 28,
       "type": "regular",
-      "name": "Mariammal Aided Ele. School",
-      "address": "Mariammal Aided Ele. School, North Block, Western Side, Bomminayakkanpatti. Adidravidar colony\fPolling Station Number Name of the Polling station Polling Station Area",
-      "area": ","
+      "name": "Booth 28",
+      "address": "CUMBUM - Booth 28",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-29",
       "boothNo": "29",
       "num": 29,
       "type": "regular",
-      "name": "Mariammal Aided Ele. School",
-      "address": "Mariammal Aided Ele. School, North Block, East Side, Bomminayakkanpatti. Mariammal School , Street , Shop Street , Mariamman Kovil Street Kaliamman Kovil Street Street",
-      "area": "CentreNo."
+      "name": "Booth 29",
+      "address": "CUMBUM - Booth 29",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-30",
       "boothNo": "30",
       "num": 30,
       "type": "regular",
-      "name": "Cheif Minister Noonmeals CentreNo.",
-      "address": "Cheif Minister Noonmeals CentreNo.",
-      "area": "CentreNo."
+      "name": "Booth 30",
+      "address": "CUMBUM - Booth 30",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-31",
       "boothNo": "31",
       "num": 31,
       "type": "regular",
-      "name": "T.Ovulapuaram Noon Meal Centre Street ,",
-      "address": "T.Ovulapuaram Noon Meal Centre Street ,",
-      "area": ","
+      "name": "Booth 31",
+      "address": "CUMBUM - Booth 31",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-32",
       "boothNo": "32",
       "num": 32,
       "type": "regular",
-      "name": "Panchayat Union Ele School S.S.A Building",
-      "address": "Panchayat Union Ele School S.S.A Building",
+      "name": "Booth 32",
+      "address": "CUMBUM - Booth 32",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-32A",
+      "boothNo": "32A",
+      "num": 32,
+      "type": "regular",
+      "name": "Booth 32A",
+      "address": "CUMBUM - Booth 32A",
       "area": "CUMBUM"
     },
     {
@@ -299,8 +425,8 @@
       "boothNo": "33",
       "num": 33,
       "type": "regular",
-      "name": "Panchayat Union Ele. School New",
-      "address": "Panchayat Union Ele. School New Building, Northern Side Block 4, T.Meenatchipuram Number Name of the Polling station Polling Station Area 34 Panchayat Union Ele. School, Entrance Northern Side, T.Meenachipuram",
+      "name": "Booth 33",
+      "address": "CUMBUM - Booth 33",
       "area": "CUMBUM"
     },
     {
@@ -308,17 +434,26 @@
       "boothNo": "34",
       "num": 34,
       "type": "regular",
-      "name": "Panchayat Union Ele. School,",
-      "address": "Panchayat Union Ele. School,",
-      "area": "School,"
+      "name": "Booth 34",
+      "address": "CUMBUM - Booth 34",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-35",
       "boothNo": "35",
       "num": 35,
       "type": "regular",
-      "name": "Hindu Middle School Additional Building",
-      "address": "Hindu Middle School Additional Building",
+      "name": "Booth 35",
+      "address": "CUMBUM - Booth 35",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-35A",
+      "boothNo": "35A",
+      "num": 35,
+      "type": "regular",
+      "name": "Booth 35A",
+      "address": "CUMBUM - Booth 35A",
       "area": "CUMBUM"
     },
     {
@@ -326,17 +461,35 @@
       "boothNo": "36",
       "num": 36,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School, Western Side, Pannaipuram",
-      "area": ","
+      "name": "Booth 36",
+      "address": "CUMBUM - Booth 36",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-36A",
+      "boothNo": "36A",
+      "num": 36,
+      "type": "regular",
+      "name": "Booth 36A",
+      "address": "CUMBUM - Booth 36A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-37",
       "boothNo": "37",
       "num": 37,
       "type": "regular",
-      "name": "Govt. Higher Secondary School",
-      "address": "Govt. Higher Secondary School, Southern Side, Nabard Building, South Block, Pannaipuram Number Name of the Polling station Polling Station Area",
+      "name": "Booth 37",
+      "address": "CUMBUM - Booth 37",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-37A",
+      "boothNo": "37A",
+      "num": 37,
+      "type": "regular",
+      "name": "Booth 37A",
+      "address": "CUMBUM - Booth 37A",
       "area": "CUMBUM"
     },
     {
@@ -344,17 +497,17 @@
       "boothNo": "38",
       "num": 38,
       "type": "regular",
-      "name": "Panchayat Union Ele. School 4th",
-      "address": "Panchayat Union Ele. School 4th Building, Kariyanampatti, Pannaipuram.",
-      "area": "School,"
+      "name": "Booth 38",
+      "address": "CUMBUM - Booth 38",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-39",
       "boothNo": "39",
       "num": 39,
       "type": "regular",
-      "name": "Panchayat Union Ele. School, Centre",
-      "address": "Panchayat Union Ele. School, Centre Building, West Portion, Kariyanampatti, Pannaipuram",
+      "name": "Booth 39",
+      "address": "CUMBUM - Booth 39",
       "area": "CUMBUM"
     },
     {
@@ -362,26 +515,44 @@
       "boothNo": "40",
       "num": 40,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School West Block, Kariyanampatti, Pannaipuram. Ward-11 Norht Street",
-      "area": "School,"
+      "name": "Booth 40",
+      "address": "CUMBUM - Booth 40",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-40A",
+      "boothNo": "40A",
+      "num": 40,
+      "type": "regular",
+      "name": "Booth 40A",
+      "address": "CUMBUM - Booth 40A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-41",
       "boothNo": "41",
       "num": 41,
       "type": "regular",
-      "name": "Sri Renganatha Swamy Ele. School",
-      "address": "Sri Renganatha Swamy Ele. School, Eastern Side, Mallingapuram (Pannaipuram).",
-      "area": "School,"
+      "name": "Booth 41",
+      "address": "CUMBUM - Booth 41",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-41A",
+      "boothNo": "41A",
+      "num": 41,
+      "type": "regular",
+      "name": "Booth 41A",
+      "address": "CUMBUM - Booth 41A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-42",
       "boothNo": "42",
       "num": 42,
       "type": "regular",
-      "name": "Sri Renganatha Swamy Ele. School",
-      "address": "Sri Renganatha Swamy Ele. School, Western Side, Mallingapuram (Pannaipuram). Number Name of the Polling station Polling Station Area 43 Govt.Primary School, Western Block, Keelasindalaicheri",
+      "name": "Booth 42",
+      "address": "CUMBUM - Booth 42",
       "area": "CUMBUM"
     },
     {
@@ -389,63 +560,72 @@
       "boothNo": "43",
       "num": 43,
       "type": "regular",
-      "name": "Panchayat Union Ele School,",
-      "address": "Panchayat Union Ele School,",
-      "area": "School,"
+      "name": "Booth 43",
+      "address": "CUMBUM - Booth 43",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-44",
       "boothNo": "44",
       "num": 44,
       "type": "regular",
-      "name": "Panchayat Union Ele School",
-      "address": "Panchayat Union Ele School, West Block Northern Side, Melasinthalaiseri. 45 Panchayat Union Ele. School East Block, Northern Side, Melasinthalaiseri.",
-      "area": ","
+      "name": "Booth 44",
+      "address": "CUMBUM - Booth 44",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-45",
       "boothNo": "45",
       "num": 45,
       "type": "regular",
-      "name": "Panchayat Union Ele. School,",
-      "address": "Panchayat Union Ele. School,",
-      "area": "School,"
+      "name": "Booth 45",
+      "address": "CUMBUM - Booth 45",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-46",
       "boothNo": "46",
       "num": 46,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School, South Eastern Side, Melasinthalaiseri , Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 46",
+      "address": "CUMBUM - Booth 46",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-47",
       "boothNo": "47",
       "num": 47,
       "type": "regular",
-      "name": "Hindu Middle School",
-      "address": "Hindu Middle School, Western Side, Pallavarayanpatti.",
-      "area": "School,"
+      "name": "Booth 47",
+      "address": "CUMBUM - Booth 47",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-48",
       "boothNo": "48",
       "num": 48,
       "type": "regular",
-      "name": "Hindu Middle School",
-      "address": "Hindu Middle School, South Block, Pallavarayanpatti.",
-      "area": "School,"
+      "name": "Booth 48",
+      "address": "CUMBUM - Booth 48",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-49",
       "boothNo": "49",
       "num": 49,
       "type": "regular",
-      "name": "Hindu Middle School",
-      "address": "Hindu Middle School, Eastern Side, Pallavarayanpatti",
-      "area": "School,"
+      "name": "Booth 49",
+      "address": "CUMBUM - Booth 49",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-49A",
+      "boothNo": "49A",
+      "num": 49,
+      "type": "regular",
+      "name": "Booth 49A",
+      "address": "CUMBUM - Booth 49A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-50",
@@ -457,67 +637,103 @@
       "area": "CUMBUM"
     },
     {
+      "id": "TN-201-50A",
+      "boothNo": "50A",
+      "num": 50,
+      "type": "regular",
+      "name": "Booth 50A",
+      "address": "CUMBUM - Booth 50A",
+      "area": "CUMBUM"
+    },
+    {
       "id": "TN-201-51",
       "boothNo": "51",
       "num": 51,
       "type": "regular",
-      "name": "Muncipal Middle School",
-      "address": "Muncipal Middle School, North Side, Colony School Street, Chinnamanur",
-      "area": "Chinnamanur"
+      "name": "Booth 51",
+      "address": "CUMBUM - Booth 51",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-51A",
+      "boothNo": "51A",
+      "num": 51,
+      "type": "regular",
+      "name": "Booth 51A",
+      "address": "CUMBUM - Booth 51A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-52",
       "boothNo": "52",
       "num": 52,
       "type": "regular",
-      "name": "Muncipal Middle School",
-      "address": "Muncipal Middle School, North Building, West Side, Colony School Street, Chinnamanur. Number Name of the Polling station Polling Station Area",
-      "area": "Chinnamanur."
+      "name": "Booth 52",
+      "address": "CUMBUM - Booth 52",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-53",
       "boothNo": "53",
       "num": 53,
       "type": "regular",
-      "name": "Muncipal Middle School",
-      "address": "Muncipal Middle School, South Building, East Side, Colony School Street, Chinnamanur",
-      "area": "Chinnamanur"
+      "name": "Booth 53",
+      "address": "CUMBUM - Booth 53",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-53A",
+      "boothNo": "53A",
+      "num": 53,
+      "type": "regular",
+      "name": "Booth 53A",
+      "address": "CUMBUM - Booth 53A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-54",
       "boothNo": "54",
       "num": 54,
       "type": "regular",
-      "name": "Panchayat Union Office, Council Hall",
-      "address": "Panchayat Union Office, Council Hall, North Side, Chinnamanur",
-      "area": "Chinnamanur"
+      "name": "Booth 54",
+      "address": "CUMBUM - Booth 54",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-54A",
+      "boothNo": "54A",
+      "num": 54,
+      "type": "regular",
+      "name": "Booth 54A",
+      "address": "CUMBUM - Booth 54A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-55",
       "boothNo": "55",
       "num": 55,
       "type": "regular",
-      "name": "Panchayat Union Office, Council Hall",
-      "address": "Panchayat Union Office, Council Hall, South Side, Chinnamanur",
-      "area": "Chinnamanur"
+      "name": "Booth 55",
+      "address": "CUMBUM - Booth 55",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-56",
       "boothNo": "56",
       "num": 56,
       "type": "regular",
-      "name": "Panchayat Union Office, Meeting Hall, New",
-      "address": "Panchayat Union Office, Meeting Hall, New Building, North-West Side Block, Chinnamanur",
-      "area": "Side,"
+      "name": "Booth 56",
+      "address": "CUMBUM - Booth 56",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-57",
       "boothNo": "57",
       "num": 57,
       "type": "regular",
-      "name": "Muncipal Middle School",
-      "address": "Muncipal Middle School, South Side, Colony School Street, Chinnamanur 58 NKP Municipal Ele. School New Building, North Side, Chinnamanur 59 U.C Middle School Main Road Chinnamanur 60 R.C. Middle School East Side North Side , Chinnamanur",
-      "area": "Chinnamanur"
+      "name": "Booth 57",
+      "address": "CUMBUM - Booth 57",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-58",
@@ -542,27 +758,36 @@
       "boothNo": "60",
       "num": 60,
       "type": "regular",
-      "name": "Vellaiyappapillai Uravinmurai Anna Memorial Middle School,",
-      "address": "Vellaiyappapillai Uravinmurai Anna Memorial Middle School,",
-      "area": "School,"
+      "name": "Booth 60",
+      "address": "CUMBUM - Booth 60",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-60A",
+      "boothNo": "60A",
+      "num": 60,
+      "type": "regular",
+      "name": "Booth 60A",
+      "address": "CUMBUM - Booth 60A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-61",
       "boothNo": "61",
       "num": 61,
       "type": "regular",
-      "name": "Vellaiyappapillai Uravinmurai Anna Memorial Middle School",
-      "address": "Vellaiyappapillai Uravinmurai Anna Memorial Middle School, Westernside, 2A Class Room, Chinnamanur",
-      "area": "School,"
+      "name": "Booth 61",
+      "address": "CUMBUM - Booth 61",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-62",
       "boothNo": "62",
       "num": 62,
       "type": "regular",
-      "name": "Vellaiyappapillai Uravinmurai Anna Memorial Middle School",
-      "address": "Vellaiyappapillai Uravinmurai Anna Memorial Middle School, Westernside, 2B Class Room, Chinnamanur Number Name of the Polling station Polling Station Area 63 NKP Municipal Ele. School New Building, South Side, Chinnamanur",
-      "area": ","
+      "name": "Booth 62",
+      "address": "CUMBUM - Booth 62",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-63",
@@ -574,21 +799,30 @@
       "area": "CUMBUM"
     },
     {
+      "id": "TN-201-63A",
+      "boothNo": "63A",
+      "num": 63,
+      "type": "regular",
+      "name": "Booth 63A",
+      "address": "CUMBUM - Booth 63A",
+      "area": "CUMBUM"
+    },
+    {
       "id": "TN-201-64",
       "boothNo": "64",
       "num": 64,
       "type": "regular",
-      "name": "Municipal office Street ,",
-      "address": "Municipal office Street ,",
-      "area": ","
+      "name": "Booth 64",
+      "address": "CUMBUM - Booth 64",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-65",
       "boothNo": "65",
       "num": 65,
       "type": "regular",
-      "name": "Municipal Middle School",
-      "address": "Municipal Middle School",
+      "name": "Booth 65",
+      "address": "CUMBUM - Booth 65",
       "area": "CUMBUM"
     },
     {
@@ -596,17 +830,17 @@
       "boothNo": "66",
       "num": 66,
       "type": "regular",
-      "name": "Municipal Middle School Main Road",
-      "address": "Municipal Middle School Main Road",
-      "area": "School,"
+      "name": "Booth 66",
+      "address": "CUMBUM - Booth 66",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-67",
       "boothNo": "67",
       "num": 67,
       "type": "regular",
-      "name": "Kanakku Velayee Girls Hr. Sec. School, Main",
-      "address": "Kanakku Velayee Girls Hr. Sec. School, Main Building, Chinnamanur",
+      "name": "Booth 67",
+      "address": "CUMBUM - Booth 67",
       "area": "CUMBUM"
     },
     {
@@ -614,8 +848,8 @@
       "boothNo": "68",
       "num": 68,
       "type": "regular",
-      "name": "Kanakku Velayee Girls Hr. Sec. School, Varadharajan Memorial",
-      "address": "Kanakku Velayee Girls Hr. Sec. School, Varadharajan Memorial Building, 12B Class Room, Chinnamanur 69 Municipal Middle School West Side, North Block, Karunkattankulam",
+      "name": "Booth 68",
+      "address": "CUMBUM - Booth 68",
       "area": "CUMBUM"
     },
     {
@@ -623,35 +857,35 @@
       "boothNo": "69",
       "num": 69,
       "type": "regular",
-      "name": "Municipal Middle School, Western Block, North Side, Karunkattankulam,",
-      "address": "Municipal Middle School, Western Block, North Side, Karunkattankulam,",
-      "area": "Karunkattankulam,"
+      "name": "Booth 69",
+      "address": "CUMBUM - Booth 69",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-70",
       "boothNo": "70",
       "num": 70,
       "type": "regular",
-      "name": "Municipal Middle School",
-      "address": "Municipal Middle School, Western Block, North Side, Karunkattankulam, Chinnamanur Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 70",
+      "address": "CUMBUM - Booth 70",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-71",
       "boothNo": "71",
       "num": 71,
       "type": "regular",
-      "name": "T.P.V. Gurukkal Middle School",
-      "address": "T.P.V. Gurukkal Middle School, Eastern Building, North Side, Seepalakottai Road, Chinnamanur",
-      "area": "School,"
+      "name": "Booth 71",
+      "address": "CUMBUM - Booth 71",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-72",
       "boothNo": "72",
       "num": 72,
       "type": "regular",
-      "name": "T.P.V.Gurukkal Middle School",
-      "address": "T.P.V.Gurukkal Middle School, South Side, Seepalakottai Road, Chinnamanur",
+      "name": "Booth 72",
+      "address": "CUMBUM - Booth 72",
       "area": "CUMBUM"
     },
     {
@@ -659,53 +893,80 @@
       "boothNo": "73",
       "num": 73,
       "type": "regular",
-      "name": "Municipal Middle School, New",
-      "address": "Municipal Middle School, New Building, East Side,Sangoli Chetti Thidal, Chinnamanur",
-      "area": "Side"
+      "name": "Booth 73",
+      "address": "CUMBUM - Booth 73",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-74",
       "boothNo": "74",
       "num": 74,
       "type": "regular",
-      "name": "T.P.V.Gurukkal Middle School",
-      "address": "T.P.V.Gurukkal Middle School, West Side Seepalakottai Road, Chinnamanur",
-      "area": "School,"
+      "name": "Booth 74",
+      "address": "CUMBUM - Booth 74",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-74A",
+      "boothNo": "74A",
+      "num": 74,
+      "type": "regular",
+      "name": "Booth 74A",
+      "address": "CUMBUM - Booth 74A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-75",
       "boothNo": "75",
       "num": 75,
       "type": "regular",
-      "name": "T.P.V.Gurukkal Middle School",
-      "address": "T.P.V.Gurukkal Middle School, East Side, Seepalakottai Road, Chinnamanur",
-      "area": "Hr.Sec.School,"
+      "name": "Booth 75",
+      "address": "CUMBUM - Booth 75",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-76",
       "boothNo": "76",
       "num": 76,
       "type": "regular",
-      "name": "Sri Krishna Ayyar Hr.Sec.School",
-      "address": "Sri Krishna Ayyar Hr.Sec.School, North Side West building, Seepalakottai Road, Chinnamanur",
-      "area": "Chinnamanur"
+      "name": "Booth 76",
+      "address": "CUMBUM - Booth 76",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-76A",
+      "boothNo": "76A",
+      "num": 76,
+      "type": "regular",
+      "name": "Booth 76A",
+      "address": "CUMBUM - Booth 76A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-77",
       "boothNo": "77",
       "num": 77,
       "type": "regular",
-      "name": "Sri Krishna Ayyar Hr.Sec.School",
-      "address": "Sri Krishna Ayyar Hr.Sec.School, West Block South Side, Chinnamanur",
-      "area": "Hr.Sec.School,"
+      "name": "Booth 77",
+      "address": "CUMBUM - Booth 77",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-78",
       "boothNo": "78",
       "num": 78,
       "type": "regular",
-      "name": "Sri Krishna Ayyar Hr.Sec.School",
-      "address": "Sri Krishna Ayyar Hr.Sec.School, West Building, Shorting Room-5, 10 'B' Class Room Chinnamanur",
+      "name": "Booth 78",
+      "address": "CUMBUM - Booth 78",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-78A",
+      "boothNo": "78A",
+      "num": 78,
+      "type": "regular",
+      "name": "Booth 78A",
+      "address": "CUMBUM - Booth 78A",
       "area": "CUMBUM"
     },
     {
@@ -713,26 +974,44 @@
       "boothNo": "79",
       "num": 79,
       "type": "regular",
-      "name": "Sri Krishna Ayyar Hr.Sec.School, New",
-      "address": "Sri Krishna Ayyar Hr.Sec.School, New building, Eastern Side, South Block, Seepalakottai Road, Chinnamanur",
-      "area": "Hr.Sec.School,"
+      "name": "Booth 79",
+      "address": "CUMBUM - Booth 79",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-79A",
+      "boothNo": "79A",
+      "num": 79,
+      "type": "regular",
+      "name": "Booth 79A",
+      "address": "CUMBUM - Booth 79A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-80",
       "boothNo": "80",
       "num": 80,
       "type": "regular",
-      "name": "Sri Krishna Ayyar Hr.Sec.School, New",
-      "address": "Sri Krishna Ayyar Hr.Sec.School, New building, Eastern Side, North Block, Seepalakottai Road, Chinnamanur Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 80",
+      "address": "CUMBUM - Booth 80",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-80A",
+      "boothNo": "80A",
+      "num": 80,
+      "type": "regular",
+      "name": "Booth 80A",
+      "address": "CUMBUM - Booth 80A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-81",
       "boothNo": "81",
       "num": 81,
       "type": "regular",
-      "name": "T.P.V.Gurukkal Middle School",
-      "address": "T.P.V.Gurukkal Middle School, South Building, Southwest side, Chinnamanur",
+      "name": "Booth 81",
+      "address": "CUMBUM - Booth 81",
       "area": "CUMBUM"
     },
     {
@@ -740,8 +1019,17 @@
       "boothNo": "82",
       "num": 82,
       "type": "regular",
-      "name": "Sri Krishna Ayyar Hr.Sec.School",
-      "address": "Sri Krishna Ayyar Hr.Sec.School, East Side, Last Building, South Block , Chinnamanur",
+      "name": "Booth 82",
+      "address": "CUMBUM - Booth 82",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-82A",
+      "boothNo": "82A",
+      "num": 82,
+      "type": "regular",
+      "name": "Booth 82A",
+      "address": "CUMBUM - Booth 82A",
       "area": "CUMBUM"
     },
     {
@@ -749,8 +1037,8 @@
       "boothNo": "83",
       "num": 83,
       "type": "regular",
-      "name": "Sri Krishna Ayyar Hr.Sec.School, Last",
-      "address": "Sri Krishna Ayyar Hr.Sec.School, Last Room, South Side, Chinnamanur",
+      "name": "Booth 83",
+      "address": "CUMBUM - Booth 83",
       "area": "CUMBUM"
     },
     {
@@ -758,9 +1046,18 @@
       "boothNo": "84",
       "num": 84,
       "type": "regular",
-      "name": "Municipal Middle School",
-      "address": "Municipal Middle School West Building, South Block, Sangoli Chetti Thidal, Chinnamanur 85 Municipal Ele. School Ayyanarpuram Main Building, Chinnamanur",
-      "area": "Side,"
+      "name": "Booth 84",
+      "address": "CUMBUM - Booth 84",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-84A",
+      "boothNo": "84A",
+      "num": 84,
+      "type": "regular",
+      "name": "Booth 84A",
+      "address": "CUMBUM - Booth 84A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-85",
@@ -772,66 +1069,93 @@
       "area": "CUMBUM"
     },
     {
+      "id": "TN-201-85A",
+      "boothNo": "85A",
+      "num": 85,
+      "type": "regular",
+      "name": "Booth 85A",
+      "address": "CUMBUM - Booth 85A",
+      "area": "CUMBUM"
+    },
+    {
       "id": "TN-201-86",
       "boothNo": "86",
       "num": 86,
       "type": "regular",
-      "name": "Municipal Middle School",
-      "address": "Municipal Middle School Western Side, Southern Block Karunkattankulam, Chinnamanur",
-      "area": "Side,"
+      "name": "Booth 86",
+      "address": "CUMBUM - Booth 86",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-86A",
+      "boothNo": "86A",
+      "num": 86,
+      "type": "regular",
+      "name": "Booth 86A",
+      "address": "CUMBUM - Booth 86A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-87",
       "boothNo": "87",
       "num": 87,
       "type": "regular",
-      "name": "Municipal Middle School",
-      "address": "Municipal Middle School North Side, Western Portion, Karunkattankulam, Chinnamanur",
-      "area": "School"
+      "name": "Booth 87",
+      "address": "CUMBUM - Booth 87",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-87A",
+      "boothNo": "87A",
+      "num": 87,
+      "type": "regular",
+      "name": "Booth 87A",
+      "address": "CUMBUM - Booth 87A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-88",
       "boothNo": "88",
       "num": 88,
       "type": "regular",
-      "name": "Thagoor Vidhyalayam Ele. School Main",
-      "address": "Thagoor Vidhyalayam Ele. School Main Building, West Side, Veppampatti",
-      "area": "School,"
+      "name": "Booth 88",
+      "address": "CUMBUM - Booth 88",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-89",
       "boothNo": "89",
       "num": 89,
       "type": "regular",
-      "name": "Thagoor Vidhyalayam Ele. School, Main",
-      "address": "Thagoor Vidhyalayam Ele. School, Main Building, East Side, Veppampatti Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 89",
+      "address": "CUMBUM - Booth 89",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-90",
       "boothNo": "90",
       "num": 90,
       "type": "regular",
-      "name": "Pachaiappa Hindu Nadar Hr.Sec. School",
-      "address": "Pachaiappa Hindu Nadar Hr.Sec. School, Western Block from North to South Room No.4, Kamatchipuram Street ,",
-      "area": ","
+      "name": "Booth 90",
+      "address": "CUMBUM - Booth 90",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-91",
       "boothNo": "91",
       "num": 91,
       "type": "regular",
-      "name": "Pachaiappa Hindu Nadar Hr.Sec. School",
-      "address": "Pachaiappa Hindu Nadar Hr.Sec. School Western Block, from North to South Room No.5, Kamatchipuram , ,",
-      "area": "School,"
+      "name": "Booth 91",
+      "address": "CUMBUM - Booth 91",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-92",
       "boothNo": "92",
       "num": 92,
       "type": "regular",
-      "name": "Pachaiappa Hindu Nadar Hr.Sec. School, New",
-      "address": "Pachaiappa Hindu Nadar Hr.Sec. School, New Building, Centre Room, Kamatchipuram Teacher House Street , kovil Street ,",
+      "name": "Booth 92",
+      "address": "CUMBUM - Booth 92",
       "area": "CUMBUM"
     },
     {
@@ -839,9 +1163,9 @@
       "boothNo": "93",
       "num": 93,
       "type": "regular",
-      "name": "Pachaiappa Hindu Nadar Hr.Sec. School",
-      "address": "Pachaiappa Hindu Nadar Hr.Sec. School, West Block, Centre Portion, Kamatchipuram Hospital Street , School Street , Colony , 94 Panchayat Union Ele. School New Building , S.Azhagapuri Santhanamariyamman Kovil ,",
-      "area": "School,"
+      "name": "Booth 93",
+      "address": "CUMBUM - Booth 93",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-94",
@@ -857,8 +1181,8 @@
       "boothNo": "95",
       "num": 95,
       "type": "regular",
-      "name": "Govt. Hr. Sec. School",
-      "address": "Govt. Hr. Sec. School, East Face Building, Southernside Seeppalakottai",
+      "name": "Booth 95",
+      "address": "CUMBUM - Booth 95",
       "area": "CUMBUM"
     },
     {
@@ -866,8 +1190,8 @@
       "boothNo": "96",
       "num": 96,
       "type": "regular",
-      "name": "Govt. Hr. Sec. School",
-      "address": "Govt. Hr. Sec. School, East Face Building, Northenside, Seeppalakottai",
+      "name": "Booth 96",
+      "address": "CUMBUM - Booth 96",
       "area": "CUMBUM"
     },
     {
@@ -875,26 +1199,26 @@
       "boothNo": "97",
       "num": 97,
       "type": "regular",
-      "name": "Govt. Hr. Sec. School",
-      "address": "Govt. Hr. Sec. School, South Face Building, Easternside, Seeppalakottai",
-      "area": "School,"
+      "name": "Booth 97",
+      "address": "CUMBUM - Booth 97",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-98",
       "boothNo": "98",
       "num": 98,
       "type": "regular",
-      "name": "Panchayat Union Ele. School, Block - I Old",
-      "address": "Panchayat Union Ele. School, Block - I Old Building, East Side, Seeppalakkottai",
-      "area": "School,"
+      "name": "Booth 98",
+      "address": "CUMBUM - Booth 98",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-99",
       "boothNo": "99",
       "num": 99,
       "type": "regular",
-      "name": "Panchayat Union Ele. School, New",
-      "address": "Panchayat Union Ele. School, New Building West Block East Side, Seeppalakkottai Number Name of the Polling station Polling Station Area",
+      "name": "Booth 99",
+      "address": "CUMBUM - Booth 99",
       "area": "CUMBUM"
     },
     {
@@ -902,71 +1226,89 @@
       "boothNo": "100",
       "num": 100,
       "type": "regular",
-      "name": "Panchayat Union Ele. School, Street No.1, Ward No.5",
-      "address": "Panchayat Union Ele. School, Street No.1, Ward No.5 Western Block, Odaipatti",
-      "area": "School,"
+      "name": "Booth 100",
+      "address": "CUMBUM - Booth 100",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-101",
       "boothNo": "101",
       "num": 101,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School, North Block, Western Side, Odaipatti",
-      "area": "School,"
+      "name": "Booth 101",
+      "address": "CUMBUM - Booth 101",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-102",
       "boothNo": "102",
       "num": 102,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School, East Block, Odaipatti.",
-      "area": "School,"
+      "name": "Booth 102",
+      "address": "CUMBUM - Booth 102",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-102A",
+      "boothNo": "102A",
+      "num": 102,
+      "type": "regular",
+      "name": "Booth 102A",
+      "address": "CUMBUM - Booth 102A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-103",
       "boothNo": "103",
       "num": 103,
       "type": "regular",
-      "name": "Govt. Hr. Sec. School, Play Ground",
-      "address": "Govt. Hr. Sec. School, Play Ground Building, Room No.23, Eastern Side, Central Room, Odaipatti",
-      "area": "School,"
+      "name": "Booth 103",
+      "address": "CUMBUM - Booth 103",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-103A",
+      "boothNo": "103A",
+      "num": 103,
+      "type": "regular",
+      "name": "Booth 103A",
+      "address": "CUMBUM - Booth 103A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-104",
       "boothNo": "104",
       "num": 104,
       "type": "regular",
-      "name": "Govt. Hr. Sec. School, Play Ground",
-      "address": "Govt. Hr. Sec. School, Play Ground Building, Room No.21, Eastern Building, South Side, Odaipatti",
-      "area": "School,"
+      "name": "Booth 104",
+      "address": "CUMBUM - Booth 104",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-105",
       "boothNo": "105",
       "num": 105,
       "type": "regular",
-      "name": "Govt. Hr. Sec. School, Play Ground",
-      "address": "Govt. Hr. Sec. School, Play Ground Building, Room No.38, Four Class Building, Western Side, Odaipatti",
-      "area": "School,"
+      "name": "Booth 105",
+      "address": "CUMBUM - Booth 105",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-106",
       "boothNo": "106",
       "num": 106,
       "type": "regular",
-      "name": "Govt. Hr. Sec. School, Play Ground",
-      "address": "Govt. Hr. Sec. School, Play Ground Building, Room No.41, S.S.A. Additional Two Class Room Building, Western Side, North Block, Odaipatti Number",
-      "area": "School,"
+      "name": "Booth 106",
+      "address": "CUMBUM - Booth 106",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-107",
       "boothNo": "107",
       "num": 107,
       "type": "regular",
-      "name": "Govt. Hr. Sec. School, Play Ground",
-      "address": "Govt. Hr. Sec. School, Play Ground Building, Room No.21, S.S.A. Additional Two Class Room Building, Eastern Side, Centre Block, South Portion, Odaipatti 108 Govt. Kallar Ele. School South Block West Side, Vellaiyammalpuram",
+      "name": "Booth 107",
+      "address": "CUMBUM - Booth 107",
       "area": "CUMBUM"
     },
     {
@@ -979,21 +1321,30 @@
       "area": "CUMBUM"
     },
     {
+      "id": "TN-201-108A",
+      "boothNo": "108A",
+      "num": 108,
+      "type": "regular",
+      "name": "Booth 108A",
+      "address": "CUMBUM - Booth 108A",
+      "area": "CUMBUM"
+    },
+    {
       "id": "TN-201-109",
       "boothNo": "109",
       "num": 109,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School Central RCC",
-      "address": "Govt. Kallar Ele. School Central RCC Building, East Block , Vellaiyammalpuram",
-      "area": "School,"
+      "name": "Booth 109",
+      "address": "CUMBUM - Booth 109",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-110",
       "boothNo": "110",
       "num": 110,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, South Block Building, Thenpalani",
+      "name": "Booth 110",
+      "address": "CUMBUM - Booth 110",
       "area": "CUMBUM"
     },
     {
@@ -1001,8 +1352,17 @@
       "boothNo": "111",
       "num": 111,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School, North Building, Moorthinayakkanpatti",
+      "name": "Booth 111",
+      "address": "CUMBUM - Booth 111",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-111A",
+      "boothNo": "111A",
+      "num": 111,
+      "type": "regular",
+      "name": "Booth 111A",
+      "address": "CUMBUM - Booth 111A",
       "area": "CUMBUM"
     },
     {
@@ -1010,8 +1370,17 @@
       "boothNo": "112",
       "num": 112,
       "type": "regular",
-      "name": "Hindu Nadar Uravin Murai Middle School, Main",
-      "address": "Hindu Nadar Uravin Murai Middle School, Main Building, Sukkankalpatti",
+      "name": "Booth 112",
+      "address": "CUMBUM - Booth 112",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-112A",
+      "boothNo": "112A",
+      "num": 112,
+      "type": "regular",
+      "name": "Booth 112A",
+      "address": "CUMBUM - Booth 112A",
       "area": "CUMBUM"
     },
     {
@@ -1019,17 +1388,17 @@
       "boothNo": "113",
       "num": 113,
       "type": "regular",
-      "name": "Hindu Nadar Uravin Murai Middle School",
-      "address": "Hindu Nadar Uravin Murai Middle School, South Side, Western Building, Sukkankalpatti",
-      "area": "School,"
+      "name": "Booth 113",
+      "address": "CUMBUM - Booth 113",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-114",
       "boothNo": "114",
       "num": 114,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, North side, New Building, Appipatti @ Azhagapuri",
+      "name": "Booth 114",
+      "address": "CUMBUM - Booth 114",
       "area": "CUMBUM"
     },
     {
@@ -1037,8 +1406,8 @@
       "boothNo": "115",
       "num": 115,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, West Block, South Building, Appipatti @ Azhagapuri",
+      "name": "Booth 115",
+      "address": "CUMBUM - Booth 115",
       "area": "CUMBUM"
     },
     {
@@ -1046,8 +1415,8 @@
       "boothNo": "116",
       "num": 116,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, North side, New Building, Appipatti @ Azhagapuri",
+      "name": "Booth 116",
+      "address": "CUMBUM - Booth 116",
       "area": "CUMBUM"
     },
     {
@@ -1055,35 +1424,35 @@
       "boothNo": "117",
       "num": 117,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School East Block, Puthampatti @ Muthukrishnapuram",
-      "area": "School,"
+      "name": "Booth 117",
+      "address": "CUMBUM - Booth 117",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-118",
       "boothNo": "118",
       "num": 118,
       "type": "regular",
-      "name": "Gandhiji Memorial Ele. School",
-      "address": "Gandhiji Memorial Ele. School, North Side Block, Appipatti @ Azhagapuri",
-      "area": "School,"
+      "name": "Booth 118",
+      "address": "CUMBUM - Booth 118",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-119",
       "boothNo": "119",
       "num": 119,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, South Building, 6th Std Class Room Karichipatti Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 119",
+      "address": "CUMBUM - Booth 119",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-120",
       "boothNo": "120",
       "num": 120,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, North Side South Building, Muthulapuram",
+      "name": "Booth 120",
+      "address": "CUMBUM - Booth 120",
       "area": "CUMBUM"
     },
     {
@@ -1091,8 +1460,8 @@
       "boothNo": "121",
       "num": 121,
       "type": "regular",
-      "name": "Panchayat Union Middle School, New",
-      "address": "Panchayat Union Middle School, New Building, North Side, Muthulapuram",
+      "name": "Booth 121",
+      "address": "CUMBUM - Booth 121",
       "area": "CUMBUM"
     },
     {
@@ -1100,17 +1469,26 @@
       "boothNo": "122",
       "num": 122,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School, New",
-      "address": "Govt. Kallar Ele. School, New Building, West Side, Malaiyandipuram @ Oothupatti Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 122",
+      "address": "CUMBUM - Booth 122",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-123",
       "boothNo": "123",
       "num": 123,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School, New",
-      "address": "Govt. Kallar Ele. School, New Building, West Block, Kanniyampatti",
+      "name": "Booth 123",
+      "address": "CUMBUM - Booth 123",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-123A",
+      "boothNo": "123A",
+      "num": 123,
+      "type": "regular",
+      "name": "Booth 123A",
+      "address": "CUMBUM - Booth 123A",
       "area": "CUMBUM"
     },
     {
@@ -1118,8 +1496,8 @@
       "boothNo": "124",
       "num": 124,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School",
-      "address": "Govt. Kallar Ele. School, East Face Building, M.Perumalpatti",
+      "name": "Booth 124",
+      "address": "CUMBUM - Booth 124",
       "area": "CUMBUM"
     },
     {
@@ -1127,80 +1505,107 @@
       "boothNo": "125",
       "num": 125,
       "type": "regular",
-      "name": "Panchayat Union Ele.School",
-      "address": "Panchayat Union Ele.School, South Building, Near Water Tank , Chinnaovulapuram",
-      "area": "Ele.School,"
+      "name": "Booth 125",
+      "address": "CUMBUM - Booth 125",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-125A",
+      "boothNo": "125A",
+      "num": 125,
+      "type": "regular",
+      "name": "Booth 125A",
+      "address": "CUMBUM - Booth 125A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-126",
       "boothNo": "126",
       "num": 126,
       "type": "regular",
-      "name": "Panchayat Union Ele.School,",
-      "address": "Panchayat Union Ele.School,",
-      "area": "Ele.School,"
+      "name": "Booth 126",
+      "address": "CUMBUM - Booth 126",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-127",
       "boothNo": "127",
       "num": 127,
       "type": "regular",
-      "name": "Panchayat Union Ele.School",
-      "address": "Panchayat Union Ele.School, North New Building Near Watter Tank, Chinnaovulapuram",
-      "area": "Ele.School,"
+      "name": "Booth 127",
+      "address": "CUMBUM - Booth 127",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-128",
       "boothNo": "128",
       "num": 128,
       "type": "regular",
-      "name": "Panchayat Union Ele.School",
-      "address": "Panchayat Union Ele.School, North Building Near Water Tank, Chinnaovulapuram",
-      "area": "School,"
+      "name": "Booth 128",
+      "address": "CUMBUM - Booth 128",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-128A",
+      "boothNo": "128A",
+      "num": 128,
+      "type": "regular",
+      "name": "Booth 128A",
+      "address": "CUMBUM - Booth 128A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-129",
       "boothNo": "129",
       "num": 129,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School, 5th Std.",
-      "address": "Govt. Kallar Ele. School, 5th Std. Room, Chinnaovulapuram",
-      "area": "School"
+      "name": "Booth 129",
+      "address": "CUMBUM - Booth 129",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-130",
       "boothNo": "130",
       "num": 130,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School New",
-      "address": "Govt. Kallar Ele. School New Building, Chinnaovulapuram",
-      "area": "Ele.School,"
+      "name": "Booth 130",
+      "address": "CUMBUM - Booth 130",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-131",
       "boothNo": "131",
       "num": 131,
       "type": "regular",
-      "name": "Panchayat Union Ele.School, Anganvadi Centre",
-      "address": "Panchayat Union Ele.School, Anganvadi Centre, North building, East Side Erasakkanayakkanur",
-      "area": "Side"
+      "name": "Booth 131",
+      "address": "CUMBUM - Booth 131",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-132",
       "boothNo": "132",
       "num": 132,
       "type": "regular",
-      "name": "Panchayat Union Ele.School, Anganvadi Centre",
-      "address": "Panchayat Union Ele.School, Anganvadi Centre, North building, West Side Erasakkanayakkanur Number",
-      "area": "Side"
+      "name": "Booth 132",
+      "address": "CUMBUM - Booth 132",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-132A",
+      "boothNo": "132A",
+      "num": 132,
+      "type": "regular",
+      "name": "Booth 132A",
+      "address": "CUMBUM - Booth 132A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-133",
       "boothNo": "133",
       "num": 133,
       "type": "regular",
-      "name": "Roman Catholic Ele. School, Important",
-      "address": "Roman Catholic Ele. School, Important Building 2nd Std., Erasakkanayakkanur",
+      "name": "Booth 133",
+      "address": "CUMBUM - Booth 133",
       "area": "CUMBUM"
     },
     {
@@ -1208,8 +1613,8 @@
       "boothNo": "134",
       "num": 134,
       "type": "regular",
-      "name": "Roman Catholic Ele. School, Important",
-      "address": "Roman Catholic Ele. School, Important Building 5th Std., Erasakkanayakkanur",
+      "name": "Booth 134",
+      "address": "CUMBUM - Booth 134",
       "area": "CUMBUM"
     },
     {
@@ -1217,125 +1622,125 @@
       "boothNo": "135",
       "num": 135,
       "type": "regular",
-      "name": "Panchayat Union Ele.SchooL",
-      "address": "Panchayat Union Ele.SchooL, Eastern Block New Building, Erasakkanayakkanur",
-      "area": "Ele.School,"
+      "name": "Booth 135",
+      "address": "CUMBUM - Booth 135",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-136",
       "boothNo": "136",
       "num": 136,
       "type": "regular",
-      "name": "Panchayat Union Ele.School, Grama Seva sangam Erasakkanayakkanur",
-      "address": "Panchayat Union Ele.School, Grama Seva sangam Erasakkanayakkanur",
-      "area": "School,"
+      "name": "Booth 136",
+      "address": "CUMBUM - Booth 136",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-137",
       "boothNo": "137",
       "num": 137,
       "type": "regular",
-      "name": "Gandhiji Vidhyalayam Elementary School",
-      "address": "Gandhiji Vidhyalayam Elementary School, South Room Western Side, Kanniservaipatti",
-      "area": "School,"
+      "name": "Booth 137",
+      "address": "CUMBUM - Booth 137",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-138",
       "boothNo": "138",
       "num": 138,
       "type": "regular",
-      "name": "Gandhiji Vidhyalayam Elementary School, Main",
-      "address": "Gandhiji Vidhyalayam Elementary School, Main Building, East Side, Kanniservaipatti Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 138",
+      "address": "CUMBUM - Booth 138",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-139",
       "boothNo": "139",
       "num": 139,
       "type": "regular",
-      "name": "Gandhiji Vidhyalayam Elementary School, Main",
-      "address": "Gandhiji Vidhyalayam Elementary School, Main Building, West Side, Kanniservaipatti",
-      "area": "School,"
+      "name": "Booth 139",
+      "address": "CUMBUM - Booth 139",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-140",
       "boothNo": "140",
       "num": 140,
       "type": "regular",
-      "name": "Sriraman Chettiyar Ele. School",
-      "address": "Sriraman Chettiyar Ele. School, Western Side Portion, Terraced Building, Kombai.",
-      "area": "School,"
+      "name": "Booth 140",
+      "address": "CUMBUM - Booth 140",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-141",
       "boothNo": "141",
       "num": 141,
       "type": "regular",
-      "name": "Sriraman Chettiyar Ele. School",
-      "address": "Sriraman Chettiyar Ele. School, Western Side Portion, North Block, Terraced Building, Kombai.",
-      "area": "School,"
+      "name": "Booth 141",
+      "address": "CUMBUM - Booth 141",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-142",
       "boothNo": "142",
       "num": 142,
       "type": "regular",
-      "name": "Sriraman Chettiyar Ele. School",
-      "address": "Sriraman Chettiyar Ele. School, Eastern Side, Kombai.",
-      "area": "School,"
+      "name": "Booth 142",
+      "address": "CUMBUM - Booth 142",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-143",
       "boothNo": "143",
       "num": 143,
       "type": "regular",
-      "name": "Sriraman Chettiyar Ele. School",
-      "address": "Sriraman Chettiyar Ele. School, Eastern Side, 3rd Class Room, Kombai.",
-      "area": "School,"
+      "name": "Booth 143",
+      "address": "CUMBUM - Booth 143",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-144",
       "boothNo": "144",
       "num": 144,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, Northern Side, South Block, Kombai.",
-      "area": "Ele.School."
+      "name": "Booth 144",
+      "address": "CUMBUM - Booth 144",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-145",
       "boothNo": "145",
       "num": 145,
       "type": "regular",
-      "name": "Kallar Ele.School.",
-      "address": "Kallar Ele.School. Western Side, Kombai",
-      "area": "School,"
+      "name": "Booth 145",
+      "address": "CUMBUM - Booth 145",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-146",
       "boothNo": "146",
       "num": 146,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, South Block, Southern Side, Kombai.",
-      "area": "School,"
+      "name": "Booth 146",
+      "address": "CUMBUM - Booth 146",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-147",
       "boothNo": "147",
       "num": 147,
       "type": "regular",
-      "name": "Sri Kanniga Parameshwari Hr. Sec. School, Century Anniversary",
-      "address": "Sri Kanniga Parameshwari Hr. Sec. School, Century Anniversary Building, Western Side, Kombai.",
-      "area": "School,"
+      "name": "Booth 147",
+      "address": "CUMBUM - Booth 147",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-148",
       "boothNo": "148",
       "num": 148,
       "type": "regular",
-      "name": "Sri Kanniga Parameshwari Hr. Sec. School, Century Anniversary",
-      "address": "Sri Kanniga Parameshwari Hr. Sec. School, Century Anniversary Building, Eastern Side, Middle Portion, Kombai Number Name of the Polling station Polling Station Area",
+      "name": "Booth 148",
+      "address": "CUMBUM - Booth 148",
       "area": "CUMBUM"
     },
     {
@@ -1343,17 +1748,17 @@
       "boothNo": "149",
       "num": 149,
       "type": "regular",
-      "name": "Sri Kanniga Parameshwari Hr. Sec. School, Century Anniversary",
-      "address": "Sri Kanniga Parameshwari Hr. Sec. School, Century Anniversary Building, Eastern Side, Kombai.",
-      "area": "School,"
+      "name": "Booth 149",
+      "address": "CUMBUM - Booth 149",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-150",
       "boothNo": "150",
       "num": 150,
       "type": "regular",
-      "name": "Panchayat Union Primary School, Old",
-      "address": "Panchayat Union Primary School, Old Building, westren side Karukodai, Kombai.",
+      "name": "Booth 150",
+      "address": "CUMBUM - Booth 150",
       "area": "CUMBUM"
     },
     {
@@ -1361,107 +1766,134 @@
       "boothNo": "151",
       "num": 151,
       "type": "regular",
-      "name": "Panchayath Union Middle School",
-      "address": "Panchayath Union Middle School, Eastern Portion, Kombai.",
-      "area": "School,"
+      "name": "Booth 151",
+      "address": "CUMBUM - Booth 151",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-152",
       "boothNo": "152",
       "num": 152,
       "type": "regular",
-      "name": "Panchayath Union Middle School",
-      "address": "Panchayath Union Middle School, Western Portion, Kombai.",
-      "area": "School,"
+      "name": "Booth 152",
+      "address": "CUMBUM - Booth 152",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-153",
       "boothNo": "153",
       "num": 153,
       "type": "regular",
-      "name": "Sri Kanniga Parameshwari Hr.Sec. School, MP Fund",
-      "address": "Sri Kanniga Parameshwari Hr.Sec. School, MP Fund Building, East Side, Kombai.",
-      "area": "School,"
+      "name": "Booth 153",
+      "address": "CUMBUM - Booth 153",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-154",
       "boothNo": "154",
       "num": 154,
       "type": "regular",
-      "name": "Sri Kanniga Parameshwari Hr.Sec. School, MP Fund",
-      "address": "Sri Kanniga Parameshwari Hr.Sec. School, MP Fund Building, West Side, Kombai.",
-      "area": "School,"
+      "name": "Booth 154",
+      "address": "CUMBUM - Booth 154",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-155",
       "boothNo": "155",
       "num": 155,
       "type": "regular",
-      "name": "C.S.I. Ele. School",
-      "address": "C.S.I. Ele. School, East Block, Kombai.",
-      "area": "School,"
+      "name": "Booth 155",
+      "address": "CUMBUM - Booth 155",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-155A",
+      "boothNo": "155A",
+      "num": 155,
+      "type": "regular",
+      "name": "Booth 155A",
+      "address": "CUMBUM - Booth 155A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-156",
       "boothNo": "156",
       "num": 156,
       "type": "regular",
-      "name": "C.S.I. Ele. School",
-      "address": "C.S.I. Ele. School, Western building, Kombai.",
-      "area": "School,"
+      "name": "Booth 156",
+      "address": "CUMBUM - Booth 156",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-157",
       "boothNo": "157",
       "num": 157,
       "type": "regular",
-      "name": "C.S.I. Ele. School",
-      "address": "C.S.I. Ele. School, North Side building, Kombai.",
-      "area": "School"
+      "name": "Booth 157",
+      "address": "CUMBUM - Booth 157",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-158",
       "boothNo": "158",
       "num": 158,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School",
-      "address": "Govt. Kallar Ele. School Northern Block, U.Ammapatti. Street , Number Name of the Polling station Polling Station Area 159 Govt. Kallar Ele. School Southern Block, U.Ammapatti.",
-      "area": ","
+      "name": "Booth 158",
+      "address": "CUMBUM - Booth 158",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-159",
       "boothNo": "159",
       "num": 159,
       "type": "regular",
-      "name": "Govt. High School,",
-      "address": "Govt. High School,",
-      "area": "School,"
+      "name": "Booth 159",
+      "address": "CUMBUM - Booth 159",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-160",
       "boothNo": "160",
       "num": 160,
       "type": "regular",
-      "name": "Govt. High School",
-      "address": "Govt. High School, North Block, Eastern Side, U.Ammapatti.",
-      "area": "School,"
+      "name": "Booth 160",
+      "address": "CUMBUM - Booth 160",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-161",
       "boothNo": "161",
       "num": 161,
       "type": "regular",
-      "name": "Govt. High School",
-      "address": "Govt. High School, Southern Side, U.Ammapatti.",
-      "area": ","
+      "name": "Booth 161",
+      "address": "CUMBUM - Booth 161",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-161A",
+      "boothNo": "161A",
+      "num": 161,
+      "type": "regular",
+      "name": "Booth 161A",
+      "address": "CUMBUM - Booth 161A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-162",
       "boothNo": "162",
       "num": 162,
       "type": "regular",
-      "name": "Kalainilaiyam Aided Ele. School, Additional",
-      "address": "Kalainilaiyam Aided Ele. School, Additional Building, North Side, West Block, U.Ambhasamuthiram",
+      "name": "Booth 162",
+      "address": "CUMBUM - Booth 162",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-162A",
+      "boothNo": "162A",
+      "num": 162,
+      "type": "regular",
+      "name": "Booth 162A",
+      "address": "CUMBUM - Booth 162A",
       "area": "CUMBUM"
     },
     {
@@ -1469,17 +1901,26 @@
       "boothNo": "163",
       "num": 163,
       "type": "regular",
-      "name": "Kalainilaiyam Aided Ele. School, New Additional",
-      "address": "Kalainilaiyam Aided Ele. School, New Additional Building, North Side, East Block, U.Ambhasamuthiram",
-      "area": "School,"
+      "name": "Booth 163",
+      "address": "CUMBUM - Booth 163",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-164",
       "boothNo": "164",
       "num": 164,
       "type": "regular",
-      "name": "St.Periyanayagi Middle School",
-      "address": "St.Periyanayagi Middle School, Northern Building, Western Portion, Uthamapalayam",
+      "name": "Booth 164",
+      "address": "CUMBUM - Booth 164",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-164A",
+      "boothNo": "164A",
+      "num": 164,
+      "type": "regular",
+      "name": "Booth 164A",
+      "address": "CUMBUM - Booth 164A",
       "area": "CUMBUM"
     },
     {
@@ -1487,8 +1928,8 @@
       "boothNo": "165",
       "num": 165,
       "type": "regular",
-      "name": "St.Periyanayagi Middle School",
-      "address": "St.Periyanayagi Middle School, Northern Building, Eastern Portion, Uthamapalayam Lane\fPolling Station Number Name of the Polling station Polling Station Area",
+      "name": "Booth 165",
+      "address": "CUMBUM - Booth 165",
       "area": "CUMBUM"
     },
     {
@@ -1496,8 +1937,17 @@
       "boothNo": "166",
       "num": 166,
       "type": "regular",
-      "name": "Joseph Periyanayagi Elementary School",
-      "address": "Joseph Periyanayagi Elementary School, Western Building, Northern Portion, Uthamapalayam. Street ,",
+      "name": "Booth 166",
+      "address": "CUMBUM - Booth 166",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-166A",
+      "boothNo": "166A",
+      "num": 166,
+      "type": "regular",
+      "name": "Booth 166A",
+      "address": "CUMBUM - Booth 166A",
       "area": "CUMBUM"
     },
     {
@@ -1505,26 +1955,26 @@
       "boothNo": "167",
       "num": 167,
       "type": "regular",
-      "name": "Joseph Periyanayagi Elementary School",
-      "address": "Joseph Periyanayagi Elementary School, Eastern Side, Northern Portion , Uthamapalayam. Backside) Gurusu 1st Street , Street , Street , Lane",
-      "area": ","
+      "name": "Booth 167",
+      "address": "CUMBUM - Booth 167",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-168",
       "boothNo": "168",
       "num": 168,
       "type": "regular",
-      "name": "C.S.I Ele. School, New",
-      "address": "C.S.I Ele. School, New Building, Eastern Side, Uthamapalayam. , Street , kovil Street ,",
-      "area": "School,"
+      "name": "Booth 168",
+      "address": "CUMBUM - Booth 168",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-169",
       "boothNo": "169",
       "num": 169,
       "type": "regular",
-      "name": "C.S.I Ele. School, New",
-      "address": "C.S.I Ele. School, New Building, Western Side, Uthamapalayam. Number Name of the Polling station Polling Station Area",
+      "name": "Booth 169",
+      "address": "CUMBUM - Booth 169",
       "area": "CUMBUM"
     },
     {
@@ -1532,8 +1982,8 @@
       "boothNo": "170",
       "num": 170,
       "type": "regular",
-      "name": "St.Periyanayaki Middle School",
-      "address": "St.Periyanayaki Middle School, Western Building, Northern Portion, Uthamapalayam.",
+      "name": "Booth 170",
+      "address": "CUMBUM - Booth 170",
       "area": "CUMBUM"
     },
     {
@@ -1541,8 +1991,8 @@
       "boothNo": "171",
       "num": 171,
       "type": "regular",
-      "name": "St.Periyanayaki Middle School",
-      "address": "St.Periyanayaki Middle School, West Building, Southern Portion, Uthamapalayam. Theatre",
+      "name": "Booth 171",
+      "address": "CUMBUM - Booth 171",
       "area": "CUMBUM"
     },
     {
@@ -1550,8 +2000,8 @@
       "boothNo": "172",
       "num": 172,
       "type": "regular",
-      "name": "St.Periyanayaki Middle School",
-      "address": "St.Periyanayaki Middle School, West Building, North Building, Uthamapalayam. , , Street ,",
+      "name": "Booth 172",
+      "address": "CUMBUM - Booth 172",
       "area": "CUMBUM"
     },
     {
@@ -1559,26 +2009,53 @@
       "boothNo": "173",
       "num": 173,
       "type": "regular",
-      "name": "Panchayat Union Office Council Hall",
-      "address": "Panchayat Union Office Council Hall, North Side, Uthamapalayam.",
-      "area": "Hall,"
+      "name": "Booth 173",
+      "address": "CUMBUM - Booth 173",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-173A",
+      "boothNo": "173A",
+      "num": 173,
+      "type": "regular",
+      "name": "Booth 173A",
+      "address": "CUMBUM - Booth 173A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-174",
       "boothNo": "174",
       "num": 174,
       "type": "regular",
-      "name": "Panchayat Union Office Council Hall",
-      "address": "Panchayat Union Office Council Hall, South Portion, Uthamapalayam. Number Name of the Polling station Polling Station Area",
-      "area": "Office,"
+      "name": "Booth 174",
+      "address": "CUMBUM - Booth 174",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-174A",
+      "boothNo": "174A",
+      "num": 174,
+      "type": "regular",
+      "name": "Booth 174A",
+      "address": "CUMBUM - Booth 174A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-175",
       "boothNo": "175",
       "num": 175,
       "type": "regular",
-      "name": "Panchayat Union Office, Women Self Hepl group training",
-      "address": "Panchayat Union Office, Women Self Hepl group training Building, Western Block, Uthamapalayam",
+      "name": "Booth 175",
+      "address": "CUMBUM - Booth 175",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-175A",
+      "boothNo": "175A",
+      "num": 175,
+      "type": "regular",
+      "name": "Booth 175A",
+      "address": "CUMBUM - Booth 175A",
       "area": "CUMBUM"
     },
     {
@@ -1586,8 +2063,17 @@
       "boothNo": "176",
       "num": 176,
       "type": "regular",
-      "name": "St.Periyanayaki Middle School",
-      "address": "St.Periyanayaki Middle School, Southern Block, Eastern Side, Last Room, Uthamapalayam.",
+      "name": "Booth 176",
+      "address": "CUMBUM - Booth 176",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-176A",
+      "boothNo": "176A",
+      "num": 176,
+      "type": "regular",
+      "name": "Booth 176A",
+      "address": "CUMBUM - Booth 176A",
       "area": "CUMBUM"
     },
     {
@@ -1595,116 +2081,161 @@
       "boothNo": "177",
       "num": 177,
       "type": "regular",
-      "name": "North Side, New",
-      "address": "North Side, New Building, Uthamapalayam",
-      "area": "School,"
+      "name": "Booth 177",
+      "address": "CUMBUM - Booth 177",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-177A",
+      "boothNo": "177A",
+      "num": 177,
+      "type": "regular",
+      "name": "Booth 177A",
+      "address": "CUMBUM - Booth 177A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-178",
       "boothNo": "178",
       "num": 178,
       "type": "regular",
-      "name": "Mohamed Fathuma Girls High School",
-      "address": "Mohamed Fathuma Girls High School, North Block, West Side, Uthamapalayam Lane , Side Peerana Rowther Lane ,",
-      "area": ","
+      "name": "Booth 178",
+      "address": "CUMBUM - Booth 178",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-179",
       "boothNo": "179",
       "num": 179,
       "type": "regular",
-      "name": "Mohamed Fathuma Girls High School",
-      "address": "Mohamed Fathuma Girls High School, North Block, North Side, Uthamapalayam Lane , Kaliamman Kovil Street , Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 179",
+      "address": "CUMBUM - Booth 179",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-180",
       "boothNo": "180",
       "num": 180,
       "type": "regular",
-      "name": "Mohamed Fathuma Girls High School, New",
-      "address": "Mohamed Fathuma Girls High School, New Building, Eastern Block, Southern Side, Uthamapalayam. Meeran Lebbai Lane , Lane , Kovil Street ,",
-      "area": "School,"
+      "name": "Booth 180",
+      "address": "CUMBUM - Booth 180",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-180A",
+      "boothNo": "180A",
+      "num": 180,
+      "type": "regular",
+      "name": "Booth 180A",
+      "address": "CUMBUM - Booth 180A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-181",
       "boothNo": "181",
       "num": 181,
       "type": "regular",
-      "name": "Mohamed Fathuma Girls High School, New",
-      "address": "Mohamed Fathuma Girls High School, New Building, Eastern Block, Northern side, Uthamapalayam",
-      "area": "School,"
+      "name": "Booth 181",
+      "address": "CUMBUM - Booth 181",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-182",
       "boothNo": "182",
       "num": 182,
       "type": "regular",
-      "name": "Mohamed Fathuma Girls High School",
-      "address": "Mohamed Fathuma Girls High School, West Block, South Side, Uthamapalayam. , Street , Street , Number",
-      "area": "Side"
+      "name": "Booth 182",
+      "address": "CUMBUM - Booth 182",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-182A",
+      "boothNo": "182A",
+      "num": 182,
+      "type": "regular",
+      "name": "Booth 182A",
+      "address": "CUMBUM - Booth 182A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-183",
       "boothNo": "183",
       "num": 183,
       "type": "regular",
-      "name": "Panchayat Union Middle School, Main Bazzar (Market)",
-      "address": "Panchayat Union Middle School, Main Bazzar (Market) North Side, Uthamapalayam. Vinayakampillai Lane ,",
-      "area": "School,"
+      "name": "Booth 183",
+      "address": "CUMBUM - Booth 183",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-184",
       "boothNo": "184",
       "num": 184,
       "type": "regular",
-      "name": "Panchayat Union Middle School, Main Block",
-      "address": "Panchayat Union Middle School, Main Block, South Side, Main Bazaar Market Street, Uthamapalayam Lane , Lane ,",
-      "area": "School,"
+      "name": "Booth 184",
+      "address": "CUMBUM - Booth 184",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-184A",
+      "boothNo": "184A",
+      "num": 184,
+      "type": "regular",
+      "name": "Booth 184A",
+      "address": "CUMBUM - Booth 184A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-185",
       "boothNo": "185",
       "num": 185,
       "type": "regular",
-      "name": "Panchayat Union Middle School, Gnanamman Kovil Street, Bus Stand Opp.",
-      "address": "Panchayat Union Middle School, Gnanamman Kovil Street, Bus Stand Opp. West Block, Uthamapalayam Street , Street ,",
-      "area": "School,"
+      "name": "Booth 185",
+      "address": "CUMBUM - Booth 185",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-186",
       "boothNo": "186",
       "num": 186,
       "type": "regular",
-      "name": "Panchayat Union Middle School, Gnanamman Kovil Street, Bus Stand Opp. Middle",
-      "address": "Panchayat Union Middle School, Gnanamman Kovil Street, Bus Stand Opp. Middle Building West Block, Uthamapalayam , Street , Street , Street ,",
-      "area": "School,"
+      "name": "Booth 186",
+      "address": "CUMBUM - Booth 186",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-186A",
+      "boothNo": "186A",
+      "num": 186,
+      "type": "regular",
+      "name": "Booth 186A",
+      "address": "CUMBUM - Booth 186A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-187",
       "boothNo": "187",
       "num": 187,
       "type": "regular",
-      "name": "Panchayat Union Middle School, Gnanamman Kovil Street, New",
-      "address": "Panchayat Union Middle School, Gnanamman Kovil Street, New Building West Side, Uthamapalayam Thanneer Thurai Road , , Ricemill Street , Street\fPolling Station Number",
-      "area": "School,"
+      "name": "Booth 187",
+      "address": "CUMBUM - Booth 187",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-188",
       "boothNo": "188",
       "num": 188,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, North Side, Kalimettupatti, Uthamapalyam 18 Kalimettupatti Mohammathiyar North Street",
-      "area": "School,"
+      "name": "Booth 188",
+      "address": "CUMBUM - Booth 188",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-189",
       "boothNo": "189",
       "num": 189,
       "type": "regular",
-      "name": "Panchayat Union Middle School, New",
-      "address": "Panchayat Union Middle School, New Building, Western Room, Kalimettupatti, Uthamapalyam 190 Panchayat Union Ele.School Ramasamynayakkanpatti Middle Street , Main Road ,",
+      "name": "Booth 189",
+      "address": "CUMBUM - Booth 189",
       "area": "CUMBUM"
     },
     {
@@ -1712,44 +2243,71 @@
       "boothNo": "190",
       "num": 190,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School,",
-      "address": "Govt. Kallar Ele. School,",
-      "area": "School,"
+      "name": "Booth 190",
+      "address": "CUMBUM - Booth 190",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-191",
       "boothNo": "191",
       "num": 191,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School, SSA",
-      "address": "Govt. Kallar Ele. School, SSA Building, Anaimalaiyanpatti Ward-1 Indhira colony Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 191",
+      "address": "CUMBUM - Booth 191",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-191A",
+      "boothNo": "191A",
+      "num": 191,
+      "type": "regular",
+      "name": "Booth 191A",
+      "address": "CUMBUM - Booth 191A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-192",
       "boothNo": "192",
       "num": 192,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School",
-      "address": "Govt. Kallar Ele. School,",
-      "area": ","
+      "name": "Booth 192",
+      "address": "CUMBUM - Booth 192",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-193",
       "boothNo": "193",
       "num": 193,
       "type": "regular",
-      "name": "Panchayat Union Middle School, New",
-      "address": "Panchayat Union Middle School, New Building, West Side, Annaimalaiyanpatti",
-      "area": "School,"
+      "name": "Booth 193",
+      "address": "CUMBUM - Booth 193",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-193A",
+      "boothNo": "193A",
+      "num": 193,
+      "type": "regular",
+      "name": "Booth 193A",
+      "address": "CUMBUM - Booth 193A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-194",
       "boothNo": "194",
       "num": 194,
       "type": "regular",
-      "name": "Panchayat Union Middle School, New",
-      "address": "Panchayat Union Middle School, New Building, North Block, Anaimalaiyanpatti",
+      "name": "Booth 194",
+      "address": "CUMBUM - Booth 194",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-194A",
+      "boothNo": "194A",
+      "num": 194,
+      "type": "regular",
+      "name": "Booth 194A",
+      "address": "CUMBUM - Booth 194A",
       "area": "CUMBUM"
     },
     {
@@ -1757,44 +2315,44 @@
       "boothNo": "195",
       "num": 195,
       "type": "regular",
-      "name": "Panchayat Union Middle School, New",
-      "address": "Panchayat Union Middle School, New Building, North Side, Anaimalaiyanpatti",
-      "area": "School,"
+      "name": "Booth 195",
+      "address": "CUMBUM - Booth 195",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-196",
       "boothNo": "196",
       "num": 196,
       "type": "regular",
-      "name": "Panchayat Union Ele. School, New",
-      "address": "Panchayat Union Ele. School, New Building, Western Side, Kokilapuram",
-      "area": "School,"
+      "name": "Booth 196",
+      "address": "CUMBUM - Booth 196",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-197",
       "boothNo": "197",
       "num": 197,
       "type": "regular",
-      "name": "Panchayat Union Ele. School, New",
-      "address": "Panchayat Union Ele. School, New Building, North Side, West Block, Kokilapuram Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 197",
+      "address": "CUMBUM - Booth 197",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-198",
       "boothNo": "198",
       "num": 198,
       "type": "regular",
-      "name": "Panchayat Union Ele. School, New",
-      "address": "Panchayat Union Ele. School, New Building, Eastern Portion, South Side, Kokilapuram",
-      "area": "School,"
+      "name": "Booth 198",
+      "address": "CUMBUM - Booth 198",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-199",
       "boothNo": "199",
       "num": 199,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School, New",
-      "address": "Govt. Kallar Ele. School, New Building, South Side, Kokilapuram",
+      "name": "Booth 199",
+      "address": "CUMBUM - Booth 199",
       "area": "CUMBUM"
     },
     {
@@ -1802,17 +2360,26 @@
       "boothNo": "200",
       "num": 200,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School, New",
-      "address": "Govt. Kallar Ele. School, New Building, West Side, Rayappanpatti",
-      "area": "School,"
+      "name": "Booth 200",
+      "address": "CUMBUM - Booth 200",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-200A",
+      "boothNo": "200A",
+      "num": 200,
+      "type": "regular",
+      "name": "Booth 200A",
+      "address": "CUMBUM - Booth 200A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-201",
       "boothNo": "201",
       "num": 201,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School, New",
-      "address": "Govt. Kallar Ele. School, New Building, East Block, Western Side, Rayappanpatti",
+      "name": "Booth 201",
+      "address": "CUMBUM - Booth 201",
       "area": "CUMBUM"
     },
     {
@@ -1820,80 +2387,116 @@
       "boothNo": "202",
       "num": 202,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School",
-      "address": "Govt. Kallar Ele. School, East Block, Rayappanpatti",
-      "area": ","
+      "name": "Booth 202",
+      "address": "CUMBUM - Booth 202",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-203",
       "boothNo": "203",
       "num": 203,
       "type": "regular",
-      "name": "St. Aloysis Hr. Sec. School",
-      "address": "St. Aloysis Hr. Sec. School, Northern Block, Western side 10th 'E' Class, Rayappanpatti",
-      "area": "School,"
+      "name": "Booth 203",
+      "address": "CUMBUM - Booth 203",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-204",
       "boothNo": "204",
       "num": 204,
       "type": "regular",
-      "name": "St. Aloysis Ele. School, New",
-      "address": "St. Aloysis Ele. School, New Building, Eastern Side, South Block, Rayappanpatti Number",
-      "area": "Street"
+      "name": "Booth 204",
+      "address": "CUMBUM - Booth 204",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-204A",
+      "boothNo": "204A",
+      "num": 204,
+      "type": "regular",
+      "name": "Booth 204A",
+      "address": "CUMBUM - Booth 204A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-205",
       "boothNo": "205",
       "num": 205,
       "type": "regular",
-      "name": "St. Aloysis Hr.Sec.school, Boys section",
-      "address": "St. Aloysis Hr.Sec.school, Boys section, Eastern Portion, West Floor, Rayappanpatti (R.V) And (P) Ward-4 Bus Stand Main Road",
-      "area": "Hr.Sec.school,"
+      "name": "Booth 205",
+      "address": "CUMBUM - Booth 205",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-206",
       "boothNo": "206",
       "num": 206,
       "type": "regular",
-      "name": "St. Aloysis Hr.Sec.school, Boys section",
-      "address": "St. Aloysis Hr.Sec.school, Boys section Western Portion, South Side, Rayappanpatti",
-      "area": "Sec.School,"
+      "name": "Booth 206",
+      "address": "CUMBUM - Booth 206",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-207",
       "boothNo": "207",
       "num": 207,
       "type": "regular",
-      "name": "St. Aloysis Higher Sec.School",
-      "address": "St. Aloysis Higher Sec.School, Western Side Boys Section, Rayappanpatti",
-      "area": "School,"
+      "name": "Booth 207",
+      "address": "CUMBUM - Booth 207",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-207A",
+      "boothNo": "207A",
+      "num": 207,
+      "type": "regular",
+      "name": "Booth 207A",
+      "address": "CUMBUM - Booth 207A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-208",
       "boothNo": "208",
       "num": 208,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School, New",
-      "address": "Govt. Kallar Ele. School, New Building, North Side, East Block, Nagaiyagoundanpatti Street ,",
-      "area": "School,"
+      "name": "Booth 208",
+      "address": "CUMBUM - Booth 208",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-208A",
+      "boothNo": "208A",
+      "num": 208,
+      "type": "regular",
+      "name": "Booth 208A",
+      "address": "CUMBUM - Booth 208A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-209",
       "boothNo": "209",
       "num": 209,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, North Block, Western Side, Nagaiyagoundanpatti",
-      "area": "School,"
+      "name": "Booth 209",
+      "address": "CUMBUM - Booth 209",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-209A",
+      "boothNo": "209A",
+      "num": 209,
+      "type": "regular",
+      "name": "Booth 209A",
+      "address": "CUMBUM - Booth 209A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-210",
       "boothNo": "210",
       "num": 210,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, South Building, Nagaiyagoundanpatti , Number Name of the Polling station Polling Station Area",
+      "name": "Booth 210",
+      "address": "CUMBUM - Booth 210",
       "area": "CUMBUM"
     },
     {
@@ -1901,44 +2504,53 @@
       "boothNo": "211",
       "num": 211,
       "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, East Building, South Side, Nagaiyagoundanpatti Street",
-      "area": "School,"
+      "name": "Booth 211",
+      "address": "CUMBUM - Booth 211",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-212",
       "boothNo": "212",
       "num": 212,
       "type": "regular",
-      "name": "St. Joseph Middle School",
-      "address": "St. Joseph Middle School, Western Portion, North Block 1st Room, Hanumanthanpatti",
-      "area": "Portion,"
+      "name": "Booth 212",
+      "address": "CUMBUM - Booth 212",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-213",
       "boothNo": "213",
       "num": 213,
       "type": "regular",
-      "name": "St. Joseph Middle School",
-      "address": "St. Joseph Middle School, Western Portion, North Block 2nd Room, Hanumanthanpatti",
-      "area": "School,"
+      "name": "Booth 213",
+      "address": "CUMBUM - Booth 213",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-214",
       "boothNo": "214",
       "num": 214,
       "type": "regular",
-      "name": "St. Joseph Middle School",
-      "address": "St. Joseph Middle School, Southern Block, Hanumanthanpatti",
-      "area": "School,"
+      "name": "Booth 214",
+      "address": "CUMBUM - Booth 214",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-215",
       "boothNo": "215",
       "num": 215,
       "type": "regular",
-      "name": "St. Joseph Middle School",
-      "address": "St. Joseph Middle School, Western Portion, North Block 3rd Room, Hanumanthanpatti 216 St. Joseph Middle School, South Block Last Room, Hanumanthanpatti",
+      "name": "Booth 215",
+      "address": "CUMBUM - Booth 215",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-215A",
+      "boothNo": "215A",
+      "num": 215,
+      "type": "regular",
+      "name": "Booth 215A",
+      "address": "CUMBUM - Booth 215A",
       "area": "CUMBUM"
     },
     {
@@ -1946,17 +2558,17 @@
       "boothNo": "216",
       "num": 216,
       "type": "regular",
-      "name": "St. Joseph Middle School, Western Portion,",
-      "address": "St. Joseph Middle School, Western Portion,",
-      "area": "Portion,"
+      "name": "Booth 216",
+      "address": "CUMBUM - Booth 216",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-217",
       "boothNo": "217",
       "num": 217,
       "type": "regular",
-      "name": "St. Joseph Middle School",
-      "address": "St. Joseph Middle School, Western Portion, North Block 4th Room, Hanumanthanpatti 218 R.C. Middle School Southern Portion, Hanumanthanpatti 219 R.C. Therasa Ele. School North Building, Hanumanthanpatti",
+      "name": "Booth 217",
+      "address": "CUMBUM - Booth 217",
       "area": "CUMBUM"
     },
     {
@@ -1964,9 +2576,9 @@
       "boothNo": "218",
       "num": 218,
       "type": "regular",
-      "name": "Cheif Minister Noon Meal Centre,",
-      "address": "Cheif Minister Noon Meal Centre,",
-      "area": "Centre,"
+      "name": "Booth 218",
+      "address": "CUMBUM - Booth 218",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-219",
@@ -1982,8 +2594,8 @@
       "boothNo": "220",
       "num": 220,
       "type": "regular",
-      "name": "221 Govt. Kallar Ele. School Hanumanthanpatti Number",
-      "address": "221 Govt. Kallar Ele. School Hanumanthanpatti Number",
+      "name": "Booth 220",
+      "address": "CUMBUM - Booth 220",
       "area": "CUMBUM"
     },
     {
@@ -2000,36 +2612,54 @@
       "boothNo": "222",
       "num": 222,
       "type": "regular",
-      "name": "Panchayat Union Ele. School,",
-      "address": "Panchayat Union Ele. School,",
-      "area": "School,"
+      "name": "Booth 222",
+      "address": "CUMBUM - Booth 222",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-222A",
+      "boothNo": "222A",
+      "num": 222,
+      "type": "regular",
+      "name": "Booth 222A",
+      "address": "CUMBUM - Booth 222A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-223",
       "boothNo": "223",
       "num": 223,
       "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School, South Block , Cumbum Road, C.Puthupatti",
-      "area": "School,"
+      "name": "Booth 223",
+      "address": "CUMBUM - Booth 223",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-223A",
+      "boothNo": "223A",
+      "num": 223,
+      "type": "regular",
+      "name": "Booth 223A",
+      "address": "CUMBUM - Booth 223A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-224",
       "boothNo": "224",
       "num": 224,
       "type": "regular",
-      "name": "Panchayat Union Ele. School, Main",
-      "address": "Panchayat Union Ele. School, Main Building, North Block, Eastern Side, Cumbum Road, C.Puthupatti.",
-      "area": "School,"
+      "name": "Booth 224",
+      "address": "CUMBUM - Booth 224",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-225",
       "boothNo": "225",
       "num": 225,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School",
-      "address": "Govt. Kallar Ele. School, Northern Side, C.Puthupatti 226 Govt. Kallar Ele. School, Western Building, C.Puthupatti",
-      "area": "C.S.I.Ele.School,"
+      "name": "Booth 225",
+      "address": "CUMBUM - Booth 225",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-226",
@@ -2045,107 +2675,152 @@
       "boothNo": "227",
       "num": 227,
       "type": "regular",
-      "name": "C.S.I.Ele.School",
-      "address": "C.S.I.Ele.School, South Side, New Building, C.Puthupatti",
-      "area": "C.S.I.Ele.School,"
+      "name": "Booth 227",
+      "address": "CUMBUM - Booth 227",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-228",
       "boothNo": "228",
       "num": 228,
       "type": "regular",
-      "name": "C.S.I.Ele.School",
-      "address": "C.S.I.Ele.School, Northern Side, New Building, C.Puthupatti",
-      "area": ","
+      "name": "Booth 228",
+      "address": "CUMBUM - Booth 228",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-228A",
+      "boothNo": "228A",
+      "num": 228,
+      "type": "regular",
+      "name": "Booth 228A",
+      "address": "CUMBUM - Booth 228A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-229",
       "boothNo": "229",
       "num": 229,
       "type": "regular",
-      "name": "C.S.I.Ele.School, New",
-      "address": "C.S.I.Ele.School, New Building North Side, C.Puthupatti",
-      "area": "School,"
+      "name": "Booth 229",
+      "address": "CUMBUM - Booth 229",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-229A",
+      "boothNo": "229A",
+      "num": 229,
+      "type": "regular",
+      "name": "Booth 229A",
+      "address": "CUMBUM - Booth 229A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-230",
       "boothNo": "230",
       "num": 230,
       "type": "regular",
-      "name": "K.L.S. Higher Secondary School",
-      "address": "K.L.S. Higher Secondary School, West Block, South Side, New Building, C.Puthupatti",
-      "area": "School,"
+      "name": "Booth 230",
+      "address": "CUMBUM - Booth 230",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-231",
       "boothNo": "231",
       "num": 231,
       "type": "regular",
-      "name": "K.L.S. Higher Secondary School",
-      "address": "K.L.S. Higher Secondary School, West Block, North Side, New Building, C.Puthupatti Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 231",
+      "address": "CUMBUM - Booth 231",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-231A",
+      "boothNo": "231A",
+      "num": 231,
+      "type": "regular",
+      "name": "Booth 231A",
+      "address": "CUMBUM - Booth 231A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-232",
       "boothNo": "232",
       "num": 232,
       "type": "regular",
-      "name": "K.L.S. Higher Secondary School",
-      "address": "K.L.S. Higher Secondary School, West Block, SSA Building, C.Puthupatti",
-      "area": "School,"
+      "name": "Booth 232",
+      "address": "CUMBUM - Booth 232",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-233",
       "boothNo": "233",
       "num": 233,
       "type": "regular",
-      "name": "Ilahi Oriental Arabic High School",
-      "address": "Ilahi Oriental Arabic High School, South Block, Uthamapuram, Cumbum",
-      "area": "School,"
+      "name": "Booth 233",
+      "address": "CUMBUM - Booth 233",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-234",
       "boothNo": "234",
       "num": 234,
       "type": "regular",
-      "name": "lahi Oriental Arabic High School",
-      "address": "lahi Oriental Arabic High School, North Side, Uthamapuram, Cumbum",
-      "area": "School,"
+      "name": "Booth 234",
+      "address": "CUMBUM - Booth 234",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-235",
       "boothNo": "235",
       "num": 235,
       "type": "regular",
-      "name": "Ilahi Oriental Arabic High School, New",
-      "address": "Ilahi Oriental Arabic High School, New Building, East side Class Room, Uthamapuram, Cumbum.",
-      "area": "School,"
+      "name": "Booth 235",
+      "address": "CUMBUM - Booth 235",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-236",
       "boothNo": "236",
       "num": 236,
       "type": "regular",
-      "name": "Ilahi Oriental Arabic High School, New",
-      "address": "Ilahi Oriental Arabic High School, New Building, West side Class Room, Uthamapuram, Cumbum.",
-      "area": "School,"
+      "name": "Booth 236",
+      "address": "CUMBUM - Booth 236",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-237",
       "boothNo": "237",
       "num": 237,
       "type": "regular",
-      "name": "Ilahi Oriental Arabic High School",
-      "address": "Ilahi Oriental Arabic High School, Northern Side, West Building, Uthamapuram, Cumbum",
-      "area": "School,"
+      "name": "Booth 237",
+      "address": "CUMBUM - Booth 237",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-237A",
+      "boothNo": "237A",
+      "num": 237,
+      "type": "regular",
+      "name": "Booth 237A",
+      "address": "CUMBUM - Booth 237A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-238",
       "boothNo": "238",
       "num": 238,
       "type": "regular",
-      "name": "Ilahi Oriental Arabic High School",
-      "address": "Ilahi Oriental Arabic High School, West Building, Center Class Room, Uthamapuram, Cumbum Number Name of the Polling station Polling Station Area",
+      "name": "Booth 238",
+      "address": "CUMBUM - Booth 238",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-238A",
+      "boothNo": "238A",
+      "num": 238,
+      "type": "regular",
+      "name": "Booth 238A",
+      "address": "CUMBUM - Booth 238A",
       "area": "CUMBUM"
     },
     {
@@ -2153,35 +2828,53 @@
       "boothNo": "239",
       "num": 239,
       "type": "regular",
-      "name": "Ilahi Oriental Arabic High School",
-      "address": "Ilahi Oriental Arabic High School, West Building, South side Class Room, Uthamapuram, Cumbum.",
-      "area": "School,"
+      "name": "Booth 239",
+      "address": "CUMBUM - Booth 239",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-239A",
+      "boothNo": "239A",
+      "num": 239,
+      "type": "regular",
+      "name": "Booth 239A",
+      "address": "CUMBUM - Booth 239A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-240",
       "boothNo": "240",
       "num": 240,
       "type": "regular",
-      "name": "Govt. Kallar Elementary School",
-      "address": "Govt. Kallar Elementary School, West Building, Middle Portion, North side Class room, Uthamapuram, Cumbum.",
-      "area": "School,"
+      "name": "Booth 240",
+      "address": "CUMBUM - Booth 240",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-241",
       "boothNo": "241",
       "num": 241,
       "type": "regular",
-      "name": "Govt. Kallar Higher Sec. School",
-      "address": "Govt. Kallar Higher Sec. School, North East Building, North Side Class room, Uthamapuram, Cumbum",
-      "area": "School,"
+      "name": "Booth 241",
+      "address": "CUMBUM - Booth 241",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-241A",
+      "boothNo": "241A",
+      "num": 241,
+      "type": "regular",
+      "name": "Booth 241A",
+      "address": "CUMBUM - Booth 241A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-242",
       "boothNo": "242",
       "num": 242,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School, Two Classes",
-      "address": "Govt. Kallar Ele. School, Two Classes Building, West Side, (South Building), Uthamapuram, Cumbum",
+      "name": "Booth 242",
+      "address": "CUMBUM - Booth 242",
       "area": "CUMBUM"
     },
     {
@@ -2189,71 +2882,98 @@
       "boothNo": "243",
       "num": 243,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School Two Classes",
-      "address": "Govt. Kallar Ele. School Two Classes Building, North Block, West Side Class Room, Uthamapuram, Cumbum",
-      "area": "School,"
+      "name": "Booth 243",
+      "address": "CUMBUM - Booth 243",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-243A",
+      "boothNo": "243A",
+      "num": 243,
+      "type": "regular",
+      "name": "Booth 243A",
+      "address": "CUMBUM - Booth 243A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-244",
       "boothNo": "244",
       "num": 244,
       "type": "regular",
-      "name": "Govt. Kallar Hr. Sec. School",
-      "address": "Govt. Kallar Hr. Sec. School, North East Building, South side Class Room, Uthamapuram, Cumbum Black-1",
-      "area": "School,"
+      "name": "Booth 244",
+      "address": "CUMBUM - Booth 244",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-245",
       "boothNo": "245",
       "num": 245,
       "type": "regular",
-      "name": "Govt. Kallar Hr. Sec. School",
-      "address": "Govt. Kallar Hr. Sec. School, East New Building, Southern side, Cumbum Black-2",
-      "area": "School,"
+      "name": "Booth 245",
+      "address": "CUMBUM - Booth 245",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-246",
       "boothNo": "246",
       "num": 246,
       "type": "regular",
-      "name": "Govt. Kallar Ele. Sec School, R C C",
-      "address": "Govt. Kallar Ele. Sec School, R C C South Building East Side, Uthamapuram, Cumbum.",
-      "area": "School,"
+      "name": "Booth 246",
+      "address": "CUMBUM - Booth 246",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-246A",
+      "boothNo": "246A",
+      "num": 246,
+      "type": "regular",
+      "name": "Booth 246A",
+      "address": "CUMBUM - Booth 246A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-247",
       "boothNo": "247",
       "num": 247,
       "type": "regular",
-      "name": "Govt. Kallar Hr.Sec. School",
-      "address": "Govt. Kallar Hr.Sec. School, South Building, East Class room, Uthamapuram, Cumbam. Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 247",
+      "address": "CUMBUM - Booth 247",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-248",
       "boothNo": "248",
       "num": 248,
       "type": "regular",
-      "name": "Govt. Kallar Hr. Sec. School",
-      "address": "Govt. Kallar Hr. Sec. School, Western Building, South Block, North Class Room, Uthamapuram, Cumbum.",
-      "area": "School,"
+      "name": "Booth 248",
+      "address": "CUMBUM - Booth 248",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-249",
       "boothNo": "249",
       "num": 249,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School",
-      "address": "Govt. Kallar Ele. School, North Building, East side Class room, Uthamapuram, Cumbum",
-      "area": "School,"
+      "name": "Booth 249",
+      "address": "CUMBUM - Booth 249",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-249A",
+      "boothNo": "249A",
+      "num": 249,
+      "type": "regular",
+      "name": "Booth 249A",
+      "address": "CUMBUM - Booth 249A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-250",
       "boothNo": "250",
       "num": 250,
       "type": "regular",
-      "name": "Govt.Kallar Hr.Sec School",
-      "address": "Govt.Kallar Hr.Sec School, East New Building , North Class room, Uthamapuram, Cumbum",
+      "name": "Booth 250",
+      "address": "CUMBUM - Booth 250",
       "area": "CUMBUM"
     },
     {
@@ -2261,8 +2981,8 @@
       "boothNo": "251",
       "num": 251,
       "type": "regular",
-      "name": "Municipal Primary School",
-      "address": "Municipal Primary School, Westside Building New Pallivasal Street, Cumbum. 252 St.Alphonse Middle School, South Side Class Room Cumbum 1.Uthamapuram (R.V), Cumbum (M) Ward-4 Chellandi Amman Kovil Street 253 St.Alphonse Middle School, North Side Class Room Cumbum 1.Uthamapuram (R.V), Cumbum (M) Ward-4 Chellandi Amman Kovil Street",
+      "name": "Booth 251",
+      "address": "CUMBUM - Booth 251",
       "area": "CUMBUM"
     },
     {
@@ -2279,17 +2999,17 @@
       "boothNo": "253",
       "num": 253,
       "type": "regular",
-      "name": "C.S.I. Ele. School,",
-      "address": "C.S.I. Ele. School,",
-      "area": "School,"
+      "name": "Booth 253",
+      "address": "CUMBUM - Booth 253",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-254",
       "boothNo": "254",
       "num": 254,
       "type": "regular",
-      "name": "C.S.I. Ele. School, New",
-      "address": "C.S.I. Ele. School, New Building Western Side, Cumbum",
+      "name": "Booth 254",
+      "address": "CUMBUM - Booth 254",
       "area": "CUMBUM"
     },
     {
@@ -2297,8 +3017,17 @@
       "boothNo": "255",
       "num": 255,
       "type": "regular",
-      "name": "C.S.I. Ele. School, New",
-      "address": "C.S.I. Ele. School, New Building Eastern Side, Cumbum",
+      "name": "Booth 255",
+      "address": "CUMBUM - Booth 255",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-255A",
+      "boothNo": "255A",
+      "num": 255,
+      "type": "regular",
+      "name": "Booth 255A",
+      "address": "CUMBUM - Booth 255A",
       "area": "CUMBUM"
     },
     {
@@ -2306,8 +3035,8 @@
       "boothNo": "256",
       "num": 256,
       "type": "regular",
-      "name": "C.S.I. Ele. School",
-      "address": "C.S.I. Ele. School, Eastern Building Division, Cumbum",
+      "name": "Booth 256",
+      "address": "CUMBUM - Booth 256",
       "area": "CUMBUM"
     },
     {
@@ -2315,116 +3044,179 @@
       "boothNo": "257",
       "num": 257,
       "type": "regular",
-      "name": "Govt. Kallar Hr. Sec. School",
-      "address": "Govt. Kallar Hr. Sec. School East Building, Southern Side, North Class Room, Uthamapuram, Cumbum Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 257",
+      "address": "CUMBUM - Booth 257",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-258",
       "boothNo": "258",
       "num": 258,
       "type": "regular",
-      "name": "Sri Mukthi Vinayagar Middle School",
-      "address": "Sri Mukthi Vinayagar Middle School, West Block, Barathiyar Nagar East Street",
-      "area": "School"
+      "name": "Booth 258",
+      "address": "CUMBUM - Booth 258",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-258A",
+      "boothNo": "258A",
+      "num": 258,
+      "type": "regular",
+      "name": "Booth 258A",
+      "address": "CUMBUM - Booth 258A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-259",
       "boothNo": "259",
       "num": 259,
       "type": "regular",
-      "name": "Sri Mukthi Vinayagar Middle School Kottai Maidanam, Konditholu Street",
-      "address": "Sri Mukthi Vinayagar Middle School Kottai Maidanam, Konditholu Street, Northern Side, New Building, Cumbum.",
-      "area": "School,"
+      "name": "Booth 259",
+      "address": "CUMBUM - Booth 259",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-260",
       "boothNo": "260",
       "num": 260,
       "type": "regular",
-      "name": "Sri Mukthi Vinayagar Middle School, Kottai Maidanam",
-      "address": "Sri Mukthi Vinayagar Middle School, Kottai Maidanam, West Block Eastern Side, Cumbum.",
-      "area": "School,"
+      "name": "Booth 260",
+      "address": "CUMBUM - Booth 260",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-261",
       "boothNo": "261",
       "num": 261,
       "type": "regular",
-      "name": "Sri Mukthi Vinayagar Middle School, Kottai Maidanam, Konditholu Street",
-      "address": "Sri Mukthi Vinayagar Middle School, Kottai Maidanam, Konditholu Street, Southern Side, New Building, Cumbum.",
-      "area": "School,"
+      "name": "Booth 261",
+      "address": "CUMBUM - Booth 261",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-261A",
+      "boothNo": "261A",
+      "num": 261,
+      "type": "regular",
+      "name": "Booth 261A",
+      "address": "CUMBUM - Booth 261A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-262",
       "boothNo": "262",
       "num": 262,
       "type": "regular",
-      "name": "Sri Mukthi Vinayagar Middle School",
-      "address": "Sri Mukthi Vinayagar Middle School, East Block, Southern Side, Kottai Maidanam, Varatharajapuram, Cumbum",
-      "area": "School,"
+      "name": "Booth 262",
+      "address": "CUMBUM - Booth 262",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-263",
       "boothNo": "263",
       "num": 263,
       "type": "regular",
-      "name": "Sri Mukthi Vinayagar Middle School",
-      "address": "Sri Mukthi Vinayagar Middle School, East Block, North Side, Cumbum.",
-      "area": "School."
+      "name": "Booth 263",
+      "address": "CUMBUM - Booth 263",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-264",
       "boothNo": "264",
       "num": 264,
       "type": "regular",
-      "name": "Angoor Rawthar Govt. Girls Hr. Sec. School.",
-      "address": "Angoor Rawthar Govt. Girls Hr. Sec. School. West Building, Southern Side, Cumbum.",
-      "area": "Lane"
+      "name": "Booth 264",
+      "address": "CUMBUM - Booth 264",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-265",
       "boothNo": "265",
       "num": 265,
       "type": "regular",
-      "name": "Municipal Primary School",
-      "address": "Municipal Primary School, West Side, Theradi Street, Cumbum",
-      "area": "School,"
+      "name": "Booth 265",
+      "address": "CUMBUM - Booth 265",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-265A",
+      "boothNo": "265A",
+      "num": 265,
+      "type": "regular",
+      "name": "Booth 265A",
+      "address": "CUMBUM - Booth 265A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-266",
       "boothNo": "266",
       "num": 266,
       "type": "regular",
-      "name": "Angoor Rawthar Govt, Girls Hr. Sec. School",
-      "address": "Angoor Rawthar Govt, Girls Hr. Sec. School, Southern Block, Middle Portion, Room No18, Cumbum. Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 266",
+      "address": "CUMBUM - Booth 266",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-266A",
+      "boothNo": "266A",
+      "num": 266,
+      "type": "regular",
+      "name": "Booth 266A",
+      "address": "CUMBUM - Booth 266A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-267",
       "boothNo": "267",
       "num": 267,
       "type": "regular",
-      "name": "Angoor Rawthar Govt, Girls Hr. Sec. School",
-      "address": "Angoor Rawthar Govt, Girls Hr. Sec. School, Southern Block, Western Portion, Room No.20, Cumbum.",
-      "area": "Road"
+      "name": "Booth 267",
+      "address": "CUMBUM - Booth 267",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-267A",
+      "boothNo": "267A",
+      "num": 267,
+      "type": "regular",
+      "name": "Booth 267A",
+      "address": "CUMBUM - Booth 267A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-268",
       "boothNo": "268",
       "num": 268,
       "type": "regular",
-      "name": "Angoor Rawthar Govt, Girls Hr. Sec. School",
-      "address": "Angoor Rawthar Govt, Girls Hr. Sec. School, Southern Side, South Part, West Building, Cumbum.",
-      "area": "School,"
+      "name": "Booth 268",
+      "address": "CUMBUM - Booth 268",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-268A",
+      "boothNo": "268A",
+      "num": 268,
+      "type": "regular",
+      "name": "Booth 268A",
+      "address": "CUMBUM - Booth 268A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-269",
       "boothNo": "269",
       "num": 269,
       "type": "regular",
-      "name": "Govt, Girls Hr. Sec. School",
-      "address": "Govt, Girls Hr. Sec. School, East Building, South side Class room, Cumbum.",
+      "name": "Booth 269",
+      "address": "CUMBUM - Booth 269",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-269A",
+      "boothNo": "269A",
+      "num": 269,
+      "type": "regular",
+      "name": "Booth 269A",
+      "address": "CUMBUM - Booth 269A",
       "area": "CUMBUM"
     },
     {
@@ -2432,26 +3224,44 @@
       "boothNo": "270",
       "num": 270,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School",
-      "address": "Govt. Kallar Ele. School, Western Side, Gandhiji Park, Cumbum.",
-      "area": "School,"
+      "name": "Booth 270",
+      "address": "CUMBUM - Booth 270",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-270A",
+      "boothNo": "270A",
+      "num": 270,
+      "type": "regular",
+      "name": "Booth 270A",
+      "address": "CUMBUM - Booth 270A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-271",
       "boothNo": "271",
       "num": 271,
       "type": "regular",
-      "name": "C.P.U. Hr. Sec. School, New",
-      "address": "C.P.U. Hr. Sec. School, New Building, Southern Side, Western Side 8-B Class, Cumbum. C.M.S.Nagar",
-      "area": "School,"
+      "name": "Booth 271",
+      "address": "CUMBUM - Booth 271",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-271A",
+      "boothNo": "271A",
+      "num": 271,
+      "type": "regular",
+      "name": "Booth 271A",
+      "address": "CUMBUM - Booth 271A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-272",
       "boothNo": "272",
       "num": 272,
       "type": "regular",
-      "name": "C.P.U. Hr. Sec. School, New",
-      "address": "C.P.U. Hr. Sec. School, New Building, Western Block, Middle Portion, 9-E Class, Cumbum.",
+      "name": "Booth 272",
+      "address": "CUMBUM - Booth 272",
       "area": "CUMBUM"
     },
     {
@@ -2459,80 +3269,98 @@
       "boothNo": "273",
       "num": 273,
       "type": "regular",
-      "name": "C.P.U. Hr. Sec. School, Main",
-      "address": "C.P.U. Hr. Sec. School, Main Building, East side, 12A Class Room, Cumbum.",
-      "area": "Hr.Sec.School,"
+      "name": "Booth 273",
+      "address": "CUMBUM - Booth 273",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-273A",
+      "boothNo": "273A",
+      "num": 273,
+      "type": "regular",
+      "name": "Booth 273A",
+      "address": "CUMBUM - Booth 273A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-274",
       "boothNo": "274",
       "num": 274,
       "type": "regular",
-      "name": "CPU Hr.Sec.School, Main",
-      "address": "CPU Hr.Sec.School, Main Building, Center Portion Room No.5, Cumbum. Number Name of the Polling station Polling Station Area",
-      "area": "Hr.Sec.School,"
+      "name": "Booth 274",
+      "address": "CUMBUM - Booth 274",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-274A",
+      "boothNo": "274A",
+      "num": 274,
+      "type": "regular",
+      "name": "Booth 274A",
+      "address": "CUMBUM - Booth 274A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-275",
       "boothNo": "275",
       "num": 275,
       "type": "regular",
-      "name": "CPU Hr.Sec.School, Main",
-      "address": "CPU Hr.Sec.School, Main Building, Center Portion Room No.6, Cumbum.",
-      "area": "Hr.Sec.School,"
+      "name": "Booth 275",
+      "address": "CUMBUM - Booth 275",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-276",
       "boothNo": "276",
       "num": 276,
       "type": "regular",
-      "name": "CPU Hr.Sec.School, Main",
-      "address": "CPU Hr.Sec.School, Main Building, West Side Room No.9, Cumbum.",
-      "area": "School,"
+      "name": "Booth 276",
+      "address": "CUMBUM - Booth 276",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-277",
       "boothNo": "277",
       "num": 277,
       "type": "regular",
-      "name": "Municipal Main Ele. School",
-      "address": "Municipal Main Ele. School, South Side, 5th Std. Class, Cumbum.",
-      "area": "Side,"
+      "name": "Booth 277",
+      "address": "CUMBUM - Booth 277",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-278",
       "boothNo": "278",
       "num": 278,
       "type": "regular",
-      "name": "Municipal Main Ele. School",
-      "address": "Municipal Main Ele. School, North Side, 2nd Std Class Room, Cumbum",
-      "area": "School,"
+      "name": "Booth 278",
+      "address": "CUMBUM - Booth 278",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-279",
       "boothNo": "279",
       "num": 279,
       "type": "regular",
-      "name": "Gov. Kallar Ele. School, Gandhiji Park Kulathu Street",
-      "address": "Gov. Kallar Ele. School, Gandhiji Park Kulathu Street, Eastern Portion, Cumbum.",
-      "area": "Street,"
+      "name": "Booth 279",
+      "address": "CUMBUM - Booth 279",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-280",
       "boothNo": "280",
       "num": 280,
       "type": "regular",
-      "name": "Gov. Kallar Ele. School Gandhiji Park Kulathu Street, Middle",
-      "address": "Gov. Kallar Ele. School Gandhiji Park Kulathu Street, Middle Portion, Cumbum.",
-      "area": "School,"
+      "name": "Booth 280",
+      "address": "CUMBUM - Booth 280",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-281",
       "boothNo": "281",
       "num": 281,
       "type": "regular",
-      "name": "Municipal Middle School, Kamukula Okkalikar Kapiliya Sanga",
-      "address": "Municipal Middle School, Kamukula Okkalikar Kapiliya Sanga Building, South Block, Eastern side, Cumbum",
+      "name": "Booth 281",
+      "address": "CUMBUM - Booth 281",
       "area": "CUMBUM"
     },
     {
@@ -2540,8 +3368,8 @@
       "boothNo": "282",
       "num": 282,
       "type": "regular",
-      "name": "Govt. Girls Hr. Sec. School, New",
-      "address": "Govt. Girls Hr. Sec. School, New Building, West Portion, South Side Class room, Cumbum",
+      "name": "Booth 282",
+      "address": "CUMBUM - Booth 282",
       "area": "CUMBUM"
     },
     {
@@ -2549,17 +3377,17 @@
       "boothNo": "283",
       "num": 283,
       "type": "regular",
-      "name": "Municipal Middle School Kamukula Okkalikar Kapiliya Sanga",
-      "address": "Municipal Middle School Kamukula Okkalikar Kapiliya Sanga Building, South Block, Western Side, Cumbum",
-      "area": "School,"
+      "name": "Booth 283",
+      "address": "CUMBUM - Booth 283",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-284",
       "boothNo": "284",
       "num": 284,
       "type": "regular",
-      "name": "Municipal Primary School",
-      "address": "Municipal Primary School, North Building, West Block, East side Class room, Cumbum. Number Name of the Polling station Polling Station Area",
+      "name": "Booth 284",
+      "address": "CUMBUM - Booth 284",
       "area": "CUMBUM"
     },
     {
@@ -2567,17 +3395,17 @@
       "boothNo": "285",
       "num": 285,
       "type": "regular",
-      "name": "Municipal Middle School Kamukula Okkalikar Kapiliya Sanga",
-      "address": "Municipal Middle School Kamukula Okkalikar Kapiliya Sanga Building, North Block, East Side Cumbum (M) Ward-25 Nandhagopalasamy Kovil South Street",
-      "area": "School,"
+      "name": "Booth 285",
+      "address": "CUMBUM - Booth 285",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-286",
       "boothNo": "286",
       "num": 286,
       "type": "regular",
-      "name": "Municipal Girls Hr. Sec School",
-      "address": "Municipal Girls Hr. Sec School, West Block, Centre Building, Thathappankulam, Cumbum.",
+      "name": "Booth 286",
+      "address": "CUMBUM - Booth 286",
       "area": "CUMBUM"
     },
     {
@@ -2585,17 +3413,35 @@
       "boothNo": "287",
       "num": 287,
       "type": "regular",
-      "name": "Municipal Middle School Kamukula Okkalikar Kapiliya Sanga",
-      "address": "Municipal Middle School Kamukula Okkalikar Kapiliya Sanga Building, North Block, Western Side Cumbum",
-      "area": "School,"
+      "name": "Booth 287",
+      "address": "CUMBUM - Booth 287",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-287A",
+      "boothNo": "287A",
+      "num": 287,
+      "type": "regular",
+      "name": "Booth 287A",
+      "address": "CUMBUM - Booth 287A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-288",
       "boothNo": "288",
       "num": 288,
       "type": "regular",
-      "name": "Municipal Girls Hr. Sec School",
-      "address": "Municipal Girls Hr. Sec School, West Block, North Building, Thathappankulam, Cumbum.",
+      "name": "Booth 288",
+      "address": "CUMBUM - Booth 288",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-288A",
+      "boothNo": "288A",
+      "num": 288,
+      "type": "regular",
+      "name": "Booth 288A",
+      "address": "CUMBUM - Booth 288A",
       "area": "CUMBUM"
     },
     {
@@ -2603,8 +3449,17 @@
       "boothNo": "289",
       "num": 289,
       "type": "regular",
-      "name": "Municipal Ele. School",
-      "address": "Municipal Ele. School North Building, East Block, West Class room, Thathappankulam, Cumbum",
+      "name": "Booth 289",
+      "address": "CUMBUM - Booth 289",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-289A",
+      "boothNo": "289A",
+      "num": 289,
+      "type": "regular",
+      "name": "Booth 289A",
+      "address": "CUMBUM - Booth 289A",
       "area": "CUMBUM"
     },
     {
@@ -2612,35 +3467,53 @@
       "boothNo": "290",
       "num": 290,
       "type": "regular",
-      "name": "Municipal Ele. School",
-      "address": "Municipal Ele. School, North Building, East Block, East side Class room, Thathappankulam, Cumbum",
-      "area": "School"
+      "name": "Booth 290",
+      "address": "CUMBUM - Booth 290",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-291",
       "boothNo": "291",
       "num": 291,
       "type": "regular",
-      "name": "Municipal Middle School (Sungam) New",
-      "address": "Municipal Middle School (Sungam) New building, Eastern side, T.T.Kulam,Cumbum Number Name of the Polling station Polling Station Area",
-      "area": "School,"
+      "name": "Booth 291",
+      "address": "CUMBUM - Booth 291",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-291A",
+      "boothNo": "291A",
+      "num": 291,
+      "type": "regular",
+      "name": "Booth 291A",
+      "address": "CUMBUM - Booth 291A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-292",
       "boothNo": "292",
       "num": 292,
       "type": "regular",
-      "name": "Sri Mukthi Vinayagar Middle School",
-      "address": "Sri Mukthi Vinayagar Middle School, West Block, Kottai Maidanam, Kondiththolu Street, Cumbum.",
-      "area": "School,"
+      "name": "Booth 292",
+      "address": "CUMBUM - Booth 292",
+      "area": "CUMBUM"
+    },
+    {
+      "id": "TN-201-292A",
+      "boothNo": "292A",
+      "num": 292,
+      "type": "regular",
+      "name": "Booth 292A",
+      "address": "CUMBUM - Booth 292A",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-293",
       "boothNo": "293",
       "num": 293,
       "type": "regular",
-      "name": "Govt.Girls Hr.Sec School",
-      "address": "Govt.Girls Hr.Sec School, East Building North Side Class Room Cumbum",
+      "name": "Booth 293",
+      "address": "CUMBUM - Booth 293",
       "area": "CUMBUM"
     },
     {
@@ -2648,17 +3521,17 @@
       "boothNo": "294",
       "num": 294,
       "type": "regular",
-      "name": "Municipal Girls Hr.Sec. School",
-      "address": "Municipal Girls Hr.Sec. School, North Block, East Building, Cumbum.",
-      "area": "School"
+      "name": "Booth 294",
+      "address": "CUMBUM - Booth 294",
+      "area": "CUMBUM"
     },
     {
       "id": "TN-201-295",
       "boothNo": "295",
       "num": 295,
       "type": "regular",
-      "name": "Municipal Middle School (Sungam) New",
-      "address": "Municipal Middle School (Sungam) New building, Wesstern side, T.T.Kulam,Cumbum",
+      "name": "Booth 295",
+      "address": "CUMBUM - Booth 295",
       "area": "CUMBUM"
     }
   ]
