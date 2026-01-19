@@ -1,24 +1,44 @@
 # Election Lens - India Electoral Map
 
-An interactive, offline-first web application for exploring India's electoral boundaries across multiple administrative levels.
+An interactive, offline-first web application for exploring India's electoral boundaries and booth-wise election results.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)
 ![React](https://img.shields.io/badge/React-18-61DAFB.svg)
-![Tests](https://img.shields.io/badge/tests-431%20passed-success.svg)
+![Tests](https://img.shields.io/badge/tests-308%20passed-success.svg)
+![Coverage](https://img.shields.io/badge/coverage-86%25-brightgreen.svg)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4add6dfe-76a4-485d-b497-cfd002a4171e/deploy-status)](https://app.netlify.com/projects/electionlens/deploys)
 
 ## 🌟 Overview
 
-Election Lens provides a unified interface to navigate India's complex electoral geography - from states down to individual assembly constituencies. Unlike fragmented online resources, this tool connects all levels of electoral boundaries in a single, fast, mobile-friendly application.
+Election Lens provides a unified interface to navigate India's complex electoral geography - from states down to individual polling booths. Unlike fragmented online resources, this tool connects all levels of electoral boundaries with detailed election results in a single, fast, mobile-friendly application.
 
 ## ✨ Key Features
 
 ### 🗺️ Multi-Level Drill-Down Navigation
-- **India → State → Parliamentary Constituency → Assembly Constituency**
+- **India → State → Parliamentary Constituency → Assembly Constituency → Booths**
 - **India → State → District → Assembly Constituency**
-- 4 levels of hierarchical navigation with seamless animated transitions
+- 5 levels of hierarchical navigation with seamless animated transitions
+
+### 📊 Booth-wise Election Analysis (NEW in v3.0)
+- **Booth Distribution** - Visual bar showing party-wise booth wins
+- **Booths Won by Party** - Expandable cards with detailed booth lists
+- **Key Insights** - AI-generated analysis of voting patterns
+- **Party Strike Rates** - Conversion rates from contests to wins
+- **Quick Stats** - Landslides, battlegrounds, high NOTA, women's booths
+
+### 🎯 100% Data Accuracy
+- All 234 Tamil Nadu Assembly Constituencies with perfect accuracy
+- 84,009 booth names with complete matching
+- Postal ballot integration with smart candidate matching
+- `booth votes + postal votes = total votes` verified for all candidates
+
+### 🗳️ Election Results
+- **Parliamentary Elections** (2009-2024) with AC-wise breakdown
+- **Assembly Elections** for all states with complete candidate data
+- **Booth-wise Results** for Tamil Nadu 2021
+- Tabbed panel layout for Overview, Candidates, Booths, Postal, and Analysis
 
 ### 🗳️ Dual View System
 - Toggle between **Parliamentary Constituencies (543 Lok Sabha seats)** and **District boundaries** for any state
@@ -112,32 +132,43 @@ npm run e2e:chromium  # Chromium only
 ```
 
 **Test Coverage:**
-- 431 unit tests (67%+ function coverage)
-- 45 e2e tests covering all major user flows
+- 308 unit tests (86% code coverage)
+- 60+ e2e tests covering all major user flows including booth analysis
 
 ## 📁 Project Structure
 
 ```
 ├── src/
 │   ├── components/
-│   │   ├── MapView.tsx      # Leaflet map component
-│   │   ├── Sidebar.tsx      # Navigation sidebar
-│   │   └── SearchBox.tsx    # Global search
+│   │   ├── MapView.tsx           # Leaflet map component
+│   │   ├── Sidebar.tsx           # Navigation sidebar
+│   │   ├── SearchBox.tsx         # Global search
+│   │   ├── ElectionResultPanel.tsx # Election results + analysis
+│   │   ├── BoothResultsPanel.tsx  # Booth-wise results
+│   │   └── BoothMarkersLayer.tsx  # Booth markers on map
 │   ├── hooks/
-│   │   ├── useElectionData.ts  # Data fetching & caching
-│   │   └── useUrlState.ts      # URL state management
+│   │   ├── useElectionData.ts    # Data fetching & caching
+│   │   ├── useBoothData.ts       # Booth data management
+│   │   ├── useElectionResults.ts # Election results
+│   │   └── useUrlState.ts        # URL state management
 │   ├── utils/
-│   │   ├── db.ts            # IndexedDB operations
-│   │   └── helpers.ts       # Utility functions
+│   │   ├── db.ts                 # IndexedDB operations
+│   │   ├── partyData.ts          # Party colors & info
+│   │   ├── performance.ts        # Performance utilities
+│   │   └── helpers.ts            # Utility functions
 │   ├── styles/
-│   │   └── index.css        # Tailwind + custom styles
+│   │   └── index.css             # Tailwind + custom styles
 │   └── types/
-│       └── index.ts         # TypeScript types
+│       └── index.ts              # TypeScript types
 ├── public/
-│   └── data/geo/            # GeoJSON data files
-├── e2e/                     # Playwright e2e tests
-└── scripts/
-    └── optimize-geojson.mjs # GeoJSON optimization
+│   └── data/
+│       ├── geo/                  # GeoJSON boundary files
+│       ├── elections/            # Election results data
+│       └── booths/               # Booth-wise data (TN)
+├── docs/
+│   └── booth-data-extraction-guide.md  # Data extraction docs
+├── e2e/                          # Playwright e2e tests
+└── scripts/                      # Data processing scripts
 ```
 
 ## 📊 Data Coverage
@@ -148,6 +179,7 @@ npm run e2e:chromium  # Chromium only
 | Parliamentary Constituencies | 543 | 2019 delimitation |
 | Assembly Constituencies | 4,000+ | Pre-2014 boundaries |
 | Districts | 700+ | Current boundaries |
+| Booths (Tamil Nadu) | 84,009 | 2021 election |
 
 ## 🛠️ Tech Stack
 
@@ -194,6 +226,8 @@ Requires IndexedDB support for offline caching.
 |---------|--------------|-------------|-----------|------------|
 | PC → AC drill-down | ✅ | ❌ | ❌ | ❌ |
 | District → AC drill-down | ✅ | ❌ | ❌ | ❌ |
+| Booth-wise results | ✅ | Partial | ❌ | ❌ |
+| Booth analysis & insights | ✅ | ❌ | ❌ | ❌ |
 | New district mapping | ✅ | ❌ | Partial | ❌ |
 | Offline support | ✅ | ❌ | ❌ | ❌ |
 | Interactive boundaries | ✅ | ❌ | ❌ | Limited |
