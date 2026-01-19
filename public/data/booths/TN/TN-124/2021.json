@@ -2,7 +2,7 @@
   "acId": "TN-124",
   "acName": "VALPARAI",
   "year": 2021,
-  "totalBooths": 236,
+  "totalBooths": 237,
   "candidates": [
     {
       "name": "AMULKANDASAMI T K",
@@ -36,18 +36,6 @@
     }
   ],
   "results": {
-    "TN-124-1": {
-      "votes": [
-        250,
-        235,
-        41,
-        8,
-        13,
-        1
-      ],
-      "total": 548,
-      "rejected": 0
-    },
     "TN-124-2": {
       "votes": [
         271,
@@ -58,6 +46,18 @@
         0
       ],
       "total": 575,
+      "rejected": 0
+    },
+    "TN-124-1": {
+      "votes": [
+        250,
+        235,
+        41,
+        8,
+        13,
+        1
+      ],
+      "total": 548,
       "rejected": 0
     },
     "TN-124-3": {
@@ -108,16 +108,16 @@
       "total": 389,
       "rejected": 0
     },
-    "TN-124-6A": {
+    "TN-124-242": {
       "votes": [
-        242,
         167,
-        14,
-        2,
         4,
-        0
+        2,
+        0,
+        14,
+        7
       ],
-      "total": 429,
+      "total": 194,
       "rejected": 0
     },
     "TN-124-7": {
@@ -2866,6 +2866,18 @@
         1
       ],
       "total": 331,
+      "rejected": 0
+    },
+    "TN-124-628": {
+      "votes": [
+        8,
+        44,
+        2,
+        6,
+        23,
+        0
+      ],
+      "total": 83,
       "rejected": 0
     }
   }
