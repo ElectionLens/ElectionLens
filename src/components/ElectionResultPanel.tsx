@@ -12,7 +12,7 @@ import {
   MapPin,
   ChevronDown,
 } from 'lucide-react';
-import { useState, useCallback, memo, useMemo } from 'react';
+import { useState, useCallback, memo, useMemo, useEffect } from 'react';
 import type { ACElectionResult, ElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName } from '../utils/partyData';
 import { trackShare } from '../utils/firebase';
@@ -113,7 +113,14 @@ export function ElectionResultPanel({
   const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
 
   // Check if booth data is available
-  const hasBoothData = boothsWithResults.length > 0;
+  const hasBoothData = boothsWithResults.length > 0 && boothResults !== null;
+
+  // Reset to overview tab if booth data becomes unavailable while on booths tab
+  useEffect(() => {
+    if (!hasBoothData && activeTab === 'booths') {
+      setActiveTab('overview');
+    }
+  }, [hasBoothData, activeTab]);
 
   // Get selected booth details
   const selectedBooth = useMemo(() => {
@@ -412,6 +419,15 @@ export function ElectionResultPanel({
                 )}
               </div>
             </>
+          ) : activeTab === 'booths' ? (
+            /* Booth-wise view (Parliament year) */
+            <BoothWiseView
+              boothResults={boothResults}
+              boothsWithResults={boothsWithResults}
+              selectedBoothId={selectedBoothId}
+              onBoothSelect={setSelectedBoothId}
+              selectedBooth={selectedBooth}
+            />
           ) : (
             /* Parliament full candidates list */
             <div className="candidates-full">
@@ -676,20 +692,6 @@ function BoothWiseView({
   onBoothSelect,
   selectedBooth,
 }: BoothWiseViewProps): JSX.Element {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  // Filter booths by search
-  const filteredBooths = useMemo(() => {
-    if (!searchQuery) return boothsWithResults;
-    const query = searchQuery.toLowerCase();
-    return boothsWithResults.filter(
-      (b) =>
-        b.boothNo.toLowerCase().includes(query) ||
-        b.name.toLowerCase().includes(query) ||
-        b.area.toLowerCase().includes(query)
-    );
-  }, [boothsWithResults, searchQuery]);
-
   return (
     <div className="booth-wise-view">
       {/* Booth selector dropdown */}
@@ -702,7 +704,7 @@ function BoothWiseView({
             className="booth-dropdown"
           >
             <option value="">-- Select a booth --</option>
-            {filteredBooths.map((booth) => (
+            {boothsWithResults.map((booth) => (
               <option key={booth.id} value={booth.id}>
                 {booth.boothNo} - {booth.name.slice(0, 40)}
                 {booth.name.length > 40 ? '...' : ''}
@@ -712,13 +714,6 @@ function BoothWiseView({
           </select>
           <ChevronDown size={16} className="dropdown-icon" />
         </div>
-        <input
-          type="text"
-          placeholder="Search booth..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="booth-search"
-        />
       </div>
 
       {/* Summary stats */}
@@ -793,41 +788,49 @@ function BoothWiseView({
               {/* Candidate-wise votes for this booth */}
               <div className="booth-candidates">
                 <h5>Candidate-wise Votes</h5>
-                {boothResults.candidates.map((candidate, idx) => {
-                  const votes = selectedBooth.result?.votes[idx] ?? 0;
-                  const percent = selectedBooth.result
-                    ? (votes / selectedBooth.result.total) * 100
-                    : 0;
-                  const partyColor = getPartyColor(candidate.party);
-                  const isWinner = selectedBooth.winner?.party === candidate.party;
+                <div className="booth-candidates-scroll">
+                  {boothResults.candidates
+                    .map((candidate, idx) => ({
+                      candidate,
+                      idx,
+                      votes: selectedBooth.result?.votes[idx] ?? 0,
+                    }))
+                    .sort((a, b) => b.votes - a.votes)
+                    .map(({ candidate, votes }) => {
+                      const percent = selectedBooth.result
+                        ? (votes / selectedBooth.result.total) * 100
+                        : 0;
+                      const partyColor = getPartyColor(candidate.party);
+                      const isWinner = selectedBooth.winner?.party === candidate.party;
 
-                  return (
-                    <div
-                      key={candidate.slNo}
-                      className={`booth-candidate-row ${isWinner ? 'winner' : ''}`}
-                    >
-                      <div className="candidate-info">
-                        <span className="party-tag" style={{ backgroundColor: partyColor }}>
-                          {candidate.party}
-                        </span>
-                        <span className="candidate-name">{candidate.name}</span>
-                      </div>
-                      <div className="candidate-votes">
-                        <span className="votes">{formatNumber(votes)}</span>
-                        <span className="percent">{percent.toFixed(1)}%</span>
-                      </div>
-                      <div className="vote-bar-bg">
+                      return (
                         <div
-                          className="vote-bar-fill"
-                          style={{
-                            width: `${Math.min(percent, 100)}%`,
-                            backgroundColor: partyColor,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
+                          key={candidate.slNo}
+                          className={`booth-candidate-row ${isWinner ? 'winner' : ''}`}
+                        >
+                          <div className="candidate-info">
+                            <span className="party-tag" style={{ backgroundColor: partyColor }}>
+                              {candidate.party}
+                            </span>
+                            <span className="candidate-name">{candidate.name}</span>
+                          </div>
+                          <div className="candidate-votes">
+                            <span className="votes">{formatNumber(votes)}</span>
+                            <span className="percent">{percent.toFixed(1)}%</span>
+                          </div>
+                          <div className="vote-bar-bg">
+                            <div
+                              className="vote-bar-fill"
+                              style={{
+                                width: `${Math.min(percent, 100)}%`,
+                                backgroundColor: partyColor,
+                              }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
               </div>
             </>
           )}

@@ -562,12 +562,16 @@ export function MapView({
     }
   }, [electionResult?.schemaId, loadBoothData]);
 
-  // Load booth results when main year changes (sync with top panel year selector)
+  // Load booth results when year changes (uses top panel year selector - either Assembly or PC year)
   useEffect(() => {
-    if (electionResult?.schemaId === 'TN-001' && selectedYear) {
-      void loadBoothResults('TN', 'TN-001', selectedYear);
+    if (electionResult?.schemaId === 'TN-001') {
+      // Use PC year if selected, otherwise use Assembly year
+      const yearToLoad = selectedACPCYear ?? selectedYear;
+      if (yearToLoad) {
+        void loadBoothResults('TN', 'TN-001', yearToLoad);
+      }
     }
-  }, [electionResult?.schemaId, selectedYear, loadBoothResults]);
+  }, [electionResult?.schemaId, selectedYear, selectedACPCYear, loadBoothResults]);
 
   // Listen for layer change events from toolbar
   useEffect(() => {
