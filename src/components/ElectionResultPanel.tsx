@@ -83,7 +83,7 @@ function generateShareText(
     const topCandidates = result.candidates.slice(0, 3);
     const medals = ['🥇', '🥈', '🥉'];
     topCandidates.forEach((c, i) => {
-      text += `${medals[i]} ${c.name} (${c.party}) - ${c.voteShare.toFixed(1)}%\n`;
+      text += `${medals[i]} ${c.name} (${c.party}) - ${(c.voteShare ?? 0).toFixed(1)}%\n`;
     });
     if (result.candidates.length > 3) {
       text += `...+${result.candidates.length - 3} more\n`;
@@ -91,7 +91,7 @@ function generateShareText(
   } else {
     const marginText = winner.margin ? ` by ${formatNumber(winner.margin)} votes` : '';
     text += `🏆 ${winner.name} (${winner.party})${marginText}\n`;
-    text += `📊 ${winner.voteShare.toFixed(1)}% vote share\n`;
+    text += `📊 ${(winner.voteShare ?? 0).toFixed(1)}% vote share\n`;
   }
 
   return text.trim();
@@ -246,7 +246,7 @@ export function ElectionResultPanel({
           {/* Peek mode: show winner inline */}
           {isMobilePortrait && panelState === 'peek' && winner && (
             <span className="peek-winner">
-              🏆 {winner.name} ({winner.party}) - {winner.voteShare.toFixed(1)}%
+              🏆 {winner.name} ({winner.party}) - {(winner.voteShare ?? 0).toFixed(1)}%
             </span>
           )}
           {(!isMobilePortrait || panelState !== 'peek') && (
@@ -386,7 +386,7 @@ export function ElectionResultPanel({
                     </div>
                     <div className="stat-compact highlight">
                       <TrendingUp size={12} />
-                      <span>{pcWinner.voteShare.toFixed(1)}%</span>
+                      <span>{(pcWinner.voteShare ?? 0).toFixed(1)}%</span>
                     </div>
                   </div>
                 </div>
@@ -429,7 +429,7 @@ export function ElectionResultPanel({
                       {c.party}
                     </span>
                     <span className="votes">{formatNumber(c.votes)}</span>
-                    <span className="share">{c.voteShare.toFixed(1)}%</span>
+                    <span className="share">{(c.voteShare ?? 0).toFixed(1)}%</span>
                     <div
                       className="bar"
                       style={{
@@ -502,7 +502,7 @@ export function ElectionResultPanel({
                         {c.party}
                       </span>
                       <span className="col-votes">{formatNumber(c.votes)}</span>
-                      <span className="col-share">{c.voteShare.toFixed(1)}%</span>
+                      <span className="col-share">{(c.voteShare ?? 0).toFixed(1)}%</span>
                       <div
                         className="vote-bar"
                         style={{
@@ -545,7 +545,7 @@ export function ElectionResultPanel({
                   </div>
                   <div className="stat-compact highlight">
                     <TrendingUp size={12} />
-                    <span>{winner.voteShare.toFixed(1)}%</span>
+                    <span>{(winner.voteShare ?? 0).toFixed(1)}%</span>
                   </div>
                   {winner.margin && (
                     <div className="stat-compact margin">
@@ -679,10 +679,10 @@ const CandidateRowCompact = memo(function CandidateRowCompact({
         {candidate.party}
       </span>
       <span className="votes">{formatNumber(candidate.votes)}</span>
-      <span className="share">{candidate.voteShare.toFixed(1)}%</span>
+      <span className="share">{(candidate.voteShare ?? 0).toFixed(1)}%</span>
       <div
         className="bar"
-        style={{ width: `${Math.min(candidate.voteShare, 100)}%`, backgroundColor: partyColor }}
+        style={{ width: `${Math.min(candidate.voteShare ?? 0, 100)}%`, backgroundColor: partyColor }}
       />
     </div>
   );
@@ -719,7 +719,7 @@ const CandidateRow = memo(function CandidateRow({
         {candidate.party}
       </span>
       <span className="col-votes">{formatNumber(candidate.votes)}</span>
-      <span className="col-share">{candidate.voteShare.toFixed(1)}%</span>
+      <span className="col-share">{(candidate.voteShare ?? 0).toFixed(1)}%</span>
       <div
         className="vote-bar"
         style={{
