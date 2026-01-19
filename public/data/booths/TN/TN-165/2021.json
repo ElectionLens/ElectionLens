@@ -8,79 +8,66 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
-      "name": "K.RAJENDRAN",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 2,
-      "name": "O.S.MANIAN",
-      "party": "ADMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 3,
       "name": "S.K.VETHARATHINAM",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
+      "name": "O.S.MANIAN",
+      "party": "ADMK",
+      "symbol": ""
+    },
+    {
+      "name": "S.K.VETHARATHINAM",
+      "party": "DMK",
+      "symbol": ""
+    },
+    {
       "name": "R.PANNEERSELVAM",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 5,
-      "name": "P.S.ARUMUGAM",
-      "party": "AMMK",
+      "name": "K.RAJENDRAN",
+      "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "R.RAMAMURTHY",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "P.V.THEENATHAYALAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "T.RAMAJAYAM",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "R.KATHIRVEL",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
-      "name": "V.VEERAKUMAR",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
       "name": "MOHAMED ALI",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 12,
-      "name": "Dr.T.SUNDARAVADIVELAN",
-      "party": "SHS",
+      "name": "MOHAMED ALI",
+      "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 13,
+      "name": "P.V.THEENATHAYALAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -5272,20 +5259,11 @@
     }
   },
   "summary": {
-    "totalVoters": 196104,
-    "totalVotes": 311456,
-    "turnoutPercent": 158.82,
-    "winner": {
-      "name": "O.S.MANIAN",
-      "party": "ADMK",
-      "votes": 78655
-    },
-    "runnerUp": {
-      "name": "S.K.VETHARATHINAM",
-      "party": "DMK",
-      "votes": 73669
-    },
-    "margin": 4986,
-    "marginPercent": 1.6
+    "totalValid": 232364,
+    "totalRejected": 201,
+    "totalNota": 1359,
+    "totalVotes": 233924,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

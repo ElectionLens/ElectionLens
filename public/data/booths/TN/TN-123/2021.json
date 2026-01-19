@@ -8,55 +8,46 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "Shanthu Mohamed, A.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "Dr. Varadharajan, K.",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "Pollachi V. Jayaraman",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "Logeswari, N.",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "Sugumar, K.",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "Sathieshkumar, V.T.",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "Muthukumarasamy, R.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "Aruchamy, C.M.",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -4100,20 +4091,11 @@
     }
   },
   "summary": {
-    "totalVoters": 229257,
-    "totalVotes": 1366,
-    "turnoutPercent": 0.6,
-    "winner": {
-      "name": "Dr. Varadharajan, K.",
-      "party": "DMK",
-      "votes": 71094
-    },
-    "runnerUp": {
-      "name": "Pollachi V. Jayaraman",
-      "party": "ADMK",
-      "votes": 68484
-    },
-    "margin": 2610,
-    "marginPercent": 191.1
+    "totalValid": 153679,
+    "totalRejected": 155045,
+    "totalNota": 0,
+    "totalVotes": 308724,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

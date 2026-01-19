@@ -8,91 +8,76 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
-      "name": "SADHASIVAM.S",
-      "party": "PMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 2,
-      "name": "RAMESH ARAVIND.M",
-      "party": "DMDK",
-      "symbol": ""
-    },
-    {
-      "slNo": 3,
-      "name": "ANUSUYA.P",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "slNo": 4,
       "name": "SRINIVASAPERUMAL.S",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
+      "name": "RAMESH ARAVIND.M",
+      "party": "DMDK",
+      "symbol": ""
+    },
+    {
+      "name": "ANUSUYA.P",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "SADHASIVAM.S",
+      "party": "PMK",
+      "symbol": ""
+    },
+    {
       "name": "THANGAVEL. K",
       "party": "Dhesiya Makkal Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "BANUPRIYA.P",
       "party": "Ganasangam Party of India",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "MANIKANDAN.C",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "RASAPPAN.K",
       "party": "My India Party",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "AMBIKA.A",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "ARIVAZHAGAN.P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "SADHASIVAM.P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "SELVAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "SEKAR.P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "Dr.PADMARAJAN.K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -8543,20 +8528,11 @@
     }
   },
   "summary": {
-    "totalVoters": 291217,
-    "totalVotes": 212771,
-    "turnoutPercent": 73.06,
-    "winner": {
-      "name": "SRINIVASAPERUMAL.S",
-      "party": "DMK",
-      "votes": 95795
-    },
-    "runnerUp": {
-      "name": "SADHASIVAM.S",
-      "party": "PMK",
-      "votes": 94437
-    },
-    "margin": 1358,
-    "marginPercent": 0.6
+    "totalValid": 212771,
+    "totalRejected": 2239,
+    "totalNota": 0,
+    "totalVotes": 215010,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

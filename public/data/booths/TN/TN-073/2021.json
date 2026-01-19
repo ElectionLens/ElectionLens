@@ -8,49 +8,41 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "SANDOSHKUMAR M",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "SAKTHIVEL S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "LATCHOUMY M",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "GANAPATHI P M",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "VINAYAGAMURTHY M",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "VANNI ARASU",
       "party": "VCK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "CHAKRAPANI M",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -1817,20 +1809,11 @@
     }
   },
   "summary": {
-    "totalVoters": 228359,
-    "totalVotes": 40413,
-    "turnoutPercent": 17.7,
-    "winner": {
-      "name": "LATCHOUMY M",
-      "party": "NTK",
-      "votes": 36342
-    },
-    "runnerUp": {
-      "name": "GANAPATHI P M",
-      "party": "DMDK",
-      "votes": 35428
-    },
-    "margin": 914,
-    "marginPercent": 2.3
+    "totalValid": 135991,
+    "totalRejected": 37436,
+    "totalNota": 34577,
+    "totalVotes": 208004,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

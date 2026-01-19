@@ -8,91 +8,76 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "DURAI M",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "UMAMAHESWARI L",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "SUNDARESAN A",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "MASILAMANI V",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "RAJASEKAR M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 6,
-      "name": "MASILAMANI V",
-      "party": "IND",
+      "name": "SUNDARESAN A",
+      "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "KANNAN G",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "SEKAR NAYAKKAR I M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "SATHIYARAJ S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "CHANDRA PRAKASH R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "SRIDHAR D",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "MANAVALAN A",
       "party": "Anna MGR Dravida Makkal Kalgam",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "Dr. MASILAMANI R",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "SIVAKUMAR C",
       "party": "PMK",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -1753,20 +1738,11 @@
     }
   },
   "summary": {
-    "totalVoters": 222627,
-    "totalVotes": 36349,
-    "turnoutPercent": 16.33,
-    "winner": {
-      "name": "UMAMAHESWARI L",
-      "party": "NTK",
-      "votes": 35811
-    },
-    "runnerUp": {
-      "name": "SUNDARESAN A",
-      "party": "DMDK",
-      "votes": 34372
-    },
-    "margin": 1439,
-    "marginPercent": 4.0
+    "totalValid": 131222,
+    "totalRejected": 35741,
+    "totalNota": 33542,
+    "totalVotes": 200505,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

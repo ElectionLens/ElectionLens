@@ -8,127 +8,106 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "P.PANDIDURAI",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "A.LOGIRAJAN",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "A.MAHARAJAN",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "VELMANI",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "S.GUNASEKARAN",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "M.KUMARAN",
       "party": "My India Party",
       "symbol": ""
     },
     {
-      "slNo": 7,
-      "name": "C.KANIVEL",
-      "party": "Anaithu Makkal Puratchi Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "A.VELUCHAMY",
-      "party": "Anna Puratchi Thalaivar Amma Dravida Munnetra Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "V.JEYAKODI",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "R.JEYAKUMAR",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "JEYAKUMAR",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "S.GOVINDHARAJ",
-      "party": "All India MGR Makkal Munnetra Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
       "name": "K.KASENDRAN @ GAJENDRAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
-      "name": "M.DIVAKAR",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
-      "name": "MARIYAMMAL",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 16,
-      "name": "P.PANIVURAJA",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 17,
-      "name": "M.EASWARAN",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 18,
-      "name": "S.KAMATCHI",
-      "party": "BSP",
-      "symbol": ""
-    },
-    {
-      "slNo": 19,
-      "name": "M.RAGHUNATHAN",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 20,
       "name": "BALAMURUGAN",
       "party": "National Democratic Party of South India",
       "symbol": ""
     },
     {
-      "slNo": 21,
+      "name": "V.JEYAKODI",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "R.JEYAKUMAR",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "JEYAKUMAR",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "M.EASWARAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "K.KASENDRAN @ GAJENDRAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "S.GOVINDHARAJ",
+      "party": "All India MGR Makkal Munnetra Kazhagam",
+      "symbol": ""
+    },
+    {
+      "name": "MARIYAMMAL",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "P.PANIVURAJA",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "M.EASWARAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "M.RAGHUNATHAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "M.RAGHUNATHAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "BALAMURUGAN",
+      "party": "National Democratic Party of South India",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -8641,20 +8620,11 @@
     }
   },
   "summary": {
-    "totalVoters": 279946,
-    "totalVotes": 173412,
-    "turnoutPercent": 61.94,
-    "winner": {
-      "name": "A.LOGIRAJAN",
-      "party": "ADMK",
-      "votes": 77947
-    },
-    "runnerUp": {
-      "name": "A.MAHARAJAN",
-      "party": "DMK",
-      "votes": 71310
-    },
-    "margin": 6637,
-    "marginPercent": 3.8
+    "totalValid": 173639,
+    "totalRejected": 1111,
+    "totalNota": 25,
+    "totalVotes": 174775,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

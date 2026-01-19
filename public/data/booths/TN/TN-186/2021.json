@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "R. Mallika",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "P. Viswanathan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 3,
-      "name": "R. Gunasekaran",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 4,
-      "name": "Joseph. C",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "slNo": 5,
-      "name": "K. Kalaiselvam",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
-      "name": "N. Pandimuthu",
-      "party": "My India Party",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
-      "name": "PR. Senthilnathan",
-      "party": "ADMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "S. Gunasekaran",
-      "party": "CPI",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "C. Kaningprabhu",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "K. Anbarasan",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
       "name": "M. Ravi",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
-      "name": "Vadivel. C",
-      "party": "Anaithu Makkal Puratchi Katchi",
+      "name": "Joseph. C",
+      "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "M. Thirukumaran",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
+      "name": "N. Pandimuthu",
+      "party": "My India Party",
+      "symbol": ""
+    },
+    {
+      "name": "PR. Senthilnathan",
+      "party": "ADMK",
+      "symbol": ""
+    },
+    {
+      "name": "S. Gunasekaran",
+      "party": "CPI",
+      "symbol": ""
+    },
+    {
+      "name": "C. Kaningprabhu",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "K. Anbarasan",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "M. Ravi",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Vadivel. C",
+      "party": "Anaithu Makkal Puratchi Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "M. Thirukumaran",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "Dr. A. Parthasarathy",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "Vimalraj",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -4218,20 +4202,11 @@
     }
   },
   "summary": {
-    "totalVoters": 304788,
-    "totalVotes": 93290,
-    "turnoutPercent": 30.61,
-    "winner": {
-      "name": "R. Mallika",
-      "party": "NTK",
-      "votes": 38284
-    },
-    "runnerUp": {
-      "name": "Joseph. C",
-      "party": "MNM",
-      "votes": 10212
-    },
-    "margin": 28072,
-    "marginPercent": 30.1
+    "totalValid": 59479,
+    "totalRejected": 12,
+    "totalNota": 593,
+    "totalVotes": 60084,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

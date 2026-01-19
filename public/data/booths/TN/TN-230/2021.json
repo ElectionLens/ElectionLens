@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "Gandhi M.R.",
       "party": "BJP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "Suresh Rajan N.",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "Ammu Anto I.",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "Satheesh Kumar D.",
       "party": "Anaithu Makkal Arasiyal Katchi",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "Sunil Kumar S.",
       "party": "Anaithu Makkal Puratchi Katchi",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "Maria Jacob Stani Raja S.",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "Vijayaragavan",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 8,
-      "name": "Rathinam A.T.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "Kannan M.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "Gandhi L.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "Gandhi Raj C.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "Bala Sivanesan J.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
-      "name": "Pravin Raj P.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
-      "name": "Mahizhchi P.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
       "name": "Usha P.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
+      "name": "Kannan M.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Gandhi L.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Gandhi Raj C.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Bala Sivanesan J.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Pravin Raj P.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Mahizhchi P.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Rathinam A.T.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -8687,20 +8671,11 @@
     }
   },
   "summary": {
-    "totalVoters": 274657,
-    "totalVotes": 180365,
-    "turnoutPercent": 65.67,
-    "winner": {
-      "name": "Gandhi M.R.",
-      "party": "BJP",
-      "votes": 87805
-    },
-    "runnerUp": {
-      "name": "Suresh Rajan N.",
-      "party": "DMK",
-      "votes": 75387
-    },
-    "margin": 12418,
-    "marginPercent": 6.9
+    "totalValid": 180365,
+    "totalRejected": 0,
+    "totalNota": 919,
+    "totalVotes": 181284,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

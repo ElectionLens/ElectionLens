@@ -8,10 +8,9 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "NOTA",
       "party": "NOTA",
-      "symbol": "NOTA"
+      "symbol": ""
     }
   ],
   "results": {
@@ -7537,20 +7536,11 @@
     }
   },
   "summary": {
+    "totalValid": 176901,
+    "totalRejected": 0,
+    "totalNota": 2057,
+    "totalVotes": 178958,
     "totalVoters": 0,
-    "totalVotes": 176901,
-    "turnoutPercent": 0,
-    "winner": {
-      "name": "NOTA",
-      "party": "NOTA",
-      "votes": 115139
-    },
-    "runnerUp": {
-      "name": "",
-      "party": "",
-      "votes": 32380
-    },
-    "margin": 82759,
-    "marginPercent": 46.8
+    "turnoutPercent": 0
   }
 }

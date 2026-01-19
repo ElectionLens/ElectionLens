@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "ANBU.S",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "GIRI.M.P",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "SHANMUGAM.G",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "NAINAKANNU.M.S",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "SUGANRAJ.S",
       "party": "IJK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "BASKAR.S",
       "party": "New Generation People\u2019s Party",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "VENNILA.S",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "ANBAZHAGAN.P.G",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
-      "name": "ARUNKUMAR.M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "SIVAPRAKASH.K",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "SIVAKUMAR.J",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
       "name": "SHARMA.S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
+      "name": "SIVAPRAKASH.K",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "SIVAKUMAR.J",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "SHARMA.S",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "SELVARAJI.V",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "DHINAKARAN.H",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "VIJAYACHANDRAN.G",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -8504,20 +8488,11 @@
     }
   },
   "summary": {
-    "totalVoters": 277646,
-    "totalVotes": 218855,
-    "turnoutPercent": 78.83,
-    "winner": {
-      "name": "GIRI.M.P",
-      "party": "DMK",
-      "votes": 105783
-    },
-    "runnerUp": {
-      "name": "NAINAKANNU.M.S",
-      "party": "ADMK",
-      "votes": 95082
-    },
-    "margin": 10701,
-    "marginPercent": 4.9
+    "totalValid": 218896,
+    "totalRejected": 12,
+    "totalNota": 1086,
+    "totalVotes": 219994,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

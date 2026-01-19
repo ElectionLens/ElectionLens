@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "KOTHANDAPANI",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "S THANIGAIVEL",
       "party": "BJP",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "E V VELU",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "J AGNI SELVARASU",
       "party": "Naadaalum Makkal Katchi",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "ARUL R",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "J KAMALAKKANNAN",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "R CHANDRAKANTH PILLAI",
       "party": "New Generation People\u2019s Party",
       "symbol": ""
     },
     {
-      "slNo": 8,
-      "name": "D MANIMARAN",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "A G PANCHATCHARAM",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "N PALANI",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "S K SELVAM",
-      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
       "name": "A NAKKEERAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
+      "name": "A G PANCHATCHARAM",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "N PALANI",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "S K SELVAM",
+      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "D MANIMARAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "R G VASUDEVAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "K VINAYAGAM",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "J JAMEEL BASHA",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -8900,20 +8884,11 @@
     }
   },
   "summary": {
-    "totalVoters": 291304,
-    "totalVotes": 202571,
-    "turnoutPercent": 69.54,
-    "winner": {
-      "name": "E V VELU",
-      "party": "DMK",
-      "votes": 134669
-    },
-    "runnerUp": {
-      "name": "S THANIGAIVEL",
-      "party": "BJP",
-      "votes": 42626
-    },
-    "margin": 92043,
-    "marginPercent": 45.4
+    "totalValid": 202612,
+    "totalRejected": 12,
+    "totalNota": 2180,
+    "totalVotes": 204804,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

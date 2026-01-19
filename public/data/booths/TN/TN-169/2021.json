@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "JOTHIRAMAN  S",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "RAVICHANDRAN  R",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "KAMARAJ R",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "RAMACHANDRAN   N",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "GANESAN  D",
       "party": "IJK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "KUMARAN  R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
-      "name": "PANASAIARAGAN K N",
-      "party": "Desiya Makkal Sakthi Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "FATHIMA FARHANA  S",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "MURUGAVEL  M",
-      "party": "Anna Dravidar Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "ANUSHA  T",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "KRISHNAN  K",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "NITHIYANANTHAM  S",
-      "party": "Anaithu Makkal Arasiyal Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
-      "name": "TAMILSELVAN  R",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
-      "name": "NATARAJAN  C",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
       "name": "RAJA S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
+      "name": "FATHIMA FARHANA  S",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "MURUGAVEL  M",
+      "party": "Anna Dravidar Kazhagam",
+      "symbol": ""
+    },
+    {
+      "name": "ANUSHA  T",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "KRISHNAN  K",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NITHIYANANTHAM  S",
+      "party": "Anaithu Makkal Arasiyal Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "TAMILSELVAN  R",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NATARAJAN  C",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "RAJA S",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -8093,20 +8077,11 @@
     }
   },
   "summary": {
-    "totalVoters": 273734,
-    "totalVotes": 213349,
-    "turnoutPercent": 77.94,
-    "winner": {
-      "name": "JOTHIRAMAN  S",
-      "party": "DMK",
-      "votes": 100384
-    },
-    "runnerUp": {
-      "name": "KAMARAJ R",
-      "party": "ADMK",
-      "votes": 95676
-    },
-    "margin": 4708,
-    "marginPercent": 2.2
+    "totalValid": 213481,
+    "totalRejected": 19,
+    "totalNota": 1176,
+    "totalVotes": 214676,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

@@ -8,85 +8,71 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "KANNAN KA SO KA",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "NEELAMEGAM K",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 3,
-      "name": "SIVA J K",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 4,
-      "name": "SORNALATHA @ LATHA G",
-      "party": "IJK",
-      "symbol": ""
-    },
-    {
-      "slNo": 5,
-      "name": "NATARAJAN A",
-      "party": "Anna Dravidar Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
-      "name": "BALU K",
-      "party": "PMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
-      "name": "MAHALINGAM NEELA",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
       "name": "KESAVARAJAN V K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
+      "name": "SORNALATHA @ LATHA G",
+      "party": "IJK",
+      "symbol": ""
+    },
+    {
+      "name": "NATARAJAN A",
+      "party": "Anna Dravidar Kazhagam",
+      "symbol": ""
+    },
+    {
+      "name": "BALU K",
+      "party": "PMK",
+      "symbol": ""
+    },
+    {
+      "name": "MAHALINGAM NEELA",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "SIVA J K",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
       "name": "SATHISHKUMAR R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "SAMUVEL MARTIN A",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "SUDARVIZHI K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "SEDHURAMAN R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "RAJKUMAR S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7635,20 +7621,11 @@
     }
   },
   "summary": {
-    "totalVoters": 269181,
-    "totalVotes": 1851,
-    "turnoutPercent": 0.69,
-    "winner": {
-      "name": "KANNAN KA SO KA",
-      "party": "DMK",
-      "votes": 97935
-    },
-    "runnerUp": {
-      "name": "BALU K",
-      "party": "PMK",
-      "votes": 93112
-    },
-    "margin": 4823,
-    "marginPercent": 260.6
+    "totalValid": 211750,
+    "totalRejected": 213601,
+    "totalNota": 0,
+    "totalVotes": 425351,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

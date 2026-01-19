@@ -8,67 +8,56 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "GERALD .G",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "PREMNATH. D",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "MOHAMED MUBARAK .V.M.S.",
       "party": "SDPI",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "FATHIMA .A",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "SADAGOPAN .K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "RAJA .S",
       "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "VEERASUBRAMANIYAN .S",
       "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "JOHN SAMUVEL JESUPATHAM .D",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "LEO INFANT RAJ .M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "ABDUL WAHAB .M",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -2503,20 +2492,11 @@
     }
   },
   "summary": {
-    "totalVoters": 278897,
-    "totalVotes": 37436,
-    "turnoutPercent": 13.42,
-    "winner": {
-      "name": "GERALD .G",
-      "party": "ADMK",
-      "votes": 34223
-    },
-    "runnerUp": {
-      "name": "MOHAMED MUBARAK .V.M.S.",
-      "party": "SDPI",
-      "votes": 31727
-    },
-    "margin": 2496,
-    "marginPercent": 6.7
+    "totalValid": 221527,
+    "totalRejected": 29319,
+    "totalNota": 28136,
+    "totalVotes": 278982,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

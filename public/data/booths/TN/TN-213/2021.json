@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "BALAJI R",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "MUTHUKUMAR C",
       "party": "Puthiya Tamilagam",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "CHINNAPPAN P",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "CHELLADURAI S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "MARIMUTHU S",
       "party": "South India Forward Bloc",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "WILSON X",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "SEENI SELVI K",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "ARUMUGAM S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "MANIKKARAJ A",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "KARUPPASAMY K",
       "party": "Naam Indiar Party",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "MURUGANANTHAM M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "RAJAMANI P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "ARUMUGAPERUMAL K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "GANDHI M",
       "party": "Bahujan Dravida Party",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "MARKANDAYAN V",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -3547,20 +3531,11 @@
     }
   },
   "summary": {
-    "totalVoters": 218464,
-    "totalVotes": 80865,
-    "turnoutPercent": 37.02,
-    "winner": {
-      "name": "CHINNAPPAN P",
-      "party": "ADMK",
-      "votes": 44078
-    },
-    "runnerUp": {
-      "name": "BALAJI R",
-      "party": "NTK",
-      "votes": 26155
-    },
-    "margin": 17923,
-    "marginPercent": 22.2
+    "totalValid": 82117,
+    "totalRejected": 398,
+    "totalNota": 1488,
+    "totalVotes": 84003,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

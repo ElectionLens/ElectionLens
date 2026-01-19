@@ -8,73 +8,61 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
-      "name": "PERIYASAMY,K.",
-      "party": "IJK",
-      "symbol": ""
-    },
-    {
-      "slNo": 2,
-      "name": "NALLATHAMBI,A.",
-      "party": "ADMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 3,
-      "name": "REKHA PRIYADHARSHINI,J.",
-      "party": "DMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 4,
-      "name": "NAVAN,P.",
-      "party": "Puthiya Tamilagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 5,
-      "name": "PANDIAN,A.",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
       "name": "SELLAMMAL,V.M.",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 7,
+      "name": "NALLATHAMBI,A.",
+      "party": "ADMK",
+      "symbol": ""
+    },
+    {
+      "name": "REKHA PRIYADHARSHINI,J.",
+      "party": "DMK",
+      "symbol": ""
+    },
+    {
+      "name": "NAVAN,P.",
+      "party": "Puthiya Tamilagam",
+      "symbol": ""
+    },
+    {
+      "name": "PANDIAN,A.",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "PERIYASAMY,K.",
+      "party": "IJK",
+      "symbol": ""
+    },
+    {
       "name": "VINOTHINI,R.",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "AYYADURAI,J.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "CHANDRASEKARAN,K.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "SARAVANAN,R.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "SENTHILKUMAR,K.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6400,20 +6388,11 @@
     }
   },
   "summary": {
-    "totalVoters": 241866,
-    "totalVotes": 182723,
-    "turnoutPercent": 75.55,
-    "winner": {
-      "name": "NALLATHAMBI,A.",
-      "party": "ADMK",
-      "votes": 88900
-    },
-    "runnerUp": {
-      "name": "REKHA PRIYADHARSHINI,J.",
-      "party": "DMK",
-      "votes": 80466
-    },
-    "margin": 8434,
-    "marginPercent": 4.6
+    "totalValid": 182723,
+    "totalRejected": 1241,
+    "totalNota": 0,
+    "totalVotes": 183964,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

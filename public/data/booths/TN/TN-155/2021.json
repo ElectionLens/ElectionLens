@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "G.IYAPPAN",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
+      "name": "G.IYAPPAN",
+      "party": "DMK",
+      "symbol": ""
+    },
+    {
       "name": "M.C.SAMPATH",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
-      "name": "JALADEEPAN.V",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 4,
-      "name": "S.PUSHBARAJ",
-      "party": "Tamil Nadu Ilangyar Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 5,
-      "name": "R.VALLAL KUMAR",
-      "party": "BSP",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
       "name": "A.GNANAPANDITHAN",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 7,
-      "name": "J.JACOB",
-      "party": "IND",
+      "name": "R.VALLAL KUMAR",
+      "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 8,
-      "name": "A.Mohamed Usman",
-      "party": "Anna Puratchi Thalaivar Amma Dravida Munnetra Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "S.V.RAJARAJAN",
-      "party": "Desiya Makkal Sakthi Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
       "name": "K.ANANDRAJ",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 11,
+      "name": "S.PUSHBARAJ",
+      "party": "Tamil Nadu Ilangyar Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "A.Mohamed Usman",
+      "party": "Anna Puratchi Thalaivar Amma Dravida Munnetra Kazhagam",
+      "symbol": ""
+    },
+    {
+      "name": "S.V.RAJARAJAN",
+      "party": "Desiya Makkal Sakthi Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "JALADEEPAN.V",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
       "name": "G.KRISHNAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "S.SAMPATH",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
-      "name": "K.THANGARASU",
+      "name": "S.SAMPATH",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "V. DAKSHNAMOORTHY",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
-      "name": "S.DEENADHAYALAN",
+      "name": "J.JACOB",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -8019,20 +8003,11 @@
     }
   },
   "summary": {
-    "totalVoters": 243414,
-    "totalVotes": 1247,
-    "turnoutPercent": 0.51,
-    "winner": {
-      "name": "G.IYAPPAN",
-      "party": "DMK",
-      "votes": 239375
-    },
-    "runnerUp": {
-      "name": "M.C.SAMPATH",
-      "party": "ADMK",
-      "votes": 82817
-    },
-    "margin": 156558,
-    "marginPercent": 12554.8
+    "totalValid": 417001,
+    "totalRejected": 178722,
+    "totalNota": 34,
+    "totalVotes": 595757,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

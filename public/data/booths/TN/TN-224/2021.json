@@ -8,91 +8,76 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "Sathya,B.",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "Sivakumar,M.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "Kalanithy",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "Mahesh Kannan,A.P.",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "Sankarasubramanian,M.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "Srithar Rajan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "Esakkimuthu,P.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "Sundarraj,M.",
       "party": "CPI(ML)(L)",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "Sankar @ Sankaranarayanan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "Murugan,R.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "Raghavan,C.M.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "Murugan,V.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "Lakshmanan,A.L.S.",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "Nainar Nagenthran",
       "party": "BJP",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -2206,20 +2191,11 @@
     }
   },
   "summary": {
-    "totalVoters": 295302,
-    "totalVotes": 34693,
-    "turnoutPercent": 11.75,
-    "winner": {
-      "name": "Sathya,B.",
-      "party": "NTK",
-      "votes": 36607
-    },
-    "runnerUp": {
-      "name": "Mahesh Kannan,A.P.",
-      "party": "AMMK",
-      "votes": 33426
-    },
-    "margin": 3181,
-    "marginPercent": 0.0
+    "totalValid": 220456,
+    "totalRejected": 33823,
+    "totalNota": 33100,
+    "totalVotes": 287379,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

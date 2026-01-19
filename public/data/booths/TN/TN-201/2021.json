@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "Syedukhan.S.P.M",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "Suresh.P",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "Venkidesh.N",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "Prakash.P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "Anish Fathima. A",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "RADHAKRISHNAN.K",
       "party": "Anaithu Makkal Puratchi Katchi",
       "symbol": ""
     },
     {
-      "slNo": 7,
-      "name": "THAVIDHU RAJA. A",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "MUTHUSELVAM.G",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "MUTHU MUNEESWARAN.M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "KATHIRAVAN.S",
-      "party": "New Generation People\u2019s Party",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "N.Ramakrishnan",
-      "party": "DMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "MARIMUTHU.G",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
-      "name": "Pandi Selvam.R",
-      "party": "Anna Puratchi Thalaivar Amma Dravida Munnetra Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
       "name": "Lal Bahdur Sasthri.V",
       "party": "My India Party",
       "symbol": ""
     },
     {
-      "slNo": 15,
+      "name": "MARIMUTHU.G",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "MUTHU MUNEESWARAN.M",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "KATHIRAVAN.S",
+      "party": "New Generation People\u2019s Party",
+      "symbol": ""
+    },
+    {
+      "name": "N.Ramakrishnan",
+      "party": "DMK",
+      "symbol": ""
+    },
+    {
+      "name": "MARIMUTHU.G",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "THAVIDHU RAJA. A",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Lal Bahdur Sasthri.V",
+      "party": "My India Party",
+      "symbol": ""
+    },
+    {
       "name": "SARAVANAN.S.R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6597,20 +6581,11 @@
     }
   },
   "summary": {
-    "totalVoters": 291001,
-    "totalVotes": 156111,
-    "turnoutPercent": 53.65,
-    "winner": {
-      "name": "Syedukhan.S.P.M",
-      "party": "ADMK",
-      "votes": 80811
-    },
-    "runnerUp": {
-      "name": "Suresh.P",
-      "party": "AMMK",
-      "votes": 49349
-    },
-    "margin": 31462,
-    "marginPercent": 20.2
+    "totalValid": 156243,
+    "totalRejected": 1336,
+    "totalNota": 20,
+    "totalVotes": 157599,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

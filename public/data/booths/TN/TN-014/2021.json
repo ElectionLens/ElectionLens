@@ -8,145 +8,121 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "Syed Rayhan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "S. Raju Bharathi",
       "party": "Desiya Makkal Sakthi Katchi",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "Sriharan",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "J.C.D.Prabhakar",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "M.Murali Vinodh",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "M .Jalal",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
-      "name": "S.Chandrika",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "D.Subamangalam",
-      "party": "DMDK",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "R.Sridar",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "A . Vetriazhagan",
-      "party": "DMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "S.Kandasamy",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "C.Raghul",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
-      "name": "C.Mohan",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
-      "name": "M.Gunasekaran",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
-      "name": "G.Iyanar",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 16,
       "name": "L.Govindaraj",
       "party": "Nam India Naam Indiyar Katchi",
       "symbol": ""
     },
     {
-      "slNo": 17,
-      "name": "Jagadesh Jayakumar",
-      "party": "Valamaana  Tamizhagam   Katchi",
+      "name": "D.Subamangalam",
+      "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 18,
-      "name": "A.Palanivel",
-      "party": "BSP",
+      "name": "R.Sridar",
+      "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 19,
-      "name": "S.Baskar",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 20,
-      "name": "A . Ajith Kumar",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 21,
-      "name": "A.S.Kumar",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 22,
-      "name": "G. Devapriyan",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 23,
       "name": "C.A.Ashok Kumar",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 24,
+      "name": "S.Kandasamy",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "A.S.Kumar",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "C.Mohan",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "M.Gunasekaran",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "G.Iyanar",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "S.Chandrika",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Jagadesh Jayakumar",
+      "party": "Valamaana  Tamizhagam   Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "M .Jalal",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "S.Baskar",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "A . Ajith Kumar",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "A.S.Kumar",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "G. Devapriyan",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "C.A.Ashok Kumar",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7535,20 +7511,11 @@
     }
   },
   "summary": {
-    "totalVoters": 257675,
-    "totalVotes": 99223,
-    "turnoutPercent": 38.51,
-    "winner": {
-      "name": "J.C.D.Prabhakar",
-      "party": "ADMK",
-      "votes": 53175
-    },
-    "runnerUp": {
-      "name": "Sriharan",
-      "party": "MNM",
-      "votes": 27353
-    },
-    "margin": 25822,
-    "marginPercent": 26.0
+    "totalValid": 99519,
+    "totalRejected": 27,
+    "totalNota": 944,
+    "totalVotes": 100490,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

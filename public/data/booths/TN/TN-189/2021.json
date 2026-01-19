@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "GOPALAKRISHNAN R",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "MOORTHY P",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "SARAVANAN T",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "BALAMURUGAN A",
       "party": "Puthiya Tamilagam",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "PRABAHARAN M",
       "party": "Bahujan Dravida Party",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "MUTHUKRISHNAN I",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "MUTHU KRISHNAN M",
       "party": "Anaithu Makkal Puratchi Katchi",
       "symbol": ""
     },
     {
-      "slNo": 8,
-      "name": "GANDHI K",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "RAJA P",
-      "party": "My India Party",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "LATHA J",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "JEYAKUMAR P",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
       "name": "MUSTAK MOHAMED.A.K",
       "party": "Tipu Sultan Party",
       "symbol": ""
     },
     {
-      "slNo": 13,
-      "name": "DINESH G",
+      "name": "RAJA P",
+      "party": "My India Party",
+      "symbol": ""
+    },
+    {
+      "name": "LATHA J",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "JEYAKUMAR P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
-      "name": "CHANDRASEKARAN V",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
       "name": "PALANIAMMAL P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
+      "name": "DINESH G",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "CHANDRASEKARAN V",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "PALANIAMMAL P",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -10644,20 +10628,11 @@
     }
   },
   "summary": {
-    "totalVoters": 333462,
-    "totalVotes": 1934,
-    "turnoutPercent": 0.58,
-    "winner": {
-      "name": "MOORTHY P",
-      "party": "DMK",
-      "votes": 120188
-    },
-    "runnerUp": {
-      "name": "GOPALAKRISHNAN R",
-      "party": "ADMK",
-      "votes": 72375
-    },
-    "margin": 47813,
-    "marginPercent": 2472.2
+    "totalValid": 232340,
+    "totalRejected": 233586,
+    "totalNota": 932,
+    "totalVotes": 466858,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

@@ -8,79 +8,66 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "GOVINDARAJAN T.J",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "DILLIY K.M",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "NAGARAJ S",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "USHA",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "GOWTHAM J",
       "party": "Anaithu Makkal Arasiyal Katchi",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SARAVANAN V",
       "party": "IJK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "PRAKASH M",
       "party": "PMK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "SARAVANAN E",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "DEVANATHAN R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "PRAKASH K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "PRAKASH M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "LAKSHMI R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7784,20 +7771,11 @@
     }
   },
   "summary": {
-    "totalVoters": 284412,
-    "totalVotes": 218221,
-    "turnoutPercent": 76.73,
-    "winner": {
-      "name": "GOVINDARAJAN T.J",
-      "party": "DMK",
-      "votes": 125001
-    },
-    "runnerUp": {
-      "name": "PRAKASH M",
-      "party": "PMK",
-      "votes": 75004
-    },
-    "margin": 49997,
-    "marginPercent": 22.9
+    "totalValid": 218221,
+    "totalRejected": 0,
+    "totalNota": 1775,
+    "totalVotes": 219996,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

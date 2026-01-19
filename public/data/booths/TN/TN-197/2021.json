@@ -8,91 +8,76 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "AYYAPPAN P",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "KATHIRAVAN P V",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "ARASUMAYAN M",
       "party": "All India Jananayaka Makkal Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "IYNDHUKOVILAN G",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "ARUMUGAM K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "BHARATH V",
       "party": "My India Party",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "MAHENDRAN I",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "ARUNKUMAR M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "ALAGUMURUGESAN K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
-      "name": "THIRUSELVAM C",
-      "party": "Puthiya Tamilagam",
+      "name": "ARUMUGAM K",
+      "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "ANANTHA KUMAR N",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
-      "name": "Dhanasekaran T",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
       "name": "KATHIRAVAN A",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
+      "name": "KATHIRAVAN A",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "MAHENDRAN A",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -8730,20 +8715,11 @@
     }
   },
   "summary": {
-    "totalVoters": 287879,
-    "totalVotes": 1045,
-    "turnoutPercent": 0.36,
-    "winner": {
-      "name": "AYYAPPAN P",
-      "party": "ADMK",
-      "votes": 70645
-    },
-    "runnerUp": {
-      "name": "KATHIRAVAN P V",
-      "party": "DMK",
-      "votes": 63061
-    },
-    "margin": 7584,
-    "marginPercent": 725.7
+    "totalValid": 209763,
+    "totalRejected": 212052,
+    "totalNota": 472,
+    "totalVotes": 422287,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

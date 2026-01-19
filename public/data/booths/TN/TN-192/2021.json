@@ -8,85 +8,71 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "SARAVANAN. S.S",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "BOOMINATHAN.M",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "ABBAS.M",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "ESWARAN.G",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 5,
-      "name": "SADAM HUSSAIN.K",
-      "party": "My India Party",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
-      "name": "BHARATHI KANNAMMA. S",
-      "party": "New Generation People\u2019s Party",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
-      "name": "RAAJALINGAM.SHA",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "UMESH.K.R",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "JEYA.K",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
       "name": "RAVICHANDRAN.V.C",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
-      "name": "VENGADACHALAPATHY.T.S",
+      "name": "BHARATHI KANNAMMA. S",
+      "party": "New Generation People\u2019s Party",
+      "symbol": ""
+    },
+    {
+      "name": "RAAJALINGAM.SHA",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "UMESH.K.R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "SARAVANAN.R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
+      "name": "RAVICHANDRAN.V.C",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "JEYA.K",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "SARAVANAN.R",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "RAJKUMAR(a)MANIKANDAN.K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6633,20 +6619,11 @@
     }
   },
   "summary": {
-    "totalVoters": 231713,
-    "totalVotes": 1563,
-    "turnoutPercent": 0.67,
-    "winner": {
-      "name": "BOOMINATHAN.M",
-      "party": "DMK",
-      "votes": 62107
-    },
-    "runnerUp": {
-      "name": "SARAVANAN. S.S",
-      "party": "ADMK",
-      "votes": 55949
-    },
-    "margin": 6158,
-    "marginPercent": 394.0
+    "totalValid": 145136,
+    "totalRejected": 147403,
+    "totalNota": 149,
+    "totalVotes": 292688,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

@@ -8,127 +8,106 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "MARUTHASALAM V",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "MUTHURATHINAM K",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "SUBRAMANIAN S",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 4,
-      "name": "RAMESH V",
+      "name": "MARUTHASALAM V",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
-      "name": "MUTHURATHINAM L",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
-      "name": "SHAHUL HAMEED M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
-      "name": "MAYILSAMY G",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "ANNADURAI R",
-      "party": "BSP",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "JOTHIMANI R",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "MUTHURATHINAM M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "ANANDAN M S M",
-      "party": "ADMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "THUYAMANI R",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
-      "name": "THINAKARAN K",
-      "party": "Anna Dravidar Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
-      "name": "MURUGESAN K",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
-      "name": "VIJIYAKUMAR M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 16,
-      "name": "ANTONY MARIARAJ A",
-      "party": "Tamil Nadu Ilangyar Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 17,
-      "name": "SARATHA T",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 18,
-      "name": "UMANATH R",
-      "party": "United States of India Party",
-      "symbol": ""
-    },
-    {
-      "slNo": 19,
       "name": "THANGARAJ A",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 20,
+      "name": "SARATHA T",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "MAYILSAMY G",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "SHAHUL HAMEED M",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "JOTHIMANI R",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "MUTHURATHINAM M",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "ANANDAN M S M",
+      "party": "ADMK",
+      "symbol": ""
+    },
+    {
+      "name": "THUYAMANI R",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "THINAKARAN K",
+      "party": "Anna Dravidar Kazhagam",
+      "symbol": ""
+    },
+    {
+      "name": "MURUGESAN K",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "VIJIYAKUMAR M",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "ANTONY MARIARAJ A",
+      "party": "Tamil Nadu Ilangyar Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "SARATHA T",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "UMANATH R",
+      "party": "United States of India Party",
+      "symbol": ""
+    },
+    {
+      "name": "VIJIYAKUMAR M",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "SIVAKUMAR G",
       "party": "Anna Puratchi Thalaivar Amma Dravida Munnetra Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 21,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -10019,20 +9998,11 @@
     }
   },
   "summary": {
-    "totalVoters": 392070,
-    "totalVotes": 181539,
-    "turnoutPercent": 46.3,
-    "winner": {
-      "name": "MUTHURATHINAM K",
-      "party": "DMK",
-      "votes": 87588
-    },
-    "runnerUp": {
-      "name": "SUBRAMANIAN S",
-      "party": "NTK",
-      "votes": 66102
-    },
-    "margin": 21486,
-    "marginPercent": 11.8
+    "totalValid": 181539,
+    "totalRejected": 0,
+    "totalNota": 1300,
+    "totalVotes": 182839,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

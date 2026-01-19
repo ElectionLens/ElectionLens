@@ -8,127 +8,106 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "MANICKAM K",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "VENKATESAN A",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "JEYALAKSHMI M",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 4,
-      "name": "MOORTHY P",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 5,
       "name": "INDURANI S",
       "party": "Puthiya Tamilagam",
       "symbol": ""
     },
     {
-      "slNo": 6,
-      "name": "MALAICHAMY A",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
-      "name": "SENGANNAN G",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "YOGANATHAN S",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "SEKAR N",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "VARATHARAJAN C",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
       "name": "KANDAVEL S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
+      "name": "MALAICHAMY A",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "SENGANNAN G",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "YOGANATHAN S",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
       "name": "KRISHNASAMY P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
-      "name": "RAJKUMAR K",
-      "party": "My India Party",
+      "name": "VARATHARAJAN C",
+      "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
+      "name": "KANDAVEL S",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "KRISHNASAMY P",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "DHANAGOPAL S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "KATHIRESAN P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "SILAMBARASAN P",
       "party": "Bahujan Dravida Party",
       "symbol": ""
     },
     {
-      "slNo": 17,
+      "name": "SILAMBARASAN P",
+      "party": "Bahujan Dravida Party",
+      "symbol": ""
+    },
+    {
       "name": "MOORTHI M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 18,
-      "name": "RAJKUMAR V",
+      "name": "MOORTHI M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 19,
       "name": "ESWARI T",
       "party": "CPI(ML)(L)",
       "symbol": ""
     },
     {
-      "slNo": 20,
-      "name": "VETRIVEL J",
+      "name": "SEKAR N",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 21,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -8397,20 +8376,11 @@
     }
   },
   "summary": {
-    "totalVoters": 220607,
-    "totalVotes": 963,
-    "turnoutPercent": 0.44,
-    "winner": {
-      "name": "VENKATESAN A",
-      "party": "DMK",
-      "votes": 83021
-    },
-    "runnerUp": {
-      "name": "MANICKAM K",
-      "party": "ADMK",
-      "votes": 66647
-    },
-    "margin": 16374,
-    "marginPercent": 1700.3
+    "totalValid": 172719,
+    "totalRejected": 174829,
+    "totalNota": 80,
+    "totalVotes": 347628,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

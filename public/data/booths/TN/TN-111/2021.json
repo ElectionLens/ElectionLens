@@ -8,67 +8,56 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "SELVARAJ A K",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "SHANMUGASUNDARAM T R",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "SARAVANAN P",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "SHANMUGASUNDARAM P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "YASMIN K",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "MARIAPPAN T",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "LIAKATHALI O",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "MAHESHWARAN K",
       "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "SHANMUGASUNDARAM K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "SRINIVASAN S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -5534,20 +5523,11 @@
     }
   },
   "summary": {
-    "totalVoters": 299551,
-    "totalVotes": 2226,
-    "turnoutPercent": 0.74,
-    "winner": {
-      "name": "SHANMUGASUNDARAM T R",
-      "party": "DMK",
-      "votes": 86370
-    },
-    "runnerUp": {
-      "name": "SELVARAJ A K",
-      "party": "ADMK",
-      "votes": 84078
-    },
-    "margin": 2292,
-    "marginPercent": 103.0
+    "totalValid": 182186,
+    "totalRejected": 184412,
+    "totalNota": 0,
+    "totalVotes": 366598,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

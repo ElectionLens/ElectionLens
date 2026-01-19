@@ -8,67 +8,56 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "TAMILARASAN U",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "NAGAIMAALI V P",
       "party": "CPM",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "SIDHU G",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "NEETHIMOHAN M",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "PONELAVAZHAKI  S",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "KALAISELVAN G",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "VADIVEL RAVANAN  S",
       "party": "PMK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "MUTHALAGAN S",
       "party": "Puthiya Tamilagam",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "MARUTHAIYAN G",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "VEDHA MUKUNDHAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -4342,20 +4331,11 @@
     }
   },
   "summary": {
-    "totalVoters": 180026,
-    "totalVotes": 140869,
-    "turnoutPercent": 78.25,
-    "winner": {
-      "name": "NAGAIMAALI V P",
-      "party": "CPM",
-      "votes": 66663
-    },
-    "runnerUp": {
-      "name": "VADIVEL RAVANAN  S",
-      "party": "PMK",
-      "votes": 50417
-    },
-    "margin": 16246,
-    "marginPercent": 11.5
+    "totalValid": 140226,
+    "totalRejected": 392,
+    "totalNota": 902,
+    "totalVotes": 141520,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

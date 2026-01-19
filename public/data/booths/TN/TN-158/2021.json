@@ -8,73 +8,61 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "K.A. PANDIAN",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "S. BALAMURUGAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "S. ABDUL RAHMAN",
       "party": "IUML",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "NATARAJAN KRISHNAMOORTHY",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
-      "name": "C. VINOBA",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
-      "name": "M. NANTHINIDEVI",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
-      "name": "G. DEVASAGAYAM",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "D. CHANDRA PRABU",
-      "party": "BSP",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "M. RAGHUNATHAN",
-      "party": "Ilantamilar Munnani Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "B. NARAYANAMOORTHY",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
       "name": "K. UDAYA SELVAN",
       "party": "Anaithu Makkal Puratchi Katchi",
       "symbol": ""
     },
     {
-      "slNo": 12,
+      "name": "M. NANTHINIDEVI",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "G. DEVASAGAYAM",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "D. CHANDRA PRABU",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
+      "name": "M. RAGHUNATHAN",
+      "party": "Ilantamilar Munnani Kazhagam",
+      "symbol": ""
+    },
+    {
+      "name": "B. NARAYANAMOORTHY",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "S. BALAMURUGAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6428,20 +6416,11 @@
     }
   },
   "summary": {
-    "totalVoters": 254903,
-    "totalVotes": 1131,
-    "turnoutPercent": 0.44,
-    "winner": {
-      "name": "K.A. PANDIAN",
-      "party": "ADMK",
-      "votes": 236178
-    },
-    "runnerUp": {
-      "name": "S. ABDUL RAHMAN",
-      "party": "IUML",
-      "votes": 86062
-    },
-    "margin": 150116,
-    "marginPercent": 13272.9
+    "totalValid": 406394,
+    "totalRejected": 171253,
+    "totalNota": 20,
+    "totalVotes": 577667,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

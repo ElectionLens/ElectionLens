@@ -8,91 +8,76 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "R.GANDHI",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "S.M.SUGUMAR",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "A.YUVARAJ",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "M.ATHAM BASHA",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "Dr.K.SATHIYARAJ",
       "party": "Tamil Nadu Ilangyar Katchi",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "V.SHYLAJA",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "G.VEERAMANI",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "N.SUGUMAR",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "K.SAKTHIVEL NATHAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "S.GANDHI",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "A.MANIKANDAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "A.MANSUR BASHA",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "S.YUVARAJ",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "S.JAYAKUMAR",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7976,20 +7961,11 @@
     }
   },
   "summary": {
-    "totalVoters": 268593,
-    "totalVotes": 204240,
-    "turnoutPercent": 76.04,
-    "winner": {
-      "name": "R.GANDHI",
-      "party": "DMK",
-      "votes": 102273
-    },
-    "runnerUp": {
-      "name": "S.M.SUGUMAR",
-      "party": "ADMK",
-      "votes": 86339
-    },
-    "margin": 15934,
-    "marginPercent": 7.8
+    "totalValid": 204240,
+    "totalRejected": 0,
+    "totalNota": 1625,
+    "totalVotes": 205865,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

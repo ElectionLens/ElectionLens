@@ -8,85 +8,71 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "C. KUMAR",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "G. Chitra",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "C. TAMILSELVAN",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "P. Ramasamy",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "T. Duraisamy",
       "party": "IJK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "Jothi",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 7,
-      "name": "Santhosam",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "K. UNNAMALAI",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "P. SATHISHKUMAR",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
       "name": "S.T. Rajendhiran",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
+      "name": "K. UNNAMALAI",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "P. SATHISHKUMAR",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Santhosam",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "T. Priya",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "K. Manikandan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "D. MADESH",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -8255,20 +8241,11 @@
     }
   },
   "summary": {
-    "totalVoters": 287548,
-    "totalVotes": 234102,
-    "turnoutPercent": 81.41,
-    "winner": {
-      "name": "G. Chitra",
-      "party": "ADMK",
-      "votes": 120542
-    },
-    "runnerUp": {
-      "name": "C. TAMILSELVAN",
-      "party": "DMK",
-      "votes": 93927
-    },
-    "margin": 26615,
-    "marginPercent": 11.4
+    "totalValid": 234102,
+    "totalRejected": 1955,
+    "totalNota": 0,
+    "totalVotes": 236057,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

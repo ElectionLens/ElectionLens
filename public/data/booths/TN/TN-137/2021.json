@@ -8,115 +8,96 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "Seeni.Prakasu",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "R.Saravanan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "S.Manikandan",
       "party": "IJK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "R.Chandrasekar",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "V.Nirosha",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "V.Vellaiyan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "P.Anbalagan",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "R.Kalyana Sundaram",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "S.Kandasamy",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "S.Barani",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "A.Subethar",
       "party": "Tipu Sultan Party",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "M.Saravanan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "V.Alex Mouris",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "B.Selvaraj",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "M.Sankar",
       "party": "Samaniya Makkal Nala Katchi",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "K.Suresh",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 17,
       "name": "N.R.Chandrasekar",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 18,
       "name": "R.Manickam",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 19,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -1417,20 +1398,11 @@
     }
   },
   "summary": {
-    "totalVoters": 229173,
-    "totalVotes": 21158,
-    "turnoutPercent": 9.23,
-    "winner": {
-      "name": "Seeni.Prakasu",
-      "party": "NTK",
-      "votes": 21416
-    },
-    "runnerUp": {
-      "name": "R.Saravanan",
-      "party": "IND",
-      "votes": 20144
-    },
-    "margin": 1272,
-    "marginPercent": 6.0
+    "totalValid": 99465,
+    "totalRejected": 19868,
+    "totalNota": 19714,
+    "totalVotes": 139047,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

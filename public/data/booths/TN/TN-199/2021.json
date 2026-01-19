@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "M Murugan",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "K.S.SARAVANAKUMAAR",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "Vimala",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "M.RAJENDRAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "MADHU BHARATHI",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "A.C.MOHAN RAJ B.P.T.,",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "S.PANDIYARAJAN",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "MURUGAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
-      "name": "Dr.K.Kathirkamu",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "S.Chinnamuthu",
-      "party": "My India Party",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
       "name": "C.MAYAZHAKU",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
+      "name": "S.Chinnamuthu",
+      "party": "My India Party",
+      "symbol": ""
+    },
+    {
+      "name": "C.MAYAZHAKU",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "P.RAMAIYA",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "M.Muneeswaran",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "M.Muniyappan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "A.Murugesan",
       "party": "SUCI",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6641,20 +6625,11 @@
     }
   },
   "summary": {
-    "totalVoters": 288528,
-    "totalVotes": 152078,
-    "turnoutPercent": 52.71,
-    "winner": {
-      "name": "M Murugan",
-      "party": "ADMK",
-      "votes": 69256
-    },
-    "runnerUp": {
-      "name": "K.S.SARAVANAKUMAAR",
-      "party": "DMK",
-      "votes": 55351
-    },
-    "margin": 13905,
-    "marginPercent": 9.1
+    "totalValid": 152210,
+    "totalRejected": 1885,
+    "totalNota": 20,
+    "totalVotes": 154115,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

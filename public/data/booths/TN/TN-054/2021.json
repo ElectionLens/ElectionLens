@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "K.P.Munusamy",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "M.Sakthivel",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "P.Murugan",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "S.M.Murugesan",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "Abdul Azeez Amanullah",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "P.Jayapal",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
-      "name": "Valli",
-      "party": "Anna Puratchi Thalaivar Amma Dravida Munnetra Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "K.P.U.UVARAJ",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "Ramaswamy",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "S.Thangapandiyan",
-      "party": "Tamil Nadu Ilangyar Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "C.Chakkarlappa",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "Usha",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
-      "name": "Krishnamoorthy",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
-      "name": "Lakshmanan Shanmugam",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
       "name": "M.Mariyappan",
       "party": "Puthiya Tamilagam",
       "symbol": ""
     },
     {
-      "slNo": 16,
+      "name": "S.Thangapandiyan",
+      "party": "Tamil Nadu Ilangyar Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "Ramaswamy",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "S.Thangapandiyan",
+      "party": "Tamil Nadu Ilangyar Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "C.Chakkarlappa",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Usha",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Krishnamoorthy",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Lakshmanan Shanmugam",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "C.Chakkarlappa",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -9611,20 +9595,11 @@
     }
   },
   "summary": {
-    "totalVoters": 252294,
-    "totalVotes": 202913,
-    "turnoutPercent": 80.43,
-    "winner": {
-      "name": "K.P.Munusamy",
-      "party": "ADMK",
-      "votes": 64875378
-    },
-    "runnerUp": {
-      "name": "P.Murugan",
-      "party": "DMK",
-      "votes": 67256
-    },
-    "margin": 64808122,
-    "marginPercent": 31922.0
+    "totalValid": 65243981,
+    "totalRejected": 248686,
+    "totalNota": 30554,
+    "totalVotes": 65523221,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

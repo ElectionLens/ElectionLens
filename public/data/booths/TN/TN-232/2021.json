@@ -8,79 +8,66 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "John Thankam, D.",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "Jeyaraj, M.",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "Seelan",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "Jenkins, D.",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "Latha, P.",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SyedAli, A.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "Mano Thangaraj, T.",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "Mathan, F.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "Glory Selvi, T.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "Anchalose, Y.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "Nagarajan, M.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "Robert Singh, I.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -5219,20 +5206,11 @@
     }
   },
   "summary": {
-    "totalVoters": 242802,
-    "totalVotes": 134713,
-    "turnoutPercent": 55.48,
-    "winner": {
-      "name": "John Thankam, D.",
-      "party": "ADMK",
-      "votes": 70935
-    },
-    "runnerUp": {
-      "name": "Seelan",
-      "party": "NTK",
-      "votes": 48205
-    },
-    "margin": 22730,
-    "marginPercent": 16.9
+    "totalValid": 134713,
+    "totalRejected": 0,
+    "totalNota": 835,
+    "totalVotes": 135548,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

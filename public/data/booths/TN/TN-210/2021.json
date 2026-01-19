@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
-      "name": "RAMALINGAM",
-      "party": "BSP",
-      "symbol": ""
-    },
-    {
-      "slNo": 2,
-      "name": "ANANDH N",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 3,
-      "name": "K C ANIMUTHU",
-      "party": "ADMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 4,
       "name": "PERUMAL",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
+      "name": "ANANDH N",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "K C ANIMUTHU",
+      "party": "ADMK",
+      "symbol": ""
+    },
+    {
+      "name": "PERUMAL",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "JAWAHAR",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SURIYA PRAKASH",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "ANBUBAGURUDEEN N",
       "party": "NCP",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "SATHYARAJ",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "PRADEEP",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "PRAVEEN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
-      "name": "KARUMANICKAM",
-      "party": "INC",
+      "name": "PRADEEP",
+      "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "SIKKANDAR",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "MANIKANDAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "ANANTHARAJ S",
       "party": "My India Party",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "MANI",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7719,20 +7703,11 @@
     }
   },
   "summary": {
-    "totalVoters": 293677,
-    "totalVotes": 668,
-    "turnoutPercent": 0.23,
-    "winner": {
-      "name": "K C ANIMUTHU",
-      "party": "ADMK",
-      "votes": 66686
-    },
-    "runnerUp": {
-      "name": "ANANDH N",
-      "party": "AMMK",
-      "votes": 53267
-    },
-    "margin": 13419,
-    "marginPercent": 2008.8
+    "totalValid": 167526,
+    "totalRejected": 168045,
+    "totalNota": 20,
+    "totalVotes": 335591,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

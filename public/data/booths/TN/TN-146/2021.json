@@ -8,85 +8,71 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "T.INDRAGANDHI",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "S.ESWARAMOORTHY",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "S.STALINKUMAR",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "K.GUNASEKARAN",
       "party": "Puthiya Tamilagam",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "K.SUBRAMANIAN",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "R.TAMILZHSELVI",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "M.MALARMANNAN",
       "party": "Samaniya Makkal Nala Katchi",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "T.N. YUVARAJAN",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "K.JAYAKKANNAN",
       "party": "Tamizhaga Murpokku Makkal Katchi",
       "symbol": ""
     },
     {
-      "slNo": 10,
-      "name": "S.KARUPPIAH",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "A.SEERANGAN",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
       "name": "SRINIVASAN J",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
+      "name": "A.SEERANGAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "S.KARUPPIAH",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "K.SUNDARRAJ",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6275,20 +6261,11 @@
     }
   },
   "summary": {
-    "totalVoters": 229513,
-    "totalVotes": 171185,
-    "turnoutPercent": 74.59,
-    "winner": {
-      "name": "S.STALINKUMAR",
-      "party": "DMK",
-      "votes": 85642
-    },
-    "runnerUp": {
-      "name": "T.INDRAGANDHI",
-      "party": "ADMK",
-      "votes": 64970
-    },
-    "margin": 20672,
-    "marginPercent": 12.1
+    "totalValid": 171185,
+    "totalRejected": 0,
+    "totalNota": 1579,
+    "totalVotes": 172764,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

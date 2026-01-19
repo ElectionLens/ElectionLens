@@ -8,73 +8,61 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "SURESH KUMAR C",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "MARIMUTHU K",
       "party": "CPI",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "AARTHI A",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "PARIVENTHAN D",
       "party": "AISMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "RAJANIKANTH S",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 6,
-      "name": "SIVAPRAKASAM V",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
-      "name": "SURESH A K",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
       "name": "SENGUTTUVAN M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
+      "name": "SURESH A K",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "THIRUVARUL SELVI V",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "THULASIRAMAN R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
+      "name": "THULASIRAMAN R",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "PARAMASIVAM K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6131,20 +6119,11 @@
     }
   },
   "summary": {
-    "totalVoters": 242228,
-    "totalVotes": 182267,
-    "turnoutPercent": 75.25,
-    "winner": {
-      "name": "MARIMUTHU K",
-      "party": "CPI",
-      "votes": 95489
-    },
-    "runnerUp": {
-      "name": "SURESH KUMAR C",
-      "party": "ADMK",
-      "votes": 66484
-    },
-    "margin": 29005,
-    "marginPercent": 15.9
+    "totalValid": 182341,
+    "totalRejected": 15,
+    "totalNota": 1321,
+    "totalVotes": 183677,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

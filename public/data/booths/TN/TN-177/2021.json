@@ -8,55 +8,46 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "ASHOKKUMAR, N.",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "SIVAKUMAR, M.",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "THIRUGNANASAMBANDAM, S.V.",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "DURAIRAJ, G.",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "DELIPAN, K.",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "PACHAMUTHU, P.",
       "party": "IJK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "ELANGOVAN, G.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "UTHAYAKUMAR, U.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -4730,20 +4721,11 @@
     }
   },
   "summary": {
-    "totalVoters": 221825,
-    "totalVotes": 166865,
-    "turnoutPercent": 75.22,
-    "winner": {
-      "name": "ASHOKKUMAR, N.",
-      "party": "DMK",
-      "votes": 87325
-    },
-    "runnerUp": {
-      "name": "THIRUGNANASAMBANDAM, S.V.",
-      "party": "ADMK",
-      "votes": 64412
-    },
-    "margin": 22913,
-    "marginPercent": 13.7
+    "totalValid": 166865,
+    "totalRejected": 0,
+    "totalNota": 765,
+    "totalVotes": 167630,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

@@ -8,67 +8,56 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "ANBALAGAN, G.",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "SRITHAR VANDAYAR, G.M.",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "ANANDH, M.",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "GOPALAKRISHNAN, G.",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "BALAMURUGAN, S.",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "AYYAPPAN, M.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "GURUMOORTHI, D.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "SUBRAMANIAN, P.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "PRAKASH, P.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "VIJAYAKUMAR, C.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6503,20 +6492,11 @@
     }
   },
   "summary": {
-    "totalVoters": 276506,
-    "totalVotes": 193643,
-    "turnoutPercent": 70.03,
-    "winner": {
-      "name": "ANBALAGAN, G.",
-      "party": "DMK",
-      "votes": 94284
-    },
-    "runnerUp": {
-      "name": "SRITHAR VANDAYAR, G.M.",
-      "party": "ADMK",
-      "votes": 74334
-    },
-    "margin": 19950,
-    "marginPercent": 10.3
+    "totalValid": 193643,
+    "totalRejected": 0,
+    "totalNota": 1623,
+    "totalVotes": 195266,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

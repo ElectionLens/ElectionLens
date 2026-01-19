@@ -8,91 +8,76 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "Shamsudeen.N",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "Rajakumar.S",
       "party": "INC",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "Anbarasan Komal R K",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "Kasiraman.K",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "Palanisamy.A",
       "party": "PMK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "Ravichandran.N",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "Rajkumar.S",
       "party": "Tamil Nadu Ilangyar Katchi",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "Ganesan.S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
-      "name": "Loga.Sampath",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "Thimothy.T",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "Niranjan.R",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
       "name": "Babusankar.R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
+      "name": "Thimothy.T",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Niranjan.R",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Ganesan.S",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "Manimaran.T",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "Rajendran.M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7304,20 +7289,11 @@
     }
   },
   "summary": {
-    "totalVoters": 248987,
-    "totalVotes": 171492,
-    "turnoutPercent": 68.88,
-    "winner": {
-      "name": "Rajakumar.S",
-      "party": "INC",
-      "votes": 72380
-    },
-    "runnerUp": {
-      "name": "Palanisamy.A",
-      "party": "PMK",
-      "votes": 70317
-    },
-    "margin": 2063,
-    "marginPercent": 1.2
+    "totalValid": 171608,
+    "totalRejected": 18,
+    "totalNota": 1073,
+    "totalVotes": 172699,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "RAVICHANDRAN  T.",
       "party": "INC",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "PERIYAPULLAN @ SELVAM  P.",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "KATHIRESAN  K.",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "KARUPPUSAMY  P.",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
-      "name": "SENTHILRAJ  K.",
-      "party": "My India Party",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
-      "name": "SELVARAJ  A.",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
-      "name": "KANNAN  P.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "GOBALAKRISHNAN  M.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "SIVASAMY  R.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "DHARMAR  P.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
       "name": "DHINAKARAN  S.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
+      "name": "SELVARAJ  A.",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "SENTHILRAJ  K.",
+      "party": "My India Party",
+      "symbol": ""
+    },
+    {
+      "name": "GOBALAKRISHNAN  M.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "SIVASAMY  R.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "SIVASAMY  R.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "DHINAKARAN  S.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "NAGENDRAN  N.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
-      "name": "BALAN  T.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
       "name": "PANDI  K.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
+      "name": "PANDI  K.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "MOHANRAM  C.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7717,20 +7701,11 @@
     }
   },
   "summary": {
-    "totalVoters": 246237,
-    "totalVotes": 897,
-    "turnoutPercent": 0.36,
-    "winner": {
-      "name": "PERIYAPULLAN @ SELVAM  P.",
-      "party": "ADMK",
-      "votes": 82815
-    },
-    "runnerUp": {
-      "name": "RAVICHANDRAN  T.",
-      "party": "INC",
-      "votes": 47519
-    },
-    "margin": 35296,
-    "marginPercent": 3934.9
+    "totalValid": 180289,
+    "totalRejected": 181710,
+    "totalNota": 573,
+    "totalVotes": 362572,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

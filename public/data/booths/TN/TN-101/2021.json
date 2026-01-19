@@ -8,91 +8,76 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "MURUGAN L",
       "party": "BJP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "KAYALVIZHI N",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "KAYALVIZHI K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "KALARANI C",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "CHARLI A",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "KARTHIKEYAN A",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "SELVARAJ V",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "RANJITHA K",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "CHIDAMBHARAM V",
       "party": "India Dravida Makkal Munnetra Katchi",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "MURUGAN A",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "KAYALVIZHI P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "ANANTHI S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "MUNIYAPPAN A",
       "party": "Anna Puratchi Thalaivar Amma Dravida Munnetra Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "RANGASAMY S",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6379,20 +6364,11 @@
     }
   },
   "summary": {
-    "totalVoters": 261619,
-    "totalVotes": 170502,
-    "turnoutPercent": 65.17,
-    "winner": {
-      "name": "MURUGAN L",
-      "party": "BJP",
-      "votes": 78823
-    },
-    "runnerUp": {
-      "name": "KAYALVIZHI N",
-      "party": "DMK",
-      "votes": 78201
-    },
-    "margin": 622,
-    "marginPercent": 0.4
+    "totalValid": 168987,
+    "totalRejected": 514,
+    "totalNota": 1700,
+    "totalVotes": 171201,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

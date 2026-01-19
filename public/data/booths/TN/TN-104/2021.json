@@ -8,91 +8,76 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "KARUPPANAN.K.C",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "GOPAL.M",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "DURAIRAJ.K.P",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "AMMASAI.K",
       "party": "Kongu  Desa  Marumalarchi  Makkal  Katchi",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "SADHANANDHAM.K",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SATHYA.M",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "RADHAKRISHNAN.M",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "JANARTHANAM.R.P",
       "party": "Tamilaga Makkal Thannurimai Katchi",
       "symbol": ""
     },
     {
-      "slNo": 9,
-      "name": "ABDUL KADHER.A",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "APPICHI.T.K",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
       "name": "KARTHIKEYAN.P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
+      "name": "ABDUL KADHER.A",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "KARTHIKEYAN.P",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "SATHEESH KUMAR.P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "PERUMAL.V.M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "STANLEY.G",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7136,20 +7121,11 @@
     }
   },
   "summary": {
-    "totalVoters": 241179,
-    "totalVotes": 196388,
-    "turnoutPercent": 81.43,
-    "winner": {
-      "name": "KARUPPANAN.K.C",
-      "party": "ADMK",
-      "votes": 99786
-    },
-    "runnerUp": {
-      "name": "DURAIRAJ.K.P",
-      "party": "DMK",
-      "votes": 76768
-    },
-    "margin": 23018,
-    "marginPercent": 11.7
+    "totalValid": 196504,
+    "totalRejected": 18,
+    "totalNota": 2085,
+    "totalVotes": 198607,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

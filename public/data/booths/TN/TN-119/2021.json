@@ -8,67 +8,56 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "S. SHAJAHAN",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "KARTHIKEYA",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "R.SATHISHKUMAR",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "A. MANSOOR ALI KHAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "A. ABDUL GAFOOR",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "S. KALAIARASI",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "S.P. VELUMANI",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "M. BADRAN",
       "party": "Ganasangam Party of India",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "J.JOHN EDWARD VISUVASAM",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "CC SELVAMOHAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -5296,20 +5285,11 @@
     }
   },
   "summary": {
-    "totalVoters": 328298,
-    "totalVotes": 1161,
-    "turnoutPercent": 0.35,
-    "winner": {
-      "name": "KARTHIKEYA",
-      "party": "DMK",
-      "votes": 87575
-    },
-    "runnerUp": {
-      "name": "S. SHAJAHAN",
-      "party": "MNM",
-      "votes": 56623
-    },
-    "margin": 30952,
-    "marginPercent": 2666.0
+    "totalValid": 159420,
+    "totalRejected": 160581,
+    "totalNota": 0,
+    "totalVotes": 320001,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

@@ -8,67 +8,56 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
-      "name": "Lavanya, M.",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 2,
-      "name": "Ramachandran, K.",
-      "party": "DMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 3,
       "name": "Vinoth, D.",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
+      "name": "Ramachandran, K.",
+      "party": "DMK",
+      "symbol": ""
+    },
+    {
+      "name": "Vinoth, D.",
+      "party": "ADMK",
+      "symbol": ""
+    },
+    {
       "name": "Jayaprakash, D",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "Rajakumar, H.B.",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 6,
-      "name": "Arumugam, R.",
-      "party": "Anaithu Makkal Puratchi Katchi",
+      "name": "Rajakumar, H.B.",
+      "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
-      "name": "Kalaiselvan, S.",
-      "party": "AMMK",
+      "name": "Lavanya, M.",
+      "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "Basha, A.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "Prabhu Inbadass, S.",
       "party": "AITC",
       "symbol": ""
     },
     {
-      "slNo": 10,
-      "name": "Chandran, K.",
+      "name": "Jayaprakash, D",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -4795,20 +4784,11 @@
     }
   },
   "summary": {
-    "totalVoters": 194738,
-    "totalVotes": 264830,
-    "turnoutPercent": 135.99,
-    "winner": {
-      "name": "Ramachandran, K.",
-      "party": "DMK",
-      "votes": 60679
-    },
-    "runnerUp": {
-      "name": "Vinoth, D.",
-      "party": "ADMK",
-      "votes": 59288
-    },
-    "margin": 1391,
-    "marginPercent": 0.5
+    "totalValid": 204663,
+    "totalRejected": 293,
+    "totalNota": 2420,
+    "totalVotes": 207376,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

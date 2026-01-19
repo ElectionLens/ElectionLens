@@ -8,67 +8,56 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "PAUL MANOJ PANDIAN",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "DR.POONGOTHAI ALADI ARUNA",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "RAJENDRANATHAN",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "A.UDHAYAKUMAR",
       "party": "Puthiya Tamilagam",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "M.SANGEETHA ESAK",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "S.SELVAKUMAR",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "ARUNKUMAR.K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "S.SANKAR GANESH YADAV",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "K.SIVARAM",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "HARI NADAR.A",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6261,20 +6250,11 @@
     }
   },
   "summary": {
-    "totalVoters": 262891,
-    "totalVotes": 198613,
-    "turnoutPercent": 75.55,
-    "winner": {
-      "name": "PAUL MANOJ PANDIAN",
-      "party": "ADMK",
-      "votes": 73416
-    },
-    "runnerUp": {
-      "name": "DR.POONGOTHAI ALADI ARUNA",
-      "party": "DMK",
-      "votes": 69018
-    },
-    "margin": 4398,
-    "marginPercent": 2.2
+    "totalValid": 199152,
+    "totalRejected": 2347,
+    "totalNota": 1783,
+    "totalVotes": 203282,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

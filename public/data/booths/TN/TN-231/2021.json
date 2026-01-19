@@ -8,79 +8,66 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "Vijayakumar R.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "Krishna Kumar A.",
       "party": "Anaithu Makkal Puratchi Katchi",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "Ramesh P.",
       "party": "BJP",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "Antony Aslin J.",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "Anthony Muthu S.M.",
       "party": "CPI(ML)(L)",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "Lathis Mary S.",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "Anish K.M.",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "Prince J.G.",
       "party": "INC",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "Sivakumar M.",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "Raja C.",
       "party": "SHS",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "Mohammed Ali, Professor, S.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "Marystella R.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -5789,20 +5776,11 @@
     }
   },
   "summary": {
-    "totalVoters": 271991,
-    "totalVotes": 151235,
-    "turnoutPercent": 55.6,
-    "winner": {
-      "name": "Ramesh P.",
-      "party": "BJP",
-      "votes": 76807
-    },
-    "runnerUp": {
-      "name": "Antony Aslin J.",
-      "party": "NTK",
-      "votes": 53533
-    },
-    "margin": 23274,
-    "marginPercent": 15.4
+    "totalValid": 151235,
+    "totalRejected": 0,
+    "totalNota": 724,
+    "totalVotes": 151959,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

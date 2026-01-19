@@ -8,55 +8,46 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "ANNADURAI, K.",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "RENGARAJAN, N.R.",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "KEERTHIKA ANBU",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "SADASIVAM, B.",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "SUNDARRAJ, M.",
       "party": "Anaithu Makkal Puratchi Katchi",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SELVAM, S.D.S.",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "MEIKKAPPAN, T.",
       "party": "Anna Dravidar Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "BALAKRISHNAN, V.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -5225,20 +5216,11 @@
     }
   },
   "summary": {
-    "totalVoters": 247278,
-    "totalVotes": 174147,
-    "turnoutPercent": 70.43,
-    "winner": {
-      "name": "ANNADURAI, K.",
-      "party": "DMK",
-      "votes": 77833
-    },
-    "runnerUp": {
-      "name": "RENGARAJAN, N.R.",
-      "party": "ADMK",
-      "votes": 53291
-    },
-    "margin": 24542,
-    "marginPercent": 14.1
+    "totalValid": 174147,
+    "totalRejected": 0,
+    "totalNota": 1016,
+    "totalVotes": 175163,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

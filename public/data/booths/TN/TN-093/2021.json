@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "CHANDRAN S",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "PONNUSAMY K",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "CHANDRAN P",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "SELVARAJ V",
       "party": "IJK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "ROHINI T",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SANKAR P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "CHANDRASEKARAN C",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "THIYAGARAJAN C",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "DINESH C",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "DURAIRAJ S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "PRASATH S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "MUTHUSAMY C",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "RANCHITH C",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "RAMESH R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "RAMASAMY K.V",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7651,20 +7635,11 @@
     }
   },
   "summary": {
-    "totalVoters": 246181,
-    "totalVotes": 197177,
-    "turnoutPercent": 80.09,
-    "winner": {
-      "name": "PONNUSAMY K",
-      "party": "DMK",
-      "votes": 89149
-    },
-    "runnerUp": {
-      "name": "CHANDRAN S",
-      "party": "ADMK",
-      "votes": 79707
-    },
-    "margin": 9442,
-    "marginPercent": 4.8
+    "totalValid": 195157,
+    "totalRejected": 595,
+    "totalNota": 2058,
+    "totalVotes": 197810,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

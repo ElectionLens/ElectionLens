@@ -8,85 +8,71 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "S.Rajkumar",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "Rajkumar.G",
       "party": "Anna MGR Dravida Makkal Kalgam",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "A.Ganesan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "N.Durai Manickam",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "B.Vanitha",
       "party": "Puthiya Tamilagam",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "N.Meenal",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "M.Naina Mohamed",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "K.Velu",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "N.Baluswamy",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "A.Paramasivam",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "H.Raja",
       "party": "BJP",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "S.Mangudi",
       "party": "INC",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "Dherpoki V Pandi",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -1147,20 +1133,11 @@
     }
   },
   "summary": {
-    "totalVoters": 320785,
-    "totalVotes": 16343,
-    "turnoutPercent": 5.09,
-    "winner": {
-      "name": "S.Rajkumar",
-      "party": "MNM",
-      "votes": 12962
-    },
-    "runnerUp": {
-      "name": "N.Durai Manickam",
-      "party": "NTK",
-      "votes": 12752
-    },
-    "margin": 210,
-    "marginPercent": 1.3
+    "totalValid": 95830,
+    "totalRejected": 12878,
+    "totalNota": 12218,
+    "totalVotes": 120926,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

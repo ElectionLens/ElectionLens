@@ -8,79 +8,66 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "ARIVUDAINAMBI, V.",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "DR.RAMANATHAN, P.",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "KARIKALA CHOLAN, S.",
       "party": "NCP",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "NEELAMEGAM, T.K.G.",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "SUNDARAMOHAN, G.",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SUBADEVI, R.",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "XAVIER, A.",
       "party": "People's Party of India(secular)",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "SANTHOSH, M.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
-      "name": "BHARATH, B.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "DINESH BABU, D.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
       "name": "SABTHAGIRI, R.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
+      "name": "DINESH BABU, D.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "SABTHAGIRI, R.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "VASUKI, N.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7708,20 +7695,11 @@
     }
   },
   "summary": {
-    "totalVoters": 296498,
-    "totalVotes": 186754,
-    "turnoutPercent": 62.99,
-    "winner": {
-      "name": "NEELAMEGAM, T.K.G.",
-      "party": "DMK",
-      "votes": 99358
-    },
-    "runnerUp": {
-      "name": "ARIVUDAINAMBI, V.",
-      "party": "ADMK",
-      "votes": 55677
-    },
-    "margin": 43681,
-    "marginPercent": 23.4
+    "totalValid": 186754,
+    "totalRejected": 0,
+    "totalNota": 1894,
+    "totalVotes": 188648,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

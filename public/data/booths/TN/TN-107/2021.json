@@ -8,43 +8,36 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "G.SAKTHIVEL",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "P.L SUNDARAM",
       "party": "CPI",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "A.Bannari",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "RAMESH.G",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "KARTHIKKUMAR.K",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "V.SANGEETHA",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -4914,20 +4907,11 @@
     }
   },
   "summary": {
-    "totalVoters": 259230,
-    "totalVotes": 197070,
-    "turnoutPercent": 76.02,
-    "winner": {
-      "name": "A.Bannari",
-      "party": "ADMK",
-      "votes": 98812
-    },
-    "runnerUp": {
-      "name": "P.L SUNDARAM",
-      "party": "CPI",
-      "votes": 82124
-    },
-    "margin": 16688,
-    "marginPercent": 8.5
+    "totalValid": 197094,
+    "totalRejected": 10,
+    "totalNota": 2009,
+    "totalVotes": 199113,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

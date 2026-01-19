@@ -8,73 +8,61 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "Ambethkumar S",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "Arjunan M",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 3,
-      "name": "Venkatesan P",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 4,
-      "name": "Durai B",
-      "party": "Ganasangam Party of India",
-      "symbol": ""
-    },
-    {
-      "slNo": 5,
-      "name": "Prabavathi G",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
-      "name": "Murali S",
-      "party": "PMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
       "name": "Suresh S",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 8,
+      "name": "Durai B",
+      "party": "Ganasangam Party of India",
+      "symbol": ""
+    },
+    {
+      "name": "Prabavathi G",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "Murali S",
+      "party": "PMK",
+      "symbol": ""
+    },
+    {
+      "name": "Venkatesan P",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
       "name": "Manikandan K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "Muthuperumal K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "Murali C",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "Vignesh S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6016,20 +6004,11 @@
     }
   },
   "summary": {
-    "totalVoters": 242122,
-    "totalVotes": 181874,
-    "turnoutPercent": 75.12,
-    "winner": {
-      "name": "Ambethkumar S",
-      "party": "DMK",
-      "votes": 100485
-    },
-    "runnerUp": {
-      "name": "Murali S",
-      "party": "PMK",
-      "votes": 65513
-    },
-    "margin": 34972,
-    "marginPercent": 50.2
+    "totalValid": 181885,
+    "totalRejected": 8,
+    "totalNota": 1760,
+    "totalVotes": 183653,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

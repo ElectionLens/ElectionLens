@@ -8,79 +8,66 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "ASWIN",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "DURAI.CHANDRASEKARAN",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "VENKATESAN, S.",
       "party": "BJP",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "UTHIRAPATHI, G.",
       "party": "Puthiya Tamilagam",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "KARTHIKEYAN, V.",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SIVARAMAN, T.",
       "party": "Makkal Sananayaga Kudiyarasu Katchi,",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "SENTHILNATHAN, D.",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "BACKIYARAJ, V.",
       "party": "Anaithu Makkal Arasiyal Katchi",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "VIJAYAKUMAR, S.",
       "party": "Anna Puratchi Thalaivar Amma Dravida Munnetra Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "SINGARAVADIVEL, S.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "THIRUMARAN, P.S.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "RAJKUMAR, R.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7404,20 +7391,11 @@
     }
   },
   "summary": {
-    "totalVoters": 270682,
-    "totalVotes": 208444,
-    "turnoutPercent": 77.01,
-    "winner": {
-      "name": "DURAI.CHANDRASEKARAN",
-      "party": "DMK",
-      "votes": 101959
-    },
-    "runnerUp": {
-      "name": "VENKATESAN, S.",
-      "party": "BJP",
-      "votes": 49284
-    },
-    "margin": 52675,
-    "marginPercent": 25.3
+    "totalValid": 208444,
+    "totalRejected": 0,
+    "totalNota": 1173,
+    "totalVotes": 209617,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

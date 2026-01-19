@@ -8,67 +8,56 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "K Seetharaman",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "DHANASEELAN",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 3,
-      "name": "K VENKATASAMY",
-      "party": "IJK",
-      "symbol": ""
-    },
-    {
-      "slNo": 4,
-      "name": "M.JAGAN MOORTHY",
-      "party": "ADMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 5,
-      "name": "K ELAVARASAN",
-      "party": "RPI(A)",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
-      "name": "K SATHU",
-      "party": "National Democratic Party of South India",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
-      "name": "J.Divya Rani",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
       "name": "PUSHPALATHA D",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 9,
+      "name": "M.JAGAN MOORTHY",
+      "party": "ADMK",
+      "symbol": ""
+    },
+    {
+      "name": "K ELAVARASAN",
+      "party": "RPI(A)",
+      "symbol": ""
+    },
+    {
+      "name": "K SATHU",
+      "party": "National Democratic Party of South India",
+      "symbol": ""
+    },
+    {
+      "name": "J.Divya Rani",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "K VENKATASAMY",
+      "party": "IJK",
+      "symbol": ""
+    },
+    {
       "name": "E.P.ELANCHEZHIYAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "S SELVA CHENGUTTUVAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -5228,20 +5217,11 @@
     }
   },
   "summary": {
-    "totalVoters": 227613,
-    "totalVotes": 165051,
-    "turnoutPercent": 72.51,
-    "winner": {
-      "name": "M.JAGAN MOORTHY",
-      "party": "ADMK",
-      "votes": 81256
-    },
-    "runnerUp": {
-      "name": "K Seetharaman",
-      "party": "DMK",
-      "votes": 70711
-    },
-    "margin": 10545,
-    "marginPercent": 6.4
+    "totalValid": 165113,
+    "totalRejected": 14,
+    "totalNota": 1734,
+    "totalVotes": 166861,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

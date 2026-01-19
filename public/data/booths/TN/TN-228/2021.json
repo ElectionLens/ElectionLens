@@ -8,157 +8,131 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "I.S.Inbadurai",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "T.Sermadurai",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "M.Appavu",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "K.Jeyabalan",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "R.Sudalaimani",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "K.Subburaj",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "G.Deva Peran",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "R.Jesu Dhasan",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "E.Esakkiammal",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 10,
-      "name": "S.Abinanth Ram",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "M.Saswathan",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "S.Manikandan",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
-      "name": "M.Vijayakumar",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
-      "name": "N.Godfrey Washington Noble",
-      "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
       "name": "M.Antony Rossary",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
-      "name": "T.Muthu Selvi",
+      "name": "M.Saswathan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 17,
-      "name": "A.Kumar",
+      "name": "S.Abinanth Ram",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 18,
-      "name": "D.Sheik Syed Ali",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 19,
-      "name": "M.Chandran",
-      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 20,
-      "name": "J.Jesu Rajendran",
-      "party": "Naam Indiar Party",
-      "symbol": ""
-    },
-    {
-      "slNo": 21,
-      "name": "T.Rethina Pandi",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 22,
-      "name": "T.Venus Veera Arasu",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 23,
-      "name": "S.Katteri Perumal",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 24,
-      "name": "D.Arunraj",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 25,
       "name": "N.Kannan",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 26,
+      "name": "T.Muthu Selvi",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "M.Saswathan",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "T.Sermadurai",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "E.Esakkiammal",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
+      "name": "D.Sheik Syed Ali",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "M.Chandran",
+      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "G.Deva Peran",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "T.Rethina Pandi",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "M.Chandran",
+      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "S.Katteri Perumal",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "D.Arunraj",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "N.Godfrey Washington Noble",
+      "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -10989,20 +10963,11 @@
     }
   },
   "summary": {
-    "totalVoters": 275132,
-    "totalVotes": 163426,
-    "turnoutPercent": 59.4,
-    "winner": {
-      "name": "I.S.Inbadurai",
-      "party": "ADMK",
-      "votes": 72961
-    },
-    "runnerUp": {
-      "name": "M.Appavu",
-      "party": "DMK",
-      "votes": 68874
-    },
-    "margin": 4087,
-    "marginPercent": 2.5
+    "totalValid": 183743,
+    "totalRejected": 3002,
+    "totalNota": 3686,
+    "totalVotes": 190431,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

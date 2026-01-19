@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "Ashokkumar.K",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "RAVISHANKAR.R.K",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "SENGUTTUVAN.T",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "CHANDRAMOHAN.K.M",
       "party": "NCP",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "NIRANDARI.V",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 6,
-      "name": "GOPINATH.M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
-      "name": "SAKTHI.K",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
       "name": "TAMILSELVAN.S",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 9,
+      "name": "SAKTHI.K",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "TAMILSELVAN.S",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
       "name": "AMEENULLA",
       "party": "AIMIM",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "SIVAN.C",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
-      "name": "KUMARESAN.M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
       "name": "TVS GANDHI",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
+      "name": "TVS GANDHI",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "RUTHRAMANI.T",
       "party": "Desiya Makkal Sakthi Katchi",
       "symbol": ""
     },
     {
-      "slNo": 14,
-      "name": "SASIKUMAR.K.S",
-      "party": "Anna Puratchi Thalaivar Amma Dravida Munnetra Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
       "name": "VIJAYAKUMAR.R",
       "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
       "symbol": ""
     },
     {
-      "slNo": 16,
+      "name": "VIJAYAKUMAR.R",
+      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -10056,20 +10040,11 @@
     }
   },
   "summary": {
-    "totalVoters": 269615,
-    "totalVotes": 208092,
-    "turnoutPercent": 77.18,
-    "winner": {
-      "name": "Ashokkumar.K",
-      "party": "ADMK",
-      "votes": 27476593
-    },
-    "runnerUp": {
-      "name": "SENGUTTUVAN.T",
-      "party": "DMK",
-      "votes": 78636
-    },
-    "margin": 27397957,
-    "marginPercent": 13137.5
+    "totalValid": 27894589,
+    "totalRejected": 265166,
+    "totalNota": 29322,
+    "totalVotes": 28189077,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

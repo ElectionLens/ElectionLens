@@ -8,127 +8,106 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "Balasubramanian M",
       "party": "Tamil Nadu Ilangyar Katchi",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "CHARLES S",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "Pandiarajan K",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "VIJAYALAKSHMI G",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "Sankar N M",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "Pandiarajan G",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
-      "name": "Nagaraj M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "Venkatesan M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "Udhayakumar V",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "Chandrasekar.A",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "Nasar S M",
-      "party": "DMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "Durgaprasad G",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
-      "name": "Raman N",
-      "party": "Tamilnadu Makkal Nalvazhvu Periyakkam",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
-      "name": "Banumathi",
-      "party": "My India Party",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
-      "name": "Viswanathan R",
-      "party": "MGR Makkal Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 16,
-      "name": "Sugumar M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 17,
-      "name": "Jayakumar P",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 18,
-      "name": "Akilan T.M.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 19,
       "name": "Shanavas Khan J",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 20,
+      "name": "Venkatesan M",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Udhayakumar V",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "Chandrasekar.A",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Nasar S M",
+      "party": "DMK",
+      "symbol": ""
+    },
+    {
+      "name": "Durgaprasad G",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Raman N",
+      "party": "Tamilnadu Makkal Nalvazhvu Periyakkam",
+      "symbol": ""
+    },
+    {
+      "name": "Sugumar M",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Viswanathan R",
+      "party": "MGR Makkal Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "Sugumar M",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Jayakumar P",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Akilan T.M.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Shanavas Khan J",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "Dharani K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 21,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -13608,20 +13587,11 @@
     }
   },
   "summary": {
-    "totalVoters": 446678,
-    "totalVotes": 241163,
-    "turnoutPercent": 53.99,
-    "winner": {
-      "name": "Pandiarajan K",
-      "party": "ADMK",
-      "votes": 119713
-    },
-    "runnerUp": {
-      "name": "VIJAYALAKSHMI G",
-      "party": "NTK",
-      "votes": 77258
-    },
-    "margin": 42455,
-    "marginPercent": 17.6
+    "totalValid": 241137,
+    "totalRejected": 989,
+    "totalNota": 1948,
+    "totalVotes": 244074,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

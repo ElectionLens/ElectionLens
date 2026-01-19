@@ -8,79 +8,66 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "HARI.R.",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "ANBALAGAN.K.P.",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "MURUGAN.P.K.",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "VIJAYASANKAR.P.",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "KALAISELVI.G.",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "RAJASEKAR.D.",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "ANBARASU.D.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "SHARAVANAN.M.P.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "MURUGAN.K.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "MURUGAN.K.G.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "RAJKUMAR.T.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "VADIVEL.M.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6492,20 +6479,11 @@
     }
   },
   "summary": {
-    "totalVoters": 236459,
-    "totalVotes": 203252,
-    "turnoutPercent": 85.96,
-    "winner": {
-      "name": "ANBALAGAN.K.P.",
-      "party": "ADMK",
-      "votes": 109105
-    },
-    "runnerUp": {
-      "name": "MURUGAN.P.K.",
-      "party": "DMK",
-      "votes": 81035
-    },
-    "margin": 28070,
-    "marginPercent": 13.8
+    "totalValid": 203252,
+    "totalRejected": 0,
+    "totalNota": 1348,
+    "totalVotes": 204600,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

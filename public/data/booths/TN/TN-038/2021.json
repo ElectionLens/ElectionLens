@@ -8,85 +8,71 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "P.SUDHAKAR",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "S.RAVI",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "E.ABIRAMI",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "GOWTHAMA SANNAH.J",
       "party": "VCK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "S.BASKARAN",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "K.C.MANIVANNAN",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "V.RAVI",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
-      "name": "M.MANIKANDAN",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "C.M.GOWTHAMAN",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
       "name": "A.GAUTHAMAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
+      "name": "C.M.GOWTHAMAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "M.MANIKANDAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "M.MADHANRAJ",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "C.MOHAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "P.RAVI",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6375,20 +6361,11 @@
     }
   },
   "summary": {
-    "totalVoters": 228885,
-    "totalVotes": 166815,
-    "turnoutPercent": 72.88,
-    "winner": {
-      "name": "S.RAVI",
-      "party": "ADMK",
-      "votes": 84087
-    },
-    "runnerUp": {
-      "name": "GOWTHAMA SANNAH.J",
-      "party": "VCK",
-      "votes": 56919
-    },
-    "margin": 27168,
-    "marginPercent": 16.3
+    "totalValid": 166815,
+    "totalRejected": 0,
+    "totalNota": 1635,
+    "totalVotes": 168450,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

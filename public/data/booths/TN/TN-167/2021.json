@@ -8,67 +8,56 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "RAJAMANICKAM  SIVA",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "RAJAA T R B",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "ARAVINDAN RAMA",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "ANBANANDAM S",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "KAMARAJ S",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SATHISKUMAR S",
       "party": "Puthiya Tamilagam",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "KUMARESAN T",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "BARADHIDASAN T",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "MARIMUTHU A.V.M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "MURUGAN S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6161,20 +6150,11 @@
     }
   },
   "summary": {
-    "totalVoters": 259926,
-    "totalVotes": 192269,
-    "turnoutPercent": 73.97,
-    "winner": {
-      "name": "RAJAA T R B",
-      "party": "DMK",
-      "votes": 86079
-    },
-    "runnerUp": {
-      "name": "RAJAMANICKAM  SIVA",
-      "party": "ADMK",
-      "votes": 49610
-    },
-    "margin": 36469,
-    "marginPercent": 19.0
+    "totalValid": 190959,
+    "totalRejected": 356,
+    "totalNota": 960,
+    "totalVotes": 192275,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

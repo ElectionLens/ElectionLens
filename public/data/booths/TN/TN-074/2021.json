@@ -8,157 +8,131 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "SELVAM J",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "DASS K",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "SHANMUGAM A",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "BALASUNDARAM R",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "SHANMUGAM G",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "DURAISAMY D",
       "party": "Makkal Munnetra Peravai",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "SIVABALAN N",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "KESAVAN P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
-      "name": "PRABAKARAN M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "SHANMUGAM V",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "SHANMUGAM C Ve",
-      "party": "ADMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "LAKSHMANAN R",
-      "party": "DMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
-      "name": "DEVANATHAN N",
-      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
-      "name": "RAMAN K",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
-      "name": "SUBRAMANIAN R",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 16,
-      "name": "DAKSHINAMOORTHY SU VA",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 17,
       "name": "BALU K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 18,
-      "name": "MOHAMED IBRAIM A",
-      "party": "Anna Dravidar Kazhagam",
-      "symbol": ""
-    },
-    {
-      "slNo": 19,
-      "name": "JAIAADHE R",
+      "name": "SHANMUGAM V",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 20,
+      "name": "SHANMUGAM C Ve",
+      "party": "ADMK",
+      "symbol": ""
+    },
+    {
+      "name": "LAKSHMANAN R",
+      "party": "DMK",
+      "symbol": ""
+    },
+    {
       "name": "INIYADAYALAN G",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 21,
-      "name": "VICTOR A S",
-      "party": "Desiya Sirupanmayinar Makkal Iyakkam",
-      "symbol": ""
-    },
-    {
-      "slNo": 22,
-      "name": "KUPPAN V",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 23,
-      "name": "KUMAR R",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 24,
       "name": "NARENDIRAN D",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 25,
+      "name": "SUBRAMANIAN R",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "DAKSHINAMOORTHY SU VA",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "BALU K",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "MOHAMED IBRAIM A",
+      "party": "Anna Dravidar Kazhagam",
+      "symbol": ""
+    },
+    {
+      "name": "JAIAADHE R",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "INIYADAYALAN G",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "VICTOR A S",
+      "party": "Desiya Sirupanmayinar Makkal Iyakkam",
+      "symbol": ""
+    },
+    {
+      "name": "KUPPAN V",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "KUMAR R",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NARENDIRAN D",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "IYYANAR G",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 26,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -2115,20 +2089,11 @@
     }
   },
   "summary": {
-    "totalVoters": 266155,
-    "totalVotes": 37618,
-    "turnoutPercent": 14.13,
-    "winner": {
-      "name": "SELVAM J",
-      "party": "NTK",
-      "votes": 32927
-    },
-    "runnerUp": {
-      "name": "DASS K",
-      "party": "MNM",
-      "votes": 31918
-    },
-    "margin": 1009,
-    "marginPercent": 2.7
+    "totalValid": 201199,
+    "totalRejected": 29777,
+    "totalNota": 29389,
+    "totalVotes": 260365,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

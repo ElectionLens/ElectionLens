@@ -8,79 +8,66 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "M.R.K.PANNEERSELVAM",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
-      "name": "S.SUMATHI",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 3,
       "name": "SELVI RAMAJAYAM",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
+      "name": "M.R.K.PANNEERSELVAM",
+      "party": "DMK",
+      "symbol": ""
+    },
+    {
       "name": "T.VELAYUDHAM",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 5,
-      "name": "A.VASANTHAKUMAR",
-      "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
       "name": "K.CHANDRAMOULI",
       "party": "JD(S)",
       "symbol": ""
     },
     {
-      "slNo": 7,
-      "name": "L.MADHIYAZHAGAN",
-      "party": "IND",
+      "name": "S.SUMATHI",
+      "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 8,
-      "name": "R.RAJESH",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
       "name": "R.SARATHKUMAR",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
+      "name": "A.VASANTHAKUMAR",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "R.SARATHKUMAR",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "BRIJITA ROSLENE",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "R.MUTHUKRISHNAN",
       "party": "Anna Dravidar Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 12,
-      "name": "N.MUTHAZHAGAN",
+      "name": "L.MADHIYAZHAGAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6789,20 +6776,11 @@
     }
   },
   "summary": {
-    "totalVoters": 242238,
-    "totalVotes": 1220,
-    "turnoutPercent": 0.5,
-    "winner": {
-      "name": "M.R.K.PANNEERSELVAM",
-      "party": "DMK",
-      "votes": 241968
-    },
-    "runnerUp": {
-      "name": "SELVI RAMAJAYAM",
-      "party": "ADMK",
-      "votes": 100051
-    },
-    "margin": 141917,
-    "marginPercent": 11632.5
+    "totalValid": 437206,
+    "totalRejected": 196358,
+    "totalNota": 34,
+    "totalVotes": 633598,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

@@ -8,85 +8,71 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "SRIPATHI P",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "SUGUMAR AP",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "GOWTHAM SAGAR A",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "GOPI S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "JAGAJANANDAM  R",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "VARTHAMANAN B",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "ELUMALAI N A",
       "party": "Anna Dravidar Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "MARIYAPPAN S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "SENJIRAJA KNK",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "RAJENDIRAN P",
       "party": "PMK",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "MASTHAN K S",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "KIRUBAKARAN T",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "SAHEERA",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -1977,20 +1963,11 @@
     }
   },
   "summary": {
-    "totalVoters": 264518,
-    "totalVotes": 37316,
-    "turnoutPercent": 14.11,
-    "winner": {
-      "name": "SUGUMAR AP",
-      "party": "NTK",
-      "votes": 37289
-    },
-    "runnerUp": {
-      "name": "GOWTHAM SAGAR A",
-      "party": "AMMK",
-      "votes": 35349
-    },
-    "margin": 1940,
-    "marginPercent": 5.2
+    "totalValid": 172579,
+    "totalRejected": 34705,
+    "totalNota": 30925,
+    "totalVotes": 238209,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

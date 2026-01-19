@@ -8,73 +8,61 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "CHINNADURAI, K.",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "PERIYANNAN, M.",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "JAYASANKARAN, A.P.",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "KRISHNAVENI, S.",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "SADHA SIVAM, R.",
       "party": "Ambedkarite Party of India",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SIVAKUMAR, P.",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "MADHESWARAN, S.",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "MATHESWARI, K.K.",
       "party": "Anna Dravidar Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "JANARTHANAM, A.",
       "party": "Dhesiya Makkal Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "ARUMUGAM, D.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "SILAMBARASAN, J.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6311,20 +6299,11 @@
     }
   },
   "summary": {
-    "totalVoters": 258533,
-    "totalVotes": 194911,
-    "turnoutPercent": 75.39,
-    "winner": {
-      "name": "JAYASANKARAN, A.P.",
-      "party": "ADMK",
-      "votes": 94262
-    },
-    "runnerUp": {
-      "name": "CHINNADURAI, K.",
-      "party": "DMK",
-      "votes": 85243
-    },
-    "margin": 9019,
-    "marginPercent": 4.6
+    "totalValid": 194911,
+    "totalRejected": 1817,
+    "totalNota": 0,
+    "totalVotes": 196728,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

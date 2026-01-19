@@ -8,127 +8,106 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "SOMASUNDARAM V",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "SURESH D",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "SUNDAR K",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "KAMACTHI.S",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "SIVAKUMAR.A",
       "party": "Desiya Makkal Sakthi Katchi",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SUSAIAPPAR.A",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "RANJITHKUMAR.R.V",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "JAYARAMAN.C.A",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "JAISUDHA.V",
       "party": "RPI(A)",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "AROKIASAMY.J",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "SARAVANAN.A",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
-      "name": "GUNASEKAR.V",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
-      "name": "CHINNASWAMY.T",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
-      "name": "THANGARAJ.K",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
-      "name": "DEVARAJAN.C",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 16,
-      "name": "PONNAMBALAM.R",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 17,
-      "name": "MADHAVARAJ.K.V",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 18,
       "name": "SIVALINGAM.M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 19,
-      "name": "JAYABALAN.E",
+      "name": "CHINNASWAMY.T",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 20,
+      "name": "THANGARAJ.K",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "DEVARAJAN.C",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "PONNAMBALAM.R",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "MADHAVARAJ.K.V",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "JEEVANANTHAM.D",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 21,
+      "name": "JAYABALAN.E",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "JEEVANANTHAM.D",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -9840,20 +9819,11 @@
     }
   },
   "summary": {
-    "totalVoters": 262832,
-    "totalVotes": 43191,
-    "turnoutPercent": 16.43,
-    "winner": {
-      "name": "SOMASUNDARAM V",
-      "party": "ADMK",
-      "votes": 91778
-    },
-    "runnerUp": {
-      "name": "SUNDAR K",
-      "party": "DMK",
-      "votes": 90844
-    },
-    "margin": 934,
-    "marginPercent": 2.2
+    "totalValid": 206830,
+    "totalRejected": 165137,
+    "totalNota": 32509,
+    "totalVotes": 404476,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

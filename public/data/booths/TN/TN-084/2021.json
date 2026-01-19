@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "N.V.THOMAS",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "R.MANI",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "RANGARAJAN MOHAN KUMARAMANGALAM",
       "party": "INC",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "K.K.MADHESWARAN",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "V.SRINIVASAN",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 6,
-      "name": "R.MANI",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
-      "name": "M.KARUNAKARAN",
-      "party": "Tamil Nadu Ilangyar Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 8,
-      "name": "A.RAJA",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 9,
-      "name": "K.GOVINDARAJU",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "T.SURESH",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "E.MANI",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "S.MANI",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
       "name": "S.DHIVYA",
       "party": "Dhesiya Makkal Kazhagam",
       "symbol": ""
     },
     {
-      "slNo": 14,
+      "name": "M.KARUNAKARAN",
+      "party": "Tamil Nadu Ilangyar Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "A.RAJA",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "K.GOVINDARAJU",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "T.SURESH",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "E.MANI",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "S.MANI",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "R.MANI",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "R.MURUGAN",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "P.RAJA",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -9479,20 +9463,11 @@
     }
   },
   "summary": {
-    "totalVoters": 299023,
-    "totalVotes": 244914,
-    "turnoutPercent": 81.9,
-    "winner": {
-      "name": "R.MANI",
-      "party": "ADMK",
-      "votes": 141527
-    },
-    "runnerUp": {
-      "name": "RANGARAJAN MOHAN KUMARAMANGALAM",
-      "party": "INC",
-      "votes": 85826
-    },
-    "margin": 55701,
-    "marginPercent": 22.7
+    "totalValid": 244914,
+    "totalRejected": 1581,
+    "totalNota": 0,
+    "totalVotes": 246495,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

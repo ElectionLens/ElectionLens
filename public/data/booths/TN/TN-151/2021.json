@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "GANESAN,  C.V.",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
-      "name": "PRABAKARAN,  R.",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "slNo": 3,
-      "name": "PERIYASAMY,  D.",
-      "party": "BJP",
-      "symbol": ""
-    },
-    {
-      "slNo": 4,
-      "name": "KAMATCHI,  N.",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 5,
-      "name": "RAVICHANDRAN,  P.",
-      "party": "BSP",
-      "symbol": ""
-    },
-    {
-      "slNo": 6,
-      "name": "ARULDOSS,  E.",
-      "party": "Desiya Makkal Sakthi Katchi",
-      "symbol": ""
-    },
-    {
-      "slNo": 7,
       "name": "UMANATH,  R.",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 8,
-      "name": "NATARAJAN,  M.",
-      "party": "IND",
+      "name": "GANESAN,  C.V.",
+      "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 9,
-      "name": "PALANIAMMAL,  P.",
-      "party": "IND",
+      "name": "PERIYASAMY,  D.",
+      "party": "BJP",
       "symbol": ""
     },
     {
-      "slNo": 10,
+      "name": "RAVICHANDRAN,  P.",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
+      "name": "ARULDOSS,  E.",
+      "party": "Desiya Makkal Sakthi Katchi",
+      "symbol": ""
+    },
+    {
+      "name": "KAMATCHI,  N.",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "PRABAKARAN,  R.",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
       "name": "AYYASAMY,  S.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
-      "name": "KAMARAJ,  K.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
-      "name": "KOLANJINATHAN,  V.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
-      "name": "SEENUVASAN,  C.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 14,
-      "name": "SUMATHI,  S.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 15,
       "name": "KARUPPAN,  M.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
+      "name": "KAMARAJ,  K.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "KAMARAJ,  K.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "SEENUVASAN,  C.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "SUMATHI,  S.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "NATARAJAN,  M.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7099,20 +7083,11 @@
     }
   },
   "summary": {
-    "totalVoters": 220424,
-    "totalVotes": 1009,
-    "turnoutPercent": 0.46,
-    "winner": {
-      "name": "GANESAN,  C.V.",
-      "party": "DMK",
-      "votes": 218153
-    },
-    "runnerUp": {
-      "name": "PERIYASAMY,  D.",
-      "party": "BJP",
-      "votes": 82358
-    },
-    "margin": 135795,
-    "marginPercent": 13458.4
+    "totalValid": 383196,
+    "totalRejected": 165888,
+    "totalNota": 21,
+    "totalVotes": 549105,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "GOPI.K",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "GOVINDASAMY.A",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "PRABHURAJASEKAR.M",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "SRINIVASAN",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "PALANIAPPAN.P",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "MURUGAN.R",
       "party": "Anaithu Makkal Puratchi Katchi",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "RAMESH.R",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "ANAND KUMAR.K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "ELANGO.S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "GOVINDASAMY.R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "SELVAM.P",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
-      "name": "MANIVANNAN.K",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 13,
       "name": "PALANIYAPPAN.R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
+      "name": "MANIVANNAN.K",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "MURUGAN.S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "VEERAMANI.T",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -8379,20 +8363,11 @@
     }
   },
   "summary": {
-    "totalVoters": 269012,
-    "totalVotes": 216435,
-    "turnoutPercent": 80.46,
-    "winner": {
-      "name": "GOVINDASAMY.A",
-      "party": "ADMK",
-      "votes": 113397
-    },
-    "runnerUp": {
-      "name": "PRABHURAJASEKAR.M",
-      "party": "DMK",
-      "votes": 75831
-    },
-    "margin": 37566,
-    "marginPercent": 17.4
+    "totalValid": 216435,
+    "totalRejected": 0,
+    "totalNota": 1330,
+    "totalVotes": 217765,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

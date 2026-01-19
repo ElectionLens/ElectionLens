@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "RAJIV GANDHI K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "MURUGESAN S",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "SELVI U",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "SADHAN PRABHAKAR N",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "KARUPPU RAJA M",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "SASIKALA S",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "BALAMURUGAN S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "UDHAYAKUMAR M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
-      "name": "PARTHASARATHI M",
-      "party": "My India Party",
-      "symbol": ""
-    },
-    {
-      "slNo": 10,
-      "name": "KUMAR S",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 11,
-      "name": "RAVISANKAR V",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "slNo": 12,
       "name": "RAMAPANDI C",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
+      "name": "KUMAR S",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "RAVISANKAR V",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "PARTHASARATHI M",
+      "party": "My India Party",
+      "symbol": ""
+    },
+    {
       "name": "MURUKESAN K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "UDAYAKUMAR",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
       "name": "GOVINDAN V",
       "party": "BSP",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -6751,20 +6735,11 @@
     }
   },
   "summary": {
-    "totalVoters": 258050,
-    "totalVotes": 1042,
-    "turnoutPercent": 0.4,
-    "winner": {
-      "name": "SADHAN PRABHAKAR N",
-      "party": "ADMK",
-      "votes": 73113
-    },
-    "runnerUp": {
-      "name": "MURUGESAN S",
-      "party": "DMK",
-      "votes": 61809
-    },
-    "margin": 11304,
-    "marginPercent": 1084.8
+    "totalValid": 156255,
+    "totalRejected": 156255,
+    "totalNota": 0,
+    "totalVotes": 312510,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

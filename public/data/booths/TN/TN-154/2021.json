@@ -8,97 +8,81 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "VELMURUGAN.T",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 2,
-      "name": "SUBHASHINI.R",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "slNo": 3,
-      "name": "JAYLANI",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "slNo": 4,
       "name": "RAJENDRAN.R",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "SIVAKOZHUNDU.P",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 6,
-      "name": "VELMURUGAN.K",
-      "party": "IND",
+      "name": "VELMURUGAN.T",
+      "party": "DMK",
       "symbol": ""
     },
     {
-      "slNo": 7,
+      "name": "SUBHASHINI.R",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "JAYLANI",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
       "name": "VELMURUGAN.R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 8,
       "name": "KAMADEVAN.S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 9,
       "name": "KRISHNARAJ.S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 10,
       "name": "NAGAMANI.M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 11,
       "name": "GOVINDASAMY.S",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 12,
       "name": "SUMATHI.V",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 13,
       "name": "KUMAR.D",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 14,
       "name": "PRAKASH.R",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 15,
-      "name": "ARULKUMAR.R",
+      "name": "VELMURUGAN.K",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 16,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -7950,20 +7934,11 @@
     }
   },
   "summary": {
-    "totalVoters": 247548,
-    "totalVotes": 1335,
-    "turnoutPercent": 0.54,
-    "winner": {
-      "name": "VELMURUGAN.T",
-      "party": "DMK",
-      "votes": 244592
-    },
-    "runnerUp": {
-      "name": "RAJENDRAN.R",
-      "party": "ADMK",
-      "votes": 92500
-    },
-    "margin": 152092,
-    "marginPercent": 11392.7
+    "totalValid": 438196,
+    "totalRejected": 194788,
+    "totalNota": 34,
+    "totalVotes": 633018,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }

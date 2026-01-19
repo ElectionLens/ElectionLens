@@ -8,43 +8,36 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "ARUMUGAM M",
       "party": "CPI",
       "symbol": ""
     },
     {
-      "slNo": 2,
       "name": "AMULKANDASAMI T K",
       "party": "ADMK",
       "symbol": ""
     },
     {
-      "slNo": 3,
       "name": "MURUGARAJ M S",
       "party": "DMDK",
       "symbol": ""
     },
     {
-      "slNo": 4,
       "name": "KOHILA C",
       "party": "NTK",
       "symbol": ""
     },
     {
-      "slNo": 5,
       "name": "SENTHILRAJ D",
       "party": "MNM",
       "symbol": ""
     },
     {
-      "slNo": 6,
       "name": "RANGASAMY T M",
       "party": "IND",
       "symbol": ""
     },
     {
-      "slNo": 7,
       "name": "NOTA",
       "party": "NOTA",
       "symbol": ""
@@ -3108,20 +3101,11 @@
     }
   },
   "summary": {
-    "totalVoters": 207270,
-    "totalVotes": 1175,
-    "turnoutPercent": 0.57,
-    "winner": {
-      "name": "ARUMUGAM M",
-      "party": "CPI",
-      "votes": 59999
-    },
-    "runnerUp": {
-      "name": "AMULKANDASAMI T K",
-      "party": "ADMK",
-      "votes": 49251
-    },
-    "margin": 10748,
-    "marginPercent": 914.7
+    "totalValid": 119724,
+    "totalRejected": 120899,
+    "totalNota": 0,
+    "totalVotes": 240623,
+    "totalVoters": 0,
+    "turnoutPercent": 0
   }
 }
