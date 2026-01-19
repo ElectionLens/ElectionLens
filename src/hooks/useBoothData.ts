@@ -178,22 +178,25 @@ export function useBoothData(): UseBoothDataReturn {
 
     // Process all results (includes booths not in list)
     const resultIds = Object.keys(boothResults?.results || {});
+    const acId = boothResults?.acId || boothList?.acId || '';
+    const acName = boothResults?.acName || boothList?.acName || '';
 
     for (const boothId of resultIds) {
       const result = boothResults?.results[boothId];
       let booth = boothMap.get(boothId);
 
-      // If booth not in list, create a placeholder
+      // If booth not in list, create a placeholder using actual AC info
       if (!booth) {
-        const boothNo = boothId.replace('TN-001-', '');
+        // Extract booth number by removing AC prefix (e.g., "TN-123-45" -> "45")
+        const boothNo = boothId.replace(`${acId}-`, '');
         booth = {
           id: boothId,
           boothNo: boothNo,
           num: parseInt(boothNo.replace(/[^\d]/g, '')) || 0,
           type: boothNo.includes('W') ? 'women' : boothNo.includes('M') ? 'auxiliary' : 'regular',
-          name: `Booth ${boothNo}`,
-          address: 'Gummidipoondi',
-          area: 'Gummidipoondi',
+          name: `Polling Station ${boothNo}, ${acName}`,
+          address: `Polling Station ${boothNo}, ${acName}`,
+          area: acName,
         };
       }
 
