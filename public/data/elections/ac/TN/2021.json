@@ -51854,7 +51854,8 @@
     "schemaId": "TN-141",
     "name": "Tiruchirappalli East",
     "type": "GEN",
-    "acId": "TN-141"
+    "acId": "TN-141",
+    "constituencyNameOriginal": "TIRUCHIRAPPALLI (East)"
   },
   "TN-140": {
     "acId": "TN-140",
@@ -51865,70 +51866,85 @@
       {
         "name": "Nehru K.N.",
         "party": "DMK",
-        "votes": 116018
+        "votes": 116018,
+        "voteShare": 65.08
       },
       {
         "name": "Padmanathan V.",
         "party": "ADMK",
-        "votes": 32632
+        "votes": 32632,
+        "voteShare": 18.3
       },
       {
         "name": "Vinodh V.",
         "party": "NTK",
-        "votes": 15637
+        "votes": 15637,
+        "voteShare": 8.77
       },
       {
         "name": "Abubacker Siddiq M.",
         "party": "MNM",
-        "votes": 10466
+        "votes": 10466,
+        "voteShare": 5.87
       },
       {
         "name": "Abdullah Hassan Faizy R.",
         "party": "SDPI",
-        "votes": 2525
+        "votes": 2525,
+        "voteShare": 1.42
       },
       {
         "name": "Sudha R.",
         "party": "IND",
-        "votes": 216
+        "votes": 216,
+        "voteShare": 0.12
       },
       {
         "name": "Vasudevan A.",
         "party": "IND",
-        "votes": 211
+        "votes": 211,
+        "voteShare": 0.12
       },
       {
         "name": "Kalpana T.",
         "party": "IND",
-        "votes": 193
+        "votes": 193,
+        "voteShare": 0.11
       },
       {
         "name": "Shajahan R.",
         "party": "IND",
-        "votes": 181
+        "votes": 181,
+        "voteShare": 0.1
       },
       {
         "name": "Dheepan M.",
         "party": "IND",
-        "votes": 65
+        "votes": 65,
+        "voteShare": 0.04
       },
       {
         "name": "Selvaraj D.",
         "party": "IND",
-        "votes": 48
+        "votes": 48,
+        "voteShare": 0.03
       },
       {
         "name": "Sahabudheen A.J.",
         "party": "IND",
-        "votes": 41
+        "votes": 41,
+        "voteShare": 0.02
       },
       {
         "name": "Sundar Rajulu G.",
         "party": "IND",
-        "votes": 40
+        "votes": 40,
+        "voteShare": 0.02
       }
     ],
     "name": "Tiruchirappalli West",
-    "constituencyNameOriginal": "TIRUCHIRAPPALLI (West)"
+    "constituencyNameOriginal": "TIRUCHIRAPPALLI (West)",
+    "schemaId": "TN-140",
+    "year": 2021
   }
 }
