@@ -178,29 +178,42 @@ def parse_form20_pdf(text: str, ac_id: str, ac_name: str, candidates_info: list)
             if len(vote_numbers) < 4:
                 continue
             
-            # Format: [candidate votes...] TotalValid Rejected NOTA TotalVotes
-            # Last 4 columns are: TotalValid, Rejected, NOTA, TotalVotes
-            # Candidate votes are everything before these 4
+            # Format varies by PDF:
+            # Option A: [candidate votes...] TotalValid Rejected NOTA TotalVotes
+            # Option B: [candidate votes...] TotalValid Rejected NOTA TotalVotes TenderedVotes
+            # We need to detect the format by checking which makes sense
             
-            if len(vote_numbers) >= 4:
-                # Last 4 are summary columns
-                total_votes_col = vote_numbers[-1]  # Total Votes (Valid + Rejected)
-                nota = vote_numbers[-2]              # NOTA votes
-                rejected = vote_numbers[-3]          # Rejected votes
-                total_valid = vote_numbers[-4]       # Total Valid Votes
+            if len(vote_numbers) >= 5:
+                # Try 5 trailing columns first (TotalValid, Rejected, NOTA, TotalVotes, TenderedVotes)
+                total_valid_5 = vote_numbers[-5]
+                rejected_5 = vote_numbers[-4]
+                nota_5 = vote_numbers[-3]
+                total_votes_5 = vote_numbers[-2]
+                # tendered_5 = vote_numbers[-1]
+                candidate_votes_5 = vote_numbers[:-5]
                 
-                # Candidate votes (excluding the 4 summary columns)
-                candidate_votes = vote_numbers[:-4]
+                # Try 4 trailing columns (TotalValid, Rejected, NOTA, TotalVotes)
+                total_valid_4 = vote_numbers[-4]
+                rejected_4 = vote_numbers[-3]
+                nota_4 = vote_numbers[-2]
+                # total_votes_4 = vote_numbers[-1]
+                candidate_votes_4 = vote_numbers[:-4]
                 
-                # Add NOTA to candidate votes
-                candidate_votes.append(nota)
+                # Validate: pick the format where sum of candidate votes + NOTA ≈ TotalValid
+                calc_5 = sum(candidate_votes_5) + nota_5
+                calc_4 = sum(candidate_votes_4) + nota_4
                 
-                # Validate: total valid should roughly equal sum of candidate votes
-                calc_total = sum(candidate_votes)
-                if abs(calc_total - total_valid) > 10:  # Allow small discrepancy
-                    # Try without NOTA in calculation
-                    if abs(sum(vote_numbers[:-4]) - total_valid) <= 10:
-                        pass  # NOTA is separate, that's fine
+                # Use 5-column format if it validates better
+                if abs(calc_5 - total_valid_5) <= abs(calc_4 - total_valid_4):
+                    candidate_votes = candidate_votes_5
+                    candidate_votes.append(nota_5)
+                    total_valid = total_valid_5
+                    rejected = rejected_5
+                else:
+                    candidate_votes = candidate_votes_4
+                    candidate_votes.append(nota_4)
+                    total_valid = total_valid_4
+                    rejected = rejected_4
                 
                 booth_id = f"{ac_id}-{booth_no}"
                 
