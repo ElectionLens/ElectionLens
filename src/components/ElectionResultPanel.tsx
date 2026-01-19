@@ -1755,47 +1755,6 @@ function BoothwiseAnalysis({
         </div>
       </div>
 
-      {/* Key Insights */}
-      <div className="analysis-insights">
-        <h5>Key Insights</h5>
-        <div className="insights-list">
-          {analysis.insights.map((insight, idx) => (
-            <InsightCard
-              key={idx}
-              insight={insight}
-              onBoothClick={onBoothClick}
-              getInsightIcon={getInsightIcon}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Strike Rate Table */}
-      <div className="strike-rate-table">
-        <h5>Party Strike Rates</h5>
-        <div className="strike-rate-list">
-          {analysis.strikeRates.slice(0, 5).map((sr, idx) => (
-            <div key={sr.party} className={`strike-rate-row ${idx === 0 ? 'winner' : ''}`}>
-              <span className="sr-rank">{idx + 1}</span>
-              <span className="sr-party" style={{ backgroundColor: getPartyColor(sr.party) }}>
-                {sr.party}
-              </span>
-              <span className="sr-booths">{sr.wins} booths</span>
-              <span className="sr-rate">{sr.strikeRate}%</span>
-              <div className="sr-bar">
-                <div
-                  className="sr-bar-fill"
-                  style={{
-                    width: `${sr.strikeRate}%`,
-                    backgroundColor: getPartyColor(sr.party),
-                  }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Party Booth Breakdown */}
       <div className="party-booth-breakdown">
         <h5>
@@ -1881,6 +1840,47 @@ function BoothwiseAnalysis({
                 </div>
               );
             })}
+        </div>
+      </div>
+
+      {/* Key Insights */}
+      <div className="analysis-insights">
+        <h5>Key Insights</h5>
+        <div className="insights-list">
+          {analysis.insights.map((insight, idx) => (
+            <InsightCard
+              key={idx}
+              insight={insight}
+              onBoothClick={onBoothClick}
+              getInsightIcon={getInsightIcon}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Strike Rate Table */}
+      <div className="strike-rate-table">
+        <h5>Party Strike Rates</h5>
+        <div className="strike-rate-list">
+          {analysis.strikeRates.slice(0, 5).map((sr, idx) => (
+            <div key={sr.party} className={`strike-rate-row ${idx === 0 ? 'winner' : ''}`}>
+              <span className="sr-rank">{idx + 1}</span>
+              <span className="sr-party" style={{ backgroundColor: getPartyColor(sr.party) }}>
+                {sr.party}
+              </span>
+              <span className="sr-booths">{sr.wins} booths</span>
+              <span className="sr-rate">{sr.strikeRate}%</span>
+              <div className="sr-bar">
+                <div
+                  className="sr-bar-fill"
+                  style={{
+                    width: `${sr.strikeRate}%`,
+                    backgroundColor: getPartyColor(sr.party),
+                  }}
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
