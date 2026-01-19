@@ -909,8 +909,14 @@ function BoothWiseView({
             <MapPin size={14} />
             <div>
               <div className="address-name">{selectedBooth.name}</div>
-              <div className="address-area">{selectedBooth.address}</div>
-              <div className="address-locality">{selectedBooth.area}</div>
+              {/* Only show address if different from name */}
+              {selectedBooth.address && selectedBooth.address !== selectedBooth.name && (
+                <div className="address-area">{selectedBooth.address}</div>
+              )}
+              {/* Only show area if not empty */}
+              {selectedBooth.area && selectedBooth.area.trim() && (
+                <div className="address-locality">{selectedBooth.area}</div>
+              )}
             </div>
           </div>
 

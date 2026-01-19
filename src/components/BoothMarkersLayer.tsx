@@ -68,8 +68,8 @@ export function BoothMarkersLayer({
             ${isWomen ? '<span style="color: #ec4899;" title="Women\'s Booth">👩</span>' : ''}
           </div>
           <div style="font-size: 12px; color: #4b5563; margin-bottom: 8px;">
-            ${booth.name}<br/>
-            <span style="color: #6b7280;">${booth.address}</span>
+            ${booth.name}
+            ${booth.address && booth.address !== booth.name ? `<br/><span style="color: #6b7280;">${booth.address}</span>` : ''}
           </div>
           ${
             booth.winner
