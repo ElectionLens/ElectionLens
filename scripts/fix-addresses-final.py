@@ -41,18 +41,24 @@ ABBREVIATIONS = {
 
 # Garbage patterns to remove
 GARBAGE_PATTERNS = [
+    r'^All Voters\s*',  # All Voters at start
+    r'^Women only\s*',  # Women only at start
+    r'^Men only\s*',  # Men only at start
     r'\([RVP]+\.?\)\s*[Aa]nd\s*\([RVP]+\.?\)',  # (R.V) And (P)
     r'\([RV]+\.?[RV]*\)',  # (R.V) or (RV)
     r'\([PVT]+\.?\)',  # (P) or (T.P)
     r'Ward\s*-?\s*\d+',  # Ward-1, Ward 2
     r'\bwd-?\d+\b',  # wd-1
+    r'\d+\)\s*[A-Z][a-z]+',  # 1) Name
     r'\d+\.\s*[A-Z][a-z]+\s+\([^)]+\)\s*[A-Za-z\s,]+(?=\d+\.|$)',  # polling area entries
+    r'^\d+\)\s*',  # 1) at start
     r'^\d+\.\s*[A-Z][a-z]+',  # 1.Name at start
     r'\(\d+\)-[^,]+',  # (1)-...
     r'OVERSEAS ELECTORS',
     r'All Voters',
     r'Women only',
     r'Men only',
+    r'Polling Station No Location and Name of Station Located Whether for all Voters or Men only or Women only Sl\. No',
 ]
 
 # Valid building keywords
