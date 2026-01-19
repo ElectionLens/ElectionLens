@@ -748,11 +748,15 @@ interface PostalBallotsViewProps {
 function PostalBallotsView({ postal }: PostalBallotsViewProps): JSX.Element {
   // Sort postal candidates by postal votes descending
   const sortedCandidates = useMemo(() => {
-    return [...postal.candidates].sort((a, b) => b.postal - a.postal);
+    return [...postal.candidates]
+      .filter((c) => c.party !== 'NOTA' && c.name !== 'NOTA')
+      .sort((a, b) => b.postal - a.postal);
   }, [postal.candidates]);
 
   const totalPostal = useMemo(() => {
-    return postal.candidates.reduce((sum, c) => sum + c.postal, 0);
+    return postal.candidates
+      .filter((c) => c.party !== 'NOTA' && c.name !== 'NOTA')
+      .reduce((sum, c) => sum + c.postal, 0);
   }, [postal.candidates]);
 
   return (
