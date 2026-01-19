@@ -4,7 +4,7 @@
   "state": "Tamil Nadu",
   "totalBooths": 340,
   "lastUpdated": "2021-04-06",
-  "source": "Tamil Nadu CEO - Form 20",
+  "source": "Tamil Nadu CEO - Polling Stations",
   "booths": [
     {
       "id": "TN-130-1",
@@ -12,8 +12,8 @@
       "num": 1,
       "type": "regular",
       "name": "Uthangal Puthupatti",
-      "address": "2.KULATHUPATTI W-1,, BUILDING UTHANGAL PUTHUPATTI - 3.METTUR W-1, 624202 GOVT KALLAR MIDDLE SCHOOL",
-      "area": "SCHOOL"
+      "address": "Uthangal Puthupatti",
+      "area": ""
     },
     {
       "id": "TN-130-2",
@@ -21,8 +21,8 @@
       "num": 2,
       "type": "regular",
       "name": "G.Thummalapatti",
-      "address": "SOUTH FACING NORTH BUILDING 1.G.Thummalapatti EAST W2, G.THUMMALAPATTI - 624202 GOVT KALLAR MIDDLE SCHOOL EAST",
-      "area": "MIDDLE"
+      "address": "G.Thummalapatti",
+      "area": ""
     },
     {
       "id": "TN-130-3",
@@ -30,8 +30,8 @@
       "num": 3,
       "type": "regular",
       "name": "G.Thummalapatti",
-      "address": "FACING WEST BUILDING 1.G.THUMMALAPATTI WEST W-3, G.THUMMALAPATTI - 624202 PANCHAYAT UNION PRIMARY SCHOOL SOUTH FACING NEW",
-      "area": "EAST"
+      "address": "G.Thummalapatti",
+      "area": ""
     },
     {
       "id": "TN-130-4",
@@ -39,17 +39,8 @@
       "num": 4,
       "type": "regular",
       "name": "G.Thummalapatti",
-      "address": "1.G.Thummalapatti west st W 4 BUILDING CENTRE PORTION G.THUMMALAPATTI - 624202 PANCHAYAT UNION PRIMARY                   1.Kanavaipatti W-1,",
-      "area": "PORTION"
-    },
-    {
-      "id": "TN-130-5A(W)",
-      "boothNo": "5A(W)",
-      "num": 5,
-      "type": "women",
-      "name": "Kanavaipatti",
-      "address": "SCHOOL WEST PORTION TILED 2.KANAVAIPATTY ASIRAMAM COLONY W2,, BUILDING KANAVAIPATTI - 624202            3.ASIRAMAM COLONY W2, PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "SCHOOL"
+      "address": "G.Thummalapatti",
+      "area": ""
     },
     {
       "id": "TN-130-5M",
@@ -57,8 +48,17 @@
       "num": 5,
       "type": "regular",
       "name": "Kanavaipatti",
-      "address": "SCHOOL WEST PORTION TILED 2.KANAVAIPATTY ASIRAMAM COLONY W2,, BUILDING KANAVAIPATTI - 624202            3.ASIRAMAM COLONY W2, PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "SCHOOL"
+      "address": "Kanavaipatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-5A(W)",
+      "boothNo": "5A(W)",
+      "num": 5,
+      "type": "regular",
+      "name": "Kanavaipatti",
+      "address": "Kanavaipatti",
+      "area": ""
     },
     {
       "id": "TN-130-6",
@@ -66,8 +66,8 @@
       "num": 6,
       "type": "regular",
       "name": "K.Puthupatti",
-      "address": "SOUTH BUILDING K.PUTHUPATTI - 1.Kamarajapuram W2 624202 PANCHAYAT UNION MIDDLE SCHOOL 1.Gandhi nagar West Ward 2 Door No 1 to 250",
-      "area": "MIDDLE"
+      "address": "K.Puthupatti",
+      "area": ""
     },
     {
       "id": "TN-130-7",
@@ -75,8 +75,8 @@
       "num": 7,
       "type": "regular",
       "name": "K.Puthupatti",
-      "address": "NORTH BUILDING K.PUTHUPATTI - 624202 PANCHAYAT UNION MIDDLE SCHOOL 1.Gandhi nagar West Ward 2 Door No.250A TO 460",
-      "area": "MIDDLE"
+      "address": "K.Puthupatti",
+      "area": ""
     },
     {
       "id": "TN-130-8",
@@ -84,17 +84,8 @@
       "num": 8,
       "type": "regular",
       "name": "K.Puthupatti",
-      "address": "NORTH FACING SOUTH BUILDING 2.BHARATHIDASAN ST W-2, K.PUTHUPATTI - 624202 PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "MIDDLE"
-    },
-    {
-      "id": "TN-130-9A(W)",
-      "boothNo": "9A(W)",
-      "num": 9,
-      "type": "women",
-      "name": "K.Puthupatti",
-      "address": "WEST FACING EAST BUILDING 1.Gandhi nagar East Ward 2 Door No from 461, K.PUTHUPATTI - 624202 Polling     Polling Stations or women only Station 1.Main road mandhai St W-1 2.OLD POST OFFICE ST W-1 3 RATHINAM RISE MILL ST W-1 4.GOUNDAR ST 1 W-1 5.GOUNDAR ST 2 W-2 6.PALANISAMY ST W-2 7.OLD POST OFFICE ST W-2 8.RATHINA RISE MILL ST W-2 9.AMERICAN CHURCH ST W-2 10.ADAIKALAM ST W-2 11.Mariamman kovil st w-2 N S V V BOYS HR.SEC.SCHOOL MAIN 12.AYYANKOTTAI ST W-2",
-      "area": "MIDDLE"
+      "address": "K.Puthupatti",
+      "area": ""
     },
     {
       "id": "TN-130-9M",
@@ -102,17 +93,26 @@
       "num": 9,
       "type": "regular",
       "name": "K.Puthupatti",
-      "address": "WEST FACING EAST BUILDING 1.Gandhi nagar East Ward 2 Door No from 461, K.PUTHUPATTI - 624202 Polling     Polling Stations or women only Station 1.Main road mandhai St W-1 2.OLD POST OFFICE ST W-1 3 RATHINAM RISE MILL ST W-1 4.GOUNDAR ST 1 W-1 5.GOUNDAR ST 2 W-2 6.PALANISAMY ST W-2 7.OLD POST OFFICE ST W-2 8.RATHINA RISE MILL ST W-2 9.AMERICAN CHURCH ST W-2 10.ADAIKALAM ST W-2 11.Mariamman kovil st w-2 N S V V BOYS HR.SEC.SCHOOL MAIN 12.AYYANKOTTAI ST W-2",
-      "area": "MIDDLE"
+      "address": "K.Puthupatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-9A(W)",
+      "boothNo": "9A(W)",
+      "num": 9,
+      "type": "regular",
+      "name": "K.Puthupatti",
+      "address": "K.Puthupatti",
+      "area": ""
     },
     {
       "id": "TN-130-10A(W)",
       "boothNo": "10A(W)",
       "num": 10,
-      "type": "women",
+      "type": "regular",
       "name": "Pattiveeranpatti",
-      "address": "BUILDING, EAST PORTION 13.GNANAGURUSAMY RISE MILL ST W-2 PATTIVEERANPATTY - 624211 14.MAIN ROAD W-3 15.OLD POST OFFICE ST W-3 16.GENERAL SHOP ST W-3 17.SANKARANARAYANAN ST W-3 18.MARIAMMANKOVIL ST W-4 19.GENERAL SHOP ST W-4 20.MAIN ST W-5 21.AYYANAR ST W-5 22.MARKET STREET W-5 23.PALPANDI ST W-5 24.MOOKKAIAH ST W-5 Polling     Polling Stations or women only Station 1.VEERANAN ST,W-3, 2.MIDDLE ST W-3,, 3.VELLAYAN ST, W-3,, 4.KATHIRESAN ST, W-4,, 5.SUNNAMBU KALAVASAL ST, W-4, N S V V BOYS HR.SECONDARY SCHOOL 6.Ayyankottai main road w4,, WEST FACING EAST BUILDING        7.KARUPPIAH ST,W-5,, CENTRE PORTION WPAR              8.MAINROAD W-6,,",
-      "area": "W"
+      "address": "Pattiveeranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-10M",
@@ -120,17 +120,17 @@
       "num": 10,
       "type": "regular",
       "name": "Pattiveeranpatti",
-      "address": "BUILDING, EAST PORTION 13.GNANAGURUSAMY RISE MILL ST W-2 PATTIVEERANPATTY - 624211 14.MAIN ROAD W-3 15.OLD POST OFFICE ST W-3 16.GENERAL SHOP ST W-3 17.SANKARANARAYANAN ST W-3 18.MARIAMMANKOVIL ST W-4 19.GENERAL SHOP ST W-4 20.MAIN ST W-5 21.AYYANAR ST W-5 22.MARKET STREET W-5 23.PALPANDI ST W-5 24.MOOKKAIAH ST W-5 Polling     Polling Stations or women only Station 1.VEERANAN ST,W-3, 2.MIDDLE ST W-3,, 3.VELLAYAN ST, W-3,, 4.KATHIRESAN ST, W-4,, 5.SUNNAMBU KALAVASAL ST, W-4, N S V V BOYS HR.SECONDARY SCHOOL 6.Ayyankottai main road w4,, WEST FACING EAST BUILDING        7.KARUPPIAH ST,W-5,, CENTRE PORTION WPAR              8.MAINROAD W-6,,",
-      "area": "W"
+      "address": "Pattiveeranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-11A(W)",
       "boothNo": "11A(W)",
       "num": 11,
-      "type": "women",
+      "type": "regular",
       "name": "Pattiveeranpatti",
-      "address": "CHANDRASEKARAN PREMISES          9.URAVINMURAI ST W-6,, NORTH PORTION                    10.BATALAGUNDI MAIN ROAD W-6,, PATTIVEERANPATTY - 624211        11.KONGAL ST, W-6,, 12.DHANUSKODI ST, W-6,, 13.THINAKARAN ST, W-6,, 14.SUNDARAMAHAL ST, W-14,, 15.SAVADI ST WARD 14,, 16.CHETTIAYAR ST, W-14, N S V V MATRICULATION HR SEC SCHOOL EAST FACING WEST                   1.Annanagar east side w-10,",
-      "area": "NILAKOTTAI"
+      "address": "Pattiveeranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-11M",
@@ -138,8 +138,8 @@
       "num": 11,
       "type": "regular",
       "name": "Pattiveeranpatti",
-      "address": "CHANDRASEKARAN PREMISES          9.URAVINMURAI ST W-6,, NORTH PORTION                    10.BATALAGUNDI MAIN ROAD W-6,, PATTIVEERANPATTY - 624211        11.KONGAL ST, W-6,, 12.DHANUSKODI ST, W-6,, 13.THINAKARAN ST, W-6,, 14.SUNDARAMAHAL ST, W-14,, 15.SAVADI ST WARD 14,, 16.CHETTIAYAR ST, W-14, N S V V MATRICULATION HR SEC SCHOOL EAST FACING WEST                   1.Annanagar east side w-10,",
-      "area": "NILAKOTTAI"
+      "address": "Pattiveeranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-12",
@@ -147,8 +147,8 @@
       "num": 12,
       "type": "regular",
       "name": "Pattiveeranpatti",
-      "address": "BUILDING NORTH PORTION XII-B PATTIVEERANPATTY - 624211 N S V V MATRICULATION HR SEC SCHOOL EAST FACING WEST                   1.Annanagar west portion w-11,,",
-      "area": "NILAKOTTAI"
+      "address": "Pattiveeranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-13",
@@ -156,17 +156,17 @@
       "num": 13,
       "type": "regular",
       "name": "Pattiveeranpatti",
-      "address": "BUILDING SOUTH PORTION XI-B               2.ANNANAGAR W-12, PATTIVEERANPATTY - 624211 N S V V HR.SEC. SCHOOL SOUTH 1.Ambethkar nagar east W-8, FACING NORTH BUILDING EAST 2.AMBETHKAR NAGAR WEST W-9,,",
-      "area": "SOUTH"
+      "address": "Pattiveeranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-14A(W)",
       "boothNo": "14A(W)",
       "num": 14,
-      "type": "women",
+      "type": "regular",
       "name": "Pattiveeranpatti",
-      "address": "PORTION WPAR CHANDRASEKARAN 3.ANNANAGAR EAST SIDE W-10,, PERMISES PATTIVEERANPATTY - 4.ANNANAGAR WEST PORTION W-11, 624211 1.Ramakrishnapuram W-7, 2.ALAGAPURI W-7,, N S V V. MATRICULATION HR SEC 3.Batalagundu main road w-7,, SCHOOL SOUTH FACING NORTH",
-      "area": "NILAKOTTAI"
+      "address": "Pattiveeranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-14M",
@@ -174,17 +174,17 @@
       "num": 14,
       "type": "regular",
       "name": "Pattiveeranpatti",
-      "address": "PORTION WPAR CHANDRASEKARAN 3.ANNANAGAR EAST SIDE W-10,, PERMISES PATTIVEERANPATTY - 4.ANNANAGAR WEST PORTION W-11, 624211 1.Ramakrishnapuram W-7, 2.ALAGAPURI W-7,, N S V V. MATRICULATION HR SEC 3.Batalagundu main road w-7,, SCHOOL SOUTH FACING NORTH",
-      "area": "NILAKOTTAI"
+      "address": "Pattiveeranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-15A(W)",
       "boothNo": "15A(W)",
       "num": 15,
-      "type": "women",
+      "type": "regular",
       "name": "Pattiveeranpatti",
-      "address": "4.MAIN ROAD W-12,, PORTION X-B PATTIVEERANPATTY - 5.High school periya st w-12,, 624211 6.VEMBAR ST, W-12,, 7.Kamarajapuram w12, Polling     Polling Stations or women only Station 1.Alagarsamy st, W-13, 2.PALANI ST, W-13,, 3.DEENATHAYALAN ST, W-13,, 4.ARUNACHALAM ST, W-13,, N S V V. GIRLS HR.SEC. SCHOOL 5.SOUNDARAPANDIYAN ST, W-13,, CENTRAL PORTION BUILDING PKCA",
-      "area": "w"
+      "address": "Pattiveeranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-15M",
@@ -192,8 +192,8 @@
       "num": 15,
       "type": "regular",
       "name": "Pattiveeranpatti",
-      "address": "4.MAIN ROAD W-12,, PORTION X-B PATTIVEERANPATTY - 5.High school periya st w-12,, 624211 6.VEMBAR ST, W-12,, 7.Kamarajapuram w12, Polling     Polling Stations or women only Station 1.Alagarsamy st, W-13, 2.PALANI ST, W-13,, 3.DEENATHAYALAN ST, W-13,, 4.ARUNACHALAM ST, W-13,, N S V V. GIRLS HR.SEC. SCHOOL 5.SOUNDARAPANDIYAN ST, W-13,, CENTRAL PORTION BUILDING PKCA",
-      "area": "w"
+      "address": "Pattiveeranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-16",
@@ -201,8 +201,8 @@
       "num": 16,
       "type": "regular",
       "name": "Pattiveeranpatti",
-      "address": "6.Punniyarajan st, w13,, CHITHAMBARA NADAR MEMORIAL 7.Main road w-15,, HALL PATTIVEERANPATTY - 624211 8.GANDHIPURAM W-15,, 9.PERIYATHAMBI NADAR ST, W15,, 10.PUNNIYARAJAN ST, W-15,, 11.KASIRAJAN ST 1, W15, 1.NAGUPILLAI STREET, WARD-1, 2.VELLAIYATHEVAN STREET, WARD-1,, 3.RAJENDRAN STREET, WARD-1,, GOVT KALLAR HIGH SCHOOL NORTH 4.PONNAIAH PILLAI STREET, WARD 1,,",
-      "area": "NORTH"
+      "address": "Pattiveeranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-17",
@@ -210,8 +210,8 @@
       "num": 17,
       "type": "regular",
       "name": "Sevugampatti",
-      "address": "PORTION EAST BUILDING 5.KALIAMMAN KOVIL STREET W-1,, SEVUGAMPATTI - 624211         6.PERUMAL KOVIL STREET, WARD-1,, 7.Sivan kovil street, ward-2,, 8.MAIN ROAD WARD-2,, 1.SINGARAPILLAI STREET, WARD-2,, 2.NAGUPILLAI STREET, WARD-12,, GOVT KALLAR HIGH SCHOOL SOUTH 3.RASU AASARI STREET, WARD-2,,",
-      "area": "NORTH"
+      "address": "Sevugampatti",
+      "area": ""
     },
     {
       "id": "TN-130-18",
@@ -219,8 +219,8 @@
       "num": 18,
       "type": "regular",
       "name": "Sevugampatti",
-      "address": "FACING NORTH BUILDING EAST SIDE 4.BAGAVATHIAMMAN KOVIL STREET, WARD-3,, SEVUGAMPATTI - 624211           5.ARIJANA STREET, WARD-3,, 6.ARIJANA CLONY WARD-3,, 7. MAIN ROAD WARD-3, 1.VELLAIYATHEVAR STREET, WARD-1, 2.MELNILAITHOTTI STREET, WARD-3,, 3.SINNASAMY NADAR STREET WARD-4,, ANNA AIDED MIDDLE SCHOOL 4.KOTTAI KARUPPASAMY KOVIL STREET, WARD-4,,",
-      "area": "SOUTH"
+      "address": "Sevugampatti",
+      "area": ""
     },
     {
       "id": "TN-130-19",
@@ -228,8 +228,8 @@
       "num": 19,
       "type": "regular",
       "name": "Muthulapuram",
-      "address": "WESTERN SIDE NORTH BUILDING 5.RAMASAMY PILLAI STREET, WARD-14,, MUTHULAPURAM - 624211 6.YOGAMUTHALAMMAN KOVIL STREET, WARD-4,, 7.RAMASAMY CHETTIYARSTREET, WARD-4,, 8.PONNAIYA CHETTIYAR STREET, WARD-4,, Polling     Polling Stations or women only Station INTEGERATED CHILD DEVELOPMENT 1.MARIYAYEPATTY WARD-5,, SCHEME CENTER MEETING HALLM",
-      "area": "HALLM"
+      "address": "Muthulapuram",
+      "area": ""
     },
     {
       "id": "TN-130-20",
@@ -237,8 +237,8 @@
       "num": 20,
       "type": "regular",
       "name": "M.Vadipatti Privu",
-      "address": "VADIPATTI PRIVU BATLAGUNDU - 2.KONNAMPATTY WARD-5, 624211 1.Nadu street, Ward-12, PANCHAYAT UNION MIDDLE SCHOOL 2.MELAVADI MUTHALAMAN KOVIL STREET, WARD-12,,",
-      "area": "SCHOOL"
+      "address": "M.Vadipatti Privu",
+      "area": ""
     },
     {
       "id": "TN-130-21",
@@ -246,8 +246,8 @@
       "num": 21,
       "type": "regular",
       "name": "M.Vadipatti",
-      "address": "BHARATHIDASAN ARANGAM SOUTH 3.SUBRAMANIYA PILLAI STREET, WARD-13,, BUILDING M. VADIPATTI - 624211 4.PANDIYAN PILLAI STREET, WARD-13, 1.SANGARALINGA NATTALVAR STREET, WARD-13, PANCHAYAT UNION MIDDLE SCHOOL 2.SOLIYAVELLALAR STREET, WARD-14,,",
-      "area": "MIDDLE"
+      "address": "M.Vadipatti",
+      "area": ""
     },
     {
       "id": "TN-130-22",
@@ -255,17 +255,17 @@
       "num": 22,
       "type": "regular",
       "name": "M.Vadipatti",
-      "address": "SOUTHERN SIDE NEW BUILDING 3.PANDIYAN PILLAI STREET, WARD-13,, M. VADIPATTI - 624211 4.KALLAR SAVADI STREET, WARD-15, C.S.I. HR.SEC. SCHOOL ANNABACKIYARAJ BLOCK WEST 1.Nagalapuram w 6,",
-      "area": "MIDDLE"
+      "address": "M.Vadipatti",
+      "area": ""
     },
     {
       "id": "TN-130-23A(W)",
       "boothNo": "23A(W)",
       "num": 23,
-      "type": "women",
+      "type": "regular",
       "name": "Batlagundu",
-      "address": "FACING, EAST NEW BUILDING, FROM 2.HARIJAN ST P U W 6, SOUTH SIDE IST ROOM BATLAGUNDU - 624202 C.S.I. HR.SEC. SCHOOL ANNABACKIYARAJ BLOCK WEST 1.Ward 6 Kogilapuram-Sevugampatti,",
-      "area": "SCHOOL"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-23M",
@@ -273,8 +273,8 @@
       "num": 23,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "FACING, EAST NEW BUILDING, FROM 2.HARIJAN ST P U W 6, SOUTH SIDE IST ROOM BATLAGUNDU - 624202 C.S.I. HR.SEC. SCHOOL ANNABACKIYARAJ BLOCK WEST 1.Ward 6 Kogilapuram-Sevugampatti,",
-      "area": "SCHOOL"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-24",
@@ -282,8 +282,8 @@
       "num": 24,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "FACING, EAST NEW BUILDING, FROM 2.ANNA NAGAR THIYAKI ALAGASAMY ST 2 W 7, SOUTH SIDE IInd ROOM BATLAGUNDU - 624202 PANCHAYAT UNION MIDDLE SCHOOL 1.Ayyampalayam main road m.vadipatti w-8,",
-      "area": "SCHOOL"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-25",
@@ -291,8 +291,8 @@
       "num": 25,
       "type": "regular",
       "name": "M.Vadipatti",
-      "address": "KAMBAN ARANGAM NORTH 2.MELAVADI HARIJAN ST W-9,, BUILDING M.VADIPATTI - 624211 3.KOOTHAKONAR ST W-11, PANCHAYAT UNION MIDDLE SCHOOL WESTERNSIDE MIDDLE BUILDING   1.SEMMAN KULI W-10,",
-      "area": "MIDDLE"
+      "address": "M.Vadipatti",
+      "area": ""
     },
     {
       "id": "TN-130-26",
@@ -300,8 +300,8 @@
       "num": 26,
       "type": "regular",
       "name": "M.Vadipatti",
-      "address": "ELANGO ARANGAM M.VADIPATTI -  2.RAMAR KOIL STREET, WARD-11, 624211 PANCHAYAT UNION MIDDLE SCHOOL 1.Melavadi harijan st w-9,",
-      "area": "MIDDLE"
+      "address": "M.Vadipatti",
+      "area": ""
     },
     {
       "id": "TN-130-27",
@@ -309,8 +309,8 @@
       "num": 27,
       "type": "regular",
       "name": "M.Vadipatti",
-      "address": "VALLUVAR ARANGAM WEST 2.COLONY ST W-9,, BUILDING M.VADIPATTI - 624211 3.ANBU NAGAR W-9, Polling     Polling Stations or women only Station PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "MIDDLE"
+      "address": "M.Vadipatti",
+      "area": ""
     },
     {
       "id": "TN-130-28",
@@ -318,8 +318,8 @@
       "num": 28,
       "type": "regular",
       "name": "Sengattampatti",
-      "address": "SOUTH SIDE NORTH FACING EAST 1.Sengattampatti east st w3 BUILDING SENGATTAMPATTY - 624708 PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "MIDDLE"
+      "address": "Sengattampatti",
+      "area": ""
     },
     {
       "id": "TN-130-29",
@@ -327,8 +327,8 @@
       "num": 29,
       "type": "regular",
       "name": "Sengattampatti",
-      "address": "SOUTH SIDE NORTH FACING MIDDLE 1.SENGATTAMPATTI WEST ST W4 BUILDING SENGATTAMPATTY - 624708 PANCHAYAT UNION MIDDLE SCHOOL 1.Salaiputhur w2,",
-      "area": "MIDDLE"
+      "address": "Sengattampatti",
+      "area": ""
     },
     {
       "id": "TN-130-30",
@@ -336,17 +336,8 @@
       "num": 30,
       "type": "regular",
       "name": "Sengattampatti",
-      "address": "WEST SIDE EAST FACING BUILDING 2.SUNDARARAJAPURAM W-1,, SENGATTAMPATTY - 624708        3.AYYAMPATTI W2, GOVT KALLAR HIGHER SEC SCHOOL             1.Algapuri w-1,",
-      "area": "MIDDLE"
-    },
-    {
-      "id": "TN-130-31A(W)",
-      "boothNo": "31A(W)",
-      "num": 31,
-      "type": "women",
-      "name": "Mallanampatti",
-      "address": "EAST FACE WEST BUILDING MALLANAMPATTI - 624202                    2.MALLANAMPATTY W-2, PANCHAYAT UNION PRIMARY",
-      "area": "SEC"
+      "address": "Sengattampatti",
+      "area": ""
     },
     {
       "id": "TN-130-31M",
@@ -354,8 +345,17 @@
       "num": 31,
       "type": "regular",
       "name": "Mallanampatti",
-      "address": "EAST FACE WEST BUILDING MALLANAMPATTI - 624202                    2.MALLANAMPATTY W-2, PANCHAYAT UNION PRIMARY",
-      "area": "SEC"
+      "address": "Mallanampatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-31A(W)",
+      "boothNo": "31A(W)",
+      "num": 31,
+      "type": "regular",
+      "name": "Mallanampatti",
+      "address": "Mallanampatti",
+      "area": ""
     },
     {
       "id": "TN-130-32",
@@ -363,8 +363,8 @@
       "num": 32,
       "type": "regular",
       "name": "Poosaripatti",
-      "address": "SCHOOL NORTH FACING BUILDING, 1.Poosaripatty w-3 POOSARIPATTI - 624202 PANCHAYAT UNION PRIMARY",
-      "area": "SEC"
+      "address": "Poosaripatti",
+      "area": ""
     },
     {
       "id": "TN-130-33",
@@ -372,17 +372,17 @@
       "num": 33,
       "type": "regular",
       "name": "Poosaripatti",
-      "address": "SCHOOL WEST BUILDING SOUTH 1.POOSARIPATTY W-4 FACING POOSARIPATTI - 624202 PANCHAYAT UNION PRIMARY 1.Venketasthiri kottai w-1,",
-      "area": "NILAKOTTAI"
+      "address": "Poosaripatti",
+      "area": ""
     },
     {
       "id": "TN-130-34A(W)",
       "boothNo": "34A(W)",
       "num": 34,
-      "type": "women",
+      "type": "regular",
       "name": "Venkatasthrikottai",
-      "address": "SCHOOL EASTERN BUILDING 2.Venkatasthri kottai w2, VENKATASTHIRIKOTTAI - 624202 PANCHAYAT UNION PRIMARY 1.M. kurumbapatty w2,",
-      "area": "NILAKOTTAI"
+      "address": "Venkatasthrikottai",
+      "area": ""
     },
     {
       "id": "TN-130-34M",
@@ -390,8 +390,8 @@
       "num": 34,
       "type": "regular",
       "name": "Venkatasthrikottai",
-      "address": "SCHOOL EASTERN BUILDING 2.Venkatasthri kottai w2, VENKATASTHIRIKOTTAI - 624202 PANCHAYAT UNION PRIMARY 1.M. kurumbapatty w2,",
-      "area": "NILAKOTTAI"
+      "address": "Venkatasthrikottai",
+      "area": ""
     },
     {
       "id": "TN-130-35",
@@ -399,8 +399,8 @@
       "num": 35,
       "type": "regular",
       "name": "Venkatasthrikottai",
-      "address": "SCHOOL NORTH BUILDING 2.KEELAKOVIL PATTY W-3, VENKATASTHIRIKOTTAI - 624202 PANCHAYAT UNION MIDDLE SCHOOL 1.Kombaipatty North Street w-4",
-      "area": "SCHOOL"
+      "address": "Venkatasthrikottai",
+      "area": ""
     },
     {
       "id": "TN-130-36",
@@ -408,8 +408,8 @@
       "num": 36,
       "type": "regular",
       "name": "Kombaipatti",
-      "address": "SOUTH FACING NORTH BUILDING Door.No.From 1 to 200 KOMBAIPATTI - 624202 PANCHAYAT UNION MIDDLE SCHOOL 1. Kombaipatty East Street w-4",
-      "area": "MIDDLE"
+      "address": "Kombaipatti",
+      "area": ""
     },
     {
       "id": "TN-130-37",
@@ -417,17 +417,17 @@
       "num": 37,
       "type": "regular",
       "name": "Kombaipatti",
-      "address": "NORTH FACING SOUTH BUILDING Door.No. From 201 KOMBAIPATTI - 624202 Polling     Polling Stations or women only Station PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "MIDDLE"
+      "address": "Kombaipatti",
+      "area": ""
     },
     {
       "id": "TN-130-38",
       "boothNo": "38",
       "num": 38,
       "type": "regular",
-      "name": "SOUTHERN SIDE MIDDLE BUILDING 1.Kulipatty w-5",
-      "address": "KULIPATTI - 624202 PANCHAYAT UNION PRIMARY                   1.Rediyapatty w-6,",
-      "area": "MIDDLE"
+      "name": "Booth 38",
+      "address": "Booth 38",
+      "area": ""
     },
     {
       "id": "TN-130-39",
@@ -435,8 +435,8 @@
       "num": 39,
       "type": "regular",
       "name": "Reddiapatti",
-      "address": "SCHOOL SOUTH BUILDING 2.CHINNUPATTY W-6,, REDDIYAPATTI - 624202 PANCHAYAT UNION PRIMARY 1.MALLAIAPPANPATTY W-6,,",
-      "area": "MIDDLE"
+      "address": "Reddiapatti",
+      "area": ""
     },
     {
       "id": "TN-130-40",
@@ -444,8 +444,8 @@
       "num": 40,
       "type": "regular",
       "name": "Malayappanpatti",
-      "address": "SCHOOL EAST SIDE WEST FACE 2.RAJANAGAR W-6,, BUILDING MALAYAPPANPATTI - 624202 3.KANNAN NAGAR W-6, PANCHAYAT UNION PRIMARY",
-      "area": "NILAKOTTAI"
+      "address": "Malayappanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-41",
@@ -453,8 +453,8 @@
       "num": 41,
       "type": "regular",
       "name": "Melakovilpatti",
-      "address": "SCHOOL SOUTH FACING BUILDING 1.Melakovilpatty North Street W - 7 MELAKOVIL PATTI - 624202 PANCHAYAT UNION PRIMARY",
-      "area": "NILAKOTTAI"
+      "address": "Melakovilpatti",
+      "area": ""
     },
     {
       "id": "TN-130-42",
@@ -462,8 +462,8 @@
       "num": 42,
       "type": "regular",
       "name": "Melakovilpatti",
-      "address": "SCHOOL WEST FACING EAST 1.Melakovilpatty East and South Street W - 7 (Sl.No.601to1225) BUILDING MELAKOVIL PATTI - 624202 GOVT. KALLAR PRIMARY SCHOOL               1.AYYENKOVIL PATTY W1,",
-      "area": "SCHOOL"
+      "address": "Melakovilpatti",
+      "area": ""
     },
     {
       "id": "TN-130-43",
@@ -471,8 +471,8 @@
       "num": 43,
       "type": "regular",
       "name": "K.Utchapatti",
-      "address": "WESTERN PORTION NO.75 2.KARATTUPATTI W1,, K.UTCHAPATTI - 624220                     3.-SAMATHUVAPURAM W1,                      4. Vadivel puram W3 GOVT. KALLAR PRIMARY SCHOOL 1.UCHAPPATTY W1,,",
-      "area": "PRIMARY"
+      "address": "K.Utchapatti",
+      "area": ""
     },
     {
       "id": "TN-130-44",
@@ -480,17 +480,8 @@
       "num": 44,
       "type": "regular",
       "name": "K.Utchapatti",
-      "address": "NORTH FACING EASTERN SIDE 2.MEENACHIPURAM W1,, BUILDING K.UTCHAPATTI - 624220 1.GUNDUPARAI W3, 2.KEAST ST W2,, PANCHAYAT UNION PRIMARY 3.MIDDLE STREET W-2,,",
-      "area": "PRIMARY"
-    },
-    {
-      "id": "TN-130-45A(W)",
-      "boothNo": "45A(W)",
-      "num": 45,
-      "type": "women",
-      "name": "Kunnuvarankottai",
-      "address": "SCHOOL SOUTH NEW BUILDING 4.EAST ST,V.O.C.ST,MIDILE ST MELATHERU W2,, KUNNUVARANKOTTAI - 624220 5.GANDHIMEDAI W3,, 6.AMBEDKAR NAGAR W3, PANCHAYAT UNION PRIMARY 1.KUNNUVARAN KOTTAI W-2,",
-      "area": "NILAKOTTAI"
+      "address": "K.Utchapatti",
+      "area": ""
     },
     {
       "id": "TN-130-45M",
@@ -498,17 +489,17 @@
       "num": 45,
       "type": "regular",
       "name": "Kunnuvarankottai",
-      "address": "SCHOOL SOUTH NEW BUILDING 4.EAST ST,V.O.C.ST,MIDILE ST MELATHERU W2,, KUNNUVARANKOTTAI - 624220 5.GANDHIMEDAI W3,, 6.AMBEDKAR NAGAR W3, PANCHAYAT UNION PRIMARY 1.KUNNUVARAN KOTTAI W-2,",
-      "area": "NILAKOTTAI"
+      "address": "Kunnuvarankottai",
+      "area": ""
     },
     {
-      "id": "TN-130-46A(W)",
-      "boothNo": "46A(W)",
-      "num": 46,
-      "type": "women",
+      "id": "TN-130-45A(W)",
+      "boothNo": "45A(W)",
+      "num": 45,
+      "type": "regular",
       "name": "Kunnuvarankottai",
-      "address": "SCHOOL EAST NEW BUILDING 2.ABETHKAR ST, GANDTHI MEDAI, MAIN ROAD,VADIVEL PURAM W3, KUNNUVARANKOTTAI -624220 Polling     Polling Stations or women only Station 1.LOCAL BANDU ROAD W-15, 2.PERUMAL KOVIL ST W-15,, 3.PERUMAL KOVAIL KURUKKU SANTHU -1,W-15,, 4.PERUMAL KOVIL KURUKKU SANTHU -2,W-15,, 5.PLISPURAM ST4,W15,, 6.PLISPURAM ST5,W15,, 7.PLISPURAM ST-6,W-15, PANCHAYAT UNION MIDDLE SCHOOL 8.PLEESPURAM 7 ST -7,W-7,, 1ST WARD NORTH FACING SOUTH",
-      "area": "SCHOOL"
+      "address": "Kunnuvarankottai",
+      "area": ""
     },
     {
       "id": "TN-130-46M",
@@ -516,17 +507,17 @@
       "num": 46,
       "type": "regular",
       "name": "Kunnuvarankottai",
-      "address": "SCHOOL EAST NEW BUILDING 2.ABETHKAR ST, GANDTHI MEDAI, MAIN ROAD,VADIVEL PURAM W3, KUNNUVARANKOTTAI -624220 Polling     Polling Stations or women only Station 1.LOCAL BANDU ROAD W-15, 2.PERUMAL KOVIL ST W-15,, 3.PERUMAL KOVAIL KURUKKU SANTHU -1,W-15,, 4.PERUMAL KOVIL KURUKKU SANTHU -2,W-15,, 5.PLISPURAM ST4,W15,, 6.PLISPURAM ST5,W15,, 7.PLISPURAM ST-6,W-15, PANCHAYAT UNION MIDDLE SCHOOL 8.PLEESPURAM 7 ST -7,W-7,, 1ST WARD NORTH FACING SOUTH",
-      "area": "SCHOOL"
+      "address": "Kunnuvarankottai",
+      "area": ""
     },
     {
-      "id": "TN-130-47A(W)",
-      "boothNo": "47A(W)",
-      "num": 47,
-      "type": "women",
-      "name": "Batlagundu",
-      "address": "9.PLEESPURAM KURUKKU ST W-15,, SIDE FRONT SIDE FIRST BUILDING 10.PLISPURAM ST -8,W-15,, BATLAGUNDU-624202 11.POST OFFICE ROAD -2,W-15,, 12.PLISPURAM ST -1,W-15,, 13.PLISPURA ST2,W15,, 14.PLISPURAM ST-3,W-15,, 15.PLISPURAM ST -4,W-15,, 16.KANAVAIPATTY ROAD W-16,, 17.MANSALAR PADIDURAI ST W-17,, PANCHAYAT UNION MIDDLE SCHOOL 1.Kanavaipatty road -1,w-16, 1ST WARD NORTH FACING NEW     2.VATHALAGUNDU (R.V) and (TP)-PUDUPATTY ST -1,W-16,,",
-      "area": "MIDDLE"
+      "id": "TN-130-46A(W)",
+      "boothNo": "46A(W)",
+      "num": 46,
+      "type": "regular",
+      "name": "Kunnuvarankottai",
+      "address": "Kunnuvarankottai",
+      "area": ""
     },
     {
       "id": "TN-130-47M",
@@ -534,17 +525,26 @@
       "num": 47,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "9.PLEESPURAM KURUKKU ST W-15,, SIDE FRONT SIDE FIRST BUILDING 10.PLISPURAM ST -8,W-15,, BATLAGUNDU-624202 11.POST OFFICE ROAD -2,W-15,, 12.PLISPURAM ST -1,W-15,, 13.PLISPURA ST2,W15,, 14.PLISPURAM ST-3,W-15,, 15.PLISPURAM ST -4,W-15,, 16.KANAVAIPATTY ROAD W-16,, 17.MANSALAR PADIDURAI ST W-17,, PANCHAYAT UNION MIDDLE SCHOOL 1.Kanavaipatty road -1,w-16, 1ST WARD NORTH FACING NEW     2.VATHALAGUNDU (R.V) and (TP)-PUDUPATTY ST -1,W-16,,",
-      "area": "MIDDLE"
+      "address": "Batlagundu",
+      "area": ""
+    },
+    {
+      "id": "TN-130-47A(W)",
+      "boothNo": "47A(W)",
+      "num": 47,
+      "type": "regular",
+      "name": "Batlagundu",
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-48A(W)",
       "boothNo": "48A(W)",
       "num": 48,
-      "type": "women",
+      "type": "regular",
       "name": "Batlagundu",
-      "address": "SOUTH BUILDING WEST PORTION   3.VATHALAGUNDU (R.V) and (TP)-PUDUPATTY ST-2,W-16,, BATLAGUNDU-624202 PANCHAYAT UNION MIDDLE SCHOOL 1.KANAVAIPATTY ROAD -1,W-17,, IST WARD NORTH FACING NEW     2.KANAVAIPATTY ROAD -2,W-17,,",
-      "area": "MIDDLE"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-48M",
@@ -552,8 +552,8 @@
       "num": 48,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "SOUTH BUILDING WEST PORTION   3.VATHALAGUNDU (R.V) and (TP)-PUDUPATTY ST-2,W-16,, BATLAGUNDU-624202 PANCHAYAT UNION MIDDLE SCHOOL 1.KANAVAIPATTY ROAD -1,W-17,, IST WARD NORTH FACING NEW     2.KANAVAIPATTY ROAD -2,W-17,,",
-      "area": "MIDDLE"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-49",
@@ -561,17 +561,17 @@
       "num": 49,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "SOUTH BUILDING CENTRE PORTION 3.BUILDING SOCIETY ST W-17,, BATLAGUNDU-624202             4.BUILDING SOICETY ST -2,W-17, Polling     Polling Stations or women only Station 1.SUKKAN ODAI ST W-16, 2.PUDUPATTI 3 ST W16,, 3.PUDUPATTY 4TH ST W-16,, 4.PUDUPATTY 7TH ST W16,, 5.PUDUPATTY8 ST W16,, 6.GOLDEN JUBILEE CLUB ROAD W-17,, 7.CO-OPERATE HOUSE BUILT SANGAM 2TH ST W-17,, PANCHAYAT UNION MIDDLE SCHOOL 8.POLICE LINE ST W-18,, IST WARD NORTH FACING NEW",
-      "area": "MIDDLE"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-50A(W)",
       "boothNo": "50A(W)",
       "num": 50,
-      "type": "women",
+      "type": "regular",
       "name": "Batlagundu",
-      "address": "9.NETHAJI ST W-18,1,, SOUTH BUILDING EAST PORTION 10.SERAN ST /MUTHURAMALINGA DEVAT ST W-1,, BATLAGUNDU-624202 11.PLISPURAM W-18,, 12.MARUTHUPANDIYER ST W-18,, 13.MUTHURAMALINGA DEVAR ST W-17,, 14.BARATHI THASAN ST W-18,, 15.BARATHIYAR ST W-18,, 16.KENNADY ST W-18,, 17.JANCY RANI NAGAR W-18, GOVT.HIGHER SECONDARY SCHOOL NORTH FACING SOUTH BUILDING",
-      "area": "MIDDLE"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-50M",
@@ -579,8 +579,8 @@
       "num": 50,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "9.NETHAJI ST W-18,1,, SOUTH BUILDING EAST PORTION 10.SERAN ST /MUTHURAMALINGA DEVAT ST W-1,, BATLAGUNDU-624202 11.PLISPURAM W-18,, 12.MARUTHUPANDIYER ST W-18,, 13.MUTHURAMALINGA DEVAR ST W-17,, 14.BARATHI THASAN ST W-18,, 15.BARATHIYAR ST W-18,, 16.KENNADY ST W-18,, 17.JANCY RANI NAGAR W-18, GOVT.HIGHER SECONDARY SCHOOL NORTH FACING SOUTH BUILDING",
-      "area": "MIDDLE"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-51",
@@ -588,8 +588,8 @@
       "num": 51,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "1.Gandhinagar Mainroad D.No. From 1.1 To 1.16.25M NEAR ENTRANCE EAST SIDE BATLAGUNDU-624202 GOVT.HIGHER SECONDARY SCHOOL",
-      "area": "SECONDARY"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-52",
@@ -597,17 +597,17 @@
       "num": 52,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "WEST FACING EAST BUILDING 1.Pandian Street, CheranStreet, CholanStreet, Door No.From1.16.26A SCIENCE LAB BATLAGUNDU-624202 GOVT.HIGHER SECONDARY SCHOOL SOUTH FACING NORTH-EAST",
-      "area": "SECONDARY"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-53A(W)",
       "boothNo": "53A(W)",
       "num": 53,
-      "type": "women",
+      "type": "regular",
       "name": "Batlagundu",
-      "address": "1.GANDHI NAGAR WEST W-18 CORNER BUILDING 1ST ROOM FROM WEST SIDE BATLAGUNDU-624202 Polling     Polling Stations or women only Station 1.Ourkalasamy kovil st1 w12, 2.MEENKARAR 1 ST W-12,, 3.MEENKARAR ST 2,W-12,, GOVT.HIGHER SECONDARY SCHOOL 4.ORKALASAMY KOVIL ST 2 W 12,, SOUTH FACING NORTH-EAST",
-      "area": "SECONDARY"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-53M",
@@ -615,17 +615,8 @@
       "num": 53,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "1.GANDHI NAGAR WEST W-18 CORNER BUILDING 1ST ROOM FROM WEST SIDE BATLAGUNDU-624202 Polling     Polling Stations or women only Station 1.Ourkalasamy kovil st1 w12, 2.MEENKARAR 1 ST W-12,, 3.MEENKARAR ST 2,W-12,, GOVT.HIGHER SECONDARY SCHOOL 4.ORKALASAMY KOVIL ST 2 W 12,, SOUTH FACING NORTH-EAST",
-      "area": "SECONDARY"
-    },
-    {
-      "id": "TN-130-54A(W)",
-      "boothNo": "54A(W)",
-      "num": 54,
-      "type": "women",
-      "name": "Batlagundu",
-      "address": "5.ORKALA SAMY KOVIL SANTHU1 12,, CORNER BUILDING 2ND ROOM FROM 6.KATTAPOMMAN ST2 W12,, WEST SIDE BATLAGUNDU-624202 7.VETUVAR 1,W-12,, 8.VETUVAR ST-2,W-12,, 9.-LOCAL PANDU ROAD 7 W 17, 1.ARUNACHALLAPURAM W-4, 2.SIVAN KOVIL ST W-9,, MAHALAKSHMI GIRLS HIGHER                  3.Center st akrakaram w-9,, SECONDARY SCHOOL EAST FACING              4.MANSALARU ST W-9,,",
-      "area": "SECONDARY"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-54M",
@@ -633,8 +624,17 @@
       "num": 54,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "5.ORKALA SAMY KOVIL SANTHU1 12,, CORNER BUILDING 2ND ROOM FROM 6.KATTAPOMMAN ST2 W12,, WEST SIDE BATLAGUNDU-624202 7.VETUVAR 1,W-12,, 8.VETUVAR ST-2,W-12,, 9.-LOCAL PANDU ROAD 7 W 17, 1.ARUNACHALLAPURAM W-4, 2.SIVAN KOVIL ST W-9,, MAHALAKSHMI GIRLS HIGHER                  3.Center st akrakaram w-9,, SECONDARY SCHOOL EAST FACING              4.MANSALARU ST W-9,,",
-      "area": "SECONDARY"
+      "address": "Batlagundu",
+      "area": ""
+    },
+    {
+      "id": "TN-130-54A(W)",
+      "boothNo": "54A(W)",
+      "num": 54,
+      "type": "regular",
+      "name": "Batlagundu",
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-55",
@@ -642,8 +642,8 @@
       "num": 55,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "WEST BUILDING NORTH PORTION               5.PERUMAL KOVIL ST W-9,, BATLAGUNDU-624202                         6.PASUM PON ST2 W9,, 7.OTTARAI AKRAKA ST W-9, 8.KOTTAR ST W9, 1.MELA MANTHAI ST W-14, 2.MELA MANTHAI KURUKKU ST-1,W-14,, 3.MELMANTHAI KURUKKU ST -2,W-14,, 4.PASUMPON ST-3,W-14,, 5.JADGE SOMASUNDARAM ST-2,W-14,, MAHALAKSHMI GIRLS HIGHER                  6.JADGE SOMASUNDARAM KURUKKU ST W-14,, SECONDARY SCHOOL EAST FACING              7.MELMANTHAI KURUKKU ST-3,W-14,,",
-      "area": "PORTION"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-56",
@@ -651,17 +651,8 @@
       "num": 56,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "WEST BUILDING CENTRE PORTION              8.VISVANATHAN ST W-14,, BATLAGUNDU-624202                         9.MELMANTHAI ST -2,W-14,, 10.MELMANTHAI ST-3,W-14,, 11.MELMANTHAI ST-4,W-14,, 12.MELMANTHAI ST KURUKKU SANTHU-1,W-14,, 13.MELMANTHAI ST KURUKKU SANTHU -2,W-14,, 14.ALAKAR ST W-14, Polling     Polling Stations or women only Station 1.ARASU HR SEC SCHOOL ST-1,W-2, 2.PALLIVASAL ST-1,W-10,, 3.PALLIVASAL KURUKKU SANTHU W-10,, 4.PALLIVASAL ST W-10,, 5.LOCAL PANDU MAIN ROAD W-11,, 6.ARASU HR SEC SCHOOL ST-2,W-11,, 7.LOCAL PANDU ROAD 4,W-13,, 8.PALLIVASAL ST -3,W-13,, TOWN PANCHAYAT OFFICE CENTER",
-      "area": "PORTION"
-    },
-    {
-      "id": "TN-130-57A(W)",
-      "boothNo": "57A(W)",
-      "num": 57,
-      "type": "women",
-      "name": "Batlagundu",
-      "address": "9.SHEK MASTHAN ST -2,W-13,, HALLBATLAGUNDU-624202 10.KADAI VEETHI 3 W-12,, 11.SHEK MASTHAN SANTHU W-13,, 12.PASUMPON ST-1,W-13,, 13.ANGALA PARAMESWARI ST1 W13,, 14.JUDGE SOMASUNDARAM ST1 W13,, 15.MEENKARAR ST-3 ,W-13,, 16.KAYITHEMILATH ST W-13,, 17.KAYITHEMILATH KURUKKU SANTHU W-13, 1.Santhaipetai st -3,w-10, 2.KALIYAMMAN KOVIL ST-1,W-10,, 3.KALIYAMMAN KOVIL ST -2,W-10,, 4.KALIYAMMAN KOVIL ST-3,W-10,, 5.KALIYAMMAN KOVIL ST -4,W-10,, 6.PALLAKKUKARAN ST W-10,, 7.PALLIVASAL ST -2,W-10,, HOLLY CROSS GIRLS HR SEC SCHOOL           8.BAGAVATHIAMMAN KOVIL ST W-11,,",
-      "area": "CENTER"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-57M",
@@ -669,8 +660,17 @@
       "num": 57,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "9.SHEK MASTHAN ST -2,W-13,, HALLBATLAGUNDU-624202 10.KADAI VEETHI 3 W-12,, 11.SHEK MASTHAN SANTHU W-13,, 12.PASUMPON ST-1,W-13,, 13.ANGALA PARAMESWARI ST1 W13,, 14.JUDGE SOMASUNDARAM ST1 W13,, 15.MEENKARAR ST-3 ,W-13,, 16.KAYITHEMILATH ST W-13,, 17.KAYITHEMILATH KURUKKU SANTHU W-13, 1.Santhaipetai st -3,w-10, 2.KALIYAMMAN KOVIL ST-1,W-10,, 3.KALIYAMMAN KOVIL ST -2,W-10,, 4.KALIYAMMAN KOVIL ST-3,W-10,, 5.KALIYAMMAN KOVIL ST -4,W-10,, 6.PALLAKKUKARAN ST W-10,, 7.PALLIVASAL ST -2,W-10,, HOLLY CROSS GIRLS HR SEC SCHOOL           8.BAGAVATHIAMMAN KOVIL ST W-11,,",
-      "area": "CENTER"
+      "address": "Batlagundu",
+      "area": ""
+    },
+    {
+      "id": "TN-130-57A(W)",
+      "boothNo": "57A(W)",
+      "num": 57,
+      "type": "regular",
+      "name": "Batlagundu",
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-58",
@@ -678,8 +678,8 @@
       "num": 58,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "WEST BUILDING SOUTH SIDE 9.DINDIGUL ROAD-2,W-11,, BATLAGUNDU-624202                         10.BHATSHA SANTHU W-11,, 11.SUBBAIH ST W-11,, 12.VENKITAPATTY ST-4,W-11,, 13.VENKITAPATTY ST-5,W-11,, 14.ALLA PICHAI ST W-11,, 15.VENKITAPATTY ST-6,W-11,, 16.ONDI MUTHUSAMY KOVIL ST-1,W-11,, 17.ONDIMUTHUSAMY KOVIL ST-2,W-11, Polling     Polling Stations or women only Station 1.Local pandu main road2 w5, 2.VATHALAGUNDU (R.V) and (TP)-BARATHIYAR ST-2,W-5,, 3.VATHALAGUNDU (R.V) and (TP)-BARATHIYAR ST-3,W-5,, HOLLYCROSS GIRLS HR SEC SCHOOL 4.VATHALAGUNDU (R.V) and (TP)-DINDIGUL ROAD -1,W-5,,",
-      "area": "SCHOOL"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-59",
@@ -687,8 +687,8 @@
       "num": 59,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "WEST BUILDING NORTH SIDE 5.VATHALAGUNDU (R.V) and (TP)-SANTHAIPETAI 1 ST ,W-5,, BATLAGUNDU-624202              6.VATHALAGUNDU (R.V) and (TP)-BARATHIYAR ST-1,W-5,, 7.VATHALAGUNDU (R.V) and (TP)-KANNAKI ST-2,W-5,, 8.VATHALAGUNDU (R.V) and (TP)-KANNAKI ST-1,W-5,, 9.VATHALAGUNDU (R.V) and (TP)-AADUCHAPATTY W=7, GOVT.HIGHER SECONDARY SCHOOL              1.LOCAL PANDU ST4 W2, NORTH FACING SOUTH BUILDING               2.ARASU HR SEC SCHOOL ST1 W2,,",
-      "area": "SCHOOL"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-60",
@@ -696,8 +696,8 @@
       "num": 60,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "NEAR ENTRANCE WEST SIDE                   3.BAGAVATHI AMMAN KOVIL ST W-2,, BATLAGUNDU-624202                         4.DINDIGUL ROAD1 W2,, 1.VENKITAPATTY ST1,W2, 2.VENKITAPATTY ST 2,W2,, IQBALIA PRIMARY SCHOOL, EAST 3.KATTAPOMMAN ST1 W2,",
-      "area": "SECONDARY"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-61",
@@ -705,17 +705,8 @@
       "num": 61,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "FACING, WEST BUILDING, 4.VENKITAPATTY ST2 W2,, BATLAGUNDU-624202 5.VENKITAPATTY ST SANTHU 1,W-2,, 6.VENKITAPATTY ST SANTHU 2 W-2, 1.PETHANIYA ST 1 W-3, 2.PETHANIYA ST 2 W-3, 3.PETHANIYA ST 3 W-3,, 4.PETHANIYA ST 4 W-3,, 5.PETHANIYA ST 5 W-3,, 6.PETHANIYA ST 6 W-3,, IQBALIA HIGH SCHOOL, WEST FACING,",
-      "area": "FACING,"
-    },
-    {
-      "id": "TN-130-62A(W)",
-      "boothNo": "62A(W)",
-      "num": 62,
-      "type": "women",
-      "name": "Batlagundu",
-      "address": "7.PETHANIYA ST 7 W-3,, EAST BUILDING, BATLAGUNDU-624202 8.PETHANIYA ST 8 W-3,, 9.PETHANIYA ST9 W-3,, 10.PETHANIYA ST 10 W-3,, 11.PETHANIYA ST 11 W-3,, 12.PETHANIYA ST 15 W-3,, 13.PETHANIYA ST 14 W-4, Polling     Polling Stations or women only Station 1.ARASU HR SEC SCHOOL ST W-2, 2.VENKITAPATTY ST W-2,, 3.VENKITAPATTY ST SANTHU 1 W-2,, 4.ARUNACHALLAPURAM 1 W-4,, 5.ARUNACHALLAPURAM 4 W-4,, GOVT.BOYS HIGHER SECONDARY 6.ARUNACHALLAPURAM ST 5 W-4,, SCHOOL NORTH FACING SOUTH",
-      "area": "BATLAGUNDU"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-62M",
@@ -723,8 +714,17 @@
       "num": 62,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "7.PETHANIYA ST 7 W-3,, EAST BUILDING, BATLAGUNDU-624202 8.PETHANIYA ST 8 W-3,, 9.PETHANIYA ST9 W-3,, 10.PETHANIYA ST 10 W-3,, 11.PETHANIYA ST 11 W-3,, 12.PETHANIYA ST 15 W-3,, 13.PETHANIYA ST 14 W-4, Polling     Polling Stations or women only Station 1.ARASU HR SEC SCHOOL ST W-2, 2.VENKITAPATTY ST W-2,, 3.VENKITAPATTY ST SANTHU 1 W-2,, 4.ARUNACHALLAPURAM 1 W-4,, 5.ARUNACHALLAPURAM 4 W-4,, GOVT.BOYS HIGHER SECONDARY 6.ARUNACHALLAPURAM ST 5 W-4,, SCHOOL NORTH FACING SOUTH",
-      "area": "BATLAGUNDU"
+      "address": "Batlagundu",
+      "area": ""
+    },
+    {
+      "id": "TN-130-62A(W)",
+      "boothNo": "62A(W)",
+      "num": 62,
+      "type": "regular",
+      "name": "Batlagundu",
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-63",
@@ -732,17 +732,17 @@
       "num": 63,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "7.ARUNACHALLAPURAM ST -6 W-4,, BUILDING FOURTH ROOM FROM 8.ARUNACHALLAPURAM ST 8 W-4,, EAST SIDE BATLAGUNDU-624202 9.ARUNACHALAPURAM ST 9 W-4,, 10.METTU ST 2 W-7,, 11.KASUKARAR CHITTIER ST 12 W-8,, 12.KASUKARA CHITTIER ST 14 W-8,, 13.KASUKARAR CHITTIER ST 16 W-8, 1.Pethaniyapuram w3, GOVT BOYS HR SEC SCHOOL NORTH 2.ARUNACHALAPURAM ST W-4,, FACING SOUTH BUILDING FIFTH",
-      "area": "ST"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-64A(W)",
       "boothNo": "64A(W)",
       "num": 64,
-      "type": "women",
+      "type": "regular",
       "name": "Batlagundu",
-      "address": "3.MARKADEYAN KOVIL ST W-7,, ROOM FROM EAST SIDE 4.SHEK MASTHAN ST W-8,, BATLAGUNDU-624202 5.MARKANDEYAN KOVIL ST 7 W-8, 1.Sivan kovil st1 w7, 2.SOUTH ST LINE 1 W-7,, MAHALAKSHMI GIRLS HIGHER                  3.SOUTH ST LINE 2 W-7,, SEC.SCHOOL EAST FACING SOUTH              4.SOUTH ST LINE 3 W-7,,",
-      "area": "NORTH"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-64M",
@@ -750,8 +750,8 @@
       "num": 64,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "3.MARKADEYAN KOVIL ST W-7,, ROOM FROM EAST SIDE 4.SHEK MASTHAN ST W-8,, BATLAGUNDU-624202 5.MARKANDEYAN KOVIL ST 7 W-8, 1.Sivan kovil st1 w7, 2.SOUTH ST LINE 1 W-7,, MAHALAKSHMI GIRLS HIGHER                  3.SOUTH ST LINE 2 W-7,, SEC.SCHOOL EAST FACING SOUTH              4.SOUTH ST LINE 3 W-7,,",
-      "area": "NORTH"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-65",
@@ -759,8 +759,8 @@
       "num": 65,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "NEW BUILDING NORTH PORTION                5.Pattu noolkarar st 1 w-7,, BATLAGUNDU-624202                         6.VETHAPPAN SANTHU W-7,, 7.METTU ST 1 W7,, 8.Mettu st2 w7,, 1.SOUTH ST2 W-7,, 2.MARKANDEYAN KOVIL ST 6 W8, 3.KADAI VEETHI 1 W-8,, MAHALAKSHMI GIRLS HIGHER                  4.THAIYALKARAR ST2 W8,, SEC.SCHOOL EAST FACING SOUTH              5.PATTU NOOLKARAR ST 2 W-8,,",
-      "area": "PORTION"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-66",
@@ -768,17 +768,17 @@
       "num": 66,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "NEW BUILDING SOUTH PORTION                6.KANNANAR ST W-8,, BATLAGUNDU-624202                         7.SANKILI KOVIL ST W-8,, 8.VALAYAL KARAR ST W-8,, 9.KASUKARAR ST W8,, 10.LOCAL PANDU ST 3 W10, Polling     Polling Stations or women only Station 1.Markandeyan kovil st 1 w-6, 2.MARKANDEYAN KOVIL ST 2 W-6,, 3.MARKANDEYAN KOVIL ST 3 W-6, 4.THAIYALKARAR ST W-6,, 5.SANTHAIPETAI ST W-6,, ST.JOSEPH PRIMARY SCHOOL NORTH",
-      "area": "PORTION"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-67A(W)",
       "boothNo": "67A(W)",
       "num": 67,
-      "type": "women",
+      "type": "regular",
       "name": "Batlagundu",
-      "address": "6.KANNAKI ST 2 W-6,, PORTIONBATLAGUNDU-624202 7.KANNAKI ST 3 W-6,, 8.RICEMILL ST 1 W-6,, 9.RICEMILL ST 2 W-6,, 10.KANNAKI ST W-6,, 11.EMMANUVEL ST W-6, PANCHAYAT UNION MIDDLE SCHOOL 1.Kamatchipuramw1, WEST SIDE SOUTH PORTION EAST",
-      "area": "SCHOOL"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-67M",
@@ -786,8 +786,8 @@
       "num": 67,
       "type": "regular",
       "name": "Batlagundu",
-      "address": "6.KANNAKI ST 2 W-6,, PORTIONBATLAGUNDU-624202 7.KANNAKI ST 3 W-6,, 8.RICEMILL ST 1 W-6,, 9.RICEMILL ST 2 W-6,, 10.KANNAKI ST W-6,, 11.EMMANUVEL ST W-6, PANCHAYAT UNION MIDDLE SCHOOL 1.Kamatchipuramw1, WEST SIDE SOUTH PORTION EAST",
-      "area": "SCHOOL"
+      "address": "Batlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-68",
@@ -795,8 +795,8 @@
       "num": 68,
       "type": "regular",
       "name": "Kattakamanpatti",
-      "address": "2.KATTAKAMANPATTY W2,, FACING ADDL.BUILDING 3.VKATTAKAMANPATTY W3, KATTAKAMANPATTI - 624202 PANCHAYAT UNION MIDDLE SCHOOL WEST SIDE NORTH PORTION EAST",
-      "area": "MIDDLE"
+      "address": "Kattakamanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-69",
@@ -804,8 +804,8 @@
       "num": 69,
       "type": "regular",
       "name": "Kattakamanpatti",
-      "address": "1.Kattakamanpatty w3 FACING ADDL.BUILDING KATTAKAMANPATTI - 624202 PANCHAYAT UNION MIDDLE SCHOOL WEST FACING EAST BUILDING",
-      "area": "MIDDLE"
+      "address": "Kattakamanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-70",
@@ -813,8 +813,8 @@
       "num": 70,
       "type": "regular",
       "name": "Kattakamanpatti",
-      "address": "1.KATTAKAMANPATTY,PARASURAMAPURAM W4, SOUTH PORTION KATTAKAMANPATTI - 624202 GOVT. HIGH SCHOOL 7A NORTH                1.Old batlagundu angala Parameswari w-1,",
-      "area": "MIDDLE"
+      "address": "Kattakamanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-71",
@@ -822,8 +822,8 @@
       "num": 71,
       "type": "regular",
       "name": "OldBatlagundu",
-      "address": "PORTION NEW BUILDING OLD 2.OLD BATLAGUNDU W-2,, BATLAGUNDU -624202 1.OLD BATLAGUNDU W-3,, 2.OLD BATLAGUNDU NORTH ST W-2,, GOVT. HIGH SCHOOL SOUTH FACING 3.BATLAGUNDU MAIN ROAD W-1,,",
-      "area": "HIGH"
+      "address": "OldBatlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-72",
@@ -831,8 +831,8 @@
       "num": 72,
       "type": "regular",
       "name": "OldBatlagundu",
-      "address": "WEST SIDE BUILDING IInd ROOM OLD 4.BATLAGUNDU EAST ST W-2,, BATLAGUNDU -624202 5.PATTALAMMAN KOVIL ST W-7,, 6.OLD BATLAGUNDU W-5, Polling     Polling Stations or women only Station 1.ANNA NAGAR W-2,, GOVT. HIGH SCHOOL 7B NORTH NEW",
-      "area": "SOUTH FACING"
+      "address": "OldBatlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-73",
@@ -840,8 +840,8 @@
       "num": 73,
       "type": "regular",
       "name": "OldBatlagundu",
-      "address": "2.EAST MAIN ROAD W-4,, BUILDING OLD BATLAGUNDU -624202 3.KALAIGNAR COLONY W-2,, 1.Ricemill st w-2, 2.DINDIGUL ST W-1,, GOVT. HIGH SCHOOL SOUTH FACING 3.OLD BATLAGUNDU W-2,,",
-      "area": "HIGH"
+      "address": "OldBatlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-74",
@@ -849,8 +849,8 @@
       "num": 74,
       "type": "regular",
       "name": "OldBatlagundu",
-      "address": "WEST SIDE BUILDING Ist ROOM OLD 4.CENTER ST W-4,, BATLAGUNDU -624202              5.CENTER ST W-3,, 6.SOUTH ST W-4,, 7.SOUTH MAIN ROAD W-4, BATLAGUNDU PANCHAYAT UNION                1.Kottaipatty w-1, PRIMARY SCHOOL EAST FACING                2.AMBETKAR COLONY W2,,",
-      "area": "SOUTH FACING"
+      "address": "OldBatlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-75",
@@ -858,8 +858,8 @@
       "num": 75,
       "type": "regular",
       "name": "Kottaipatti",
-      "address": "NORTH BUILDING SOUTH PORTION              3.INDIRANAGAR COLONY EAST W3,2,, KOTTAIPATTI - 624202                      4.INDIRA NAGAR COLONY W4, GOVT. HIGH SCHOOL SOUTH FACING",
-      "area": "PORTION"
+      "address": "Kottaipatti",
+      "area": ""
     },
     {
       "id": "TN-130-76",
@@ -867,17 +867,17 @@
       "num": 76,
       "type": "regular",
       "name": "OldBatlagundu",
-      "address": "WEST SIDE BUILDING IIIrd ROOM 1.OLD BATLAGUNDU PATTALAMMAN KOVIL ST W-5 OLD BATLAGUNDU -624202 1.West st w-5, PANCHAYAT UNION PRIMARY 2.PATTALAMMAN KOVIL ST W-5,, SCHOOL WEST FACING EAST",
-      "area": "SOUTH FACING"
+      "address": "OldBatlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-77A(W)",
       "boothNo": "77A(W)",
       "num": 77,
-      "type": "women",
+      "type": "regular",
       "name": "OldBatlagundu",
-      "address": "3.KALIYAMMAN KOVIL ST W-5,, BUILDING 2ND ROOM FORM NORTH 4.WEST DINDIGUL ST W-5,, SIDE OLD BATLAGUNDU -624202 5.THAIYARI KARUPPANAN NAGAR W-5, PANCHAYAT UNION PRIMARY 1.Old batlagundu main road block5w4,",
-      "area": "NILAKOTTAI"
+      "address": "OldBatlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-77M",
@@ -885,8 +885,8 @@
       "num": 77,
       "type": "regular",
       "name": "OldBatlagundu",
-      "address": "3.KALIYAMMAN KOVIL ST W-5,, BUILDING 2ND ROOM FORM NORTH 4.WEST DINDIGUL ST W-5,, SIDE OLD BATLAGUNDU -624202 5.THAIYARI KARUPPANAN NAGAR W-5, PANCHAYAT UNION PRIMARY 1.Old batlagundu main road block5w4,",
-      "area": "NILAKOTTAI"
+      "address": "OldBatlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-78",
@@ -894,35 +894,35 @@
       "num": 78,
       "type": "regular",
       "name": "OldBatlagundu",
-      "address": "SCHOOL NORTH NEW BUILDING OLD 2.OLD BATLAGUNDU BLOCK 6 W4, BATLAGUNDU -624202 PANCHAYAT UNION MIDDLE SCHOOL Veriyappanaickanpa                                 1.Veriyappa naicken patty w-1,",
-      "area": "SCHOOL"
-    },
-    {
-      "id": "TN-130-79A(W)",
-      "boothNo": "79A(W)",
-      "num": 79,
-      "type": "women",
-      "name": "NORTH BUILDING EAST PORTION",
-      "address": "tti                                                2.Veriyappanayackanpatti,uchapatty, kadamanoor w1 Door No 1 to 200, VERIYAPPANAYACKANPATTI - 624202 Polling      Polling Stations or women only Station PANCHAYAT UNION MIDDLE SCHOOL SOUTH FACING NORTH BUILDING Veriyappanaickanpa",
-      "area": "MIDDLE"
+      "address": "OldBatlagundu",
+      "area": ""
     },
     {
       "id": "TN-130-79M",
       "boothNo": "79M",
       "num": 79,
       "type": "regular",
-      "name": "NORTH BUILDING EAST PORTION",
-      "address": "tti                                                2.Veriyappanayackanpatti,uchapatty, kadamanoor w1 Door No 1 to 200, VERIYAPPANAYACKANPATTI - 624202 Polling      Polling Stations or women only Station PANCHAYAT UNION MIDDLE SCHOOL SOUTH FACING NORTH BUILDING Veriyappanaickanpa",
-      "area": "MIDDLE"
+      "name": "Booth 79M",
+      "address": "Booth 79M",
+      "area": ""
+    },
+    {
+      "id": "TN-130-79A(W)",
+      "boothNo": "79A(W)",
+      "num": 79,
+      "type": "regular",
+      "name": "Booth 79A(W)",
+      "address": "Booth 79A(W)",
+      "area": ""
     },
     {
       "id": "TN-130-80",
       "boothNo": "80",
       "num": 80,
       "type": "regular",
-      "name": "CENTRE PORTION ADDITIONAL",
-      "address": "1.Veriyappanayackanpatti,uchapatty, kadamanoor w1 Door No from 201 , tti BUILDING VERIYAPPANAYACKANPATTI - 624202 BATLAGUNDU PANCHAYAT UNION PRIMARY SCHOOL, EAST FACING,               1.Eluvanam patty w-3,",
-      "area": "MIDDLE"
+      "name": "Booth 80",
+      "address": "Booth 80",
+      "area": ""
     },
     {
       "id": "TN-130-81",
@@ -930,8 +930,8 @@
       "num": 81,
       "type": "regular",
       "name": "Eluvanampatti",
-      "address": "WEST BUILDING ELUVANAMPATTI -              2.ELUVANAMPATTY W-4, 624202 BATLAGUNDU PANCHAYAT UNION PRIMARY SCHOOL WEST FACING                 1.Eluvanampatty w 3,",
-      "area": "ELUVANAMPATTI"
+      "address": "Eluvanampatti",
+      "area": ""
     },
     {
       "id": "TN-130-82",
@@ -939,8 +939,8 @@
       "num": 82,
       "type": "regular",
       "name": "Eluvanampatti",
-      "address": "EAST BUILDING NORTH SIDE                   2.ELUVANAMPATTY W 4, ELUVANAMPATTI - 624202 BATLAGUNDU PANCHAYAT UNION PRIMARY SCHOOL WEST FACING                 1.Eluvanampatty bagavathi kovil st,jagajeevan nagar w2,",
-      "area": "SIDE"
+      "address": "Eluvanampatti",
+      "area": ""
     },
     {
       "id": "TN-130-83",
@@ -948,8 +948,8 @@
       "num": 83,
       "type": "regular",
       "name": "Eluvanampatti",
-      "address": "EAST BUILDING SOUTH SIDE                   2.JEGAJEEVAN NAGAR W-2, ELUVANAMPATTI - 624202 ADI DRAVIDAR WELFARE PRIMARY 1.Kurumpapatty,samiyar moopanoor w1, (Sl.No.1 to 600)",
-      "area": "SIDE"
+      "address": "Eluvanampatti",
+      "area": ""
     },
     {
       "id": "TN-130-84",
@@ -957,8 +957,8 @@
       "num": 84,
       "type": "regular",
       "name": "Kurumbapatti",
-      "address": "SCHOOL EAST FACE WEST BUILDING 2.SAMIYAR MOOPANOOR W 1, V. KURUMPPAPATTY - 624202 ADI DRAVIDAR WELFARE HIGH 1.Kurumpapatty,samiyar moopanoor w1,",
-      "area": "NILAKOTTAI"
+      "address": "Kurumbapatti",
+      "area": ""
     },
     {
       "id": "TN-130-85",
@@ -966,17 +966,8 @@
       "num": 85,
       "type": "regular",
       "name": "Kurumbapatti",
-      "address": "SCHOOL SOUTH FACING, NORTH NEW (Sl.No.601 to 1110) BUILDING V. KURUMPPAPATTY - 624202 BATLAGUNDU PANCHAYAT UNION 1.Meenang kannipatty, kannimarkovilpatti, pannaipatti w2,",
-      "area": "NILAKOTTAI"
-    },
-    {
-      "id": "TN-130-86A(W)",
-      "boothNo": "86A(W)",
-      "num": 86,
-      "type": "women",
-      "name": "Pannaipatti",
-      "address": "PRIMARY SCHOOL , ADDL.EAST 2.PANNAIPATTY W-2, BUILDING, PANNAIPATI -624202 PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "SCHOOL"
+      "address": "Kurumbapatti",
+      "area": ""
     },
     {
       "id": "TN-130-86M",
@@ -984,17 +975,17 @@
       "num": 86,
       "type": "regular",
       "name": "Pannaipatti",
-      "address": "PRIMARY SCHOOL , ADDL.EAST 2.PANNAIPATTY W-2, BUILDING, PANNAIPATI -624202 PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "SCHOOL"
+      "address": "Pannaipatti",
+      "area": ""
     },
     {
-      "id": "TN-130-87A(W)",
-      "boothNo": "87A(W)",
-      "num": 87,
-      "type": "women",
-      "name": "Viralipatti",
-      "address": "WEST NEW BUILDING VIRALIPATTI - 1.VERALIPATTI W 3 624202 PANCHAYAT UNION MIDDLE.SCHOOL",
-      "area": "MIDDLE"
+      "id": "TN-130-86A(W)",
+      "boothNo": "86A(W)",
+      "num": 86,
+      "type": "regular",
+      "name": "Pannaipatti",
+      "address": "Pannaipatti",
+      "area": ""
     },
     {
       "id": "TN-130-87M",
@@ -1002,8 +993,17 @@
       "num": 87,
       "type": "regular",
       "name": "Viralipatti",
-      "address": "WEST NEW BUILDING VIRALIPATTI - 1.VERALIPATTI W 3 624202 PANCHAYAT UNION MIDDLE.SCHOOL",
-      "area": "MIDDLE"
+      "address": "Viralipatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-87A(W)",
+      "boothNo": "87A(W)",
+      "num": 87,
+      "type": "regular",
+      "name": "Viralipatti",
+      "address": "Viralipatti",
+      "area": ""
     },
     {
       "id": "TN-130-88",
@@ -1011,8 +1011,8 @@
       "num": 88,
       "type": "regular",
       "name": "Viralipatti",
-      "address": "SOUTH SIDE NORTH FACING TILED 1.Viralipatti, South street, Southstreet Colony , W 4 BUILDING VIRALIPATTI -624202 Polling      Polling Stations or women only Station GOVT.HIGH SCHOOL NORTH FACING",
-      "area": "MIDDLE."
+      "address": "Viralipatti",
+      "area": ""
     },
     {
       "id": "TN-130-89",
@@ -1020,8 +1020,8 @@
       "num": 89,
       "type": "regular",
       "name": "Viralipatti",
-      "address": "SOUTH SIDE IIND 1.Viralipatti, Middle Street, West Street, W 4 BUILDINGVIRALIPATTI -624202 PANCHAYAT UNION PRIMARY                   1.RAMANAICKANPATTI W 5 2.POOVAMPATTI W-5 3.KARUPPAMOOPPANPATTI , POOVAMPATTI,",
-      "area": "NORTH FACING"
+      "address": "Viralipatti",
+      "area": ""
     },
     {
       "id": "TN-130-90",
@@ -1029,8 +1029,8 @@
       "num": 90,
       "type": "regular",
       "name": "Ramanaickanpatti",
-      "address": "SCHOOL NORTH FACING BUILDING RAMANAICKANPATTI W-5, Door No.From 1 to 200 RAMANAICKANPATTI -624202 PANCHAYAT UNION PRIMARY SCHOOL WEST FACING SOUTH NEW              1.KARUPPAMOOPPANPATTI , POOVAMPATTI, RAMANAICKANPATTI W-5, Door No.From 201",
-      "area": "NILAKOTTAI"
+      "address": "Ramanaickanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-91",
@@ -1038,26 +1038,26 @@
       "num": 91,
       "type": "regular",
       "name": "Ramanaickanpatti",
-      "address": "BUILDING RAMANAICKANPATTI - 624202 PANCHAYAT UNION PRIMARY Rengappanaickenpat SCHOOL NORTH FACING TILED",
-      "area": "TILED"
+      "address": "Ramanaickanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-92",
       "boothNo": "92",
       "num": 92,
       "type": "regular",
-      "name": "1.Rengappanaickanpatti Ward2",
-      "address": "ti                 BUILDING RENGAPPANAICKEN PATTY -624220 PANCHAYAT UNION PRIMARY Rengappanaickenpat SCHOOL SOUTH FACING NORTH",
-      "area": "RENGAPPANAICKEN"
+      "name": "Booth 92",
+      "address": "Booth 92",
+      "area": ""
     },
     {
       "id": "TN-130-93",
       "boothNo": "93",
       "num": 93,
       "type": "regular",
-      "name": "1.Kamatchipuram, Mayathipuram Ward 2",
-      "address": "2.Servaranpatti, Sedapatti Ward 1,2 ti                 BUILDING RENGAPPANAICKEN PATTY -624220 PANCHAYAT UNOIN PRIMARY",
-      "area": "RENGAPPANAICKEN"
+      "name": "Booth 93",
+      "address": "Booth 93",
+      "area": ""
     },
     {
       "id": "TN-130-94",
@@ -1065,17 +1065,17 @@
       "num": 94,
       "type": "regular",
       "name": "Kunnuthupatti",
-      "address": "SCHOOL NORTH FACING BUILDING 1.Kunoothu patty w-3 KUNNUTHUPATTI-624220 GOVT KALLAR HIGH SCHOOL WEST FACING EAST BUILDING IIND ROOM",
-      "area": "WEST"
+      "address": "Kunnuthupatti",
+      "area": ""
     },
     {
       "id": "TN-130-95A(W)",
       "boothNo": "95A(W)",
       "num": 95,
-      "type": "women",
+      "type": "regular",
       "name": "Theppathupatti",
-      "address": "1.Thethuppatty w-4 FROM SOUTH SIDE THEPPATHUPATTY - 624220 PANCHAYAT UNION MIDDLE SCHOOL 1.Rajathani kottai w-3,",
-      "area": "WEST"
+      "address": "Theppathupatti",
+      "area": ""
     },
     {
       "id": "TN-130-95M",
@@ -1083,17 +1083,17 @@
       "num": 95,
       "type": "regular",
       "name": "Theppathupatti",
-      "address": "1.Thethuppatty w-4 FROM SOUTH SIDE THEPPATHUPATTY - 624220 PANCHAYAT UNION MIDDLE SCHOOL 1.Rajathani kottai w-3,",
-      "area": "WEST"
+      "address": "Theppathupatti",
+      "area": ""
     },
     {
       "id": "TN-130-96A(W)",
       "boothNo": "96A(W)",
       "num": 96,
-      "type": "women",
+      "type": "regular",
       "name": "Valayapatti",
-      "address": "NORTH BUILDING VALAYAPATTI - 2.SANTHIAYUR W-4, 624220 PANCHAYAT UNION MIDDLE SCHOOL 1.NORTH VALAYAPATTY W-1",
-      "area": "MIDDLE"
+      "address": "Valayapatti",
+      "area": ""
     },
     {
       "id": "TN-130-96M",
@@ -1101,8 +1101,8 @@
       "num": 96,
       "type": "regular",
       "name": "Valayapatti",
-      "address": "NORTH BUILDING VALAYAPATTI - 2.SANTHIAYUR W-4, 624220 PANCHAYAT UNION MIDDLE SCHOOL 1.NORTH VALAYAPATTY W-1",
-      "area": "MIDDLE"
+      "address": "Valayapatti",
+      "area": ""
     },
     {
       "id": "TN-130-97",
@@ -1110,8 +1110,8 @@
       "num": 97,
       "type": "regular",
       "name": "Valayapatti",
-      "address": "SOUTH BUILDING NORTH FACING 2.THAATHA PATTY W-4, VALAYAPATTI -624220 PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "MIDDLE"
+      "address": "Valayapatti",
+      "area": ""
     },
     {
       "id": "TN-130-98",
@@ -1119,8 +1119,8 @@
       "num": 98,
       "type": "regular",
       "name": "Valayapatti",
-      "address": "NEW SOUTH BUILDING WEST SIDE 1.SOUTH VALAYA PATTY W-2 VALAYAPATTI -624220 Polling     Polling Stations or women only Station GOVT HIGHER SEC SCHOOL WEST",
-      "area": "MIDDLE"
+      "address": "Valayapatti",
+      "area": ""
     },
     {
       "id": "TN-130-99",
@@ -1128,8 +1128,8 @@
       "num": 99,
       "type": "regular",
       "name": "Sekkapatti",
-      "address": "FACE EAST SIDE BUILDING 1.SEKKAPATTY W-1 SEKKAPATTY-624220 GOVT HIGHER SEC SCHOOL WEST                1.SEKKAPATTY W-2,",
-      "area": "WEST"
+      "address": "Sekkapatti",
+      "area": ""
     },
     {
       "id": "TN-130-100",
@@ -1137,8 +1137,8 @@
       "num": 100,
       "type": "regular",
       "name": "Sekkapatti",
-      "address": "FACE EAST SIDE MIDDLE BUILDING SEKKAPATTY-624220 GOVT HIGHER SEC SCHOOL WEST",
-      "area": "WEST"
+      "address": "Sekkapatti",
+      "area": ""
     },
     {
       "id": "TN-130-101",
@@ -1146,71 +1146,71 @@
       "num": 101,
       "type": "regular",
       "name": "Sekkapatti",
-      "address": "FACE EAST SIDE NORTH BUILDING 1.SEM METTU PATTY W3, SEKKAPATTY-624220 Government Higher Secondary school, 1.Veruveedu w-1,",
-      "area": "WEST"
+      "address": "Sekkapatti",
+      "area": ""
     },
     {
       "id": "TN-130-102A(W)",
       "boothNo": "102A(W)",
       "num": 102,
-      "type": "women",
-      "name": "Viruveedu",
-      "address": "South facing, North West building, from 2.VIRUVEEDU W-2, west side second room Viruveedu - 624220 Government Higher Secondary school, 1.KEELA THEPPATHU PATTY W-2,",
-      "area": "Secondary"
+      "type": "regular",
+      "name": "Booth 102A(W)",
+      "address": "Booth 102A(W)",
+      "area": ""
     },
     {
       "id": "TN-130-102M",
       "boothNo": "102M",
       "num": 102,
       "type": "regular",
-      "name": "Viruveedu",
-      "address": "South facing, North West building, from 2.VIRUVEEDU W-2, west side second room Viruveedu - 624220 Government Higher Secondary school, 1.KEELA THEPPATHU PATTY W-2,",
-      "area": "Secondary"
+      "name": "Booth 102M",
+      "address": "Booth 102M",
+      "area": ""
     },
     {
       "id": "TN-130-103",
       "boothNo": "103",
       "num": 103,
       "type": "regular",
-      "name": "Viruveedu",
-      "address": "South facing, North West building, from 2.KEELA THEPPATHU PATTY W-3, East side first room Viruveedu - 624220 Government Higher Secondary school,",
-      "area": "Secondary"
+      "name": "Booth 103",
+      "address": "Booth 103",
+      "area": ""
     },
     {
       "id": "TN-130-104",
       "boothNo": "104",
       "num": 104,
       "type": "regular",
-      "name": "Viruveedu",
-      "address": "South facing, North East building, Centre 1.Darmathu patty w-3 Porton Viruveedu - 624220 Government Higher Secondary school,        1.THARMARASAPURAM W-4,",
-      "area": "Secondary"
+      "name": "Booth 104",
+      "address": "Booth 104",
+      "area": ""
     },
     {
       "id": "TN-130-105",
       "boothNo": "105",
       "num": 105,
       "type": "regular",
-      "name": "Viruveedu",
-      "address": "South facing, North East building, East 2.MEL ACHANNAM PATTY W-4,, ortion Viruveedu - 624220                  3.MAYATHI PURAM W-4, Government Higher Secondary school,",
-      "area": "Secondary"
+      "name": "Booth 105",
+      "address": "Booth 105",
+      "area": ""
     },
     {
       "id": "TN-130-106",
       "boothNo": "106",
       "num": 106,
       "type": "regular",
-      "name": "Viruveedu",
-      "address": "West facing, East Addl.Building, North 1.Veruveedu w-1 Portion Viruveedu - 624220 Government Higher Secondary school,        1.KEELA ACHANNAM PATTY W-4,",
-      "area": "Secondary"
+      "name": "Booth 106",
+      "address": "Booth 106",
+      "area": ""
     },
     {
       "id": "TN-130-107",
       "boothNo": "107",
       "num": 107,
       "type": "regular",
-      "name": "Viruveedu",
-      "address": "West facing, East Addl.Building, East 2.KAMPOOTHIRI NAICHKEN PATTY W-4,, Portion Viruveedu - 624220                 3.MELA ACHANAM PATTY W-4, Virali mayan patty (p)- GOVT. KALLAR PRAIMARY SCHOOL  1.Virali mayan patty w-1,",
-      "area": "Secondary"
+      "name": "Booth 107",
+      "address": "Booth 107",
+      "area": ""
     },
     {
       "id": "TN-130-108",
@@ -1218,8 +1218,8 @@
       "num": 108,
       "type": "regular",
       "name": "Viralimayanpatti",
-      "address": "EAST SIDE NAGAIYAGOUNDENPATTY VIRALIMAYANPATTY - 624220 Polling     Polling Stations or women only Station PANCHAYAT UNION PRAIMARY                  VIRALI MAYAN PATTI (R.V) and (P)                          1.SENMAR PATTY W-2 ,",
-      "area": "PRAIMARY"
+      "address": "Viralimayanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-109",
@@ -1227,8 +1227,8 @@
       "num": 109,
       "type": "regular",
       "name": "Senmarpatti",
-      "address": "SCHOOL NORTH FACING BUILDING 2.KONIYAM PATTY W-3 , SENMARPATTI - 624220                      3.PERUMAL KOVILPATTY W-3 GOVT.KALLAR PRAIMARY SCHOOL   VIRALI MAYAN PATTI (R.V) and (P)-",
-      "area": "PATTI"
+      "address": "Senmarpatti",
+      "area": ""
     },
     {
       "id": "TN-130-110",
@@ -1236,8 +1236,8 @@
       "num": 110,
       "type": "regular",
       "name": "Viralimayanpatti",
-      "address": "WEST SIDE NAGAIYAGOUNDENPATTY 1.NAGAIYA GOUNDEN PATTY W-2, VIRALIMAYANPATTY -624220      2.GOPALAPURAM W-2 PANCHAYAT UNION MIDDLE SCHOOL 1.NATA KOTTAI W-2,",
-      "area": "PRAIMARY"
+      "address": "Viralimayanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-111",
@@ -1245,8 +1245,8 @@
       "num": 111,
       "type": "regular",
       "name": "Nadakottai",
-      "address": "NORTH FACE SOUTH TILED (Sl.No.1 to 600)                       2.VATHAL PATTY W-3, BUILDING NADAKOTTAI - 624220 PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "MIDDLE"
+      "address": "Nadakottai",
+      "area": ""
     },
     {
       "id": "TN-130-112",
@@ -1254,17 +1254,17 @@
       "num": 112,
       "type": "regular",
       "name": "Nadakottai",
-      "address": "WEST FACING EAST BUILDING 1.NATA KOTTAI W-2, (Sl.No.601 to 1092) NADAKOTTAI - 624220 GOVT. KALLAR PRIMARY SCHOOL 1.AKKARAIPPATTI W-1, NORTH FACING BUILDING",
-      "area": "MIDDLE"
+      "address": "Nadakottai",
+      "area": ""
     },
     {
       "id": "TN-130-113A(W)",
       "boothNo": "113A(W)",
       "num": 113,
-      "type": "women",
+      "type": "regular",
       "name": "Akkaraipatti",
-      "address": "2.GANAPATHI PATTY W-1,, NALLUDEVANPATTY AKKARAIPATTY - 3.NNATA KOTTAI AATHEE THIRAVITAR COLONY W-1, 624220 1.SEMPATTY SOUTH AREA BLOCK DEVELOPMENT OFFICE EAST",
-      "area": "PRIMARY"
+      "address": "Akkaraipatti",
+      "area": ""
     },
     {
       "id": "TN-130-113M",
@@ -1272,26 +1272,26 @@
       "num": 113,
       "type": "regular",
       "name": "Akkaraipatti",
-      "address": "2.GANAPATHI PATTY W-1,, NALLUDEVANPATTY AKKARAIPATTY - 3.NNATA KOTTAI AATHEE THIRAVITAR COLONY W-1, 624220 1.SEMPATTY SOUTH AREA BLOCK DEVELOPMENT OFFICE EAST",
-      "area": "PRIMARY"
+      "address": "Akkaraipatti",
+      "area": ""
     },
     {
       "id": "TN-130-114",
       "boothNo": "114",
       "num": 114,
       "type": "regular",
-      "name": "Sempatti",
-      "address": "W1 BUILDING SEMPATTI - 624207 Door no. From 1 to 100 BLOCK DEVELOPMENT OFFICE WEST",
-      "area": "WEST"
+      "name": "Booth 114",
+      "address": "Booth 114",
+      "area": ""
     },
     {
       "id": "TN-130-115",
       "boothNo": "115",
       "num": 115,
       "type": "regular",
-      "name": "Sempatti",
-      "address": "1.SEMPATTY NORTH AREA W1 Door.No. From 101 BUILDING SEMPATTI - 624207 PANCHAYAT UNION PRIMARY SCHOOL SOUTH SIDE WEST",
-      "area": "NILAKOTTAI"
+      "name": "Booth 115",
+      "address": "Booth 115",
+      "area": ""
     },
     {
       "id": "TN-130-116",
@@ -1299,8 +1299,8 @@
       "num": 116,
       "type": "regular",
       "name": "Patchamalayankottai",
-      "address": "1.PACHAI MALAYAN KOTTAI W 2, DOOR NO.1 TO 200 BUILDING PATCHAMALAYANKOTTAI - 624208 PANCHAYAT UNION PRIMARY        1.PACHAI MALAYAN KOTTAI,KETHAIYAGOUNDANPATTI, RAJIVGANDTHIPURAM W 2, SCHOOL EAST FACING EAST SIDE   DOOR.NO.FROM 201",
-      "area": "NILAKOTTAI"
+      "address": "Patchamalayankottai",
+      "area": ""
     },
     {
       "id": "TN-130-117",
@@ -1308,8 +1308,8 @@
       "num": 117,
       "type": "regular",
       "name": "Patchamalayankottai",
-      "address": "BUILDING PATCHAMALAYANKOTTAI - 2.KETHAIA GOUNDEN PATTY W 2,, 624208                         3.RAJEEV GANDHI PURAM W 2, PANCHAYAT UNION ELE. SCHOOL               1.Thirumaya gounden patty w-2,",
-      "area": "SCHOOL"
+      "address": "Patchamalayankottai",
+      "area": ""
     },
     {
       "id": "TN-130-118",
@@ -1317,8 +1317,8 @@
       "num": 118,
       "type": "regular",
       "name": "Sellayeepuram",
-      "address": "WEST FACING TILED BUILDING 2.SEDAPATTI W-2,, SELLAYEEPURAM - 624208                    3.PUDU KOTTAI W3, Polling     Polling Stations or women only Station PANCHAYAT UNOIN PRIMARY 1.SELLAYI PURAM W-3,",
-      "area": "ELE."
+      "address": "Sellayeepuram",
+      "area": ""
     },
     {
       "id": "TN-130-119",
@@ -1326,8 +1326,8 @@
       "num": 119,
       "type": "regular",
       "name": "Sellayeepuram",
-      "address": "SCHOOL EAST FACING ADDL. BUILDING SELLAYEEPURAM - 624208 PANCHAYAT UNOIN PRIMARY",
-      "area": "NILAKOTTAI"
+      "address": "Sellayeepuram",
+      "area": ""
     },
     {
       "id": "TN-130-120",
@@ -1335,17 +1335,17 @@
       "num": 120,
       "type": "regular",
       "name": "Sellayeepuram",
-      "address": "SCHOOL WEST FACING EAST 1.THIMMI NAICHKEN PATTY W-3,, BUILDING SELLAYEEPURAM - 624208           2.VEDAPATTY W-3, PANCHAYAT UNION PRIMARY 1.SUKKUKAPURAM W-4",
-      "area": "NILAKOTTAI"
+      "address": "Sellayeepuram",
+      "area": ""
     },
     {
       "id": "TN-130-121A(W)",
       "boothNo": "121A(W)",
       "num": 121,
-      "type": "women",
+      "type": "regular",
       "name": "S.Pudukottai",
-      "address": ".SCHOOL SOUTH FACING, TILED 2.PUDUKOTTAI W-4, BUILDING, S.PUDUKOTTAI - 624707 GOVT KALLAR HR SEC SCHOOL ADDL. SCHOOL BUILDING WEST FACING     1.PUDUCHATRAM W-4,",
-      "area": "ADDL."
+      "address": "S.Pudukottai",
+      "area": ""
     },
     {
       "id": "TN-130-121M",
@@ -1353,8 +1353,8 @@
       "num": 121,
       "type": "regular",
       "name": "S.Pudukottai",
-      "address": ".SCHOOL SOUTH FACING, TILED 2.PUDUKOTTAI W-4, BUILDING, S.PUDUKOTTAI - 624707 GOVT KALLAR HR SEC SCHOOL ADDL. SCHOOL BUILDING WEST FACING     1.PUDUCHATRAM W-4,",
-      "area": "ADDL."
+      "address": "S.Pudukottai",
+      "area": ""
     },
     {
       "id": "TN-130-122",
@@ -1362,17 +1362,17 @@
       "num": 122,
       "type": "regular",
       "name": "Kamupillaichatram",
-      "address": "SOUTH PORTION                   2.PUDU KAMAN PATTY W-4, KAMUPILLAICHATRAM - 624208 PANCHAYAT UNION PRIMARY                   1.OTTU PATTY W-5,",
-      "area": "SEC"
+      "address": "Kamupillaichatram",
+      "area": ""
     },
     {
       "id": "TN-130-123",
       "boothNo": "123",
       "num": 123,
       "type": "regular",
-      "name": "Ottupatti",
-      "address": "SCHOOL SOUTH FACING BUILDING OTTUPATTI - 624208 PANCHAYAT UNION PRIMARY",
-      "area": "NILAKOTTAI"
+      "name": "Booth 123",
+      "address": "Booth 123",
+      "area": ""
     },
     {
       "id": "TN-130-124",
@@ -1380,26 +1380,26 @@
       "num": 124,
       "type": "regular",
       "name": "Koothampatti",
-      "address": "SCHOOL EAST FACING WEST BUILDING 1.KOOTHAMPATTY W-5, C.KOOTHAMPATTI - 624208 1.UTTHUPATTY BLOCK 3 W1, PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "SCHOOL"
+      "address": "Koothampatti",
+      "area": ""
     },
     {
       "id": "TN-130-125A(W)",
       "boothNo": "125A(W)",
       "num": 125,
-      "type": "women",
-      "name": "Uthupatti",
-      "address": "2.UTTHUPATTY WEST ST W-3,, NORTH BUILDING UTHUPATTI - 624208 3.UTTHU PATTY NORTH COLONY W-3, PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "MIDDLE"
+      "type": "regular",
+      "name": "Booth 125A(W)",
+      "address": "Booth 125A(W)",
+      "area": ""
     },
     {
       "id": "TN-130-125M",
       "boothNo": "125M",
       "num": 125,
       "type": "regular",
-      "name": "Uthupatti",
-      "address": "2.UTTHUPATTY WEST ST W-3,, NORTH BUILDING UTHUPATTI - 624208 3.UTTHU PATTY NORTH COLONY W-3, PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "MIDDLE"
+      "name": "Booth 125M",
+      "address": "Booth 125M",
+      "area": ""
     },
     {
       "id": "TN-130-126",
@@ -1407,8 +1407,8 @@
       "num": 126,
       "type": "regular",
       "name": "Sakkaiyanaickanur",
-      "address": "WEST SIDE TILED BUILDING JAMBUTHURAIKOTTAI (R.V) and (P) 1.SAKKAIYANAYACKANOOR BLOCK 1 W2 , SAKKAIYANAICKANUR - 624206 PANCHAYAT UNION MIDDLE SCHOOL SOUTH FACING EAST SIDE R.C",
-      "area": "MIDDLE"
+      "address": "Sakkaiyanaickanur",
+      "area": ""
     },
     {
       "id": "TN-130-127",
@@ -1416,8 +1416,8 @@
       "num": 127,
       "type": "regular",
       "name": "Sakkaiyanaickanur",
-      "address": "JAMBUTHURAIKOTTAI (R.V) and (P) 1.SAKKAIYANAYACKANOOR BLOCK 2 W5 , BUILDING SAKKAIYANAICKANUR - 624206 Polling      Polling Stations or women only Station 1.SAKKAIYA NAIHCKANOOR NORTH ST W-4, PANCHAYAT UNION MIDDLE SCHOOL 2.ALAGAMPATTI BLOCK 4 W2,,",
-      "area": "MIDDLE"
+      "address": "Sakkaiyanaickanur",
+      "area": ""
     },
     {
       "id": "TN-130-128",
@@ -1425,17 +1425,17 @@
       "num": 128,
       "type": "regular",
       "name": "Sakkaiyanaickanur",
-      "address": "EAST SIDE CENTER BUILDING 3.POOTHIPURAM BLOCK 4 W2,, SAKKAIYANAICKANUR - 624206 4.MONDANPATTY BLOCK 4 W2, JAMBUTHURAIKOTTAI (R.V) and (P) PANCHAYAT UNION MIDDLE SCHOOL 1.METOOR W-6,7 , Adaikalamathapura EAST SIDE TILED BUILDING",
-      "area": "MIDDLE"
+      "address": "Sakkaiyanaickanur",
+      "area": ""
     },
     {
       "id": "TN-130-129",
       "boothNo": "129",
       "num": 129,
       "type": "regular",
-      "name": "2.KAMALAPURAM PIRIVU W4",
-      "address": "m                 KAMALAPURAM 3.COLONY W4 , ADAIKALAMATHAPURAM - 624206 4.KAMALAPURAM EAST ST W4 PANCHAYAT UNION PRIMARY",
-      "area": "MIDDLE"
+      "name": "Booth 129",
+      "address": "Booth 129",
+      "area": ""
     },
     {
       "id": "TN-130-130",
@@ -1443,26 +1443,26 @@
       "num": 130,
       "type": "regular",
       "name": "Jallipatti",
-      "address": "SCHOOL SOUTH SIDE EAST FACING JAMBUTHURAIKOTTAI (R.V) and (P) 1.JALLIPATTY W3 , BUILDING JALLIPATTI - 624206 PANCHAYAT UNION MIDDLE SCHOOL Adaikalamathapura NORTH SIDE NEW CONCRETE",
-      "area": "SCHOOL"
+      "address": "Jallipatti",
+      "area": ""
     },
     {
       "id": "TN-130-131",
       "boothNo": "131",
       "num": 131,
       "type": "regular",
-      "name": "1.KAMALAPURAM PIRIVU W4",
-      "address": "m                 BUILDING KAMALAPURAM ADAIKALAMATHAPURAM - 624206 PANCHAYAT UNION MIDDLE SCHOOL 1.METOOR W3, Adaikalamathapura SOUTH SIDE NEW CONCRETE       2.KAMALAPURAM EAST ST W-7,,",
-      "area": "MIDDLE"
+      "name": "Booth 131",
+      "address": "Booth 131",
+      "area": ""
     },
     {
       "id": "TN-130-132",
       "boothNo": "132",
       "num": 132,
       "type": "regular",
-      "name": "All Voters",
-      "address": "m                 BUILDING KAMALAPURAM          3.KAMALAPURAM CENTER ST W4,, ADAIKALAMATHAPURAM - 624206   4.KALAPURAM WEST ST NORTH ST W-8, GOVT. A.D.W.HIGH SCHOOL",
-      "area": "MIDDLE"
+      "name": "Booth 132",
+      "address": "Booth 132",
+      "area": ""
     },
     {
       "id": "TN-130-133",
@@ -1470,8 +1470,8 @@
       "num": 133,
       "type": "regular",
       "name": "Alagampatti",
-      "address": "R.C.BUILDING EAST FACING 1.ALGAM PATTY BLOCK 4 SOUTH ST ,EAST ST W2, BUILDING ALAGAMPATTI - 624206 GOVT. A.D.W. HIGH SCHOOL WEST             1.ALGAMPATTY BLOCK 5 NORTH ST W2,,",
-      "area": "A.D.W.HIGH"
+      "address": "Alagampatti",
+      "area": ""
     },
     {
       "id": "TN-130-134",
@@ -1479,8 +1479,8 @@
       "num": 134,
       "type": "regular",
       "name": "Alagampatti",
-      "address": "FACING EAST BUILDING 2.KAMI NAICHKEN PATTY BLOCK 5 W2, ALAGAMPATTI - 624206                      3.THOPPI NAICKEN PATTY BLOCK 5 W2, GOVT HIGH SCHOOL NORTH SIDE,              1.KOLUNCHIPPATTY ST 1 W 16,",
-      "area": "WEST"
+      "address": "Alagampatti",
+      "area": ""
     },
     {
       "id": "TN-130-135",
@@ -1488,17 +1488,17 @@
       "num": 135,
       "type": "regular",
       "name": "Kolingipatti",
-      "address": "NEW BUILDING, KOLINGIPATTY - 2.KOLINCHIPATTY ST 2 W 16,, 624201                                    3.CHILLALA PATTY W 17, GOVT HIGH SCHOOL SOUTH SIDE 1.MEENAKCHI PURAM W-17,",
-      "area": "NORTH SIDE"
+      "address": "Kolingipatti",
+      "area": ""
     },
     {
       "id": "TN-130-136A(W)",
       "boothNo": "136A(W)",
       "num": 136,
-      "type": "women",
+      "type": "regular",
       "name": "Kolingipatti",
-      "address": ",NEW BUILDING, KOLINGIPATTY - 2.NAGAIYA GOUNDEN PATTY W-18, 624201 Polling     Polling Stations or women only Station 1.ORUTHATTU W-15, PANCHAYAT UNION PRIMARY         2.CHINNAKALADI PATTY W-15,,",
-      "area": "SOUTH SIDE"
+      "address": "Kolingipatti",
+      "area": ""
     },
     {
       "id": "TN-130-136M",
@@ -1506,8 +1506,8 @@
       "num": 136,
       "type": "regular",
       "name": "Kolingipatti",
-      "address": ",NEW BUILDING, KOLINGIPATTY - 2.NAGAIYA GOUNDEN PATTY W-18, 624201 Polling     Polling Stations or women only Station 1.ORUTHATTU W-15, PANCHAYAT UNION PRIMARY         2.CHINNAKALADI PATTY W-15,,",
-      "area": "SOUTH SIDE"
+      "address": "Kolingipatti",
+      "area": ""
     },
     {
       "id": "TN-130-137",
@@ -1515,17 +1515,8 @@
       "num": 137,
       "type": "regular",
       "name": "Pommanampatti",
-      "address": "SCHOOL FRONT SIDE MAIN 3.DARMAPURI W-3,, BUILDING POMMANAMPATTI - 624201 4.RAMARAJA PURAM W1,, 5.SUTHANTHIRA PURAM W-3, 1.KODAI ROAD W 4, PANCHAYAT UNION ELE. SCHOOL 2.PUDUR W 15,,",
-      "area": "SCHOOL"
-    },
-    {
-      "id": "TN-130-138A(W)",
-      "boothNo": "138A(W)",
-      "num": 138,
-      "type": "women",
-      "name": "Pommanampatti",
-      "address": "BACK SIDE ASBESTOS BUILDING 3.POMMANAM PATTY (THOTTA KUDIYIRUPPU) W 15,, POMMANAMPATTI - 624206 4.POMMANAM PATTY W 15, PANDIAN AIDED PRIMARY SCHOOL 1.RAMARAJAPURAM W 1,",
-      "area": "ELE."
+      "address": "Pommanampatti",
+      "area": ""
     },
     {
       "id": "TN-130-138M",
@@ -1533,17 +1524,26 @@
       "num": 138,
       "type": "regular",
       "name": "Pommanampatti",
-      "address": "BACK SIDE ASBESTOS BUILDING 3.POMMANAM PATTY (THOTTA KUDIYIRUPPU) W 15,, POMMANAMPATTI - 624206 4.POMMANAM PATTY W 15, PANDIAN AIDED PRIMARY SCHOOL 1.RAMARAJAPURAM W 1,",
-      "area": "ELE."
+      "address": "Pommanampatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-138A(W)",
+      "boothNo": "138A(W)",
+      "num": 138,
+      "type": "regular",
+      "name": "Pommanampatti",
+      "address": "Pommanampatti",
+      "area": ""
     },
     {
       "id": "TN-130-139A(W)",
       "boothNo": "139A(W)",
       "num": 139,
-      "type": "women",
+      "type": "regular",
       "name": "K.Rajathanikottai",
-      "address": "NORTH FACING BUILDING 2.RAJATHANI KOTTTAI W 1, 3.DARMAPURI W-3,,           4.RAMARAJA PURAM W1,, ,K.RAJATHANIKOTTAI - 624201 PANDIAN AIDED PRIMARY SCHOOL    1.RAJATHANI KOTTAI W-2,",
-      "area": "SCHOOL"
+      "address": "K.Rajathanikottai",
+      "area": ""
     },
     {
       "id": "TN-130-139M",
@@ -1551,17 +1551,8 @@
       "num": 139,
       "type": "regular",
       "name": "K.Rajathanikottai",
-      "address": "NORTH FACING BUILDING 2.RAJATHANI KOTTTAI W 1, 3.DARMAPURI W-3,,           4.RAMARAJA PURAM W1,, ,K.RAJATHANIKOTTAI - 624201 PANDIAN AIDED PRIMARY SCHOOL    1.RAJATHANI KOTTAI W-2,",
-      "area": "SCHOOL"
-    },
-    {
-      "id": "TN-130-140A(W)",
-      "boothNo": "140A(W)",
-      "num": 140,
-      "type": "women",
-      "name": "K.Rajathanikottai",
-      "address": "WEST SIDE SOUTH FACING BUILDING 2.RAJATHANI KOTTAI 2,W-3,, K.RAJATHANIKOTTAI - 624201      3.THALI W-4, LILIMALAR AIDED PRIMARY SCHOOL 1.JEGANATHAPURAM W 9,",
-      "area": "SCHOOL"
+      "address": "K.Rajathanikottai",
+      "area": ""
     },
     {
       "id": "TN-130-140M",
@@ -1569,26 +1560,35 @@
       "num": 140,
       "type": "regular",
       "name": "K.Rajathanikottai",
-      "address": "WEST SIDE SOUTH FACING BUILDING 2.RAJATHANI KOTTAI 2,W-3,, K.RAJATHANIKOTTAI - 624201      3.THALI W-4, LILIMALAR AIDED PRIMARY SCHOOL 1.JEGANATHAPURAM W 9,",
-      "area": "SCHOOL"
+      "address": "K.Rajathanikottai",
+      "area": ""
     },
     {
-      "id": "TN-130-141A(W)",
-      "boothNo": "141A(W)",
-      "num": 141,
-      "type": "women",
-      "name": "Kodairoad",
-      "address": "WEST FACING BUILDING KODAIROAD 2.A.PUDUR W 7,        3.SUTHANTHIRA PURAM W-3, - 624201 SRIKRISHNA AIDED PRIMARY SCHOOL",
-      "area": "SCHOOL"
+      "id": "TN-130-140A(W)",
+      "boothNo": "140A(W)",
+      "num": 140,
+      "type": "regular",
+      "name": "K.Rajathanikottai",
+      "address": "K.Rajathanikottai",
+      "area": ""
     },
     {
       "id": "TN-130-141M",
       "boothNo": "141M",
       "num": 141,
       "type": "regular",
-      "name": "Kodairoad",
-      "address": "WEST FACING BUILDING KODAIROAD 2.A.PUDUR W 7,        3.SUTHANTHIRA PURAM W-3, - 624201 SRIKRISHNA AIDED PRIMARY SCHOOL",
-      "area": "SCHOOL"
+      "name": "Booth 141M",
+      "address": "Booth 141M",
+      "area": ""
+    },
+    {
+      "id": "TN-130-141A(W)",
+      "boothNo": "141A(W)",
+      "num": 141,
+      "type": "regular",
+      "name": "Booth 141A(W)",
+      "address": "Booth 141A(W)",
+      "area": ""
     },
     {
       "id": "TN-130-142",
@@ -1596,8 +1596,8 @@
       "num": 142,
       "type": "regular",
       "name": "Mavuthanpatti",
-      "address": "EASTERN SIDE MAVUTHAMPATTI - 1.MAYUTHAM PATTY W 14 624201 1.MAYUTHAM PATTY 1 W-13, SRI KRISHNA AIDED PRIMARY SCHOOL 2.MAYUTHAM PATTY 2 ST W -13,,",
-      "area": "SCHOOL"
+      "address": "Mavuthanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-143",
@@ -1605,35 +1605,35 @@
       "num": 143,
       "type": "regular",
       "name": "Mavuthanpatti",
-      "address": "WEST BUILDING MAVUTHAMPATTI      3.MAYUTHAMPATTY 3RD ST W13,, 4.EAST THOTTAM, R.C. AIDED MIDDLE SCHOOL SOUTH",
-      "area": "MAVUTHAMPATTI"
+      "address": "Mavuthanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-144",
       "boothNo": "144",
       "num": 144,
       "type": "regular",
-      "name": "Ammapatti",
-      "address": "1.AMMAPATTY AMMANAGAR W 10 BUILDING, AMMAPATTI - 624201 1.R.C.SCHOOL ST, WEST ST W 10, 2.AMMAPATTY ,SOUTH ST W 10,, R.C. AIDED MIDDLE SCHOOL NORTH",
-      "area": "W"
+      "name": "Booth 144",
+      "address": "Booth 144",
+      "area": ""
     },
     {
       "id": "TN-130-145A(W)",
       "boothNo": "145A(W)",
       "num": 145,
-      "type": "women",
-      "name": "Ammapatti",
-      "address": "3.AMMAPATTY,NORTH ST W 12,, BUILDING AMMAPATTI - 624201 4.AMMAPATTY MAIN ST W 12,, 5.AMMAPATTY EAST ST W 12, 6.AMMAPATTY W-11, Polling     Polling Stations or women only Station LAYOLA R.C. AIDED PRIMARY SCHOOL 1.AMMAPATTY W-11,",
-      "area": "SCHOOL"
+      "type": "regular",
+      "name": "Booth 145A(W)",
+      "address": "Booth 145A(W)",
+      "area": ""
     },
     {
       "id": "TN-130-145M",
       "boothNo": "145M",
       "num": 145,
       "type": "regular",
-      "name": "Ammapatti",
-      "address": "3.AMMAPATTY,NORTH ST W 12,, BUILDING AMMAPATTI - 624201 4.AMMAPATTY MAIN ST W 12,, 5.AMMAPATTY EAST ST W 12, 6.AMMAPATTY W-11, Polling     Polling Stations or women only Station LAYOLA R.C. AIDED PRIMARY SCHOOL 1.AMMAPATTY W-11,",
-      "area": "SCHOOL"
+      "name": "Booth 145M",
+      "address": "Booth 145M",
+      "area": ""
     },
     {
       "id": "TN-130-146",
@@ -1641,8 +1641,8 @@
       "num": 146,
       "type": "regular",
       "name": "Sankarapuram",
-      "address": "NORTH FACING BUILDING 2.AMMAIYANAICKANUR (TP)-SANKARAPURAM W-11, ,SANKARAPURAM - 624201 GOVT. HIGHER SEC SCHOOL NORTH 1.CHOKKALINGAPURAM W-7,",
-      "area": "NORTH"
+      "address": "Sankarapuram",
+      "area": ""
     },
     {
       "id": "TN-130-147",
@@ -1650,8 +1650,8 @@
       "num": 147,
       "type": "regular",
       "name": "Ammayanaickanur",
-      "address": "BUILDING WEST PORTION 2.AMMAIYA NAICKANOOR W-7, AMMAYANAICKANUR - 624201 GOVT. HIGHER SEC SCHOOL CENTRE 1.AMMAIYA NAICKANOOR W-5,",
-      "area": "NORTH"
+      "address": "Ammayanaickanur",
+      "area": ""
     },
     {
       "id": "TN-130-148",
@@ -1659,8 +1659,8 @@
       "num": 148,
       "type": "regular",
       "name": "Ammayanaickanur",
-      "address": "PORTION NORTH BUILDING 2.EDAIYA PATTY W-6,, AMMAYANAICKANUR - 624201 GOVT.HIGHER SEC SCHOOL WEST",
-      "area": "CENTRE"
+      "address": "Ammayanaickanur",
+      "area": ""
     },
     {
       "id": "TN-130-149",
@@ -1668,17 +1668,8 @@
       "num": 149,
       "type": "regular",
       "name": "Ammayanaickanur",
-      "address": "FACING EAST BUILDING 1.NAKKAM PATTY W-6, AMMAYANAICKANUR - 624201 GOVT HIGHER SEC SCHOOL SOUTH              1.AMMAIYA NAICHKANOOR W-5,",
-      "area": "WEST"
-    },
-    {
-      "id": "TN-130-150A(W)",
-      "boothNo": "150A(W)",
-      "num": 150,
-      "type": "women",
-      "name": "Ammayanaickanur",
-      "address": "PORTION TILED BUILDING 2.NAKKAM PATTY W-6,, AMMAYANAICKANUR - 624201                  3.AMMAIYA NAICHKANOOR W-8, NARI YUTHU(R.V) and (P) GANDHIJI AIDED PRIMARY SCHOOL             1.BALAMPATTY EAST ST W2 ,",
-      "area": "SOUTH"
+      "address": "Ammayanaickanur",
+      "area": ""
     },
     {
       "id": "TN-130-150M",
@@ -1686,8 +1677,17 @@
       "num": 150,
       "type": "regular",
       "name": "Ammayanaickanur",
-      "address": "PORTION TILED BUILDING 2.NAKKAM PATTY W-6,, AMMAYANAICKANUR - 624201                  3.AMMAIYA NAICHKANOOR W-8, NARI YUTHU(R.V) and (P) GANDHIJI AIDED PRIMARY SCHOOL             1.BALAMPATTY EAST ST W2 ,",
-      "area": "SOUTH"
+      "address": "Ammayanaickanur",
+      "area": ""
+    },
+    {
+      "id": "TN-130-150A(W)",
+      "boothNo": "150A(W)",
+      "num": 150,
+      "type": "regular",
+      "name": "Ammayanaickanur",
+      "address": "Ammayanaickanur",
+      "area": ""
     },
     {
       "id": "TN-130-151",
@@ -1695,8 +1695,8 @@
       "num": 151,
       "type": "regular",
       "name": "Palampatty",
-      "address": "NORTH SIDE WEST FACING 2.BALAMPATTY WEST ST W2 , BUILDING PALAMPATTY 624215                3.BALAMPATTY PARAYUUR W2 , PANCHAYAT UNION PRIMARY                   NARI YUTHU(R.V) and (P)             1.KATTU NAICHKEN PATTY EAST ST W-1 , SCHOOL WEST FACING NORTH                  2.KATTU NAYAKAR ST W-1 ,",
-      "area": "NILAKOTTAI"
+      "address": "Palampatty",
+      "area": ""
     },
     {
       "id": "TN-130-152",
@@ -1704,8 +1704,8 @@
       "num": 152,
       "type": "regular",
       "name": "Mariyayeepalayam",
-      "address": "PORTION MARIYAYEEPALAYAM -                3.KATTU NAICHKEN PATTY COLONY ST W-1 , 4.BALAMPATTY SOURIYARPALAYAM W2 , 624215                                    5.BALAMPATTY MARIYAYI PALAYAM W2 , PANCHAYAT UNION PRIMARY                   1.UCHANNAM PATTY NORTH ST W 4 ,",
-      "area": "NILAKOTTAI"
+      "address": "Mariyayeepalayam",
+      "area": ""
     },
     {
       "id": "TN-130-153",
@@ -1713,17 +1713,17 @@
       "num": 153,
       "type": "regular",
       "name": "Uchanampatti",
-      "address": "SCHOOL TILED BUILDING 2.UCHANNAM PATTY CENTER ST W 4 , UCHANAMPATTI - 624206                     3.UCHANNAM PATTY SOUTH ST W 5 SUTHANTHIRA AIDED PRIMARY                 1.NARIYOOTHU SOUTH ST W 3 ,",
-      "area": "NILAKOTTAI"
+      "address": "Uchanampatti",
+      "area": ""
     },
     {
       "id": "TN-130-154",
       "boothNo": "154",
       "num": 154,
       "type": "regular",
-      "name": "Nariyuthu",
-      "address": "SCHOOL WEST FACING BUILDING 2.NARIYOOTHU NORTH ST W 3 , NARIYUTHU - 624215                        3.RAYA PILLAI PATTY W 3 ,4.BALAMPATTY KALATHU KOTTAM W2 R.C.PRIMARY SCHOOL WEST SIDE 1.MAICKALE PALAYAM, W-2 North street, Door.No. From 1 to 150",
-      "area": "SIDE"
+      "name": "Booth 154",
+      "address": "Booth 154",
+      "area": ""
     },
     {
       "id": "TN-130-155",
@@ -1731,8 +1731,8 @@
       "num": 155,
       "type": "regular",
       "name": "Michalepalayam",
-      "address": "NORTH PORTION MICHALEPALAYAM - 2. Michalepalayam Thottakudiyiruppu W-2 624208 Polling     Polling Stations or women only Station R.C.PRIMARY SCHOOL SOUTH FACING 1.Michalepalayam W-2, South street",
-      "area": "FACING"
+      "address": "Michalepalayam",
+      "area": ""
     },
     {
       "id": "TN-130-156",
@@ -1740,8 +1740,8 @@
       "num": 156,
       "type": "regular",
       "name": "Michalepalayam",
-      "address": "NORTH NEW BUILDING WESTERN Door no. From 151 SIDE MICHALEPALAYAM - 624208 R.C.PRIMARY SCHOOL NORTH                  1.MAICKEL PALAYAM W3,",
-      "area": "NORTH"
+      "address": "Michalepalayam",
+      "area": ""
     },
     {
       "id": "TN-130-157",
@@ -1749,8 +1749,8 @@
       "num": 157,
       "type": "regular",
       "name": "Michalepalayam",
-      "address": "PORTION WEST SIDE 2.AVAIYEM PATTY W3,, MICHALEPALAYAM - 624208                   3.ENCHASIYAR PURAM W3,, 1.SANTHANA MATHA PURAM W3,, R.C.PRIMARY SCHOOL NORTH NEW     2.SELVA NAGAR W3,,",
-      "area": "NEW"
+      "address": "Michalepalayam",
+      "area": ""
     },
     {
       "id": "TN-130-158",
@@ -1758,17 +1758,17 @@
       "num": 158,
       "type": "regular",
       "name": "Michalepalayam",
-      "address": "BUILDING SOUTH FACING CENTRE 3.WEST THOTTA KUTIYIRUPPU W3, BUILDING MICHALEPALAYAM - 624208 4..SOUTH THOTTA KUDIYIRUPPU W3,, 5.North thottakudiyeruppu w 3, PANCHAYAT UNION PRIMARY                   1.SANGAL PATTY W1,",
-      "area": "NILAKOTTAI"
+      "address": "Michalepalayam",
+      "area": ""
     },
     {
       "id": "TN-130-159A(W)",
       "boothNo": "159A(W)",
       "num": 159,
-      "type": "women",
+      "type": "regular",
       "name": "Sangalpatty",
-      "address": "SCHOOL NORTH FACING BUILDING 2.AACHIPURAM W-1,, SANGALPATTY - 624208                      3.AACHI PURAM THOTTA KUDIYIRUPPU W1, PANCHAYAT UNION PRIMARY                   1.KALLIYASARI PATTY W4,,",
-      "area": "NILAKOTTAI"
+      "address": "Sangalpatty",
+      "area": ""
     },
     {
       "id": "TN-130-159M",
@@ -1776,17 +1776,17 @@
       "num": 159,
       "type": "regular",
       "name": "Sangalpatty",
-      "address": "SCHOOL NORTH FACING BUILDING 2.AACHIPURAM W-1,, SANGALPATTY - 624208                      3.AACHI PURAM THOTTA KUDIYIRUPPU W1, PANCHAYAT UNION PRIMARY                   1.KALLIYASARI PATTY W4,,",
-      "area": "NILAKOTTAI"
+      "address": "Sangalpatty",
+      "area": ""
     },
     {
       "id": "TN-130-160",
       "boothNo": "160",
       "num": 160,
       "type": "regular",
-      "name": "K.Pudur",
-      "address": "SCHOOL, SOUTH FACING BUILDING K.PUDUR - 624208                          2.K.PUDUR W4, PANCHAYAT UNION PRIMARY 1.NAGAMA NAICKEN PATTY W4, SCHOOL SOUTH FACING NORTH",
-      "area": "NILAKOTTAI"
+      "name": "Booth 160",
+      "address": "Booth 160",
+      "area": ""
     },
     {
       "id": "TN-130-161",
@@ -1794,26 +1794,26 @@
       "num": 161,
       "type": "regular",
       "name": "Nagamanaickanpatti",
-      "address": "2.KOTUR W4,, BUILDING NAGAMANAICKANPATTI - 3.THATHAKA PATTY W4,, 624208 PANCHAYAT UNION PRIMARY 1.SENKOTTAI W5,",
-      "area": "NILAKOTTAI"
+      "address": "Nagamanaickanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-162",
       "boothNo": "162",
       "num": 162,
       "type": "regular",
-      "name": "Senkottai",
-      "address": "SCHOOL WEST PORTION, SENKOTTAI - 624208 PANCHAYAT UNION PRIMARY                   1.RAYAPPAN PATTY W5,",
-      "area": "NILAKOTTAI"
+      "name": "Booth 162",
+      "address": "Booth 162",
+      "area": ""
     },
     {
       "id": "TN-130-163A(W)",
       "boothNo": "163A(W)",
       "num": 163,
-      "type": "women",
+      "type": "regular",
       "name": "Suttikaladipatti",
-      "address": "SCHOOL SOUTH FACING BUILDING 2.SOMAPURAM W5,, SUTTIKALADIPATTI - 624208                 3.AVAIYEM PATTY W5, 4.SUTTI KALADI PATTY W5, PANCHAYAT UNION PRIMARY                   1.APPI NAICHKEN PATTY W-1, SCHOOL SOUTH FACING ADDL                  2.NESAVALAR ST W1,,",
-      "area": "NILAKOTTAI"
+      "address": "Suttikaladipatti",
+      "area": ""
     },
     {
       "id": "TN-130-163M",
@@ -1821,17 +1821,17 @@
       "num": 163,
       "type": "regular",
       "name": "Suttikaladipatti",
-      "address": "SCHOOL SOUTH FACING BUILDING 2.SOMAPURAM W5,, SUTTIKALADIPATTI - 624208                 3.AVAIYEM PATTY W5, 4.SUTTI KALADI PATTY W5, PANCHAYAT UNION PRIMARY                   1.APPI NAICHKEN PATTY W-1, SCHOOL SOUTH FACING ADDL                  2.NESAVALAR ST W1,,",
-      "area": "NILAKOTTAI"
+      "address": "Suttikaladipatti",
+      "area": ""
     },
     {
       "id": "TN-130-164A(W)",
       "boothNo": "164A(W)",
       "num": 164,
-      "type": "women",
+      "type": "regular",
       "name": "Kodanginaickenpatti",
-      "address": "BUILDING KODANGINAICKENPATTI -            3.KMUSLIM ST W-2,, 624208                                    4.THOTTAPATTY W-3, Polling     Polling Stations or women only Station PANCHAYAT UNION PRIMARY                    1.THOPPUPATTI W-3,",
-      "area": "NILAKOTTAI"
+      "address": "Kodanginaickenpatti",
+      "area": ""
     },
     {
       "id": "TN-130-164M",
@@ -1839,35 +1839,35 @@
       "num": 164,
       "type": "regular",
       "name": "Kodanginaickenpatti",
-      "address": "BUILDING KODANGINAICKENPATTI -            3.KMUSLIM ST W-2,, 624208                                    4.THOTTAPATTY W-3, Polling     Polling Stations or women only Station PANCHAYAT UNION PRIMARY                    1.THOPPUPATTI W-3,",
-      "area": "NILAKOTTAI"
-    },
-    {
-      "id": "TN-130-165A(W)",
-      "boothNo": "165A(W)",
-      "num": 165,
-      "type": "women",
-      "name": "Kodanginaickenpatti SCHOOL , WEST FACING BUILDING",
-      "address": "2.EAST COLONY ST W2,, KODANGINAICKENPATTI - 624208               3.THAMBI NAICKHEN PATTY W-3 PANCHAYAT UNION PRIMARY. 1.KOKKU PATTY W-4,",
-      "area": "NILAKOTTAI"
+      "address": "Kodanginaickenpatti",
+      "area": ""
     },
     {
       "id": "TN-130-165M",
       "boothNo": "165M",
       "num": 165,
       "type": "regular",
-      "name": "Kodanginaickenpatti SCHOOL , WEST FACING BUILDING",
-      "address": "2.EAST COLONY ST W2,, KODANGINAICKENPATTI - 624208               3.THAMBI NAICKHEN PATTY W-3 PANCHAYAT UNION PRIMARY. 1.KOKKU PATTY W-4,",
-      "area": "NILAKOTTAI"
+      "name": "Kodanginaickenpatti",
+      "address": "Kodanginaickenpatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-165A(W)",
+      "boothNo": "165A(W)",
+      "num": 165,
+      "type": "regular",
+      "name": "Kodanginaickenpatti",
+      "address": "Kodanginaickenpatti",
+      "area": ""
     },
     {
       "id": "TN-130-166A(W)",
       "boothNo": "166A(W)",
       "num": 166,
-      "type": "women",
+      "type": "regular",
       "name": "Kokkupatti",
-      "address": "SCHOOL , SOUTH FACING BUILDING 2.APPAYU PILLAI PATTI W-4, KOKKUPATTI - 624208 PANCHAYAT UNION MIDDLE SCHOOL 1.SOUTH VIRALI PATTY W-2, PERARINGAR ANNA CENTURY",
-      "area": "SCHOOL"
+      "address": "Kokkupatti",
+      "area": ""
     },
     {
       "id": "TN-130-166M",
@@ -1875,8 +1875,8 @@
       "num": 166,
       "type": "regular",
       "name": "Kokkupatti",
-      "address": "SCHOOL , SOUTH FACING BUILDING 2.APPAYU PILLAI PATTI W-4, KOKKUPATTI - 624208 PANCHAYAT UNION MIDDLE SCHOOL 1.SOUTH VIRALI PATTY W-2, PERARINGAR ANNA CENTURY",
-      "area": "SCHOOL"
+      "address": "Kokkupatti",
+      "area": ""
     },
     {
       "id": "TN-130-167",
@@ -1884,17 +1884,8 @@
       "num": 167,
       "type": "regular",
       "name": "Thummalapatti",
-      "address": "2.PERUMAL PATTY W2,, MEMORIAL WEST BUILDING SOUTH 3.EN.KOVILPATTY W-2, PORTION S.THUMMALAPATTI - 624211 PANCHAYAT UNION MIDDLE SCHOOL PERARINGAR ANNA CENTURY          1.S.THUMMALAPATTY W-3,",
-      "area": "MIDDLE"
-    },
-    {
-      "id": "TN-130-168A(W)",
-      "boothNo": "168A(W)",
-      "num": 168,
-      "type": "women",
-      "name": "Thummalapatti",
-      "address": "MEMORIAL WEST BUILDING MIDDLE 2.S.THUMMALAPATTY W4, PORTION S.THUMMALAPATTI - 624211 PANCHAYAT UNION PRIMARY 1.Seethapuram w2,",
-      "area": "MIDDLE"
+      "address": "Thummalapatti",
+      "area": ""
     },
     {
       "id": "TN-130-168M",
@@ -1902,17 +1893,26 @@
       "num": 168,
       "type": "regular",
       "name": "Thummalapatti",
-      "address": "MEMORIAL WEST BUILDING MIDDLE 2.S.THUMMALAPATTY W4, PORTION S.THUMMALAPATTI - 624211 PANCHAYAT UNION PRIMARY 1.Seethapuram w2,",
-      "area": "MIDDLE"
+      "address": "Thummalapatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-168A(W)",
+      "boothNo": "168A(W)",
+      "num": 168,
+      "type": "regular",
+      "name": "Thummalapatti",
+      "address": "Thummalapatti",
+      "area": ""
     },
     {
       "id": "TN-130-169A(W)",
       "boothNo": "169A(W)",
       "num": 169,
-      "type": "women",
+      "type": "regular",
       "name": "Kulathupatti",
-      "address": ".SCHOOL EAST FACING BUILDING 2.KULATHU PATTY W4,, KULATHUPATTI - 624202 PANCHAYAT UNION PRIMARY .SCHOOL SOUTH FACING EAST                 1.NOOTHULA PURAM W4,,",
-      "area": "NILAKOTTAI"
+      "address": "Kulathupatti",
+      "area": ""
     },
     {
       "id": "TN-130-169M",
@@ -1920,8 +1920,8 @@
       "num": 169,
       "type": "regular",
       "name": "Kulathupatti",
-      "address": ".SCHOOL EAST FACING BUILDING 2.KULATHU PATTY W4,, KULATHUPATTI - 624202 PANCHAYAT UNION PRIMARY .SCHOOL SOUTH FACING EAST                 1.NOOTHULA PURAM W4,,",
-      "area": "NILAKOTTAI"
+      "address": "Kulathupatti",
+      "area": ""
     },
     {
       "id": "TN-130-170",
@@ -1929,26 +1929,26 @@
       "num": 170,
       "type": "regular",
       "name": "Noothulapuram",
-      "address": "PORTION BUILDING                          2.PANKALA PATTY W2, NOOTHULAPURAM - 624211 PANCHAYAT UNION PRIMARY 1.N. UTHUPATTY W-1, Chinnamanaickanko SCHOOL WEST FACING EASTERN",
-      "area": "BUILDING"
+      "address": "Noothulapuram",
+      "area": ""
     },
     {
       "id": "TN-130-171A(W)",
       "boothNo": "171A(W)",
       "num": 171,
-      "type": "women",
-      "name": "2.NORTH VIRALIPATTY W-1,",
-      "address": "ttai              ADDL. BUILDING 3.CHINNAMA NAICHKEN KOTTAI W3, CHINNAMANAICKANKOTTAI - 624211 1.SAI NAICHKEN PATTY W-1, PANCHAYAT UNION MIDDLE SCHOOL 2.PAPPI NAICHKEN PATTY SOUTH ST W-1,,",
-      "area": "BUILDING"
+      "type": "regular",
+      "name": "Booth 171A(W)",
+      "address": "Booth 171A(W)",
+      "area": ""
     },
     {
       "id": "TN-130-171M",
       "boothNo": "171M",
       "num": 171,
       "type": "regular",
-      "name": "2.NORTH VIRALIPATTY W-1,",
-      "address": "ttai              ADDL. BUILDING 3.CHINNAMA NAICHKEN KOTTAI W3, CHINNAMANAICKANKOTTAI - 624211 1.SAI NAICHKEN PATTY W-1, PANCHAYAT UNION MIDDLE SCHOOL 2.PAPPI NAICHKEN PATTY SOUTH ST W-1,,",
-      "area": "BUILDING"
+      "name": "Booth 171M",
+      "address": "Booth 171M",
+      "area": ""
     },
     {
       "id": "TN-130-172",
@@ -1956,17 +1956,17 @@
       "num": 172,
       "type": "regular",
       "name": "Veelinaickanpatti",
-      "address": "SOUTH BUILDING 3.PAPPI NAICHKEN PATTY NORTH ST W-2,, VEELINAICKANPATTI - 624208 4.MUTHARAIYER NAGAR W-2, Polling     Polling Stations or women only Station PANCHAYAT UNION MIDDLE SCHOOL 1.VEELI NAICHKEN PATTY ODAI ST W-2,",
-      "area": "MIDDLE"
+      "address": "Veelinaickanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-173A(W)",
       "boothNo": "173A(W)",
       "num": 173,
-      "type": "women",
+      "type": "regular",
       "name": "Veelinaickenpatti",
-      "address": "SOUTH SIDE NEW BUILDING 2.VEELI NAICHKEN PATTY W-3, VEELINAICKENPATTI - 624208 GOVT HR SEC SCHOOL NORTH 1.JAMEENTHAR PETAI W-6,",
-      "area": "MIDDLE"
+      "address": "Veelinaickenpatti",
+      "area": ""
     },
     {
       "id": "TN-130-173M",
@@ -1974,8 +1974,8 @@
       "num": 173,
       "type": "regular",
       "name": "Veelinaickenpatti",
-      "address": "SOUTH SIDE NEW BUILDING 2.VEELI NAICHKEN PATTY W-3, VEELINAICKENPATTI - 624208 GOVT HR SEC SCHOOL NORTH 1.JAMEENTHAR PETAI W-6,",
-      "area": "MIDDLE"
+      "address": "Veelinaickenpatti",
+      "area": ""
     },
     {
       "id": "TN-130-174",
@@ -1983,8 +1983,8 @@
       "num": 174,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "FACING SOUTH BUILDING WEST SIDE 2.Aachi nagar w-6, NILAKOTTAI - 624208 GOVT HR SEC SCHOOL WEST FACING 1.MADURAI MAIN ROAD W-6,,",
-      "area": "NORTH"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-175",
@@ -1992,8 +1992,8 @@
       "num": 175,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "SOUTHERN SIDE BUILDING NILAKOTTAI - 624208 GOVT HR SEC SCHOOL NORTH                  1.KAMARAJ NAGAR W-8,",
-      "area": "WEST FACING"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-176",
@@ -2001,8 +2001,8 @@
       "num": 176,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "FACING FROM EAST SIDE FIRST 2.ARANMANAI KOTTAI W-8,, ROOM NILAKOTTAI - 624208 1.JANAKAN ST W-8,, GOVT HR SEC SCHOOL SOUTH FACING 2.JARJ PURAM W-8,,",
-      "area": "NORTH"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-177",
@@ -2010,17 +2010,8 @@
       "num": 177,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "NORTH BUILDING EAST SIDE 3.VENKATRAMA IYYER ST W-8, NILAKOTTAI - 624208             4.PASUVALINGA NAGAR W-8, 5.CHATRAM ST W-12, GOVT HR SEC SCHOOL WEST NEW     1.ARASAMARA ST W-11,",
-      "area": "SOUTH FACING"
-    },
-    {
-      "id": "TN-130-178A(W)",
-      "boothNo": "178A(W)",
-      "num": 178,
-      "type": "women",
-      "name": "Nilakottai",
-      "address": "BUILDING EAST FACING NORTH SIDE 2.KACHERRY ST W-12,, NILAKOTTAI - 624208             3.NAGALINGASAMY KOVIL ST W-13, GOVT HR.SEC.SCHOOL WEST NEW",
-      "area": "WEST NEW"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-178M",
@@ -2028,17 +2019,17 @@
       "num": 178,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "BUILDING EAST FACING NORTH SIDE 2.KACHERRY ST W-12,, NILAKOTTAI - 624208             3.NAGALINGASAMY KOVIL ST W-13, GOVT HR.SEC.SCHOOL WEST NEW",
-      "area": "WEST NEW"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
-      "id": "TN-130-179A(W)",
-      "boothNo": "179A(W)",
-      "num": 179,
-      "type": "women",
+      "id": "TN-130-178A(W)",
+      "boothNo": "178A(W)",
+      "num": 178,
+      "type": "regular",
       "name": "Nilakottai",
-      "address": "BUILDING EAST FACING SOUTH SIDE 1.Pudu st w-11 NILAKOTTAI - 624208 1.E.B..COLONY W-11, GOVT HR.SEC.SCHOOL EAST                   2.JARJPURAM W-11,,",
-      "area": "WEST NEW"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-179M",
@@ -2046,17 +2037,26 @@
       "num": 179,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "BUILDING EAST FACING SOUTH SIDE 1.Pudu st w-11 NILAKOTTAI - 624208 1.E.B..COLONY W-11, GOVT HR.SEC.SCHOOL EAST                   2.JARJPURAM W-11,,",
-      "area": "WEST NEW"
+      "address": "Nilakottai",
+      "area": ""
+    },
+    {
+      "id": "TN-130-179A(W)",
+      "boothNo": "179A(W)",
+      "num": 179,
+      "type": "regular",
+      "name": "Nilakottai",
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-180A(W)",
       "boothNo": "180A(W)",
       "num": 180,
-      "type": "women",
+      "type": "regular",
       "name": "Nilakottai",
-      "address": "BUILDING NORTH PORTION 3.AMERICAN MISHAN ST W-12,, NILAKOTTAI - 624208                       4.NAGALINGASAMY ST W-12,, 5.PERIYA KALAIYAMMAN KOVIL ST W-13, Polling     Polling Stations or women only Station 1.AKRAKARA ST W-8, 2.BAZAAR ST W-13,, 3.ANNA ST W-13,, 4.SUBURAYALU ST W-13,, 5.BOSE ST W-13,, 6.NIVEKANANTHAR ST W-13,, 7.SERMAN BAZAAR ST W-13,, 8.PERUMAL KOVIL ST W-15,, 9.PARAI ST W-15,, SOURASHTRA MIDDLE SCHOOL 10.METTAIKARA ST W-15,,",
-      "area": "EAST"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-180M",
@@ -2064,17 +2064,17 @@
       "num": 180,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "BUILDING NORTH PORTION 3.AMERICAN MISHAN ST W-12,, NILAKOTTAI - 624208                       4.NAGALINGASAMY ST W-12,, 5.PERIYA KALAIYAMMAN KOVIL ST W-13, Polling     Polling Stations or women only Station 1.AKRAKARA ST W-8, 2.BAZAAR ST W-13,, 3.ANNA ST W-13,, 4.SUBURAYALU ST W-13,, 5.BOSE ST W-13,, 6.NIVEKANANTHAR ST W-13,, 7.SERMAN BAZAAR ST W-13,, 8.PERUMAL KOVIL ST W-15,, 9.PARAI ST W-15,, SOURASHTRA MIDDLE SCHOOL 10.METTAIKARA ST W-15,,",
-      "area": "EAST"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-181A(W)",
       "boothNo": "181A(W)",
       "num": 181,
-      "type": "women",
+      "type": "regular",
       "name": "Nilakottai",
-      "address": "SOUTH PORTION WESTERN 11.JEEVA SANTHU W-15,, BUILDING NILAKOTTAI - 624208 12.OLD KACHERRY ST W-15,, 13.KARUPPUSAMY ST W-15,, 14.AMBALAVANNAN ABIRAMIAMMAN SANTHU W15,, 15.MARKANDEYAN KOVIL PERUMAL KOVIL STW,, 16.KAMATCHIAMMAN KOVIL ST W15,, 17.AVINASHI SANTHU W15,, 18.SIVANADIYAR SANTHU W15,, 19.BAZAAR ST W15,, 20.GURUVALA CHITTY ST W15, 1.THELUNKAR ST W-14, 2.BAZAAR ST W-14,, SOURASHTRA MIDDLE SCHOOL          3.PERUMAL KOVIL ST W-14,, K.R.M.N.S.S. AMMAL MEMORIAL       4.THATCHINAMOORTHY ST W-14,,",
-      "area": "SCHOOL"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-181M",
@@ -2082,8 +2082,8 @@
       "num": 181,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "SOUTH PORTION WESTERN 11.JEEVA SANTHU W-15,, BUILDING NILAKOTTAI - 624208 12.OLD KACHERRY ST W-15,, 13.KARUPPUSAMY ST W-15,, 14.AMBALAVANNAN ABIRAMIAMMAN SANTHU W15,, 15.MARKANDEYAN KOVIL PERUMAL KOVIL STW,, 16.KAMATCHIAMMAN KOVIL ST W15,, 17.AVINASHI SANTHU W15,, 18.SIVANADIYAR SANTHU W15,, 19.BAZAAR ST W15,, 20.GURUVALA CHITTY ST W15, 1.THELUNKAR ST W-14, 2.BAZAAR ST W-14,, SOURASHTRA MIDDLE SCHOOL          3.PERUMAL KOVIL ST W-14,, K.R.M.N.S.S. AMMAL MEMORIAL       4.THATCHINAMOORTHY ST W-14,,",
-      "area": "SCHOOL"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-182",
@@ -2091,17 +2091,17 @@
       "num": 182,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "EAST FACING WEST BUILDING         5.NARAYANA MOORTHY ST W-14, SOUTH PORTION NILAKOTTAI - 624208 6.DOCTOR RATHA KRISHNAN SANTHU W-14,, 7.VAKEEL SHAYAPU ST W-14,, 8.ANUMANTHAN CHITTY ST W-14, SOURASHTRA MIDDLE SCHOOL K.R.M.N.S.S. AMMAL MEMORIAL",
-      "area": "BUILDING"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-183A(W)",
       "boothNo": "183A(W)",
       "num": 183,
-      "type": "women",
+      "type": "regular",
       "name": "Nilakottai",
-      "address": "1.JAHIR UHEN SANTHU W14 EAST FACING WEST BUILDING NORTH PORTION NILAKOTTAI - 624208 Polling     Polling Stations or women only Station 1.BAZAAR ST W-4, 2.PALLIVASAL ST KANAKAR ST W-4,, 3.Pallivasal st w-4,, 4.RICEMILL ST W-4,, 5.SAMY NADAR ST W-4,, NADAR PRIMARY SCHOOL CENTRAL              6.SEKKADI ST 1 W-4,,",
-      "area": "BUILDING"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-183M",
@@ -2109,17 +2109,8 @@
       "num": 183,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "1.JAHIR UHEN SANTHU W14 EAST FACING WEST BUILDING NORTH PORTION NILAKOTTAI - 624208 Polling     Polling Stations or women only Station 1.BAZAAR ST W-4, 2.PALLIVASAL ST KANAKAR ST W-4,, 3.Pallivasal st w-4,, 4.RICEMILL ST W-4,, 5.SAMY NADAR ST W-4,, NADAR PRIMARY SCHOOL CENTRAL              6.SEKKADI ST 1 W-4,,",
-      "area": "BUILDING"
-    },
-    {
-      "id": "TN-130-184A(W)",
-      "boothNo": "184A(W)",
-      "num": 184,
-      "type": "women",
-      "name": "Nilakottai",
-      "address": "BUILDING NILAKOTTAI - 624208              7.SEKKADI ST 2 W-5,, 8.SEKKADI ST3 W-5,, 9.SEKKADI ST 4 W-5,, 10.SEKKADI ST 5 W-5,, 11.SEKKADI ST 6 W-5,, 12.SEKKADI ST 7 W-5, 1.BAZAAR ST W-3,, 2.KANAKAR ST W-3,, 3.PILLAIMAR ST W-3,, NADAR HIGH SCHOOL EAST SIDE 4.CHITHAMBARANAR ST W-3,,",
-      "area": "SIDE"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-184M",
@@ -2127,8 +2118,17 @@
       "num": 184,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "BUILDING NILAKOTTAI - 624208              7.SEKKADI ST 2 W-5,, 8.SEKKADI ST3 W-5,, 9.SEKKADI ST 4 W-5,, 10.SEKKADI ST 5 W-5,, 11.SEKKADI ST 6 W-5,, 12.SEKKADI ST 7 W-5, 1.BAZAAR ST W-3,, 2.KANAKAR ST W-3,, 3.PILLAIMAR ST W-3,, NADAR HIGH SCHOOL EAST SIDE 4.CHITHAMBARANAR ST W-3,,",
-      "area": "SIDE"
+      "address": "Nilakottai",
+      "area": ""
+    },
+    {
+      "id": "TN-130-184A(W)",
+      "boothNo": "184A(W)",
+      "num": 184,
+      "type": "regular",
+      "name": "Nilakottai",
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-185",
@@ -2136,8 +2136,8 @@
       "num": 185,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "NORTH FACING BUILDING YANAI 5.EAST STREET -W-4,, PETTAI NILAKOTTAI - 624208 6.East st santhu w-4,, 7.PANDIYANUR SANTHU W-4,, 8.SEMPATTY ROAD W- PANCHAYAT UNION PRIMARY",
-      "area": "NILAKOTTAI"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-186",
@@ -2145,17 +2145,17 @@
       "num": 186,
       "type": "regular",
       "name": "Kongarkulam",
-      "address": "SCHOOL SOUTH FACING BUILDING 1.KONKER KULAM W-2, KONGARKULAM - 624208 H.N.U.P.R.GIRLS HR SEC SCHOOL SIVAKAMI CHINNAKANI COMPUTER 1.MANIYAKARAN PATTY W-10,",
-      "area": "SCHOOL"
+      "address": "Kongarkulam",
+      "area": ""
     },
     {
       "id": "TN-130-187A(W)",
       "boothNo": "187A(W)",
       "num": 187,
-      "type": "women",
+      "type": "regular",
       "name": "Nilakottai",
-      "address": "ROOM NO- 3 NORTH FACING       2.MEENACHIPURAM W-10, BUILDING NILAKOTTAI - 624208 H.N.U.P.R.GIRLS HR SEC SCHOOL SIVAKAMI CINNAKANI COMPUTER",
-      "area": "SCHOOL"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-187M",
@@ -2163,8 +2163,8 @@
       "num": 187,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "ROOM NO- 3 NORTH FACING       2.MEENACHIPURAM W-10, BUILDING NILAKOTTAI - 624208 H.N.U.P.R.GIRLS HR SEC SCHOOL SIVAKAMI CINNAKANI COMPUTER",
-      "area": "SCHOOL"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-188",
@@ -2172,8 +2172,8 @@
       "num": 188,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "ROOM NO.2 NORTH FACING 1.Pudupatty w-9, Door No.From 1-1 to 1-67 BUILDING WEST SIDE NILAKOTTAI - 624208 Polling     Polling Stations or women only Station H.N.U.P.R.GIRLS HR SEC SCHOOL SIVAKAMI CINNAKANI COMPUTER               1.DURAISAMY PURAM W-7,",
-      "area": "SCHOOL"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-189",
@@ -2181,17 +2181,8 @@
       "num": 189,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "BUILDING ROOM NO.5 NORTH FACING CENTRE BUILDING                    1.Pudupatty w-9, Door No. From 9-1 NILAKOTTAI - 624208 PANCHAYAT UINION PRIMARY SCHOOL EAST FACING WEST BUILDING",
-      "area": "BUILDING"
-    },
-    {
-      "id": "TN-130-190A(W)",
-      "boothNo": "190A(W)",
-      "num": 190,
-      "type": "women",
-      "name": "Nilakottai",
-      "address": "1.NEHRU NAGAR W-7 NORTH SIDE, NEHRU NAGAR NILAKOTTAI - 624208 H.N.U.P.R. GIRLS HR SEC SCHOOL",
-      "area": "SCHOOL"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-190M",
@@ -2199,8 +2190,17 @@
       "num": 190,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "1.NEHRU NAGAR W-7 NORTH SIDE, NEHRU NAGAR NILAKOTTAI - 624208 H.N.U.P.R. GIRLS HR SEC SCHOOL",
-      "area": "SCHOOL"
+      "address": "Nilakottai",
+      "area": ""
+    },
+    {
+      "id": "TN-130-190A(W)",
+      "boothNo": "190A(W)",
+      "num": 190,
+      "type": "regular",
+      "name": "Nilakottai",
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-191",
@@ -2208,17 +2208,8 @@
       "num": 191,
       "type": "regular",
       "name": "Nilakottai",
-      "address": "NORTH FACING EASTERN SIDE LAST 1.KAMATCHIPURAM W-7 ROOM NILAKOTTAI - 624208 R.C. ELE.SCHOOL NORTH PORTION 1.SILUKKUVARPATTI W-1,",
-      "area": "PORTION"
-    },
-    {
-      "id": "TN-130-192A(W)",
-      "boothNo": "192A(W)",
-      "num": 192,
-      "type": "women",
-      "name": "Silukkuvarpatti",
-      "address": "EAST BUILDING SILUKKUVARPATTI - 2.SILUKUVARPATTI W-2, 624215 R.C. ELEMENTARY SCHOOL SOUTH 1.SULIKKUVAR PATTY W-3,",
-      "area": "SOUTH"
+      "address": "Nilakottai",
+      "area": ""
     },
     {
       "id": "TN-130-192M",
@@ -2226,17 +2217,17 @@
       "num": 192,
       "type": "regular",
       "name": "Silukkuvarpatti",
-      "address": "EAST BUILDING SILUKKUVARPATTI - 2.SILUKUVARPATTI W-2, 624215 R.C. ELEMENTARY SCHOOL SOUTH 1.SULIKKUVAR PATTY W-3,",
-      "area": "SOUTH"
+      "address": "Silukkuvarpatti",
+      "area": ""
     },
     {
-      "id": "TN-130-193A(W)",
-      "boothNo": "193A(W)",
-      "num": 193,
-      "type": "women",
+      "id": "TN-130-192A(W)",
+      "boothNo": "192A(W)",
+      "num": 192,
+      "type": "regular",
       "name": "Silukkuvarpatti",
-      "address": "PORTION EAST BUILDING, 2.SULIKKUVAR PATTY W-4, SILUKKUVARPATTI - 624215 R.C. ELEMENTARY SCHOOL MIDDLE 1.SILUKKUVAR PATTY W5,",
-      "area": "MIDDLE"
+      "address": "Silukkuvarpatti",
+      "area": ""
     },
     {
       "id": "TN-130-193M",
@@ -2244,17 +2235,26 @@
       "num": 193,
       "type": "regular",
       "name": "Silukkuvarpatti",
-      "address": "PORTION EAST BUILDING, 2.SULIKKUVAR PATTY W-4, SILUKKUVARPATTI - 624215 R.C. ELEMENTARY SCHOOL MIDDLE 1.SILUKKUVAR PATTY W5,",
-      "area": "MIDDLE"
+      "address": "Silukkuvarpatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-193A(W)",
+      "boothNo": "193A(W)",
+      "num": 193,
+      "type": "regular",
+      "name": "Silukkuvarpatti",
+      "address": "Silukkuvarpatti",
+      "area": ""
     },
     {
       "id": "TN-130-194A(W)",
       "boothNo": "194A(W)",
       "num": 194,
-      "type": "women",
+      "type": "regular",
       "name": "Silukkuvarpatti",
-      "address": "PORTION EAST BUILDING 2.SILUKKUVARPATTY BLOCK 6 W5, ,SILUKKUVARPATTI - 624215 1.OLD SILUKKUVAR PATTY BLOCK 7 W5, SWAMY VIVEKANANDA HIGH 2.KUPPAPALANIPATTY BLOCK 8 W5,,",
-      "area": "NILAKOTTAI"
+      "address": "Silukkuvarpatti",
+      "area": ""
     },
     {
       "id": "TN-130-194M",
@@ -2262,17 +2262,17 @@
       "num": 194,
       "type": "regular",
       "name": "Silukkuvarpatti",
-      "address": "PORTION EAST BUILDING 2.SILUKKUVARPATTY BLOCK 6 W5, ,SILUKKUVARPATTI - 624215 1.OLD SILUKKUVAR PATTY BLOCK 7 W5, SWAMY VIVEKANANDA HIGH 2.KUPPAPALANIPATTY BLOCK 8 W5,,",
-      "area": "NILAKOTTAI"
+      "address": "Silukkuvarpatti",
+      "area": ""
     },
     {
       "id": "TN-130-195A(W)",
       "boothNo": "195A(W)",
       "num": 195,
-      "type": "women",
+      "type": "regular",
       "name": "Silukkuvarpatti",
-      "address": "SCHOOL NEW BUILDING 3.SENNAN CHETTYPATTY BLOCK 9 W5,, SILUKKUVARPATTI - 624215 4.OTHAKARAI PATTY SANGARAPURAM WEST PANCHAYAT UNION PRIMARY 1.SEERANGAM PATTY BLOCK 11 W1,",
-      "area": "NILAKOTTAI"
+      "address": "Silukkuvarpatti",
+      "area": ""
     },
     {
       "id": "TN-130-195M",
@@ -2280,8 +2280,8 @@
       "num": 195,
       "type": "regular",
       "name": "Silukkuvarpatti",
-      "address": "SCHOOL NEW BUILDING 3.SENNAN CHETTYPATTY BLOCK 9 W5,, SILUKKUVARPATTI - 624215 4.OTHAKARAI PATTY SANGARAPURAM WEST PANCHAYAT UNION PRIMARY 1.SEERANGAM PATTY BLOCK 11 W1,",
-      "area": "NILAKOTTAI"
+      "address": "Silukkuvarpatti",
+      "area": ""
     },
     {
       "id": "TN-130-196",
@@ -2289,8 +2289,8 @@
       "num": 196,
       "type": "regular",
       "name": "Seerangampatty",
-      "address": "SCHOOL, SOUTH FACING BUILDING 2.KAVIYARAYAPURAM BLOCK12 W1,, SEERANGAMPATTY - 624215 PANCHAYAT UNION PRIMARY",
-      "area": "NILAKOTTAI"
+      "address": "Seerangampatty",
+      "area": ""
     },
     {
       "id": "TN-130-197",
@@ -2298,8 +2298,8 @@
       "num": 197,
       "type": "regular",
       "name": "Mannavarathi",
-      "address": "SCHOOL WEST FACING BUILDING 1.MANNAVARATHI BLOCK 13 W1, MANNAVARATHI - 624215 Polling      Polling Stations or women only Station MUTHURAJA MIDDLE SCHOOL FRONT",
-      "area": "FRONT"
+      "address": "Mannavarathi",
+      "area": ""
     },
     {
       "id": "TN-130-198",
@@ -2307,17 +2307,17 @@
       "num": 198,
       "type": "regular",
       "name": "Kariampatty",
-      "address": "SOUTH BUILDING EASTERN SIDE 1.KARIYAMPATTY W BLOCK 14 W2, KARIAMPATTY - 624215 MUTHURAJA MIDDLE SCHOOL WEST",
-      "area": "WEST"
+      "address": "Kariampatty",
+      "area": ""
     },
     {
       "id": "TN-130-199A(W)",
       "boothNo": "199A(W)",
       "num": 199,
-      "type": "women",
+      "type": "regular",
       "name": "Kariampatty",
-      "address": "SIDE NORTH FACING BUILDING 1.KARIYAMPATTY BLOCK 15 W2, KARIAMPATTY - 624215 1.KARIYAM PATTY 15 W3, PANCHAYAT UNION PRIMARY 2.KARIYAMPATTY EAST ST W3,,",
-      "area": "NILAKOTTAI"
+      "address": "Kariampatty",
+      "area": ""
     },
     {
       "id": "TN-130-199M",
@@ -2325,8 +2325,8 @@
       "num": 199,
       "type": "regular",
       "name": "Kariampatty",
-      "address": "SIDE NORTH FACING BUILDING 1.KARIYAMPATTY BLOCK 15 W2, KARIAMPATTY - 624215 1.KARIYAM PATTY 15 W3, PANCHAYAT UNION PRIMARY 2.KARIYAMPATTY EAST ST W3,,",
-      "area": "NILAKOTTAI"
+      "address": "Kariampatty",
+      "area": ""
     },
     {
       "id": "TN-130-200",
@@ -2334,8 +2334,8 @@
       "num": 200,
       "type": "regular",
       "name": "Vellaithathanpatti",
-      "address": "SCHOOL WEST FACING BUILDING 3.HARIJANA ST W3,, VELLAITHATHANPATTI - 624215 4.VELLAITHATHAN PATTY W3, PANCHAYAT UNION PRIMARY SCHOOL EAST FACING, WEST",
-      "area": "NILAKOTTAI"
+      "address": "Vellaithathanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-201",
@@ -2343,8 +2343,8 @@
       "num": 201,
       "type": "regular",
       "name": "Malayagoundanpatti",
-      "address": "1.CHETTIYAPATTY W-1 BUILDING MALAYAGOUNDANPATTI - 624201 PANCHAYAT UNION PRIMARY 1.Malayagoundan patti (r.v) and (p) SCHOOL WESTERN PORTION SOUTH",
-      "area": "NILAKOTTAI"
+      "address": "Malayagoundanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-202",
@@ -2352,17 +2352,17 @@
       "num": 202,
       "type": "regular",
       "name": "Malayagoundanpatti",
-      "address": "1. MALAIYA GOUNDEN PATTY W1 , BUILDING MALAYAGOUNDANPATTI - 2.MALAIYA GOUNDEN PATTY W2 , 624201 MALAYAGOUNDAN PATTI (R.V) and (P) PANCHAYAT UNION PRIMARY                      1.KULLANSERVAIKARANPATTI W 2 (POTTIKULAM W1) 2.KANNARPATTY W3 ,",
-      "area": "NILAKOTTAI"
+      "address": "Malayagoundanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-203",
       "boothNo": "203",
       "num": 203,
       "type": "regular",
-      "name": "Malayagoundanpatti SCHOOL EAST SIDE MAIN BUILDING",
-      "address": "3.COLONY ST W-4 , MALAYAGOUNDANPATTI - 624201                  4.FATHIMANAGAR W 2 , 5.THOMASPURAM W 2 PANCHAYAT UNION PRIMARY",
-      "area": "NILAKOTTAI"
+      "name": "Malayagoundanpatti",
+      "address": "Malayagoundanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-204",
@@ -2370,17 +2370,17 @@
       "num": 204,
       "type": "regular",
       "name": "Pottikulam",
-      "address": "SCHOOL EAST FACING WEST BUILDING 1.Indira nagar w1 2. POTTI KULAM W 1 POTTIKULAM - 624201 R.C.NIRMALA PRIMARY SCHOOL , 1.MURUGATHOORAN PATTY NORTH ST W 4,",
-      "area": ","
+      "address": "Pottikulam",
+      "area": ""
     },
     {
       "id": "TN-130-205A(W)",
       "boothNo": "205A(W)",
       "num": 205,
-      "type": "women",
+      "type": "regular",
       "name": "Murugathuranpatti",
-      "address": "EAST FACING BUILDING 2.CHOKKANG CHETTY PATTY W 4, MURUGATHURANPATTI - 624201 PANCHAYAT UNION MIDDLE SCHOOL 1.POTTI CHETTY PATTY NORTH, SOUTH ST W1,",
-      "area": "SCHOOL"
+      "address": "Murugathuranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-205M",
@@ -2388,8 +2388,8 @@
       "num": 205,
       "type": "regular",
       "name": "Murugathuranpatti",
-      "address": "EAST FACING BUILDING 2.CHOKKANG CHETTY PATTY W 4, MURUGATHURANPATTI - 624201 PANCHAYAT UNION MIDDLE SCHOOL 1.POTTI CHETTY PATTY NORTH, SOUTH ST W1,",
-      "area": "SCHOOL"
+      "address": "Murugathuranpatti",
+      "area": ""
     },
     {
       "id": "TN-130-206",
@@ -2397,8 +2397,8 @@
       "num": 206,
       "type": "regular",
       "name": "Pottichettipatti",
-      "address": "SOUTH SIDE ASBESTOS BUILDING 2.GANSHI NAGAR SOUTH W1,, POTTICHETTIPATTI - 624206     3.GANSHI NAGAR NORTH W1, Polling      Polling Stations or women only Station 1.KANNIMAR NAGAR W1, 2.ARANMANAI ST NORTH W2,, PANCHAYAT UNION MIDDLE SCHOOL 3.Aranmanai st west w2,,",
-      "area": "MIDDLE"
+      "address": "Pottichettipatti",
+      "area": ""
     },
     {
       "id": "TN-130-207",
@@ -2406,8 +2406,8 @@
       "num": 207,
       "type": "regular",
       "name": "Pottichettipatti",
-      "address": "NORTHSIDE TILED BUILDING 4.POST OFFICE W3,, POTTICHETTIPATTI - 624206     5.SOUTH ST W3,, 6.SOUNTHIRAPURAM W3,, 7.SALAI ST W3, 1.SANDALAR PURAM W3, R.C.PRIMARY SCHOOL SOUTH 2.ROJA COLONY W3,,",
-      "area": "MIDDLE"
+      "address": "Pottichettipatti",
+      "area": ""
     },
     {
       "id": "TN-130-208",
@@ -2415,8 +2415,8 @@
       "num": 208,
       "type": "regular",
       "name": "Sandalarpuram",
-      "address": "BUILDING EAST SIDE, 3.PAUL PANNAI ST W3,, SANDALARPURAM - 624206 R.C.PRIMARY SCHOOL SOUTH                  1.VINAYAKAR NAGAR W3,,",
-      "area": "SOUTH"
+      "address": "Sandalarpuram",
+      "area": ""
     },
     {
       "id": "TN-130-209",
@@ -2424,8 +2424,8 @@
       "num": 209,
       "type": "regular",
       "name": "Sandalarpuram",
-      "address": "BUILDING WEST SIDE 2.ARUMUGA NAGAR W 3,, SANDALARPURAM - 624206                    3.GOPALAPURAM W 3, AIDED PRIMARY SCHOOL NORTH                1.KANTHAPPA KOTTAI W 4,",
-      "area": "NORTH"
+      "address": "Sandalarpuram",
+      "area": ""
     },
     {
       "id": "TN-130-210",
@@ -2433,17 +2433,17 @@
       "num": 210,
       "type": "regular",
       "name": "Kanthappakottai",
-      "address": "BUILDING KANTHAPPAKOTTAI - 2.KANTHAPPA KOTTAI SOUTH ST W 4,, 624206                                    3.KANTHAPPA KOTTAI THULLAN KOVIL ST W 4, 1.SINGAMPATTY W 4, AIDED PRIMARY SCHOOL SOUTH                2.KARISAL PATTY W 4,,",
-      "area": "SOUTH"
+      "address": "Kanthappakottai",
+      "area": ""
     },
     {
       "id": "TN-130-211A(W)",
       "boothNo": "211A(W)",
       "num": 211,
-      "type": "women",
+      "type": "regular",
       "name": "Kanthappakottai",
-      "address": "BUILDING KANTHAPPAKOTTAI - 3.KATTAKOOTHAN PATTY W 4,, 624206                                    4.KALLUPATTY W 4,, 5.SAMIYAPURAM W 4, 1.KALLADIPATTY COLONY ST W5, R.C.MIDDLE SCHOOL NORTH NEW",
-      "area": "NEW"
+      "address": "Kanthappakottai",
+      "area": ""
     },
     {
       "id": "TN-130-211M",
@@ -2451,8 +2451,8 @@
       "num": 211,
       "type": "regular",
       "name": "Kanthappakottai",
-      "address": "BUILDING KANTHAPPAKOTTAI - 3.KATTAKOOTHAN PATTY W 4,, 624206                                    4.KALLUPATTY W 4,, 5.SAMIYAPURAM W 4, 1.KALLADIPATTY COLONY ST W5, R.C.MIDDLE SCHOOL NORTH NEW",
-      "area": "NEW"
+      "address": "Kanthappakottai",
+      "area": ""
     },
     {
       "id": "TN-130-212",
@@ -2460,8 +2460,8 @@
       "num": 212,
       "type": "regular",
       "name": "Kalladipatti",
-      "address": "2.Kalladipatty north w 5,, BUILDING KALLADIPATTI - 624201 3.KALLADIPATTY WEST ST W 5,, R.C.MIDDLE SCHOOL SOUTH FACING            1.KALLADIPATTY SOUTH ST W 5,,",
-      "area": "FACING"
+      "address": "Kalladipatti",
+      "area": ""
     },
     {
       "id": "TN-130-213",
@@ -2469,8 +2469,8 @@
       "num": 213,
       "type": "regular",
       "name": "Kalladipatti",
-      "address": "NORTH BUILDING EAST PORTION 2.KALLADIPATTY EAST ST W 5,, KALLADIPATTI - 624201                     3.SANTHOSA PURAM W 5, PANCHAYAT UNION PRIMARY",
-      "area": "NILAKOTTAI"
+      "address": "Kalladipatti",
+      "area": ""
     },
     {
       "id": "TN-130-214",
@@ -2478,17 +2478,17 @@
       "num": 214,
       "type": "regular",
       "name": "Pallapatti",
-      "address": "SCHOOL NORTH BUILDING EAST 1.PALLAPATTY BLOCK 1 W1 PORTION PALLAPATTI - 624201 PANCHAYAT UNION PRIMARY",
-      "area": "NILAKOTTAI"
+      "address": "Pallapatti",
+      "area": ""
     },
     {
       "id": "TN-130-215A(W)",
       "boothNo": "215A(W)",
       "num": 215,
-      "type": "women",
+      "type": "regular",
       "name": "Pallapatti",
-      "address": "SCHOOL NORTH BUILDING WEST 1.PALLAPATTY BLOCK 2 W1 PORTION PALLAPATTI - 624201 Polling      Polling Stations or women only Station PANCHAYAT UNION PRIMARY 1.PALLAPATTY BLOCK 3 W2,",
-      "area": "NILAKOTTAI"
+      "address": "Pallapatti",
+      "area": ""
     },
     {
       "id": "TN-130-215M",
@@ -2496,17 +2496,8 @@
       "num": 215,
       "type": "regular",
       "name": "Pallapatti",
-      "address": "SCHOOL NORTH BUILDING WEST 1.PALLAPATTY BLOCK 2 W1 PORTION PALLAPATTI - 624201 Polling      Polling Stations or women only Station PANCHAYAT UNION PRIMARY 1.PALLAPATTY BLOCK 3 W2,",
-      "area": "NILAKOTTAI"
-    },
-    {
-      "id": "TN-130-216A(W)",
-      "boothNo": "216A(W)",
-      "num": 216,
-      "type": "women",
-      "name": "Pallapatti",
-      "address": "SCHOOL EAST FACING WEST SIDE 2.PALLAPATTY BLOCK 4 W2, BUILDING PALLAPATTI - 624201 PANCHAYAT UNION PRIMARY",
-      "area": "NILAKOTTAI"
+      "address": "Pallapatti",
+      "area": ""
     },
     {
       "id": "TN-130-216M",
@@ -2514,8 +2505,17 @@
       "num": 216,
       "type": "regular",
       "name": "Pallapatti",
-      "address": "SCHOOL EAST FACING WEST SIDE 2.PALLAPATTY BLOCK 4 W2, BUILDING PALLAPATTI - 624201 PANCHAYAT UNION PRIMARY",
-      "area": "NILAKOTTAI"
+      "address": "Pallapatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-216A(W)",
+      "boothNo": "216A(W)",
+      "num": 216,
+      "type": "regular",
+      "name": "Pallapatti",
+      "address": "Pallapatti",
+      "area": ""
     },
     {
       "id": "TN-130-217",
@@ -2523,17 +2523,8 @@
       "num": 217,
       "type": "regular",
       "name": "Pallapatti",
-      "address": "SCHOOL SOUTH BUILDING WEST 1.BALPANNAI ST BLOCK 5 W 3 SIDE PALLAPATTI - 624201 PANCHAYAT UNION PRIMARY",
-      "area": "NILAKOTTAI"
-    },
-    {
-      "id": "TN-130-218A(W)",
-      "boothNo": "218A(W)",
-      "num": 218,
-      "type": "women",
-      "name": "Pallapatti",
-      "address": "SCHOOL EAST BUILDING PALLAPATTI 1.PALLAPATTY BLOCK 10 W 3 - 624201 GOVT. KALLAR MIDDLE SCHOOL EAST 1.PALLAPATTY SOUTH ST BLOCK 6,7 W 4,",
-      "area": "EAST"
+      "address": "Pallapatti",
+      "area": ""
     },
     {
       "id": "TN-130-218M",
@@ -2541,17 +2532,17 @@
       "num": 218,
       "type": "regular",
       "name": "Pallapatti",
-      "address": "SCHOOL EAST BUILDING PALLAPATTI 1.PALLAPATTY BLOCK 10 W 3 - 624201 GOVT. KALLAR MIDDLE SCHOOL EAST 1.PALLAPATTY SOUTH ST BLOCK 6,7 W 4,",
-      "area": "EAST"
+      "address": "Pallapatti",
+      "area": ""
     },
     {
-      "id": "TN-130-219A(W)",
-      "boothNo": "219A(W)",
-      "num": 219,
-      "type": "women",
+      "id": "TN-130-218A(W)",
+      "boothNo": "218A(W)",
+      "num": 218,
+      "type": "regular",
       "name": "Pallapatti",
-      "address": "FACING NEW BUILDING NORTH SIDE 2.DEEVAR NAGAR BLOCK 6,7 W 4, PALLAPATTI - 624201 GOVT. KALLAR PRIMARY SCHOOL NO. 1.ARUNACHALAPURAM RAMAN CHETTIPATTI BLOCK 8 W 5,",
-      "area": "EAST"
+      "address": "Pallapatti",
+      "area": ""
     },
     {
       "id": "TN-130-219M",
@@ -2559,8 +2550,17 @@
       "num": 219,
       "type": "regular",
       "name": "Pallapatti",
-      "address": "FACING NEW BUILDING NORTH SIDE 2.DEEVAR NAGAR BLOCK 6,7 W 4, PALLAPATTI - 624201 GOVT. KALLAR PRIMARY SCHOOL NO. 1.ARUNACHALAPURAM RAMAN CHETTIPATTI BLOCK 8 W 5,",
-      "area": "EAST"
+      "address": "Pallapatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-219A(W)",
+      "boothNo": "219A(W)",
+      "num": 219,
+      "type": "regular",
+      "name": "Pallapatti",
+      "address": "Pallapatti",
+      "area": ""
     },
     {
       "id": "TN-130-220",
@@ -2568,17 +2568,17 @@
       "num": 220,
       "type": "regular",
       "name": "Pallapatti",
-      "address": "231 NORTH BUILDING PALLAPATTI - 2.VELAYUTHAPURAM SOUNDARAPURAM BLOCK 9 W 5, 624201 NEHRU AIDED PRIMARY SCHOOL                1.AKRAKARAPPATTY W-1,",
-      "area": "PRIMARY"
+      "address": "Pallapatti",
+      "area": ""
     },
     {
       "id": "TN-130-221A(W)",
       "boothNo": "221A(W)",
       "num": 221,
-      "type": "women",
+      "type": "regular",
       "name": "Akkarakarapatti",
-      "address": "EAST FACING BUILDING 2.AKRAKARAPPATTY W-2,, AKKARAKARAPATTI - 624208                  3.AKRAKARAPPATTY W-3, PANCHAYAT UNION PRIMARY 1.VALAN KOTTAI W-1,",
-      "area": "NILAKOTTAI"
+      "address": "Akkarakarapatti",
+      "area": ""
     },
     {
       "id": "TN-130-221M",
@@ -2586,8 +2586,8 @@
       "num": 221,
       "type": "regular",
       "name": "Akkarakarapatti",
-      "address": "EAST FACING BUILDING 2.AKRAKARAPPATTY W-2,, AKKARAKARAPATTI - 624208                  3.AKRAKARAPPATTY W-3, PANCHAYAT UNION PRIMARY 1.VALAN KOTTAI W-1,",
-      "area": "NILAKOTTAI"
+      "address": "Akkarakarapatti",
+      "area": ""
     },
     {
       "id": "TN-130-222",
@@ -2595,17 +2595,17 @@
       "num": 222,
       "type": "regular",
       "name": "Valankottai",
-      "address": "SCHOOL NORTH FACING BUILDING 2.KOMPUKKARAN PATTY W 1, VALANKOTTAI - 624208 SOUNDRAPANDIAN AIDED PRIMARY              1.KURUMPPATTY W3,",
-      "area": "NILAKOTTAI"
+      "address": "Valankottai",
+      "area": ""
     },
     {
       "id": "TN-130-223A(W)",
       "boothNo": "223A(W)",
       "num": 223,
-      "type": "women",
+      "type": "regular",
       "name": "Kurumbapatti",
-      "address": "SCHOOL NORTH FACING BUILDING 2.KURUMPPATTY W2,, K.KURUMBAPATTI - 624208                   3.THIRAVIYER NAGAR W-3, 1.MUTHUKAMAN PATTY W-1, PANCHAYAT UNION PRIMARY 2.ANDIPATTY W1,,",
-      "area": "NILAKOTTAI"
+      "address": "Kurumbapatti",
+      "area": ""
     },
     {
       "id": "TN-130-223M",
@@ -2613,8 +2613,8 @@
       "num": 223,
       "type": "regular",
       "name": "Kurumbapatti",
-      "address": "SCHOOL NORTH FACING BUILDING 2.KURUMPPATTY W2,, K.KURUMBAPATTI - 624208                   3.THIRAVIYER NAGAR W-3, 1.MUTHUKAMAN PATTY W-1, PANCHAYAT UNION PRIMARY 2.ANDIPATTY W1,,",
-      "area": "NILAKOTTAI"
+      "address": "Kurumbapatti",
+      "area": ""
     },
     {
       "id": "TN-130-224",
@@ -2622,8 +2622,8 @@
       "num": 224,
       "type": "regular",
       "name": "N.Andipatti",
-      "address": ".SCHOOL NORTH FACING BUILDING, 3.MILAKAI PATTY W 2,, N.ANDIPATTI - 624208 GOVT KALLAR MIDDLE SCHOOL 1.MUSUVANOOTHU SOUTH ST W-2,, ADDITIONAL BUILDING NORTH",
-      "area": "SCHOOL"
+      "address": "N.Andipatti",
+      "area": ""
     },
     {
       "id": "TN-130-225",
@@ -2631,35 +2631,35 @@
       "num": 225,
       "type": "regular",
       "name": "Musuvanoothu",
-      "address": "2.MUSUVANOOTHU NORTH ST W-3,, FACING SOUTH SIDE MUSUVANUTHU 3.MUSUVANOOTHU COLONY W2, - 624208 Polling     Polling Stations or women only Station PANCHAYAT UNION PRIMARY                   1.KOTTAI ST W-3,",
-      "area": "MIDDLE"
-    },
-    {
-      "id": "TN-130-226A(W)",
-      "boothNo": "226A(W)",
-      "num": 226,
-      "type": "women",
-      "name": "Kalkottai",
-      "address": "SCHOOL NORTH FACING BUILDING 2.SEKKA PATTY KU . PIRIVU W-4,, KALKOTTAI - 624208                        3.KALKOTTAI W-4,,         4.ATHIDIRAVIDAR COLONY W-4, PANCHAYAT UNION . PRIMARY 1.BODIYA GOUNDEN PATTY W-4,",
-      "area": "NILAKOTTAI"
+      "address": "Musuvanoothu",
+      "area": ""
     },
     {
       "id": "TN-130-226M",
       "boothNo": "226M",
       "num": 226,
       "type": "regular",
-      "name": "Kalkottai",
-      "address": "SCHOOL NORTH FACING BUILDING 2.SEKKA PATTY KU . PIRIVU W-4,, KALKOTTAI - 624208                        3.KALKOTTAI W-4,,         4.ATHIDIRAVIDAR COLONY W-4, PANCHAYAT UNION . PRIMARY 1.BODIYA GOUNDEN PATTY W-4,",
-      "area": "NILAKOTTAI"
+      "name": "Booth 226M",
+      "address": "Booth 226M",
+      "area": ""
+    },
+    {
+      "id": "TN-130-226A(W)",
+      "boothNo": "226A(W)",
+      "num": 226,
+      "type": "regular",
+      "name": "Booth 226A(W)",
+      "address": "Booth 226A(W)",
+      "area": ""
     },
     {
       "id": "TN-130-227A(W)",
       "boothNo": "227A(W)",
       "num": 227,
-      "type": "women",
+      "type": "regular",
       "name": "Sivagnanpuram",
-      "address": "SCHOOL SOUTH FACING BUILDING 2.SIVAGNAPURAM W-1, SIVAGNANPURAM - 624219 PANCHAYAT UNION .PRIMARY                  1.SIVAGANAPURAM WARD-2,",
-      "area": "NILAKOTTAI"
+      "address": "Sivagnanpuram",
+      "area": ""
     },
     {
       "id": "TN-130-227M",
@@ -2667,17 +2667,17 @@
       "num": 227,
       "type": "regular",
       "name": "Sivagnanpuram",
-      "address": "SCHOOL SOUTH FACING BUILDING 2.SIVAGNAPURAM W-1, SIVAGNANPURAM - 624219 PANCHAYAT UNION .PRIMARY                  1.SIVAGANAPURAM WARD-2,",
-      "area": "NILAKOTTAI"
+      "address": "Sivagnanpuram",
+      "area": ""
     },
     {
       "id": "TN-130-228A(W)",
       "boothNo": "228A(W)",
       "num": 228,
-      "type": "women",
+      "type": "regular",
       "name": "Sivagnanpuram",
-      "address": "SCHOOL WEST FACING TILED 2.C.PUTHUR WARD 2,, BUILDING SIVAGNANPURAM - 624219           3.KOOTAATHU AYYAMPALAYAM WARD-3, 1.KULLICHETTIYAPATTY NORTH ST,WARD-1, PANCHAYAT UNION MIDDLE SCHOOL 2.KULLICHETTIYAPATTY NADU ST, WARD-2,,",
-      "area": "SCHOOL"
+      "address": "Sivagnanpuram",
+      "area": ""
     },
     {
       "id": "TN-130-228M",
@@ -2685,17 +2685,8 @@
       "num": 228,
       "type": "regular",
       "name": "Sivagnanpuram",
-      "address": "SCHOOL WEST FACING TILED 2.C.PUTHUR WARD 2,, BUILDING SIVAGNANPURAM - 624219           3.KOOTAATHU AYYAMPALAYAM WARD-3, 1.KULLICHETTIYAPATTY NORTH ST,WARD-1, PANCHAYAT UNION MIDDLE SCHOOL 2.KULLICHETTIYAPATTY NADU ST, WARD-2,,",
-      "area": "SCHOOL"
-    },
-    {
-      "id": "TN-130-229A(W)",
-      "boothNo": "229A(W)",
-      "num": 229,
-      "type": "women",
-      "name": "Kullichettypatti",
-      "address": "MAIN BUILDING EAST PORTION , 3.KULLICHETTIYAPATTY SOUTH ST,WARD-3,, KULLICHETTYPATTI - 624219 4.PARAYAPATTY WARD-3, GOVT KALLAR HIGH SCHOOL SOUTH SIDE BUILDING NO.136                      1.SITHARGAL NATHAMWARD-1,",
-      "area": "MIDDLE"
+      "address": "Sivagnanpuram",
+      "area": ""
     },
     {
       "id": "TN-130-229M",
@@ -2703,8 +2694,17 @@
       "num": 229,
       "type": "regular",
       "name": "Kullichettypatti",
-      "address": "MAIN BUILDING EAST PORTION , 3.KULLICHETTIYAPATTY SOUTH ST,WARD-3,, KULLICHETTYPATTI - 624219 4.PARAYAPATTY WARD-3, GOVT KALLAR HIGH SCHOOL SOUTH SIDE BUILDING NO.136                      1.SITHARGAL NATHAMWARD-1,",
-      "area": "MIDDLE"
+      "address": "Kullichettypatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-229A(W)",
+      "boothNo": "229A(W)",
+      "num": 229,
+      "type": "regular",
+      "name": "Kullichettypatti",
+      "address": "Kullichettypatti",
+      "area": ""
     },
     {
       "id": "TN-130-230",
@@ -2712,17 +2712,8 @@
       "num": 230,
       "type": "regular",
       "name": "Malliampatti",
-      "address": "MALLIAMPATTI - 624219                     2.SAKKILIYAPATTY W-2, (SITHERGALNATHAM) GOVT KALLAR HIGH SCHOOL, NORTH 1.MALLIYAMPATTY WARD-1, SIDE BUILDING NO.136",
-      "area": "SOUTH"
-    },
-    {
-      "id": "TN-130-231A(W)",
-      "boothNo": "231A(W)",
-      "num": 231,
-      "type": "women",
-      "name": "Malliampatti",
-      "address": "2.MALLIYAMPATTY WARD-2,, MALLIAMPATTI - 624219 3.PARAYAPATTY WARD-2, (SITHERGALNATHAM) 1.KUTHILINAYAKKAN PATTY WARD-5, PANCHAYAT UNION MIDDLE SCHOOL 2.KUNDALAPATTY WEST ST,WARD-4,,",
-      "area": "NORTH"
+      "address": "Malliampatti",
+      "area": ""
     },
     {
       "id": "TN-130-231M",
@@ -2730,8 +2721,17 @@
       "num": 231,
       "type": "regular",
       "name": "Malliampatti",
-      "address": "2.MALLIYAMPATTY WARD-2,, MALLIAMPATTI - 624219 3.PARAYAPATTY WARD-2, (SITHERGALNATHAM) 1.KUTHILINAYAKKAN PATTY WARD-5, PANCHAYAT UNION MIDDLE SCHOOL 2.KUNDALAPATTY WEST ST,WARD-4,,",
-      "area": "NORTH"
+      "address": "Malliampatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-231A(W)",
+      "boothNo": "231A(W)",
+      "num": 231,
+      "type": "regular",
+      "name": "Malliampatti",
+      "address": "Malliampatti",
+      "area": ""
     },
     {
       "id": "TN-130-232",
@@ -2739,8 +2739,8 @@
       "num": 232,
       "type": "regular",
       "name": "Kundalapatty",
-      "address": "NORTH BUILDING KUNDALAPATTY - 3.OTHAIPATTY WARD-5,, 624219 4.S.VADIPATTY WARD-5, PANCHAYAT UNION . PRIMARY 1.KUNDALAPATTY EAST ST,WARD-3,",
-      "area": "MIDDLE"
+      "address": "Kundalapatty",
+      "area": ""
     },
     {
       "id": "TN-130-233",
@@ -2748,8 +2748,8 @@
       "num": 233,
       "type": "regular",
       "name": "Kundalapatty",
-      "address": "SCHOOL SOUTH BUILDING KUNDALAPATTY - 624219 PANCHAYAT UNION . PRIMARY",
-      "area": "NILAKOTTAI"
+      "address": "Kundalapatty",
+      "area": ""
     },
     {
       "id": "TN-130-234",
@@ -2757,8 +2757,8 @@
       "num": 234,
       "type": "regular",
       "name": "Kundalapatty",
-      "address": "SCHOOL WEST BUILDING 1.KUNDALAPATTY NORTH ST,WARD-3, KUNDALAPATTY - 624219 Polling     Polling Stations or women only Station 1.KOUNDENPATTY WARD-1,, PANCHAYAT UNION MIDDLE SCHOOL 2.PERUMALKOVILPATTI-W-1,,",
-      "area": "SCHOOL"
+      "address": "Kundalapatty",
+      "area": ""
     },
     {
       "id": "TN-130-235",
@@ -2766,8 +2766,8 @@
       "num": 235,
       "type": "regular",
       "name": "Sirunaickanpatti",
-      "address": "SOUTH FACING NORTH BUILDING 3.PALAYAPERUMALKOVILPATTY WARD-1,, SIRUNAICKANPATTI - 624219 PANCHAYAT UNION MIDDLE SCHOOL 1.MALAIPATTY WARD-1,",
-      "area": "MIDDLE"
+      "address": "Sirunaickanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-236",
@@ -2775,8 +2775,8 @@
       "num": 236,
       "type": "regular",
       "name": "Pillayarnatham",
-      "address": "ADDITIONAL BUILDING EAST FACING 2.PILLYARNATHAM WEST ST,WARD-1, WEST SIDE PILLAYARNATHAM - 624219 PILLAYARNATHAM (R.V) and (P)   1.SIRUNAYACKANPATTI W 2 PANCHAYAT UNION MIDDLE SCHOOL 2.SIRUNAYACKANPATTI COLONY W 3",
-      "area": "MIDDLE"
+      "address": "Pillayarnatham",
+      "area": ""
     },
     {
       "id": "TN-130-237",
@@ -2784,8 +2784,8 @@
       "num": 237,
       "type": "regular",
       "name": "Sirunaickanpatti",
-      "address": "NORTH NEW BUILDING 3.MAINROAD W-2 , SIRUNAICKANPATTI - 624219 PILLAYARNATHAM (R.V) and (P) PANCHAYAT UNION MIDDLE SCHOOL 1.VINAYAGAR KOVIL ST,WARD-2 ,",
-      "area": "MIDDLE"
+      "address": "Sirunaickanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-238",
@@ -2793,26 +2793,26 @@
       "num": 238,
       "type": "regular",
       "name": "Sirunaickanpatti",
-      "address": "SOUTH NEW BUILDING 2.BAGAVATHI AMMAN KOVIL ST W-2 , SIRUNAICKANPATTI - 624219     3.EAST ST W-2 , 4.HARIJANA ST PUDU COLONY W3 GOVT KALLAR PRIMARY SCHOOL ADDITIONAL NORTH BUILDING",
-      "area": "MIDDLE"
+      "address": "Sirunaickanpatti",
+      "area": ""
     },
     {
       "id": "TN-130-239",
       "boothNo": "239",
       "num": 239,
       "type": "regular",
-      "name": "Anaipatty",
-      "address": "1.ANNAIPATTI W-4 (Sl.No 1 - 600) SOUTH FACING WEST SIDE ANAIPATTY - 624219 GOVT KALLAR PRIMARY SCHOOL",
-      "area": "PRIMARY"
+      "name": "Booth 239",
+      "address": "Booth 239",
+      "area": ""
     },
     {
       "id": "TN-130-240",
       "boothNo": "240",
       "num": 240,
       "type": "regular",
-      "name": "Anaipatty",
-      "address": "WEST FACING EAST BUILDING 1.ANNAIPATTI W-4 (Sl.No 601 - 1282) ANAIPATTY - 624219 GOVT.KALLAR PRIMARY SCHOOL",
-      "area": "PRIMARY"
+      "name": "Booth 240",
+      "address": "Booth 240",
+      "area": ""
     },
     {
       "id": "TN-130-241",
@@ -2820,8 +2820,8 @@
       "num": 241,
       "type": "regular",
       "name": "Chokkupillaipatti",
-      "address": "SOUTH FACING NORTH BUILDING 1.CHOKKUPILLAIPATTI W-3 CHOKKUPILLAIPATTI - 624219 PANCHAYAT UNOIN PRIMARY",
-      "area": "PRIMARY"
+      "address": "Chokkupillaipatti",
+      "area": ""
     },
     {
       "id": "TN-130-242",
@@ -2829,17 +2829,8 @@
       "num": 242,
       "type": "regular",
       "name": "Nattarpatty",
-      "address": "SCHOOL EAST FACING WEST 1.NATTAR PATTY W-3 BUILDING NATTARPATTY - 624219 PANCHAYAT UNION PRIMARY                   1.S.METTUPATTY (P)-S.METTUPATTY W-1,",
-      "area": "PRIMARY"
-    },
-    {
-      "id": "TN-130-243A(W)",
-      "boothNo": "243A(W)",
-      "num": 243,
-      "type": "women",
-      "name": "S.Mettupatti",
-      "address": "SCHOOL WEST FACING BUILDING 2.S.METTUPATTI W 2,, S.METTUPATTI - 624219                     3.S.METTUPATTY W3, AIDED PRIMARY SCHOOL EAST          1.-Ethilodu w 2,",
-      "area": "EAST"
+      "address": "Nattarpatty",
+      "area": ""
     },
     {
       "id": "TN-130-243M",
@@ -2847,26 +2838,35 @@
       "num": 243,
       "type": "regular",
       "name": "S.Mettupatti",
-      "address": "SCHOOL WEST FACING BUILDING 2.S.METTUPATTI W 2,, S.METTUPATTI - 624219                     3.S.METTUPATTY W3, AIDED PRIMARY SCHOOL EAST          1.-Ethilodu w 2,",
-      "area": "EAST"
+      "address": "S.Mettupatti",
+      "area": ""
+    },
+    {
+      "id": "TN-130-243A(W)",
+      "boothNo": "243A(W)",
+      "num": 243,
+      "type": "regular",
+      "name": "S.Mettupatti",
+      "address": "S.Mettupatti",
+      "area": ""
     },
     {
       "id": "TN-130-244",
       "boothNo": "244",
       "num": 244,
       "type": "regular",
-      "name": "Ethilodu",
-      "address": "PORTION BUILDING ETHILODU - 624219 2.ETHILODU W-6, Polling     Polling Stations or women only Station INTEGRATED CHILD DEVELOPMENT 1.MEENAKCHI PURAM W 3,",
-      "area": "ETHILODU"
+      "name": "Booth 244",
+      "address": "Booth 244",
+      "area": ""
     },
     {
       "id": "TN-130-245",
       "boothNo": "245",
       "num": 245,
       "type": "regular",
-      "name": "Ethilodu",
-      "address": "CENTRE WEST FACING BUILDING MEENACHIPURAM - 624219 GOVT. KALLAR PRIMARY SCHOOL 1.KARUTHANDI PATTY BLOCK 6 W 2,",
-      "area": "SCHOOL"
+      "name": "Booth 245",
+      "address": "Booth 245",
+      "area": ""
     },
     {
       "id": "TN-130-246",
@@ -2874,8 +2874,8 @@
       "num": 246,
       "type": "regular",
       "name": "Karuthandipatti",
-      "address": "NEW BUILDING ADDL. BUILDING 2.KAMATCHI PURAM BLOCK 6 W 2, KARUTHANDIPATTI - 624219 PANCHAYAT UNION PRIMARY",
-      "area": "PRIMARY"
+      "address": "Karuthandipatti",
+      "area": ""
     },
     {
       "id": "TN-130-247",
@@ -2883,8 +2883,8 @@
       "num": 247,
       "type": "regular",
       "name": "Vilampatti",
-      "address": "SCHOOL SOUTH BUILDING 1.Muthalapuram block 3 w 4 VILAMPATTI - 624219 PANCHAYAT UNION PRIMARY       1.MUTHALAPURAM BLOCK 4 W5,",
-      "area": "NILAKOTTAI"
+      "address": "Vilampatti",
+      "area": ""
     },
     {
       "id": "TN-130-248",
@@ -2892,8 +2892,8 @@
       "num": 248,
       "type": "regular",
       "name": "Vilampatti",
-      "address": "SCHOOL NORTH BUILDING EASTERN 2.MUTHALAPURAM BLOCK 5 W5,, SIDE VILAMPATTI - 624219      3.MUTHALAPURAM W 5, GOVT KALLAR PRIMARY SCHOOL NEW 1.AVARAMPATTY WEST ST BLOCK 7 W3,",
-      "area": "NEW"
+      "address": "Vilampatti",
+      "area": ""
     },
     {
       "id": "TN-130-249",
@@ -2901,8 +2901,8 @@
       "num": 249,
       "type": "regular",
       "name": "Avarampatti",
-      "address": "BUILDING AVARAMPATTI - 624219 GOVT KALLAR PRIMARY SCHOOL 1.AVARAM PATTU EAST ST W7,,",
-      "area": "NEW"
+      "address": "Avarampatti",
+      "area": ""
     },
     {
       "id": "TN-130-250",
@@ -2910,17 +2910,17 @@
       "num": 250,
       "type": "regular",
       "name": "Avarampatti",
-      "address": "EAST BUILDING WEST FACING 2.AVARAMPATTY CENTER ST W 7, AVARAMPATTI - 624219 AIDED PRIMARY .SCHOOL NORTH 1.KONGAPATTI BLOCK 8 W1,",
-      "area": "PRIMARY"
+      "address": "Avarampatti",
+      "area": ""
     },
     {
       "id": "TN-130-251A(W)",
       "boothNo": "251A(W)",
       "num": 251,
-      "type": "women",
+      "type": "regular",
       "name": "Kongapatti",
-      "address": "FACING BUILDING EASTERN SIDE 2.KONGAPATTI W-8, KONGAPATTI - 624219 INTEGRATED CHILD DEVELOPMENT",
-      "area": "NILAKOTTAI"
+      "address": "Kongapatti",
+      "area": ""
     },
     {
       "id": "TN-130-251M",
@@ -2928,8 +2928,8 @@
       "num": 251,
       "type": "regular",
       "name": "Kongapatti",
-      "address": "FACING BUILDING EASTERN SIDE 2.KONGAPATTI W-8, KONGAPATTI - 624219 INTEGRATED CHILD DEVELOPMENT",
-      "area": "NILAKOTTAI"
+      "address": "Kongapatti",
+      "area": ""
     },
     {
       "id": "TN-130-252",
@@ -2937,8 +2937,8 @@
       "num": 252,
       "type": "regular",
       "name": "Kongapatti",
-      "address": "CENTRE BUILDING KONGAPATTI - 1.PULLAKKADU PATTY BLOCK 8 W1 624219 1.A.kovil patty block 9 w 1, PANCHAYAT UNION MIDDLE SCHOOL 2.THAHTA NAICKHEN PATTY BLOCK 9 W 1,,",
-      "area": "SCHOOL"
+      "address": "Kongapatti",
+      "area": ""
     },
     {
       "id": "TN-130-253",
@@ -2946,8 +2946,8 @@
       "num": 253,
       "type": "regular",
       "name": "E.Kovilpatti",
-      "address": "SOUTH FACING BUILDING 3.NADUPATTY W 9,, E.KOVILPATTI - 624219 4.PANCHALANG KURUCHI W 9, GOVT KALLAR PRIMARY SCHOOL, 1.VILAMPATTY W-2,",
-      "area": "MIDDLE"
+      "address": "E.Kovilpatti",
+      "area": ""
     },
     {
       "id": "TN-130-254",
@@ -2955,8 +2955,8 @@
       "num": 254,
       "type": "regular",
       "name": "Vilampatti",
-      "address": "WEST FACING, EAST BUILDING VILAMPATTY -624219 GOVT KALLAR PRIMARY SCHOOL,",
-      "area": "PRIMARY"
+      "address": "Vilampatti",
+      "area": ""
     },
     {
       "id": "TN-130-255",
@@ -2964,8 +2964,8 @@
       "num": 255,
       "type": "regular",
       "name": "Vilampatti",
-      "address": "EAST FACING, WEST SIDE BUILDING, 1.VILAMPATTY W-3, VILAMPATTY - 624219 Polling     Polling Stations or women only Station PANCHAYAT UNION PRIMARY",
-      "area": "PRIMARY"
+      "address": "Vilampatti",
+      "area": ""
     },
     {
       "id": "TN-130-256",
@@ -2973,8 +2973,8 @@
       "num": 256,
       "type": "regular",
       "name": "Muthulingapuram",
-      "address": "SCHOOL EAST FACING BUILDING 1.MUTHULINGAPURAM W-1 MUTHULINGAPURAM - 624219 GOVT HIGHER SEC SCHOOL NEW                1.MELAMATTA PARAI W-5,",
-      "area": "NEW"
+      "address": "Muthulingapuram",
+      "area": ""
     },
     {
       "id": "TN-130-257",
@@ -2982,8 +2982,8 @@
       "num": 257,
       "type": "regular",
       "name": "Mattaparai",
-      "address": "BUILDING WESTERN SIDE, 2.THATHAN KULAM W2,, MATTAPARAI - 624213                       3.KRISHNAPURAM W2, GOVT HIGHER SEC SCHOOL NEW",
-      "area": "NEW"
+      "address": "Mattaparai",
+      "area": ""
     },
     {
       "id": "TN-130-258",
@@ -2991,8 +2991,8 @@
       "num": 258,
       "type": "regular",
       "name": "Mattaparai",
-      "address": "BUILDING EAST PORTION 1.MATTA PARAI W-3 MATTAPARAI - 624213 GOVT HIGHER SEC SCHOOL WEST",
-      "area": "NEW"
+      "address": "Mattaparai",
+      "area": ""
     },
     {
       "id": "TN-130-259",
@@ -3000,8 +3000,8 @@
       "num": 259,
       "type": "regular",
       "name": "Mattaparai",
-      "address": "BUILDING NORTH PORTION 1.MATTA PRAI W-4 MATTAPARAI - 624213 PANCHAYAT UNION MIDDLE SCHOOL",
-      "area": "WEST"
+      "address": "Mattaparai",
+      "area": ""
     },
     {
       "id": "TN-130-260",
@@ -3009,8 +3009,8 @@
       "num": 260,
       "type": "regular",
       "name": "Sadaiyampatti",
-      "address": "SOUTH FACE NORTH BUILDING 1.SADAYAM PATTY W-1 SADAIYAMPATTI - 624213 PANCHAYAT UNION PRIMARY",
-      "area": "MIDDLE"
+      "address": "Sadaiyampatti",
+      "area": ""
     },
     {
       "id": "TN-130-261",
@@ -3018,17 +3018,17 @@
       "num": 261,
       "type": "regular",
       "name": "Ramarajapuram",
-      "address": "SCHOOL SOUTHERN SIDE BUILDING 1.RAMARAJA PURAM W2 RAMARAJAPURAM - 624206 PANCHAYAT UNION . PRIMARY 1.RAMARAJAPURAM W-3,",
-      "area": "NILAKOTTAI"
+      "address": "Ramarajapuram",
+      "area": ""
     },
     {
       "id": "TN-130-262A(W)",
       "boothNo": "262A(W)",
       "num": 262,
-      "type": "women",
+      "type": "regular",
       "name": "Ramarajapuram",
-      "address": "SCHOOL NORTHERN SIDE BUILDING 2.RAMARAJAPURAM W4, RAMARAJAPURAM - 624206 NEHRU AIDED PRIMARY SCHOOL",
-      "area": "SCHOOL"
+      "address": "Ramarajapuram",
+      "area": ""
     },
     {
       "id": "TN-130-262M",
@@ -3036,8 +3036,8 @@
       "num": 262,
       "type": "regular",
       "name": "Ramarajapuram",
-      "address": "SCHOOL NORTHERN SIDE BUILDING 2.RAMARAJAPURAM W4, RAMARAJAPURAM - 624206 NEHRU AIDED PRIMARY SCHOOL",
-      "area": "SCHOOL"
+      "address": "Ramarajapuram",
+      "area": ""
     },
     {
       "id": "TN-130-263",
@@ -3045,8 +3045,8 @@
       "num": 263,
       "type": "regular",
       "name": "Meenachipuram",
-      "address": "SOUTH FACING ASBESTOS 1.MEENAKCHIPURAM W 1 BUILDING MEENACHIPURAM - 624206 GOVT KALLAR MIDDLE SCHOOL WEST 1.RAMARAJA PURAM West W-5,",
-      "area": "WEST"
+      "address": "Meenachipuram",
+      "area": ""
     },
     {
       "id": "TN-130-264",
@@ -3054,8 +3054,8 @@
       "num": 264,
       "type": "regular",
       "name": "Ramarajapuram",
-      "address": "FACING SOUTH SIDE NORTH Door No. From 1 to 100 BUILDING RAMARAJAPURAM - 624213 1.THANKAIYA PURAM W-5, GOVT KALLAR MIDDLE SCHOOL WEST 2.RAMARAJA PURAM East W-5,",
-      "area": "WEST"
+      "address": "Ramarajapuram",
+      "area": ""
     },
     {
       "id": "TN-130-265",
@@ -3063,8 +3063,8 @@
       "num": 265,
       "type": "regular",
       "name": "Ramarajapuram",
-      "address": "FACING EAST BUILDING Door no. From 101 RAMARAJAPURAM 624213",
-      "area": "WEST"
+      "address": "Ramarajapuram",
+      "area": ""
     }
   ]
 }
