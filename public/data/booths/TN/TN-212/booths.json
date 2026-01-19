@@ -2,10 +2,19 @@
   "acId": "TN-212",
   "acName": "MUDUKULATHUR",
   "state": "Tamil Nadu",
-  "totalBooths": 292,
+  "totalBooths": 294,
   "lastUpdated": "2021-04-06",
   "source": "Tamil Nadu CEO - Polling Stations",
   "booths": [
+    {
+      "id": "TN-212-0",
+      "boothNo": "0",
+      "num": 0,
+      "type": "regular",
+      "name": "Polling Station 0",
+      "address": "Polling Station 0, MUDUKULATHUR",
+      "area": "MUDUKULATHUR"
+    },
     {
       "id": "TN-212-1",
       "boothNo": "1",
@@ -41,6 +50,15 @@
       "name": "Devangar Higher Secondary School",
       "address": "Devangar Higher Secondary School,Western Portion, Neeravi. 2,2,3,3,5,5,5,5",
       "area": "All Voters"
+    },
+    {
+      "id": "TN-212-5",
+      "boothNo": "5",
+      "num": 5,
+      "type": "regular",
+      "name": "Polling Station 5",
+      "address": "Polling Station 5, MUDUKULATHUR",
+      "area": "MUDUKULATHUR"
     },
     {
       "id": "TN-212-7",
