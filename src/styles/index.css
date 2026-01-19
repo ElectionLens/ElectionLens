@@ -4392,6 +4392,24 @@ path:focus {
   gap: 20px;
 }
 
+/* Consistent section heading style */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-heading svg {
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
 .analysis-empty {
   display: flex;
   flex-direction: column;
@@ -5109,6 +5127,17 @@ path:focus {
   color: #10b981;
   font-weight: 600;
   text-align: right;
+}
+
+/* Quick Stats Section */
+.analysis-quick-stats-section {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.analysis-quick-stats-section .section-heading {
+  margin-bottom: 12px;
 }
 
 /* Updated Quick Stats for 6 items */

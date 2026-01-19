@@ -1692,7 +1692,10 @@ function BoothwiseAnalysis({
     <div className="boothwise-analysis">
       {/* Booth Distribution Bar */}
       <div className="booth-distribution">
-        <div className="distribution-label">Booth Distribution</div>
+        <h5 className="section-heading">
+          <BarChart3 size={16} />
+          Booth Distribution
+        </h5>
         <div className="distribution-bar">
           {Object.entries(analysis.partyBoothWins)
             .sort((a, b) => b[1] - a[1])
@@ -1728,7 +1731,7 @@ function BoothwiseAnalysis({
 
       {/* Party Booth Breakdown */}
       <div className="party-booth-breakdown">
-        <h5>
+        <h5 className="section-heading">
           <MapPin size={16} />
           Booths Won by Party
         </h5>
@@ -1816,7 +1819,10 @@ function BoothwiseAnalysis({
 
       {/* Key Insights */}
       <div className="analysis-insights">
-        <h5>Key Insights</h5>
+        <h5 className="section-heading">
+          <Lightbulb size={16} />
+          Key Insights
+        </h5>
         <div className="insights-list">
           {analysis.insights.map((insight, idx) => (
             <InsightCard
@@ -1831,7 +1837,10 @@ function BoothwiseAnalysis({
 
       {/* Strike Rate Table */}
       <div className="strike-rate-table">
-        <h5>Party Strike Rates</h5>
+        <h5 className="section-heading">
+          <Target size={16} />
+          Party Strike Rates
+        </h5>
         <div className="strike-rate-list">
           {analysis.strikeRates.slice(0, 5).map((sr, idx) => (
             <div key={sr.party} className={`strike-rate-row ${idx === 0 ? 'winner' : ''}`}>
@@ -1856,30 +1865,36 @@ function BoothwiseAnalysis({
       </div>
 
       {/* Quick Stats */}
-      <div className="analysis-quick-stats">
-        <div className="quick-stat">
-          <span className="stat-number">{analysis.landslides}</span>
-          <span className="stat-label">Landslides (&gt;60%)</span>
-        </div>
-        <div className="quick-stat">
-          <span className="stat-number">{analysis.oneSidedBooths}</span>
-          <span className="stat-label">One-Sided (&gt;80%)</span>
-        </div>
-        <div className="quick-stat">
-          <span className="stat-number">{analysis.closeContests}</span>
-          <span className="stat-label">Battlegrounds (&lt;50)</span>
-        </div>
-        <div className="quick-stat highlight-nota">
-          <span className="stat-number">{analysis.highNotaBooths}</span>
-          <span className="stat-label">High NOTA</span>
-        </div>
-        <div className="quick-stat">
-          <span className="stat-number">{analysis.womenBooths}</span>
-          <span className="stat-label">Women&apos;s Booths</span>
-        </div>
-        <div className="quick-stat highlight-zero">
-          <span className="stat-number">{analysis.zeroVoteInstances}</span>
-          <span className="stat-label">Zero Vote Cases</span>
+      <div className="analysis-quick-stats-section">
+        <h5 className="section-heading">
+          <Zap size={16} />
+          Quick Stats
+        </h5>
+        <div className="analysis-quick-stats">
+          <div className="quick-stat">
+            <span className="stat-number">{analysis.landslides}</span>
+            <span className="stat-label">Landslides (&gt;60%)</span>
+          </div>
+          <div className="quick-stat">
+            <span className="stat-number">{analysis.oneSidedBooths}</span>
+            <span className="stat-label">One-Sided (&gt;80%)</span>
+          </div>
+          <div className="quick-stat">
+            <span className="stat-number">{analysis.closeContests}</span>
+            <span className="stat-label">Battlegrounds (&lt;50)</span>
+          </div>
+          <div className="quick-stat highlight-nota">
+            <span className="stat-number">{analysis.highNotaBooths}</span>
+            <span className="stat-label">High NOTA</span>
+          </div>
+          <div className="quick-stat">
+            <span className="stat-number">{analysis.womenBooths}</span>
+            <span className="stat-label">Women&apos;s Booths</span>
+          </div>
+          <div className="quick-stat highlight-zero">
+            <span className="stat-number">{analysis.zeroVoteInstances}</span>
+            <span className="stat-label">Zero Vote Cases</span>
+          </div>
         </div>
       </div>
     </div>
