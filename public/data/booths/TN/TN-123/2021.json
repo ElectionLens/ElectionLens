@@ -8,13 +8,8 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "name": "Shanthu Mohamed, A.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "name": "Dr. Varadharajan, K.",
-      "party": "DMK",
+      "name": "Aruchamy, C.M.",
+      "party": "BSP",
       "symbol": ""
     },
     {
@@ -23,13 +18,8 @@
       "symbol": ""
     },
     {
-      "name": "Logeswari, N.",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "name": "Sugumar, K.",
-      "party": "AMMK",
+      "name": "Dr. Varadharajan, K.",
+      "party": "DMK",
       "symbol": ""
     },
     {
@@ -38,13 +28,23 @@
       "symbol": ""
     },
     {
-      "name": "Muthukumarasamy, R.",
+      "name": "Sugumar, K.",
+      "party": "AMMK",
+      "symbol": ""
+    },
+    {
+      "name": "Logeswari, N.",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "Shanthu Mohamed, A.",
       "party": "IND",
       "symbol": ""
     },
     {
-      "name": "Aruchamy, C.M.",
-      "party": "BSP",
+      "name": "Muthukumarasamy, R.",
+      "party": "IND",
       "symbol": ""
     },
     {
@@ -4097,5 +4097,76 @@
     "totalVotes": 308724,
     "totalVoters": 0,
     "turnoutPercent": 0
+  },
+  "postal": {
+    "candidates": [
+      {
+        "name": "Aruchamy, C.M.",
+        "party": "BSP",
+        "postal": 66,
+        "booth": 425,
+        "total": 491
+      },
+      {
+        "name": "Pollachi V. Jayaraman",
+        "party": "ADMK",
+        "postal": 9473,
+        "booth": 71094,
+        "total": 80567
+      },
+      {
+        "name": "Dr. Varadharajan, K.",
+        "party": "DMK",
+        "postal": 10358,
+        "booth": 68484,
+        "total": 78842
+      },
+      {
+        "name": "Sathieshkumar, V.T.",
+        "party": "MNM",
+        "postal": 1101,
+        "booth": 6488,
+        "total": 7589
+      },
+      {
+        "name": "Sugumar, K.",
+        "party": "AMMK",
+        "postal": 164,
+        "booth": 977,
+        "total": 1141
+      },
+      {
+        "name": "Logeswari, N.",
+        "party": "NTK",
+        "postal": 849,
+        "booth": 5553,
+        "total": 6402
+      },
+      {
+        "name": "Shanthu Mohamed, A.",
+        "party": "IND",
+        "postal": 29,
+        "booth": 339,
+        "total": 368
+      },
+      {
+        "name": "Muthukumarasamy, R.",
+        "party": "IND",
+        "postal": 43,
+        "booth": 319,
+        "total": 362
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 0,
+        "booth": 0,
+        "total": 0
+      }
+    ],
+    "totalValid": 22083,
+    "rejected": 0,
+    "nota": 0,
+    "total": 0
   }
 }

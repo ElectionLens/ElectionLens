@@ -8,23 +8,28 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "name": "MURUGAN S",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "name": "VIGNESH M",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
       "name": "L.VENKATESAN",
       "party": "DMDK",
       "symbol": ""
     },
     {
+      "name": "MURUGAN S",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
       "name": "VAT.KALIVARADHAN",
       "party": "BJP",
+      "symbol": ""
+    },
+    {
+      "name": "K.PONMUDY",
+      "party": "DMK",
+      "symbol": ""
+    },
+    {
+      "name": "VIGNESH M",
+      "party": "IND",
       "symbol": ""
     },
     {
@@ -38,27 +43,22 @@
       "symbol": ""
     },
     {
-      "name": "SIVA.PANJAVARNAM",
-      "party": "BSP",
-      "symbol": ""
-    },
-    {
-      "name": "K.PONMUDY",
-      "party": "DMK",
-      "symbol": ""
-    },
-    {
-      "name": "SANKAR S",
-      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
-      "symbol": ""
-    },
-    {
-      "name": "JAYAVINDAN G",
+      "name": "KATHIRAVAN K",
       "party": "IND",
       "symbol": ""
     },
     {
+      "name": "RAJINI VR",
+      "party": "Naadaalum Makkal Katchi",
+      "symbol": ""
+    },
+    {
       "name": "MAGESH M",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "JAYAVINDAN G",
       "party": "IND",
       "symbol": ""
     },
@@ -68,13 +68,13 @@
       "symbol": ""
     },
     {
-      "name": "KATHIRAVAN K",
-      "party": "IND",
+      "name": "SIVA.PANJAVARNAM",
+      "party": "BSP",
       "symbol": ""
     },
     {
-      "name": "RAJINI VR",
-      "party": "Naadaalum Makkal Katchi",
+      "name": "SANKAR S",
+      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
       "symbol": ""
     },
     {
@@ -2150,5 +2150,118 @@
     "totalVotes": 219865,
     "totalVoters": 0,
     "turnoutPercent": 0
+  },
+  "postal": {
+    "candidates": [
+      {
+        "name": "L.VENKATESAN",
+        "party": "DMDK",
+        "postal": 0,
+        "booth": 32720,
+        "total": 13997
+      },
+      {
+        "name": "MURUGAN S",
+        "party": "NTK",
+        "postal": 0,
+        "booth": 32622,
+        "total": 11620
+      },
+      {
+        "name": "VAT.KALIVARADHAN",
+        "party": "BJP",
+        "postal": 18224,
+        "booth": 33076,
+        "total": 51300
+      },
+      {
+        "name": "K.PONMUDY",
+        "party": "DMK",
+        "postal": 76124,
+        "booth": 34856,
+        "total": 110980
+      },
+      {
+        "name": "VIGNESH M",
+        "party": "IND",
+        "postal": 0,
+        "booth": 29745,
+        "total": 1482
+      },
+      {
+        "name": "SENTHILKUMAR M",
+        "party": "IJK",
+        "postal": 0,
+        "booth": 22392,
+        "total": 1066
+      },
+      {
+        "name": "PRAKASH A",
+        "party": "IND",
+        "postal": 0,
+        "booth": 1166,
+        "total": 883
+      },
+      {
+        "name": "KATHIRAVAN K",
+        "party": "IND",
+        "postal": 178,
+        "booth": 11,
+        "total": 189
+      },
+      {
+        "name": "RAJINI VR",
+        "party": "Naadaalum Makkal Katchi",
+        "postal": 217,
+        "booth": 14,
+        "total": 231
+      },
+      {
+        "name": "MAGESH M",
+        "party": "IND",
+        "postal": 259,
+        "booth": 17,
+        "total": 276
+      },
+      {
+        "name": "JAYAVINDAN G",
+        "party": "IND",
+        "postal": 462,
+        "booth": 18,
+        "total": 480
+      },
+      {
+        "name": "MATHIVANAN S",
+        "party": "IND",
+        "postal": 394,
+        "booth": 18,
+        "total": 412
+      },
+      {
+        "name": "SIVA.PANJAVARNAM",
+        "party": "BSP",
+        "postal": 643,
+        "booth": 53,
+        "total": 696
+      },
+      {
+        "name": "SANKAR S",
+        "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+        "postal": 544,
+        "booth": 22,
+        "total": 566
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 0,
+        "booth": 41,
+        "total": 0
+      }
+    ],
+    "totalValid": 97045,
+    "rejected": 0,
+    "nota": 0,
+    "total": 0
   }
 }

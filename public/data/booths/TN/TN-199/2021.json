@@ -8,48 +8,18 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "name": "M Murugan",
-      "party": "ADMK",
-      "symbol": ""
-    },
-    {
       "name": "K.S.SARAVANAKUMAAR",
       "party": "DMK",
       "symbol": ""
     },
     {
-      "name": "Vimala",
-      "party": "NTK",
+      "name": "M Murugan",
+      "party": "ADMK",
       "symbol": ""
     },
     {
-      "name": "M.RAJENDRAN",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "name": "MADHU BHARATHI",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "name": "A.C.MOHAN RAJ B.P.T.,",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "name": "S.PANDIYARAJAN",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "name": "MURUGAN",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "name": "C.MAYAZHAKU",
-      "party": "IND",
+      "name": "Dr.K.Kathirkamu",
+      "party": "AMMK",
       "symbol": ""
     },
     {
@@ -58,17 +28,32 @@
       "symbol": ""
     },
     {
+      "name": "S.PANDIYARAJAN",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "A.Murugesan",
+      "party": "SUCI",
+      "symbol": ""
+    },
+    {
+      "name": "Vimala",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "MADHU BHARATHI",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
       "name": "C.MAYAZHAKU",
       "party": "IND",
       "symbol": ""
     },
     {
-      "name": "P.RAMAIYA",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "name": "M.Muneeswaran",
+      "name": "MURUGAN",
       "party": "IND",
       "symbol": ""
     },
@@ -78,8 +63,23 @@
       "symbol": ""
     },
     {
-      "name": "A.Murugesan",
-      "party": "SUCI",
+      "name": "M.Muneeswaran",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "A.C.MOHAN RAJ B.P.T.,",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "P.RAMAIYA",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "M.RAJENDRAN",
+      "party": "IND",
       "symbol": ""
     },
     {
@@ -6631,5 +6631,125 @@
     "totalVotes": 154115,
     "totalVoters": 0,
     "turnoutPercent": 0
+  },
+  "postal": {
+    "candidates": [
+      {
+        "name": "K.S.SARAVANAKUMAAR",
+        "party": "DMK",
+        "postal": 22995,
+        "booth": 69256,
+        "total": 92251
+      },
+      {
+        "name": "M Murugan",
+        "party": "ADMK",
+        "postal": 15579,
+        "booth": 55351,
+        "total": 70930
+      },
+      {
+        "name": "Dr.K.Kathirkamu",
+        "party": "AMMK",
+        "postal": 4033,
+        "booth": 12391,
+        "total": 16424
+      },
+      {
+        "name": "S.Chinnamuthu",
+        "party": "My India Party",
+        "postal": 71,
+        "booth": 230,
+        "total": 301
+      },
+      {
+        "name": "S.PANDIYARAJAN",
+        "party": "MNM",
+        "postal": 1216,
+        "booth": 4464,
+        "total": 5680
+      },
+      {
+        "name": "A.Murugesan",
+        "party": "SUCI",
+        "postal": 50,
+        "booth": 152,
+        "total": 202
+      },
+      {
+        "name": "Vimala",
+        "party": "NTK",
+        "postal": 2875,
+        "booth": 8919,
+        "total": 11794
+      },
+      {
+        "name": "MADHU BHARATHI",
+        "party": "IND",
+        "postal": 153,
+        "booth": 475,
+        "total": 628
+      },
+      {
+        "name": "C.MAYAZHAKU",
+        "party": "IND",
+        "postal": 2,
+        "booth": 55,
+        "total": 57
+      },
+      {
+        "name": "MURUGAN",
+        "party": "IND",
+        "postal": 58,
+        "booth": 281,
+        "total": 339
+      },
+      {
+        "name": "M.Muniyappan",
+        "party": "IND",
+        "postal": 12,
+        "booth": 82,
+        "total": 94
+      },
+      {
+        "name": "M.Muneeswaran",
+        "party": "IND",
+        "postal": 17,
+        "booth": 126,
+        "total": 143
+      },
+      {
+        "name": "A.C.MOHAN RAJ B.P.T.,",
+        "party": "IND",
+        "postal": 16,
+        "booth": 133,
+        "total": 149
+      },
+      {
+        "name": "P.RAMAIYA",
+        "party": "IND",
+        "postal": 7,
+        "booth": 105,
+        "total": 112
+      },
+      {
+        "name": "M.RAJENDRAN",
+        "party": "IND",
+        "postal": 52,
+        "booth": 190,
+        "total": 242
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 0,
+        "booth": 20,
+        "total": 0
+      }
+    ],
+    "totalValid": 47136,
+    "rejected": 0,
+    "nota": 0,
+    "total": 0
   }
 }

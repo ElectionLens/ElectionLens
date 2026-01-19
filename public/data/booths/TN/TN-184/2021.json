@@ -8,38 +8,8 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "name": "S.Rajkumar",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "name": "Rajkumar.G",
-      "party": "Anna MGR Dravida Makkal Kalgam",
-      "symbol": ""
-    },
-    {
-      "name": "A.Ganesan",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "name": "N.Durai Manickam",
-      "party": "NTK",
-      "symbol": ""
-    },
-    {
-      "name": "B.Vanitha",
-      "party": "Puthiya Tamilagam",
-      "symbol": ""
-    },
-    {
-      "name": "N.Meenal",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "name": "M.Naina Mohamed",
-      "party": "IND",
+      "name": "S.Mangudi",
+      "party": "INC",
       "symbol": ""
     },
     {
@@ -48,12 +18,7 @@
       "symbol": ""
     },
     {
-      "name": "N.Baluswamy",
-      "party": "BSP",
-      "symbol": ""
-    },
-    {
-      "name": "A.Paramasivam",
+      "name": "N.Meenal",
       "party": "IND",
       "symbol": ""
     },
@@ -63,13 +28,48 @@
       "symbol": ""
     },
     {
-      "name": "S.Mangudi",
-      "party": "INC",
+      "name": "Dherpoki V Pandi",
+      "party": "AMMK",
       "symbol": ""
     },
     {
-      "name": "Dherpoki V Pandi",
-      "party": "AMMK",
+      "name": "S.Rajkumar",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "N.Baluswamy",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
+      "name": "B.Vanitha",
+      "party": "Puthiya Tamilagam",
+      "symbol": ""
+    },
+    {
+      "name": "N.Durai Manickam",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "M.Naina Mohamed",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Rajkumar.G",
+      "party": "Anna MGR Dravida Makkal Kalgam",
+      "symbol": ""
+    },
+    {
+      "name": "A.Paramasivam",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "A.Ganesan",
+      "party": "IND",
       "symbol": ""
     },
     {
@@ -1139,5 +1139,111 @@
     "totalVotes": 120926,
     "totalVoters": 0,
     "turnoutPercent": 0
+  },
+  "postal": {
+    "candidates": [
+      {
+        "name": "S.Mangudi",
+        "party": "INC",
+        "postal": 62992,
+        "booth": 12962,
+        "total": 75954
+      },
+      {
+        "name": "K.Velu",
+        "party": "IND",
+        "postal": 0,
+        "booth": 11151,
+        "total": 504
+      },
+      {
+        "name": "N.Meenal",
+        "party": "IND",
+        "postal": 0,
+        "booth": 11461,
+        "total": 548
+      },
+      {
+        "name": "H.Raja",
+        "party": "BJP",
+        "postal": 41613,
+        "booth": 12752,
+        "total": 54365
+      },
+      {
+        "name": "Dherpoki V Pandi",
+        "party": "AMMK",
+        "postal": 32545,
+        "booth": 12319,
+        "total": 44864
+      },
+      {
+        "name": "S.Rajkumar",
+        "party": "MNM",
+        "postal": 0,
+        "booth": 11792,
+        "total": 8351
+      },
+      {
+        "name": "N.Baluswamy",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 11571,
+        "total": 652
+      },
+      {
+        "name": "B.Vanitha",
+        "party": "Puthiya Tamilagam",
+        "postal": 0,
+        "booth": 11719,
+        "total": 702
+      },
+      {
+        "name": "N.Durai Manickam",
+        "party": "NTK",
+        "postal": 11727,
+        "booth": 12145,
+        "total": 23872
+      },
+      {
+        "name": "M.Naina Mohamed",
+        "party": "IND",
+        "postal": 264,
+        "booth": 152,
+        "total": 416
+      },
+      {
+        "name": "Rajkumar.G",
+        "party": "Anna MGR Dravida Makkal Kalgam",
+        "postal": 335,
+        "booth": 6,
+        "total": 341
+      },
+      {
+        "name": "A.Paramasivam",
+        "party": "IND",
+        "postal": 190,
+        "booth": 2,
+        "total": 192
+      },
+      {
+        "name": "A.Ganesan",
+        "party": "IND",
+        "postal": 330,
+        "booth": 16,
+        "total": 346
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 0,
+        "booth": 0,
+        "total": 0
+      }
+    ],
+    "totalValid": 149996,
+    "rejected": 0,
+    "nota": 0,
+    "total": 0
   }
 }

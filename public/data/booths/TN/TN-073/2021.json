@@ -8,16 +8,6 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "name": "SANDOSHKUMAR M",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "name": "SAKTHIVEL S",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
       "name": "LATCHOUMY M",
       "party": "NTK",
       "symbol": ""
@@ -28,8 +18,8 @@
       "symbol": ""
     },
     {
-      "name": "VINAYAGAMURTHY M",
-      "party": "BSP",
+      "name": "CHAKRAPANI M",
+      "party": "ADMK",
       "symbol": ""
     },
     {
@@ -38,8 +28,18 @@
       "symbol": ""
     },
     {
-      "name": "CHAKRAPANI M",
-      "party": "ADMK",
+      "name": "SANDOSHKUMAR M",
+      "party": "MNM",
+      "symbol": ""
+    },
+    {
+      "name": "SAKTHIVEL S",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "VINAYAGAMURTHY M",
+      "party": "BSP",
       "symbol": ""
     },
     {
@@ -1815,5 +1815,69 @@
     "totalVotes": 208004,
     "totalVoters": 0,
     "turnoutPercent": 0
+  },
+  "postal": {
+    "candidates": [
+      {
+        "name": "LATCHOUMY M",
+        "party": "NTK",
+        "postal": 0,
+        "booth": 33818,
+        "total": 8587
+      },
+      {
+        "name": "GANAPATHI P M",
+        "party": "DMDK",
+        "postal": 0,
+        "booth": 33752,
+        "total": 5460
+      },
+      {
+        "name": "CHAKRAPANI M",
+        "party": "ADMK",
+        "postal": 55877,
+        "booth": 36342,
+        "total": 92219
+      },
+      {
+        "name": "VANNI ARASU",
+        "party": "VCK",
+        "postal": 35064,
+        "booth": 35428,
+        "total": 70492
+      },
+      {
+        "name": "SANDOSHKUMAR M",
+        "party": "MNM",
+        "postal": 0,
+        "booth": 27574,
+        "total": 2500
+      },
+      {
+        "name": "SAKTHIVEL S",
+        "party": "IND",
+        "postal": 0,
+        "booth": 3629,
+        "total": 813
+      },
+      {
+        "name": "VINAYAGAMURTHY M",
+        "party": "BSP",
+        "postal": 763,
+        "booth": 11,
+        "total": 774
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 0,
+        "booth": 14,
+        "total": 0
+      }
+    ],
+    "totalValid": 91704,
+    "rejected": 0,
+    "nota": 0,
+    "total": 0
   }
 }

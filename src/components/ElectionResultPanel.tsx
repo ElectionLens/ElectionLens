@@ -16,12 +16,13 @@ import {
   Zap,
   TrendingDown,
   AlertTriangle,
+  Mail,
 } from 'lucide-react';
 import { useState, useCallback, memo, useMemo, useEffect } from 'react';
 import type { ACElectionResult, ElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName } from '../utils/partyData';
 import { trackShare } from '../utils/firebase';
-import type { BoothResults, BoothWithResult } from '../hooks/useBoothData';
+import type { BoothResults, BoothWithResult, PostalData } from '../hooks/useBoothData';
 
 function formatNumber(num: number): string {
   return num.toLocaleString('en-IN');
@@ -96,7 +97,7 @@ function generateShareText(
   return text.trim();
 }
 
-type TabType = 'overview' | 'candidates' | 'booths' | 'analysis';
+type TabType = 'overview' | 'candidates' | 'booths' | 'postal' | 'analysis';
 
 export function ElectionResultPanel({
   result,
@@ -120,9 +121,12 @@ export function ElectionResultPanel({
   // Check if booth data is available
   const hasBoothData = boothsWithResults.length > 0 && boothResults !== null;
 
-  // Reset to overview tab if booth data becomes unavailable while on booths/analysis tab
+  // Reset to overview tab if booth data becomes unavailable while on booths/postal/analysis tab
   useEffect(() => {
-    if (!hasBoothData && (activeTab === 'booths' || activeTab === 'analysis')) {
+    if (
+      !hasBoothData &&
+      (activeTab === 'booths' || activeTab === 'postal' || activeTab === 'analysis')
+    ) {
       setActiveTab('overview');
     }
   }, [hasBoothData, activeTab]);
@@ -329,6 +333,15 @@ export function ElectionResultPanel({
             Booths
           </button>
         )}
+        {hasBoothData && boothResults?.postal && (
+          <button
+            className={`panel-tab ${activeTab === 'postal' ? 'active' : ''}`}
+            onClick={() => setActiveTab('postal')}
+          >
+            <Mail size={14} />
+            Postal
+          </button>
+        )}
         {hasBoothData && (
           <button
             className={`panel-tab ${activeTab === 'analysis' ? 'active' : ''}`}
@@ -442,6 +455,9 @@ export function ElectionResultPanel({
               onBoothSelect={setSelectedBoothId}
               selectedBooth={selectedBooth}
             />
+          ) : activeTab === 'postal' && boothResults?.postal ? (
+            /* Postal Ballots view (Parliament year) */
+            <PostalBallotsView postal={boothResults.postal} />
           ) : activeTab === 'analysis' ? (
             /* Boothwise Analysis (Parliament year) */
             <BoothwiseAnalysis
@@ -597,6 +613,9 @@ export function ElectionResultPanel({
               </div>
             </div>
           </div>
+        ) : activeTab === 'postal' && boothResults?.postal ? (
+          /* Postal Ballots view */
+          <PostalBallotsView postal={boothResults.postal} />
         ) : activeTab === 'analysis' ? (
           /* Boothwise Analysis */
           <BoothwiseAnalysis
@@ -709,6 +728,110 @@ const CandidateRow = memo(function CandidateRow({
     </div>
   );
 });
+
+// Postal Ballots view component
+interface PostalBallotsViewProps {
+  postal: PostalData;
+}
+
+function PostalBallotsView({ postal }: PostalBallotsViewProps): JSX.Element {
+  // Sort postal candidates by postal votes descending
+  const sortedCandidates = useMemo(() => {
+    return [...postal.candidates].sort((a, b) => b.postal - a.postal);
+  }, [postal.candidates]);
+
+  const totalPostal = useMemo(() => {
+    return postal.candidates.reduce((sum, c) => sum + c.postal, 0);
+  }, [postal.candidates]);
+
+  return (
+    <div className="postal-ballots-view">
+      {/* Summary */}
+      <div className="postal-summary">
+        <div className="postal-summary-header">
+          <Mail size={18} />
+          <h3>Postal Ballot Summary</h3>
+        </div>
+        <div className="postal-stats">
+          <div className="postal-stat">
+            <span className="stat-value">{formatNumber(totalPostal)}</span>
+            <span className="stat-label">Total Postal Votes</span>
+          </div>
+          <div className="postal-stat">
+            <span className="stat-value">
+              {totalPostal > 0 && postal.candidates[0]
+                ? (postal.candidates.reduce((sum, c) => sum + c.total, 0) > 0
+                    ? (totalPostal / postal.candidates.reduce((sum, c) => sum + c.total, 0)) * 100
+                    : 0
+                  ).toFixed(1)
+                : '0'}
+              %
+            </span>
+            <span className="stat-label">of Total Votes</span>
+          </div>
+          {postal.nota > 0 && (
+            <div className="postal-stat">
+              <span className="stat-value">{formatNumber(postal.nota)}</span>
+              <span className="stat-label">NOTA (Postal)</span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Candidate-wise postal votes */}
+      <div className="postal-candidates">
+        <div className="postal-candidates-header">
+          <span className="col-rank">#</span>
+          <span className="col-name">Candidate</span>
+          <span className="col-party">Party</span>
+          <span className="col-postal">Postal</span>
+          <span className="col-booth">Booth</span>
+          <span className="col-total">Total</span>
+        </div>
+        <div className="postal-candidates-list">
+          {sortedCandidates.map((candidate, idx) => {
+            const postalPercent =
+              candidate.total > 0 ? (candidate.postal / candidate.total) * 100 : 0;
+
+            return (
+              <div
+                key={`${candidate.name}-${candidate.party}`}
+                className={`postal-candidate-row ${idx === 0 ? 'winner' : ''}`}
+              >
+                <span className="col-rank">{idx + 1}</span>
+                <span className="col-name" title={candidate.name}>
+                  {candidate.name}
+                </span>
+                <span
+                  className="col-party"
+                  style={{ backgroundColor: getPartyColor(candidate.party) }}
+                  title={getPartyFullName(candidate.party)}
+                >
+                  {candidate.party}
+                </span>
+                <span className="col-postal">
+                  {formatNumber(candidate.postal)}
+                  <small className="postal-pct">({postalPercent.toFixed(1)}%)</small>
+                </span>
+                <span className="col-booth">{formatNumber(candidate.booth)}</span>
+                <span className="col-total">{formatNumber(candidate.total)}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Note about postal ballots */}
+      <div className="postal-note">
+        <AlertTriangle size={14} />
+        <span>
+          Postal ballots include votes from government employees, military personnel, and voters
+          unable to reach polling stations. Postal = Official Total - Booth Total.
+        </span>
+      </div>
+    </div>
+  );
+}
 
 // Booth-wise view component
 interface BoothWiseViewProps {

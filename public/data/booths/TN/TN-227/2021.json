@@ -8,13 +8,18 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
+      "name": "RUBY R MANOHARAN",
+      "party": "INC",
+      "symbol": ""
+    },
+    {
       "name": "PARAMASIVA IYYAPPAN",
       "party": "AMMK",
       "symbol": ""
     },
     {
-      "name": "KATHIRAVAN",
-      "party": "IND",
+      "name": "GANESARAJA",
+      "party": "ADMK",
       "symbol": ""
     },
     {
@@ -23,23 +28,23 @@
       "symbol": ""
     },
     {
-      "name": "GNANA BALAJI",
+      "name": "ASHOK KUMAR",
       "party": "IND",
       "symbol": ""
     },
     {
-      "name": "LENIN",
+      "name": "KATHIRAVAN",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "GNANA BALAJI",
       "party": "IND",
       "symbol": ""
     },
     {
       "name": "SUBBULAKSHMI",
       "party": "BSP",
-      "symbol": ""
-    },
-    {
-      "name": "ASHOK KUMAR",
-      "party": "IND",
       "symbol": ""
     },
     {
@@ -58,8 +63,13 @@
       "symbol": ""
     },
     {
-      "name": "GANESARAJA",
-      "party": "ADMK",
+      "name": "KANDASAMY",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "MUTHUDURAI",
+      "party": "IND",
       "symbol": ""
     },
     {
@@ -68,17 +78,7 @@
       "symbol": ""
     },
     {
-      "name": "RUBY R MANOHARAN",
-      "party": "INC",
-      "symbol": ""
-    },
-    {
-      "name": "KANDASAMY",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "name": "MUTHUDURAI",
+      "name": "LENIN",
       "party": "IND",
       "symbol": ""
     },
@@ -2274,5 +2274,125 @@
     "totalVotes": 265231,
     "totalVoters": 0,
     "turnoutPercent": 0
+  },
+  "postal": {
+    "candidates": [
+      {
+        "name": "RUBY R MANOHARAN",
+        "party": "INC",
+        "postal": 44135,
+        "booth": 31767,
+        "total": 75902
+      },
+      {
+        "name": "PARAMASIVA IYYAPPAN",
+        "party": "AMMK",
+        "postal": 2577,
+        "booth": 29293,
+        "total": 31870
+      },
+      {
+        "name": "GANESARAJA",
+        "party": "ADMK",
+        "postal": 28230,
+        "booth": 31186,
+        "total": 59416
+      },
+      {
+        "name": "VEERAPANDI",
+        "party": "NTK",
+        "postal": 0,
+        "booth": 29131,
+        "total": 17654
+      },
+      {
+        "name": "ASHOK KUMAR",
+        "party": "IND",
+        "postal": 0,
+        "booth": 27430,
+        "total": 625
+      },
+      {
+        "name": "KATHIRAVAN",
+        "party": "IND",
+        "postal": 0,
+        "booth": 28769,
+        "total": 1154
+      },
+      {
+        "name": "GNANA BALAJI",
+        "party": "IND",
+        "postal": 0,
+        "booth": 27996,
+        "total": 813
+      },
+      {
+        "name": "SUBBULAKSHMI",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 27959,
+        "total": 700
+      },
+      {
+        "name": "KANDHAN",
+        "party": "Anaithu Ulaga Tamilargal Munnetra Kalagam",
+        "postal": 0,
+        "booth": 1225,
+        "total": 497
+      },
+      {
+        "name": "SHUNMUGA SUNDARAM",
+        "party": "Naam Indiar Party",
+        "postal": 436,
+        "booth": 5,
+        "total": 441
+      },
+      {
+        "name": "PRABAKARAN",
+        "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+        "postal": 429,
+        "booth": 1,
+        "total": 430
+      },
+      {
+        "name": "KANDASAMY",
+        "party": "IND",
+        "postal": 430,
+        "booth": 2,
+        "total": 432
+      },
+      {
+        "name": "MUTHUDURAI",
+        "party": "IND",
+        "postal": 160,
+        "booth": 1,
+        "total": 161
+      },
+      {
+        "name": "MUTHURAJ",
+        "party": "IND",
+        "postal": 433,
+        "booth": 3,
+        "total": 436
+      },
+      {
+        "name": "LENIN",
+        "party": "IND",
+        "postal": 446,
+        "booth": 8,
+        "total": 454
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 0,
+        "booth": 19,
+        "total": 0
+      }
+    ],
+    "totalValid": 77276,
+    "rejected": 0,
+    "nota": 0,
+    "total": 0
   }
 }

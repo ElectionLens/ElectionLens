@@ -8,13 +8,13 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "name": "SELVARAJ A K",
-      "party": "ADMK",
+      "name": "SHANMUGASUNDARAM T R",
+      "party": "DMK",
       "symbol": ""
     },
     {
-      "name": "SHANMUGASUNDARAM T R",
-      "party": "DMK",
+      "name": "SELVARAJ A K",
+      "party": "ADMK",
       "symbol": ""
     },
     {
@@ -23,13 +23,23 @@
       "symbol": ""
     },
     {
-      "name": "SHANMUGASUNDARAM P",
-      "party": "IND",
+      "name": "MAHESHWARAN K",
+      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
       "symbol": ""
     },
     {
       "name": "YASMIN K",
       "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "SHANMUGASUNDARAM K",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "SHANMUGASUNDARAM P",
+      "party": "IND",
       "symbol": ""
     },
     {
@@ -39,16 +49,6 @@
     },
     {
       "name": "LIAKATHALI O",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "name": "MAHESHWARAN K",
-      "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
-      "symbol": ""
-    },
-    {
-      "name": "SHANMUGASUNDARAM K",
       "party": "IND",
       "symbol": ""
     },
@@ -5529,5 +5529,90 @@
     "totalVotes": 366598,
     "totalVoters": 0,
     "turnoutPercent": 0
+  },
+  "postal": {
+    "candidates": [
+      {
+        "name": "SHANMUGASUNDARAM T R",
+        "party": "DMK",
+        "postal": 18697,
+        "booth": 84078,
+        "total": 102775
+      },
+      {
+        "name": "SELVARAJ A K",
+        "party": "ADMK",
+        "postal": 18861,
+        "booth": 86370,
+        "total": 105231
+      },
+      {
+        "name": "SARAVANAN P",
+        "party": "AMMK",
+        "postal": 324,
+        "booth": 1540,
+        "total": 1864
+      },
+      {
+        "name": "MAHESHWARAN K",
+        "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+        "postal": 56,
+        "booth": 218,
+        "total": 274
+      },
+      {
+        "name": "YASMIN K",
+        "party": "NTK",
+        "postal": 1992,
+        "booth": 8962,
+        "total": 10954
+      },
+      {
+        "name": "SHANMUGASUNDARAM K",
+        "party": "IND",
+        "postal": 22,
+        "booth": 93,
+        "total": 115
+      },
+      {
+        "name": "SHANMUGASUNDARAM P",
+        "party": "IND",
+        "postal": 32,
+        "booth": 152,
+        "total": 184
+      },
+      {
+        "name": "MARIAPPAN T",
+        "party": "IND",
+        "postal": 19,
+        "booth": 91,
+        "total": 110
+      },
+      {
+        "name": "LIAKATHALI O",
+        "party": "IND",
+        "postal": 39,
+        "booth": 144,
+        "total": 183
+      },
+      {
+        "name": "SRINIVASAN S",
+        "party": "IND",
+        "postal": 122,
+        "booth": 538,
+        "total": 660
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 0,
+        "booth": 0,
+        "total": 0
+      }
+    ],
+    "totalValid": 40164,
+    "rejected": 0,
+    "nota": 0,
+    "total": 0
   }
 }

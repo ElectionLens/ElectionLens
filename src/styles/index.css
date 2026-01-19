@@ -4920,3 +4920,188 @@ path:focus {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Postal Ballots View */
+.postal-ballots-view {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.postal-summary {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #86efac;
+}
+
+.postal-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #166534;
+}
+
+.postal-summary-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.postal-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.postal-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.postal-stat .stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #15803d;
+}
+
+.postal-stat .stat-label {
+  font-size: 11px;
+  color: #166534;
+  margin-top: 4px;
+}
+
+.postal-candidates {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.postal-candidates-header {
+  display: grid;
+  grid-template-columns: 30px 1fr 60px 90px 90px 90px;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.postal-candidates-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.postal-candidate-row {
+  display: grid;
+  grid-template-columns: 30px 1fr 60px 90px 90px 90px;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 13px;
+  align-items: center;
+}
+
+.postal-candidate-row:last-child {
+  border-bottom: none;
+}
+
+.postal-candidate-row.winner {
+  background: #f0fdf4;
+}
+
+.postal-candidate-row .col-rank {
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+.postal-candidate-row.winner .col-rank {
+  color: #16a34a;
+}
+
+.postal-candidate-row .col-name {
+  font-weight: 500;
+  color: #374151;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.postal-candidate-row .col-party {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+}
+
+.postal-candidate-row .col-postal {
+  font-weight: 600;
+  color: #15803d;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.postal-candidate-row .col-postal .postal-pct {
+  font-size: 10px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.postal-candidate-row .col-booth,
+.postal-candidate-row .col-total {
+  text-align: right;
+  color: #6b7280;
+}
+
+.postal-candidate-row .col-total {
+  font-weight: 600;
+  color: #374151;
+}
+
+.postal-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  background: #fef3c7;
+  border-radius: 8px;
+  font-size: 11px;
+  color: #92400e;
+  line-height: 1.4;
+}
+
+.postal-note svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+@media (max-width: 400px) {
+  .postal-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .postal-candidates-header,
+  .postal-candidate-row {
+    grid-template-columns: 24px 1fr 50px 70px;
+  }
+
+  .postal-candidates-header .col-booth,
+  .postal-candidates-header .col-total,
+  .postal-candidate-row .col-booth,
+  .postal-candidate-row .col-total {
+    display: none;
+  }
+}

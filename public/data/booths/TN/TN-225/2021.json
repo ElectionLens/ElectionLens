@@ -8,6 +8,16 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
+      "name": "SHENBAGA VALLI",
+      "party": "NTK",
+      "symbol": ""
+    },
+    {
+      "name": "R.AVUDAIAPPAN",
+      "party": "DMK",
+      "symbol": ""
+    },
+    {
       "name": "C.GANESAN",
       "party": "MNM",
       "symbol": ""
@@ -15,11 +25,6 @@
     {
       "name": "C.RANI RANJITHAM",
       "party": "AMMK",
-      "symbol": ""
-    },
-    {
-      "name": "J.RAJESH DHARMASINGH PANDIAN",
-      "party": "IND",
       "symbol": ""
     },
     {
@@ -33,13 +38,13 @@
       "symbol": ""
     },
     {
-      "name": "S.GANESAN",
-      "party": "IND",
+      "name": "E.SUBAYA",
+      "party": "ADMK",
       "symbol": ""
     },
     {
-      "name": "SHENBAGA VALLI",
-      "party": "NTK",
+      "name": "J.RAJESH DHARMASINGH PANDIAN",
+      "party": "IND",
       "symbol": ""
     },
     {
@@ -48,22 +53,17 @@
       "symbol": ""
     },
     {
-      "name": "C.GANESAN",
-      "party": "MNM",
-      "symbol": ""
-    },
-    {
-      "name": "R.AVUDAIAPPAN",
-      "party": "DMK",
-      "symbol": ""
-    },
-    {
-      "name": "E.SUBAYA",
-      "party": "ADMK",
+      "name": "ARUNACHALAM",
+      "party": "IND",
       "symbol": ""
     },
     {
       "name": "ABDUL MAJEETH",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "S.GANESAN",
       "party": "IND",
       "symbol": ""
     },
@@ -2009,5 +2009,104 @@
     "totalVotes": 250631,
     "totalVoters": 0,
     "turnoutPercent": 0
+  },
+  "postal": {
+    "candidates": [
+      {
+        "name": "SHENBAGA VALLI",
+        "party": "NTK",
+        "postal": 0,
+        "booth": 28462,
+        "total": 13735
+      },
+      {
+        "name": "R.AVUDAIAPPAN",
+        "party": "DMK",
+        "postal": 39741,
+        "booth": 28555,
+        "total": 68296
+      },
+      {
+        "name": "C.GANESAN",
+        "party": "MNM",
+        "postal": 0,
+        "booth": 27597,
+        "total": 2807
+      },
+      {
+        "name": "C.RANI RANJITHAM",
+        "party": "AMMK",
+        "postal": 0,
+        "booth": 28275,
+        "total": 4194
+      },
+      {
+        "name": "MANIMARAN",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 27441,
+        "total": 509
+      },
+      {
+        "name": "M.GAVASKAR",
+        "party": "IND",
+        "postal": 0,
+        "booth": 24443,
+        "total": 315
+      },
+      {
+        "name": "E.SUBAYA",
+        "party": "ADMK",
+        "postal": 55980,
+        "booth": 29231,
+        "total": 85211
+      },
+      {
+        "name": "J.RAJESH DHARMASINGH PANDIAN",
+        "party": "IND",
+        "postal": 0,
+        "booth": 25464,
+        "total": 390
+      },
+      {
+        "name": "S. LAKSHMANAN",
+        "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+        "postal": 0,
+        "booth": 2904,
+        "total": 178
+      },
+      {
+        "name": "ARUNACHALAM",
+        "party": "IND",
+        "postal": 119,
+        "booth": 0,
+        "total": 119
+      },
+      {
+        "name": "ABDUL MAJEETH",
+        "party": "IND",
+        "postal": 88,
+        "booth": 0,
+        "total": 88
+      },
+      {
+        "name": "S.GANESAN",
+        "party": "IND",
+        "postal": 165,
+        "booth": 1,
+        "total": 166
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 0,
+        "booth": 4,
+        "total": 0
+      }
+    ],
+    "totalValid": 96093,
+    "rejected": 0,
+    "nota": 0,
+    "total": 0
   }
 }

@@ -196,51 +196,48 @@ def process_constituency(ac_num):
     election = elections_data.get(ac_id, {})
     election_candidates = sorted(election.get('candidates', []), key=lambda x: -x.get('votes', 0))
     
-    # Match booth columns to candidates by finding closest vote totals
-    matched_candidates = []
-    used_election_idx = set()
+    # Match booth columns to candidates by rank
+    # Sort both by votes and match by position (rank-based matching)
+    matched_candidates = [None] * len(booth_totals)
     
-    for col_idx, booth_votes in enumerate(booth_totals):
-        if col_idx == len(booth_totals) - 1:  # Last column is NOTA
-            matched_candidates.append({
-                'name': 'NOTA',
-                'party': 'NOTA',
-                'symbol': ''
-            })
-            continue
-        
-        # Find closest matching candidate by vote total
-        best_match = None
-        best_diff = float('inf')
-        
-        for ec_idx, ec in enumerate(election_candidates):
-            if ec_idx in used_election_idx:
-                continue
-            if ec.get('party') == 'NOTA':
-                continue
-            
-            diff = abs(ec.get('votes', 0) - booth_votes)
-            # Allow up to 5% difference (for postal ballots)
-            if diff < best_diff and diff <= ec.get('votes', 1) * 0.05:
-                best_diff = diff
-                best_match = (ec_idx, ec)
-        
-        if best_match:
-            ec_idx, ec = best_match
-            used_election_idx.add(ec_idx)
-            matched_candidates.append({
+    nota_idx = len(booth_totals) - 1
+    
+    # Sort booth columns by votes (descending), excluding NOTA
+    booth_sorted = sorted(
+        [(i, booth_totals[i]) for i in range(len(booth_totals)) if i != nota_idx],
+        key=lambda x: -x[1]
+    )
+    
+    # Sort official candidates by votes (descending), excluding NOTA
+    official_sorted = sorted(
+        [(i, c) for i, c in enumerate(election_candidates) if c.get('party') != 'NOTA'],
+        key=lambda x: -x[1].get('votes', 0)
+    )
+    
+    # Match by rank position
+    for rank, (booth_idx, booth_votes) in enumerate(booth_sorted):
+        if rank < len(official_sorted):
+            ec_idx, ec = official_sorted[rank]
+            matched_candidates[booth_idx] = {
                 'name': ec.get('name', ''),
                 'party': ec.get('party', 'IND'),
                 'symbol': ec.get('symbol', '')
-            })
+            }
         else:
-            # No close match found - keep original or mark unknown
-            original = booth_data['candidates'][col_idx] if col_idx < len(booth_data['candidates']) else {}
-            matched_candidates.append({
-                'name': original.get('name', f'Unknown {col_idx+1}'),
+            # More booth columns than official candidates
+            original = booth_data['candidates'][booth_idx] if booth_idx < len(booth_data['candidates']) else {}
+            matched_candidates[booth_idx] = {
+                'name': original.get('name', f'Unknown {booth_idx+1}'),
                 'party': original.get('party', 'IND'),
                 'symbol': original.get('symbol', '')
-            })
+            }
+    
+    # Add NOTA
+    matched_candidates[nota_idx] = {
+        'name': 'NOTA',
+        'party': 'NOTA',
+        'symbol': ''
+    }
     
     # Update booth data
     booth_data['candidates'] = matched_candidates

@@ -8,13 +8,18 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "name": "John Thankam, D.",
-      "party": "ADMK",
+      "name": "Mano Thangaraj, T.",
+      "party": "DMK",
       "symbol": ""
     },
     {
-      "name": "Jeyaraj, M.",
-      "party": "MNM",
+      "name": "Latha, P.",
+      "party": "BSP",
+      "symbol": ""
+    },
+    {
+      "name": "John Thankam, D.",
+      "party": "ADMK",
       "symbol": ""
     },
     {
@@ -28,22 +33,12 @@
       "symbol": ""
     },
     {
-      "name": "Latha, P.",
-      "party": "BSP",
+      "name": "Jeyaraj, M.",
+      "party": "MNM",
       "symbol": ""
     },
     {
-      "name": "SyedAli, A.",
-      "party": "IND",
-      "symbol": ""
-    },
-    {
-      "name": "Mano Thangaraj, T.",
-      "party": "DMK",
-      "symbol": ""
-    },
-    {
-      "name": "Mathan, F.",
+      "name": "Anchalose, Y.",
       "party": "IND",
       "symbol": ""
     },
@@ -53,12 +48,17 @@
       "symbol": ""
     },
     {
-      "name": "Anchalose, Y.",
+      "name": "SyedAli, A.",
       "party": "IND",
       "symbol": ""
     },
     {
       "name": "Nagarajan, M.",
+      "party": "IND",
+      "symbol": ""
+    },
+    {
+      "name": "Mathan, F.",
       "party": "IND",
       "symbol": ""
     },
@@ -5212,5 +5212,104 @@
     "totalVotes": 135548,
     "totalVoters": 0,
     "turnoutPercent": 0
+  },
+  "postal": {
+    "candidates": [
+      {
+        "name": "Mano Thangaraj, T.",
+        "party": "DMK",
+        "postal": 16809,
+        "booth": 70935,
+        "total": 87744
+      },
+      {
+        "name": "Latha, P.",
+        "party": "BSP",
+        "postal": 135,
+        "booth": 1137,
+        "total": 1272
+      },
+      {
+        "name": "John Thankam, D.",
+        "party": "ADMK",
+        "postal": 12654,
+        "booth": 48205,
+        "total": 60859
+      },
+      {
+        "name": "Seelan",
+        "party": "NTK",
+        "postal": 3372,
+        "booth": 10527,
+        "total": 13899
+      },
+      {
+        "name": "Jenkins, D.",
+        "party": "AMMK",
+        "postal": 998,
+        "booth": 2236,
+        "total": 3234
+      },
+      {
+        "name": "Jeyaraj, M.",
+        "party": "MNM",
+        "postal": 238,
+        "booth": 743,
+        "total": 981
+      },
+      {
+        "name": "Anchalose, Y.",
+        "party": "IND",
+        "postal": 7,
+        "booth": 48,
+        "total": 55
+      },
+      {
+        "name": "Glory Selvi, T.",
+        "party": "IND",
+        "postal": 49,
+        "booth": 222,
+        "total": 271
+      },
+      {
+        "name": "SyedAli, A.",
+        "party": "IND",
+        "postal": 65,
+        "booth": 259,
+        "total": 324
+      },
+      {
+        "name": "Nagarajan, M.",
+        "party": "IND",
+        "postal": 23,
+        "booth": 106,
+        "total": 129
+      },
+      {
+        "name": "Mathan, F.",
+        "party": "IND",
+        "postal": 26,
+        "booth": 151,
+        "total": 177
+      },
+      {
+        "name": "Robert Singh, I.",
+        "party": "IND",
+        "postal": 31,
+        "booth": 144,
+        "total": 175
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "postal": 0,
+        "booth": 835,
+        "total": 0
+      }
+    ],
+    "totalValid": 34407,
+    "rejected": 0,
+    "nota": 0,
+    "total": 0
   }
 }

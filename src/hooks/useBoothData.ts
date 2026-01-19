@@ -35,6 +35,22 @@ export interface BoothResult {
   rejected: number;
 }
 
+export interface PostalCandidate {
+  name: string;
+  party: string;
+  postal: number;
+  booth: number;
+  total: number;
+}
+
+export interface PostalData {
+  candidates: PostalCandidate[];
+  totalValid: number;
+  rejected: number;
+  nota: number;
+  total: number;
+}
+
 export interface BoothResults {
   acId: string;
   acName: string;
@@ -55,6 +71,7 @@ export interface BoothResults {
     margin: number;
     marginPercent: number;
   };
+  postal?: PostalData;
 }
 
 // Merged booth data for display
