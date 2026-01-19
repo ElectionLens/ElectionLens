@@ -133,8 +133,6 @@ function App(): JSX.Element {
         if (urlState.assembly) {
           // Convert assembly name to match GeoJSON format (Title Case, uppercase for comparison)
           const acName = toTitleCase(urlState.assembly).toUpperCase();
-          console.log('[handleUrlNavigate PC] URL assembly:', urlState.assembly);
-          console.log('[handleUrlNavigate PC] Converted acName:', acName);
           selectAssembly(acName);
           await getACResult(acName, matchedState, urlState.year ?? undefined);
           // Parliament contributions loaded by useEffect when currentAssembly changes
@@ -155,8 +153,6 @@ function App(): JSX.Element {
         if (urlState.assembly) {
           // Convert assembly name to match GeoJSON format (Title Case, uppercase for comparison)
           const acName = toTitleCase(urlState.assembly).toUpperCase();
-          console.log('[handleUrlNavigate District] URL assembly:', urlState.assembly);
-          console.log('[handleUrlNavigate District] Converted acName:', acName);
           selectAssembly(acName);
           await getACResult(acName, matchedState, urlState.year ?? undefined);
           // Parliament contributions loaded by useEffect when currentAssembly changes
