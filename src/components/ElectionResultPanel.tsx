@@ -1690,35 +1690,6 @@ function BoothwiseAnalysis({
 
   return (
     <div className="boothwise-analysis">
-      {/* Summary Header */}
-      <div className="analysis-header">
-        <div className="analysis-title">
-          <Lightbulb size={20} />
-          <h4>Why {analysis.winnerParty} Won</h4>
-        </div>
-        <div className="analysis-summary-stats">
-          <div className="summary-stat winner">
-            <span
-              className="party"
-              style={{ backgroundColor: getPartyColor(analysis.winnerParty) }}
-            >
-              {analysis.winnerParty}
-            </span>
-            <span className="count">{analysis.winnerBoothCount} booths</span>
-          </div>
-          <span className="vs">vs</span>
-          <div className="summary-stat">
-            <span
-              className="party"
-              style={{ backgroundColor: getPartyColor(analysis.runnerUpParty) }}
-            >
-              {analysis.runnerUpParty}
-            </span>
-            <span className="count">{analysis.runnerUpBoothCount} booths</span>
-          </div>
-        </div>
-      </div>
-
       {/* Booth Distribution Bar */}
       <div className="booth-distribution">
         <div className="distribution-label">Booth Distribution</div>
