@@ -1569,24 +1569,40 @@ function BoothwiseAnalysis({
         .filter((b) => b.winner?.party === runnerUpParty)
         .sort((a, b) => (b.winner?.percent ?? 0) - (a.winner?.percent ?? 0));
 
-      insights.push({
-        type: 'insight',
-        title: 'Competition Strike Rate',
-        description: `${runnerUpParty}: ${runnerUpStrikeRate}% (${runnerUpBoothCount} booths). ${
-          competitionRatio > 2
-            ? `Distant second — no threat.`
-            : competitionRatio > 1.3
-              ? `Competitive but outpaced.`
-              : `Neck-and-neck race.`
-        }`,
-        value: `${runnerUpStrikeRate}%`,
-        icon: 'target',
-        linkedBooths: runnerUpBooths.map((b) => ({
-          id: b.id,
-          name: b.boothNo,
-          detail: `${runnerUpParty} ${b.winner?.percent.toFixed(0)}%`,
-        })),
-      });
+      // Special case: Runner-up won MORE booths than official winner (postal votes flipped result)
+      if (runnerUpBoothCount > winnerBoothCount) {
+        insights.push({
+          type: 'opportunity',
+          title: `${runnerUpParty} Booth Dominance`,
+          description: `${runnerUpParty} won ${runnerUpBoothCount} booths vs ${winnerParty}'s ${winnerBoothCount} — but lost overall! Postal votes likely flipped the result. Strong grassroots presence but couldn't convert to victory.`,
+          value: `${runnerUpBoothCount} booths`,
+          icon: 'alert',
+          linkedBooths: runnerUpBooths.map((b) => ({
+            id: b.id,
+            name: b.boothNo,
+            detail: `${runnerUpParty} ${b.winner?.percent.toFixed(0)}%`,
+          })),
+        });
+      } else {
+        insights.push({
+          type: 'insight',
+          title: 'Competition Strike Rate',
+          description: `${runnerUpParty}: ${runnerUpStrikeRate}% (${runnerUpBoothCount} booths). ${
+            competitionRatio > 2
+              ? `Distant second — no threat.`
+              : competitionRatio > 1.3
+                ? `Competitive but outpaced.`
+                : `Neck-and-neck race.`
+          }`,
+          value: `${runnerUpStrikeRate}%`,
+          icon: 'target',
+          linkedBooths: runnerUpBooths.map((b) => ({
+            id: b.id,
+            name: b.boothNo,
+            detail: `${runnerUpParty} ${b.winner?.percent.toFixed(0)}%`,
+          })),
+        });
+      }
     }
 
     return {
