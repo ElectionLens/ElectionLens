@@ -1695,8 +1695,9 @@ path:focus {
 /* Tab Content */
 .panel-tab-content {
   flex: 1;
-  overflow-y: auto;
-  padding: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Compact Winner Card */
@@ -4018,8 +4019,9 @@ path:focus {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-height: 100%;
+  flex: 1;
   overflow-y: auto;
+  min-height: 0;
 }
 
 .booth-year-selector {
@@ -4927,8 +4929,9 @@ path:focus {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-height: 100%;
+  flex: 1;
   overflow-y: auto;
+  min-height: 0;
 }
 
 .postal-summary {
@@ -4998,8 +5001,7 @@ path:focus {
 }
 
 .postal-candidates-list {
-  max-height: 300px;
-  overflow-y: auto;
+  /* Parent handles scrolling */
 }
 
 .postal-candidate-row {
