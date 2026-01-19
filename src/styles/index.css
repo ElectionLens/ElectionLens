@@ -4987,6 +4987,12 @@ path:focus {
   text-transform: uppercase;
 }
 
+.postal-candidates-header span {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
 .postal-candidates-header .col-postal,
 .postal-candidates-header .col-booth,
 .postal-candidates-header .col-total {
