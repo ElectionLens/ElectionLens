@@ -782,7 +782,6 @@ function PostalBallotsView({ postal }: PostalBallotsViewProps): JSX.Element {
       <div className="postal-candidates">
         <div className="postal-candidates-header">
           <span className="col-rank">#</span>
-          <span className="col-name">Candidate</span>
           <span className="col-party">Party</span>
           <span className="col-postal">Postal</span>
           <span className="col-booth">Booth</span>
@@ -799,13 +798,10 @@ function PostalBallotsView({ postal }: PostalBallotsViewProps): JSX.Element {
                 className={`postal-candidate-row ${idx === 0 ? 'winner' : ''}`}
               >
                 <span className="col-rank">{idx + 1}</span>
-                <span className="col-name" title={candidate.name}>
-                  {candidate.name}
-                </span>
                 <span
                   className="col-party"
                   style={{ backgroundColor: getPartyColor(candidate.party) }}
-                  title={getPartyFullName(candidate.party)}
+                  title={`${candidate.name} (${getPartyFullName(candidate.party)})`}
                 >
                   {candidate.party}
                 </span>
