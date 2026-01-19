@@ -37,36 +37,70 @@ def extract_pdf_text(pdf_path: Path) -> str:
 def parse_polling_stations(text: str) -> dict:
     """Parse polling station locations from PDF text.
     
-    PDF Format is complex multi-line table. We look for patterns like:
-    - Lines with serial number followed by school name
-    - Lines with school/building name and pincode (6 digits)
+    Handles multiple PDF formats by looking for booth numbers and associating
+    them with nearby school/building names.
     
-    Returns dict mapping serial number to location info.
+    Returns dict mapping booth number to location info.
     """
     locations = {}
     lines = text.split('\n')
     
-    current_serial = None
+    # Pattern for school/building names
+    school_pattern = re.compile(
+        r'((?:Panchayat|Government|Govt|Municipal|P\.U\.|G\.H\.S|G\.B\.|G\.G\.|'
+        r'Corporation|Town|Village|Anganwadi|Community)[A-Za-z\.\s,]+(?:School|Building|Centre|Hall|Office|Vidyalaya|Kalvi Nilayam))',
+        re.IGNORECASE
+    )
+    
+    # Pattern for location after school name
+    loc_pattern = re.compile(r'(?:School|Building|Centre|Vidyalaya|Hall|Office)[,\s]+([A-Za-z][A-Za-z\s]+?)(?:\s*[-,\d]|$)', re.IGNORECASE)
     
     for i, line in enumerate(lines):
-        # Skip empty lines
-        if not line.strip():
-            continue
+        # Look for booth number patterns:
+        # Format 1: "Sl.No  BoothNo  ..."  (two numbers at start)
+        # Format 2: "Serial  SchoolName..."  (one number, then school name)
+        
+        # Try Format 1: Sl.No followed by Booth No
+        match1 = re.match(r'^\s*(\d{1,3})\s+(\d{1,3})\s+', line)
+        if match1:
+            sl_no = match1.group(1)
+            booth_no = match1.group(2)
             
-        # Skip headers and page markers
-        if any(h in line for h in ['LIST OF POLLING', 'Assembly Constituency', 
-                'Parliamentary', 'Sl No', 'Locality', 'Building', 'Polling Area',
-                'Whether for', 'voters or', 'Page ', ' of ']):
-            continue
-        if re.match(r'^\s*1\s+2\s+3\s+4\s+5?\s*$', line.strip()):
+            try:
+                if int(sl_no) > 500:
+                    continue
+            except:
+                continue
+            
+            # Look for school name in this line or previous 4 lines
+            school_name = None
+            location = None
+            for j in range(i, max(0, i-5), -1):
+                school_match = school_pattern.search(lines[j])
+                if school_match:
+                    school_name = school_match.group(1).strip()
+                    school_name = re.sub(r'\s+', ' ', school_name)
+                    # Try to get location name
+                    loc_match = loc_pattern.search(lines[j])
+                    if loc_match:
+                        location = loc_match.group(1).strip()
+                    break
+            
+            if school_name:
+                full_name = school_name
+                if location and len(location) > 3:
+                    full_name = f"{school_name}, {location}"
+                locations[booth_no] = {
+                    "name": full_name[:80],
+                    "area": location[:50] if location else extract_area(school_name)
+                }
             continue
         
-        # Pattern 1: Line with serial number and school name with pincode
-        # Example: "   5        P.U.M.School Seerappalli 637406"
-        match1 = re.match(r'^\s*(\d{1,3})\s+([A-Za-z][A-Za-z\.\s]+\s*\d{6})', line)
-        if match1:
-            serial = match1.group(1)
-            locality = match1.group(2).strip()
+        # Try Format 2: Serial number followed by school name with pincode
+        match2 = re.match(r'^\s*(\d{1,3})\s+([A-Za-z].+?)\s*(\d{6})', line)
+        if match2:
+            serial = match2.group(1)
+            text_part = match2.group(2).strip()
             
             try:
                 if int(serial) > 500:
@@ -74,66 +108,64 @@ def parse_polling_stations(text: str) -> dict:
             except:
                 continue
             
-            # Extract name and pincode
-            name_match = re.match(r'^(.+?)\s*(\d{6})', locality)
-            if name_match:
-                name = name_match.group(1).strip()
-                pincode = name_match.group(2)
-                name = re.sub(r'\s+', ' ', name).strip()
+            # Extract school name
+            school_match = school_pattern.search(text_part)
+            if school_match:
+                school_name = school_match.group(1).strip()
+                school_name = re.sub(r'\s+', ' ', school_name)
+                loc_match = loc_pattern.search(text_part)
+                location = loc_match.group(1).strip() if loc_match else None
+                
+                full_name = school_name
+                if location and len(location) > 3:
+                    full_name = f"{school_name}, {location}"
                 
                 locations[serial] = {
-                    "name": name[:80],
-                    "pincode": pincode,
-                    "area": name.split()[-1] if name.split() else "",
+                    "name": full_name[:80],
+                    "area": location[:50] if location else extract_area(school_name)
                 }
-                current_serial = serial
-            continue
-        
-        # Pattern 2: Line with just serial number (name is on separate line)
-        # Example: "   1                                                                             "
-        match2 = re.match(r'^\s*(\d{1,3})\s*$', line)
-        if match2 or re.match(r'^\s*(\d{1,3})\s+[^A-Za-z]', line):
-            serial_match = re.match(r'^\s*(\d{1,3})', line)
-            if serial_match:
-                serial = serial_match.group(1)
-                try:
-                    if int(serial) <= 500:
-                        current_serial = serial
-                except:
-                    pass
-            continue
-        
-        # Pattern 3: Line with school/building name and pincode (continuation)
-        # Example: "            P.U.E.School Chinnakkavery          West Facing New Terraced"
-        # followed by "            637406                              Building"
-        if current_serial and current_serial not in locations:
-            # Look for school name pattern
-            school_match = re.search(r'([A-Za-z][A-Za-z\.\s,]+(?:School|Building|Anganwadi|Centre|Hall|Office|Complex)[A-Za-z\.\s,]*)', line, re.IGNORECASE)
-            if school_match:
-                name = school_match.group(1).strip()
-                name = re.sub(r'\s+', ' ', name).strip()
-                
-                # Look for pincode in this line or next few lines
-                pincode = ""
-                pincode_match = re.search(r'(\d{6})', line)
-                if pincode_match:
-                    pincode = pincode_match.group(1)
-                else:
-                    # Check next few lines for pincode
-                    for j in range(i+1, min(i+4, len(lines))):
-                        pincode_match = re.search(r'^\s*(\d{6})', lines[j])
-                        if pincode_match:
-                            pincode = pincode_match.group(1)
-                            break
-                
-                if name:
-                    locations[current_serial] = {
-                        "name": name[:80],
-                        "pincode": pincode,
-                        "area": name.split()[-1] if name.split() else "",
-                    }
     
     return locations
+
+
+def extract_school_name(text: str) -> str:
+    """Extract the school/building name from text."""
+    # Common patterns for school names
+    patterns = [
+        r'((?:Panchayat|Government|Govt|Municipal|P\.U\.|G\.H\.S|G\.B\.|G\.G\.)[A-Za-z\.\s,]+(?:School|Building|Centre|Hall|Office|Vidyalaya)[A-Za-z\.\s,]*)',
+        r'([A-Za-z][A-Za-z\.\s]+(?:Primary|Middle|Higher|Elementary|High|Hr\.Sec|Secondary)[A-Za-z\.\s]*School[A-Za-z\.\s,]*)',
+        r'(Anganwadi[A-Za-z\.\s,]+(?:Building|Centre)?)',
+        r'([A-Za-z\s]+(?:Vidyalaya|Matriculation|School|Building|Hall|Centre|Office|Complex)[A-Za-z\.\s,]*)',
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            name = match.group(1).strip()
+            # Clean up - remove trailing commas, directions, etc.
+            name = re.sub(r'[,\s]+(North|South|East|West|Facing|Building|New|Old|Room|Wing|Part|Portion|Door).*$', '', name, flags=re.IGNORECASE)
+            name = re.sub(r'\s+', ' ', name).strip(' ,.')
+            if len(name) > 10:
+                return name
+    
+    # Fallback: take first part before common delimiters
+    parts = re.split(r'\s*[-,]\s*(?:North|South|East|West|Facing)', text, flags=re.IGNORECASE)
+    if parts and len(parts[0]) > 10:
+        return re.sub(r'\s+', ' ', parts[0]).strip(' ,.')[:80]
+    
+    return ""
+
+
+def extract_area(name: str) -> str:
+    """Extract area/locality from name."""
+    # Look for place name (usually last word before pincode or at end)
+    # Remove common suffixes
+    clean = re.sub(r'\s*\d{6}\s*$', '', name)
+    clean = re.sub(r'\s*(School|Building|Centre|Hall|Office|Vidyalaya)\s*$', '', clean, flags=re.IGNORECASE)
+    words = clean.split()
+    if words:
+        return words[-1][:50]
+    return ""
 
 
 def update_booth_metadata(ac_id: str, locations: dict) -> bool:
