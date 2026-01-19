@@ -75,7 +75,7 @@ function generateShareText(
 
   const normalizedState = stateName ? normalizeText(stateName) : undefined;
   const location = normalizedState
-    ? `${result.constituencyNameOriginal}, ${normalizedState}`
+    ? `${result.constituencyNameOriginal ?? result.name ?? result.constituencyName ?? 'Unknown'}, ${normalizedState}`
     : result.constituencyNameOriginal;
 
   let text = `🗳️ ${location} | ${result.year}\n\n`;
@@ -92,7 +92,7 @@ function generateShareText(
   } else {
     const marginText = winner.margin ? ` by ${formatNumber(winner.margin)} votes` : '';
     text += `🏆 ${winner.name} (${winner.party})${marginText}\n`;
-    text += `📊 ${winner.voteShare.toFixed(1)}% vote share\n`;
+    text += `📊 ${winner.voteShare?.toFixed(1) ?? '0.0'}% vote share\n`;
   }
 
   return text.trim();
@@ -243,11 +243,13 @@ export function ElectionResultPanel({
         onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
       >
         <div className="election-panel-title">
-          <h3>{result.constituencyNameOriginal}</h3>
+          <h3>
+            {result.constituencyNameOriginal ?? result.name ?? result.constituencyName ?? 'Unknown'}
+          </h3>
           {/* Peek mode: show winner inline */}
           {isMobilePortrait && panelState === 'peek' && winner && (
             <span className="peek-winner">
-              🏆 {winner.name} ({winner.party}) - {winner.voteShare.toFixed(1)}%
+              🏆 {winner.name} ({winner.party}) - {winner.voteShare?.toFixed(1) ?? '0.0'}%
             </span>
           )}
           {(!isMobilePortrait || panelState !== 'peek') && (
@@ -546,7 +548,7 @@ export function ElectionResultPanel({
                   </div>
                   <div className="stat-compact highlight">
                     <TrendingUp size={12} />
-                    <span>{winner.voteShare.toFixed(1)}%</span>
+                    <span>{winner.voteShare?.toFixed(1) ?? '0.0'}%</span>
                   </div>
                   {winner.margin && (
                     <div className="stat-compact margin">
