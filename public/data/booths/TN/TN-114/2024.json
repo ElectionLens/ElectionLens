@@ -9,135 +9,565 @@
   "source": "Tamil Nadu CEO - Form 20",
   "candidates": [
     {
-      "slNo": 1,
       "name": "SUBBARAYAN, K.",
       "party": "CPI",
-      "symbol": ""
+      "votes": 470195,
+      "voteShare": 42.02,
+      "position": 1,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 75437,
+          "voteShare": 41.89
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 69541,
+          "voteShare": 37.42
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 68407,
+          "voteShare": 41.79
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 86471,
+          "voteShare": 43.92
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 95061,
+          "voteShare": 41.21
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 75278,
+          "voteShare": 46.54
+        }
+      ],
+      "margin": 124869
     },
     {
-      "slNo": 2,
       "name": "ARUNACHALAM, P.",
       "party": "ADMK",
-      "symbol": ""
+      "votes": 345326,
+      "voteShare": 30.86,
+      "position": 2,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 61927,
+          "voteShare": 34.39
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 68686,
+          "voteShare": 36.96
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 54700,
+          "voteShare": 33.42
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 62908,
+          "voteShare": 31.95
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 62305,
+          "voteShare": 27.01
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 34800,
+          "voteShare": 21.51
+        }
+      ]
     },
     {
-      "slNo": 3,
       "name": "MURUGANANDAM, A.P.",
       "party": "BJP",
-      "symbol": ""
+      "votes": 184066,
+      "voteShare": 16.45,
+      "position": 3,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 24464,
+          "voteShare": 13.59
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 27644,
+          "voteShare": 14.88
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 24044,
+          "voteShare": 14.69
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 27388,
+          "voteShare": 13.91
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 45824,
+          "voteShare": 19.87
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 34702,
+          "voteShare": 21.45
+        }
+      ]
     },
     {
-      "slNo": 4,
       "name": "SEETHALAKSHMI, M.K.",
       "party": "NTK",
-      "symbol": ""
+      "votes": 95250,
+      "voteShare": 8.51,
+      "position": 4,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 13858,
+          "voteShare": 7.7
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 15223,
+          "voteShare": 8.19
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 11807,
+          "voteShare": 7.21
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 15196,
+          "voteShare": 7.72
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 24316,
+          "voteShare": 10.54
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 14850,
+          "voteShare": 9.18
+        }
+      ]
     },
     {
-      "slNo": 5,
       "name": "VELUSAMY, A.",
       "party": "IND",
-      "symbol": ""
+      "votes": 7089,
+      "voteShare": 0.63,
+      "position": 5,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 828,
+          "voteShare": 0.46
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 1295,
+          "voteShare": 0.7
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 1304,
+          "voteShare": 0.8
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 1368,
+          "voteShare": 0.69
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 1402,
+          "voteShare": 0.61
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 892,
+          "voteShare": 0.55
+        }
+      ]
     },
     {
-      "slNo": 6,
       "name": "PALANI, V.",
       "party": "BSP",
-      "symbol": ""
+      "votes": 6013,
+      "voteShare": 0.54,
+      "position": 6,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 2088,
+          "voteShare": 1.16
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 1001,
+          "voteShare": 0.54
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 1003,
+          "voteShare": 0.61
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 1143,
+          "voteShare": 0.58
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 432,
+          "voteShare": 0.19
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 346,
+          "voteShare": 0.21
+        }
+      ]
     },
     {
-      "slNo": 7,
       "name": "SATHISHKUMAR, N.",
       "party": "IND",
-      "symbol": ""
+      "votes": 2315,
+      "voteShare": 0.21,
+      "position": 7,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 381,
+          "voteShare": 0.21
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 442,
+          "voteShare": 0.24
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 416,
+          "voteShare": 0.25
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 638,
+          "voteShare": 0.32
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 271,
+          "voteShare": 0.12
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 167,
+          "voteShare": 0.1
+        }
+      ]
     },
     {
-      "slNo": 8,
       "name": "JANARTHANAM, P.",
       "party": "TMTHK",
-      "symbol": ""
+      "votes": 1861,
+      "voteShare": 0.17,
+      "position": 8,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 216,
+          "voteShare": 0.12
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 407,
+          "voteShare": 0.22
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 423,
+          "voteShare": 0.26
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 355,
+          "voteShare": 0.18
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 268,
+          "voteShare": 0.12
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 192,
+          "voteShare": 0.12
+        }
+      ]
     },
     {
-      "slNo": 9,
       "name": "KANNAN, M.",
       "party": "IND",
-      "symbol": ""
+      "votes": 1752,
+      "voteShare": 0.16,
+      "position": 9,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 181,
+          "voteShare": 0.1
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 526,
+          "voteShare": 0.28
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 476,
+          "voteShare": 0.29
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 302,
+          "voteShare": 0.15
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 161,
+          "voteShare": 0.07
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 106,
+          "voteShare": 0.07
+        }
+      ]
     },
     {
-      "slNo": 10,
       "name": "SENGUTTUVAN, M.R.",
       "party": "IND",
-      "symbol": ""
+      "votes": 1560,
+      "voteShare": 0.14,
+      "position": 10,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 199,
+          "voteShare": 0.11
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 346,
+          "voteShare": 0.19
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 391,
+          "voteShare": 0.24
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 380,
+          "voteShare": 0.19
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 158,
+          "voteShare": 0.07
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 86,
+          "voteShare": 0.05
+        }
+      ]
     },
     {
-      "slNo": 11,
       "name": "SUBRAMANI, N.",
       "party": "IND",
-      "symbol": ""
+      "votes": 1341,
+      "voteShare": 0.12,
+      "position": 11,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 192,
+          "voteShare": 0.11
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 271,
+          "voteShare": 0.15
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 300,
+          "voteShare": 0.18
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 323,
+          "voteShare": 0.16
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 153,
+          "voteShare": 0.07
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 102,
+          "voteShare": 0.06
+        }
+      ]
     },
     {
-      "slNo": 12,
       "name": "MALARVIZHI, G.",
       "party": "RSPS",
-      "symbol": ""
+      "votes": 1311,
+      "voteShare": 0.12,
+      "position": 12,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 183,
+          "voteShare": 0.1
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 250,
+          "voteShare": 0.13
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 241,
+          "voteShare": 0.15
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 262,
+          "voteShare": 0.13
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 220,
+          "voteShare": 0.1
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 155,
+          "voteShare": 0.1
+        }
+      ]
     },
     {
-      "slNo": 13,
       "name": "KARTHIKEYAN, P.",
       "party": "IND",
-      "symbol": ""
+      "votes": 810,
+      "voteShare": 0.07,
+      "position": 13,
+      "acWiseVotes": [
+        {
+          "acName": "Perundurai",
+          "votes": 111,
+          "voteShare": 0.06
+        },
+        {
+          "acName": "Bhavani",
+          "votes": 195,
+          "voteShare": 0.1
+        },
+        {
+          "acName": "Anthiyur",
+          "votes": 161,
+          "voteShare": 0.1
+        },
+        {
+          "acName": "Gobichettipalayam",
+          "votes": 166,
+          "voteShare": 0.08
+        },
+        {
+          "acName": "Tiruppur (North)",
+          "votes": 105,
+          "voteShare": 0.05
+        },
+        {
+          "acName": "Tiruppur (South)",
+          "votes": 72,
+          "voteShare": 0.04
+        }
+      ]
     }
   ],
   "results": {
     "TN-114-1": {
       "votes": [
-        186,
         320,
-        1,
+        186,
         176,
         63,
         1,
         1,
-        0,
-        0,
+        1,
         1,
         0,
         1,
-        1
+        0,
+        1,
+        0
       ],
       "total": 751,
       "rejected": 0
     },
     "TN-114-2": {
       "votes": [
-        144,
         330,
-        0,
+        144,
         115,
         121,
+        3,
+        0,
+        0,
         2,
+        0,
+        0,
+        0,
         2,
-        0,
-        1,
-        0,
-        0,
-        0,
-        3
+        1
       ],
       "total": 718,
       "rejected": 0
     },
     "TN-114-3": {
       "votes": [
-        162,
         307,
-        2,
+        162,
         143,
         71,
         0,
+        2,
+        1,
         1,
         0,
         0,
-        1,
         0,
         0,
         0
@@ -147,54 +577,54 @@
     },
     "TN-114-4": {
       "votes": [
-        79,
         165,
-        0,
+        79,
         120,
         32,
-        0,
         2,
         0,
         0,
-        0,
+        2,
         0,
         1,
-        2
+        0,
+        0,
+        0
       ],
       "total": 401,
       "rejected": 0
     },
     "TN-114-5": {
       "votes": [
-        147,
         295,
-        4,
+        147,
         194,
         80,
-        0,
+        4,
+        4,
+        2,
         1,
         2,
-        2,
-        2,
+        0,
         2,
         0,
-        4
+        2
       ],
       "total": 733,
       "rejected": 0
     },
     "TN-114-6": {
       "votes": [
-        106,
         285,
-        2,
+        106,
         105,
         59,
         1,
+        2,
+        0,
         3,
         0,
         1,
-        0,
         1,
         1,
         1
@@ -204,453 +634,453 @@
     },
     "TN-114-7": {
       "votes": [
-        174,
         258,
-        0,
+        174,
         156,
         97,
+        6,
+        0,
         0,
         1,
         0,
         0,
         0,
         0,
-        0,
-        6
+        0
       ],
       "total": 692,
       "rejected": 0
     },
     "TN-114-8": {
       "votes": [
-        122,
         321,
-        1,
+        122,
         155,
         80,
-        2,
-        2,
-        0,
-        0,
+        5,
+        1,
         3,
+        2,
         0,
         1,
-        5
+        0,
+        2,
+        0
       ],
       "total": 692,
       "rejected": 0
     },
     "TN-114-9": {
       "votes": [
-        178,
         273,
-        0,
+        178,
         139,
         90,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        4
+        0
       ],
       "total": 685,
       "rejected": 0
     },
     "TN-114-10": {
       "votes": [
-        212,
         334,
-        3,
+        212,
         151,
         99,
+        4,
         3,
+        1,
         0,
         3,
-        1,
-        1,
-        1,
         0,
-        4
+        1,
+        3,
+        1
       ],
       "total": 812,
       "rejected": 0
     },
     "TN-114-11": {
       "votes": [
-        116,
         427,
-        1,
+        116,
         68,
         67,
-        0,
+        6,
+        1,
+        2,
         3,
         0,
         1,
-        2,
         0,
-        1,
-        6
+        0,
+        1
       ],
       "total": 692,
       "rejected": 0
     },
     "TN-114-12": {
       "votes": [
-        119,
         275,
-        1,
+        119,
         116,
         72,
+        3,
+        1,
         0,
         1,
         2,
-        0,
-        0,
-        0,
         1,
-        3
+        0,
+        0,
+        0
       ],
       "total": 590,
       "rejected": 0
     },
     "TN-114-13": {
       "votes": [
-        182,
         320,
-        3,
+        182,
         98,
         110,
-        1,
-        1,
+        7,
+        3,
         0,
         1,
+        0,
         0,
         2,
-        0,
-        7
+        1,
+        1
       ],
       "total": 725,
       "rejected": 0
     },
     "TN-114-14": {
       "votes": [
-        243,
         398,
-        2,
+        243,
         126,
         117,
+        6,
+        2,
         2,
         2,
         1,
+        1,
         0,
         2,
-        0,
-        1,
-        6
+        0
       ],
       "total": 900,
       "rejected": 0
     },
     "TN-114-15": {
       "votes": [
-        129,
         345,
-        3,
+        129,
         104,
         89,
+        6,
+        3,
+        1,
+        0,
+        1,
+        1,
+        1,
         2,
-        0,
-        1,
-        0,
-        1,
-        1,
-        1,
-        6
+        0
       ],
       "total": 682,
       "rejected": 0
     },
     "TN-114-16": {
       "votes": [
-        201,
         299,
-        3,
+        201,
         104,
         93,
         5,
-        0,
         3,
         0,
         0,
-        0,
+        3,
         1,
-        5
+        0,
+        5,
+        0
       ],
       "total": 714,
       "rejected": 0
     },
     "TN-114-17": {
       "votes": [
-        103,
         149,
-        0,
+        103,
         60,
         46,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
         1,
-        0,
-        0,
         1,
-        0,
-        1,
-        0,
-        3
+        1
       ],
       "total": 364,
       "rejected": 0
     },
     "TN-114-18": {
       "votes": [
-        121,
         290,
-        0,
+        121,
         110,
         82,
+        2,
+        0,
+        0,
+        1,
         0,
         1,
         0,
         0,
-        0,
-        0,
-        1,
-        2
+        0
       ],
       "total": 607,
       "rejected": 0
     },
     "TN-114-19": {
       "votes": [
-        242,
         299,
+        242,
+        102,
+        102,
+        9,
         0,
-        102,
-        102,
         0,
         1,
         2,
-        0,
-        0,
         1,
         1,
-        9
+        0,
+        0
       ],
       "total": 759,
       "rejected": 0
     },
     "TN-114-20": {
       "votes": [
-        143,
         271,
-        0,
+        143,
         68,
         44,
+        5,
+        0,
         0,
         0,
         1,
         0,
-        0,
         1,
         0,
-        5
+        0
       ],
       "total": 533,
       "rejected": 0
     },
     "TN-114-21": {
       "votes": [
-        128,
         321,
-        2,
+        128,
         127,
         96,
+        3,
+        2,
         2,
         0,
         0,
         0,
-        2,
         1,
-        0,
-        3
+        2,
+        0
       ],
       "total": 682,
       "rejected": 0
     },
     "TN-114-22": {
       "votes": [
-        94,
         177,
-        0,
+        94,
         51,
         62,
+        2,
         0,
-        0,
+        1,
         0,
         0,
         1,
         1,
-        1,
-        2
+        0,
+        0
       ],
       "total": 389,
       "rejected": 0
     },
     "TN-114-23": {
       "votes": [
-        226,
         295,
-        0,
+        226,
         111,
         109,
-        1,
-        0,
-        0,
+        2,
         0,
         2,
         0,
         0,
-        2
+        0,
+        0,
+        1,
+        0
       ],
       "total": 746,
       "rejected": 0
     },
     "TN-114-24": {
       "votes": [
-        154,
         369,
+        154,
+        103,
+        103,
+        6,
         2,
-        103,
-        103,
+        0,
+        0,
+        0,
+        0,
+        0,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        6
+        0
       ],
       "total": 738,
       "rejected": 0
     },
     "TN-114-25": {
       "votes": [
-        160,
         290,
-        0,
+        160,
         120,
         84,
+        4,
+        0,
+        0,
+        0,
         1,
         0,
+        0,
         1,
-        0,
-        0,
-        0,
-        0,
-        4
+        0
       ],
       "total": 660,
       "rejected": 0
     },
     "TN-114-26": {
       "votes": [
-        151,
         296,
-        0,
+        151,
         130,
         88,
+        7,
+        0,
+        1,
+        1,
+        0,
         0,
         1,
         0,
-        2,
-        1,
-        1,
-        0,
-        7
+        2
       ],
       "total": 677,
       "rejected": 0
     },
     "TN-114-27": {
       "votes": [
-        186,
         247,
-        2,
+        186,
         164,
         94,
         2,
+        2,
+        1,
         1,
         0,
-        1,
-        1,
         0,
         0,
-        2
+        2,
+        1
       ],
       "total": 700,
       "rejected": 0
     },
     "TN-114-28": {
       "votes": [
-        144,
         288,
-        2,
+        144,
         171,
         94,
-        0,
-        0,
-        0,
+        1,
+        2,
         0,
         0,
         0,
         1,
-        1
+        0,
+        0,
+        0
       ],
       "total": 701,
       "rejected": 0
     },
     "TN-114-29": {
       "votes": [
-        85,
         168,
-        0,
+        85,
         103,
         60,
+        3,
         0,
+        1,
         1,
         0,
         0,
-        1,
         0,
         0,
-        3
+        0
       ],
       "total": 421,
       "rejected": 0
     },
     "TN-114-30": {
       "votes": [
-        69,
         196,
-        0,
+        69,
         243,
         31,
         0,
+        0,
+        2,
         1,
         0,
         0,
-        2,
         0,
         0,
         0
@@ -660,16 +1090,16 @@
     },
     "TN-114-31": {
       "votes": [
-        75,
         111,
-        0,
+        75,
         67,
         52,
         0,
+        0,
+        1,
         1,
         0,
         0,
-        1,
         1,
         0,
         0
@@ -679,161 +1109,160 @@
     },
     "TN-114-32": {
       "votes": [
-        204,
         242,
-        1,
+        204,
         174,
         60,
+        3,
+        1,
         0,
         2,
         1,
-        0,
-        0,
-        0,
         1,
-        3
+        0,
+        0,
+        0
       ],
       "total": 688,
       "rejected": 0
     },
     "TN-114-33": {
       "votes": [
-        173,
         196,
-        1,
+        173,
         281,
         36,
+        3,
+        1,
         0,
         2,
         0,
         0,
-        0,
         2,
         0,
-        3
+        0
       ],
       "total": 694,
       "rejected": 0
     },
     "TN-114-34": {
       "votes": [
-        140,
         269,
-        1,
+        140,
         190,
         44,
+        1,
+        1,
         0,
         0,
         0,
         0,
         0,
         0,
-        0,
-        1
+        0
       ],
       "total": 645,
       "rejected": 0
     },
     "TN-114-35": {
       "votes": [
-        175,
         401,
-        2,
+        175,
         153,
         52,
+        3,
+        2,
         1,
         0,
         2,
         0,
+        0,
         1,
-        0,
-        0,
-        3
+        0
       ],
       "total": 790,
       "rejected": 0
     },
     "TN-114-36": {
       "votes": [
-        83,
         213,
-        0,
+        83,
         82,
         33,
-        0,
-        0,
-        0,
+        2,
         0,
         3,
         0,
         0,
-        2
+        0,
+        0,
+        0,
+        0
       ],
       "total": 416,
       "rejected": 0
     },
     "TN-114-37": {
       "votes": [
-        145,
         461,
-        1,
+        145,
         201,
         45,
+        2,
         1,
         0,
+        0,
         1,
         0,
         0,
-        0,
-        0,
-        2
+        1,
+        0
       ],
       "total": 857,
       "rejected": 0
     },
     "TN-114-38": {
       "votes": [
-        149,
         172,
-        1,
+        149,
         183,
         23,
+        2,
         1,
+        0,
         1,
         0,
         0,
         0,
-        0,
-        0,
-        2
+        1,
+        0
       ],
       "total": 532,
       "rejected": 0
     },
     "TN-114-39": {
       "votes": [
-        126,
         258,
-        0,
+        126,
         173,
         52,
+        2,
+        0,
         0,
         2,
         0,
         0,
         0,
         0,
-        0,
-        2
+        0
       ],
       "total": 613,
       "rejected": 0
     },
     "TN-114-40": {
       "votes": [
-        92,
         165,
-        1,
+        92,
         143,
         41,
         0,
@@ -843,194 +1272,195 @@
         0,
         0,
         0,
-        0
+        0,
+        1
       ],
       "total": 444,
       "rejected": 0
     },
     "TN-114-41": {
       "votes": [
-        129,
         288,
-        1,
+        129,
         165,
         41,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
         2,
-        0,
-        0,
-        0,
-        1,
-        1,
-        0,
-        1
+        0
       ],
       "total": 629,
       "rejected": 0
     },
     "TN-114-42": {
       "votes": [
-        162,
         163,
-        2,
+        162,
         150,
         43,
-        0,
-        1,
-        0,
-        1,
+        2,
+        2,
         1,
         1,
         0,
-        2
+        0,
+        1,
+        0,
+        1
       ],
       "total": 526,
       "rejected": 0
     },
     "TN-114-43": {
       "votes": [
-        123,
         331,
-        1,
+        123,
         200,
         58,
-        2,
+        6,
+        1,
+        0,
         2,
         1,
         0,
         0,
-        0,
-        0,
-        6
+        2,
+        0
       ],
       "total": 724,
       "rejected": 0
     },
     "TN-114-44": {
       "votes": [
-        175,
         238,
-        1,
+        175,
         167,
         51,
+        2,
         1,
+        0,
         1,
         2,
         0,
-        0,
         1,
-        0,
-        2
+        1,
+        0
       ],
       "total": 639,
       "rejected": 0
     },
     "TN-114-45": {
       "votes": [
-        128,
         258,
-        0,
+        128,
         176,
         58,
-        0,
-        0,
-        0,
+        2,
         0,
         1,
         0,
         0,
-        2
+        0,
+        0,
+        0,
+        0
       ],
       "total": 623,
       "rejected": 0
     },
     "TN-114-46": {
       "votes": [
-        142,
         290,
-        1,
+        142,
         227,
         58,
-        0,
+        5,
+        1,
+        2,
         2,
         1,
         0,
-        2,
         0,
         0,
-        5
+        0
       ],
       "total": 728,
       "rejected": 0
     },
     "TN-114-47": {
       "votes": [
-        184,
         323,
-        1,
+        184,
         178,
         75,
+        3,
         1,
         0,
         0,
         0,
-        0,
         1,
         1,
-        3
+        1,
+        0
       ],
       "total": 767,
       "rejected": 0
     },
     "TN-114-48": {
       "votes": [
-        126,
         314,
-        3,
+        126,
         114,
         76,
+        5,
+        3,
+        0,
+        1,
         0,
         1,
         0,
         0,
-        0,
-        0,
-        1,
-        5
+        0
       ],
       "total": 640,
       "rejected": 0
     },
     "TN-114-49": {
       "votes": [
-        145,
         227,
-        0,
+        145,
         182,
         60,
-        0,
-        0,
-        0,
+        7,
         0,
         2,
+        0,
+        0,
+        0,
         1,
         0,
-        7
+        0
       ],
       "total": 624,
       "rejected": 0
     },
     "TN-114-50": {
       "votes": [
-        140,
         225,
-        1,
+        140,
         111,
         67,
-        0,
+        1,
+        1,
+        1,
         1,
         0,
-        1,
-        1,
+        0,
         0,
         0,
         1
@@ -1040,123 +1470,122 @@
     },
     "TN-114-51": {
       "votes": [
-        161,
         336,
-        3,
+        161,
         118,
         67,
         2,
+        3,
+        0,
+        1,
         1,
         1,
         0,
-        0,
-        0,
-        1,
-        2
+        2,
+        0
       ],
       "total": 692,
       "rejected": 0
     },
     "TN-114-52": {
       "votes": [
-        119,
         268,
-        0,
+        119,
         192,
         38,
-        0,
-        0,
-        0,
+        1,
         0,
         1,
         0,
         0,
-        1
+        0,
+        0,
+        0,
+        0
       ],
       "total": 619,
       "rejected": 0
     },
     "TN-114-53": {
       "votes": [
-        175,
         229,
-        0,
+        175,
         282,
         48,
-        3,
+        4,
+        0,
+        0,
         0,
         1,
         0,
         0,
-        0,
-        0,
-        4
+        3,
+        0
       ],
       "total": 742,
       "rejected": 0
     },
     "TN-114-54": {
       "votes": [
-        311,
         309,
-        2,
+        311,
         120,
         54,
+        4,
         2,
-        0,
+        1,
         0,
         0,
         1,
         1,
-        1,
-        4
+        2,
+        0
       ],
       "total": 805,
       "rejected": 0
     },
     "TN-114-55": {
       "votes": [
-        151,
         230,
-        2,
+        151,
         299,
         61,
-        3,
+        5,
+        2,
         0,
         0,
         0,
         0,
         1,
-        0,
-        5
+        3,
+        0
       ],
       "total": 752,
       "rejected": 0
     },
     "TN-114-56": {
       "votes": [
-        144,
         182,
-        1,
+        144,
         260,
         35,
+        5,
+        1,
         0,
         0,
         1,
         0,
         0,
         0,
-        0,
-        5
+        0
       ],
       "total": 628,
       "rejected": 0
     },
     "TN-114-57": {
       "votes": [
-        131,
         198,
-        0,
+        131,
         372,
         16,
         1,
@@ -1166,227 +1595,228 @@
         0,
         0,
         0,
-        1
+        1,
+        0
       ],
       "total": 719,
       "rejected": 0
     },
     "TN-114-58": {
       "votes": [
-        148,
         393,
-        3,
+        148,
         95,
         33,
+        4,
+        3,
         0,
         0,
         0,
-        1,
         0,
         0,
         0,
-        4
+        1
       ],
       "total": 677,
       "rejected": 0
     },
     "TN-114-59": {
       "votes": [
-        120,
         252,
-        1,
+        120,
         265,
         58,
+        2,
+        1,
         0,
         0,
         0,
         0,
         0,
         0,
-        0,
-        2
+        0
       ],
       "total": 698,
       "rejected": 0
     },
     "TN-114-60": {
       "votes": [
-        73,
         383,
-        3,
+        73,
         150,
         69,
-        0,
-        0,
-        0,
-        0,
+        3,
+        3,
         2,
         0,
         0,
-        3
+        0,
+        0,
+        0,
+        0
       ],
       "total": 683,
       "rejected": 0
     },
     "TN-114-61": {
       "votes": [
-        118,
         402,
-        1,
+        118,
         134,
         72,
-        0,
-        1,
-        1,
+        5,
         1,
         0,
         1,
         1,
-        5
+        1,
+        1,
+        0,
+        1
       ],
       "total": 737,
       "rejected": 0
     },
     "TN-114-62": {
       "votes": [
-        59,
         231,
-        0,
+        59,
         209,
         29,
+        3,
+        0,
+        0,
+        0,
+        0,
         1,
         0,
-        0,
-        0,
-        0,
-        0,
         1,
-        3
+        0
       ],
       "total": 533,
       "rejected": 0
     },
     "TN-114-63": {
       "votes": [
-        49,
         316,
-        0,
+        49,
         123,
         38,
+        2,
+        0,
         0,
         0,
         1,
         0,
         0,
         0,
-        0,
-        2
+        0
       ],
       "total": 529,
       "rejected": 0
     },
     "TN-114-64": {
       "votes": [
-        171,
         629,
-        0,
+        171,
         35,
         147,
-        1,
-        0,
-        0,
+        7,
         0,
         1,
-        1,
         0,
-        7
+        0,
+        0,
+        1,
+        1,
+        0
       ],
       "total": 992,
       "rejected": 0
     },
     "TN-114-65": {
       "votes": [
-        109,
         441,
-        1,
+        109,
         141,
         66,
-        0,
-        0,
+        5,
+        1,
         1,
         0,
         1,
         0,
         0,
-        5
+        0,
+        0
       ],
       "total": 765,
       "rejected": 0
     },
     "TN-114-66": {
       "votes": [
-        92,
         375,
-        4,
+        92,
         90,
         61,
-        0,
-        0,
-        0,
-        0,
+        5,
+        4,
         1,
         0,
         0,
-        5
+        0,
+        0,
+        0,
+        0
       ],
       "total": 628,
       "rejected": 0
     },
     "TN-114-67": {
       "votes": [
-        88,
         299,
-        4,
+        88,
         85,
         74,
+        9,
+        4,
         0,
         0,
         1,
-        2,
         0,
         0,
         0,
-        9
+        2
       ],
       "total": 562,
       "rejected": 0
     },
     "TN-114-68": {
       "votes": [
-        106,
         478,
-        0,
+        106,
         79,
         80,
-        0,
-        0,
-        0,
+        2,
         0,
         1,
         0,
         0,
-        2
+        0,
+        0,
+        0,
+        0
       ],
       "total": 746,
       "rejected": 0
     },
     "TN-114-69": {
       "votes": [
-        103,
         482,
-        0,
+        103,
         101,
         68,
+        3,
         0,
         0,
         0,
@@ -1394,25 +1824,25 @@
         0,
         0,
         0,
-        3
+        0
       ],
       "total": 757,
       "rejected": 0
     },
     "TN-114-70": {
       "votes": [
-        116,
         427,
-        3,
+        116,
         137,
         71,
-        0,
+        1,
+        3,
+        1,
         0,
         0,
         1,
-        1,
         0,
-        1,
+        0,
         1
       ],
       "total": 758,
@@ -1420,11 +1850,11 @@
     },
     "TN-114-71": {
       "votes": [
-        128,
         360,
-        0,
+        128,
         68,
         56,
+        3,
         0,
         0,
         0,
@@ -1432,360 +1862,303 @@
         0,
         0,
         0,
-        3
+        0
       ],
       "total": 615,
       "rejected": 0
     },
     "TN-114-72": {
       "votes": [
-        81,
         247,
-        0,
+        81,
         230,
         46,
-        0,
-        0,
-        0,
+        2,
         0,
         1,
         0,
         0,
-        2
+        0,
+        0,
+        0,
+        0
       ],
       "total": 607,
       "rejected": 0
     },
     "TN-114-73": {
       "votes": [
-        124,
         286,
-        1,
+        124,
         162,
         37,
+        3,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
         2,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        3
+        0
       ],
       "total": 617,
       "rejected": 0
     },
     "TN-114-74": {
       "votes": [
-        140,
         282,
-        0,
+        140,
         172,
         60,
+        3,
+        0,
         0,
         1,
         0,
         0,
         0,
         0,
-        0,
-        3
+        0
       ],
       "total": 658,
       "rejected": 0
     },
     "TN-114-75": {
       "votes": [
-        307,
         439,
-        0,
+        307,
         64,
         58,
+        3,
         0,
         0,
         0,
-        1,
         0,
         0,
         0,
-        3
+        0,
+        1
       ],
       "total": 872,
       "rejected": 0
     },
     "TN-114-76": {
       "votes": [
-        109,
         269,
-        6,
+        109,
         55,
         52,
+        3,
+        6,
         0,
         1,
         0,
         0,
         0,
         0,
-        0,
-        3
+        0
       ],
       "total": 495,
       "rejected": 0
     },
     "TN-114-77": {
       "votes": [
-        177,
         325,
-        1,
+        177,
         197,
         81,
-        0,
-        0,
+        4,
         1,
         0,
         0,
-        0,
+        1,
         3,
-        4
+        0,
+        0,
+        0
       ],
       "total": 789,
       "rejected": 0
     },
     "TN-114-78": {
       "votes": [
-        163,
         190,
-        0,
+        163,
         203,
         84,
-        0,
-        1,
-        1,
+        2,
         0,
         3,
+        1,
+        1,
         0,
         0,
-        2
+        0,
+        0
       ],
       "total": 647,
       "rejected": 0
     },
     "TN-114-79": {
       "votes": [
-        103,
         172,
-        1,
+        103,
         156,
         49,
+        4,
         1,
         2,
-        0,
-        0,
         2,
         0,
         0,
-        4
+        0,
+        1,
+        0
       ],
       "total": 490,
       "rejected": 0
     },
     "TN-114-80": {
       "votes": [
-        113,
         288,
-        2,
+        113,
         205,
         73,
-        0,
+        10,
+        2,
+        2,
         2,
         2,
         0,
-        2,
         0,
         0,
-        10
+        0
       ],
       "total": 697,
       "rejected": 0
     },
     "TN-114-81": {
       "votes": [
-        198,
         285,
-        3,
+        198,
         161,
         109,
+        9,
+        3,
+        1,
+        0,
+        1,
+        0,
+        1,
         2,
-        0,
-        1,
-        1,
-        1,
-        1,
-        0,
-        9
+        1
       ],
       "total": 771,
       "rejected": 0
     },
     "TN-114-82": {
       "votes": [
-        130,
         266,
-        2,
+        130,
         194,
         73,
-        1,
+        8,
+        2,
+        0,
         2,
         0,
         0,
         0,
-        0,
-        0,
-        8
+        1,
+        0
       ],
       "total": 676,
       "rejected": 0
     },
     "TN-114-83": {
       "votes": [
-        221,
         216,
-        1,
+        221,
         195,
         129,
+        5,
+        1,
         1,
         2,
         1,
         0,
+        0,
         1,
-        0,
-        0,
-        5
+        0
       ],
       "total": 772,
       "rejected": 0
     },
     "TN-114-84": {
       "votes": [
-        188,
         228,
-        1,
+        188,
         94,
         81,
         0,
         1,
-        0,
-        2,
         1,
         1,
         0,
-        0
+        0,
+        1,
+        0,
+        2
       ],
       "total": 597,
       "rejected": 0
     },
     "TN-114-85": {
       "votes": [
-        252,
         269,
-        2,
+        252,
         172,
         125,
-        0,
+        3,
+        2,
+        1,
         1,
         0,
-        1,
-        1,
         2,
         2,
-        3
+        0,
+        1
       ],
       "total": 830,
       "rejected": 0
     },
     "TN-114-86": {
       "votes": [
-        175,
         246,
-        2,
+        175,
         160,
         98,
-        1,
-        0,
-        0,
-        1,
+        8,
+        2,
         3,
         0,
+        0,
         1,
-        8
+        0,
+        1,
+        1
       ],
       "total": 695,
       "rejected": 0
     },
     "TN-114-87": {
       "votes": [
-        139,
         268,
-        0,
+        139,
         240,
         68,
-        1,
-        1,
         0,
-        1,
-        2,
-        0,
-        0,
-        0
-      ],
-      "total": 720,
-      "rejected": 0
-    },
-    "TN-114-88": {
-      "votes": [
-        119,
-        275,
-        0,
-        232,
-        63,
-        0,
-        1,
-        0,
-        0,
-        1,
-        1,
-        0,
-        6
-      ],
-      "total": 698,
-      "rejected": 0
-    },
-    "TN-114-89": {
-      "votes": [
-        156,
-        218,
-        3,
-        271,
-        73,
-        1,
-        2,
-        0,
-        0,
-        1,
-        0,
-        0,
-        7
-      ],
-      "total": 732,
-      "rejected": 0
-    },
-    "TN-114-90": {
-      "votes": [
-        124,
-        168,
-        1,
-        89,
-        65,
         0,
         2,
         1,
@@ -1795,21 +2168,78 @@
         1,
         1
       ],
+      "total": 720,
+      "rejected": 0
+    },
+    "TN-114-88": {
+      "votes": [
+        275,
+        119,
+        232,
+        63,
+        6,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "total": 698,
+      "rejected": 0
+    },
+    "TN-114-89": {
+      "votes": [
+        218,
+        156,
+        271,
+        73,
+        7,
+        3,
+        1,
+        2,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "total": 732,
+      "rejected": 0
+    },
+    "TN-114-90": {
+      "votes": [
+        168,
+        124,
+        89,
+        65,
+        1,
+        1,
+        0,
+        2,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
       "total": 452,
       "rejected": 0
     },
     "TN-114-91": {
       "votes": [
-        149,
         247,
-        2,
+        149,
         92,
         66,
         0,
+        2,
+        1,
         1,
         1,
         0,
-        1,
         0,
         0,
         0
@@ -1819,303 +2249,303 @@
     },
     "TN-114-92": {
       "votes": [
-        138,
         246,
-        3,
+        138,
         162,
         54,
+        5,
+        3,
         0,
         0,
         0,
-        2,
         0,
         0,
         0,
-        5
+        2
       ],
       "total": 610,
       "rejected": 0
     },
     "TN-114-93": {
       "votes": [
-        160,
         250,
-        0,
+        160,
         310,
         62,
+        4,
         0,
+        2,
+        2,
+        1,
         2,
         1,
         0,
-        2,
-        1,
-        2,
-        4
+        0
       ],
       "total": 794,
       "rejected": 0
     },
     "TN-114-94": {
       "votes": [
-        183,
         227,
-        3,
+        183,
         238,
         76,
-        0,
+        5,
+        3,
+        1,
         2,
         0,
         0,
-        1,
         0,
         0,
-        5
+        0
       ],
       "total": 735,
       "rejected": 0
     },
     "TN-114-95": {
       "votes": [
-        183,
         271,
-        1,
+        183,
         205,
         94,
-        1,
-        1,
-        0,
+        2,
         1,
         0,
+        1,
         0,
         0,
-        2
+        0,
+        1,
+        1
       ],
       "total": 759,
       "rejected": 0
     },
     "TN-114-96": {
       "votes": [
-        212,
         195,
-        1,
+        212,
         157,
         61,
+        6,
         1,
-        0,
-        0,
-        0,
         2,
         0,
         0,
-        6
+        0,
+        0,
+        1,
+        0
       ],
       "total": 635,
       "rejected": 0
     },
     "TN-114-97": {
       "votes": [
-        270,
         232,
-        1,
+        270,
         180,
         97,
+        4,
+        1,
         0,
         1,
         0,
-        0,
-        0,
-        0,
         2,
-        4
+        0,
+        0,
+        0
       ],
       "total": 787,
       "rejected": 0
     },
     "TN-114-98": {
       "votes": [
-        195,
         292,
-        2,
+        195,
         146,
         89,
-        1,
-        0,
-        1,
-        0,
+        7,
+        2,
         0,
         0,
         1,
-        7
+        1,
+        0,
+        1,
+        0
       ],
       "total": 734,
       "rejected": 0
     },
     "TN-114-99": {
       "votes": [
-        196,
         243,
-        8,
+        196,
         130,
         82,
-        1,
-        2,
-        2,
-        1,
+        9,
+        8,
         0,
+        2,
+        2,
         1,
         1,
-        9
+        1,
+        1
       ],
       "total": 676,
       "rejected": 0
     },
     "TN-114-100": {
       "votes": [
-        203,
         254,
-        1,
+        203,
         109,
         101,
+        9,
         1,
         2,
-        1,
-        0,
         2,
+        1,
+        1,
         0,
         1,
-        9
+        0
       ],
       "total": 684,
       "rejected": 0
     },
     "TN-114-101": {
       "votes": [
-        188,
         141,
-        1,
+        188,
         110,
         62,
-        0,
-        0,
-        1,
+        2,
         1,
         0,
         0,
+        1,
         0,
-        2
+        0,
+        0,
+        1
       ],
       "total": 506,
       "rejected": 0
     },
     "TN-114-102": {
       "votes": [
-        115,
         220,
-        2,
+        115,
         168,
         38,
-        0,
-        0,
+        7,
+        2,
         1,
         0,
         1,
         1,
         1,
-        7
+        0,
+        0
       ],
       "total": 554,
       "rejected": 0
     },
     "TN-114-103": {
       "votes": [
-        245,
         287,
-        2,
+        245,
         170,
         67,
+        2,
+        2,
+        0,
         1,
+        0,
+        0,
+        0,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        2
+        0
       ],
       "total": 775,
       "rejected": 0
     },
     "TN-114-104": {
       "votes": [
-        153,
         186,
-        1,
+        153,
         65,
         61,
-        0,
-        0,
-        0,
-        0,
+        2,
+        1,
         4,
         0,
         0,
-        2
+        0,
+        0,
+        0,
+        0
       ],
       "total": 472,
       "rejected": 0
     },
     "TN-114-104A": {
       "votes": [
-        160,
         183,
-        0,
+        160,
         64,
         76,
-        0,
-        1,
-        1,
-        1,
         2,
         0,
+        2,
         1,
-        2
+        1,
+        1,
+        0,
+        0,
+        1
       ],
       "total": 491,
       "rejected": 0
     },
     "TN-114-105": {
       "votes": [
-        263,
         294,
-        5,
+        263,
         87,
         114,
+        9,
+        5,
+        1,
+        1,
+        1,
         0,
-        1,
-        1,
-        0,
-        1,
         2,
         0,
-        9
+        0
       ],
       "total": 777,
       "rejected": 0
     },
     "TN-114-106": {
       "votes": [
-        135,
         370,
-        3,
+        135,
         246,
         66,
+        0,
+        3,
         1,
         0,
         1,
         0,
+        0,
         1,
-        0,
-        0,
         0
       ],
       "total": 823,
@@ -2123,87 +2553,87 @@
     },
     "TN-114-107": {
       "votes": [
-        164,
         201,
-        1,
+        164,
         237,
         43,
+        2,
+        1,
         1,
         0,
         0,
         0,
+        0,
         1,
-        0,
-        0,
-        2
+        0
       ],
       "total": 650,
       "rejected": 0
     },
     "TN-114-108": {
       "votes": [
-        235,
         227,
-        0,
+        235,
         185,
         27,
+        10,
+        0,
+        0,
         1,
+        0,
+        0,
+        0,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        10
+        0
       ],
       "total": 686,
       "rejected": 0
     },
     "TN-114-109": {
       "votes": [
-        91,
         618,
-        1,
+        91,
         57,
         98,
+        6,
         1,
-        0,
-        0,
-        0,
         2,
-        1,
         0,
-        6
+        0,
+        0,
+        1,
+        1,
+        0
       ],
       "total": 875,
       "rejected": 0
     },
     "TN-114-110": {
       "votes": [
-        147,
         361,
-        1,
+        147,
         156,
         53,
+        2,
         1,
+        0,
         1,
         0,
         0,
         0,
-        0,
-        0,
-        2
+        1,
+        0
       ],
       "total": 722,
       "rejected": 0
     },
     "TN-114-111": {
       "votes": [
-        125,
         182,
-        0,
+        125,
         165,
         37,
+        1,
         0,
         0,
         0,
@@ -2211,215 +2641,215 @@
         0,
         0,
         0,
-        1
+        0
       ],
       "total": 510,
       "rejected": 0
     },
     "TN-114-112": {
       "votes": [
-        74,
         163,
-        1,
+        74,
         75,
         24,
+        1,
+        1,
+        0,
+        1,
         0,
         1,
         0,
         0,
-        0,
-        0,
-        1,
-        1
+        0
       ],
       "total": 340,
       "rejected": 0
     },
     "TN-114-113": {
       "votes": [
-        106,
         258,
-        3,
+        106,
         227,
         52,
+        3,
+        3,
         0,
         1,
         1,
         0,
         0,
         0,
-        0,
-        3
+        0
       ],
       "total": 651,
       "rejected": 0
     },
     "TN-114-114": {
       "votes": [
-        102,
         287,
-        4,
+        102,
         115,
         60,
-        0,
-        0,
-        0,
-        0,
+        3,
+        4,
         2,
         0,
         0,
-        3
+        0,
+        0,
+        0,
+        0
       ],
       "total": 573,
       "rejected": 0
     },
     "TN-114-115": {
       "votes": [
-        193,
         333,
-        6,
+        193,
         103,
         72,
+        14,
+        6,
         0,
         1,
         3,
-        0,
-        0,
-        0,
         2,
-        14
+        0,
+        0,
+        0
       ],
       "total": 727,
       "rejected": 0
     },
     "TN-114-116": {
       "votes": [
-        45,
         208,
-        1,
+        45,
         121,
         15,
-        0,
+        2,
+        1,
         0,
         0,
         0,
         0,
         1,
         0,
-        2
+        0
       ],
       "total": 393,
       "rejected": 0
     },
     "TN-114-117": {
       "votes": [
-        103,
         665,
-        1,
+        103,
         90,
         84,
-        0,
+        8,
+        1,
+        1,
         2,
         1,
         0,
         1,
-        1,
         0,
-        8
+        0
       ],
       "total": 956,
       "rejected": 0
     },
     "TN-114-118": {
       "votes": [
-        99,
         178,
-        3,
+        99,
         145,
         59,
-        0,
-        0,
-        0,
-        0,
+        4,
+        3,
         1,
         0,
         0,
-        4
+        0,
+        0,
+        0,
+        0
       ],
       "total": 489,
       "rejected": 0
     },
     "TN-114-119": {
       "votes": [
-        198,
         438,
-        3,
+        198,
         147,
         93,
+        2,
+        3,
         0,
         0,
         1,
         0,
-        0,
         1,
         0,
-        2
+        0
       ],
       "total": 883,
       "rejected": 0
     },
     "TN-114-120": {
       "votes": [
-        171,
         347,
-        1,
+        171,
         264,
         62,
+        5,
+        1,
+        1,
+        1,
         0,
         1,
+        1,
         0,
-        0,
-        1,
-        1,
-        1,
-        5
+        0
       ],
       "total": 854,
       "rejected": 0
     },
     "TN-114-121": {
       "votes": [
-        193,
         317,
-        4,
+        193,
         213,
         70,
+        6,
+        4,
         1,
         0,
         0,
-        0,
         1,
         0,
         1,
-        6
+        0
       ],
       "total": 806,
       "rejected": 0
     },
     "TN-114-122": {
       "votes": [
-        74,
         162,
-        1,
+        74,
         236,
         27,
+        0,
+        1,
         1,
         0,
         0,
         0,
+        0,
         1,
-        0,
-        0,
         0
       ],
       "total": 502,
@@ -2427,66 +2857,65 @@
     },
     "TN-114-123": {
       "votes": [
-        174,
         212,
-        0,
+        174,
         265,
         41,
+        2,
+        0,
         0,
         2,
         0,
-        1,
         0,
         1,
         0,
-        2
+        1
       ],
       "total": 698,
       "rejected": 0
     },
     "TN-114-124": {
       "votes": [
-        125,
         213,
-        2,
+        125,
         153,
         52,
+        6,
+        2,
+        0,
         1,
+        0,
+        0,
+        0,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        6
+        0
       ],
       "total": 553,
       "rejected": 0
     },
     "TN-114-125": {
       "votes": [
-        130,
         275,
-        4,
+        130,
         114,
         74,
+        7,
+        4,
         0,
         1,
         0,
-        1,
         0,
         1,
         0,
-        7
+        1
       ],
       "total": 607,
       "rejected": 0
     },
     "TN-114-126": {
       "votes": [
-        109,
         194,
-        0,
+        109,
         152,
         34,
         0,
@@ -2494,8 +2923,9 @@
         0,
         0,
         0,
-        0,
         2,
+        0,
+        0,
         0
       ],
       "total": 491,
@@ -2503,52 +2933,52 @@
     },
     "TN-114-127": {
       "votes": [
-        110,
         209,
-        1,
+        110,
         64,
         46,
+        1,
+        1,
         0,
         0,
         0,
         0,
         0,
         0,
-        0,
-        1
+        0
       ],
       "total": 431,
       "rejected": 0
     },
     "TN-114-128": {
       "votes": [
-        130,
         133,
-        0,
+        130,
         106,
         24,
-        0,
-        0,
+        1,
         0,
         0,
         0,
         0,
         1,
-        1
+        0,
+        0,
+        0
       ],
       "total": 395,
       "rejected": 0
     },
     "TN-114-129": {
       "votes": [
-        241,
         223,
-        2,
+        241,
         216,
         36,
         0,
-        1,
+        2,
         0,
+        1,
         0,
         0,
         1,
@@ -2560,37 +2990,37 @@
     },
     "TN-114-130": {
       "votes": [
-        193,
         460,
-        0,
+        193,
         212,
         39,
+        3,
         0,
+        1,
         2,
         2,
         0,
         1,
-        1,
         0,
-        3
+        0
       ],
       "total": 913,
       "rejected": 0
     },
     "TN-114-131": {
       "votes": [
-        60,
         654,
-        0,
+        60,
         18,
         18,
-        0,
-        0,
-        0,
-        1,
         1,
         0,
         1,
+        0,
+        0,
+        1,
+        0,
+        0,
         1
       ],
       "total": 754,
@@ -2598,125 +3028,68 @@
     },
     "TN-114-132": {
       "votes": [
-        61,
         273,
-        1,
+        61,
         73,
         22,
-        0,
-        0,
-        0,
-        0,
         1,
+        1,
+        1,
+        0,
+        0,
+        0,
         2,
         0,
-        1
+        0
       ],
       "total": 434,
       "rejected": 0
     },
     "TN-114-132A": {
       "votes": [
-        135,
         367,
-        1,
+        135,
         18,
         29,
+        4,
         1,
-        2,
-        0,
-        0,
         0,
         2,
         0,
-        4
+        0,
+        2,
+        1,
+        0
       ],
       "total": 559,
       "rejected": 0
     },
     "TN-114-133": {
       "votes": [
-        58,
         258,
-        0,
+        58,
         52,
         14,
+        2,
+        0,
         0,
         1,
         2,
         0,
         0,
         0,
-        0,
-        2
+        0
       ],
       "total": 387,
       "rejected": 0
     },
     "TN-114-134": {
       "votes": [
-        32,
         609,
-        1,
+        32,
         6,
         13,
-        0,
-        0,
         1,
-        0,
-        0,
-        0,
-        0,
-        1
-      ],
-      "total": 663,
-      "rejected": 0
-    },
-    "TN-114-135": {
-      "votes": [
-        100,
-        793,
-        2,
-        53,
-        38,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        7
-      ],
-      "total": 1001,
-      "rejected": 0
-    },
-    "TN-114-136": {
-      "votes": [
-        111,
-        692,
-        1,
-        36,
-        15,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1
-      ],
-      "total": 858,
-      "rejected": 0
-    },
-    "TN-114-137": {
-      "votes": [
-        57,
-        162,
-        0,
-        188,
-        23,
         1,
         0,
         0,
@@ -2726,23 +3099,80 @@
         0,
         0
       ],
+      "total": 663,
+      "rejected": 0
+    },
+    "TN-114-135": {
+      "votes": [
+        793,
+        100,
+        53,
+        38,
+        7,
+        2,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1
+      ],
+      "total": 1001,
+      "rejected": 0
+    },
+    "TN-114-136": {
+      "votes": [
+        692,
+        111,
+        36,
+        15,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "total": 858,
+      "rejected": 0
+    },
+    "TN-114-137": {
+      "votes": [
+        162,
+        57,
+        188,
+        23,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
       "total": 432,
       "rejected": 0
     },
     "TN-114-138": {
       "votes": [
-        50,
         589,
-        1,
+        50,
         3,
         11,
+        0,
         1,
+        0,
         1,
         0,
         0,
         0,
-        0,
-        0,
+        1,
         0
       ],
       "total": 656,
@@ -2750,16 +3180,16 @@
     },
     "TN-114-139": {
       "votes": [
-        109,
         709,
-        4,
+        109,
         8,
         12,
         0,
-        0,
-        0,
-        0,
+        4,
         1,
+        0,
+        0,
+        0,
         0,
         0,
         0
@@ -2769,132 +3199,132 @@
     },
     "TN-114-140": {
       "votes": [
-        130,
         494,
-        0,
+        130,
         111,
         25,
-        0,
-        0,
+        2,
         0,
         0,
         0,
         0,
         1,
-        2
+        0,
+        0,
+        0
       ],
       "total": 763,
       "rejected": 0
     },
     "TN-114-141": {
       "votes": [
-        323,
         405,
-        3,
+        323,
         150,
         50,
+        3,
+        3,
         0,
         3,
         1,
         0,
         0,
         0,
-        0,
-        3
+        0
       ],
       "total": 938,
       "rejected": 0
     },
     "TN-114-142": {
       "votes": [
-        132,
         218,
-        0,
+        132,
         91,
         77,
-        0,
-        0,
-        0,
+        8,
         0,
         1,
+        0,
+        0,
+        0,
         2,
         0,
-        8
+        0
       ],
       "total": 529,
       "rejected": 0
     },
     "TN-114-143": {
       "votes": [
-        221,
         230,
-        0,
+        221,
         27,
         66,
-        1,
-        0,
-        1,
+        6,
         0,
         0,
         0,
         1,
-        6
+        1,
+        0,
+        1,
+        0
       ],
       "total": 553,
       "rejected": 0
     },
     "TN-114-144": {
       "votes": [
-        187,
         332,
-        3,
+        187,
         76,
         67,
+        7,
+        3,
         1,
         1,
         0,
-        0,
         1,
         0,
         1,
-        7
+        0
       ],
       "total": 676,
       "rejected": 0
     },
     "TN-114-145": {
       "votes": [
-        133,
         329,
-        1,
+        133,
         69,
         73,
-        2,
+        11,
+        1,
         0,
         0,
         0,
         0,
         1,
-        0,
-        11
+        2,
+        0
       ],
       "total": 619,
       "rejected": 0
     },
     "TN-114-146": {
       "votes": [
-        254,
         369,
-        5,
+        254,
         169,
         94,
-        1,
+        0,
+        5,
+        2,
         2,
         0,
         0,
-        2,
         1,
-        0,
+        1,
         0
       ],
       "total": 897,
@@ -2902,56 +3332,56 @@
     },
     "TN-114-147": {
       "votes": [
-        127,
         216,
-        2,
+        127,
         95,
         69,
-        0,
-        0,
-        0,
-        0,
+        5,
+        2,
         1,
         0,
         0,
-        5
+        0,
+        0,
+        0,
+        0
       ],
       "total": 515,
       "rejected": 0
     },
     "TN-114-148": {
       "votes": [
-        181,
         255,
-        2,
+        181,
         102,
         62,
+        1,
+        2,
         0,
         3,
         1,
         0,
         0,
         0,
-        0,
-        1
+        0
       ],
       "total": 607,
       "rejected": 0
     },
     "TN-114-149": {
       "votes": [
-        129,
         214,
-        0,
+        129,
         140,
         68,
-        3,
-        0,
-        0,
         1,
         0,
-        2,
         0,
+        0,
+        0,
+        0,
+        2,
+        3,
         1
       ],
       "total": 558,
@@ -2959,16 +3389,16 @@
     },
     "TN-114-150": {
       "votes": [
-        117,
         249,
-        1,
+        117,
         155,
         44,
-        0,
-        0,
+        2,
         1,
         2,
-        2,
+        0,
+        1,
+        0,
         2,
         0,
         2
@@ -2978,129 +3408,129 @@
     },
     "TN-114-151": {
       "votes": [
-        160,
         272,
-        4,
+        160,
         150,
         63,
+        2,
+        4,
         1,
         1,
         0,
         0,
+        0,
         1,
-        0,
-        0,
-        2
+        0
       ],
       "total": 654,
       "rejected": 0
     },
     "TN-114-152": {
       "votes": [
-        164,
         288,
-        2,
+        164,
         124,
         64,
-        0,
+        7,
+        2,
+        1,
         1,
         0,
         0,
-        1,
         0,
         0,
-        7
+        0
       ],
       "total": 651,
       "rejected": 0
     },
     "TN-114-153": {
       "votes": [
-        162,
         239,
-        2,
+        162,
         121,
         46,
+        2,
+        2,
         0,
         2,
         0,
         0,
         0,
         0,
-        0,
-        2
+        0
       ],
       "total": 574,
       "rejected": 0
     },
     "TN-114-154": {
       "votes": [
-        97,
         197,
-        1,
+        97,
         143,
         40,
+        2,
+        1,
         0,
         2,
         0,
-        1,
         0,
         1,
         0,
-        2
+        1
       ],
       "total": 484,
       "rejected": 0
     },
     "TN-114-155": {
       "votes": [
-        114,
         248,
-        0,
+        114,
         114,
         58,
+        4,
         0,
+        1,
         2,
         0,
         0,
         1,
-        1,
         0,
-        4
+        0
       ],
       "total": 542,
       "rejected": 0
     },
     "TN-114-156": {
       "votes": [
-        148,
         286,
-        0,
+        148,
         177,
         70,
+        1,
         0,
+        1,
         2,
         1,
         0,
-        1,
         0,
         0,
-        1
+        0
       ],
       "total": 686,
       "rejected": 0
     },
     "TN-114-157": {
       "votes": [
-        114,
         255,
-        1,
+        114,
         121,
         62,
+        0,
+        1,
         1,
         0,
         1,
-        0,
         1,
         2,
         1,
@@ -3111,49 +3541,49 @@
     },
     "TN-114-158": {
       "votes": [
-        117,
         199,
-        2,
+        117,
         153,
         67,
+        3,
         2,
+        1,
         0,
         2,
         0,
         1,
-        1,
-        0,
-        3
+        2,
+        0
       ],
       "total": 547,
       "rejected": 0
     },
     "TN-114-159": {
       "votes": [
-        125,
         280,
-        2,
+        125,
         130,
         77,
         5,
+        2,
+        1,
         1,
         1,
         0,
-        1,
         0,
-        0,
-        5
+        5,
+        0
       ],
       "total": 627,
       "rejected": 0
     },
     "TN-114-160": {
       "votes": [
-        144,
         168,
-        0,
+        144,
         178,
         26,
+        1,
         0,
         0,
         0,
@@ -3161,209 +3591,266 @@
         0,
         0,
         0,
-        1
+        0
       ],
       "total": 517,
       "rejected": 0
     },
     "TN-114-161": {
       "votes": [
-        91,
         247,
-        2,
+        91,
         78,
         28,
         0,
-        0,
-        0,
         2,
         0,
         0,
         0,
-        0
+        0,
+        0,
+        0,
+        2
       ],
       "total": 448,
       "rejected": 0
     },
     "TN-114-162": {
       "votes": [
-        246,
         314,
-        1,
+        246,
         144,
         54,
+        8,
+        1,
         2,
         0,
         1,
+        0,
         1,
         2,
-        1,
-        0,
-        8
+        1
       ],
       "total": 774,
       "rejected": 0
     },
     "TN-114-163": {
       "votes": [
+        155,
         99,
         155,
-        0,
-        155,
         31,
-        1,
+        3,
+        0,
         0,
         0,
         0,
         0,
         2,
-        0,
-        3
+        1,
+        0
       ],
       "total": 446,
       "rejected": 0
     },
     "TN-114-164": {
       "votes": [
-        119,
         263,
-        0,
+        119,
         232,
         65,
-        0,
-        1,
-        0,
+        2,
         0,
         2,
         1,
         0,
-        2
+        0,
+        1,
+        0,
+        0
       ],
       "total": 685,
       "rejected": 0
     },
     "TN-114-165": {
       "votes": [
-        172,
         255,
-        0,
+        172,
         170,
         68,
+        9,
         0,
+        2,
         1,
         0,
-        0,
         2,
         0,
-        2,
-        9
+        0,
+        0
       ],
       "total": 679,
       "rejected": 0
     },
     "TN-114-166": {
       "votes": [
-        155,
         267,
-        4,
+        155,
         243,
         72,
-        1,
+        6,
+        4,
+        0,
         1,
         2,
-        0,
-        0,
+        1,
         0,
         1,
-        6
+        0
       ],
       "total": 752,
       "rejected": 0
     },
     "TN-114-167": {
       "votes": [
-        105,
         147,
-        1,
+        105,
         82,
         46,
+        3,
+        1,
         0,
         0,
         0,
-        2,
         0,
         0,
         0,
-        3
+        2
       ],
       "total": 386,
       "rejected": 0
     },
     "TN-114-168": {
       "votes": [
-        137,
         270,
-        0,
+        137,
         151,
         106,
-        1,
-        1,
-        0,
+        8,
         0,
         0,
         1,
         0,
-        8
+        0,
+        1,
+        1,
+        0
       ],
       "total": 675,
       "rejected": 0
     },
     "TN-114-169": {
       "votes": [
-        157,
         401,
-        1,
+        157,
         144,
         118,
-        0,
-        2,
+        7,
         1,
-        2,
         3,
-        0,
+        2,
         1,
-        7
+        1,
+        0,
+        0,
+        2
       ],
       "total": 837,
       "rejected": 0
     },
     "TN-114-170": {
       "votes": [
-        155,
         375,
-        2,
+        155,
         160,
         117,
+        6,
+        2,
         1,
         0,
         0,
         0,
+        0,
         1,
-        0,
-        0,
-        6
+        0
       ],
       "total": 817,
       "rejected": 0
     },
     "TN-114-171": {
       "votes": [
-        200,
         373,
-        4,
+        200,
         116,
         99,
+        0,
+        4,
+        0,
         1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "total": 796,
+      "rejected": 0
+    },
+    "TN-114-172": {
+      "votes": [
+        277,
+        106,
+        101,
+        59,
+        6,
+        3,
+        0,
+        1,
+        1,
+        1,
+        0,
+        3,
+        0
+      ],
+      "total": 558,
+      "rejected": 0
+    },
+    "TN-114-173": {
+      "votes": [
+        542,
+        47,
+        22,
+        19,
+        3,
+        0,
+        0,
+        1,
+        2,
+        0,
+        1,
+        0,
+        1
+      ],
+      "total": 638,
+      "rejected": 0
+    },
+    "TN-114-174": {
+      "votes": [
+        513,
+        44,
+        16,
+        14,
+        2,
+        2,
         1,
         1,
         1,
@@ -3372,96 +3859,39 @@
         0,
         0
       ],
-      "total": 796,
-      "rejected": 0
-    },
-    "TN-114-172": {
-      "votes": [
-        106,
-        277,
-        3,
-        101,
-        59,
-        3,
-        1,
-        1,
-        0,
-        0,
-        0,
-        1,
-        6
-      ],
-      "total": 558,
-      "rejected": 0
-    },
-    "TN-114-173": {
-      "votes": [
-        47,
-        542,
-        0,
-        22,
-        19,
-        0,
-        1,
-        2,
-        1,
-        0,
-        1,
-        0,
-        3
-      ],
-      "total": 638,
-      "rejected": 0
-    },
-    "TN-114-174": {
-      "votes": [
-        44,
-        513,
-        2,
-        16,
-        14,
-        0,
-        1,
-        1,
-        0,
-        1,
-        0,
-        0,
-        2
-      ],
       "total": 594,
       "rejected": 0
     },
     "TN-114-175": {
       "votes": [
-        68,
         383,
-        0,
+        68,
         63,
         18,
+        2,
+        0,
         0,
         0,
         1,
         0,
         0,
         0,
-        0,
-        2
+        0
       ],
       "total": 535,
       "rejected": 0
     },
     "TN-114-175A": {
       "votes": [
-        57,
         334,
-        1,
+        57,
         28,
         14,
-        0,
-        0,
-        0,
         1,
+        1,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -3472,106 +3902,106 @@
     },
     "TN-114-176": {
       "votes": [
-        178,
         217,
-        2,
+        178,
         89,
         35,
-        1,
-        1,
-        0,
-        0,
-        0,
+        6,
+        2,
         0,
         1,
-        6
+        0,
+        1,
+        0,
+        1,
+        0
       ],
       "total": 530,
       "rejected": 0
     },
     "TN-114-176A": {
       "votes": [
-        158,
         162,
-        0,
+        158,
         65,
         33,
+        2,
+        0,
         0,
         1,
         0,
         0,
         0,
         0,
-        0,
-        2
+        0
       ],
       "total": 421,
       "rejected": 0
     },
     "TN-114-177": {
       "votes": [
-        134,
         645,
-        1,
+        134,
         102,
         55,
+        6,
+        1,
+        0,
+        0,
         1,
         0,
         1,
-        0,
-        0,
         1,
-        0,
-        6
+        0
       ],
       "total": 946,
       "rejected": 0
     },
     "TN-114-178": {
       "votes": [
-        85,
         810,
-        3,
+        85,
         10,
         27,
+        6,
+        3,
         2,
         0,
         0,
         0,
+        0,
         2,
-        0,
-        0,
-        6
+        0
       ],
       "total": 945,
       "rejected": 0
     },
     "TN-114-179": {
       "votes": [
-        82,
         876,
-        1,
+        82,
         8,
         21,
-        0,
+        2,
+        1,
+        2,
         3,
         0,
         1,
-        2,
         1,
-        1,
-        2
+        0,
+        1
       ],
       "total": 998,
       "rejected": 0
     },
     "TN-114-180": {
       "votes": [
-        67,
         208,
-        0,
+        67,
         47,
         14,
+        1,
         0,
         0,
         0,
@@ -3579,149 +4009,148 @@
         0,
         0,
         0,
-        1
+        0
       ],
       "total": 337,
       "rejected": 0
     },
     "TN-114-181": {
       "votes": [
-        137,
         498,
-        0,
+        137,
         158,
         83,
-        1,
+        7,
+        0,
+        0,
         4,
         0,
+        0,
+        0,
         1,
-        0,
-        0,
-        0,
-        7
+        1
       ],
       "total": 889,
       "rejected": 0
     },
     "TN-114-182": {
       "votes": [
-        184,
         386,
-        1,
+        184,
         152,
         118,
+        7,
+        1,
         0,
         3,
         2,
         1,
+        1,
         0,
-        1,
-        1,
-        7
+        1
       ],
       "total": 856,
       "rejected": 0
     },
     "TN-114-183": {
       "votes": [
-        116,
         555,
-        2,
+        116,
         104,
         26,
-        1,
+        2,
+        2,
+        0,
         0,
         1,
-        0,
-        0,
         1,
         1,
-        2
+        1,
+        0
       ],
       "total": 809,
       "rejected": 0
     },
     "TN-114-184": {
       "votes": [
-        118,
         443,
-        2,
+        118,
         85,
         80,
-        0,
+        3,
+        2,
+        3,
         1,
         0,
-        1,
         3,
         0,
-        3,
-        3
+        0,
+        1
       ],
       "total": 739,
       "rejected": 0
     },
     "TN-114-185": {
       "votes": [
-        138,
         461,
-        2,
+        138,
         79,
         22,
-        1,
-        1,
+        4,
+        2,
         0,
         1,
         0,
         0,
         0,
-        4
+        1,
+        1
       ],
       "total": 709,
       "rejected": 0
     },
     "TN-114-186": {
       "votes": [
-        155,
         706,
-        2,
+        155,
         59,
         49,
-        1,
+        8,
         2,
         0,
-        0,
-        0,
         2,
+        0,
         4,
-        8
+        2,
+        1,
+        0
       ],
       "total": 988,
       "rejected": 0
     },
     "TN-114-187": {
       "votes": [
-        104,
         683,
-        1,
+        104,
         51,
         34,
+        7,
+        1,
         1,
         3,
         2,
-        2,
+        0,
+        0,
         1,
-        0,
-        0,
-        7
+        2
       ],
       "total": 889,
       "rejected": 0
     },
     "TN-114-188": {
       "votes": [
-        202,
         482,
-        0,
+        202,
         134,
         37,
         1,
@@ -3731,63 +4160,64 @@
         1,
         0,
         0,
-        1
+        1,
+        0
       ],
       "total": 859,
       "rejected": 0
     },
     "TN-114-189": {
       "votes": [
-        208,
         477,
-        3,
+        208,
         142,
         44,
+        1,
+        3,
         0,
         1,
         0,
-        2,
         0,
         0,
         0,
-        1
+        2
       ],
       "total": 878,
       "rejected": 0
     },
     "TN-114-190": {
       "votes": [
-        183,
         434,
-        0,
+        183,
         180,
         55,
-        0,
-        1,
-        0,
-        0,
-        1,
-        1,
         2,
-        2
+        0,
+        1,
+        1,
+        0,
+        2,
+        1,
+        0,
+        0
       ],
       "total": 859,
       "rejected": 0
     },
     "TN-114-191": {
       "votes": [
-        113,
         238,
-        2,
+        113,
         240,
         48,
-        1,
+        0,
+        2,
+        0,
         3,
         0,
         0,
         0,
-        0,
-        0,
+        1,
         0
       ],
       "total": 645,
@@ -3795,170 +4225,170 @@
     },
     "TN-114-192": {
       "votes": [
-        138,
         358,
-        0,
+        138,
         243,
         73,
-        1,
+        3,
+        0,
+        2,
         1,
         2,
         0,
-        2,
         0,
-        0,
-        3
+        1,
+        0
       ],
       "total": 821,
       "rejected": 0
     },
     "TN-114-193": {
       "votes": [
-        138,
         413,
-        0,
+        138,
         121,
         69,
+        4,
+        0,
         2,
         2,
         0,
-        0,
+        1,
+        1,
         2,
-        1,
-        1,
-        4
+        0
       ],
       "total": 753,
       "rejected": 0
     },
     "TN-114-194": {
       "votes": [
-        153,
         416,
-        5,
+        153,
         89,
         77,
-        1,
-        1,
-        0,
-        0,
+        6,
+        5,
         0,
         1,
+        0,
         1,
-        6
+        1,
+        1,
+        0
       ],
       "total": 750,
       "rejected": 0
     },
     "TN-114-195": {
       "votes": [
-        162,
         336,
-        1,
+        162,
         229,
         60,
+        6,
+        1,
         0,
         2,
         0,
         0,
         0,
         0,
-        0,
-        6
+        0
       ],
       "total": 796,
       "rejected": 0
     },
     "TN-114-196": {
       "votes": [
-        117,
         287,
-        1,
+        117,
         153,
         37,
-        0,
-        0,
+        3,
+        1,
         0,
         0,
         0,
         1,
         1,
-        3
+        0,
+        0
       ],
       "total": 600,
       "rejected": 0
     },
     "TN-114-197": {
       "votes": [
-        142,
         258,
-        3,
+        142,
         48,
         24,
-        0,
-        0,
-        0,
+        2,
+        3,
         0,
         0,
         0,
         1,
-        2
+        0,
+        0,
+        0
       ],
       "total": 478,
       "rejected": 0
     },
     "TN-114-198": {
       "votes": [
-        147,
         326,
-        2,
+        147,
         206,
         67,
-        1,
-        0,
-        1,
-        0,
-        1,
+        4,
         2,
+        1,
         0,
-        4
+        1,
+        0,
+        2,
+        1,
+        0
       ],
       "total": 757,
       "rejected": 0
     },
     "TN-114-199": {
       "votes": [
-        155,
         358,
-        1,
+        155,
         169,
         93,
+        3,
         1,
         0,
         0,
         0,
         0,
         0,
-        0,
-        3
+        1,
+        0
       ],
       "total": 780,
       "rejected": 0
     },
     "TN-114-200": {
       "votes": [
-        74,
         197,
-        2,
+        74,
         123,
         35,
-        1,
-        1,
         0,
-        0,
+        2,
         0,
         1,
         0,
+        0,
+        1,
+        1,
         0
       ],
       "total": 434,
@@ -3966,208 +4396,208 @@
     },
     "TN-114-201": {
       "votes": [
-        44,
         183,
-        0,
+        44,
         169,
         26,
-        0,
-        0,
-        0,
+        1,
         0,
         1,
         0,
         0,
-        1
+        0,
+        0,
+        0,
+        0
       ],
       "total": 424,
       "rejected": 0
     },
     "TN-114-202": {
       "votes": [
-        115,
         290,
-        0,
+        115,
         117,
         50,
-        0,
-        0,
-        0,
-        0,
-        3,
         1,
         0,
-        1
+        3,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
       ],
       "total": 577,
       "rejected": 0
     },
     "TN-114-203": {
       "votes": [
-        89,
         331,
-        1,
+        89,
         133,
         60,
-        1,
         3,
         1,
         0,
-        0,
+        3,
         1,
         1,
-        3
+        1,
+        1,
+        0
       ],
       "total": 624,
       "rejected": 0
     },
     "TN-114-204": {
       "votes": [
-        53,
         202,
-        0,
+        53,
         78,
         18,
+        1,
+        0,
         0,
         1,
         0,
         0,
         0,
         0,
-        0,
-        1
+        0
       ],
       "total": 353,
       "rejected": 0
     },
     "TN-114-205": {
       "votes": [
-        88,
         259,
-        1,
+        88,
         175,
         44,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
         2,
-        1,
-        0,
-        0,
-        1,
-        0,
-        0,
-        1
+        0
       ],
       "total": 572,
       "rejected": 0
     },
     "TN-114-206": {
       "votes": [
-        87,
         262,
-        3,
+        87,
         172,
         39,
-        0,
+        1,
+        3,
+        2,
         0,
         0,
         0,
         2,
-        2,
         0,
-        1
+        0
       ],
       "total": 568,
       "rejected": 0
     },
     "TN-114-207": {
       "votes": [
-        73,
         294,
-        0,
+        73,
         246,
         57,
-        0,
+        3,
         0,
         1,
-        1,
+        0,
         1,
         0,
         0,
-        3
+        0,
+        1
       ],
       "total": 676,
       "rejected": 0
     },
     "TN-114-208": {
       "votes": [
-        193,
         299,
-        4,
+        193,
         112,
         53,
+        4,
+        4,
         1,
         0,
         0,
-        1,
-        1,
         0,
         0,
-        4
+        1,
+        1
       ],
       "total": 668,
       "rejected": 0
     },
     "TN-114-209": {
       "votes": [
-        128,
         194,
-        2,
+        128,
         96,
         55,
-        1,
+        6,
+        2,
         0,
         0,
         0,
         0,
         1,
-        0,
-        6
+        1,
+        0
       ],
       "total": 483,
       "rejected": 0
     },
     "TN-114-210": {
       "votes": [
-        136,
         211,
-        4,
+        136,
         83,
         47,
-        2,
-        2,
+        6,
+        4,
         0,
-        0,
+        2,
         0,
         1,
         1,
-        6
+        2,
+        0
       ],
       "total": 493,
       "rejected": 0
     },
     "TN-114-211": {
       "votes": [
-        182,
         319,
-        2,
+        182,
         112,
         87,
         1,
-        1,
         2,
         1,
         1,
+        2,
         0,
         0,
+        1,
         1
       ],
       "total": 709,
@@ -4175,125 +4605,125 @@
     },
     "TN-114-212": {
       "votes": [
-        140,
         290,
-        3,
+        140,
         162,
         64,
-        0,
-        0,
+        4,
+        3,
         1,
         0,
         1,
         0,
         0,
-        4
+        0,
+        0
       ],
       "total": 665,
       "rejected": 0
     },
     "TN-114-213": {
       "votes": [
-        153,
         253,
-        1,
+        153,
         159,
         58,
-        0,
-        0,
-        0,
+        2,
+        1,
         0,
         0,
         0,
         1,
-        2
+        0,
+        0,
+        0
       ],
       "total": 627,
       "rejected": 0
     },
     "TN-114-214": {
       "votes": [
-        200,
         248,
-        0,
+        200,
         123,
         82,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-        8
-      ],
-      "total": 663,
-      "rejected": 0
-    },
-    "TN-114-215": {
-      "votes": [
-        224,
-        247,
-        2,
-        214,
-        107,
-        1,
+        8,
         0,
         0,
         0,
-        2,
-        0,
-        0,
-        8
-      ],
-      "total": 805,
-      "rejected": 0
-    },
-    "TN-114-216": {
-      "votes": [
-        106,
-        296,
-        0,
-        105,
-        71,
-        0,
-        2,
-        1,
         1,
         1,
         0,
         0,
         0
       ],
+      "total": 663,
+      "rejected": 0
+    },
+    "TN-114-215": {
+      "votes": [
+        247,
+        224,
+        214,
+        107,
+        8,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "total": 805,
+      "rejected": 0
+    },
+    "TN-114-216": {
+      "votes": [
+        296,
+        106,
+        105,
+        71,
+        0,
+        0,
+        1,
+        2,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
       "total": 583,
       "rejected": 0
     },
     "TN-114-217": {
       "votes": [
-        97,
         168,
-        1,
+        97,
         212,
         32,
+        2,
+        1,
+        0,
+        1,
         0,
         1,
         0,
         0,
-        0,
-        0,
-        1,
-        2
+        0
       ],
       "total": 514,
       "rejected": 0
     },
     "TN-114-218": {
       "votes": [
-        78,
         185,
-        0,
+        78,
         152,
         36,
+        0,
         0,
         0,
         0,
@@ -4308,18 +4738,18 @@
     },
     "TN-114-219": {
       "votes": [
-        152,
         338,
-        2,
+        152,
         200,
         56,
+        0,
         2,
         1,
-        0,
-        0,
         1,
         0,
         0,
+        0,
+        2,
         0
       ],
       "total": 752,
@@ -4327,475 +4757,475 @@
     },
     "TN-114-220": {
       "votes": [
-        62,
         237,
-        0,
+        62,
         243,
         40,
-        0,
-        0,
+        1,
         0,
         0,
         0,
         0,
         1,
-        1
+        0,
+        0,
+        0
       ],
       "total": 584,
       "rejected": 0
     },
     "TN-114-221": {
       "votes": [
-        272,
         307,
-        3,
+        272,
         210,
         79,
+        4,
         3,
+        1,
         0,
         0,
         0,
         1,
-        1,
-        0,
-        4
+        3,
+        0
       ],
       "total": 880,
       "rejected": 0
     },
     "TN-114-222": {
       "votes": [
-        127,
         335,
-        1,
+        127,
         101,
         43,
-        0,
-        0,
+        2,
+        1,
+        2,
         0,
         0,
         2,
         0,
-        2,
-        2
+        0,
+        0
       ],
       "total": 613,
       "rejected": 0
     },
     "TN-114-223": {
       "votes": [
-        178,
         385,
-        1,
+        178,
         115,
         73,
+        1,
+        1,
+        1,
+        1,
         0,
         1,
         0,
         0,
-        1,
-        0,
-        1,
-        1
+        0
       ],
       "total": 756,
       "rejected": 0
     },
     "TN-114-224": {
       "votes": [
-        120,
         257,
-        1,
+        120,
         100,
         48,
-        0,
         2,
-        0,
-        0,
+        1,
+        2,
         2,
         0,
         1,
-        2
+        0,
+        0,
+        0
       ],
       "total": 533,
       "rejected": 0
     },
     "TN-114-225": {
       "votes": [
-        150,
         361,
-        3,
+        150,
         258,
         64,
-        0,
-        0,
-        0,
-        1,
-        2,
+        5,
+        3,
         2,
         0,
-        5
+        0,
+        0,
+        2,
+        0,
+        1
       ],
       "total": 846,
       "rejected": 0
     },
     "TN-114-226": {
       "votes": [
-        46,
         116,
-        1,
+        46,
         110,
         25,
-        2,
-        0,
-        0,
-        0,
+        3,
+        1,
         1,
         0,
         0,
-        3
+        0,
+        0,
+        2,
+        0
       ],
       "total": 304,
       "rejected": 0
     },
     "TN-114-226A": {
       "votes": [
-        81,
         257,
-        1,
+        81,
         180,
         56,
+        3,
         1,
         0,
+        0,
         1,
         0,
         0,
-        0,
-        0,
-        3
+        1,
+        0
       ],
       "total": 580,
       "rejected": 0
     },
     "TN-114-227": {
       "votes": [
-        136,
         214,
-        4,
+        136,
         212,
         53,
+        3,
+        4,
         0,
         2,
         0,
-        1,
         0,
         1,
         0,
-        3
+        1
       ],
       "total": 626,
       "rejected": 0
     },
     "TN-114-228": {
       "votes": [
-        169,
         321,
-        2,
+        169,
         201,
         87,
-        4,
-        2,
-        0,
+        7,
         2,
         1,
+        2,
         0,
         0,
-        7
+        0,
+        4,
+        2
       ],
       "total": 796,
       "rejected": 0
     },
     "TN-114-229": {
       "votes": [
-        102,
         183,
-        1,
+        102,
         149,
         47,
+        5,
         1,
-        0,
-        0,
-        0,
         2,
         0,
         0,
-        5
+        0,
+        0,
+        1,
+        0
       ],
       "total": 490,
       "rejected": 0
     },
     "TN-114-230": {
       "votes": [
-        96,
         165,
-        0,
+        96,
         138,
         69,
-        0,
-        0,
-        0,
+        5,
         0,
         1,
         0,
         0,
-        5
+        0,
+        0,
+        0,
+        0
       ],
       "total": 474,
       "rejected": 0
     },
     "TN-114-231": {
       "votes": [
-        92,
         178,
-        2,
+        92,
         139,
         53,
-        0,
-        1,
-        0,
-        1,
+        3,
+        2,
         1,
         1,
         0,
-        3
+        0,
+        1,
+        0,
+        1
       ],
       "total": 471,
       "rejected": 0
     },
     "TN-114-232": {
       "votes": [
-        119,
         168,
-        2,
+        119,
         145,
         46,
-        0,
+        4,
+        2,
+        1,
         1,
         0,
         0,
-        1,
         2,
         0,
-        4
+        0
       ],
       "total": 488,
       "rejected": 0
     },
     "TN-114-233": {
       "votes": [
-        125,
         368,
-        0,
+        125,
         120,
         39,
-        0,
-        1,
-        0,
+        6,
         0,
         0,
         1,
         0,
-        6
+        0,
+        1,
+        0,
+        0
       ],
       "total": 660,
       "rejected": 0
     },
     "TN-114-234": {
       "votes": [
-        105,
         261,
-        1,
+        105,
         130,
         60,
+        7,
         1,
-        1,
-        0,
-        0,
-        0,
         0,
         1,
-        7
+        0,
+        1,
+        0,
+        1,
+        0
       ],
       "total": 567,
       "rejected": 0
     },
     "TN-114-235": {
       "votes": [
-        250,
         206,
-        4,
+        250,
         122,
         34,
+        3,
+        4,
+        0,
         1,
+        0,
+        0,
+        0,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        3
+        0
       ],
       "total": 621,
       "rejected": 0
     },
     "TN-114-235A": {
       "votes": [
-        131,
         156,
-        1,
+        131,
         85,
         33,
+        7,
+        1,
         0,
         0,
         0,
         0,
         0,
         0,
-        0,
-        7
+        0
       ],
       "total": 413,
       "rejected": 0
     },
     "TN-114-236": {
       "votes": [
-        118,
         187,
-        0,
+        118,
         122,
         47,
+        5,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
         1,
-        0,
-        2,
-        2,
-        0,
-        0,
-        0,
-        5
+        2
       ],
       "total": 484,
       "rejected": 0
     },
     "TN-114-237": {
       "votes": [
-        105,
         199,
-        3,
+        105,
         108,
         53,
+        6,
+        3,
         0,
         0,
         0,
         0,
         0,
         0,
-        0,
-        6
+        0
       ],
       "total": 474,
       "rejected": 0
     },
     "TN-114-238": {
       "votes": [
-        165,
         329,
-        1,
+        165,
         197,
         100,
-        1,
         3,
         1,
         0,
+        3,
+        1,
         0,
         2,
-        0,
-        3
+        1,
+        0
       ],
       "total": 802,
       "rejected": 0
     },
     "TN-114-239": {
       "votes": [
-        120,
         227,
-        1,
+        120,
         101,
         55,
+        4,
         1,
         0,
         0,
         0,
         0,
         1,
-        0,
-        4
+        1,
+        0
       ],
       "total": 510,
       "rejected": 0
     },
     "TN-114-240": {
       "votes": [
-        145,
         331,
-        0,
+        145,
         136,
         126,
-        2,
+        4,
+        0,
+        1,
         1,
         2,
         0,
-        1,
         0,
-        0,
-        4
+        2,
+        0
       ],
       "total": 748,
       "rejected": 0
     },
     "TN-114-241": {
       "votes": [
-        130,
         226,
-        1,
+        130,
         102,
         53,
+        6,
+        1,
         0,
         1,
         1,
-        0,
-        0,
         1,
         1,
-        6
+        0,
+        0
       ],
       "total": 522,
       "rejected": 0
     },
     "TN-114-242": {
       "votes": [
-        227,
         328,
-        3,
+        227,
         202,
         105,
+        4,
         3,
+        0,
         2,
         1,
-        1,
         0,
         1,
-        0,
-        4
+        3,
+        1
       ],
       "total": 877,
       "rejected": 0
