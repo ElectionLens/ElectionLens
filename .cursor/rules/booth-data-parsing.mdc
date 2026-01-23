@@ -1,0 +1,83 @@
+---
+description: Validation rules for parsing election booth data from PDFs/OCR
+globs: scripts/**/*.py
+alwaysApply: false
+---
+
+# Booth Data Parsing Rules
+
+When parsing election booth data from PDFs (via OCR, pdftotext, or any extraction method), follow these validation rules to catch parsing errors.
+
+## Critical: Detect Booth Number in Votes Array
+
+The most common parsing bug: booth numbers accidentally appearing in the votes array.
+
+```python
+# ❌ BAD - No validation, booth number leaks into votes
+votes = [int(n) for n in numbers[vote_start:]][:num_candidates]
+
+# ✅ GOOD - Validate votes don't match booth patterns
+def validate_booth_votes(booth_no: int, votes: list[int]) -> bool:
+    # Check if any vote suspiciously matches booth number
+    if booth_no in votes[:3]:  # First 3 columns most likely to have error
+        return False
+    # Check for sequential booth numbers in votes (parsing shift error)
+    if len(votes) >= 2 and votes[0] == 0 and 1 <= votes[1] <= 600:
+        return False  # Likely booth number in wrong position
+    return True
+```
+
+## Required Validations
+
+### 1. Cross-validate against official totals
+Always compare extracted column sums against official constituency totals:
+
+```python
+# Sum votes per candidate across all booths
+col_sums = [sum(r['votes'][i] for r in results.values()) for i in range(num_candidates)]
+
+# Compare to official totals - should be within 5% (some booths may be missing)
+for i, candidate in enumerate(official_candidates[:3]):
+    ratio = col_sums[i] / candidate['votes']
+    if not (0.80 <= ratio <= 1.20):
+        raise ValidationError(f"{candidate['party']}: extracted {col_sums[i]:,} vs official {candidate['votes']:,}")
+```
+
+### 2. Validate booth winner distribution
+The top 2 parties by booth wins should match the top 2 by votes:
+
+```python
+# Count booth wins
+booth_wins = Counter(max(range(len(r['votes'])), key=lambda i: r['votes'][i]) 
+                     for r in results.values())
+
+# Map to parties and compare
+top_2_by_wins = {candidates[i]['party'] for i, _ in booth_wins.most_common(2)}
+top_2_official = {c['party'] for c in official_candidates[:2]}
+
+if top_2_by_wins != top_2_official:
+    raise ValidationError(f"Winner mismatch: extracted {top_2_by_wins} vs official {top_2_official}")
+```
+
+### 3. Sanity check vote values
+```python
+def validate_vote_value(vote: int, total_electors: int = 2000) -> bool:
+    # Single booth rarely has >2000 votes
+    if vote > total_electors:
+        return False
+    # Negative votes impossible
+    if vote < 0:
+        return False
+    return True
+```
+
+## PDF Column Mapping
+
+Election PDFs often have these columns that should NOT be in votes array:
+- **Sl. No** - Serial number (1, 2, 3...)
+- **Booth No** - Polling station number
+- **Total Valid Votes** - Sum column (exclude from candidate votes)
+- **Rejected Votes** - Separate field
+- **NOTA** - May or may not be included as last candidate
+
+When parsing columns, explicitly identify and skip non-vote columns before extracting candidate votes.
