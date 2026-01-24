@@ -275,6 +275,7 @@ interface AlliancePostContentProps {
 
 function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX.Element {
   const [copied, setCopied] = useState(false);
+  const [showAllMarginIncreases, setShowAllMarginIncreases] = useState(false);
 
   // Get current share URL
   const shareUrl = useMemo(() => {
@@ -413,7 +414,10 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
           </p>
 
           <div className="margin-increase-list">
-            {data.margin_increases.slice(0, 20).map((increase, idx) => (
+            {(showAllMarginIncreases
+              ? data.margin_increases
+              : data.margin_increases.slice(0, 20)
+            ).map((increase, idx) => (
               <div
                 key={increase.ac_id}
                 className="margin-item"
@@ -426,12 +430,27 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
                 </span>
               </div>
             ))}
-            {data.margin_increases.length > 20 && (
-              <p className="more-items">
-                ... and {data.margin_increases.length - 20} more constituencies
-              </p>
-            )}
           </div>
+          {data.margin_increases.length > 20 && (
+            <div className="show-more-container">
+              <button
+                className="show-more-btn"
+                onClick={() => setShowAllMarginIncreases(!showAllMarginIncreases)}
+              >
+                {showAllMarginIncreases ? (
+                  <>
+                    <ChevronUp size={16} />
+                    Show Less
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown size={16} />
+                    Show All {data.total_margin_increases} Constituencies
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </section>
 
         <section>
