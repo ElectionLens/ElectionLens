@@ -882,14 +882,12 @@ function App(): JSX.Element {
       const urlParams = new URLSearchParams(window.location.search);
       const yearParam = urlParams.get('year');
       let yearToUse: number | undefined = undefined;
-      let pcYearToPreserve: number | null = null;
 
       if (yearParam) {
         if (yearParam.startsWith('pc-')) {
           // Parliament contribution year: year=pc-2024
           const parsed = parseInt(yearParam.slice(3), 10);
           if (!isNaN(parsed)) {
-            pcYearToPreserve = parsed;
             // Keep selectedACPCYear set to preserve it
             setSelectedACPCYear(parsed);
           }
