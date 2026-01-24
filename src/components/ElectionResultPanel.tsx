@@ -132,7 +132,14 @@ export function ElectionResultPanel({
   const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
 
   // Check if booth data is available
-  const hasBoothData = boothsWithResults.length > 0 && boothResults !== null;
+  // For booth data to be available, we need:
+  // 1. boothResults must be loaded (not null)
+  // 2. boothResults must have results (at least one booth with results)
+  // Note: boothsWithResults can be empty if boothList is missing but boothResults exists
+  const hasBoothData =
+    boothResults !== null &&
+    boothResults !== undefined &&
+    Object.keys(boothResults.results || {}).length > 0;
 
   // Debug logging
   useEffect(() => {
@@ -144,6 +151,12 @@ export function ElectionResultPanel({
       boothResultsYear: boothResults?.year,
       boothResultsTotalBooths: boothResults?.totalBooths,
       boothResultsResultsCount: boothResults ? Object.keys(boothResults.results || {}).length : 0,
+      boothResultsResultsKeys: boothResults
+        ? Object.keys(boothResults.results || {}).slice(0, 5)
+        : [],
+      hasBoothResults: !!boothResults,
+      hasBoothResultsResults: !!(boothResults && boothResults.results),
+      resultsObjectKeys: boothResults ? Object.keys(boothResults.results || {}) : [],
     });
   }, [hasBoothData, boothResults, boothsWithResults.length]);
 
