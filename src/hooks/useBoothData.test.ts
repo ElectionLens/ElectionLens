@@ -95,7 +95,7 @@ describe('useBoothData', () => {
       const { result } = renderHook(() => useBoothData());
 
       await act(async () => {
-        await result.current.loadBoothData('TN', 'TN-001');
+        await result.current.loadBoothData('TN', 'TN-001', 2021);
       });
 
       expect(result.current.boothList).toEqual(mockBoothList);
@@ -157,7 +157,7 @@ describe('useBoothData', () => {
       const { result } = renderHook(() => useBoothData());
 
       await act(async () => {
-        await result.current.loadBoothData('TN', 'TN-001');
+        await result.current.loadBoothData('TN', 'TN-001', 2021);
       });
 
       mockFetch.mockResolvedValueOnce({
