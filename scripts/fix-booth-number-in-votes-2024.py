@@ -70,11 +70,19 @@ def fix_booth_votes(booth_id: str, votes: list, booth_no: int) -> tuple[list, bo
     # This might indicate booth number in wrong position
     if not was_fixed and len(fixed_votes) >= 2:
         if fixed_votes[0] == 0 and 1 <= fixed_votes[1] <= 600:
-            # This could be a booth number, but we can't be sure without context
-            # Only fix if it matches the actual booth number
+            # If it matches the booth number, definitely remove it
             if fixed_votes[1] == booth_no:
                 fixed_votes = fixed_votes[1:] + [0]
                 was_fixed = True
+            # Also check if votes[1] is suspiciously small compared to other votes
+            # and could be a booth number that got shifted
+            elif len(fixed_votes) >= 3:
+                # If votes[1] is much smaller than votes[2] and votes[3], it might be a booth number
+                avg_other_votes = sum(fixed_votes[2:5]) / max(1, len(fixed_votes[2:5]))
+                if fixed_votes[1] < avg_other_votes * 0.1 and fixed_votes[1] <= 600:
+                    # This looks like a booth number, remove it
+                    fixed_votes = fixed_votes[1:] + [0]
+                    was_fixed = True
     
     # Additional check: if booth number appears anywhere in first 10 positions
     # and it's suspiciously positioned, remove it
