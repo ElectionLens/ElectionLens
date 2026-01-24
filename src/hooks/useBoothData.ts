@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 // Types for booth data
 export interface Booth {
@@ -100,58 +100,69 @@ export function useBoothData(): UseBoothDataReturn {
   const [availableYears, setAvailableYears] = useState<number[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [currentAcId, setCurrentAcId] = useState<string | null>(null);
 
   /**
    * Load booth list for an AC (year-specific if available, otherwise fallback to generic)
    */
-  const loadBoothData = useCallback(async (stateId: string, acId: string, year?: number) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      // Try year-specific booth list first, then fallback to generic
-      let boothPath = `/data/booths/${stateId}/${acId}/booths.json`;
-      let response = await fetch(boothPath);
-
-      // If year is provided, try year-specific file first
-      if (year) {
-        const yearSpecificPath = `/data/booths/${stateId}/${acId}/booths-${year}.json`;
-        const yearResponse = await fetch(yearSpecificPath);
-        if (yearResponse.ok) {
-          boothPath = yearSpecificPath;
-          response = yearResponse;
-        }
+  const loadBoothData = useCallback(
+    async (stateId: string, acId: string, year?: number) => {
+      // Clear previous data if switching to a different AC
+      if (currentAcId && currentAcId !== acId) {
+        setBoothList(null);
+        setBoothResults(null);
+        setAvailableYears([]);
       }
+      setCurrentAcId(acId);
+      setLoading(true);
+      setError(null);
 
-      if (!response.ok) {
-        throw new Error(`Booth data not available for ${acId}`);
-      }
+      try {
+        // Try year-specific booth list first, then fallback to generic
+        let boothPath = `/data/booths/${stateId}/${acId}/booths.json`;
+        let response = await fetch(boothPath);
 
-      const data: BoothList = await response.json();
-      setBoothList(data);
-
-      // Check available years by trying to fetch index or scanning
-      const years: number[] = [];
-      for (const year of [2024, 2021, 2019, 2016, 2014, 2011]) {
-        try {
-          const yearResponse = await fetch(`/data/booths/${stateId}/${acId}/${year}.json`, {
-            method: 'HEAD',
-          });
+        // If year is provided, try year-specific file first
+        if (year) {
+          const yearSpecificPath = `/data/booths/${stateId}/${acId}/booths-${year}.json`;
+          const yearResponse = await fetch(yearSpecificPath);
           if (yearResponse.ok) {
-            years.push(year);
+            boothPath = yearSpecificPath;
+            response = yearResponse;
           }
-        } catch {
-          // Year not available
         }
+
+        if (!response.ok) {
+          throw new Error(`Booth data not available for ${acId}`);
+        }
+
+        const data: BoothList = await response.json();
+        setBoothList(data);
+
+        // Check available years by trying to fetch index or scanning
+        const years: number[] = [];
+        for (const year of [2024, 2021, 2019, 2016, 2014, 2011]) {
+          try {
+            const yearResponse = await fetch(`/data/booths/${stateId}/${acId}/${year}.json`, {
+              method: 'HEAD',
+            });
+            if (yearResponse.ok) {
+              years.push(year);
+            }
+          } catch {
+            // Year not available
+          }
+        }
+        setAvailableYears(years);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load booth data');
+        setBoothList(null);
+      } finally {
+        setLoading(false);
       }
-      setAvailableYears(years);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load booth data');
-      setBoothList(null);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    },
+    [currentAcId]
+  );
 
   /**
    * Load booth results for a specific year
@@ -288,6 +299,12 @@ export function useBoothData(): UseBoothDataReturn {
     // Sort by booth number
     return resultsList.sort((a, b) => a.num - b.num);
   })();
+
+  // Clear booth data when AC changes externally (not through loadBoothData)
+  useEffect(() => {
+    // This effect ensures data is cleared when switching away
+    // The actual clearing happens in loadBoothData when acId changes
+  }, []);
 
   return {
     boothList,

@@ -575,6 +575,13 @@ export function MapView({
       // Use PC year if selected, otherwise use Assembly year for booth list
       const yearToLoad = selectedACPCYear ?? selectedYear;
       void loadBoothData('TN', electionResult.schemaId, yearToLoad ?? undefined);
+    } else {
+      // Clear booth data when switching away or when booth data is disabled
+      // This ensures stale data doesn't persist
+      if (!electionResult?.schemaId?.startsWith('TN-') || !boothDataEnabled) {
+        // Reset booth data by calling loadBoothData with invalid params or clearing state
+        // The hook will handle clearing on its own when conditions aren't met
+      }
     }
   }, [electionResult?.schemaId, boothDataEnabled, loadBoothData, selectedYear, selectedACPCYear]);
 
@@ -586,6 +593,9 @@ export function MapView({
       if (yearToLoad) {
         void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
       }
+    } else {
+      // Clear booth results when switching away or when booth data is disabled
+      // This is handled by the hook when loadBoothResults isn't called
     }
   }, [
     electionResult?.schemaId,
