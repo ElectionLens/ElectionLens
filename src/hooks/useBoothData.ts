@@ -175,7 +175,12 @@ export function useBoothData(): UseBoothDataReturn {
       const response = await fetch(resultsPath);
 
       if (!response.ok) {
-        console.error('[useBoothData] Failed to fetch:', resultsPath, response.status);
+        console.error(
+          '[useBoothData] Failed to fetch:',
+          resultsPath,
+          response.status,
+          response.statusText
+        );
         throw new Error(`Results not available for ${year}`);
       }
 
@@ -185,6 +190,8 @@ export function useBoothData(): UseBoothDataReturn {
         year: data.year,
         totalBooths: data.totalBooths,
         resultsCount: Object.keys(data.results || {}).length,
+        hasCandidates: !!data.candidates,
+        candidatesCount: data.candidates?.length ?? 0,
       });
       setBoothResults(data);
     } catch (err) {
