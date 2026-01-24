@@ -40,22 +40,21 @@ def get_ac_wise_votes(ac_id, pc_data, schema):
     if not pc_result:
         return None
     
-    # Get AC name from schema
-    ac_name = None
-    for pc_id_check, pc_info in schema.get('parliamentaryConstituencies', {}).items():
-        if pc_id_check == pc_id:
-            # Find AC in the list
-            acs = pc_info.get('assemblyIds', [])
-            if ac_id in acs:
-                # Try to get name from schema or use a pattern
-                ac_name = ac_id.replace('TN-', '').replace('-', ' ')
-    
-    # Try to find AC name from booth data
+    # Get AC name from booth data (most reliable)
     booth_file = BOOTHS_DIR / ac_id / "2024.json"
+    ac_name = None
     if booth_file.exists():
         with open(booth_file) as f:
             booth_data = json.load(f)
-            ac_name = booth_data.get('acName', ac_name)
+            ac_name = booth_data.get('acName', '')
+    
+    # Fallback: try to get from schema
+    if not ac_name:
+        for pc_id_check, pc_info in schema.get('parliamentaryConstituencies', {}).items():
+            if pc_id_check == pc_id:
+                ac_info = schema.get('assemblyConstituencies', {}).get(ac_id, {})
+                ac_name = ac_info.get('name', '')
+                break
     
     if not ac_name:
         return None
@@ -64,10 +63,18 @@ def get_ac_wise_votes(ac_id, pc_data, schema):
     candidates = pc_result.get('candidates', [])
     ac_wise = {}
     
+    # Normalize AC name for matching
+    ac_name_normalized = ac_name.upper().strip()
+    
     for cand in candidates:
         ac_votes = cand.get('acWiseVotes', [])
         for ac_vote in ac_votes:
-            if ac_name.lower() in ac_vote.get('acName', '').lower() or ac_vote.get('acName', '').lower() in ac_name.lower():
+            ac_vote_name = ac_vote.get('acName', '').upper().strip()
+            # Try multiple matching strategies
+            if (ac_name_normalized == ac_vote_name or 
+                ac_name_normalized in ac_vote_name or 
+                ac_vote_name in ac_name_normalized or
+                ac_name_normalized.replace(' ', '') == ac_vote_name.replace(' ', '')):
                 ac_wise[cand.get('party', '')] = {
                     'name': cand.get('name', ''),
                     'party': cand.get('party', ''),
