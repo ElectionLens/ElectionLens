@@ -37,13 +37,18 @@ def get_ac_wise_targets(ac_id, pc_data, schema):
     if not pc_result:
         return None
     
-    # Get AC name from booth data
+    # Get AC name from booth data or schema
     booth_file = BOOTHS_DIR / ac_id / "2024.json"
     ac_name = None
     if booth_file.exists():
         with open(booth_file) as f:
             booth_data = json.load(f)
             ac_name = booth_data.get('acName', '')
+    
+    # Fallback to schema if not in booth data
+    if not ac_name:
+        ac_info = schema.get('assemblyConstituencies', {}).get(ac_id, {})
+        ac_name = ac_info.get('name', '')
     
     if not ac_name:
         return None
