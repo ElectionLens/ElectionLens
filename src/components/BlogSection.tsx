@@ -211,7 +211,7 @@ export function BlogSection({
   const blogPosts: BlogPost[] = [
     {
       id: 'ammk-admk-alliance',
-      title: 'NDA Alliance for 2026: Constituencies That Will Flip',
+      title: 'NDA Alliance for 2026: Constituencies That Will Flip with AMMK',
       date: 'January 24, 2026',
       excerpt:
         'Analysis of how the NDA alliance (ADMK + BJP + PMK + AMMK) will impact Tamil Nadu assembly constituencies based on 2021 election data.',
@@ -333,7 +333,7 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
       <header>
         <div className="blog-header-content">
           <div>
-            <h1>NDA Alliance for 2026: Constituencies That Will Flip</h1>
+            <h1>NDA Alliance for 2026: Constituencies That Will Flip with AMMK</h1>
             <p className="article-meta">January 24, 2026 • Election Analysis</p>
           </div>
           <div className="blog-share-buttons">
