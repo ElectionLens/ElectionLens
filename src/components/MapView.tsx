@@ -574,16 +574,34 @@ export function MapView({
     if (electionResult?.schemaId?.startsWith('TN-') && boothDataEnabled) {
       // Use PC year if selected, otherwise use Assembly year for booth list
       const yearToLoad = selectedACPCYear ?? selectedYear;
+      console.log('[MapView] Loading booth data:', {
+        schemaId: electionResult.schemaId,
+        yearToLoad,
+        boothDataEnabled,
+        selectedACPCYear,
+        selectedYear,
+      });
       void loadBoothData('TN', electionResult.schemaId, yearToLoad ?? undefined);
     } else {
       // Clear booth data when switching away or when booth data is disabled
-      // This ensures stale data doesn't persist
-      if (!electionResult?.schemaId?.startsWith('TN-') || !boothDataEnabled) {
-        // Reset booth data by calling loadBoothData with invalid params or clearing state
-        // The hook will handle clearing on its own when conditions aren't met
-      }
+      console.log('[MapView] Booth data not loading:', {
+        schemaId: electionResult?.schemaId,
+        boothDataEnabled,
+        isTN: electionResult?.schemaId?.startsWith('TN-'),
+        acEntity: acEntity ? 'exists' : 'null',
+        pcId: acEntity?.pcId,
+        boothDataYear,
+      });
     }
-  }, [electionResult?.schemaId, boothDataEnabled, loadBoothData, selectedYear, selectedACPCYear]);
+  }, [
+    electionResult?.schemaId,
+    boothDataEnabled,
+    loadBoothData,
+    selectedYear,
+    selectedACPCYear,
+    acEntity,
+    boothDataYear,
+  ]);
 
   // Load booth results when year changes (uses top panel year selector - either Assembly or PC year)
   useEffect(() => {
@@ -591,11 +609,12 @@ export function MapView({
       // Use PC year if selected, otherwise use Assembly year
       const yearToLoad = selectedACPCYear ?? selectedYear;
       if (yearToLoad) {
+        console.log('[MapView] Loading booth results:', {
+          schemaId: electionResult.schemaId,
+          yearToLoad,
+        });
         void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
       }
-    } else {
-      // Clear booth results when switching away or when booth data is disabled
-      // This is handled by the hook when loadBoothResults isn't called
     }
   }, [
     electionResult?.schemaId,

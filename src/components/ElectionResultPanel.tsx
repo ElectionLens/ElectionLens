@@ -134,6 +134,19 @@ export function ElectionResultPanel({
   // Check if booth data is available
   const hasBoothData = boothsWithResults.length > 0 && boothResults !== null;
 
+  // Debug logging
+  useEffect(() => {
+    console.log('[ElectionResultPanel] Booth data status:', {
+      hasBoothData,
+      boothResults: boothResults ? 'loaded' : 'null',
+      boothsWithResultsCount: boothsWithResults.length,
+      boothResultsAcId: boothResults?.acId,
+      boothResultsYear: boothResults?.year,
+      boothResultsTotalBooths: boothResults?.totalBooths,
+      boothResultsResultsCount: boothResults ? Object.keys(boothResults.results || {}).length : 0,
+    });
+  }, [hasBoothData, boothResults, boothsWithResults.length]);
+
   // Update URL when tab changes
   useEffect(() => {
     if (typeof window === 'undefined') return;
