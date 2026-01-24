@@ -348,12 +348,13 @@ def calculate_postal_from_difference(ac_id):
         key = (cand['name'], cand['party'])
         official_votes = election_candidates.get(key, 0)
         booth_votes = booth_totals[i]
+        # HARD RULE: postal votes must be >= 0 (no negative votes allowed)
         postal_votes = max(0, official_votes - booth_votes)
         
         postal_data['candidates'].append({
             'name': cand['name'],
             'party': cand['party'],
-            'postal': postal_votes,
+            'postal': postal_votes,  # Guaranteed >= 0
             'booth': booth_votes,
             'total': official_votes
         })

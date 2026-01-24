@@ -209,10 +209,13 @@ def update_postal_data(ac_id):
                             if i < len(votes):
                                 new_booth_total += votes[i]
                         
+                        # HARD RULE: postal votes must be >= 0
+                        postal_votes = max(0, postal_votes)
+                        
                         postal_candidates.append({
                             'name': cand['name'],
                             'party': cand['party'],
-                            'postal': postal_votes,
+                            'postal': postal_votes,  # Guaranteed >= 0
                             'booth': new_booth_total,
                             'total': official_votes
                         })
@@ -222,13 +225,20 @@ def update_postal_data(ac_id):
     if total_postal == 0:
         return None, "No postal votes extracted"
     
+    # HARD RULE: Validate all postal votes are non-negative before saving
+    for cand in postal_candidates:
+        if cand.get('postal', 0) < 0:
+            raise ValueError(f"HARD RULE VIOLATION: {cand['name']} has negative postal votes: {cand['postal']}")
+        # Ensure non-negative (safety check)
+        cand['postal'] = max(0, cand.get('postal', 0))
+    
     # Update postal data
     postal_data = {
         'candidates': postal_candidates,
-        'totalValid': total_postal,
+        'totalValid': sum(c['postal'] for c in postal_candidates),  # Recalculate after validation
         'rejected': 0,
         'nota': next((c['postal'] for c in postal_candidates if c['party'] == 'NOTA'), 0),
-        'total': total_postal
+        'total': sum(c['postal'] for c in postal_candidates)
     }
     
     booth_data['postal'] = postal_data

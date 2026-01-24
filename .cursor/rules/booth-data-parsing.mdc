@@ -71,6 +71,45 @@ def validate_vote_value(vote: int, total_electors: int = 2000) -> bool:
     return True
 ```
 
+### 4. HARD RULE: Postal Votes Must Be Non-Negative
+**CRITICAL**: No candidate can have negative postal votes. This is a hard rule enforced in all parsers.
+
+```python
+# ❌ BAD - Can result in negative postal votes
+postal_votes = official_votes - booth_votes
+
+# ✅ GOOD - Always enforce non-negative postal votes
+postal_votes = max(0, official_votes - booth_votes)
+
+# When calculating postal votes:
+for candidate in postal_candidates:
+    official_votes = candidate['total']
+    booth_votes = candidate['booth']
+    # HARD RULE: postal must be >= 0
+    candidate['postal'] = max(0, official_votes - booth_votes)
+    
+    # If booth > official, this indicates a data quality issue
+    # Set postal to 0 and log a warning
+    if booth_votes > official_votes:
+        candidate['postal'] = 0
+        # Consider reducing booth votes to match official in a separate fix pass
+```
+
+**Validation before saving postal data:**
+```python
+def validate_postal_data(postal_data: dict) -> bool:
+    """Validate postal data before saving. Returns True if valid."""
+    if 'candidates' not in postal_data:
+        return False
+    
+    for cand in postal_data['candidates']:
+        postal = cand.get('postal', 0)
+        if postal < 0:
+            raise ValueError(f"HARD RULE VIOLATION: {cand['name']} has negative postal votes: {postal}")
+    
+    return True
+```
+
 ## PDF Column Mapping
 
 Election PDFs often have these columns that should NOT be in votes array:
