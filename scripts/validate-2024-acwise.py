@@ -53,14 +53,22 @@ def get_ac_wise_targets(ac_id, pc_data, schema):
     targets_by_party = {}
     
     ac_name_normalized = ac_name.upper().strip()
+    # Also try without spaces and special chars for matching
+    ac_name_clean = ac_name_normalized.replace(' ', '').replace('-', '').replace('.', '')
     
     for cand in candidates:
         ac_votes = cand.get('acWiseVotes', [])
         for ac_vote in ac_votes:
             ac_vote_name = ac_vote.get('acName', '').upper().strip()
+            ac_vote_clean = ac_vote_name.replace(' ', '').replace('-', '').replace('.', '')
+            
+            # Multiple matching strategies
             if (ac_name_normalized == ac_vote_name or 
                 ac_name_normalized in ac_vote_name or 
-                ac_vote_name in ac_name_normalized):
+                ac_vote_name in ac_name_normalized or
+                ac_name_clean == ac_vote_clean or
+                ac_name_clean in ac_vote_clean or
+                ac_vote_clean in ac_name_clean):
                 party = cand.get('party', '')
                 targets_by_party[party] = ac_vote.get('votes', 0)
                 break
