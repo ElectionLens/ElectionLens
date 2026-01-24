@@ -1,313 +1,186 @@
 #!/usr/bin/env python3
 """
-Fix candidate order in booth data to match PDF column order (ballot order).
-Extracts candidate names and parties directly from Form 20 PDF headers.
+Analyze and fix candidate column ordering issues.
+Many PCs show high errors because extracted columns don't match official candidate order.
 """
 
 import json
 import re
-import subprocess
 from pathlib import Path
+from itertools import permutations
 
-FORM20_DIR = Path("/Users/p0s097d/Desktop/TNLA_2021_PDFs")
-OUTPUT_BASE = Path("public/data/booths/TN")
-ELECTIONS_FILE = Path("public/data/elections/ac/TN/2021.json")
-
-# Load election data for party info
-with open(ELECTIONS_FILE) as f:
-    elections_data = json.load(f)
+OUTPUT_BASE = Path("/Users/p0s097d/ElectionLens/public/data/booths/TN")
+PC_DATA = Path("/Users/p0s097d/ElectionLens/public/data/elections/pc/TN/2024.json")
+SCHEMA = Path("/Users/p0s097d/ElectionLens/public/data/schema.json")
 
 
-def extract_candidates_from_pdf(pdf_path):
-    """Extract candidate names and parties from PDF header."""
-    result = subprocess.run(
-        ['pdftotext', '-layout', '-f', '1', '-l', '1', str(pdf_path), '-'],
-        capture_output=True, text=True
-    )
+def load_data():
+    with open(PC_DATA) as f:
+        pc_data = json.load(f)
+    with open(SCHEMA) as f:
+        schema = json.load(f)
+    return pc_data, schema
+
+
+def get_base_booth_no(booth_no: str) -> int:
+    match = re.match(r'^0*(\d+)', str(booth_no))
+    return int(match.group(1)) if match else 0
+
+
+def get_pc_extracted_totals(pc_id: str, schema: dict) -> list:
+    """Get extracted vote totals for a PC by summing all AC booth data."""
+    pc_info = schema.get('parliamentaryConstituencies', {}).get(pc_id, {})
+    ac_ids = pc_info.get('assemblyIds', [])
     
-    if result.returncode != 0:
-        return None
+    all_totals = []
     
-    text = result.stdout
-    lines = text.split('\n')
-    
-    candidates = []
-    names = []
-    parties = []
-    
-    # Find the header section (before first data row)
-    header_lines = []
-    for line in lines:
-        # Stop at first data row (starts with number)
-        if re.match(r'^\s*\d+\s+\d+', line):
-            break
-        header_lines.append(line)
-    
-    header_text = '\n'.join(header_lines)
-    
-    # Extract names - they appear on separate lines in vertical header
-    # Look for lines with just names (all caps, possibly with periods)
-    name_pattern = r'^[\s]*([A-Z][A-Z\.\s]+[A-Z])[\s]*$'
-    
-    for line in header_lines:
-        line = line.strip()
-        # Skip common header words
-        if any(skip in line.lower() for skip in ['form 20', 'result', 'election', 'assembly', 
-                'constituency', 'electors', 'counting', 'valid votes', 'polling', 'station',
-                'no.', 'total', 'rejected', 'nota']):
+    for ac_id in ac_ids:
+        results_file = OUTPUT_BASE / ac_id / "2024.json"
+        if not results_file.exists():
             continue
         
-        # Names are typically all caps with possible periods
-        if re.match(r'^[A-Z][A-Z\s\.@]+$', line) and len(line) > 3:
-            # Clean up the name
-            name = re.sub(r'\s+', ' ', line.strip())
-            if name not in names:
-                names.append(name)
-    
-    # Extract parties - look for party abbreviations in header
-    party_line = None
-    for line in header_lines:
-        # Party line has multiple party names like DMK, ADMK, BJP, etc.
-        if re.search(r'\b(DMK|ADMK|BJP|INC|PMK|DMDK|NTK|MNM|AMMK|BSP|IND)\b', line):
-            parties_found = re.findall(r'\b([A-Z]{2,})\b', line)
-            # Filter to known party abbreviations
-            known_parties = ['DMK', 'ADMK', 'AIADMK', 'BJP', 'INC', 'PMK', 'DMDK', 'NTK', 'MNM', 
-                           'AMMK', 'BSP', 'IJK', 'IND', 'VCK', 'CPI', 'CPM', 'MDMK', 'TMC', 
-                           'AIMMK', 'AMAK', 'AITC', 'IUML', 'KMDK']
-            parties = [p for p in parties_found if p in known_parties or p == 'IND']
-            if len(parties) >= 3:  # Found party line
-                break
-    
-    return names, parties
-
-
-def match_candidates_to_election_data(names, parties, ac_id):
-    """Match extracted names to election data to get full candidate info."""
-    election = elections_data.get(ac_id, {})
-    election_candidates = election.get('candidates', [])
-    
-    matched = []
-    used = set()
-    
-    for i, name in enumerate(names):
-        party = parties[i] if i < len(parties) else 'IND'
+        with open(results_file) as f:
+            data = json.load(f)
         
-        # Try to find matching candidate in election data
-        best_match = None
-        for ec in election_candidates:
-            if ec['name'] in used:
-                continue
-            
-            # Normalize names for comparison
-            ec_name = ec['name'].upper().replace('.', ' ').replace('  ', ' ').strip()
-            pdf_name = name.upper().replace('.', ' ').replace('  ', ' ').strip()
-            
-            # Check for partial match
-            if ec_name in pdf_name or pdf_name in ec_name:
-                best_match = ec
-                break
-            
-            # Check first few characters
-            if ec_name[:10] == pdf_name[:10]:
-                best_match = ec
-                break
+        results = data.get('results', {})
+        num_candidates = len(data.get('candidates', []))
         
-        if best_match:
-            matched.append({
-                'name': best_match['name'],
-                'party': best_match['party'],
-                'symbol': best_match.get('symbol', '')
-            })
-            used.add(best_match['name'])
-        else:
-            matched.append({
-                'name': name.title(),
-                'party': party,
-                'symbol': ''
-            })
+        if not all_totals:
+            all_totals = [0] * num_candidates
+        
+        for booth_result in results.values():
+            votes = booth_result.get('votes', [])
+            for i, v in enumerate(votes):
+                if i < len(all_totals):
+                    all_totals[i] += v
     
-    return matched
+    return all_totals
 
 
-def verify_vote_totals(booth_data, ac_id):
-    """Verify booth vote totals match election data."""
-    election = elections_data.get(ac_id, {})
+def find_best_column_mapping(extracted: list, official: list, n_candidates: int = 5) -> tuple:
+    """Find the best column permutation to match official results."""
+    if len(extracted) < n_candidates or len(official) < n_candidates:
+        return None, 100.0
     
-    # Calculate booth totals per candidate column
-    num_cands = len(booth_data.get('candidates', []))
-    booth_totals = [0] * num_cands
+    extracted = extracted[:n_candidates]
+    official_votes = [c.get('votes', 0) for c in official[:n_candidates]]
     
-    for r in booth_data.get('results', {}).values():
-        for i, v in enumerate(r.get('votes', [])):
-            if i < num_cands:
-                booth_totals[i] += v
+    best_mapping = None
+    best_error = 100.0
     
-    return booth_totals
+    # Try all permutations of columns
+    for perm in permutations(range(n_candidates)):
+        mapped = [extracted[p] for p in perm]
+        
+        errors = []
+        for i in range(n_candidates):
+            if official_votes[i] > 1000:
+                err = abs(mapped[i] - official_votes[i]) / official_votes[i] * 100
+                errors.append(err)
+        
+        avg_err = sum(errors) / len(errors) if errors else 100
+        
+        if avg_err < best_error:
+            best_error = avg_err
+            best_mapping = list(perm)
+    
+    return best_mapping, best_error
 
 
-def get_official_votes_for_candidate(name, party, election_candidates, used_keys):
-    """Get official votes for a candidate, handling duplicates by party."""
-    # Create a unique key with name and party
-    for ec in election_candidates:
-        key = f"{ec['name']}|{ec['party']}"
-        if key in used_keys:
-            continue
-        if ec['name'] == name:
-            # Prefer exact party match
-            if ec['party'] == party:
-                used_keys.add(key)
-                return ec['votes']
+def analyze_pc(pc_id: str, pc_data: dict, schema: dict) -> dict:
+    """Analyze a PC for column ordering issues."""
+    official = pc_data.get(pc_id, {})
+    official_candidates = official.get('candidates', [])
     
-    # Fallback: just match by name if no party match
-    for ec in election_candidates:
-        key = f"{ec['name']}|{ec['party']}"
-        if key in used_keys:
-            continue
-        if ec['name'] == name:
-            used_keys.add(key)
-            return ec['votes']
+    if not official_candidates:
+        return {'status': 'no_official'}
     
-    return 0
-
-
-def process_constituency(ac_num):
-    """Process a single constituency."""
-    ac_id = f"TN-{ac_num:03d}"
-    pdf_path = FORM20_DIR / f"AC{ac_num:03d}.pdf"
-    booth_file = OUTPUT_BASE / ac_id / "2021.json"
+    extracted_totals = get_pc_extracted_totals(pc_id, schema)
     
-    if not pdf_path.exists():
-        return None, f"PDF not found: {pdf_path}"
+    if not extracted_totals:
+        return {'status': 'no_extracted'}
     
-    if not booth_file.exists():
-        return None, f"Booth data not found: {booth_file}"
+    # Current error (assuming 1:1 mapping)
+    current_errors = []
+    for i in range(min(5, len(extracted_totals), len(official_candidates))):
+        official_val = official_candidates[i].get('votes', 0)
+        if official_val > 1000:
+            err = abs(extracted_totals[i] - official_val) / official_val * 100
+            current_errors.append(err)
     
-    # Load booth data
-    with open(booth_file) as f:
-        booth_data = json.load(f)
+    current_avg_error = sum(current_errors) / len(current_errors) if current_errors else 100
     
-    if booth_data.get('totalBooths', 0) == 0:
-        return None, "No booth data"
+    # Find best mapping
+    best_mapping, best_error = find_best_column_mapping(extracted_totals, official_candidates)
     
-    # Get booth vote totals (current column order)
-    booth_totals = verify_vote_totals(booth_data, ac_id)
-    
-    # Get election candidates sorted by votes
-    election = elections_data.get(ac_id, {})
-    election_candidates = sorted(election.get('candidates', []), key=lambda x: -x.get('votes', 0))
-    
-    # Match booth columns to candidates by rank
-    # Sort both by votes and match by position (rank-based matching)
-    matched_candidates = [None] * len(booth_totals)
-    
-    nota_idx = len(booth_totals) - 1
-    
-    # Sort booth columns by votes (descending), excluding NOTA
-    booth_sorted = sorted(
-        [(i, booth_totals[i]) for i in range(len(booth_totals)) if i != nota_idx],
-        key=lambda x: -x[1]
-    )
-    
-    # Sort official candidates by votes (descending), excluding NOTA
-    official_sorted = sorted(
-        [(i, c) for i, c in enumerate(election_candidates) if c.get('party') != 'NOTA'],
-        key=lambda x: -x[1].get('votes', 0)
-    )
-    
-    # Match by rank position
-    for rank, (booth_idx, booth_votes) in enumerate(booth_sorted):
-        if rank < len(official_sorted):
-            ec_idx, ec = official_sorted[rank]
-            matched_candidates[booth_idx] = {
-                'name': ec.get('name', ''),
-                'party': ec.get('party', 'IND'),
-                'symbol': ec.get('symbol', '')
-            }
-        else:
-            # More booth columns than official candidates
-            original = booth_data['candidates'][booth_idx] if booth_idx < len(booth_data['candidates']) else {}
-            matched_candidates[booth_idx] = {
-                'name': original.get('name', f'Unknown {booth_idx+1}'),
-                'party': original.get('party', 'IND'),
-                'symbol': original.get('symbol', '')
-            }
-    
-    # Add NOTA
-    matched_candidates[nota_idx] = {
-        'name': 'NOTA',
-        'party': 'NOTA',
-        'symbol': ''
+    return {
+        'pc_id': pc_id,
+        'pc_name': official.get('constituencyName', pc_id),
+        'current_error': current_avg_error,
+        'best_error': best_error,
+        'best_mapping': best_mapping,
+        'extracted_totals': extracted_totals[:5],
+        'official_totals': [c.get('votes', 0) for c in official_candidates[:5]],
+        'official_names': [f"{c.get('name', '?')} ({c.get('party', '?')})" for c in official_candidates[:5]],
+        'needs_reorder': best_error < current_avg_error * 0.5 and best_mapping != list(range(5))
     }
-    
-    # Update booth data
-    booth_data['candidates'] = matched_candidates
-    
-    # Recalculate summary
-    total_valid = 0
-    total_rejected = 0
-    total_nota = 0
-    total_votes = 0
-    
-    for r in booth_data.get('results', {}).values():
-        votes = r.get('votes', [])
-        valid = sum(votes[:-1]) if len(votes) > 1 else 0  # All but NOTA
-        nota = votes[-1] if votes else 0
-        rejected = r.get('rejected', 0)
-        
-        total_valid += valid
-        total_nota += nota
-        total_rejected += rejected
-        total_votes += valid + nota + rejected
-    
-    booth_data['summary'] = {
-        'totalValid': total_valid,
-        'totalRejected': total_rejected,
-        'totalNota': total_nota,
-        'totalVotes': total_votes,
-        'totalVoters': election.get('totalElectors', 0),
-        'turnoutPercent': round((total_votes / election.get('totalElectors', 1)) * 100, 2) if election.get('totalElectors', 0) > 0 else 0
-    }
-    
-    # Save updated booth data
-    with open(booth_file, 'w') as f:
-        json.dump(booth_data, f, indent=2)
-    
-    return booth_data, "OK"
 
 
 def main():
-    print("=" * 60)
-    print("Fixing Candidate Order in Booth Data")
-    print("=" * 60)
+    print("=" * 80)
+    print("CANDIDATE COLUMN ORDER ANALYSIS")
+    print("=" * 80)
     
-    success = 0
-    failed = 0
+    pc_data, schema = load_data()
     
-    for ac_num in range(1, 235):
-        ac_id = f"TN-{ac_num:03d}"
-        result, msg = process_constituency(ac_num)
+    needs_fix = []
+    already_ok = []
+    
+    pc_ids = sorted(schema.get('parliamentaryConstituencies', {}).keys())
+    
+    for pc_id in pc_ids:
+        if not pc_id.startswith('TN-'):
+            continue
         
-        if result:
-            # Verify the fix
-            booth_totals = verify_vote_totals(result, ac_id)
-            election = elections_data.get(ac_id, {})
-            
-            # Check if top candidate matches
-            if result['candidates']:
-                top_booth = result['candidates'][0]['name']
-                top_election = election.get('candidates', [{}])[0].get('name', '')
-                match = "✓" if top_booth == top_election else "?"
-                print(f"✅ {ac_id}: {match} Winner: {top_booth[:30]}")
-            success += 1
+        result = analyze_pc(pc_id, pc_data, schema)
+        
+        if result.get('status'):
+            continue
+        
+        if result.get('needs_reorder'):
+            needs_fix.append(result)
         else:
-            if msg != "No booth data" and msg != f"PDF not found: {FORM20_DIR / f'AC{ac_num:03d}.pdf'}":
-                print(f"❌ {ac_id}: {msg}")
-            failed += 1
+            already_ok.append(result)
     
-    print()
-    print("=" * 60)
-    print(f"✅ Fixed: {success} constituencies")
-    print(f"❌ Skipped: {failed} constituencies")
+    print(f"\n{'=' * 80}")
+    print(f"PCs WITH COLUMN ORDER ISSUES: {len(needs_fix)}")
+    print("=" * 80)
+    
+    for r in sorted(needs_fix, key=lambda x: -x['current_error']):
+        print(f"\n  {r['pc_id']} {r['pc_name']}")
+        print(f"    Current error: {r['current_error']:.1f}% → Best possible: {r['best_error']:.1f}%")
+        print(f"    Best mapping: {r['best_mapping']}")
+        print(f"    Official: {[f'{v:,}' for v in r['official_totals']]}")
+        print(f"    Extracted: {[f'{v:,}' for v in r['extracted_totals']]}")
+        if r['best_mapping']:
+            reordered = [r['extracted_totals'][i] for i in r['best_mapping']]
+            print(f"    Reordered: {[f'{v:,}' for v in reordered]}")
+    
+    print(f"\n{'=' * 80}")
+    print(f"PCs ALREADY OK (no reorder needed): {len(already_ok)}")
+    print("=" * 80)
+    
+    for r in sorted(already_ok, key=lambda x: x['current_error'])[:15]:
+        print(f"  {r['pc_id']} {r['pc_name']}: {r['current_error']:.1f}% error")
+    
+    # Summary
+    total_improvable = sum(1 for r in needs_fix if r['best_error'] < 5)
+    print(f"\n{'=' * 80}")
+    print("SUMMARY")
+    print("=" * 80)
+    print(f"PCs needing column reorder: {len(needs_fix)}")
+    print(f"PCs that could be <5% error after reorder: {total_improvable}")
+    print(f"PCs already OK: {len(already_ok)}")
 
 
 if __name__ == "__main__":

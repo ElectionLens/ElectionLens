@@ -1009,6 +1009,8 @@ function App(): JSX.Element {
       year: selectedYear,
       pcYear: null,
       tab: null, // Tab is managed in ElectionResultPanel component
+      blog: blogOpen,
+      blogPost: null, // Blog post is managed in BlogSection component
     });
 
     try {
@@ -1066,6 +1068,8 @@ function App(): JSX.Element {
       year: selectedYear,
       pcYear: null,
       tab: null, // Tab is managed in ElectionResultPanel component
+      blog: blogOpen,
+      blogPost: null, // Blog post is managed in BlogSection component
     });
   }, [
     getShareableUrl,
@@ -1075,6 +1079,7 @@ function App(): JSX.Element {
     currentDistrict,
     currentAssembly,
     selectedYear,
+    blogOpen,
   ]);
 
   /**
@@ -1091,6 +1096,8 @@ function App(): JSX.Element {
       year: null, // Don't include assembly year
       pcYear: selectedACPCYear, // This will generate year=pc-YYYY
       tab: null, // Tab is managed in ElectionResultPanel component
+      blog: blogOpen,
+      blogPost: null, // Blog post is managed in BlogSection component
     });
   }, [
     getShareableUrl,
@@ -1100,6 +1107,7 @@ function App(): JSX.Element {
     currentDistrict,
     currentAssembly,
     selectedACPCYear,
+    blogOpen,
   ]);
 
   /**
@@ -1116,8 +1124,10 @@ function App(): JSX.Element {
       year: pcSelectedYear,
       pcYear: null,
       tab: null, // Tab is only for AC election panels
+      blog: blogOpen,
+      blogPost: null, // Blog post is managed in BlogSection component
     });
-  }, [getShareableUrl, currentState, currentView, currentPC, pcSelectedYear]);
+  }, [getShareableUrl, currentState, currentView, currentPC, pcSelectedYear, blogOpen]);
 
   /**
    * Handle view switch between constituencies and districts
@@ -1237,14 +1247,6 @@ function App(): JSX.Element {
     selectedYear,
     selectedACPCYear,
   ]);
-
-  /**
-   * Handle blog post selection (for URL updates)
-   */
-  const handleBlogPostSelect = useCallback((postId: string | null): void => {
-    // This will be called by BlogSection when post is selected
-    // URL will be updated by BlogSection itself
-  }, []);
 
   /**
    * Handle go back to state from PC/district

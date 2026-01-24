@@ -502,6 +502,60 @@ export const PC_STATE_ALIASES: StateAliasMap = {
 } as const;
 
 // ============================================================
+// Booth Data Configuration
+// ============================================================
+
+/**
+ * PCs with incomplete 2024 booth data (scanned PDFs with <95% accuracy)
+ * Booth-level features are disabled for ACs in these PCs for 2024 election
+ */
+export const INCOMPLETE_2024_BOOTH_PCS: Set<string> = new Set([
+  'TN-01', // 89.2% - Thiruvallur
+  'TN-05', // 66.1% - Arakkonam (SC)
+  'TN-07', // 72.1% - Chennai North
+  'TN-26', // 83.4% - Madurai
+  'TN-32', // 72.0% - Theni
+  'TN-36', // 77.7% - Thoothukudi
+]);
+
+/**
+ * ACs with severely broken 2021 booth data
+ * These have wrong booth winners or insufficient data
+ */
+export const BROKEN_2021_BOOTH_ACS: Set<string> = new Set([
+  // All 234 ACs now have valid booth data!
+]);
+
+/**
+ * Check if booth data is available for an AC and year
+ * Returns true if booth data is reliable for the given AC and year
+ */
+export function isBoothDataAvailable(
+  acId: string,
+  pcId: string | undefined,
+  year?: number
+): boolean {
+  // Only Tamil Nadu has booth data
+  if (!acId.startsWith('TN-')) return false;
+
+  // If PC is unknown, disable booth data
+  if (!pcId) return false;
+
+  // 2024: Check PC-level completeness
+  if (year === 2024) {
+    return !INCOMPLETE_2024_BOOTH_PCS.has(pcId);
+  }
+
+  // 2021: Check AC-level severe issues
+  if (year === 2021) {
+    return !BROKEN_2021_BOOTH_ACS.has(acId);
+  }
+
+  // Other years: default to 2024 PC check
+  return !INCOMPLETE_2024_BOOTH_PCS.has(pcId);
+}
+
+// ============================================================
 // IndexedDB Configuration
 // ============================================================
 

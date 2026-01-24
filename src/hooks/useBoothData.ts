@@ -202,20 +202,69 @@ export function useBoothData(): UseBoothDataReturn {
 
       let winner: BoothWithResult['winner'] = undefined;
 
-      if (result && boothResults) {
-        // Find winner for this booth
+      if (result && boothResults && boothResults.candidates) {
+        // Calculate AC-level vote totals for validation
+        // This helps filter out candidates with corrupted booth data
+        const acVoteTotals: number[] = boothResults.candidates.map((_, idx) => {
+          return Object.values(boothResults.results).reduce(
+            (sum, r) => sum + (r.votes[idx] || 0),
+            0
+          );
+        });
+        const totalAcVotes = acVoteTotals.reduce((sum, v) => sum + v, 0);
+
+        // Find winner for this booth (excluding NOTA)
         const votesExcludingNota = result.votes.slice(0, -1);
         const maxVotes = Math.max(...votesExcludingNota);
         const winnerIndex = votesExcludingNota.indexOf(maxVotes);
         const candidate = boothResults.candidates[winnerIndex];
 
-        if (candidate && candidate.party !== 'NOTA') {
+        // Validate: candidate must have at least 3% of AC votes to be a valid booth winner
+        // This filters out spurious wins from minor candidates with corrupted data
+        const candidateAcVotes = acVoteTotals[winnerIndex] ?? 0;
+        const candidateAcShare = totalAcVotes > 0 ? candidateAcVotes / totalAcVotes : 0;
+        const isValidWinner = candidateAcShare >= 0.03;
+
+        if (candidate && candidate.party !== 'NOTA' && isValidWinner) {
           winner = {
             name: candidate.name,
             party: candidate.party,
             votes: maxVotes,
             percent: result.total > 0 ? (maxVotes / result.total) * 100 : 0,
           };
+        } else if (candidate && candidate.party !== 'NOTA' && !isValidWinner) {
+          // Find the candidates with at least 3% AC vote share and pick the one
+          // with highest votes in this booth
+          const validIndices = votesExcludingNota
+            .map((_, i) => i)
+            .filter((i) => {
+              const acVotes = acVoteTotals[i] ?? 0;
+              return totalAcVotes > 0 && acVotes / totalAcVotes >= 0.03;
+            });
+
+          const firstValidIndex = validIndices[0];
+          if (firstValidIndex !== undefined) {
+            // Find which valid candidate has the most votes in this booth
+            let validWinnerIndex = firstValidIndex;
+            for (const i of validIndices) {
+              const bestVotes = votesExcludingNota[validWinnerIndex] ?? 0;
+              const currentVotes = votesExcludingNota[i] ?? 0;
+              if (currentVotes > bestVotes) {
+                validWinnerIndex = i;
+              }
+            }
+
+            const validCandidate = boothResults.candidates[validWinnerIndex];
+            const validVotes = votesExcludingNota[validWinnerIndex] ?? 0;
+            if (validCandidate) {
+              winner = {
+                name: validCandidate.name,
+                party: validCandidate.party,
+                votes: validVotes,
+                percent: result.total > 0 ? (validVotes / result.total) * 100 : 0,
+              };
+            }
+          }
         }
       }
 

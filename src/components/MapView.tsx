@@ -18,10 +18,11 @@ import type {
   LatLngBoundsExpression,
 } from 'leaflet';
 import { getFeatureStyle, getHoverStyle, normalizeName, getStateFileName } from '../utils/helpers';
-import { COLOR_PALETTES } from '../constants';
+import { COLOR_PALETTES, isBoothDataAvailable } from '../constants';
 import { clearAllCache } from '../utils/db';
 import { FeedbackModal } from './FeedbackModal';
 import { VectorTileLayer } from './VectorTileLayer';
+import { useSchema } from '../hooks/useSchema';
 
 // Lazy load panel components - only loaded when user clicks a constituency
 const ElectionResultPanel = lazy(() =>
@@ -554,24 +555,43 @@ export function MapView({
   const [baseLayer, setBaseLayer] = useState<LayerName>('Streets');
   // Booth data hook - loads booth data for selected assembly
   const { boothResults, boothsWithResults, loadBoothData, loadBoothResults } = useBoothData();
+  // Schema hook - used to get pcId for booth data availability check
+  const { getAC } = useSchema();
 
-  // Load booth data when a Tamil Nadu AC is selected
+  // Check if booth data is available for the current AC and year
+  const acEntity = electionResult?.schemaId ? getAC(electionResult.schemaId) : null;
+  const boothDataYear = selectedACPCYear ?? selectedYear;
+  const boothDataEnabled = acEntity
+    ? isBoothDataAvailable(
+        electionResult?.schemaId ?? '',
+        acEntity.pcId,
+        boothDataYear ?? undefined
+      )
+    : false;
+
+  // Load booth data when a Tamil Nadu AC is selected (only if booth data is enabled for this PC)
   useEffect(() => {
-    if (electionResult?.schemaId?.startsWith('TN-')) {
+    if (electionResult?.schemaId?.startsWith('TN-') && boothDataEnabled) {
       void loadBoothData('TN', electionResult.schemaId);
     }
-  }, [electionResult?.schemaId, loadBoothData]);
+  }, [electionResult?.schemaId, boothDataEnabled, loadBoothData]);
 
   // Load booth results when year changes (uses top panel year selector - either Assembly or PC year)
   useEffect(() => {
-    if (electionResult?.schemaId?.startsWith('TN-')) {
+    if (electionResult?.schemaId?.startsWith('TN-') && boothDataEnabled) {
       // Use PC year if selected, otherwise use Assembly year
       const yearToLoad = selectedACPCYear ?? selectedYear;
       if (yearToLoad) {
         void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
       }
     }
-  }, [electionResult?.schemaId, selectedYear, selectedACPCYear, loadBoothResults]);
+  }, [
+    electionResult?.schemaId,
+    selectedYear,
+    selectedACPCYear,
+    boothDataEnabled,
+    loadBoothResults,
+  ]);
 
   // Listen for layer change events from toolbar
   useEffect(() => {
@@ -1196,8 +1216,8 @@ export function MapView({
             selectedPCYear={selectedACPCYear}
             onPCYearChange={onACPCYearChange}
             pcContributionShareUrl={pcContributionShareUrl}
-            boothResults={electionResult.schemaId?.startsWith('TN-') ? boothResults : null}
-            boothsWithResults={electionResult.schemaId?.startsWith('TN-') ? boothsWithResults : []}
+            boothResults={boothDataEnabled ? boothResults : null}
+            boothsWithResults={boothDataEnabled ? boothsWithResults : []}
           />
         </Suspense>
       )}

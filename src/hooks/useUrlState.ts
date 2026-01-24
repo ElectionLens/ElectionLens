@@ -391,7 +391,7 @@ export function useUrlState(
   useEffect(() => {
     const handlePopState = (): void => {
       const urlState = getUrlState();
-      onNavigateRef.current(urlState);
+      void Promise.resolve(onNavigateRef.current(urlState));
     };
 
     window.addEventListener('popstate', handlePopState);
