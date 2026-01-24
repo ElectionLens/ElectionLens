@@ -79,6 +79,9 @@ export default defineConfig({
         'src/components/PCElectionResultPanel.tsx',
         'src/components/SearchBox.tsx',
         'src/components/Sidebar.tsx',
+        'src/components/BlogSection.tsx',
+        'src/components/BoothMarkersLayer.tsx',
+        'src/components/VectorTileLayer.tsx',
         // Complex data hook - tested via E2E tests
         'src/hooks/useElectionData.ts'
       ],
