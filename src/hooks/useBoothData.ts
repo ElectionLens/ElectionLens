@@ -173,34 +173,18 @@ export function useBoothData(): UseBoothDataReturn {
    * Load booth results for a specific year
    */
   const loadBoothResults = useCallback(async (stateId: string, acId: string, year: number) => {
-    console.log('[useBoothData] loadBoothResults called:', { stateId, acId, year });
     try {
       const resultsPath = `/data/booths/${stateId}/${acId}/${year}.json`;
       console.log('[useBoothData] Fetching:', resultsPath);
       const response = await fetch(resultsPath);
 
       if (!response.ok) {
-        console.error(
-          '[useBoothData] Failed to fetch:',
-          resultsPath,
-          response.status,
-          response.statusText
-        );
         throw new Error(`Results not available for ${year}`);
       }
 
       const data: BoothResults = await response.json();
-      console.log('[useBoothData] Loaded booth results:', {
-        acId: data.acId,
-        year: data.year,
-        totalBooths: data.totalBooths,
-        resultsCount: Object.keys(data.results || {}).length,
-        hasCandidates: !!data.candidates,
-        candidatesCount: data.candidates?.length ?? 0,
-      });
       setBoothResults(data);
     } catch (err) {
-      console.error('[useBoothData] Error loading booth results:', err);
       setError(err instanceof Error ? err.message : 'Failed to load results');
       setBoothResults(null);
     }
@@ -224,15 +208,6 @@ export function useBoothData(): UseBoothDataReturn {
     const resultIds = Object.keys(boothResults?.results || {});
     const acId = boothResults?.acId || boothList?.acId || '';
     const acName = boothResults?.acName || boothList?.acName || '';
-
-    console.log('[useBoothData] Computing boothsWithResults:', {
-      boothListCount: boothList?.booths?.length ?? 0,
-      boothResultsCount: resultIds.length,
-      acId,
-      acName,
-      hasBoothList: !!boothList,
-      hasBoothResults: !!boothResults,
-    });
 
     for (const boothId of resultIds) {
       const result = boothResults?.results[boothId];
@@ -330,7 +305,6 @@ export function useBoothData(): UseBoothDataReturn {
 
     // Sort by booth number
     const sorted = resultsList.sort((a, b) => a.num - b.num);
-    console.log('[useBoothData] Final boothsWithResults count:', sorted.length);
     return sorted;
   }, [boothList, boothResults]);
 

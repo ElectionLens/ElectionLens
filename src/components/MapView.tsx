@@ -570,74 +570,16 @@ export function MapView({
     ? isBoothDataAvailable(electionResult?.schemaId ?? '', acEntity.pcId, boothDataYear)
     : false;
 
-  // Debug logging for booth data availability
-  useEffect(() => {
-    if (electionResult?.schemaId?.startsWith('TN-')) {
-      console.log('[MapView] Booth data availability check:', {
-        schemaId: electionResult.schemaId,
-        acEntity: acEntity ? 'exists' : 'null',
-        pcId: acEntity?.pcId,
-        boothDataYear,
-        selectedYear,
-        electionResultYear: electionResult?.year,
-        boothDataEnabled,
-        isBoothDataAvailable: acEntity
-          ? isBoothDataAvailable(electionResult.schemaId, acEntity.pcId, boothDataYear)
-          : false,
-      });
-    }
-  }, [
-    electionResult?.schemaId,
-    electionResult?.year,
-    acEntity,
-    boothDataYear,
-    selectedYear,
-    boothDataEnabled,
-  ]);
-
   // Load booth data when a Tamil Nadu AC is selected
   // Try to load even if boothDataEnabled is false - let the availability check happen in ElectionResultPanel
   useEffect(() => {
-    console.log('[MapView] Booth data useEffect triggered:', {
-      hasElectionResult: !!electionResult,
-      schemaId: electionResult?.schemaId,
-      isTN: electionResult?.schemaId?.startsWith('TN-'),
-      selectedYear,
-      electionResultYear: electionResult?.year,
-    });
-
     if (electionResult?.schemaId?.startsWith('TN-')) {
       // Always use assembly year for booth data (booth data is assembly-level)
       // If selectedYear is null, use the election result's year as fallback
       const yearToLoad = selectedYear ?? electionResult?.year;
-      console.log('[MapView] Loading booth data:', {
-        schemaId: electionResult.schemaId,
-        yearToLoad,
-        boothDataEnabled,
-        selectedACPCYear,
-        selectedYear,
-        electionResultYear: electionResult?.year,
-        boothDataYear,
-      });
       if (yearToLoad) {
-        console.log('[MapView] Calling loadBoothData:', {
-          stateId: 'TN',
-          acId: electionResult.schemaId,
-          year: yearToLoad,
-        });
         void loadBoothData('TN', electionResult.schemaId, yearToLoad);
-      } else {
-        console.warn('[MapView] No year available for booth data:', {
-          selectedYear,
-          electionResultYear: electionResult?.year,
-        });
       }
-    } else {
-      // Clear booth data when switching away from Tamil Nadu
-      console.log('[MapView] Booth data not loading (not Tamil Nadu):', {
-        schemaId: electionResult?.schemaId,
-        isTN: electionResult?.schemaId?.startsWith('TN-'),
-      });
     }
   }, [
     electionResult?.schemaId,
@@ -653,38 +595,12 @@ export function MapView({
   // Load booth results when year changes (always use assembly year for booth data)
   // Try to load even if boothDataEnabled is false - let the availability check happen in ElectionResultPanel
   useEffect(() => {
-    console.log('[MapView] Booth results useEffect triggered:', {
-      hasElectionResult: !!electionResult,
-      schemaId: electionResult?.schemaId,
-      isTN: electionResult?.schemaId?.startsWith('TN-'),
-      selectedYear,
-      electionResultYear: electionResult?.year,
-    });
-
     if (electionResult?.schemaId?.startsWith('TN-')) {
       // Always use assembly year for booth results (booth data is assembly-level)
       // If selectedYear is null, use the election result's year as fallback
       const yearToLoad = selectedYear ?? electionResult?.year;
       if (yearToLoad) {
-        console.log('[MapView] Loading booth results:', {
-          schemaId: electionResult.schemaId,
-          yearToLoad,
-          selectedACPCYear,
-          selectedYear,
-          electionResultYear: electionResult?.year,
-          boothDataEnabled,
-        });
-        console.log('[MapView] Calling loadBoothResults:', {
-          stateId: 'TN',
-          acId: electionResult.schemaId,
-          year: yearToLoad,
-        });
         void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
-      } else {
-        console.warn('[MapView] No year available for booth results:', {
-          selectedYear,
-          electionResultYear: electionResult?.year,
-        });
       }
     }
   }, [

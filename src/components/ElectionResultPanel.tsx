@@ -143,25 +143,6 @@ export function ElectionResultPanel({
     Object.keys(boothResults.results).length > 0
   );
 
-  // Debug logging
-  useEffect(() => {
-    console.log('[ElectionResultPanel] Booth data status:', {
-      hasBoothData,
-      boothResults: boothResults ? 'loaded' : 'null',
-      boothsWithResultsCount: boothsWithResults.length,
-      boothResultsAcId: boothResults?.acId,
-      boothResultsYear: boothResults?.year,
-      boothResultsTotalBooths: boothResults?.totalBooths,
-      boothResultsResultsCount: boothResults ? Object.keys(boothResults.results || {}).length : 0,
-      boothResultsResultsKeys: boothResults
-        ? Object.keys(boothResults.results || {}).slice(0, 5)
-        : [],
-      hasBoothResults: !!boothResults,
-      hasBoothResultsResults: !!(boothResults && boothResults.results),
-      resultsObjectKeys: boothResults ? Object.keys(boothResults.results || {}) : [],
-    });
-  }, [hasBoothData, boothResults, boothsWithResults.length]);
-
   // Update URL when tab changes
   useEffect(() => {
     if (typeof window === 'undefined') return;
