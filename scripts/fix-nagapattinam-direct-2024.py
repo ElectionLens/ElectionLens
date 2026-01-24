@@ -135,9 +135,10 @@ def fix_ac(ac_id: str, pc_data: dict, schema: dict, dry_run: bool = False) -> di
     total_booths = len(results)
     ntk_win_pct_before = (ntk_wins_before / total_booths * 100) if total_booths > 0 else 0
     
-    # Force fix for Nagapattinam ACs if NTK wins are high
-    if ntk_win_pct_before < 15 and avg_error_before < 5:
-        return {'status': 'already_ok', 'fixed': False, 'avg_error': avg_error_before}
+    # Force fix for Nagapattinam ACs - always fix if NTK wins are unusually high (>20%)
+    # or if error is significant (>5%)
+    if ntk_win_pct_before <= 20 and avg_error_before <= 5:
+        return {'status': 'already_ok', 'fixed': False, 'avg_error': avg_error_before, 'ntk_win_pct': ntk_win_pct_before}
     
     print(f"  {ac_id}: Error before: {avg_error_before:.1f}%, NTK wins: {ntk_wins_before}/{total_booths} ({ntk_win_pct_before:.1f}%)")
     
