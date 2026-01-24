@@ -559,8 +559,12 @@ export function MapView({
   const { getAC } = useSchema();
 
   // Check if booth data is available for the current AC and year
+  // Note: When viewing PC contribution (selectedACPCYear), booth data should still use assembly year
+  // because booth data is assembly-level, not PC-level
   const acEntity = electionResult?.schemaId ? getAC(electionResult.schemaId) : null;
-  const boothDataYear = selectedACPCYear ?? selectedYear;
+  // For booth data, always use assembly year (selectedYear), not PC contribution year
+  // Booth data is assembly-level, so it should match the assembly election year
+  const boothDataYear = selectedYear; // Use assembly year, not PC contribution year
   const boothDataEnabled = acEntity
     ? isBoothDataAvailable(
         electionResult?.schemaId ?? '',
@@ -603,26 +607,23 @@ export function MapView({
     boothDataYear,
   ]);
 
-  // Load booth results when year changes (uses top panel year selector - either Assembly or PC year)
+  // Load booth results when year changes (always use assembly year for booth data)
   useEffect(() => {
     if (electionResult?.schemaId?.startsWith('TN-') && boothDataEnabled) {
-      // Use PC year if selected, otherwise use Assembly year
-      const yearToLoad = selectedACPCYear ?? selectedYear;
+      // Always use assembly year for booth results (booth data is assembly-level)
+      // Even when viewing PC contribution, booth data should match the assembly election
+      const yearToLoad = selectedYear; // Use assembly year, not PC contribution year
       if (yearToLoad) {
         console.log('[MapView] Loading booth results:', {
           schemaId: electionResult.schemaId,
           yearToLoad,
+          selectedACPCYear,
+          selectedYear,
         });
         void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
       }
     }
-  }, [
-    electionResult?.schemaId,
-    selectedYear,
-    selectedACPCYear,
-    boothDataEnabled,
-    loadBoothResults,
-  ]);
+  }, [electionResult?.schemaId, selectedYear, boothDataEnabled, loadBoothResults]);
 
   // Listen for layer change events from toolbar
   useEffect(() => {
