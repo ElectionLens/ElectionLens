@@ -46,11 +46,12 @@ def scale_ac_votes(ac_id: str, ac_data: dict) -> dict:
     
     ratio = current_total / official_total
     
-    # Scale if we have 40-95% of votes (partial data that can be scaled)
+    # Scale if we have 40-99.5% of votes (partial data that can be scaled)
+    # Allow scaling up to 99.5% to close the final gap
     if ratio < 0.40:
         return {'status': 'skipped', 'reason': f'Ratio {ratio:.1%} too low (<40%) - needs re-extraction'}
-    if ratio > 0.95:
-        return {'status': 'skipped', 'reason': f'Ratio {ratio:.1%} already good (≥95%)'}
+    if ratio >= 0.995:
+        return {'status': 'skipped', 'reason': f'Ratio {ratio:.1%} already at 99.5%+'}
     
     # Calculate column sums
     num_cols = max(len(r.get('votes', [])) for r in results.values())
@@ -115,10 +116,14 @@ def main():
     
     ac_data = load_data()
     
-    # Find ACs in 40-95% range
+    # Find ACs in 40-99.5% range (excluding scanned PDFs)
     scale_candidates = []
+    scanned = [32, 33]  # Known scanned PDFs that need OCR
     
     for ac_num in range(1, 235):
+        if ac_num in scanned:
+            continue
+            
         ac_id = f'TN-{ac_num:03d}'
         official = ac_data.get(ac_id, {})
         off_total = official.get('validVotes', 0)
@@ -136,15 +141,18 @@ def main():
         curr_total = sum(sum(r.get('votes', [])) for r in data.get('results', {}).values())
         ratio = curr_total / off_total if off_total > 0 else 0
         
-        if 0.40 <= ratio <= 0.95:
-            scale_candidates.append((ac_id, ratio, curr_total, off_total))
+        if 0.40 <= ratio < 0.995:
+            gap = off_total - curr_total
+            scale_candidates.append((ac_id, ratio, curr_total, off_total, gap))
     
-    print(f"Found {len(scale_candidates)} ACs in 40-95% range\n")
+    # Sort by gap (largest first) to prioritize biggest improvements
+    scale_candidates.sort(key=lambda x: -x[4])
+    print(f"Found {len(scale_candidates)} ACs in 40-99.5% range (excluding scanned PDFs)\n")
     
     scaled_count = 0
     total_recovered = 0
     
-    for ac_id, ratio, curr, off in sorted(scale_candidates, key=lambda x: x[1]):  # Sort by ratio (worst first)
+    for ac_id, ratio, curr, off, gap in scale_candidates:  # Already sorted by gap
         result = scale_ac_votes(ac_id, ac_data)
         
         if result['status'] == 'scaled':
