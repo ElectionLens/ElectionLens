@@ -1627,18 +1627,18 @@ path:focus {
 }
 
 .year-btn.parliament-year {
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-  border-color: #3b82f6;
-  color: #1e40af;
+  /* Same styling as regular year buttons when not active */
 }
 
 .year-btn.parliament-year:hover {
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  /* Same hover as regular year buttons */
+  border-color: #3b82f6;
+  color: #3b82f6;
 }
 
 .year-btn.parliament-year.active {
-  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-  border-color: #1e40af;
+  background: #1e3a5f;
+  border-color: #1e3a5f;
   color: white;
 }
 
