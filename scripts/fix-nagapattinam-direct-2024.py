@@ -53,14 +53,22 @@ def get_ac_wise_targets(ac_id, pc_data, schema):
     targets = {}
     
     ac_name_normalized = ac_name.upper().strip()
+    # Also try without spaces and special chars for matching
+    ac_name_clean = ac_name_normalized.replace(' ', '').replace('-', '').replace('.', '')
     
     for i, cand in enumerate(candidates):
         ac_votes = cand.get('acWiseVotes', [])
         for ac_vote in ac_votes:
             ac_vote_name = ac_vote.get('acName', '').upper().strip()
+            ac_vote_clean = ac_vote_name.replace(' ', '').replace('-', '').replace('.', '')
+            
+            # Try multiple matching strategies
             if (ac_name_normalized == ac_vote_name or 
                 ac_name_normalized in ac_vote_name or 
-                ac_vote_name in ac_name_normalized):
+                ac_vote_name in ac_name_normalized or
+                ac_name_clean == ac_vote_clean or
+                ac_name_clean in ac_vote_clean or
+                ac_vote_clean in ac_name_clean):
                 targets[i] = ac_vote.get('votes', 0)
                 break
     
@@ -137,7 +145,8 @@ def fix_ac(ac_id: str, pc_data: dict, schema: dict, dry_run: bool = False) -> di
     
     # Force fix for Nagapattinam ACs - always fix if NTK wins are unusually high (>20%)
     # or if error is significant (>5%)
-    if ntk_win_pct_before <= 20 and avg_error_before <= 5:
+    # For Nagapattinam, we know NTK wins are high, so always fix
+    if ntk_win_pct_before <= 15 and avg_error_before <= 2:
         return {'status': 'already_ok', 'fixed': False, 'avg_error': avg_error_before, 'ntk_win_pct': ntk_win_pct_before}
     
     print(f"  {ac_id}: Error before: {avg_error_before:.1f}%, NTK wins: {ntk_wins_before}/{total_booths} ({ntk_win_pct_before:.1f}%)")
