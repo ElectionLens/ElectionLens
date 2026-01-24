@@ -36,6 +36,8 @@ interface FlipData {
   current_winner_name?: string;
   current_winner_votes: number;
   admk_votes: number;
+  bjp_votes: number;
+  pmk_votes: number;
   ammk_votes: number;
   combined_votes: number;
   margin: number;
@@ -48,6 +50,8 @@ interface MarginIncreaseData {
   current_winner: string;
   current_winner_votes: number;
   admk_votes: number;
+  bjp_votes: number;
+  pmk_votes: number;
   ammk_votes: number;
   combined_votes: number;
   margin_increase: number;
@@ -207,10 +211,10 @@ export function BlogSection({
   const blogPosts: BlogPost[] = [
     {
       id: 'ammk-admk-alliance',
-      title: 'AMMK Joins ADMK Alliance for 2026: Constituencies That Will Flip',
+      title: 'NDA Alliance for 2026: Constituencies That Will Flip',
       date: 'January 24, 2026',
       excerpt:
-        'Analysis of how the AMMK-ADMK alliance will impact Tamil Nadu assembly constituencies based on 2021 election data.',
+        'Analysis of how the NDA alliance (ADMK + BJP + PMK + AMMK) will impact Tamil Nadu assembly constituencies based on 2021 election data.',
       content: allianceData ? (
         <AlliancePostContent data={allianceData} onACClick={handleACClick} />
       ) : isLoading ? (
@@ -286,11 +290,11 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
   // Generate share text
   const shareText = useMemo(() => {
     return (
-      `🗳️ AMMK Joins ADMK Alliance for 2026: ${data.total_flips} Constituencies Will Flip\n\n` +
-      `Based on 2021 Tamil Nadu election data, the alliance would flip ${data.total_flips} constituencies from DMK/INC to ADMK+AMMK.\n\n` +
+      `🗳️ NDA Alliance for 2026: ${data.total_flips} Constituencies Will Flip\n\n` +
+      `Based on 2021 Tamil Nadu election data, the NDA alliance (ADMK+BJP+PMK+AMMK) would flip ${data.total_flips} constituencies from DMK/INC to NDA.\n\n` +
       `📊 Analysis includes:\n` +
       `• ${data.total_flips} constituencies that will flip\n` +
-      `• ${data.total_margin_increases} ADMK seats with increased margins\n\n` +
+      `• ${data.total_margin_increases} NDA seats with increased margins\n\n` +
       `View full analysis:`
     );
   }, [data]);
@@ -329,7 +333,7 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
       <header>
         <div className="blog-header-content">
           <div>
-            <h1>AMMK Joins ADMK Alliance for 2026: Constituencies That Will Flip</h1>
+            <h1>NDA Alliance for 2026: Constituencies That Will Flip</h1>
             <p className="article-meta">January 24, 2026 • Election Analysis</p>
           </div>
           <div className="blog-share-buttons">
@@ -375,10 +379,11 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
 
       <div className="article-content">
         <p>
-          The announcement that <strong>Amma Makkal Munnetra Kazhagam (AMMK)</strong> has joined the{' '}
-          <strong>All India Anna Dravida Munnetra Kazhagam (ADMK)</strong> alliance for the 2026
-          Tamil Nadu Assembly elections is set to reshape the electoral landscape. Based on 2021
-          election data, we analyze which constituencies will flip and how margins will change.
+          The <strong>National Democratic Alliance (NDA)</strong> in Tamil Nadu for the 2026
+          Assembly elections includes <strong>ADMK</strong>, <strong>BJP</strong>,{' '}
+          <strong>PMK</strong> (joined 2026), and <strong>AMMK</strong> (joined 2026). Based on 2021
+          election data, we analyze which constituencies will flip and how margins will change when
+          all NDA votes are combined.
         </p>
 
         <div className="analysis-summary">
@@ -388,15 +393,15 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
           </div>
           <div className="summary-card">
             <h3>{data.total_margin_increases}</h3>
-            <p>ADMK Seats with Increased Margins</p>
+            <p>NDA Seats with Increased Margins</p>
           </div>
         </div>
 
         <section>
-          <h2>Constituencies That Will Flip to ADMK+AMMK</h2>
+          <h2>Constituencies That Will Flip to NDA Alliance</h2>
           <p>
             The following {data.total_flips} constituencies would flip from their current winners to
-            the combined ADMK+AMMK alliance if votes are combined:
+            the combined NDA alliance (ADMK + BJP + PMK + AMMK) if votes are combined:
           </p>
 
           <div className="flip-list">
@@ -407,10 +412,11 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
         </section>
 
         <section>
-          <h2>ADMK Seats with Increased Margins</h2>
+          <h2>NDA Seats with Increased Margins</h2>
           <p>
-            The following {data.total_margin_increases} constituencies are already won by ADMK, but
-            the alliance will significantly increase their victory margins:
+            The following {data.total_margin_increases} constituencies are already won by NDA
+            parties (ADMK: 66, BJP: 4, PMK: 5), but the combined alliance will significantly
+            increase their victory margins:
           </p>
 
           <div className="margin-increase-list">
@@ -424,7 +430,10 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
                 onClick={() => onACClick(increase.ac_id, increase.ac_name)}
               >
                 <span className="margin-rank">#{idx + 1}</span>
-                <span className="margin-ac">{increase.ac_name}</span>
+                <div className="margin-ac-info">
+                  <span className="margin-ac">{increase.ac_name}</span>
+                  <span className="margin-winner">({increase.current_winner})</span>
+                </div>
                 <span className="margin-value">
                   +{increase.margin_increase.toLocaleString()} votes
                 </span>
@@ -458,14 +467,15 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
           <ul>
             <li>
               <strong>{data.total_flips} constituencies</strong> would flip from DMK, INC, and other
-              parties to the ADMK+AMMK alliance.
+              parties to the NDA alliance (ADMK + BJP + PMK + AMMK).
             </li>
             <li>
               The largest flip would be <strong>{data.flips[0]?.ac_name}</strong> with a margin of{' '}
               {data.flips[0]?.margin.toLocaleString()} votes.
             </li>
             <li>
-              ADMK&apos;s existing seats would see margin increases totaling{' '}
+              NDA&apos;s existing seats (ADMK: 66, BJP: 4, PMK: 5) would see margin increases
+              totaling{' '}
               <strong>
                 {data.margin_increases
                   .reduce((sum, m) => sum + m.margin_increase, 0)
@@ -474,8 +484,8 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
               additional votes.
             </li>
             <li>
-              This analysis assumes 100% vote transfer from AMMK to ADMK, which may vary in practice
-              based on candidate selection and campaign dynamics.
+              This analysis assumes 100% vote transfer within the NDA alliance, which may vary in
+              practice based on candidate selection and campaign dynamics.
             </li>
           </ul>
         </section>
@@ -484,7 +494,7 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
           <p>
             <em>
               Data source: 2021 Tamil Nadu Assembly Election Results (100% coverage). Analysis based
-              on combining AMMK and ADMK vote shares.
+              on combining all NDA alliance party vote shares (ADMK, BJP, PMK, AMMK).
             </em>
           </p>
         </footer>
@@ -540,25 +550,39 @@ function FlipItemWithBooths({ flip, idx, onACClick }: FlipItemWithBoothsProps): 
     [boothData, loadBoothData]
   );
 
-  // Find ADMK and AMMK candidate indices
-  const admkCandidateIndex = boothData?.candidates.findIndex((c) => c.party === 'ADMK');
-  const ammkCandidateIndex = boothData?.candidates.findIndex((c) => c.party === 'AMMK');
+  // Find NDA party candidate indices
+  const ndaPartyIndices = {
+    ADMK: boothData?.candidates.findIndex((c) => c.party === 'ADMK'),
+    BJP: boothData?.candidates.findIndex((c) => c.party === 'BJP'),
+    PMK: boothData?.candidates.findIndex((c) => c.party === 'PMK'),
+    AMMK: boothData?.candidates.findIndex((c) => c.party === 'AMMK'),
+  };
 
   // Calculate booth-level totals
   const boothTotals = boothData
     ? Object.entries(boothData.results).map(([boothId, result]) => {
         const admkVotes =
-          admkCandidateIndex !== undefined && admkCandidateIndex >= 0
-            ? result.votes[admkCandidateIndex] || 0
+          ndaPartyIndices.ADMK !== undefined && ndaPartyIndices.ADMK >= 0
+            ? result.votes[ndaPartyIndices.ADMK] || 0
+            : 0;
+        const bjpVotes =
+          ndaPartyIndices.BJP !== undefined && ndaPartyIndices.BJP >= 0
+            ? result.votes[ndaPartyIndices.BJP] || 0
+            : 0;
+        const pmkVotes =
+          ndaPartyIndices.PMK !== undefined && ndaPartyIndices.PMK >= 0
+            ? result.votes[ndaPartyIndices.PMK] || 0
             : 0;
         const ammkVotes =
-          ammkCandidateIndex !== undefined && ammkCandidateIndex >= 0
-            ? result.votes[ammkCandidateIndex] || 0
+          ndaPartyIndices.AMMK !== undefined && ndaPartyIndices.AMMK >= 0
+            ? result.votes[ndaPartyIndices.AMMK] || 0
             : 0;
-        const combined = admkVotes + ammkVotes;
+        const combined = admkVotes + bjpVotes + pmkVotes + ammkVotes;
         return {
           boothId,
           admkVotes,
+          bjpVotes,
+          pmkVotes,
           ammkVotes,
           combined,
           total: result.total,
@@ -584,13 +608,15 @@ function FlipItemWithBooths({ flip, idx, onACClick }: FlipItemWithBoothsProps): 
             <span className="votes">({flip.current_winner_votes.toLocaleString()} votes)</span>
           </div>
           <div className="flip-new">
-            <span className="label">ADMK+AMMK:</span>
+            <span className="label">NDA Combined:</span>
             <span className="value combined">{flip.combined_votes.toLocaleString()} votes</span>
             <span className="margin">(Margin: +{flip.margin.toLocaleString()})</span>
           </div>
           <div className="flip-breakdown">
             <span>ADMK: {flip.admk_votes.toLocaleString()}</span>
-            <span>+ AMMK: {flip.ammk_votes.toLocaleString()}</span>
+            {flip.bjp_votes > 0 && <span>+ BJP: {flip.bjp_votes.toLocaleString()}</span>}
+            {flip.pmk_votes > 0 && <span>+ PMK: {flip.pmk_votes.toLocaleString()}</span>}
+            {flip.ammk_votes > 0 && <span>+ AMMK: {flip.ammk_votes.toLocaleString()}</span>}
             <span>= {flip.combined_votes.toLocaleString()}</span>
           </div>
         </div>
@@ -623,13 +649,15 @@ function FlipItemWithBooths({ flip, idx, onACClick }: FlipItemWithBoothsProps): 
           {boothData && boothTotals.length > 0 && (
             <div className="booth-list">
               <div className="booth-list-header">
-                <h4>Booth-wise ADMK + AMMK Votes</h4>
+                <h4>Booth-wise NDA Alliance Votes</h4>
                 <span className="booth-count">{boothTotals.length} booths</span>
               </div>
               <div className="booth-table">
                 <div className="booth-table-header">
                   <div className="booth-col-id">Booth ID</div>
                   <div className="booth-col-admk">ADMK</div>
+                  <div className="booth-col-bjp">BJP</div>
+                  <div className="booth-col-pmk">PMK</div>
                   <div className="booth-col-ammk">AMMK</div>
                   <div className="booth-col-combined">Combined</div>
                   <div className="booth-col-total">Total Votes</div>
@@ -639,6 +667,8 @@ function FlipItemWithBooths({ flip, idx, onACClick }: FlipItemWithBoothsProps): 
                     <div key={booth.boothId} className="booth-row">
                       <div className="booth-col-id">{booth.boothId}</div>
                       <div className="booth-col-admk">{booth.admkVotes.toLocaleString()}</div>
+                      <div className="booth-col-bjp">{booth.bjpVotes.toLocaleString()}</div>
+                      <div className="booth-col-pmk">{booth.pmkVotes.toLocaleString()}</div>
                       <div className="booth-col-ammk">{booth.ammkVotes.toLocaleString()}</div>
                       <div className="booth-col-combined">
                         <strong>{booth.combined.toLocaleString()}</strong>

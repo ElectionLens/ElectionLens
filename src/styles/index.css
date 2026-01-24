@@ -5952,7 +5952,7 @@ path:focus {
 
 .booth-table-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1.2fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.2fr 1fr;
   gap: 12px;
   padding: 12px 16px;
   background: #f3f4f6;
@@ -5971,7 +5971,7 @@ path:focus {
 
 .booth-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1.2fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.2fr 1fr;
   gap: 12px;
   padding: 12px 16px;
   border-bottom: 1px solid #f3f4f6;
@@ -5996,6 +5996,16 @@ path:focus {
 
 .booth-col-admk {
   color: #059669;
+  font-weight: 500;
+}
+
+.booth-col-bjp {
+  color: #ff9933;
+  font-weight: 500;
+}
+
+.booth-col-pmk {
+  color: #d4a017;
   font-weight: 500;
 }
 
@@ -6045,10 +6055,22 @@ path:focus {
   min-width: 24px;
 }
 
-.margin-ac {
+.margin-ac-info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.margin-ac {
   font-weight: 600;
   color: #1f2937;
+}
+
+.margin-winner {
+  font-size: 11px;
+  color: #6b7280;
+  font-weight: 500;
 }
 
 .margin-value {
