@@ -23,6 +23,7 @@ import subprocess
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
+from multiprocessing import Pool, cpu_count
 from pathlib import Path
 from typing import Optional
 
@@ -414,53 +415,58 @@ def extract_scanned_pdf(pdf_path: Path, num_candidates: int, ac_id: str, expecte
     all_booths = {}  # booth_id -> (BoothResult, confidence)
     
     try:
-        # Strategy 1: pytesseract with multiple preprocessing methods and DPI settings
-        for dpi in [300, 250, 200]:  # Try multiple DPI settings
-            if len(all_booths) > len(expected_booths) * 0.8 if expected_booths else len(all_booths) > 100:
-                break  # Got enough, stop
-                
-            images = convert_from_path(str(pdf_path), dpi=dpi)
-            result.pages_processed = len(images)
-            
-            for page_num, image in enumerate(images):
-                page_booths = {}
-                
-                # Try multiple preprocessing methods
-                for preprocess_method in ['standard', 'high_contrast', 'adaptive', 'denoise', 'sharpen']:
-                    processed = preprocess_image(image, preprocess_method)
-                    
-                    # Try different PSM modes
-                    for psm in [6, 4, 3, 11]:  # Added PSM 11 (sparse text)
-                        config = f'--psm {psm} --oem 3'
-                        text = pytesseract.image_to_string(processed, config=config)
-                        
-                        booths = parse_ocr_text(text, num_candidates, page_num, max_booth)
-                        
-                        for booth in booths:
-                            key = f"{booth.booth_no:03d}"
-                            if booth.booth_no <= max_booth + 50:
-                                confidence = 0.8 if (preprocess_method == 'standard' and psm == 6) else 0.75
-                                if key not in page_booths or page_booths[key][1] < confidence:
-                                    page_booths[key] = (booth, confidence)
-                    
-                    # If we got good results, move to next page
-                    if len(page_booths) >= 15:
-                        break
-                
-                # Merge page results
-                for key, (booth, conf) in page_booths.items():
-                    if key not in all_booths or all_booths[key][1] < conf:
-                        all_booths[key] = (booth, conf)
+        # Strategy 1: pytesseract - FAST MODE (single best method)
+        # Use single best DPI (300) and best preprocessing method only
+        images = convert_from_path(str(pdf_path), dpi=300)
+        result.pages_processed = len(images)
         
-        # Strategy 2: Surya OCR fallback (always try for scanned PDFs)
-        try:
-            surya_booths = extract_with_surya_fallback(pdf_path, num_candidates, ac_id, expected_booths)
-            for booth in surya_booths:
+        for page_num, image in enumerate(images):
+            page_booths = {}
+            
+            # Try only the best preprocessing method first (standard)
+            processed = preprocess_image(image, 'standard')
+            
+            # Try only best PSM mode (6)
+            config = '--psm 6 --oem 3'
+            text = pytesseract.image_to_string(processed, config=config)
+            booths = parse_ocr_text(text, num_candidates, page_num, max_booth)
+            
+            for booth in booths:
                 key = f"{booth.booth_no:03d}"
-                if key not in all_booths or all_booths[key][1] < 0.9:
-                    all_booths[key] = (booth, 0.9)
-        except Exception as e:
-            result.warnings.append(f"Surya OCR fallback failed: {e}")
+                if booth.booth_no <= max_booth + 50:
+                    page_booths[key] = (booth, 0.8)
+            
+            # Only try other methods if we got very few booths
+            if len(page_booths) < 5:
+                # Try high_contrast as fallback
+                processed = preprocess_image(image, 'high_contrast')
+                text = pytesseract.image_to_string(processed, config=config)
+                booths = parse_ocr_text(text, num_candidates, page_num, max_booth)
+                
+                for booth in booths:
+                    key = f"{booth.booth_no:03d}"
+                    if booth.booth_no <= max_booth + 50:
+                        if key not in page_booths:
+                            page_booths[key] = (booth, 0.75)
+            
+            # Merge page results
+            for key, (booth, conf) in page_booths.items():
+                if key not in all_booths or all_booths[key][1] < conf:
+                    all_booths[key] = (booth, conf)
+        
+        # Strategy 2: Surya OCR fallback (SKIPPED for speed - uncomment if needed)
+        # Surya is very slow (~2-3 min per page), so we skip it for faster processing
+        # Uncomment below if you need maximum accuracy and can wait
+        # extraction_ratio = len(all_booths) / len(expected_booths) if expected_booths else 1.0
+        # if extraction_ratio < 0.5:  # Only use Surya if we got less than 50%
+        #     try:
+        #         surya_booths = extract_with_surya_fallback(pdf_path, num_candidates, ac_id, expected_booths)
+        #         for booth in surya_booths:
+        #             key = f"{booth.booth_no:03d}"
+        #             if key not in all_booths or all_booths[key][1] < 0.9:
+        #                 all_booths[key] = (booth, 0.9)
+        #     except Exception as e:
+        #         result.warnings.append(f"Surya OCR fallback failed: {e}")
                     
     except Exception as e:
         result.errors.append(f"OCR extraction error: {e}")
@@ -1129,6 +1135,16 @@ def validate_extraction(
 
 
 # ============================================================================
+# Parallel Processing Wrapper
+# ============================================================================
+
+def process_ac_wrapper(args):
+    """Wrapper for parallel processing."""
+    ac_num, pc_data, schema = args
+    return process_ac(ac_num, pc_data, schema)
+
+
+# ============================================================================
 # Main Processing
 # ============================================================================
 
@@ -1354,18 +1370,46 @@ def main():
         # Single or multiple ACs
         ac_nums = [int(a) for a in sys.argv[1:] if a.isdigit()]
     
-    # Process
+    # Process in parallel for speed
     results = {'success': 0, 'failed': 0, 'skipped': 0}
     
+    # Separate text and scanned PDFs for optimal parallelization
+    text_acs = []
+    scanned_acs = []
+    scanned_list = [1,3,4,5,6,7,28,29,30,31,38,39,40,41,42,151,152,153,154,155,156,188,189,191,192,193,194,213,214]
+    
     for ac_num in ac_nums:
-        result = process_ac(ac_num, pc_data, schema)
-        
-        if result['status'] == 'success':
-            results['success'] += 1
-        elif result['status'] == 'complete':
-            results['skipped'] += 1
+        if ac_num in scanned_list:
+            scanned_acs.append(ac_num)
         else:
-            results['failed'] += 1
+            text_acs.append(ac_num)
+    
+    # Process text PDFs in parallel (fast, can do many at once)
+    if text_acs:
+        print(f"\nProcessing {len(text_acs)} text PDFs in parallel...")
+        num_workers = min(len(text_acs), cpu_count() * 2, 8)  # Limit to 8 workers
+        with Pool(num_workers) as pool:
+            text_results = pool.map(process_ac_wrapper, [(ac, pc_data, schema) for ac in text_acs])
+            for result in text_results:
+                if result['status'] == 'success':
+                    results['success'] += 1
+                elif result['status'] == 'complete':
+                    results['skipped'] += 1
+                else:
+                    results['failed'] += 1
+    
+    # Process scanned PDFs sequentially (OCR is CPU-intensive, parallel doesn't help much)
+    if scanned_acs:
+        print(f"\nProcessing {len(scanned_acs)} scanned PDFs sequentially...")
+        for ac_num in scanned_acs:
+            result = process_ac(ac_num, pc_data, schema)
+            
+            if result['status'] == 'success':
+                results['success'] += 1
+            elif result['status'] == 'complete':
+                results['skipped'] += 1
+            else:
+                results['failed'] += 1
     
     # Summary
     print(f"\n{'='*70}")
