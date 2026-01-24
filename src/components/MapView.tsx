@@ -80,6 +80,13 @@ interface MapToolbarProps {
   onSwitchView: (view: ViewMode) => void;
   onGoBack: () => void;
   onFeedbackClick: () => void;
+  // Year selection props
+  availableYears?: number[];
+  selectedYear?: number | null;
+  availablePCYears?: number[];
+  selectedPCYear?: number | null;
+  onYearChange?: (year: number) => void;
+  onPCYearChange?: ((year: number) => void) | ((year: number | null) => void);
 }
 
 /** Layer option */
@@ -96,6 +103,12 @@ function MapToolbar({
   onSwitchView,
   onGoBack,
   onFeedbackClick,
+  availableYears = [],
+  selectedYear = null,
+  availablePCYears = [],
+  selectedPCYear = null,
+  onYearChange,
+  onPCYearChange,
 }: MapToolbarProps): JSX.Element {
   const [activeLayer, setActiveLayer] = useState<LayerName>('Streets');
   const [layerMenuOpen, setLayerMenuOpen] = useState(false);
@@ -149,27 +162,66 @@ function MapToolbar({
       {/* Center section - view toggle */}
       {showViewToggle && (
         <div className="toolbar-section toolbar-center">
-          <button
-            className={`toolbar-btn toolbar-toggle ${currentView === 'constituencies' ? 'active' : ''}`}
-            onClick={() => onSwitchView('constituencies')}
-            title="Parliamentary Constituencies"
-          >
-            <Building2 size={14} /> PC
-          </button>
-          <button
-            className={`toolbar-btn toolbar-toggle ${currentView === 'districts' ? 'active' : ''}`}
-            onClick={() => onSwitchView('districts')}
-            title="Districts"
-          >
-            <Map size={14} /> Dist
-          </button>
-          <button
-            className={`toolbar-btn toolbar-toggle ${currentView === 'assemblies' ? 'active' : ''}`}
-            onClick={() => onSwitchView('assemblies')}
-            title="Assembly Constituencies"
-          >
-            <Landmark size={14} /> AC
-          </button>
+          <div className="toolbar-view-toggle">
+            <button
+              className={`toolbar-btn toolbar-toggle ${currentView === 'constituencies' ? 'active' : ''}`}
+              onClick={() => onSwitchView('constituencies')}
+              title="Parliamentary Constituencies"
+            >
+              <Building2 size={14} /> PC
+            </button>
+            <button
+              className={`toolbar-btn toolbar-toggle ${currentView === 'districts' ? 'active' : ''}`}
+              onClick={() => onSwitchView('districts')}
+              title="Districts"
+            >
+              <Map size={14} /> Dist
+            </button>
+            <button
+              className={`toolbar-btn toolbar-toggle ${currentView === 'assemblies' ? 'active' : ''}`}
+              onClick={() => onSwitchView('assemblies')}
+              title="Assembly Constituencies"
+            >
+              <Landmark size={14} /> AC
+            </button>
+          </div>
+
+          {/* Year selection - show below AC/PC buttons */}
+          {((currentView === 'assemblies' && availableYears && availableYears.length > 0) ||
+            (currentView === 'constituencies' &&
+              availablePCYears &&
+              availablePCYears.length > 0)) && (
+            <div className="toolbar-year-selector">
+              {currentView === 'assemblies' &&
+                availableYears &&
+                availableYears.map((year) => (
+                  <button
+                    key={year}
+                    className={`toolbar-year-btn ${selectedYear === year ? 'active' : ''}`}
+                    onClick={() => onYearChange?.(year)}
+                    title={`Assembly Election ${year}`}
+                  >
+                    {year}
+                  </button>
+                ))}
+              {currentView === 'constituencies' &&
+                availablePCYears &&
+                availablePCYears.map((year) => (
+                  <button
+                    key={year}
+                    className={`toolbar-year-btn ${selectedPCYear === year ? 'active' : ''}`}
+                    onClick={() => {
+                      if (onPCYearChange) {
+                        onPCYearChange(year);
+                      }
+                    }}
+                    title={`Parliament Election ${year}`}
+                  >
+                    {year}
+                  </button>
+                ))}
+            </div>
+          )}
         </div>
       )}
 
@@ -1108,6 +1160,13 @@ export function MapView({
         onSwitchView={onSwitchView}
         onGoBack={onGoBack}
         onFeedbackClick={() => setFeedbackModalOpen(true)}
+        {...(availableYears && { availableYears })}
+        {...(selectedYear !== null && selectedYear !== undefined && { selectedYear })}
+        {...(pcAvailableYears && { availablePCYears: pcAvailableYears })}
+        {...(pcSelectedYear !== null &&
+          pcSelectedYear !== undefined && { selectedPCYear: pcSelectedYear })}
+        {...(onYearChange && { onYearChange })}
+        {...(onPCYearChange && { onPCYearChange })}
       />
 
       <MapContainer
