@@ -93,10 +93,12 @@ def extract_postal_from_pdf(pdf_path, ac_id, official_candidates):
                             # Check if party matches
                             party_upper = official_cand['party'].upper()
                             if party_upper in line.upper():
+                                # HARD RULE: postal votes must be >= 0
+                                postal_votes = max(0, postal_votes)
                                 postal_data['candidates'].append({
                                     'name': official_cand['name'],
                                     'party': official_cand['party'],
-                                    'postal': postal_votes,
+                                    'postal': postal_votes,  # Guaranteed >= 0
                                     'booth': 0,  # Will be calculated
                                     'total': total_votes
                                 })
