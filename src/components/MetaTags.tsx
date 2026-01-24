@@ -4,7 +4,7 @@ interface MetaTagsProps {
   title?: string;
   description?: string;
   image?: string;
-  url?: string;
+  url?: string | undefined;
   type?: 'website' | 'article';
   siteName?: string;
 }
@@ -28,7 +28,7 @@ export function MetaTags({
 }: MetaTagsProps): null {
   useEffect(() => {
     // Get current URL if not provided
-    const currentUrl = url || (typeof window !== 'undefined' ? window.location.href : BASE_URL);
+    const currentUrl = url ?? (typeof window !== 'undefined' ? window.location.href : BASE_URL);
     const fullImageUrl = image.startsWith('http') ? image : `${BASE_URL}${image}`;
 
     // Update or create meta tags

@@ -1448,7 +1448,7 @@ function App(): JSX.Element {
                   ? `Explore ${currentState} election results with detailed Assembly and Parliamentary constituency data. Historical election results, vote shares, margins, and turnout.`
                   : 'Interactive map with detailed Assembly and Parliament election results. Historical data, vote shares, margins and turnout for every constituency.'
         }
-        url={typeof window !== 'undefined' ? window.location.href : undefined}
+        {...(typeof window !== 'undefined' && { url: window.location.href })}
         type={blogOpen ? 'article' : 'website'}
       />
 
