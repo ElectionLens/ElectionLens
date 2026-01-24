@@ -114,7 +114,10 @@ export function trackYearChange(year: number, constituencyName: string): void {
 /**
  * Track share action
  */
-export function trackShare(method: 'copy_link' | 'twitter', contentType: string): void {
+export function trackShare(
+  method: 'copy_link' | 'twitter' | 'facebook' | 'linkedin',
+  contentType: string
+): void {
   trackEvent('share', {
     method,
     content_type: contentType,

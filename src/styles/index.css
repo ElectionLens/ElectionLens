@@ -5550,6 +5550,19 @@ path:focus {
   margin-bottom: 32px;
 }
 
+.blog-header-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.blog-header-content > div:first-child {
+  flex: 1;
+  min-width: 300px;
+}
+
 .blog-article h1 {
   font-size: 28px;
   font-weight: 800;
@@ -5562,6 +5575,102 @@ path:focus {
   font-size: 14px;
   color: #6b7280;
   margin: 0;
+}
+
+.blog-share-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.blog-share-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.blog-share-btn:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blog-share-btn.twitter-btn {
+  color: #1da1f2;
+  border-color: #1da1f2;
+}
+
+.blog-share-btn.twitter-btn:hover {
+  background: #1da1f2;
+  color: white;
+}
+
+.blog-share-btn.facebook-btn {
+  color: #1877f2;
+  border-color: #1877f2;
+}
+
+.blog-share-btn.facebook-btn:hover {
+  background: #1877f2;
+  color: white;
+}
+
+.blog-share-btn.linkedin-btn {
+  color: #0a66c2;
+  border-color: #0a66c2;
+}
+
+.blog-share-btn.linkedin-btn:hover {
+  background: #0a66c2;
+  color: white;
+}
+
+.blog-share-btn.copy-btn {
+  color: #7c3aed;
+  border-color: #7c3aed;
+}
+
+.blog-share-btn.copy-btn:hover {
+  background: #7c3aed;
+  color: white;
+}
+
+.blog-share-btn.copy-btn.copied {
+  background: #10b981;
+  border-color: #10b981;
+  color: white;
+}
+
+.blog-share-btn span {
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .blog-header-content {
+    flex-direction: column;
+  }
+
+  .blog-share-buttons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .blog-share-btn {
+    flex: 1;
+    justify-content: center;
+    min-width: 100px;
+  }
 }
 
 .article-content {

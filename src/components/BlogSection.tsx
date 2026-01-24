@@ -1,7 +1,18 @@
-import { useState, useCallback, useEffect } from 'react';
-import { BookOpen, X, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
+import {
+  BookOpen,
+  X,
+  ExternalLink,
+  ChevronDown,
+  ChevronUp,
+  Twitter,
+  Link2,
+  Check,
+  Share2,
+} from 'lucide-react';
 import type { AssemblyFeature } from '../types';
 import type { BoothResults } from '../hooks/useBoothData';
+import { trackShare } from '../utils/firebase';
 
 interface BlogPost {
   id: string;
@@ -263,11 +274,102 @@ interface AlliancePostContentProps {
 }
 
 function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX.Element {
+  const [copied, setCopied] = useState(false);
+
+  // Get current share URL
+  const shareUrl = useMemo(() => {
+    if (typeof window === 'undefined') return '';
+    return window.location.href;
+  }, []);
+
+  // Generate share text
+  const shareText = useMemo(() => {
+    return (
+      `🗳️ AMMK Joins ADMK Alliance for 2026: ${data.total_flips} Constituencies Will Flip\n\n` +
+      `Based on 2021 Tamil Nadu election data, the alliance would flip ${data.total_flips} constituencies from DMK/INC to ADMK+AMMK.\n\n` +
+      `📊 Analysis includes:\n` +
+      `• ${data.total_flips} constituencies that will flip\n` +
+      `• ${data.total_margin_increases} ADMK seats with increased margins\n\n` +
+      `View full analysis:`
+    );
+  }, [data]);
+
+  const handleCopyLink = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+      trackShare('copy_link', 'blog');
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  }, [shareUrl]);
+
+  const handleShareToX = useCallback(() => {
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+    window.open(twitterUrl, '_blank', 'width=550,height=420');
+    trackShare('twitter', 'blog');
+  }, [shareText, shareUrl]);
+
+  const handleShareToFacebook = useCallback(() => {
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+    window.open(facebookUrl, '_blank', 'width=600,height=400');
+    trackShare('facebook', 'blog');
+  }, [shareUrl]);
+
+  const handleShareToLinkedIn = useCallback(() => {
+    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+    window.open(linkedInUrl, '_blank', 'width=600,height=400');
+    trackShare('linkedin', 'blog');
+  }, [shareUrl]);
+
   return (
     <article className="blog-article">
       <header>
-        <h1>AMMK Joins ADMK Alliance for 2026: Constituencies That Will Flip</h1>
-        <p className="article-meta">January 24, 2026 • Election Analysis</p>
+        <div className="blog-header-content">
+          <div>
+            <h1>AMMK Joins ADMK Alliance for 2026: Constituencies That Will Flip</h1>
+            <p className="article-meta">January 24, 2026 • Election Analysis</p>
+          </div>
+          <div className="blog-share-buttons">
+            <button
+              className="blog-share-btn twitter-btn"
+              onClick={handleShareToX}
+              title="Share on Twitter/X"
+              aria-label="Share on Twitter/X"
+            >
+              <Twitter size={18} />
+              <span>Twitter</span>
+            </button>
+            <button
+              className="blog-share-btn facebook-btn"
+              onClick={handleShareToFacebook}
+              title="Share on Facebook"
+              aria-label="Share on Facebook"
+            >
+              <Share2 size={18} />
+              <span>Facebook</span>
+            </button>
+            <button
+              className="blog-share-btn linkedin-btn"
+              onClick={handleShareToLinkedIn}
+              title="Share on LinkedIn"
+              aria-label="Share on LinkedIn"
+            >
+              <Share2 size={18} />
+              <span>LinkedIn</span>
+            </button>
+            <button
+              className={`blog-share-btn copy-btn ${copied ? 'copied' : ''}`}
+              onClick={handleCopyLink}
+              title={copied ? 'Copied!' : 'Copy link'}
+              aria-label={copied ? 'Copied!' : 'Copy link'}
+            >
+              {copied ? <Check size={18} /> : <Link2 size={18} />}
+              <span>{copied ? 'Copied!' : 'Copy'}</span>
+            </button>
+          </div>
+        </div>
       </header>
 
       <div className="article-content">
