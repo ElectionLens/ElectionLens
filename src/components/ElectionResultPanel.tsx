@@ -765,6 +765,14 @@ function PostalBallotsView({ postal }: PostalBallotsViewProps): JSX.Element {
       .reduce((sum, c) => sum + c.postal, 0);
   }, [postal.candidates]);
 
+  const totalVotes = useMemo(() => {
+    return postal.candidates.reduce((sum, c) => sum + c.total, 0);
+  }, [postal.candidates]);
+
+  const postalPercent = useMemo(() => {
+    return totalVotes > 0 ? (totalPostal / totalVotes) * 100 : 0;
+  }, [totalPostal, totalVotes]);
+
   return (
     <div className="postal-ballots-view">
       {/* Summary */}
@@ -779,15 +787,7 @@ function PostalBallotsView({ postal }: PostalBallotsViewProps): JSX.Element {
             <span className="stat-label">Total Postal Votes</span>
           </div>
           <div className="postal-stat">
-            <span className="stat-value">
-              {totalPostal > 0 && postal.candidates[0]
-                ? (postal.candidates.reduce((sum, c) => sum + c.total, 0) > 0
-                    ? (totalPostal / postal.candidates.reduce((sum, c) => sum + c.total, 0)) * 100
-                    : 0
-                  ).toFixed(1)
-                : '0'}
-              %
-            </span>
+            <span className="stat-value">{postalPercent.toFixed(1)}%</span>
             <span className="stat-label">of Total Votes</span>
           </div>
         </div>
@@ -933,7 +933,7 @@ function BoothWiseView({
             </div>
           </div>
 
-          {selectedBooth.result && boothResults && (
+          {selectedBooth.result && boothResults && boothResults.candidates && (
             <>
               <div className="booth-vote-summary">
                 <div className="vote-stat">
@@ -1118,7 +1118,7 @@ function BoothwiseAnalysis({
   officialWinner,
 }: BoothwiseAnalysisProps): JSX.Element {
   const analysis = useMemo(() => {
-    if (!boothResults || boothsWithResults.length === 0) {
+    if (!boothResults || !boothResults.candidates || boothsWithResults.length === 0) {
       return null;
     }
 
