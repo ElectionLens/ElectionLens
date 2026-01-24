@@ -175,6 +175,9 @@ function App(): JSX.Element {
         // All assemblies view for a state
         const data = await navigateToAssemblies(matchedState);
         setCurrentData(data);
+        // Pre-load election index for the state (both AC and PC)
+        void loadStateIndex(matchedState);
+        void loadPCStateIndex(matchedState);
         if (urlState.assembly) {
           // Specific assembly selected
           const acName = toTitleCase(urlState.assembly).toUpperCase();
@@ -188,10 +191,16 @@ function App(): JSX.Element {
       } else if (urlState.view === 'districts') {
         const data = await loadDistrictsForState(matchedState);
         setCurrentData(data);
+        // Pre-load election index for the state (both AC and PC)
+        void loadStateIndex(matchedState);
+        void loadPCStateIndex(matchedState);
       } else {
         // Default constituencies view
         const data = await navigateToState(matchedState);
         setCurrentData(data);
+        // Pre-load election index for the state (both AC and PC)
+        void loadStateIndex(matchedState);
+        void loadPCStateIndex(matchedState);
       }
 
       // Handle blog state from URL
@@ -211,6 +220,8 @@ function App(): JSX.Element {
       selectAssembly,
       getACResult,
       getPCResult,
+      loadStateIndex,
+      loadPCStateIndex,
     ]
   );
 
