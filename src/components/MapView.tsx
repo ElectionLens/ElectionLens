@@ -559,13 +559,11 @@ export function MapView({
   const { getAC } = useSchema();
 
   // Check if booth data is available for the current AC and year
-  // Note: When viewing PC contribution (selectedACPCYear), booth data should still use assembly year
-  // because booth data is assembly-level, not PC-level
+  // When viewing PC contribution (selectedACPCYear), use that year for booth data
+  // Otherwise use selectedYear or election result's year
   const acEntity = electionResult?.schemaId ? getAC(electionResult.schemaId) : null;
-  // For booth data, always use assembly year (selectedYear), not PC contribution year
-  // If selectedYear is null (when viewing PC contribution), use the election result's year
-  // Booth data is assembly-level, so it should match the assembly election year
-  const boothDataYear = selectedYear ?? electionResult?.year ?? undefined;
+  // For booth data availability check, use the same year that will be loaded
+  const boothDataYear = selectedACPCYear ?? selectedYear ?? electionResult?.year ?? undefined;
   const boothDataEnabled = acEntity
     ? isBoothDataAvailable(electionResult?.schemaId ?? '', acEntity.pcId, boothDataYear)
     : false;
