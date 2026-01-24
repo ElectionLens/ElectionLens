@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
-import { BookOpen, X, ExternalLink } from 'lucide-react';
+import { BookOpen, X, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 import type { AssemblyFeature } from '../types';
+import type { BoothResults } from '../hooks/useBoothData';
 
 interface BlogPost {
   id: string;
@@ -297,39 +298,7 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
 
           <div className="flip-list">
             {data.flips.map((flip, idx) => (
-              <div
-                key={flip.ac_id}
-                className="flip-item"
-                onClick={() => onACClick(flip.ac_id, flip.ac_name)}
-              >
-                <div className="flip-header">
-                  <span className="flip-rank">#{idx + 1}</span>
-                  <h3 className="flip-ac-name">{flip.ac_name}</h3>
-                  <span className="flip-ac-id">{flip.ac_id}</span>
-                </div>
-                <div className="flip-details">
-                  <div className="flip-current">
-                    <span className="label">Current Winner:</span>
-                    <span className="value winner">{flip.current_winner}</span>
-                    <span className="votes">
-                      ({flip.current_winner_votes.toLocaleString()} votes)
-                    </span>
-                  </div>
-                  <div className="flip-new">
-                    <span className="label">ADMK+AMMK:</span>
-                    <span className="value combined">
-                      {flip.combined_votes.toLocaleString()} votes
-                    </span>
-                    <span className="margin">(Margin: +{flip.margin.toLocaleString()})</span>
-                  </div>
-                  <div className="flip-breakdown">
-                    <span>ADMK: {flip.admk_votes.toLocaleString()}</span>
-                    <span>+ AMMK: {flip.ammk_votes.toLocaleString()}</span>
-                    <span>= {flip.combined_votes.toLocaleString()}</span>
-                  </div>
-                </div>
-                <div className="flip-click-hint">Click to view constituency details →</div>
-              </div>
+              <FlipItemWithBooths key={flip.ac_id} flip={flip} idx={idx} onACClick={onACClick} />
             ))}
           </div>
         </section>
@@ -400,5 +369,168 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
         </footer>
       </div>
     </article>
+  );
+}
+
+interface FlipItemWithBoothsProps {
+  flip: FlipData;
+  idx: number;
+  onACClick: (acId: string, acName: string) => void;
+}
+
+function FlipItemWithBooths({ flip, idx, onACClick }: FlipItemWithBoothsProps): JSX.Element {
+  const [showBooths, setShowBooths] = useState(false);
+  const [boothData, setBoothData] = useState<BoothResults | null>(null);
+  const [loadingBooths, setLoadingBooths] = useState(false);
+  const [boothError, setBoothError] = useState<string | null>(null);
+
+  const loadBoothData = useCallback(async () => {
+    if (boothData || loadingBooths) return;
+
+    setLoadingBooths(true);
+    setBoothError(null);
+    try {
+      const response = await fetch(`/data/booths/TN/${flip.ac_id}/2021.json`);
+      if (response.ok) {
+        const data: BoothResults = await response.json();
+        setBoothData(data);
+      } else {
+        setBoothError('Booth data not available');
+      }
+    } catch (err) {
+      setBoothError('Failed to load booth data');
+      console.error('Failed to load booth data:', err);
+    } finally {
+      setLoadingBooths(false);
+    }
+  }, [flip.ac_id, boothData, loadingBooths]);
+
+  const handleToggleBooths = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation(); // Prevent triggering onACClick
+      setShowBooths((prev) => {
+        const newValue = !prev;
+        if (newValue && !boothData) {
+          void loadBoothData();
+        }
+        return newValue;
+      });
+    },
+    [boothData, loadBoothData]
+  );
+
+  // Find ADMK and AMMK candidate indices
+  const admkCandidateIndex = boothData?.candidates.findIndex((c) => c.party === 'ADMK');
+  const ammkCandidateIndex = boothData?.candidates.findIndex((c) => c.party === 'AMMK');
+
+  // Calculate booth-level totals
+  const boothTotals = boothData
+    ? Object.entries(boothData.results).map(([boothId, result]) => {
+        const admkVotes =
+          admkCandidateIndex !== undefined && admkCandidateIndex >= 0
+            ? result.votes[admkCandidateIndex] || 0
+            : 0;
+        const ammkVotes =
+          ammkCandidateIndex !== undefined && ammkCandidateIndex >= 0
+            ? result.votes[ammkCandidateIndex] || 0
+            : 0;
+        const combined = admkVotes + ammkVotes;
+        return {
+          boothId,
+          admkVotes,
+          ammkVotes,
+          combined,
+          total: result.total,
+        };
+      })
+    : [];
+
+  // Sort by combined votes (descending)
+  boothTotals.sort((a, b) => b.combined - a.combined);
+
+  return (
+    <div className="flip-item">
+      <div className="flip-item-main" onClick={() => onACClick(flip.ac_id, flip.ac_name)}>
+        <div className="flip-header">
+          <span className="flip-rank">#{idx + 1}</span>
+          <h3 className="flip-ac-name">{flip.ac_name}</h3>
+          <span className="flip-ac-id">{flip.ac_id}</span>
+        </div>
+        <div className="flip-details">
+          <div className="flip-current">
+            <span className="label">Current Winner:</span>
+            <span className="value winner">{flip.current_winner}</span>
+            <span className="votes">({flip.current_winner_votes.toLocaleString()} votes)</span>
+          </div>
+          <div className="flip-new">
+            <span className="label">ADMK+AMMK:</span>
+            <span className="value combined">{flip.combined_votes.toLocaleString()} votes</span>
+            <span className="margin">(Margin: +{flip.margin.toLocaleString()})</span>
+          </div>
+          <div className="flip-breakdown">
+            <span>ADMK: {flip.admk_votes.toLocaleString()}</span>
+            <span>+ AMMK: {flip.ammk_votes.toLocaleString()}</span>
+            <span>= {flip.combined_votes.toLocaleString()}</span>
+          </div>
+        </div>
+        <div className="flip-actions">
+          <div className="flip-click-hint">Click to view constituency details →</div>
+          <button
+            className="flip-toggle-booths"
+            onClick={handleToggleBooths}
+            aria-label={showBooths ? 'Hide booths' : 'Show booths'}
+          >
+            {showBooths ? (
+              <>
+                <ChevronUp size={16} />
+                Hide Booths
+              </>
+            ) : (
+              <>
+                <ChevronDown size={16} />
+                Show Booths
+              </>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {showBooths && (
+        <div className="flip-booths-section" onClick={(e) => e.stopPropagation()}>
+          {loadingBooths && <div className="booth-loading">Loading booth data...</div>}
+          {boothError && <div className="booth-error">{boothError}</div>}
+          {boothData && boothTotals.length > 0 && (
+            <div className="booth-list">
+              <div className="booth-list-header">
+                <h4>Booth-wise ADMK + AMMK Votes</h4>
+                <span className="booth-count">{boothTotals.length} booths</span>
+              </div>
+              <div className="booth-table">
+                <div className="booth-table-header">
+                  <div className="booth-col-id">Booth ID</div>
+                  <div className="booth-col-admk">ADMK</div>
+                  <div className="booth-col-ammk">AMMK</div>
+                  <div className="booth-col-combined">Combined</div>
+                  <div className="booth-col-total">Total Votes</div>
+                </div>
+                <div className="booth-table-body">
+                  {boothTotals.map((booth) => (
+                    <div key={booth.boothId} className="booth-row">
+                      <div className="booth-col-id">{booth.boothId}</div>
+                      <div className="booth-col-admk">{booth.admkVotes.toLocaleString()}</div>
+                      <div className="booth-col-ammk">{booth.ammkVotes.toLocaleString()}</div>
+                      <div className="booth-col-combined">
+                        <strong>{booth.combined.toLocaleString()}</strong>
+                      </div>
+                      <div className="booth-col-total">{booth.total.toLocaleString()}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
