@@ -70,7 +70,7 @@ export default defineConfig({
   webServer: {
     command: process.env.CI ? 'npm run preview -- --port 3000' : 'npm run dev',
     url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true, // Always reuse existing server to avoid port conflicts
     timeout: 180000, // 3 minutes for CI builds
     stdout: 'pipe',
     stderr: 'pipe',
