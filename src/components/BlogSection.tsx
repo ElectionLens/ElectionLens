@@ -54,7 +54,20 @@ export function BlogSection({
   onAssemblyClick,
   onNavigateToState,
 }: BlogSectionProps): JSX.Element {
-  const [selectedPost, setSelectedPost] = useState<string | null>(null);
+  // Read blog post from URL
+  const getPostFromUrl = useCallback((): string | null => {
+    if (typeof window === 'undefined') return null;
+    const searchParams = new URLSearchParams(window.location.search);
+    return searchParams.get('blogPost');
+  }, []);
+
+  const [selectedPost, setSelectedPost] = useState<string | null>(() => {
+    // Initialize from URL on mount
+    if (typeof window !== 'undefined') {
+      return getPostFromUrl();
+    }
+    return null;
+  });
   const [allianceData, setAllianceData] = useState<AllianceAnalysis | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -75,13 +88,6 @@ export function BlogSection({
       setLoading(false);
     }
   }, [allianceData]);
-
-  // Read blog post from URL
-  const getPostFromUrl = useCallback((): string | null => {
-    if (typeof window === 'undefined') return null;
-    const searchParams = new URLSearchParams(window.location.search);
-    return searchParams.get('blogPost');
-  }, []);
 
   // Update URL when blog post changes
   useEffect(() => {
@@ -113,12 +119,15 @@ export function BlogSection({
         if (postFromUrl === 'ammk-admk-alliance') {
           void loadAllianceData();
         }
+      } else if (selectedPost === 'ammk-admk-alliance' && !allianceData && !loading) {
+        // Load data if post is selected but data not loaded yet
+        void loadAllianceData();
       }
     } else {
       // Reset when blog closes
       setSelectedPost(null);
     }
-  }, [isOpen, getPostFromUrl, selectedPost, loadAllianceData]);
+  }, [isOpen, getPostFromUrl, selectedPost, loadAllianceData, allianceData, loading]);
 
   // Read blog post from URL when URL changes (e.g., browser back/forward)
   useEffect(() => {
