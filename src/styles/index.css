@@ -361,6 +361,21 @@ body {
   color: white;
 }
 
+.toolbar-year-btn.parliament-year {
+  /* Same styling as regular year buttons when not active */
+}
+
+.toolbar-year-btn.parliament-year:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.toolbar-year-btn.parliament-year.active {
+  background: #1e3a5f;
+  border-color: #1e3a5f;
+  color: white;
+}
+
 /* Layer dropdown */
 .toolbar-dropdown {
   position: relative;

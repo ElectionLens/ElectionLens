@@ -83,10 +83,13 @@ interface MapToolbarProps {
   // Year selection props
   availableYears?: number[];
   selectedYear?: number | null;
-  availablePCYears?: number[];
+  availablePCYears?: number[]; // PC years for AC view (parliament contributions)
   selectedPCYear?: number | null;
+  pcAvailableYears?: number[]; // PC years for PC view (parliament elections)
+  pcSelectedYear?: number | null;
   onYearChange?: (year: number) => void;
   onPCYearChange?: ((year: number) => void) | ((year: number | null) => void);
+  onPCYearChangeForPC?: ((year: number) => void) | undefined; // For PC view year changes
 }
 
 /** Layer option */
@@ -107,8 +110,11 @@ function MapToolbar({
   selectedYear = null,
   availablePCYears = [],
   selectedPCYear = null,
+  pcAvailableYears = [],
+  pcSelectedYear = null,
   onYearChange,
   onPCYearChange,
+  onPCYearChangeForPC,
 }: MapToolbarProps): JSX.Element {
   const [activeLayer, setActiveLayer] = useState<LayerName>('Streets');
   const [layerMenuOpen, setLayerMenuOpen] = useState(false);
@@ -187,41 +193,83 @@ function MapToolbar({
           </div>
 
           {/* Year selection - show below AC/PC buttons */}
-          {((currentView === 'assemblies' && availableYears && availableYears.length > 0) ||
-            (currentView === 'constituencies' &&
-              availablePCYears &&
-              availablePCYears.length > 0)) && (
-            <div className="toolbar-year-selector">
-              {currentView === 'assemblies' &&
-                availableYears &&
-                availableYears.map((year) => (
-                  <button
-                    key={year}
-                    className={`toolbar-year-btn ${selectedYear === year ? 'active' : ''}`}
-                    onClick={() => onYearChange?.(year)}
-                    title={`Assembly Election ${year}`}
-                  >
-                    {year}
-                  </button>
-                ))}
-              {currentView === 'constituencies' &&
-                availablePCYears &&
-                availablePCYears.map((year) => (
-                  <button
-                    key={year}
-                    className={`toolbar-year-btn ${selectedPCYear === year ? 'active' : ''}`}
-                    onClick={() => {
-                      if (onPCYearChange) {
-                        onPCYearChange(year);
-                      }
-                    }}
-                    title={`Parliament Election ${year}`}
-                  >
-                    {year}
-                  </button>
-                ))}
-            </div>
-          )}
+          {(() => {
+            // For assemblies view: show both assembly years and PC years
+            if (currentView === 'assemblies') {
+              const hasAssemblyYears = availableYears && availableYears.length > 0;
+              const hasPCYears = availablePCYears && availablePCYears.length > 0;
+              if (!hasAssemblyYears && !hasPCYears) return null;
+
+              // Combine and sort years
+              type YearItem = { year: number; type: 'assembly' | 'parliament' };
+              const allYearItems: YearItem[] = [
+                ...(availableYears || []).map((y) => ({ year: y, type: 'assembly' as const })),
+                ...(availablePCYears || []).map((y) => ({ year: y, type: 'parliament' as const })),
+              ].sort((a, b) => a.year - b.year);
+
+              return (
+                <div className="toolbar-year-selector">
+                  {allYearItems.map((item) =>
+                    item.type === 'assembly' ? (
+                      <button
+                        key={`ac-${item.year}`}
+                        className={`toolbar-year-btn ${selectedYear === item.year && selectedPCYear === null ? 'active' : ''}`}
+                        onClick={() => {
+                          if (onPCYearChange) {
+                            // onPCYearChange can accept number | null
+                            (onPCYearChange as (year: number | null) => void)(null);
+                          }
+                          onYearChange?.(item.year);
+                        }}
+                        title={`Assembly Election ${item.year}`}
+                      >
+                        {item.year}
+                      </button>
+                    ) : (
+                      <button
+                        key={`pc-${item.year}`}
+                        className={`toolbar-year-btn parliament-year ${selectedPCYear === item.year ? 'active' : ''}`}
+                        onClick={() => {
+                          onPCYearChange?.(item.year);
+                        }}
+                        title={`Parliament Election ${item.year}`}
+                      >
+                        {item.year}-PC
+                      </button>
+                    )
+                  )}
+                </div>
+              );
+            }
+
+            // For constituencies view: show parliament years
+            if (
+              currentView === 'constituencies' &&
+              pcAvailableYears &&
+              pcAvailableYears.length > 0
+            ) {
+              return (
+                <div className="toolbar-year-selector">
+                  {pcAvailableYears.map((year) => (
+                    <button
+                      key={year}
+                      className={`toolbar-year-btn ${pcSelectedYear === year ? 'active' : ''}`}
+                      onClick={() => {
+                        if (onPCYearChangeForPC) {
+                          onPCYearChangeForPC(year);
+                        }
+                      }}
+                      title={`Parliament Election ${year}`}
+                    >
+                      {year}
+                    </button>
+                  ))}
+                </div>
+              );
+            }
+
+            return null;
+          })()}
         </div>
       )}
 
@@ -1162,11 +1210,14 @@ export function MapView({
         onFeedbackClick={() => setFeedbackModalOpen(true)}
         {...(availableYears && { availableYears })}
         {...(selectedYear !== null && selectedYear !== undefined && { selectedYear })}
-        {...(pcAvailableYears && { availablePCYears: pcAvailableYears })}
-        {...(pcSelectedYear !== null &&
-          pcSelectedYear !== undefined && { selectedPCYear: pcSelectedYear })}
+        {...(availablePCYears && availablePCYears.length > 0 && { availablePCYears })}
+        {...(selectedACPCYear !== null &&
+          selectedACPCYear !== undefined && { selectedPCYear: selectedACPCYear })}
+        {...(pcAvailableYears && pcAvailableYears.length > 0 && { pcAvailableYears })}
+        {...(pcSelectedYear !== null && pcSelectedYear !== undefined && { pcSelectedYear })}
         {...(onYearChange && { onYearChange })}
-        {...(onPCYearChange && { onPCYearChange })}
+        {...(onACPCYearChange && { onPCYearChange: onACPCYearChange })}
+        {...(onPCYearChange && { onPCYearChangeForPC: onPCYearChange })}
       />
 
       <MapContainer
