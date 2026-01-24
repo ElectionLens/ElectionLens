@@ -570,6 +570,31 @@ export function MapView({
     ? isBoothDataAvailable(electionResult?.schemaId ?? '', acEntity.pcId, boothDataYear)
     : false;
 
+  // Debug logging for booth data availability
+  useEffect(() => {
+    if (electionResult?.schemaId?.startsWith('TN-')) {
+      console.log('[MapView] Booth data availability check:', {
+        schemaId: electionResult.schemaId,
+        acEntity: acEntity ? 'exists' : 'null',
+        pcId: acEntity?.pcId,
+        boothDataYear,
+        selectedYear,
+        electionResultYear: electionResult?.year,
+        boothDataEnabled,
+        isBoothDataAvailable: acEntity
+          ? isBoothDataAvailable(electionResult.schemaId, acEntity.pcId, boothDataYear)
+          : false,
+      });
+    }
+  }, [
+    electionResult?.schemaId,
+    electionResult?.year,
+    acEntity,
+    boothDataYear,
+    selectedYear,
+    boothDataEnabled,
+  ]);
+
   // Load booth data when a Tamil Nadu AC is selected (only if booth data is enabled for this PC)
   useEffect(() => {
     if (electionResult?.schemaId?.startsWith('TN-') && boothDataEnabled) {
