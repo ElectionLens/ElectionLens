@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 
 // Types for booth data
 export interface Booth {
@@ -197,8 +197,9 @@ export function useBoothData(): UseBoothDataReturn {
   /**
    * Merge booth list with results for display
    * Includes booths from results that may not be in booth list
+   * This is computed on every render to ensure it's always up to date
    */
-  const boothsWithResults: BoothWithResult[] = (() => {
+  const boothsWithResults: BoothWithResult[] = useMemo(() => {
     const boothMap = new Map<string, Booth>();
     const resultsList: BoothWithResult[] = [];
 
@@ -319,7 +320,7 @@ export function useBoothData(): UseBoothDataReturn {
     const sorted = resultsList.sort((a, b) => a.num - b.num);
     console.log('[useBoothData] Final boothsWithResults count:', sorted.length);
     return sorted;
-  })();
+  }, [boothList, boothResults]);
 
   // Clear booth data when AC changes externally (not through loadBoothData)
   useEffect(() => {
