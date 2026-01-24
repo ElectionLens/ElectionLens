@@ -124,13 +124,14 @@ def add_postal_votes(ac_id: str, pc_data: dict, schema: dict) -> dict:
             ac_wise_booth = ac_data['booth']
             pc_total = ac_data['total']
             
-            # Postal votes = PC total - AC-wise booth
-            # But since postal is PC-level, we set it to 0 for AC-level data
-            # The postal field is kept for structure compatibility
+            # For 2024 PC elections:
+            # - AC-level total = AC-wise booth votes (from acWiseVotes)
+            # - Postal votes are PC-level, not AC-level
+            # - So postal = 0 for AC-level data, total = AC-wise booth
             postal_votes = 0  # Postal votes are PC-level, not AC-level
-            total_votes = ac_wise_booth  # AC-level total is just booth votes
+            total_votes = ac_wise_booth  # AC-level total is AC-wise booth votes
         else:
-            # No AC-wise data, use booth total
+            # No AC-wise data, use extracted booth total
             postal_votes = 0
             total_votes = booth_votes
         
