@@ -595,9 +595,10 @@ export function MapView({
     boothDataEnabled,
   ]);
 
-  // Load booth data when a Tamil Nadu AC is selected (only if booth data is enabled for this PC)
+  // Load booth data when a Tamil Nadu AC is selected
+  // Try to load even if boothDataEnabled is false - let the availability check happen in ElectionResultPanel
   useEffect(() => {
-    if (electionResult?.schemaId?.startsWith('TN-') && boothDataEnabled) {
+    if (electionResult?.schemaId?.startsWith('TN-')) {
       // Always use assembly year for booth data (booth data is assembly-level)
       // If selectedYear is null, use the election result's year as fallback
       const yearToLoad = selectedYear ?? electionResult?.year;
@@ -619,32 +620,27 @@ export function MapView({
         });
       }
     } else {
-      // Clear booth data when switching away or when booth data is disabled
-      console.log('[MapView] Booth data not loading:', {
+      // Clear booth data when switching away from Tamil Nadu
+      console.log('[MapView] Booth data not loading (not Tamil Nadu):', {
         schemaId: electionResult?.schemaId,
-        boothDataEnabled,
         isTN: electionResult?.schemaId?.startsWith('TN-'),
-        acEntity: acEntity ? 'exists' : 'null',
-        pcId: acEntity?.pcId,
-        boothDataYear,
-        selectedYear,
-        electionResultYear: electionResult?.year,
       });
     }
   }, [
     electionResult?.schemaId,
     electionResult?.year,
-    boothDataEnabled,
     loadBoothData,
     selectedYear,
     selectedACPCYear,
     acEntity,
     boothDataYear,
+    boothDataEnabled,
   ]);
 
   // Load booth results when year changes (always use assembly year for booth data)
+  // Try to load even if boothDataEnabled is false - let the availability check happen in ElectionResultPanel
   useEffect(() => {
-    if (electionResult?.schemaId?.startsWith('TN-') && boothDataEnabled) {
+    if (electionResult?.schemaId?.startsWith('TN-')) {
       // Always use assembly year for booth results (booth data is assembly-level)
       // If selectedYear is null, use the election result's year as fallback
       const yearToLoad = selectedYear ?? electionResult?.year;
@@ -655,6 +651,7 @@ export function MapView({
           selectedACPCYear,
           selectedYear,
           electionResultYear: electionResult?.year,
+          boothDataEnabled,
         });
         void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
       } else {
@@ -668,8 +665,9 @@ export function MapView({
     electionResult?.schemaId,
     electionResult?.year,
     selectedYear,
-    boothDataEnabled,
     loadBoothResults,
+    selectedACPCYear,
+    boothDataEnabled,
   ]);
 
   // Listen for layer change events from toolbar
