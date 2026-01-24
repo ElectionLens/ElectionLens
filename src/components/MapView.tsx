@@ -573,16 +573,26 @@ export function MapView({
   // Load booth data when a Tamil Nadu AC is selected (only if booth data is enabled for this PC)
   useEffect(() => {
     if (electionResult?.schemaId?.startsWith('TN-') && boothDataEnabled) {
-      // Use PC year if selected, otherwise use Assembly year for booth list
-      const yearToLoad = selectedACPCYear ?? selectedYear;
+      // Always use assembly year for booth data (booth data is assembly-level)
+      // If selectedYear is null, use the election result's year as fallback
+      const yearToLoad = selectedYear ?? electionResult?.year;
       console.log('[MapView] Loading booth data:', {
         schemaId: electionResult.schemaId,
         yearToLoad,
         boothDataEnabled,
         selectedACPCYear,
         selectedYear,
+        electionResultYear: electionResult?.year,
+        boothDataYear,
       });
-      void loadBoothData('TN', electionResult.schemaId, yearToLoad ?? undefined);
+      if (yearToLoad) {
+        void loadBoothData('TN', electionResult.schemaId, yearToLoad);
+      } else {
+        console.warn('[MapView] No year available for booth data:', {
+          selectedYear,
+          electionResultYear: electionResult?.year,
+        });
+      }
     } else {
       // Clear booth data when switching away or when booth data is disabled
       console.log('[MapView] Booth data not loading:', {
@@ -592,10 +602,13 @@ export function MapView({
         acEntity: acEntity ? 'exists' : 'null',
         pcId: acEntity?.pcId,
         boothDataYear,
+        selectedYear,
+        electionResultYear: electionResult?.year,
       });
     }
   }, [
     electionResult?.schemaId,
+    electionResult?.year,
     boothDataEnabled,
     loadBoothData,
     selectedYear,
