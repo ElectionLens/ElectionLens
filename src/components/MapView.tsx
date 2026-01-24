@@ -1171,7 +1171,8 @@ export function MapView({
     [level, selectedAssembly]
   );
 
-  const showViewToggle = Boolean(currentState && !currentPC && !currentDistrict);
+  // Show view toggle buttons whenever we're in a state (even if PC or district is selected)
+  const showViewToggle = Boolean(currentState);
   // Show back button when not at home (India) level
   const showBackButton = Boolean(currentState);
 
