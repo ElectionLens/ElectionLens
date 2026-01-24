@@ -54,16 +54,34 @@ export function BlogSection({
   onAssemblyClick,
   onNavigateToState,
 }: BlogSectionProps): JSX.Element {
-  // Read blog post from URL on mount
+  const [selectedPost, setSelectedPost] = useState<string | null>(null);
+  const [allianceData, setAllianceData] = useState<AllianceAnalysis | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  // Load alliance analysis data
+  const loadAllianceData = useCallback(async () => {
+    if (allianceData) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch('/data/blog/ammk-admk-alliance-2026.json');
+      if (response.ok) {
+        const data = (await response.json()) as AllianceAnalysis;
+        setAllianceData(data);
+      }
+    } catch (err) {
+      console.error('Failed to load alliance data:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, [allianceData]);
+
+  // Read blog post from URL
   const getPostFromUrl = useCallback((): string | null => {
     if (typeof window === 'undefined') return null;
     const searchParams = new URLSearchParams(window.location.search);
     return searchParams.get('blogPost');
   }, []);
-
-  const [selectedPost, setSelectedPost] = useState<string | null>(getPostFromUrl());
-  const [allianceData, setAllianceData] = useState<AllianceAnalysis | null>(null);
-  const [loading, setLoading] = useState(false);
 
   // Update URL when blog post changes
   useEffect(() => {
@@ -115,24 +133,6 @@ export function BlogSection({
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, [getPostFromUrl, loadAllianceData]);
-
-  // Load alliance analysis data
-  const loadAllianceData = useCallback(async () => {
-    if (allianceData) return;
-
-    setLoading(true);
-    try {
-      const response = await fetch('/data/blog/ammk-admk-alliance-2026.json');
-      if (response.ok) {
-        const data = (await response.json()) as AllianceAnalysis;
-        setAllianceData(data);
-      }
-    } catch (err) {
-      console.error('Failed to load alliance data:', err);
-    } finally {
-      setLoading(false);
-    }
-  }, [allianceData]);
 
   const isLoading = loading && !allianceData;
 
