@@ -1001,6 +1001,7 @@ function App(): JSX.Element {
       assembly: currentAssembly,
       year: selectedYear,
       pcYear: null,
+      tab: null, // Tab is managed in ElectionResultPanel component
     });
 
     try {
@@ -1057,6 +1058,7 @@ function App(): JSX.Element {
       assembly: currentAssembly,
       year: selectedYear,
       pcYear: null,
+      tab: null, // Tab is managed in ElectionResultPanel component
     });
   }, [
     getShareableUrl,
@@ -1081,6 +1083,7 @@ function App(): JSX.Element {
       assembly: currentAssembly,
       year: null, // Don't include assembly year
       pcYear: selectedACPCYear, // This will generate year=pc-YYYY
+      tab: null, // Tab is managed in ElectionResultPanel component
     });
   }, [
     getShareableUrl,
@@ -1105,6 +1108,7 @@ function App(): JSX.Element {
       assembly: null,
       year: pcSelectedYear,
       pcYear: null,
+      tab: null, // Tab is only for AC election panels
     });
   }, [getShareableUrl, currentState, currentView, currentPC, pcSelectedYear]);
 

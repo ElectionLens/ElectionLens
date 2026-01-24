@@ -116,11 +116,56 @@ export function ElectionResultPanel({
   boothResults,
   boothsWithResults = [],
 }: ElectionResultPanelProps): JSX.Element {
-  const [activeTab, setActiveTab] = useState<TabType>('overview');
+  // Read tab from URL on mount
+  const getTabFromUrl = useCallback((): TabType => {
+    if (typeof window === 'undefined') return 'overview';
+    const searchParams = new URLSearchParams(window.location.search);
+    const tabParam = searchParams.get('tab');
+    const validTabs: TabType[] = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+    if (tabParam && validTabs.includes(tabParam as TabType)) {
+      return tabParam as TabType;
+    }
+    return 'overview';
+  }, []);
+
+  const [activeTab, setActiveTab] = useState<TabType>(getTabFromUrl);
   const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
 
   // Check if booth data is available
   const hasBoothData = boothsWithResults.length > 0 && boothResults !== null;
+
+  // Update URL when tab changes
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const searchParams = new URLSearchParams(window.location.search);
+
+    // Only update tab param if it's different from current
+    const currentTab = searchParams.get('tab');
+    if (currentTab !== activeTab) {
+      if (activeTab === 'overview') {
+        // Remove tab param for overview (default)
+        searchParams.delete('tab');
+      } else {
+        searchParams.set('tab', activeTab);
+      }
+
+      const newUrl = searchParams.toString()
+        ? `${window.location.pathname}?${searchParams.toString()}`
+        : window.location.pathname;
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, [activeTab]);
+
+  // Read tab from URL when URL changes (e.g., browser back/forward)
+  useEffect(() => {
+    const handlePopState = (): void => {
+      const tabFromUrl = getTabFromUrl();
+      setActiveTab(tabFromUrl);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [getTabFromUrl]);
 
   // Reset to overview tab if booth data becomes unavailable while on booths/postal/analysis tab
   useEffect(() => {
@@ -176,6 +221,22 @@ export function ElectionResultPanel({
   const currentPCContribution = selectedPCYear ? parliamentContributions[selectedPCYear] : null;
   const pcWinner = currentPCContribution?.candidates[0];
 
+  // Generate share URL with current tab
+  const shareUrlWithTab = useMemo(() => {
+    if (!shareUrl) return undefined;
+    if (activeTab === 'overview') return shareUrl; // Default tab, no need to add param
+
+    try {
+      const url = new URL(shareUrl, window.location.origin);
+      url.searchParams.set('tab', activeTab);
+      return url.toString();
+    } catch {
+      // If shareUrl is relative, append tab param
+      const separator = shareUrl.includes('?') ? '&' : '?';
+      return `${shareUrl}${separator}tab=${activeTab}`;
+    }
+  }, [shareUrl, activeTab]);
+
   // Derive constituency type from name if not provided
   const constituencyType =
     result.constituencyType ??
@@ -194,16 +255,16 @@ export function ElectionResultPanel({
   ].sort((a, b) => a.year - b.year);
 
   const handleCopyLink = useCallback(async () => {
-    const url = shareUrl ?? window.location.href;
+    const urlToShare = shareUrlWithTab ?? shareUrl ?? window.location.href;
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(urlToShare);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
       trackShare('copy_link', 'assembly');
     } catch (err) {
       console.error('Failed to copy:', err);
     }
-  }, [shareUrl]);
+  }, [shareUrlWithTab, shareUrl]);
 
   const handleCopyPCLink = useCallback(async () => {
     if (!pcContributionShareUrl) return;
@@ -219,11 +280,11 @@ export function ElectionResultPanel({
 
   const handleShareToX = useCallback(() => {
     const text = generateShareText(result, stateName, true);
-    const url = shareUrl ?? window.location.href;
+    const url = shareUrlWithTab ?? shareUrl ?? window.location.href;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     window.open(twitterUrl, '_blank', 'width=550,height=420');
     trackShare('twitter', 'assembly');
-  }, [result, shareUrl, stateName]);
+  }, [result, shareUrlWithTab, shareUrl, stateName]);
 
   return (
     <div className={`election-panel ${isMobilePortrait ? `panel-${panelState}` : ''}`}>

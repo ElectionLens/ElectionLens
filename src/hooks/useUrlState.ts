@@ -10,6 +10,7 @@ export interface UrlState {
   assembly: string | null;
   year: number | null;
   pcYear: number | null; // Parliament year for AC view (from year=pc-YYYY format)
+  tab: string | null; // Active tab in election panel: 'overview', 'candidates', 'booths', 'postal', 'analysis'
 }
 
 /** Hook return type */
@@ -99,6 +100,7 @@ export function useUrlState(
       assembly: null,
       year: null,
       pcYear: null,
+      tab: null,
     };
 
     // Parse year from query params
@@ -117,6 +119,16 @@ export function useUrlState(
         if (!isNaN(parsed)) {
           result.year = parsed;
         }
+      }
+    }
+
+    // Parse tab from query params
+    // Format: tab=overview, tab=candidates, tab=booths, tab=postal, tab=analysis
+    const tabParam = searchParams.get('tab');
+    if (tabParam) {
+      const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+      if (validTabs.includes(tabParam)) {
+        result.tab = tabParam;
       }
     }
 
@@ -199,21 +211,29 @@ export function useUrlState(
       }
     }
 
-    // Add query params for year
+    // Add query params for year and tab
     // - For AC view with pcYear: year=pc-YYYY (parliament contribution)
     // - For AC view with year: year=YYYY (assembly year)
     // - For PC view with year: year=YYYY (parliament year)
-    let fullPath = path;
+    // - Tab: tab=overview|candidates|booths|postal|analysis
+    const params = new URLSearchParams();
+
     if (state.assembly) {
       if (state.pcYear) {
-        fullPath = `${path}?year=pc-${state.pcYear}`;
+        params.set('year', `pc-${state.pcYear}`);
       } else if (state.year) {
-        fullPath = `${path}?year=${state.year}`;
+        params.set('year', String(state.year));
       }
     } else if (state.pc && state.year) {
       // PC view - year is parliament year
-      fullPath = `${path}?year=${state.year}`;
+      params.set('year', String(state.year));
     }
+
+    if (state.tab) {
+      params.set('tab', state.tab);
+    }
+
+    const fullPath = params.toString() ? `${path}?${params.toString()}` : path;
 
     // Only update if path changed
     if (fullPath !== lastUrl.current) {
@@ -252,19 +272,30 @@ export function useUrlState(
       }
     }
 
-    // Add query params for year
+    // Add query params for year and tab
     // - For AC view with pcYear: year=pc-YYYY (parliament contribution)
     // - For AC view with year: year=YYYY (assembly year)
     // - For PC view with year: year=YYYY (parliament year)
+    // - Tab: tab=overview|candidates|booths|postal|analysis
+    const params = new URLSearchParams();
+
     if (state.assembly) {
       if (state.pcYear) {
-        path = `${path}?year=pc-${state.pcYear}`;
+        params.set('year', `pc-${state.pcYear}`);
       } else if (state.year) {
-        path = `${path}?year=${state.year}`;
+        params.set('year', String(state.year));
       }
     } else if (state.pc && state.year) {
       // PC view - year is parliament year
-      path = `${path}?year=${state.year}`;
+      params.set('year', String(state.year));
+    }
+
+    if (state.tab) {
+      params.set('tab', state.tab);
+    }
+
+    if (params.toString()) {
+      path = `${path}?${params.toString()}`;
     }
 
     return `${base}${path}`;
@@ -309,6 +340,7 @@ export function useUrlState(
         assembly: currentAssembly,
         year: selectedYear,
         pcYear: selectedPCYear,
+        tab: null, // Tab is managed in ElectionResultPanel component
       });
     }
   }, [
