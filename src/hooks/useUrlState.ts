@@ -225,6 +225,9 @@ export function useUrlState(
         }
       } else if (state.view === 'districts') {
         path += '/districts';
+      } else if (state.view === 'constituencies') {
+        // Always include /pc for constituencies view (state-level)
+        path += '/pc';
       }
     }
 
@@ -293,6 +296,9 @@ export function useUrlState(
         }
       } else if (state.view === 'districts') {
         path += '/districts';
+      } else if (state.view === 'constituencies') {
+        // Always include /pc for constituencies view (state-level)
+        path += '/pc';
       }
     }
 
