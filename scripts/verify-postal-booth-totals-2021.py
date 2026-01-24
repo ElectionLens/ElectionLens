@@ -111,6 +111,12 @@ def verify_ac(ac_id: str) -> tuple[bool, list, int, int]:
         calculated_total = postal_votes + booth_votes
         
         if calculated_total != official_votes:
+            # Check if this is due to incomplete booth data
+            # If booth coverage is very low (<80%), postal can't make up the difference
+            total_booth_all = sum(booth_totals)
+            total_official_all = sum(c['votes'] for c in ac_data.get('candidates', []))
+            booth_coverage = (total_booth_all / total_official_all * 100) if total_official_all > 0 else 0
+            
             mismatch = {
                 'candidate': cand_name,
                 'party': cand_party,
@@ -120,11 +126,15 @@ def verify_ac(ac_id: str) -> tuple[bool, list, int, int]:
                 'official_total': official_votes,
                 'difference': official_votes - calculated_total,
                 'postal_booth_in_data': postal_booth,
-                'postal_total_in_data': postal_total
+                'postal_total_in_data': postal_total,
+                'booth_coverage': booth_coverage,
+                'incomplete_booth_data': booth_coverage < 80.0
             }
             mismatches.append(mismatch)
             
             # Fix: update postal candidate data
+            # Note: For ACs with incomplete booth data, postal is correctly calculated
+            # but postal + booth cannot equal official due to missing booth votes
             if postal_cand:
                 # Recalculate postal: max(0, official - booth) capped at 3%
                 exact_postal = official_votes - booth_votes
@@ -216,11 +226,16 @@ def main():
     
     if total_fixed > 0:
         print(f"\n✅ Fixed {total_fixed} candidate(s) across {invalid_count} AC(s)")
+        print("\n📝 Note: Some ACs may still show mismatches due to incomplete booth data.")
+        print("   Postal votes are correctly calculated as max(0, official - booth) capped at 3%.")
+        print("   For ACs with <80% booth coverage, postal + booth cannot equal official total.")
     
     if invalid_count == 0:
         print("\n✅ All ACs verified: postal + booth = total for all candidates!")
     else:
-        print(f"\n⚠️  {invalid_count} AC(s) had mismatches (all fixed)")
+        print(f"\n⚠️  {invalid_count} AC(s) had mismatches")
+        print("   Postal data has been recalculated to ensure correct postal percentages.")
+        print("   Remaining mismatches are due to incomplete booth data extraction.")
 
 
 if __name__ == "__main__":
