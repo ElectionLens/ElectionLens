@@ -876,15 +876,44 @@ function App(): JSX.Element {
       selectAssembly(acName);
       clearPCElectionResult(); // Close PC panel to show AC panel
       setParliamentContributions({}); // Clear previous contributions
-      setSelectedACPCYear(null); // Reset PC year selection
 
-      // Load election results for this AC - always show latest year
+      // Preserve year parameters from URL when switching assemblies
+      // Read current year from URL to preserve it
+      const urlParams = new URLSearchParams(window.location.search);
+      const yearParam = urlParams.get('year');
+      let yearToUse: number | undefined = undefined;
+      let pcYearToPreserve: number | null = null;
+
+      if (yearParam) {
+        if (yearParam.startsWith('pc-')) {
+          // Parliament contribution year: year=pc-2024
+          const parsed = parseInt(yearParam.slice(3), 10);
+          if (!isNaN(parsed)) {
+            pcYearToPreserve = parsed;
+            // Keep selectedACPCYear set to preserve it
+            setSelectedACPCYear(parsed);
+          }
+        } else {
+          // Regular year
+          const parsed = parseInt(yearParam, 10);
+          if (!isNaN(parsed)) {
+            yearToUse = parsed;
+          }
+        }
+      }
+
+      // If no year in URL, preserve current selectedYear if it exists
+      if (yearToUse === undefined && selectedYear !== null) {
+        yearToUse = selectedYear;
+      }
+
+      // Load election results for this AC - preserve year if available
       if (currentState) {
         // Try to use schema for direct lookup (avoids fuzzy matching)
         const schemaId = feature.properties.schemaId;
         const schemaAC = schemaId ? getAC(schemaId) : null;
 
-        await getACResult(acName, currentState, undefined, {
+        await getACResult(acName, currentState, yearToUse, {
           schemaId,
           canonicalName: schemaAC?.name,
         });
@@ -907,6 +936,7 @@ function App(): JSX.Element {
       getAC,
       clearPCElectionResult,
       loadAllParliamentContributions,
+      selectedYear,
     ]
   );
 
