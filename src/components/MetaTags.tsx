@@ -31,8 +31,8 @@ export function MetaTags({
     const currentUrl = url ?? (typeof window !== 'undefined' ? window.location.href : BASE_URL);
     // Add cache-busting parameter to image URL to force refresh
     const imageWithCacheBust = image.startsWith('http')
-      ? `${image}?v=1`
-      : `${BASE_URL}${image}?v=1`;
+      ? `${image}?v=2`
+      : `${BASE_URL}${image}?v=2`;
     const fullImageUrl = imageWithCacheBust;
 
     // Update or create meta tags
