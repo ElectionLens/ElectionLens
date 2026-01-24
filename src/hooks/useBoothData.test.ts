@@ -109,7 +109,7 @@ describe('useBoothData', () => {
       const { result } = renderHook(() => useBoothData());
 
       await act(async () => {
-        await result.current.loadBoothData('TN', 'TN-999');
+        await result.current.loadBoothData('TN', 'TN-999', 2021);
       });
 
       expect(result.current.boothList).toBeNull();

@@ -87,7 +87,7 @@ interface UseBoothDataReturn {
   availableYears: number[];
   loading: boolean;
   error: string | null;
-  loadBoothData: (stateId: string, acId: string) => Promise<void>;
+  loadBoothData: (stateId: string, acId: string, year?: number) => Promise<void>;
   loadBoothResults: (stateId: string, acId: string, year: number) => Promise<void>;
 }
 
@@ -102,16 +102,26 @@ export function useBoothData(): UseBoothDataReturn {
   const [error, setError] = useState<string | null>(null);
 
   /**
-   * Load booth list for an AC
+   * Load booth list for an AC (year-specific if available, otherwise fallback to generic)
    */
-  const loadBoothData = useCallback(async (stateId: string, acId: string) => {
+  const loadBoothData = useCallback(async (stateId: string, acId: string, year?: number) => {
     setLoading(true);
     setError(null);
 
     try {
-      // Load booth list
-      const boothPath = `/data/booths/${stateId}/${acId}/booths.json`;
-      const response = await fetch(boothPath);
+      // Try year-specific booth list first, then fallback to generic
+      let boothPath = `/data/booths/${stateId}/${acId}/booths.json`;
+      let response = await fetch(boothPath);
+
+      // If year is provided, try year-specific file first
+      if (year) {
+        const yearSpecificPath = `/data/booths/${stateId}/${acId}/booths-${year}.json`;
+        const yearResponse = await fetch(yearSpecificPath);
+        if (yearResponse.ok) {
+          boothPath = yearSpecificPath;
+          response = yearResponse;
+        }
+      }
 
       if (!response.ok) {
         throw new Error(`Booth data not available for ${acId}`);

@@ -572,9 +572,11 @@ export function MapView({
   // Load booth data when a Tamil Nadu AC is selected (only if booth data is enabled for this PC)
   useEffect(() => {
     if (electionResult?.schemaId?.startsWith('TN-') && boothDataEnabled) {
-      void loadBoothData('TN', electionResult.schemaId);
+      // Use PC year if selected, otherwise use Assembly year for booth list
+      const yearToLoad = selectedACPCYear ?? selectedYear;
+      void loadBoothData('TN', electionResult.schemaId, yearToLoad ?? undefined);
     }
-  }, [electionResult?.schemaId, boothDataEnabled, loadBoothData]);
+  }, [electionResult?.schemaId, boothDataEnabled, loadBoothData, selectedYear, selectedACPCYear]);
 
   // Load booth results when year changes (uses top panel year selector - either Assembly or PC year)
   useEffect(() => {
