@@ -3,6 +3,7 @@ import { Menu, X } from 'lucide-react';
 import { Sidebar } from './components/Sidebar';
 import { MapView } from './components/MapView';
 import { BlogSection } from './components/BlogSection';
+import { MetaTags } from './components/MetaTags';
 import { useElectionData } from './hooks/useElectionData';
 import { useElectionResults } from './hooks/useElectionResults';
 import { useParliamentResults } from './hooks/useParliamentResults';
@@ -1422,6 +1423,34 @@ function App(): JSX.Element {
           onPCYearChange={handlePCYearChange}
         />
       </div>
+
+      {/* Dynamic Meta Tags for Social Media */}
+      <MetaTags
+        title={
+          blogOpen
+            ? 'NDA Alliance for 2026: Constituencies That Will Flip with AMMK | Election Lens'
+            : electionResult
+              ? `${electionResult.constituencyNameOriginal || electionResult.name} (${electionResult.year}) | Election Lens`
+              : pcElectionResult
+                ? `${pcElectionResult.constituencyNameOriginal || pcElectionResult.name} (${pcElectionResult.year}) | Election Lens`
+                : currentState
+                  ? `${currentState} Election Results | Election Lens`
+                  : 'Election Lens - India Electoral Map & Results'
+        }
+        description={
+          blogOpen
+            ? 'Analysis of how the NDA alliance (ADMK + BJP + PMK + AMMK) will impact Tamil Nadu assembly constituencies based on 2021 election data. Interactive analysis with booth-wise breakdowns.'
+            : electionResult
+              ? `${electionResult.constituencyNameOriginal || electionResult.name} ${electionResult.year} election results. Winner: ${electionResult.candidates[0]?.name || 'N/A'} (${electionResult.candidates[0]?.party || 'N/A'}) with ${electionResult.candidates[0]?.voteShare?.toFixed(1) || '0'}% vote share. View detailed booth-wise results, postal votes, and analysis.`
+              : pcElectionResult
+                ? `${pcElectionResult.constituencyNameOriginal || pcElectionResult.name} ${pcElectionResult.year} parliamentary election results. View detailed constituency-wise breakdown and analysis.`
+                : currentState
+                  ? `Explore ${currentState} election results with detailed Assembly and Parliamentary constituency data. Historical election results, vote shares, margins, and turnout.`
+                  : 'Interactive map with detailed Assembly and Parliament election results. Historical data, vote shares, margins and turnout for every constituency.'
+        }
+        url={typeof window !== 'undefined' ? window.location.href : undefined}
+        type={blogOpen ? 'article' : 'website'}
+      />
 
       {/* Blog Section */}
       <BlogSection
