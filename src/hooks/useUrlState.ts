@@ -363,6 +363,14 @@ export function useUrlState(
   useEffect(() => {
     // Don't update URL during initial mount or while processing URL-based navigation
     if (!isInitialMount.current && !isProcessingUrlNavigation.current) {
+      // Preserve tab from current URL when updating
+      const currentTab =
+        typeof window !== 'undefined'
+          ? new URLSearchParams(window.location.search).get('tab')
+          : null;
+      const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+      const preservedTab = currentTab && validTabs.includes(currentTab) ? currentTab : null;
+
       updateUrl({
         state: currentState,
         view: currentView,
@@ -371,7 +379,7 @@ export function useUrlState(
         assembly: currentAssembly,
         year: selectedYear,
         pcYear: selectedPCYear,
-        tab: null, // Tab is managed in ElectionResultPanel component
+        tab: preservedTab, // Preserve tab from current URL
         blog: false, // Blog is managed in App component
         blogPost: null,
       });

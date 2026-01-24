@@ -877,10 +877,11 @@ function App(): JSX.Element {
       clearPCElectionResult(); // Close PC panel to show AC panel
       setParliamentContributions({}); // Clear previous contributions
 
-      // Preserve year parameters from URL when switching assemblies
-      // Read current year from URL to preserve it
+      // Preserve year and tab parameters from URL when switching assemblies
+      // Read current parameters from URL to preserve them
       const urlParams = new URLSearchParams(window.location.search);
       const yearParam = urlParams.get('year');
+      const tabParam = urlParams.get('tab');
       let yearToUse: number | undefined = undefined;
 
       if (yearParam) {
@@ -921,6 +922,9 @@ function App(): JSX.Element {
         if (pcName) {
           await loadAllParliamentContributions(acName, pcName, currentState);
         }
+
+        // Tab parameter will be preserved automatically by useUrlState's updateUrl
+        // which reads it from the current URL when updating
 
         // Track analytics
         trackConstituencySelect('assembly', acName, currentState);
