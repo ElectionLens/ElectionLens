@@ -234,18 +234,26 @@ export function useUrlState(
     // Add query params for year and tab
     // - For AC view with pcYear: year=pc-YYYY (parliament contribution)
     // - For AC view with year: year=YYYY (assembly year)
-    // - For PC view with year: year=YYYY (parliament year)
+    // - For PC view (specific PC or state-level) with year: year=YYYY (parliament year)
+    // - For AC view (state-level) with year: year=YYYY (assembly year)
     // - Tab: tab=overview|candidates|booths|postal|analysis
     const params = new URLSearchParams();
 
     if (state.assembly) {
+      // Specific AC selected
       if (state.pcYear) {
         params.set('year', `pc-${state.pcYear}`);
       } else if (state.year) {
         params.set('year', String(state.year));
       }
     } else if (state.pc && state.year) {
-      // PC view - year is parliament year
+      // Specific PC selected - year is parliament year
+      params.set('year', String(state.year));
+    } else if (state.view === 'constituencies' && state.year) {
+      // State-level PC view - year is parliament year
+      params.set('year', String(state.year));
+    } else if (state.view === 'assemblies' && state.year) {
+      // State-level AC view - year is assembly year
       params.set('year', String(state.year));
     }
 
