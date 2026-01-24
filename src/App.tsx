@@ -877,11 +877,10 @@ function App(): JSX.Element {
       clearPCElectionResult(); // Close PC panel to show AC panel
       setParliamentContributions({}); // Clear previous contributions
 
-      // Preserve year and tab parameters from URL when switching assemblies
-      // Read current parameters from URL to preserve them
+      // Preserve year parameters from URL when switching assemblies
+      // Tab parameter is automatically preserved by useUrlState's updateUrl
       const urlParams = new URLSearchParams(window.location.search);
       const yearParam = urlParams.get('year');
-      const tabParam = urlParams.get('tab');
       let yearToUse: number | undefined = undefined;
 
       if (yearParam) {
