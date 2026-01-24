@@ -563,14 +563,11 @@ export function MapView({
   // because booth data is assembly-level, not PC-level
   const acEntity = electionResult?.schemaId ? getAC(electionResult.schemaId) : null;
   // For booth data, always use assembly year (selectedYear), not PC contribution year
+  // If selectedYear is null (when viewing PC contribution), use the election result's year
   // Booth data is assembly-level, so it should match the assembly election year
-  const boothDataYear = selectedYear; // Use assembly year, not PC contribution year
+  const boothDataYear = selectedYear ?? electionResult?.year ?? undefined;
   const boothDataEnabled = acEntity
-    ? isBoothDataAvailable(
-        electionResult?.schemaId ?? '',
-        acEntity.pcId,
-        boothDataYear ?? undefined
-      )
+    ? isBoothDataAvailable(electionResult?.schemaId ?? '', acEntity.pcId, boothDataYear)
     : false;
 
   // Load booth data when a Tamil Nadu AC is selected (only if booth data is enabled for this PC)
@@ -611,19 +608,31 @@ export function MapView({
   useEffect(() => {
     if (electionResult?.schemaId?.startsWith('TN-') && boothDataEnabled) {
       // Always use assembly year for booth results (booth data is assembly-level)
-      // Even when viewing PC contribution, booth data should match the assembly election
-      const yearToLoad = selectedYear; // Use assembly year, not PC contribution year
+      // If selectedYear is null, use the election result's year as fallback
+      const yearToLoad = selectedYear ?? electionResult?.year;
       if (yearToLoad) {
         console.log('[MapView] Loading booth results:', {
           schemaId: electionResult.schemaId,
           yearToLoad,
           selectedACPCYear,
           selectedYear,
+          electionResultYear: electionResult?.year,
         });
         void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
+      } else {
+        console.warn('[MapView] No year available for booth results:', {
+          selectedYear,
+          electionResultYear: electionResult?.year,
+        });
       }
     }
-  }, [electionResult?.schemaId, selectedYear, boothDataEnabled, loadBoothResults]);
+  }, [
+    electionResult?.schemaId,
+    electionResult?.year,
+    selectedYear,
+    boothDataEnabled,
+    loadBoothResults,
+  ]);
 
   // Listen for layer change events from toolbar
   useEffect(() => {
