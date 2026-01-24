@@ -9,6 +9,7 @@ import {
   Clock,
   ChevronLeft,
   ChevronRight,
+  BookOpen,
 } from 'lucide-react';
 import { normalizeName, getFeatureColor } from '../utils/helpers';
 import { SearchBox } from './SearchBox';
@@ -70,6 +71,7 @@ interface SidebarProps {
   onClose: () => void;
   isCollapsed?: boolean;
   onToggleCollapse?: () => void;
+  onBlogClick?: () => void;
 }
 
 /** Extended CSS properties to allow custom CSS variables */
@@ -108,6 +110,7 @@ export function Sidebar({
   onClose,
   isCollapsed = false,
   onToggleCollapse,
+  onBlogClick,
 }: SidebarProps): JSX.Element {
   const [copied, setCopied] = useState(false);
   const displayState = currentState ? normalizeName(currentState) : null;
@@ -566,7 +569,17 @@ export function Sidebar({
             />
             {!isCollapsed && 'Election Lens'}
           </h1>
-          {!isCollapsed && <p>India Electoral Map</p>}
+          {!isCollapsed && (
+            <div className="sidebar-header-actions">
+              <p>India Electoral Map</p>
+              {onBlogClick && (
+                <button className="blog-btn" onClick={onBlogClick} title="View Blog">
+                  <BookOpen size={16} />
+                  <span>Blog</span>
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Collapsible content - hidden when sidebar is collapsed */}

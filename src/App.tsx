@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useMemo } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Sidebar } from './components/Sidebar';
 import { MapView } from './components/MapView';
+import { BlogSection } from './components/BlogSection';
 import { useElectionData } from './hooks/useElectionData';
 import { useElectionResults } from './hooks/useElectionResults';
 import { useParliamentResults } from './hooks/useParliamentResults';
@@ -229,6 +230,9 @@ function App(): JSX.Element {
   // Desktop sidebar collapsed state
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
 
+  // Blog section state
+  const [blogOpen, setBlogOpen] = useState<boolean>(false);
+
   // Current displayed data
   const [currentData, setCurrentData] = useState<GeoJSONData | null>(null);
 
@@ -283,11 +287,11 @@ function App(): JSX.Element {
    * Auto-collapse sidebar on desktop when election panel opens
    */
   useEffect(() => {
-    const hasPanelOpen = !!electionResult || !!pcElectionResult;
+    const hasPanelOpen = !!electionResult || !!pcElectionResult || blogOpen;
     if (hasPanelOpen && window.innerWidth > 768) {
       setSidebarCollapsed(true);
     }
-  }, [electionResult, pcElectionResult]);
+  }, [electionResult, pcElectionResult, blogOpen]);
 
   /**
    * Close sidebar on mobile after action
@@ -1139,7 +1143,27 @@ function App(): JSX.Element {
     clearPCElectionResult();
     setSelectedACPCYear(null);
     setCurrentData(null);
+    setBlogOpen(false);
   }, [resetView, selectAssembly, clearElectionResult, clearPCElectionResult]);
+
+  /**
+   * Handle blog toggle
+   */
+  const handleBlogToggle = useCallback((): void => {
+    setBlogOpen((prev) => !prev);
+    if (!blogOpen) {
+      // Close election panels when opening blog
+      clearElectionResult();
+      clearPCElectionResult();
+    }
+  }, [blogOpen, clearElectionResult, clearPCElectionResult]);
+
+  /**
+   * Handle blog close
+   */
+  const handleBlogClose = useCallback((): void => {
+    setBlogOpen(false);
+  }, []);
 
   /**
    * Handle go back to state from PC/district
@@ -1245,6 +1269,7 @@ function App(): JSX.Element {
           onClose={closeSidebar}
           isCollapsed={sidebarCollapsed}
           onToggleCollapse={toggleSidebarCollapsed}
+          onBlogClick={handleBlogToggle}
         />
 
         <MapView
@@ -1283,6 +1308,22 @@ function App(): JSX.Element {
           onPCYearChange={handlePCYearChange}
         />
       </div>
+
+      {/* Blog Section */}
+      <BlogSection
+        isOpen={blogOpen}
+        onClose={handleBlogClose}
+        onAssemblyClick={handleAssemblyClick}
+        onNavigateToState={async (stateName: string) => {
+          const data = await navigateToState(stateName);
+          setCurrentData(data);
+          // Switch to assemblies view for Tamil Nadu
+          if (stateName === 'Tamil Nadu') {
+            const assembliesData = await navigateToAssemblies(stateName);
+            setCurrentData(assembliesData);
+          }
+        }}
+      />
 
       {/* Loading overlay */}
       {loading && (
