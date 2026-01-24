@@ -112,8 +112,10 @@ def fix_ac(ac_id: str, pc_data: dict, schema: dict, dry_run: bool = False) -> di
         if pos < len(extracted_totals):
             error = abs(extracted_totals[pos] - target) / target * 100 if target > 0 else 0
             errors_before.append(error)
+        else:
+            errors_before.append(100.0)  # Missing position is 100% error
     
-    avg_error_before = sum(errors_before) / len(errors_before) if errors_before else 0
+    avg_error_before = sum(errors_before) / len(errors_before) if errors_before else 100.0
     
     # Check NTK wins before
     ntk_idx = None
