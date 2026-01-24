@@ -7761,105 +7761,126 @@
       {
         "name": "ESWARASAMY K",
         "party": "DMK",
-        "postal": 439166,
-        "booth": 91576,
-        "total": 530742
+        "postal": 0,
+        "booth": 92227,
+        "total": 91576
       },
       {
         "name": "KARTHIKEYAN A",
         "party": "ADMK",
-        "postal": 188654,
-        "booth": 91576,
-        "total": 280230
+        "postal": 0,
+        "booth": 46570,
+        "total": 46301
       },
       {
         "name": "VASANTHARAJAN K",
         "party": "BJP",
-        "postal": 176056,
-        "booth": 45889,
-        "total": 221945
+        "postal": 0,
+        "booth": 20573,
+        "total": 20481
       },
       {
         "name": "SURESHKUMAR N",
         "party": "NTK",
-        "postal": 57147,
-        "booth": 815,
-        "total": 57962
+        "postal": 0,
+        "booth": 8666,
+        "total": 8666
       },
       {
         "name": "PRAKASH P",
         "party": "IND",
         "postal": 0,
-        "booth": 19977,
-        "total": 2834
+        "booth": 416,
+        "total": 416
       },
       {
         "name": "BENJAMINKIRUBAKARAN J",
         "party": "BSP",
-        "postal": 1906,
-        "booth": 361,
-        "total": 2267
+        "postal": 0,
+        "booth": 415,
+        "total": 415
       },
       {
         "name": "VASANTHAKUMAR T",
         "party": "IND",
         "postal": 0,
-        "booth": 8465,
-        "total": 2186
+        "booth": 367,
+        "total": 367
       },
       {
         "name": "RAMASAMY K",
         "party": "IND",
-        "postal": 1501,
-        "booth": 315,
-        "total": 1816
+        "postal": 0,
+        "booth": 294,
+        "total": 294
       },
       {
         "name": "ESWARASAMY K",
         "party": "IND",
-        "postal": 1702,
-        "booth": 73,
-        "total": 1775
+        "postal": 0,
+        "booth": 325,
+        "total": 325
       },
       {
         "name": "GOPALAKRISHNAN M",
         "party": "NGPP",
-        "postal": 1025,
-        "booth": 102,
-        "total": 1127
+        "postal": 0,
+        "booth": 166,
+        "total": 166
       },
       {
         "name": "KARTHIKEYAN D",
         "party": "IND",
-        "postal": 953,
-        "booth": 80,
-        "total": 1033
+        "postal": 0,
+        "booth": 71,
+        "total": 71
       },
       {
         "name": "KALIMUTHU S",
         "party": "IND",
-        "postal": 871,
-        "booth": 105,
-        "total": 976
+        "postal": 0,
+        "booth": 106,
+        "total": 106
       },
       {
         "name": "NOOR MUHAMAD A",
         "party": "IND",
-        "postal": 483,
-        "booth": 116,
-        "total": 599
+        "postal": 0,
+        "booth": 105,
+        "total": 105
       },
       {
         "name": "KARTHIKEYAN P",
         "party": "IND",
-        "postal": 142,
-        "booth": 406,
-        "total": 548
+        "postal": 0,
+        "booth": 85,
+        "total": 85
       }
     ],
-    "totalValid": 1106040,
+    "totalValid": 169374,
     "rejected": 0,
     "nota": 0,
-    "total": 1106040
+    "total": 169374
+  },
+  "acId": "TN-126",
+  "acName": "MADATHUKULAM",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 1106040,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "ESWARASAMY K",
+      "party": "DMK",
+      "votes": 530742
+    },
+    "runnerUp": {
+      "name": "KARTHIKEYAN A",
+      "party": "ADMK",
+      "votes": 280230
+    },
+    "margin": 250512,
+    "marginPercent": 22.649452099381577
   }
 }

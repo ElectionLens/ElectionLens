@@ -5588,112 +5588,133 @@
       {
         "name": "DR RANI SRIKUMAR",
         "party": "DMK",
-        "postal": 385113,
-        "booth": 37912,
-        "total": 423025
+        "postal": 0,
+        "booth": 60632,
+        "total": 60632
       },
       {
         "name": "DR K KRISHNASAMY",
         "party": "ADMK",
-        "postal": 225863,
-        "booth": 2427,
-        "total": 228290
+        "postal": 0,
+        "booth": 38000,
+        "total": 38000
       },
       {
         "name": "B JOHN PANDIAN",
         "party": "BJP",
-        "postal": 148246,
-        "booth": 58736,
-        "total": 206982
+        "postal": 0,
+        "booth": 25798,
+        "total": 25798
       },
       {
         "name": "ESAI MATHIVANAN",
         "party": "NTK",
-        "postal": 103911,
-        "booth": 24839,
-        "total": 128750
+        "postal": 0,
+        "booth": 25013,
+        "total": 25013
       },
       {
         "name": "KARPAGAVALLI P",
         "party": "IND",
-        "postal": 5705,
-        "booth": 495,
-        "total": 6200
+        "postal": 0,
+        "booth": 1394,
+        "total": 1394
       },
       {
         "name": "T MAHESHKUMAR",
         "party": "BSP",
-        "postal": 3129,
-        "booth": 397,
-        "total": 3526
+        "postal": 0,
+        "booth": 511,
+        "total": 511
       },
       {
         "name": "RAMASAMY P",
         "party": "VKVIP",
-        "postal": 2680,
-        "booth": 715,
-        "total": 3395
+        "postal": 0,
+        "booth": 486,
+        "total": 486
       },
       {
         "name": "M MANMATHAN",
         "party": "IND",
         "postal": 0,
-        "booth": 24449,
-        "total": 3276
+        "booth": 399,
+        "total": 399
       },
       {
         "name": "A SEETHA",
         "party": "BHUDRP",
-        "postal": 2272,
-        "booth": 204,
-        "total": 2476
+        "postal": 0,
+        "booth": 287,
+        "total": 287
       },
       {
         "name": "M KRISHNASAMY",
         "party": "IND",
-        "postal": 1648,
-        "booth": 180,
-        "total": 1828
+        "postal": 0,
+        "booth": 194,
+        "total": 194
       },
       {
         "name": "M UMAMAHESWARI",
         "party": "DMSK",
-        "postal": 271,
-        "booth": 1355,
-        "total": 1626
+        "postal": 0,
+        "booth": 277,
+        "total": 277
       },
       {
         "name": "A MUTHAIAH",
         "party": "IND",
-        "postal": 1293,
-        "booth": 147,
-        "total": 1440
+        "postal": 0,
+        "booth": 221,
+        "total": 221
       },
       {
         "name": "P KRISHNASAMY",
         "party": "IND",
-        "postal": 1144,
-        "booth": 198,
-        "total": 1342
+        "postal": 0,
+        "booth": 139,
+        "total": 139
       },
       {
         "name": "M ARUMUGASAMY",
         "party": "IND",
-        "postal": 899,
-        "booth": 393,
-        "total": 1292
+        "postal": 0,
+        "booth": 181,
+        "total": 181
       },
       {
         "name": "R RAJASEKAR",
         "party": "IND",
-        "postal": 772,
-        "booth": 210,
-        "total": 982
+        "postal": 0,
+        "booth": 164,
+        "total": 164
       }
     ],
-    "totalValid": 1014430,
+    "totalValid": 153696,
     "rejected": 0,
     "nota": 0,
-    "total": 1014430
+    "total": 153696
+  },
+  "acId": "TN-202",
+  "acName": "RAJAPALAYAM",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 1014430,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "DR RANI SRIKUMAR",
+      "party": "DMK",
+      "votes": 423025
+    },
+    "runnerUp": {
+      "name": "DR K KRISHNASAMY",
+      "party": "ADMK",
+      "votes": 228290
+    },
+    "margin": 194735,
+    "marginPercent": 19.19649458316493
   }
 }

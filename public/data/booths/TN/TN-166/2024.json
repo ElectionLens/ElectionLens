@@ -4211,70 +4211,91 @@
       {
         "name": "SELVARAJ V",
         "party": "CPI",
-        "postal": 375118,
+        "postal": 0,
         "booth": 87641,
-        "total": 462759
+        "total": 0
       },
       {
         "name": "DR SURSITH SANKAR G",
         "party": "ADMK",
-        "postal": 254061,
-        "booth": 615,
-        "total": 254676
+        "postal": 0,
+        "booth": 36874,
+        "total": 0
       },
       {
         "name": "KARTHIKA M",
         "party": "NTK",
-        "postal": 43982,
-        "booth": 86864,
-        "total": 130846
+        "postal": 0,
+        "booth": 23868,
+        "total": 0
       },
       {
         "name": "RAMESHGOVIND S G M",
         "party": "BJP",
-        "postal": 77872,
-        "booth": 23663,
-        "total": 101535
+        "postal": 0,
+        "booth": 18247,
+        "total": 0
       },
       {
         "name": "VIJAYARAGAVAN N",
         "party": "IND",
-        "postal": 2725,
-        "booth": 347,
-        "total": 3072
+        "postal": 0,
+        "booth": 503,
+        "total": 0
       },
       {
         "name": "SUBRAMANIAN K",
         "party": "IND",
         "postal": 0,
-        "booth": 18179,
-        "total": 2434
+        "booth": 361,
+        "total": 0
       },
       {
         "name": "JAGADEESH J BE",
         "party": "BSP",
-        "postal": 1788,
-        "booth": 1,
-        "total": 1789
+        "postal": 0,
+        "booth": 280,
+        "total": 0
       },
       {
         "name": "BOOMINATHAN B",
         "party": "DMSK",
-        "postal": 1046,
-        "booth": 2,
-        "total": 1048
+        "postal": 0,
+        "booth": 189,
+        "total": 0
       },
       {
         "name": "PREM S",
         "party": "IND",
-        "postal": 1047,
-        "booth": 0,
-        "total": 1047
+        "postal": 0,
+        "booth": 196,
+        "total": 0
       }
     ],
-    "totalValid": 959206,
+    "totalValid": 0,
     "rejected": 0,
     "nota": 0,
-    "total": 959206
+    "total": 0
+  },
+  "acId": "TN-166",
+  "acName": "THIRUTHURAIPUNDI",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 959206,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "SELVARAJ V",
+      "party": "CPI",
+      "votes": 462759
+    },
+    "runnerUp": {
+      "name": "DR SURSITH SANKAR G",
+      "party": "ADMK",
+      "votes": 254676
+    },
+    "margin": 208083,
+    "marginPercent": 21.693254629349692
   }
 }

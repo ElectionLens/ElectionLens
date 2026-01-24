@@ -5995,105 +5995,126 @@
       {
         "name": "THIRUMAAVALAVAN THOL",
         "party": "VCK",
-        "postal": 423986,
-        "booth": 77865,
-        "total": 501851
+        "postal": 0,
+        "booth": 76486,
+        "total": 76486
       },
       {
         "name": "CHANDRAHASAN M",
         "party": "ADMK",
-        "postal": 398199,
-        "booth": 1303,
-        "total": 399502
+        "postal": 0,
+        "booth": 77875,
+        "total": 77865
       },
       {
         "name": "KARTHIYAYINI P",
         "party": "BJP",
-        "postal": 89049,
-        "booth": 77065,
-        "total": 166114
+        "postal": 0,
+        "booth": 32119,
+        "total": 32119
       },
       {
         "name": "JANCIRANI R",
         "party": "NTK",
-        "postal": 64315,
-        "booth": 801,
-        "total": 65116
+        "postal": 0,
+        "booth": 10953,
+        "total": 10953
       },
       {
         "name": "NEELAMEGAM K",
         "party": "BSP",
-        "postal": 2307,
-        "booth": 870,
-        "total": 3177
+        "postal": 0,
+        "booth": 594,
+        "total": 594
       },
       {
         "name": "TAMILVENDHAN P",
         "party": "IND",
-        "postal": 524,
-        "booth": 2519,
-        "total": 3043
+        "postal": 0,
+        "booth": 545,
+        "total": 543
       },
       {
         "name": "PERUMAL S",
         "party": "IND",
-        "postal": 98,
-        "booth": 2133,
-        "total": 2231
+        "postal": 0,
+        "booth": 354,
+        "total": 354
       },
       {
         "name": "VETTRIVEL G",
         "party": "IND",
         "postal": 0,
-        "booth": 73137,
-        "total": 2039
+        "booth": 391,
+        "total": 391
       },
       {
         "name": "ARCHUNAN M A T",
         "party": "IND",
         "postal": 0,
-        "booth": 10639,
-        "total": 1833
+        "booth": 310,
+        "total": 310
       },
       {
         "name": "DHAMODHARAN S",
         "party": "NADLMMKLK",
-        "postal": 1037,
-        "booth": 591,
-        "total": 1628
+        "postal": 0,
+        "booth": 304,
+        "total": 304
       },
       {
         "name": "RATHA G",
         "party": "IND",
-        "postal": 1253,
-        "booth": 20,
-        "total": 1273
+        "postal": 0,
+        "booth": 266,
+        "total": 265
       },
       {
         "name": "RAJAMANICKAM C",
         "party": "IND",
-        "postal": 1045,
-        "booth": 23,
-        "total": 1068
+        "postal": 0,
+        "booth": 188,
+        "total": 188
       },
       {
         "name": "CHINNADURAI A",
         "party": "IND",
-        "postal": 609,
-        "booth": 19,
-        "total": 628
+        "postal": 0,
+        "booth": 128,
+        "total": 128
       },
       {
         "name": "ELAVARASAN C",
         "party": "IND",
-        "postal": 579,
-        "booth": 5,
-        "total": 584
+        "postal": 0,
+        "booth": 104,
+        "total": 104
       }
     ],
-    "totalValid": 1150087,
+    "totalValid": 200604,
     "rejected": 0,
     "nota": 0,
-    "total": 1150087
+    "total": 200604
+  },
+  "acId": "TN-150",
+  "acName": "JAYANKONDAM",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 1150087,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "THIRUMAAVALAVAN THOL",
+      "party": "VCK",
+      "votes": 501851
+    },
+    "runnerUp": {
+      "name": "CHANDRAHASAN M",
+      "party": "ADMK",
+      "votes": 399502
+    },
+    "margin": 102349,
+    "marginPercent": 8.89923979664147
   }
 }

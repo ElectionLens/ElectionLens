@@ -574,9 +574,9 @@ export function MapView({
   // Try to load even if boothDataEnabled is false - let the availability check happen in ElectionResultPanel
   useEffect(() => {
     if (electionResult?.schemaId?.startsWith('TN-')) {
-      // Always use assembly year for booth data (booth data is assembly-level)
-      // If selectedYear is null, use the election result's year as fallback
-      const yearToLoad = selectedYear ?? electionResult?.year;
+      // When viewing PC contribution (selectedACPCYear), use that year for booth data
+      // Otherwise use selectedYear or election result's year
+      const yearToLoad = selectedACPCYear ?? selectedYear ?? electionResult?.year;
       if (yearToLoad) {
         void loadBoothData('TN', electionResult.schemaId, yearToLoad);
       }
@@ -592,13 +592,13 @@ export function MapView({
     boothDataEnabled,
   ]);
 
-  // Load booth results when year changes (always use assembly year for booth data)
+  // Load booth results when year changes
   // Try to load even if boothDataEnabled is false - let the availability check happen in ElectionResultPanel
   useEffect(() => {
     if (electionResult?.schemaId?.startsWith('TN-')) {
-      // Always use assembly year for booth results (booth data is assembly-level)
-      // If selectedYear is null, use the election result's year as fallback
-      const yearToLoad = selectedYear ?? electionResult?.year;
+      // When viewing PC contribution (selectedACPCYear), use that year for booth data
+      // Otherwise use selectedYear or election result's year
+      const yearToLoad = selectedACPCYear ?? selectedYear ?? electionResult?.year;
       if (yearToLoad) {
         void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
       }

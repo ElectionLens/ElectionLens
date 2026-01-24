@@ -8439,7 +8439,7 @@
         "name": "Sasikanth Senthil",
         "party": "INC",
         "postal": 0,
-        "booth": 156528,
+        "booth": 156535,
         "total": 156527
       },
       {
@@ -8489,7 +8489,7 @@
         "party": "IND",
         "postal": 0,
         "booth": 405,
-        "total": 192
+        "total": 405
       },
       {
         "name": "Devandhran, M.",
@@ -8503,28 +8503,28 @@
         "party": "IND",
         "postal": 0,
         "booth": 270,
-        "total": 192
+        "total": 270
       },
       {
         "name": "Balakrishnan, K.",
         "party": "IND",
         "postal": 0,
         "booth": 270,
-        "total": 192
+        "total": 270
       },
       {
         "name": "Bharathidasan, S.S.",
         "party": "IND",
         "postal": 0,
         "booth": 374,
-        "total": 192
+        "total": 374
       },
       {
         "name": "Shakthivel, A.J.",
         "party": "IND",
         "postal": 0,
-        "booth": 312,
-        "total": 192
+        "booth": 306,
+        "total": 306
       },
       {
         "name": "Sivasankaran, V.",
@@ -8534,9 +8534,27 @@
         "total": 192
       }
     ],
-    "totalValid": 273921,
+    "totalValid": 274586,
     "rejected": 0,
     "nota": 0,
-    "total": 273921
+    "total": 274586
+  },
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 273921,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "Sasikanth Senthil",
+      "party": "INC",
+      "votes": 156535
+    },
+    "runnerUp": {
+      "name": "Balaganapathy, V. Pon",
+      "party": "BJP",
+      "votes": 51034
+    },
+    "margin": 105501,
+    "marginPercent": 38.51511932272443
   }
 }

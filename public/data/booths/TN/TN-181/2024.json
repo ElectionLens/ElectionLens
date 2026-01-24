@@ -7209,147 +7209,168 @@
       {
         "name": "KARTI P CHIDAMBARAM",
         "party": "INC",
-        "postal": 360220,
+        "postal": 0,
         "booth": 65411,
-        "total": 425631
+        "total": 65411
       },
       {
         "name": "XAVIERDASS A",
         "party": "ADMK",
-        "postal": 182645,
-        "booth": 38610,
-        "total": 221255
+        "postal": 0,
+        "booth": 40167,
+        "total": 40167
       },
       {
         "name": "DHEVANATHAN YADAV T",
         "party": "BJP",
-        "postal": 170147,
-        "booth": 24412,
-        "total": 194559
+        "postal": 0,
+        "booth": 19624,
+        "total": 19624
       },
       {
         "name": "EZHILARASI",
         "party": "NTK",
-        "postal": 143929,
-        "booth": 18629,
-        "total": 162558
+        "postal": 0,
+        "booth": 22917,
+        "total": 22917
       },
       {
         "name": "DHANALAKSHMI M",
         "party": "IND",
         "postal": 0,
-        "booth": 9182,
-        "total": 8494
+        "booth": 997,
+        "total": 997
       },
       {
         "name": "GOVINDHARAJU M.G",
         "party": "IND",
         "postal": 0,
-        "booth": 12568,
-        "total": 4231
+        "booth": 683,
+        "total": 683
       },
       {
         "name": "NAGARAJAN KR",
         "party": "IND",
-        "postal": 3520,
-        "booth": 162,
-        "total": 3682
+        "postal": 0,
+        "booth": 692,
+        "total": 692
       },
       {
         "name": "PALANIYAPPAN R",
         "party": "IND",
-        "postal": 3257,
-        "booth": 169,
-        "total": 3426
+        "postal": 0,
+        "booth": 538,
+        "total": 538
       },
       {
         "name": "RANJITHKUMAR BALUSWAMY",
         "party": "BSP",
-        "postal": 3004,
-        "booth": 156,
-        "total": 3160
+        "postal": 0,
+        "booth": 338,
+        "total": 338
       },
       {
         "name": "BASKARAN S",
         "party": "IND",
-        "postal": 1975,
-        "booth": 216,
-        "total": 2191
+        "postal": 0,
+        "booth": 347,
+        "total": 347
       },
       {
         "name": "KALAISELVAM K",
         "party": "IND",
-        "postal": 1531,
-        "booth": 129,
-        "total": 1660
+        "postal": 0,
+        "booth": 203,
+        "total": 203
       },
       {
         "name": "MALAISAMY K",
         "party": "IND",
-        "postal": 589,
-        "booth": 935,
-        "total": 1524
+        "postal": 0,
+        "booth": 137,
+        "total": 137
       },
       {
         "name": "SEKAR A",
         "party": "IND",
-        "postal": 577,
-        "booth": 708,
-        "total": 1285
+        "postal": 0,
+        "booth": 199,
+        "total": 199
       },
       {
         "name": "SELVARAJ P",
         "party": "IND",
-        "postal": 478,
-        "booth": 630,
-        "total": 1108
+        "postal": 0,
+        "booth": 153,
+        "total": 153
       },
       {
         "name": "THILLAIVASAGAM M",
         "party": "VTIP",
-        "postal": 166,
-        "booth": 902,
-        "total": 1068
+        "postal": 0,
+        "booth": 163,
+        "total": 163
       },
       {
         "name": "ASHOK KUMAR K",
         "party": "IND",
-        "postal": 462,
-        "booth": 568,
-        "total": 1030
+        "postal": 0,
+        "booth": 127,
+        "total": 127
       },
       {
         "name": "KARTHICK C",
         "party": "IND",
         "postal": 0,
-        "booth": 1725,
-        "total": 975
+        "booth": 118,
+        "total": 118
       },
       {
         "name": "MUTHARASU PANDIYAN V",
         "party": "IND",
-        "postal": 535,
-        "booth": 289,
-        "total": 824
+        "postal": 0,
+        "booth": 68,
+        "total": 68
       },
       {
         "name": "KALAIRAJA B",
         "party": "IND",
-        "postal": 159,
-        "booth": 657,
-        "total": 816
+        "postal": 0,
+        "booth": 134,
+        "total": 134
       },
       {
         "name": "KARTHIKAIRAJAN P",
         "party": "IND",
         "postal": 0,
-        "booth": 1848,
-        "total": 762
+        "booth": 116,
+        "total": 116
       }
     ],
-    "totalValid": 1040239,
+    "totalValid": 153132,
     "rejected": 0,
     "nota": 0,
-    "total": 1040239
+    "total": 153132
+  },
+  "acId": "TN-181",
+  "acName": "THIRUMAYAM",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 1040239,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "KARTI P CHIDAMBARAM",
+      "party": "INC",
+      "votes": 425631
+    },
+    "runnerUp": {
+      "name": "XAVIERDASS A",
+      "party": "ADMK",
+      "votes": 221255
+    },
+    "margin": 204376,
+    "marginPercent": 19.647023424424578
   }
 }

@@ -5092,98 +5092,119 @@
       {
         "name": "SUBBARAYAN, K.",
         "party": "CPI",
-        "postal": 394758,
+        "postal": 0,
         "booth": 75437,
-        "total": 470195
+        "total": 75437
       },
       {
         "name": "ARUNACHALAM, P.",
         "party": "ADMK",
-        "postal": 283399,
+        "postal": 0,
         "booth": 61927,
-        "total": 345326
+        "total": 61927
       },
       {
         "name": "MURUGANANDAM, A.P.",
         "party": "BJP",
-        "postal": 108629,
-        "booth": 75437,
-        "total": 184066
+        "postal": 0,
+        "booth": 24464,
+        "total": 24464
       },
       {
         "name": "SEETHALAKSHMI, M.K.",
         "party": "NTK",
-        "postal": 93058,
-        "booth": 2192,
-        "total": 95250
+        "postal": 0,
+        "booth": 13858,
+        "total": 13858
       },
       {
         "name": "VELUSAMY, A.",
         "party": "IND",
         "postal": 0,
-        "booth": 24410,
-        "total": 7089
+        "booth": 828,
+        "total": 828
       },
       {
         "name": "PALANI, V.",
         "party": "BSP",
         "postal": 0,
-        "booth": 13693,
-        "total": 6013
+        "booth": 2088,
+        "total": 2088
       },
       {
         "name": "SATHISHKUMAR, N.",
         "party": "IND",
-        "postal": 2132,
-        "booth": 183,
-        "total": 2315
+        "postal": 0,
+        "booth": 381,
+        "total": 381
       },
       {
         "name": "JANARTHANAM, P.",
         "party": "TMTHK",
-        "postal": 1643,
-        "booth": 218,
-        "total": 1861
+        "postal": 0,
+        "booth": 216,
+        "total": 216
       },
       {
         "name": "KANNAN, M.",
         "party": "IND",
-        "postal": 1573,
-        "booth": 179,
-        "total": 1752
+        "postal": 0,
+        "booth": 181,
+        "total": 181
       },
       {
         "name": "SENGUTTUVAN, M.R.",
         "party": "IND",
-        "postal": 1443,
-        "booth": 117,
-        "total": 1560
+        "postal": 0,
+        "booth": 199,
+        "total": 199
       },
       {
         "name": "SUBRAMANI, N.",
         "party": "IND",
-        "postal": 968,
-        "booth": 373,
-        "total": 1341
+        "postal": 0,
+        "booth": 192,
+        "total": 192
       },
       {
         "name": "MALARVIZHI, G.",
         "party": "RSPS",
-        "postal": 1115,
-        "booth": 196,
-        "total": 1311
+        "postal": 0,
+        "booth": 183,
+        "total": 183
       },
       {
         "name": "KARTHIKEYAN, P.",
         "party": "IND",
-        "postal": 607,
-        "booth": 203,
-        "total": 810
+        "postal": 0,
+        "booth": 111,
+        "total": 111
       }
     ],
-    "totalValid": 1118889,
+    "totalValid": 180065,
     "rejected": 0,
     "nota": 0,
-    "total": 1118889
+    "total": 180065
+  },
+  "acId": "TN-103",
+  "acName": "PERUNDURAI",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 1118889,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "SUBBARAYAN, K.",
+      "party": "CPI",
+      "votes": 470195
+    },
+    "runnerUp": {
+      "name": "ARUNACHALAM, P.",
+      "party": "ADMK",
+      "votes": 345326
+    },
+    "margin": 124869,
+    "marginPercent": 11.160088266128275
   }
 }

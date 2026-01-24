@@ -6214,126 +6214,147 @@
       {
         "name": "SUDHA R",
         "party": "INC",
-        "postal": 441514,
-        "booth": 75020,
-        "total": 516534
+        "postal": 0,
+        "booth": 75022,
+        "total": 75020
       },
       {
         "name": "BABU P",
         "party": "ADMK",
-        "postal": 193426,
-        "booth": 52657,
-        "total": 246083
+        "postal": 0,
+        "booth": 37569,
+        "total": 37569
       },
       {
         "name": "STALIN M K",
         "party": "PMK",
-        "postal": 117673,
-        "booth": 48097,
-        "total": 165770
+        "postal": 0,
+        "booth": 28195,
+        "total": 28195
       },
       {
         "name": "KALIYAMMAL P",
         "party": "NTK",
-        "postal": 115188,
-        "booth": 12088,
-        "total": 127276
+        "postal": 0,
+        "booth": 18146,
+        "total": 18146
       },
       {
         "name": "KARTHICK A",
         "party": "SMKNK",
         "postal": 0,
-        "booth": 12911,
-        "total": 3888
+        "booth": 649,
+        "total": 645
       },
       {
         "name": "ILANCHEZHIAN T",
         "party": "BSP",
         "postal": 0,
-        "booth": 5411,
-        "total": 2878
+        "booth": 379,
+        "total": 379
       },
       {
         "name": "BABU S",
         "party": "IND",
-        "postal": 1622,
-        "booth": 210,
-        "total": 1832
+        "postal": 0,
+        "booth": 253,
+        "total": 253
       },
       {
         "name": "MANIMARAN T",
         "party": "IND",
         "postal": 0,
-        "booth": 19308,
-        "total": 1710
+        "booth": 308,
+        "total": 307
       },
       {
         "name": "NAGARAJAN K",
         "party": "IND",
         "postal": 0,
-        "booth": 8912,
-        "total": 1342
+        "booth": 190,
+        "total": 190
       },
       {
         "name": "SILAMBARASAN D",
         "party": "IND",
-        "postal": 1163,
-        "booth": 92,
-        "total": 1255
+        "postal": 0,
+        "booth": 155,
+        "total": 155
       },
       {
         "name": "JAFARULLAH KHAN F",
         "party": "IND",
-        "postal": 1109,
-        "booth": 121,
-        "total": 1230
+        "postal": 0,
+        "booth": 143,
+        "total": 143
       },
       {
         "name": "PANDIYARAJAN S",
         "party": "IND",
-        "postal": 1078,
-        "booth": 91,
-        "total": 1169
+        "postal": 0,
+        "booth": 143,
+        "total": 143
       },
       {
         "name": "TIMOTHY T",
         "party": "IND",
-        "postal": 1008,
-        "booth": 157,
-        "total": 1165
+        "postal": 0,
+        "booth": 145,
+        "total": 145
       },
       {
         "name": "VEDARETHINAM S",
         "party": "AMGRDMK",
-        "postal": 616,
-        "booth": 164,
-        "total": 780
+        "postal": 0,
+        "booth": 108,
+        "total": 108
       },
       {
         "name": "NITHIYANANTHAM S",
         "party": "NADLMMKLK",
-        "postal": 505,
-        "booth": 230,
-        "total": 735
+        "postal": 0,
+        "booth": 84,
+        "total": 84
       },
       {
         "name": "SRINIVASAN V",
         "party": "IND",
-        "postal": 324,
-        "booth": 285,
-        "total": 609
+        "postal": 0,
+        "booth": 70,
+        "total": 70
       },
       {
         "name": "DHAKSHINAMOORTHY M",
         "party": "IND",
-        "postal": 328,
-        "booth": 190,
-        "total": 518
+        "postal": 0,
+        "booth": 71,
+        "total": 71
       }
     ],
-    "totalValid": 1074774,
+    "totalValid": 161623,
     "rejected": 0,
     "nota": 0,
-    "total": 1074774
+    "total": 161623
+  },
+  "acId": "TN-161",
+  "acName": "MAYILADUTHURAI",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 1074774,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "SUDHA R",
+      "party": "INC",
+      "votes": 516534
+    },
+    "runnerUp": {
+      "name": "BABU P",
+      "party": "ADMK",
+      "votes": 246083
+    },
+    "margin": 270451,
+    "marginPercent": 25.163522749899048
   }
 }

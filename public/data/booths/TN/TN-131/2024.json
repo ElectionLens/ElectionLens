@@ -6953,112 +6953,133 @@
       {
         "name": "SACHITHANANTHAM R",
         "party": "CPI(M)",
-        "postal": 549609,
+        "postal": 0,
         "booth": 117782,
-        "total": 667391
+        "total": 117782
       },
       {
         "name": "MOHAMED MUBARAK M A",
         "party": "ADMK",
-        "postal": 201157,
-        "booth": 24335,
-        "total": 225492
+        "postal": 0,
+        "booth": 45688,
+        "total": 45688
       },
       {
         "name": "THILGABAMA M",
         "party": "PMK",
-        "postal": 15004,
-        "booth": 96009,
-        "total": 111013
+        "postal": 0,
+        "booth": 16881,
+        "total": 16881
       },
       {
         "name": "KAILAI RAJAN D",
         "party": "NTK",
-        "postal": 89361,
-        "booth": 7530,
-        "total": 96891
+        "postal": 0,
+        "booth": 20680,
+        "total": 20680
       },
       {
         "name": "RAJKUMAR R",
         "party": "IND",
         "postal": 0,
-        "booth": 29922,
-        "total": 4410
+        "booth": 1258,
+        "total": 1258
       },
       {
         "name": "NATCHIMUTHU S",
         "party": "BSP",
-        "postal": 3259,
-        "booth": 972,
-        "total": 4231
+        "postal": 0,
+        "booth": 775,
+        "total": 775
       },
       {
         "name": "DINESHKUMAR S",
         "party": "AIYDPMP",
         "postal": 0,
-        "booth": 2794,
-        "total": 2411
+        "booth": 433,
+        "total": 433
       },
       {
         "name": "MURUGESAN (A) VISHNU MURUGESAN C",
         "party": "IND",
-        "postal": 1778,
-        "booth": 226,
-        "total": 2004
+        "postal": 0,
+        "booth": 681,
+        "total": 681
       },
       {
         "name": "ANGUCHAMY M",
         "party": "IND",
-        "postal": 1048,
-        "booth": 238,
-        "total": 1286
+        "postal": 0,
+        "booth": 309,
+        "total": 309
       },
       {
         "name": "SURESH K",
         "party": "IND",
-        "postal": 1212,
-        "booth": 42,
-        "total": 1254
+        "postal": 0,
+        "booth": 359,
+        "total": 359
       },
       {
         "name": "ARUMUGAM R",
         "party": "IND",
-        "postal": 1036,
-        "booth": 42,
-        "total": 1078
+        "postal": 0,
+        "booth": 245,
+        "total": 245
       },
       {
         "name": "SABARINATH S",
         "party": "IND",
-        "postal": 1001,
-        "booth": 0,
-        "total": 1001
+        "postal": 0,
+        "booth": 222,
+        "total": 222
       },
       {
         "name": "ANBUROSE D",
         "party": "IND",
-        "postal": 997,
-        "booth": 0,
-        "total": 997
+        "postal": 0,
+        "booth": 212,
+        "total": 212
       },
       {
         "name": "PALANISAMY K",
         "party": "IND",
-        "postal": 941,
-        "booth": 0,
-        "total": 941
+        "postal": 0,
+        "booth": 216,
+        "total": 216
       },
       {
         "name": "SATHISH KANNA G T",
         "party": "IND",
-        "postal": 914,
-        "booth": 0,
-        "total": 914
+        "postal": 0,
+        "booth": 216,
+        "total": 216
       }
     ],
-    "totalValid": 1121314,
+    "totalValid": 205957,
     "rejected": 0,
     "nota": 0,
-    "total": 1121314
+    "total": 205957
+  },
+  "acId": "TN-131",
+  "acName": "NATHAM",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 1121314,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "SACHITHANANTHAM R",
+      "party": "CPI(M)",
+      "votes": 667391
+    },
+    "runnerUp": {
+      "name": "MOHAMED MUBARAK M A",
+      "party": "ADMK",
+      "votes": 225492
+    },
+    "margin": 441899,
+    "marginPercent": 39.409032617090304
   }
 }

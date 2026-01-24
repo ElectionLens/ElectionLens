@@ -4707,84 +4707,105 @@
       {
         "name": "SELVAM. G",
         "party": "DMK",
-        "postal": 505234,
-        "booth": 77744,
-        "total": 582978
+        "postal": 0,
+        "booth": 77747,
+        "total": 0
       },
       {
         "name": "RAJASEKAR. E",
         "party": "ADMK",
-        "postal": 349752,
-        "booth": 13239,
-        "total": 362991
+        "postal": 0,
+        "booth": 65740,
+        "total": 0
       },
       {
         "name": "JOTHI. V",
         "party": "PMK",
-        "postal": 98057,
-        "booth": 65735,
-        "total": 163792
+        "postal": 0,
+        "booth": 16965,
+        "total": 0
       },
       {
         "name": "SANTHOSH KUMAR. V",
         "party": "NTK",
-        "postal": 109128,
-        "booth": 730,
-        "total": 109858
+        "postal": 0,
+        "booth": 13239,
+        "total": 0
       },
       {
         "name": "ILAYARAJA. S",
         "party": "BSP",
         "postal": 0,
-        "booth": 16888,
-        "total": 5243
+        "booth": 656,
+        "total": 0
       },
       {
         "name": "VENKATESAN. K",
         "party": "IND",
-        "postal": 2673,
-        "booth": 125,
-        "total": 2798
+        "postal": 0,
+        "booth": 463,
+        "total": 0
       },
       {
         "name": "NARESH BHARATHI. S",
         "party": "IND",
-        "postal": 2499,
-        "booth": 0,
-        "total": 2499
+        "postal": 0,
+        "booth": 371,
+        "total": 0
       },
       {
         "name": "ELANGOVAN. M",
         "party": "IND",
-        "postal": 1874,
-        "booth": 0,
-        "total": 1874
+        "postal": 0,
+        "booth": 214,
+        "total": 0
       },
       {
         "name": "SURYA. A",
         "party": "IND",
-        "postal": 1673,
-        "booth": 0,
-        "total": 1673
+        "postal": 0,
+        "booth": 167,
+        "total": 0
       },
       {
         "name": "RAMESH. S",
         "party": "IND",
-        "postal": 1317,
-        "booth": 0,
-        "total": 1317
+        "postal": 0,
+        "booth": 129,
+        "total": 0
       },
       {
         "name": "SELVAM. T",
         "party": "IND",
-        "postal": 1295,
-        "booth": 0,
-        "total": 1295
+        "postal": 0,
+        "booth": 135,
+        "total": 0
       }
     ],
-    "totalValid": 1236318,
+    "totalValid": 0,
     "rejected": 0,
     "nota": 0,
-    "total": 1236318
+    "total": 0
+  },
+  "acId": "TN-035",
+  "acName": "MADURANTHAKAM",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 1236318,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "SELVAM. G",
+      "party": "DMK",
+      "votes": 582978
+    },
+    "runnerUp": {
+      "name": "RAJASEKAR. E",
+      "party": "ADMK",
+      "votes": 362991
+    },
+    "margin": 219987,
+    "marginPercent": 17.793722974186252
   }
 }

@@ -5063,119 +5063,140 @@
       {
         "name": "RAJA A",
         "party": "DMK",
-        "postal": 406246,
-        "booth": 64483,
-        "total": 470729
+        "postal": 0,
+        "booth": 64486,
+        "total": 64483
       },
       {
         "name": "DR MURUGAN L",
         "party": "BJP",
-        "postal": 231111,
-        "booth": 0,
-        "total": 231111
+        "postal": 0,
+        "booth": 29230,
+        "total": 29230
       },
       {
         "name": "LOGESH TAMILSELVAN D",
         "party": "ADMK",
-        "postal": 154934,
-        "booth": 64483,
-        "total": 219417
+        "postal": 0,
+        "booth": 20391,
+        "total": 20391
       },
       {
         "name": "JAYAKUMAR A",
         "party": "NTK",
-        "postal": 58257,
-        "booth": 331,
-        "total": 58588
+        "postal": 0,
+        "booth": 7814,
+        "total": 7814
       },
       {
         "name": "VIJAYAKUMAR D",
         "party": "IND",
         "postal": 0,
-        "booth": 29074,
-        "total": 4805
+        "booth": 508,
+        "total": 508
       },
       {
         "name": "GANESHAMOORTHI A",
         "party": "BSP",
         "postal": 0,
-        "booth": 20216,
-        "total": 3015
+        "booth": 331,
+        "total": 331
       },
       {
         "name": "BADRAN M",
         "party": "GPI",
-        "postal": 2175,
-        "booth": 231,
-        "total": 2406
+        "postal": 0,
+        "booth": 238,
+        "total": 238
       },
       {
         "name": "SELVAN N",
         "party": "IND",
-        "postal": 1867,
-        "booth": 171,
-        "total": 2038
+        "postal": 0,
+        "booth": 206,
+        "total": 206
       },
       {
         "name": "DHANABAL R",
         "party": "IND",
         "postal": 0,
-        "booth": 7714,
-        "total": 1906
+        "booth": 175,
+        "total": 167
       },
       {
         "name": "JAYANTHI M",
         "party": "APoI",
-        "postal": 1371,
-        "booth": 168,
-        "total": 1539
+        "postal": 0,
+        "booth": 169,
+        "total": 169
       },
       {
         "name": "MURUGAN Y",
         "party": "IND",
-        "postal": 1357,
-        "booth": 51,
-        "total": 1408
+        "postal": 0,
+        "booth": 151,
+        "total": 151
       },
       {
         "name": "MURUGESAN",
         "party": "IND",
-        "postal": 989,
-        "booth": 68,
-        "total": 1057
+        "postal": 0,
+        "booth": 111,
+        "total": 111
       },
       {
         "name": "MALARMANNAN M",
         "party": "SMKNK",
-        "postal": 742,
-        "booth": 71,
-        "total": 813
+        "postal": 0,
+        "booth": 69,
+        "total": 69
       },
       {
         "name": "SATHISH M",
         "party": "IND",
-        "postal": 533,
-        "booth": 201,
-        "total": 734
+        "postal": 0,
+        "booth": 66,
+        "total": 66
       },
       {
         "name": "KRISHNA KUMAR",
         "party": "IND",
-        "postal": 418,
-        "booth": 170,
-        "total": 588
+        "postal": 0,
+        "booth": 66,
+        "total": 66
       },
       {
         "name": "ANBHUGURU V",
         "party": "IND",
-        "postal": 411,
-        "booth": 149,
-        "total": 560
+        "postal": 0,
+        "booth": 51,
+        "total": 51
       }
     ],
-    "totalValid": 1000714,
+    "totalValid": 124051,
     "rejected": 0,
     "nota": 0,
-    "total": 1000714
+    "total": 124051
+  },
+  "acId": "TN-110",
+  "acName": "COONOOR",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 1000714,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "RAJA A",
+      "party": "DMK",
+      "votes": 470729
+    },
+    "runnerUp": {
+      "name": "DR MURUGAN L",
+      "party": "BJP",
+      "votes": 231111
+    },
+    "margin": 239618,
+    "marginPercent": 23.944703481714054
   }
 }

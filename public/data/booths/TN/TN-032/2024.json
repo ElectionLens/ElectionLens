@@ -7597,84 +7597,105 @@
       {
         "name": "SELVAM. G",
         "party": "DMK",
-        "postal": 449374,
+        "postal": 0,
         "booth": 133604,
-        "total": 582978
+        "total": 133604
       },
       {
         "name": "RAJASEKAR. E",
         "party": "ADMK",
-        "postal": 250396,
-        "booth": 112595,
-        "total": 362991
+        "postal": 0,
+        "booth": 59815,
+        "total": 59815
       },
       {
         "name": "JOTHI. V",
         "party": "PMK",
-        "postal": 93278,
-        "booth": 70514,
-        "total": 163792
+        "postal": 0,
+        "booth": 33915,
+        "total": 33915
       },
       {
         "name": "SANTHOSH KUMAR. V",
         "party": "NTK",
-        "postal": 98325,
-        "booth": 11533,
-        "total": 109858
+        "postal": 0,
+        "booth": 28280,
+        "total": 28280
       },
       {
         "name": "ILAYARAJA. S",
         "party": "BSP",
-        "postal": 4248,
-        "booth": 995,
-        "total": 5243
+        "postal": 0,
+        "booth": 971,
+        "total": 971
       },
       {
         "name": "VENKATESAN. K",
         "party": "IND",
         "postal": 0,
-        "booth": 24289,
-        "total": 2798
+        "booth": 466,
+        "total": 466
       },
       {
         "name": "NARESH BHARATHI. S",
         "party": "IND",
         "postal": 0,
-        "booth": 32534,
-        "total": 2499
+        "booth": 494,
+        "total": 494
       },
       {
         "name": "ELANGOVAN. M",
         "party": "IND",
         "postal": 0,
-        "booth": 4620,
-        "total": 1874
+        "booth": 331,
+        "total": 331
       },
       {
         "name": "SURYA. A",
         "party": "IND",
-        "postal": 1670,
-        "booth": 3,
-        "total": 1673
+        "postal": 0,
+        "booth": 454,
+        "total": 454
       },
       {
         "name": "RAMESH. S",
         "party": "IND",
-        "postal": 1315,
-        "booth": 2,
-        "total": 1317
+        "postal": 0,
+        "booth": 299,
+        "total": 299
       },
       {
         "name": "SELVAM. T",
         "party": "IND",
-        "postal": 1293,
-        "booth": 2,
-        "total": 1295
+        "postal": 0,
+        "booth": 225,
+        "total": 225
       }
     ],
-    "totalValid": 1236318,
+    "totalValid": 258854,
     "rejected": 0,
     "nota": 0,
-    "total": 1236318
+    "total": 258854
+  },
+  "acId": "TN-032",
+  "acName": "CHENGALPATTU",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 1236318,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "SELVAM. G",
+      "party": "DMK",
+      "votes": 582978
+    },
+    "runnerUp": {
+      "name": "RAJASEKAR. E",
+      "party": "ADMK",
+      "votes": 362991
+    },
+    "margin": 219987,
+    "marginPercent": 17.793722974186252
   }
 }

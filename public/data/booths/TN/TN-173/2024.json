@@ -5669,91 +5669,112 @@
       {
         "name": "MURASOLI S",
         "party": "DMK",
-        "postal": 397552,
-        "booth": 101270,
-        "total": 498822
+        "postal": 0,
+        "booth": 101273,
+        "total": 101270
       },
       {
         "name": "SIVANESAN P",
         "party": "DMDK",
-        "postal": 146681,
-        "booth": 35491,
-        "total": 182172
+        "postal": 0,
+        "booth": 31287,
+        "total": 31287
       },
       {
         "name": "MURUGANANTHAM M",
         "party": "BJP",
-        "postal": 72867,
-        "booth": 96720,
-        "total": 169587
+        "postal": 0,
+        "booth": 26759,
+        "total": 26759
       },
       {
         "name": "HUMAYUN KABIR",
         "party": "NTK",
-        "postal": 93539,
-        "booth": 26144,
-        "total": 119683
+        "postal": 0,
+        "booth": 26611,
+        "total": 26611
       },
       {
         "name": "RENGASAMY C",
         "party": "IND",
-        "postal": 16836,
-        "booth": 1294,
-        "total": 18130
+        "postal": 0,
+        "booth": 784,
+        "total": 784
       },
       {
         "name": "SARAVANAN M",
         "party": "IND",
         "postal": 0,
-        "booth": 25503,
-        "total": 6730
+        "booth": 1235,
+        "total": 1230
       },
       {
         "name": "SENTHIL KUMAR N",
         "party": "IND",
-        "postal": 3775,
-        "booth": 358,
-        "total": 4133
+        "postal": 0,
+        "booth": 720,
+        "total": 720
       },
       {
         "name": "EZHILARASAN S",
         "party": "IND",
-        "postal": 3273,
-        "booth": 561,
-        "total": 3834
+        "postal": 0,
+        "booth": 578,
+        "total": 578
       },
       {
         "name": "JAYABAL A",
         "party": "BSP",
-        "postal": 2224,
-        "booth": 176,
-        "total": 2400
+        "postal": 0,
+        "booth": 405,
+        "total": 405
       },
       {
         "name": "SANTHOSH M",
         "party": "IND",
-        "postal": 1701,
-        "booth": 281,
-        "total": 1982
+        "postal": 0,
+        "booth": 237,
+        "total": 237
       },
       {
         "name": "ER ARJUN S",
         "party": "IND",
-        "postal": 249,
-        "booth": 1191,
-        "total": 1440
+        "postal": 0,
+        "booth": 346,
+        "total": 346
       },
       {
         "name": "KARIKALA CHOLAN S",
         "party": "IND",
-        "postal": 486,
-        "booth": 723,
-        "total": 1209
+        "postal": 0,
+        "booth": 166,
+        "total": 166
       }
     ],
-    "totalValid": 1010122,
+    "totalValid": 190393,
     "rejected": 0,
     "nota": 0,
-    "total": 1010122
+    "total": 190393
+  },
+  "acId": "TN-173",
+  "acName": "THIRUVAIYARU",
+  "electionType": "parliament",
+  "date": "2024-04-19",
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 1010122,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "MURASOLI S",
+      "party": "DMK",
+      "votes": 498822
+    },
+    "runnerUp": {
+      "name": "SIVANESAN P",
+      "party": "DMDK",
+      "votes": 182172
+    },
+    "margin": 316650,
+    "marginPercent": 31.347698594823196
   }
 }
