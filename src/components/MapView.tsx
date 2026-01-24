@@ -1201,7 +1201,17 @@ export function MapView({
         onFeedbackClick={() => setFeedbackModalOpen(true)}
         {...(availableYears && { availableYears })}
         {...(selectedYear !== null && selectedYear !== undefined && { selectedYear })}
-        {...(availablePCYears && availablePCYears.length > 0 && { availablePCYears })}
+        {...(() => {
+          // For AC view: use availablePCYears if available (specific AC selected),
+          // otherwise fall back to pcAvailableYears (state-level PC years)
+          const pcYearsForAC =
+            availablePCYears && availablePCYears.length > 0
+              ? availablePCYears
+              : pcAvailableYears && pcAvailableYears.length > 0
+                ? pcAvailableYears
+                : undefined;
+          return pcYearsForAC ? { availablePCYears: pcYearsForAC } : {};
+        })()}
         {...(selectedACPCYear !== null &&
           selectedACPCYear !== undefined && { selectedPCYear: selectedACPCYear })}
         {...(pcAvailableYears && pcAvailableYears.length > 0 && { pcAvailableYears })}

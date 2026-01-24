@@ -72,6 +72,7 @@ function App(): JSX.Element {
     getPCResult,
     setSelectedYear: setPCSelectedYear,
     clearResult: clearPCElectionResult,
+    loadStateIndex: loadPCStateIndex,
   } = useParliamentResults();
 
   // Schema for canonical name resolution
@@ -383,8 +384,9 @@ function App(): JSX.Element {
       clearPCElectionResult();
       const data = await navigateToState(stateName);
       setCurrentData(data);
-      // Pre-load election index for the state
+      // Pre-load election index for the state (both AC and PC)
       void loadStateIndex(stateName);
+      void loadPCStateIndex(stateName);
       // Track analytics
       trackConstituencySelect('state', stateName);
     },
@@ -392,6 +394,7 @@ function App(): JSX.Element {
       navigateToState,
       closeSidebarOnMobile,
       loadStateIndex,
+      loadPCStateIndex,
       clearElectionResult,
       clearPCElectionResult,
     ]
