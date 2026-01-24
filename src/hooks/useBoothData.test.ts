@@ -88,9 +88,11 @@ describe('useBoothData', () => {
 
   describe('loadBoothData', () => {
     it('loads booth list successfully', async () => {
+      // Mock: year-specific file not found, fallback to generic
       mockFetch
-        .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve(mockBoothList) })
-        .mockResolvedValue({ ok: false });
+        .mockResolvedValueOnce({ ok: false }) // booths-2021.json not found
+        .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve(mockBoothList) }) // booths.json found
+        .mockResolvedValue({ ok: false }); // Year checks
 
       const { result } = renderHook(() => useBoothData());
 
@@ -104,7 +106,10 @@ describe('useBoothData', () => {
     });
 
     it('handles fetch error', async () => {
-      mockFetch.mockResolvedValueOnce({ ok: false, status: 404 });
+      // Mock: year-specific file not found, then generic file also not found
+      mockFetch
+        .mockResolvedValueOnce({ ok: false, status: 404 }) // booths-2021.json not found
+        .mockResolvedValueOnce({ ok: false, status: 404 }); // booths.json also not found
 
       const { result } = renderHook(() => useBoothData());
 
