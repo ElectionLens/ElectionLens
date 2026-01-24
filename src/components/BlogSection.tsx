@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { BookOpen, X, ExternalLink } from 'lucide-react';
 import type { AssemblyFeature } from '../types';
 
@@ -54,9 +54,67 @@ export function BlogSection({
   onAssemblyClick,
   onNavigateToState,
 }: BlogSectionProps): JSX.Element {
-  const [selectedPost, setSelectedPost] = useState<string | null>(null);
+  // Read blog post from URL on mount
+  const getPostFromUrl = useCallback((): string | null => {
+    if (typeof window === 'undefined') return null;
+    const searchParams = new URLSearchParams(window.location.search);
+    return searchParams.get('blogPost');
+  }, []);
+
+  const [selectedPost, setSelectedPost] = useState<string | null>(getPostFromUrl());
   const [allianceData, setAllianceData] = useState<AllianceAnalysis | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // Update URL when blog post changes
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const searchParams = new URLSearchParams(window.location.search);
+
+    if (selectedPost) {
+      searchParams.set('blogPost', selectedPost);
+      if (!searchParams.has('blog')) {
+        searchParams.set('blog', 'true');
+      }
+    } else {
+      searchParams.delete('blogPost');
+      // Don't remove blog param here - let App.tsx handle it when blog closes
+    }
+
+    const newUrl = searchParams.toString()
+      ? `${window.location.pathname}?${searchParams.toString()}`
+      : window.location.pathname;
+    window.history.replaceState({}, '', newUrl);
+  }, [selectedPost]);
+
+  // Read blog post from URL when blog opens
+  useEffect(() => {
+    if (isOpen) {
+      const postFromUrl = getPostFromUrl();
+      if (postFromUrl && postFromUrl !== selectedPost) {
+        setSelectedPost(postFromUrl);
+        if (postFromUrl === 'ammk-admk-alliance') {
+          void loadAllianceData();
+        }
+      }
+    } else {
+      // Reset when blog closes
+      setSelectedPost(null);
+    }
+  }, [isOpen, getPostFromUrl, selectedPost, loadAllianceData]);
+
+  // Read blog post from URL when URL changes (e.g., browser back/forward)
+  useEffect(() => {
+    const handlePopState = (): void => {
+      const postFromUrl = getPostFromUrl();
+      setSelectedPost(postFromUrl);
+      if (postFromUrl === 'ammk-admk-alliance') {
+        void loadAllianceData();
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [getPostFromUrl, loadAllianceData]);
 
   // Load alliance analysis data
   const loadAllianceData = useCallback(async () => {
@@ -84,6 +142,7 @@ export function BlogSection({
       if (postId === 'ammk-admk-alliance') {
         void loadAllianceData();
       }
+      // URL will be updated by the useEffect that watches selectedPost
     },
     [loadAllianceData]
   );

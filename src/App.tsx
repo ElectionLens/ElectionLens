@@ -187,8 +187,15 @@ function App(): JSX.Element {
         const data = await loadDistrictsForState(matchedState);
         setCurrentData(data);
       } else {
+        // Default constituencies view
         const data = await navigateToState(matchedState);
         setCurrentData(data);
+      }
+
+      // Handle blog state from URL
+      if (urlState.blog) {
+        setBlogOpen(true);
+        // blogPost will be read by BlogSection component from URL
       }
     },
     [
@@ -212,7 +219,7 @@ function App(): JSX.Element {
   // - For AC view: use assembly year (selectedYear)
   // - For PC view (no assembly): use parliament year (pcSelectedYear)
   const urlYear = currentAssembly ? selectedYear : pcSelectedYear;
-  const { getShareableUrl } = useUrlState(
+  const { getShareableUrl, updateUrl } = useUrlState(
     currentState,
     currentView,
     currentPC,
@@ -1154,19 +1161,89 @@ function App(): JSX.Element {
    * Handle blog toggle
    */
   const handleBlogToggle = useCallback((): void => {
-    setBlogOpen((prev) => !prev);
-    if (!blogOpen) {
+    const newBlogOpen = !blogOpen;
+    setBlogOpen(newBlogOpen);
+    if (newBlogOpen) {
       // Close election panels when opening blog
       clearElectionResult();
       clearPCElectionResult();
+      // Update URL
+      updateUrl({
+        state: currentState,
+        view: currentView,
+        pc: currentPC,
+        district: currentDistrict,
+        assembly: currentAssembly,
+        year: selectedYear,
+        pcYear: selectedACPCYear,
+        tab: null,
+        blog: true,
+        blogPost: null,
+      });
+    } else {
+      // Update URL to remove blog params
+      updateUrl({
+        state: currentState,
+        view: currentView,
+        pc: currentPC,
+        district: currentDistrict,
+        assembly: currentAssembly,
+        year: selectedYear,
+        pcYear: selectedACPCYear,
+        tab: null,
+        blog: false,
+        blogPost: null,
+      });
     }
-  }, [blogOpen, clearElectionResult, clearPCElectionResult]);
+  }, [
+    blogOpen,
+    clearElectionResult,
+    clearPCElectionResult,
+    updateUrl,
+    currentState,
+    currentView,
+    currentPC,
+    currentDistrict,
+    currentAssembly,
+    selectedYear,
+    selectedACPCYear,
+  ]);
 
   /**
    * Handle blog close
    */
   const handleBlogClose = useCallback((): void => {
     setBlogOpen(false);
+    // Update URL to remove blog params
+    updateUrl({
+      state: currentState,
+      view: currentView,
+      pc: currentPC,
+      district: currentDistrict,
+      assembly: currentAssembly,
+      year: selectedYear,
+      pcYear: selectedACPCYear,
+      tab: null,
+      blog: false,
+      blogPost: null,
+    });
+  }, [
+    updateUrl,
+    currentState,
+    currentView,
+    currentPC,
+    currentDistrict,
+    currentAssembly,
+    selectedYear,
+    selectedACPCYear,
+  ]);
+
+  /**
+   * Handle blog post selection (for URL updates)
+   */
+  const handleBlogPostSelect = useCallback((postId: string | null): void => {
+    // This will be called by BlogSection when post is selected
+    // URL will be updated by BlogSection itself
   }, []);
 
   /**

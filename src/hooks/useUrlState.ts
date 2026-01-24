@@ -11,6 +11,8 @@ export interface UrlState {
   year: number | null;
   pcYear: number | null; // Parliament year for AC view (from year=pc-YYYY format)
   tab: string | null; // Active tab in election panel: 'overview', 'candidates', 'booths', 'postal', 'analysis'
+  blog: boolean; // Whether blog section is open
+  blogPost: string | null; // Selected blog post ID (e.g., 'ammk-admk-alliance')
 }
 
 /** Hook return type */
@@ -101,6 +103,8 @@ export function useUrlState(
       year: null,
       pcYear: null,
       tab: null,
+      blog: false,
+      blogPost: null,
     };
 
     // Parse year from query params
@@ -130,6 +134,19 @@ export function useUrlState(
       if (validTabs.includes(tabParam)) {
         result.tab = tabParam;
       }
+    }
+
+    // Parse blog from query params
+    // Format: blog=true or blog=1 to open blog, blogPost=post-id to open specific post
+    const blogParam = searchParams.get('blog');
+    if (blogParam === 'true' || blogParam === '1') {
+      result.blog = true;
+    }
+
+    const blogPostParam = searchParams.get('blogPost');
+    if (blogPostParam) {
+      result.blogPost = blogPostParam;
+      result.blog = true; // Opening a post implies blog is open
     }
 
     if (segments.length === 0) {
@@ -233,6 +250,13 @@ export function useUrlState(
       params.set('tab', state.tab);
     }
 
+    if (state.blog) {
+      params.set('blog', 'true');
+      if (state.blogPost) {
+        params.set('blogPost', state.blogPost);
+      }
+    }
+
     const fullPath = params.toString() ? `${path}?${params.toString()}` : path;
 
     // Only update if path changed
@@ -294,6 +318,13 @@ export function useUrlState(
       params.set('tab', state.tab);
     }
 
+    if (state.blog) {
+      params.set('blog', 'true');
+      if (state.blogPost) {
+        params.set('blogPost', state.blogPost);
+      }
+    }
+
     if (params.toString()) {
       path = `${path}?${params.toString()}`;
     }
@@ -313,7 +344,7 @@ export function useUrlState(
         isProcessingUrlNavigation.current = true;
 
         // Use Promise.resolve to handle both sync and async navigation handlers
-        Promise.resolve(onNavigateRef.current(urlState)).finally(() => {
+        void Promise.resolve(onNavigateRef.current(urlState)).finally(() => {
           // Small delay to ensure all state updates have been processed
           setTimeout(() => {
             isProcessingUrlNavigation.current = false;
@@ -341,6 +372,8 @@ export function useUrlState(
         year: selectedYear,
         pcYear: selectedPCYear,
         tab: null, // Tab is managed in ElectionResultPanel component
+        blog: false, // Blog is managed in App component
+        blogPost: null,
       });
     }
   }, [
