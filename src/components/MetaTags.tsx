@@ -29,7 +29,11 @@ export function MetaTags({
   useEffect(() => {
     // Get current URL if not provided
     const currentUrl = url ?? (typeof window !== 'undefined' ? window.location.href : BASE_URL);
-    const fullImageUrl = image.startsWith('http') ? image : `${BASE_URL}${image}`;
+    // Add cache-busting parameter to image URL to force refresh
+    const imageWithCacheBust = image.startsWith('http')
+      ? `${image}?v=1`
+      : `${BASE_URL}${image}?v=1`;
+    const fullImageUrl = imageWithCacheBust;
 
     // Update or create meta tags
     const updateMetaTag = (property: string, content: string, isProperty = true): void => {
