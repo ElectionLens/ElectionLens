@@ -192,84 +192,75 @@ function MapToolbar({
             </button>
           </div>
 
-          {/* Year selection - show below AC/PC buttons */}
-          {(() => {
-            // For assemblies view: show both assembly years and PC years
-            if (currentView === 'assemblies') {
-              const hasAssemblyYears = availableYears && availableYears.length > 0;
-              const hasPCYears = availablePCYears && availablePCYears.length > 0;
-              if (!hasAssemblyYears && !hasPCYears) return null;
+          {/* Year selection - show below AC/PC buttons - always visible when AC or PC view is active */}
+          {(currentView === 'assemblies' || currentView === 'constituencies') && (
+            <div className="toolbar-year-selector">
+              {currentView === 'assemblies' ? (
+                <>
+                  {/* Combine and sort years: assembly years first, then PC years */}
+                  {(() => {
+                    type YearItem = { year: number; type: 'assembly' | 'parliament' };
+                    const allYearItems: YearItem[] = [
+                      ...(availableYears || []).map((y) => ({
+                        year: y,
+                        type: 'assembly' as const,
+                      })),
+                      ...(availablePCYears || []).map((y) => ({
+                        year: y,
+                        type: 'parliament' as const,
+                      })),
+                    ].sort((a, b) => a.year - b.year);
 
-              // Combine and sort years
-              type YearItem = { year: number; type: 'assembly' | 'parliament' };
-              const allYearItems: YearItem[] = [
-                ...(availableYears || []).map((y) => ({ year: y, type: 'assembly' as const })),
-                ...(availablePCYears || []).map((y) => ({ year: y, type: 'parliament' as const })),
-              ].sort((a, b) => a.year - b.year);
-
-              return (
-                <div className="toolbar-year-selector">
-                  {allYearItems.map((item) =>
-                    item.type === 'assembly' ? (
-                      <button
-                        key={`ac-${item.year}`}
-                        className={`toolbar-year-btn ${selectedYear === item.year && selectedPCYear === null ? 'active' : ''}`}
-                        onClick={() => {
-                          if (onPCYearChange) {
-                            // onPCYearChange can accept number | null
-                            (onPCYearChange as (year: number | null) => void)(null);
-                          }
-                          onYearChange?.(item.year);
-                        }}
-                        title={`Assembly Election ${item.year}`}
-                      >
-                        {item.year}
-                      </button>
-                    ) : (
-                      <button
-                        key={`pc-${item.year}`}
-                        className={`toolbar-year-btn parliament-year ${selectedPCYear === item.year ? 'active' : ''}`}
-                        onClick={() => {
-                          onPCYearChange?.(item.year);
-                        }}
-                        title={`Parliament Election ${item.year}`}
-                      >
-                        {item.year}-PC
-                      </button>
-                    )
-                  )}
-                </div>
-              );
-            }
-
-            // For constituencies view: show parliament years
-            if (
-              currentView === 'constituencies' &&
-              pcAvailableYears &&
-              pcAvailableYears.length > 0
-            ) {
-              return (
-                <div className="toolbar-year-selector">
-                  {pcAvailableYears.map((year) => (
-                    <button
-                      key={year}
-                      className={`toolbar-year-btn ${pcSelectedYear === year ? 'active' : ''}`}
-                      onClick={() => {
-                        if (onPCYearChangeForPC) {
-                          onPCYearChangeForPC(year);
-                        }
-                      }}
-                      title={`Parliament Election ${year}`}
-                    >
-                      {year}
-                    </button>
-                  ))}
-                </div>
-              );
-            }
-
-            return null;
-          })()}
+                    return allYearItems.map((item) =>
+                      item.type === 'assembly' ? (
+                        <button
+                          key={`ac-${item.year}`}
+                          className={`toolbar-year-btn ${selectedYear === item.year && selectedPCYear === null ? 'active' : ''}`}
+                          onClick={() => {
+                            if (onPCYearChange) {
+                              // onPCYearChange can accept number | null
+                              (onPCYearChange as (year: number | null) => void)(null);
+                            }
+                            onYearChange?.(item.year);
+                          }}
+                          title={`Assembly Election ${item.year}`}
+                        >
+                          {item.year}
+                        </button>
+                      ) : (
+                        <button
+                          key={`pc-${item.year}`}
+                          className={`toolbar-year-btn parliament-year ${selectedPCYear === item.year ? 'active' : ''}`}
+                          onClick={() => {
+                            onPCYearChange?.(item.year);
+                          }}
+                          title={`Parliament Election ${item.year}`}
+                        >
+                          {item.year}-PC
+                        </button>
+                      )
+                    );
+                  })()}
+                </>
+              ) : /* Parliament years for constituencies view */
+              pcAvailableYears && pcAvailableYears.length > 0 ? (
+                pcAvailableYears.map((year) => (
+                  <button
+                    key={year}
+                    className={`toolbar-year-btn ${pcSelectedYear === year ? 'active' : ''}`}
+                    onClick={() => {
+                      if (onPCYearChangeForPC) {
+                        onPCYearChangeForPC(year);
+                      }
+                    }}
+                    title={`Parliament Election ${year}`}
+                  >
+                    {year}
+                  </button>
+                ))
+              ) : null}
+            </div>
+          )}
         </div>
       )}
 
