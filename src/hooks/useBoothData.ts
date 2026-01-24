@@ -316,7 +316,9 @@ export function useBoothData(): UseBoothDataReturn {
     }
 
     // Sort by booth number
-    return resultsList.sort((a, b) => a.num - b.num);
+    const sorted = resultsList.sort((a, b) => a.num - b.num);
+    console.log('[useBoothData] Final boothsWithResults count:', sorted.length);
+    return sorted;
   })();
 
   // Clear booth data when AC changes externally (not through loadBoothData)
