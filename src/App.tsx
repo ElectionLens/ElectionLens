@@ -176,8 +176,17 @@ function App(): JSX.Element {
         const data = await navigateToAssemblies(matchedState);
         setCurrentData(data);
         // Pre-load election index for the state (both AC and PC)
-        void loadStateIndex(matchedState);
+        const acIndex = await loadStateIndex(matchedState);
         void loadPCStateIndex(matchedState);
+
+        // If no year in URL, set to latest AC year
+        if (!urlState.year && !urlState.assembly && acIndex && acIndex.availableYears.length > 0) {
+          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            setSelectedYear(latestYear);
+          }
+        }
+
         if (urlState.assembly) {
           // Specific assembly selected
           const acName = toTitleCase(urlState.assembly).toUpperCase();
@@ -195,12 +204,20 @@ function App(): JSX.Element {
         void loadStateIndex(matchedState);
         void loadPCStateIndex(matchedState);
       } else {
-        // Default constituencies view
+        // Default constituencies view (PC view)
         const data = await navigateToState(matchedState);
         setCurrentData(data);
         // Pre-load election index for the state (both AC and PC)
         void loadStateIndex(matchedState);
-        void loadPCStateIndex(matchedState);
+        const pcIndex = await loadPCStateIndex(matchedState);
+
+        // If no year in URL and no specific PC selected, set to latest PC year
+        if (!urlState.year && !urlState.pc && pcIndex && pcIndex.availableYears.length > 0) {
+          const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            setPCSelectedYear(latestYear);
+          }
+        }
       }
 
       // Handle blog state from URL
@@ -222,6 +239,8 @@ function App(): JSX.Element {
       getPCResult,
       loadStateIndex,
       loadPCStateIndex,
+      setSelectedYear,
+      setPCSelectedYear,
     ]
   );
 
