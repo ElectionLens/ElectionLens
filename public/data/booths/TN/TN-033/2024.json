@@ -4440,7 +4440,6 @@
     },
     "TN-033-263": {
       "votes": [
-        263,
         0,
         223,
         53,
@@ -4450,9 +4449,10 @@
         1,
         0,
         0,
+        0,
         0
       ],
-      "total": 829,
+      "total": 566,
       "rejected": 0
     },
     "TN-033-264": {
@@ -5466,5 +5466,90 @@
     }
   ],
   "totalBooths": 318,
-  "source": "Tamil Nadu CEO - Form 20 (unified-parser, text)"
+  "source": "Tamil Nadu CEO - Form 20 (unified-parser, text)",
+  "postal": {
+    "candidates": [
+      {
+        "name": "SELVAM. G",
+        "party": "DMK",
+        "postal": 480253,
+        "booth": 102725,
+        "total": 582978
+      },
+      {
+        "name": "RAJASEKAR. E",
+        "party": "ADMK",
+        "postal": 360245,
+        "booth": 2746,
+        "total": 362991
+      },
+      {
+        "name": "JOTHI. V",
+        "party": "PMK",
+        "postal": 63996,
+        "booth": 99796,
+        "total": 163792
+      },
+      {
+        "name": "SANTHOSH KUMAR. V",
+        "party": "NTK",
+        "postal": 85542,
+        "booth": 24316,
+        "total": 109858
+      },
+      {
+        "name": "ILAYARAJA. S",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 55921,
+        "total": 5243
+      },
+      {
+        "name": "VENKATESAN. K",
+        "party": "IND",
+        "postal": 773,
+        "booth": 2025,
+        "total": 2798
+      },
+      {
+        "name": "NARESH BHARATHI. S",
+        "party": "IND",
+        "postal": 0,
+        "booth": 35460,
+        "total": 2499
+      },
+      {
+        "name": "ELANGOVAN. M",
+        "party": "IND",
+        "postal": 1615,
+        "booth": 259,
+        "total": 1874
+      },
+      {
+        "name": "SURYA. A",
+        "party": "IND",
+        "postal": 1666,
+        "booth": 7,
+        "total": 1673
+      },
+      {
+        "name": "RAMESH. S",
+        "party": "IND",
+        "postal": 1313,
+        "booth": 4,
+        "total": 1317
+      },
+      {
+        "name": "SELVAM. T",
+        "party": "IND",
+        "postal": 1289,
+        "booth": 6,
+        "total": 1295
+      }
+    ],
+    "totalValid": 1236318,
+    "rejected": 0,
+    "nota": 0,
+    "total": 1236318
+  }
 }

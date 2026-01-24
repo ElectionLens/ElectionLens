@@ -11,14 +11,14 @@
         0,
         212,
         33,
-        1,
+        0,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 1118,
+      "total": 1117,
       "rejected": 0
     },
     "TN-157-002": {
@@ -4543,7 +4543,6 @@
     },
     "TN-157-230": {
       "votes": [
-        230,
         0,
         141,
         0,
@@ -4556,9 +4555,10 @@
         0,
         0,
         0,
+        0,
         0
       ],
-      "total": 646,
+      "total": 416,
       "rejected": 0
     },
     "TN-157-231": {
@@ -5303,7 +5303,6 @@
     },
     "TN-157-268": {
       "votes": [
-        268,
         0,
         112,
         0,
@@ -5316,9 +5315,10 @@
         0,
         0,
         0,
+        0,
         0
       ],
-      "total": 752,
+      "total": 484,
       "rejected": 0
     },
     "TN-157-269": {
@@ -5343,7 +5343,6 @@
     },
     "TN-157-270": {
       "votes": [
-        270,
         0,
         110,
         0,
@@ -5356,9 +5355,10 @@
         0,
         0,
         0,
+        0,
         0
       ],
-      "total": 758,
+      "total": 488,
       "rejected": 0
     },
     "TN-157-271": {
@@ -5635,5 +5635,111 @@
     }
   ],
   "totalBooths": 278,
-  "source": "Tamil Nadu CEO - Form 20"
+  "source": "Tamil Nadu CEO - Form 20",
+  "postal": {
+    "candidates": [
+      {
+        "name": "THIRUMAAVALAVAN THOL",
+        "party": "VCK",
+        "postal": 414701,
+        "booth": 87150,
+        "total": 501851
+      },
+      {
+        "name": "CHANDRAHASAN M",
+        "party": "ADMK",
+        "postal": 399502,
+        "booth": 0,
+        "total": 399502
+      },
+      {
+        "name": "KARTHIYAYINI P",
+        "party": "BJP",
+        "postal": 102935,
+        "booth": 63179,
+        "total": 166114
+      },
+      {
+        "name": "JANCIRANI R",
+        "party": "NTK",
+        "postal": 65116,
+        "booth": 0,
+        "total": 65116
+      },
+      {
+        "name": "NEELAMEGAM K",
+        "party": "BSP",
+        "postal": 2744,
+        "booth": 433,
+        "total": 3177
+      },
+      {
+        "name": "TAMILVENDHAN P",
+        "party": "IND",
+        "postal": 3043,
+        "booth": 0,
+        "total": 3043
+      },
+      {
+        "name": "PERUMAL S",
+        "party": "IND",
+        "postal": 1831,
+        "booth": 400,
+        "total": 2231
+      },
+      {
+        "name": "VETTRIVEL G",
+        "party": "IND",
+        "postal": 0,
+        "booth": 85294,
+        "total": 2039
+      },
+      {
+        "name": "ARCHUNAN M A T",
+        "party": "IND",
+        "postal": 0,
+        "booth": 7553,
+        "total": 1833
+      },
+      {
+        "name": "DHAMODHARAN S",
+        "party": "NADLMMKLK",
+        "postal": 1418,
+        "booth": 210,
+        "total": 1628
+      },
+      {
+        "name": "RATHA G",
+        "party": "IND",
+        "postal": 1273,
+        "booth": 0,
+        "total": 1273
+      },
+      {
+        "name": "RAJAMANICKAM C",
+        "party": "IND",
+        "postal": 1068,
+        "booth": 0,
+        "total": 1068
+      },
+      {
+        "name": "CHINNADURAI A",
+        "party": "IND",
+        "postal": 628,
+        "booth": 0,
+        "total": 628
+      },
+      {
+        "name": "ELAVARASAN C",
+        "party": "IND",
+        "postal": 584,
+        "booth": 0,
+        "total": 584
+      }
+    ],
+    "totalValid": 1150087,
+    "rejected": 0,
+    "nota": 0,
+    "total": 1150087
+  }
 }

@@ -6861,8 +6861,6 @@
     },
     "TN-078-256": {
       "votes": [
-        256,
-        1,
         267,
         6,
         0,
@@ -6881,9 +6879,11 @@
         0,
         0,
         0,
+        0,
+        0,
         0
       ],
-      "total": 568,
+      "total": 311,
       "rejected": 0
     },
     "TN-078-257": {
@@ -8291,5 +8291,160 @@
     }
   ],
   "totalBooths": 303,
-  "source": "Tamil Nadu CEO - Form 20"
+  "source": "Tamil Nadu CEO - Form 20",
+  "postal": {
+    "candidates": [
+      {
+        "name": "MALAIYARASAN D",
+        "party": "DMK",
+        "postal": 460134,
+        "booth": 98212,
+        "total": 558346
+      },
+      {
+        "name": "KUMARAGURU R",
+        "party": "ADMK",
+        "postal": 504768,
+        "booth": 809,
+        "total": 505577
+      },
+      {
+        "name": "JAGADESAN A",
+        "party": "NTK",
+        "postal": 0,
+        "booth": 96958,
+        "total": 73098
+      },
+      {
+        "name": "DEVADASS RAMASAMY",
+        "party": "PMK",
+        "postal": 62712,
+        "booth": 7921,
+        "total": 70633
+      },
+      {
+        "name": "PRABU C",
+        "party": "IND",
+        "postal": 3950,
+        "booth": 318,
+        "total": 4268
+      },
+      {
+        "name": "BALAKRISHNAN P",
+        "party": "IND",
+        "postal": 3468,
+        "booth": 0,
+        "total": 3468
+      },
+      {
+        "name": "JEEVANRAJ N",
+        "party": "BSP",
+        "postal": 3002,
+        "booth": 73,
+        "total": 3075
+      },
+      {
+        "name": "MAYILAMPARAI MARI A",
+        "party": "IND",
+        "postal": 2864,
+        "booth": 27,
+        "total": 2891
+      },
+      {
+        "name": "NATTANMAI GUNASEKARANA A.S",
+        "party": "AMM",
+        "postal": 2239,
+        "booth": 258,
+        "total": 2497
+      },
+      {
+        "name": "KUMARAGURU N",
+        "party": "IND",
+        "postal": 0,
+        "booth": 12670,
+        "total": 2226
+      },
+      {
+        "name": "MURUGESAN M",
+        "party": "IND",
+        "postal": 2143,
+        "booth": 80,
+        "total": 2223
+      },
+      {
+        "name": "SUBRAMANIAN R K",
+        "party": "IND",
+        "postal": 728,
+        "booth": 140,
+        "total": 868
+      },
+      {
+        "name": "ARUL INIYAN A",
+        "party": "IND",
+        "postal": 772,
+        "booth": 0,
+        "total": 772
+      },
+      {
+        "name": "VENKATRAMAN J",
+        "party": "NADLMMKLK",
+        "postal": 687,
+        "booth": 0,
+        "total": 687
+      },
+      {
+        "name": "KAMALAKANNAN M",
+        "party": "IND",
+        "postal": 629,
+        "booth": 0,
+        "total": 629
+      },
+      {
+        "name": "PALANIYAMMAL S",
+        "party": "DMSK",
+        "postal": 533,
+        "booth": 0,
+        "total": 533
+      },
+      {
+        "name": "GOVINDARAJ S R",
+        "party": "IND",
+        "postal": 533,
+        "booth": 0,
+        "total": 533
+      },
+      {
+        "name": "SIGAMANI A",
+        "party": "IND",
+        "postal": 515,
+        "booth": 0,
+        "total": 515
+      },
+      {
+        "name": "RAJASEKAR K",
+        "party": "IND",
+        "postal": 501,
+        "booth": 0,
+        "total": 501
+      },
+      {
+        "name": "JAYABAL PM",
+        "party": "IND",
+        "postal": 473,
+        "booth": 0,
+        "total": 473
+      },
+      {
+        "name": "RAJAMANICKAM C",
+        "party": "IND",
+        "postal": 398,
+        "booth": 0,
+        "total": 398
+      }
+    ],
+    "totalValid": 1234211,
+    "rejected": 0,
+    "nota": 0,
+    "total": 1234211
+  }
 }

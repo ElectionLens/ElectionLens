@@ -31,16 +31,16 @@
         4,
         0,
         117,
-        2,
         0,
         5,
         4,
         0,
         2,
         1,
+        0,
         0
       ],
-      "total": 714,
+      "total": 712,
       "rejected": 0
     },
     "TN-203-003": {
@@ -4350,7 +4350,6 @@
     },
     "TN-203-209": {
       "votes": [
-        3,
         566,
         20,
         0,
@@ -4364,9 +4363,10 @@
         0,
         1,
         0,
+        0,
         0
       ],
-      "total": 620,
+      "total": 617,
       "rejected": 0
     },
     "TN-203-210": {
@@ -6002,5 +6002,118 @@
     }
   ],
   "totalBooths": 282,
-  "source": "Tamil Nadu CEO - Form 20"
+  "source": "Tamil Nadu CEO - Form 20",
+  "postal": {
+    "candidates": [
+      {
+        "name": "DR RANI SRIKUMAR",
+        "party": "DMK",
+        "postal": 379875,
+        "booth": 43150,
+        "total": 423025
+      },
+      {
+        "name": "DR K KRISHNASAMY",
+        "party": "ADMK",
+        "postal": 226927,
+        "booth": 1363,
+        "total": 228290
+      },
+      {
+        "name": "B JOHN PANDIAN",
+        "party": "BJP",
+        "postal": 139750,
+        "booth": 67232,
+        "total": 206982
+      },
+      {
+        "name": "ESAI MATHIVANAN",
+        "party": "NTK",
+        "postal": 106218,
+        "booth": 22532,
+        "total": 128750
+      },
+      {
+        "name": "KARPAGAVALLI P",
+        "party": "IND",
+        "postal": 5690,
+        "booth": 510,
+        "total": 6200
+      },
+      {
+        "name": "T MAHESHKUMAR",
+        "party": "BSP",
+        "postal": 3245,
+        "booth": 281,
+        "total": 3526
+      },
+      {
+        "name": "RAMASAMY P",
+        "party": "VKVIP",
+        "postal": 2697,
+        "booth": 698,
+        "total": 3395
+      },
+      {
+        "name": "M MANMATHAN",
+        "party": "IND",
+        "postal": 0,
+        "booth": 23288,
+        "total": 3276
+      },
+      {
+        "name": "A SEETHA",
+        "party": "BHUDRP",
+        "postal": 2272,
+        "booth": 204,
+        "total": 2476
+      },
+      {
+        "name": "M KRISHNASAMY",
+        "party": "IND",
+        "postal": 1624,
+        "booth": 204,
+        "total": 1828
+      },
+      {
+        "name": "M UMAMAHESWARI",
+        "party": "DMSK",
+        "postal": 414,
+        "booth": 1212,
+        "total": 1626
+      },
+      {
+        "name": "A MUTHAIAH",
+        "party": "IND",
+        "postal": 1217,
+        "booth": 223,
+        "total": 1440
+      },
+      {
+        "name": "P KRISHNASAMY",
+        "party": "IND",
+        "postal": 1098,
+        "booth": 244,
+        "total": 1342
+      },
+      {
+        "name": "M ARUMUGASAMY",
+        "party": "IND",
+        "postal": 783,
+        "booth": 509,
+        "total": 1292
+      },
+      {
+        "name": "R RAJASEKAR",
+        "party": "IND",
+        "postal": 733,
+        "booth": 249,
+        "total": 982
+      }
+    ],
+    "totalValid": 1014430,
+    "rejected": 0,
+    "nota": 0,
+    "total": 1014430
+  }
 }

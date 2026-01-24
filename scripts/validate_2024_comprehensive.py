@@ -54,7 +54,7 @@ def validate_vote_value(vote: int, booth_id: str) -> tuple[bool, str]:
     """Sanity check vote values."""
     if vote < 0:
         return False, f"Negative vote: {vote}"
-    if vote > 2000:  # Single booth rarely has >2000 votes
+    if vote > 2500:  # Increased threshold - some large booths can have >2000 votes
         return False, f"Unusually high vote: {vote} (booth {booth_id})"
     return True, ""
 

@@ -3347,7 +3347,6 @@
     },
     "TN-104-177": {
       "votes": [
-        177,
         136,
         213,
         1,
@@ -3359,9 +3358,10 @@
         0,
         1,
         1,
+        0,
         0
       ],
-      "total": 648,
+      "total": 471,
       "rejected": 0
     },
     "TN-104-178": {
@@ -5561,5 +5561,104 @@
     }
   ],
   "totalBooths": 289,
-  "source": "Tamil Nadu CEO - Form 20"
+  "source": "Tamil Nadu CEO - Form 20",
+  "postal": {
+    "candidates": [
+      {
+        "name": "SUBBARAYAN, K.",
+        "party": "CPI",
+        "postal": 400654,
+        "booth": 69541,
+        "total": 470195
+      },
+      {
+        "name": "ARUNACHALAM, P.",
+        "party": "ADMK",
+        "postal": 276640,
+        "booth": 68686,
+        "total": 345326
+      },
+      {
+        "name": "MURUGANANDAM, A.P.",
+        "party": "BJP",
+        "postal": 114525,
+        "booth": 69541,
+        "total": 184066
+      },
+      {
+        "name": "SEETHALAKSHMI, M.K.",
+        "party": "NTK",
+        "postal": 94078,
+        "booth": 1172,
+        "total": 95250
+      },
+      {
+        "name": "VELUSAMY, A.",
+        "party": "IND",
+        "postal": 0,
+        "booth": 27540,
+        "total": 7089
+      },
+      {
+        "name": "PALANI, V.",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 14850,
+        "total": 6013
+      },
+      {
+        "name": "SATHISHKUMAR, N.",
+        "party": "IND",
+        "postal": 2069,
+        "booth": 246,
+        "total": 2315
+      },
+      {
+        "name": "JANARTHANAM, P.",
+        "party": "TMTHK",
+        "postal": 1414,
+        "booth": 447,
+        "total": 1861
+      },
+      {
+        "name": "KANNAN, M.",
+        "party": "IND",
+        "postal": 1271,
+        "booth": 481,
+        "total": 1752
+      },
+      {
+        "name": "SENGUTTUVAN, M.R.",
+        "party": "IND",
+        "postal": 1356,
+        "booth": 204,
+        "total": 1560
+      },
+      {
+        "name": "SUBRAMANI, N.",
+        "party": "IND",
+        "postal": 905,
+        "booth": 436,
+        "total": 1341
+      },
+      {
+        "name": "MALARVIZHI, G.",
+        "party": "RSPS",
+        "postal": 1032,
+        "booth": 279,
+        "total": 1311
+      },
+      {
+        "name": "KARTHIKEYAN, P.",
+        "party": "IND",
+        "postal": 449,
+        "booth": 361,
+        "total": 810
+      }
+    ],
+    "totalValid": 1118889,
+    "rejected": 0,
+    "nota": 0,
+    "total": 1118889
+  }
 }

@@ -9,14 +9,14 @@
         66,
         103,
         0,
-        1,
         7,
         2,
         4,
         0,
+        0,
         0
       ],
-      "total": 1132,
+      "total": 1131,
       "rejected": 0
     },
     "TN-173-002": {
@@ -5663,5 +5663,97 @@
     }
   ],
   "totalBooths": 311,
-  "source": "Tamil Nadu CEO - Form 20"
+  "source": "Tamil Nadu CEO - Form 20",
+  "postal": {
+    "candidates": [
+      {
+        "name": "MURASOLI S",
+        "party": "DMK",
+        "postal": 397552,
+        "booth": 101270,
+        "total": 498822
+      },
+      {
+        "name": "SIVANESAN P",
+        "party": "DMDK",
+        "postal": 146681,
+        "booth": 35491,
+        "total": 182172
+      },
+      {
+        "name": "MURUGANANTHAM M",
+        "party": "BJP",
+        "postal": 72867,
+        "booth": 96720,
+        "total": 169587
+      },
+      {
+        "name": "HUMAYUN KABIR",
+        "party": "NTK",
+        "postal": 93539,
+        "booth": 26144,
+        "total": 119683
+      },
+      {
+        "name": "RENGASAMY C",
+        "party": "IND",
+        "postal": 16836,
+        "booth": 1294,
+        "total": 18130
+      },
+      {
+        "name": "SARAVANAN M",
+        "party": "IND",
+        "postal": 0,
+        "booth": 25503,
+        "total": 6730
+      },
+      {
+        "name": "SENTHIL KUMAR N",
+        "party": "IND",
+        "postal": 3775,
+        "booth": 358,
+        "total": 4133
+      },
+      {
+        "name": "EZHILARASAN S",
+        "party": "IND",
+        "postal": 3273,
+        "booth": 561,
+        "total": 3834
+      },
+      {
+        "name": "JAYABAL A",
+        "party": "BSP",
+        "postal": 2224,
+        "booth": 176,
+        "total": 2400
+      },
+      {
+        "name": "SANTHOSH M",
+        "party": "IND",
+        "postal": 1701,
+        "booth": 281,
+        "total": 1982
+      },
+      {
+        "name": "ER ARJUN S",
+        "party": "IND",
+        "postal": 249,
+        "booth": 1191,
+        "total": 1440
+      },
+      {
+        "name": "KARIKALA CHOLAN S",
+        "party": "IND",
+        "postal": 486,
+        "booth": 723,
+        "total": 1209
+      }
+    ],
+    "totalValid": 1010122,
+    "rejected": 0,
+    "nota": 0,
+    "total": 1010122
+  }
 }

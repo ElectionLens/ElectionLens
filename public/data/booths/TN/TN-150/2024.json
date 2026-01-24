@@ -3923,7 +3923,6 @@
     },
     "TN-150-200": {
       "votes": [
-        200,
         0,
         175,
         0,
@@ -3936,9 +3935,10 @@
         0,
         0,
         0,
+        0,
         0
       ],
-      "total": 635,
+      "total": 435,
       "rejected": 0
     },
     "TN-150-201": {
@@ -5989,5 +5989,111 @@
     }
   ],
   "totalBooths": 295,
-  "source": "Tamil Nadu CEO - Form 20 (unified-parser, text)"
+  "source": "Tamil Nadu CEO - Form 20 (unified-parser, text)",
+  "postal": {
+    "candidates": [
+      {
+        "name": "THIRUMAAVALAVAN THOL",
+        "party": "VCK",
+        "postal": 423986,
+        "booth": 77865,
+        "total": 501851
+      },
+      {
+        "name": "CHANDRAHASAN M",
+        "party": "ADMK",
+        "postal": 398199,
+        "booth": 1303,
+        "total": 399502
+      },
+      {
+        "name": "KARTHIYAYINI P",
+        "party": "BJP",
+        "postal": 89049,
+        "booth": 77065,
+        "total": 166114
+      },
+      {
+        "name": "JANCIRANI R",
+        "party": "NTK",
+        "postal": 64315,
+        "booth": 801,
+        "total": 65116
+      },
+      {
+        "name": "NEELAMEGAM K",
+        "party": "BSP",
+        "postal": 2307,
+        "booth": 870,
+        "total": 3177
+      },
+      {
+        "name": "TAMILVENDHAN P",
+        "party": "IND",
+        "postal": 524,
+        "booth": 2519,
+        "total": 3043
+      },
+      {
+        "name": "PERUMAL S",
+        "party": "IND",
+        "postal": 98,
+        "booth": 2133,
+        "total": 2231
+      },
+      {
+        "name": "VETTRIVEL G",
+        "party": "IND",
+        "postal": 0,
+        "booth": 73137,
+        "total": 2039
+      },
+      {
+        "name": "ARCHUNAN M A T",
+        "party": "IND",
+        "postal": 0,
+        "booth": 10639,
+        "total": 1833
+      },
+      {
+        "name": "DHAMODHARAN S",
+        "party": "NADLMMKLK",
+        "postal": 1037,
+        "booth": 591,
+        "total": 1628
+      },
+      {
+        "name": "RATHA G",
+        "party": "IND",
+        "postal": 1253,
+        "booth": 20,
+        "total": 1273
+      },
+      {
+        "name": "RAJAMANICKAM C",
+        "party": "IND",
+        "postal": 1045,
+        "booth": 23,
+        "total": 1068
+      },
+      {
+        "name": "CHINNADURAI A",
+        "party": "IND",
+        "postal": 609,
+        "booth": 19,
+        "total": 628
+      },
+      {
+        "name": "ELAVARASAN C",
+        "party": "IND",
+        "postal": 579,
+        "booth": 5,
+        "total": 584
+      }
+    ],
+    "totalValid": 1150087,
+    "rejected": 0,
+    "nota": 0,
+    "total": 1150087
+  }
 }

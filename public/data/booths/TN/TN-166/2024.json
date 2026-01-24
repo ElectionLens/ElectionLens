@@ -1878,17 +1878,17 @@
     },
     "TN-166-127": {
       "votes": [
-        127,
-        1,
         134,
         35,
         0,
         20,
         0,
         0,
+        0,
+        0,
         0
       ],
-      "total": 317,
+      "total": 189,
       "rejected": 0
     },
     "TN-166-128": {
@@ -4205,5 +4205,76 @@
     }
   ],
   "totalBooths": 277,
-  "source": "Tamil Nadu CEO - Form 20 (unified-parser, text)"
+  "source": "Tamil Nadu CEO - Form 20 (unified-parser, text)",
+  "postal": {
+    "candidates": [
+      {
+        "name": "SELVARAJ V",
+        "party": "CPI",
+        "postal": 375118,
+        "booth": 87641,
+        "total": 462759
+      },
+      {
+        "name": "DR SURSITH SANKAR G",
+        "party": "ADMK",
+        "postal": 254061,
+        "booth": 615,
+        "total": 254676
+      },
+      {
+        "name": "KARTHIKA M",
+        "party": "NTK",
+        "postal": 43982,
+        "booth": 86864,
+        "total": 130846
+      },
+      {
+        "name": "RAMESHGOVIND S G M",
+        "party": "BJP",
+        "postal": 77872,
+        "booth": 23663,
+        "total": 101535
+      },
+      {
+        "name": "VIJAYARAGAVAN N",
+        "party": "IND",
+        "postal": 2725,
+        "booth": 347,
+        "total": 3072
+      },
+      {
+        "name": "SUBRAMANIAN K",
+        "party": "IND",
+        "postal": 0,
+        "booth": 18179,
+        "total": 2434
+      },
+      {
+        "name": "JAGADEESH J BE",
+        "party": "BSP",
+        "postal": 1788,
+        "booth": 1,
+        "total": 1789
+      },
+      {
+        "name": "BOOMINATHAN B",
+        "party": "DMSK",
+        "postal": 1046,
+        "booth": 2,
+        "total": 1048
+      },
+      {
+        "name": "PREM S",
+        "party": "IND",
+        "postal": 1047,
+        "booth": 0,
+        "total": 1047
+      }
+    ],
+    "totalValid": 959206,
+    "rejected": 0,
+    "nota": 0,
+    "total": 959206
+  }
 }

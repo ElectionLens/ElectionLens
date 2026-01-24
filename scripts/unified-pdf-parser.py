@@ -454,19 +454,20 @@ def extract_scanned_pdf(pdf_path: Path, num_candidates: int, ac_id: str, expecte
                 if key not in all_booths or all_booths[key][1] < conf:
                     all_booths[key] = (booth, conf)
         
-        # Strategy 2: Surya OCR fallback (SKIPPED for speed - uncomment if needed)
-        # Surya is very slow (~2-3 min per page), so we skip it for faster processing
-        # Uncomment below if you need maximum accuracy and can wait
-        # extraction_ratio = len(all_booths) / len(expected_booths) if expected_booths else 1.0
-        # if extraction_ratio < 0.5:  # Only use Surya if we got less than 50%
-        #     try:
-        #         surya_booths = extract_with_surya_fallback(pdf_path, num_candidates, ac_id, expected_booths)
-        #         for booth in surya_booths:
-        #             key = f"{booth.booth_no:03d}"
-        #             if key not in all_booths or all_booths[key][1] < 0.9:
-        #                 all_booths[key] = (booth, 0.9)
-        #     except Exception as e:
-        #         result.warnings.append(f"Surya OCR fallback failed: {e}")
+        # Strategy 2: Surya OCR fallback (enabled for difficult cases)
+        # Use Surya if we got less than 80% of expected booths
+        extraction_ratio = len(all_booths) / len(expected_booths) if expected_booths and len(expected_booths) > 0 else 1.0
+        if extraction_ratio < 0.8:  # Use Surya if we got less than 80%
+            try:
+                print(f"    Using Surya OCR fallback (extraction ratio: {extraction_ratio:.1%})")
+                surya_booths = extract_with_surya_fallback(pdf_path, num_candidates, ac_id, expected_booths)
+                for booth in surya_booths:
+                    key = f"{booth.booth_no:03d}"
+                    if key not in all_booths or all_booths[key][1] < 0.9:
+                        all_booths[key] = (booth, 0.9)
+                print(f"    Surya extracted {len(surya_booths)} additional booths")
+            except Exception as e:
+                result.warnings.append(f"Surya OCR fallback failed: {e}")
                     
     except Exception as e:
         result.errors.append(f"OCR extraction error: {e}")
@@ -1159,13 +1160,29 @@ def process_ac(ac_num: int, pc_data: dict, schema: dict, force: bool = False) ->
     # Load existing data
     existing = load_existing_data(ac_id)
     
-    # Find booths needing extraction
+    # Find booths needing extraction (empty votes)
     needs_extraction = set()
     for k, v in existing.get('results', {}).items():
         if not v.get('votes') or len(v.get('votes', [])) == 0:
             match = re.match(r'^TN-\d{3}-0*(\d+)', k)
             if match:
                 needs_extraction.add(int(match.group(1)))
+    
+    # Also check booths.json for booths missing from 2024.json entirely
+    booths_file = OUTPUT_BASE / ac_id / "booths.json"
+    if booths_file.exists():
+        with open(booths_file) as f:
+            booths_data = json.load(f)
+        booth_list = booths_data.get('booths', [])
+        for booth in booth_list:
+            booth_id = booth.get('id', '')
+            if booth_id:
+                match = re.search(r'-(\d+)$', booth_id)
+                if match:
+                    booth_num = int(match.group(1))
+                    padded_id = f"{ac_id}-{booth_num:03d}"
+                    if padded_id not in existing.get('results', {}):
+                        needs_extraction.add(booth_num)
     
     if not needs_extraction and not force:
         print(f"  ✓ All booths already have vote data")

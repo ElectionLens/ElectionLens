@@ -823,15 +823,15 @@
         57,
         256,
         0,
-        49,
         2,
+        0,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 597,
+      "total": 548,
       "rejected": 0
     },
     "TN-036-050": {
@@ -1537,15 +1537,15 @@
         89,
         276,
         6,
-        91,
         1,
+        0,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 863,
+      "total": 772,
       "rejected": 0
     },
     "TN-036-092": {
@@ -5194,5 +5194,90 @@
     }
   ],
   "totalBooths": 302,
-  "source": "Tamil Nadu CEO - Form 20"
+  "source": "Tamil Nadu CEO - Form 20",
+  "postal": {
+    "candidates": [
+      {
+        "name": "SELVAM. G",
+        "party": "DMK",
+        "postal": 490464,
+        "booth": 92514,
+        "total": 582978
+      },
+      {
+        "name": "RAJASEKAR. E",
+        "party": "ADMK",
+        "postal": 347058,
+        "booth": 15933,
+        "total": 362991
+      },
+      {
+        "name": "JOTHI. V",
+        "party": "PMK",
+        "postal": 94185,
+        "booth": 69607,
+        "total": 163792
+      },
+      {
+        "name": "SANTHOSH KUMAR. V",
+        "party": "NTK",
+        "postal": 109057,
+        "booth": 801,
+        "total": 109858
+      },
+      {
+        "name": "ILAYARAJA. S",
+        "party": "BSP",
+        "postal": 0,
+        "booth": 21818,
+        "total": 5243
+      },
+      {
+        "name": "VENKATESAN. K",
+        "party": "IND",
+        "postal": 2611,
+        "booth": 187,
+        "total": 2798
+      },
+      {
+        "name": "NARESH BHARATHI. S",
+        "party": "IND",
+        "postal": 2499,
+        "booth": 0,
+        "total": 2499
+      },
+      {
+        "name": "ELANGOVAN. M",
+        "party": "IND",
+        "postal": 1874,
+        "booth": 0,
+        "total": 1874
+      },
+      {
+        "name": "SURYA. A",
+        "party": "IND",
+        "postal": 1673,
+        "booth": 0,
+        "total": 1673
+      },
+      {
+        "name": "RAMESH. S",
+        "party": "IND",
+        "postal": 1317,
+        "booth": 0,
+        "total": 1317
+      },
+      {
+        "name": "SELVAM. T",
+        "party": "IND",
+        "postal": 1295,
+        "booth": 0,
+        "total": 1295
+      }
+    ],
+    "totalValid": 1236318,
+    "rejected": 0,
+    "nota": 0,
+    "total": 1236318
+  }
 }

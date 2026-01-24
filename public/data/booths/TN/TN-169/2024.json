@@ -24,11 +24,11 @@
         116,
         87,
         0,
-        2,
+        0,
         0,
         0
       ],
-      "total": 829,
+      "total": 827,
       "rejected": 0
     },
     "TN-169-003": {
@@ -2373,7 +2373,6 @@
     },
     "TN-169-159": {
       "votes": [
-        159,
         0,
         183,
         18,
@@ -2381,9 +2380,10 @@
         36,
         0,
         0,
+        0,
         0
       ],
-      "total": 396,
+      "total": 237,
       "rejected": 0
     },
     "TN-169-160": {
@@ -3063,17 +3063,17 @@
     },
     "TN-169-205": {
       "votes": [
-        205,
-        1,
         214,
         60,
         0,
         28,
         0,
         2,
+        0,
+        0,
         0
       ],
-      "total": 510,
+      "total": 304,
       "rejected": 0
     },
     "TN-169-206": {
@@ -4775,5 +4775,76 @@
     }
   ],
   "totalBooths": 315,
-  "source": "Tamil Nadu CEO - Form 20"
+  "source": "Tamil Nadu CEO - Form 20",
+  "postal": {
+    "candidates": [
+      {
+        "name": "SELVARAJ V",
+        "party": "CPI",
+        "postal": 369624,
+        "booth": 93135,
+        "total": 462759
+      },
+      {
+        "name": "DR SURSITH SANKAR G",
+        "party": "ADMK",
+        "postal": 253979,
+        "booth": 697,
+        "total": 254676
+      },
+      {
+        "name": "KARTHIKA M",
+        "party": "NTK",
+        "postal": 37910,
+        "booth": 92936,
+        "total": 130846
+      },
+      {
+        "name": "RAMESHGOVIND S G M",
+        "party": "BJP",
+        "postal": 76792,
+        "booth": 24743,
+        "total": 101535
+      },
+      {
+        "name": "VIJAYARAGAVAN N",
+        "party": "IND",
+        "postal": 2652,
+        "booth": 420,
+        "total": 3072
+      },
+      {
+        "name": "SUBRAMANIAN K",
+        "party": "IND",
+        "postal": 0,
+        "booth": 18672,
+        "total": 2434
+      },
+      {
+        "name": "JAGADEESH J BE",
+        "party": "BSP",
+        "postal": 1785,
+        "booth": 4,
+        "total": 1789
+      },
+      {
+        "name": "BOOMINATHAN B",
+        "party": "DMSK",
+        "postal": 383,
+        "booth": 665,
+        "total": 1048
+      },
+      {
+        "name": "PREM S",
+        "party": "IND",
+        "postal": 1047,
+        "booth": 0,
+        "total": 1047
+      }
+    ],
+    "totalValid": 959206,
+    "rejected": 0,
+    "nota": 0,
+    "total": 959206
+  }
 }

@@ -11,7 +11,7 @@
         31,
         0,
         0,
-        1,
+        0,
         0,
         0,
         0,
@@ -19,7 +19,7 @@
         0,
         0
       ],
-      "total": 967,
+      "total": 966,
       "rejected": 0
     },
     "TN-127-002": {
@@ -2569,11 +2569,11 @@
         38,
         351,
         0,
-        123,
         1,
         0,
         0,
         1,
+        0,
         0,
         0,
         0,
@@ -2581,7 +2581,7 @@
         0,
         0
       ],
-      "total": 870,
+      "total": 747,
       "rejected": 0
     },
     "TN-127-124": {
@@ -3279,7 +3279,6 @@
     },
     "TN-127-157": {
       "votes": [
-        157,
         16,
         191,
         0,
@@ -3293,9 +3292,10 @@
         0,
         0,
         0,
+        0,
         0
       ],
-      "total": 384,
+      "total": 227,
       "rejected": 0
     },
     "TN-127-158": {
@@ -6842,5 +6842,118 @@
     }
   ],
   "totalBooths": 322,
-  "source": "Tamil Nadu CEO - Form 20"
+  "source": "Tamil Nadu CEO - Form 20",
+  "postal": {
+    "candidates": [
+      {
+        "name": "SACHITHANANTHAM R",
+        "party": "CPI(M)",
+        "postal": 564389,
+        "booth": 103002,
+        "total": 667391
+      },
+      {
+        "name": "MOHAMED MUBARAK M A",
+        "party": "ADMK",
+        "postal": 210269,
+        "booth": 15223,
+        "total": 225492
+      },
+      {
+        "name": "THILGABAMA M",
+        "party": "PMK",
+        "postal": 28661,
+        "booth": 82352,
+        "total": 111013
+      },
+      {
+        "name": "KAILAI RAJAN D",
+        "party": "NTK",
+        "postal": 87883,
+        "booth": 9008,
+        "total": 96891
+      },
+      {
+        "name": "RAJKUMAR R",
+        "party": "IND",
+        "postal": 0,
+        "booth": 30273,
+        "total": 4410
+      },
+      {
+        "name": "NATCHIMUTHU S",
+        "party": "BSP",
+        "postal": 2207,
+        "booth": 2024,
+        "total": 4231
+      },
+      {
+        "name": "DINESHKUMAR S",
+        "party": "AIYDPMP",
+        "postal": 0,
+        "booth": 3020,
+        "total": 2411
+      },
+      {
+        "name": "MURUGESAN (A) VISHNU MURUGESAN C",
+        "party": "IND",
+        "postal": 1853,
+        "booth": 151,
+        "total": 2004
+      },
+      {
+        "name": "ANGUCHAMY M",
+        "party": "IND",
+        "postal": 1156,
+        "booth": 130,
+        "total": 1286
+      },
+      {
+        "name": "SURESH K",
+        "party": "IND",
+        "postal": 1222,
+        "booth": 32,
+        "total": 1254
+      },
+      {
+        "name": "ARUMUGAM R",
+        "party": "IND",
+        "postal": 1059,
+        "booth": 19,
+        "total": 1078
+      },
+      {
+        "name": "SABARINATH S",
+        "party": "IND",
+        "postal": 1001,
+        "booth": 0,
+        "total": 1001
+      },
+      {
+        "name": "ANBUROSE D",
+        "party": "IND",
+        "postal": 997,
+        "booth": 0,
+        "total": 997
+      },
+      {
+        "name": "PALANISAMY K",
+        "party": "IND",
+        "postal": 941,
+        "booth": 0,
+        "total": 941
+      },
+      {
+        "name": "SATHISH KANNA G T",
+        "party": "IND",
+        "postal": 914,
+        "booth": 0,
+        "total": 914
+      }
+    ],
+    "totalValid": 1121314,
+    "rejected": 0,
+    "nota": 0,
+    "total": 1121314
+  }
 }
