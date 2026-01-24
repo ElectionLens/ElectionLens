@@ -598,6 +598,14 @@ export function MapView({
   // Load booth data when a Tamil Nadu AC is selected
   // Try to load even if boothDataEnabled is false - let the availability check happen in ElectionResultPanel
   useEffect(() => {
+    console.log('[MapView] Booth data useEffect triggered:', {
+      hasElectionResult: !!electionResult,
+      schemaId: electionResult?.schemaId,
+      isTN: electionResult?.schemaId?.startsWith('TN-'),
+      selectedYear,
+      electionResultYear: electionResult?.year,
+    });
+
     if (electionResult?.schemaId?.startsWith('TN-')) {
       // Always use assembly year for booth data (booth data is assembly-level)
       // If selectedYear is null, use the election result's year as fallback
@@ -612,6 +620,11 @@ export function MapView({
         boothDataYear,
       });
       if (yearToLoad) {
+        console.log('[MapView] Calling loadBoothData:', {
+          stateId: 'TN',
+          acId: electionResult.schemaId,
+          year: yearToLoad,
+        });
         void loadBoothData('TN', electionResult.schemaId, yearToLoad);
       } else {
         console.warn('[MapView] No year available for booth data:', {
@@ -640,6 +653,14 @@ export function MapView({
   // Load booth results when year changes (always use assembly year for booth data)
   // Try to load even if boothDataEnabled is false - let the availability check happen in ElectionResultPanel
   useEffect(() => {
+    console.log('[MapView] Booth results useEffect triggered:', {
+      hasElectionResult: !!electionResult,
+      schemaId: electionResult?.schemaId,
+      isTN: electionResult?.schemaId?.startsWith('TN-'),
+      selectedYear,
+      electionResultYear: electionResult?.year,
+    });
+
     if (electionResult?.schemaId?.startsWith('TN-')) {
       // Always use assembly year for booth results (booth data is assembly-level)
       // If selectedYear is null, use the election result's year as fallback
@@ -652,6 +673,11 @@ export function MapView({
           selectedYear,
           electionResultYear: electionResult?.year,
           boothDataEnabled,
+        });
+        console.log('[MapView] Calling loadBoothResults:', {
+          stateId: 'TN',
+          acId: electionResult.schemaId,
+          year: yearToLoad,
         });
         void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
       } else {
