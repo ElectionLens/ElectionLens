@@ -1295,8 +1295,8 @@ export function MapView({
             selectedPCYear={selectedACPCYear}
             onPCYearChange={onACPCYearChange}
             pcContributionShareUrl={pcContributionShareUrl}
-            boothResults={boothDataEnabled ? boothResults : null}
-            boothsWithResults={boothDataEnabled ? boothsWithResults : []}
+            boothResults={boothResults}
+            boothsWithResults={boothsWithResults}
           />
         </Suspense>
       )}
