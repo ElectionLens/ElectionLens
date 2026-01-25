@@ -184,19 +184,21 @@ function App(): JSX.Element {
           const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
           if (latestYear !== undefined) {
             setSelectedYear(latestYear);
-            // Update URL immediately with latest year
-            updateUrl({
-              state: matchedState,
-              view: 'assemblies',
-              pc: null,
-              district: null,
-              assembly: null,
-              year: latestYear,
-              pcYear: null,
-              tab: null,
-              blog: false,
-              blogPost: null,
-            });
+            // Update URL immediately with latest year (use ref to avoid dependency issues)
+            setTimeout(() => {
+              updateUrlRef.current({
+                state: matchedState,
+                view: 'assemblies',
+                pc: null,
+                district: null,
+                assembly: null,
+                year: latestYear,
+                pcYear: null,
+                tab: null,
+                blog: false,
+                blogPost: null,
+              });
+            }, 0);
           }
         }
 
@@ -229,19 +231,21 @@ function App(): JSX.Element {
           const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
           if (latestYear !== undefined) {
             setPCSelectedYear(latestYear);
-            // Update URL immediately with latest year
-            updateUrl({
-              state: matchedState,
-              view: 'constituencies',
-              pc: null,
-              district: null,
-              assembly: null,
-              year: latestYear,
-              pcYear: null,
-              tab: null,
-              blog: false,
-              blogPost: null,
-            });
+            // Update URL immediately with latest year (use ref to avoid dependency issues)
+            setTimeout(() => {
+              updateUrlRef.current({
+                state: matchedState,
+                view: 'constituencies',
+                pc: null,
+                district: null,
+                assembly: null,
+                year: latestYear,
+                pcYear: null,
+                tab: null,
+                blog: false,
+                blogPost: null,
+              });
+            }, 0);
           }
         }
       }
@@ -267,7 +271,6 @@ function App(): JSX.Element {
       loadPCStateIndex,
       setSelectedYear,
       setPCSelectedYear,
-      updateUrl,
     ]
   );
 
@@ -290,6 +293,12 @@ function App(): JSX.Element {
     handleUrlNavigate,
     isDataReady
   );
+
+  // Ref to store updateUrl for use in handleUrlNavigate
+  const updateUrlRef = useRef(updateUrl);
+  useEffect(() => {
+    updateUrlRef.current = updateUrl;
+  }, [updateUrl]);
 
   // Mobile sidebar state
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
