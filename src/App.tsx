@@ -179,8 +179,20 @@ function App(): JSX.Element {
         const acIndex = await loadStateIndex(matchedState);
         void loadPCStateIndex(matchedState);
 
-        // If no year in URL, set to latest AC year and update URL
-        if (!urlState.year && !urlState.assembly && acIndex && acIndex.availableYears.length > 0) {
+        // Set PC year if provided in URL (year=pc-YYYY format) - works for both state-level and specific assembly
+        // Do this BEFORE auto-redirect logic to prevent redirect when PC year is selected
+        if (urlState.pcYear) {
+          setSelectedACPCYear(urlState.pcYear);
+        }
+
+        // If no year in URL (neither year nor pcYear), set to latest AC year and update URL
+        if (
+          !urlState.year &&
+          !urlState.pcYear &&
+          !urlState.assembly &&
+          acIndex &&
+          acIndex.availableYears.length > 0
+        ) {
           const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
           if (latestYear !== undefined) {
             setSelectedYear(latestYear);
@@ -200,11 +212,6 @@ function App(): JSX.Element {
               });
             }, 0);
           }
-        }
-
-        // Set PC year if provided in URL (year=pc-YYYY format) - works for both state-level and specific assembly
-        if (urlState.pcYear) {
-          setSelectedACPCYear(urlState.pcYear);
         }
 
         if (urlState.assembly) {
