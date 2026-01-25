@@ -18,8 +18,11 @@ import type {
   LatLngBoundsExpression,
 } from 'leaflet';
 import { getFeatureStyle, getHoverStyle, normalizeName, getStateFileName } from '../utils/helpers';
-import { COLOR_PALETTES, isBoothDataAvailable } from '../constants';
+import { COLOR_PALETTES, isBoothDataAvailable, STATE_FILE_MAP } from '../constants';
 import { clearAllCache } from '../utils/db';
+import { getPartyColor } from '../utils/partyData';
+import { ELECTIONS, PC_ELECTIONS } from '../constants/paths';
+import type { ElectionResultsByConstituency, PCElectionResultsByConstituency } from '../types';
 import { FeedbackModal } from './FeedbackModal';
 import { VectorTileLayer } from './VectorTileLayer';
 import { useSchema } from '../hooks/useSchema';
@@ -640,6 +643,144 @@ export function MapView({
   const pendingSelectedAssembly = useRef<string | null>(null);
   // Ref to always have latest selectedAssembly value in callbacks
   const selectedAssemblyRef = useRef<string | null>(selectedAssembly);
+
+  // Mapping of constituency names to winning party for color-coding
+  const [constituencyWinners, setConstituencyWinners] = useState<
+    Record<string, { party: string; candidate: string }>
+  >({});
+
+  // Helper to get state ID from state name
+  const getStateId = useCallback((stateName: string): string => {
+    const normalized = normalizeName(stateName);
+    // Try direct lookup first
+    if (STATE_FILE_MAP[stateName]) {
+      return STATE_FILE_MAP[stateName];
+    }
+    // Try normalized lookup
+    if (STATE_FILE_MAP[normalized]) {
+      return STATE_FILE_MAP[normalized];
+    }
+    // Try to find by normalized match
+    for (const [key, value] of Object.entries(STATE_FILE_MAP)) {
+      if (normalizeName(key) === normalized) {
+        return value;
+      }
+    }
+    // Fallback to first 2 uppercase letters
+    return normalized.toUpperCase().slice(0, 2);
+  }, []);
+
+  // Load election results for color-coding when year/state/view changes
+  useEffect(() => {
+    if (!currentState) {
+      setConstituencyWinners({});
+      return;
+    }
+
+    const loadResults = async (): Promise<void> => {
+      const stateId = getStateId(currentState);
+      const winners: Record<string, { party: string; candidate: string }> = {};
+
+      if (currentView === 'assemblies') {
+        // For AC view, check if we're viewing PC contribution year or assembly year
+        if (selectedACPCYear) {
+          // Load PC election results and map AC contributions
+          try {
+            const response = await fetch(PC_ELECTIONS.getYearPath(stateId, selectedACPCYear));
+            if (response.ok) {
+              const results = (await response.json()) as PCElectionResultsByConstituency;
+              // Map each AC to its winner from PC contribution
+              Object.values(results).forEach((pcResult) => {
+                if (pcResult.acWiseResults) {
+                  Object.entries(pcResult.acWiseResults).forEach(([acName, acContribution]) => {
+                    if (acContribution.candidates && acContribution.candidates.length > 0) {
+                      const winner = acContribution.candidates[0]; // First candidate is winner
+                      if (winner) {
+                        winners[acName.toUpperCase()] = {
+                          party: winner.party,
+                          candidate: winner.name,
+                        };
+                      }
+                    }
+                  });
+                }
+              });
+            }
+          } catch (err) {
+            console.error(
+              `Failed to load PC election results for ${currentState} ${selectedACPCYear}:`,
+              err
+            );
+          }
+        } else if (selectedYear) {
+          // Load AC election results
+          try {
+            const response = await fetch(ELECTIONS.getYearPath(stateId, selectedYear));
+            if (response.ok) {
+              const results = (await response.json()) as ElectionResultsByConstituency;
+              // Map each AC to its winner
+              Object.values(results).forEach((result) => {
+                if (result.candidates && result.candidates.length > 0) {
+                  const winner = result.candidates[0]; // First candidate is winner (sorted by votes)
+                  if (winner) {
+                    const acName =
+                      result.constituencyNameOriginal ||
+                      result.constituencyName ||
+                      result.name ||
+                      '';
+                    if (acName) {
+                      winners[acName.toUpperCase()] = {
+                        party: winner.party,
+                        candidate: winner.name,
+                      };
+                    }
+                  }
+                }
+              });
+            }
+          } catch (err) {
+            console.error(
+              `Failed to load AC election results for ${currentState} ${selectedYear}:`,
+              err
+            );
+          }
+        }
+      } else if (currentView === 'constituencies' && pcSelectedYear) {
+        // Load PC election results
+        try {
+          const response = await fetch(PC_ELECTIONS.getYearPath(stateId, pcSelectedYear));
+          if (response.ok) {
+            const results = (await response.json()) as PCElectionResultsByConstituency;
+            // Map each PC to its winner
+            Object.values(results).forEach((result) => {
+              if (result.candidates && result.candidates.length > 0) {
+                const winner = result.candidates[0]; // First candidate is winner (sorted by votes)
+                if (winner) {
+                  const pcName =
+                    result.constituencyNameOriginal || result.constituencyName || result.name || '';
+                  if (pcName) {
+                    winners[pcName.toUpperCase()] = {
+                      party: winner.party,
+                      candidate: winner.name,
+                    };
+                  }
+                }
+              }
+            });
+          }
+        } catch (err) {
+          console.error(
+            `Failed to load PC election results for ${currentState} ${pcSelectedYear}:`,
+            err
+          );
+        }
+      }
+
+      setConstituencyWinners(winners);
+    };
+
+    void loadResults();
+  }, [currentState, currentView, selectedYear, pcSelectedYear, selectedACPCYear, getStateId]);
   // Feedback modal state
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
   // Base layer state - 'Vector' uses VectorTileLayer, others use TileLayer
@@ -1146,11 +1287,38 @@ export function MapView({
     return undefined;
   }, [selectedAssembly, level, geoJsonKey]);
 
-  // Style function that highlights selected assembly with dark green border
+  // Style function that highlights selected assembly with dark green border and color-codes by party
   const style = useCallback(
     (feature?: GeoJSON.Feature) => {
       const idx = styleIndex.current++;
-      const baseStyle = getFeatureStyle(idx, level) as object;
+      let baseStyle = getFeatureStyle(idx, level) as L.PathOptions;
+
+      // Get constituency name based on level
+      let constituencyName: string | null = null;
+      if (feature) {
+        if (level === 'assemblies') {
+          const props = feature.properties as AssemblyProperties;
+          constituencyName = props.AC_NAME?.toUpperCase() ?? null;
+        } else if (level === 'constituencies') {
+          const props = feature.properties as ConstituencyProperties;
+          constituencyName = (props.ls_seat_name ?? props.PC_NAME)?.toUpperCase() ?? null;
+        }
+      }
+
+      // Color-code by winning party if we have winner data
+      if (constituencyName && constituencyWinners[constituencyName]) {
+        const winner = constituencyWinners[constituencyName];
+        if (winner) {
+          const partyColor = getPartyColor(winner.party);
+          baseStyle = {
+            fillColor: partyColor,
+            fillOpacity: 0.7,
+            color: '#fff',
+            weight: 1.5,
+            opacity: 1,
+          };
+        }
+      }
 
       // Highlight selected assembly with dark green border on all sides
       if (selectedAssembly && level === 'assemblies' && feature) {
@@ -1168,7 +1336,7 @@ export function MapView({
 
       return baseStyle;
     },
-    [level, selectedAssembly]
+    [level, selectedAssembly, constituencyWinners]
   );
 
   // Show view toggle buttons whenever we're in a state (even if PC or district is selected)
