@@ -1207,7 +1207,17 @@ export function MapView({
             return;
           }
 
-          l.setStyle(getHoverStyle(level));
+          // Get current style to preserve party color
+          const currentStyle = (l as unknown as { options: L.PathOptions }).options;
+          const hoverStyle = getHoverStyle(level);
+
+          // Preserve fillColor (party color) if it exists, otherwise use hover style
+          l.setStyle({
+            ...hoverStyle,
+            fillColor: currentStyle.fillColor || hoverStyle.fillColor,
+            // Increase opacity slightly for hover effect while preserving party color
+            fillOpacity: currentStyle.fillColor ? 0.85 : hoverStyle.fillOpacity,
+          });
           l.bringToFront();
         },
         mouseout: (e: LLeafletMouseEvent): void => {
@@ -1224,6 +1234,7 @@ export function MapView({
           }
 
           if (geoJsonRef.current) {
+            // Reset to base style (which includes party color if available)
             geoJsonRef.current.resetStyle(e.target as Layer);
 
             // Re-apply style to selected assembly to fix shared border issue
