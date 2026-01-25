@@ -1208,11 +1208,14 @@ export function MapView({
           }
 
           // Get current style to preserve party color
-          const currentOptions = (l as unknown as { options: L.PathOptions }).options;
+          // Always re-compute style to get the correct fillColor (party color) from style function
+          // This ensures we get the party color even if Leaflet hasn't updated options yet
+          const computedStyle = feature ? style(feature) : null;
           const hoverStyle = getHoverStyle(level);
 
-          // Preserve fillColor (party color) if it exists, otherwise use default
-          const fillColor = currentOptions.fillColor;
+          // Preserve fillColor (party color) from computed style
+          const fillColor = computedStyle?.fillColor;
+
           l.setStyle({
             ...hoverStyle,
             ...(fillColor ? { fillColor } : {}),
