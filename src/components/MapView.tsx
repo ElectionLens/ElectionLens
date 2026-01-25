@@ -1288,7 +1288,15 @@ export function MapView({
         },
       });
     },
-    [level, onStateClick, onDistrictClick, onConstituencyClick, onAssemblyClick]
+    [
+      level,
+      selectedAssembly,
+      style,
+      onStateClick,
+      onDistrictClick,
+      onConstituencyClick,
+      onAssemblyClick,
+    ]
   );
 
   // Reset style index when data changes
