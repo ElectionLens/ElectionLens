@@ -32,7 +32,10 @@ export interface Candidate {
 export interface BoothResult {
   votes: number[];
   total: number;
-  rejected: number;
+  rejected?: number;
+  name?: string;
+  address?: string;
+  area?: string;
 }
 
 export interface PostalCandidate {
@@ -217,16 +220,66 @@ export function useBoothData(): UseBoothDataReturn {
       if (!booth) {
         // Extract booth number by removing AC prefix (e.g., "TN-123-45" -> "45")
         const boothNo = boothId.replace(`${acId}-`, '');
+        // Use name from result if available, otherwise create placeholder
+        const resultName = result?.name || `Polling Station ${boothNo}, ${acName}`;
+        const resultAddress = result?.address || resultName;
+        const resultArea = result?.area || acName;
         booth = {
           id: boothId,
           boothNo: boothNo,
           num: parseInt(boothNo.replace(/[^\d]/g, '')) || 0,
           type: boothNo.includes('W') ? 'women' : boothNo.includes('M') ? 'auxiliary' : 'regular',
-          name: `Polling Station ${boothNo}, ${acName}`,
-          address: `Polling Station ${boothNo}, ${acName}`,
-          area: acName,
+          name: resultName,
+          address: resultAddress,
+          area: resultArea,
         };
+      } else {
+        // Update booth with name from result if available (prefer result data over booth list)
+        // This ensures that names added to result data are used
+        if (result?.name) {
+          booth = {
+            ...booth,
+            name: result.name,
+            address: result.address || booth.address || result.name,
+            area: result.area || booth.area,
+          };
+        }
+        // If result doesn't have name but booth does, keep booth's name (already set above)
       }
+
+      // #region agent log
+      if (
+        acId === 'TN-156' &&
+        (boothId === 'TN-156-1' ||
+          boothId === 'TN-156-2' ||
+          boothId === 'TN-156-002' ||
+          boothId === 'TN-156-016')
+      ) {
+        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            location: 'useBoothData.ts:250',
+            message: 'Booth name check',
+            data: {
+              boothId,
+              acId,
+              year: boothResults?.year,
+              hasBoothInMap: !!boothMap.get(boothId),
+              resultName: result?.name?.substring(0, 50),
+              resultAddress: result?.address?.substring(0, 50),
+              boothName: booth?.name?.substring(0, 50),
+              boothAddress: booth?.address?.substring(0, 50),
+              boothArea: booth?.area?.substring(0, 50),
+            },
+            timestamp: Date.now(),
+            sessionId: 'debug-session',
+            runId: 'booth-names-2024',
+            hypothesisId: 'A',
+          }),
+        }).catch(() => {});
+      }
+      // #endregion
 
       let winner: BoothWithResult['winner'] = undefined;
 

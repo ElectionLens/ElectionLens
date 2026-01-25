@@ -1010,10 +1010,10 @@ function BoothWiseView({
                   <span className="label">Total Votes</span>
                   <span className="value">{formatNumber(selectedBooth.result.total)}</span>
                 </div>
-                {selectedBooth.result.rejected > 0 && (
+                {(selectedBooth.result.rejected ?? 0) > 0 && (
                   <div className="vote-stat">
                     <span className="label">Rejected</span>
-                    <span className="value">{selectedBooth.result.rejected}</span>
+                    <span className="value">{selectedBooth.result.rejected ?? 0}</span>
                   </div>
                 )}
                 {selectedBooth.winner && (

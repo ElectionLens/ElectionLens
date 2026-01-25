@@ -440,9 +440,9 @@ function BoothRow({ booth, candidates, expanded, onToggle, onSelect: _onSelect }
           </div>
 
           {/* Rejected votes */}
-          {booth.result.rejected > 0 && (
+          {(booth.result.rejected ?? 0) > 0 && (
             <div className="mt-2 text-xs text-gray-500">
-              Rejected: {formatNumber(booth.result.rejected)}
+              Rejected: {formatNumber(booth.result.rejected ?? 0)}
             </div>
           )}
         </div>

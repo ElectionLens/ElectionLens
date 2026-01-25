@@ -5,7 +5,7 @@
   "electionType": "assembly",
   "date": "2021-04-06",
   "totalBooths": 458,
-  "source": "Tamil Nadu CEO - Form 20 (enhanced-parser-v2-2021, text) (vote mapping fixed - offset 0) (vote columns remapped - 5 matches) (vote columns remapped - 5 matches) (vote columns remapped - 5 matches) (vote columns remapped - 5 matches) (vote columns remapped - 5 matches) (comprehensive mapping - 4/13 matches) (scaled 85.2% \u2192 100.0%) (normalized to exact match) (normalized to exact match) (final-100-fix: +0 votes) (final-100-fix: +0 votes) (normalized to exact match)",
+  "source": "Tamil Nadu CEO - Form 20 (enhanced-parser-v2-2021, text) (vote mapping fixed - offset 0) (vote columns remapped - 5 matches) (vote columns remapped - 5 matches) (vote columns remapped - 5 matches) (vote columns remapped - 5 matches) (vote columns remapped - 5 matches) (comprehensive mapping - 4/13 matches) (scaled 85.2% → 100.0%) (normalized to exact match) (normalized to exact match) (final-100-fix: +0 votes) (final-100-fix: +0 votes) (normalized to exact match) (with booth names)",
   "candidates": [
     {
       "name": "CHINNAPPA K",
@@ -29,7 +29,7 @@
     },
     {
       "name": "THANGA. SHANMUGA SUNDARAM",
-      "party": "New Generation People\u2019s Party",
+      "party": "New Generation People’s Party",
       "symbol": ""
     },
     {
@@ -110,7 +110,10 @@
         1
       ],
       "total": 505,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Iluppaiyur, East West Tiled Building, Facing South, Middle Portion 1. Iluppaiyur Harijana natham 2. Iluppaiyur Kuditheru East 3. Iluppaiyur Kuditheru North 4. Iluppaiyur Kuditheru West 5. Iluppaiyur Perumal kovil street 6. Iluppaiyur Kamattitheru 7. iluppaiyur Nadu street 8. Iluppaiyur South street 9. Iluppaiyur South Kadaiveethi theru",
+      "area": "All Voters"
     },
     "TN-149-2": {
       "votes": [
@@ -129,7 +132,10 @@
         1
       ],
       "total": 935,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Poyyathanallur, Southern Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-4": {
       "votes": [
@@ -148,7 +154,10 @@
         1
       ],
       "total": 580,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Poyyathanallur, East West Tiled Building, Facing North, South Portion",
+      "area": "All Voters"
     },
     "TN-149-5": {
       "votes": [
@@ -167,7 +176,10 @@
         1
       ],
       "total": 838,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Pottaveli, East West Terreced Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-6": {
       "votes": [
@@ -186,7 +198,10 @@
         1
       ],
       "total": 496,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Vellur, East West SSA Terraced Building Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-7": {
       "votes": [
@@ -205,7 +220,10 @@
         1
       ],
       "total": 351,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Vellur, East West SSA Terraced Building Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-8": {
       "votes": [
@@ -224,7 +242,10 @@
         1
       ],
       "total": 498,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Athikudikadu, East West Terraced Building , Facing North",
+      "area": "All Voters"
     },
     "TN-149-9": {
       "votes": [
@@ -243,7 +264,10 @@
         1
       ],
       "total": 941,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Rayampuram, East West Asbestos Building , Facing North",
+      "area": "All Voters"
     },
     "TN-149-12": {
       "votes": [
@@ -262,7 +286,10 @@
         1
       ],
       "total": 650,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Mettupalayam, North South Terraced Building , Facing West",
+      "area": "All Voters"
     },
     "TN-149-13": {
       "votes": [
@@ -281,7 +308,10 @@
         1
       ],
       "total": 634,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt High School, Salaiyakurichi",
+      "address": "Govt High School, Salaiyakurichi, North South Terraced Building, Facing East, North Portion",
+      "area": ""
     },
     "TN-149-14": {
       "votes": [
@@ -300,7 +330,10 @@
         1
       ],
       "total": 628,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt High School, Salaiyakurichi",
+      "address": "Govt High School, Salaiyakurichi, North South Terraced Building, Facing East, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-15": {
       "votes": [
@@ -319,7 +352,10 @@
         1
       ],
       "total": 501,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Ottakovil, North South SSA New Building ,Facing West, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-16": {
       "votes": [
@@ -338,7 +374,10 @@
         1
       ],
       "total": 682,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, O, Koothur, East West Tiled Building, Facing North",
+      "area": ""
     },
     "TN-149-17": {
       "votes": [
@@ -357,7 +396,10 @@
         1
       ],
       "total": 463,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, O, Koothur, East West Tiled Building, Facing North, Eastern Side",
+      "area": "All Voters"
     },
     "TN-149-18": {
       "votes": [
@@ -376,7 +418,10 @@
         1
       ],
       "total": 579,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Mana, Subbarayapuram, North South Terraced Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-19": {
       "votes": [
@@ -395,7 +440,10 @@
         1
       ],
       "total": 726,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Adi Dravidar Welfare Primary School",
+      "address": "Adi Dravidar Welfare Primary School, Manakkal, East West Terraced Building, Facing South, East Portion",
+      "area": ""
     },
     "TN-149-21": {
       "votes": [
@@ -414,7 +462,10 @@
         1
       ],
       "total": 367,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Govindapuram, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-22": {
       "votes": [
@@ -433,7 +484,10 @@
         1
       ],
       "total": 918,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Eruthukaranpatti, East West Tiled Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-24": {
       "votes": [
@@ -452,7 +506,10 @@
         1
       ],
       "total": 348,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Ameenabad, North South Terraced New Building, Facing West",
+      "area": ""
     },
     "TN-149-25": {
       "votes": [
@@ -471,7 +528,10 @@
         1
       ],
       "total": 538,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. Nirmala Gandhi Middle School Rajaji Nagar Ariyalur",
+      "address": "R, C, Nirmala Gandhi Middle School, Rajaji Nagar, Ariyalur, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-26": {
       "votes": [
@@ -490,7 +550,10 @@
         1
       ],
       "total": 744,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. Nirmala Gandhi Middle School Rajaji Nagar Ariyalur",
+      "address": "R, C, Nirmala Gandhi Middle School, Rajaji Nagar, Ariyalur, East West Terraced Building, Facing South, Middle Portion",
+      "area": "Women Only"
     },
     "TN-149-27": {
       "votes": [
@@ -509,7 +572,10 @@
         1
       ],
       "total": 495,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elemantary School",
+      "address": "Panchayat Union Elemantary School, Thamaraikulam, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-28": {
       "votes": [
@@ -528,7 +594,10 @@
         1
       ],
       "total": 553,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Thirumurugan Aided Elementary School",
+      "address": "Thirumurugan Aided Elementary School, Kadugur, East West Tiled Building , Facing South, East Portion",
+      "area": ""
     },
     "TN-149-30": {
       "votes": [
@@ -547,7 +616,10 @@
         1
       ],
       "total": 751,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Koppiliyan kudikadu, East West Terraced Building, Facing North, East Portion",
+      "area": ""
     },
     "TN-149-31": {
       "votes": [
@@ -566,7 +638,10 @@
         1
       ],
       "total": 438,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Poyyur, (Kadugur), North South SSA Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-32": {
       "votes": [
@@ -585,7 +660,10 @@
         1
       ],
       "total": 628,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Ayanathur, North South Terraced Building, Facing West, South Portion",
+      "area": "All Voters"
     },
     "TN-149-33": {
       "votes": [
@@ -604,7 +682,10 @@
         1
       ],
       "total": 638,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Ayanathur, North South Terraced Building, Facing West, North Portion",
+      "area": ""
     },
     "TN-149-34": {
       "votes": [
@@ -623,7 +704,10 @@
         1
       ],
       "total": 550,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Manakkudi, North South Terraced Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-36": {
       "votes": [
@@ -642,7 +726,10 @@
         1
       ],
       "total": 938,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Sri Jayalakshmi Manya Elementary School",
+      "address": "Sri Jayalakshmi Manya Elementary School, Kallankurichi, North South Tiled Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-37": {
       "votes": [
@@ -661,7 +748,10 @@
         1
       ],
       "total": 782,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Srinivasapuram, North South Terraced SSA Building, Facing West, South Portion",
+      "area": "All Voters"
     },
     "TN-149-38": {
       "votes": [
@@ -680,7 +770,10 @@
         1
       ],
       "total": 732,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Vallalar Kalvi Nilayam Aided Middle School",
+      "address": "Vallalar Kalvi Nilayam Aided Middle School, Kayarlabad, (Lingathadi Medu), East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-39": {
       "votes": [
@@ -699,7 +792,10 @@
         1
       ],
       "total": 431,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Vallalar Kalvi Nilayam Aided Middle School",
+      "address": "Vallalar Kalvi Nilayam Aided Middle School, Kayarlabad, (Lingathadi Medu), East West Asbestos Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-40": {
       "votes": [
@@ -718,7 +814,10 @@
         1
       ],
       "total": 733,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Usenabad, North South Terraced Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-41": {
       "votes": [
@@ -737,7 +836,10 @@
         1
       ],
       "total": 562,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. St Therasa Elementary School Ariyalur",
+      "address": "R, C, St, Therasa Elementary School, Ariyalur, North South Terraced Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-42": {
       "votes": [
@@ -756,7 +858,10 @@
         1
       ],
       "total": 337,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. Nirmala Gandhi Middle School Ariyalur",
+      "address": "R, C, Nirmala Gandhi Middle School, Ariyalur, East West Terraced Building, Facing North, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-43": {
       "votes": [
@@ -775,7 +880,10 @@
         1
       ],
       "total": 384,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. Nirmala Gandhi Middle School Ariyalur",
+      "address": "R, C, Nirmala Gandhi Middle School, Ariyalur, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-44": {
       "votes": [
@@ -794,7 +902,10 @@
         1
       ],
       "total": 417,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Montfort Matric Hr, Secontary School",
+      "address": "Montfort Matric Hr, Secontary School, Ariyalur, North South Terraced Building, Facing West, South Portion, Room No, G, 3",
+      "area": "All Voters"
     },
     "TN-149-45": {
       "votes": [
@@ -813,7 +924,10 @@
         1
       ],
       "total": 380,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. Nirmala Gandhi Middle School Ariyalur",
+      "address": "R, C, Nirmala Gandhi Middle School, Ariyalur, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-46": {
       "votes": [
@@ -832,7 +946,10 @@
         1
       ],
       "total": 447,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. St Therasa Elementary School Ariyalur",
+      "address": "R, C, St, Therasa Elementary School, Ariyalur, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-47": {
       "votes": [
@@ -851,7 +968,10 @@
         1
       ],
       "total": 781,
-      "rejected": 0
+      "rejected": 0,
+      "name": "S.P.G. Elementary School Ariyalur",
+      "address": "S, P, G, Elementary School, Ariyalur, North South Terraced Building, Facing West, North Portion, ( C, S, I, High School Campus )",
+      "area": "All Voters"
     },
     "TN-149-48": {
       "votes": [
@@ -870,7 +990,10 @@
         1
       ],
       "total": 440,
-      "rejected": 0
+      "rejected": 0,
+      "name": "S.P.G. Elementary School Ariyalur",
+      "address": "S, P, G, Elementary School, Ariyalur, North South Terraced Building,Facing West Middle Portion ( C, S, I, High School Campus )",
+      "area": "All Voters"
     },
     "TN-149-49": {
       "votes": [
@@ -889,7 +1012,10 @@
         1
       ],
       "total": 491,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School,Ariyalur (West), East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-51": {
       "votes": [
@@ -908,7 +1034,10 @@
         1
       ],
       "total": 552,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School,Ariyalur (W), East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-52": {
       "votes": [
@@ -927,7 +1056,10 @@
         1
       ],
       "total": 428,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Montfort Matric Hr, Secontary School",
+      "address": "Montfort Matric Hr, Secontary School, Ariyalur, North South Terraced Building, Facing West, Middle Portion, Room No, G, 1",
+      "area": "All Voters"
     },
     "TN-149-54": {
       "votes": [
@@ -946,7 +1078,10 @@
         1
       ],
       "total": 400,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Ariyalur (E), East West Terraced SSA Building, Facing South, East Portion, (in the Location of Govt Hr, Sec, School Campus)",
+      "area": "All Voters"
     },
     "TN-149-55": {
       "votes": [
@@ -965,7 +1100,10 @@
         1
       ],
       "total": 375,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Girls High School",
+      "address": "Govt, Girls High School, Ariyalur, North South Tiled Building, Facing East, South Portion",
+      "area": ""
     },
     "TN-149-3": {
       "votes": [
@@ -984,7 +1122,10 @@
         1
       ],
       "total": 393,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Poyyathanallur, Southern Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-57": {
       "votes": [
@@ -1003,7 +1144,10 @@
         1
       ],
       "total": 567,
-      "rejected": 0
+      "rejected": 0,
+      "name": "St, Marys High School",
+      "address": "St, Marys High School, Ariyalur, East West Terraced Building, Facing South, Middle Portion, West Side",
+      "area": "All Voters"
     },
     "TN-149-58": {
       "votes": [
@@ -1022,7 +1166,10 @@
         1
       ],
       "total": 575,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Nirmala Girls Higher Secondary School",
+      "address": "Nirmala Girls Higher Secondary School, Ariyalur, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-59": {
       "votes": [
@@ -1041,7 +1188,10 @@
         1
       ],
       "total": 415,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Girls High School",
+      "address": "Govt, Girls High School, Ariyalur, East West Asbestos Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-60": {
       "votes": [
@@ -1060,7 +1210,10 @@
         1
       ],
       "total": 712,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Nirmala Girls Higher Secondary School",
+      "address": "Nirmala Girls Higher Secondary School, Ariyalur, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-62": {
       "votes": [
@@ -1079,7 +1232,10 @@
         1
       ],
       "total": 437,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Thavuthaikulam, East West Tiled Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-63": {
       "votes": [
@@ -1098,7 +1254,10 @@
         1
       ],
       "total": 405,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Rajiv Nagar, Valajanagaram, North South Terraced Building, Facing East, North Portion",
+      "area": ""
     },
     "TN-149-64": {
       "votes": [
@@ -1117,7 +1276,10 @@
         1
       ],
       "total": 869,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Periyar E, V",
+      "address": "Periyar E, V, R Panchayat Union Middle School, Valajanagaram, North South Terraced SSA Building, Facing West, South Portion",
+      "area": "All Voters"
     },
     "TN-149-66": {
       "votes": [
@@ -1136,7 +1298,10 @@
         1
       ],
       "total": 695,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Periyar E, V",
+      "address": "Periyar E, V, R Panchayat Union Middle School, Valajanagaram, East West Terraced SSA Building, Facing South, East Portion",
+      "area": ""
     },
     "TN-149-67": {
       "votes": [
@@ -1155,7 +1320,10 @@
         1
       ],
       "total": 693,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Ravuthanpatti, East West Terraced Building, Facing South, West Portion",
+      "area": "Women Only"
     },
     "TN-149-68": {
       "votes": [
@@ -1174,7 +1342,10 @@
         1
       ],
       "total": 351,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Anganwadi Centre, Ravuthanpatti",
+      "address": "Anganwadi Centre, Ravuthanpatti, East West Terraced Building, Facing North",
+      "area": ""
     },
     "TN-149-69": {
       "votes": [
@@ -1193,7 +1364,10 @@
         1
       ],
       "total": 421,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Ravuthanpatti, East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-70": {
       "votes": [
@@ -1212,7 +1386,10 @@
         1
       ],
       "total": 726,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Venkatakrishnapuram, North South Terraced Building, Facing East, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-72": {
       "votes": [
@@ -1231,7 +1408,10 @@
         1
       ],
       "total": 592,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Asthinapuram, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-73": {
       "votes": [
@@ -1250,7 +1430,10 @@
         1
       ],
       "total": 931,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Periyanagalur, East West Terraced Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-74": {
       "votes": [
@@ -1269,7 +1452,10 @@
         1
       ],
       "total": 630,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Periyanagalur, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-75": {
       "votes": [
@@ -1288,7 +1474,10 @@
         1
       ],
       "total": 487,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Kattupirngiyam, North South Terraced Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-76": {
       "votes": [
@@ -1307,7 +1496,10 @@
         1
       ],
       "total": 458,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Thelur, East West Terraced Building,Facing North",
+      "area": "All Voters"
     },
     "TN-149-77": {
       "votes": [
@@ -1326,7 +1518,10 @@
         1
       ],
       "total": 822,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Thelur, North South Terraced Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-79": {
       "votes": [
@@ -1345,7 +1540,10 @@
         1
       ],
       "total": 863,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Ambapur, East West Terraced Building, Facing South",
+      "area": ""
     },
     "TN-149-80": {
       "votes": [
@@ -1364,7 +1562,10 @@
         1
       ],
       "total": 419,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Ambapur, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-81": {
       "votes": [
@@ -1383,7 +1584,10 @@
         1
       ],
       "total": 716,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Kavanur, East West New Terraced Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-82": {
       "votes": [
@@ -1402,7 +1606,10 @@
         1
       ],
       "total": 567,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Kathankudikadu, East West Terraced Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-84": {
       "votes": [
@@ -1421,7 +1628,10 @@
         1
       ],
       "total": 499,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Vilangudi, North South Terraced Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-85": {
       "votes": [
@@ -1440,7 +1650,10 @@
         1
       ],
       "total": 393,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Orathur, North South Tiled Building, Facing West",
+      "area": ""
     },
     "TN-149-86": {
       "votes": [
@@ -1459,7 +1672,10 @@
         1
       ],
       "total": 862,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Nagamangalam, North South Terraced Building, Facing, West, South Portion",
+      "area": "All Voters"
     },
     "TN-149-87": {
       "votes": [
@@ -1478,7 +1694,10 @@
         1
       ],
       "total": 614,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Nagamangalam, North South Terraced Building, Facing, West, North Portion",
+      "area": "All Voters"
     },
     "TN-149-88": {
       "votes": [
@@ -1497,7 +1716,10 @@
         0
       ],
       "total": 499,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Nagamangalam, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-89": {
       "votes": [
@@ -1516,7 +1738,10 @@
         0
       ],
       "total": 846,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Reddipalayam, East West Terraced Building, Facing North, West Portin",
+      "area": "All Voters"
     },
     "TN-149-91": {
       "votes": [
@@ -1535,7 +1760,10 @@
         0
       ],
       "total": 971,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Muniyankurichi, North South Terraced Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-92": {
       "votes": [
@@ -1554,7 +1782,10 @@
         0
       ],
       "total": 265,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Nayakarpalayam, East West Tiled Building, Facing South",
+      "area": ""
     },
     "TN-149-93": {
       "votes": [
@@ -1573,7 +1804,10 @@
         0
       ],
       "total": 490,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Puthupalayam, East West Terraced Building, Facing South, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-96": {
       "votes": [
@@ -1592,7 +1826,10 @@
         0
       ],
       "total": 445,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Siruvalur, North South Terraced Building, Facing East, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-97": {
       "votes": [
@@ -1611,7 +1848,10 @@
         0
       ],
       "total": 805,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Subarayapuram, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-98": {
       "votes": [
@@ -1630,7 +1870,10 @@
         0
       ],
       "total": 946,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Pallakrishnapuram, East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-100": {
       "votes": [
@@ -1649,7 +1892,10 @@
         0
       ],
       "total": 957,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Karuvidacheri, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-102": {
       "votes": [
@@ -1668,7 +1914,10 @@
         0
       ],
       "total": 523,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Poyyur (Karuppur), East West Terraced Building, Facing South",
+      "area": "Women Only"
     },
     "TN-149-103": {
       "votes": [
@@ -1687,7 +1936,10 @@
         0
       ],
       "total": 361,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Semmanthankudi, North South Tiled Building, Facing East, North Portion",
+      "area": ""
     },
     "TN-149-104": {
       "votes": [
@@ -1706,7 +1958,10 @@
         0
       ],
       "total": 881,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Poyyur (Karuppur), East West Terraced Building, Facing North, 1.Karuppur senapathi and Melakaruppur Poyyur road South portion",
+      "area": "All Voters"
     },
     "TN-149-105": {
       "votes": [
@@ -1725,7 +1980,10 @@
         0
       ],
       "total": 790,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Edaiyathankudi, East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-107": {
       "votes": [
@@ -1744,7 +2002,10 @@
         0
       ],
       "total": 336,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Aranur, North South Terreced Building, Facing East",
+      "area": ""
     },
     "TN-149-108": {
       "votes": [
@@ -1763,7 +2024,10 @@
         0
       ],
       "total": 526,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Chettitherukkonam, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-109": {
       "votes": [
@@ -1782,7 +2046,10 @@
         0
       ],
       "total": 798,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School Periyathirukonam",
+      "address": "Panchayat Union Elementary School Periyathirukonam, East West Terraced SSA Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-110": {
       "votes": [
@@ -1801,7 +2068,10 @@
         0
       ],
       "total": 569,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Sundakudi, North South Terraced SSA Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-111": {
       "votes": [
@@ -1820,7 +2090,10 @@
         0
       ],
       "total": 760,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Sundakudi, North South Terraced SSA Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-112": {
       "votes": [
@@ -1839,7 +2112,10 @@
         0
       ],
       "total": 946,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Athanur (Punganguzhi Panchayat), East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-113": {
       "votes": [
@@ -1858,7 +2134,10 @@
         0
       ],
       "total": 905,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, P, Ottakovil, East West Terraced Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-114": {
       "votes": [
@@ -1877,7 +2156,10 @@
         0
       ],
       "total": 825,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Silluppanur (Pungangkuzhi Panchayat), North South Tiled Building, Facing East South Portion",
+      "area": "All Voters"
     },
     "TN-149-115": {
       "votes": [
@@ -1896,7 +2178,10 @@
         0
       ],
       "total": 807,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Oriyur(Punganguzhi Panchayat), North South Terraced Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-116": {
       "votes": [
@@ -1915,7 +2200,10 @@
         0
       ],
       "total": 937,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Andipattakadu, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-117": {
       "votes": [
@@ -1934,7 +2222,10 @@
         0
       ],
       "total": 478,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Vallakulam, North South Terraced Building, Facing West, North Portion",
+      "area": "All Voters"
     },
     "TN-149-118": {
       "votes": [
@@ -1953,7 +2244,10 @@
         0
       ],
       "total": 889,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Alanduraiyar kattalai, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-120": {
       "votes": [
@@ -1972,7 +2266,10 @@
         0
       ],
       "total": 510,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Kellavannam, North South Terraced Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-121": {
       "votes": [
@@ -1991,7 +2288,10 @@
         0
       ],
       "total": 373,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Ezheri, North South Tiled Building, Facing West, North Portion",
+      "area": "All Voters"
     },
     "TN-149-122": {
       "votes": [
@@ -2010,7 +2310,10 @@
         0
       ],
       "total": 895,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Karuppillakattalai, North South New Terraced Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-123": {
       "votes": [
@@ -2029,7 +2332,10 @@
         0
       ],
       "total": 595,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Kallakudi, East West Terraced Building, Facing North, Ground Floor, East Portion",
+      "area": "All Voters"
     },
     "TN-149-124": {
       "votes": [
@@ -2048,7 +2354,10 @@
         0
       ],
       "total": 640,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Kallakudi, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-125": {
       "votes": [
@@ -2067,7 +2376,10 @@
         0
       ],
       "total": 382,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Archunapuram , East West Terraced Building Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-127": {
       "votes": [
@@ -2086,7 +2398,10 @@
         0
       ],
       "total": 445,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Arungal, East West Terraced SSA Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-128": {
       "votes": [
@@ -2105,7 +2420,10 @@
         0
       ],
       "total": 759,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Varanavasi, North South Terraced SSA Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-129": {
       "votes": [
@@ -2124,7 +2442,10 @@
         0
       ],
       "total": 395,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Samathuvapuram Varanavasi, East West Terraced Building, Facing South, East Portion",
+      "area": "Women Only"
     },
     "TN-149-130": {
       "votes": [
@@ -2143,7 +2464,10 @@
         0
       ],
       "total": 883,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Varanavasi, North South Terraced SSA Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-132": {
       "votes": [
@@ -2162,7 +2486,10 @@
         0
       ],
       "total": 570,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Parpanacheri, East West Terraced SSA Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-134": {
       "votes": [
@@ -2181,7 +2508,10 @@
         0
       ],
       "total": 488,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Keelapalur, East West New Building Facing North",
+      "area": "All Voters"
     },
     "TN-149-135": {
       "votes": [
@@ -2200,7 +2530,10 @@
         0
       ],
       "total": 778,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Keelapalur, North South Terraced Building, Facing West, South Portion",
+      "area": "All Voters"
     },
     "TN-149-136": {
       "votes": [
@@ -2219,7 +2552,10 @@
         0
       ],
       "total": 389,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Keelapalur, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-138": {
       "votes": [
@@ -2238,7 +2574,10 @@
         0
       ],
       "total": 455,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Keelapalur, East West Terraced Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-139": {
       "votes": [
@@ -2257,7 +2596,10 @@
         0
       ],
       "total": 483,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Keelaiyur, East West Terraced SSA Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-140": {
       "votes": [
@@ -2276,7 +2618,10 @@
         0
       ],
       "total": 795,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Keelaiyur, East West Terraced SSA Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-141": {
       "votes": [
@@ -2295,7 +2640,10 @@
         0
       ],
       "total": 513,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elemantary School",
+      "address": "Panchayat Union Elemantary School, Keelaiyur, East West Terraced Building, Facing South",
+      "area": ""
     },
     "TN-149-143": {
       "votes": [
@@ -2314,7 +2662,10 @@
         0
       ],
       "total": 499,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Poondi, East West Tiled Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-145": {
       "votes": [
@@ -2333,7 +2684,10 @@
         0
       ],
       "total": 568,
-      "rejected": 0
+      "rejected": 0,
+      "name": "St, Ignatius High School",
+      "address": "St, Ignatius High School, Kokkudi, North South Terraced Building, Facing West, South Portion",
+      "area": "All Voters"
     },
     "TN-149-146": {
       "votes": [
@@ -2352,7 +2706,10 @@
         0
       ],
       "total": 631,
-      "rejected": 0
+      "rejected": 0,
+      "name": "St, Ignatius High School",
+      "address": "St, Ignatius High School, Kokkudi, North South Terraced Building, Facing West, Middle Portion",
+      "area": ""
     },
     "TN-149-147": {
       "votes": [
@@ -2371,7 +2728,10 @@
         0
       ],
       "total": 700,
-      "rejected": 0
+      "rejected": 0,
+      "name": "St, Ignatius High School",
+      "address": "St, Ignatius High School, Kokkudi, North South Terraced Building, Facing West, North Portion",
+      "area": "All Voters"
     },
     "TN-149-148": {
       "votes": [
@@ -2390,7 +2750,10 @@
         0
       ],
       "total": 804,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. St Joseph Primary School Malathankulam",
+      "address": "R, C, St, Joseph Primary School, Malathankulam, East West Asbestos Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-149": {
       "votes": [
@@ -2409,7 +2772,10 @@
         0
       ],
       "total": 440,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. St Joseph Primary School Malathankulam",
+      "address": "R, C, St, Joseph Primary School, Malathankulam, North South Building, Facing East, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-150": {
       "votes": [
@@ -2428,7 +2794,10 @@
         0
       ],
       "total": 604,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Sathamangalam, East West Tiled Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-151": {
       "votes": [
@@ -2447,7 +2816,10 @@
         0
       ],
       "total": 833,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Puthur, North South Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-152": {
       "votes": [
@@ -2466,7 +2838,10 @@
         0
       ],
       "total": 776,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Erakkudi, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-154": {
       "votes": [
@@ -2485,7 +2860,10 @@
         0
       ],
       "total": 764,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Angiyanur, North South Terraced Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-156": {
       "votes": [
@@ -2504,7 +2882,10 @@
         0
       ],
       "total": 294,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Sannavur, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-158": {
       "votes": [
@@ -2523,7 +2904,10 @@
         0
       ],
       "total": 474,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Venganur, East West Terraced SSA Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-159": {
       "votes": [
@@ -2542,7 +2926,10 @@
         0
       ],
       "total": 748,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Venganur, East West Terraced SSA Building, Facing North, South Portion",
+      "area": "All Voters"
     },
     "TN-149-160": {
       "votes": [
@@ -2561,7 +2948,10 @@
         0
       ],
       "total": 448,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Karayavetti, North South Tiled Building, Facing East, West Portion",
+      "area": "All Voters"
     },
     "TN-149-161": {
       "votes": [
@@ -2580,7 +2970,10 @@
         0
       ],
       "total": 544,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Karayavetti, North South Tiled Building, Facing West",
+      "area": ""
     },
     "TN-149-162": {
       "votes": [
@@ -2599,7 +2992,10 @@
         0
       ],
       "total": 716,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Karayavetti, East West Terraced Building, Facing North",
+      "area": "Women Only"
     },
     "TN-149-163": {
       "votes": [
@@ -2618,7 +3014,10 @@
         0
       ],
       "total": 520,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Senapathi, North South Asbestos Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-164": {
       "votes": [
@@ -2637,7 +3036,10 @@
         0
       ],
       "total": 565,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Keelakavattankurichi, Western Side Building North Wing Tiled Building Facing East",
+      "area": "All Voters"
     },
     "TN-149-166": {
       "votes": [
@@ -2656,7 +3058,10 @@
         0
       ],
       "total": 600,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Keelakavattankurichi, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-167": {
       "votes": [
@@ -2675,7 +3080,10 @@
         0
       ],
       "total": 540,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Vetriyur, East West Tiled Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-168": {
       "votes": [
@@ -2694,7 +3102,10 @@
         0
       ],
       "total": 668,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Kallur, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-169": {
       "votes": [
@@ -2713,7 +3124,10 @@
         0
       ],
       "total": 673,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Kallur, East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-170": {
       "votes": [
@@ -2732,7 +3146,10 @@
         0
       ],
       "total": 685,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Viragalur (Vetriyur Panchayat), East West Tiled Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-171": {
       "votes": [
@@ -2751,7 +3168,10 @@
         0
       ],
       "total": 712,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Viragalur (Vetriyur Panchayat), East West Tiled Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-172": {
       "votes": [
@@ -2770,7 +3190,10 @@
         0
       ],
       "total": 586,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Keelakolathur, North South Tiled Building, Facing East",
+      "area": "Women Only"
     },
     "TN-149-174": {
       "votes": [
@@ -2789,7 +3212,10 @@
         0
       ],
       "total": 790,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Keelakolathur, North South Tiled Building, Facing East, West Portion",
+      "area": "All Voters"
     },
     "TN-149-175": {
       "votes": [
@@ -2808,7 +3234,10 @@
         0
       ],
       "total": 639,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Keela Esanai, North South Terraced Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-177": {
       "votes": [
@@ -2827,7 +3256,10 @@
         0
       ],
       "total": 901,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Chinnapattakadu, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-179": {
       "votes": [
@@ -2846,7 +3278,10 @@
         0
       ],
       "total": 323,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Kovilur, North South Terraced SSA Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-181": {
       "votes": [
@@ -2865,7 +3300,10 @@
         0
       ],
       "total": 949,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Kamarasavalli, East West Terraced SSA Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-182": {
       "votes": [
@@ -2884,7 +3322,10 @@
         0
       ],
       "total": 701,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School,Kamarasavalli, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-183": {
       "votes": [
@@ -2903,7 +3344,10 @@
         0
       ],
       "total": 653,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Kamarasavalli, North South Terraced Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-184": {
       "votes": [
@@ -2922,7 +3366,10 @@
         0
       ],
       "total": 416,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Kuruvadi, East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-185": {
       "votes": [
@@ -2941,7 +3388,10 @@
         0
       ],
       "total": 881,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Kuruvadi, East West Terraced Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-186": {
       "votes": [
@@ -2960,7 +3410,10 @@
         0
       ],
       "total": 416,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Thelur, North South Terraced SSA Building, Facing East",
+      "area": "Women Only"
     },
     "TN-149-187": {
       "votes": [
@@ -2979,7 +3432,10 @@
         0
       ],
       "total": 517,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Koman, East West Terraced SSA Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-188": {
       "votes": [
@@ -2998,7 +3454,10 @@
         0
       ],
       "total": 712,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Thuthur, North South Terraced Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-189": {
       "votes": [
@@ -3017,7 +3476,10 @@
         0
       ],
       "total": 696,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Thuthur, East West Terraced Building, Facing North, East Building",
+      "area": "All Voters"
     },
     "TN-149-190": {
       "votes": [
@@ -3036,7 +3498,10 @@
         0
       ],
       "total": 894,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Thuthur, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-192": {
       "votes": [
@@ -3055,7 +3520,10 @@
         0
       ],
       "total": 882,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Alagiyamanavalam, North South Terraced SSA Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-194": {
       "votes": [
@@ -3074,7 +3542,10 @@
         0
       ],
       "total": 818,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Adi-Dravidar Welfare School",
+      "address": "Adi-Dravidar Welfare School, Vandarayankattalai, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-195": {
       "votes": [
@@ -3093,7 +3564,10 @@
         0
       ],
       "total": 864,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Adi-Dravidar Welfare School",
+      "address": "Adi-Dravidar Welfare School, Vandarayankattalai, East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-196": {
       "votes": [
@@ -3112,7 +3586,10 @@
         0
       ],
       "total": 540,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Elakurichi, East West Terraced SSA Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-197": {
       "votes": [
@@ -3131,7 +3608,10 @@
         0
       ],
       "total": 700,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Elakurichi, East West Terraced SSA Building, Facing North, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-198": {
       "votes": [
@@ -3150,7 +3630,10 @@
         0
       ],
       "total": 647,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Elakurichi, North South Terraced SSA Building, Facing West, North Portion",
+      "area": "All Voters"
     },
     "TN-149-199": {
       "votes": [
@@ -3169,7 +3652,10 @@
         0
       ],
       "total": 816,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Elakurichi, North South Terraced SSA Building, Facing West, South Portion",
+      "area": "All Voters"
     },
     "TN-149-201": {
       "votes": [
@@ -3188,7 +3674,10 @@
         0
       ],
       "total": 405,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Ezhunatchipuram, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-202": {
       "votes": [
@@ -3207,7 +3696,10 @@
         0
       ],
       "total": 426,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Sullankudi, East West Terraced Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-205": {
       "votes": [
@@ -3226,7 +3718,10 @@
         0
       ],
       "total": 746,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Vadugapalayam, North South Terraced Building, Facing East, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-206": {
       "votes": [
@@ -3245,7 +3740,10 @@
         0
       ],
       "total": 426,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Thiruvenganur, North South Terraced Building, Facing East, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-207": {
       "votes": [
@@ -3264,7 +3762,10 @@
         0
       ],
       "total": 505,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Thirumanur, North South Terraced SSA Building, Facing West, North Portion",
+      "area": "All Voters"
     },
     "TN-149-208": {
       "votes": [
@@ -3283,7 +3784,10 @@
         0
       ],
       "total": 470,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Thirumanur, North South Terraced SSA Building, Facing West, South Portion",
+      "area": "All Voters"
     },
     "TN-149-209": {
       "votes": [
@@ -3302,7 +3806,10 @@
         0
       ],
       "total": 452,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Thirumanur, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-210": {
       "votes": [
@@ -3321,7 +3828,10 @@
         0
       ],
       "total": 508,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Thirumanur, East West Terraced Building, Facing North, West Protion",
+      "area": "All Voters"
     },
     "TN-149-211": {
       "votes": [
@@ -3340,7 +3850,10 @@
         0
       ],
       "total": 481,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Tirumanur, North South Terraced Building, Facing West, South Portion",
+      "area": "All Voters"
     },
     "TN-149-212": {
       "votes": [
@@ -3359,7 +3872,10 @@
         0
       ],
       "total": 477,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Karaipakkam, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-213": {
       "votes": [
@@ -3378,7 +3894,10 @@
         0
       ],
       "total": 817,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Karaipakkam, East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-214": {
       "votes": [
@@ -3397,7 +3916,10 @@
         0
       ],
       "total": 768,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Palayappadi, North South Terraced Building, Facing West, North Portion",
+      "area": "All Voters"
     },
     "TN-149-215": {
       "votes": [
@@ -3416,7 +3938,10 @@
         0
       ],
       "total": 835,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Annimangalam, East West Building,Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-216": {
       "votes": [
@@ -3435,7 +3960,10 @@
         0
       ],
       "total": 796,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Aranmanaikurichi, North South Terraced Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-217": {
       "votes": [
@@ -3454,7 +3982,10 @@
         0
       ],
       "total": 895,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Mettutheru, North South Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-218": {
       "votes": [
@@ -3473,7 +4004,10 @@
         0
       ],
       "total": 525,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Kandirathitham, North South SSA Building, Facing West, South Portion",
+      "area": "All Voters"
     },
     "TN-149-219": {
       "votes": [
@@ -3492,7 +4026,10 @@
         0
       ],
       "total": 822,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Kandirathitham, North South SSA Building, Facing West, North Portion",
+      "area": "All Voters"
     },
     "TN-149-220": {
       "votes": [
@@ -3511,7 +4048,10 @@
         0
       ],
       "total": 494,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Elandakudam, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-221": {
       "votes": [
@@ -3530,7 +4070,10 @@
         0
       ],
       "total": 811,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Elandakudam, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-223": {
       "votes": [
@@ -3549,7 +4092,10 @@
         0
       ],
       "total": 710,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Adi-Dravidar Welfare Elementary School",
+      "address": "Govt, Adi-Dravidar Welfare Elementary School, Elandakudam, North South SSA Building, Facing West, South Portion",
+      "area": "All Voters"
     },
     "TN-149-224": {
       "votes": [
@@ -3568,7 +4114,10 @@
         0
       ],
       "total": 616,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt High School, Kovil Esanai",
+      "address": "Govt High School, Kovil Esanai, North South Terraced SSA Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-225": {
       "votes": [
@@ -3587,7 +4136,10 @@
         0
       ],
       "total": 775,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt High School, Kovil Esanai",
+      "address": "Govt High School, Kovil Esanai, North South Terraced SSA Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-226": {
       "votes": [
@@ -3606,7 +4158,10 @@
         0
       ],
       "total": 618,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Vilagam, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-227": {
       "votes": [
@@ -3625,7 +4180,10 @@
         0
       ],
       "total": 749,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Vilagam, East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-228": {
       "votes": [
@@ -3644,7 +4202,10 @@
         0
       ],
       "total": 828,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Palinganathan, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-230": {
       "votes": [
@@ -3663,7 +4224,10 @@
         0
       ],
       "total": 552,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Palinganatham, East West Terraced Building, Facing North, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-231": {
       "votes": [
@@ -3682,7 +4246,10 @@
         0
       ],
       "total": 516,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Anganwadi Centre, Palaniyandi Nagar",
+      "address": "Anganwadi Centre, Palaniyandi Nagar, Palinganatham, East West Terraced Building, Facing South",
+      "area": ""
     },
     "TN-149-232": {
       "votes": [
@@ -3701,7 +4268,10 @@
         0
       ],
       "total": 407,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. Ignatious Elementary School Kulamanikam (W)",
+      "address": "R, C, Ignatious Elementary School, Kulamanikam (W), North South Terraced Building, Facing West, North Portion",
+      "area": "All Voters"
     },
     "TN-149-233": {
       "votes": [
@@ -3720,7 +4290,10 @@
         0
       ],
       "total": 407,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. Ignatious Elementary School Kulamanikam (W)",
+      "address": "R, C, Ignatious Elementary School, Kulamanikam (W), North South Terraced Building, Facing West, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-235": {
       "votes": [
@@ -3739,7 +4312,10 @@
         0
       ],
       "total": 635,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elemantary School",
+      "address": "Panchayat Union Elemantary School, Sembiyankudi, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-237": {
       "votes": [
@@ -3758,7 +4334,10 @@
         0
       ],
       "total": 727,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. Mary Aided Elementary School Pudukkottai",
+      "address": "R, C, Mary Aided Elementary School, Pudukkottai, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-238": {
       "votes": [
@@ -3777,7 +4356,10 @@
         0
       ],
       "total": 900,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elemantary School",
+      "address": "Panchayat Union Elemantary School, Thirumalapadi, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-239": {
       "votes": [
@@ -3796,7 +4378,10 @@
         0
       ],
       "total": 451,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elemantary School",
+      "address": "Panchayat Union Elemantary School, Thirumalapadi, North South Terraced Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-241": {
       "votes": [
@@ -3815,7 +4400,10 @@
         0
       ],
       "total": 970,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, T, Cholankurichi, East West Terraced Building, Facing South, East Portion, 1.T. Cholankurichi (N) and T. Cholankurichi Middle street 2.T. Cholankurichi (N) and T. Cholankurichi Thoppu Veli Street 3.T. Cholankurichi (N) and T. Cholankurichi South Street 4.T. Cholankurichi (N) and T. Cholankurichi New Street",
+      "area": "All Voters"
     },
     "TN-149-242": {
       "votes": [
@@ -3834,7 +4422,10 @@
         0
       ],
       "total": 551,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Adi-Dravidar Welfare Elementary School",
+      "address": "Adi-Dravidar Welfare Elementary School, T, Keelavezhi, North South Terraced Building, Facing West",
+      "area": ""
     },
     "TN-149-243": {
       "votes": [
@@ -3853,7 +4444,10 @@
         0
       ],
       "total": 514,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, T, Kaikala Theru, East West Terraced Building, Facing East",
+      "area": ""
     },
     "TN-149-246": {
       "votes": [
@@ -3872,7 +4466,10 @@
         0
       ],
       "total": 619,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Kudikadu, North South Terraced Building, Facing West, North Portion",
+      "area": ""
     },
     "TN-149-247": {
       "votes": [
@@ -3891,7 +4488,10 @@
         0
       ],
       "total": 742,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Kudikadu, North South Terraced Building, Facing West, South Portion",
+      "area": ""
     },
     "TN-149-248": {
       "votes": [
@@ -3910,7 +4510,10 @@
         0
       ],
       "total": 843,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Government Higher Secondary School",
+      "address": "Government Higher Secondary School, T, Pottakollai, North South Terraced Building, Facing West, South Portion",
+      "area": ""
     },
     "TN-149-249": {
       "votes": [
@@ -3929,7 +4532,10 @@
         0
       ],
       "total": 790,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Government Higher Secondary School",
+      "address": "Government Higher Secondary School, T, Pottakollai, North South Terraced Building, Facing East, South Portion",
+      "area": "Women Only"
     },
     "TN-149-250": {
       "votes": [
@@ -3948,7 +4554,10 @@
         0
       ],
       "total": 780,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, T, Pottakollai, East West Terraced Building, Facing South, West Portion",
+      "area": ""
     },
     "TN-149-252": {
       "votes": [
@@ -3967,7 +4576,10 @@
         0
       ],
       "total": 881,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Athichanur, North South Terraced Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-254": {
       "votes": [
@@ -3986,7 +4598,10 @@
         0
       ],
       "total": 710,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Venmankondan, East West Terraced SSA Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-255": {
       "votes": [
@@ -4005,7 +4620,10 @@
         0
       ],
       "total": 847,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Venmankondan, East West Terraced SSA Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-257": {
       "votes": [
@@ -4024,7 +4642,10 @@
         0
       ],
       "total": 624,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Venmankondan, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-258": {
       "votes": [
@@ -4043,7 +4664,10 @@
         0
       ],
       "total": 618,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Alisikudi, East West Terraced Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-259": {
       "votes": [
@@ -4062,7 +4686,10 @@
         0
       ],
       "total": 752,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Karaikattan Kurichi, East West Tiled Building, Facing South",
+      "area": ""
     },
     "TN-149-260": {
       "votes": [
@@ -4081,7 +4708,10 @@
         0
       ],
       "total": 661,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Parukkal, East West Terraced Building,Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-261": {
       "votes": [
@@ -4100,7 +4730,10 @@
         0
       ],
       "total": 502,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Parukkal, East West Terraced SSA Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-262": {
       "votes": [
@@ -4119,7 +4752,10 @@
         0
       ],
       "total": 473,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Chandra Aided Elementary School",
+      "address": "Chandra Aided Elementary School, Karkudi, East West Terraced Building, Facing South, East Portion",
+      "area": ""
     },
     "TN-149-263": {
       "votes": [
@@ -4138,7 +4774,10 @@
         0
       ],
       "total": 390,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Chandra Aided Elementary School",
+      "address": "Chandra Aided Elementary School, Karkudi, East West Terraced Building, Facing South, West Portion",
+      "area": "Women Only"
     },
     "TN-149-264": {
       "votes": [
@@ -4157,7 +4796,10 @@
         0
       ],
       "total": 486,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Bharatha Matha R, C",
+      "address": "Bharatha Matha R, C, High School, Naduvalur, East West Tiled Building, Facing North, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-266": {
       "votes": [
@@ -4176,7 +4818,10 @@
         0
       ],
       "total": 471,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Suthamalli, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-267": {
       "votes": [
@@ -4195,7 +4840,10 @@
         0
       ],
       "total": 786,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Suthamalli, East West Terraced Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-269": {
       "votes": [
@@ -4214,7 +4862,10 @@
         0
       ],
       "total": 294,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Suthamalli, East West Terraced Building, Facing West",
+      "area": ""
     },
     "TN-149-270": {
       "votes": [
@@ -4233,7 +4884,10 @@
         0
       ],
       "total": 400,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Puliyankuzhi, East West New Terraced Building, Facing South",
+      "area": ""
     },
     "TN-149-271": {
       "votes": [
@@ -4252,7 +4906,10 @@
         0
       ],
       "total": 425,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Anikurichi, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-272": {
       "votes": [
@@ -4271,7 +4928,10 @@
         0
       ],
       "total": 668,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Koraikuzhi, East West Terraced Building, Facing South",
+      "area": ""
     },
     "TN-149-273": {
       "votes": [
@@ -4290,7 +4950,10 @@
         0
       ],
       "total": 473,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Ulliyakudi, North South Terraced Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-274": {
       "votes": [
@@ -4309,7 +4972,10 @@
         0
       ],
       "total": 521,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Kolaiyanur, North South Terraced Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-276": {
       "votes": [
@@ -4328,7 +4994,10 @@
         0
       ],
       "total": 325,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Nathaveli, North South Terraced Building, Facing East, South Portion",
+      "area": ""
     },
     "TN-149-277": {
       "votes": [
@@ -4347,7 +5016,10 @@
         0
       ],
       "total": 954,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Vikkiramangalam, East West Tiled Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-278": {
       "votes": [
@@ -4366,7 +5038,10 @@
         0
       ],
       "total": 853,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Vikkiramangalam, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-280": {
       "votes": [
@@ -4385,7 +5060,10 @@
         0
       ],
       "total": 484,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Udaiyavartheeyanur, East West Tiled Building, Facing South, West Portion",
+      "area": ""
     },
     "TN-149-281": {
       "votes": [
@@ -4404,7 +5082,10 @@
         0
       ],
       "total": 449,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Perumaltheeyanur, East West Terreced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-282": {
       "votes": [
@@ -4423,7 +5104,10 @@
         0
       ],
       "total": 777,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Ambalavarkattalai, East West Terreced Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-283": {
       "votes": [
@@ -4442,7 +5126,10 @@
         0
       ],
       "total": 798,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Keelanatham, North South Tiled Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-284": {
       "votes": [
@@ -4461,7 +5148,10 @@
         0
       ],
       "total": 758,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Alavay, North South Tiled Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-286": {
       "votes": [
@@ -4480,7 +5170,10 @@
         0
       ],
       "total": 902,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Kadambur, North South Tiled Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-287": {
       "votes": [
@@ -4499,7 +5192,10 @@
         0
       ],
       "total": 659,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Kunamangalam, East West Terraced SSA Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-288": {
       "votes": [
@@ -4518,7 +5214,10 @@
         0
       ],
       "total": 909,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Kunamangalam, East West Terraced SSA Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-289": {
       "votes": [
@@ -4537,7 +5236,10 @@
         0
       ],
       "total": 672,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Sathampadi, North South Terraced SSA Building, Facing East, South Portion",
+      "area": "Women Only"
     },
     "TN-149-290": {
       "votes": [
@@ -4556,7 +5258,10 @@
         0
       ],
       "total": 742,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Sathampadi, North South Terraced SSA Building, Facing East, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-291": {
       "votes": [
@@ -4575,7 +5280,10 @@
         0
       ],
       "total": 785,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Muthuvancheri, East West Terraced Building, Facing North, West Portion",
+      "area": ""
     },
     "TN-149-293": {
       "votes": [
@@ -4594,7 +5302,10 @@
         0
       ],
       "total": 462,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Muthuvancheri, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-298": {
       "votes": [
@@ -4613,7 +5324,10 @@
         0
       ],
       "total": 680,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Govindhaputhur, East West Terraced SSA Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-299": {
       "votes": [
@@ -4632,7 +5346,10 @@
         0
       ],
       "total": 882,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higer Secondary school",
+      "address": "Govt, Higer Secondary school, Sripurathan, North South Terraced SSA Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-300": {
       "votes": [
@@ -4651,7 +5368,10 @@
         0
       ],
       "total": 804,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higer Secondary school",
+      "address": "Govt, Higer Secondary school, Sripurathan, East West Terraced SSA Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-302": {
       "votes": [
@@ -4670,7 +5390,10 @@
         0
       ],
       "total": 875,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Arankotai, East West Terraced Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-303": {
       "votes": [
@@ -4689,7 +5412,10 @@
         0
       ],
       "total": 620,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union MIddle School",
+      "address": "Panchayat Union MIddle School, Arankotai, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-001": {
       "votes": [
@@ -6589,7 +7315,10 @@
         0
       ],
       "total": 437,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Melakaruppur, East West Terraced SSA Building, Facing North, And Melakaruppur Harijanatheru And Melakaruppur Kuditheru",
+      "area": "All Voters"
     },
     "TN-149-106": {
       "votes": [
@@ -6608,7 +7337,10 @@
         0
       ],
       "total": 291,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Vaippam, East West Tiled Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-119": {
       "votes": [
@@ -6627,7 +7359,10 @@
         0
       ],
       "total": 299,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Panangur, North SouthTiled Building, Facing West, North Portion",
+      "area": "All Voters"
     },
     "TN-149-126": {
       "votes": [
@@ -6646,7 +7381,10 @@
         0
       ],
       "total": 278,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Arungal, East West Terraced SSA Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-131": {
       "votes": [
@@ -6665,7 +7403,10 @@
         0
       ],
       "total": 232,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Aided Elementary School",
+      "address": "Aided Elementary School, Mallur, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-133": {
       "votes": [
@@ -6684,7 +7425,10 @@
         0
       ],
       "total": 502,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Maravanur, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-137": {
       "votes": [
@@ -6703,7 +7447,10 @@
         0
       ],
       "total": 277,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Keelapalur, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-142": {
       "votes": [
@@ -6722,7 +7469,10 @@
         0
       ],
       "total": 199,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Keelaiyur, East West Terraced Building, Facing South, Middle Portion",
+      "area": "All Voters"
     },
     "TN-149-144": {
       "votes": [
@@ -6741,7 +7491,10 @@
         0
       ],
       "total": 271,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Poondi, East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-153": {
       "votes": [
@@ -6760,7 +7513,10 @@
         0
       ],
       "total": 328,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Ayansuthamalli, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-155": {
       "votes": [
@@ -6779,7 +7535,10 @@
         0
       ],
       "total": 298,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Angiyanur, North South Terraced Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-157": {
       "votes": [
@@ -6798,7 +7557,10 @@
         0
       ],
       "total": 185,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, High School",
+      "address": "Govt, High School, Sannavur, East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-165": {
       "votes": [
@@ -6817,7 +7579,10 @@
         0
       ],
       "total": 161,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Keelakavattankurichi, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-173": {
       "votes": [
@@ -6836,7 +7601,10 @@
         0
       ],
       "total": 235,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Keelakolathur, North South Tiled Building, Facing West",
+      "area": ""
     },
     "TN-149-176": {
       "votes": [
@@ -6855,7 +7623,10 @@
         0
       ],
       "total": 210,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Periyapattakadu, North South Terraced Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-178": {
       "votes": [
@@ -6874,7 +7645,10 @@
         0
       ],
       "total": 246,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Kovilur, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-180": {
       "votes": [
@@ -6893,7 +7667,10 @@
         0
       ],
       "total": 236,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Kovilur, North South Terraced SSA Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-191": {
       "votes": [
@@ -6912,7 +7689,10 @@
         0
       ],
       "total": 322,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Melaramanallur, North South Terraced Building, Facing West",
+      "area": "All Voters"
     },
     "TN-149-193": {
       "votes": [
@@ -6931,7 +7711,10 @@
         0
       ],
       "total": 432,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Manimegali Aided Elementary School",
+      "address": "Manimegali Aided Elementary School, Melavarappankurichi, North South Tiled Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-200": {
       "votes": [
@@ -6950,7 +7733,10 @@
         0
       ],
       "total": 264,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Periyamarai, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-203": {
       "votes": [
@@ -6969,7 +7755,10 @@
         0
       ],
       "total": 193,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Vilupanakurichi, North South Terraced Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-204": {
       "votes": [
@@ -6988,7 +7777,10 @@
         0
       ],
       "total": 178,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Vadugapalayam, North South Terraced Building, Facing East, South Portion",
+      "area": "All Voters"
     },
     "TN-149-222": {
       "votes": [
@@ -7007,7 +7799,10 @@
         0
       ],
       "total": 436,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Adi-Dravidar Welfare Elementary School",
+      "address": "Govt, Adi-Dravidar Welfare Elementary School, Elandakudam, North South SSA Building, Facing West, North Portion",
+      "area": "All Voters"
     },
     "TN-149-229": {
       "votes": [
@@ -7026,7 +7821,10 @@
         0
       ],
       "total": 487,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Palinganathan, East West Tiled Building, Facing South",
+      "area": "All Voters"
     },
     "TN-149-234": {
       "votes": [
@@ -7045,7 +7843,10 @@
         0
       ],
       "total": 167,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elemantary School",
+      "address": "Panchayat Union Elemantary School, Sembiyankudi, East West Terraced Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-236": {
       "votes": [
@@ -7064,7 +7865,10 @@
         0
       ],
       "total": 294,
-      "rejected": 0
+      "rejected": 0,
+      "name": "R.C. Mary Aided Elementary School Pudukkottai",
+      "address": "R, C, Mary Aided Elementary School, Pudukkottai, East West Terraced Building, Facing",
+      "area": "All Voters"
     },
     "TN-149-240": {
       "votes": [
@@ -7083,7 +7887,10 @@
         0
       ],
       "total": 538,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt High School, T",
+      "address": "Govt High School, T, Cholankurichi, North South Terraced RCC Building, Facing East, Middle Portion, 1.T. Cholankurichi (N) and T. Cholankurichi East street 2.T. Cholankurichi (N) and T. Cholankurichi Arisana Street",
+      "area": "All Voters"
     },
     "TN-149-244": {
       "votes": [
@@ -7102,7 +7909,10 @@
         0
       ],
       "total": 425,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School,T, Keelavezhi, East West Terraced SSA Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-245": {
       "votes": [
@@ -7121,7 +7931,10 @@
         0
       ],
       "total": 323,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, T, Keelavezhi, East West Terraced SSA Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-251": {
       "votes": [
@@ -7140,7 +7953,10 @@
         0
       ],
       "total": 241,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Managethi, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-253": {
       "votes": [
@@ -7159,7 +7975,10 @@
         0
       ],
       "total": 358,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Nachiyarpettai, North South Terraced Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-256": {
       "votes": [
@@ -7178,7 +7997,10 @@
         0
       ],
       "total": 406,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Venmankondan, North South Terraced SSA Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-265": {
       "votes": [
@@ -7197,7 +8019,10 @@
         0
       ],
       "total": 287,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Bharatha Matha R, C",
+      "address": "Bharatha Matha R, C, High School, Naduvalur, North South Terraced Building, Facing East",
+      "area": "All Voters"
     },
     "TN-149-268": {
       "votes": [
@@ -7216,7 +8041,10 @@
         0
       ],
       "total": 276,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higher Secondary School",
+      "address": "Govt, Higher Secondary School, Suthamalli, East West Terraced Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-275": {
       "votes": [
@@ -7235,7 +8063,10 @@
         0
       ],
       "total": 236,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Jayam Nursury & Primary School",
+      "address": "Jayam Nursury & Primary School, Sundaresapuram, North South Terraced Building, Facing West, South Portion",
+      "area": ""
     },
     "TN-149-279": {
       "votes": [
@@ -7254,7 +8085,10 @@
         0
       ],
       "total": 258,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Elementary School",
+      "address": "Panchayat Union Elementary School, Vikkiramangalam, East West Terraced Building, Facing North",
+      "area": "All Voters"
     },
     "TN-149-285": {
       "votes": [
@@ -7273,7 +8107,10 @@
         0
       ],
       "total": 261,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Kadambur, North South Tiled Building, Facing East, North Portion",
+      "area": "All Voters"
     },
     "TN-149-292": {
       "votes": [
@@ -7292,7 +8129,10 @@
         0
       ],
       "total": 275,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Muthuvancheri, East West Terraced Building, Facing North, MIddle Portion",
+      "area": ""
     },
     "TN-149-294": {
       "votes": [
@@ -7311,7 +8151,10 @@
         0
       ],
       "total": 313,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Kasankotai, East West Terraced Building, Facing South, West Portion",
+      "area": "All Voters"
     },
     "TN-149-295": {
       "votes": [
@@ -7330,7 +8173,10 @@
         0
       ],
       "total": 280,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Kasankotai, East West Terraced Building, Facing South, East Portion",
+      "area": "All Voters"
     },
     "TN-149-296": {
       "votes": [
@@ -7349,7 +8195,10 @@
         0
       ],
       "total": 417,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Govindhaputhur, East West Terraced SSA Building, Facing North, West Portion",
+      "area": "All Voters"
     },
     "TN-149-297": {
       "votes": [
@@ -7368,7 +8217,10 @@
         0
       ],
       "total": 326,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School, Govindhaputhur, East West Terraced SSA Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-301": {
       "votes": [
@@ -7387,7 +8239,10 @@
         0
       ],
       "total": 248,
-      "rejected": 0
+      "rejected": 0,
+      "name": "Govt, Higer Secondary school",
+      "address": "Govt, Higer Secondary school, Sripurathan, East West Terraced SSA Building, Facing North, East Portion",
+      "area": "All Voters"
     },
     "TN-149-304": {
       "votes": [
@@ -8809,7 +9664,7 @@
       },
       {
         "name": "THANGA. SHANMUGA SUNDARAM",
-        "party": "New Generation People\u2019s Party",
+        "party": "New Generation People’s Party",
         "postal": 15,
         "booth": 1022,
         "total": 1037
