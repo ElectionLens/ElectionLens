@@ -252,9 +252,15 @@ export function useUrlState(
     } else if (state.view === 'constituencies' && state.year) {
       // State-level PC view - year is parliament year
       params.set('year', String(state.year));
-    } else if (state.view === 'assemblies' && state.year) {
-      // State-level AC view - year is assembly year
-      params.set('year', String(state.year));
+    } else if (state.view === 'assemblies') {
+      // State-level AC view
+      if (state.pcYear) {
+        // PC contribution year selected - use pc-YYYY format
+        params.set('year', `pc-${state.pcYear}`);
+      } else if (state.year) {
+        // Assembly year selected
+        params.set('year', String(state.year));
+      }
     }
 
     if (state.tab) {
@@ -331,9 +337,15 @@ export function useUrlState(
     } else if (state.view === 'constituencies' && state.year) {
       // State-level PC view - year is parliament year
       params.set('year', String(state.year));
-    } else if (state.view === 'assemblies' && state.year) {
-      // State-level AC view - year is assembly year
-      params.set('year', String(state.year));
+    } else if (state.view === 'assemblies') {
+      // State-level AC view
+      if (state.pcYear) {
+        // PC contribution year selected - use pc-YYYY format
+        params.set('year', `pc-${state.pcYear}`);
+      } else if (state.year) {
+        // Assembly year selected
+        params.set('year', String(state.year));
+      }
     }
 
     if (state.tab) {
