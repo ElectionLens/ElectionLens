@@ -741,6 +741,11 @@ export function MapView({
               console.log(
                 `[Color-coding] Loaded ${acCount} AC winners from PC ${selectedACPCYear} for ${currentState}`
               );
+              console.log(`[Color-coding] Sample winners:`, Object.keys(winners).slice(0, 5));
+            } else {
+              console.warn(
+                `[Color-coding] Failed to load PC election results: HTTP ${response.status} for ${PC_ELECTIONS.getYearPath(stateId, selectedACPCYear)}`
+              );
             }
           } catch (err) {
             console.error(
@@ -816,6 +821,11 @@ export function MapView({
       console.log(
         `[Color-coding] Total winners loaded: ${Object.keys(winners).length} for ${currentState}, view: ${currentView}, selectedACPCYear: ${selectedACPCYear}, selectedYear: ${selectedYear}`
       );
+      if (Object.keys(winners).length === 0 && selectedACPCYear) {
+        console.warn(
+          `[Color-coding] No winners loaded! Check if PC election data exists for ${currentState} ${selectedACPCYear}`
+        );
+      }
     };
 
     void loadResults();
