@@ -689,6 +689,7 @@ export function MapView({
             const response = await fetch(PC_ELECTIONS.getYearPath(stateId, selectedACPCYear));
             if (response.ok) {
               const results = (await response.json()) as PCElectionResultsByConstituency;
+              let acCount = 0;
               // Map each AC to its winner from PC contribution
               Object.values(results).forEach((pcResult) => {
                 if (pcResult.acWiseResults) {
@@ -700,16 +701,44 @@ export function MapView({
                       );
                       const winner = sortedCandidates[0];
                       if (winner) {
-                        // Store with normalized name (uppercase) for matching
-                        winners[acName.toUpperCase()] = {
+                        // Normalize AC name for matching: uppercase, remove parentheses, normalize spaces
+                        // Use aggressive normalization similar to normalizeACName in useElectionResults
+                        const normalizedName = normalizeName(acName)
+                          .toUpperCase()
+                          .replace(/\s*\([^)]*\)\s*/g, '') // Remove (SC), (ST) etc
+                          .replace(/\s+/g, ' ') // Normalize spaces
+                          .trim();
+                        // Also create a key with all non-alphanumeric removed (for fuzzy matching)
+                        const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+
+                        // Store with multiple keys for better matching
+                        winners[normalizedName] = {
                           party: winner.party,
                           candidate: winner.name,
                         };
+                        if (fuzzyKey && fuzzyKey !== normalizedName) {
+                          winners[fuzzyKey] = {
+                            party: winner.party,
+                            candidate: winner.name,
+                          };
+                        }
+                        // Also store with original uppercase for fallback
+                        const originalUpper = acName.toUpperCase().trim();
+                        if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
+                          winners[originalUpper] = {
+                            party: winner.party,
+                            candidate: winner.name,
+                          };
+                        }
+                        acCount++;
                       }
                     }
                   });
                 }
               });
+              console.log(
+                `[Color-coding] Loaded ${acCount} AC winners from PC ${selectedACPCYear} for ${currentState}`
+              );
             }
           } catch (err) {
             console.error(
@@ -1300,19 +1329,65 @@ export function MapView({
 
       // Get constituency name based on level
       let constituencyName: string | null = null;
+      let normalizedConstituencyName: string | null = null;
       if (feature) {
         if (level === 'assemblies') {
           const props = feature.properties as AssemblyProperties;
-          constituencyName = props.AC_NAME?.toUpperCase() ?? null;
+          constituencyName = props.AC_NAME ?? null;
+          if (constituencyName) {
+            // Normalize for matching: uppercase, remove parentheses, remove extra spaces
+            normalizedConstituencyName = normalizeName(constituencyName)
+              .toUpperCase()
+              .replace(/\s*\([^)]*\)\s*/g, '') // Remove (SC), (ST) etc
+              .replace(/\s+/g, ' ') // Normalize spaces
+              .trim();
+          }
         } else if (level === 'constituencies') {
           const props = feature.properties as ConstituencyProperties;
-          constituencyName = (props.ls_seat_name ?? props.PC_NAME)?.toUpperCase() ?? null;
+          constituencyName = props.ls_seat_name ?? props.PC_NAME ?? null;
+          if (constituencyName) {
+            normalizedConstituencyName = normalizeName(constituencyName)
+              .toUpperCase()
+              .replace(/\s+/g, ' ')
+              .trim();
+          }
         }
       }
 
       // Color-code by winning party if we have winner data
-      if (constituencyName && constituencyWinners[constituencyName]) {
-        const winner = constituencyWinners[constituencyName];
+      // Try multiple matching strategies
+      if (normalizedConstituencyName) {
+        let winner = constituencyWinners[normalizedConstituencyName];
+        // If not found, try fuzzy key (alphanumeric only)
+        if (!winner) {
+          const fuzzyKey = normalizedConstituencyName.replace(/[^A-Z0-9]/g, '');
+          winner = constituencyWinners[fuzzyKey];
+        }
+        // If not found, try with original name (uppercase)
+        if (!winner && constituencyName) {
+          winner = constituencyWinners[constituencyName.toUpperCase().trim()];
+        }
+        // If still not found, try matching against all keys (fuzzy match)
+        if (!winner) {
+          for (const [key, value] of Object.entries(constituencyWinners)) {
+            const normalizedKey = normalizeName(key)
+              .toUpperCase()
+              .replace(/\s*\([^)]*\)\s*/g, '')
+              .replace(/\s+/g, ' ')
+              .trim();
+            if (normalizedKey === normalizedConstituencyName) {
+              winner = value;
+              break;
+            }
+            // Also try fuzzy match (alphanumeric only)
+            const keyFuzzy = normalizedKey.replace(/[^A-Z0-9]/g, '');
+            const nameFuzzy = normalizedConstituencyName.replace(/[^A-Z0-9]/g, '');
+            if (keyFuzzy === nameFuzzy && keyFuzzy.length > 0) {
+              winner = value;
+              break;
+            }
+          }
+        }
         if (winner) {
           const partyColor = getPartyColor(winner.party);
           baseStyle = {
