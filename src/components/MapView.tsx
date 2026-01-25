@@ -1216,12 +1216,18 @@ export function MapView({
           // Preserve fillColor (party color) from computed style
           const fillColor = computedStyle?.fillColor;
 
-          l.setStyle({
+          // Build hover style: preserve party color, apply hover border, adjust opacity
+          const hoverStyleWithColor: L.PathOptions = {
             ...hoverStyle,
+            // Always preserve fillColor if it exists (party color)
             ...(fillColor ? { fillColor } : {}),
             // Increase opacity slightly for hover effect while preserving party color
-            fillOpacity: fillColor ? 0.85 : hoverStyle.fillOpacity,
-          });
+            fillOpacity: fillColor ? 0.85 : (hoverStyle.fillOpacity ?? 0.8),
+            // Ensure we don't override fillColor with undefined
+            ...(computedStyle?.color ? { color: computedStyle.color } : {}),
+          };
+
+          l.setStyle(hoverStyleWithColor);
           l.bringToFront();
         },
         mouseout: (e: LLeafletMouseEvent): void => {
