@@ -813,6 +813,9 @@ export function MapView({
       }
 
       setConstituencyWinners(winners);
+      console.log(
+        `[Color-coding] Total winners loaded: ${Object.keys(winners).length} for ${currentState}, view: ${currentView}, selectedACPCYear: ${selectedACPCYear}, selectedYear: ${selectedYear}`
+      );
     };
 
     void loadResults();
@@ -1420,6 +1423,12 @@ export function MapView({
             weight: 1.5,
             opacity: 1,
           };
+        } else if (Object.keys(constituencyWinners).length > 0) {
+          // Debug: log when we have winners but no match
+          console.warn(
+            `[Color-coding] No winner found for "${constituencyName}" (normalized: "${normalizedConstituencyName}"). Available keys:`,
+            Object.keys(constituencyWinners).slice(0, 10)
+          );
         }
       }
 
