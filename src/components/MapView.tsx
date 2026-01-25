@@ -694,8 +694,13 @@ export function MapView({
                 if (pcResult.acWiseResults) {
                   Object.entries(pcResult.acWiseResults).forEach(([acName, acContribution]) => {
                     if (acContribution.candidates && acContribution.candidates.length > 0) {
-                      const winner = acContribution.candidates[0]; // First candidate is winner
+                      // Sort candidates by votes descending to ensure first is winner
+                      const sortedCandidates = [...acContribution.candidates].sort(
+                        (a, b) => b.votes - a.votes
+                      );
+                      const winner = sortedCandidates[0];
                       if (winner) {
+                        // Store with normalized name (uppercase) for matching
                         winners[acName.toUpperCase()] = {
                           party: winner.party,
                           candidate: winner.name,

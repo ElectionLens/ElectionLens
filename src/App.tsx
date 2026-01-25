@@ -202,15 +202,16 @@ function App(): JSX.Element {
           }
         }
 
+        // Set PC year if provided in URL (year=pc-YYYY format) - works for both state-level and specific assembly
+        if (urlState.pcYear) {
+          setSelectedACPCYear(urlState.pcYear);
+        }
+
         if (urlState.assembly) {
           // Specific assembly selected
           const acName = toTitleCase(urlState.assembly).toUpperCase();
           selectAssembly(acName);
           await getACResult(acName, matchedState, urlState.year ?? undefined);
-          // Set PC year if provided in URL (year=pc-YYYY format)
-          if (urlState.pcYear) {
-            setSelectedACPCYear(urlState.pcYear);
-          }
         }
       } else if (urlState.view === 'districts') {
         const data = await loadDistrictsForState(matchedState);
@@ -271,6 +272,7 @@ function App(): JSX.Element {
       loadPCStateIndex,
       setSelectedYear,
       setPCSelectedYear,
+      setSelectedACPCYear,
     ]
   );
 
