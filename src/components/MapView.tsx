@@ -643,6 +643,8 @@ export function MapView({
   const pendingSelectedAssembly = useRef<string | null>(null);
   // Ref to always have latest selectedAssembly value in callbacks
   const selectedAssemblyRef = useRef<string | null>(selectedAssembly);
+  // Ref to store style function for use in hover handlers
+  const styleRef = useRef<((feature?: GeoJSON.Feature) => L.PathOptions) | null>(null);
 
   // Mapping of constituency names to winning party for color-coding
   const [constituencyWinners, setConstituencyWinners] = useState<
@@ -1210,7 +1212,7 @@ export function MapView({
           // Get current style to preserve party color
           // Always re-compute style to get the correct fillColor (party color) from style function
           // This ensures we get the party color even if Leaflet hasn't updated options yet
-          const computedStyle = feature ? style(feature) : null;
+          const computedStyle = feature && styleRef.current ? styleRef.current(feature) : null;
           const hoverStyle = getHoverStyle(level);
 
           // Preserve fillColor (party color) from computed style
@@ -1288,15 +1290,7 @@ export function MapView({
         },
       });
     },
-    [
-      level,
-      selectedAssembly,
-      style,
-      onStateClick,
-      onDistrictClick,
-      onConstituencyClick,
-      onAssemblyClick,
-    ]
+    [level, selectedAssembly, onStateClick, onDistrictClick, onConstituencyClick, onAssemblyClick]
   );
 
   // Reset style index when data changes
@@ -1447,6 +1441,11 @@ export function MapView({
     },
     [level, selectedAssembly, constituencyWinners]
   );
+
+  // Update style ref whenever style function changes
+  useEffect(() => {
+    styleRef.current = style;
+  }, [style]);
 
   // Show view toggle buttons whenever we're in a state (even if PC or district is selected)
   const showViewToggle = Boolean(currentState);
