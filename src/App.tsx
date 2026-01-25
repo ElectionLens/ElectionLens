@@ -179,11 +179,24 @@ function App(): JSX.Element {
         const acIndex = await loadStateIndex(matchedState);
         void loadPCStateIndex(matchedState);
 
-        // If no year in URL, set to latest AC year
+        // If no year in URL, set to latest AC year and update URL
         if (!urlState.year && !urlState.assembly && acIndex && acIndex.availableYears.length > 0) {
           const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
           if (latestYear !== undefined) {
             setSelectedYear(latestYear);
+            // Update URL immediately with latest year
+            updateUrl({
+              state: matchedState,
+              view: 'assemblies',
+              pc: null,
+              district: null,
+              assembly: null,
+              year: latestYear,
+              pcYear: null,
+              tab: null,
+              blog: false,
+              blogPost: null,
+            });
           }
         }
 
@@ -211,11 +224,24 @@ function App(): JSX.Element {
         void loadStateIndex(matchedState);
         const pcIndex = await loadPCStateIndex(matchedState);
 
-        // If no year in URL and no specific PC selected, set to latest PC year
+        // If no year in URL and no specific PC selected, set to latest PC year and update URL
         if (!urlState.year && !urlState.pc && pcIndex && pcIndex.availableYears.length > 0) {
           const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
           if (latestYear !== undefined) {
             setPCSelectedYear(latestYear);
+            // Update URL immediately with latest year
+            updateUrl({
+              state: matchedState,
+              view: 'constituencies',
+              pc: null,
+              district: null,
+              assembly: null,
+              year: latestYear,
+              pcYear: null,
+              tab: null,
+              blog: false,
+              blogPost: null,
+            });
           }
         }
       }
@@ -241,6 +267,7 @@ function App(): JSX.Element {
       loadPCStateIndex,
       setSelectedYear,
       setPCSelectedYear,
+      updateUrl,
     ]
   );
 
