@@ -1208,15 +1208,16 @@ export function MapView({
           }
 
           // Get current style to preserve party color
-          const currentStyle = (l as unknown as { options: L.PathOptions }).options;
+          const currentOptions = (l as unknown as { options: L.PathOptions }).options;
           const hoverStyle = getHoverStyle(level);
 
-          // Preserve fillColor (party color) if it exists, otherwise use hover style
+          // Preserve fillColor (party color) if it exists, otherwise use default
+          const fillColor = currentOptions.fillColor;
           l.setStyle({
             ...hoverStyle,
-            fillColor: currentStyle.fillColor || hoverStyle.fillColor,
+            ...(fillColor ? { fillColor } : {}),
             // Increase opacity slightly for hover effect while preserving party color
-            fillOpacity: currentStyle.fillColor ? 0.85 : hoverStyle.fillOpacity,
+            fillOpacity: fillColor ? 0.85 : hoverStyle.fillOpacity,
           });
           l.bringToFront();
         },
