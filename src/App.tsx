@@ -248,9 +248,10 @@ function App(): JSX.Element {
   // Wait for statesGeoJSON to be loaded before processing URL
   const isDataReady = Boolean(statesGeoJSON);
   // Use the appropriate year based on context:
-  // - For AC view: use assembly year (selectedYear)
-  // - For PC view (no assembly): use parliament year (pcSelectedYear)
-  const urlYear = currentAssembly ? selectedYear : pcSelectedYear;
+  // - For AC view (assemblies): always use assembly year (selectedYear)
+  // - For PC view (constituencies): use parliament year (pcSelectedYear)
+  // - For specific assembly: use assembly year (selectedYear)
+  const urlYear = currentView === 'assemblies' ? selectedYear : pcSelectedYear;
   const { getShareableUrl, updateUrl } = useUrlState(
     currentState,
     currentView,
