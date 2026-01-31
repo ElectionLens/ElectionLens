@@ -27,6 +27,14 @@ describe('normalizeName', () => {
   it('handles empty strings', () => {
     expect(normalizeName('')).toBe('');
   });
+
+  it('normalizes names so trailing/leading spaces match for AC selection', () => {
+    // Used in MapView for selected AC name matching (isSelected) so hover restore does not overwrite green border
+    const a = normalizeName('Vaniyambadi').toUpperCase().replace(/\s+/g, ' ').trim();
+    const b = normalizeName('Vaniyambadi ').toUpperCase().replace(/\s+/g, ' ').trim();
+    expect(a).toBe(b);
+    expect(a).toBe('VANIYAMBADI');
+  });
 });
 
 describe('getStateFileName', () => {

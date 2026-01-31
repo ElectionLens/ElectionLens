@@ -335,6 +335,8 @@ export interface MapViewProps {
   districtsCache?: DistrictsCache | undefined;
   currentData: GeoJSONData | null;
   currentState: string | null;
+  /** PC winners for state-level PC view first paint (from App handleUrlNavigate so map has colors before loadResults) */
+  initialPCWinners?: Record<string, { party: string; candidate: string }> | null;
   currentView: ViewMode;
   currentPC: string | null;
   currentDistrict: string | null;

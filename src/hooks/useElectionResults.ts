@@ -249,10 +249,13 @@ export function useElectionResults(): UseElectionResultsReturn {
       const slug = getStateSlug(stateName);
       const { schemaId, canonicalName } = options ?? {};
 
-      // Load index if not already loaded
+      // Load index if not already loaded (pass yearFromUrl so loadStateIndex does not overwrite URL year)
       let index = indexCache.current.get(slug);
       if (!index) {
-        const loadedIndex = await loadStateIndex(stateName);
+        const loadedIndex = await loadStateIndex(
+          stateName,
+          year != null ? { yearFromUrl: year } : undefined
+        );
         if (!loadedIndex) {
           return null;
         }

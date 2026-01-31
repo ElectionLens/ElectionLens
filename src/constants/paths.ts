@@ -65,8 +65,11 @@ export const ELECTIONS = {
     `${ELECTION_DATA_BASE}/ac/${stateId}/${year}.json`,
 } as const;
 
-/** State-level winners (party with most Lok Sabha seats per state, latest election) - for India map color-coding */
+/** State-level winners (party with most Lok Sabha seats per state, latest PC election) - legacy */
 export const STATE_WINNERS_PATH = `${ELECTION_DATA_BASE}/state-winners.json`;
+
+/** State-level winners from latest Vidhan Sabha (AC) election per state - used for India map color-coding */
+export const STATE_WINNERS_AC_PATH = `${ELECTION_DATA_BASE}/state-winners-ac.json`;
 
 /** Parliamentary election data paths */
 export const PC_ELECTIONS = {

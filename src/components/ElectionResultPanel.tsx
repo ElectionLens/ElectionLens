@@ -218,6 +218,28 @@ export function ElectionResultPanel({
   // Use prop if provided (controlled), otherwise use internal state (uncontrolled)
   const selectedPCYear =
     selectedPCYearProp !== undefined ? selectedPCYearProp : selectedPCYearInternal;
+  // #region agent log
+  if (result?.constituencyNameOriginal || result?.name) {
+    fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        location: 'ElectionResultPanel.tsx:year state',
+        message: 'Panel year props',
+        data: {
+          selectedPCYearProp,
+          selectedPCYearPropUndefined: selectedPCYearProp === undefined,
+          selectedPCYearResolved: selectedPCYear,
+          selectedYear,
+          resultYear: result?.year,
+        },
+        timestamp: Date.now(),
+        sessionId: 'debug-session',
+        hypothesisId: 'E',
+      }),
+    }).catch(() => {});
+  }
+  // #endregion
   const setSelectedPCYear = useCallback(
     (year: number | null) => {
       if (onPCYearChange) {

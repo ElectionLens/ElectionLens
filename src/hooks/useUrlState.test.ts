@@ -168,6 +168,30 @@ describe('useUrlState', () => {
     expect(urlState.pcYear).toBe(2024);
   });
 
+  it('generates shareable URL for home without year parameter', () => {
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, 2024, null, onNavigate)
+    );
+
+    const url = result.current.getShareableUrl({
+      state: null,
+      view: 'constituencies',
+      pc: null,
+      district: null,
+      assembly: null,
+      year: 2024,
+      pcYear: null,
+      tab: null,
+      showACs: null,
+      blog: false,
+      blogPost: null,
+    });
+
+    expect(url).toBe('http://localhost:3000/');
+    expect(url).not.toContain('year=');
+  });
+
   it('generates shareable URL for state', () => {
     const onNavigate = vi.fn();
     const { result } = renderHook(() =>
