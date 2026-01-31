@@ -2021,6 +2021,22 @@ export function MapView({
     };
   }, [showBackgroundDistricts, districtsCache, currentState, currentDistrict]);
 
+  // Current state boundary - single feature for highlighting selected state in all state-level views
+  const currentStateBoundaryData = useMemo((): GeoJSON.FeatureCollection | null => {
+    if (!currentState || !statesGeoJSON) return null;
+    const currentStateNorm = normalizeName(currentState).toLowerCase();
+    const currentFeature = statesGeoJSON.features.find((f) => {
+      const props = f.properties;
+      const name = normalizeName(props.shapeName ?? props.ST_NM ?? '').toLowerCase();
+      return name === currentStateNorm;
+    });
+    if (!currentFeature) return null;
+    return {
+      type: 'FeatureCollection' as const,
+      features: [currentFeature],
+    };
+  }, [currentState, statesGeoJSON]);
+
   // Style for background districts: colour by dominant party in district (from AC winners) or neutral
   const backgroundDistrictStyle = useCallback(
     (feature?: GeoJSON.Feature): L.PathOptions => {
@@ -2804,6 +2820,21 @@ export function MapView({
           <GeoJSON
             key={`current-pc-boundary-${currentState ?? ''}-${currentPC ?? ''}`}
             data={currentPCFeatureData as GeoJSON.FeatureCollection}
+            style={() => ({
+              weight: 6,
+              color: '#000000',
+              fillOpacity: 0,
+              opacity: 1,
+              interactive: false,
+            })}
+          />
+        )}
+
+        {/* Current state boundary - highlighted border when viewing any state (PC, AC, districts, or within PC/district) */}
+        {currentStateBoundaryData && (
+          <GeoJSON
+            key={`current-state-boundary-${currentState ?? ''}`}
+            data={currentStateBoundaryData}
             style={() => ({
               weight: 6,
               color: '#000000',

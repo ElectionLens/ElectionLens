@@ -133,6 +133,35 @@ test.describe('Deep Linking', () => {
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
     await expect(page).toHaveURL(/tamil-nadu\/pc\/salem\/ac\/omalur/);
   });
+
+  test('selected state has prominent black boundary in state view', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+
+    await page.waitForFunction(
+      () => {
+        const paths = document.querySelectorAll('.leaflet-container path[stroke]');
+        return Array.from(paths).some(
+          (p) =>
+            (p.getAttribute('stroke') ?? '').toLowerCase() === '#000000' ||
+            (p.getAttribute('stroke') ?? '').toLowerCase() === '#000' ||
+            (p.getAttribute('stroke') ?? '').includes('rgb(0, 0, 0)')
+        );
+      },
+      { timeout: 15000 }
+    );
+
+    const hasBlackStroke = await page.evaluate(() => {
+      const paths = document.querySelectorAll('.leaflet-container path[stroke]');
+      return Array.from(paths).some(
+        (p) =>
+          (p.getAttribute('stroke') ?? '').toLowerCase() === '#000000' ||
+          (p.getAttribute('stroke') ?? '').toLowerCase() === '#000' ||
+          (p.getAttribute('stroke') ?? '').includes('rgb(0, 0, 0)')
+      );
+    });
+    expect(hasBlackStroke).toBe(true);
+  });
 });
 
 test.describe('Election Panel', () => {
