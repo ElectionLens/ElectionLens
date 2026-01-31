@@ -212,7 +212,12 @@ function App(): JSX.Element {
           // Convert assembly name to match GeoJSON format (Title Case, uppercase for comparison)
           const acName = toTitleCase(urlState.assembly).toUpperCase();
           selectAssembly(acName);
-          await getACResult(acName, matchedState, urlState.year ?? undefined);
+          const stateId = getStateIdFromName(matchedState);
+          const schemaId = resolveACName(acName, stateId);
+          await getACResult(acName, matchedState, urlState.year ?? undefined, {
+            schemaId: schemaId ?? undefined,
+            canonicalName: schemaId ? getAC(schemaId)?.name : undefined,
+          });
           // Parliament contributions loaded by useEffect when currentAssembly changes
           // Set PC year if provided in URL (year=pc-YYYY format); otherwise show assembly year
           if (urlState.pcYear) {
@@ -232,14 +237,103 @@ function App(): JSX.Element {
         const districtName = toTitleCase(urlState.district);
         const data = await navigateToDistrict(districtName, matchedState);
         setCurrentData(data);
-        // Set year from URL for map coloring (districts view uses selectedYear/selectedACPCYear)
+        // Pre-load AC index so we can validate/correct year (avoid neutral district coloring)
+        const acIndex = await loadStateIndex(
+          matchedState,
+          urlState.year != null ? { yearFromUrl: urlState.year } : undefined
+        );
+        // #region agent log
+        if (matchedState?.toLowerCase().includes('karnataka') && urlState.district) {
+          fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              location: 'App.tsx:handleUrlNavigate district branch',
+              message: 'acIndex and year validation',
+              data: {
+                matchedState,
+                district: urlState.district,
+                urlStateYear: urlState.year,
+                availableYears: acIndex?.availableYears ?? [],
+                yearValid: acIndex ? acIndex.availableYears.includes(urlState.year ?? 0) : false,
+              },
+              timestamp: Date.now(),
+              sessionId: 'debug-session',
+              hypothesisId: 'H4',
+            }),
+          }).catch(() => {});
+        }
+        // #endregion
         if (urlState.pcYear) {
           setSelectedACPCYear(urlState.pcYear);
         } else {
-          setSelectedACPCYear(null); // Assembly year in URL (year=2024) — show AC result, not PC contribution
+          setSelectedACPCYear(null);
         }
         if (urlState.year != null) {
           setSelectedYear(urlState.year);
+        }
+        // If no year in URL, set latest AC year so districts/ACs are colored
+        if (!urlState.year && !urlState.pcYear && acIndex && acIndex.availableYears.length > 0) {
+          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            setSelectedYear(latestYear);
+            setTimeout(() => {
+              updateUrlRef.current({
+                state: matchedState,
+                view: 'districts',
+                pc: null,
+                district: urlState.district,
+                assembly: urlState.assembly ?? null,
+                year: latestYear,
+                pcYear: null,
+                tab: null,
+                showACs: null,
+                blog: false,
+                blogPost: null,
+              });
+            }, 0);
+          }
+        }
+        // If year in URL is not available for this state's AC data, correct to latest (100% party coloring)
+        if (
+          urlState.year != null &&
+          acIndex &&
+          acIndex.availableYears.length > 0 &&
+          !acIndex.availableYears.includes(urlState.year)
+        ) {
+          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                location: 'App.tsx:handleUrlNavigate district branch',
+                message: 'Correcting invalid year to latest',
+                data: { urlStateYear: urlState.year, latestYear, matchedState },
+                timestamp: Date.now(),
+                sessionId: 'debug-session',
+                hypothesisId: 'H4',
+              }),
+            }).catch(() => {});
+            // #endregion
+            setSelectedYear(latestYear);
+            setTimeout(() => {
+              updateUrlRef.current({
+                state: matchedState,
+                view: 'districts',
+                pc: null,
+                district: urlState.district,
+                assembly: urlState.assembly ?? null,
+                year: latestYear,
+                pcYear: null,
+                tab: null,
+                showACs: null,
+                blog: false,
+                blogPost: null,
+              });
+            }, 0);
+          }
         }
         // #region agent log
         fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
@@ -264,7 +358,12 @@ function App(): JSX.Element {
           // Convert assembly name to match GeoJSON format (Title Case, uppercase for comparison)
           const acName = toTitleCase(urlState.assembly).toUpperCase();
           selectAssembly(acName);
-          await getACResult(acName, matchedState, urlState.year ?? undefined);
+          const stateId = getStateIdFromName(matchedState);
+          const schemaId = resolveACName(acName, stateId);
+          await getACResult(acName, matchedState, urlState.year ?? undefined, {
+            schemaId: schemaId ?? undefined,
+            canonicalName: schemaId ? getAC(schemaId)?.name : undefined,
+          });
           // Parliament contributions loaded by useEffect when currentAssembly changes
           // Re-apply URL year so we win over any in-flight loadStateIndex() that overwrote it
           if (urlState.year != null) setSelectedYear(urlState.year);
@@ -376,10 +475,15 @@ function App(): JSX.Element {
         }
 
         if (urlState.assembly) {
-          // Specific assembly selected
+          // Specific assembly selected — use schema for reliable lookup across states/years
           const acName = toTitleCase(urlState.assembly).toUpperCase();
           selectAssembly(acName);
-          await getACResult(acName, matchedState, urlState.year ?? undefined);
+          const stateId = getStateIdFromName(matchedState);
+          const schemaId = resolveACName(acName, stateId);
+          await getACResult(acName, matchedState, urlState.year ?? undefined, {
+            schemaId: schemaId ?? undefined,
+            canonicalName: schemaId ? getAC(schemaId)?.name : undefined,
+          });
           // Re-apply URL year so we win over any in-flight loadStateIndex() that overwrote it
           if (urlState.year != null) setSelectedYear(urlState.year);
           if (!urlState.pcYear) setSelectedACPCYear(null);
@@ -1509,11 +1613,24 @@ function App(): JSX.Element {
       const data = await navigateToAssemblies(stateName);
       setCurrentData(data);
 
-      // Select the assembly and get its election result
+      // Select the assembly and get its election result (use schema for reliable lookup)
       selectAssembly(acName);
-      await getACResult(acName, stateName);
+      const stateId = getStateIdFromName(stateName);
+      const schemaId = resolveACName(acName, stateId);
+      await getACResult(acName, stateName, undefined, {
+        schemaId: schemaId ?? undefined,
+        canonicalName: schemaId ? getAC(schemaId)?.name : undefined,
+      });
     },
-    [navigateToAssemblies, selectAssembly, getACResult, closeSidebarOnMobile]
+    [
+      navigateToAssemblies,
+      selectAssembly,
+      getACResult,
+      closeSidebarOnMobile,
+      getStateIdFromName,
+      resolveACName,
+      getAC,
+    ]
   );
 
   /**
@@ -1601,7 +1718,12 @@ function App(): JSX.Element {
         });
       }
       if (currentAssembly && currentState) {
-        await getACResult(currentAssembly, currentState, year);
+        const stateId = getStateIdFromName(currentState);
+        const schemaId = resolveACName(currentAssembly, stateId);
+        await getACResult(currentAssembly, currentState, year, {
+          schemaId: schemaId ?? undefined,
+          canonicalName: schemaId ? getAC(schemaId)?.name : undefined,
+        });
       }
     },
     [
@@ -1612,6 +1734,9 @@ function App(): JSX.Element {
       currentView,
       currentDistrict,
       getACResult,
+      getStateIdFromName,
+      resolveACName,
+      getAC,
     ]
   );
 
@@ -1863,34 +1988,32 @@ function App(): JSX.Element {
         const data = await loadDistrictsForState(currentState);
         setCurrentData(data);
         const acIndex = await loadStateIndex(currentState);
-        if (
-          acIndex?.availableYears?.length &&
-          selectedYear != null &&
-          !acIndex.availableYears.includes(selectedYear)
-        ) {
-          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
-          if (latestYear !== undefined) {
-            setSelectedYear(latestYear);
-            const tab =
-              typeof window !== 'undefined'
-                ? new URLSearchParams(window.location.search).get('tab')
-                : null;
-            const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-            const preservedTab = tab && validTabs.includes(tab) ? tab : null;
-            updateUrlRef.current({
-              state: currentState,
-              view: 'districts',
-              pc: null,
-              district: null,
-              assembly: null,
-              year: latestYear,
-              pcYear: null,
-              tab: preservedTab,
-              showACs: null,
-              blog: false,
-              blogPost: null,
-            });
-          }
+        const years = acIndex?.availableYears ?? [];
+        const latestYear = years.length > 0 ? years[years.length - 1] : undefined;
+        // No year or invalid year: set to latest so districts get 100% party coloring
+        const needsCorrection =
+          latestYear !== undefined && (selectedYear == null || !years.includes(selectedYear));
+        if (needsCorrection) {
+          setSelectedYear(latestYear);
+          const tab =
+            typeof window !== 'undefined'
+              ? new URLSearchParams(window.location.search).get('tab')
+              : null;
+          const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+          const preservedTab = tab && validTabs.includes(tab) ? tab : null;
+          updateUrlRef.current({
+            state: currentState,
+            view: 'districts',
+            pc: null,
+            district: null,
+            assembly: null,
+            year: latestYear,
+            pcYear: null,
+            tab: preservedTab,
+            showACs: null,
+            blog: false,
+            blogPost: null,
+          });
         }
       }
     },

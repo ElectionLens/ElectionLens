@@ -20,13 +20,21 @@ import type {
 import { getFeatureStyle, getHoverStyle, normalizeName, getStateFileName } from '../utils/helpers';
 import { COLOR_PALETTES, isBoothDataAvailable, STATE_FILE_MAP } from '../constants';
 
-/** Neutral style for districts view when no party data (no default/palette coloring) */
-const DISTRICTS_VIEW_NEUTRAL_STYLE: L.PathOptions = {
+/** App-wide neutral map style when no party data — same default color in all views (districts, background districts/PCs/states) */
+const NEUTRAL_MAP_STYLE: L.PathOptions = {
   fillColor: '#9ca3af',
   fillOpacity: 0.6,
   color: '#6b7280',
   weight: 1,
   opacity: 1,
+};
+
+/** AC name spelling variants for style lookup (GeoJSON vs election data), e.g. Tadpatri vs Tadipatri, Pappireddippatti vs Pappireddipatti (PC 2024) */
+const AC_STYLE_VARIANTS: Record<string, string[]> = {
+  TADPATRI: ['TADPATRI', 'TADIPATRI'],
+  TADIPATRI: ['TADIPATRI', 'TADPATRI'],
+  PAPPIREDDIPPATTI: ['PAPPIREDDIPPATTI', 'PAPPIREDDIPATTI'],
+  PAPPIREDDIPATTI: ['PAPPIREDDIPATTI', 'PAPPIREDDIPPATTI'],
 };
 import { clearAllCache } from '../utils/db';
 import { getPartyColor } from '../utils/partyData';
@@ -743,7 +751,8 @@ export function MapView({
   }, []);
 
   // Schema hook - used for resolveACName/resolvePCName in loadResults and getAC for booth data
-  const { getAC, resolveACName, resolvePCName, resolveDistrictName, schema } = useSchema();
+  const { getAC, resolveACName, resolvePCName, resolveDistrictName, getDistrict, schema } =
+    useSchema();
 
   // Dominant party per district (from AC winners) for colouring neighbouring districts
   const districtWinners = useMemo((): Record<string, string> => {
@@ -850,8 +859,11 @@ export function MapView({
       }).catch(() => {});
       // #endregion
 
-      if (currentView === 'assemblies' || currentView === 'districts') {
-        // For AC/districts view, check if we're viewing PC contribution year or assembly year
+      // District detail (currentDistrict) needs AC data for coloring; currentView can be stale (constituencies) on first run
+      const needsACOrPCDistrictData =
+        currentView === 'assemblies' || currentView === 'districts' || Boolean(currentDistrict);
+      if (needsACOrPCDistrictData) {
+        // For AC/districts view (or district detail), check if we're viewing PC contribution year or assembly year
         if (selectedACPCYear) {
           // Load PC election results and map AC contributions
           try {
@@ -868,13 +880,21 @@ export function MapView({
                     .replace(/\s+/g, ' ')
                     .trim();
                   const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
-                  winners[normalizedName] = { party, candidate: candidateName };
+                  const entry = { party, candidate: candidateName };
+                  winners[normalizedName] = entry;
                   if (fuzzyKey && fuzzyKey !== normalizedName) {
-                    winners[fuzzyKey] = { party, candidate: candidateName };
+                    winners[fuzzyKey] = entry;
                   }
                   const originalUpper = acName.toUpperCase().trim();
                   if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
-                    winners[originalUpper] = { party, candidate: candidateName };
+                    winners[originalUpper] = entry;
+                  }
+                  // So GeoJSON can match: add opposite spelling (e.g. PC 2024 has "Pappireddipatti", schema has "Pappireddippatti")
+                  const variants = AC_STYLE_VARIANTS[normalizedName];
+                  if (variants) {
+                    for (const v of variants) {
+                      if (v !== normalizedName && !winners[v]) winners[v] = entry;
+                    }
                   }
                   acCount++;
                 };
@@ -988,7 +1008,24 @@ export function MapView({
         } else if (selectedYear) {
           // Load AC election results
           try {
-            const response = await fetch(ELECTIONS.getYearPath(stateId, selectedYear));
+            const acPath = ELECTIONS.getYearPath(stateId, selectedYear);
+            const response = await fetch(acPath);
+            // #region agent log
+            if (currentState?.toLowerCase().includes('karnataka')) {
+              fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  location: 'MapView.tsx:loadResults AC fetch',
+                  message: 'after fetch',
+                  data: { currentState, stateId, selectedYear, path: acPath, ok: response.ok },
+                  timestamp: Date.now(),
+                  sessionId: 'debug-session',
+                  hypothesisId: 'H2',
+                }),
+              }).catch(() => {});
+            }
+            // #endregion
             if (response.ok) {
               const results = (await response.json()) as ElectionResultsByConstituency;
               // Map each AC to its winner (store schemaId when key is schemaId, plus name variants)
@@ -1029,6 +1066,58 @@ export function MapView({
             );
           }
         }
+        // Fallback: if no winners (invalid/missing year), load latest AC year so districts/ACs get 100% party coloring
+        if (
+          Object.keys(winners).length === 0 &&
+          currentState &&
+          (currentView === 'districts' || currentView === 'assemblies' || Boolean(currentDistrict))
+        ) {
+          try {
+            const indexRes = await fetch(ELECTIONS.getIndexPath(stateId));
+            if (indexRes.ok) {
+              const index = (await indexRes.json()) as { availableYears?: number[] };
+              const years = index.availableYears ?? [];
+              const latestYear = years.length > 0 ? years[years.length - 1] : null;
+              if (latestYear != null) {
+                const response = await fetch(ELECTIONS.getYearPath(stateId, latestYear));
+                if (response.ok) {
+                  const results = (await response.json()) as ElectionResultsByConstituency;
+                  const schemaIdPattern = /^[A-Z]{2}-\d+$/;
+                  Object.entries(results).forEach(([key, result]) => {
+                    if (result.candidates && result.candidates.length > 0) {
+                      const winner = result.candidates[0];
+                      if (winner) {
+                        const entry = { party: winner.party, candidate: winner.name };
+                        if (key && schemaIdPattern.test(key)) winners[key] = entry;
+                        const acName =
+                          result.constituencyNameOriginal ||
+                          result.constituencyName ||
+                          result.name ||
+                          '';
+                        if (acName) {
+                          const normalizedName = normalizeName(acName)
+                            .toUpperCase()
+                            .replace(/\s*\([^)]*\)\s*/g, '')
+                            .replace(/\s+/g, ' ')
+                            .trim();
+                          const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+                          winners[normalizedName] = entry;
+                          if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
+                          const originalUpper = acName.toUpperCase().trim();
+                          if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
+                            winners[originalUpper] = entry;
+                          }
+                        }
+                      }
+                    }
+                  });
+                }
+              }
+            }
+          } catch {
+            // Ignore; App year correction will fix URL on next sync
+          }
+        }
       } else if (currentView === 'constituencies') {
         // State-level PC view: use pcSelectedYear, or year from URL when not set yet (avoids race with handleUrlNavigate)
         const urlYear =
@@ -1041,6 +1130,7 @@ export function MapView({
               })()
             : null;
         const yearToLoad = pcSelectedYear ?? urlYear;
+        let hadPCResultForSelectedPC = false; // true when selected PC exists in PC file (so we have acWiseResults)
         if (yearToLoad) {
           try {
             const response = await fetch(PC_ELECTIONS.getYearPath(stateId, yearToLoad));
@@ -1181,6 +1271,7 @@ export function MapView({
                     );
                   })?.[1];
                 if (pcResult) {
+                  hadPCResultForSelectedPC = true;
                   const addACWinner = (
                     acName: string,
                     party: string,
@@ -1260,8 +1351,9 @@ export function MapView({
                 .trim()
                 .replace(/\s+/g, ' ')
             ];
-          // Fill ACs within this PC that have no winner yet with the PC winner (so all 6+ ACs are color-coded, no defaults)
-          if (pcWinner && pcSchemaId) {
+          // Fill ACs within this PC with the PC winner only when we have PC election data for this PC (acWiseResults).
+          // When PC is missing from file (e.g. Vellore TN-08 in 2019), skip this so fallback colors each AC by assembly election.
+          if (hadPCResultForSelectedPC && pcWinner && pcSchemaId) {
             for (const [acId, ac] of Object.entries(schema.assemblyConstituencies)) {
               if (ac.stateId !== stateId || ac.pcId !== pcSchemaId || winners[acId]) continue;
               winners[acId] = pcWinner;
@@ -1278,62 +1370,7 @@ export function MapView({
               }
             }
           }
-          // Fallback: when PC not in file (e.g. Vellore 2019 missing), color ACs by latest assembly election
-          const acsInThisPC = Object.entries(schema.assemblyConstituencies).filter(
-            ([, ac]) => ac.stateId === stateId && ac.pcId === pcSchemaId
-          );
-          const hasAnyWinner = acsInThisPC.some(
-            ([acId, ac]) =>
-              winners[acId] ||
-              winners[ac.name] ||
-              winners[
-                normalizeName(ac.name)
-                  .toUpperCase()
-                  .replace(/\s*\([^)]*\)\s*/g, '')
-                  .replace(/\s+/g, ' ')
-                  .trim()
-              ]
-          );
-          if (pcSchemaId && acsInThisPC.length > 0 && !hasAnyWinner) {
-            try {
-              const acIndexRes = await fetch(ELECTIONS.getIndexPath(stateId));
-              if (acIndexRes.ok) {
-                const acIndex = (await acIndexRes.json()) as { availableYears?: number[] };
-                const years = acIndex.availableYears ?? [];
-                const latestYear = years.length > 0 ? years[years.length - 1] : null;
-                if (latestYear != null) {
-                  const acRes = await fetch(ELECTIONS.getYearPath(stateId, latestYear));
-                  if (acRes.ok) {
-                    const acResults = (await acRes.json()) as ElectionResultsByConstituency;
-                    for (const [acId] of acsInThisPC) {
-                      const result = acResults[acId];
-                      if (result?.candidates?.length && result.candidates[0]) {
-                        const w = result.candidates[0];
-                        const entry = { party: w.party, candidate: w.name };
-                        winners[acId] = entry;
-                        const ac = schema.assemblyConstituencies[acId];
-                        if (ac) {
-                          const namesToAdd = [ac.name, ...(ac.aliases || [])].filter(Boolean);
-                          for (const n of namesToAdd) {
-                            const norm = normalizeName(n)
-                              .toUpperCase()
-                              .replace(/\s*\([^)]*\)\s*/g, '')
-                              .replace(/\s+/g, ' ')
-                              .trim();
-                            if (norm && !winners[norm]) winners[norm] = entry;
-                            const upper = n.toUpperCase().trim();
-                            if (upper && upper !== norm && !winners[upper]) winners[upper] = entry;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            } catch {
-              // Ignore; ACs stay uncolored
-            }
-          }
+          // When PC is missing from file (e.g. Vellore 2019), do not fill from assembly election — show no data / neutral color.
         }
 
         // When viewing AC within PC (currentPC && selectedAssembly), load assembly (MLA) results
@@ -1398,6 +1435,26 @@ export function MapView({
       }
       // #region agent log
       const winnerKeys = Object.keys(winners);
+      if (currentState?.toLowerCase().includes('karnataka')) {
+        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            location: 'MapView.tsx:loadResults after setConstituencyWinners',
+            message: 'Karnataka winner count',
+            data: {
+              currentState,
+              currentView,
+              selectedYear,
+              selectedACPCYear,
+              winnerCount: winnerKeys.length,
+            },
+            timestamp: Date.now(),
+            sessionId: 'debug-session',
+            hypothesisId: 'H2',
+          }),
+        }).catch(() => {});
+      }
       fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1428,6 +1485,7 @@ export function MapView({
   }, [
     currentState,
     currentView,
+    currentDistrict,
     selectedYear,
     pcSelectedYear,
     selectedACPCYear,
@@ -1718,7 +1776,9 @@ export function MapView({
             ? `-y${pcSelectedYear ?? ''}`
             : `-pcy${selectedACPCYear ?? ''}`
           : level === 'assemblies'
-            ? `-y${selectedYear ?? ''}`
+            ? selectedACPCYear != null
+              ? `-pcy${selectedACPCYear}`
+              : `-y${selectedYear ?? ''}`
             : level === 'districts'
               ? selectedYear != null
                 ? `-y${selectedYear}`
@@ -1815,7 +1875,7 @@ export function MapView({
   // Background states - shown dimmed when zoomed into a state for context
   const showBackgroundStates = Boolean(currentState) && statesGeoJSON;
 
-  // Style for background states: color by state winner (party with most Lok Sabha seats) or neutral gray
+  // Style for background states: color by state winner (party with most Lok Sabha seats) or app-wide neutral
   const backgroundStateStyle = useCallback(
     (feature?: GeoJSON.Feature): L.PathOptions => {
       const base = {
@@ -1825,7 +1885,11 @@ export function MapView({
         opacity: 0.85,
       };
       if (!feature || Object.keys(stateWinners).length === 0) {
-        return { ...base, fillColor: '#f3f4f6', color: '#9ca3af' };
+        return {
+          ...base,
+          fillColor: NEUTRAL_MAP_STYLE.fillColor!,
+          color: NEUTRAL_MAP_STYLE.color!,
+        };
       }
       const props = feature.properties as StateProperties;
       const stateIdFromSchema = props.schemaId;
@@ -1835,7 +1899,7 @@ export function MapView({
       if (winner) {
         return { ...base, fillColor: getPartyColor(winner.party) };
       }
-      return { ...base, fillColor: '#f3f4f6', color: '#9ca3af' };
+      return { ...base, fillColor: NEUTRAL_MAP_STYLE.fillColor!, color: NEUTRAL_MAP_STYLE.color! };
     },
     [stateWinners, getStateId]
   );
@@ -1894,7 +1958,7 @@ export function MapView({
     };
   }, [showBackgroundPCs, parliamentGeoJSON, currentState, currentPC]);
 
-  // Style for background PCs: colour by PC winner (from backgroundPCWinners or constituencyWinners) or neutral
+  // Style for background PCs: colour by PC winner (from backgroundPCWinners or constituencyWinners) or app-wide neutral
   const backgroundPCStyle = useCallback(
     (feature?: GeoJSON.Feature): L.PathOptions => {
       const base = {
@@ -1904,7 +1968,11 @@ export function MapView({
         opacity: 0.85,
       };
       if (!feature) {
-        return { ...base, fillColor: '#fed7aa', color: '#fdba74' };
+        return {
+          ...base,
+          fillColor: NEUTRAL_MAP_STYLE.fillColor!,
+          color: NEUTRAL_MAP_STYLE.color!,
+        };
       }
       const props = feature.properties as ConstituencyProperties;
       const pcName = (props.ls_seat_name ?? props.PC_NAME ?? '').trim();
@@ -1922,7 +1990,7 @@ export function MapView({
       if (winner) {
         return { ...base, fillColor: getPartyColor(winner.party) };
       }
-      return { ...base, fillColor: '#fed7aa', color: '#fdba74' };
+      return { ...base, fillColor: NEUTRAL_MAP_STYLE.fillColor!, color: NEUTRAL_MAP_STYLE.color! };
     },
     [backgroundPCWinners, effectiveConstituencyWinners]
   );
@@ -2046,21 +2114,91 @@ export function MapView({
         weight: 1,
         opacity: 0.85,
       };
+      // #region agent log
+      const dwCount = Object.keys(districtWinners).length;
+      if (currentState && (currentState.toLowerCase().includes('karnataka') || dwCount === 0)) {
+        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            location: 'MapView.tsx:backgroundDistrictStyle',
+            message: 'districtWinners count',
+            data: { currentState, districtWinnersCount: dwCount },
+            timestamp: Date.now(),
+            sessionId: 'debug-session',
+            hypothesisId: 'H2',
+          }),
+        }).catch(() => {});
+      }
+      // #endregion
       if (!feature || !currentState || Object.keys(districtWinners).length === 0) {
-        return { ...base, fillColor: '#fed7aa', color: '#fdba74' };
+        return {
+          ...base,
+          fillColor: NEUTRAL_MAP_STYLE.fillColor!,
+          color: NEUTRAL_MAP_STYLE.color!,
+        };
       }
       const props = feature.properties as DistrictProperties;
       const districtName = (props.district ?? props.NAME ?? props.DISTRICT ?? '').trim();
-      if (!districtName) return { ...base, fillColor: '#fed7aa', color: '#fdba74' };
+      if (!districtName)
+        return {
+          ...base,
+          fillColor: NEUTRAL_MAP_STYLE.fillColor!,
+          color: NEUTRAL_MAP_STYLE.color!,
+        };
       const stateId = getStateId(currentState);
       const districtId = resolveDistrictName(districtName, stateId);
-      const party = districtId ? districtWinners[districtId] : undefined;
+      let party = districtId ? districtWinners[districtId] : undefined;
+      // #region agent log
+      if (
+        districtName.toLowerCase().includes('bagal') ||
+        currentState?.toLowerCase().includes('karnataka')
+      ) {
+        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            location: 'MapView.tsx:backgroundDistrictStyle',
+            message: 'lookup',
+            data: {
+              districtName,
+              stateId,
+              districtId,
+              party: party ?? null,
+              districtWinnersCount: Object.keys(districtWinners).length,
+            },
+            timestamp: Date.now(),
+            sessionId: 'debug-session',
+            hypothesisId: 'H1',
+          }),
+        }).catch(() => {});
+      }
+      // #endregion
+      // Fallback: match by normalized name (handles GeoJSON/schema spelling variants e.g. Bagalkote/Bagalkot, Belagavi/Belgaum)
+      if (!party && getDistrict && Object.keys(districtWinners).length > 0) {
+        const districtNorm = normalizeName(districtName).toLowerCase().replace(/\s+/g, ' ');
+        for (const [did, p] of Object.entries(districtWinners)) {
+          const dist = getDistrict(did);
+          const name = dist?.name?.trim();
+          if (!name) continue;
+          const schemaNorm = normalizeName(name).toLowerCase().replace(/\s+/g, ' ');
+          if (schemaNorm === districtNorm) {
+            party = p;
+            break;
+          }
+          // Also try without trailing 'e' / with trailing 'e'
+          if (schemaNorm === districtNorm.replace(/e$/, '') || schemaNorm === districtNorm + 'e') {
+            party = p;
+            break;
+          }
+        }
+      }
       if (party) {
         return { ...base, fillColor: getPartyColor(party) };
       }
-      return { ...base, fillColor: '#fed7aa', color: '#fdba74' };
+      return { ...base, fillColor: NEUTRAL_MAP_STYLE.fillColor!, color: NEUTRAL_MAP_STYLE.color! };
     },
-    [currentState, districtWinners, getStateId, resolveDistrictName]
+    [currentState, districtWinners, getStateId, resolveDistrictName, getDistrict]
   );
 
   // Click and hover handler for background districts
@@ -2392,11 +2530,11 @@ export function MapView({
       let baseStyle = getFeatureStyle(idx, level) as L.PathOptions;
       // Assemblies view: 100% party color coding — never use default/palette; neutral until party is found
       if (level === 'assemblies') {
-        baseStyle = { ...DISTRICTS_VIEW_NEUTRAL_STYLE };
+        baseStyle = { ...NEUTRAL_MAP_STYLE };
       }
       // Constituencies (PC) view: 100% party or neutral — never palette (state-level and single-PC)
       if (level === 'constituencies') {
-        baseStyle = { ...DISTRICTS_VIEW_NEUTRAL_STYLE };
+        baseStyle = { ...NEUTRAL_MAP_STYLE };
       }
 
       // Get constituency name based on level
@@ -2454,16 +2592,36 @@ export function MapView({
 
       // Color-code districts by dominant party; never use palette in districts view (100% party or neutral)
       if (level === 'districts' && feature && currentState) {
-        baseStyle = { ...DISTRICTS_VIEW_NEUTRAL_STYLE };
+        baseStyle = { ...NEUTRAL_MAP_STYLE };
         const props = feature.properties as DistrictProperties;
         const districtName =
           props.district ?? props.NAME ?? (props as Record<string, unknown>)['DISTRICT'] ?? '';
         const stateId = getStateId(currentState);
         const districtId = districtName ? resolveDistrictName(String(districtName), stateId) : null;
-        const party =
+        let party =
           districtId && Object.keys(districtWinners).length > 0
             ? districtWinners[districtId]
             : undefined;
+        // Fallback: match by normalized name (GeoJSON/schema spelling variants e.g. Bagalkote/Bagalkot)
+        if (!party && getDistrict && districtName && Object.keys(districtWinners).length > 0) {
+          const districtNorm = normalizeName(String(districtName))
+            .toLowerCase()
+            .replace(/\s+/g, ' ');
+          for (const [did, p] of Object.entries(districtWinners)) {
+            const dist = getDistrict(did);
+            const name = dist?.name?.trim();
+            if (!name) continue;
+            const schemaNorm = normalizeName(name).toLowerCase().replace(/\s+/g, ' ');
+            if (
+              schemaNorm === districtNorm ||
+              schemaNorm === districtNorm.replace(/e$/, '') ||
+              schemaNorm === districtNorm + 'e'
+            ) {
+              party = p;
+              break;
+            }
+          }
+        }
         if (party) {
           baseStyle = {
             fillColor: getPartyColor(party),
@@ -2498,6 +2656,16 @@ export function MapView({
         // If not found, try with original name (uppercase)
         if (!winner && constituencyName) {
           winner = effectiveConstituencyWinners[constituencyName.toUpperCase().trim()];
+        }
+        // If still not found (assemblies), try spelling variants (e.g. TADPATRI/TADIPATRI) so all ACs get color
+        if (!winner && level === 'assemblies') {
+          const variants = AC_STYLE_VARIANTS[normalizedConstituencyName];
+          if (variants) {
+            for (const v of variants) {
+              winner = effectiveConstituencyWinners[v];
+              if (winner) break;
+            }
+          }
         }
         // If still not found, try matching against all keys (fuzzy match)
         if (!winner) {
@@ -2639,6 +2807,7 @@ export function MapView({
       stateWinners,
       districtWinners,
       getStateId,
+      getDistrict,
       currentState,
       currentDistrict,
       currentPC,
@@ -2712,8 +2881,9 @@ export function MapView({
     );
   }
 
-  // Determine if any panel is open (for desktop sidebar layout)
-  const hasPanelOpen = !!electionResult || !!pcElectionResult;
+  // Determine if any panel is open (for desktop sidebar layout) — include AC selected so panel area shows even while loading
+  const hasPanelOpen =
+    !!electionResult || !!pcElectionResult || (currentView === 'assemblies' && !!selectedAssembly);
 
   return (
     <div className={`map-container ${hasPanelOpen ? 'panel-open' : ''}`}>
@@ -2907,7 +3077,7 @@ export function MapView({
         )}
       </MapContainer>
 
-      {/* AC Election Result Panel - Show when AC is selected */}
+      {/* AC Election Result Panel - Show when AC is selected (with result or placeholder while loading) */}
       {electionResult && onCloseElectionPanel && (
         <Suspense fallback={<PanelSkeleton />}>
           <ElectionResultPanel
@@ -2929,6 +3099,30 @@ export function MapView({
           />
         </Suspense>
       )}
+
+      {/* AC placeholder panel when assembly selected but result not yet loaded (ensures side panel for all ACs) */}
+      {!electionResult &&
+        currentView === 'assemblies' &&
+        selectedAssembly &&
+        onCloseElectionPanel && (
+          <div className="election-panel">
+            <div className="election-panel-header">
+              <div className="election-panel-title">{selectedAssembly}</div>
+              <button
+                className="election-panel-close"
+                onClick={onCloseElectionPanel}
+                title="Close"
+                type="button"
+                aria-label="Close panel"
+              >
+                ×
+              </button>
+            </div>
+            <div style={{ padding: '16px', color: 'var(--muted, #6b7280)' }}>
+              Loading constituency data…
+            </div>
+          </div>
+        )}
 
       {/* PC Election Result Panel - Show when in PC view and no AC selected */}
       {pcElectionResult && !electionResult && onClosePCElectionPanel && (

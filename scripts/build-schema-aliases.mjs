@@ -16,7 +16,7 @@ const SCHEMA_PATH = join(DATA_DIR, 'schema.json');
 const schema = JSON.parse(readFileSync(SCHEMA_PATH, 'utf-8'));
 
 /**
- * Normalize for comparison
+ * Normalize for comparison (strips (SC)/(ST))
  */
 function normalize(str) {
   if (!str) return '';
@@ -27,6 +27,26 @@ function normalize(str) {
     .replace(/\s*\([^)]*\)\s*/g, '')  // Remove (SC)/(ST)
     .replace(/[^A-Z0-9]/g, '')
     .trim();
+}
+
+/**
+ * Key for index: keep SC/ST suffix so GEN and reserved ACs get distinct keys (e.g. PRATHIPADU vs PRATHIPADUSC)
+ */
+function keyForIndex(name) {
+  if (!name) return '';
+  return name
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s*\(SC\)\s*/gi, 'SC')
+    .replace(/\s*\(ST\)\s*/gi, 'ST')
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, '')
+    .trim();
+}
+
+/** Collapse repeated chars for fuzzy match (e.g. Pappireddippatti vs Pappireddipatti) */
+function collapseRepeated(s) {
+  return (s || '').replace(/(.)\1+/g, '$1');
 }
 
 /**
@@ -144,6 +164,90 @@ function collectNameVariations() {
 }
 
 /**
+ * Collect AC names from PC election acWiseResults and acWiseVotes (so spelling variants like
+ * Pappireddipatti in PC data get added as aliases to schema ACs like Pappireddippatti).
+ * Returns Map stateId -> Map pcId -> Set(acNames).
+ */
+function collectACNamesFromPC() {
+  const acNamesByPC = new Map(); // stateId -> Map(pcId -> Set(acNames))
+  const pcDir = join(DATA_DIR, 'elections/pc');
+  if (!existsSync(pcDir)) return acNamesByPC;
+
+  for (const stateDir of readdirSync(pcDir, { withFileTypes: true })) {
+    if (!stateDir.isDirectory()) continue;
+    const stateId = stateDir.name;
+    if (!acNamesByPC.has(stateId)) acNamesByPC.set(stateId, new Map());
+
+    const statePath = join(pcDir, stateId);
+    for (const file of readdirSync(statePath)) {
+      if (!/^\d{4}\.json$/.test(file)) continue;
+      const data = JSON.parse(readFileSync(join(statePath, file), 'utf-8'));
+
+      for (const [pcId, result] of Object.entries(data)) {
+        if (pcId.startsWith('_') || !result) continue;
+        if (!acNamesByPC.get(stateId).has(pcId)) acNamesByPC.get(stateId).set(pcId, new Set());
+
+        const acNames = acNamesByPC.get(stateId).get(pcId);
+        if (result.acWiseResults) {
+          for (const acName of Object.keys(result.acWiseResults)) {
+            if (acName && typeof acName === 'string') acNames.add(acName.trim());
+          }
+        }
+        if (result.candidates && Array.isArray(result.candidates)) {
+          for (const c of result.candidates) {
+            if (c.acWiseVotes && Array.isArray(c.acWiseVotes)) {
+              for (const av of c.acWiseVotes) {
+                const name = av.acName?.trim();
+                if (name) acNames.add(name);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return acNamesByPC;
+}
+
+/**
+ * Add PC-derived AC names as aliases to schema ACs (match by same PC + normalize or collapseRepeated).
+ */
+function updateSchemaAliasesFromPC(acNamesByPC) {
+  let added = 0;
+  for (const [stateId, pcMap] of acNamesByPC.entries()) {
+    for (const [pcId, acNames] of pcMap.entries()) {
+      const acsInPC = Object.entries(schema.assemblyConstituencies || {}).filter(
+        ([, ac]) => ac.stateId === stateId && ac.pcId === pcId
+      );
+      if (acsInPC.length === 0) continue;
+
+      for (const acName of acNames) {
+        const n = normalize(acName);
+        const nc = collapseRepeated(n);
+        if (!n) continue;
+
+        for (const [acId, ac] of acsInPC) {
+          const schemaNorm = normalize(ac.name);
+          const schemaColl = collapseRepeated(schemaNorm);
+          if (n === schemaNorm || nc === schemaColl) {
+            const current = new Set(ac.aliases || []);
+            if (!current.has(acName)) {
+              current.add(acName);
+              current.add(acName.toUpperCase());
+              current.add(acName.toLowerCase());
+              schema.assemblyConstituencies[acId].aliases = [...current];
+              added++;
+            }
+            break;
+          }
+        }
+      }
+    }
+  }
+  return added;
+}
+
+/**
  * Update schema with collected aliases
  */
 function updateSchemaAliases(variations) {
@@ -210,10 +314,19 @@ function rebuildIndices() {
   
   for (const [id, ac] of Object.entries(schema.assemblyConstituencies)) {
     const stateId = ac.stateId;
-    
-    // Index canonical name
-    const key = `${normalize(ac.name)}|${stateId}`;
-    schema.indices.acByName[key] = id;
+
+    // Index canonical name (use keyForIndex so (SC)/(ST) ACs get distinct keys, e.g. PRATHIPADUSC vs PRATHIPADU)
+    const key = `${keyForIndex(ac.name)}|${stateId}`;
+    const existingId = schema.indices.acByName[key];
+    const currentReserved = /\(SC\)|\(ST\)/i.test(ac.name);
+    // Prefer GEN over (SC)/(ST) when key would conflict so base name resolves to GEN AC
+    if (existingId) {
+      const existingReserved = /\(SC\)|\(ST\)/i.test(schema.assemblyConstituencies[existingId]?.name || '');
+      if (currentReserved && !existingReserved) continue; // keep GEN
+      if (!currentReserved && existingReserved) schema.indices.acByName[key] = id; // overwrite with GEN
+    } else {
+      schema.indices.acByName[key] = id;
+    }
     
     // Index all aliases
     for (const alias of (ac.aliases || [])) {
@@ -273,6 +386,12 @@ async function main() {
   const { acUpdated, pcUpdated } = updateSchemaAliases(variations);
   console.log(`   Updated ${acUpdated} ACs with new aliases`);
   console.log(`   Updated ${pcUpdated} PCs with new aliases`);
+
+  // Add AC name variants from PC election acWiseResults/acWiseVotes (e.g. Pappireddipatti -> Pappireddippatti)
+  console.log('\n📋 Scanning PC elections for AC name variants...');
+  const acNamesByPC = collectACNamesFromPC();
+  const pcAcAliasesAdded = updateSchemaAliasesFromPC(acNamesByPC);
+  console.log(`   Added ${pcAcAliasesAdded} AC aliases from PC data`);
   
   // Rebuild indices
   console.log('\n🔄 Rebuilding name indices...');

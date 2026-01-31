@@ -81,6 +81,19 @@ function normalizeACName(name: string): string {
     .trim();
 }
 
+/** Common spelling variants for AC names (URL vs data), e.g. Tadpatri vs Tadipatri, Pappireddipatti vs Pappireddippatti (PC data) */
+const AC_NAME_VARIANTS: Record<string, string[]> = {
+  TADPATRI: ['TADPATRI', 'TADIPATRI'],
+  TADIPATRI: ['TADIPATRI', 'TADPATRI'],
+  PAPPIREDDIPATTI: ['PAPPIREDDIPATTI', 'PAPPIREDDIPPATTI'],
+  PAPPIREDDIPPATTI: ['PAPPIREDDIPPATTI', 'PAPPIREDDIPATTI'],
+};
+
+function getACNameSearchVariants(normalized: string): string[] {
+  const added = AC_NAME_VARIANTS[normalized];
+  return added ?? [normalized];
+}
+
 /** Options for getACResult */
 export interface GetACResultOptions {
   /** Schema ID for direct lookup (e.g., "RJ-108") */
@@ -295,6 +308,7 @@ export function useElectionResults(): UseElectionResultsReturn {
       let result: ACElectionResult | undefined;
       const searchName = canonicalName ?? acName;
       const normalizedSearch = normalizeACName(searchName);
+      const searchVariants = getACNameSearchVariants(normalizedSearch);
 
       // Strategy 1: Schema ID direct lookup (primary path for new data format)
       if (schemaId) {
@@ -306,29 +320,7 @@ export function useElectionResults(): UseElectionResultsReturn {
         result = results[searchName.toUpperCase().trim()];
       }
 
-      // Strategy 3: Match by name properties (for schema ID-keyed data)
-      if (!result) {
-        for (const [, value] of Object.entries(results)) {
-          if (!value || typeof value !== 'object') continue;
-
-          // Check constituencyName, constituencyNameOriginal, name
-          const namesToCheck = [
-            value.constituencyName,
-            value.constituencyNameOriginal,
-            value.name,
-          ].filter((n): n is string => Boolean(n));
-
-          for (const name of namesToCheck) {
-            if (normalizeACName(name) === normalizedSearch) {
-              result = value;
-              break;
-            }
-          }
-          if (result) break;
-        }
-      }
-
-      // Strategy 4: Partial match (one contains the other) - handles minor variations
+      // Strategy 3: Match by name properties (for schema ID-keyed data), including spelling variants (e.g. Tadpatri/Tadipatri)
       if (!result) {
         for (const [, value] of Object.entries(results)) {
           if (!value || typeof value !== 'object') continue;
@@ -341,10 +333,33 @@ export function useElectionResults(): UseElectionResultsReturn {
 
           for (const name of namesToCheck) {
             const normalizedName = normalizeACName(name);
-            if (
-              normalizedName.includes(normalizedSearch) ||
-              normalizedSearch.includes(normalizedName)
-            ) {
+            if (searchVariants.includes(normalizedName)) {
+              result = value;
+              break;
+            }
+          }
+          if (result) break;
+        }
+      }
+
+      // Strategy 4: Partial match (one contains the other) - handles minor variations and spelling variants
+      if (!result) {
+        for (const [, value] of Object.entries(results)) {
+          if (!value || typeof value !== 'object') continue;
+
+          const namesToCheck = [
+            value.constituencyName,
+            value.constituencyNameOriginal,
+            value.name,
+          ].filter((n): n is string => Boolean(n));
+
+          for (const name of namesToCheck) {
+            const normalizedName = normalizeACName(name);
+            const matches = searchVariants.some(
+              (v) =>
+                normalizedName.includes(v) || v.includes(normalizedName) || normalizedName === v
+            );
+            if (matches) {
               result = value;
               break;
             }

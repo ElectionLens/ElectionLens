@@ -52,6 +52,19 @@ function normalizeName(name: string): string {
     .trim();
 }
 
+/** AC name spelling variants for schema lookup (URL vs schema name), e.g. tadpatri vs tadipatri, pappireddipatti vs pappireddippatti (PC 2024) */
+const AC_NAME_LOOKUP_VARIANTS: Record<string, string[]> = {
+  tadpatri: ['tadpatri', 'tadipatri'],
+  tadipatri: ['tadipatri', 'tadpatri'],
+  pappireddipatti: ['pappireddipatti', 'pappireddippatti'],
+  pappireddippatti: ['pappireddippatti', 'pappireddipatti'],
+};
+
+function getACNameLookupVariants(normalized: string): string[] {
+  const v = AC_NAME_LOOKUP_VARIANTS[normalized];
+  return v ?? [normalized];
+}
+
 /**
  * Hook for loading and using the master schema
  *
@@ -158,19 +171,68 @@ export function useSchema(): UseSchemaReturn {
       // Try direct match first (lowercase, schema may use this)
       let id = schema.indices.acByName[key];
 
-      // Try without reservation suffix
+      // Try without reservation suffix (e.g. "Kurupam (ST)" -> "kurupam st" then "kurupam")
       if (!id) {
         const cleanName = normalized.replace(/\s*\([^)]*\)\s*$/, '').trim();
         id = schema.indices.acByName[`${cleanName}|${stateId}`];
       }
+      if (!id && /\s+(st|sc)$/i.test(normalized)) {
+        const withoutRes = normalized.replace(/\s+(st|sc)$/i, '').trim();
+        if (withoutRes) id = schema.indices.acByName[`${withoutRes}|${stateId}`];
+      }
 
-      // Fallback: schema indices may be built with uppercase name (e.g. PALACODE|TN)
+      // Fallback: full normalized as uppercase (e.g. PRATHIPADUSC|AP for "Prathipadu (SC)" so (SC)/(ST) ACs resolve)
       if (!id) {
-        const namePart = normalized.replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
+        const fullUpper = normalized
+          .replace(/\s+/g, '')
+          .replace(/[^a-z0-9]/g, '')
+          .toUpperCase();
+        if (fullUpper) id = schema.indices.acByName[`${fullUpper}|${stateId}`];
+        // Also try without "AND" so "Lahaul & Spiti (ST)" -> LAHAULANDSPITIST matches schema LAHAULSPITIST
+        if (!id && fullUpper.includes('AND')) {
+          id = schema.indices.acByName[`${fullUpper.replace(/AND/g, '')}|${stateId}`];
+        }
+      }
+
+      // Fallback: (ST)/(SC) attached without space (e.g. Rampachodavaram(ST) -> rampachodavaramst) try without trailing st/sc
+      if (!id && /\(?(st|sc)\)?\s*$/i.test(name)) {
+        const noTrailing = normalized.replace(/(st|sc)$/i, '').trim();
+        const part = noTrailing
+          .replace(/\s+/g, '')
+          .replace(/[^a-z0-9]/g, '')
+          .toUpperCase();
+        if (part) id = schema.indices.acByName[`${part}|${stateId}`];
+      }
+
+      // Fallback: schema indices may be built with uppercase, no reservation (e.g. KURUPAM|AP from build-schema-aliases)
+      if (!id) {
+        const normalizedNoRes = normalized
+          .replace(/\s*\([^)]*\)\s*$/, '')
+          .trim()
+          .replace(/\s+(st|sc)$/i, '')
+          .trim();
+        const namePart = normalizedNoRes.replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
         if (namePart) {
           id =
             schema.indices.acByName[`${namePart.toUpperCase()}|${stateId}`] ??
             schema.indices.acByName[`${namePart}|${stateId}`];
+        }
+      }
+
+      // Fallback: try spelling variants (e.g. tadpatri vs tadipatri, pappireddipatti vs pappireddippatti) so URL and schema both resolve
+      if (!id) {
+        for (const variant of getACNameLookupVariants(normalized)) {
+          if (variant === normalized) continue;
+          id = schema.indices.acByName[`${variant}|${stateId}`];
+          // Index keys are uppercase (keyForIndex in build-schema-aliases), so try uppercase variant
+          if (!id && variant) {
+            const variantUpper = variant
+              .replace(/\s+/g, '')
+              .replace(/[^a-z0-9]/g, '')
+              .toUpperCase();
+            if (variantUpper) id = schema.indices.acByName[`${variantUpper}|${stateId}`];
+          }
+          if (id) break;
         }
       }
 
@@ -181,10 +243,63 @@ export function useSchema(): UseSchemaReturn {
 
   const resolveDistrictName = useCallback(
     (name: string, stateId: string): string | null => {
-      if (!schema) return null;
+      // #region agent log
+      if (name?.toLowerCase().includes('bagal') || stateId === 'KA') {
+        const p = fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            location: 'useSchema.ts:resolveDistrictName',
+            message: 'entry',
+            data: {
+              name,
+              stateId,
+              hasSchema: !!schema,
+              hasIndex: !!schema?.indices?.districtByName,
+            },
+            timestamp: Date.now(),
+            sessionId: 'debug-session',
+            hypothesisId: 'H1',
+          }),
+        });
+        void p?.catch?.(() => {});
+      }
+      // #endregion
+      if (!schema?.indices?.districtByName) return null;
       const normalized = normalizeName(name);
       const key = `${normalized}|${stateId}`;
-      return schema.indices.districtByName[key] ?? null;
+      let id = schema.indices.districtByName[key];
+      // Fallback: GeoJSON may use spelling variant (e.g. Bagalkote vs schema Bagalkot)
+      if (!id && normalized.endsWith('e')) {
+        const withoutE = normalized.slice(0, -1);
+        id = schema.indices.districtByName[`${withoutE}|${stateId}`];
+      }
+      if (!id && !normalized.endsWith('e')) {
+        id = schema.indices.districtByName[`${normalized}e|${stateId}`];
+      }
+      // #region agent log
+      if (name?.toLowerCase().includes('bagal') || stateId === 'KA') {
+        const q = fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            location: 'useSchema.ts:resolveDistrictName',
+            message: 'result',
+            data: {
+              normalized,
+              key,
+              id,
+              sampleKeys: Object.keys(schema.indices.districtByName).slice(0, 5),
+            },
+            timestamp: Date.now(),
+            sessionId: 'debug-session',
+            hypothesisId: 'H1',
+          }),
+        });
+        void q?.catch?.(() => {});
+      }
+      // #endregion
+      return id ?? null;
     },
     [schema]
   );

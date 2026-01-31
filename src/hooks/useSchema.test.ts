@@ -69,6 +69,14 @@ const mockSchema = {
       aliases: ['chennai'],
       assemblyIds: ['TN-001', 'TN-002'],
     },
+    'KA-D02': {
+      id: 'KA-D02',
+      stateId: 'KA',
+      censusCode: '602',
+      name: 'BAGALKOT *',
+      aliases: ['bagalkot'],
+      assemblyIds: [],
+    },
   },
   indices: {
     stateByName: { 'tamil nadu': 'TN' },
@@ -78,7 +86,7 @@ const mockSchema = {
       'villivakkam sc|TN': 'TN-002', // parentheses removed by normalization
       'villivakkam|TN': 'TN-002',
     },
-    districtByName: { 'chennai|TN': 'TN-D01' },
+    districtByName: { 'chennai|TN': 'TN-D01', 'bagalkot|KA': 'KA-D02' },
   },
 };
 
@@ -198,6 +206,22 @@ describe('useSchema', () => {
       expect(result.current.resolveACName('Villivakkam', 'TN')).toBe('TN-002');
     });
 
+    it('resolves district name to ID', async () => {
+      const { result } = renderHook(() => useSchema());
+      await waitFor(() => expect(result.current.isReady).toBe(true));
+
+      expect(result.current.resolveDistrictName('Chennai', 'TN')).toBe('TN-D01');
+    });
+
+    it('resolves district name with spelling variant (Bagalkote -> Bagalkot)', async () => {
+      const { result } = renderHook(() => useSchema());
+      await waitFor(() => expect(result.current.isReady).toBe(true));
+
+      // GeoJSON may use "Bagalkote", schema index has "bagalkot|KA"
+      expect(result.current.resolveDistrictName('Bagalkote', 'KA')).toBe('KA-D02');
+      expect(result.current.resolveDistrictName('Bagalkot', 'KA')).toBe('KA-D02');
+    });
+
     it('returns null for unknown names', async () => {
       const { result } = renderHook(() => useSchema());
       await waitFor(() => expect(result.current.isReady).toBe(true));
@@ -205,6 +229,7 @@ describe('useSchema', () => {
       expect(result.current.resolveStateName('Unknown State')).toBeNull();
       expect(result.current.resolvePCName('Unknown PC', 'TN')).toBeNull();
       expect(result.current.resolveACName('Unknown AC', 'TN')).toBeNull();
+      expect(result.current.resolveDistrictName('Unknown District', 'TN')).toBeNull();
     });
   });
 

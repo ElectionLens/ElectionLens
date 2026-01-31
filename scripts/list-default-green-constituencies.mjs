@@ -64,7 +64,18 @@ function normalizeForSchema(str) {
     .trim();
 }
 
-// Resolve AC/PC name to schemaId using schema indices (same as useSchema, including uppercase fallback)
+/** AC name spelling variants (same as useSchema), e.g. tadpatri/tadipatri, pappireddipatti/pappireddippatti */
+const AC_LOOKUP_VARIANTS = {
+  tadpatri: ['tadpatri', 'tadipatri'],
+  tadipatri: ['tadipatri', 'tadpatri'],
+  pappireddipatti: ['pappireddipatti', 'pappireddippatti'],
+  pappireddippatti: ['pappireddippatti', 'pappireddipatti'],
+};
+function getACNameLookupVariants(normalized) {
+  return AC_LOOKUP_VARIANTS[normalized] ?? [normalized];
+}
+
+// Resolve AC/PC name to schemaId using schema indices (same as useSchema, including spelling variants + uppercase)
 function resolveACName(name, stateId, schema) {
   if (!schema?.indices?.acByName) return null;
   const normalized = normalizeForSchema(name);
@@ -80,6 +91,18 @@ function resolveACName(name, stateId, schema) {
       id =
         schema.indices.acByName[`${namePart.toUpperCase()}|${stateId}`] ??
         schema.indices.acByName[`${namePart}|${stateId}`];
+    }
+  }
+  // Spelling variants (e.g. tadpatri/tadipatri, pappireddipatti/pappireddippatti); index keys are uppercase
+  if (!id) {
+    for (const variant of getACNameLookupVariants(normalized)) {
+      if (variant === normalized) continue;
+      id = schema.indices.acByName[`${variant}|${stateId}`];
+      if (!id && variant) {
+        const variantUpper = variant.replace(/\s+/g, '').replace(/[^a-z0-9]/g, '').toUpperCase();
+        if (variantUpper) id = schema.indices.acByName[`${variantUpper}|${stateId}`];
+      }
+      if (id) break;
     }
   }
   return id ?? null;
