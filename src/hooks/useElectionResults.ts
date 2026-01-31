@@ -103,8 +103,11 @@ export interface UseElectionResultsReturn {
   error: string | null;
   /** Check if election data is available for a state */
   hasElectionData: (stateName: string) => boolean;
-  /** Load election index for a state */
-  loadStateIndex: (stateName: string) => Promise<StateElectionIndex | null>;
+  /** Load election index for a state. Pass yearFromUrl to avoid overwriting URL year with latest. */
+  loadStateIndex: (
+    stateName: string,
+    options?: { yearFromUrl?: number }
+  ) => Promise<StateElectionIndex | null>;
   /** Get election result for an AC */
   getACResult: (
     acName: string,
@@ -147,14 +150,18 @@ export function useElectionResults(): UseElectionResultsReturn {
    * Load election index for a state
    */
   const loadStateIndex = useCallback(
-    async (stateName: string): Promise<StateElectionIndex | null> => {
+    async (
+      stateName: string,
+      options?: { yearFromUrl?: number }
+    ): Promise<StateElectionIndex | null> => {
       const slug = getStateSlug(stateName);
+      const preserveYear = options?.yearFromUrl != null;
 
       // Check cache
       const cached = indexCache.current.get(slug);
       if (cached) {
         setAvailableYears(cached.availableYears);
-        if (!selectedYear && cached.availableYears.length > 0) {
+        if (!preserveYear && !selectedYear && cached.availableYears.length > 0) {
           const lastYear = cached.availableYears[cached.availableYears.length - 1];
           if (lastYear !== undefined) {
             setSelectedYear(lastYear);
@@ -174,7 +181,7 @@ export function useElectionResults(): UseElectionResultsReturn {
         statesWithData.current.add(slug);
 
         setAvailableYears(index.availableYears);
-        if (!selectedYear && index.availableYears.length > 0) {
+        if (!preserveYear && !selectedYear && index.availableYears.length > 0) {
           const lastYear = index.availableYears[index.availableYears.length - 1];
           if (lastYear !== undefined) {
             setSelectedYear(lastYear);
@@ -242,10 +249,13 @@ export function useElectionResults(): UseElectionResultsReturn {
       const slug = getStateSlug(stateName);
       const { schemaId, canonicalName } = options ?? {};
 
-      // Load index if not already loaded
+      // Load index if not already loaded (pass yearFromUrl so loadStateIndex does not overwrite URL year)
       let index = indexCache.current.get(slug);
       if (!index) {
-        const loadedIndex = await loadStateIndex(stateName);
+        const loadedIndex = await loadStateIndex(
+          stateName,
+          year != null ? { yearFromUrl: year } : undefined
+        );
         if (!loadedIndex) {
           return null;
         }

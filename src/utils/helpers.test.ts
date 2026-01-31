@@ -27,6 +27,14 @@ describe('normalizeName', () => {
   it('handles empty strings', () => {
     expect(normalizeName('')).toBe('');
   });
+
+  it('normalizes names so trailing/leading spaces match for AC selection', () => {
+    // Used in MapView for selected AC name matching (isSelected) so hover restore does not overwrite green border
+    const a = normalizeName('Vaniyambadi').toUpperCase().replace(/\s+/g, ' ').trim();
+    const b = normalizeName('Vaniyambadi ').toUpperCase().replace(/\s+/g, ' ').trim();
+    expect(a).toBe(b);
+    expect(a).toBe('VANIYAMBADI');
+  });
 });
 
 describe('getStateFileName', () => {
@@ -126,6 +134,8 @@ describe('getHoverStyle', () => {
   it('handles constituencies level', () => {
     const style = getHoverStyle('constituencies');
     expect(style.color).toBe('#5b21b6');
+    expect(style.weight).toBe(3);
+    expect(style.fillOpacity).toBe(0.8);
   });
 
   it('handles null/undefined with fallback', () => {

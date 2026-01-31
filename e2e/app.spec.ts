@@ -73,20 +73,34 @@ test.describe('State Navigation', () => {
   test('should return to India view on home button click', async ({ page, isMobile }) => {
     // Skip on mobile - breadcrumb layout differs and India link may be off-screen
     test.skip(isMobile === true, 'Breadcrumb navigation differs on mobile');
-    
+
     // Navigate to a state first
     const statePath = page.locator('.leaflet-interactive').first();
     await statePath.click({ force: true });
     await page.waitForURL(/\/[a-z-]+/, { timeout: 10000 });
-    
+
     // Click India link in breadcrumb (home navigation)
     const indiaLink = page.getByRole('link', { name: 'India' }).or(
       page.locator('.breadcrumb a').filter({ hasText: 'India' })
     );
     await indiaLink.click();
-    
-    // Should return to root URL
+
+    // Should return to root URL without year parameter
     await expect(page).toHaveURL('/');
+    expect(page.url()).not.toContain('year=');
+  });
+
+  test('home button yields root URL without year parameter', async ({ page, isMobile }) => {
+    test.skip(isMobile === true, 'Toolbar layout differs on mobile');
+
+    await page.goto('/tamil-nadu/pc?year=2024');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+
+    const homeBtn = page.locator('button[title="Reset to India"]').first();
+    await homeBtn.click();
+
+    await expect(page).toHaveURL('/');
+    expect(page.url()).not.toContain('year=');
   });
 });
 
@@ -166,6 +180,18 @@ test.describe('Election Panel', () => {
     if (await yearButton.count() > 0) {
       await yearButton.click();
       await expect(page).toHaveURL(/year=2016/);
+    }
+  });
+
+  test('AC-within-PC: toolbar year updates URL to year=pc-YYYY', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/dharmapuri/ac/mettur?year=pc-2019&showACs=true');
+    await page.waitForSelector('.election-panel', { timeout: 15000 });
+    await expect(page).toHaveURL(/year=pc-2019/);
+
+    const toolbar2024 = page.locator('.toolbar-year-btn').filter({ hasText: '2024' });
+    if ((await toolbar2024.count()) > 0) {
+      await toolbar2024.first().click();
+      await expect(page).toHaveURL(/year=pc-2024/, { timeout: 5000 });
     }
   });
 
@@ -563,17 +589,34 @@ test.describe('Assembly View', () => {
   test('should use green color scheme for assemblies', async ({ page }) => {
     await page.goto('/tamil-nadu/ac');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
+
     // Wait for assemblies to load
     await page.waitForFunction(() => {
       const paths = document.querySelectorAll('.leaflet-interactive');
       return paths.length > 10;
     }, { timeout: 20000 });
-    
+
     // Assembly polygons should be present with fill colors
     const paths = page.locator('path[fill^="#"]');
     const count = await paths.count();
     expect(count).toBeGreaterThan(0);
+  });
+
+  test('selected AC has green border (stroke #065f46)', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac/vaniyambadi?year=2024');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+
+    await page.waitForFunction(() => {
+      const paths = document.querySelectorAll('.leaflet-interactive');
+      return paths.length > 10;
+    }, { timeout: 20000 });
+
+    const panel = page.locator('.election-panel');
+    await expect(panel).toBeVisible({ timeout: 15000 });
+
+    // Selected AC is styled with dark green border (#065f46)
+    const greenStroke = page.locator('path[stroke="#065f46"]');
+    await expect(greenStroke.first()).toBeVisible({ timeout: 5000 });
   });
 });
 

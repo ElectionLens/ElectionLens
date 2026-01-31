@@ -18,8 +18,20 @@ import type {
   LatLngBoundsExpression,
 } from 'leaflet';
 import { getFeatureStyle, getHoverStyle, normalizeName, getStateFileName } from '../utils/helpers';
-import { COLOR_PALETTES, isBoothDataAvailable } from '../constants';
+import { COLOR_PALETTES, isBoothDataAvailable, STATE_FILE_MAP } from '../constants';
+
+/** Neutral style for districts view when no party data (no default/palette coloring) */
+const DISTRICTS_VIEW_NEUTRAL_STYLE: L.PathOptions = {
+  fillColor: '#9ca3af',
+  fillOpacity: 0.6,
+  color: '#6b7280',
+  weight: 1,
+  opacity: 1,
+};
 import { clearAllCache } from '../utils/db';
+import { getPartyColor } from '../utils/partyData';
+import { ELECTIONS, PC_ELECTIONS, STATE_WINNERS_AC_PATH } from '../constants/paths';
+import type { ElectionResultsByConstituency, PCElectionResultsByConstituency } from '../types';
 import { FeedbackModal } from './FeedbackModal';
 import { VectorTileLayer } from './VectorTileLayer';
 import { useSchema } from '../hooks/useSchema';
@@ -80,6 +92,22 @@ interface MapToolbarProps {
   onSwitchView: (view: ViewMode) => void;
   onGoBack: () => void;
   onFeedbackClick: () => void;
+  // Show ACs checkbox (when viewing a specific PC)
+  showACCheckbox?: boolean;
+  showACsWithinPC?: boolean;
+  onShowACsWithinPCChange?: (show: boolean) => void;
+  /** When set with showACCheckbox, we're in AC-within-PC view: year selector should use selectedACPCYear and onACPCYearChange (syncs URL year=pc-YYYY) */
+  selectedAssembly?: string | null;
+  // Year selection props
+  availableYears?: number[];
+  selectedYear?: number | null;
+  availablePCYears?: number[]; // PC years for AC view (parliament contributions)
+  selectedPCYear?: number | null;
+  pcAvailableYears?: number[]; // PC years for PC view (parliament elections)
+  pcSelectedYear?: number | null;
+  onYearChange?: (year: number) => void;
+  onPCYearChange?: ((year: number) => void) | ((year: number | null) => void);
+  onPCYearChangeForPC?: ((year: number) => void) | undefined; // For PC view year changes
 }
 
 /** Layer option */
@@ -96,6 +124,19 @@ function MapToolbar({
   onSwitchView,
   onGoBack,
   onFeedbackClick,
+  showACCheckbox = false,
+  showACsWithinPC = true,
+  onShowACsWithinPCChange,
+  selectedAssembly = null,
+  availableYears = [],
+  selectedYear = null,
+  availablePCYears = [],
+  selectedPCYear = null,
+  pcAvailableYears = [],
+  pcSelectedYear = null,
+  onYearChange,
+  onPCYearChange,
+  onPCYearChangeForPC,
 }: MapToolbarProps): JSX.Element {
   const [activeLayer, setActiveLayer] = useState<LayerName>('Streets');
   const [layerMenuOpen, setLayerMenuOpen] = useState(false);
@@ -149,27 +190,135 @@ function MapToolbar({
       {/* Center section - view toggle */}
       {showViewToggle && (
         <div className="toolbar-section toolbar-center">
-          <button
-            className={`toolbar-btn toolbar-toggle ${currentView === 'constituencies' ? 'active' : ''}`}
-            onClick={() => onSwitchView('constituencies')}
-            title="Parliamentary Constituencies"
-          >
-            <Building2 size={14} /> PC
-          </button>
-          <button
-            className={`toolbar-btn toolbar-toggle ${currentView === 'districts' ? 'active' : ''}`}
-            onClick={() => onSwitchView('districts')}
-            title="Districts"
-          >
-            <Map size={14} /> Dist
-          </button>
-          <button
-            className={`toolbar-btn toolbar-toggle ${currentView === 'assemblies' ? 'active' : ''}`}
-            onClick={() => onSwitchView('assemblies')}
-            title="Assembly Constituencies"
-          >
-            <Landmark size={14} /> AC
-          </button>
+          <div className="toolbar-view-toggle">
+            <button
+              className={`toolbar-btn toolbar-toggle ${currentView === 'constituencies' ? 'active' : ''}`}
+              onClick={() => onSwitchView('constituencies')}
+              title="Parliamentary Constituencies"
+            >
+              <Building2 size={14} /> PC
+            </button>
+            <button
+              className={`toolbar-btn toolbar-toggle ${currentView === 'districts' ? 'active' : ''}`}
+              onClick={() => onSwitchView('districts')}
+              title="Districts"
+            >
+              <Map size={14} /> Dist
+            </button>
+            <button
+              className={`toolbar-btn toolbar-toggle ${currentView === 'assemblies' ? 'active' : ''}`}
+              onClick={() => onSwitchView('assemblies')}
+              title="Assembly Constituencies"
+            >
+              <Landmark size={14} /> AC
+            </button>
+          </div>
+
+          {/* Year selection - show below AC/PC buttons - always visible when AC, PC, or districts view is active */}
+          {(currentView === 'assemblies' ||
+            currentView === 'constituencies' ||
+            currentView === 'districts') && (
+            <div className="toolbar-year-selector">
+              {currentView === 'assemblies' && showACCheckbox ? (
+                /* AC within PC: show only PC years, synced with panel */
+                (pcAvailableYears?.length ? pcAvailableYears : availablePCYears || []).length >
+                0 ? (
+                  (pcAvailableYears?.length ? pcAvailableYears : availablePCYears || []).map(
+                    (year) => (
+                      <button
+                        key={year}
+                        className={`toolbar-year-btn ${selectedPCYear === year ? 'active' : ''}`}
+                        onClick={() => {
+                          onPCYearChange?.(year);
+                        }}
+                        title={`Parliament Election ${year}`}
+                      >
+                        {year}
+                      </button>
+                    )
+                  )
+                ) : null
+              ) : currentView === 'assemblies' || currentView === 'districts' ? (
+                <>
+                  {/* State-level AC view or districts view: assembly + PC years interleaved */}
+                  {(() => {
+                    type YearItem = { year: number; type: 'assembly' | 'parliament' };
+                    const allYearItems: YearItem[] = [
+                      ...(availableYears || []).map((y) => ({
+                        year: y,
+                        type: 'assembly' as const,
+                      })),
+                      ...(availablePCYears || []).map((y) => ({
+                        year: y,
+                        type: 'parliament' as const,
+                      })),
+                    ].sort((a, b) => a.year - b.year);
+
+                    return allYearItems.map((item) =>
+                      item.type === 'assembly' ? (
+                        <button
+                          key={`ac-${item.year}`}
+                          className={`toolbar-year-btn ${selectedYear === item.year && selectedPCYear === null ? 'active' : ''}`}
+                          onClick={() => {
+                            if (onPCYearChange) {
+                              (onPCYearChange as (year: number | null) => void)(null);
+                            }
+                            onYearChange?.(item.year);
+                          }}
+                          title={`Assembly Election ${item.year}`}
+                        >
+                          {item.year}
+                        </button>
+                      ) : (
+                        <button
+                          key={`pc-${item.year}`}
+                          className={`toolbar-year-btn parliament-year ${selectedPCYear === item.year ? 'active' : ''}`}
+                          onClick={() => {
+                            onPCYearChange?.(item.year);
+                          }}
+                          title={`Parliament Election ${item.year}`}
+                        >
+                          {item.year}-PC
+                        </button>
+                      )
+                    );
+                  })()}
+                </>
+              ) : /* Parliament years for constituencies view; AC-within-PC uses selectedACPCYear + onACPCYearChange so URL gets year=pc-YYYY */
+              pcAvailableYears && pcAvailableYears.length > 0 ? (
+                (() => {
+                  const isACWithinPC = showACCheckbox && selectedAssembly != null;
+                  const displayYear = isACWithinPC ? selectedPCYear : pcSelectedYear;
+                  const onYearClick = isACWithinPC
+                    ? (y: number) => onPCYearChange?.(y)
+                    : (y: number) => onPCYearChangeForPC?.(y);
+                  return pcAvailableYears.map((year) => (
+                    <button
+                      key={year}
+                      className={`toolbar-year-btn ${displayYear === year ? 'active' : ''}`}
+                      onClick={() => onYearClick(year)}
+                      title={`Parliament Election ${year}`}
+                    >
+                      {year}
+                    </button>
+                  ));
+                })()
+              ) : null}
+            </div>
+          )}
+
+          {/* Show ACs checkbox - when viewing a specific PC, toggle between PC boundary and ACs within PC */}
+          {showACCheckbox && onShowACsWithinPCChange && (
+            <label className="toolbar-show-acs">
+              <input
+                type="checkbox"
+                checked={showACsWithinPC}
+                onChange={(e) => onShowACsWithinPCChange(e.target.checked)}
+                aria-label="Show assembly constituencies within this PC"
+              />
+              <span>Show ACs</span>
+            </label>
+          )}
         </div>
       )}
 
@@ -515,6 +664,7 @@ export function MapView({
   districtsCache,
   currentData,
   currentState,
+  initialPCWinners = null,
   currentView,
   currentPC,
   currentDistrict,
@@ -543,20 +693,882 @@ export function MapView({
   onACPCYearChange,
   onClosePCElectionPanel,
   onPCYearChange,
+  showACsWithinPC = true,
+  onShowACsWithinPCChange,
 }: MapViewProps): JSX.Element {
   const geoJsonRef = useRef<GeoJSONRef>(null);
   // Track pending selected assembly to handle click -> mouseout race condition
   const pendingSelectedAssembly = useRef<string | null>(null);
   // Ref to always have latest selectedAssembly value in callbacks
   const selectedAssemblyRef = useRef<string | null>(selectedAssembly);
+  // Ref to store style function for use in hover handlers
+  const styleRef = useRef<((feature?: GeoJSON.Feature) => L.PathOptions) | null>(null);
+
+  // Mapping of constituency names to winning party for color-coding
+  const [constituencyWinners, setConstituencyWinners] = useState<
+    Record<string, { party: string; candidate: string }>
+  >({});
+  // Increment when loadResults completes so GeoJSON remounts with new colors (fixes year-change not updating)
+  const [winnersVersion, setWinnersVersion] = useState(0);
+
+  // State-level winners for India view and neighbouring states (party with most Lok Sabha seats per state)
+  const [stateWinners, setStateWinners] = useState<Record<string, { party: string; year: number }>>(
+    {}
+  );
+
+  // PC-level winners for colouring neighbouring (background) PCs when viewing assemblies within a PC
+  const [backgroundPCWinners, setBackgroundPCWinners] = useState<
+    Record<string, { party: string; candidate: string }>
+  >({});
+
+  // Helper to get state ID from state name
+  const getStateId = useCallback((stateName: string): string => {
+    const normalized = normalizeName(stateName);
+    // Try direct lookup first
+    if (STATE_FILE_MAP[stateName]) {
+      return STATE_FILE_MAP[stateName];
+    }
+    // Try normalized lookup
+    if (STATE_FILE_MAP[normalized]) {
+      return STATE_FILE_MAP[normalized];
+    }
+    // Try to find by normalized match
+    for (const [key, value] of Object.entries(STATE_FILE_MAP)) {
+      if (normalizeName(key) === normalized) {
+        return value;
+      }
+    }
+    // Fallback to first 2 uppercase letters
+    return normalized.toUpperCase().slice(0, 2);
+  }, []);
+
+  // Schema hook - used for resolveACName/resolvePCName in loadResults and getAC for booth data
+  const { getAC, resolveACName, resolvePCName, resolveDistrictName, schema } = useSchema();
+
+  // Dominant party per district (from AC winners) for colouring neighbouring districts
+  const districtWinners = useMemo((): Record<string, string> => {
+    const out: Record<string, string> = {};
+    if (!schema?.assemblyConstituencies || Object.keys(constituencyWinners).length === 0)
+      return out;
+    const districtCounts: Record<string, Record<string, number>> = {};
+    for (const [acId, ac] of Object.entries(schema.assemblyConstituencies)) {
+      const districtId = ac.districtId;
+      if (!districtId) continue;
+      const winner =
+        constituencyWinners[acId] ??
+        constituencyWinners[ac.name] ??
+        (ac.name &&
+          constituencyWinners[
+            normalizeName(ac.name)
+              .toUpperCase()
+              .replace(/\s*\([^)]*\)\s*/g, '')
+              .replace(/\s+/g, ' ')
+              .trim()
+          ]);
+      if (!winner) continue;
+      if (!districtCounts[districtId]) districtCounts[districtId] = {};
+      districtCounts[districtId][winner.party] =
+        (districtCounts[districtId][winner.party] || 0) + 1;
+    }
+    for (const [districtId, counts] of Object.entries(districtCounts)) {
+      const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+      if (top) out[districtId] = top[0];
+    }
+    return out;
+  }, [schema?.assemblyConstituencies, constituencyWinners]);
+
+  // Load state-level winners for India view (latest AC election per state, not PC)
+  useEffect(() => {
+    if (!statesGeoJSON) return;
+    let cancelled = false;
+    fetch(STATE_WINNERS_AC_PATH)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (cancelled || !data?.stateWinners) return;
+        setStateWinners(data.stateWinners);
+      })
+      .catch(() => setStateWinners({}));
+    return () => {
+      cancelled = true;
+    };
+  }, [statesGeoJSON]);
+
+  // Load election results for color-coding when year/state/view changes
+  useEffect(() => {
+    if (!currentState) {
+      // Don't clear when URL is state-level PC with year= — preload/initialPCWinners may set winners;
+      // clearing here wipes them before first paint (handleUrlNavigate sets currentState async).
+      if (typeof window !== 'undefined') {
+        const path = window.location.pathname;
+        const segments = path.split('/').filter(Boolean);
+        const isStateLevelPc =
+          segments.length >= 2 && segments[1]?.toLowerCase() === 'pc' && !segments[2];
+        const q = new URLSearchParams(window.location.search).get('year');
+        const hasYear = q && !q.startsWith('pc-') && !Number.isNaN(parseInt(q, 10));
+        if (isStateLevelPc && hasYear) {
+          return;
+        }
+      }
+      setConstituencyWinners({});
+      setWinnersVersion((v) => v + 1);
+      return;
+    }
+
+    const loadResults = async (): Promise<void> => {
+      const stateId = getStateId(currentState);
+      const winners: Record<string, { party: string; candidate: string }> = {};
+      setBackgroundPCWinners({});
+      // #region agent log
+      const branch =
+        currentView === 'assemblies' || currentView === 'districts'
+          ? selectedACPCYear
+            ? 'pcYear'
+            : selectedYear
+              ? 'assemblyYear'
+              : 'none'
+          : currentView === 'constituencies'
+            ? 'pcView'
+            : 'other';
+      fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          location: 'MapView.tsx:loadResults entry',
+          message: 'year state and branch',
+          data: {
+            currentState,
+            currentView,
+            selectedYear,
+            selectedACPCYear,
+            branch,
+            stateId,
+          },
+          timestamp: Date.now(),
+          sessionId: 'debug-session',
+          hypothesisId: branch === 'none' ? 'H4' : 'H2',
+        }),
+      }).catch(() => {});
+      // #endregion
+
+      if (currentView === 'assemblies' || currentView === 'districts') {
+        // For AC/districts view, check if we're viewing PC contribution year or assembly year
+        if (selectedACPCYear) {
+          // Load PC election results and map AC contributions
+          try {
+            const response = await fetch(PC_ELECTIONS.getYearPath(stateId, selectedACPCYear));
+            if (response.ok) {
+              const results = (await response.json()) as PCElectionResultsByConstituency;
+              let acCount = 0;
+              // Map each AC to its winner from PC contribution
+              Object.entries(results).forEach(([_pcId, pcResult]) => {
+                const addWinner = (acName: string, party: string, candidateName: string): void => {
+                  const normalizedName = normalizeName(acName)
+                    .toUpperCase()
+                    .replace(/\s*\([^)]*\)\s*/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+                  const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+                  winners[normalizedName] = { party, candidate: candidateName };
+                  if (fuzzyKey && fuzzyKey !== normalizedName) {
+                    winners[fuzzyKey] = { party, candidate: candidateName };
+                  }
+                  const originalUpper = acName.toUpperCase().trim();
+                  if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
+                    winners[originalUpper] = { party, candidate: candidateName };
+                  }
+                  acCount++;
+                };
+
+                if (pcResult.acWiseResults) {
+                  Object.entries(pcResult.acWiseResults).forEach(([acName, acContribution]) => {
+                    if (acContribution.candidates && acContribution.candidates.length > 0) {
+                      const sortedCandidates = [...acContribution.candidates].sort(
+                        (a, b) => b.votes - a.votes
+                      );
+                      const winner = sortedCandidates[0];
+                      if (winner) {
+                        addWinner(acName, winner.party, winner.name);
+                        const sid = resolveACName(acName, stateId);
+                        if (sid) winners[sid] = { party: winner.party, candidate: winner.name };
+                      }
+                    }
+                  });
+                } else if (pcResult.candidates?.length) {
+                  // Data has candidates with acWiseVotes (no acWiseResults): derive AC winner per AC
+                  // as the candidate with highest votes in that AC
+                  const acToBest: Record<string, { party: string; name: string; votes: number }> =
+                    {};
+                  for (const candidate of pcResult.candidates) {
+                    if (!candidate.acWiseVotes) continue;
+                    for (const av of candidate.acWiseVotes) {
+                      const acName = av.acName?.trim() ?? '';
+                      if (!acName) continue;
+                      const votes = av.votes ?? 0;
+                      const current = acToBest[acName];
+                      if (!current || votes > current.votes) {
+                        acToBest[acName] = {
+                          party: candidate.party,
+                          name: candidate.name,
+                          votes,
+                        };
+                      }
+                    }
+                  }
+                  for (const [acName, best] of Object.entries(acToBest)) {
+                    addWinner(acName, best.party, best.name);
+                    const sid = resolveACName(acName, stateId);
+                    if (sid) winners[sid] = { party: best.party, candidate: best.name };
+                  }
+                }
+              });
+              // Fill in ACs missing from PC data with their PC winner (so no default-green)
+              if (schema?.assemblyConstituencies) {
+                for (const [acId, ac] of Object.entries(schema.assemblyConstituencies)) {
+                  if (ac.stateId !== stateId || winners[acId]) continue;
+                  const pcId = ac.pcId;
+                  if (!pcId) continue;
+                  const pcResult = results[pcId];
+                  if (pcResult?.candidates?.length) {
+                    const w = pcResult.candidates[0];
+                    if (w) {
+                      const entry = { party: w.party, candidate: w.name };
+                      winners[acId] = entry;
+                      // Also add name/aliases so GeoJSON without schemaId can match
+                      const namesToAdd = [ac.name, ...(ac.aliases || [])].filter(Boolean);
+                      for (const n of namesToAdd) {
+                        const norm = normalizeName(n)
+                          .toUpperCase()
+                          .replace(/\s*\([^)]*\)\s*/g, '')
+                          .replace(/\s+/g, ' ')
+                          .trim();
+                        if (norm && !winners[norm]) winners[norm] = entry;
+                        const upper = n.toUpperCase().trim();
+                        if (upper && upper !== norm && !winners[upper]) winners[upper] = entry;
+                      }
+                    }
+                  }
+                }
+              }
+              // Build PC-level winners for neighbouring (background) PCs colouring
+              if (response.ok && results) {
+                const pcWinnersMap: Record<string, { party: string; candidate: string }> = {};
+                const pcIdPattern = /^[A-Z]{2}-\d+$/;
+                Object.entries(results).forEach(([pcId, pcResult]) => {
+                  if (pcResult?.candidates?.length) {
+                    const w = pcResult.candidates[0];
+                    if (!w) return;
+                    const entry = { party: w.party, candidate: w.name };
+                    if (pcId && pcIdPattern.test(pcId)) pcWinnersMap[pcId] = entry;
+                    const pcName =
+                      pcResult.constituencyNameOriginal ||
+                      pcResult.constituencyName ||
+                      pcResult.name ||
+                      '';
+                    if (pcName) {
+                      const norm = normalizeName(pcName).toUpperCase().replace(/\s+/g, ' ').trim();
+                      pcWinnersMap[norm] = entry;
+                      const sid = resolvePCName(pcName, stateId);
+                      if (sid) pcWinnersMap[sid] = entry;
+                    }
+                  }
+                });
+                setBackgroundPCWinners(pcWinnersMap);
+              }
+            } else {
+              console.warn(
+                `[Color-coding] Failed to load PC election results: HTTP ${response.status} for ${PC_ELECTIONS.getYearPath(stateId, selectedACPCYear)}`
+              );
+            }
+          } catch (err) {
+            console.error(
+              `Failed to load PC election results for ${currentState} ${selectedACPCYear}:`,
+              err
+            );
+          }
+        } else if (selectedYear) {
+          // Load AC election results
+          try {
+            const response = await fetch(ELECTIONS.getYearPath(stateId, selectedYear));
+            if (response.ok) {
+              const results = (await response.json()) as ElectionResultsByConstituency;
+              // Map each AC to its winner (store schemaId when key is schemaId, plus name variants)
+              const schemaIdPattern = /^[A-Z]{2}-\d+$/;
+              Object.entries(results).forEach(([key, result]) => {
+                if (result.candidates && result.candidates.length > 0) {
+                  const winner = result.candidates[0]; // First candidate is winner (sorted by votes)
+                  if (winner) {
+                    const entry = { party: winner.party, candidate: winner.name };
+                    if (key && schemaIdPattern.test(key)) winners[key] = entry;
+                    const acName =
+                      result.constituencyNameOriginal ||
+                      result.constituencyName ||
+                      result.name ||
+                      '';
+                    if (acName) {
+                      const normalizedName = normalizeName(acName)
+                        .toUpperCase()
+                        .replace(/\s*\([^)]*\)\s*/g, '')
+                        .replace(/\s+/g, ' ')
+                        .trim();
+                      const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+                      winners[normalizedName] = entry;
+                      if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
+                      const originalUpper = acName.toUpperCase().trim();
+                      if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
+                        winners[originalUpper] = entry;
+                      }
+                    }
+                  }
+                }
+              });
+            }
+          } catch (err) {
+            console.error(
+              `Failed to load AC election results for ${currentState} ${selectedYear}:`,
+              err
+            );
+          }
+        }
+      } else if (currentView === 'constituencies') {
+        // State-level PC view: use pcSelectedYear, or year from URL when not set yet (avoids race with handleUrlNavigate)
+        const urlYear =
+          typeof window !== 'undefined'
+            ? (() => {
+                const p = new URLSearchParams(window.location.search).get('year');
+                if (!p || p.startsWith('pc-')) return null;
+                const y = parseInt(p, 10);
+                return Number.isNaN(y) ? null : y;
+              })()
+            : null;
+        const yearToLoad = pcSelectedYear ?? urlYear;
+        if (yearToLoad) {
+          try {
+            const response = await fetch(PC_ELECTIONS.getYearPath(stateId, yearToLoad));
+            if (response.ok) {
+              const results = (await response.json()) as PCElectionResultsByConstituency;
+              // Map each PC to its winner (store schemaId when key is schemaId, plus name variants)
+              const pcSchemaIdPattern = /^[A-Z]{2}-\d+$/; // e.g. TN-01, UP-1
+              Object.entries(results).forEach(([key, result]) => {
+                if (result.candidates && result.candidates.length > 0) {
+                  const winner = result.candidates[0]; // First candidate is winner (sorted by votes)
+                  if (winner) {
+                    const entry = { party: winner.party, candidate: winner.name };
+                    if (key && pcSchemaIdPattern.test(key)) winners[key] = entry;
+                    const pcName =
+                      result.constituencyNameOriginal ||
+                      result.constituencyName ||
+                      result.name ||
+                      '';
+                    if (pcName) {
+                      const normalizedName = normalizeName(pcName)
+                        .toUpperCase()
+                        .replace(/\s+/g, ' ')
+                        .trim();
+                      const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+                      winners[normalizedName] = entry;
+                      if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
+                      const originalUpper = pcName.toUpperCase().trim();
+                      if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
+                        winners[originalUpper] = entry;
+                      }
+                      const sid = resolvePCName(pcName, stateId);
+                      if (sid) winners[sid] = entry;
+                    }
+                  }
+                }
+              });
+              // Fill PCs missing from file (e.g. Vellore TN-08 in 2019) by deriving winner from AC data
+              if (schema?.parliamentaryConstituencies && schema?.assemblyConstituencies) {
+                const statePCIds = Object.values(schema.parliamentaryConstituencies)
+                  .filter((pc: { stateId: string; id: string }) => pc.stateId === stateId)
+                  .map((pc: { id: string }) => pc.id);
+                const missingPCIds = statePCIds.filter((id) => !winners[id]);
+                if (missingPCIds.length > 0) {
+                  try {
+                    const acIndexRes = await fetch(ELECTIONS.getIndexPath(stateId));
+                    if (acIndexRes.ok) {
+                      const acIndex = (await acIndexRes.json()) as { availableYears?: number[] };
+                      const acYears = acIndex.availableYears ?? [];
+                      const assemblyYear =
+                        acYears.filter((y) => y <= yearToLoad).pop() ?? acYears[acYears.length - 1];
+                      if (assemblyYear != null) {
+                        const acRes = await fetch(ELECTIONS.getYearPath(stateId, assemblyYear));
+                        if (acRes.ok) {
+                          const acResults = (await acRes.json()) as ElectionResultsByConstituency;
+                          const acWinners: Record<string, { party: string; candidate: string }> =
+                            {};
+                          const schemaIdPattern = /^[A-Z]{2}-\d+$/;
+                          Object.entries(acResults).forEach(([key, result]) => {
+                            if (result?.candidates?.length && result.candidates[0]) {
+                              const w = result.candidates[0];
+                              const entry = { party: w.party, candidate: w.name };
+                              if (key && schemaIdPattern.test(key)) acWinners[key] = entry;
+                            }
+                          });
+                          for (const pcId of missingPCIds) {
+                            const acsInPC = Object.entries(schema.assemblyConstituencies).filter(
+                              ([, ac]) => ac.stateId === stateId && ac.pcId === pcId
+                            );
+                            const partyCounts: Record<string, number> = {};
+                            for (const [acId] of acsInPC) {
+                              const acWinner = acWinners[acId];
+                              if (acWinner?.party) {
+                                partyCounts[acWinner.party] =
+                                  (partyCounts[acWinner.party] ?? 0) + 1;
+                              }
+                            }
+                            let modeParty: string | null = null;
+                            let maxCount = 0;
+                            for (const [party, count] of Object.entries(partyCounts)) {
+                              if (count > maxCount) {
+                                maxCount = count;
+                                modeParty = party;
+                              }
+                            }
+                            if (modeParty) {
+                              const entry = { party: modeParty, candidate: '' };
+                              winners[pcId] = entry;
+                              const pcEntity = schema.parliamentaryConstituencies[pcId];
+                              if (pcEntity?.name) {
+                                const normalizedName = normalizeName(pcEntity.name)
+                                  .toUpperCase()
+                                  .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
+                                  .trim()
+                                  .replace(/\s+/g, ' ');
+                                winners[normalizedName] = entry;
+                                const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+                                if (fuzzyKey && fuzzyKey !== normalizedName)
+                                  winners[fuzzyKey] = entry;
+                                winners[pcEntity.name.toUpperCase().trim()] = entry;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  } catch {
+                    // Ignore; missing PCs stay uncolored or use dominant fallback
+                  }
+                }
+              }
+              setBackgroundPCWinners(winners);
+              // For the selected PC only: color each AC by who led in that AC within this PC election (acWiseResults / acWiseVotes)
+              if (currentPC && response.ok && results) {
+                const pcSchemaId = resolvePCName(currentPC, stateId);
+                const pcNorm = normalizeName(currentPC)
+                  .toUpperCase()
+                  .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
+                  .trim()
+                  .replace(/\s+/g, ' ');
+                const pcResult =
+                  (pcSchemaId ? results[pcSchemaId] : undefined) ??
+                  Object.entries(results).find(([, r]) => {
+                    const name = (
+                      r.constituencyNameOriginal ||
+                      r.constituencyName ||
+                      r.name ||
+                      ''
+                    ).trim();
+                    const n = normalizeName(name)
+                      .toUpperCase()
+                      .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
+                      .trim()
+                      .replace(/\s+/g, ' ');
+                    return (
+                      name.toUpperCase() === currentPC.toUpperCase().trim() ||
+                      n === pcNorm ||
+                      normalizeName(name).toUpperCase().replace(/\s+/g, ' ') === pcNorm
+                    );
+                  })?.[1];
+                if (pcResult) {
+                  const addACWinner = (
+                    acName: string,
+                    party: string,
+                    candidateName: string
+                  ): void => {
+                    const normalizedName = normalizeName(acName)
+                      .toUpperCase()
+                      .replace(/\s*\([^)]*\)\s*/g, '')
+                      .replace(/\s+/g, ' ')
+                      .trim();
+                    const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+                    const entry = { party, candidate: candidateName };
+                    winners[normalizedName] = entry;
+                    if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
+                    const originalUpper = acName.toUpperCase().trim();
+                    if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
+                      winners[originalUpper] = entry;
+                    }
+                    const sid = resolveACName(acName, stateId);
+                    if (sid) winners[sid] = entry;
+                  };
+                  if (pcResult.acWiseResults) {
+                    Object.entries(pcResult.acWiseResults).forEach(([acName, acContribution]) => {
+                      if (acContribution.candidates && acContribution.candidates.length > 0) {
+                        const sorted = [...acContribution.candidates].sort(
+                          (a, b) => b.votes - a.votes
+                        );
+                        const winner = sorted[0];
+                        if (winner) addACWinner(acName, winner.party, winner.name);
+                      }
+                    });
+                  } else if (pcResult.candidates?.length) {
+                    const acToBest: Record<string, { party: string; name: string; votes: number }> =
+                      {};
+                    for (const candidate of pcResult.candidates) {
+                      if (!candidate.acWiseVotes) continue;
+                      for (const av of candidate.acWiseVotes) {
+                        const acName = av.acName?.trim() ?? '';
+                        if (!acName) continue;
+                        const votes = av.votes ?? 0;
+                        const current = acToBest[acName];
+                        if (!current || votes > current.votes) {
+                          acToBest[acName] = {
+                            party: candidate.party,
+                            name: candidate.name,
+                            votes,
+                          };
+                        }
+                      }
+                    }
+                    for (const [acName, best] of Object.entries(acToBest)) {
+                      addACWinner(acName, best.party, best.name);
+                    }
+                  }
+                }
+              }
+            }
+          } catch (err) {
+            console.error(
+              `Failed to load PC election results for ${currentState} ${yearToLoad}:`,
+              err
+            );
+          }
+        }
+
+        // When showing ACs within a PC, color only by AC contribution to PC (acWiseResults above).
+        // Do not load assembly (MLA) election results in PC view - user sees who led in each AC in the PC election.
+        if (currentPC && schema?.assemblyConstituencies) {
+          const pcSchemaId = resolvePCName(currentPC, stateId);
+          const pcWinner =
+            (pcSchemaId ? winners[pcSchemaId] : undefined) ??
+            winners[currentPC.toUpperCase().trim()] ??
+            winners[
+              normalizeName(currentPC)
+                .toUpperCase()
+                .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
+                .trim()
+                .replace(/\s+/g, ' ')
+            ];
+          // Fill ACs within this PC that have no winner yet with the PC winner (so all 6+ ACs are color-coded, no defaults)
+          if (pcWinner && pcSchemaId) {
+            for (const [acId, ac] of Object.entries(schema.assemblyConstituencies)) {
+              if (ac.stateId !== stateId || ac.pcId !== pcSchemaId || winners[acId]) continue;
+              winners[acId] = pcWinner;
+              const namesToAdd = [ac.name, ...(ac.aliases || [])].filter(Boolean);
+              for (const n of namesToAdd) {
+                const norm = normalizeName(n)
+                  .toUpperCase()
+                  .replace(/\s*\([^)]*\)\s*/g, '')
+                  .replace(/\s+/g, ' ')
+                  .trim();
+                if (norm && !winners[norm]) winners[norm] = pcWinner;
+                const upper = n.toUpperCase().trim();
+                if (upper && upper !== norm && !winners[upper]) winners[upper] = pcWinner;
+              }
+            }
+          }
+          // Fallback: when PC not in file (e.g. Vellore 2019 missing), color ACs by latest assembly election
+          const acsInThisPC = Object.entries(schema.assemblyConstituencies).filter(
+            ([, ac]) => ac.stateId === stateId && ac.pcId === pcSchemaId
+          );
+          const hasAnyWinner = acsInThisPC.some(
+            ([acId, ac]) =>
+              winners[acId] ||
+              winners[ac.name] ||
+              winners[
+                normalizeName(ac.name)
+                  .toUpperCase()
+                  .replace(/\s*\([^)]*\)\s*/g, '')
+                  .replace(/\s+/g, ' ')
+                  .trim()
+              ]
+          );
+          if (pcSchemaId && acsInThisPC.length > 0 && !hasAnyWinner) {
+            try {
+              const acIndexRes = await fetch(ELECTIONS.getIndexPath(stateId));
+              if (acIndexRes.ok) {
+                const acIndex = (await acIndexRes.json()) as { availableYears?: number[] };
+                const years = acIndex.availableYears ?? [];
+                const latestYear = years.length > 0 ? years[years.length - 1] : null;
+                if (latestYear != null) {
+                  const acRes = await fetch(ELECTIONS.getYearPath(stateId, latestYear));
+                  if (acRes.ok) {
+                    const acResults = (await acRes.json()) as ElectionResultsByConstituency;
+                    for (const [acId] of acsInThisPC) {
+                      const result = acResults[acId];
+                      if (result?.candidates?.length && result.candidates[0]) {
+                        const w = result.candidates[0];
+                        const entry = { party: w.party, candidate: w.name };
+                        winners[acId] = entry;
+                        const ac = schema.assemblyConstituencies[acId];
+                        if (ac) {
+                          const namesToAdd = [ac.name, ...(ac.aliases || [])].filter(Boolean);
+                          for (const n of namesToAdd) {
+                            const norm = normalizeName(n)
+                              .toUpperCase()
+                              .replace(/\s*\([^)]*\)\s*/g, '')
+                              .replace(/\s+/g, ' ')
+                              .trim();
+                            if (norm && !winners[norm]) winners[norm] = entry;
+                            const upper = n.toUpperCase().trim();
+                            if (upper && upper !== norm && !winners[upper]) winners[upper] = entry;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            } catch {
+              // Ignore; ACs stay uncolored
+            }
+          }
+        }
+
+        // When viewing AC within PC (currentPC && selectedAssembly), load assembly (MLA) results
+        // only when NOT in PC-contribution mode (year=pc-YYYY). With year=pc-2019 we color by PC
+        // contribution only and must not overwrite winners with assembly results.
+        if (currentPC && selectedAssembly && typeof window !== 'undefined') {
+          const urlYearParam = new URLSearchParams(window.location.search).get('year');
+          if (!urlYearParam || !urlYearParam.startsWith('pc-')) {
+            const acYear = urlYearParam ? parseInt(urlYearParam, 10) : selectedYear;
+            if (!isNaN(acYear ?? NaN)) {
+              try {
+                const acResponse = await fetch(ELECTIONS.getYearPath(stateId, acYear as number));
+                if (acResponse.ok) {
+                  const contentType = acResponse.headers.get('content-type');
+                  if (contentType?.includes('application/json')) {
+                    const acResults = (await acResponse.json()) as ElectionResultsByConstituency;
+                    const acSchemaIdPattern = /^[A-Z]{2}-\d+$/;
+                    Object.entries(acResults).forEach(([key, result]) => {
+                      if (result.candidates && result.candidates.length > 0) {
+                        const winner = result.candidates[0];
+                        if (winner) {
+                          const entry = { party: winner.party, candidate: winner.name };
+                          if (key && acSchemaIdPattern.test(key)) winners[key] = entry;
+                          const acName =
+                            result.constituencyNameOriginal ||
+                            result.constituencyName ||
+                            result.name ||
+                            '';
+                          if (acName) {
+                            const normalizedName = normalizeName(acName)
+                              .toUpperCase()
+                              .replace(/\s*\([^)]*\)\s*/g, '')
+                              .replace(/\s+/g, ' ')
+                              .trim();
+                            const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+                            winners[normalizedName] = entry;
+                            if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
+                            const originalUpper = acName.toUpperCase().trim();
+                            if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
+                              winners[originalUpper] = entry;
+                            }
+                          }
+                        }
+                      }
+                    });
+                  }
+                }
+              } catch {
+                // Ignore AC load errors; PC winners already set
+              }
+            }
+          }
+        }
+      }
+
+      // Don't overwrite with empty when state-level PC view and no year (fallback effect may have set winners from URL)
+      const isStateLevelPC =
+        currentView === 'constituencies' && currentPC == null && Object.keys(winners).length === 0;
+      if (!isStateLevelPC) {
+        setConstituencyWinners(winners);
+        setWinnersVersion((v) => v + 1);
+      }
+      // #region agent log
+      const winnerKeys = Object.keys(winners);
+      fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          location: 'MapView.tsx:loadResults after setConstituencyWinners',
+          message: 'winner count and sample keys',
+          data: {
+            winnerCount: winnerKeys.length,
+            sampleKeys: winnerKeys.slice(0, 5),
+            currentState,
+            selectedYear,
+            selectedACPCYear,
+          },
+          timestamp: Date.now(),
+          sessionId: 'debug-session',
+          hypothesisId: winnerKeys.length === 0 ? 'H4' : 'H3',
+        }),
+      }).catch(() => {});
+      // #endregion
+      if (Object.keys(winners).length === 0 && selectedACPCYear) {
+        console.warn(
+          `[Color-coding] No winners loaded! Check if PC election data exists for ${currentState} ${selectedACPCYear}`
+        );
+      }
+    };
+
+    void loadResults();
+  }, [
+    currentState,
+    currentView,
+    selectedYear,
+    pcSelectedYear,
+    selectedACPCYear,
+    getStateId,
+    currentPC,
+    selectedAssembly,
+    resolveACName,
+    resolvePCName,
+    schema,
+    availableYears,
+  ]);
+
+  // Preload PC results from URL on first load when path is /state/pc?year= (before currentState is set)
+  // so first paint of Tamil Nadu PCs already has party colors
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const pathname = window.location.pathname;
+    const segments = pathname.split('/').filter(Boolean);
+    if (segments.length < 2 || segments[1]?.toLowerCase() !== 'pc' || segments[2]) return;
+    const p = new URLSearchParams(window.location.search).get('year');
+    if (!p || p.startsWith('pc-')) return;
+    const urlYear = parseInt(p, 10);
+    if (Number.isNaN(urlYear)) return;
+    const stateSlug = segments[0];
+    if (!stateSlug) return;
+    const stateNameFromSlug = decodeURIComponent(stateSlug).replace(/-/g, ' ');
+    const stateId = getStateId(stateNameFromSlug);
+
+    let cancelled = false;
+    fetch(PC_ELECTIONS.getYearPath(stateId, urlYear))
+      .then((res) => (res.ok ? res.json() : null))
+      .then((results: PCElectionResultsByConstituency | null) => {
+        if (cancelled || !results) return;
+        const winners: Record<string, { party: string; candidate: string }> = {};
+        const pcSchemaIdPattern = /^[A-Z]{2}-\d+$/;
+        Object.entries(results).forEach(([key, result]) => {
+          if (result.candidates && result.candidates.length > 0) {
+            const winner = result.candidates[0];
+            if (winner) {
+              const entry = { party: winner.party, candidate: winner.name };
+              if (key && pcSchemaIdPattern.test(key)) winners[key] = entry;
+              const pcName =
+                result.constituencyNameOriginal || result.constituencyName || result.name || '';
+              if (pcName) {
+                const normalizedName = normalizeName(pcName)
+                  .toUpperCase()
+                  .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
+                  .trim()
+                  .replace(/\s+/g, ' ');
+                const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+                winners[normalizedName] = entry;
+                if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
+                const originalUpper = pcName.toUpperCase().trim();
+                if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
+                  winners[originalUpper] = entry;
+                }
+                const sid = resolvePCName(pcName, stateId);
+                if (sid) winners[sid] = entry;
+              }
+            }
+          }
+        });
+        if (!cancelled) {
+          setConstituencyWinners(winners);
+          setWinnersVersion((v) => v + 1);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [getStateId, resolvePCName]);
+
+  // State-level PC view fallback: load PC results when we have state + constituencies view + year in URL but no winners yet
+  // (handles race where main loadResults ran with currentState null or year not set)
+  useEffect(() => {
+    if (
+      !currentState ||
+      currentView !== 'constituencies' ||
+      currentPC != null ||
+      typeof window === 'undefined'
+    ) {
+      return;
+    }
+    const p = new URLSearchParams(window.location.search).get('year');
+    if (!p || p.startsWith('pc-')) return;
+    const urlYear = parseInt(p, 10);
+    if (Number.isNaN(urlYear)) return;
+
+    let cancelled = false;
+    const stateId = getStateId(currentState);
+    fetch(PC_ELECTIONS.getYearPath(stateId, urlYear))
+      .then((res) => (res.ok ? res.json() : null))
+      .then((results: PCElectionResultsByConstituency | null) => {
+        if (cancelled || !results) return;
+        const winners: Record<string, { party: string; candidate: string }> = {};
+        const pcSchemaIdPattern = /^[A-Z]{2}-\d+$/;
+        Object.entries(results).forEach(([key, result]) => {
+          if (result.candidates && result.candidates.length > 0) {
+            const winner = result.candidates[0];
+            if (winner) {
+              const entry = { party: winner.party, candidate: winner.name };
+              if (key && pcSchemaIdPattern.test(key)) winners[key] = entry;
+              const pcName =
+                result.constituencyNameOriginal || result.constituencyName || result.name || '';
+              if (pcName) {
+                const normalizedName = normalizeName(pcName)
+                  .toUpperCase()
+                  .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
+                  .trim()
+                  .replace(/\s+/g, ' ');
+                const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+                winners[normalizedName] = entry;
+                if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
+                const originalUpper = pcName.toUpperCase().trim();
+                if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
+                  winners[originalUpper] = entry;
+                }
+                const sid = resolvePCName(pcName, stateId);
+                if (sid) winners[sid] = entry;
+              }
+            }
+          }
+        });
+        if (!cancelled) {
+          setConstituencyWinners(winners);
+          setWinnersVersion((v) => v + 1);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [currentState, currentView, currentPC, getStateId, resolvePCName]);
+
   // Feedback modal state
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
   // Base layer state - 'Vector' uses VectorTileLayer, others use TileLayer
   const [baseLayer, setBaseLayer] = useState<LayerName>('Streets');
   // Booth data hook - loads booth data for selected assembly
   const { boothResults, boothsWithResults, loadBoothData, loadBoothResults } = useBoothData();
-  // Schema hook - used to get pcId for booth data availability check
-  const { getAC } = useSchema();
 
   // Check if booth data is available for the current AC and year
   // When viewing PC contribution (selectedACPCYear), use that year for booth data
@@ -627,43 +1639,205 @@ export function MapView({
     pendingSelectedAssembly.current = null;
   }
 
-  // Determine the level for styling
+  // When viewing a specific PC with "Show ACs" off: single PC feature from parliament GeoJSON
+  const currentPCFeatureData = useMemo((): GeoJSONData | null => {
+    if (!currentPC || !parliamentGeoJSON || !currentState) return null;
+    const stateNorm = normalizeName(currentState).toLowerCase();
+    const pcNorm = currentPC.toLowerCase().trim();
+    const feature = parliamentGeoJSON.features.find((f) => {
+      const props = f.properties;
+      const st = normalizeName(props.STATE_NAME ?? props.state_ut_name ?? '').toLowerCase();
+      const pc = (props.ls_seat_name ?? props.PC_NAME ?? '').toLowerCase().trim();
+      return st === stateNorm && pc === pcNorm;
+    });
+    if (!feature) return null;
+    return {
+      type: 'FeatureCollection',
+      features: [feature],
+    };
+  }, [currentPC, currentState, parliamentGeoJSON]);
+
+  // Determine the level for styling (constituencies = single PC when Show ACs off)
   const level = useMemo((): MapLevel => {
+    if (currentPC && !showACsWithinPC) return 'constituencies';
     if (currentPC ?? currentDistrict) return 'assemblies';
     if (currentView === 'assemblies') return 'assemblies';
     if (currentState) return currentView === 'constituencies' ? 'constituencies' : 'districts';
     return 'states';
-  }, [currentState, currentView, currentPC, currentDistrict]);
+  }, [currentState, currentView, currentPC, currentDistrict, showACsWithinPC]);
 
-  // Create unique key for GeoJSON to force re-render when data or selection changes
-  // Include first feature name to ensure uniqueness when different PCs have same assembly count
+  // Use initialPCWinners on first paint for state-level PC view so party colors show before loadResults completes
+  const effectiveConstituencyWinners = useMemo((): Record<
+    string,
+    { party: string; candidate: string }
+  > => {
+    if (
+      level === 'constituencies' &&
+      currentState &&
+      !currentPC &&
+      initialPCWinners &&
+      Object.keys(initialPCWinners).length > 0 &&
+      Object.keys(constituencyWinners).length === 0
+    ) {
+      return initialPCWinners;
+    }
+    return constituencyWinners;
+  }, [level, currentState, currentPC, initialPCWinners, constituencyWinners]);
+
+  // Dominant party in state-level PC winners (mode) — used as fallback for PCs missing from election file (e.g. Vellore in TN 2019)
+  const dominantPCParty = useMemo((): string | null => {
+    if (level !== 'constituencies' || !currentState || currentPC) return null;
+    const winners = Object.values(effectiveConstituencyWinners);
+    if (winners.length === 0) return null;
+    const counts: Record<string, number> = {};
+    for (const { party } of winners) {
+      counts[party] = (counts[party] ?? 0) + 1;
+    }
+    let maxParty: string | null = null;
+    let maxCount = 0;
+    for (const [party, count] of Object.entries(counts)) {
+      if (count > maxCount) {
+        maxCount = count;
+        maxParty = party;
+      }
+    }
+    return maxParty;
+  }, [level, currentState, currentPC, effectiveConstituencyWinners]);
+
+  // Create unique key for GeoJSON to force re-render when data, selection, or coloring year changes
+  // Include year so changing PC/AC year remounts the layer and applies new constituencyWinners style
   const geoJsonKey = useMemo((): string => {
     const dataHash = currentData?.features?.length ?? 0;
     const props = currentData?.features?.[0]?.properties as Record<string, unknown> | undefined;
     const firstFeatureName = (props?.['AC_NAME'] ?? props?.['PC_NAME'] ?? '') as string;
-    return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${selectedAssembly ?? ''}-${dataHash}-${firstFeatureName}`;
-  }, [level, currentState, currentPC, currentDistrict, selectedAssembly, currentData]);
+    const yearSuffix =
+      level === 'constituencies'
+        ? `-y${pcSelectedYear ?? ''}`
+        : level === 'assemblies' && currentPC
+          ? currentView === 'constituencies'
+            ? `-y${pcSelectedYear ?? ''}`
+            : `-pcy${selectedACPCYear ?? ''}`
+          : level === 'assemblies'
+            ? `-y${selectedYear ?? ''}`
+            : level === 'districts'
+              ? selectedYear != null
+                ? `-y${selectedYear}`
+                : selectedACPCYear != null
+                  ? `-pcy${selectedACPCYear}`
+                  : ''
+              : '';
+    return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${selectedAssembly ?? ''}-${showACsWithinPC}-${dataHash}-${firstFeatureName}${yearSuffix}-v${winnersVersion}`;
+  }, [
+    level,
+    currentState,
+    currentView,
+    currentPC,
+    currentDistrict,
+    selectedAssembly,
+    showACsWithinPC,
+    currentData,
+    pcSelectedYear,
+    selectedACPCYear,
+    selectedYear,
+    winnersVersion,
+  ]);
 
-  // Get the data to display (primary layer - either states or current sub-region)
+  // Get the data to display (PC boundary, ACs within PC, or current sub-region)
   const displayData = useMemo((): GeoJSONData | null => {
-    if (currentPC ?? currentDistrict) return currentData;
+    if (currentPC) {
+      if (!showACsWithinPC && currentPCFeatureData) return currentPCFeatureData;
+      return currentData;
+    }
+    if (currentDistrict) return currentData;
     if (currentState) return currentData;
     return statesGeoJSON;
-  }, [statesGeoJSON, currentData, currentState, currentPC, currentDistrict]);
+  }, [
+    statesGeoJSON,
+    currentData,
+    currentState,
+    currentPC,
+    currentDistrict,
+    showACsWithinPC,
+    currentPCFeatureData,
+  ]);
+
+  // Enrich assembly features with schemaId so style lookup by schemaId works (fixes name mismatches e.g. Mettur)
+  // Enrich single PC feature (showACs=false) with schemaId so party color lookup works (e.g. Vellore → DMK)
+  const displayDataForMap = useMemo((): GeoJSONData | null => {
+    if (!displayData?.features?.length) return displayData;
+    const stateId = currentState ? getStateId(currentState) : '';
+    if (level === 'assemblies' && currentState && schema) {
+      const enriched = {
+        ...displayData,
+        features: displayData.features.map((f) => {
+          const props = f.properties as AssemblyProperties & { schemaId?: string };
+          const acName = props.AC_NAME;
+          if (!acName) return f;
+          const sid = resolveACName(acName, stateId);
+          if (!sid) return f;
+          return {
+            ...f,
+            properties: { ...props, schemaId: sid },
+          };
+        }),
+      };
+      return enriched as GeoJSONData;
+    }
+    if (
+      level === 'constituencies' &&
+      currentPC &&
+      currentState &&
+      displayData.features.length === 1
+    ) {
+      const f = displayData.features[0];
+      if (!f) return displayData;
+      const props = f.properties as ConstituencyProperties & { schemaId?: string };
+      const sid = props.schemaId || resolvePCName(currentPC, stateId);
+      if (sid) {
+        return {
+          ...displayData,
+          features: [{ ...f, properties: { ...props, schemaId: sid } }],
+        } as GeoJSONData;
+      }
+    }
+    return displayData;
+  }, [
+    displayData,
+    level,
+    currentState,
+    currentPC,
+    schema,
+    getStateId,
+    resolveACName,
+    resolvePCName,
+  ]);
 
   // Background states - shown dimmed when zoomed into a state for context
   const showBackgroundStates = Boolean(currentState) && statesGeoJSON;
 
-  // Style for background states (semi-transparent, clickable)
+  // Style for background states: color by state winner (party with most Lok Sabha seats) or neutral gray
   const backgroundStateStyle = useCallback(
-    (): L.PathOptions => ({
-      fillColor: '#f3f4f6',
-      fillOpacity: 0.7,
-      color: '#9ca3af',
-      weight: 1,
-      opacity: 0.8,
-    }),
-    []
+    (feature?: GeoJSON.Feature): L.PathOptions => {
+      const base = {
+        fillOpacity: 0.6,
+        color: '#fff',
+        weight: 1,
+        opacity: 0.85,
+      };
+      if (!feature || Object.keys(stateWinners).length === 0) {
+        return { ...base, fillColor: '#f3f4f6', color: '#9ca3af' };
+      }
+      const props = feature.properties as StateProperties;
+      const stateIdFromSchema = props.schemaId;
+      const stateName = props.shapeName ?? props.ST_NM ?? '';
+      const stateId = stateIdFromSchema ?? (stateName ? getStateId(stateName) : '');
+      const winner = stateId ? stateWinners[stateId] : undefined;
+      if (winner) {
+        return { ...base, fillColor: getPartyColor(winner.party) };
+      }
+      return { ...base, fillColor: '#f3f4f6', color: '#9ca3af' };
+    },
+    [stateWinners, getStateId]
   );
 
   // Click handler for background states (other states when zoomed into one)
@@ -682,19 +1856,6 @@ export function MapView({
       });
 
       typedLayer.on({
-        mouseover: (e: LLeafletMouseEvent): void => {
-          const l = e.target as FeatureLayer;
-          l.setStyle({
-            fillColor: '#818cf8',
-            fillOpacity: 0.6,
-            color: '#6366f1',
-            weight: 2,
-          });
-        },
-        mouseout: (e: LLeafletMouseEvent): void => {
-          const l = e.target as FeatureLayer;
-          l.setStyle(backgroundStateStyle());
-        },
         click: (e: LLeafletMouseEvent): void => {
           // Stop propagation to prevent other layers from receiving this click
           L.DomEvent.stopPropagation(e);
@@ -703,7 +1864,7 @@ export function MapView({
         },
       });
     },
-    [onStateClick, backgroundStateStyle]
+    [onStateClick]
   );
 
   // Background PCs - shown when viewing assemblies within a PC
@@ -733,19 +1894,40 @@ export function MapView({
     };
   }, [showBackgroundPCs, parliamentGeoJSON, currentState, currentPC]);
 
-  // Style for background PCs (light orange tint - same as districts for consistency)
+  // Style for background PCs: colour by PC winner (from backgroundPCWinners or constituencyWinners) or neutral
   const backgroundPCStyle = useCallback(
-    (): L.PathOptions => ({
-      fillColor: '#fed7aa',
-      fillOpacity: 0.6,
-      color: '#fdba74',
-      weight: 1,
-      opacity: 0.8,
-    }),
-    []
+    (feature?: GeoJSON.Feature): L.PathOptions => {
+      const base = {
+        fillOpacity: 0.6,
+        color: '#fff',
+        weight: 1,
+        opacity: 0.85,
+      };
+      if (!feature) {
+        return { ...base, fillColor: '#fed7aa', color: '#fdba74' };
+      }
+      const props = feature.properties as ConstituencyProperties;
+      const pcName = (props.ls_seat_name ?? props.PC_NAME ?? '').trim();
+      const schemaId = props.schemaId;
+      const normalizedName = pcName
+        ? normalizeName(pcName).toUpperCase().replace(/\s+/g, ' ').trim()
+        : '';
+      const winner =
+        (schemaId && (backgroundPCWinners[schemaId] ?? effectiveConstituencyWinners[schemaId])) ??
+        (normalizedName &&
+          (backgroundPCWinners[normalizedName] ?? effectiveConstituencyWinners[normalizedName])) ??
+        (pcName &&
+          (backgroundPCWinners[pcName.toUpperCase()] ??
+            effectiveConstituencyWinners[pcName.toUpperCase()]));
+      if (winner) {
+        return { ...base, fillColor: getPartyColor(winner.party) };
+      }
+      return { ...base, fillColor: '#fed7aa', color: '#fdba74' };
+    },
+    [backgroundPCWinners, effectiveConstituencyWinners]
   );
 
-  // Click handler for background PCs
+  // Click and hover handler for background PCs
   const onBackgroundPCClick = useCallback(
     (feature: Feature, layer: Layer): void => {
       const typedLayer = layer as unknown as FeatureLayer;
@@ -759,19 +1941,15 @@ export function MapView({
         className: 'hover-tooltip background-state-tooltip',
       });
 
+      const hoverStyle = getHoverStyle('constituencies');
       typedLayer.on({
-        mouseover: (e: LLeafletMouseEvent): void => {
-          const l = e.target as FeatureLayer;
-          l.setStyle({
-            fillColor: '#818cf8',
-            fillOpacity: 0.7,
-            color: '#6366f1',
-            weight: 2,
-          });
+        mouseover: (): void => {
+          typedLayer.setStyle(hoverStyle);
+          typedLayer.bringToFront();
         },
-        mouseout: (e: LLeafletMouseEvent): void => {
-          const l = e.target as FeatureLayer;
-          l.setStyle(backgroundPCStyle());
+        mouseout: (): void => {
+          const baseStyle = backgroundPCStyle(feature);
+          typedLayer.setStyle(baseStyle);
         },
         click: (e: LLeafletMouseEvent): void => {
           // Stop propagation to prevent other layers from receiving this click
@@ -819,19 +1997,57 @@ export function MapView({
     };
   }, [showBackgroundDistricts, districtsCache, currentState, currentDistrict]);
 
-  // Style for background districts (light orange tint)
+  // Current district boundary - single feature for highlighting selected district in district detail
+  const currentDistrictBoundaryData = useMemo((): GeoJSON.FeatureCollection | null => {
+    if (!showBackgroundDistricts || !districtsCache || !currentState || !currentDistrict) {
+      return null;
+    }
+    const stateFileName = getStateFileName(currentState);
+    if (!stateFileName || !districtsCache[stateFileName]) return null;
+    const stateDistricts = districtsCache[stateFileName];
+    const currentDistrictNormalized = currentDistrict.trim().toLowerCase();
+    const currentFeature = stateDistricts.features.find((f) => {
+      const props = f.properties;
+      const districtName = (props.district ?? props.NAME ?? props.DISTRICT ?? '')
+        .toString()
+        .trim()
+        .toLowerCase();
+      return districtName === currentDistrictNormalized;
+    });
+    if (!currentFeature) return null;
+    return {
+      type: 'FeatureCollection' as const,
+      features: [currentFeature],
+    };
+  }, [showBackgroundDistricts, districtsCache, currentState, currentDistrict]);
+
+  // Style for background districts: colour by dominant party in district (from AC winners) or neutral
   const backgroundDistrictStyle = useCallback(
-    (): L.PathOptions => ({
-      fillColor: '#fed7aa',
-      fillOpacity: 0.6,
-      color: '#fdba74',
-      weight: 1,
-      opacity: 0.8,
-    }),
-    []
+    (feature?: GeoJSON.Feature): L.PathOptions => {
+      const base = {
+        fillOpacity: 0.6,
+        color: '#fff',
+        weight: 1,
+        opacity: 0.85,
+      };
+      if (!feature || !currentState || Object.keys(districtWinners).length === 0) {
+        return { ...base, fillColor: '#fed7aa', color: '#fdba74' };
+      }
+      const props = feature.properties as DistrictProperties;
+      const districtName = (props.district ?? props.NAME ?? props.DISTRICT ?? '').trim();
+      if (!districtName) return { ...base, fillColor: '#fed7aa', color: '#fdba74' };
+      const stateId = getStateId(currentState);
+      const districtId = resolveDistrictName(districtName, stateId);
+      const party = districtId ? districtWinners[districtId] : undefined;
+      if (party) {
+        return { ...base, fillColor: getPartyColor(party) };
+      }
+      return { ...base, fillColor: '#fed7aa', color: '#fdba74' };
+    },
+    [currentState, districtWinners, getStateId, resolveDistrictName]
   );
 
-  // Click handler for background districts
+  // Click and hover handler for background districts
   const onBackgroundDistrictClick = useCallback(
     (feature: Feature, layer: Layer): void => {
       const typedLayer = layer as unknown as FeatureLayer;
@@ -845,19 +2061,15 @@ export function MapView({
         className: 'hover-tooltip background-state-tooltip',
       });
 
+      const hoverStyle = getHoverStyle('districts');
       typedLayer.on({
-        mouseover: (e: LLeafletMouseEvent): void => {
-          const l = e.target as FeatureLayer;
-          l.setStyle({
-            fillColor: '#fb923c',
-            fillOpacity: 0.7,
-            color: '#f97316',
-            weight: 2,
-          });
+        mouseover: (): void => {
+          typedLayer.setStyle(hoverStyle);
+          typedLayer.bringToFront();
         },
-        mouseout: (e: LLeafletMouseEvent): void => {
-          const l = e.target as FeatureLayer;
-          l.setStyle(backgroundDistrictStyle());
+        mouseout: (): void => {
+          const baseStyle = backgroundDistrictStyle(feature);
+          typedLayer.setStyle(baseStyle);
         },
         click: (e: LLeafletMouseEvent): void => {
           // Stop propagation to prevent other layers from receiving this click
@@ -877,6 +2089,7 @@ export function MapView({
 
   // Style function with index tracking
   const styleIndex = useRef<number>(0);
+  const styleLogCount = useRef<number>(0);
 
   const onEachFeature = useCallback(
     (feature: Feature, layer: Layer): void => {
@@ -900,13 +2113,21 @@ export function MapView({
       }
 
       // Apply selected style immediately when layer is added
-      // Use ref to get latest value since this callback might be called after state updates
+      // Prefer prop so deep-link / URL load has correct selection before refs are synced
       const currentSelectedAssembly =
-        selectedAssemblyRef.current ?? pendingSelectedAssembly.current;
+        selectedAssembly ?? selectedAssemblyRef.current ?? pendingSelectedAssembly.current;
+      // Normalize so whitespace/encoding differences don't make selected AC think it's not selected (mouseout would then restore white border)
+      const selectedNorm =
+        currentSelectedAssembly && level === 'assemblies'
+          ? normalizeName(currentSelectedAssembly).toUpperCase().replace(/\s+/g, ' ').trim()
+          : '';
+      const nameNorm =
+        level === 'assemblies' ? normalizeName(name).toUpperCase().replace(/\s+/g, ' ').trim() : '';
       const isSelected =
-        currentSelectedAssembly &&
+        Boolean(currentSelectedAssembly) &&
         level === 'assemblies' &&
-        name.toUpperCase() === currentSelectedAssembly.toUpperCase();
+        nameNorm.length > 0 &&
+        nameNorm === selectedNorm;
 
       if (isSelected) {
         typedLayer.setStyle({
@@ -925,89 +2146,177 @@ export function MapView({
         className: isSelected ? 'selected-tooltip' : 'hover-tooltip',
       });
 
-      // Event handlers
-      typedLayer.on({
-        mouseover: (e: LLeafletMouseEvent): void => {
-          const l = e.target as FeatureLayer;
-          // Check if THIS assembly is the selected one (use refs for latest values)
-          const activeAssembly = pendingSelectedAssembly.current ?? selectedAssemblyRef.current;
-          const isThisSelected =
-            activeAssembly &&
-            level === 'assemblies' &&
-            name.toUpperCase() === activeAssembly.toUpperCase();
+      // Event handlers: India view (states) gets hover; others tooltip + click only
+      const clickHandler = (): void => {
+        if (level === 'states') {
+          const props = feature.properties as StateProperties;
+          const originalName = props.shapeName ?? props.ST_NM ?? name;
+          onStateClick(originalName, feature as StateFeature);
+        } else if (level === 'districts') {
+          onDistrictClick(name, feature as DistrictFeature);
+        } else if (level === 'constituencies') {
+          onConstituencyClick(name, feature as ConstituencyFeature);
+        } else if (onAssemblyClick) {
+          // Set pending selected assembly immediately
+          pendingSelectedAssembly.current = name;
+          onAssemblyClick(name, feature as AssemblyFeature);
+        }
+      };
 
-          // Skip hover style effects on the selected assembly only
-          if (isThisSelected) {
-            return;
-          }
-
-          l.setStyle(getHoverStyle(level));
-          l.bringToFront();
-        },
-        mouseout: (e: LLeafletMouseEvent): void => {
-          // Check if THIS assembly is the selected one (use refs for latest values)
-          const activeAssembly = pendingSelectedAssembly.current ?? selectedAssemblyRef.current;
-          const isThisSelected =
-            activeAssembly &&
-            level === 'assemblies' &&
-            name.toUpperCase() === activeAssembly.toUpperCase();
-
-          // Skip mouseout style effects on the selected assembly
-          if (isThisSelected) {
-            return;
-          }
-
-          if (geoJsonRef.current) {
-            geoJsonRef.current.resetStyle(e.target as Layer);
-
-            // Re-apply style to selected assembly to fix shared border issue
-            if (activeAssembly && level === 'assemblies') {
-              geoJsonRef.current.eachLayer((lyr) => {
-                const feat = (lyr as unknown as { feature?: GeoJSON.Feature }).feature;
-                if (feat) {
-                  const props = feat.properties as AssemblyProperties;
-                  if (props.AC_NAME?.toUpperCase() === activeAssembly.toUpperCase()) {
-                    const typedLayer = lyr as unknown as {
-                      setStyle: (style: object) => void;
-                      bringToFront: () => void;
-                    };
-                    typedLayer.setStyle({
-                      weight: 4,
-                      color: '#065f46',
-                      fillOpacity: 0.75,
-                      opacity: 1,
-                    });
-                    typedLayer.bringToFront();
+      if (level === 'states') {
+        const hoverStyle = getHoverStyle('states');
+        const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
+        typedLayer.on({
+          mouseover: (): void => {
+            const opts = layerWithOpts.options;
+            const isAlreadyHover =
+              opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
+            if (!isAlreadyHover) {
+              const stored = {
+                fillColor: opts.fillColor,
+                fillOpacity: opts.fillOpacity,
+                color: opts.color,
+                weight: opts.weight,
+                opacity: opts.opacity,
+              };
+              (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle = stored;
+            }
+            typedLayer.setStyle(hoverStyle);
+            typedLayer.bringToFront();
+          },
+          mouseout: (): void => {
+            const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+            if (baseStyle) typedLayer.setStyle(baseStyle);
+          },
+          click: clickHandler,
+        });
+      } else if (level === 'assemblies') {
+        const hoverStyle = getHoverStyle('assemblies');
+        const selectedGreenWeight = 4;
+        const greenStyle = {
+          weight: 4,
+          color: '#065f46',
+          fillOpacity: 0.75,
+          opacity: 1,
+        };
+        const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
+        typedLayer.on({
+          mouseover: (): void => {
+            if (isSelected) return;
+            const opts = layerWithOpts.options;
+            const isAlreadyHover =
+              opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
+            if (!isAlreadyHover) {
+              const stored = {
+                fillColor: opts.fillColor,
+                fillOpacity: opts.fillOpacity,
+                color: opts.color,
+                weight: opts.weight,
+                opacity: opts.opacity,
+              };
+              (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle = stored;
+            }
+            typedLayer.setStyle(hoverStyle);
+            typedLayer.bringToFront();
+          },
+          mouseout: (): void => {
+            if (isSelected) return;
+            // Don't restore if layer has selected (green) style — weight 4 is unique to selected in assemblies
+            if (layerWithOpts.options.weight === selectedGreenWeight) return;
+            const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+            if (baseStyle) typedLayer.setStyle(baseStyle);
+            // Re-apply green to selected AC so it stays green even if another code path overwrote it
+            const sel =
+              selectedAssembly ?? selectedAssemblyRef.current ?? pendingSelectedAssembly.current;
+            if (sel && geoJsonRef.current) {
+              const geo = geoJsonRef.current;
+              const selectedNorm = normalizeName(sel).toUpperCase().replace(/\s+/g, ' ').trim();
+              requestAnimationFrame(() => {
+                geo.eachLayer((layer) => {
+                  const f = (layer as unknown as { feature?: GeoJSON.Feature }).feature;
+                  if (f) {
+                    const props = f.properties as AssemblyProperties;
+                    const acNorm = normalizeName(props.AC_NAME ?? '')
+                      .toUpperCase()
+                      .replace(/\s+/g, ' ')
+                      .trim();
+                    if (acNorm && acNorm === selectedNorm) {
+                      (layer as unknown as { setStyle: (s: object) => void }).setStyle(greenStyle);
+                      (layer as unknown as { bringToFront: () => void }).bringToFront();
+                    }
                   }
-                }
+                });
               });
             }
-          }
-        },
-        click: (): void => {
-          if (level === 'states') {
-            const props = feature.properties as StateProperties;
-            const originalName = props.shapeName ?? props.ST_NM ?? name;
-            onStateClick(originalName, feature as StateFeature);
-          } else if (level === 'districts') {
-            onDistrictClick(name, feature as DistrictFeature);
-          } else if (level === 'constituencies') {
-            onConstituencyClick(name, feature as ConstituencyFeature);
-          } else if (onAssemblyClick) {
-            // Set pending selected assembly immediately
-            pendingSelectedAssembly.current = name;
-            onAssemblyClick(name, feature as AssemblyFeature);
-          }
-        },
-      });
+          },
+          click: clickHandler,
+        });
+      } else if (level === 'districts') {
+        const hoverStyle = getHoverStyle('districts');
+        const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
+        typedLayer.on({
+          mouseover: (): void => {
+            const opts = layerWithOpts.options;
+            const isAlreadyHover =
+              opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
+            if (!isAlreadyHover) {
+              const stored = {
+                fillColor: opts.fillColor,
+                fillOpacity: opts.fillOpacity,
+                color: opts.color,
+                weight: opts.weight,
+                opacity: opts.opacity,
+              };
+              (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle = stored;
+            }
+            typedLayer.setStyle(hoverStyle);
+            typedLayer.bringToFront();
+          },
+          mouseout: (): void => {
+            const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+            if (baseStyle) typedLayer.setStyle(baseStyle);
+          },
+          click: clickHandler,
+        });
+      } else if (level === 'constituencies') {
+        const hoverStyle = getHoverStyle('constituencies');
+        const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
+        typedLayer.on({
+          mouseover: (): void => {
+            const opts = layerWithOpts.options;
+            const isAlreadyHover =
+              opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
+            if (!isAlreadyHover) {
+              const stored = {
+                fillColor: opts.fillColor,
+                fillOpacity: opts.fillOpacity,
+                color: opts.color,
+                weight: opts.weight,
+                opacity: opts.opacity,
+              };
+              (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle = stored;
+            }
+            typedLayer.setStyle(hoverStyle);
+            typedLayer.bringToFront();
+          },
+          mouseout: (): void => {
+            const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+            if (baseStyle) typedLayer.setStyle(baseStyle);
+          },
+          click: clickHandler,
+        });
+      } else {
+        typedLayer.on({ click: clickHandler });
+      }
     },
-    [level, onStateClick, onDistrictClick, onConstituencyClick, onAssemblyClick]
+    [level, selectedAssembly, onStateClick, onDistrictClick, onConstituencyClick, onAssemblyClick]
   );
 
-  // Reset style index when data changes
+  // Reset style index and style log count when data changes
   useEffect(() => {
     styleIndex.current = 0;
-  }, [geoJsonKey]);
+    styleLogCount.current = 0;
+  }, [geoJsonKey, effectiveConstituencyWinners]);
 
   // Apply selected style when assembly is selected (tooltips are handled in onEachFeature)
   useEffect(() => {
@@ -1015,10 +2324,13 @@ export function MapView({
       // Sync pending ref with actual state
       pendingSelectedAssembly.current = selectedAssembly;
 
-      // Apply dark green border style and bring to front
       const applyStyle = (): void => {
         if (!geoJsonRef.current) return;
 
+        const selectedNorm = normalizeName(selectedAssembly ?? '')
+          .toUpperCase()
+          .replace(/\s+/g, ' ')
+          .trim();
         geoJsonRef.current.eachLayer((layer) => {
           const feature = (layer as unknown as { feature?: GeoJSON.Feature }).feature;
           if (feature) {
@@ -1027,8 +2339,11 @@ export function MapView({
               setStyle: (style: object) => void;
               bringToFront: () => void;
             };
-
-            if (props.AC_NAME?.toUpperCase() === selectedAssembly.toUpperCase()) {
+            const acNorm = normalizeName(props.AC_NAME ?? '')
+              .toUpperCase()
+              .replace(/\s+/g, ' ')
+              .trim();
+            if (acNorm && acNorm === selectedNorm) {
               typedLayer.setStyle({
                 weight: 4,
                 color: '#065f46',
@@ -1041,7 +2356,6 @@ export function MapView({
         });
       };
 
-      // Apply immediately and on next frame
       applyStyle();
       const rafId = requestAnimationFrame(applyStyle);
 
@@ -1055,20 +2369,244 @@ export function MapView({
     return undefined;
   }, [selectedAssembly, level, geoJsonKey]);
 
-  // Style function that highlights selected assembly with dark green border
+  // Style function that highlights selected assembly with dark green border and color-codes by party
   const style = useCallback(
     (feature?: GeoJSON.Feature) => {
       const idx = styleIndex.current++;
-      const baseStyle = getFeatureStyle(idx, level) as object;
+      let baseStyle = getFeatureStyle(idx, level) as L.PathOptions;
+      // Assemblies view: 100% party color coding — never use default/palette; neutral until party is found
+      if (level === 'assemblies') {
+        baseStyle = { ...DISTRICTS_VIEW_NEUTRAL_STYLE };
+      }
+      // Constituencies (PC) view: 100% party or neutral — never palette (state-level and single-PC)
+      if (level === 'constituencies') {
+        baseStyle = { ...DISTRICTS_VIEW_NEUTRAL_STYLE };
+      }
 
-      // Highlight selected assembly with dark green border on all sides
+      // Get constituency name based on level
+      let constituencyName: string | null = null;
+      let normalizedConstituencyName: string | null = null;
+      if (feature) {
+        if (level === 'assemblies') {
+          const props = feature.properties as AssemblyProperties;
+          constituencyName = props.AC_NAME ?? null;
+          if (constituencyName) {
+            // Normalize for matching: uppercase, remove parentheses, remove extra spaces
+            normalizedConstituencyName = normalizeName(constituencyName)
+              .toUpperCase()
+              .replace(/\s*\([^)]*\)\s*/g, '') // Remove (SC), (ST) etc
+              .replace(/\s+/g, ' ')
+              .trim();
+            // Strip malformed GeoJSON suffix e.g. "Kilvaithinankuppam(SC" or "Secunderabad Cantt. (SC"
+            normalizedConstituencyName =
+              normalizedConstituencyName.replace(/\s*\(S[CT]\s*\)?\s*$/i, '').trim() ||
+              normalizedConstituencyName;
+          }
+        } else if (level === 'constituencies') {
+          const props = feature.properties as ConstituencyProperties;
+          constituencyName = props.ls_seat_name ?? props.PC_NAME ?? null;
+          if (constituencyName) {
+            normalizedConstituencyName = normalizeName(constituencyName)
+              .toUpperCase()
+              .replace(/\s+/g, ' ')
+              .trim();
+            // Strip (SC)/(ST) so "Vellore (SC)" matches winners from data (e.g. "VELLORE")
+            normalizedConstituencyName =
+              normalizedConstituencyName.replace(/\s*\(S[CT]\s*\)?\s*$/i, '').trim() ||
+              normalizedConstituencyName;
+          }
+        }
+      }
+
+      // Color-code India view states by party with most Lok Sabha seats (latest election)
+      if (level === 'states' && feature && Object.keys(stateWinners).length > 0) {
+        const props = feature.properties as StateProperties;
+        const stateIdFromSchema = props.schemaId;
+        const stateName = props.shapeName ?? props.ST_NM ?? '';
+        const stateId = stateIdFromSchema ?? (stateName ? getStateId(stateName) : '');
+        const winner = stateId ? stateWinners[stateId] : undefined;
+        if (winner) {
+          baseStyle = {
+            fillColor: getPartyColor(winner.party),
+            fillOpacity: 0.7,
+            color: '#fff',
+            weight: 1.5,
+            opacity: 1,
+          };
+        }
+      }
+
+      // Color-code districts by dominant party; never use palette in districts view (100% party or neutral)
+      if (level === 'districts' && feature && currentState) {
+        baseStyle = { ...DISTRICTS_VIEW_NEUTRAL_STYLE };
+        const props = feature.properties as DistrictProperties;
+        const districtName =
+          props.district ?? props.NAME ?? (props as Record<string, unknown>)['DISTRICT'] ?? '';
+        const stateId = getStateId(currentState);
+        const districtId = districtName ? resolveDistrictName(String(districtName), stateId) : null;
+        const party =
+          districtId && Object.keys(districtWinners).length > 0
+            ? districtWinners[districtId]
+            : undefined;
+        if (party) {
+          baseStyle = {
+            fillColor: getPartyColor(party),
+            fillOpacity: 0.7,
+            color: '#fff',
+            weight: 1.5,
+            opacity: 1,
+          };
+        }
+      }
+
+      // Color-code by winning party if we have winner data (AC/PC views)
+      // Prefer schemaId lookup when GeoJSON has it (fixes all name-mismatch cases)
+      const schemaId = feature?.properties?.['schemaId'] as string | undefined;
+      if (schemaId && effectiveConstituencyWinners[schemaId]) {
+        const winner = effectiveConstituencyWinners[schemaId];
+        const partyColor = getPartyColor(winner.party);
+        baseStyle = {
+          fillColor: partyColor,
+          fillOpacity: 0.7,
+          color: '#fff',
+          weight: 1.5,
+          opacity: 1,
+        };
+      } else if (normalizedConstituencyName) {
+        let winner = effectiveConstituencyWinners[normalizedConstituencyName];
+        // If not found, try fuzzy key (alphanumeric only)
+        if (!winner) {
+          const fuzzyKey = normalizedConstituencyName.replace(/[^A-Z0-9]/g, '');
+          winner = effectiveConstituencyWinners[fuzzyKey];
+        }
+        // If not found, try with original name (uppercase)
+        if (!winner && constituencyName) {
+          winner = effectiveConstituencyWinners[constituencyName.toUpperCase().trim()];
+        }
+        // If still not found, try matching against all keys (fuzzy match)
+        if (!winner) {
+          for (const [key, value] of Object.entries(effectiveConstituencyWinners)) {
+            const normalizedKey = normalizeName(key)
+              .toUpperCase()
+              .replace(/\s*\([^)]*\)\s*/g, '')
+              .replace(/\s+/g, ' ')
+              .trim();
+            if (normalizedKey === normalizedConstituencyName) {
+              winner = value;
+              break;
+            }
+            // Also try fuzzy match (alphanumeric only)
+            const keyFuzzy = normalizedKey.replace(/[^A-Z0-9]/g, '');
+            const nameFuzzy = normalizedConstituencyName.replace(/[^A-Z0-9]/g, '');
+            if (keyFuzzy === nameFuzzy && keyFuzzy.length > 0) {
+              winner = value;
+              break;
+            }
+          }
+        }
+        // If still not found, try collapse repeated chars (e.g. Pappireddippatti vs Pappireddipatti in PC 2024 data)
+        if (!winner) {
+          const collapseRepeated = (s: string): string => s.replace(/(.)\1+/g, '$1');
+          const nameCollapsed = collapseRepeated(normalizedConstituencyName);
+          for (const [key, value] of Object.entries(effectiveConstituencyWinners)) {
+            const normalizedKey = normalizeName(key)
+              .toUpperCase()
+              .replace(/\s*\([^)]*\)\s*/g, '')
+              .replace(/\s+/g, ' ')
+              .trim();
+            if (collapseRepeated(normalizedKey) === nameCollapsed && nameCollapsed.length > 0) {
+              winner = value;
+              break;
+            }
+          }
+        }
+        // When viewing ACs within a PC, fallback to PC winner so no AC stays default/uncolored
+        if (
+          !winner &&
+          level === 'assemblies' &&
+          currentPC &&
+          Object.keys(effectiveConstituencyWinners).length > 0
+        ) {
+          const pcWinner =
+            effectiveConstituencyWinners[currentPC.toUpperCase().trim()] ??
+            effectiveConstituencyWinners[
+              normalizeName(currentPC).toUpperCase().replace(/\s+/g, ' ').trim()
+            ];
+          if (pcWinner) winner = pcWinner;
+        }
+        // When viewing ACs within a district, fallback to district dominant party for 100% party coloring
+        if (
+          !winner &&
+          level === 'assemblies' &&
+          currentDistrict &&
+          currentState &&
+          feature &&
+          Object.keys(districtWinners).length > 0
+        ) {
+          const asmProps = feature.properties as AssemblyProperties;
+          const distName = asmProps.DIST_NAME ?? '';
+          const stateId = getStateId(currentState);
+          const districtId = distName ? resolveDistrictName(distName, stateId) : null;
+          const districtParty = districtId ? districtWinners[districtId] : undefined;
+          if (districtParty) {
+            winner = { party: districtParty, candidate: '' };
+          }
+        }
+        // State-level PC view: PCs missing from election file (e.g. Vellore TN-08 in 2019) use state dominant party
+        if (!winner && level === 'constituencies' && dominantPCParty) {
+          winner = { party: dominantPCParty, candidate: '' };
+        }
+        if (winner) {
+          const partyColor = getPartyColor(winner.party);
+          baseStyle = {
+            fillColor: partyColor,
+            fillOpacity: 0.7,
+            color: '#fff',
+            weight: 1.5,
+            opacity: 1,
+          };
+        }
+        // #region agent log
+        if (level === 'assemblies' && normalizedConstituencyName && styleLogCount.current < 3) {
+          styleLogCount.current += 1;
+          const hit = !!winner;
+          fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              location: 'MapView.tsx:style lookup',
+              message: 'AC name lookup hit/miss',
+              data: {
+                constituencyName,
+                normalizedConstituencyName,
+                hit,
+                totalWinnerKeys: Object.keys(effectiveConstituencyWinners).length,
+              },
+              timestamp: Date.now(),
+              sessionId: 'debug-session',
+              hypothesisId: hit ? undefined : 'H3',
+            }),
+          }).catch(() => {});
+        }
+        // #endregion
+      }
+
+      // Highlight selected assembly with dark green border (same normalization as onEachFeature/reapply so name variants match)
       if (selectedAssembly && level === 'assemblies' && feature) {
         const props = feature.properties as AssemblyProperties;
-        if (props.AC_NAME?.toUpperCase() === selectedAssembly.toUpperCase()) {
+        const selectedNorm = normalizeName(selectedAssembly)
+          .toUpperCase()
+          .replace(/\s+/g, ' ')
+          .trim();
+        const acNorm = normalizeName(props.AC_NAME ?? '')
+          .toUpperCase()
+          .replace(/\s+/g, ' ')
+          .trim();
+        if (acNorm && acNorm === selectedNorm) {
           return {
             ...baseStyle,
             weight: 4,
-            color: '#065f46', // Dark green border
+            color: '#065f46',
             fillOpacity: 0.75,
             opacity: 1,
           };
@@ -1077,10 +2615,74 @@ export function MapView({
 
       return baseStyle;
     },
-    [level, selectedAssembly]
+    [
+      level,
+      selectedAssembly,
+      effectiveConstituencyWinners,
+      dominantPCParty,
+      stateWinners,
+      districtWinners,
+      getStateId,
+      currentState,
+      currentDistrict,
+      currentPC,
+      resolveDistrictName,
+    ]
   );
 
-  const showViewToggle = Boolean(currentState && !currentPC && !currentDistrict);
+  // Update style ref whenever style function changes
+  useEffect(() => {
+    styleRef.current = style;
+  }, [style]);
+
+  // Re-apply style to all GeoJSON layers when constituencyWinners/districtWinners changes (e.g. after year change and async load)
+  // so colors update without requiring a GeoJSON remount
+  useEffect(() => {
+    if (level !== 'assemblies' && level !== 'constituencies' && level !== 'districts') return;
+    const geo = geoJsonRef.current;
+    const styleFn = styleRef.current;
+    if (!geo || !styleFn) return;
+    geo.eachLayer((layer) => {
+      const typed = layer as unknown as {
+        feature?: GeoJSON.Feature;
+        setStyle: (opts: L.PathOptions) => void;
+      };
+      const feature = typed.feature;
+      if (feature && typed.setStyle) {
+        typed.setStyle(styleFn(feature));
+      }
+    });
+    // Re-apply selected assembly green so it is not overwritten by the loop above (effect order: selectedAssembly effect runs first, then this one)
+    if (level === 'assemblies' && selectedAssembly && geo) {
+      const greenStyle = {
+        weight: 4,
+        color: '#065f46',
+        fillOpacity: 0.75,
+        opacity: 1,
+      };
+      const selectedNorm = normalizeName(selectedAssembly ?? '')
+        .toUpperCase()
+        .replace(/\s+/g, ' ')
+        .trim();
+      geo.eachLayer((layer) => {
+        const feature = (layer as unknown as { feature?: GeoJSON.Feature }).feature;
+        if (feature) {
+          const props = feature.properties as AssemblyProperties;
+          const acNorm = normalizeName(props.AC_NAME ?? '')
+            .toUpperCase()
+            .replace(/\s+/g, ' ')
+            .trim();
+          if (acNorm && acNorm === selectedNorm) {
+            (layer as unknown as { setStyle: (s: object) => void }).setStyle(greenStyle);
+            (layer as unknown as { bringToFront: () => void }).bringToFront();
+          }
+        }
+      });
+    }
+  }, [effectiveConstituencyWinners, level, selectedAssembly]);
+
+  // Show view toggle buttons whenever we're in a state (even if PC or district is selected)
+  const showViewToggle = Boolean(currentState);
   // Show back button when not at home (India) level
   const showBackButton = Boolean(currentState);
 
@@ -1108,6 +2710,30 @@ export function MapView({
         onSwitchView={onSwitchView}
         onGoBack={onGoBack}
         onFeedbackClick={() => setFeedbackModalOpen(true)}
+        showACCheckbox={Boolean(currentPC)}
+        showACsWithinPC={showACsWithinPC}
+        {...(onShowACsWithinPCChange != null && { onShowACsWithinPCChange })}
+        selectedAssembly={selectedAssembly}
+        {...(availableYears && { availableYears })}
+        {...(selectedYear !== null && selectedYear !== undefined && { selectedYear })}
+        {...(() => {
+          // For AC view: use availablePCYears if available (specific AC selected),
+          // otherwise fall back to pcAvailableYears (state-level PC years)
+          const pcYearsForAC =
+            availablePCYears && availablePCYears.length > 0
+              ? availablePCYears
+              : pcAvailableYears && pcAvailableYears.length > 0
+                ? pcAvailableYears
+                : undefined;
+          return pcYearsForAC ? { availablePCYears: pcYearsForAC } : {};
+        })()}
+        {...(selectedACPCYear !== null &&
+          selectedACPCYear !== undefined && { selectedPCYear: selectedACPCYear })}
+        {...(pcAvailableYears && pcAvailableYears.length > 0 && { pcAvailableYears })}
+        {...(pcSelectedYear !== null && pcSelectedYear !== undefined && { pcSelectedYear })}
+        {...(onYearChange && { onYearChange })}
+        {...(onACPCYearChange && { onPCYearChange: onACPCYearChange })}
+        {...(onPCYearChange && { onPCYearChangeForPC: onPCYearChange })}
       />
 
       <MapContainer
@@ -1141,25 +2767,58 @@ export function MapView({
 
         <MapControls level={level} name={legendName} count={legendCount} />
 
-        {/* Primary data layer - states, districts, PCs, or assemblies */}
+        {/* Primary data layer - states, districts, PCs, or assemblies (displayDataForMap has schemaId on ACs for reliable color lookup) */}
         {displayData && (
           <>
             <GeoJSON
               key={geoJsonKey}
               ref={geoJsonRef as unknown as React.Ref<L.GeoJSON>}
-              data={displayData as GeoJSON.FeatureCollection}
+              data={(displayDataForMap ?? displayData) as GeoJSON.FeatureCollection}
               style={style as L.StyleFunction}
               onEachFeature={onEachFeature as (feature: GeoJSON.Feature, layer: Layer) => void}
             />
-            <FitBounds geojson={displayData} selectedFeatureName={selectedAssembly} />
+            <FitBounds
+              geojson={displayDataForMap ?? displayData}
+              selectedFeatureName={selectedAssembly}
+            />
           </>
+        )}
+
+        {/* Current district boundary - highlighted border when viewing assemblies in district view */}
+        {currentDistrictBoundaryData && (
+          <GeoJSON
+            key={`current-district-boundary-${currentState ?? ''}-${currentDistrict ?? ''}`}
+            data={currentDistrictBoundaryData}
+            style={() => ({
+              weight: 6,
+              color: '#000000',
+              fillOpacity: 0,
+              opacity: 1,
+              interactive: false,
+            })}
+          />
+        )}
+
+        {/* Current PC boundary - highlighted border when viewing a single PC (with or without ACs) */}
+        {currentPCFeatureData && currentPC && (
+          <GeoJSON
+            key={`current-pc-boundary-${currentState ?? ''}-${currentPC ?? ''}`}
+            data={currentPCFeatureData as GeoJSON.FeatureCollection}
+            style={() => ({
+              weight: 6,
+              color: '#000000',
+              fillOpacity: 0,
+              opacity: 1,
+              interactive: false,
+            })}
+          />
         )}
 
         {/* Background states layer - uses backgroundPane for proper z-ordering */}
         {/* Shows all states OTHER than the current one (including in PC/district views) */}
         {showBackgroundStates && statesGeoJSON && (
           <GeoJSON
-            key={`background-states-${currentState}`}
+            key={`background-states-${currentState}-${Object.keys(stateWinners).length}`}
             data={
               {
                 type: 'FeatureCollection',
@@ -1173,8 +2832,8 @@ export function MapView({
                 }),
               } as GeoJSON.FeatureCollection
             }
-            style={() => ({
-              ...backgroundStateStyle(),
+            style={(feature) => ({
+              ...backgroundStateStyle(feature),
               interactive: true,
             })}
             pane="backgroundPane"
@@ -1187,10 +2846,10 @@ export function MapView({
         {/* Background PCs layer - shows other PCs in the state when viewing assemblies */}
         {backgroundPCsData && (
           <GeoJSON
-            key={`background-pcs-${currentState}-${currentPC}-${selectedAssembly ?? 'none'}-${backgroundPCsData.features.length}`}
+            key={`background-pcs-${currentState}-${currentPC}-${selectedAssembly ?? 'none'}-${backgroundPCsData.features.length}-${Object.keys(backgroundPCWinners).length}`}
             data={backgroundPCsData as GeoJSON.FeatureCollection}
-            style={() => ({
-              ...backgroundPCStyle(),
+            style={(feature) => ({
+              ...backgroundPCStyle(feature),
               interactive: true,
             })}
             pane="backgroundPane"
@@ -1203,10 +2862,10 @@ export function MapView({
         {/* Background Districts layer - shows other districts when viewing assemblies in district view */}
         {backgroundDistrictsData && (
           <GeoJSON
-            key={`background-districts-${currentState}-${currentDistrict}-${selectedAssembly ?? 'none'}-${backgroundDistrictsData.features.length}-${String((backgroundDistrictsData.features[0]?.properties as Record<string, unknown>)?.['district'] ?? '')}`}
+            key={`background-districts-${currentState}-${currentDistrict}-${selectedAssembly ?? 'none'}-${backgroundDistrictsData.features.length}-${Object.keys(districtWinners).length}`}
             data={backgroundDistrictsData as GeoJSON.FeatureCollection}
-            style={() => ({
-              ...backgroundDistrictStyle(),
+            style={(feature) => ({
+              ...backgroundDistrictStyle(feature),
               interactive: true,
             })}
             pane="backgroundPane"
@@ -1232,6 +2891,7 @@ export function MapView({
             availablePCYears={availablePCYears}
             selectedPCYear={selectedACPCYear}
             onPCYearChange={onACPCYearChange}
+            showOnlyPCYears={Boolean(currentPC)}
             pcContributionShareUrl={pcContributionShareUrl}
             boothResults={boothResults}
             boothsWithResults={boothsWithResults}

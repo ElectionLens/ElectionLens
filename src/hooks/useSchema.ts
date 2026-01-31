@@ -132,27 +132,46 @@ export function useSchema(): UseSchemaReturn {
 
   const resolvePCName = useCallback(
     (name: string, stateId: string): string | null => {
-      if (!schema) return null;
+      if (!schema?.indices?.pcByName) return null;
       const normalized = normalizeName(name);
       const key = `${normalized}|${stateId}`;
-      return schema.indices.pcByName[key] ?? null;
+      let id = schema.indices.pcByName[key];
+      if (!id) {
+        const namePart = normalized.replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
+        if (namePart) {
+          id =
+            schema.indices.pcByName[`${namePart.toUpperCase()}|${stateId}`] ??
+            schema.indices.pcByName[`${namePart}|${stateId}`];
+        }
+      }
+      return id ?? null;
     },
     [schema]
   );
 
   const resolveACName = useCallback(
     (name: string, stateId: string): string | null => {
-      if (!schema) return null;
+      if (!schema?.indices?.acByName) return null;
       const normalized = normalizeName(name);
       const key = `${normalized}|${stateId}`;
 
-      // Try direct match first
+      // Try direct match first (lowercase, schema may use this)
       let id = schema.indices.acByName[key];
 
       // Try without reservation suffix
       if (!id) {
         const cleanName = normalized.replace(/\s*\([^)]*\)\s*$/, '').trim();
         id = schema.indices.acByName[`${cleanName}|${stateId}`];
+      }
+
+      // Fallback: schema indices may be built with uppercase name (e.g. PALACODE|TN)
+      if (!id) {
+        const namePart = normalized.replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
+        if (namePart) {
+          id =
+            schema.indices.acByName[`${namePart.toUpperCase()}|${stateId}`] ??
+            schema.indices.acByName[`${namePart}|${stateId}`];
+        }
       }
 
       return id ?? null;

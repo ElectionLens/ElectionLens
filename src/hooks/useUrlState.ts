@@ -11,6 +11,8 @@ export interface UrlState {
   year: number | null;
   pcYear: number | null; // Parliament year for AC view (from year=pc-YYYY format)
   tab: string | null; // Active tab in election panel: 'overview', 'candidates', 'booths', 'postal', 'analysis'
+  /** When viewing a specific PC: true = show ACs within PC, false = show PC boundary only */
+  showACs: boolean | null;
   blog: boolean; // Whether blog section is open
   blogPost: string | null; // Selected blog post ID (e.g., 'ammk-admk-alliance')
 }
@@ -48,8 +50,12 @@ function encodePathSegment(value: string): string {
  * Decode a URL path segment
  */
 function decodePathSegment(segment: string): string {
-  // Replace hyphens with spaces, but preserve hyphens before numbers (e.g., indore-1)
-  return decodeURIComponent(segment).replace(/-(?!\d)/g, ' ');
+  let decoded = decodeURIComponent(segment).replace(/-(?!\d)/g, ' ');
+  // Fix common typo: "name(sc" or "name(st" (missing ")") -> "name (sc)" so assembly matches GeoJSON
+  if (/\(s[ct]$/i.test(decoded)) {
+    decoded = decoded.replace(/\((s[ct])$/i, ' ($1)');
+  }
+  return decoded;
 }
 
 /**
@@ -73,7 +79,8 @@ export function useUrlState(
   selectedYear: number | null,
   selectedPCYear: number | null,
   onNavigate: (state: UrlState) => void | Promise<void>,
-  isDataReady: boolean = true
+  isDataReady: boolean = true,
+  showACsWithinPC: boolean | null = null
 ): UseUrlStateReturn {
   const isInitialMount = useRef(true);
   const hasNavigatedFromUrl = useRef(false);
@@ -103,6 +110,7 @@ export function useUrlState(
       year: null,
       pcYear: null,
       tab: null,
+      showACs: null,
       blog: false,
       blogPost: null,
     };
@@ -147,6 +155,14 @@ export function useUrlState(
     if (blogPostParam) {
       result.blogPost = blogPostParam;
       result.blog = true; // Opening a post implies blog is open
+    }
+
+    // showACs: when viewing a specific PC, showACs=true (show ACs) or false (show PC boundary)
+    const showACsParam = searchParams.get('showACs');
+    if (showACsParam === 'true' || showACsParam === '1') {
+      result.showACs = true;
+    } else if (showACsParam === 'false' || showACsParam === '0') {
+      result.showACs = false;
     }
 
     if (segments.length === 0) {
@@ -196,6 +212,36 @@ export function useUrlState(
       }
     }
 
+    // Default showACs to true when viewing a specific PC and no param in URL
+    if (result.pc != null && result.showACs === null) {
+      result.showACs = true;
+    }
+
+    // #region agent log
+    if (result.state && (result.district || result.assembly)) {
+      fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          location: 'useUrlState.ts:getUrlState',
+          message: 'Parsed URL state',
+          data: {
+            state: result.state,
+            view: result.view,
+            district: result.district,
+            assembly: result.assembly,
+            year: result.year,
+            pcYear: result.pcYear,
+            path: typeof window !== 'undefined' ? window.location.pathname : '',
+            search: typeof window !== 'undefined' ? window.location.search : '',
+          },
+          timestamp: Date.now(),
+          sessionId: 'debug-session',
+          hypothesisId: 'B',
+        }),
+      }).catch(() => {});
+    }
+    // #endregion
     return result;
   }, []);
 
@@ -225,29 +271,47 @@ export function useUrlState(
         }
       } else if (state.view === 'districts') {
         path += '/districts';
+      } else if (state.view === 'constituencies') {
+        // Always include /pc for constituencies view (state-level)
+        path += '/pc';
       }
     }
 
-    // Add query params for year and tab
-    // - For AC view with pcYear: year=pc-YYYY (parliament contribution)
-    // - For AC view with year: year=YYYY (assembly year)
-    // - For PC view with year: year=YYYY (parliament year)
-    // - Tab: tab=overview|candidates|booths|postal|analysis
+    // Add query params for year and tab. When at home (no state), do not add year.
     const params = new URLSearchParams();
 
-    if (state.assembly) {
-      if (state.pcYear) {
-        params.set('year', `pc-${state.pcYear}`);
-      } else if (state.year) {
+    if (state.state) {
+      if (state.assembly) {
+        if (state.pcYear) {
+          params.set('year', `pc-${state.pcYear}`);
+        } else if (state.year) {
+          params.set('year', String(state.year));
+        }
+      } else if (state.pc && state.year) {
         params.set('year', String(state.year));
+      } else if (state.view === 'constituencies' && state.year) {
+        params.set('year', String(state.year));
+      } else if (state.view === 'assemblies') {
+        if (state.pcYear) {
+          params.set('year', `pc-${state.pcYear}`);
+        } else if (state.year) {
+          params.set('year', String(state.year));
+        }
+      } else if (state.view === 'districts') {
+        if (state.pcYear) {
+          params.set('year', `pc-${state.pcYear}`);
+        } else if (state.year) {
+          params.set('year', String(state.year));
+        }
       }
-    } else if (state.pc && state.year) {
-      // PC view - year is parliament year
-      params.set('year', String(state.year));
     }
 
     if (state.tab) {
       params.set('tab', state.tab);
+    }
+
+    if (state.pc != null && state.showACs != null) {
+      params.set('showACs', state.showACs ? 'true' : 'false');
     }
 
     if (state.blog) {
@@ -293,29 +357,47 @@ export function useUrlState(
         }
       } else if (state.view === 'districts') {
         path += '/districts';
+      } else if (state.view === 'constituencies') {
+        // Always include /pc for constituencies view (state-level)
+        path += '/pc';
       }
     }
 
-    // Add query params for year and tab
-    // - For AC view with pcYear: year=pc-YYYY (parliament contribution)
-    // - For AC view with year: year=YYYY (assembly year)
-    // - For PC view with year: year=YYYY (parliament year)
-    // - Tab: tab=overview|candidates|booths|postal|analysis
+    // Add query params for year and tab. When at home (no state), do not add year.
     const params = new URLSearchParams();
 
-    if (state.assembly) {
-      if (state.pcYear) {
-        params.set('year', `pc-${state.pcYear}`);
-      } else if (state.year) {
+    if (state.state) {
+      if (state.assembly) {
+        if (state.pcYear) {
+          params.set('year', `pc-${state.pcYear}`);
+        } else if (state.year) {
+          params.set('year', String(state.year));
+        }
+      } else if (state.pc && state.year) {
         params.set('year', String(state.year));
+      } else if (state.view === 'constituencies' && state.year) {
+        params.set('year', String(state.year));
+      } else if (state.view === 'assemblies') {
+        if (state.pcYear) {
+          params.set('year', `pc-${state.pcYear}`);
+        } else if (state.year) {
+          params.set('year', String(state.year));
+        }
+      } else if (state.view === 'districts') {
+        if (state.pcYear) {
+          params.set('year', `pc-${state.pcYear}`);
+        } else if (state.year) {
+          params.set('year', String(state.year));
+        }
       }
-    } else if (state.pc && state.year) {
-      // PC view - year is parliament year
-      params.set('year', String(state.year));
     }
 
     if (state.tab) {
       params.set('tab', state.tab);
+    }
+
+    if (state.pc != null && state.showACs != null) {
+      params.set('showACs', state.showACs ? 'true' : 'false');
     }
 
     if (state.blog) {
@@ -335,25 +417,47 @@ export function useUrlState(
   // Handle initial URL on mount - wait for data to be ready
   useEffect(() => {
     if (isDataReady && !hasNavigatedFromUrl.current) {
-      hasNavigatedFromUrl.current = true;
       const urlState = getUrlState();
-
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          location: 'useUrlState.ts:initialNav',
+          message: 'About to call handleUrlNavigate',
+          data: {
+            hasNavigatedFromUrl: hasNavigatedFromUrl.current,
+            isDataReady,
+            urlStateYear: urlState.year,
+            urlStatePcYear: urlState.pcYear,
+            urlStateDistrict: urlState.district,
+            urlStateAssembly: urlState.assembly,
+          },
+          timestamp: Date.now(),
+          sessionId: 'debug-session',
+          hypothesisId: 'D',
+        }),
+      }).catch(() => {});
+      // #endregion
       // Only navigate if URL has state info
       if (urlState.state) {
         // Mark that we're processing URL navigation to prevent URL updates during this time
         isProcessingUrlNavigation.current = true;
 
-        // Use Promise.resolve to handle both sync and async navigation handlers
+        // Use Promise.resolve to handle both sync and async navigation handlers.
+        // Set hasNavigatedFromUrl only after completion so React Strict Mode's second mount
+        // still runs handleUrlNavigate (refs persist across strict double-mount).
         void Promise.resolve(onNavigateRef.current(urlState)).finally(() => {
-          // Small delay to ensure all state updates have been processed
+          hasNavigatedFromUrl.current = true;
+          // Small delay to ensure all state updates (e.g. setSelectedYear) have been committed
           setTimeout(() => {
             isProcessingUrlNavigation.current = false;
             isInitialMount.current = false;
-            // Now sync the URL with the final state (in case there were any normalization changes)
             lastUrl.current = window.location.pathname + window.location.search;
-          }, 100);
+          }, 150);
         });
       } else {
+        hasNavigatedFromUrl.current = true;
         isInitialMount.current = false;
       }
     }
@@ -371,15 +475,42 @@ export function useUrlState(
       const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
       const preservedTab = currentTab && validTabs.includes(currentTab) ? currentTab : null;
 
+      // When at home (no state), do not add year to URL — home is always clean root
+      const atHome = !currentState;
+      // When viewing AC or districts, prefer year from current URL so we
+      // don't overwrite with stale state before handleUrlNavigate has applied it.
+      let yearToUse = atHome ? null : selectedYear;
+      let pcYearToUse = atHome ? null : selectedPCYear;
+      const inACOrDistrictsView =
+        !atHome &&
+        (currentView === 'assemblies' || currentView === 'districts') &&
+        typeof window !== 'undefined';
+      if (inACOrDistrictsView) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const yearParam = urlParams.get('year');
+        if (yearParam) {
+          if (yearParam.startsWith('pc-')) {
+            const parsed = parseInt(yearParam.slice(3), 10);
+            if (!isNaN(parsed)) pcYearToUse = parsed;
+          } else {
+            const parsed = parseInt(yearParam, 10);
+            if (!isNaN(parsed)) {
+              yearToUse = parsed;
+              pcYearToUse = null;
+            }
+          }
+        }
+      }
       updateUrl({
         state: currentState,
         view: currentView,
         pc: currentPC,
         district: currentDistrict,
         assembly: currentAssembly,
-        year: selectedYear,
-        pcYear: selectedPCYear,
+        year: yearToUse,
+        pcYear: pcYearToUse,
         tab: preservedTab, // Preserve tab from current URL
+        showACs: currentPC ? (showACsWithinPC ?? true) : null,
         blog: false, // Blog is managed in App component
         blogPost: null,
       });
@@ -392,6 +523,7 @@ export function useUrlState(
     currentAssembly,
     selectedYear,
     selectedPCYear,
+    showACsWithinPC,
     updateUrl,
   ]);
 

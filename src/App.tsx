@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Sidebar } from './components/Sidebar';
 import { MapView } from './components/MapView';
@@ -9,6 +9,8 @@ import { useElectionResults } from './hooks/useElectionResults';
 import { useParliamentResults } from './hooks/useParliamentResults';
 import { useUrlState, type UrlState } from './hooks/useUrlState';
 import { useSchema } from './hooks/useSchema';
+import { ELECTIONS, PC_ELECTIONS } from './constants/paths';
+import { STATE_FILE_MAP } from './constants';
 import { normalizeName, toTitleCase } from './utils/helpers';
 import { trackPageView, trackConstituencySelect } from './utils/firebase';
 import type {
@@ -18,12 +20,27 @@ import type {
   ConstituencyFeature,
   AssemblyFeature,
   ViewMode,
+  ElectionResultsByConstituency,
+  PCElectionResultsByConstituency,
 } from './types';
 
 /**
  * All available parliament election years (post-delimitation)
  */
 const PARLIAMENT_YEARS = [2009, 2014, 2019, 2024];
+
+/** Get state ID from state display name (e.g. "Tamil Nadu" -> "TN") for PC path lookup */
+function getStateIdFromName(stateName: string): string {
+  const normalized = normalizeName(stateName);
+  const byState = STATE_FILE_MAP[stateName as keyof typeof STATE_FILE_MAP];
+  if (byState) return byState;
+  const byNorm = STATE_FILE_MAP[normalized as keyof typeof STATE_FILE_MAP];
+  if (byNorm) return byNorm;
+  for (const [key, value] of Object.entries(STATE_FILE_MAP)) {
+    if (normalizeName(key) === normalized) return value;
+  }
+  return normalized.toUpperCase().slice(0, 2);
+}
 
 /**
  * Main application component
@@ -72,10 +89,11 @@ function App(): JSX.Element {
     getPCResult,
     setSelectedYear: setPCSelectedYear,
     clearResult: clearPCElectionResult,
+    loadStateIndex: loadPCStateIndex,
   } = useParliamentResults();
 
   // Schema for canonical name resolution
-  const { getAC, getPC, resolveACName, resolveStateName } = useSchema();
+  const { getAC, getPC, resolveACName, resolveStateName, resolvePCName, schema } = useSchema();
 
   // State for AC's parliament contributions (all years)
   const [parliamentContributions, setParliamentContributions] = useState<
@@ -99,19 +117,56 @@ function App(): JSX.Element {
   // Selected parliament year in AC panel (for URL state)
   const [selectedACPCYear, setSelectedACPCYear] = useState<number | null>(null);
 
-  // Available parliament years for the current AC
-  const availablePCYears = Object.keys(parliamentContributions)
-    .map(Number)
-    .sort((a, b) => a - b);
+  // Available parliament years for the current AC: always show all PARLIAMENT_YEARS in toolbar/panel
+  // (merged with any loaded contributions so 2019-PC etc. appear even before that year is loaded)
+  const availablePCYears = useMemo(
+    () =>
+      [...new Set([...Object.keys(parliamentContributions).map(Number), ...PARLIAMENT_YEARS])].sort(
+        (a, b) => a - b
+      ),
+    [parliamentContributions]
+  );
 
   /**
    * Handle URL-based navigation (deep linking)
    */
   const handleUrlNavigate = useCallback(
     async (urlState: UrlState): Promise<void> => {
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          location: 'App.tsx:handleUrlNavigate',
+          message: 'Entry',
+          data: {
+            state: urlState.state,
+            district: urlState.district,
+            assembly: urlState.assembly,
+            year: urlState.year,
+            pcYear: urlState.pcYear,
+            branch: urlState.pc
+              ? 'pc'
+              : urlState.district
+                ? 'district'
+                : urlState.view === 'assemblies'
+                  ? 'assemblies'
+                  : 'other',
+          },
+          timestamp: Date.now(),
+          sessionId: 'debug-session',
+          hypothesisId: 'A',
+        }),
+      }).catch(() => {});
+      // #endregion
       if (!urlState.state) {
         resetView();
         setCurrentData(null);
+        setInitialPCWinners(null);
+        // Redirect to clean root: /?year=2019 -> / (replace so back button doesn't restore params)
+        if (window.location.pathname === '/' && window.location.search) {
+          window.history.replaceState({}, '', '/');
+        }
         return;
       }
 
@@ -126,29 +181,47 @@ function App(): JSX.Element {
           matchedState = found.properties.shapeName ?? found.properties.ST_NM ?? urlState.state;
         }
       }
-      console.log(
-        '[handleUrlNavigate] urlState.state:',
-        urlState.state,
-        '→ matchedState:',
-        matchedState
-      );
+      setInitialPCWinners(null);
+
+      // AC-within-PC: set selectedYear from URL before any await so Update URL effect
+      // does not overwrite the URL when navigateToState/navigateToPC trigger re-renders
+      if (urlState.pc && urlState.assembly && urlState.year != null) {
+        setSelectedYear(urlState.year);
+      }
 
       if (urlState.pc) {
+        // Set PC year from URL first so toolbar and MapView loadResults use it (fix: AC colors update when year in URL)
+        if (urlState.year != null) {
+          setPCSelectedYear(urlState.year);
+        }
+        // Set parliament contribution year (year=pc-YYYY) before any await so map coloring uses correct year
+        if (urlState.pcYear != null) {
+          setSelectedACPCYear(urlState.pcYear);
+          // Also set pcSelectedYear so MapView constituencies branch loads this year (view stays constituencies when AC within PC)
+          setPCSelectedYear(urlState.pcYear);
+        }
         // First navigate to state, then to PC
         await navigateToState(matchedState);
         const pcName = toTitleCase(urlState.pc.replace(/-/g, ' ')).toUpperCase();
         const data = await navigateToPC(pcName, matchedState);
         setCurrentData(data);
+        if (urlState.showACs != null) {
+          setShowACsWithinPC(urlState.showACs);
+        }
         if (urlState.assembly) {
           // Convert assembly name to match GeoJSON format (Title Case, uppercase for comparison)
           const acName = toTitleCase(urlState.assembly).toUpperCase();
           selectAssembly(acName);
           await getACResult(acName, matchedState, urlState.year ?? undefined);
           // Parliament contributions loaded by useEffect when currentAssembly changes
-          // Set PC year if provided in URL (year=pc-YYYY format)
+          // Set PC year if provided in URL (year=pc-YYYY format); otherwise show assembly year
           if (urlState.pcYear) {
             setSelectedACPCYear(urlState.pcYear);
+          } else {
+            setSelectedACPCYear(null);
           }
+          // Re-apply URL year so we win over any in-flight loadStateIndex() that overwrote it
+          if (urlState.year != null) setSelectedYear(urlState.year);
         } else {
           // No assembly selected - load PC election results for the PC view
           await getPCResult(pcName, matchedState, urlState.year ?? undefined);
@@ -159,38 +232,407 @@ function App(): JSX.Element {
         const districtName = toTitleCase(urlState.district);
         const data = await navigateToDistrict(districtName, matchedState);
         setCurrentData(data);
+        // Set year from URL for map coloring (districts view uses selectedYear/selectedACPCYear)
+        if (urlState.pcYear) {
+          setSelectedACPCYear(urlState.pcYear);
+        } else {
+          setSelectedACPCYear(null); // Assembly year in URL (year=2024) — show AC result, not PC contribution
+        }
+        if (urlState.year != null) {
+          setSelectedYear(urlState.year);
+        }
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            location: 'App.tsx:handleUrlNavigate district branch',
+            message: 'After set year state',
+            data: {
+              urlStateYear: urlState.year,
+              urlStatePcYear: urlState.pcYear,
+              setSelectedACPCYearTo: urlState.pcYear ?? null,
+              setSelectedYearTo: urlState.year ?? null,
+            },
+            timestamp: Date.now(),
+            sessionId: 'debug-session',
+            hypothesisId: 'A',
+          }),
+        }).catch(() => {});
+        // #endregion
         if (urlState.assembly) {
           // Convert assembly name to match GeoJSON format (Title Case, uppercase for comparison)
           const acName = toTitleCase(urlState.assembly).toUpperCase();
           selectAssembly(acName);
           await getACResult(acName, matchedState, urlState.year ?? undefined);
           // Parliament contributions loaded by useEffect when currentAssembly changes
-          // Set PC year if provided in URL (year=pc-YYYY format)
-          if (urlState.pcYear) {
-            setSelectedACPCYear(urlState.pcYear);
-          }
+          // Re-apply URL year so we win over any in-flight loadStateIndex() that overwrote it
+          if (urlState.year != null) setSelectedYear(urlState.year);
+          if (!urlState.pcYear) setSelectedACPCYear(null);
         }
       } else if (urlState.view === 'assemblies') {
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            location: 'App.tsx:handleUrlNavigate assemblies branch entry',
+            message: 'urlState year/pcYear and what we set',
+            data: {
+              urlStateYear: urlState.year,
+              urlStatePcYear: urlState.pcYear,
+              settingPcYear: !!urlState.pcYear,
+              settingYearFromUrl: !!urlState.year,
+            },
+            timestamp: Date.now(),
+            sessionId: 'debug-session',
+            hypothesisId: 'H1',
+          }),
+        }).catch(() => {});
+        // #endregion
+        // Set PC year from URL immediately so useUrlState doesn't overwrite year=pc-YYYY
+        if (urlState.pcYear) {
+          setSelectedACPCYear(urlState.pcYear);
+        } else {
+          setSelectedACPCYear(null); // Assembly year in URL — show AC colors, not PC contribution
+        }
+        // Set assembly year from URL so loadResults can color all ACs
+        if (urlState.year != null) {
+          setSelectedYear(urlState.year);
+        }
         // All assemblies view for a state
         const data = await navigateToAssemblies(matchedState);
         setCurrentData(data);
+        // Pre-load election index (pass yearFromUrl so loadStateIndex doesn't overwrite URL year)
+        const acIndex = await loadStateIndex(
+          matchedState,
+          urlState.year != null ? { yearFromUrl: urlState.year } : undefined
+        );
+        void loadPCStateIndex(matchedState);
+
+        // If no year in URL (neither year nor pcYear), set to latest AC year so map is colored
+        if (!urlState.year && !urlState.pcYear && acIndex && acIndex.availableYears.length > 0) {
+          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                location: 'App.tsx:handleUrlNavigate set latestYear (no year in URL)',
+                message: 'default year for state-level AC view',
+                data: { latestYear, state: matchedState },
+                timestamp: Date.now(),
+                sessionId: 'debug-session',
+                hypothesisId: 'H2',
+              }),
+            }).catch(() => {});
+            // #endregion
+            setSelectedYear(latestYear);
+            // Update URL immediately with latest year (preserve assembly if present)
+            setTimeout(() => {
+              updateUrlRef.current({
+                state: matchedState,
+                view: 'assemblies',
+                pc: null,
+                district: null,
+                assembly: urlState.assembly ?? null,
+                year: latestYear,
+                pcYear: null,
+                tab: null,
+                showACs: null,
+                blog: false,
+                blogPost: null,
+              });
+            }, 0);
+          }
+        }
+        // If year in URL is not available for this state's AC data, correct to latest so map is colored
+        if (
+          urlState.year != null &&
+          acIndex &&
+          acIndex.availableYears.length > 0 &&
+          !acIndex.availableYears.includes(urlState.year)
+        ) {
+          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            setSelectedYear(latestYear);
+            setTimeout(() => {
+              updateUrlRef.current({
+                state: matchedState,
+                view: 'assemblies',
+                pc: null,
+                district: null,
+                assembly: urlState.assembly ?? null,
+                year: latestYear,
+                pcYear: null,
+                tab: null,
+                showACs: null,
+                blog: false,
+                blogPost: null,
+              });
+            }, 0);
+          }
+        }
+
         if (urlState.assembly) {
           // Specific assembly selected
           const acName = toTitleCase(urlState.assembly).toUpperCase();
           selectAssembly(acName);
           await getACResult(acName, matchedState, urlState.year ?? undefined);
-          // Set PC year if provided in URL (year=pc-YYYY format)
-          if (urlState.pcYear) {
-            setSelectedACPCYear(urlState.pcYear);
-          }
+          // Re-apply URL year so we win over any in-flight loadStateIndex() that overwrote it
+          if (urlState.year != null) setSelectedYear(urlState.year);
+          if (!urlState.pcYear) setSelectedACPCYear(null);
         }
       } else if (urlState.view === 'districts') {
         const data = await loadDistrictsForState(matchedState);
         setCurrentData(data);
+        // Pre-load election index for the state (both AC and PC)
+        const acIndex = await loadStateIndex(
+          matchedState,
+          urlState.year != null ? { yearFromUrl: urlState.year } : undefined
+        );
+        void loadPCStateIndex(matchedState);
+        // Set year from URL for map coloring (same as assemblies view)
+        if (urlState.pcYear) {
+          setSelectedACPCYear(urlState.pcYear);
+        }
+        if (urlState.year != null) {
+          setSelectedYear(urlState.year);
+        }
+        // If no year in URL, set default to latest AC year so map is colored
+        if (!urlState.year && !urlState.pcYear && acIndex && acIndex.availableYears.length > 0) {
+          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            setSelectedYear(latestYear);
+            setTimeout(() => {
+              updateUrlRef.current({
+                state: matchedState,
+                view: 'districts',
+                pc: null,
+                district: null,
+                assembly: null,
+                year: latestYear,
+                pcYear: null,
+                tab: null,
+                showACs: null,
+                blog: false,
+                blogPost: null,
+              });
+            }, 0);
+          }
+        }
+        // If year in URL is not available for this state's AC data, correct to latest so map is colored
+        if (
+          urlState.year != null &&
+          acIndex &&
+          acIndex.availableYears.length > 0 &&
+          !acIndex.availableYears.includes(urlState.year)
+        ) {
+          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            setSelectedYear(latestYear);
+            setTimeout(() => {
+              updateUrlRef.current({
+                state: matchedState,
+                view: 'districts',
+                pc: null,
+                district: null,
+                assembly: null,
+                year: latestYear,
+                pcYear: null,
+                tab: null,
+                showACs: null,
+                blog: false,
+                blogPost: null,
+              });
+            }, 0);
+          }
+        }
       } else {
-        // Default constituencies view
-        const data = await navigateToState(matchedState);
+        // Default constituencies view (PC view)
+        const stateId = getStateIdFromName(matchedState);
+        let data: GeoJSONData | null = null;
+        let pcWinners: Record<string, { party: string; candidate: string }> | null = null;
+
+        if (urlState.year != null) {
+          // Fetch state GeoJSON and PC results in parallel so first paint has party colors
+          const [stateData, pcResults] = await Promise.all([
+            navigateToState(matchedState),
+            fetch(PC_ELECTIONS.getYearPath(stateId, urlState.year)).then((r) =>
+              r.ok ? (r.json() as Promise<PCElectionResultsByConstituency>) : null
+            ),
+          ]);
+          data = stateData;
+          if (pcResults) {
+            const winners: Record<string, { party: string; candidate: string }> = {};
+            const pcSchemaIdPattern = /^[A-Z]{2}-\d+$/;
+            for (const [key, result] of Object.entries(pcResults)) {
+              if (result?.candidates?.length) {
+                const winner = result.candidates[0];
+                if (winner) {
+                  const entry = { party: winner.party, candidate: winner.name };
+                  if (key && pcSchemaIdPattern.test(key)) winners[key] = entry;
+                  const pcName =
+                    result.constituencyNameOriginal || result.constituencyName || result.name || '';
+                  if (pcName) {
+                    const normalizedName = normalizeName(pcName)
+                      .toUpperCase()
+                      .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
+                      .trim()
+                      .replace(/\s+/g, ' ');
+                    const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+                    winners[normalizedName] = entry;
+                    if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
+                    const originalUpper = pcName.toUpperCase().trim();
+                    if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
+                      winners[originalUpper] = entry;
+                    }
+                    const sid = resolvePCName(pcName, stateId);
+                    if (sid) winners[sid] = entry;
+                  }
+                }
+              }
+            }
+            // Fill PCs missing from file (e.g. Vellore TN-08 in 2019) by deriving winner from AC data
+            if (schema?.parliamentaryConstituencies && schema?.assemblyConstituencies) {
+              const statePCIds = Object.values(schema.parliamentaryConstituencies)
+                .filter((pc: { stateId: string; id: string }) => pc.stateId === stateId)
+                .map((pc: { id: string }) => pc.id);
+              const missingPCIds = statePCIds.filter((id) => !winners[id]);
+              if (missingPCIds.length > 0) {
+                try {
+                  const acIndexRes = await fetch(ELECTIONS.getIndexPath(stateId));
+                  if (acIndexRes.ok) {
+                    const acIndex = (await acIndexRes.json()) as { availableYears?: number[] };
+                    const acYears = acIndex.availableYears ?? [];
+                    const assemblyYear =
+                      acYears.filter((y) => y <= urlState.year!).pop() ??
+                      acYears[acYears.length - 1];
+                    if (assemblyYear != null) {
+                      const acRes = await fetch(ELECTIONS.getYearPath(stateId, assemblyYear));
+                      if (acRes.ok) {
+                        const acResults = (await acRes.json()) as ElectionResultsByConstituency;
+                        const acWinners: Record<string, { party: string; candidate: string }> = {};
+                        const schemaIdPattern = /^[A-Z]{2}-\d+$/;
+                        for (const [key, result] of Object.entries(acResults)) {
+                          if (result?.candidates?.length && result.candidates[0]) {
+                            const w = result.candidates[0];
+                            const entry = { party: w.party, candidate: w.name };
+                            if (key && schemaIdPattern.test(key)) acWinners[key] = entry;
+                          }
+                        }
+                        for (const pcId of missingPCIds) {
+                          const acsInPC = Object.entries(schema.assemblyConstituencies).filter(
+                            ([, ac]) => ac.stateId === stateId && ac.pcId === pcId
+                          );
+                          const partyCounts: Record<string, number> = {};
+                          for (const [acId] of acsInPC) {
+                            const acWinner = acWinners[acId];
+                            if (acWinner?.party) {
+                              partyCounts[acWinner.party] = (partyCounts[acWinner.party] ?? 0) + 1;
+                            }
+                          }
+                          let modeParty: string | null = null;
+                          let maxCount = 0;
+                          for (const [party, count] of Object.entries(partyCounts)) {
+                            if (count > maxCount) {
+                              maxCount = count;
+                              modeParty = party;
+                            }
+                          }
+                          if (modeParty) {
+                            const entry = { party: modeParty, candidate: '' };
+                            winners[pcId] = entry;
+                            const pcEntity = schema.parliamentaryConstituencies[pcId];
+                            if (pcEntity?.name) {
+                              const normalizedName = normalizeName(pcEntity.name)
+                                .toUpperCase()
+                                .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
+                                .trim()
+                                .replace(/\s+/g, ' ');
+                              winners[normalizedName] = entry;
+                              const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+                              if (fuzzyKey && fuzzyKey !== normalizedName)
+                                winners[fuzzyKey] = entry;
+                              winners[pcEntity.name.toUpperCase().trim()] = entry;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                } catch {
+                  // Ignore; missing PCs use dominant fallback in MapView
+                }
+              }
+            }
+            pcWinners = winners;
+          }
+        } else {
+          data = await navigateToState(matchedState);
+        }
+
         setCurrentData(data);
+        if (pcWinners) setInitialPCWinners(pcWinners);
+        // Pre-load election index for the state (both AC and PC)
+        void loadStateIndex(matchedState);
+        const pcIndex = await loadPCStateIndex(matchedState);
+
+        // If year in URL, set pcSelectedYear so toolbar and PC-click preserve it (fix: year no longer jumps to 2024)
+        if (urlState.year != null) {
+          setPCSelectedYear(urlState.year);
+        }
+        // If year in URL is not available for this state's PC data, correct to latest so map is colored
+        if (
+          urlState.year != null &&
+          pcIndex &&
+          pcIndex.availableYears.length > 0 &&
+          !pcIndex.availableYears.includes(urlState.year)
+        ) {
+          const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            setPCSelectedYear(latestYear);
+            setTimeout(() => {
+              updateUrlRef.current({
+                state: matchedState,
+                view: 'constituencies',
+                pc: null,
+                district: null,
+                assembly: null,
+                year: latestYear,
+                pcYear: null,
+                tab: null,
+                showACs: null,
+                blog: false,
+                blogPost: null,
+              });
+            }, 0);
+          }
+        }
+        // If no year in URL and no specific PC selected, set to latest PC year and update URL
+        if (!urlState.year && !urlState.pc && pcIndex && pcIndex.availableYears.length > 0) {
+          const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            setPCSelectedYear(latestYear);
+            // Update URL immediately with latest year (use ref to avoid dependency issues)
+            setTimeout(() => {
+              updateUrlRef.current({
+                state: matchedState,
+                view: 'constituencies',
+                pc: null,
+                district: null,
+                assembly: null,
+                year: latestYear,
+                pcYear: null,
+                tab: null,
+                showACs: null,
+                blog: false,
+                blogPost: null,
+              });
+            }, 0);
+          }
+        }
       }
 
       // Handle blog state from URL
@@ -210,16 +652,26 @@ function App(): JSX.Element {
       selectAssembly,
       getACResult,
       getPCResult,
+      loadStateIndex,
+      loadPCStateIndex,
+      resolvePCName,
+      schema,
+      setSelectedYear,
+      setPCSelectedYear,
+      setSelectedACPCYear,
     ]
   );
 
   // URL state management for deep linking
   // Wait for statesGeoJSON to be loaded before processing URL
   const isDataReady = Boolean(statesGeoJSON);
+  // When viewing a specific PC: true = show ACs within PC, false = show PC boundary only (synced to URL)
+  const [showACsWithinPC, setShowACsWithinPC] = useState<boolean>(true);
   // Use the appropriate year based on context:
-  // - For AC view: use assembly year (selectedYear)
-  // - For PC view (no assembly): use parliament year (pcSelectedYear)
-  const urlYear = currentAssembly ? selectedYear : pcSelectedYear;
+  // - For AC view (assemblies) or districts: use assembly year (selectedYear) or pcYear (selectedACPCYear)
+  // - For PC view (constituencies): use parliament year (pcSelectedYear)
+  const urlYear =
+    currentView === 'assemblies' || currentView === 'districts' ? selectedYear : pcSelectedYear;
   const { getShareableUrl, updateUrl } = useUrlState(
     currentState,
     currentView,
@@ -229,8 +681,45 @@ function App(): JSX.Element {
     urlYear,
     selectedACPCYear,
     handleUrlNavigate,
-    isDataReady
+    isDataReady,
+    showACsWithinPC
   );
+
+  // Ref to store updateUrl for use in handleUrlNavigate
+  const updateUrlRef = useRef(updateUrl);
+  useEffect(() => {
+    updateUrlRef.current = updateUrl;
+  }, [updateUrl]);
+
+  // Keep selectedYear in sync with URL when on AC page with ?year= (single source of truth)
+  // Corrects any overwrite from loadStateIndex or other async updates after initial URL load
+  const getACResultRef = useRef(getACResult);
+  getACResultRef.current = getACResult;
+  useEffect(() => {
+    if (
+      typeof window === 'undefined' ||
+      currentView !== 'assemblies' ||
+      !currentAssembly ||
+      !currentState
+    ) {
+      return;
+    }
+    const params = new URLSearchParams(window.location.search);
+    const yearParam = params.get('year');
+    if (!yearParam || yearParam.startsWith('pc-')) return;
+    const urlYear = parseInt(yearParam, 10);
+    if (isNaN(urlYear)) return;
+    if (selectedYear !== urlYear) {
+      setSelectedYear(urlYear);
+      setSelectedACPCYear(null);
+      const ac = currentAssembly;
+      const state = currentState;
+      const loadResult = (): void => {
+        getACResultRef.current(ac, state, urlYear);
+      };
+      void Promise.resolve().then(loadResult);
+    }
+  }, [currentView, currentAssembly, currentState, selectedYear]);
 
   // Mobile sidebar state
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
@@ -243,6 +732,12 @@ function App(): JSX.Element {
 
   // Current displayed data
   const [currentData, setCurrentData] = useState<GeoJSONData | null>(null);
+
+  // PC winners for state-level PC view first paint (set in handleUrlNavigate so map has colors before MapView loadResults)
+  const [initialPCWinners, setInitialPCWinners] = useState<Record<
+    string,
+    { party: string; candidate: string }
+  > | null>(null);
 
   /**
    * Update document title dynamically for SEO and browser tabs
@@ -313,56 +808,21 @@ function App(): JSX.Element {
   // Load initial data and update on state changes
   useEffect(() => {
     async function updateData(): Promise<void> {
-      console.log(
-        '[useEffect updateData] currentState:',
-        currentState,
-        'currentView:',
-        currentView,
-        'currentPC:',
-        currentPC,
-        'currentDistrict:',
-        currentDistrict
-      );
       if (currentPC && currentState) {
         const data = await navigateToPC(currentPC, currentState);
-        console.log(
-          '[useEffect updateData] navigateToPC result:',
-          data?.features?.length,
-          'features'
-        );
         setCurrentData(data);
       } else if (currentDistrict && currentState) {
         const data = await navigateToDistrict(currentDistrict, currentState);
-        console.log(
-          '[useEffect updateData] navigateToDistrict result:',
-          data?.features?.length,
-          'features'
-        );
         setCurrentData(data);
       } else if (currentState) {
         if (currentView === 'constituencies') {
           const data = await navigateToState(currentState);
-          console.log(
-            '[useEffect updateData] navigateToState result:',
-            data?.features?.length,
-            'features'
-          );
           setCurrentData(data);
         } else if (currentView === 'assemblies') {
           const data = await navigateToAssemblies(currentState);
-          console.log(
-            '[useEffect updateData] navigateToAssemblies result:',
-            data?.features?.length,
-            'features'
-          );
           setCurrentData(data);
         } else if (currentView === 'districts') {
           const data = await loadDistrictsForState(currentState);
-          console.log(
-            '[useEffect updateData] loadDistrictsForState result:',
-            data?.features?.length,
-            'features'
-          );
           setCurrentData(data);
         }
       } else {
@@ -383,8 +843,32 @@ function App(): JSX.Element {
       clearPCElectionResult();
       const data = await navigateToState(stateName);
       setCurrentData(data);
-      // Pre-load election index for the state
+      // Pre-load election index for the state (both AC and PC)
       void loadStateIndex(stateName);
+      const pcIndex = await loadPCStateIndex(stateName);
+      // Landing on PC view: ensure valid PC year for this state so map is colored
+      if (
+        pcIndex?.availableYears?.length &&
+        (pcSelectedYear == null || !pcIndex.availableYears.includes(pcSelectedYear))
+      ) {
+        const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
+        if (latestYear !== undefined) {
+          setPCSelectedYear(latestYear);
+          updateUrlRef.current({
+            state: stateName,
+            view: 'constituencies',
+            pc: null,
+            district: null,
+            assembly: null,
+            year: latestYear,
+            pcYear: null,
+            tab: null,
+            showACs: null,
+            blog: false,
+            blogPost: null,
+          });
+        }
+      }
       // Track analytics
       trackConstituencySelect('state', stateName);
     },
@@ -392,8 +876,11 @@ function App(): JSX.Element {
       navigateToState,
       closeSidebarOnMobile,
       loadStateIndex,
+      loadPCStateIndex,
       clearElectionResult,
       clearPCElectionResult,
+      pcSelectedYear,
+      setPCSelectedYear,
     ]
   );
 
@@ -433,14 +920,23 @@ function App(): JSX.Element {
       clearElectionResult();
       const data = await navigateToPC(pcName, currentState);
       setCurrentData(data);
-      // Load PC election results
-      await getPCResult(pcName, currentState);
+      // Preserve year: use pcSelectedYear, or fallback to URL (handles stale closure / state not yet updated)
+      let yearToLoad = pcSelectedYear ?? undefined;
+      if (yearToLoad == null && typeof window !== 'undefined') {
+        const yearParam = new URLSearchParams(window.location.search).get('year');
+        if (yearParam && !yearParam.startsWith('pc-')) {
+          const parsed = parseInt(yearParam, 10);
+          if (!isNaN(parsed)) yearToLoad = parsed;
+        }
+      }
+      await getPCResult(pcName, currentState, yearToLoad);
       // Track analytics
       trackConstituencySelect('pc', pcName, currentState);
     },
     [
       navigateToPC,
       currentState,
+      pcSelectedYear,
       closeSidebarOnMobile,
       selectAssembly,
       clearElectionResult,
@@ -889,16 +1385,27 @@ function App(): JSX.Element {
           // Parliament contribution year: year=pc-2024
           const parsed = parseInt(yearParam.slice(3), 10);
           if (!isNaN(parsed)) {
-            // Keep selectedACPCYear set to preserve it
             setSelectedACPCYear(parsed);
           }
         } else {
-          // Regular year
+          // Regular year (assembly or, in PC view, the PC year)
           const parsed = parseInt(yearParam, 10);
           if (!isNaN(parsed)) {
             yearToUse = parsed;
+            // In PC view, show AC contribution to PC for this year; in district/AC view, show assembly result (clear PC year)
+            if (currentPC && pcSelectedYear != null) {
+              setSelectedACPCYear(pcSelectedYear);
+            } else {
+              setSelectedACPCYear(null); // Assembly year in URL — panel shows AC result, not PC contribution
+            }
           }
         }
+      } else if (currentPC && pcSelectedYear != null) {
+        // PC view but no year in URL: use current PC year so panel shows AC contribution to PC
+        setSelectedACPCYear(pcSelectedYear);
+      } else {
+        // District or state AC view, no year in URL — ensure panel shows assembly result, not stale PC year
+        setSelectedACPCYear(null);
       }
 
       // If no year in URL, preserve current selectedYear if it exists
@@ -934,6 +1441,8 @@ function App(): JSX.Element {
       closeSidebarOnMobile,
       selectAssembly,
       currentState,
+      currentPC,
+      pcSelectedYear,
       getACResult,
       getAC,
       clearPCElectionResult,
@@ -1040,9 +1549,10 @@ function App(): JSX.Element {
       assembly: currentAssembly,
       year: selectedYear,
       pcYear: null,
-      tab: null, // Tab is managed in ElectionResultPanel component
+      tab: null,
+      showACs: currentPC ? (showACsWithinPC ?? true) : null,
       blog: blogOpen,
-      blogPost: null, // Blog post is managed in BlogSection component
+      blogPost: null,
     });
 
     try {
@@ -1058,6 +1568,8 @@ function App(): JSX.Element {
     currentDistrict,
     currentAssembly,
     selectedYear,
+    showACsWithinPC,
+    blogOpen,
   ]);
 
   /**
@@ -1066,24 +1578,122 @@ function App(): JSX.Element {
   const handleYearChange = useCallback(
     async (year: number): Promise<void> => {
       setSelectedYear(year);
+      // Sync year to URL in assemblies view (with or without assembly selected)
+      if (currentState && currentView === 'assemblies') {
+        const tab =
+          typeof window !== 'undefined'
+            ? new URLSearchParams(window.location.search).get('tab')
+            : null;
+        const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+        const preservedTab = tab && validTabs.includes(tab) ? tab : null;
+        updateUrlRef.current({
+          state: currentState,
+          view: currentView,
+          pc: currentPC,
+          district: currentDistrict,
+          assembly: currentAssembly,
+          year,
+          pcYear: null,
+          tab: preservedTab,
+          showACs: currentPC ? (showACsWithinPC ?? true) : null,
+          blog: false,
+          blogPost: null,
+        });
+      }
       if (currentAssembly && currentState) {
         await getACResult(currentAssembly, currentState, year);
       }
     },
-    [setSelectedYear, currentAssembly, currentState, getACResult]
+    [
+      setSelectedYear,
+      currentAssembly,
+      currentPC,
+      currentState,
+      currentView,
+      currentDistrict,
+      getACResult,
+    ]
   );
 
   /**
-   * Handle year change in parliamentary election results
+   * Handle PC contribution year change in AC view (toolbar or sidepanel; syncs year=pc-YYYY to URL).
+   * Pass null when switching to an assembly year to clear PC year.
+   * Updates URL when in assemblies view OR when AC-within-PC (currentPC && currentAssembly).
+   * When in AC-within-PC, also set pcSelectedYear so MapView loadResults and toolbar stay in sync.
+   */
+  const handleACPCYearChange = useCallback(
+    (year: number | null): void => {
+      setSelectedACPCYear(year);
+      if (currentPC != null && currentAssembly != null && year != null) {
+        setPCSelectedYear(year);
+      }
+      const inACViewOrACWithinPC =
+        currentState &&
+        (currentView === 'assemblies' || (currentPC != null && currentAssembly != null));
+      if (!inACViewOrACWithinPC) return;
+      const tab =
+        typeof window !== 'undefined'
+          ? new URLSearchParams(window.location.search).get('tab')
+          : null;
+      const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+      const preservedTab = tab && validTabs.includes(tab) ? tab : null;
+      updateUrlRef.current({
+        state: currentState,
+        view: currentView,
+        pc: currentPC,
+        district: currentDistrict,
+        assembly: currentAssembly,
+        year: null,
+        pcYear: year,
+        tab: preservedTab,
+        showACs: currentPC ? (showACsWithinPC ?? true) : null,
+        blog: false,
+        blogPost: null,
+      });
+    },
+    [currentAssembly, currentState, currentView, currentPC, currentDistrict]
+  );
+
+  /**
+   * Handle year change in parliamentary election results (sync year to URL)
    */
   const handlePCYearChange = useCallback(
     async (year: number): Promise<void> => {
       setPCSelectedYear(year);
+      if (currentState && (currentPC || currentView === 'constituencies')) {
+        const tab =
+          typeof window !== 'undefined'
+            ? new URLSearchParams(window.location.search).get('tab')
+            : null;
+        const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+        const preservedTab = tab && validTabs.includes(tab) ? tab : null;
+        updateUrlRef.current({
+          state: currentState,
+          view: currentView,
+          pc: currentPC,
+          district: currentDistrict,
+          assembly: currentAssembly,
+          year,
+          pcYear: null,
+          tab: preservedTab,
+          showACs: currentPC ? (showACsWithinPC ?? true) : null,
+          blog: false,
+          blogPost: null,
+        });
+      }
       if (currentPC && currentState) {
         await getPCResult(currentPC, currentState, year);
       }
     },
-    [setPCSelectedYear, currentPC, currentState, getPCResult]
+    [
+      setPCSelectedYear,
+      currentPC,
+      currentState,
+      currentView,
+      currentDistrict,
+      currentAssembly,
+      getPCResult,
+    ]
   );
 
   /**
@@ -1099,9 +1709,10 @@ function App(): JSX.Element {
       assembly: currentAssembly,
       year: selectedYear,
       pcYear: null,
-      tab: null, // Tab is managed in ElectionResultPanel component
+      tab: null,
+      showACs: currentPC ? (showACsWithinPC ?? true) : null,
       blog: blogOpen,
-      blogPost: null, // Blog post is managed in BlogSection component
+      blogPost: null,
     });
   }, [
     getShareableUrl,
@@ -1111,6 +1722,7 @@ function App(): JSX.Element {
     currentDistrict,
     currentAssembly,
     selectedYear,
+    showACsWithinPC,
     blogOpen,
   ]);
 
@@ -1125,11 +1737,12 @@ function App(): JSX.Element {
       pc: currentPC,
       district: currentDistrict,
       assembly: currentAssembly,
-      year: null, // Don't include assembly year
-      pcYear: selectedACPCYear, // This will generate year=pc-YYYY
-      tab: null, // Tab is managed in ElectionResultPanel component
+      year: null,
+      pcYear: selectedACPCYear,
+      tab: null,
+      showACs: currentPC ? (showACsWithinPC ?? true) : null,
       blog: blogOpen,
-      blogPost: null, // Blog post is managed in BlogSection component
+      blogPost: null,
     });
   }, [
     getShareableUrl,
@@ -1155,11 +1768,20 @@ function App(): JSX.Element {
       assembly: null,
       year: pcSelectedYear,
       pcYear: null,
-      tab: null, // Tab is only for AC election panels
+      tab: null,
+      showACs: currentPC ? (showACsWithinPC ?? true) : null,
       blog: blogOpen,
-      blogPost: null, // Blog post is managed in BlogSection component
+      blogPost: null,
     });
-  }, [getShareableUrl, currentState, currentView, currentPC, pcSelectedYear, blogOpen]);
+  }, [
+    getShareableUrl,
+    currentState,
+    currentView,
+    currentPC,
+    pcSelectedYear,
+    showACsWithinPC,
+    blogOpen,
+  ]);
 
   /**
    * Handle view switch between constituencies and districts
@@ -1175,15 +1797,117 @@ function App(): JSX.Element {
       if (view === 'constituencies') {
         const data = await navigateToState(currentState);
         setCurrentData(data);
+        const pcIndex = await loadPCStateIndex(currentState);
+        if (
+          pcIndex?.availableYears?.length &&
+          (pcSelectedYear == null || !pcIndex.availableYears.includes(pcSelectedYear))
+        ) {
+          const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            setPCSelectedYear(latestYear);
+            const tab =
+              typeof window !== 'undefined'
+                ? new URLSearchParams(window.location.search).get('tab')
+                : null;
+            const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+            const preservedTab = tab && validTabs.includes(tab) ? tab : null;
+            updateUrlRef.current({
+              state: currentState,
+              view: 'constituencies',
+              pc: null,
+              district: null,
+              assembly: null,
+              year: latestYear,
+              pcYear: null,
+              tab: preservedTab,
+              showACs: null,
+              blog: false,
+              blogPost: null,
+            });
+          }
+        }
       } else if (view === 'assemblies') {
         const data = await navigateToAssemblies(currentState);
         setCurrentData(data);
+        const acIndex = await loadStateIndex(currentState);
+        if (
+          acIndex?.availableYears?.length &&
+          selectedYear != null &&
+          !acIndex.availableYears.includes(selectedYear)
+        ) {
+          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            setSelectedYear(latestYear);
+            const tab =
+              typeof window !== 'undefined'
+                ? new URLSearchParams(window.location.search).get('tab')
+                : null;
+            const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+            const preservedTab = tab && validTabs.includes(tab) ? tab : null;
+            updateUrlRef.current({
+              state: currentState,
+              view: 'assemblies',
+              pc: null,
+              district: null,
+              assembly: currentAssembly,
+              year: latestYear,
+              pcYear: null,
+              tab: preservedTab,
+              showACs: null,
+              blog: false,
+              blogPost: null,
+            });
+          }
+        }
       } else if (view === 'districts') {
         const data = await loadDistrictsForState(currentState);
         setCurrentData(data);
+        const acIndex = await loadStateIndex(currentState);
+        if (
+          acIndex?.availableYears?.length &&
+          selectedYear != null &&
+          !acIndex.availableYears.includes(selectedYear)
+        ) {
+          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
+          if (latestYear !== undefined) {
+            setSelectedYear(latestYear);
+            const tab =
+              typeof window !== 'undefined'
+                ? new URLSearchParams(window.location.search).get('tab')
+                : null;
+            const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+            const preservedTab = tab && validTabs.includes(tab) ? tab : null;
+            updateUrlRef.current({
+              state: currentState,
+              view: 'districts',
+              pc: null,
+              district: null,
+              assembly: null,
+              year: latestYear,
+              pcYear: null,
+              tab: preservedTab,
+              showACs: null,
+              blog: false,
+              blogPost: null,
+            });
+          }
+        }
       }
     },
-    [switchView, currentState, navigateToState, navigateToAssemblies, loadDistrictsForState]
+    [
+      switchView,
+      currentState,
+      navigateToState,
+      navigateToAssemblies,
+      loadDistrictsForState,
+      loadStateIndex,
+      loadPCStateIndex,
+      selectedYear,
+      pcSelectedYear,
+      currentAssembly,
+      setSelectedYear,
+      setPCSelectedYear,
+    ]
   );
 
   /**
@@ -1219,6 +1943,7 @@ function App(): JSX.Element {
         year: selectedYear,
         pcYear: selectedACPCYear,
         tab: null,
+        showACs: currentPC ? (showACsWithinPC ?? true) : null,
         blog: true,
         blogPost: null,
       });
@@ -1233,6 +1958,7 @@ function App(): JSX.Element {
         year: selectedYear,
         pcYear: selectedACPCYear,
         tab: null,
+        showACs: currentPC ? (showACsWithinPC ?? true) : null,
         blog: false,
         blogPost: null,
       });
@@ -1266,6 +1992,7 @@ function App(): JSX.Element {
       year: selectedYear,
       pcYear: selectedACPCYear,
       tab: null,
+      showACs: currentPC ? (showACsWithinPC ?? true) : null,
       blog: false,
       blogPost: null,
     });
@@ -1393,6 +2120,7 @@ function App(): JSX.Element {
           districtsCache={districtsCache}
           currentData={currentData}
           currentState={currentState}
+          initialPCWinners={initialPCWinners}
           currentView={currentView}
           currentPC={currentPC}
           currentDistrict={currentDistrict}
@@ -1418,9 +2146,11 @@ function App(): JSX.Element {
           onGoBack={handleGoBack}
           onCloseElectionPanel={handleCloseElectionPanel}
           onYearChange={handleYearChange}
-          onACPCYearChange={setSelectedACPCYear}
+          onACPCYearChange={handleACPCYearChange}
           onClosePCElectionPanel={handleClosePCElectionPanel}
           onPCYearChange={handlePCYearChange}
+          showACsWithinPC={showACsWithinPC}
+          onShowACsWithinPCChange={setShowACsWithinPC}
         />
       </div>
 

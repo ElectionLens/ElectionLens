@@ -273,6 +273,11 @@ body {
   gap: 4px;
 }
 
+.toolbar-section.toolbar-center {
+  flex-direction: column;
+  align-items: center;
+}
+
 .toolbar-section:not(:last-child) {
   padding-right: 8px;
   border-right: 1px solid #e2e8f0;
@@ -312,6 +317,87 @@ body {
 .toolbar-btn.toolbar-toggle.active {
   background: #1a1a2e;
   color: white;
+}
+
+.toolbar-view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar-year-selector {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.toolbar-year-btn {
+  background: white;
+  color: #64748b;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.15s;
+  min-width: auto;
+  height: auto;
+}
+
+.toolbar-year-btn:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.toolbar-year-btn.active {
+  background: #1e3a5f;
+  border-color: #1e3a5f;
+  color: white;
+}
+
+.toolbar-year-btn.parliament-year {
+  /* Same styling as regular year buttons when not active */
+}
+
+.toolbar-year-btn.parliament-year:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.toolbar-year-btn.parliament-year.active {
+  background: #1e3a5f;
+  border-color: #1e3a5f;
+  color: white;
+}
+
+/* Show ACs checkbox (when viewing a specific PC) */
+.toolbar-show-acs {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 10px;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  color: #374151;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toolbar-show-acs input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: #10b981;
+  cursor: pointer;
+}
+
+.toolbar-show-acs span {
+  white-space: nowrap;
 }
 
 /* Layer dropdown */

@@ -168,6 +168,30 @@ describe('useUrlState', () => {
     expect(urlState.pcYear).toBe(2024);
   });
 
+  it('generates shareable URL for home without year parameter', () => {
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, 2024, null, onNavigate)
+    );
+
+    const url = result.current.getShareableUrl({
+      state: null,
+      view: 'constituencies',
+      pc: null,
+      district: null,
+      assembly: null,
+      year: 2024,
+      pcYear: null,
+      tab: null,
+      showACs: null,
+      blog: false,
+      blogPost: null,
+    });
+
+    expect(url).toBe('http://localhost:3000/');
+    expect(url).not.toContain('year=');
+  });
+
   it('generates shareable URL for state', () => {
     const onNavigate = vi.fn();
     const { result } = renderHook(() =>
@@ -182,9 +206,14 @@ describe('useUrlState', () => {
       assembly: null,
       year: null,
       pcYear: null,
+      tab: null,
+      showACs: null,
+      blog: false,
+      blogPost: null,
     });
 
-    expect(url).toBe('http://localhost:3000/tamil-nadu');
+    // Constituencies view appends /pc for state-level PC view
+    expect(url).toBe('http://localhost:3000/tamil-nadu/pc');
   });
 
   it('generates shareable URL for PC', () => {
@@ -370,5 +399,103 @@ describe('useUrlState - Additional Functionality', () => {
     expect(urlState.pc).toBe('nagaur');
     expect(urlState.assembly).toBe('jayal (sc)');
     expect(urlState.year).toBe(2023);
+  });
+
+  it('parses showACs=true from URL', () => {
+    window.location.pathname = '/tamil-nadu/pc/dharmapuri';
+    window.location.search = '?showACs=true';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+
+    const urlState = result.current.getUrlState();
+    expect(urlState.pc).toBe('dharmapuri');
+    expect(urlState.showACs).toBe(true);
+  });
+
+  it('parses showACs=false from URL', () => {
+    window.location.pathname = '/tamil-nadu/pc/dharmapuri';
+    window.location.search = '?showACs=false';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+
+    const urlState = result.current.getUrlState();
+    expect(urlState.showACs).toBe(false);
+  });
+
+  it('parses AC-within-PC URL with year=pc-YYYY and showACs', () => {
+    window.location.pathname = '/tamil-nadu/pc/dharmapuri/ac/mettur';
+    window.location.search = '?year=pc-2019&showACs=true';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+
+    const urlState = result.current.getUrlState();
+    expect(urlState.state).toBe('tamil nadu');
+    expect(urlState.pc).toBe('dharmapuri');
+    expect(urlState.assembly).toBe('mettur');
+    expect(urlState.year).toBeNull();
+    expect(urlState.pcYear).toBe(2019);
+    expect(urlState.showACs).toBe(true);
+  });
+
+  it('generates shareable URL for PC with showACs', () => {
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState('Tamil Nadu', 'constituencies', 'Dharmapuri', null, null, null, null, onNavigate)
+    );
+
+    const url = result.current.getShareableUrl({
+      state: 'Tamil Nadu',
+      view: 'constituencies',
+      pc: 'Dharmapuri',
+      district: null,
+      assembly: null,
+      year: null,
+      pcYear: null,
+      tab: null,
+      showACs: true,
+      blog: false,
+      blogPost: null,
+    });
+
+    expect(url).toContain('showACs=true');
+  });
+
+  it('generates shareable URL for AC-within-PC with year=pc-YYYY and showACs', () => {
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(
+        'Tamil Nadu',
+        'constituencies',
+        'Dharmapuri',
+        null,
+        'Mettur',
+        null,
+        2019,
+        onNavigate
+      )
+    );
+
+    const url = result.current.getShareableUrl({
+      state: 'Tamil Nadu',
+      view: 'constituencies',
+      pc: 'Dharmapuri',
+      district: null,
+      assembly: 'Mettur',
+      year: null,
+      pcYear: 2019,
+      tab: null,
+      showACs: true,
+      blog: false,
+      blogPost: null,
+    });
+
+    expect(url).toContain('year=pc-2019');
+    expect(url).toContain('showACs=true');
   });
 });
