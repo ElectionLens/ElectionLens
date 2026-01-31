@@ -385,6 +385,9 @@ export interface MapViewProps {
   onACPCYearChange?: ((year: number | null) => void) | undefined;
   onClosePCElectionPanel?: (() => void) | undefined;
   onPCYearChange?: ((year: number) => void) | undefined;
+  /** When viewing a specific PC: show ACs within PC (true) or PC boundary only (false). Synced to URL. */
+  showACsWithinPC?: boolean;
+  onShowACsWithinPCChange?: (show: boolean) => void;
 }
 
 /** MapControls component props */

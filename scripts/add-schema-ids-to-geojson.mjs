@@ -31,6 +31,10 @@ function normalizeName(name) {
     .trim();
 }
 
+function collapseRepeated(s) {
+  return s.replace(/(.)\1+/g, '$1');
+}
+
 function loadJSON(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 }
@@ -85,14 +89,90 @@ function addSchemaIdsToAssembly(schema) {
       }
     }
 
+    // Strategy 4: Search assemblyConstituencies by stateId and normalized name/alias
+    if (!acId && schema.assemblyConstituencies) {
+      const cleanAcName = acName.replace(/\s*\([^)]*\)\s*$/, '').trim();
+      for (const [id, ac] of Object.entries(schema.assemblyConstituencies)) {
+        if (ac.stateId !== stateId) continue;
+        const acNorm = normalizeName(ac.name);
+        const acClean = normalizeName((ac.name || '').replace(/\s*\([^)]*\)\s*$/, '').trim());
+        if (acNorm === acName || acNorm === cleanAcName || acClean === acName || acClean === cleanAcName) {
+          acId = id;
+          schema.indices.acByName[lookupKey] = id;
+          schema.indices.acByName[`${cleanAcName}|${stateId}`] = id;
+          break;
+        }
+        const aliases = ac.aliases || [];
+        for (const alias of aliases) {
+          if (normalizeName(alias) === acName || normalizeName(alias) === cleanAcName) {
+            acId = id;
+            schema.indices.acByName[lookupKey] = id;
+            schema.indices.acByName[`${cleanAcName}|${stateId}`] = id;
+            break;
+          }
+        }
+        if (acId) break;
+      }
+    }
+
+    // Strategy 5: Resolve by AC_NO and add GeoJSON name to index (for name/GeoJSON mismatch)
+    if (!acId && props.AC_NO != null && schema.assemblyConstituencies) {
+      const expectedId = `${stateId}-${String(props.AC_NO).padStart(3, '0')}`;
+      if (schema.assemblyConstituencies[expectedId]) {
+        acId = expectedId;
+        schema.indices.acByName[lookupKey] = expectedId;
+        const cleanAcName = acName.replace(/\s*\([^)]*\)\s*$/, '').trim();
+        schema.indices.acByName[`${cleanAcName}|${stateId}`] = expectedId;
+        const ac = schema.assemblyConstituencies[expectedId];
+        const geoName = (props.AC_NAME || '').trim();
+        if (geoName && ac.aliases && !ac.aliases.includes(geoName)) {
+          ac.aliases = [...(ac.aliases || []), geoName, geoName.toUpperCase()];
+        }
+      }
+    }
+
+    // Strategy 6: Fuzzy match by collapse-repeated chars (e.g. Pappireddippatti vs Pappireddipatti)
+    if (!acId && schema.assemblyConstituencies) {
+      const cleanAcName = acName.replace(/\s*\([^)]*\)\s*$/, '').trim();
+      const geoCollapsed = collapseRepeated(acName);
+      const geoCollapsedClean = collapseRepeated(cleanAcName);
+      const candidates = [];
+      for (const [id, ac] of Object.entries(schema.assemblyConstituencies)) {
+        if (ac.stateId !== stateId) continue;
+        const acNorm = normalizeName(ac.name);
+        const acClean = normalizeName((ac.name || '').replace(/\s*\([^)]*\)\s*$/, '').trim());
+        if (collapseRepeated(acNorm) === geoCollapsed || collapseRepeated(acNorm) === geoCollapsedClean ||
+            collapseRepeated(acClean) === geoCollapsed || collapseRepeated(acClean) === geoCollapsedClean) {
+          candidates.push(id);
+          continue;
+        }
+        for (const alias of ac.aliases || []) {
+          const aNorm = normalizeName(alias);
+          if (collapseRepeated(aNorm) === geoCollapsed || collapseRepeated(aNorm) === geoCollapsedClean) {
+            candidates.push(id);
+            break;
+          }
+        }
+      }
+      if (candidates.length === 1) {
+        acId = candidates[0];
+        schema.indices.acByName[lookupKey] = acId;
+        const cleanAcName = acName.replace(/\s*\([^)]*\)\s*$/, '').trim();
+        schema.indices.acByName[`${cleanAcName}|${stateId}`] = acId;
+        const ac = schema.assemblyConstituencies[acId];
+        const geoName = (props.AC_NAME || '').trim();
+        if (geoName && ac.aliases && !ac.aliases.includes(geoName)) {
+          ac.aliases = [...(ac.aliases || []), geoName, geoName.toUpperCase()];
+        }
+      }
+    }
+
     if (acId) {
       props.schemaId = acId;
       matched++;
     } else {
       unmatched++;
-      if (unmatchedList.length < 20) {
-        unmatchedList.push(`AC not found: ${props.AC_NAME} (${props.ST_NAME})`);
-      }
+      unmatchedList.push(`AC not found: ${props.AC_NAME} (${props.ST_NAME})`);
     }
   }
 
@@ -144,14 +224,73 @@ function addSchemaIdsToParliament(schema) {
       }
     }
 
+    // Strategy 4: Search parliamentaryConstituencies by stateId and normalized name/alias
+    if (!pcId && schema.parliamentaryConstituencies) {
+      const cleanPcName = pcName.replace(/\s*\([^)]*\)\s*$/, '').trim();
+      for (const [id, pc] of Object.entries(schema.parliamentaryConstituencies)) {
+        if (pc.stateId !== stateId) continue;
+        const pcNorm = normalizeName(pc.name);
+        const pcClean = normalizeName((pc.name || '').replace(/\s*\([^)]*\)\s*$/, '').trim());
+        if (pcNorm === pcName || pcNorm === cleanPcName || pcClean === pcName || pcClean === cleanPcName) {
+          pcId = id;
+          schema.indices.pcByName[lookupKey] = id;
+          schema.indices.pcByName[`${cleanPcName}|${stateId}`] = id;
+          break;
+        }
+        const aliases = pc.aliases || [];
+        for (const alias of aliases) {
+          if (normalizeName(alias) === pcName || normalizeName(alias) === cleanPcName) {
+            pcId = id;
+            schema.indices.pcByName[lookupKey] = id;
+            schema.indices.pcByName[`${cleanPcName}|${stateId}`] = id;
+            break;
+          }
+        }
+        if (pcId) break;
+      }
+    }
+
+    // Strategy 5: Fuzzy match by collapse-repeated chars
+    if (!pcId && schema.parliamentaryConstituencies) {
+      const cleanPcName = pcName.replace(/\s*\([^)]*\)\s*$/, '').trim();
+      const geoCollapsed = collapseRepeated(pcName);
+      const geoCollapsedClean = collapseRepeated(cleanPcName);
+      const candidates = [];
+      for (const [id, pc] of Object.entries(schema.parliamentaryConstituencies)) {
+        if (pc.stateId !== stateId) continue;
+        const pcNorm = normalizeName(pc.name);
+        const pcClean = normalizeName((pc.name || '').replace(/\s*\([^)]*\)\s*$/, '').trim());
+        if (collapseRepeated(pcNorm) === geoCollapsed || collapseRepeated(pcNorm) === geoCollapsedClean ||
+            collapseRepeated(pcClean) === geoCollapsed || collapseRepeated(pcClean) === geoCollapsedClean) {
+          candidates.push(id);
+          continue;
+        }
+        for (const alias of pc.aliases || []) {
+          const aNorm = normalizeName(alias);
+          if (collapseRepeated(aNorm) === geoCollapsed || collapseRepeated(aNorm) === geoCollapsedClean) {
+            candidates.push(id);
+            break;
+          }
+        }
+      }
+      if (candidates.length === 1) {
+        pcId = candidates[0];
+        schema.indices.pcByName[lookupKey] = pcId;
+        schema.indices.pcByName[`${cleanPcName}|${stateId}`] = pcId;
+        const pc = schema.parliamentaryConstituencies[pcId];
+        const geoName = (props.ls_seat_name || '').trim();
+        if (geoName && pc.aliases && !pc.aliases.includes(geoName)) {
+          pc.aliases = [...(pc.aliases || []), geoName, geoName.toUpperCase()];
+        }
+      }
+    }
+
     if (pcId) {
       props.schemaId = pcId;
       matched++;
     } else {
       unmatched++;
-      if (unmatchedList.length < 20) {
-        unmatchedList.push(`PC not found: ${props.ls_seat_name} (${props.state_ut_name})`);
-      }
+      unmatchedList.push(`PC not found: ${props.ls_seat_name} (${props.state_ut_name})`);
     }
   }
 
@@ -288,6 +427,9 @@ async function main() {
     console.log(`   ⚠ ${distResult.unmatched} unmatched:`);
     distResult.unmatchedList.forEach(m => console.log(`     - ${m}`));
   }
+
+  // Save schema if we added new index entries (Strategy 4 in assembly/parliament)
+  saveJSON(path.join(DATA_DIR, 'schema.json'), schema);
 
   // Summary
   const totalMatched = statesResult.matched + pcResult.matched + acResult.matched + distResult.matched;

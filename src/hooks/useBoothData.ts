@@ -107,13 +107,8 @@ export function useBoothData(): UseBoothDataReturn {
    */
   const loadBoothData = useCallback(
     async (stateId: string, acId: string, year?: number) => {
-      console.log('[useBoothData] loadBoothData called:', { stateId, acId, year, currentAcId });
       // Clear previous data if switching to a different AC
       if (currentAcId && currentAcId !== acId) {
-        console.log('[useBoothData] Clearing previous data for different AC:', {
-          currentAcId,
-          newAcId: acId,
-        });
         setBoothList(null);
         setBoothResults(null);
         setAvailableYears([]);
@@ -175,7 +170,6 @@ export function useBoothData(): UseBoothDataReturn {
   const loadBoothResults = useCallback(async (stateId: string, acId: string, year: number) => {
     try {
       const resultsPath = `/data/booths/${stateId}/${acId}/${year}.json`;
-      console.log('[useBoothData] Fetching:', resultsPath);
       const response = await fetch(resultsPath);
 
       if (!response.ok) {

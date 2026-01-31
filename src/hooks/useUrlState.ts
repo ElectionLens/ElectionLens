@@ -11,6 +11,8 @@ export interface UrlState {
   year: number | null;
   pcYear: number | null; // Parliament year for AC view (from year=pc-YYYY format)
   tab: string | null; // Active tab in election panel: 'overview', 'candidates', 'booths', 'postal', 'analysis'
+  /** When viewing a specific PC: true = show ACs within PC, false = show PC boundary only */
+  showACs: boolean | null;
   blog: boolean; // Whether blog section is open
   blogPost: string | null; // Selected blog post ID (e.g., 'ammk-admk-alliance')
 }
@@ -48,8 +50,12 @@ function encodePathSegment(value: string): string {
  * Decode a URL path segment
  */
 function decodePathSegment(segment: string): string {
-  // Replace hyphens with spaces, but preserve hyphens before numbers (e.g., indore-1)
-  return decodeURIComponent(segment).replace(/-(?!\d)/g, ' ');
+  let decoded = decodeURIComponent(segment).replace(/-(?!\d)/g, ' ');
+  // Fix common typo: "name(sc" or "name(st" (missing ")") -> "name (sc)" so assembly matches GeoJSON
+  if (/\(s[ct]$/i.test(decoded)) {
+    decoded = decoded.replace(/\((s[ct])$/i, ' ($1)');
+  }
+  return decoded;
 }
 
 /**
@@ -73,7 +79,8 @@ export function useUrlState(
   selectedYear: number | null,
   selectedPCYear: number | null,
   onNavigate: (state: UrlState) => void | Promise<void>,
-  isDataReady: boolean = true
+  isDataReady: boolean = true,
+  showACsWithinPC: boolean | null = null
 ): UseUrlStateReturn {
   const isInitialMount = useRef(true);
   const hasNavigatedFromUrl = useRef(false);
@@ -103,6 +110,7 @@ export function useUrlState(
       year: null,
       pcYear: null,
       tab: null,
+      showACs: null,
       blog: false,
       blogPost: null,
     };
@@ -147,6 +155,14 @@ export function useUrlState(
     if (blogPostParam) {
       result.blogPost = blogPostParam;
       result.blog = true; // Opening a post implies blog is open
+    }
+
+    // showACs: when viewing a specific PC, showACs=true (show ACs) or false (show PC boundary)
+    const showACsParam = searchParams.get('showACs');
+    if (showACsParam === 'true' || showACsParam === '1') {
+      result.showACs = true;
+    } else if (showACsParam === 'false' || showACsParam === '0') {
+      result.showACs = false;
     }
 
     if (segments.length === 0) {
@@ -194,6 +210,11 @@ export function useUrlState(
       if (segments[3]?.toLowerCase() === 'ac' && segments[4]) {
         result.assembly = decodePathSegment(segments[4]);
       }
+    }
+
+    // Default showACs to true when viewing a specific PC and no param in URL
+    if (result.pc != null && result.showACs === null) {
+      result.showACs = true;
     }
 
     return result;
@@ -265,6 +286,10 @@ export function useUrlState(
 
     if (state.tab) {
       params.set('tab', state.tab);
+    }
+
+    if (state.pc != null && state.showACs != null) {
+      params.set('showACs', state.showACs ? 'true' : 'false');
     }
 
     if (state.blog) {
@@ -352,6 +377,10 @@ export function useUrlState(
       params.set('tab', state.tab);
     }
 
+    if (state.pc != null && state.showACs != null) {
+      params.set('showACs', state.showACs ? 'true' : 'false');
+    }
+
     if (state.blog) {
       params.set('blog', 'true');
       if (state.blogPost) {
@@ -369,7 +398,6 @@ export function useUrlState(
   // Handle initial URL on mount - wait for data to be ready
   useEffect(() => {
     if (isDataReady && !hasNavigatedFromUrl.current) {
-      hasNavigatedFromUrl.current = true;
       const urlState = getUrlState();
 
       // Only navigate if URL has state info
@@ -377,17 +405,20 @@ export function useUrlState(
         // Mark that we're processing URL navigation to prevent URL updates during this time
         isProcessingUrlNavigation.current = true;
 
-        // Use Promise.resolve to handle both sync and async navigation handlers
+        // Use Promise.resolve to handle both sync and async navigation handlers.
+        // Set hasNavigatedFromUrl only after completion so React Strict Mode's second mount
+        // still runs handleUrlNavigate (refs persist across strict double-mount).
         void Promise.resolve(onNavigateRef.current(urlState)).finally(() => {
-          // Small delay to ensure all state updates have been processed
+          hasNavigatedFromUrl.current = true;
+          // Small delay to ensure all state updates (e.g. setSelectedYear) have been committed
           setTimeout(() => {
             isProcessingUrlNavigation.current = false;
             isInitialMount.current = false;
-            // Now sync the URL with the final state (in case there were any normalization changes)
             lastUrl.current = window.location.pathname + window.location.search;
-          }, 100);
+          }, 150);
         });
       } else {
+        hasNavigatedFromUrl.current = true;
         isInitialMount.current = false;
       }
     }
@@ -405,15 +436,40 @@ export function useUrlState(
       const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
       const preservedTab = currentTab && validTabs.includes(currentTab) ? currentTab : null;
 
+      // When viewing AC (within PC or state-level), prefer year from current URL so we
+      // don't overwrite with stale state before handleUrlNavigate has applied it.
+      let yearToUse = selectedYear;
+      let pcYearToUse = selectedPCYear;
+      const inACView =
+        (currentView === 'assemblies' && (currentAssembly || currentPC)) ||
+        (currentView === 'assemblies' && typeof window !== 'undefined');
+      if (inACView && typeof window !== 'undefined') {
+        const urlParams = new URLSearchParams(window.location.search);
+        const yearParam = urlParams.get('year');
+        if (yearParam) {
+          if (yearParam.startsWith('pc-')) {
+            const parsed = parseInt(yearParam.slice(3), 10);
+            if (!isNaN(parsed)) pcYearToUse = parsed;
+          } else {
+            const parsed = parseInt(yearParam, 10);
+            if (!isNaN(parsed)) {
+              yearToUse = parsed;
+              pcYearToUse = null;
+            }
+          }
+        }
+      }
+
       updateUrl({
         state: currentState,
         view: currentView,
         pc: currentPC,
         district: currentDistrict,
         assembly: currentAssembly,
-        year: selectedYear,
-        pcYear: selectedPCYear,
+        year: yearToUse,
+        pcYear: pcYearToUse,
         tab: preservedTab, // Preserve tab from current URL
+        showACs: currentPC ? (showACsWithinPC ?? true) : null,
         blog: false, // Blog is managed in App component
         blogPost: null,
       });
@@ -426,6 +482,7 @@ export function useUrlState(
     currentAssembly,
     selectedYear,
     selectedPCYear,
+    showACsWithinPC,
     updateUrl,
   ]);
 

@@ -151,7 +151,6 @@ export function useElectionData(): UseElectionDataReturn {
           (f) => f.properties.ST_NAME?.toUpperCase() === 'TELANGANA'
         );
         if (!hasTelangana) {
-          console.log('[loadAssemblyData] Cache is stale (missing TELANGANA), fetching fresh data');
           data = null; // Force fresh fetch
         } else {
           // Filter cached data too (in case old cache has invalid features)
@@ -629,22 +628,11 @@ export function useElectionData(): UseElectionDataReturn {
         const normalizedState = normalizeName(stateName).toUpperCase().trim();
         const asmState = ASM_STATE_ALIASES[normalizedState] ?? normalizedState;
 
-        console.log(
-          '[navigateToAssemblies] stateName:',
-          stateName,
-          '→ normalized:',
-          normalizedState,
-          '→ asmState:',
-          asmState
-        );
-
         const assemblies = asmData.features.filter((f): boolean => {
           if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
           const asmStateName = (f.properties.ST_NAME ?? '').toUpperCase().trim();
           return asmStateName === asmState;
         });
-
-        console.log('[navigateToAssemblies] Found', assemblies.length, 'assemblies for', asmState);
 
         setCurrentState(stateName);
         setCurrentView('assemblies');

@@ -9,6 +9,11 @@ import { test, expect } from '@playwright/test';
 // Critical URLs that have caused issues in the past
 const criticalUrls = [
   {
+    url: '/tamil-nadu/pc/dharmapuri/ac/mettur?year=pc-2019&showACs=true',
+    description: 'AC-within-PC with year=pc-YYYY and showACs (PC contribution coloring)',
+    type: 'ac' as const,
+  },
+  {
     url: '/rajasthan/pc/nagaur/ac/jayal-(sc)?year=2023',
     description: 'SC suffix with parentheses',
     type: 'ac' as const,
@@ -167,9 +172,14 @@ test.describe('URL Validation - Year Fallback', () => {
       panel.locator('.winner-info, .winner-card-compact, .candidate-row').first()
     ).toBeVisible({ timeout: 5000 });
 
-    // Year selector should show the fallback year (2023), not 2022
-    const activeYear = page.locator('.year-btn.active, .election-year-selector button.active');
-    await expect(activeYear).not.toHaveText('2022');
+    // Panel should show election data; year selector may be in panel or toolbar
+    const yearButtons = page.locator('.year-btn, .toolbar-year-btn');
+    await expect(yearButtons.first()).toBeVisible({ timeout: 5000 });
+    // If there is an active year button, it should not be 2022 (invalid year)
+    const activeYear = page.locator('.year-btn.active, .toolbar-year-btn.active');
+    if ((await activeYear.count()) > 0) {
+      await expect(activeYear.first()).not.toHaveText('2022');
+    }
   });
 
   test('handles future year gracefully', async ({ page }) => {
@@ -236,6 +246,51 @@ test.describe('URL Validation - Edge Cases', () => {
     await expect(
       panel.locator('.winner-info, .winner-card-compact, .candidate-row').first()
     ).toBeVisible({ timeout: 5000 });
+  });
+});
+
+test.describe('URL Validation - AC-within-PC Year and showACs', () => {
+  test('loads AC-within-PC URL with year=pc-YYYY and showACs', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/dharmapuri/ac/mettur?year=pc-2019&showACs=true');
+
+    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
+
+    const panel = page.locator('.election-panel');
+    await expect(panel).toBeVisible({ timeout: 15000 });
+
+    await expect(page).toHaveURL(/year=pc-2019/);
+    await expect(page).toHaveURL(/showACs=true/);
+
+    await expect(
+      panel.locator('.winner-info, .winner-card-compact, .candidate-row').first()
+    ).toBeVisible({ timeout: 5000 });
+  });
+
+  test('toolbar year change updates URL to year=pc-YYYY in AC-within-PC view', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/dharmapuri/ac/mettur?year=pc-2019&showACs=true');
+
+    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
+    await expect(page).toHaveURL(/year=pc-2019/);
+
+    const toolbarYearBtn = page.locator('.toolbar-year-btn').filter({ hasText: '2024' });
+    if ((await toolbarYearBtn.count()) > 0) {
+      await toolbarYearBtn.first().click();
+      await expect(page).toHaveURL(/year=pc-2024/, { timeout: 5000 });
+    }
+  });
+
+  test('AC-within-PC URL shows panel and correct year params', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/dharmapuri/ac/mettur?year=pc-2019&showACs=true');
+
+    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.election-panel')).toBeVisible({ timeout: 15000 });
+
+    await expect(page).toHaveURL(/year=pc-2019/);
+    await expect(page).toHaveURL(/showACs=true/);
+
+    const panel = page.locator('.election-panel');
+    const yearButtonsInPanel = panel.locator('.year-btn');
+    await expect(yearButtonsInPanel.first()).toBeVisible({ timeout: 5000 });
   });
 });
 

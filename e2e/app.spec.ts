@@ -169,6 +169,18 @@ test.describe('Election Panel', () => {
     }
   });
 
+  test('AC-within-PC: toolbar year updates URL to year=pc-YYYY', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/dharmapuri/ac/mettur?year=pc-2019&showACs=true');
+    await page.waitForSelector('.election-panel', { timeout: 15000 });
+    await expect(page).toHaveURL(/year=pc-2019/);
+
+    const toolbar2024 = page.locator('.toolbar-year-btn').filter({ hasText: '2024' });
+    if ((await toolbar2024.count()) > 0) {
+      await toolbar2024.first().click();
+      await expect(page).toHaveURL(/year=pc-2024/, { timeout: 5000 });
+    }
+  });
+
   test('should close panel on close button click', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     
