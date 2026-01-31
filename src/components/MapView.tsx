@@ -1927,7 +1927,7 @@ export function MapView({
     [backgroundPCWinners, effectiveConstituencyWinners]
   );
 
-  // Click handler for background PCs
+  // Click and hover handler for background PCs
   const onBackgroundPCClick = useCallback(
     (feature: Feature, layer: Layer): void => {
       const typedLayer = layer as unknown as FeatureLayer;
@@ -1941,7 +1941,16 @@ export function MapView({
         className: 'hover-tooltip background-state-tooltip',
       });
 
+      const hoverStyle = getHoverStyle('constituencies');
       typedLayer.on({
+        mouseover: (): void => {
+          typedLayer.setStyle(hoverStyle);
+          typedLayer.bringToFront();
+        },
+        mouseout: (): void => {
+          const baseStyle = backgroundPCStyle(feature);
+          typedLayer.setStyle(baseStyle);
+        },
         click: (e: LLeafletMouseEvent): void => {
           // Stop propagation to prevent other layers from receiving this click
           L.DomEvent.stopPropagation(e);
@@ -1950,7 +1959,7 @@ export function MapView({
         },
       });
     },
-    [onConstituencyClick]
+    [onConstituencyClick, backgroundPCStyle]
   );
 
   // Background Districts - shown when viewing assemblies within a district
@@ -1988,6 +1997,30 @@ export function MapView({
     };
   }, [showBackgroundDistricts, districtsCache, currentState, currentDistrict]);
 
+  // Current district boundary - single feature for highlighting selected district in district detail
+  const currentDistrictBoundaryData = useMemo((): GeoJSON.FeatureCollection | null => {
+    if (!showBackgroundDistricts || !districtsCache || !currentState || !currentDistrict) {
+      return null;
+    }
+    const stateFileName = getStateFileName(currentState);
+    if (!stateFileName || !districtsCache[stateFileName]) return null;
+    const stateDistricts = districtsCache[stateFileName];
+    const currentDistrictNormalized = currentDistrict.trim().toLowerCase();
+    const currentFeature = stateDistricts.features.find((f) => {
+      const props = f.properties;
+      const districtName = (props.district ?? props.NAME ?? props.DISTRICT ?? '')
+        .toString()
+        .trim()
+        .toLowerCase();
+      return districtName === currentDistrictNormalized;
+    });
+    if (!currentFeature) return null;
+    return {
+      type: 'FeatureCollection' as const,
+      features: [currentFeature],
+    };
+  }, [showBackgroundDistricts, districtsCache, currentState, currentDistrict]);
+
   // Style for background districts: colour by dominant party in district (from AC winners) or neutral
   const backgroundDistrictStyle = useCallback(
     (feature?: GeoJSON.Feature): L.PathOptions => {
@@ -2014,7 +2047,7 @@ export function MapView({
     [currentState, districtWinners, getStateId, resolveDistrictName]
   );
 
-  // Click handler for background districts
+  // Click and hover handler for background districts
   const onBackgroundDistrictClick = useCallback(
     (feature: Feature, layer: Layer): void => {
       const typedLayer = layer as unknown as FeatureLayer;
@@ -2028,7 +2061,16 @@ export function MapView({
         className: 'hover-tooltip background-state-tooltip',
       });
 
+      const hoverStyle = getHoverStyle('districts');
       typedLayer.on({
+        mouseover: (): void => {
+          typedLayer.setStyle(hoverStyle);
+          typedLayer.bringToFront();
+        },
+        mouseout: (): void => {
+          const baseStyle = backgroundDistrictStyle(feature);
+          typedLayer.setStyle(baseStyle);
+        },
         click: (e: LLeafletMouseEvent): void => {
           // Stop propagation to prevent other layers from receiving this click
           L.DomEvent.stopPropagation(e);
@@ -2037,7 +2079,7 @@ export function MapView({
         },
       });
     },
-    [onDistrictClick]
+    [onDistrictClick, backgroundDistrictStyle]
   );
 
   // Compute legend info
@@ -2206,6 +2248,60 @@ export function MapView({
                 });
               });
             }
+          },
+          click: clickHandler,
+        });
+      } else if (level === 'districts') {
+        const hoverStyle = getHoverStyle('districts');
+        const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
+        typedLayer.on({
+          mouseover: (): void => {
+            const opts = layerWithOpts.options;
+            const isAlreadyHover =
+              opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
+            if (!isAlreadyHover) {
+              const stored = {
+                fillColor: opts.fillColor,
+                fillOpacity: opts.fillOpacity,
+                color: opts.color,
+                weight: opts.weight,
+                opacity: opts.opacity,
+              };
+              (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle = stored;
+            }
+            typedLayer.setStyle(hoverStyle);
+            typedLayer.bringToFront();
+          },
+          mouseout: (): void => {
+            const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+            if (baseStyle) typedLayer.setStyle(baseStyle);
+          },
+          click: clickHandler,
+        });
+      } else if (level === 'constituencies') {
+        const hoverStyle = getHoverStyle('constituencies');
+        const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
+        typedLayer.on({
+          mouseover: (): void => {
+            const opts = layerWithOpts.options;
+            const isAlreadyHover =
+              opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
+            if (!isAlreadyHover) {
+              const stored = {
+                fillColor: opts.fillColor,
+                fillOpacity: opts.fillOpacity,
+                color: opts.color,
+                weight: opts.weight,
+                opacity: opts.opacity,
+              };
+              (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle = stored;
+            }
+            typedLayer.setStyle(hoverStyle);
+            typedLayer.bringToFront();
+          },
+          mouseout: (): void => {
+            const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+            if (baseStyle) typedLayer.setStyle(baseStyle);
           },
           click: clickHandler,
         });
@@ -2686,6 +2782,36 @@ export function MapView({
               selectedFeatureName={selectedAssembly}
             />
           </>
+        )}
+
+        {/* Current district boundary - highlighted border when viewing assemblies in district view */}
+        {currentDistrictBoundaryData && (
+          <GeoJSON
+            key={`current-district-boundary-${currentState ?? ''}-${currentDistrict ?? ''}`}
+            data={currentDistrictBoundaryData}
+            style={() => ({
+              weight: 6,
+              color: '#000000',
+              fillOpacity: 0,
+              opacity: 1,
+              interactive: false,
+            })}
+          />
+        )}
+
+        {/* Current PC boundary - highlighted border when viewing a single PC (with or without ACs) */}
+        {currentPCFeatureData && currentPC && (
+          <GeoJSON
+            key={`current-pc-boundary-${currentState ?? ''}-${currentPC ?? ''}`}
+            data={currentPCFeatureData as GeoJSON.FeatureCollection}
+            style={() => ({
+              weight: 6,
+              color: '#000000',
+              fillOpacity: 0,
+              opacity: 1,
+              interactive: false,
+            })}
+          />
         )}
 
         {/* Background states layer - uses backgroundPane for proper z-ordering */}

@@ -134,6 +134,8 @@ describe('getHoverStyle', () => {
   it('handles constituencies level', () => {
     const style = getHoverStyle('constituencies');
     expect(style.color).toBe('#5b21b6');
+    expect(style.weight).toBe(3);
+    expect(style.fillOpacity).toBe(0.8);
   });
 
   it('handles null/undefined with fallback', () => {

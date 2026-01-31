@@ -35,9 +35,10 @@ export function getStateFileName(stateName: string | null | undefined): string {
     return STATE_FILE_MAP[normalized];
   }
 
-  // Try to find by normalized match
+  // Try to find by normalized match (case-insensitive so "tamil nadu" matches "Tamil Nadu")
+  const normalizedLower = normalized.toLowerCase();
   for (const [key, value] of Object.entries(STATE_FILE_MAP)) {
-    if (normalizeName(key) === normalized) {
+    if (normalizeName(key).toLowerCase() === normalizedLower) {
       return value;
     }
   }
