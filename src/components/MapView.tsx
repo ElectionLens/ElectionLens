@@ -711,6 +711,8 @@ export function MapView({
   const selectedAssemblyRef = useRef<string | null>(selectedAssembly);
   // Ref to store style function for use in hover handlers
   const styleRef = useRef<((feature?: GeoJSON.Feature) => L.PathOptions) | null>(null);
+  // Only one feature (other than selected) may show hover at a time; clear previous on new hover
+  const lastHoveredLayerRef = useRef<FeatureLayer | null>(null);
 
   // Mapping of constituency names to winning party for color-coding
   const [constituencyWinners, setConstituencyWinners] = useState<
@@ -2012,12 +2014,21 @@ export function MapView({
       const hoverStyle = getHoverStyle('constituencies');
       typedLayer.on({
         mouseover: (): void => {
+          const prev = lastHoveredLayerRef.current;
+          if (prev && prev !== typedLayer) {
+            const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+            if (baseStyle) prev.setStyle(baseStyle);
+          }
+          lastHoveredLayerRef.current = typedLayer;
+          (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle =
+            backgroundPCStyle(feature);
           typedLayer.setStyle(hoverStyle);
           typedLayer.bringToFront();
         },
         mouseout: (): void => {
           const baseStyle = backgroundPCStyle(feature);
           typedLayer.setStyle(baseStyle);
+          if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
         },
         click: (e: LLeafletMouseEvent): void => {
           // Stop propagation to prevent other layers from receiving this click
@@ -2218,12 +2229,21 @@ export function MapView({
       const hoverStyle = getHoverStyle('districts');
       typedLayer.on({
         mouseover: (): void => {
+          const prev = lastHoveredLayerRef.current;
+          if (prev && prev !== typedLayer) {
+            const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+            if (baseStyle) prev.setStyle(baseStyle);
+          }
+          lastHoveredLayerRef.current = typedLayer;
+          (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle =
+            backgroundDistrictStyle(feature);
           typedLayer.setStyle(hoverStyle);
           typedLayer.bringToFront();
         },
         mouseout: (): void => {
           const baseStyle = backgroundDistrictStyle(feature);
           typedLayer.setStyle(baseStyle);
+          if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
         },
         click: (e: LLeafletMouseEvent): void => {
           // Stop propagation to prevent other layers from receiving this click
@@ -2322,6 +2342,12 @@ export function MapView({
         const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
         typedLayer.on({
           mouseover: (): void => {
+            const prev = lastHoveredLayerRef.current;
+            if (prev && prev !== typedLayer) {
+              const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+              if (baseStyle) prev.setStyle(baseStyle);
+            }
+            lastHoveredLayerRef.current = typedLayer;
             const opts = layerWithOpts.options;
             const isAlreadyHover =
               opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
@@ -2341,6 +2367,7 @@ export function MapView({
           mouseout: (): void => {
             const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
             if (baseStyle) typedLayer.setStyle(baseStyle);
+            if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
           },
           click: clickHandler,
         });
@@ -2357,6 +2384,12 @@ export function MapView({
         typedLayer.on({
           mouseover: (): void => {
             if (isSelected) return;
+            const prev = lastHoveredLayerRef.current;
+            if (prev && prev !== typedLayer) {
+              const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+              if (baseStyle) prev.setStyle(baseStyle);
+            }
+            lastHoveredLayerRef.current = typedLayer;
             const opts = layerWithOpts.options;
             const isAlreadyHover =
               opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
@@ -2379,6 +2412,7 @@ export function MapView({
             if (layerWithOpts.options.weight === selectedGreenWeight) return;
             const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
             if (baseStyle) typedLayer.setStyle(baseStyle);
+            if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
             // Re-apply green to selected AC so it stays green even if another code path overwrote it
             const sel =
               selectedAssembly ?? selectedAssemblyRef.current ?? pendingSelectedAssembly.current;
@@ -2410,6 +2444,12 @@ export function MapView({
         const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
         typedLayer.on({
           mouseover: (): void => {
+            const prev = lastHoveredLayerRef.current;
+            if (prev && prev !== typedLayer) {
+              const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+              if (baseStyle) prev.setStyle(baseStyle);
+            }
+            lastHoveredLayerRef.current = typedLayer;
             const opts = layerWithOpts.options;
             const isAlreadyHover =
               opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
@@ -2429,6 +2469,7 @@ export function MapView({
           mouseout: (): void => {
             const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
             if (baseStyle) typedLayer.setStyle(baseStyle);
+            if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
           },
           click: clickHandler,
         });
@@ -2437,6 +2478,12 @@ export function MapView({
         const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
         typedLayer.on({
           mouseover: (): void => {
+            const prev = lastHoveredLayerRef.current;
+            if (prev && prev !== typedLayer) {
+              const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
+              if (baseStyle) prev.setStyle(baseStyle);
+            }
+            lastHoveredLayerRef.current = typedLayer;
             const opts = layerWithOpts.options;
             const isAlreadyHover =
               opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
@@ -2456,6 +2503,7 @@ export function MapView({
           mouseout: (): void => {
             const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
             if (baseStyle) typedLayer.setStyle(baseStyle);
+            if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
           },
           click: clickHandler,
         });
