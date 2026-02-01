@@ -2447,6 +2447,17 @@ path:focus {
   background: rgba(29, 161, 242, 0.2);
 }
 
+.election-panel-btn.screenshot-btn {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.election-panel-btn.screenshot-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
 .election-panel-btn.copied {
   color: #10b981;
   background: rgba(16, 185, 129, 0.2);

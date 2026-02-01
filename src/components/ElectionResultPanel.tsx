@@ -17,8 +17,9 @@ import {
   TrendingDown,
   AlertTriangle,
   Mail,
+  Camera,
 } from 'lucide-react';
-import { useState, useCallback, memo, useMemo, useEffect } from 'react';
+import { useState, useCallback, memo, useMemo, useEffect, useRef } from 'react';
 import type { ACElectionResult, ElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName } from '../utils/partyData';
 import { trackShare } from '../utils/firebase';
@@ -316,6 +317,8 @@ export function ElectionResultPanel({
     }
   }, [pcContributionShareUrl]);
 
+  const panelRef = useRef<HTMLDivElement>(null);
+
   const handleShareToX = useCallback(() => {
     const text = generateShareText(result, stateName, true);
     const url = shareUrlWithTab ?? shareUrl ?? window.location.href;
@@ -324,8 +327,67 @@ export function ElectionResultPanel({
     trackShare('twitter', 'assembly');
   }, [result, shareUrlWithTab, shareUrl, stateName]);
 
+  const handleSaveScreenshot = useCallback(async () => {
+    const el = panelRef.current;
+    if (!el) return;
+    const w = el.offsetWidth;
+    const fullHeight = el.scrollHeight;
+    if (w <= 0 || fullHeight <= 0) return;
+    const padH = 32;
+    const totalW = w + padH * 2;
+    let wrapper: HTMLElement | null = null;
+    let styleEl: HTMLStyleElement | null = null;
+    try {
+      const clone = el.cloneNode(true) as HTMLElement;
+      clone.classList.add('screenshot-capture');
+      clone.style.position = 'absolute';
+      clone.style.left = `${padH}px`;
+      clone.style.top = '0';
+      clone.style.width = `${w}px`;
+      clone.style.height = `${fullHeight}px`;
+      clone.style.overflow = 'visible';
+      clone.style.background = 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)';
+      styleEl = document.createElement('style');
+      styleEl.textContent = `.screenshot-capture * { animation: none !important; opacity: 1 !important; transform: none !important; visibility: visible !important; }`;
+      document.head.appendChild(styleEl);
+      wrapper = document.createElement('div');
+      wrapper.style.cssText = `position:fixed;left:0;top:0;width:${totalW}px;height:${fullHeight}px;overflow:hidden;z-index:99999;pointer-events:none;background:#fafbfc;`;
+      wrapper.appendChild(clone);
+      document.body.appendChild(wrapper);
+      await new Promise((r) => setTimeout(r, 150));
+      const html2canvas = (await import('html2canvas')).default;
+      const rawCanvas = await html2canvas(wrapper, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#fafbfc',
+        width: totalW,
+        height: Math.min(fullHeight, 8000),
+      });
+      const blob = await new Promise<Blob | null>((res) => rawCanvas.toBlob(res, 'image/png', 1));
+      if (!blob) return;
+      const name =
+        result.constituencyNameOriginal ?? result.name ?? result.constituencyName ?? 'constituency';
+      const safeName = name.replace(/[^a-zA-Z0-9-_]/g, '-').slice(0, 40);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `election-${safeName}-${result.year}.png`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Screenshot failed:', err);
+    } finally {
+      if (wrapper?.parentNode) wrapper.parentNode.removeChild(wrapper);
+      if (styleEl?.parentNode) styleEl.parentNode.removeChild(styleEl);
+    }
+  }, [result]);
+
   return (
-    <div className={`election-panel ${isMobilePortrait ? `panel-${panelState}` : ''}`}>
+    <div
+      ref={panelRef}
+      className={`election-panel ${isMobilePortrait ? `panel-${panelState}` : ''}`}
+    >
       {/* Mobile drag handle - click to cycle states */}
       {isMobilePortrait && (
         <div
@@ -364,6 +426,13 @@ export function ElectionResultPanel({
             title="Share candidates on Twitter"
           >
             <Twitter size={18} />
+          </button>
+          <button
+            className="election-panel-btn screenshot-btn"
+            onClick={handleSaveScreenshot}
+            title="Save screenshot"
+          >
+            <Camera size={18} />
           </button>
           <button
             className={`election-panel-btn ${copied ? 'copied' : ''}`}
