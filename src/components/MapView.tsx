@@ -546,10 +546,11 @@ function MapResizer({ hasPanelOpen }: { hasPanelOpen: boolean }): null {
   const map = useMap();
 
   useEffect(() => {
-    // Delay to let CSS transition complete (0.4s = 400ms)
+    // Delay to let CSS transition complete (0.5s map-container)
     const timer = setTimeout(() => {
-      map.invalidateSize({ animate: true });
-    }, 450); // Slightly longer than the 0.4s CSS transition
+      // Don't animate view on resize so borders don't shift during panel transition
+      map.invalidateSize({ animate: false });
+    }, 520);
 
     return () => clearTimeout(timer);
   }, [map, hasPanelOpen]);
@@ -577,9 +578,11 @@ function BackgroundPanes(): null {
   return null;
 }
 
-/** Extended FitBounds props with optional selected feature */
+/** Extended FitBounds props with optional selected feature and panel state */
 interface ExtendedFitBoundsProps extends FitBoundsProps {
   selectedFeatureName?: string | null;
+  /** When true, defer fit until after panel transition so borders don't shift during animation */
+  hasPanelOpen?: boolean;
 }
 
 /**
@@ -599,65 +602,79 @@ function getMapPadding(hasSelectedFeature: boolean): L.FitBoundsOptions['padding
   return isMobile ? ([20, 20] as [number, number]) : ([30, 30] as [number, number]);
 }
 
+/** Wait for panel/map-container transition before fitting so borders don't shift in any view */
+const FIT_DEFER_MS_WHEN_PANEL_OPEN = 520;
+
 /**
- * Component to fit map bounds to GeoJSON data or selected feature
+ * Component to fit map bounds to GeoJSON data or selected feature.
+ * When the panel is open, defers the fly until after the panel transition (all views:
+ * states, constituencies, districts, assemblies) so the map container is stable and borders don't shift.
  */
-function FitBounds({ geojson, selectedFeatureName }: ExtendedFitBoundsProps): null {
+function FitBounds({
+  geojson,
+  selectedFeatureName,
+  hasPanelOpen = false,
+}: ExtendedFitBoundsProps): null {
   const map = useMap();
 
   useEffect(() => {
     if (!geojson?.features?.length) return;
 
-    try {
-      // If a feature is selected, zoom to just that feature
-      if (selectedFeatureName) {
-        const selectedFeature = geojson.features.find((f) => {
-          const props = f.properties as AssemblyProperties;
-          return props.AC_NAME?.toUpperCase() === selectedFeatureName.toUpperCase();
-        });
+    const runFit = (): void => {
+      try {
+        // If a feature is selected, zoom to just that feature
+        if (selectedFeatureName) {
+          const selectedFeature = geojson.features.find((f) => {
+            const props = f.properties as AssemblyProperties;
+            return props.AC_NAME?.toUpperCase() === selectedFeatureName.toUpperCase();
+          });
 
-        if (selectedFeature) {
-          const featureLayer = L.geoJSON(selectedFeature as GeoJSON.Feature);
-          const bounds = featureLayer.getBounds();
-          if (bounds.isValid()) {
-            const isMobile = window.innerWidth <= 768;
-            const isLandscape = window.innerWidth > window.innerHeight;
+          if (selectedFeature) {
+            const featureLayer = L.geoJSON(selectedFeature as GeoJSON.Feature);
+            const bounds = featureLayer.getBounds();
+            if (bounds.isValid()) {
+              const isMobile = window.innerWidth <= 768;
+              const isLandscape = window.innerWidth > window.innerHeight;
 
-            if (isMobile && !isLandscape) {
-              // Portrait mobile: offset center to push feature into top portion
-              // Panel overlays bottom ~45vh, so offset center DOWN so feature appears UP
-              const center = bounds.getCenter();
-              const latSpan = bounds.getNorth() - bounds.getSouth();
-              const offsetCenter = L.latLng(center.lat - latSpan * 0.4, center.lng);
+              if (isMobile && !isLandscape) {
+                // Portrait mobile: offset center to push feature into top portion
+                const center = bounds.getCenter();
+                const latSpan = bounds.getNorth() - bounds.getSouth();
+                const offsetCenter = L.latLng(center.lat - latSpan * 0.4, center.lng);
 
-              const zoom = map.getBoundsZoom(bounds, false, L.point(30, 30));
-              const targetZoom = Math.min(zoom - 0.5, 11);
+                const zoom = map.getBoundsZoom(bounds, false, L.point(30, 30));
+                const targetZoom = Math.min(zoom - 0.5, 11);
 
-              map.flyTo(offsetCenter, targetZoom, { duration: 0.5 });
-            } else {
-              // Landscape & Desktop: map shrinks with margin-right, so standard fit
-              map.flyToBounds(bounds as LatLngBoundsExpression, {
-                padding: [60, 60],
-                duration: 0.5,
-                maxZoom: 12,
-              });
+                map.flyTo(offsetCenter, targetZoom, { duration: 0.5 });
+              } else {
+                map.flyToBounds(bounds as LatLngBoundsExpression, {
+                  padding: [60, 60],
+                  duration: 0.5,
+                  maxZoom: 12,
+                });
+              }
             }
+            return;
           }
-          return;
         }
-      }
 
-      // Default: fit to all features
-      const layer = L.geoJSON(geojson as GeoJSON.FeatureCollection);
-      const bounds = layer.getBounds();
-      if (bounds.isValid()) {
-        const padding = getMapPadding(false);
-        map.flyToBounds(bounds as LatLngBoundsExpression, { padding, duration: 0.5 });
+        // Default: fit to all features
+        const layer = L.geoJSON(geojson as GeoJSON.FeatureCollection);
+        const bounds = layer.getBounds();
+        if (bounds.isValid()) {
+          const padding = getMapPadding(false);
+          map.flyToBounds(bounds as LatLngBoundsExpression, { padding, duration: 0.5 });
+        }
+      } catch (e) {
+        console.warn('Failed to fit bounds:', e);
       }
-    } catch (e) {
-      console.warn('Failed to fit bounds:', e);
-    }
-  }, [map, geojson, selectedFeatureName]);
+    };
+
+    // In all views: when panel is open, wait for panel transition so borders don't shift
+    const delayMs = hasPanelOpen ? FIT_DEFER_MS_WHEN_PANEL_OPEN : 0;
+    const timer = setTimeout(runFit, delayMs);
+    return () => clearTimeout(timer);
+  }, [map, geojson, selectedFeatureName, hasPanelOpen]);
 
   return null;
 }
@@ -3014,6 +3031,7 @@ export function MapView({
             <FitBounds
               geojson={displayDataForMap ?? displayData}
               selectedFeatureName={selectedAssembly}
+              hasPanelOpen={hasPanelOpen}
             />
           </>
         )}
