@@ -288,10 +288,17 @@ export function useBoothData(): UseBoothDataReturn {
         });
         const totalAcVotes = acVoteTotals.reduce((sum, v) => sum + v, 0);
 
-        // Find winner for this booth (excluding NOTA)
-        const votesExcludingNota = result.votes.slice(0, -1);
-        const maxVotes = Math.max(...votesExcludingNota);
-        const winnerIndex = votesExcludingNota.indexOf(maxVotes);
+        // Find winner for this booth (excluding NOTA only — do not drop last candidate when there is no NOTA)
+        const votesAndIndices = result.votes
+          .map((vote, idx) => ({ vote, idx }))
+          .filter(({ idx }) => boothResults.candidates[idx]?.party !== 'NOTA');
+        const votesExcludingNota = votesAndIndices.map(({ vote }) => vote);
+        const maxVotes = votesExcludingNota.length ? Math.max(...votesExcludingNota) : 0;
+        const winnerIdxInFiltered = votesExcludingNota.indexOf(maxVotes);
+        const winnerIndex =
+          winnerIdxInFiltered >= 0 && votesAndIndices[winnerIdxInFiltered]
+            ? votesAndIndices[winnerIdxInFiltered].idx
+            : 0;
         const candidate = boothResults.candidates[winnerIndex];
 
         // Validate: candidate must have at least 3% of AC votes to be a valid booth winner
@@ -308,29 +315,28 @@ export function useBoothData(): UseBoothDataReturn {
             percent: result.total > 0 ? (maxVotes / result.total) * 100 : 0,
           };
         } else if (candidate && candidate.party !== 'NOTA' && !isValidWinner) {
-          // Find the candidates with at least 3% AC vote share and pick the one
-          // with highest votes in this booth
-          const validIndices = votesExcludingNota
-            .map((_, i) => i)
-            .filter((i) => {
-              const acVotes = acVoteTotals[i] ?? 0;
+          // Find the candidates with at least 3% AC vote share (excluding NOTA) and pick the one with highest votes in this booth
+          const validIndices = boothResults.candidates
+            .map((_, idx) => idx)
+            .filter((idx) => {
+              if (boothResults.candidates[idx]?.party === 'NOTA') return false;
+              const acVotes = acVoteTotals[idx] ?? 0;
               return totalAcVotes > 0 && acVotes / totalAcVotes >= 0.03;
             });
 
           const firstValidIndex = validIndices[0];
           if (firstValidIndex !== undefined) {
-            // Find which valid candidate has the most votes in this booth
             let validWinnerIndex = firstValidIndex;
             for (const i of validIndices) {
-              const bestVotes = votesExcludingNota[validWinnerIndex] ?? 0;
-              const currentVotes = votesExcludingNota[i] ?? 0;
+              const bestVotes = result.votes[validWinnerIndex] ?? 0;
+              const currentVotes = result.votes[i] ?? 0;
               if (currentVotes > bestVotes) {
                 validWinnerIndex = i;
               }
             }
 
             const validCandidate = boothResults.candidates[validWinnerIndex];
-            const validVotes = votesExcludingNota[validWinnerIndex] ?? 0;
+            const validVotes = result.votes[validWinnerIndex] ?? 0;
             if (validCandidate) {
               winner = {
                 name: validCandidate.name,
@@ -348,6 +354,25 @@ export function useBoothData(): UseBoothDataReturn {
         ...(result !== undefined && { result }),
         ...(winner !== undefined && { winner }),
       });
+    }
+
+    // Validate: sum of booth totals must equal sum of candidate totals (per AC)
+    if (boothResults?.results && boothResults.candidates?.length) {
+      const sumBoothTotals = Object.values(boothResults.results).reduce(
+        (acc, r) => acc + (r.total ?? 0),
+        0
+      );
+      const candSums = boothResults.candidates.map((_, idx) =>
+        Object.values(boothResults.results).reduce((acc, r) => acc + (r.votes[idx] ?? 0), 0)
+      );
+      const sumCandidateTotals = candSums.reduce((a, b) => a + b, 0);
+      if (sumBoothTotals !== sumCandidateTotals && import.meta.env.DEV) {
+        console.warn(
+          `[useBoothData] Booth total ≠ candidate total: sum(booth totals)=${sumBoothTotals}, sum(candidate votes)=${sumCandidateTotals}`,
+          boothResults.acId,
+          boothResults.year
+        );
+      }
     }
 
     // Sort by booth number

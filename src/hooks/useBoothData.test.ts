@@ -231,5 +231,40 @@ describe('useBoothData', () => {
       expect(booths[0].num).toBe(1);
       expect(booths[1].num).toBe(2);
     });
+
+    it('booth winner: with 2 candidates (no NOTA), second candidate can win booth', async () => {
+      const twoCandidateResults: BoothResults = {
+        ...mockBoothResults,
+        candidates: [
+          { slNo: 1, name: 'ADMK', party: 'ADMK', symbol: '' },
+          { slNo: 2, name: 'DMK', party: 'DMK', symbol: '' },
+        ],
+        results: {
+          'TN-001-1': { votes: [400, 500], total: 900, rejected: 0 },
+          'TN-001-2': { votes: [600, 300], total: 900, rejected: 0 },
+        },
+        summary: {
+          ...mockBoothResults.summary,
+          winner: { name: 'ADMK', party: 'ADMK', votes: 1000 },
+          runnerUp: { name: 'DMK', party: 'DMK', votes: 800 },
+        },
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve(twoCandidateResults),
+      });
+
+      const { result } = renderHook(() => useBoothData());
+
+      await act(async () => {
+        await result.current.loadBoothResults('TN', 'TN-001', 2016);
+      });
+
+      const booths = result.current.boothsWithResults;
+      expect(booths).toHaveLength(2);
+      expect(booths[0].winner?.party).toBe('DMK');
+      expect(booths[1].winner?.party).toBe('ADMK');
+    });
   });
 });

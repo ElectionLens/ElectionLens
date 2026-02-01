@@ -30829,6 +30829,48 @@
     "name": "Vedasandur",
     "type": "GEN"
   },
+  "TN-134": {
+    "year": 2016,
+    "constituencyNo": 134,
+    "constituencyName": "ARAVAKURICHI",
+    "constituencyNameOriginal": "Aravakurichi",
+    "constituencyType": "GEN",
+    "districtName": "KARUR",
+    "validVotes": 164475,
+    "electors": 203000,
+    "turnout": 81.02,
+    "enop": 2.12,
+    "totalCandidates": 2,
+    "candidates": [
+      {
+        "position": 1,
+        "name": "SENTHILBALAJI.V",
+        "party": "ADMK",
+        "votes": 88068,
+        "voteShare": 53.51,
+        "margin": 23661,
+        "marginPct": 14.38,
+        "sex": "M",
+        "age": null,
+        "depositLost": false
+      },
+      {
+        "position": 2,
+        "name": "PALANISAMY.K.C",
+        "party": "DMK",
+        "votes": 64407,
+        "voteShare": 39.13,
+        "margin": null,
+        "marginPct": null,
+        "sex": "M",
+        "age": null,
+        "depositLost": false
+      }
+    ],
+    "schemaId": "TN-134",
+    "name": "Aravakurichi",
+    "type": "GEN"
+  },
   "TN-135": {
     "year": 2016,
     "constituencyNo": 135,
@@ -38061,6 +38103,96 @@
     ],
     "schemaId": "TN-173",
     "name": "Thiruvaiyaru",
+    "type": "GEN"
+  },
+  "TN-174": {
+    "year": 2016,
+    "constituencyNo": 174,
+    "constituencyName": "THANJAVUR",
+    "constituencyNameOriginal": "Thanjavur",
+    "constituencyType": "GEN",
+    "districtName": "THANJAVUR",
+    "validVotes": 186384,
+    "electors": 202002,
+    "turnout": 92.27,
+    "enop": 2.15,
+    "totalCandidates": 6,
+    "candidates": [
+      {
+        "position": 1,
+        "name": "RENGASAMY.M",
+        "party": "ADMK",
+        "votes": 101362,
+        "voteShare": 54.37,
+        "margin": 26874,
+        "marginPct": 14.42,
+        "sex": "M",
+        "age": null,
+        "depositLost": false
+      },
+      {
+        "position": 2,
+        "name": "ANJUGAM BOOPATHY",
+        "party": "DMK",
+        "votes": 74488,
+        "voteShare": 39.95,
+        "margin": null,
+        "marginPct": null,
+        "sex": "F",
+        "age": null,
+        "depositLost": false
+      },
+      {
+        "position": 3,
+        "name": "RAMALINGAM.M.S",
+        "party": "BJP",
+        "votes": 3806,
+        "voteShare": 2.04,
+        "margin": null,
+        "marginPct": null,
+        "sex": "M",
+        "age": null,
+        "depositLost": true
+      },
+      {
+        "position": 4,
+        "name": "ABDULLAH SAIT.V",
+        "party": "DMDK",
+        "votes": 1534,
+        "voteShare": 0.82,
+        "margin": null,
+        "marginPct": null,
+        "sex": "M",
+        "age": null,
+        "depositLost": true
+      },
+      {
+        "position": 5,
+        "name": "RAMALINGAM.A",
+        "party": "NTK",
+        "votes": 1192,
+        "voteShare": 0.64,
+        "margin": null,
+        "marginPct": null,
+        "sex": "M",
+        "age": null,
+        "depositLost": true
+      },
+      {
+        "position": 6,
+        "name": "None of the Above",
+        "party": "NOTA",
+        "votes": 4002,
+        "voteShare": 2.15,
+        "margin": null,
+        "marginPct": null,
+        "sex": "",
+        "age": null,
+        "depositLost": false
+      }
+    ],
+    "schemaId": "TN-174",
+    "name": "Thanjavur",
     "type": "GEN"
   },
   "TN-175": {
