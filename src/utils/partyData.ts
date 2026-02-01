@@ -21,6 +21,13 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
     symbol: '🪷',
     symbolEmoji: '🪷',
   },
+  BJPARTY: {
+    name: 'Bharatiya Janata Party',
+    shortName: 'BJP',
+    color: '#FF9933',
+    symbol: '🪷',
+    symbolEmoji: '🪷',
+  },
   INC: {
     name: 'Indian National Congress',
     shortName: 'INC',
@@ -38,14 +45,21 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
   CPM: {
     name: 'Communist Party of India (Marxist)',
     shortName: 'CPM',
-    color: '#FF0000',
+    color: '#B71C1C', // Dark red / crimson to distinguish from DMK (#E31E24) and SP (#FF0000)
     symbol: '⚒️',
     symbolEmoji: '⚒️',
   },
   'CPI(M)': {
     name: 'Communist Party of India (Marxist)',
     shortName: 'CPM',
-    color: '#FF0000',
+    color: '#B71C1C',
+    symbol: '⚒️',
+    symbolEmoji: '⚒️',
+  },
+  CPIM: {
+    name: 'Communist Party of India (Marxist)',
+    shortName: 'CPM',
+    color: '#B71C1C',
     symbol: '⚒️',
     symbolEmoji: '⚒️',
   },
@@ -142,6 +156,20 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
     symbol: '🔔',
     symbolEmoji: '🔔',
   },
+  MNM: {
+    name: 'Makkal Needhi Maiam',
+    shortName: 'MNM',
+    color: '#6366F1', // Indigo (distinct from DMK/AIADMK)
+    symbol: '🔦',
+    symbolEmoji: '🔦',
+  },
+  TNLK: {
+    name: 'Thamizhaga Vazhvurimai Katchi',
+    shortName: 'TNLK',
+    color: '#7C3AED', // Violet (distinct from other TN parties)
+    symbol: '🏛️',
+    symbolEmoji: '🏛️',
+  },
 
   // Regional - Andhra Pradesh & Telangana
   TDP: {
@@ -190,6 +218,13 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
   },
 
   // Regional - Maharashtra
+  MNS: {
+    name: 'Maharashtra Navnirman Sena',
+    shortName: 'MNS',
+    color: '#EA580C', // Orange (distinct from SHS)
+    symbol: '🚂',
+    symbolEmoji: '🚂',
+  },
   SHS: {
     name: 'Shiv Sena',
     shortName: 'SHS',
@@ -271,6 +306,20 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
     symbol: '🚲',
     symbolEmoji: '🚲',
   },
+  RLD: {
+    name: 'Rashtriya Lok Dal',
+    shortName: 'RLD',
+    color: '#0D9488', // Teal
+    symbol: '🚜',
+    symbolEmoji: '🚜',
+  },
+  INLD: {
+    name: 'Indian National Lok Dal',
+    shortName: 'INLD',
+    color: '#0D9488',
+    symbol: '🚜',
+    symbolEmoji: '🚜',
+  },
 
   // Regional - Odisha
   BJD: {
@@ -285,6 +334,13 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
   SAD: {
     name: 'Shiromani Akali Dal',
     shortName: 'SAD',
+    color: '#0000CD',
+    symbol: '⚖️',
+    symbolEmoji: '⚖️',
+  },
+  'SAD(M)': {
+    name: 'Shiromani Akali Dal (Mann)',
+    shortName: 'SAD(M)',
     color: '#0000CD',
     symbol: '⚖️',
     symbolEmoji: '⚖️',
@@ -328,12 +384,26 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
     symbol: '📝',
     symbolEmoji: '📝',
   },
+  AIMIM: {
+    name: 'All India Majlis-e-Ittehadul Muslimeen',
+    shortName: 'AIMIM',
+    color: '#00843D', // Green
+    symbol: '🕌',
+    symbolEmoji: '🕌',
+  },
+  AIUDF: {
+    name: 'All India United Democratic Front',
+    shortName: 'AIUDF',
+    color: '#059669', // Emerald
+    symbol: '🕌',
+    symbolEmoji: '🕌',
+  },
 
   // Regional - Kerala
   IUML: {
     name: 'Indian Union Muslim League',
     shortName: 'IUML',
-    color: '#008000',
+    color: '#006B5C', // Teal-green to distinguish from JMM/JDS (#008000)
     symbol: '🪜',
     symbolEmoji: '🪜',
   },
@@ -403,6 +473,43 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
     symbolEmoji: '🐔',
   },
 
+  // Other national / left / regional
+  SUCI: {
+    name: 'Socialist Unity Centre of India (Communist)',
+    shortName: 'SUCI',
+    color: '#DC2626', // Red
+    symbol: '☭',
+    symbolEmoji: '☭',
+  },
+  'SUCI(C)': {
+    name: 'Socialist Unity Centre of India (Communist)',
+    shortName: 'SUCI',
+    color: '#DC2626',
+    symbol: '☭',
+    symbolEmoji: '☭',
+  },
+  AIFB: {
+    name: 'All India Forward Bloc',
+    shortName: 'AIFB',
+    color: '#B91C1C', // Dark red
+    symbol: '🦁',
+    symbolEmoji: '🦁',
+  },
+  'RPI(A)': {
+    name: 'Republican Party of India (Athawale)',
+    shortName: 'RPI(A)',
+    color: '#1E40AF', // Blue
+    symbol: '✊',
+    symbolEmoji: '✊',
+  },
+  RPI: {
+    name: 'Republican Party of India',
+    shortName: 'RPI',
+    color: '#1E40AF',
+    symbol: '✊',
+    symbolEmoji: '✊',
+  },
+
   // Independent
   IND: {
     name: 'Independent',
@@ -420,6 +527,168 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
     symbol: '✖️',
     symbolEmoji: '✖️',
   },
+
+  // Winner parties (from election data) — avoid gray for constituency/state winners
+  ZPM: {
+    name: "Zoram People's Movement",
+    shortName: 'ZPM',
+    color: '#0D9488',
+    symbol: '⭐',
+    symbolEmoji: '⭐',
+  },
+  JKNPP: {
+    name: 'Jammu & Kashmir National Panthers Party',
+    shortName: 'JKNPP',
+    color: '#9333EA',
+    symbol: '🐆',
+    symbolEmoji: '🐆',
+  },
+  BOPF: {
+    name: "Bodoland People's Front",
+    shortName: 'BOPF',
+    color: '#16A34A',
+    symbol: '🐘',
+    symbolEmoji: '🐘',
+  },
+  BTP: {
+    name: 'Bahujan Tribal Party',
+    shortName: 'BTP',
+    color: '#CA8A04',
+    symbol: '🌿',
+    symbolEmoji: '🌿',
+  },
+  UPPL: {
+    name: "United People's Party Liberal",
+    shortName: 'UPPL',
+    color: '#2563EB',
+    symbol: '🏛️',
+    symbolEmoji: '🏛️',
+  },
+  UKDP: {
+    name: 'Uttarakhand Kranti Dal',
+    shortName: 'UKDP',
+    color: '#0D9488',
+    symbol: '🏔️',
+    symbolEmoji: '🏔️',
+  },
+  UDP: {
+    name: 'United Democratic Party',
+    shortName: 'UDP',
+    color: '#0891B2',
+    symbol: '🏛️',
+    symbolEmoji: '🏛️',
+  },
+  AJSUP: {
+    name: 'AJSU Party',
+    shortName: 'AJSUP',
+    color: '#DC2626',
+    symbol: '🦁',
+    symbolEmoji: '🦁',
+  },
+  'CPI(ML)(L)': {
+    name: 'CPI (Marxist-Leninist) Liberation',
+    shortName: 'CPI(ML)(L)',
+    color: '#991B1B',
+    symbol: '☭',
+    symbolEmoji: '☭',
+  },
+  GFP: {
+    name: 'Goa Forward Party',
+    shortName: 'GFP',
+    color: '#2563EB',
+    symbol: '🚢',
+    symbolEmoji: '🚢',
+  },
+  GGP: {
+    name: 'Goa Green Party',
+    shortName: 'GGP',
+    color: '#16A34A',
+    symbol: '🌿',
+    symbolEmoji: '🌿',
+  },
+  SBSP: {
+    name: 'Suheldev Bharatiya Samaj Party',
+    shortName: 'SBSP',
+    color: '#1E40AF',
+    symbol: '✊',
+    symbolEmoji: '✊',
+  },
+  JVM: {
+    name: 'Jharkhand Vikas Morcha',
+    shortName: 'JVM',
+    color: '#0D9488',
+    symbol: '🏔️',
+    symbolEmoji: '🏔️',
+  },
+  HSPDP: {
+    name: "Hill State People's Democratic Party",
+    shortName: 'HSPDP',
+    color: '#059669',
+    symbol: '🏔️',
+    symbolEmoji: '🏔️',
+  },
+  IPFT: {
+    name: "Indigenous People's Front of Tripura",
+    shortName: 'IPFT',
+    color: '#16A34A',
+    symbol: '🌿',
+    symbolEmoji: '🌿',
+  },
+  AINRC: {
+    name: 'All India N.R. Congress',
+    shortName: 'AINRC',
+    color: '#2563EB',
+    symbol: '🏛️',
+    symbolEmoji: '🏛️',
+  },
+  VOTPP: {
+    name: 'Voice of the People Party',
+    shortName: 'VOTPP',
+    color: '#7C3AED',
+    symbol: '🗣️',
+    symbolEmoji: '🗣️',
+  },
+  BVA: {
+    name: 'Vanchit Bahujan Aaghadi',
+    shortName: 'BVA',
+    color: '#4F46E5',
+    symbol: '✊',
+    symbolEmoji: '✊',
+  },
+  ZNP: {
+    name: 'Zoram National Party',
+    shortName: 'ZNP',
+    color: '#0D9488',
+    symbol: '⭐',
+    symbolEmoji: '⭐',
+  },
+  JNP: {
+    name: 'Janata Party',
+    shortName: 'JNP',
+    color: '#0D9488',
+    symbol: '🏛️',
+    symbolEmoji: '🏛️',
+  },
+};
+
+/** Maps full names / data variants (uppercase) to canonical PARTY_DATA key. Avoids gray for winner parties. */
+const WINNER_PARTY_ALIASES: Record<string, string> = {
+  'JANATA DAL(UNITED)': 'JDU',
+  'COMMUNIST PARTY OF INDIA(MARXIST)': 'CPM',
+  'CPI(M (L)L)': 'CPI(ML)(L)',
+  'ALL INDIA MAJLIS-E-ITTEHADUL MUSLIMEEN': 'AIMIM',
+  'SHIV SENA (UDDHAV BALASAHEB THACKERAY)': 'SHSUBT',
+  'LOK JANSHAKTI PARTY (RAM VILAS)': 'LJPRV',
+  'LOK JANSHAKTI PARTY(RAM VILAS)': 'LJPRV',
+  'NATIONALIST CONGRESS PARTY – SHARADCHANDRA PAWAR': 'NCP(SP)',
+  'NATIONALIST CONGRESS PARTY - SHARADCHANDRA PAWAR': 'NCP(SP)',
+  NCPSP: 'NCP(SP)',
+  "HILL STATE PEOPLE'S DEMOCRATIC PARTY": 'HSPDP',
+  "INDIGENOUS PEOPLE'S FRONT OF TRIPURA": 'IPFT',
+  'UNITED DEMOCRATIC PARTY': 'UDP',
+  'AJSU PARTY': 'AJSUP',
+  'VOICE OF THE PEOPLE PARTY': 'VOTPP',
+  'COMMUNIST PARTY OF INDIA (MARXIST-LENINIST) (LIBERATION)': 'CPI(ML)(L)',
 };
 
 /**
@@ -427,8 +696,9 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
  */
 export function getPartyInfo(partyCode: string): PartyInfo {
   const code = partyCode.toUpperCase().trim();
+  const key = WINNER_PARTY_ALIASES[code] ?? code;
   return (
-    PARTY_DATA[code] ?? {
+    PARTY_DATA[key] ?? {
       name: partyCode,
       shortName: partyCode,
       color: '#6B7280',

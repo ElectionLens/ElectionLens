@@ -173,6 +173,38 @@ describe('partyData', () => {
       const cpmInfo = getPartyInfo('CPM');
       expect(cpiMInfo.color).toBe(cpmInfo.color);
     });
+
+    it('should handle CPIM (no space) as CPM', () => {
+      const cpimInfo = getPartyInfo('CPIM');
+      const cpmInfo = getPartyInfo('CPM');
+      expect(cpimInfo.color).toBe(cpmInfo.color);
+      expect(cpimInfo.color).toBe('#B71C1C');
+    });
+
+    it('should handle BJPARTY as BJP', () => {
+      expect(getPartyInfo('BJPARTY').color).toBe('#FF9933');
+      expect(getPartyInfo('BJPARTY').name).toBe('Bharatiya Janata Party');
+    });
+
+    it('should resolve MNM and TNLK (Tamil Nadu parties in data)', () => {
+      expect(PARTY_DATA.MNM).toBeDefined();
+      expect(getPartyColor('MNM')).toBe('#6366F1');
+      expect(PARTY_DATA.TNLK).toBeDefined();
+      expect(getPartyColor('TNLK')).toBe('#7C3AED');
+    });
+
+    it('should resolve winner-party aliases and new winner parties (no gray)', () => {
+      const gray = '#6B7280';
+      expect(getPartyColor('ZPM')).not.toBe(gray);
+      expect(getPartyColor('JKNPP')).not.toBe(gray);
+      expect(getPartyColor('Janata Dal(United)')).not.toBe(gray);
+      expect(getPartyInfo('Janata Dal(United)').name).toContain('Janata Dal');
+      expect(getPartyColor('CPI(ML)(L)')).not.toBe(gray);
+      expect(getPartyColor('ALL INDIA MAJLIS-E-ITTEHADUL MUSLIMEEN')).not.toBe(gray);
+      expect(getPartyColor('SHIV SENA (UDDHAV BALASAHEB THACKERAY)')).not.toBe(gray);
+      expect(getPartyColor('UNITED DEMOCRATIC PARTY')).not.toBe(gray);
+      expect(getPartyColor('AJSU PARTY')).not.toBe(gray);
+    });
   });
 
   describe('Regional Parties Coverage', () => {
