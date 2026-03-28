@@ -59,6 +59,28 @@ const mockSchema = {
       type: 'SC',
       delimitation: 2008,
     },
+    'TN-118': {
+      id: 'TN-118',
+      stateId: 'TN',
+      pcId: 'TN-01',
+      districtId: 'TN-D01',
+      acNo: 118,
+      name: 'COIMBATORE NORTH',
+      aliases: [],
+      type: 'GEN',
+      delimitation: 2008,
+    },
+    'TN-120': {
+      id: 'TN-120',
+      stateId: 'TN',
+      pcId: 'TN-01',
+      districtId: 'TN-D01',
+      acNo: 120,
+      name: 'COIMBATORE SOUTH',
+      aliases: [],
+      type: 'GEN',
+      delimitation: 2008,
+    },
   },
   districts: {
     'TN-D01': {
@@ -85,6 +107,10 @@ const mockSchema = {
       'anna nagar|TN': 'TN-001',
       'villivakkam sc|TN': 'TN-002', // parentheses removed by normalization
       'villivakkam|TN': 'TN-002',
+      // Same collision as production schema: bare COIMBATORE must not win over COIMBATORE(SOUTH)
+      'COIMBATORE|TN': 'TN-118',
+      'COIMBATORENORTH|TN': 'TN-118',
+      'COIMBATORESOUTH|TN': 'TN-120',
     },
     districtByName: { 'chennai|TN': 'TN-D01', 'bagalkot|KA': 'KA-D02' },
   },
@@ -204,6 +230,14 @@ describe('useSchema', () => {
       expect(result.current.resolveACName('Villivakkam (SC)', 'TN')).toBe('TN-002');
       // Without suffix (fallback)
       expect(result.current.resolveACName('Villivakkam', 'TN')).toBe('TN-002');
+    });
+
+    it('does not treat (North)/(South) as removable suffix — avoids COIMBATORE|TN collision', async () => {
+      const { result } = renderHook(() => useSchema());
+      await waitFor(() => expect(result.current.isReady).toBe(true));
+
+      expect(result.current.resolveACName('COIMBATORE(SOUTH)', 'TN')).toBe('TN-120');
+      expect(result.current.resolveACName('COIMBATORE(NORTH)', 'TN')).toBe('TN-118');
     });
 
     it('resolves district name to ID', async () => {

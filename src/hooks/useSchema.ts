@@ -9,6 +9,9 @@ import type {
 
 const SCHEMA_PATH = '/data/schema.json';
 
+/** Only (SC)/(ST) are stripped as reservation suffixes, not geographic qualifiers like (North)/(South). */
+const AC_RESERVED_PAREN_SUFFIX_RE = /\s*\(\s*(SC|ST)\s*\)\s*$/i;
+
 export interface UseSchemaReturn {
   /** Schema loaded and ready */
   isReady: boolean;
@@ -171,9 +174,9 @@ export function useSchema(): UseSchemaReturn {
       // Try direct match first (lowercase, schema may use this)
       let id = schema.indices.acByName[key];
 
-      // Try without reservation suffix (e.g. "Kurupam (ST)" -> "kurupam st" then "kurupam")
+      // Try without (SC)/(ST) only — do not strip (South)/(North) or URL slugs become ambiguous vs COIMBATORE|TN
       if (!id) {
-        const cleanName = normalized.replace(/\s*\([^)]*\)\s*$/, '').trim();
+        const cleanName = normalized.replace(AC_RESERVED_PAREN_SUFFIX_RE, '').trim();
         id = schema.indices.acByName[`${cleanName}|${stateId}`];
       }
       if (!id && /\s+(st|sc)$/i.test(normalized)) {
@@ -207,7 +210,7 @@ export function useSchema(): UseSchemaReturn {
       // Fallback: schema indices may be built with uppercase, no reservation (e.g. KURUPAM|AP from build-schema-aliases)
       if (!id) {
         const normalizedNoRes = normalized
-          .replace(/\s*\([^)]*\)\s*$/, '')
+          .replace(AC_RESERVED_PAREN_SUFFIX_RE, '')
           .trim()
           .replace(/\s+(st|sc)$/i, '')
           .trim();
@@ -243,28 +246,6 @@ export function useSchema(): UseSchemaReturn {
 
   const resolveDistrictName = useCallback(
     (name: string, stateId: string): string | null => {
-      // #region agent log
-      if (name?.toLowerCase().includes('bagal') || stateId === 'KA') {
-        const p = fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            location: 'useSchema.ts:resolveDistrictName',
-            message: 'entry',
-            data: {
-              name,
-              stateId,
-              hasSchema: !!schema,
-              hasIndex: !!schema?.indices?.districtByName,
-            },
-            timestamp: Date.now(),
-            sessionId: 'debug-session',
-            hypothesisId: 'H1',
-          }),
-        });
-        void p?.catch?.(() => {});
-      }
-      // #endregion
       if (!schema?.indices?.districtByName) return null;
       const normalized = normalizeName(name);
       const key = `${normalized}|${stateId}`;
@@ -277,28 +258,6 @@ export function useSchema(): UseSchemaReturn {
       if (!id && !normalized.endsWith('e')) {
         id = schema.indices.districtByName[`${normalized}e|${stateId}`];
       }
-      // #region agent log
-      if (name?.toLowerCase().includes('bagal') || stateId === 'KA') {
-        const q = fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            location: 'useSchema.ts:resolveDistrictName',
-            message: 'result',
-            data: {
-              normalized,
-              key,
-              id,
-              sampleKeys: Object.keys(schema.indices.districtByName).slice(0, 5),
-            },
-            timestamp: Date.now(),
-            sessionId: 'debug-session',
-            hypothesisId: 'H1',
-          }),
-        });
-        void q?.catch?.(() => {});
-      }
-      // #endregion
       return id ?? null;
     },
     [schema]
