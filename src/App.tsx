@@ -1484,7 +1484,13 @@ function App(): JSX.Element {
       const yearParam = urlParams.get('year');
       let yearToUse: number | undefined = undefined;
 
-      if (yearParam) {
+      // When toolbar is already in PC contribution mode, keep it — do not let a stale ?year=2021
+      // (or a stale closure missing selectedACPCYear in deps) clear PC coloring after sidebar click/search.
+      if (selectedACPCYear != null) {
+        if (selectedYear !== null) {
+          yearToUse = selectedYear;
+        }
+      } else if (yearParam) {
         if (yearParam.startsWith('pc-')) {
           // Parliament contribution year: year=pc-2024
           const parsed = parseInt(yearParam.slice(3), 10);
@@ -1547,11 +1553,13 @@ function App(): JSX.Element {
       currentState,
       currentPC,
       pcSelectedYear,
+      selectedACPCYear,
       getACResult,
       getAC,
       clearPCElectionResult,
       loadAllParliamentContributions,
       selectedYear,
+      setSelectedACPCYear,
     ]
   );
 
@@ -1603,33 +1611,87 @@ function App(): JSX.Element {
   /**
    * Handle search selection - assembly
    * Navigate to the assemblies view and select the assembly
-   * URL: /state/ac/ac-name?year=YYYY
+   * URL: /state/ac/ac-name?year=YYYY or year=pc-YYYY (same URL/year rules as map click)
    */
   const handleSearchAssemblySelect = useCallback(
-    async (acName: string, stateName: string, _feature: AssemblyFeature): Promise<void> => {
+    async (acName: string, stateName: string, feature: AssemblyFeature): Promise<void> => {
       closeSidebarOnMobile();
+      clearPCElectionResult();
+      setParliamentContributions({});
 
-      // Navigate to assemblies view for the state
       const data = await navigateToAssemblies(stateName);
       setCurrentData(data);
 
-      // Select the assembly and get its election result (use schema for reliable lookup)
       selectAssembly(acName);
+
+      const urlParams = new URLSearchParams(
+        typeof window !== 'undefined' ? window.location.search : ''
+      );
+      const yearParam = urlParams.get('year');
+      let yearToUse: number | undefined = undefined;
+
+      if (selectedACPCYear != null) {
+        if (selectedYear !== null) {
+          yearToUse = selectedYear;
+        }
+      } else if (yearParam) {
+        if (yearParam.startsWith('pc-')) {
+          const parsed = parseInt(yearParam.slice(3), 10);
+          if (!isNaN(parsed)) {
+            setSelectedACPCYear(parsed);
+          }
+        } else {
+          const parsed = parseInt(yearParam, 10);
+          if (!isNaN(parsed)) {
+            yearToUse = parsed;
+            if (currentPC && pcSelectedYear != null) {
+              setSelectedACPCYear(pcSelectedYear);
+            } else {
+              setSelectedACPCYear(null);
+            }
+          }
+        }
+      } else if (currentPC && pcSelectedYear != null) {
+        setSelectedACPCYear(pcSelectedYear);
+      } else {
+        setSelectedACPCYear(null);
+      }
+
+      if (yearToUse === undefined && selectedYear !== null) {
+        yearToUse = selectedYear;
+      }
+
       const stateId = getStateIdFromName(stateName);
-      const schemaId = resolveACName(acName, stateId);
-      await getACResult(acName, stateName, undefined, {
+      const schemaId = feature.properties.schemaId ?? resolveACName(acName, stateId);
+      const schemaAC = schemaId ? getAC(schemaId) : null;
+
+      await getACResult(acName, stateName, yearToUse, {
         schemaId: schemaId ?? undefined,
-        canonicalName: schemaId ? getAC(schemaId)?.name : undefined,
+        canonicalName: schemaAC?.name,
       });
+
+      const pcName = feature.properties.PC_NAME;
+      if (pcName) {
+        await loadAllParliamentContributions(acName, pcName, stateName);
+      }
+
+      trackConstituencySelect('assembly', acName, stateName);
     },
     [
       navigateToAssemblies,
       selectAssembly,
       getACResult,
       closeSidebarOnMobile,
+      clearPCElectionResult,
       getStateIdFromName,
       resolveACName,
       getAC,
+      currentPC,
+      pcSelectedYear,
+      selectedYear,
+      selectedACPCYear,
+      setSelectedACPCYear,
+      loadAllParliamentContributions,
     ]
   );
 
@@ -1822,18 +1884,19 @@ function App(): JSX.Element {
   );
 
   /**
-   * Get current share URL for AC election results
+   * Get current share URL for AC election results (matches URL: assembly year or year=pc-YYYY)
    */
   const currentShareUrl = useMemo(() => {
     if (!currentAssembly) return undefined;
+    const pcYearActive = selectedACPCYear != null;
     return getShareableUrl({
       state: currentState,
       view: currentView,
       pc: currentPC,
       district: currentDistrict,
       assembly: currentAssembly,
-      year: selectedYear,
-      pcYear: null,
+      year: pcYearActive ? null : selectedYear,
+      pcYear: pcYearActive ? selectedACPCYear : null,
       tab: null,
       showACs: currentPC ? (showACsWithinPC ?? true) : null,
       blog: blogOpen,
@@ -1847,6 +1910,7 @@ function App(): JSX.Element {
     currentDistrict,
     currentAssembly,
     selectedYear,
+    selectedACPCYear,
     showACsWithinPC,
     blogOpen,
   ]);

@@ -486,17 +486,26 @@ export function useUrlState(
         (currentView === 'assemblies' || currentView === 'districts') &&
         typeof window !== 'undefined';
       if (inACOrDistrictsView) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const yearParam = urlParams.get('year');
-        if (yearParam) {
-          if (yearParam.startsWith('pc-')) {
-            const parsed = parseInt(yearParam.slice(3), 10);
-            if (!isNaN(parsed)) pcYearToUse = parsed;
-          } else {
-            const parsed = parseInt(yearParam, 10);
-            if (!isNaN(parsed)) {
-              yearToUse = parsed;
-              pcYearToUse = null;
+        // Parliament-contribution mode (toolbar / selectedACPCYear): React must win over a stale
+        // numeric ?year= in the address bar. Otherwise getACResult sets assembly year (e.g. 2021),
+        // the effect re-runs with ?year=2021, and this branch used to force pcYearToUse=null —
+        // replacing ?year=pc-2024 with ?year=2021.
+        if (selectedPCYear != null) {
+          pcYearToUse = selectedPCYear;
+          yearToUse = null;
+        } else {
+          const urlParams = new URLSearchParams(window.location.search);
+          const yearParam = urlParams.get('year');
+          if (yearParam) {
+            if (yearParam.startsWith('pc-')) {
+              const parsed = parseInt(yearParam.slice(3), 10);
+              if (!isNaN(parsed)) pcYearToUse = parsed;
+            } else {
+              const parsed = parseInt(yearParam, 10);
+              if (!isNaN(parsed)) {
+                yearToUse = parsed;
+                pcYearToUse = null;
+              }
             }
           }
         }

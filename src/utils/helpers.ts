@@ -48,6 +48,20 @@ export function getStateFileName(stateName: string | null | undefined): string {
 }
 
 /**
+ * Two-letter state code for election JSON paths (e.g. /data/elections/TN/…).
+ * GeoJSON ST_NAME is often ALL CAPS; resolution is case-insensitive via getStateFileName.
+ */
+export function getElectionStateId(stateName: string | null | undefined): string {
+  if (!stateName) return '';
+  const code = getStateFileName(stateName);
+  if (code.length === 2 && /^[A-Za-z]{2}$/i.test(code)) {
+    return code.toUpperCase();
+  }
+  const normalized = normalizeName(stateName);
+  return normalized.toUpperCase().slice(0, 2);
+}
+
+/**
  * Get color for a feature based on index and map level
  * Colors cycle through the palette when index exceeds length
  */

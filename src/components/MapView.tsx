@@ -17,8 +17,14 @@ import type {
   LeafletMouseEvent as LLeafletMouseEvent,
   LatLngBoundsExpression,
 } from 'leaflet';
-import { getFeatureStyle, getHoverStyle, normalizeName, getStateFileName } from '../utils/helpers';
-import { COLOR_PALETTES, isBoothDataAvailable, STATE_FILE_MAP } from '../constants';
+import {
+  getFeatureStyle,
+  getHoverStyle,
+  normalizeName,
+  getStateFileName,
+  getElectionStateId,
+} from '../utils/helpers';
+import { COLOR_PALETTES, isBoothDataAvailable } from '../constants';
 
 /** App-wide neutral map style when no party data — same default color in all views (districts, background districts/PCs/states) */
 const NEUTRAL_MAP_STYLE: L.PathOptions = {
@@ -730,6 +736,8 @@ export function MapView({
   const styleRef = useRef<((feature?: GeoJSON.Feature) => L.PathOptions) | null>(null);
   // Only one feature (other than selected) may show hover at a time; clear previous on new hover
   const lastHoveredLayerRef = useRef<FeatureLayer | null>(null);
+  /** Invalidates in-flight loadResults when deps change again (sidebar AC pick + getACResult year often overlap). */
+  const loadResultsRunIdRef = useRef(0);
 
   // Mapping of constituency names to winning party for color-coding
   const [constituencyWinners, setConstituencyWinners] = useState<
@@ -748,26 +756,7 @@ export function MapView({
     Record<string, { party: string; candidate: string }>
   >({});
 
-  // Helper to get state ID from state name
-  const getStateId = useCallback((stateName: string): string => {
-    const normalized = normalizeName(stateName);
-    // Try direct lookup first
-    if (STATE_FILE_MAP[stateName]) {
-      return STATE_FILE_MAP[stateName];
-    }
-    // Try normalized lookup
-    if (STATE_FILE_MAP[normalized]) {
-      return STATE_FILE_MAP[normalized];
-    }
-    // Try to find by normalized match
-    for (const [key, value] of Object.entries(STATE_FILE_MAP)) {
-      if (normalizeName(key) === normalized) {
-        return value;
-      }
-    }
-    // Fallback to first 2 uppercase letters
-    return normalized.toUpperCase().slice(0, 2);
-  }, []);
+  const getStateId = useCallback((stateName: string): string => getElectionStateId(stateName), []);
 
   // Schema hook - used for resolveACName/resolvePCName in loadResults and getAC for booth data
   const { getAC, resolveACName, resolvePCName, resolveDistrictName, getDistrict, schema } =
@@ -823,6 +812,8 @@ export function MapView({
 
   // Load election results for color-coding when year/state/view changes
   useEffect(() => {
+    const runId = ++loadResultsRunIdRef.current;
+
     if (!currentState) {
       // Don't clear when URL is state-level PC with year= — preload/initialPCWinners may set winners;
       // clearing here wipes them before first paint (handleUrlNavigate sets currentState async).
@@ -843,13 +834,24 @@ export function MapView({
     }
 
     const loadResults = async (): Promise<void> => {
+      if (loadResultsRunIdRef.current !== runId) return;
+
       const stateId = getStateId(currentState);
       const winners: Record<string, { party: string; candidate: string }> = {};
       setBackgroundPCWinners({});
+      let urlDerivedPcYear: number | null = null;
+      if (typeof window !== 'undefined') {
+        const py = new URLSearchParams(window.location.search).get('year');
+        if (py?.startsWith('pc-')) {
+          const n = parseInt(py.slice(3), 10);
+          if (!Number.isNaN(n)) urlDerivedPcYear = n;
+        }
+      }
+      const pcYearForColoring = selectedACPCYear ?? urlDerivedPcYear;
       // #region agent log
       const branch =
         currentView === 'assemblies' || currentView === 'districts'
-          ? selectedACPCYear
+          ? pcYearForColoring
             ? 'pcYear'
             : selectedYear
               ? 'assemblyYear'
@@ -868,6 +870,7 @@ export function MapView({
             currentView,
             selectedYear,
             selectedACPCYear,
+            pcYearForColoring,
             branch,
             stateId,
           },
@@ -883,10 +886,10 @@ export function MapView({
         currentView === 'assemblies' || currentView === 'districts' || Boolean(currentDistrict);
       if (needsACOrPCDistrictData) {
         // For AC/districts view (or district detail), check if we're viewing PC contribution year or assembly year
-        if (selectedACPCYear) {
+        if (pcYearForColoring) {
           // Load PC election results and map AC contributions
           try {
-            const response = await fetch(PC_ELECTIONS.getYearPath(stateId, selectedACPCYear));
+            const response = await fetch(PC_ELECTIONS.getYearPath(stateId, pcYearForColoring));
             if (response.ok) {
               const results = (await response.json()) as PCElectionResultsByConstituency;
               let acCount = 0;
@@ -1011,16 +1014,18 @@ export function MapView({
                     }
                   }
                 });
-                setBackgroundPCWinners(pcWinnersMap);
+                if (loadResultsRunIdRef.current === runId) {
+                  setBackgroundPCWinners(pcWinnersMap);
+                }
               }
             } else {
               console.warn(
-                `[Color-coding] Failed to load PC election results: HTTP ${response.status} for ${PC_ELECTIONS.getYearPath(stateId, selectedACPCYear)}`
+                `[Color-coding] Failed to load PC election results: HTTP ${response.status} for ${PC_ELECTIONS.getYearPath(stateId, pcYearForColoring)}`
               );
             }
           } catch (err) {
             console.error(
-              `Failed to load PC election results for ${currentState} ${selectedACPCYear}:`,
+              `Failed to load PC election results for ${currentState} ${pcYearForColoring}:`,
               err
             );
           }
@@ -1260,7 +1265,9 @@ export function MapView({
                   }
                 }
               }
-              setBackgroundPCWinners(winners);
+              if (loadResultsRunIdRef.current === runId) {
+                setBackgroundPCWinners(winners);
+              }
               // For the selected PC only: color each AC by who led in that AC within this PC election (acWiseResults / acWiseVotes)
               if (currentPC && response.ok && results) {
                 const pcSchemaId = resolvePCName(currentPC, stateId);
@@ -1448,6 +1455,7 @@ export function MapView({
       // Don't overwrite with empty when state-level PC view and no year (fallback effect may have set winners from URL)
       const isStateLevelPC =
         currentView === 'constituencies' && currentPC == null && Object.keys(winners).length === 0;
+      if (loadResultsRunIdRef.current !== runId) return;
       if (!isStateLevelPC) {
         setConstituencyWinners(winners);
         setWinnersVersion((v) => v + 1);
@@ -1486,6 +1494,7 @@ export function MapView({
             currentState,
             selectedYear,
             selectedACPCYear,
+            pcYearForColoring,
           },
           timestamp: Date.now(),
           sessionId: 'debug-session',
@@ -1493,9 +1502,9 @@ export function MapView({
         }),
       }).catch(() => {});
       // #endregion
-      if (Object.keys(winners).length === 0 && selectedACPCYear) {
+      if (Object.keys(winners).length === 0 && pcYearForColoring) {
         console.warn(
-          `[Color-coding] No winners loaded! Check if PC election data exists for ${currentState} ${selectedACPCYear}`
+          `[Color-coding] No winners loaded! Check if PC election data exists for ${currentState} ${pcYearForColoring}`
         );
       }
     };

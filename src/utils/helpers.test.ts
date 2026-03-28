@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   normalizeName,
   getStateFileName,
+  getElectionStateId,
   getFeatureColor,
   getFeatureStyle,
   getHoverStyle,
@@ -66,6 +67,29 @@ describe('getStateFileName', () => {
   it('generates slug from name as fallback for unknown states', () => {
     const result = getStateFileName('Some New State');
     expect(result).toBe('some-new-state');
+  });
+});
+
+describe('getElectionStateId', () => {
+  it('returns TN for title case and ALL CAPS GeoJSON ST_NAME', () => {
+    expect(getElectionStateId('Tamil Nadu')).toBe('TN');
+    expect(getElectionStateId('TAMIL NADU')).toBe('TN');
+    expect(getElectionStateId('tamil nadu')).toBe('TN');
+  });
+
+  it('returns other known state codes case-insensitively', () => {
+    expect(getElectionStateId('KARNATAKA')).toBe('KA');
+    expect(getElectionStateId('Maharashtra')).toBe('MH');
+  });
+
+  it('returns empty string for null/undefined/empty', () => {
+    expect(getElectionStateId(null)).toBe('');
+    expect(getElectionStateId(undefined)).toBe('');
+    expect(getElectionStateId('')).toBe('');
+  });
+
+  it('falls back to first two letters when not in STATE_FILE_MAP', () => {
+    expect(getElectionStateId('Some New State')).toBe('SO');
   });
 });
 
