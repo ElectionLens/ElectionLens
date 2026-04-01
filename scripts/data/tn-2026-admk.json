@@ -1,0 +1,837 @@
+{
+  "_meta": {
+    "source": "Indian Express + The Week + DT Next",
+    "fetchedAt": "2026-04-01T18:52:58.282Z",
+    "urls": {
+      "indianExpressFirstList": "https://indianexpress.com/article/cities/chennai/tamil-nadu-assembly-polls-2026-aiadmk-check-full-list-of-candidates-10600086/",
+      "weekSecondList": "https://www.theweek.in/news/india/2026/03/27/aiadmk-candidate-list-2026-127-strong-second-list-out-as-indiya-jananayaka-katchi-opts-for-two-leaves-symbol.html",
+      "weekThirdList": "https://www.theweek.in/news/india/2026/03/29/aiadmk-final-candidate-list-adhav-arjuna-villivakkam-udhayanidhi-chepauk-among-seats-included.html",
+      "dtNextThirdListContext": "https://www.dtnext.in/news/politics/2026-tn-elections-aiadmk-announces-final-list-of-17-candidates-fields-ex-councillor-against-cm-stalin-in-kolathur"
+    },
+    "note": "Merged first (IE table), second & third (The Week JSON-LD), plus Thiru Vi Ka Nagar from DT Next prose. Later layers override earlier seats when constituency keys match.",
+    "rowCounts": {
+      "indianExpress": 23,
+      "weekSecond": 127,
+      "weekThird": 16,
+      "dtNextSupplement": 1,
+      "mergedUnique": 163
+    }
+  },
+  "rows": [
+    {
+      "order": 1,
+      "constituency": "Edappadi",
+      "candidate": "Edappadi K. Palaniswami"
+    },
+    {
+      "order": 2,
+      "constituency": "Veppanahalli",
+      "candidate": "K.P. Munusamy"
+    },
+    {
+      "order": 3,
+      "constituency": "Dindigul",
+      "candidate": "Dindigul C. Sreenivasan"
+    },
+    {
+      "order": 4,
+      "constituency": "Natham",
+      "candidate": "Natham R. Viswanathan"
+    },
+    {
+      "order": 5,
+      "constituency": "Thondamuthur",
+      "candidate": "S.P. Velumani"
+    },
+    {
+      "order": 6,
+      "constituency": "Kumarapalayam",
+      "candidate": "P. Thangamani"
+    },
+    {
+      "order": 7,
+      "constituency": "Royapuram",
+      "candidate": "D. Jayakumar"
+    },
+    {
+      "order": 8,
+      "constituency": "Mailam",
+      "candidate": "C.Ve. Shanmugam"
+    },
+    {
+      "order": 9,
+      "constituency": "Madurai West",
+      "candidate": "Sellur K. Raju"
+    },
+    {
+      "order": 10,
+      "constituency": "Palacode",
+      "candidate": "K.P. Anbazhagan"
+    },
+    {
+      "order": 11,
+      "constituency": "Nannilam",
+      "candidate": "R. Kamaraj"
+    },
+    {
+      "order": 12,
+      "constituency": "Vedaranyam",
+      "candidate": "O.S. Manian"
+    },
+    {
+      "order": 13,
+      "constituency": "Viralimalai",
+      "candidate": "C. Vijayabaskar"
+    },
+    {
+      "order": 14,
+      "constituency": "Kovilpatti",
+      "candidate": "Kadambur C. Raju"
+    },
+    {
+      "order": 15,
+      "constituency": "Thirumangalam",
+      "candidate": "R.B. Udhayakumar"
+    },
+    {
+      "order": 16,
+      "constituency": "Sivakasi",
+      "candidate": "K.T. Rajenthra Bhalaji"
+    },
+    {
+      "order": 17,
+      "constituency": "Krishnagiri",
+      "candidate": "K. Ashok Kumar"
+    },
+    {
+      "order": 18,
+      "constituency": "Maduranthakam (SC)",
+      "candidate": "Maragatham Kumaravel"
+    },
+    {
+      "order": 19,
+      "constituency": "Pennagaram",
+      "candidate": "R.K. Nagaraj"
+    },
+    {
+      "order": 20,
+      "constituency": "Tirupparankundram",
+      "candidate": "V.V. Rajan Chellappa"
+    },
+    {
+      "order": 21,
+      "constituency": "Madurai East",
+      "candidate": "Mangalam K. Mahendran"
+    },
+    {
+      "order": 22,
+      "constituency": "Cumbum",
+      "candidate": "S.T.K. Jakkaiyan"
+    },
+    {
+      "order": 23,
+      "constituency": "Manamadurai (SC)",
+      "candidate": "K.C. Karuppannan"
+    },
+    {
+      "order": 24,
+      "constituency": "Kumbidipundi",
+      "candidate": "V. Sathan"
+    },
+    {
+      "order": 25,
+      "constituency": "Thuraiyur (SC)",
+      "candidate": "I. Saroja"
+    },
+    {
+      "order": 26,
+      "constituency": "Perambalur (SC)",
+      "candidate": "R. Tamilselvan"
+    },
+    {
+      "order": 27,
+      "constituency": "Neyveli",
+      "candidate": "Sorathur R. Rajendran"
+    },
+    {
+      "order": 28,
+      "constituency": "Panruti",
+      "candidate": "K. Mohan"
+    },
+    {
+      "order": 29,
+      "constituency": "Cuddalore",
+      "candidate": "M.C. Sampath"
+    },
+    {
+      "order": 30,
+      "constituency": "Kurinjipadi",
+      "candidate": "A. Bhuvanendran"
+    },
+    {
+      "order": 31,
+      "constituency": "Bhuvanagiri",
+      "candidate": "A. Arunmozhithevan"
+    },
+    {
+      "order": 32,
+      "constituency": "Chidambaram",
+      "candidate": "K.A. Pandiyan"
+    },
+    {
+      "order": 33,
+      "constituency": "Sirkazhi (SC)",
+      "candidate": "M. Sakthi"
+    },
+    {
+      "order": 34,
+      "constituency": "Poompuhar",
+      "candidate": "S. Pavunraj"
+    },
+    {
+      "order": 35,
+      "constituency": "Nagapattinam",
+      "candidate": "Thanga. Kathiravan"
+    },
+    {
+      "order": 36,
+      "constituency": "Thiruthuraipoondi (SC)",
+      "candidate": "U. Baladandayutham"
+    },
+    {
+      "order": 37,
+      "constituency": "Thiruvidaimarudur (SC)",
+      "candidate": "Ilamathi Subramanian"
+    },
+    {
+      "order": 38,
+      "constituency": "Papanasam",
+      "candidate": "D. Shanmugaprabu"
+    },
+    {
+      "order": 39,
+      "constituency": "Orathanadu",
+      "candidate": "M. Sekar"
+    },
+    {
+      "order": 40,
+      "constituency": "Pattukkottai",
+      "candidate": "C.V. Sekar"
+    },
+    {
+      "order": 41,
+      "constituency": "Peravurani",
+      "candidate": "Kovi. Ilango"
+    },
+    {
+      "order": 42,
+      "constituency": "Thirumayam",
+      "candidate": "P.K. Vairamuthu"
+    },
+    {
+      "order": 43,
+      "constituency": "Sivaganga",
+      "candidate": "PR. Senthilnathan"
+    },
+    {
+      "order": 44,
+      "constituency": "Melur",
+      "candidate": "P. Periyapullan (alias) Selvam"
+    },
+    {
+      "order": 45,
+      "constituency": "Sholavandan (SC)",
+      "candidate": "K. Manikkam"
+    },
+    {
+      "order": 46,
+      "constituency": "Madurai North",
+      "candidate": "P. Saravanan"
+    },
+    {
+      "order": 47,
+      "constituency": "Usilampatti",
+      "candidate": "I. Mahendran"
+    },
+    {
+      "order": 48,
+      "constituency": "Andipatti",
+      "candidate": "A. Logirajan"
+    },
+    {
+      "order": 49,
+      "constituency": "Bodinayakanur",
+      "candidate": "V.T. Narayanasamy"
+    },
+    {
+      "order": 50,
+      "constituency": "Srivilliputhur (SC)",
+      "candidate": "M. Chandhrapraba"
+    },
+    {
+      "order": 51,
+      "constituency": "Virudhunagar",
+      "candidate": "V.G. Ganesan"
+    },
+    {
+      "order": 52,
+      "constituency": "Aruppukkottai",
+      "candidate": "S. Sethupathi"
+    },
+    {
+      "order": 53,
+      "constituency": "Paramakudi (SC)",
+      "candidate": "S. Muthaiah"
+    },
+    {
+      "order": 54,
+      "constituency": "Tiruvadanai",
+      "candidate": "Keerthika Muniyasamy"
+    },
+    {
+      "order": 55,
+      "constituency": "Mudukulathur",
+      "candidate": "Malaysia S. Pandi"
+    },
+    {
+      "order": 56,
+      "constituency": "Vilathikulam",
+      "candidate": "R. Sathya"
+    },
+    {
+      "order": 57,
+      "constituency": "Thoothukudi",
+      "candidate": "Ci.Dha. Sellappandiyan"
+    },
+    {
+      "order": 58,
+      "constituency": "Srivaikuntam",
+      "candidate": "S.P. Shanmuganathan"
+    },
+    {
+      "order": 59,
+      "constituency": "Sankarankovil (SC)",
+      "candidate": "Thilipan Jaisankar"
+    },
+    {
+      "order": 60,
+      "constituency": "Kadayanallur",
+      "candidate": "C. Krishnamurali"
+    },
+    {
+      "order": 61,
+      "constituency": "Tenkasi",
+      "candidate": "S. Selvamogandhas-Pandiyan"
+    },
+    {
+      "order": 62,
+      "constituency": "Alangulam",
+      "candidate": "K.R.P. Prabakaran"
+    },
+    {
+      "order": 63,
+      "constituency": "Tirunelveli",
+      "candidate": "Thatchai N. Ganesharaja"
+    },
+    {
+      "order": 64,
+      "constituency": "Ambasamudram",
+      "candidate": "Esakki Subbaiah (alias) I. Subbaiah"
+    },
+    {
+      "order": 65,
+      "constituency": "Palayamkottai",
+      "candidate": "S. Syed Sulthan Samsudeen"
+    },
+    {
+      "order": 66,
+      "constituency": "Kanniyakumari",
+      "candidate": "N. Thalavaisundaram"
+    },
+    {
+      "order": 67,
+      "constituency": "Ponneri (SC)",
+      "candidate": "P. Balaraman"
+    },
+    {
+      "order": 68,
+      "constituency": "Tiruttani",
+      "candidate": "K. Thiruthani"
+    },
+    {
+      "order": 69,
+      "constituency": "Tiruvallur",
+      "candidate": "B.V. Ramana"
+    },
+    {
+      "order": 70,
+      "constituency": "Madhavaram",
+      "candidate": "V. Moorthy"
+    },
+    {
+      "order": 71,
+      "constituency": "Tiruvottiyur",
+      "candidate": "K. Kuppan"
+    },
+    {
+      "order": 72,
+      "constituency": "Srirampur (SC)",
+      "candidate": "K. Pazhani"
+    },
+    {
+      "order": 73,
+      "constituency": "Dharmapuri",
+      "candidate": "S. Ramachandran"
+    },
+    {
+      "order": 74,
+      "constituency": "Chengalpattu",
+      "candidate": "M. Raja (alias) K. Rajendran"
+    },
+    {
+      "order": 75,
+      "constituency": "Cheyyur (SC)",
+      "candidate": "E. Rajasekar"
+    },
+    {
+      "order": 76,
+      "constituency": "Kancheepuram",
+      "candidate": "V. Somnath"
+    },
+    {
+      "order": 77,
+      "constituency": "Arakkonam (SC)",
+      "candidate": "S. Ravi"
+    },
+    {
+      "order": 78,
+      "constituency": "Katpadi",
+      "candidate": "V. Ramu"
+    },
+    {
+      "order": 79,
+      "constituency": "Arcot",
+      "candidate": "S.M. Sugumar"
+    },
+    {
+      "order": 80,
+      "constituency": "Pappireddippatti",
+      "candidate": "Maragatham Vetrivel"
+    },
+    {
+      "order": 81,
+      "constituency": "Harur (SC)",
+      "candidate": "V. Sampathkumar"
+    },
+    {
+      "order": 82,
+      "constituency": "Chengam (SC)",
+      "candidate": "T.S. Velu"
+    },
+    {
+      "order": 83,
+      "constituency": "Kilpennathur",
+      "candidate": "S. Ramachandran"
+    },
+    {
+      "order": 84,
+      "constituency": "Arani",
+      "candidate": "L. Jayasudha"
+    },
+    {
+      "order": 85,
+      "constituency": "Cheyyar",
+      "candidate": "Mukkur N. Subramanian"
+    },
+    {
+      "order": 86,
+      "constituency": "Vandavasi (SC)",
+      "candidate": "P. Rani"
+    },
+    {
+      "order": 87,
+      "constituency": "Tindivanam (SC)",
+      "candidate": "P. Arjunan"
+    },
+    {
+      "order": 88,
+      "constituency": "Vanur (SC)",
+      "candidate": "P. Murugan"
+    },
+    {
+      "order": 89,
+      "constituency": "Vellore",
+      "candidate": "S.R.K. Appu"
+    },
+    {
+      "order": 90,
+      "constituency": "Anaicut",
+      "candidate": "D. Velazhagan"
+    },
+    {
+      "order": 91,
+      "constituency": "Gudiyattam (SC)",
+      "candidate": "G. Parisa Purushothaman"
+    },
+    {
+      "order": 92,
+      "constituency": "Vaniyambadi",
+      "candidate": "G. Sendhil Kumar"
+    },
+    {
+      "order": 93,
+      "constituency": "Ambur",
+      "candidate": "R. Venkatesan"
+    },
+    {
+      "order": 94,
+      "constituency": "Uthangarai (SC)",
+      "candidate": "T.M. Tamilselvam"
+    },
+    {
+      "order": 95,
+      "constituency": "Bargur",
+      "candidate": "E.C. Govindarasu"
+    },
+    {
+      "order": 96,
+      "constituency": "Hosur",
+      "candidate": "P. Balakrishna Reddy"
+    },
+    {
+      "order": 97,
+      "constituency": "Coimbatore South",
+      "candidate": "Amman K. Arjunan"
+    },
+    {
+      "order": 98,
+      "constituency": "Singanallur",
+      "candidate": "K.R. Jayaram"
+    },
+    {
+      "order": 99,
+      "constituency": "Kinathukadavu",
+      "candidate": "Se. Damodaran"
+    },
+    {
+      "order": 100,
+      "constituency": "Pollachi",
+      "candidate": "Pollachi V. Jayaraman"
+    },
+    {
+      "order": 101,
+      "constituency": "Valparai (SC)",
+      "candidate": "D. Lakshmanan"
+    },
+    {
+      "order": 102,
+      "constituency": "Udumalaipettai",
+      "candidate": "Udumalai K. Radhakrishnan"
+    },
+    {
+      "order": 103,
+      "constituency": "Palani",
+      "candidate": "K. Ravi Manoharan"
+    },
+    {
+      "order": 104,
+      "constituency": "Oddanchatram",
+      "candidate": "A. Viswanathan"
+    },
+    {
+      "order": 105,
+      "constituency": "Nilakottai (SC)",
+      "candidate": "S. Thenmozhi"
+    },
+    {
+      "order": 106,
+      "constituency": "Vedasandur",
+      "candidate": "V.P.B. Paramasivam"
+    },
+    {
+      "order": 107,
+      "constituency": "Aravakurichi",
+      "candidate": "K. Selvakumar"
+    },
+    {
+      "order": 108,
+      "constituency": "Krishnarayapuram (SC)",
+      "candidate": "S. Divya"
+    },
+    {
+      "order": 109,
+      "constituency": "Kulithalai",
+      "candidate": "S. Kandhasamy"
+    },
+    {
+      "order": 110,
+      "constituency": "Manapparai",
+      "candidate": "P.L. Vijayakumar"
+    },
+    {
+      "order": 111,
+      "constituency": "Srirangam",
+      "candidate": "R. Manoharan"
+    },
+    {
+      "order": 112,
+      "constituency": "Tiruchirappalli (East)",
+      "candidate": "K. Rajasekaran"
+    },
+    {
+      "order": 113,
+      "constituency": "Tiruchirappalli (West)",
+      "candidate": "P. Kumar"
+    },
+    {
+      "order": 114,
+      "constituency": "Thiruverumbur",
+      "candidate": "M. Leela Rajesh"
+    },
+    {
+      "order": 115,
+      "constituency": "Musiri",
+      "candidate": "N. Yogalingam"
+    },
+    {
+      "order": 116,
+      "constituency": "Vikravandi",
+      "candidate": "K. Vijaya"
+    },
+    {
+      "order": 117,
+      "constituency": "Tirukkoyilur",
+      "candidate": "S. Pazhanisamy"
+    },
+    {
+      "order": 118,
+      "constituency": "Ulundurpettai",
+      "candidate": "R. Kumaraguru"
+    },
+    {
+      "order": 119,
+      "constituency": "Sankarapuram",
+      "candidate": "R. Madhavan"
+    },
+    {
+      "order": 120,
+      "constituency": "Kallakurichi (SC)",
+      "candidate": "S. Rajendran"
+    },
+    {
+      "order": 121,
+      "constituency": "Gangavalli (SC)",
+      "candidate": "A. Nallathambi"
+    },
+    {
+      "order": 122,
+      "constituency": "Attur (SC)",
+      "candidate": "A.P. Jayasankaran"
+    },
+    {
+      "order": 123,
+      "constituency": "Yercaud (ST)",
+      "candidate": "P. Usha Rani"
+    },
+    {
+      "order": 124,
+      "constituency": "Omalur",
+      "candidate": "R. Mani"
+    },
+    {
+      "order": 125,
+      "constituency": "Mettur",
+      "candidate": "G. Venkatachalam"
+    },
+    {
+      "order": 126,
+      "constituency": "Sankari",
+      "candidate": "S. Vetrivel"
+    },
+    {
+      "order": 127,
+      "constituency": "Salem (South)",
+      "candidate": "J. Robert"
+    },
+    {
+      "order": 128,
+      "constituency": "Veerapandi",
+      "candidate": "P. Senthil Kumar"
+    },
+    {
+      "order": 129,
+      "constituency": "Sendamangalam (ST)",
+      "candidate": "C. Chandrasekaran"
+    },
+    {
+      "order": 130,
+      "constituency": "Namakkal",
+      "candidate": "P.S. Madhavi"
+    },
+    {
+      "order": 131,
+      "constituency": "Paramathi Velur",
+      "candidate": "S. Sekar"
+    },
+    {
+      "order": 132,
+      "constituency": "Tiruchengodu",
+      "candidate": "R. Chandrasekar"
+    },
+    {
+      "order": 133,
+      "constituency": "Erode (East)",
+      "candidate": "R. Manoharan"
+    },
+    {
+      "order": 134,
+      "constituency": "Dharapuram (SC)",
+      "candidate": "P. Sathiyabama"
+    },
+    {
+      "order": 135,
+      "constituency": "Kangayam",
+      "candidate": "N.S.N. Nataraj"
+    },
+    {
+      "order": 136,
+      "constituency": "Perundurai",
+      "candidate": "S. Jayakumar"
+    },
+    {
+      "order": 137,
+      "constituency": "Anthiyur",
+      "candidate": "P. Haribhaskar"
+    },
+    {
+      "order": 138,
+      "constituency": "Gobichettipalayam",
+      "candidate": "V.B. Babu"
+    },
+    {
+      "order": 139,
+      "constituency": "Bhavanisagar (SC)",
+      "candidate": "A. Bannari"
+    },
+    {
+      "order": 140,
+      "constituency": "Gudalur (SC)",
+      "candidate": "Pon. Jayaseelan"
+    },
+    {
+      "order": 141,
+      "constituency": "Coonoor",
+      "candidate": "A. Ramu"
+    },
+    {
+      "order": 142,
+      "constituency": "Mettupalayam",
+      "candidate": "O.K. Chinnaraj"
+    },
+    {
+      "order": 143,
+      "constituency": "Tiruppur (North)",
+      "candidate": "M.S.M. Anandan"
+    },
+    {
+      "order": 144,
+      "constituency": "Palladam",
+      "candidate": "K.P. Paramasivam"
+    },
+    {
+      "order": 145,
+      "constituency": "Sulur",
+      "candidate": "V.P. Kandhasamy"
+    },
+    {
+      "order": 146,
+      "constituency": "Kavundampalayam",
+      "candidate": "P.R.G. Arunkumar"
+    },
+    {
+      "order": 147,
+      "constituency": "Thousand Lights",
+      "candidate": "Valarmathi"
+    },
+    {
+      "order": 148,
+      "constituency": "Anna Nagar",
+      "candidate": "Gokul Indira"
+    },
+    {
+      "order": 149,
+      "constituency": "Chepauk–Triplicane",
+      "candidate": "Adhirajaram"
+    },
+    {
+      "order": 150,
+      "constituency": "Tittakudi",
+      "candidate": "Murugumaran"
+    },
+    {
+      "order": 151,
+      "constituency": "Harbour",
+      "candidate": "Royapuram Mano"
+    },
+    {
+      "order": 152,
+      "constituency": "Virugambakkam",
+      "candidate": "Virugai Ravi"
+    },
+    {
+      "order": 153,
+      "constituency": "T. Nagar",
+      "candidate": "Sathyanarayanan"
+    },
+    {
+      "order": 154,
+      "constituency": "Velachery",
+      "candidate": "Ashok"
+    },
+    {
+      "order": 155,
+      "constituency": "Sholinganallur",
+      "candidate": "K. P. Kandan"
+    },
+    {
+      "order": 156,
+      "constituency": "R. K. Nagar",
+      "candidate": "Rajesh"
+    },
+    {
+      "order": 157,
+      "constituency": "Villivakkam",
+      "candidate": "Vijayakumar"
+    },
+    {
+      "order": 158,
+      "constituency": "Tiruchuzhi",
+      "candidate": "Rajavarman"
+    },
+    {
+      "order": 159,
+      "constituency": "Alandur",
+      "candidate": "Saravanan"
+    },
+    {
+      "order": 160,
+      "constituency": "Kolathur",
+      "candidate": "Santhana Krishnan"
+    },
+    {
+      "order": 161,
+      "constituency": "Egmore",
+      "candidate": "Abhishek Rangasamy"
+    },
+    {
+      "order": 162,
+      "constituency": "Alangudi",
+      "candidate": "Dhana Vimal"
+    },
+    {
+      "order": 163,
+      "constituency": "Thiru Vi Ka Nagar",
+      "candidate": "Porkodi Armstrong"
+    }
+  ]
+}
