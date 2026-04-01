@@ -142,6 +142,14 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
     symbol: '🐅',
     symbolEmoji: '🐅',
   },
+  TVK: {
+    name: 'Tamilaga Vettri Kazhagam',
+    shortName: 'TVK',
+    // Flag: dark red / maroon + yellow (Wikipedia infobox); single UI hue distinct from DMK (#E31E24) and NTK (#800000)
+    color: '#7C1F3E',
+    symbol: '📯',
+    symbolEmoji: '📯',
+  },
   AMMK: {
     name: 'Amma Makkal Munnetra Kazhagam',
     shortName: 'AMMK',
@@ -689,6 +697,9 @@ const WINNER_PARTY_ALIASES: Record<string, string> = {
   'AJSU PARTY': 'AJSUP',
   'VOICE OF THE PEOPLE PARTY': 'VOTPP',
   'COMMUNIST PARTY OF INDIA (MARXIST-LENINIST) (LIBERATION)': 'CPI(ML)(L)',
+  'TAMILAGA VETTRI KAZHAGAM': 'TVK',
+  'THAMIZHAGA VETTRI KAZHAGAM': 'TVK',
+  'TAMILAGA VETRI KAZHAGAM': 'TVK',
 };
 
 /**

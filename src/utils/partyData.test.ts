@@ -19,6 +19,8 @@ describe('partyData', () => {
 
     it('should contain regional parties', () => {
       expect(PARTY_DATA.DMK).toBeDefined();
+      expect(PARTY_DATA.TVK).toBeDefined();
+      expect(PARTY_DATA.TVK?.shortName).toBe('TVK');
       expect(PARTY_DATA.AIADMK).toBeDefined();
       expect(PARTY_DATA.TMC).toBeDefined();
       expect(PARTY_DATA.SP).toBeDefined();
@@ -86,6 +88,7 @@ describe('partyData', () => {
       expect(getPartyColor('BJP')).toBe('#FF9933');
       expect(getPartyColor('INC')).toBe('#19AAED');
       expect(getPartyColor('DMK')).toBe('#E31E24');
+      expect(getPartyColor('TVK')).toBe('#7C1F3E');
       expect(getPartyColor('AIADMK')).toBe('#138808');
     });
 

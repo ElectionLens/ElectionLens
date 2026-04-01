@@ -16,6 +16,8 @@ export const TN_AC_SYNONYMS = [
   [/^tiruvallur$/i, 'Thiruvallur'],
   [/^tiruchi east$/i, 'Tiruchirappalli East'],
   [/^tiruchi west$/i, 'Tiruchirappalli West'],
+  [/^thiruchirappalli east$/i, 'Tiruchirappalli East'],
+  [/^thiruchirappalli west$/i, 'Tiruchirappalli West'],
   [/^virugambakkam$/i, 'Virugampakkam'],
   [/^mettupalayam$/i, 'Mettuppalayam'],
   [/^villupuram$/i, 'Viluppuram'],
@@ -40,6 +42,7 @@ export const TN_AC_SYNONYMS = [
   [/^sangagiri$/i, 'Sankari'],
   [/^keezhvelur/i, 'Kilvelur (SC)'],
   [/^kumbidipundi$/i, 'Gummidipoondi'],
+  [/^boothapandi/i, 'Padmanabhapuram'],
   [/^chepauk[–\s-]+triplicane$/i, 'Chepauk-Thiruvalliken'],
   [/^tiruvika\s*nagar$/i, 'Thiru-Vi-Ka-Nagar(SC)'],
   [/^tiruchuzhi$/i, 'Tiruchuli'],
@@ -95,6 +98,62 @@ export function cleanAnnouncedCandidateName(raw) {
   t = t.replace(/\s*\(TVK[^)]*\)\s*/gi, '').trim();
   t = t.replace(/\s*\(former[^)]*\)\s*/gi, '').trim();
   return toEciStyleName(t);
+}
+
+/** Parenthetical is stripped when it labels an ally/party, not a personal alias like (a) or (alias). */
+const ALLY_OR_PARTY_PAREN_INNER = [
+  /^Indian\s+National\s+Congress\b/i,
+  /^Indian\s+Union\s+Muslim\s+League\b/i,
+  /^Viduthalai\s+Chiruthaigal\b/i,
+  /^Puthiya\s+Tamizhagam\b/i,
+  /^Mukkulathor\b/i,
+  /^Congress\b/i,
+  /^Cong\.?\b/i,
+  /^INC\b/i,
+  /^IUML\b/i,
+  /^VCK\b/i,
+  /^MDMK\b/i,
+  /^KMDK\b/i,
+  /^MNM\b/i,
+  /^CPI\s*\(\s*M\s*\)/i,
+  /^CPI\b/i,
+  /^BJP\b/i,
+  /^PMK\b/i,
+  /^AMMK\b/i,
+  /^TVK\b/i,
+  /^NTK\b/i,
+  /^RJD\b/i,
+  /^DMK\b/i,
+  /^ADMK\b/i,
+  /^AIADMK\b/i,
+  /^SPA\b/i,
+];
+
+/**
+ * Remove press-style (INC), (Mukkulathor), (PMK), etc. from DMK/ADMK symbol rows; keep (a) / (alias) nicknames.
+ */
+export function stripAllianceParentheticalFromSymbolCandidate(raw) {
+  let t = String(raw).replace(/[\u2018\u2019\u201C\u201D]/g, "'").trim();
+  let changed = true;
+  while (changed) {
+    changed = false;
+    t = t.replace(/\s*\(([^)]*)\)/g, (full, inner) => {
+      const s = String(inner).trim();
+      if (!s) return full;
+      if (/^a$/i.test(s) || /^alias$/i.test(s)) return full;
+      if (ALLY_OR_PARTY_PAREN_INNER.some((re) => re.test(s))) {
+        changed = true;
+        return '';
+      }
+      return full;
+    });
+    t = t.replace(/\s+/g, ' ').trim();
+  }
+  return t;
+}
+
+export function toDmkAdmkSymbolDisplayName(raw) {
+  return toEciStyleName(stripAllianceParentheticalFromSymbolCandidate(raw));
 }
 
 export function buildAcKeyMap(schema) {
