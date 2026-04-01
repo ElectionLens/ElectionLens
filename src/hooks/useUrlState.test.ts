@@ -122,6 +122,21 @@ describe('useUrlState', () => {
     expect(urlState.assembly).toBeNull();
   });
 
+  it('parses state-level districts map URL with year=pc-YYYY', () => {
+    window.location.pathname = '/tamil-nadu/districts';
+    window.location.search = '?year=pc-2024';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+
+    const urlState = result.current.getUrlState();
+    expect(urlState.state).toBe('tamil nadu');
+    expect(urlState.view).toBe('districts');
+    expect(urlState.pcYear).toBe(2024);
+    expect(urlState.year).toBeNull();
+  });
+
   it('parses /state/pc URL as constituencies view', () => {
     window.location.pathname = '/tamil-nadu/pc';
     const onNavigate = vi.fn();
@@ -318,6 +333,44 @@ describe('useUrlState', () => {
     });
 
     expect(url).toBe('http://localhost:3000/tamil-nadu/district/chennai');
+  });
+
+  it('generates shareable URL for state-level districts map with assembly year', () => {
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState('Tamil Nadu', 'districts', null, null, null, 2021, null, onNavigate)
+    );
+
+    const url = result.current.getShareableUrl({
+      state: 'Tamil Nadu',
+      view: 'districts',
+      pc: null,
+      district: null,
+      assembly: null,
+      year: 2021,
+      pcYear: null,
+    });
+
+    expect(url).toBe('http://localhost:3000/tamil-nadu/districts?year=2021');
+  });
+
+  it('generates shareable URL for state-level districts map with pc contribution year', () => {
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState('Tamil Nadu', 'districts', null, null, null, null, 2024, onNavigate)
+    );
+
+    const url = result.current.getShareableUrl({
+      state: 'Tamil Nadu',
+      view: 'districts',
+      pc: null,
+      district: null,
+      assembly: null,
+      year: null,
+      pcYear: 2024,
+    });
+
+    expect(url).toBe('http://localhost:3000/tamil-nadu/districts?year=pc-2024');
   });
 
   it('preserves parentheses in URL', () => {

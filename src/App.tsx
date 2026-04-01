@@ -1761,8 +1761,8 @@ function App(): JSX.Element {
   const handleYearChange = useCallback(
     async (year: number): Promise<void> => {
       setSelectedYear(year);
-      // Sync year to URL in assemblies view (with or without assembly selected)
-      if (currentState && currentView === 'assemblies') {
+      // Sync year to URL in assemblies or state districts map view (with or without assembly selected)
+      if (currentState && (currentView === 'assemblies' || currentView === 'districts')) {
         const tab =
           typeof window !== 'undefined'
             ? new URLSearchParams(window.location.search).get('tab')
@@ -1809,7 +1809,7 @@ function App(): JSX.Element {
   /**
    * Handle PC contribution year change in AC view (toolbar or sidepanel; syncs year=pc-YYYY to URL).
    * Pass null when switching to an assembly year to clear PC year.
-   * Updates URL when in assemblies view OR when AC-within-PC (currentPC && currentAssembly).
+   * Updates URL when in assemblies or districts view OR when AC-within-PC (currentPC && currentAssembly).
    * When in AC-within-PC, also set pcSelectedYear so MapView loadResults and toolbar stay in sync.
    */
   const handleACPCYearChange = useCallback(
@@ -1818,10 +1818,12 @@ function App(): JSX.Element {
       if (currentPC != null && currentAssembly != null && year != null) {
         setPCSelectedYear(year);
       }
-      const inACViewOrACWithinPC =
+      const shouldSyncPcYearToUrl =
         currentState &&
-        (currentView === 'assemblies' || (currentPC != null && currentAssembly != null));
-      if (!inACViewOrACWithinPC) return;
+        (currentView === 'assemblies' ||
+          currentView === 'districts' ||
+          (currentPC != null && currentAssembly != null));
+      if (!shouldSyncPcYearToUrl) return;
       const tab =
         typeof window !== 'undefined'
           ? new URLSearchParams(window.location.search).get('tab')
