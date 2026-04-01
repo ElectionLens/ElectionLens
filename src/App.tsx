@@ -12,6 +12,7 @@ import { useSchema } from './hooks/useSchema';
 import { ELECTIONS, PC_ELECTIONS } from './constants/paths';
 import { STATE_FILE_MAP } from './constants';
 import { normalizeName, toTitleCase } from './utils/helpers';
+import { isAssemblyResultEntry, skipAssemblyWinnerColoring } from './utils/electionResults';
 import { trackPageView, trackConstituencySelect } from './utils/firebase';
 import type {
   GeoJSONData,
@@ -617,10 +618,13 @@ function App(): JSX.Element {
                       const acRes = await fetch(ELECTIONS.getYearPath(stateId, assemblyYear));
                       if (acRes.ok) {
                         const acResults = (await acRes.json()) as ElectionResultsByConstituency;
+                        const navigateAcFileMeta = acResults._meta;
                         const acWinners: Record<string, { party: string; candidate: string }> = {};
                         const schemaIdPattern = /^[A-Z]{2}-\d+$/;
                         for (const [key, result] of Object.entries(acResults)) {
-                          if (result?.candidates?.length && result.candidates[0]) {
+                          if (!isAssemblyResultEntry(key, result)) continue;
+                          if (skipAssemblyWinnerColoring(result, navigateAcFileMeta)) continue;
+                          if (result.candidates?.length && result.candidates[0]) {
                             const w = result.candidates[0];
                             const entry = { party: w.party, candidate: w.name };
                             if (key && schemaIdPattern.test(key)) acWinners[key] = entry;

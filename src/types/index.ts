@@ -496,6 +496,8 @@ export interface ElectionCandidate {
   sex: string;
   age: number | null;
   depositLost: boolean;
+  /** Present when row comes from a sourced pre-poll announcement (not a roll-forward placeholder) */
+  announced?: boolean;
 }
 
 /** Assembly constituency election result */
@@ -518,12 +520,25 @@ export interface ACElectionResult {
   name?: string;
   /** Reservation type from schema - added by migration */
   type?: 'GEN' | 'SC' | 'ST';
+  /** True when year is scheduled/upcoming: votes not counted; see file _meta.candidatesPolicy for how rows are populated */
+  resultsPending?: boolean;
 }
 
-/** Election results keyed by constituency name */
-export interface ElectionResultsByConstituency {
-  [constituencyName: string]: ACElectionResult;
+/** Optional root metadata on assembly year JSON files */
+export interface ElectionResultsFileMeta {
+  resultsPending?: boolean;
+  targetYear?: number;
+  derivedFrom?: number;
+  description?: string;
+  lastUpdated?: string;
+  /** When set, files intentionally omit non-sourced candidate rows for pending elections */
+  candidatesPolicy?: 'announced_only';
 }
+
+/** Election results keyed by schema ID or legacy name; optional `_meta` for bundled files */
+export type ElectionResultsByConstituency = {
+  _meta?: ElectionResultsFileMeta;
+} & Record<string, ACElectionResult | ElectionResultsFileMeta | undefined>;
 
 // ============================================================
 // Parliamentary Election Data Types

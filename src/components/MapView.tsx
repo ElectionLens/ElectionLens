@@ -35,6 +35,9 @@ const NEUTRAL_MAP_STYLE: L.PathOptions = {
   opacity: 1,
 };
 
+/** Assembly years where JSON is pre-poll only — do not backfill map colours from older elections. */
+const ASSEMBLY_UPCOMING_ELECTION_YEARS = new Set([2026]);
+
 /** AC name spelling variants for style lookup (GeoJSON vs election data), e.g. Tadpatri vs Tadipatri, Pappireddippatti vs Pappireddipatti (PC 2024) */
 const AC_STYLE_VARIANTS: Record<string, string[]> = {
   TADPATRI: ['TADPATRI', 'TADIPATRI'],
@@ -46,6 +49,7 @@ import { clearAllCache } from '../utils/db';
 import { getPartyColor } from '../utils/partyData';
 import { ELECTIONS, PC_ELECTIONS, STATE_WINNERS_AC_PATH } from '../constants/paths';
 import type { ElectionResultsByConstituency, PCElectionResultsByConstituency } from '../types';
+import { isAssemblyResultEntry, skipAssemblyWinnerColoring } from '../utils/electionResults';
 import { FeedbackModal } from './FeedbackModal';
 import { VectorTileLayer } from './VectorTileLayer';
 import { useSchema } from '../hooks/useSchema';
@@ -565,20 +569,20 @@ function MapResizer({ hasPanelOpen }: { hasPanelOpen: boolean }): null {
 }
 
 /**
- * Component to create custom panes for background layers
- * Higher z-index panes ensure background layers receive click events
+ * Background context (other states / PCs / districts) must render *below* the primary
+ * GeoJSON on overlayPane (z-index 400). A pane at 450 was above overlay and painted
+ * neighbors on top of the current state’s constituencies.
  */
 function BackgroundPanes(): null {
   const map = useMap();
 
   useEffect(() => {
-    // Create pane for background context layers (states, PCs, districts)
-    // z-index 450 is above overlayPane (400) but below markerPane (600)
-    if (!map.getPane('backgroundPane')) {
-      const pane = map.createPane('backgroundPane');
-      pane.style.zIndex = '450';
+    let pane = map.getPane('backgroundPane');
+    if (!pane) {
+      pane = map.createPane('backgroundPane');
       pane.style.pointerEvents = 'auto';
     }
+    pane.style.zIndex = '360';
   }, [map]);
 
   return null;
@@ -848,38 +852,6 @@ export function MapView({
         }
       }
       const pcYearForColoring = selectedACPCYear ?? urlDerivedPcYear;
-      // #region agent log
-      const branch =
-        currentView === 'assemblies' || currentView === 'districts'
-          ? pcYearForColoring
-            ? 'pcYear'
-            : selectedYear
-              ? 'assemblyYear'
-              : 'none'
-          : currentView === 'constituencies'
-            ? 'pcView'
-            : 'other';
-      fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          location: 'MapView.tsx:loadResults entry',
-          message: 'year state and branch',
-          data: {
-            currentState,
-            currentView,
-            selectedYear,
-            selectedACPCYear,
-            pcYearForColoring,
-            branch,
-            stateId,
-          },
-          timestamp: Date.now(),
-          sessionId: 'debug-session',
-          hypothesisId: branch === 'none' ? 'H4' : 'H2',
-        }),
-      }).catch(() => {});
-      // #endregion
 
       // District detail (currentDistrict) needs AC data for coloring; currentView can be stale (constituencies) on first run
       const needsACOrPCDistrictData =
@@ -1034,27 +1006,14 @@ export function MapView({
           try {
             const acPath = ELECTIONS.getYearPath(stateId, selectedYear);
             const response = await fetch(acPath);
-            // #region agent log
-            if (currentState?.toLowerCase().includes('karnataka')) {
-              fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  location: 'MapView.tsx:loadResults AC fetch',
-                  message: 'after fetch',
-                  data: { currentState, stateId, selectedYear, path: acPath, ok: response.ok },
-                  timestamp: Date.now(),
-                  sessionId: 'debug-session',
-                  hypothesisId: 'H2',
-                }),
-              }).catch(() => {});
-            }
-            // #endregion
             if (response.ok) {
               const results = (await response.json()) as ElectionResultsByConstituency;
+              const acMainMeta = results._meta;
               // Map each AC to its winner (store schemaId when key is schemaId, plus name variants)
               const schemaIdPattern = /^[A-Z]{2}-\d+$/;
               Object.entries(results).forEach(([key, result]) => {
+                if (!isAssemblyResultEntry(key, result)) return;
+                if (skipAssemblyWinnerColoring(result, acMainMeta)) return;
                 if (result.candidates && result.candidates.length > 0) {
                   const winner = result.candidates[0]; // First candidate is winner (sorted by votes)
                   if (winner) {
@@ -1106,8 +1065,11 @@ export function MapView({
                 const response = await fetch(ELECTIONS.getYearPath(stateId, latestYear));
                 if (response.ok) {
                   const results = (await response.json()) as ElectionResultsByConstituency;
+                  const acFileMeta = results._meta;
                   const schemaIdPattern = /^[A-Z]{2}-\d+$/;
                   Object.entries(results).forEach(([key, result]) => {
+                    if (!isAssemblyResultEntry(key, result)) return;
+                    if (skipAssemblyWinnerColoring(result, acFileMeta)) return;
                     if (result.candidates && result.candidates.length > 0) {
                       const winner = result.candidates[0];
                       if (winner) {
@@ -1209,10 +1171,13 @@ export function MapView({
                         const acRes = await fetch(ELECTIONS.getYearPath(stateId, assemblyYear));
                         if (acRes.ok) {
                           const acResults = (await acRes.json()) as ElectionResultsByConstituency;
+                          const acFillMeta = acResults._meta;
                           const acWinners: Record<string, { party: string; candidate: string }> =
                             {};
                           const schemaIdPattern = /^[A-Z]{2}-\d+$/;
                           Object.entries(acResults).forEach(([key, result]) => {
+                            if (!isAssemblyResultEntry(key, result)) return;
+                            if (skipAssemblyWinnerColoring(result, acFillMeta)) return;
                             if (result?.candidates?.length && result.candidates[0]) {
                               const w = result.candidates[0];
                               const entry = { party: w.party, candidate: w.name };
@@ -1413,8 +1378,11 @@ export function MapView({
                   const contentType = acResponse.headers.get('content-type');
                   if (contentType?.includes('application/json')) {
                     const acResults = (await acResponse.json()) as ElectionResultsByConstituency;
+                    const acPanelMeta = acResults._meta;
                     const acSchemaIdPattern = /^[A-Z]{2}-\d+$/;
                     Object.entries(acResults).forEach(([key, result]) => {
+                      if (!isAssemblyResultEntry(key, result)) return;
+                      if (skipAssemblyWinnerColoring(result, acPanelMeta)) return;
                       if (result.candidates && result.candidates.length > 0) {
                         const winner = result.candidates[0];
                         if (winner) {
@@ -1460,48 +1428,6 @@ export function MapView({
         setConstituencyWinners(winners);
         setWinnersVersion((v) => v + 1);
       }
-      // #region agent log
-      const winnerKeys = Object.keys(winners);
-      if (currentState?.toLowerCase().includes('karnataka')) {
-        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            location: 'MapView.tsx:loadResults after setConstituencyWinners',
-            message: 'Karnataka winner count',
-            data: {
-              currentState,
-              currentView,
-              selectedYear,
-              selectedACPCYear,
-              winnerCount: winnerKeys.length,
-            },
-            timestamp: Date.now(),
-            sessionId: 'debug-session',
-            hypothesisId: 'H2',
-          }),
-        }).catch(() => {});
-      }
-      fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          location: 'MapView.tsx:loadResults after setConstituencyWinners',
-          message: 'winner count and sample keys',
-          data: {
-            winnerCount: winnerKeys.length,
-            sampleKeys: winnerKeys.slice(0, 5),
-            currentState,
-            selectedYear,
-            selectedACPCYear,
-            pcYearForColoring,
-          },
-          timestamp: Date.now(),
-          sessionId: 'debug-session',
-          hypothesisId: winnerKeys.length === 0 ? 'H4' : 'H3',
-        }),
-      }).catch(() => {});
-      // #endregion
       if (Object.keys(winners).length === 0 && pcYearForColoring) {
         console.warn(
           `[Color-coding] No winners loaded! Check if PC election data exists for ${currentState} ${pcYearForColoring}`
@@ -1925,7 +1851,7 @@ export function MapView({
       const stateId = stateIdFromSchema ?? (stateName ? getStateId(stateName) : '');
       const winner = stateId ? stateWinners[stateId] : undefined;
       if (winner) {
-        return { ...base, fillColor: getPartyColor(winner.party) };
+        return { ...base, fillColor: getPartyColor(winner.party ?? '') };
       }
       return { ...base, fillColor: NEUTRAL_MAP_STYLE.fillColor!, color: NEUTRAL_MAP_STYLE.color! };
     },
@@ -2016,7 +1942,7 @@ export function MapView({
           (backgroundPCWinners[pcName.toUpperCase()] ??
             effectiveConstituencyWinners[pcName.toUpperCase()]));
       if (winner) {
-        return { ...base, fillColor: getPartyColor(winner.party) };
+        return { ...base, fillColor: getPartyColor(winner.party ?? '') };
       }
       return { ...base, fillColor: NEUTRAL_MAP_STYLE.fillColor!, color: NEUTRAL_MAP_STYLE.color! };
     },
@@ -2151,23 +2077,6 @@ export function MapView({
         weight: 1,
         opacity: 0.85,
       };
-      // #region agent log
-      const dwCount = Object.keys(districtWinners).length;
-      if (currentState && (currentState.toLowerCase().includes('karnataka') || dwCount === 0)) {
-        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            location: 'MapView.tsx:backgroundDistrictStyle',
-            message: 'districtWinners count',
-            data: { currentState, districtWinnersCount: dwCount },
-            timestamp: Date.now(),
-            sessionId: 'debug-session',
-            hypothesisId: 'H2',
-          }),
-        }).catch(() => {});
-      }
-      // #endregion
       if (!feature || !currentState || Object.keys(districtWinners).length === 0) {
         return {
           ...base,
@@ -2186,31 +2095,6 @@ export function MapView({
       const stateId = getStateId(currentState);
       const districtId = resolveDistrictName(districtName, stateId);
       let party = districtId ? districtWinners[districtId] : undefined;
-      // #region agent log
-      if (
-        districtName.toLowerCase().includes('bagal') ||
-        currentState?.toLowerCase().includes('karnataka')
-      ) {
-        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            location: 'MapView.tsx:backgroundDistrictStyle',
-            message: 'lookup',
-            data: {
-              districtName,
-              stateId,
-              districtId,
-              party: party ?? null,
-              districtWinnersCount: Object.keys(districtWinners).length,
-            },
-            timestamp: Date.now(),
-            sessionId: 'debug-session',
-            hypothesisId: 'H1',
-          }),
-        }).catch(() => {});
-      }
-      // #endregion
       // Fallback: match by normalized name (handles GeoJSON/schema spelling variants e.g. Bagalkote/Bagalkot, Belagavi/Belgaum)
       if (!party && getDistrict && Object.keys(districtWinners).length > 0) {
         const districtNorm = normalizeName(districtName).toLowerCase().replace(/\s+/g, ' ');
@@ -2289,7 +2173,6 @@ export function MapView({
 
   // Style function with index tracking
   const styleIndex = useRef<number>(0);
-  const styleLogCount = useRef<number>(0);
 
   const onEachFeature = useCallback(
     (feature: Feature, layer: Layer): void => {
@@ -2540,10 +2423,9 @@ export function MapView({
     [level, selectedAssembly, onStateClick, onDistrictClick, onConstituencyClick, onAssemblyClick]
   );
 
-  // Reset style index and style log count when data changes
+  // Reset style index when data changes
   useEffect(() => {
     styleIndex.current = 0;
-    styleLogCount.current = 0;
   }, [geoJsonKey, effectiveConstituencyWinners]);
 
   // Apply selected style when assembly is selected (tooltips are handled in onEachFeature)
@@ -2655,7 +2537,7 @@ export function MapView({
         const winner = stateId ? stateWinners[stateId] : undefined;
         if (winner) {
           baseStyle = {
-            fillColor: getPartyColor(winner.party),
+            fillColor: getPartyColor(winner.party ?? ''),
             fillOpacity: 0.7,
             color: '#fff',
             weight: 1.5,
@@ -2665,6 +2547,11 @@ export function MapView({
       }
 
       // Color-code districts by dominant party; never use palette in districts view (100% party or neutral)
+      const suppressMapPartyForUpcomingAssemblyYear =
+        selectedYear != null &&
+        ASSEMBLY_UPCOMING_ELECTION_YEARS.has(selectedYear) &&
+        selectedACPCYear == null;
+
       if (level === 'districts' && feature && currentState) {
         baseStyle = { ...NEUTRAL_MAP_STYLE };
         const props = feature.properties as DistrictProperties;
@@ -2696,7 +2583,7 @@ export function MapView({
             }
           }
         }
-        if (party) {
+        if (party && !suppressMapPartyForUpcomingAssemblyYear) {
           baseStyle = {
             fillColor: getPartyColor(party),
             fillOpacity: 0.7,
@@ -2710,9 +2597,12 @@ export function MapView({
       // Color-code by winning party if we have winner data (AC/PC views)
       // Prefer schemaId lookup when GeoJSON has it (fixes all name-mismatch cases)
       const schemaId = feature?.properties?.['schemaId'] as string | undefined;
-      if (schemaId && effectiveConstituencyWinners[schemaId]) {
+      const suppressAssemblyPartyMapColors =
+        level === 'assemblies' && suppressMapPartyForUpcomingAssemblyYear;
+
+      if (!suppressAssemblyPartyMapColors && schemaId && effectiveConstituencyWinners[schemaId]) {
         const winner = effectiveConstituencyWinners[schemaId];
-        const partyColor = getPartyColor(winner.party);
+        const partyColor = getPartyColor(winner.party ?? '');
         baseStyle = {
           fillColor: partyColor,
           fillOpacity: 0.7,
@@ -2720,7 +2610,7 @@ export function MapView({
           weight: 1.5,
           opacity: 1,
         };
-      } else if (normalizedConstituencyName) {
+      } else if (normalizedConstituencyName && !suppressAssemblyPartyMapColors) {
         let winner = effectiveConstituencyWinners[normalizedConstituencyName];
         // If not found, try fuzzy key (alphanumeric only)
         if (!winner) {
@@ -2815,7 +2705,7 @@ export function MapView({
           winner = { party: dominantPCParty, candidate: '' };
         }
         if (winner) {
-          const partyColor = getPartyColor(winner.party);
+          const partyColor = getPartyColor(winner.party ?? '');
           baseStyle = {
             fillColor: partyColor,
             fillOpacity: 0.7,
@@ -2824,29 +2714,6 @@ export function MapView({
             opacity: 1,
           };
         }
-        // #region agent log
-        if (level === 'assemblies' && normalizedConstituencyName && styleLogCount.current < 3) {
-          styleLogCount.current += 1;
-          const hit = !!winner;
-          fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              location: 'MapView.tsx:style lookup',
-              message: 'AC name lookup hit/miss',
-              data: {
-                constituencyName,
-                normalizedConstituencyName,
-                hit,
-                totalWinnerKeys: Object.keys(effectiveConstituencyWinners).length,
-              },
-              timestamp: Date.now(),
-              sessionId: 'debug-session',
-              hypothesisId: hit ? undefined : 'H3',
-            }),
-          }).catch(() => {});
-        }
-        // #endregion
       }
 
       // Highlight selected assembly with dark green border (same normalization as onEachFeature/reapply so name variants match)
@@ -2876,6 +2743,8 @@ export function MapView({
     [
       level,
       selectedAssembly,
+      selectedYear,
+      selectedACPCYear,
       effectiveConstituencyWinners,
       dominantPCParty,
       stateWinners,

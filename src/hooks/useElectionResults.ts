@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef } from 'react';
 import { ELECTIONS } from '../constants/paths';
 import type { StateElectionIndex, ElectionResultsByConstituency, ACElectionResult } from '../types';
+import { isAssemblyElectionResult } from '../utils/electionResults';
 
 /**
  * Strip diacritics from text
@@ -71,13 +72,13 @@ function getStateSlug(stateName: string): string {
 
 /**
  * Normalize AC name for matching
- * Strips diacritics, removes parentheses (SC/ST suffixes), converts to uppercase
+ * Strips diacritics, removes only (SC)/(ST) — not (North)/(South) — then alphanumeric key
  */
 function normalizeACName(name: string): string {
   return stripDiacritics(name)
     .toUpperCase()
-    .replace(/\s*\([^)]*\)\s*/g, '') // Remove parentheses like (SC), (ST)
-    .replace(/[^A-Z0-9]/g, '') // Keep only alphanumeric
+    .replace(/\s*\(\s*(SC|ST)\s*\)\s*/gi, '')
+    .replace(/[^A-Z0-9]/g, '')
     .trim();
 }
 
@@ -312,29 +313,34 @@ export function useElectionResults(): UseElectionResultsReturn {
 
       // Strategy 1: Schema ID direct lookup (primary path for new data format)
       if (schemaId) {
-        result = results[schemaId];
+        const hit = results[schemaId];
+        if (isAssemblyElectionResult(hit)) result = hit;
       }
 
       // Strategy 2: Direct key match (for any legacy data)
       if (!result) {
-        result = results[searchName.toUpperCase().trim()];
+        const hit = results[searchName.toUpperCase().trim()];
+        if (isAssemblyElectionResult(hit)) result = hit;
       }
 
       // Strategy 3: Match by name properties (for schema ID-keyed data), including spelling variants (e.g. Tadpatri/Tadipatri)
       if (!result) {
-        for (const [, value] of Object.entries(results)) {
-          if (!value || typeof value !== 'object') continue;
+        for (const [entryKey, value] of Object.entries(results)) {
+          if (entryKey.startsWith('_') || !value || typeof value !== 'object') continue;
+          const acVal = value as ACElectionResult;
+          if (typeof acVal.constituencyNo !== 'number' || !Array.isArray(acVal.candidates))
+            continue;
 
           const namesToCheck = [
-            value.constituencyName,
-            value.constituencyNameOriginal,
-            value.name,
+            acVal.constituencyName,
+            acVal.constituencyNameOriginal,
+            acVal.name,
           ].filter((n): n is string => Boolean(n));
 
           for (const name of namesToCheck) {
             const normalizedName = normalizeACName(name);
             if (searchVariants.includes(normalizedName)) {
-              result = value;
+              result = acVal;
               break;
             }
           }
@@ -344,13 +350,16 @@ export function useElectionResults(): UseElectionResultsReturn {
 
       // Strategy 4: Partial match (one contains the other) - handles minor variations and spelling variants
       if (!result) {
-        for (const [, value] of Object.entries(results)) {
-          if (!value || typeof value !== 'object') continue;
+        for (const [entryKey, value] of Object.entries(results)) {
+          if (entryKey.startsWith('_') || !value || typeof value !== 'object') continue;
+          const acVal = value as ACElectionResult;
+          if (typeof acVal.constituencyNo !== 'number' || !Array.isArray(acVal.candidates))
+            continue;
 
           const namesToCheck = [
-            value.constituencyName,
-            value.constituencyNameOriginal,
-            value.name,
+            acVal.constituencyName,
+            acVal.constituencyNameOriginal,
+            acVal.name,
           ].filter((n): n is string => Boolean(n));
 
           for (const name of namesToCheck) {
@@ -360,7 +369,7 @@ export function useElectionResults(): UseElectionResultsReturn {
                 normalizedName.includes(v) || v.includes(normalizedName) || normalizedName === v
             );
             if (matches) {
-              result = value;
+              result = acVal;
               break;
             }
           }

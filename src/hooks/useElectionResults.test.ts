@@ -1,10 +1,46 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useElectionResults } from './useElectionResults';
+import type { ACElectionResult } from '../types';
 
 // Mock fetch
 const mockFetch = vi.fn();
 global.fetch = mockFetch;
+
+function minimalAc(
+  constituencyNo: number,
+  name: string,
+  extra: Partial<ACElectionResult> = {}
+): ACElectionResult {
+  return {
+    year: 2021,
+    constituencyNo,
+    constituencyName: name,
+    constituencyNameOriginal: name,
+    constituencyType: 'GEN',
+    districtName: 'Test District',
+    validVotes: 100000,
+    electors: 120000,
+    turnout: 83.33,
+    enop: 2,
+    totalCandidates: 1,
+    candidates: [
+      {
+        position: 1,
+        name: 'Test',
+        party: 'DMK',
+        votes: 50000,
+        voteShare: 50,
+        margin: null,
+        marginPct: null,
+        sex: 'M',
+        age: 40,
+        depositLost: false,
+      },
+    ],
+    ...extra,
+  };
+}
 
 describe('useElectionResults', () => {
   beforeEach(() => {
@@ -192,11 +228,22 @@ describe('useElectionResults - getACResult', () => {
   it('loads AC result with specific year', async () => {
     const mockIndex = { availableYears: [2016, 2021] };
     const mockResults = {
-      OMALUR: {
-        constituency: 'OMALUR',
-        winner: { name: 'Test Candidate', party: 'DMK', votes: 50000 },
-        candidates: [{ name: 'Test Candidate', party: 'DMK', votes: 50000 }],
-      },
+      OMALUR: minimalAc(50, 'OMALUR', {
+        candidates: [
+          {
+            position: 1,
+            name: 'Test Candidate',
+            party: 'DMK',
+            votes: 50000,
+            voteShare: 50,
+            margin: null,
+            marginPct: null,
+            sex: 'M',
+            age: 40,
+            depositLost: false,
+          },
+        ],
+      }),
     };
 
     mockFetch
@@ -210,7 +257,7 @@ describe('useElectionResults - getACResult', () => {
     });
 
     expect(result.current.currentResult).not.toBeNull();
-    expect(result.current.currentResult?.constituency).toBe('OMALUR');
+    expect(result.current.currentResult?.constituencyName).toBe('OMALUR');
   });
 
   it('handles missing constituency gracefully', async () => {
@@ -233,10 +280,22 @@ describe('useElectionResults - getACResult', () => {
   it('uses latest year when no year specified', async () => {
     const mockIndex = { availableYears: [2011, 2016, 2021] };
     const mockResults = {
-      OMALUR: {
-        constituency: 'OMALUR',
-        winner: { name: 'Test', party: 'INC', votes: 40000 },
-      },
+      OMALUR: minimalAc(50, 'OMALUR', {
+        candidates: [
+          {
+            position: 1,
+            name: 'Test',
+            party: 'INC',
+            votes: 40000,
+            voteShare: 40,
+            margin: null,
+            marginPct: null,
+            sex: 'F',
+            age: 35,
+            depositLost: false,
+          },
+        ],
+      }),
     };
 
     mockFetch
@@ -311,10 +370,7 @@ describe('useElectionResults - getACResult matching strategies', () => {
   it('matches AC using canonical key (case insensitive)', async () => {
     const mockIndex = { availableYears: [2021] };
     const mockResults = {
-      'TIRUCHIRAPPALLI WEST': {
-        constituency: 'TIRUCHIRAPPALLI WEST',
-        winner: { name: 'Test', party: 'DMK', votes: 50000 },
-      },
+      'TIRUCHIRAPPALLI WEST': minimalAc(99, 'TIRUCHIRAPPALLI WEST'),
     };
 
     mockFetch
@@ -329,22 +385,31 @@ describe('useElectionResults - getACResult matching strategies', () => {
     });
 
     expect(result.current.currentResult).not.toBeNull();
-    expect(result.current.currentResult?.constituency).toBe('TIRUCHIRAPPALLI WEST');
+    expect(result.current.currentResult?.constituencyName).toBe('TIRUCHIRAPPALLI WEST');
   });
 
   it('matches AC with reservation suffix variations', async () => {
     const mockIndex = { availableYears: [2021] };
     const mockResults = {
-      'TN-042': {
-        constituencyName: 'GANGAVALLI (SC)',
+      'TN-042': minimalAc(42, 'GANGAVALLI (SC)', {
         constituencyNameOriginal: 'GANGAVALLI (SC)',
         name: 'Gangavalli',
-        year: 2021,
-        constituencyNo: 42,
         constituencyType: 'SC',
-        validVotes: 100000,
-        candidates: [{ name: 'Test', party: 'INC', votes: 45000 }],
-      },
+        candidates: [
+          {
+            position: 1,
+            name: 'Test',
+            party: 'INC',
+            votes: 45000,
+            voteShare: 45,
+            margin: null,
+            marginPct: null,
+            sex: 'M',
+            age: 50,
+            depositLost: false,
+          },
+        ],
+      }),
     };
 
     mockFetch
@@ -364,10 +429,7 @@ describe('useElectionResults - getACResult matching strategies', () => {
   it('falls back to closest year when requested year is not available', async () => {
     const mockIndex = { availableYears: [2011, 2016, 2021] };
     const mockResults = {
-      OMALUR: {
-        constituency: 'OMALUR',
-        winner: { name: 'Test', party: 'DMK', votes: 50000 },
-      },
+      OMALUR: minimalAc(50, 'OMALUR'),
     };
 
     mockFetch
@@ -404,10 +466,7 @@ describe('useElectionResults - getACResult matching strategies', () => {
   it('uses cached index on subsequent calls', async () => {
     const mockIndex = { availableYears: [2021] };
     const mockResults = {
-      OMALUR: {
-        constituency: 'OMALUR',
-        winner: { name: 'Test', party: 'DMK', votes: 40000 },
-      },
+      OMALUR: minimalAc(50, 'OMALUR'),
     };
 
     mockFetch
@@ -434,16 +493,24 @@ describe('useElectionResults - getACResult matching strategies', () => {
   it('requires exact spelling match (no fuzzy matching)', async () => {
     const mockIndex = { availableYears: [2021] };
     const mockResults = {
-      'TN-001': {
-        constituencyName: 'TIRUCHIRAPALLI WEST',
+      'TN-001': minimalAc(1, 'TIRUCHIRAPALLI WEST', {
         constituencyNameOriginal: 'TIRUCHIRAPALLI WEST',
         name: 'Tiruchirapalli West',
-        year: 2021,
-        constituencyNo: 1,
-        constituencyType: 'GEN',
-        validVotes: 100000,
-        candidates: [{ name: 'Test', party: 'DMK', votes: 50000 }],
-      },
+        candidates: [
+          {
+            position: 1,
+            name: 'Test',
+            party: 'DMK',
+            votes: 50000,
+            voteShare: 50,
+            margin: null,
+            marginPct: null,
+            sex: 'M',
+            age: 40,
+            depositLost: false,
+          },
+        ],
+      }),
     };
 
     mockFetch
@@ -465,16 +532,24 @@ describe('useElectionResults - getACResult matching strategies', () => {
   it('matches AC with exact spelling via schema ID', async () => {
     const mockIndex = { availableYears: [2021] };
     const mockResults = {
-      'TN-001': {
-        constituencyName: 'TIRUCHIRAPALLI WEST',
+      'TN-001': minimalAc(1, 'TIRUCHIRAPALLI WEST', {
         constituencyNameOriginal: 'TIRUCHIRAPALLI WEST',
         name: 'Tiruchirapalli West',
-        year: 2021,
-        constituencyNo: 1,
-        constituencyType: 'GEN',
-        validVotes: 100000,
-        candidates: [{ name: 'Test', party: 'DMK', votes: 50000 }],
-      },
+        candidates: [
+          {
+            position: 1,
+            name: 'Test',
+            party: 'DMK',
+            votes: 50000,
+            voteShare: 50,
+            margin: null,
+            marginPct: null,
+            sex: 'M',
+            age: 40,
+            depositLost: false,
+          },
+        ],
+      }),
     };
 
     mockFetch
@@ -491,6 +566,29 @@ describe('useElectionResults - getACResult matching strategies', () => {
     // Should find match via schema ID
     expect(result.current.currentResult).not.toBeNull();
     expect(result.current.currentResult?.constituencyName).toBe('TIRUCHIRAPALLI WEST');
+  });
+
+  it('distinguishes Coimbatore (South) from Coimbatore (North) when matching by name', async () => {
+    const mockIndex = { availableYears: [2021] };
+    const south = minimalAc(120, 'COIMBATORE SOUTH', {
+      constituencyNameOriginal: 'COIMBATORE SOUTH',
+    });
+    const north = minimalAc(118, 'COIMBATORE NORTH', {
+      constituencyNameOriginal: 'COIMBATORE NORTH',
+    });
+    const mockResults = { 'TN-120': south, 'TN-118': north };
+
+    mockFetch
+      .mockResolvedValueOnce({ ok: true, json: async () => mockIndex })
+      .mockResolvedValueOnce({ ok: true, json: async () => mockResults });
+
+    const { result } = renderHook(() => useElectionResults());
+
+    await act(async () => {
+      await result.current.getACResult('COIMBATORE(SOUTH)', 'Tamil Nadu', 2021);
+    });
+
+    expect(result.current.currentResult?.constituencyNo).toBe(120);
   });
 });
 
