@@ -29,6 +29,7 @@
     "fetch:tn-2026-pmk": "node scripts/fetch-tn-2026-pmk.mjs",
     "fetch:tn-2026-ntk-tnliv": "node scripts/fetch-tn-2026-ntk-tnliv.mjs",
     "merge:tn-2026-announced": "node scripts/merge-tn-2026-announced.mjs",
+    "fetch:wb-2026-voterlist-master": "node scripts/fetch-wb-2026-voterlist-master.mjs",
     "refresh:tn-2026-announced": "node scripts/fetch-tn-2026-dmk-voterlist.mjs && node scripts/fetch-tn-2026-dmk-hindu.mjs && node scripts/fetch-tn-2026-admk.mjs && node scripts/fetch-tn-2026-admk-voterlist.mjs && node scripts/fetch-tn-2026-tvk-hindu.mjs && node scripts/fetch-tn-2026-pmk.mjs && node scripts/fetch-tn-2026-ntk-tnliv.mjs && node scripts/merge-tn-2026-announced.mjs",
     "ci": "npm run typecheck && npm run lint && npm run test:coverage && npm run build",
     "e2e": "playwright test",
