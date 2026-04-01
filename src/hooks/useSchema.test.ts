@@ -81,6 +81,28 @@ const mockSchema = {
       type: 'GEN',
       delimitation: 2008,
     },
+    'TN-140': {
+      id: 'TN-140',
+      stateId: 'TN',
+      pcId: 'TN-01',
+      districtId: 'TN-D01',
+      acNo: 140,
+      name: 'Tiruchirappalli West',
+      aliases: ['TIRUCHIRAPPALLI WEST'],
+      type: 'GEN',
+      delimitation: 2008,
+    },
+    'TN-141': {
+      id: 'TN-141',
+      stateId: 'TN',
+      pcId: 'TN-01',
+      districtId: 'TN-D01',
+      acNo: 141,
+      name: 'Tiruchirappalli East',
+      aliases: ['TIRUCHIRAPPALLI EAST'],
+      type: 'GEN',
+      delimitation: 2008,
+    },
   },
   districts: {
     'TN-D01': {
@@ -111,6 +133,8 @@ const mockSchema = {
       'COIMBATORE|TN': 'TN-118',
       'COIMBATORENORTH|TN': 'TN-118',
       'COIMBATORESOUTH|TN': 'TN-120',
+      'TIRUCHIRAPPALLIEAST|TN': 'TN-141',
+      'TIRUCHIRAPPALLIWEST|TN': 'TN-140',
     },
     districtByName: { 'chennai|TN': 'TN-D01', 'bagalkot|KA': 'KA-D02' },
   },
@@ -238,6 +262,15 @@ describe('useSchema', () => {
 
       expect(result.current.resolveACName('COIMBATORE(SOUTH)', 'TN')).toBe('TN-120');
       expect(result.current.resolveACName('COIMBATORE(NORTH)', 'TN')).toBe('TN-118');
+    });
+
+    it('resolves Tiruchirappalli West to TN-140, not East (TN-141)', async () => {
+      const { result } = renderHook(() => useSchema());
+      await waitFor(() => expect(result.current.isReady).toBe(true));
+
+      expect(result.current.resolveACName('TIRUCHIRAPPALLI WEST', 'TN')).toBe('TN-140');
+      expect(result.current.resolveACName('tiruchirappalli west', 'TN')).toBe('TN-140');
+      expect(result.current.resolveACName('TIRUCHIRAPPALLI EAST', 'TN')).toBe('TN-141');
     });
 
     it('resolves district name to ID', async () => {

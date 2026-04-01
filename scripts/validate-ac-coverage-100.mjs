@@ -47,7 +47,7 @@ function normalizeSchemaName(name) {
 function normalizeACName(name) {
   return (name || '')
     .toUpperCase()
-    .replace(/\s*\([^)]*\)\s*/g, '')
+    .replace(/\s*\(\s*(SC|ST)\s*\)\s*/gi, '')
     .replace(/[^A-Z0-9]/g, '')
     .trim();
 }

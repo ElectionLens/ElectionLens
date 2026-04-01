@@ -560,13 +560,7 @@ export function Sidebar({
 
         <div className="sidebar-header">
           <h1>
-            <img
-              src="/favicon.svg"
-              alt="Election Lens"
-              width={24}
-              height={24}
-              style={{ display: 'inline', verticalAlign: 'middle', marginRight: '8px' }}
-            />
+            <img src="/favicon.svg" alt="" width={24} height={24} />
             {!isCollapsed && 'Election Lens'}
           </h1>
           {!isCollapsed && (

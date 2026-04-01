@@ -112,6 +112,17 @@ body {
 .sidebar-header h1 {
   font-size: 1.4rem;
   margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.2;
+}
+
+.sidebar-header h1 img {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: block;
 }
 
 .sidebar-header p {
@@ -1784,6 +1795,31 @@ path:focus {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.prepoll-banner {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: rgba(251, 191, 36, 0.12);
+  border-radius: 8px;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  text-align: left;
+}
+
+.prepoll-banner svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #b45309;
+}
+
+.prepoll-banner-body {
+  font-size: 13px;
+  line-height: 1.45;
+  min-width: 0;
 }
 
 /* Compact Winner Card */
@@ -5458,8 +5494,17 @@ path:focus {
 
 .sidebar-header-actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   gap: 8px;
+}
+
+.sidebar-header-actions p {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
 }
 
 .blog-btn {
@@ -5475,7 +5520,7 @@ path:focus {
   font-size: 13px;
   font-weight: 600;
   transition: all 0.2s;
-  margin-top: 4px;
+  flex-shrink: 0;
 }
 
 .blog-btn:hover {

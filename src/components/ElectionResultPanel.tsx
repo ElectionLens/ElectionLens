@@ -73,6 +73,17 @@ function generateShareText(
   stateName?: string,
   includeAllCandidates = false
 ): string {
+  if (result.resultsPending) {
+    const loc =
+      result.constituencyNameOriginal ?? result.name ?? result.constituencyName ?? 'Constituency';
+    const st = stateName ? normalizeText(stateName) : '';
+    const head = `🗳️ ${loc}${st ? `, ${st}` : ''} | ${result.year}`;
+    const lines = result.candidates.map((c) => `${c.name} (${c.party})`);
+    if (lines.length > 0) {
+      return `${head}\n\nPre-poll: votes not counted yet. Announced: ${lines.join('; ')}.`.trim();
+    }
+    return `${head}\n\nPre-poll: votes not counted yet. No sourced candidate data for this seat yet.`.trim();
+  }
   const winner = result.candidates[0];
   if (!winner) return '';
 
@@ -219,28 +230,6 @@ export function ElectionResultPanel({
   // Use prop if provided (controlled), otherwise use internal state (uncontrolled)
   const selectedPCYear =
     selectedPCYearProp !== undefined ? selectedPCYearProp : selectedPCYearInternal;
-  // #region agent log
-  if (result?.constituencyNameOriginal || result?.name) {
-    fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        location: 'ElectionResultPanel.tsx:year state',
-        message: 'Panel year props',
-        data: {
-          selectedPCYearProp,
-          selectedPCYearPropUndefined: selectedPCYearProp === undefined,
-          selectedPCYearResolved: selectedPCYear,
-          selectedYear,
-          resultYear: result?.year,
-        },
-        timestamp: Date.now(),
-        sessionId: 'debug-session',
-        hypothesisId: 'E',
-      }),
-    }).catch(() => {});
-  }
-  // #endregion
   const setSelectedPCYear = useCallback(
     (year: number | null) => {
       if (onPCYearChange) {
@@ -252,7 +241,10 @@ export function ElectionResultPanel({
     [onPCYearChange]
   );
 
-  const winner = result.candidates[0];
+  const resultsPending = Boolean(result.resultsPending);
+  const winner = resultsPending ? undefined : result.candidates[0];
+  const assemblyCandidates = result.candidates;
+  const hasAnnouncedCandidates = assemblyCandidates.length > 0;
   const currentPCContribution = selectedPCYear ? parliamentContributions[selectedPCYear] : null;
   const pcWinner = currentPCContribution?.candidates[0];
 
@@ -489,11 +481,11 @@ export function ElectionResultPanel({
           onClick={() => setActiveTab('candidates')}
         >
           <BarChart3 size={14} />
-          All{' '}
           {selectedPCYear && currentPCContribution
-            ? currentPCContribution.candidates.length
-            : result.totalCandidates}{' '}
-          Candidates
+            ? `All ${currentPCContribution.candidates.length} candidates`
+            : hasAnnouncedCandidates
+              ? `Announced (${assemblyCandidates.length})`
+              : 'Candidates'}
         </button>
         {hasBoothData && (
           <button
@@ -689,6 +681,18 @@ export function ElectionResultPanel({
           )
         ) : activeTab === 'overview' ? (
           <div className="overview-view">
+            {resultsPending && (
+              <div className="prepoll-banner">
+                <AlertTriangle size={16} aria-hidden />
+                <div className="prepoll-banner-body">
+                  <strong>Pre-poll ({result.year}).</strong> Votes are not counted yet. Only
+                  candidates from sourced announcements are shown.
+                  {!hasAnnouncedCandidates && (
+                    <span> This seat has no merged announcement data yet.</span>
+                  )}
+                </div>
+              </div>
+            )}
             {/* Compact Winner card */}
             {winner && (
               <div
@@ -739,12 +743,14 @@ export function ElectionResultPanel({
               <div className="stat-inline">
                 <Vote size={12} />
                 <span className="label">Polled</span>
-                <span className="value">{formatNumber(result.validVotes)}</span>
+                <span className="value">
+                  {resultsPending ? '—' : formatNumber(result.validVotes)}
+                </span>
               </div>
               <div className="stat-inline highlight">
                 <span className="label">Turnout</span>
                 <span className="value">
-                  {result.turnout > 0 ? `${result.turnout.toFixed(1)}%` : '—'}
+                  {resultsPending || result.turnout <= 0 ? '—' : `${result.turnout.toFixed(1)}%`}
                 </span>
               </div>
               {(() => {
@@ -761,41 +767,79 @@ export function ElectionResultPanel({
               })()}
             </div>
 
-            {/* Top 3 candidates preview */}
+            {/* Top candidates preview */}
             <div className="candidates-preview">
-              <h4>Top Candidates</h4>
-              {result.candidates.slice(0, 3).map((candidate, idx) => (
-                <CandidateRowCompact key={idx} candidate={candidate} isWinner={idx === 0} />
-              ))}
-              {result.candidates.length > 3 && (
-                <button className="view-all-btn" onClick={() => setActiveTab('candidates')}>
-                  View all {result.candidates.length} candidates →
-                </button>
+              <h4>
+                {resultsPending
+                  ? hasAnnouncedCandidates
+                    ? 'Announced candidates'
+                    : 'Candidates'
+                  : 'Top Candidates'}
+              </h4>
+              {!hasAnnouncedCandidates && resultsPending ? (
+                <p style={{ fontSize: 13, margin: 0, color: 'var(--muted-foreground, #64748b)' }}>
+                  No sourced candidate names for this constituency yet.
+                </p>
+              ) : (
+                <>
+                  {assemblyCandidates.slice(0, 3).map((candidate, idx) => (
+                    <CandidateRowCompact
+                      key={idx}
+                      candidate={candidate}
+                      isWinner={!resultsPending && idx === 0}
+                      hideVoteStats={resultsPending}
+                    />
+                  ))}
+                  {assemblyCandidates.length > 3 && (
+                    <button className="view-all-btn" onClick={() => setActiveTab('candidates')}>
+                      View all {assemblyCandidates.length} →
+                    </button>
+                  )}
+                </>
               )}
             </div>
           </div>
         ) : activeTab === 'candidates' ? (
           /* Full candidates list */
           <div className="candidates-view">
-            <div className="candidates-table-full">
-              <div className="candidates-header">
-                <span className="col-pos">#</span>
-                <span className="col-name">Candidate</span>
-                <span className="col-party">Party</span>
-                <span className="col-votes">Votes</span>
-                <span className="col-share">%</span>
+            {resultsPending && (
+              <p
+                style={{
+                  fontSize: 13,
+                  margin: '0 0 12px',
+                  color: 'var(--muted-foreground, #64748b)',
+                }}
+              >
+                Votes and vote shares appear only after counting. Listed names are from published
+                announcements we have merged — not historical election rosters.
+              </p>
+            )}
+            {!hasAnnouncedCandidates && resultsPending ? (
+              <p style={{ fontSize: 14, margin: '12px 0', lineHeight: 1.5 }}>
+                No announced candidate data for this constituency yet.
+              </p>
+            ) : (
+              <div className="candidates-table-full">
+                <div className="candidates-header">
+                  <span className="col-pos">#</span>
+                  <span className="col-name">Candidate</span>
+                  <span className="col-party">Party</span>
+                  <span className="col-votes">Votes</span>
+                  <span className="col-share">%</span>
+                </div>
+                <div className="candidates-scroll">
+                  {assemblyCandidates.map((candidate, idx) => (
+                    <CandidateRow
+                      key={idx}
+                      candidate={candidate}
+                      isWinner={!resultsPending && idx === 0}
+                      isRunnerUp={!resultsPending && idx === 1}
+                      hideVoteStats={resultsPending}
+                    />
+                  ))}
+                </div>
               </div>
-              <div className="candidates-scroll">
-                {result.candidates.map((candidate, idx) => (
-                  <CandidateRow
-                    key={idx}
-                    candidate={candidate}
-                    isWinner={idx === 0}
-                    isRunnerUp={idx === 1}
-                  />
-                ))}
-              </div>
-            </div>
+            )}
           </div>
         ) : activeTab === 'postal' && boothResults?.postal ? (
           /* Postal Ballots view */
@@ -844,9 +888,11 @@ export function ElectionResultPanel({
 const CandidateRowCompact = memo(function CandidateRowCompact({
   candidate,
   isWinner,
+  hideVoteStats = false,
 }: {
   candidate: ElectionCandidate;
   isWinner: boolean;
+  hideVoteStats?: boolean;
 }): JSX.Element {
   const partyColor = getPartyColor(candidate.party);
 
@@ -861,12 +907,14 @@ const CandidateRowCompact = memo(function CandidateRowCompact({
       >
         {candidate.party}
       </span>
-      <span className="votes">{formatNumber(candidate.votes)}</span>
-      <span className="share">{candidate.voteShare.toFixed(1)}%</span>
-      <div
-        className="bar"
-        style={{ width: `${Math.min(candidate.voteShare, 100)}%`, backgroundColor: partyColor }}
-      />
+      <span className="votes">{hideVoteStats ? '—' : formatNumber(candidate.votes)}</span>
+      <span className="share">{hideVoteStats ? '—' : `${candidate.voteShare.toFixed(1)}%`}</span>
+      {!hideVoteStats && (
+        <div
+          className="bar"
+          style={{ width: `${Math.min(candidate.voteShare, 100)}%`, backgroundColor: partyColor }}
+        />
+      )}
     </div>
   );
 });
@@ -876,10 +924,12 @@ const CandidateRow = memo(function CandidateRow({
   candidate,
   isWinner,
   isRunnerUp,
+  hideVoteStats = false,
 }: {
   candidate: ElectionCandidate;
   isWinner: boolean;
   isRunnerUp: boolean;
+  hideVoteStats?: boolean;
 }): JSX.Element {
   const partyColor = getPartyColor(candidate.party);
 
@@ -901,15 +951,19 @@ const CandidateRow = memo(function CandidateRow({
       >
         {candidate.party}
       </span>
-      <span className="col-votes">{formatNumber(candidate.votes)}</span>
-      <span className="col-share">{candidate.voteShare.toFixed(1)}%</span>
-      <div
-        className="vote-bar"
-        style={{
-          width: `${Math.min(candidate.voteShare, 100)}%`,
-          backgroundColor: partyColor,
-        }}
-      />
+      <span className="col-votes">{hideVoteStats ? '—' : formatNumber(candidate.votes)}</span>
+      <span className="col-share">
+        {hideVoteStats ? '—' : `${candidate.voteShare.toFixed(1)}%`}
+      </span>
+      {!hideVoteStats && (
+        <div
+          className="vote-bar"
+          style={{
+            width: `${Math.min(candidate.voteShare, 100)}%`,
+            backgroundColor: partyColor,
+          }}
+        />
+      )}
     </div>
   );
 });
