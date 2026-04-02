@@ -109,6 +109,53 @@ function loadJSON(filePath) {
   }
 }
 
+/** Rows that can back simulateHookLookup (skip _meta-only placeholder years). */
+function countAcElectionRows(data) {
+  if (!data || typeof data !== 'object') return 0;
+  let n = 0;
+  for (const [key, val] of Object.entries(data)) {
+    if (key.startsWith('_')) continue;
+    if (!val || typeof val !== 'object') continue;
+    if (Array.isArray(val.candidates)) n++;
+    else if (typeof val.constituencyNo === 'number') n++;
+    else if (typeof val.constituencyName === 'string' && val.constituencyName.trim()) n++;
+  }
+  return n;
+}
+
+function countPcElectionRows(data) {
+  if (!data || typeof data !== 'object') return 0;
+  let n = 0;
+  for (const [key, val] of Object.entries(data)) {
+    if (key.startsWith('_')) continue;
+    if (!val || typeof val !== 'object') continue;
+    if (Array.isArray(val.candidates)) n++;
+    else if (/^[A-Z]{2}-\d+$/.test(key)) n++;
+  }
+  return n;
+}
+
+/** Newest index year whose JSON actually contains constituency rows (not just _meta). */
+function pickLatestAcYearWithRows(stateId, years) {
+  if (!years?.length) return null;
+  for (let i = years.length - 1; i >= 0; i--) {
+    const y = years[i];
+    const data = loadJSON(path.join(DATA_DIR, `elections/ac/${stateId}/${y}.json`));
+    if (data && countAcElectionRows(data) > 0) return y;
+  }
+  return null;
+}
+
+function pickLatestPcYearWithRows(stateId, years) {
+  if (!years?.length) return null;
+  for (let i = years.length - 1; i >= 0; i--) {
+    const y = years[i];
+    const data = loadJSON(path.join(DATA_DIR, `elections/pc/${stateId}/${y}.json`));
+    if (data && countPcElectionRows(data) > 0) return y;
+  }
+  return null;
+}
+
 function slugify(name) {
   return name.toLowerCase()
     .replace(/[āàáâãä]/g, 'a')
@@ -213,11 +260,11 @@ for (const state of filteredStates) {
   const acYears = acIndex?.availableYears || [];
   const pcYears = pcIndex?.availableYears || [];
   
-  // Load election data for the latest year
-  const latestACYear = acYears[acYears.length - 1];
-  const latestPCYear = pcYears[pcYears.length - 1];
+  // Prefer the newest year that has real rows (indices may list future placeholders with only _meta)
+  const latestACYear = pickLatestAcYearWithRows(stateId, acYears);
+  const latestPCYear = pickLatestPcYearWithRows(stateId, pcYears);
   
-  const acElectionData = latestACYear 
+  const acElectionData = latestACYear
     ? loadJSON(path.join(DATA_DIR, `elections/ac/${stateId}/${latestACYear}.json`))
     : null;
   const pcElectionData = latestPCYear
@@ -253,8 +300,8 @@ for (const state of filteredStates) {
       errors.push('missing GeoJSON');
     }
     
-    // Check election data exists
-    const hasData = pcElectionData && pcYears.length > 0;
+    const hasData =
+      !!latestPCYear && !!pcElectionData && countPcElectionRows(pcElectionData) > 0;
     if (hasData) {
       stats.pcWithData++;
     } else {
@@ -306,8 +353,8 @@ for (const state of filteredStates) {
       errors.push('missing GeoJSON');
     }
     
-    // Check election data exists
-    const hasData = acElectionData && acYears.length > 0;
+    const hasData =
+      !!latestACYear && !!acElectionData && countAcElectionRows(acElectionData) > 0;
     if (hasData) {
       stats.acWithData++;
     } else {
