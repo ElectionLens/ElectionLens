@@ -928,7 +928,10 @@ export function MapView({
                       const sortedCandidates = [...acContribution.candidates].sort(
                         (a, b) => b.votes - a.votes
                       );
-                      const winner = sortedCandidates[0];
+                      const winner =
+                        sortedCandidates.find(
+                          (c) => String(c.party ?? '').toUpperCase() !== 'NOTA'
+                        ) ?? sortedCandidates[0];
                       if (winner) {
                         addWinner(acName, winner.party, winner.name);
                         const sid = resolveACName(acName, stateId);
