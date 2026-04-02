@@ -23,6 +23,8 @@
     "clean": "rm -rf dist coverage node_modules/.cache",
     "analyze:geo": "node scripts/optimize-geojson.mjs",
     "generate:ac-2026": "node scripts/generate-ac-2026-upcoming.mjs",
+    "data:ac-2026-placeholder": "node scripts/add-ac-2026-placeholder-all-states.mjs",
+    "data:ac-years-through-2029": "node scripts/sync-ac-years-through-2029.mjs",
     "fetch:tn-2026-dmk-hindu": "node scripts/fetch-tn-2026-dmk-hindu.mjs",
     "fetch:tn-2026-dmk-voterlist": "node scripts/fetch-tn-2026-dmk-voterlist.mjs",
     "fetch:tn-2026-admk": "node scripts/fetch-tn-2026-admk.mjs",

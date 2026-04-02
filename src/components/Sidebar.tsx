@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { normalizeName, getFeatureColor } from '../utils/helpers';
 import { SearchBox } from './SearchBox';
+import { DistrictElectionsInfo } from './DistrictElectionsInfo';
 import type {
   InfoPanelContent,
   StateFeature,
@@ -72,6 +73,12 @@ interface SidebarProps {
   isCollapsed?: boolean;
   onToggleCollapse?: () => void;
   onBlogClick?: () => void;
+  /** AC election years for current state (districts map summary) */
+  assemblyAvailableYears?: number[];
+  /** From AC state index: indicative next Vidhan Sabha year */
+  assemblyNextElectionYear?: number | null;
+  /** PC election years for current state (districts map summary) */
+  pcAvailableYears?: number[];
 }
 
 /** Extended CSS properties to allow custom CSS variables */
@@ -111,6 +118,9 @@ export function Sidebar({
   isCollapsed = false,
   onToggleCollapse,
   onBlogClick,
+  assemblyAvailableYears = [],
+  assemblyNextElectionYear = null,
+  pcAvailableYears = [],
 }: SidebarProps): JSX.Element {
   const [copied, setCopied] = useState(false);
   const displayState = currentState ? normalizeName(currentState) : null;
@@ -615,6 +625,15 @@ export function Sidebar({
                   <div className="stat-label">{info.subLabel}</div>
                 </div>
               </div>
+
+              {currentState && currentView === 'districts' && !currentPC && (
+                <DistrictElectionsInfo
+                  stateName={currentState}
+                  assemblyAvailableYears={assemblyAvailableYears}
+                  assemblyNextElectionYear={assemblyNextElectionYear}
+                  pcAvailableYears={pcAvailableYears}
+                />
+              )}
 
               {showViewToggle && (
                 <div className="view-toggle">

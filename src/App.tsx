@@ -13,6 +13,7 @@ import { ELECTIONS, PC_ELECTIONS } from './constants/paths';
 import { STATE_FILE_MAP } from './constants';
 import { normalizeName, toTitleCase } from './utils/helpers';
 import { isAssemblyResultEntry, skipAssemblyWinnerColoring } from './utils/electionResults';
+import { defaultAssemblyDataYearFromIndex } from './utils/electionSchedule';
 import { trackPageView, trackConstituencySelect } from './utils/firebase';
 import type {
   GeoJSONData,
@@ -75,11 +76,14 @@ function App(): JSX.Element {
   const {
     currentResult: electionResult,
     availableYears,
+    assemblyNextElectionYear,
     selectedYear,
     getACResult,
     setSelectedYear,
     clearResult: clearElectionResult,
     loadStateIndex,
+    loading: acResultsLoading,
+    error: acResultsLoadError,
   } = useElectionResults();
 
   // Parliamentary election results hook
@@ -275,8 +279,8 @@ function App(): JSX.Element {
         }
         // If no year in URL, set latest AC year so districts/ACs are colored
         if (!urlState.year && !urlState.pcYear && acIndex && acIndex.availableYears.length > 0) {
-          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
-          if (latestYear !== undefined) {
+          const latestYear = defaultAssemblyDataYearFromIndex(acIndex);
+          if (latestYear != null) {
             setSelectedYear(latestYear);
             setTimeout(() => {
               updateUrlRef.current({
@@ -302,8 +306,8 @@ function App(): JSX.Element {
           acIndex.availableYears.length > 0 &&
           !acIndex.availableYears.includes(urlState.year)
         ) {
-          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
-          if (latestYear !== undefined) {
+          const latestYear = defaultAssemblyDataYearFromIndex(acIndex);
+          if (latestYear != null) {
             // #region agent log
             fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
               method: 'POST',
@@ -412,8 +416,8 @@ function App(): JSX.Element {
 
         // If no year in URL (neither year nor pcYear), set to latest AC year so map is colored
         if (!urlState.year && !urlState.pcYear && acIndex && acIndex.availableYears.length > 0) {
-          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
-          if (latestYear !== undefined) {
+          const latestYear = defaultAssemblyDataYearFromIndex(acIndex);
+          if (latestYear != null) {
             // #region agent log
             fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
               method: 'POST',
@@ -454,8 +458,8 @@ function App(): JSX.Element {
           acIndex.availableYears.length > 0 &&
           !acIndex.availableYears.includes(urlState.year)
         ) {
-          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
-          if (latestYear !== undefined) {
+          const latestYear = defaultAssemblyDataYearFromIndex(acIndex);
+          if (latestYear != null) {
             setSelectedYear(latestYear);
             setTimeout(() => {
               updateUrlRef.current({
@@ -507,8 +511,8 @@ function App(): JSX.Element {
         }
         // If no year in URL, set default to latest AC year so map is colored
         if (!urlState.year && !urlState.pcYear && acIndex && acIndex.availableYears.length > 0) {
-          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
-          if (latestYear !== undefined) {
+          const latestYear = defaultAssemblyDataYearFromIndex(acIndex);
+          if (latestYear != null) {
             setSelectedYear(latestYear);
             setTimeout(() => {
               updateUrlRef.current({
@@ -534,8 +538,8 @@ function App(): JSX.Element {
           acIndex.availableYears.length > 0 &&
           !acIndex.availableYears.includes(urlState.year)
         ) {
-          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
-          if (latestYear !== undefined) {
+          const latestYear = defaultAssemblyDataYearFromIndex(acIndex);
+          if (latestYear != null) {
             setSelectedYear(latestYear);
             setTimeout(() => {
               updateUrlRef.current({
@@ -922,16 +926,20 @@ function App(): JSX.Element {
       } else if (currentDistrict && currentState) {
         const data = await navigateToDistrict(currentDistrict, currentState);
         setCurrentData(data);
+        void loadStateIndex(currentState);
       } else if (currentState) {
         if (currentView === 'constituencies') {
           const data = await navigateToState(currentState);
           setCurrentData(data);
+          void loadStateIndex(currentState);
         } else if (currentView === 'assemblies') {
           const data = await navigateToAssemblies(currentState);
           setCurrentData(data);
+          void loadStateIndex(currentState);
         } else if (currentView === 'districts') {
           const data = await loadDistrictsForState(currentState);
           setCurrentData(data);
+          void loadStateIndex(currentState);
         }
       } else {
         setCurrentData(null);
@@ -939,7 +947,7 @@ function App(): JSX.Element {
     }
     void updateData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentState, currentView, currentPC, currentDistrict]);
+  }, [currentState, currentView, currentPC, currentDistrict, loadStateIndex]);
 
   /**
    * Handle state click from map or sidebar
@@ -1593,8 +1601,9 @@ function App(): JSX.Element {
       closeSidebarOnMobile();
       const data = await navigateToState(stateName);
       setCurrentData(data);
+      void loadStateIndex(stateName);
     },
-    [navigateToState, closeSidebarOnMobile]
+    [navigateToState, closeSidebarOnMobile, loadStateIndex]
   );
 
   /**
@@ -2030,8 +2039,8 @@ function App(): JSX.Element {
           selectedYear != null &&
           !acIndex.availableYears.includes(selectedYear)
         ) {
-          const latestYear = acIndex.availableYears[acIndex.availableYears.length - 1];
-          if (latestYear !== undefined) {
+          const latestYear = defaultAssemblyDataYearFromIndex(acIndex);
+          if (latestYear != null) {
             setSelectedYear(latestYear);
             const tab =
               typeof window !== 'undefined'
@@ -2058,11 +2067,11 @@ function App(): JSX.Element {
         const data = await loadDistrictsForState(currentState);
         setCurrentData(data);
         const acIndex = await loadStateIndex(currentState);
-        const years = acIndex?.availableYears ?? [];
-        const latestYear = years.length > 0 ? years[years.length - 1] : undefined;
+        const acYears = acIndex?.availableYears ?? [];
+        const latestYear = acIndex != null ? defaultAssemblyDataYearFromIndex(acIndex) : undefined;
         // No year or invalid year: set to latest so districts get 100% party coloring
         const needsCorrection =
-          latestYear !== undefined && (selectedYear == null || !years.includes(selectedYear));
+          latestYear != null && (selectedYear == null || !acYears.includes(selectedYear));
         if (needsCorrection) {
           setSelectedYear(latestYear);
           const tab =
@@ -2305,6 +2314,9 @@ function App(): JSX.Element {
           isCollapsed={sidebarCollapsed}
           onToggleCollapse={toggleSidebarCollapsed}
           onBlogClick={handleBlogToggle}
+          assemblyAvailableYears={availableYears}
+          assemblyNextElectionYear={assemblyNextElectionYear}
+          pcAvailableYears={pcAvailableYears}
         />
 
         <MapView
@@ -2319,6 +2331,8 @@ function App(): JSX.Element {
           currentDistrict={currentDistrict}
           selectedAssembly={currentAssembly}
           electionResult={electionResult}
+          acResultsLoading={acResultsLoading}
+          acResultsLoadError={acResultsLoadError}
           shareUrl={currentShareUrl}
           availableYears={availableYears}
           selectedYear={selectedYear}

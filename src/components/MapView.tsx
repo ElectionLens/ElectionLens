@@ -35,9 +35,6 @@ const NEUTRAL_MAP_STYLE: L.PathOptions = {
   opacity: 1,
 };
 
-/** Assembly years where JSON is pre-poll only — do not backfill map colours from older elections. */
-const ASSEMBLY_UPCOMING_ELECTION_YEARS = new Set([2026]);
-
 /** AC name spelling variants for style lookup (GeoJSON vs election data), e.g. Tadpatri vs Tadipatri, Pappireddippatti vs Pappireddipatti (PC 2024) */
 const AC_STYLE_VARIANTS: Record<string, string[]> = {
   TADPATRI: ['TADPATRI', 'TADIPATRI'],
@@ -48,8 +45,15 @@ const AC_STYLE_VARIANTS: Record<string, string[]> = {
 import { clearAllCache } from '../utils/db';
 import { getPartyColor } from '../utils/partyData';
 import { ELECTIONS, PC_ELECTIONS, STATE_WINNERS_AC_PATH } from '../constants/paths';
-import type { ElectionResultsByConstituency, PCElectionResultsByConstituency } from '../types';
+import type {
+  ElectionResultsByConstituency,
+  ElectionResultsFileMeta,
+  PCElectionResultsByConstituency,
+  StateElectionIndex,
+} from '../types';
 import { isAssemblyResultEntry, skipAssemblyWinnerColoring } from '../utils/electionResults';
+import { defaultAssemblyDataYearFromIndex } from '../utils/electionSchedule';
+import { buildAcPanelPlaceholder } from '../utils/acPanelPlaceholder';
 import { FeedbackModal } from './FeedbackModal';
 import { VectorTileLayer } from './VectorTileLayer';
 import { useSchema } from '../hooks/useSchema';
@@ -705,6 +709,8 @@ export function MapView({
   currentDistrict,
   selectedAssembly,
   electionResult,
+  acResultsLoading = false,
+  acResultsLoadError = null,
   shareUrl,
   availableYears,
   selectedYear,
@@ -731,6 +737,12 @@ export function MapView({
   showACsWithinPC = true,
   onShowACsWithinPCChange,
 }: MapViewProps): JSX.Element {
+  const acPanelPlaceholderResult = useMemo(() => {
+    if (!selectedAssembly || currentView !== 'assemblies') return null;
+    const y = selectedYear ?? new Date().getFullYear();
+    return buildAcPanelPlaceholder(selectedAssembly, y);
+  }, [selectedAssembly, selectedYear, currentView]);
+
   const geoJsonRef = useRef<GeoJSONRef>(null);
   // Track pending selected assembly to handle click -> mouseout race condition
   const pendingSelectedAssembly = useRef<string | null>(null);
@@ -749,6 +761,9 @@ export function MapView({
   >({});
   // Increment when loadResults completes so GeoJSON remounts with new colors (fixes year-change not updating)
   const [winnersVersion, setWinnersVersion] = useState(0);
+  /** Loaded AC year file _meta — when pre-poll/announced-only, skip party colouring on districts/ACs. */
+  const [acFileMetaForMapColors, setAcFileMetaForMapColors] =
+    useState<ElectionResultsFileMeta | null>(null);
 
   // State-level winners for India view and neighbouring states (party with most Lok Sabha seats per state)
   const [stateWinners, setStateWinners] = useState<Record<string, { party: string; year: number }>>(
@@ -798,6 +813,18 @@ export function MapView({
     return out;
   }, [schema?.assemblyConstituencies, constituencyWinners]);
 
+  /** No party colouring from assembly files that are pre-poll or announced-candidates-only (unless PC-contribution year is active). */
+  const suppressAssemblyFilePartyMapColors = useMemo(
+    () =>
+      selectedACPCYear == null &&
+      Boolean(
+        acFileMetaForMapColors &&
+        (acFileMetaForMapColors.resultsPending ||
+          acFileMetaForMapColors.candidatesPolicy === 'announced_only')
+      ),
+    [selectedACPCYear, acFileMetaForMapColors]
+  );
+
   // Load state-level winners for India view (latest AC election per state, not PC)
   useEffect(() => {
     if (!statesGeoJSON) return;
@@ -833,15 +860,19 @@ export function MapView({
         }
       }
       setConstituencyWinners({});
+      setAcFileMetaForMapColors(null);
       setWinnersVersion((v) => v + 1);
       return;
     }
 
     const loadResults = async (): Promise<void> => {
       if (loadResultsRunIdRef.current !== runId) return;
+      setAcFileMetaForMapColors(null);
 
       const stateId = getStateId(currentState);
       const winners: Record<string, { party: string; candidate: string }> = {};
+      /** When selected assembly year file loads OK but yields no map winners (pre-poll / announced-only), do not backfill latest completed year — avoids wrong-year colours on neighbouring districts. */
+      let skipLatestYearFallbackForAC = false;
       setBackgroundPCWinners({});
       let urlDerivedPcYear: number | null = null;
       if (typeof window !== 'undefined') {
@@ -864,7 +895,6 @@ export function MapView({
             const response = await fetch(PC_ELECTIONS.getYearPath(stateId, pcYearForColoring));
             if (response.ok) {
               const results = (await response.json()) as PCElectionResultsByConstituency;
-              let acCount = 0;
               // Map each AC to its winner from PC contribution
               Object.entries(results).forEach(([_pcId, pcResult]) => {
                 const addWinner = (acName: string, party: string, candidateName: string): void => {
@@ -890,7 +920,6 @@ export function MapView({
                       if (v !== normalizedName && !winners[v]) winners[v] = entry;
                     }
                   }
-                  acCount++;
                 };
 
                 if (pcResult.acWiseResults) {
@@ -1009,6 +1038,9 @@ export function MapView({
             if (response.ok) {
               const results = (await response.json()) as ElectionResultsByConstituency;
               const acMainMeta = results._meta;
+              if (loadResultsRunIdRef.current === runId) {
+                setAcFileMetaForMapColors(acMainMeta ?? null);
+              }
               // Map each AC to its winner (store schemaId when key is schemaId, plus name variants)
               const schemaIdPattern = /^[A-Z]{2}-\d+$/;
               Object.entries(results).forEach(([key, result]) => {
@@ -1041,6 +1073,9 @@ export function MapView({
                   }
                 }
               });
+              if (Object.keys(winners).length === 0) {
+                skipLatestYearFallbackForAC = true;
+              }
             }
           } catch (err) {
             console.error(
@@ -1052,15 +1087,19 @@ export function MapView({
         // Fallback: if no winners (invalid/missing year), load latest AC year so districts/ACs get 100% party coloring
         if (
           Object.keys(winners).length === 0 &&
+          !skipLatestYearFallbackForAC &&
           currentState &&
           (currentView === 'districts' || currentView === 'assemblies' || Boolean(currentDistrict))
         ) {
           try {
             const indexRes = await fetch(ELECTIONS.getIndexPath(stateId));
             if (indexRes.ok) {
-              const index = (await indexRes.json()) as { availableYears?: number[] };
+              const index = (await indexRes.json()) as StateElectionIndex;
               const years = index.availableYears ?? [];
-              const latestYear = years.length > 0 ? years[years.length - 1] : null;
+              // Prefer last completed year, not the sole future slot (e.g. 2028 placeholder)
+              const latestYear =
+                defaultAssemblyDataYearFromIndex(index) ??
+                (years.length > 0 ? years[years.length - 1] : null);
               if (latestYear != null) {
                 const response = await fetch(ELECTIONS.getYearPath(stateId, latestYear));
                 if (response.ok) {
@@ -2077,21 +2116,20 @@ export function MapView({
         weight: 1,
         opacity: 0.85,
       };
+      const neutral = {
+        ...base,
+        fillColor: NEUTRAL_MAP_STYLE.fillColor!,
+        color: NEUTRAL_MAP_STYLE.color!,
+      };
+      if (suppressAssemblyFilePartyMapColors) {
+        return neutral;
+      }
       if (!feature || !currentState || Object.keys(districtWinners).length === 0) {
-        return {
-          ...base,
-          fillColor: NEUTRAL_MAP_STYLE.fillColor!,
-          color: NEUTRAL_MAP_STYLE.color!,
-        };
+        return neutral;
       }
       const props = feature.properties as DistrictProperties;
       const districtName = (props.district ?? props.NAME ?? props.DISTRICT ?? '').trim();
-      if (!districtName)
-        return {
-          ...base,
-          fillColor: NEUTRAL_MAP_STYLE.fillColor!,
-          color: NEUTRAL_MAP_STYLE.color!,
-        };
+      if (!districtName) return neutral;
       const stateId = getStateId(currentState);
       const districtId = resolveDistrictName(districtName, stateId);
       let party = districtId ? districtWinners[districtId] : undefined;
@@ -2117,9 +2155,16 @@ export function MapView({
       if (party) {
         return { ...base, fillColor: getPartyColor(party) };
       }
-      return { ...base, fillColor: NEUTRAL_MAP_STYLE.fillColor!, color: NEUTRAL_MAP_STYLE.color! };
+      return neutral;
     },
-    [currentState, districtWinners, getStateId, resolveDistrictName, getDistrict]
+    [
+      currentState,
+      districtWinners,
+      getStateId,
+      resolveDistrictName,
+      getDistrict,
+      suppressAssemblyFilePartyMapColors,
+    ]
   );
 
   // Click and hover handler for background districts
@@ -2547,11 +2592,6 @@ export function MapView({
       }
 
       // Color-code districts by dominant party; never use palette in districts view (100% party or neutral)
-      const suppressMapPartyForUpcomingAssemblyYear =
-        selectedYear != null &&
-        ASSEMBLY_UPCOMING_ELECTION_YEARS.has(selectedYear) &&
-        selectedACPCYear == null;
-
       if (level === 'districts' && feature && currentState) {
         baseStyle = { ...NEUTRAL_MAP_STYLE };
         const props = feature.properties as DistrictProperties;
@@ -2583,7 +2623,7 @@ export function MapView({
             }
           }
         }
-        if (party && !suppressMapPartyForUpcomingAssemblyYear) {
+        if (party && !suppressAssemblyFilePartyMapColors) {
           baseStyle = {
             fillColor: getPartyColor(party),
             fillOpacity: 0.7,
@@ -2598,7 +2638,7 @@ export function MapView({
       // Prefer schemaId lookup when GeoJSON has it (fixes all name-mismatch cases)
       const schemaId = feature?.properties?.['schemaId'] as string | undefined;
       const suppressAssemblyPartyMapColors =
-        level === 'assemblies' && suppressMapPartyForUpcomingAssemblyYear;
+        level === 'assemblies' && suppressAssemblyFilePartyMapColors;
 
       if (!suppressAssemblyPartyMapColors && schemaId && effectiveConstituencyWinners[schemaId]) {
         const winner = effectiveConstituencyWinners[schemaId];
@@ -2743,7 +2783,6 @@ export function MapView({
     [
       level,
       selectedAssembly,
-      selectedYear,
       selectedACPCYear,
       effectiveConstituencyWinners,
       dominantPCParty,
@@ -2755,6 +2794,7 @@ export function MapView({
       currentDistrict,
       currentPC,
       resolveDistrictName,
+      suppressAssemblyFilePartyMapColors,
     ]
   );
 
@@ -2807,7 +2847,14 @@ export function MapView({
         }
       });
     }
-  }, [effectiveConstituencyWinners, level, selectedAssembly]);
+  }, [
+    effectiveConstituencyWinners,
+    level,
+    selectedAssembly,
+    acFileMetaForMapColors,
+    selectedYear,
+    selectedACPCYear,
+  ]);
 
   // Show view toggle buttons whenever we're in a state (even if PC or district is selected)
   const showViewToggle = Boolean(currentState);
@@ -3007,7 +3054,7 @@ export function MapView({
         {/* Background Districts layer - shows other districts when viewing assemblies in district view */}
         {backgroundDistrictsData && (
           <GeoJSON
-            key={`background-districts-${currentState}-${currentDistrict}-${selectedAssembly ?? 'none'}-${backgroundDistrictsData.features.length}-${Object.keys(districtWinners).length}`}
+            key={`background-districts-${currentState}-${currentDistrict}-${selectedAssembly ?? 'none'}-${backgroundDistrictsData.features.length}-${Object.keys(districtWinners).length}-${suppressAssemblyFilePartyMapColors ? 'np' : 'p'}`}
             data={backgroundDistrictsData as GeoJSON.FeatureCollection}
             style={(feature) => ({
               ...backgroundDistrictStyle(feature),
@@ -3021,51 +3068,32 @@ export function MapView({
         )}
       </MapContainer>
 
-      {/* AC Election Result Panel - Show when AC is selected (with result or placeholder while loading) */}
-      {electionResult && onCloseElectionPanel && (
-        <Suspense fallback={<PanelSkeleton />}>
-          <ElectionResultPanel
-            result={electionResult}
-            onClose={onCloseElectionPanel}
-            shareUrl={shareUrl}
-            stateName={currentState ?? undefined}
-            availableYears={availableYears ?? []}
-            selectedYear={selectedYear ?? undefined}
-            onYearChange={onYearChange}
-            parliamentContributions={parliamentContributions}
-            availablePCYears={availablePCYears}
-            selectedPCYear={selectedACPCYear}
-            onPCYearChange={onACPCYearChange}
-            showOnlyPCYears={Boolean(currentPC)}
-            pcContributionShareUrl={pcContributionShareUrl}
-            boothResults={boothResults}
-            boothsWithResults={boothsWithResults}
-          />
-        </Suspense>
-      )}
-
-      {/* AC placeholder panel when assembly selected but result not yet loaded (ensures side panel for all ACs) */}
-      {!electionResult &&
-        currentView === 'assemblies' &&
-        selectedAssembly &&
-        onCloseElectionPanel && (
-          <div className="election-panel">
-            <div className="election-panel-header">
-              <div className="election-panel-title">{selectedAssembly}</div>
-              <button
-                className="election-panel-close"
-                onClick={onCloseElectionPanel}
-                title="Close"
-                type="button"
-                aria-label="Close panel"
-              >
-                ×
-              </button>
-            </div>
-            <div style={{ padding: '16px', color: 'var(--muted, #6b7280)' }}>
-              Loading constituency data…
-            </div>
-          </div>
+      {/* AC panel: real result or full ElectionResultPanel with skeleton rows while loading / on error */}
+      {(electionResult ||
+        (currentView === 'assemblies' && selectedAssembly && onCloseElectionPanel)) &&
+        onCloseElectionPanel &&
+        (electionResult || acPanelPlaceholderResult) && (
+          <Suspense fallback={<PanelSkeleton />}>
+            <ElectionResultPanel
+              result={electionResult ?? acPanelPlaceholderResult!}
+              onClose={onCloseElectionPanel}
+              shareUrl={shareUrl}
+              stateName={currentState ?? undefined}
+              availableYears={availableYears ?? []}
+              selectedYear={selectedYear ?? undefined}
+              onYearChange={onYearChange}
+              parliamentContributions={parliamentContributions}
+              availablePCYears={availablePCYears}
+              selectedPCYear={selectedACPCYear}
+              onPCYearChange={onACPCYearChange}
+              showOnlyPCYears={Boolean(currentPC)}
+              pcContributionShareUrl={pcContributionShareUrl}
+              boothResults={boothResults}
+              boothsWithResults={boothsWithResults}
+              acResultsLoading={!electionResult && acResultsLoading}
+              acResultsLoadError={!electionResult ? acResultsLoadError : null}
+            />
+          </Suspense>
         )}
 
       {/* PC Election Result Panel - Show when in PC view and no AC selected */}

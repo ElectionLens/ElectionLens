@@ -30,6 +30,22 @@ function formatNumber(num: number | undefined | null): string {
   return num.toLocaleString('en-IN');
 }
 
+/** Placeholder rows while AC JSON is fetching (votes/shares shown as 0). */
+function loadingSkeletonCandidates(): ElectionCandidate[] {
+  return Array.from({ length: 10 }, (_, i) => ({
+    position: i + 1,
+    name: '…',
+    party: '—',
+    votes: 0,
+    voteShare: 0,
+    margin: null,
+    marginPct: null,
+    sex: '',
+    age: null,
+    depositLost: false,
+  }));
+}
+
 interface ACParliamentContribution {
   pcName: string;
   year: number;
@@ -61,6 +77,10 @@ interface ElectionResultPanelProps {
   /** Booth data for booth-wise view */
   boothResults?: BoothResults | null | undefined;
   boothsWithResults?: BoothWithResult[] | undefined;
+  /** True while assembly year JSON / constituency row is loading */
+  acResultsLoading?: boolean;
+  /** Shown when load failed (panel stays open with placeholder result) */
+  acResultsLoadError?: string | null;
 }
 
 /** Remove diacritics from text (e.g., Tamil Nādu → Tamil Nadu) */
@@ -80,7 +100,7 @@ function generateShareText(
     const head = `🗳️ ${loc}${st ? `, ${st}` : ''} | ${result.year}`;
     const lines = result.candidates.map((c) => `${c.name} (${c.party})`);
     if (lines.length > 0) {
-      return `${head}\n\nPre-poll: votes not counted yet. Announced: ${lines.join('; ')}.`.trim();
+      return `${head}\n\nPre-poll: votes not counted yet. Candidates: ${lines.join('; ')}.`.trim();
     }
     return `${head}\n\nPre-poll: votes not counted yet. No sourced candidate data for this seat yet.`.trim();
   }
@@ -130,6 +150,8 @@ export function ElectionResultPanel({
   showOnlyPCYears = false,
   boothResults,
   boothsWithResults = [],
+  acResultsLoading = false,
+  acResultsLoadError = null,
 }: ElectionResultPanelProps): JSX.Element {
   // Read tab from URL on mount
   const getTabFromUrl = useCallback((): TabType => {
@@ -143,7 +165,15 @@ export function ElectionResultPanel({
     return 'overview';
   }, []);
 
-  const [activeTab, setActiveTab] = useState<TabType>(getTabFromUrl);
+  const [activeTab, setActiveTab] = useState<TabType>(() => {
+    if (typeof window === 'undefined') return 'overview';
+    const tabParam = new URLSearchParams(window.location.search).get('tab');
+    const validTabs: TabType[] = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+    if (tabParam && validTabs.includes(tabParam as TabType)) {
+      return tabParam as TabType;
+    }
+    return 'overview';
+  });
   const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
 
   // Check if booth data is available
@@ -242,11 +272,28 @@ export function ElectionResultPanel({
   );
 
   const resultsPending = Boolean(result.resultsPending);
-  const winner = resultsPending ? undefined : result.candidates[0];
+  const winner = resultsPending || acResultsLoading ? undefined : result.candidates[0];
   const assemblyCandidates = result.candidates;
   const hasAnnouncedCandidates = assemblyCandidates.length > 0;
+  const displayCandidates = acResultsLoading ? loadingSkeletonCandidates() : assemblyCandidates;
+  /** Pre-poll announced rows hide vote columns; loading skeleton shows numeric 0 */
+  const hideAssemblyVoteFigures = resultsPending && !acResultsLoading;
   const currentPCContribution = selectedPCYear ? parliamentContributions[selectedPCYear] : null;
   const pcWinner = currentPCContribution?.candidates[0];
+
+  /** Parliament-year panel is always “past” style (full tabs). Assembly pre-poll/loading: only Overview + All candidates. */
+  const inParliamentYearMode = Boolean(selectedPCYear && currentPCContribution);
+  const isFutureAssemblySidebar = !inParliamentYearMode && (acResultsLoading || resultsPending);
+  const showBoothTabs = !isFutureAssemblySidebar && hasBoothData;
+
+  useEffect(() => {
+    if (
+      isFutureAssemblySidebar &&
+      (activeTab === 'booths' || activeTab === 'postal' || activeTab === 'analysis')
+    ) {
+      setActiveTab('overview');
+    }
+  }, [isFutureAssemblySidebar, activeTab]);
 
   // Generate share URL with current tab
   const shareUrlWithTab = useMemo(() => {
@@ -286,6 +333,7 @@ export function ElectionResultPanel({
       ].sort((a, b) => a.year - b.year);
 
   const handleCopyLink = useCallback(async () => {
+    if (acResultsLoading) return;
     const urlToShare = shareUrlWithTab ?? shareUrl ?? window.location.href;
     try {
       await navigator.clipboard.writeText(urlToShare);
@@ -295,7 +343,7 @@ export function ElectionResultPanel({
     } catch (err) {
       console.error('Failed to copy:', err);
     }
-  }, [shareUrlWithTab, shareUrl]);
+  }, [shareUrlWithTab, shareUrl, acResultsLoading]);
 
   const handleCopyPCLink = useCallback(async () => {
     if (!pcContributionShareUrl) return;
@@ -312,14 +360,16 @@ export function ElectionResultPanel({
   const panelRef = useRef<HTMLDivElement>(null);
 
   const handleShareToX = useCallback(() => {
+    if (acResultsLoading) return;
     const text = generateShareText(result, stateName, true);
     const url = shareUrlWithTab ?? shareUrl ?? window.location.href;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     window.open(twitterUrl, '_blank', 'width=550,height=420');
     trackShare('twitter', 'assembly');
-  }, [result, shareUrlWithTab, shareUrl, stateName]);
+  }, [result, shareUrlWithTab, shareUrl, stateName, acResultsLoading]);
 
   const handleSaveScreenshot = useCallback(async () => {
+    if (acResultsLoading) return;
     const el = panelRef.current;
     if (!el) return;
     const w = el.offsetWidth;
@@ -373,7 +423,7 @@ export function ElectionResultPanel({
       if (wrapper?.parentNode) wrapper.parentNode.removeChild(wrapper);
       if (styleEl?.parentNode) styleEl.parentNode.removeChild(styleEl);
     }
-  }, [result]);
+  }, [result, acResultsLoading]);
 
   return (
     <div
@@ -413,23 +463,41 @@ export function ElectionResultPanel({
         </div>
         <div className="election-panel-actions">
           <button
+            type="button"
             className="election-panel-btn twitter-btn"
             onClick={handleShareToX}
-            title="Share candidates on Twitter"
+            disabled={acResultsLoading}
+            title={
+              acResultsLoading
+                ? 'Share is available after results load'
+                : 'Share candidates on Twitter'
+            }
           >
             <Twitter size={18} />
           </button>
           <button
+            type="button"
             className="election-panel-btn screenshot-btn"
             onClick={handleSaveScreenshot}
-            title="Save screenshot"
+            disabled={acResultsLoading}
+            title={
+              acResultsLoading ? 'Screenshot is available after results load' : 'Save screenshot'
+            }
           >
             <Camera size={18} />
           </button>
           <button
+            type="button"
             className={`election-panel-btn ${copied ? 'copied' : ''}`}
             onClick={handleCopyLink}
-            title={copied ? 'Copied!' : 'Copy link'}
+            disabled={acResultsLoading}
+            title={
+              acResultsLoading
+                ? 'Copy link is available after results load'
+                : copied
+                  ? 'Copied!'
+                  : 'Copy link'
+            }
           >
             {copied ? <Check size={18} /> : <Link2 size={18} />}
           </button>
@@ -467,7 +535,7 @@ export function ElectionResultPanel({
         </div>
       )}
 
-      {/* Tab switcher */}
+      {/* Tab switcher: parliament or past assembly = full tabs; future assembly = Overview + All candidates only */}
       <div className="panel-tabs">
         <button
           className={`panel-tab ${activeTab === 'overview' ? 'active' : ''}`}
@@ -481,13 +549,15 @@ export function ElectionResultPanel({
           onClick={() => setActiveTab('candidates')}
         >
           <BarChart3 size={14} />
-          {selectedPCYear && currentPCContribution
+          {inParliamentYearMode && currentPCContribution
             ? `All ${currentPCContribution.candidates.length} candidates`
-            : hasAnnouncedCandidates
-              ? `Announced (${assemblyCandidates.length})`
-              : 'Candidates'}
+            : isFutureAssemblySidebar
+              ? 'All candidates'
+              : assemblyCandidates.length > 0
+                ? `Candidates (${assemblyCandidates.length})`
+                : 'Candidates'}
         </button>
-        {hasBoothData && (
+        {showBoothTabs && (
           <button
             className={`panel-tab ${activeTab === 'booths' ? 'active' : ''}`}
             onClick={() => setActiveTab('booths')}
@@ -496,7 +566,7 @@ export function ElectionResultPanel({
             Booths
           </button>
         )}
-        {hasBoothData && boothResults?.postal && (
+        {showBoothTabs && boothResults?.postal && (
           <button
             className={`panel-tab ${activeTab === 'postal' ? 'active' : ''}`}
             onClick={() => setActiveTab('postal')}
@@ -505,7 +575,7 @@ export function ElectionResultPanel({
             Postal
           </button>
         )}
-        {hasBoothData && (
+        {showBoothTabs && (
           <button
             className={`panel-tab ${activeTab === 'analysis' ? 'active' : ''}`}
             onClick={() => setActiveTab('analysis')}
@@ -519,98 +589,8 @@ export function ElectionResultPanel({
       {/* Tab content */}
       <div className="panel-tab-content">
         {selectedPCYear && currentPCContribution ? (
-          /* Parliament view */
-          activeTab === 'overview' ? (
-            <div className="overview-view">
-              {/* Parliament Winner card */}
-              {pcWinner && (
-                <div
-                  className="winner-card-compact parliament"
-                  style={{ borderColor: getPartyColor(pcWinner.party) }}
-                >
-                  <div className="winner-main">
-                    <div className="winner-badge-small parliament">
-                      <Award size={14} />
-                      Winner
-                    </div>
-                    <div className="winner-name">{pcWinner.name}</div>
-                    <div
-                      className="winner-party"
-                      style={{ backgroundColor: getPartyColor(pcWinner.party) }}
-                      title={getPartyFullName(pcWinner.party)}
-                    >
-                      {pcWinner.party}
-                    </div>
-                  </div>
-                  <div className="winner-stats-compact">
-                    <div className="stat-compact">
-                      <Vote size={12} />
-                      <span>{formatNumber(pcWinner.votes)}</span>
-                    </div>
-                    <div className="stat-compact highlight">
-                      <TrendingUp size={12} />
-                      <span>{pcWinner.voteShare.toFixed(1)}%</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Parliament stats */}
-              <div className="stats-inline">
-                <div className="stat-inline highlight">
-                  <span className="label">PC</span>
-                  <span className="value">{currentPCContribution.pcName}</span>
-                </div>
-                <div className="stat-inline">
-                  <Vote size={12} />
-                  <span className="label">Votes</span>
-                  <span className="value">{formatNumber(currentPCContribution.validVotes)}</span>
-                </div>
-                {pcContributionShareUrl && (
-                  <button
-                    className="stat-inline share-pc-btn"
-                    onClick={handleCopyPCLink}
-                    title="Copy PC URL"
-                  >
-                    <Share2 size={12} />
-                    <span className="label">{copied ? 'Copied!' : 'Share'}</span>
-                  </button>
-                )}
-              </div>
-
-              {/* Parliament candidates preview */}
-              <div className="candidates-preview">
-                <h4>Parliament {currentPCContribution.year} - Top Candidates</h4>
-                {currentPCContribution.candidates.slice(0, 3).map((c, idx) => (
-                  <div key={idx} className={`candidate-row-compact ${idx === 0 ? 'winner' : ''}`}>
-                    <span className="pos">{c.position}</span>
-                    <span className="name">{c.name}</span>
-                    <span
-                      className="party"
-                      style={{ backgroundColor: getPartyColor(c.party), color: 'white' }}
-                    >
-                      {c.party}
-                    </span>
-                    <span className="votes">{formatNumber(c.votes)}</span>
-                    <span className="share">{c.voteShare.toFixed(1)}%</span>
-                    <div
-                      className="bar"
-                      style={{
-                        width: `${Math.min(c.voteShare, 100)}%`,
-                        backgroundColor: getPartyColor(c.party),
-                      }}
-                    />
-                  </div>
-                ))}
-                {currentPCContribution.candidates.length > 3 && (
-                  <button className="view-all-btn" onClick={() => setActiveTab('candidates')}>
-                    View all {currentPCContribution.candidates.length} candidates →
-                  </button>
-                )}
-              </div>
-            </div>
-          ) : activeTab === 'booths' ? (
-            /* Booth-wise view (Parliament year) */
+          /* Parliament year: overview (top 3) + candidates tab + booths / postal / analysis */
+          activeTab === 'booths' ? (
             <BoothWiseView
               boothResults={boothResults}
               boothsWithResults={boothsWithResults}
@@ -619,10 +599,8 @@ export function ElectionResultPanel({
               selectedBooth={selectedBooth}
             />
           ) : activeTab === 'postal' && boothResults?.postal ? (
-            /* Postal Ballots view (Parliament year) */
             <PostalBallotsView postal={boothResults.postal} />
           ) : activeTab === 'analysis' ? (
-            /* Boothwise Analysis (Parliament year) */
             <BoothwiseAnalysis
               boothResults={boothResults}
               boothsWithResults={boothsWithResults}
@@ -632,9 +610,11 @@ export function ElectionResultPanel({
               }}
               officialWinner={result.candidates[0]?.party}
             />
-          ) : (
-            /* Parliament full candidates list */
+          ) : activeTab === 'candidates' ? (
             <div className="candidates-view">
+              <h4 style={{ margin: '12px 0 8px', fontSize: 14 }}>
+                Candidates — Parliament {currentPCContribution.year}
+              </h4>
               <div className="candidates-table-full">
                 <div className="candidates-header">
                   <span className="col-pos">#</span>
@@ -678,17 +658,129 @@ export function ElectionResultPanel({
                 </div>
               </div>
             </div>
+          ) : (
+            <div className="overview-view">
+              {pcWinner && (
+                <div
+                  className="winner-card-compact parliament"
+                  style={{ borderColor: getPartyColor(pcWinner.party) }}
+                >
+                  <div className="winner-main">
+                    <div className="winner-badge-small parliament">
+                      <Award size={14} />
+                      Winner
+                    </div>
+                    <div className="winner-name">{pcWinner.name}</div>
+                    <div
+                      className="winner-party"
+                      style={{ backgroundColor: getPartyColor(pcWinner.party) }}
+                      title={getPartyFullName(pcWinner.party)}
+                    >
+                      {pcWinner.party}
+                    </div>
+                  </div>
+                  <div className="winner-stats-compact">
+                    <div className="stat-compact">
+                      <Vote size={12} />
+                      <span>{formatNumber(pcWinner.votes)}</span>
+                    </div>
+                    <div className="stat-compact highlight">
+                      <TrendingUp size={12} />
+                      <span>{pcWinner.voteShare.toFixed(1)}%</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="stats-inline">
+                <div className="stat-inline highlight">
+                  <span className="label">PC</span>
+                  <span className="value">{currentPCContribution.pcName}</span>
+                </div>
+                <div className="stat-inline">
+                  <Vote size={12} />
+                  <span className="label">Votes</span>
+                  <span className="value">{formatNumber(currentPCContribution.validVotes)}</span>
+                </div>
+                {pcContributionShareUrl && (
+                  <button
+                    className="stat-inline share-pc-btn"
+                    onClick={handleCopyPCLink}
+                    title="Copy PC URL"
+                  >
+                    <Share2 size={12} />
+                    <span className="label">{copied ? 'Copied!' : 'Share'}</span>
+                  </button>
+                )}
+              </div>
+
+              <div className="candidates-preview">
+                <h4>Parliament {currentPCContribution.year} — top candidates</h4>
+                {currentPCContribution.candidates.slice(0, 3).map((c, idx) => (
+                  <div key={idx} className={`candidate-row-compact ${idx === 0 ? 'winner' : ''}`}>
+                    <span className="pos">{c.position}</span>
+                    <span className="name">{c.name}</span>
+                    <span
+                      className="party"
+                      style={{ backgroundColor: getPartyColor(c.party), color: 'white' }}
+                    >
+                      {c.party}
+                    </span>
+                    <span className="votes">{formatNumber(c.votes)}</span>
+                    <span className="share">{c.voteShare.toFixed(1)}%</span>
+                    <div
+                      className="bar"
+                      style={{
+                        width: `${Math.min(c.voteShare, 100)}%`,
+                        backgroundColor: getPartyColor(c.party),
+                      }}
+                    />
+                  </div>
+                ))}
+                {currentPCContribution.candidates.length > 3 && (
+                  <button className="view-all-btn" onClick={() => setActiveTab('candidates')}>
+                    View all {currentPCContribution.candidates.length} candidates →
+                  </button>
+                )}
+              </div>
+            </div>
           )
         ) : activeTab === 'overview' ? (
           <div className="overview-view">
-            {resultsPending && (
+            {acResultsLoadError && (
+              <div
+                className="prepoll-banner"
+                style={{
+                  borderColor: 'rgba(185, 28, 28, 0.45)',
+                  background: 'rgba(254, 242, 242, 0.95)',
+                }}
+              >
+                <AlertTriangle size={16} aria-hidden />
+                <div className="prepoll-banner-body">{acResultsLoadError}</div>
+              </div>
+            )}
+            {acResultsLoading && (
+              <div
+                className="prepoll-banner"
+                style={{
+                  borderColor: 'rgba(37, 99, 235, 0.35)',
+                  background: 'rgba(239, 246, 255, 0.95)',
+                }}
+              >
+                <div className="prepoll-banner-body">
+                  <strong>Loading results.</strong> Candidate names and vote totals will appear when
+                  data is ready.
+                </div>
+              </div>
+            )}
+            {resultsPending && !acResultsLoading && (
               <div className="prepoll-banner">
                 <AlertTriangle size={16} aria-hidden />
                 <div className="prepoll-banner-body">
-                  <strong>Pre-poll ({result.year}).</strong> Votes are not counted yet. Only
-                  candidates from sourced announcements are shown.
+                  <strong>Pre-poll ({result.year}).</strong> Votes are not counted yet. Listed names
+                  reflect sourced pre-counting data where available.
                   {!hasAnnouncedCandidates && (
-                    <span> This seat has no merged announcement data yet.</span>
+                    <span> This seat has no merged candidate list yet.</span>
                   )}
                 </div>
               </div>
@@ -767,32 +859,30 @@ export function ElectionResultPanel({
               })()}
             </div>
 
-            {/* Top candidates preview */}
             <div className="candidates-preview">
-              <h4>
-                {resultsPending
-                  ? hasAnnouncedCandidates
-                    ? 'Announced candidates'
-                    : 'Candidates'
-                  : 'Top Candidates'}
-              </h4>
-              {!hasAnnouncedCandidates && resultsPending ? (
+              <h4>{isFutureAssemblySidebar ? 'Candidates' : 'Top candidates'}</h4>
+              {!acResultsLoading && !hasAnnouncedCandidates && resultsPending ? (
                 <p style={{ fontSize: 13, margin: 0, color: 'var(--muted-foreground, #64748b)' }}>
                   No sourced candidate names for this constituency yet.
                 </p>
               ) : (
                 <>
-                  {assemblyCandidates.slice(0, 3).map((candidate, idx) => (
+                  {displayCandidates.slice(0, 3).map((candidate, idx) => (
                     <CandidateRowCompact
                       key={idx}
                       candidate={candidate}
-                      isWinner={!resultsPending && idx === 0}
-                      hideVoteStats={resultsPending}
+                      isWinner={!resultsPending && !acResultsLoading && idx === 0}
+                      hideVoteStats={hideAssemblyVoteFigures}
                     />
                   ))}
-                  {assemblyCandidates.length > 3 && (
+                  {!acResultsLoading && assemblyCandidates.length > 3 && (
                     <button className="view-all-btn" onClick={() => setActiveTab('candidates')}>
                       View all {assemblyCandidates.length} →
+                    </button>
+                  )}
+                  {acResultsLoading && (
+                    <button className="view-all-btn" onClick={() => setActiveTab('candidates')}>
+                      View all →
                     </button>
                   )}
                 </>
@@ -800,23 +890,19 @@ export function ElectionResultPanel({
             </div>
           </div>
         ) : activeTab === 'candidates' ? (
-          /* Full candidates list */
           <div className="candidates-view">
-            {resultsPending && (
-              <p
-                style={{
-                  fontSize: 13,
-                  margin: '0 0 12px',
-                  color: 'var(--muted-foreground, #64748b)',
-                }}
-              >
-                Votes and vote shares appear only after counting. Listed names are from published
-                announcements we have merged — not historical election rosters.
-              </p>
+            {resultsPending && !acResultsLoading && (
+              <div className="prepoll-banner" style={{ marginBottom: 12 }}>
+                <AlertTriangle size={16} aria-hidden />
+                <div className="prepoll-banner-body">
+                  <strong>Pre-poll ({result.year}).</strong> Votes are not counted yet. Listed names
+                  reflect sourced pre-counting data where available.
+                </div>
+              </div>
             )}
-            {!hasAnnouncedCandidates && resultsPending ? (
-              <p style={{ fontSize: 14, margin: '12px 0', lineHeight: 1.5 }}>
-                No announced candidate data for this constituency yet.
+            {!acResultsLoading && !hasAnnouncedCandidates && resultsPending ? (
+              <p style={{ fontSize: 13, margin: 0, color: 'var(--muted-foreground, #64748b)' }}>
+                No sourced candidate names for this constituency yet.
               </p>
             ) : (
               <div className="candidates-table-full">
@@ -828,13 +914,13 @@ export function ElectionResultPanel({
                   <span className="col-share">%</span>
                 </div>
                 <div className="candidates-scroll">
-                  {assemblyCandidates.map((candidate, idx) => (
+                  {displayCandidates.map((candidate, idx) => (
                     <CandidateRow
                       key={idx}
                       candidate={candidate}
-                      isWinner={!resultsPending && idx === 0}
-                      isRunnerUp={!resultsPending && idx === 1}
-                      hideVoteStats={resultsPending}
+                      isWinner={!resultsPending && !acResultsLoading && idx === 0}
+                      isRunnerUp={!resultsPending && !acResultsLoading && idx === 1}
+                      hideVoteStats={hideAssemblyVoteFigures}
                     />
                   ))}
                 </div>
@@ -884,7 +970,6 @@ export function ElectionResultPanel({
   );
 }
 
-// Memoized candidate row for lists - prevents re-render when panel state changes
 const CandidateRowCompact = memo(function CandidateRowCompact({
   candidate,
   isWinner,
@@ -1879,7 +1964,7 @@ function BoothwiseAnalysis({
       weakestAreas,
       strikeRates,
     };
-  }, [boothResults, boothsWithResults]);
+  }, [boothResults, boothsWithResults, officialWinner]);
 
   // State for expanded party sections
   const [expandedParties, setExpandedParties] = useState<Set<string>>(new Set());

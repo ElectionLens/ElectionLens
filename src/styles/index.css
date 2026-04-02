@@ -996,6 +996,61 @@ path:focus {
   }
 }
 
+/* Districts map — upcoming assembly / parliament summary */
+.district-elections-info {
+  margin: 0 0 14px;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #334155;
+}
+
+.district-elections-info-block + .district-elections-info-block {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.district-elections-info-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.district-elections-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 6px;
+}
+
+.district-elections-info-label {
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.district-elections-info-value {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #0f172a;
+}
+
+.district-elections-info-detail {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #475569;
+}
+
 /* View toggle */
 .view-toggle {
   display: flex;

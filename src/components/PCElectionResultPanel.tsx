@@ -57,8 +57,6 @@ function generateShareText(result: PCElectionResult, stateName?: string): string
   return text.trim();
 }
 
-type TabType = 'overview' | 'candidates';
-
 export function PCElectionResultPanel({
   result,
   onClose,
@@ -68,8 +66,8 @@ export function PCElectionResultPanel({
   shareUrl,
   stateName,
 }: PCElectionResultPanelProps): JSX.Element {
-  const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState<'overview' | 'candidates'>('overview');
 
   // Mobile panel expansion state
   const [panelState, setPanelState] = useState<'peek' | 'half' | 'full'>('half');
@@ -250,11 +248,11 @@ export function PCElectionResultPanel({
         </div>
       )}
 
-      {/* Tab switcher */}
       <div className="panel-tabs">
         <button
           className={`panel-tab ${activeTab === 'overview' ? 'active' : ''}`}
           onClick={() => setActiveTab('overview')}
+          type="button"
         >
           <Award size={14} />
           Overview
@@ -262,17 +260,39 @@ export function PCElectionResultPanel({
         <button
           className={`panel-tab ${activeTab === 'candidates' ? 'active' : ''}`}
           onClick={() => setActiveTab('candidates')}
+          type="button"
         >
           <BarChart3 size={14} />
-          All {result.totalCandidates} Candidates
+          All {result.totalCandidates} candidates
         </button>
       </div>
 
-      {/* Tab content */}
       <div className="panel-tab-content">
-        {activeTab === 'overview' ? (
-          <>
-            {/* Compact Winner card */}
+        {activeTab === 'candidates' ? (
+          <div className="candidates-view">
+            <h4 style={{ margin: '12px 0 8px', fontSize: 14 }}>Candidates</h4>
+            <div className="candidates-table-full">
+              <div className="candidates-header">
+                <span className="col-pos">#</span>
+                <span className="col-name">Candidate</span>
+                <span className="col-party">Party</span>
+                <span className="col-votes">Votes</span>
+                <span className="col-share">%</span>
+              </div>
+              <div className="candidates-scroll">
+                {result.candidates.map((candidate, idx) => (
+                  <PCCandidateRow
+                    key={idx}
+                    candidate={candidate}
+                    isWinner={idx === 0}
+                    isRunnerUp={idx === 1}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="overview-view">
             {winner && (
               <div
                 className="winner-card-compact"
@@ -310,7 +330,6 @@ export function PCElectionResultPanel({
               </div>
             )}
 
-            {/* Inline stats */}
             <div className="stats-inline">
               <div className="stat-inline">
                 <Users size={12} />
@@ -332,40 +351,20 @@ export function PCElectionResultPanel({
               </div>
             </div>
 
-            {/* Top 3 candidates preview */}
             <div className="candidates-preview">
-              <h4>Top Candidates</h4>
+              <h4>Top candidates</h4>
               {result.candidates.slice(0, 3).map((candidate, idx) => (
-                <CandidateRowCompact key={idx} candidate={candidate} isWinner={idx === 0} />
+                <PCCandidateRowCompact key={idx} candidate={candidate} isWinner={idx === 0} />
               ))}
               {result.candidates.length > 3 && (
-                <button className="view-all-btn" onClick={() => setActiveTab('candidates')}>
+                <button
+                  className="view-all-btn"
+                  onClick={() => setActiveTab('candidates')}
+                  type="button"
+                >
                   View all {result.candidates.length} candidates →
                 </button>
               )}
-            </div>
-          </>
-        ) : (
-          /* Full candidates list */
-          <div className="candidates-full">
-            <div className="candidates-table-full">
-              <div className="candidates-header">
-                <span className="col-pos">#</span>
-                <span className="col-name">Candidate</span>
-                <span className="col-party">Party</span>
-                <span className="col-votes">Votes</span>
-                <span className="col-share">%</span>
-              </div>
-              <div className="candidates-scroll">
-                {result.candidates.map((candidate, idx) => (
-                  <PCCandidateRow
-                    key={idx}
-                    candidate={candidate}
-                    isWinner={idx === 0}
-                    isRunnerUp={idx === 1}
-                  />
-                ))}
-              </div>
             </div>
           </div>
         )}
@@ -388,8 +387,7 @@ export function PCElectionResultPanel({
   );
 }
 
-// Memoized candidate row for PC lists - prevents re-render when panel state changes
-const CandidateRowCompact = memo(function CandidateRowCompact({
+const PCCandidateRowCompact = memo(function PCCandidateRowCompact({
   candidate,
   isWinner,
 }: {

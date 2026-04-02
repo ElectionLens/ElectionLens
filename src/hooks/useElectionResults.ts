@@ -2,6 +2,7 @@ import { useState, useCallback, useRef } from 'react';
 import { ELECTIONS } from '../constants/paths';
 import type { StateElectionIndex, ElectionResultsByConstituency, ACElectionResult } from '../types';
 import { isAssemblyElectionResult } from '../utils/electionResults';
+import { defaultAssemblyDataYear } from '../utils/electionSchedule';
 
 /**
  * Strip diacritics from text
@@ -117,6 +118,8 @@ export interface UseElectionResultsReturn {
   error: string | null;
   /** Check if election data is available for a state */
   hasElectionData: (stateName: string) => boolean;
+  /** Indicative next assembly year from the loaded state index (for UI copy) */
+  assemblyNextElectionYear: number | null;
   /** Load election index for a state. Pass yearFromUrl to avoid overwriting URL year with latest. */
   loadStateIndex: (
     stateName: string,
@@ -140,6 +143,7 @@ export interface UseElectionResultsReturn {
  */
 export function useElectionResults(): UseElectionResultsReturn {
   const [availableYears, setAvailableYears] = useState<number[]>([]);
+  const [assemblyNextElectionYear, setAssemblyNextElectionYear] = useState<number | null>(null);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [currentResult, setCurrentResult] = useState<ACElectionResult | null>(null);
   const [loading, setLoading] = useState(false);
@@ -175,10 +179,13 @@ export function useElectionResults(): UseElectionResultsReturn {
       const cached = indexCache.current.get(slug);
       if (cached) {
         setAvailableYears(cached.availableYears);
+        setAssemblyNextElectionYear(cached.nextAssemblyElectionYear ?? null);
         if (!preserveYear && !selectedYear && cached.availableYears.length > 0) {
-          const lastYear = cached.availableYears[cached.availableYears.length - 1];
-          if (lastYear !== undefined) {
-            setSelectedYear(lastYear);
+          const defaultYear = defaultAssemblyDataYear(cached.availableYears, {
+            nextAssemblyElectionYear: cached.nextAssemblyElectionYear ?? null,
+          });
+          if (defaultYear != null) {
+            setSelectedYear(defaultYear);
           }
         }
         return cached;
@@ -195,10 +202,13 @@ export function useElectionResults(): UseElectionResultsReturn {
         statesWithData.current.add(slug);
 
         setAvailableYears(index.availableYears);
+        setAssemblyNextElectionYear(index.nextAssemblyElectionYear ?? null);
         if (!preserveYear && !selectedYear && index.availableYears.length > 0) {
-          const lastYear = index.availableYears[index.availableYears.length - 1];
-          if (lastYear !== undefined) {
-            setSelectedYear(lastYear);
+          const defaultYear = defaultAssemblyDataYear(index.availableYears, {
+            nextAssemblyElectionYear: index.nextAssemblyElectionYear ?? null,
+          });
+          if (defaultYear != null) {
+            setSelectedYear(defaultYear);
           }
         }
 
@@ -222,7 +232,6 @@ export function useElectionResults(): UseElectionResultsReturn {
       const cached = resultsCache.current.get(cacheKey);
       if (cached) return cached;
 
-      setLoading(true);
       setError(null);
 
       try {
@@ -239,8 +248,6 @@ export function useElectionResults(): UseElectionResultsReturn {
         console.error(`Failed to load ${year} election data for ${stateName}:`, err);
         setError(`Could not load election data for ${year}`);
         return null;
-      } finally {
-        setLoading(false);
       }
     },
     []
@@ -263,126 +270,147 @@ export function useElectionResults(): UseElectionResultsReturn {
       const slug = getStateSlug(stateName);
       const { schemaId, canonicalName } = options ?? {};
 
-      // Load index if not already loaded (pass yearFromUrl so loadStateIndex does not overwrite URL year)
-      let index = indexCache.current.get(slug);
-      if (!index) {
-        const loadedIndex = await loadStateIndex(
-          stateName,
-          year != null ? { yearFromUrl: year } : undefined
-        );
-        if (!loadedIndex) {
+      setCurrentResult(null);
+      setLoading(true);
+      setError(null);
+
+      let result: ACElectionResult | undefined;
+      try {
+        // Load index if not already loaded (pass yearFromUrl so loadStateIndex does not overwrite URL year)
+        let index = indexCache.current.get(slug);
+        if (!index) {
+          const loadedIndex = await loadStateIndex(
+            stateName,
+            year != null ? { yearFromUrl: year } : undefined
+          );
+          if (!loadedIndex) {
+            setError('Could not load election index for this state.');
+            return null;
+          }
+          index = loadedIndex;
+        }
+
+        // Default to latest completed / map year when none requested (not the single upcoming slot)
+        const defaultYear = defaultAssemblyDataYear(index.availableYears, {
+          nextAssemblyElectionYear: index.nextAssemblyElectionYear ?? null,
+        });
+        let targetYear = year ?? defaultYear;
+
+        if (targetYear === undefined || targetYear === null) {
           return null;
         }
-        index = loadedIndex;
-      }
 
-      // Determine year to use - always use latest if no year explicitly provided
-      const lastAvailableYear = index.availableYears[index.availableYears.length - 1];
-      let targetYear = year ?? lastAvailableYear;
+        // If requested year is not available, fall back to the closest available year
+        if (!index.availableYears.includes(targetYear)) {
+          // Find the closest available year
+          const sortedYears = [...index.availableYears].sort((a, b) => a - b);
+          let closestYear =
+            defaultAssemblyDataYear(index.availableYears, {
+              nextAssemblyElectionYear: index.nextAssemblyElectionYear ?? null,
+            }) ?? sortedYears[sortedYears.length - 1];
+          let minDiff = Infinity;
 
-      if (targetYear === undefined || targetYear === null) return null;
+          for (const availableYear of sortedYears) {
+            const diff = Math.abs(availableYear - targetYear);
+            if (diff < minDiff) {
+              minDiff = diff;
+              closestYear = availableYear;
+            }
+          }
+          targetYear = closestYear!;
+        }
 
-      // If requested year is not available, fall back to the closest available year
-      if (!index.availableYears.includes(targetYear)) {
-        // Find the closest available year
-        const sortedYears = [...index.availableYears].sort((a, b) => a - b);
-        let closestYear = sortedYears[sortedYears.length - 1]; // Default to latest
-        let minDiff = Infinity;
+        // Load results for the year
+        const results = await loadYearResults(stateName, targetYear);
+        if (!results) {
+          return null;
+        }
 
-        for (const availableYear of sortedYears) {
-          const diff = Math.abs(availableYear - targetYear);
-          if (diff < minDiff) {
-            minDiff = diff;
-            closestYear = availableYear;
+        // Find the AC result using simplified lookup (schema ID or name matching)
+        const searchName = canonicalName ?? acName;
+        const normalizedSearch = normalizeACName(searchName);
+        const searchVariants = getACNameSearchVariants(normalizedSearch);
+
+        // Strategy 1: Schema ID direct lookup (primary path for new data format)
+        if (schemaId) {
+          const hit = results[schemaId];
+          if (isAssemblyElectionResult(hit)) result = hit;
+        }
+
+        // Strategy 2: Direct key match (for any legacy data)
+        if (!result) {
+          const hit = results[searchName.toUpperCase().trim()];
+          if (isAssemblyElectionResult(hit)) result = hit;
+        }
+
+        // Strategy 3: Match by name properties (for schema ID-keyed data), including spelling variants (e.g. Tadpatri/Tadipatri)
+        if (!result) {
+          for (const [entryKey, value] of Object.entries(results)) {
+            if (entryKey.startsWith('_') || !value || typeof value !== 'object') continue;
+            const acVal = value as ACElectionResult;
+            if (!isAssemblyElectionResult(acVal)) continue;
+
+            const namesToCheck = [
+              acVal.constituencyName,
+              acVal.constituencyNameOriginal,
+              acVal.name,
+            ].filter((n): n is string => Boolean(n));
+
+            for (const name of namesToCheck) {
+              const normalizedName = normalizeACName(name);
+              if (searchVariants.includes(normalizedName)) {
+                result = acVal;
+                break;
+              }
+            }
+            if (result) break;
           }
         }
-        targetYear = closestYear!;
-      }
 
-      // Load results for the year
-      const results = await loadYearResults(stateName, targetYear);
-      if (!results) {
+        // Strategy 4: Partial match (one contains the other) - handles minor variations and spelling variants
+        if (!result) {
+          for (const [entryKey, value] of Object.entries(results)) {
+            if (entryKey.startsWith('_') || !value || typeof value !== 'object') continue;
+            const acVal = value as ACElectionResult;
+            if (!isAssemblyElectionResult(acVal)) continue;
+
+            const namesToCheck = [
+              acVal.constituencyName,
+              acVal.constituencyNameOriginal,
+              acVal.name,
+            ].filter((n): n is string => Boolean(n));
+
+            for (const name of namesToCheck) {
+              const normalizedName = normalizeACName(name);
+              const matches = searchVariants.some(
+                (v) =>
+                  normalizedName.includes(v) || v.includes(normalizedName) || normalizedName === v
+              );
+              if (matches) {
+                result = acVal;
+                break;
+              }
+            }
+            if (result) break;
+          }
+        }
+
+        if (result) {
+          setError(null);
+          setCurrentResult(result);
+          setSelectedYear(targetYear);
+        } else {
+          setError('Constituency not found in election data for this year.');
+        }
+
+        return result ?? null;
+      } catch (e) {
+        console.error('getACResult failed:', e);
+        setError('Could not load constituency results.');
         return null;
+      } finally {
+        setLoading(false);
       }
-
-      // Find the AC result using simplified lookup (schema ID or name matching)
-      let result: ACElectionResult | undefined;
-      const searchName = canonicalName ?? acName;
-      const normalizedSearch = normalizeACName(searchName);
-      const searchVariants = getACNameSearchVariants(normalizedSearch);
-
-      // Strategy 1: Schema ID direct lookup (primary path for new data format)
-      if (schemaId) {
-        const hit = results[schemaId];
-        if (isAssemblyElectionResult(hit)) result = hit;
-      }
-
-      // Strategy 2: Direct key match (for any legacy data)
-      if (!result) {
-        const hit = results[searchName.toUpperCase().trim()];
-        if (isAssemblyElectionResult(hit)) result = hit;
-      }
-
-      // Strategy 3: Match by name properties (for schema ID-keyed data), including spelling variants (e.g. Tadpatri/Tadipatri)
-      if (!result) {
-        for (const [entryKey, value] of Object.entries(results)) {
-          if (entryKey.startsWith('_') || !value || typeof value !== 'object') continue;
-          const acVal = value as ACElectionResult;
-          if (typeof acVal.constituencyNo !== 'number' || !Array.isArray(acVal.candidates))
-            continue;
-
-          const namesToCheck = [
-            acVal.constituencyName,
-            acVal.constituencyNameOriginal,
-            acVal.name,
-          ].filter((n): n is string => Boolean(n));
-
-          for (const name of namesToCheck) {
-            const normalizedName = normalizeACName(name);
-            if (searchVariants.includes(normalizedName)) {
-              result = acVal;
-              break;
-            }
-          }
-          if (result) break;
-        }
-      }
-
-      // Strategy 4: Partial match (one contains the other) - handles minor variations and spelling variants
-      if (!result) {
-        for (const [entryKey, value] of Object.entries(results)) {
-          if (entryKey.startsWith('_') || !value || typeof value !== 'object') continue;
-          const acVal = value as ACElectionResult;
-          if (typeof acVal.constituencyNo !== 'number' || !Array.isArray(acVal.candidates))
-            continue;
-
-          const namesToCheck = [
-            acVal.constituencyName,
-            acVal.constituencyNameOriginal,
-            acVal.name,
-          ].filter((n): n is string => Boolean(n));
-
-          for (const name of namesToCheck) {
-            const normalizedName = normalizeACName(name);
-            const matches = searchVariants.some(
-              (v) =>
-                normalizedName.includes(v) || v.includes(normalizedName) || normalizedName === v
-            );
-            if (matches) {
-              result = acVal;
-              break;
-            }
-          }
-          if (result) break;
-        }
-      }
-
-      if (result) {
-        setCurrentResult(result);
-        setSelectedYear(targetYear);
-      }
-
-      return result ?? null;
     },
     [loadStateIndex, loadYearResults]
   );
@@ -392,10 +420,12 @@ export function useElectionResults(): UseElectionResultsReturn {
    */
   const clearResult = useCallback(() => {
     setCurrentResult(null);
+    setError(null);
   }, []);
 
   return {
     availableYears,
+    assemblyNextElectionYear,
     selectedYear,
     currentResult,
     loading,

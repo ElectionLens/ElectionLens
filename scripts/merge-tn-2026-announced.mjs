@@ -6,8 +6,9 @@
  * - ADMK symbol (Two Leaves): voterlist.co.in, then IE/Week/DT, then PMK (later wins per AC). PMK shown as party ADMK. No separate PMK row.
  * - TVK, NTK: unchanged.
  * - AMMK: voterlist.co.in two-column table (NDA); party label AMMK.
+ * - CPI, CPI(M): scripts/data/tn-2026-cpi.json, tn-2026-cpim.json (press lists; party labels CPI, CPM).
  *
- * Per AC: DMK symbol, ADMK symbol, TVK, NTK, AMMK. Positions renumbered.
+ * Per AC: DMK symbol, ADMK symbol, TVK, NTK, AMMK, CPI, CPM. Positions renumbered.
  *
  * Prerequisite: node scripts/generate-ac-2026-upcoming.mjs
  *
@@ -35,6 +36,8 @@ const PMK_PATH = path.join(__dirname, 'data/tn-2026-pmk.json');
 const TVK_PATH = path.join(__dirname, 'data/tn-2026-tvk-thehindu.json');
 const NTK_PATH = path.join(__dirname, 'data/tn-2026-ntk-tnliv.json');
 const AMMK_VL_PATH = path.join(__dirname, 'data/tn-2026-ammk-voterlist.json');
+const CPI_PATH = path.join(__dirname, 'data/tn-2026-cpi.json');
+const CPIM_PATH = path.join(__dirname, 'data/tn-2026-cpim.json');
 const TN2026_PATH = path.join(ROOT, 'public/data/elections/ac/TN/2026.json');
 
 /** Overlay later assign maps onto earlier (schema id → row). */
@@ -77,6 +80,8 @@ function main() {
   const tvkFile = JSON.parse(fs.readFileSync(TVK_PATH, 'utf8'));
   const ntkFile = JSON.parse(fs.readFileSync(NTK_PATH, 'utf8'));
   const ammkVlFile = JSON.parse(fs.readFileSync(AMMK_VL_PATH, 'utf8'));
+  const cpiFile = JSON.parse(fs.readFileSync(CPI_PATH, 'utf8'));
+  const cpimFile = JSON.parse(fs.readFileSync(CPIM_PATH, 'utf8'));
   const tn2026 = JSON.parse(fs.readFileSync(TN2026_PATH, 'utf8'));
 
   const dmkVlAssign = assignRowsToSchemaIds(dmkVlFile.rows || [], schema);
@@ -148,11 +153,25 @@ function main() {
     process.exit(1);
   }
 
+  const cpiAssign = assignRowsToSchemaIds(cpiFile.rows || [], schema);
+  if (cpiAssign.failures.length) {
+    console.error('CPI mapping failures:', cpiAssign.failures);
+    process.exit(1);
+  }
+
+  const cpimAssign = assignRowsToSchemaIds(cpimFile.rows || [], schema);
+  if (cpimAssign.failures.length) {
+    console.error('CPI(M) mapping failures:', cpimAssign.failures);
+    process.exit(1);
+  }
+
   let withDmk = 0;
   let withAdmkSymbol = 0;
   let withTvk = 0;
   let withNtk = 0;
   let withAmmk = 0;
+  let withCpi = 0;
+  let withCpm = 0;
   let dmkTvk = 0;
 
   for (const id of Object.keys(tn2026)) {
@@ -165,6 +184,8 @@ function main() {
     const tvk = tvkAssign.byId.get(id);
     const ntk = ntkAssign.byId.get(id);
     const ammk = ammkAssign.byId.get(id);
+    const cpi = cpiAssign.byId.get(id);
+    const cpim = cpimAssign.byId.get(id);
     const rows = [];
     if (dmk) {
       rows.push(announcedRow('DMK', toDmkAdmkSymbolDisplayName(dmk.candidate)));
@@ -185,6 +206,14 @@ function main() {
     if (ammk) {
       rows.push(announcedRow('AMMK', toEciStyleName(ammk.candidate)));
       withAmmk++;
+    }
+    if (cpi) {
+      rows.push(announcedRow('CPI', toEciStyleName(cpi.candidate)));
+      withCpi++;
+    }
+    if (cpim) {
+      rows.push(announcedRow('CPM', toEciStyleName(cpim.candidate)));
+      withCpm++;
     }
     if (dmk && tvk) dmkTvk++;
 
@@ -248,20 +277,34 @@ function main() {
     rowsApplied: ammkAssign.byId.size,
     note: 'AMMK NDA nominees from voterlist.co.in; distinct party row (not merged into Two Leaves).',
   };
+  meta.tnCpiAnnounced = {
+    source: cpiFile._meta?.source || 'Press',
+    articleUrl: cpiFile._meta?.articleUrl,
+    mergedAt: new Date().toISOString(),
+    rowsApplied: cpiAssign.byId.size,
+    note: cpiFile._meta?.note,
+  };
+  meta.tnCpimAnnounced = {
+    source: cpimFile._meta?.source || 'Press',
+    articleUrl: cpimFile._meta?.articleUrl,
+    mergedAt: new Date().toISOString(),
+    rowsApplied: cpimAssign.byId.size,
+    note: cpimFile._meta?.note,
+  };
   delete meta.tnDmkAnnounced;
   delete meta.tnAdmkAnnounced;
   delete meta.tnPmkAnnounced;
   meta.description =
     '2026 assembly elections (Tamil Nadu, Kerala, West Bengal, Assam, Puducherry). Polls scheduled Apr–May 2026. ' +
     'Vote totals are not yet counted. Tamil Nadu: Rising Sun (DMK party) and Two Leaves (NDA, incl. PMK on same symbol) in tnDmkSymbolAnnounced / tnAdmkSymbolAnnounced; ' +
-    'TVK, NTK, and AMMK in tnTvkAnnounced / tnNtkAnnounced / tnAmmkAnnounced. ' +
+    'TVK, NTK, AMMK, CPI, and CPI(M) in tnTvkAnnounced / tnNtkAnnounced / tnAmmkAnnounced / tnCpiAnnounced / tnCpimAnnounced. ' +
     'Other states: see state-specific _meta where candidates are sourced.';
   meta.lastUpdated = new Date().toISOString().slice(0, 10);
   tn2026._meta = meta;
 
   fs.writeFileSync(TN2026_PATH, JSON.stringify(tn2026) + '\n');
   console.log(
-    `Wrote TN/2026.json — DMK symbol: ${withDmk}, ADMK symbol: ${withAdmkSymbol}, TVK: ${withTvk}, NTK: ${withNtk}, AMMK: ${withAmmk}, DMK+TVK both: ${dmkTvk}`
+    `Wrote TN/2026.json — DMK symbol: ${withDmk}, ADMK symbol: ${withAdmkSymbol}, TVK: ${withTvk}, NTK: ${withNtk}, AMMK: ${withAmmk}, CPI: ${withCpi}, CPM: ${withCpm}, DMK+TVK both: ${dmkTvk}`
   );
 }
 

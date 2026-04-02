@@ -3,7 +3,14 @@ import type { ACElectionResult, ElectionResultsFileMeta } from '../types';
 export function isAssemblyElectionResult(value: unknown): value is ACElectionResult {
   if (!value || typeof value !== 'object') return false;
   const r = value as ACElectionResult;
-  return Array.isArray(r.candidates) && typeof r.constituencyNo === 'number';
+  if (!Array.isArray(r.candidates)) return false;
+  if (typeof r.constituencyNo === 'number') return true;
+  // Schema-keyed files (e.g. Madhya Pradesh 2023 TCPD) often omit constituencyNo; the JSON key is the AC id
+  if (typeof r.constituencyName === 'string' && r.constituencyName.length > 0) return true;
+  if (typeof r.constituencyNameOriginal === 'string' && r.constituencyNameOriginal.length > 0)
+    return true;
+  if (typeof r.name === 'string' && r.name.length > 0) return true;
+  return false;
 }
 
 export function isAssemblyResultEntry(key: string, value: unknown): value is ACElectionResult {

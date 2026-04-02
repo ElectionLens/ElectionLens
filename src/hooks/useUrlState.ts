@@ -10,7 +10,7 @@ export interface UrlState {
   assembly: string | null;
   year: number | null;
   pcYear: number | null; // Parliament year for AC view (from year=pc-YYYY format)
-  tab: string | null; // Active tab in election panel: 'overview', 'candidates', 'booths', 'postal', 'analysis'
+  tab: string | null; // Active tab: 'overview', 'candidates', 'booths', 'postal', 'analysis'
   /** When viewing a specific PC: true = show ACs within PC, false = show PC boundary only */
   showACs: boolean | null;
   blog: boolean; // Whether blog section is open
@@ -135,7 +135,6 @@ export function useUrlState(
     }
 
     // Parse tab from query params
-    // Format: tab=overview, tab=candidates, tab=booths, tab=postal, tab=analysis
     const tabParam = searchParams.get('tab');
     if (tabParam) {
       const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];

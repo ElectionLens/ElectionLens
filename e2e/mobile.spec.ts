@@ -225,8 +225,10 @@ test.describe('Mobile Portrait - Panel Content Visibility', () => {
     await expect(panel).toBeVisible({ timeout: 15000 });
     await expect(panel).toHaveClass(/panel-half/);
 
-    // Candidates section should be visible
-    const candidates = panel.locator('.candidates-section, .candidates-preview');
+    // Past year: preview or table on overview
+    const candidates = panel.locator(
+      '.candidates-section, .candidates-preview, .candidates-view, .candidates-table-full'
+    );
     const candidatesCount = await candidates.count();
     if (candidatesCount > 0) {
       await expect(candidates.first()).toBeVisible();

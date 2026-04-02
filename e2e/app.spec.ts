@@ -324,29 +324,40 @@ test.describe('Parliament Results', () => {
 });
 
 test.describe('Tab Navigation in Election Panel', () => {
-  test('should have Overview and Candidates tabs', async ({ page }) => {
+  test('past year: Overview + Candidates tabs; full list on Candidates', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
-    
+
     await page.waitForSelector('.election-panel', { timeout: 15000 });
-    
+
     const overviewTab = page.locator('.panel-tab').filter({ hasText: 'Overview' });
-    const candidatesTab = page.locator('.panel-tab').filter({ hasText: 'Candidates' });
-    
+    const candidatesTab = page.locator('.panel-tab').filter({ hasText: /Candidates/i });
     await expect(overviewTab).toBeVisible();
     await expect(candidatesTab).toBeVisible();
+    await expect(overviewTab).toHaveClass(/active/);
+
+    await candidatesTab.click();
+    const table = page.locator('.election-panel .candidates-table-full');
+    await expect(table).toBeVisible();
+    const rows = page.locator('.election-panel .candidate-row');
+    expect(await rows.count()).toBeGreaterThan(1);
   });
 
-  test('should switch to Candidates tab', async ({ page }) => {
-    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
-    
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
-    
-    const candidatesTab = page.locator('.panel-tab').filter({ hasText: 'Candidates' });
-    await candidatesTab.click();
-    
-    // Candidates list should be visible
-    const candidatesList = page.locator('.candidates-full');
-    await expect(candidatesList).toBeVisible();
+  test('2026 pre-poll AC: Overview shows Candidates preview without switching tab', async ({
+    page,
+  }) => {
+    await page.goto('/tamil-nadu/ac/mettuppalayam?year=2026');
+
+    await page.waitForSelector('.election-panel', { timeout: 30000 });
+
+    await expect(page.locator('.panel-tab').filter({ hasText: 'Overview' })).toHaveClass(/active/);
+
+    const preview = page.locator('.election-panel .candidates-preview');
+    await expect(preview).toBeVisible();
+    await expect(preview.getByRole('heading', { name: 'Candidates' })).toBeVisible();
+
+    await expect(preview.locator('.candidate-row-compact').first()).toBeVisible({ timeout: 20000 });
+
+    await expect(page.locator('.panel-tab').filter({ hasText: /All candidates/i })).toBeVisible();
   });
 });
 

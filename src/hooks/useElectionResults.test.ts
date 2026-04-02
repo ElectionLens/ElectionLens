@@ -275,6 +275,7 @@ describe('useElectionResults - getACResult', () => {
     });
 
     expect(result.current.currentResult).toBeNull();
+    expect(result.current.error).toMatch(/not found/i);
   });
 
   it('uses latest year when no year specified', async () => {

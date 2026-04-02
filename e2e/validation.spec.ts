@@ -107,21 +107,28 @@ test.describe('Link Validation - Tab Navigation', () => {
     await expect(page.locator('.winner-card-compact, .winner-info')).toBeVisible();
   });
 
-  test('Candidates tab shows full list', async ({ page }) => {
+  test('Candidates tab shows full list (past year)', async ({ page }) => {
     await page.goto('/kerala/pc/thiruvananthapuram/ac/nemom');
     await page.waitForSelector('.election-panel', { timeout: 15000 });
-    
-    // Click Candidates tab
-    const candidatesTab = page.locator('.panel-tab').filter({ hasText: 'Candidates' });
-    await candidatesTab.click();
-    
-    // Should show candidates list
-    await expect(page.locator('.candidates-full, .candidates-list')).toBeVisible();
-    
-    // Should have multiple candidate rows
-    const rows = page.locator('.candidate-row, .candidate-card');
+
+    await page.locator('.panel-tab').filter({ hasText: /Candidates/i }).click();
+
+    await expect(page.locator('.election-panel .candidates-table-full')).toBeVisible();
+
+    const rows = page.locator('.election-panel .candidate-row');
     await expect(rows.first()).toBeVisible();
     expect(await rows.count()).toBeGreaterThan(1);
+  });
+
+  test('Pre-poll AC year: Overview lists candidate preview', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac/mettuppalayam?year=2026');
+    await page.waitForSelector('.election-panel', { timeout: 30000 });
+
+    await expect(page.locator('.panel-tab').filter({ hasText: 'Overview' })).toHaveClass(/active/);
+
+    const preview = page.locator('.election-panel .candidates-preview');
+    await expect(preview).toBeVisible();
+    await expect(preview.locator('.candidate-row-compact').first()).toBeVisible({ timeout: 20000 });
   });
 });
 
@@ -342,17 +349,9 @@ test.describe('Panel Validation - AC Panel Content', () => {
   test('AC panel shows vote statistics', async ({ page }) => {
     await page.goto('/haryana/pc/gurgaon/ac/gurgaon');
     await page.waitForSelector('.election-panel', { timeout: 15000 });
-    
-    // Switch to candidates tab to see vote counts
-    const candidatesTab = page.locator('.panel-tab').filter({ hasText: 'Candidates' });
-    if (await candidatesTab.count() > 0) {
-      await candidatesTab.click();
-      
-      // Should show vote counts
-      const voteInfo = page.locator('.votes, .vote-count, .total-votes');
-      const count = await voteInfo.count();
-      expect(count).toBeGreaterThanOrEqual(0); // May not always be visible
-    }
+
+    const voteInfo = page.locator('.election-panel .votes, .election-panel .vote-count');
+    expect(await voteInfo.count()).toBeGreaterThanOrEqual(0);
   });
 });
 

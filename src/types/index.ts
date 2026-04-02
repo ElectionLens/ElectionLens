@@ -342,6 +342,9 @@ export interface MapViewProps {
   currentDistrict: string | null;
   selectedAssembly: string | null;
   electionResult: ACElectionResult | null;
+  /** Assembly hook: true while fetching year file / resolving AC row for the side panel */
+  acResultsLoading?: boolean;
+  acResultsLoadError?: string | null;
   shareUrl?: string | undefined;
   availableYears?: number[] | undefined;
   selectedYear?: number | null | undefined;
@@ -614,6 +617,8 @@ export interface StateElectionIndex {
   stateCode: string;
   delimitation: number;
   availableYears: number[];
+  /** Indicative next Vidhan Sabha poll year (ECI schedule is final); may be after 2029 */
+  nextAssemblyElectionYear?: number;
   totalConstituencies: number;
   lastUpdated: string;
   source: string;
