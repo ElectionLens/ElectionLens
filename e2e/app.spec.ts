@@ -654,9 +654,24 @@ test.describe('Assembly View', () => {
     const panel = page.locator('.election-panel');
     await expect(panel).toBeVisible({ timeout: 15000 });
 
-    // Selected AC is styled with dark green border (#065f46)
-    const greenStroke = page.locator('path[stroke="#065f46"]');
-    await expect(greenStroke.first()).toBeVisible({ timeout: 5000 });
+    // Selected AC border — Leaflet SVG may expose stroke as hex or rgb(...)
+    await expect
+      .poll(
+        async () => {
+          return page.evaluate(() => {
+            const paths = document.querySelectorAll('path[stroke]');
+            for (const p of paths) {
+              const s = (p.getAttribute('stroke') || '').replace(/\s/g, '').toLowerCase();
+              if (s === '#065f46') return true;
+              const m = /^rgb\((\d+),(\d+),(\d+)\)$/.exec(s);
+              if (m && +m[1] === 6 && +m[2] === 95 && +m[3] === 70) return true;
+            }
+            return false;
+          });
+        },
+        { timeout: 12000 }
+      )
+      .toBe(true);
   });
 });
 

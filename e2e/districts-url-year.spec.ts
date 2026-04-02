@@ -2,7 +2,7 @@
  * State districts map view: assembly / parliament year toolbar must sync ?year= in the URL.
  *
  * Run locally (matches CI: build + Chromium): `npm run validate:e2e`
- * Requires: `npx playwright install chromium`
+ * Requires: `npx playwright install chromium`. Playwright uses http://127.0.0.1:3000 (see playwright.config).
  */
 import { test, expect } from '@playwright/test';
 

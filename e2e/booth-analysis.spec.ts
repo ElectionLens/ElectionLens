@@ -1,12 +1,16 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
+
+/** Avoid networkidle — Vite/HMR and background requests often prevent it from settling. */
+async function waitForAcPanelReady(page: Page): Promise<void> {
+  await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+  await page.waitForSelector('.election-panel', { timeout: 15000 });
+  await page.waitForSelector('.panel-tabs', { timeout: 15000 });
+}
 
 test.describe('Booth Analysis', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to an AC with booth data
     await page.goto('/tamil-nadu/ac/gummidipundi?year=2021');
-    // Wait for election panel to load
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
-    await page.waitForLoadState('networkidle');
+    await waitForAcPanelReady(page);
   });
 
   test('displays Analysis tab when booth data is available', async ({ page }) => {
@@ -112,8 +116,7 @@ test.describe('Booth Analysis', () => {
 test.describe('Booth Data View', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/tamil-nadu/ac/gummidipundi?year=2021');
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
-    await page.waitForLoadState('networkidle');
+    await waitForAcPanelReady(page);
   });
 
   test('displays Booths tab', async ({ page }) => {
@@ -140,7 +143,7 @@ test.describe('Booth Data View', () => {
 test.describe('Postal Ballots View', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/tamil-nadu/ac/gummidipundi?year=2021');
-    await page.waitForLoadState('networkidle');
+    await waitForAcPanelReady(page);
   });
 
   test('displays Postal tab', async ({ page }) => {
