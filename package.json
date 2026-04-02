@@ -22,6 +22,7 @@
     "prepare": "husky install || true",
     "clean": "rm -rf dist coverage node_modules/.cache",
     "analyze:geo": "node scripts/optimize-geojson.mjs",
+    "data:assembly-geo:orphans-check": "node scripts/cleanup-assembly-geojson-orphans.mjs --ci",
     "generate:ac-2026": "node scripts/generate-ac-2026-upcoming.mjs",
     "data:ac-2026-placeholder": "node scripts/add-ac-2026-placeholder-all-states.mjs",
     "data:ac-years-through-2029": "node scripts/sync-ac-years-through-2029.mjs",

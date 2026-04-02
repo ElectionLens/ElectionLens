@@ -6,29 +6,18 @@ A comprehensive list of potential improvements and new features for ElectionLens
 
 ## 🔴 High Priority - Data Gaps
 
-### 1. Missing GeoJSON Coverage
-**Status:** Not Started  
-**Effort:** 2-5 days  
-**Impact:** Critical - prevents map display for affected constituencies
+### 1. Missing / outdated GeoJSON
+**Status:** See [`ideas/missing-geojson-acs.md`](missing-geojson-acs.md) (updated Apr 2026)  
+**Impact:** J&K — 15 schema ACs still lack polygons; Assam — boundaries pre-2023 delimitation; duplicate `schemaId` rows in some states.
 
-| State | Missing ACs | Notes |
-|-------|-------------|-------|
-| **Assam** | 126 (entire state) | Critical - no assembly boundaries at all |
-| Gujarat | 28 | Recent delimitation (2022) |
-| J&K | 25 | 2024 delimitation changes |
-| Madhya Pradesh | 4 | Indore constituency splits |
-| Sikkim | 1 | Minor gap |
+**Data sources:** ECI, DataMeet, Lok Dhaba; desktop inputs for state-specific merges.
 
-**Data Sources:**
-- Election Commission of India (ECI)
-- DataMeet India
-- Lok Dhaba
-
-**Implementation:**
+**Scripts:**
 ```bash
-# Scripts already exist for integration
-node scripts/add-assam-ac-geojson.mjs
-node scripts/add-jk-ac-geojson.mjs
+node scripts/cleanup-assembly-geojson-orphans.mjs --ci   # fail if orphan features exist
+node scripts/add-jk-ac-geojson.mjs                      # needs j_and_k_assembly_new_borders.geojson path
+node scripts/add-assam-pc-geojson.mjs                   # PC-level Assam
+node scripts/replace-gujarat-ac-geojson.mjs               # Gujarat 2022 delimitation (local source file)
 ```
 
 ---

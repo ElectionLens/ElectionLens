@@ -1,143 +1,94 @@
 # Assembly Constituencies GeoJSON Status
 
-**Last Updated:** January 2025  
-**Status:** ⚠️ MOSTLY COMPLETE (delimitation issues remain)
+**Last updated:** April 2026  
+**Summary:** Every **schema** assembly constituency either has at least one GeoJSON feature **or** is listed below as a **known gap**. Orphan features (boundaries not in the schema) have been removed from the master file.
 
 ---
 
-## Current Coverage
+## Coverage vs schema (`assemblyConstituencies`)
 
-| Metric | Count | Status |
-|--------|-------|--------|
-| ACs in Schema | 4,074 | |
-| ACs with GeoJSON | 4,118 | ✅ |
-| **GeoJSON Coverage** | **100%** | ✅ |
-| Assam 2023 delimitation | Outdated | ⚠️ |
+| Metric | Count | Notes |
+|--------|------:|------|
+| ACs in `schema.json` | 4,074 | Source of truth for the app |
+| Features in `constituencies.geojson` (Apr 2026) | 4,131 | After orphan cleanup |
+| Schema ACs with **no** GeoJSON feature | **15** | All **J&K** — see below |
+| Orphan features (removed Apr 2026) | 0 | Was 44; see cleanup script |
 
-All assembly constituencies in the schema have GeoJSON boundary data, but **Assam boundaries are from 2008** and don't reflect the 2023 delimitation changes.
+Run a CI-style check (fails if orphans reappear):
 
----
-
-## Recent Updates
-
-### Gujarat (January 2025) ✅
-
-Added 28 new ACs from 2022 delimitation using `gujarat_AC.geojson`:
-
-**Ahmedabad splits (12):**
-| Schema ID | Name | AC# |
-|-----------|------|-----|
-| GJ-045 | NARANPURA | 45 |
-| GJ-046 | NIKOL | 46 |
-| GJ-047 | NARODA | 47 |
-| GJ-048 | THAKKAR BAPANAGAR | 48 |
-| GJ-049 | BAPUNAGAR | 49 |
-| GJ-050 | AMRAIWADI | 50 |
-| GJ-051 | DARIYAPUR | 51 |
-| GJ-052 | JAMALPUR-KHADIA | 52 |
-| GJ-053 | MANINAGAR | 53 |
-| GJ-054 | DANILIMDA | 54 |
-| GJ-055 | SABARMATI | 55 |
-| GJ-056 | ASARWA | 56 |
-
-**Surat splits (8):**
-| Schema ID | Name | AC# |
-|-----------|------|-----|
-| GJ-160 | SURAT NORTH | 160 |
-| GJ-161 | VARACHHA ROAD | 161 |
-| GJ-162 | KARANJ | 162 |
-| GJ-163 | LIMBAYAT | 163 |
-| GJ-164 | UDHNA | 164 |
-| GJ-165 | MAJURA | 165 |
-| GJ-166 | KATARGAM | 166 |
-| GJ-167 | SURAT WEST | 167 |
-
-**Script:** `scripts/replace-gujarat-ac-geojson.mjs`
-
-### Jammu & Kashmir ✅
-
-90 ACs from 2024 delimitation already present with schemaIds (JK-001 to JK-090).
-
-### Assam ✅
-
-133 ACs present in GeoJSON (126 in schema) - complete coverage.
-
----
-
-## ⚠️ Delimitation Issues
-
-### Assam 2023 Delimitation
-
-Assam underwent delimitation in **2023** but our data still reflects **2008 boundaries**.
-
-| Issue | Current | Should Be |
-|-------|---------|-----------|
-| Delimitation year | 2008 | 2023 |
-| PCs in schema | 12 | 14 |
-| PC-to-AC mapping | 5 broken | All mapped |
-
-**Renamed PCs:**
-- Mangaldoi → Darrang-Udalguri
-- Kaliabor → Kaziranga  
-- Autonomous District → Diphu
-- Tezpur → Sonitpur
-
-**Impact:**
-- 2024 Lok Sabha results cannot show AC-wise breakdown
-- PC boundaries in GeoJSON are outdated
-- AC boundaries may not match current reality
-
-**To fix:**
-1. Source new Assam AC/PC GeoJSON (post-2023 delimitation)
-2. Update schema with new PC names and AC mappings
-3. Add 2024 PC election data
-
----
-
-## Cleanup Opportunity
-
-### Legacy Andhra Pradesh Constituencies
-
-44 ACs in GeoJSON but NOT in schema (pre-Telangana split):
-
-```
-AP-120 to AP-175 (approximately)
-```
-
-These are old AP constituencies before Telangana was carved out in 2014. They can be safely removed from `constituencies.geojson` as a cleanup task.
-
-**To clean up:**
 ```bash
-# Remove AP ACs not in schema
-node scripts/cleanup-legacy-ap-acs.mjs  # TODO: create this script
+node scripts/cleanup-assembly-geojson-orphans.mjs --ci
+```
+
+Remove orphan features (dry-run without `--write`):
+
+```bash
+node scripts/cleanup-assembly-geojson-orphans.mjs
+node scripts/cleanup-assembly-geojson-orphans.mjs --write
 ```
 
 ---
 
-## Data Sources
+## Open gaps
 
-| Source | URL | Used For |
+### 1. Jammu & Kashmir — 15 ACs in schema, no polygon
+
+These ids exist in `schema.json` but have **no** feature with matching `properties.schemaId` in `public/data/geo/assembly/constituencies.geojson`:
+
+`JK-092`, `JK-094`, `JK-095`, `JK-096`, `JK-098`, `JK-100`, `JK-101`, `JK-102`, `JK-105`, `JK-106`, `JK-107`, `JK-109`, `JK-110`, `JK-111`, `JK-112`
+
+**To fix:** Extend the same J&K delimitation source used in `scripts/add-jk-ac-geojson.mjs` (or an official 2024 shapefile), map `seat_id` → `schemaId`, merge into the master GeoJSON, then dedupe if needed.
+
+**Note:** The file still has **duplicate `schemaId` rows** for some other JK (and a few Assam / Arunachal) features from earlier merges. That is separate from “missing”; the map layer should prefer a single feature per id (verify in app).
+
+### 2. Assam — 2023 delimitation vs 2008 boundaries
+
+Boundaries in the dataset still reflect **pre-2023** delimitation. Schema / PC naming and 2024 Lok Sabha AC splits may not line up with current ECI geography.
+
+**To fix:** Source post-2023 Assam AC (and PC) GeoJSON, update schema + mappings, then refresh election data as needed. See also `ideas/delimitation-handling.md`.
+
+---
+
+## Completed in-repo work
+
+### Orphan feature cleanup (April 2026)
+
+Removed **44** features whose `schemaId` was **not** in `assemblyConstituencies` — mostly legacy **Andhra Pradesh** ACs (pre-Telangana) plus `AP-217`, `AP-219`, `AP-270`, `ML-023` (those ids appear elsewhere in the schema for non-AC keys but are not assembly rows).
+
+### Gujarat (January 2025)
+
+28 new ACs from 2022 delimitation — `scripts/replace-gujarat-ac-geojson.mjs`.
+
+### MP and Sikkim
+
+Verified: all schema ACs for **MP** and **SK** have GeoJSON coverage (no missing ids).
+
+---
+
+## Follow-ups (optional cleanup)
+
+### Features without `schemaId`
+
+There are still **22** polygons with **no** `schemaId` (mostly `AC_NO === 0`, empty `AC_NAME`) in AP, Goa, Karnataka, Maharashtra, Sikkim. They are not referenced by the app by id; consider deleting or assigning ids in a dedicated pass if they cause map glitches.
+
+### Duplicate `schemaId` polygons
+
+Multiple features share the same `schemaId` for a subset of **JK**, **AS**, and **AR** rows. Consolidate to one feature per id when touching those states.
+
+---
+
+## Data sources
+
+| Source | URL | Used for |
 |--------|-----|----------|
 | DataMeet | datameet.org | Most state boundaries |
-| ECI | eci.gov.in | Official delimitation data |
-| User-provided | Desktop files | Gujarat 2022 delimitation |
+| ECI | eci.gov.in | Official delimitation |
+| User-provided | Local / Desktop files | Gujarat 2022, J&K merge script inputs |
 
 ---
 
-## Historical Notes
+## Historical notes
 
-This file previously tracked missing GeoJSON for:
-- ~~Assam (126 ACs)~~ - Actually present
-- ~~Gujarat (28 ACs)~~ - Fixed January 2025
-- ~~J&K (25 ACs)~~ - Actually present (90 ACs total)
-- ~~MP (4 ACs)~~ - Indore splits - verify status
-- ~~Sikkim (1 AC)~~ - Sangha constituency - verify status
+Older versions of this file claimed “100% GeoJSON coverage” and listed `cleanup-legacy-ap-acs.mjs` as TODO. The **orphan** cleanup is now **`scripts/cleanup-assembly-geojson-orphans.mjs`**. True **per-schema-id** coverage still requires filling the **15 J&K** polygons and updating **Assam** to 2023 delimitation when data is available.
 
-The original gaps were due to:
-1. Name matching issues between GeoJSON and schema
-2. Missing schemaId properties in some features
-3. Actual missing boundaries (Gujarat 2022 delimitation)
-
----
-
-*File updated after Gujarat GeoJSON integration*
+The feature roadmap reference to `scripts/add-assam-ac-geojson.mjs` is stale; this repo has **`scripts/add-assam-pc-geojson.mjs`** for PC-level Assam work — AC-level Assam refresh still needs a new pipeline once boundaries are sourced.
