@@ -10,7 +10,7 @@
 | Metric | Count | Notes |
 |--------|------:|------|
 | ACs in `schema.json` | 4,074 | Source of truth for the app |
-| Features in `constituencies.geojson` (Apr 2026) | 4,131 | After orphan cleanup |
+| Features in `constituencies.geojson` (Apr 2026) | 4,124 | After orphan cleanup + Assam dedupe |
 | Schema ACs with **no** GeoJSON feature | **15** | All **J&K** — see below |
 | Orphan features (removed Apr 2026) | 0 | Was 44; see cleanup script |
 
@@ -39,13 +39,13 @@ These ids exist in `schema.json` but have **no** feature with matching `properti
 
 **To fix:** Extend the same J&K delimitation source used in `scripts/add-jk-ac-geojson.mjs` (or an official 2024 shapefile), map `seat_id` → `schemaId`, merge into the master GeoJSON, then dedupe if needed.
 
-**Note:** The file still has **duplicate `schemaId` rows** for some other JK (and a few Assam / Arunachal) features from earlier merges. That is separate from “missing”; the map layer should prefer a single feature per id (verify in app).
+**Note:** The file may still have **duplicate `schemaId` rows** for some **JK** and **AR** features from earlier merges. **Assam** was consolidated to **one feature per `schemaId`** via `scripts/replace-assam-ac-geojson.mjs` (Apr 2026).
 
-### 2. Assam — 2023 delimitation vs 2008 boundaries
+### 2. Assam — geometry vintage vs 2023 legal delimitation
 
-Boundaries in the dataset still reflect **pre-2023** delimitation. Schema / PC naming and 2024 Lok Sabha AC splits may not line up with current ECI geography.
+**Done (pipeline):** `scripts/data-sources/assam-ac-datameet/assam-ac.geojson` (DataMeet / ECI-derived national AC layer, MIT) + `scripts/replace-assam-ac-geojson.mjs` refresh the master file, dedupe polygons, and set `delimitation: 2023` on Assam in `schema.json` and `public/data/elections/ac/AS/index.json`.
 
-**To fix:** Source post-2023 Assam AC (and PC) GeoJSON, update schema + mappings, then refresh election data as needed. See also `ideas/delimitation-handling.md`.
+**Caveat:** The upstream GeoJSON is from the DataMeet national AC extract; it may **not** match every boundary adjustment from the 2023 Assam delimitation order until ECI or Assam CEO publishes an authoritative post-2023 shapefile. See `scripts/data-sources/assam-ac-datameet/README.md`.
 
 ---
 
@@ -63,6 +63,10 @@ Removed **44** features whose `schemaId` was **not** in `assemblyConstituencies`
 
 Verified: all schema ACs for **MP** and **SK** have GeoJSON coverage (no missing ids).
 
+### Assam AC boundaries (April 2026)
+
+126 ACs: fetch `npm run data:assam-ac:fetch`, merge `npm run data:assam-ac:replace` — see `scripts/replace-assam-ac-geojson.mjs`.
+
 ---
 
 ## Follow-ups (optional cleanup)
@@ -73,7 +77,7 @@ There are still **22** polygons with **no** `schemaId` (mostly `AC_NO === 0`, em
 
 ### Duplicate `schemaId` polygons
 
-Multiple features share the same `schemaId` for a subset of **JK**, **AS**, and **AR** rows. Consolidate to one feature per id when touching those states.
+Multiple features share the same `schemaId` for a subset of **JK** and **AR** rows. Consolidate to one feature per id when touching those states. (**Assam** addressed Apr 2026.)
 
 ---
 
@@ -81,14 +85,14 @@ Multiple features share the same `schemaId` for a subset of **JK**, **AS**, and 
 
 | Source | URL | Used for |
 |--------|-----|----------|
-| DataMeet | datameet.org | Most state boundaries |
+| DataMeet | [github.com/datameet/maps](https://github.com/datameet/maps) (`docs/data/geojson/ac.geojson`, MIT) | Most state boundaries; **Assam AC** subset in `scripts/data-sources/assam-ac-datameet/` |
 | ECI | eci.gov.in | Official delimitation |
-| User-provided | Local / Desktop files | Gujarat 2022, J&K merge script inputs |
+| User-provided | Local / Desktop files | Gujarat 2022, J&K merge script inputs, Assam PC (`add-assam-pc-geojson.mjs`) |
 
 ---
 
 ## Historical notes
 
-Older versions of this file claimed “100% GeoJSON coverage” and listed `cleanup-legacy-ap-acs.mjs` as TODO. The **orphan** cleanup is now **`scripts/cleanup-assembly-geojson-orphans.mjs`**. True **per-schema-id** coverage still requires filling the **15 J&K** polygons and updating **Assam** to 2023 delimitation when data is available.
+Older versions of this file claimed “100% GeoJSON coverage” and listed `cleanup-legacy-ap-acs.mjs` as TODO. The **orphan** cleanup is now **`scripts/cleanup-assembly-geojson-orphans.mjs`**. True **per-schema-id** coverage still requires filling the **15 J&K** polygons.
 
-The feature roadmap reference to `scripts/add-assam-ac-geojson.mjs` is stale; this repo has **`scripts/add-assam-pc-geojson.mjs`** for PC-level Assam work — AC-level Assam refresh still needs a new pipeline once boundaries are sourced.
+Assam AC refresh is **`scripts/replace-assam-ac-geojson.mjs`** (replacing the stale `add-assam-ac-geojson.mjs` roadmap name). PC-level Assam work remains **`scripts/add-assam-pc-geojson.mjs`**.

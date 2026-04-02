@@ -264,7 +264,7 @@ function buildPCs(parliamentGeo, states, stateByName) {
       aliases: [pcName, cleanName(pcName), pcName.toUpperCase(), cleanName(pcName).toUpperCase()],
       type,
       assemblyIds: [], // Will be filled from AC data
-      delimitation: 2008, // Current delimitation
+      delimitation: stateId === 'AS' ? 2023 : 2008,
     };
 
     // Build name index
@@ -357,7 +357,7 @@ function buildACs(assemblyGeo, states, stateByName, pcs, pcByName) {
       name: acName,
       aliases: [acName, cleanName(acName), acName.toUpperCase(), cleanName(acName).toUpperCase()],
       type,
-      delimitation: 2008,
+      delimitation: stateId === 'AS' ? 2023 : 2008,
     };
 
     // Build name index

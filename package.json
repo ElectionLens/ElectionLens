@@ -23,6 +23,8 @@
     "clean": "rm -rf dist coverage node_modules/.cache",
     "analyze:geo": "node scripts/optimize-geojson.mjs",
     "data:assembly-geo:orphans-check": "node scripts/cleanup-assembly-geojson-orphans.mjs --ci",
+    "data:assam-ac:fetch": "node scripts/fetch-datameet-assam-ac-geojson.mjs",
+    "data:assam-ac:replace": "node scripts/replace-assam-ac-geojson.mjs",
     "data:fix-pc-2014-acwise": "node scripts/fix-pc-2014-acwise-duplicates.mjs",
     "data:verify-elections": "node scripts/verify-election-data-integrity.mjs",
     "data:verify-elections:ci": "node scripts/verify-election-data-integrity.mjs --ci",
