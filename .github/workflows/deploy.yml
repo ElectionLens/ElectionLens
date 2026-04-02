@@ -69,6 +69,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+      # 404 Not Found here = Pages not provisioned for Actions. Repo Settings → Pages →
+      # Build and deployment → Source: GitHub Actions (not only “Deploy from a branch”).
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
