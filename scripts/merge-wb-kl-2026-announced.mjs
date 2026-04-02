@@ -17,6 +17,7 @@ import {
   resolvePressToAcId,
   toEciStyleName,
 } from './lib/ac-resolve-by-state.mjs';
+import { inferSexFromAnnouncedName } from './lib/infer-candidate-sex.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -64,7 +65,7 @@ const WB_PARTY_FIELDS = [
   ['tmc', 'TMC'],
 ];
 
-function announcedRow(party, nameUpper) {
+function announcedRow(party, nameUpper, rawNameForSex) {
   return {
     position: 0,
     name: nameUpper,
@@ -73,7 +74,7 @@ function announcedRow(party, nameUpper) {
     voteShare: 0,
     margin: null,
     marginPct: null,
-    sex: 'M',
+    sex: inferSexFromAnnouncedName(rawNameForSex ?? nameUpper),
     age: 0,
     depositLost: false,
     announced: true,
@@ -117,7 +118,7 @@ function main() {
     const list = wbById.get(id);
     for (const [field, party] of WB_PARTY_FIELDS) {
       if (!usableCell(r[field])) continue;
-      list.push(announcedRow(party, toEciStyleName(r[field])));
+      list.push(announcedRow(party, toEciStyleName(r[field]), r[field]));
     }
   }
 
@@ -142,7 +143,7 @@ function main() {
     const id = res.id;
     if (!klById.has(id)) klById.set(id, []);
     const party = String(r.party || 'OTH').trim().slice(0, 24);
-    klById.get(id).push(announcedRow(party, toEciStyleName(r.candidate)));
+    klById.get(id).push(announcedRow(party, toEciStyleName(r.candidate), r.candidate));
   }
 
   if (klFailures.length) {

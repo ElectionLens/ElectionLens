@@ -23,6 +23,7 @@ import {
   toDmkAdmkSymbolDisplayName,
   toEciStyleName,
 } from './lib/tn-2026-ac-resolve.mjs';
+import { inferSexFromAnnouncedName } from './lib/infer-candidate-sex.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -51,7 +52,7 @@ function mergeAssignBySchemaId(layers) {
   return { byId, size: byId.size };
 }
 
-function announcedRow(party, nameUpper) {
+function announcedRow(party, nameUpper, rawNameForSex) {
   return {
     position: 0,
     name: nameUpper,
@@ -60,7 +61,7 @@ function announcedRow(party, nameUpper) {
     voteShare: 0,
     margin: null,
     marginPct: null,
-    sex: 'M',
+    sex: inferSexFromAnnouncedName(rawNameForSex ?? nameUpper),
     age: 0,
     depositLost: false,
     announced: true,
@@ -188,31 +189,37 @@ function main() {
     const cpim = cpimAssign.byId.get(id);
     const rows = [];
     if (dmk) {
-      rows.push(announcedRow('DMK', toDmkAdmkSymbolDisplayName(dmk.candidate)));
+      rows.push(
+        announcedRow('DMK', toDmkAdmkSymbolDisplayName(dmk.candidate), dmk.candidate)
+      );
       withDmk++;
     }
     if (admkSym) {
-      rows.push(announcedRow('ADMK', toDmkAdmkSymbolDisplayName(admkSym.candidate)));
+      rows.push(
+        announcedRow('ADMK', toDmkAdmkSymbolDisplayName(admkSym.candidate), admkSym.candidate)
+      );
       withAdmkSymbol++;
     }
     if (tvk) {
-      rows.push(announcedRow('TVK', cleanAnnouncedCandidateName(tvk.candidate)));
+      rows.push(
+        announcedRow('TVK', cleanAnnouncedCandidateName(tvk.candidate), tvk.candidate)
+      );
       withTvk++;
     }
     if (ntk) {
-      rows.push(announcedRow('NTK', toEciStyleName(ntk.candidate)));
+      rows.push(announcedRow('NTK', toEciStyleName(ntk.candidate), ntk.candidate));
       withNtk++;
     }
     if (ammk) {
-      rows.push(announcedRow('AMMK', toEciStyleName(ammk.candidate)));
+      rows.push(announcedRow('AMMK', toEciStyleName(ammk.candidate), ammk.candidate));
       withAmmk++;
     }
     if (cpi) {
-      rows.push(announcedRow('CPI', toEciStyleName(cpi.candidate)));
+      rows.push(announcedRow('CPI', toEciStyleName(cpi.candidate), cpi.candidate));
       withCpi++;
     }
     if (cpim) {
-      rows.push(announcedRow('CPM', toEciStyleName(cpim.candidate)));
+      rows.push(announcedRow('CPM', toEciStyleName(cpim.candidate), cpim.candidate));
       withCpm++;
     }
     if (dmk && tvk) dmkTvk++;
