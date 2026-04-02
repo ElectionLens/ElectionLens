@@ -10,6 +10,8 @@ import {
   PC_ELECTIONS,
   CACHE_KEYS,
   DATA_VERSION,
+  isAssemblyGeoJSONCacheComplete,
+  ASSEMBLY_GEOJSON_MIN_VALID_FEATURES,
 } from './paths';
 
 describe('Path Constants', () => {
@@ -123,7 +125,7 @@ describe('Path Constants', () => {
     it('has correct static cache keys', () => {
       expect(CACHE_KEYS.STATES).toBe('geo_boundaries_states');
       expect(CACHE_KEYS.PARLIAMENT).toBe('geo_parliament_constituencies');
-      expect(CACHE_KEYS.ASSEMBLY).toBe('geo_assembly_constituencies');
+      expect(CACHE_KEYS.ASSEMBLY).toBe(`geo_assembly_constituencies_${DATA_VERSION}`);
     });
 
     it('generates correct district cache keys', () => {
@@ -134,11 +136,35 @@ describe('Path Constants', () => {
 
   describe('DATA_VERSION', () => {
     it('has correct version string', () => {
-      expect(DATA_VERSION).toBe('1.0.0');
+      expect(DATA_VERSION).toBe('1.1.0');
     });
 
     it('follows semver format', () => {
       expect(DATA_VERSION).toMatch(/^\d+\.\d+\.\d+$/);
+    });
+  });
+
+  describe('isAssemblyGeoJSONCacheComplete', () => {
+    it('rejects null and empty', () => {
+      expect(isAssemblyGeoJSONCacheComplete(null)).toBe(false);
+      expect(isAssemblyGeoJSONCacheComplete({ features: [] })).toBe(false);
+    });
+
+    it('rejects when feature count with AC_NAME is below minimum', () => {
+      const features = Array.from({ length: ASSEMBLY_GEOJSON_MIN_VALID_FEATURES - 1 }, (_, i) => ({
+        properties: { AC_NAME: `AC ${i}`, ST_NAME: i === 0 ? 'TELANGANA' : 'ANDHRA PRADESH' },
+      }));
+      expect(isAssemblyGeoJSONCacheComplete({ features })).toBe(false);
+    });
+
+    it('accepts when Telangana present and enough named features', () => {
+      const features = Array.from({ length: ASSEMBLY_GEOJSON_MIN_VALID_FEATURES }, (_, i) => ({
+        properties: {
+          AC_NAME: `AC ${i}`,
+          ST_NAME: i === 0 ? 'TELANGANA' : 'ANDHRA PRADESH',
+        },
+      }));
+      expect(isAssemblyGeoJSONCacheComplete({ features })).toBe(true);
     });
   });
 });

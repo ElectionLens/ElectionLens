@@ -8,7 +8,14 @@ import {
   PC_NAME_MAPPINGS,
   PC_STATE_ALIASES,
 } from '../constants';
-import { BOUNDARIES, PARLIAMENT, ASSEMBLY, DISTRICTS, CACHE_KEYS } from '../constants/paths';
+import {
+  BOUNDARIES,
+  PARLIAMENT,
+  ASSEMBLY,
+  DISTRICTS,
+  CACHE_KEYS,
+  isAssemblyGeoJSONCacheComplete,
+} from '../constants/paths';
 import type {
   StatesGeoJSON,
   ConstituenciesGeoJSON,
@@ -146,20 +153,13 @@ export function useElectionData(): UseElectionDataReturn {
       let data = (await getFromDB(CACHE_KEYS.ASSEMBLY)) as AssembliesGeoJSON | null;
 
       if (data) {
-        // Check if cache has TELANGANA - if not, cache is stale and needs refresh
-        const hasTelangana = data.features.some(
-          (f) => f.properties.ST_NAME?.toUpperCase() === 'TELANGANA'
-        );
-        if (!hasTelangana) {
-          data = null; // Force fresh fetch
-        } else {
-          // Filter cached data too (in case old cache has invalid features)
-          const validFeatures = filterValidAssemblyFeatures(data.features);
-          if (validFeatures.length !== data.features.length) {
-            data = { type: 'FeatureCollection', features: validFeatures };
-            // Update cache with filtered data
-            saveToDB(CACHE_KEYS.ASSEMBLY, data);
-          }
+        const validFeatures = filterValidAssemblyFeatures(data.features);
+        if (validFeatures.length !== data.features.length) {
+          data = { type: 'FeatureCollection', features: validFeatures };
+          void saveToDB(CACHE_KEYS.ASSEMBLY, data);
+        }
+        if (!isAssemblyGeoJSONCacheComplete(data)) {
+          data = null;
         }
       }
 
@@ -187,7 +187,13 @@ export function useElectionData(): UseElectionDataReturn {
         features = filterValidAssemblyFeatures(features);
 
         data = { type: 'FeatureCollection', features };
-        saveToDB(CACHE_KEYS.ASSEMBLY, data);
+        if (isAssemblyGeoJSONCacheComplete(data)) {
+          void saveToDB(CACHE_KEYS.ASSEMBLY, data);
+        } else {
+          console.warn(
+            '[ElectionLens] Assembly GeoJSON failed completeness check (truncated or wrong file?). Some states may not render; clear site data or use the dev “Clear cache” control.'
+          );
+        }
       }
 
       setAssemblyGeoJSON(data);

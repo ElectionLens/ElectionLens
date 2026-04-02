@@ -91,11 +91,37 @@ export const PC_ELECTIONS = {
     `${ELECTION_DATA_BASE}/pc/${stateId}/${year}.json`,
 } as const;
 
+/** Data version for cache invalidation (bump when geo cache semantics change) */
+export const DATA_VERSION = '1.1.0';
+
+/**
+ * Nationwide assembly GeoJSON after AC_NAME filter is ~4.1k features. IndexedDB can persist a
+ * truncated payload (e.g. dev server abort); an old stale-cache check only required Telangana,
+ * so the cache could still contain southern states and omit Assam and others.
+ */
+export const ASSEMBLY_GEOJSON_MIN_VALID_FEATURES = 3500;
+
+/** True if cached or fetched assembly data looks like a complete India-wide file */
+export function isAssemblyGeoJSONCacheComplete(
+  data: {
+    features?: { properties?: { AC_NAME?: string; ST_NAME?: string } }[];
+  } | null
+): boolean {
+  if (!data?.features?.length) return false;
+  let withName = 0;
+  let hasTelangana = false;
+  for (const f of data.features) {
+    if (f.properties?.ST_NAME?.toUpperCase().trim() === 'TELANGANA') hasTelangana = true;
+    if (f.properties?.AC_NAME?.trim()) withName += 1;
+  }
+  return hasTelangana && withName >= ASSEMBLY_GEOJSON_MIN_VALID_FEATURES;
+}
+
 /** IndexedDB cache keys */
 export const CACHE_KEYS = {
   STATES: 'geo_boundaries_states',
   PARLIAMENT: 'geo_parliament_constituencies',
-  ASSEMBLY: 'geo_assembly_constituencies',
+  ASSEMBLY: `geo_assembly_constituencies_${DATA_VERSION}`,
 
   /**
    * Get cache key for district data
@@ -103,6 +129,3 @@ export const CACHE_KEYS = {
    */
   getDistrictKey: (stateSlug: string): string => `geo_districts_${stateSlug}`,
 } as const;
-
-/** Data version for cache invalidation */
-export const DATA_VERSION = '1.0.0';
