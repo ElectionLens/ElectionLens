@@ -1730,39 +1730,16 @@ function App(): JSX.Element {
   );
 
   /**
-   * Copy shareable URL to clipboard
+   * Copy the current browser URL to clipboard (matches the address bar, including query and hash).
    */
   const handleShare = useCallback(async (): Promise<void> => {
-    const url = getShareableUrl({
-      state: currentState,
-      view: currentView,
-      pc: currentPC,
-      district: currentDistrict,
-      assembly: currentAssembly,
-      year: selectedYear,
-      pcYear: null,
-      tab: null,
-      showACs: currentPC ? (showACsWithinPC ?? true) : null,
-      blog: blogOpen,
-      blogPost: null,
-    });
-
+    if (typeof window === 'undefined') return;
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(window.location.href);
     } catch (err) {
       console.error('Failed to copy URL:', err);
     }
-  }, [
-    getShareableUrl,
-    currentState,
-    currentView,
-    currentPC,
-    currentDistrict,
-    currentAssembly,
-    selectedYear,
-    showACsWithinPC,
-    blogOpen,
-  ]);
+  }, []);
 
   /**
    * Handle year change in assembly election results
