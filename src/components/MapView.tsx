@@ -105,6 +105,30 @@ import type {
   ViewMode,
 } from '../types';
 
+/** PC acWiseResults row: prefer first non-NOTA by votes for map winner */
+function pickNonNotaAcWinner<T extends { party?: string; name: string; votes?: number }>(
+  candidates: T[]
+): T | undefined {
+  if (!candidates.length) return undefined;
+  const sorted = [...candidates].sort((a, b) => (b.votes ?? 0) - (a.votes ?? 0));
+  return sorted.find((c) => String(c.party ?? '').toUpperCase() !== 'NOTA') ?? sorted[0];
+}
+
+/** Do not overwrite a real AC party with NOTA from a duplicate/bad acWise row */
+function assignAcWinnerBySchemaId(
+  winners: Record<string, { party: string; candidate: string }>,
+  sid: string | null | undefined,
+  party: string,
+  candidate: string
+): void {
+  if (!sid) return;
+  const nextNota = String(party ?? '').toUpperCase() === 'NOTA';
+  const prev = winners[sid];
+  const prevReal = prev && String(prev.party ?? '').toUpperCase() !== 'NOTA';
+  if (nextNota && prevReal) return;
+  winners[sid] = { party, candidate };
+}
+
 /** Map toolbar props */
 interface MapToolbarProps {
   currentView: ViewMode;
@@ -925,17 +949,15 @@ export function MapView({
                 if (pcResult.acWiseResults) {
                   Object.entries(pcResult.acWiseResults).forEach(([acName, acContribution]) => {
                     if (acContribution.candidates && acContribution.candidates.length > 0) {
-                      const sortedCandidates = [...acContribution.candidates].sort(
-                        (a, b) => b.votes - a.votes
-                      );
-                      const winner =
-                        sortedCandidates.find(
-                          (c) => String(c.party ?? '').toUpperCase() !== 'NOTA'
-                        ) ?? sortedCandidates[0];
+                      const winner = pickNonNotaAcWinner(acContribution.candidates);
                       if (winner) {
                         addWinner(acName, winner.party, winner.name);
-                        const sid = resolveACName(acName, stateId);
-                        if (sid) winners[sid] = { party: winner.party, candidate: winner.name };
+                        assignAcWinnerBySchemaId(
+                          winners,
+                          resolveACName(acName, stateId),
+                          winner.party,
+                          winner.name
+                        );
                       }
                     }
                   });
@@ -962,8 +984,12 @@ export function MapView({
                   }
                   for (const [acName, best] of Object.entries(acToBest)) {
                     addWinner(acName, best.party, best.name);
-                    const sid = resolveACName(acName, stateId);
-                    if (sid) winners[sid] = { party: best.party, candidate: best.name };
+                    assignAcWinnerBySchemaId(
+                      winners,
+                      resolveACName(acName, stateId),
+                      best.party,
+                      best.name
+                    );
                   }
                 }
               });
@@ -1324,15 +1350,12 @@ export function MapView({
                       winners[originalUpper] = entry;
                     }
                     const sid = resolveACName(acName, stateId);
-                    if (sid) winners[sid] = entry;
+                    assignAcWinnerBySchemaId(winners, sid, party, candidateName);
                   };
                   if (pcResult.acWiseResults) {
                     Object.entries(pcResult.acWiseResults).forEach(([acName, acContribution]) => {
                       if (acContribution.candidates && acContribution.candidates.length > 0) {
-                        const sorted = [...acContribution.candidates].sort(
-                          (a, b) => b.votes - a.votes
-                        );
-                        const winner = sorted[0];
+                        const winner = pickNonNotaAcWinner(acContribution.candidates);
                         if (winner) addACWinner(acName, winner.party, winner.name);
                       }
                     });

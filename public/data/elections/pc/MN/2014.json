@@ -1583,7 +1583,7 @@
       "Khundrakpam",
       "Heingang",
       "Khurai",
-      "Kshetrigao",
+      "Khetrigao",
       "Thongju",
       "Keirao",
       "Andro",
@@ -1591,7 +1591,7 @@
       "Thangmeiband",
       "Uripok",
       "Sagolband",
-      "Keishamthong",
+      "Keisamthong",
       "Singjamei",
       "Yaiskul",
       "Wangkhei",
@@ -1599,22 +1599,19 @@
       "Lamsang",
       "Konthoujam",
       "Patsoi",
-      "Langthabal",
-      "Naoriya pakhanglakpa",
+      "langthabal",
+      "Naoriya Pakhanglak*",
       "Wangoi",
-      "Mayang imphal",
+      "Mayang Imphal",
       "Nambol",
       "Oinam",
-      "Bishnupur",
+      "Bishenpur",
       "Moirang",
       "Thanga",
       "Kumbi",
       "Lilong",
       "Thoubal",
-      "Wangkhem",
-      "Khundrakpam (GEN)",
-      "Heingang (GEN)",
-      "Khurai (GEN)"
+      "Wangkhem"
     ],
     "acWiseResults": {
       "Khundrakpam": {
@@ -1857,8 +1854,8 @@
           }
         ]
       },
-      "Kshetrigao": {
-        "acName": "Kshetrigao",
+      "Khetrigao": {
+        "acName": "Khetrigao",
         "acNo": 4,
         "acType": "GEN",
         "validVotes": 24160,
@@ -2569,8 +2566,8 @@
           }
         ]
       },
-      "Keishamthong": {
-        "acName": "Keishamthong",
+      "Keisamthong": {
+        "acName": "Keisamthong",
         "acNo": 12,
         "acType": "GEN",
         "validVotes": 16251,
@@ -3281,8 +3278,8 @@
           }
         ]
       },
-      "Langthabal": {
-        "acName": "Langthabal",
+      "langthabal": {
+        "acName": "langthabal",
         "acNo": 20,
         "acType": "GEN",
         "validVotes": 19341,
@@ -3370,8 +3367,8 @@
           }
         ]
       },
-      "Naoriya pakhanglakpa": {
-        "acName": "Naoriya pakhanglakpa",
+      "Naoriya Pakhanglak*": {
+        "acName": "Naoriya Pakhanglak*",
         "acNo": 21,
         "acType": "GEN",
         "validVotes": 22906,
@@ -3548,8 +3545,8 @@
           }
         ]
       },
-      "Mayang imphal": {
-        "acName": "Mayang imphal",
+      "Mayang Imphal": {
+        "acName": "Mayang Imphal",
         "acNo": 23,
         "acType": "GEN",
         "validVotes": 21727,
@@ -3815,8 +3812,8 @@
           }
         ]
       },
-      "Bishnupur": {
-        "acName": "Bishnupur",
+      "Bishenpur": {
+        "acName": "Bishenpur",
         "acNo": 26,
         "acType": "GEN",
         "validVotes": 21806,
@@ -4434,57 +4431,6 @@
             "position": 9,
             "voteShare": 0.08,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Khundrakpam (GEN)": {
-        "acName": "Khundrakpam (GEN)",
-        "acNo": 1,
-        "acType": "GEN",
-        "validVotes": 18483,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 129,
-            "position": 1,
-            "voteShare": 0.7,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Heingang (GEN)": {
-        "acName": "Heingang (GEN)",
-        "acNo": 2,
-        "acType": "GEN",
-        "validVotes": 21124,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 197,
-            "position": 1,
-            "voteShare": 0.93,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Khurai (GEN)": {
-        "acName": "Khurai (GEN)",
-        "acNo": 3,
-        "acType": "GEN",
-        "validVotes": 21521,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 269,
-            "position": 1,
-            "voteShare": 1.25,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -6204,12 +6150,12 @@
     ],
     "assemblyConstituencies": [
       "Heirok",
-      "Wangjing tentha",
-      "Khangabok",
+      "Wangjing Tentha",
+      "Khangabo",
       "Wabgai",
       "Kakching",
       "Hiyanglam",
-      "Sugnu",
+      "Sugnoo",
       "Jiribam",
       "Chandel",
       "Tengnoupal",
@@ -6230,27 +6176,7 @@
       "Henglep",
       "Churachandpur",
       "Saikot",
-      "Singhat",
-      "Chandel (st)",
-      "Tengnoupal (st)",
-      "Phungyar (st)",
-      "Ukhrul (st)",
-      "Chingai (st)",
-      "Saikul (st)",
-      "Karong (st)",
-      "Mao (st)",
-      "Tadubi (st)",
-      "Kangpokpi (Gen)",
-      "Saitu (ST)",
-      "Tamei (ST)",
-      "Tamenglong (ST)",
-      "Nungba (ST)",
-      "Tipaimukh (st)",
-      "Thanlon (ST)",
-      "Henglep (ST)",
-      "Churachandpur (ST)",
-      "Saikot (ST)",
-      "Singhat (ST)"
+      "Singhat"
     ],
     "acWiseResults": {
       "Heirok": {
@@ -6360,8 +6286,8 @@
           }
         ]
       },
-      "Wangjing tentha": {
-        "acName": "Wangjing tentha",
+      "Wangjing Tentha": {
+        "acName": "Wangjing Tentha",
         "acNo": 34,
         "acType": "GEN",
         "validVotes": 22805,
@@ -6467,8 +6393,8 @@
           }
         ]
       },
-      "Khangabok": {
-        "acName": "Khangabok",
+      "Khangabo": {
+        "acName": "Khangabo",
         "acNo": 35,
         "acType": "GEN",
         "validVotes": 28228,
@@ -6895,8 +6821,8 @@
           }
         ]
       },
-      "Sugnu": {
-        "acName": "Sugnu",
+      "Sugnoo": {
+        "acName": "Sugnoo",
         "acNo": 39,
         "acType": "GEN",
         "validVotes": 19135,
@@ -9065,346 +8991,6 @@
             "position": 10,
             "voteShare": 0.06,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Chandel (st)": {
-        "acName": "Chandel (st)",
-        "acNo": 41,
-        "acType": "GEN",
-        "validVotes": 38828,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 19,
-            "position": 1,
-            "voteShare": 0.05,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Tengnoupal (st)": {
-        "acName": "Tengnoupal (st)",
-        "acNo": 42,
-        "acType": "GEN",
-        "validVotes": 39725,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 35,
-            "position": 1,
-            "voteShare": 0.09,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Phungyar (st)": {
-        "acName": "Phungyar (st)",
-        "acNo": 43,
-        "acType": "GEN",
-        "validVotes": 22671,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 26,
-            "position": 1,
-            "voteShare": 0.11,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Ukhrul (st)": {
-        "acName": "Ukhrul (st)",
-        "acNo": 44,
-        "acType": "GEN",
-        "validVotes": 30998,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 28,
-            "position": 1,
-            "voteShare": 0.09,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Chingai (st)": {
-        "acName": "Chingai (st)",
-        "acNo": 45,
-        "acType": "GEN",
-        "validVotes": 33317,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 42,
-            "position": 1,
-            "voteShare": 0.13,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Saikul (st)": {
-        "acName": "Saikul (st)",
-        "acNo": 46,
-        "acType": "GEN",
-        "validVotes": 29264,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 38,
-            "position": 1,
-            "voteShare": 0.13,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Karong (st)": {
-        "acName": "Karong (st)",
-        "acNo": 47,
-        "acType": "GEN",
-        "validVotes": 49215,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 6,
-            "position": 1,
-            "voteShare": 0.01,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Mao (st)": {
-        "acName": "Mao (st)",
-        "acNo": 48,
-        "acType": "GEN",
-        "validVotes": 48782,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 5,
-            "position": 1,
-            "voteShare": 0.01,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Tadubi (st)": {
-        "acName": "Tadubi (st)",
-        "acNo": 49,
-        "acType": "GEN",
-        "validVotes": 40372,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 57,
-            "position": 1,
-            "voteShare": 0.14,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Kangpokpi (Gen)": {
-        "acName": "Kangpokpi (Gen)",
-        "acNo": 50,
-        "acType": "GEN",
-        "validVotes": 22901,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 68,
-            "position": 1,
-            "voteShare": 0.3,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Saitu (ST)": {
-        "acName": "Saitu (ST)",
-        "acNo": 51,
-        "acType": "ST",
-        "validVotes": 33313,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 38,
-            "position": 1,
-            "voteShare": 0.11,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Tamei (ST)": {
-        "acName": "Tamei (ST)",
-        "acNo": 52,
-        "acType": "ST",
-        "validVotes": 28419,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 18,
-            "position": 1,
-            "voteShare": 0.06,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Tamenglong (ST)": {
-        "acName": "Tamenglong (ST)",
-        "acNo": 53,
-        "acType": "ST",
-        "validVotes": 24015,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 19,
-            "position": 1,
-            "voteShare": 0.08,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Nungba (ST)": {
-        "acName": "Nungba (ST)",
-        "acNo": 54,
-        "acType": "ST",
-        "validVotes": 20016,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 10,
-            "position": 1,
-            "voteShare": 0.05,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Tipaimukh (st)": {
-        "acName": "Tipaimukh (st)",
-        "acNo": 55,
-        "acType": "GEN",
-        "validVotes": 13123,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 10,
-            "position": 1,
-            "voteShare": 0.08,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Thanlon (ST)": {
-        "acName": "Thanlon (ST)",
-        "acNo": 56,
-        "acType": "ST",
-        "validVotes": 15360,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 9,
-            "position": 1,
-            "voteShare": 0.06,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Henglep (ST)": {
-        "acName": "Henglep (ST)",
-        "acNo": 57,
-        "acType": "ST",
-        "validVotes": 22204,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 36,
-            "position": 1,
-            "voteShare": 0.16,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Churachandpur (ST)": {
-        "acName": "Churachandpur (ST)",
-        "acNo": 58,
-        "acType": "ST",
-        "validVotes": 33478,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 99,
-            "position": 1,
-            "voteShare": 0.3,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Saikot (ST)": {
-        "acName": "Saikot (ST)",
-        "acNo": 59,
-        "acType": "ST",
-        "validVotes": 37662,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 78,
-            "position": 1,
-            "voteShare": 0.21,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Singhat (ST)": {
-        "acName": "Singhat (ST)",
-        "acNo": 60,
-        "acType": "ST",
-        "validVotes": 19938,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 27,
-            "position": 1,
-            "voteShare": 0.14,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]

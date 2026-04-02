@@ -603,12 +603,12 @@
     ],
     "assemblyConstituencies": [
       "Palakonda",
-      "Kurupam",
+      "Kurupam (ST)",
       "Parvathipuram",
-      "Salur",
+      "Salur (ST)",
       "Araku valley",
       "Paderu",
-      "Rampachodavaram"
+      "Rampachodavaram(ST)"
     ],
     "acWiseResults": {
       "Palakonda": {
@@ -727,8 +727,8 @@
           }
         ]
       },
-      "Kurupam": {
-        "acName": "Kurupam",
+      "Kurupam (ST)": {
+        "acName": "Kurupam (ST)",
         "acNo": 130,
         "acType": "ST",
         "validVotes": 131297,
@@ -959,8 +959,8 @@
           }
         ]
       },
-      "Salur": {
-        "acName": "Salur",
+      "Salur (ST)": {
+        "acName": "Salur (ST)",
         "acNo": 132,
         "acType": "ST",
         "validVotes": 134312,
@@ -1307,8 +1307,8 @@
           }
         ]
       },
-      "Rampachodavaram": {
-        "acName": "Rampachodavaram",
+      "Rampachodavaram(ST)": {
+        "acName": "Rampachodavaram(ST)",
         "acNo": 172,
         "acType": "ST",
         "validVotes": 113902,
@@ -3889,14 +3889,12 @@
     ],
     "assemblyConstituencies": [
       "Srungavarapukota",
-      "Bhimli",
+      "Bhimili",
       "Visakhapatnam East",
       "Visakhapatnam South",
       "Visakhapatnam North",
       "Visakhapatnam West",
-      "Gajuwaka",
-      "Visakhapatnam  North",
-      "Visakhapatnam  West"
+      "Gajuwaka"
     ],
     "acWiseResults": {
       "Srungavarapukota": {
@@ -4114,8 +4112,8 @@
           }
         ]
       },
-      "Bhimli": {
-        "acName": "Bhimli",
+      "Bhimili": {
+        "acName": "Bhimili",
         "acNo": 139,
         "acType": "GEN",
         "validVotes": 211182,
@@ -5385,40 +5383,6 @@
             "depositLost": true
           }
         ]
-      },
-      "Visakhapatnam  North": {
-        "acName": "Visakhapatnam  North",
-        "acNo": 142,
-        "acType": "GEN",
-        "validVotes": 159233,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 1108,
-            "position": 1,
-            "voteShare": 0.7,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Visakhapatnam  West": {
-        "acName": "Visakhapatnam  West",
-        "acNo": 143,
-        "acType": "GEN",
-        "validVotes": 135868,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 914,
-            "position": 1,
-            "voteShare": 0.67,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
       }
     },
     "schemaId": "AP-04",
@@ -5882,13 +5846,12 @@
     ],
     "assemblyConstituencies": [
       "Chodavaram",
-      "V",
-      "Anakapalli",
+      "Madugula",
+      "Anakapalle",
       "Pendurthi",
-      "ELAMANCHILI",
-      "PAYAKARAOPETA",
-      "Narsipatnam",
-      "V.Madugula"
+      "Yelamanchili",
+      "Payakaraopet (SC)",
+      "Narsipatnam"
     ],
     "acWiseResults": {
       "Chodavaram": {
@@ -5980,8 +5943,8 @@
           }
         ]
       },
-      "V": {
-        "acName": "V",
+      "Madugula": {
+        "acName": "Madugula",
         "acNo": 146,
         "acType": "GEN",
         "validVotes": 146816,
@@ -6060,8 +6023,8 @@
           }
         ]
       },
-      "Anakapalli": {
-        "acName": "Anakapalli",
+      "Anakapalle": {
+        "acName": "Anakapalle",
         "acNo": 149,
         "acType": "GEN",
         "validVotes": 149148,
@@ -6238,8 +6201,8 @@
           }
         ]
       },
-      "ELAMANCHILI": {
-        "acName": "ELAMANCHILI",
+      "Yelamanchili": {
+        "acName": "Yelamanchili",
         "acNo": 151,
         "acType": "GEN",
         "validVotes": 158732,
@@ -6327,8 +6290,8 @@
           }
         ]
       },
-      "PAYAKARAOPETA": {
-        "acName": "PAYAKARAOPETA",
+      "Payakaraopet (SC)": {
+        "acName": "Payakaraopet (SC)",
         "acNo": 152,
         "acType": "SC",
         "validVotes": 179508,
@@ -6501,23 +6464,6 @@
             "position": 9,
             "voteShare": 0.2,
             "sex": "F",
-            "depositLost": true
-          }
-        ]
-      },
-      "V.Madugula": {
-        "acName": "V.Madugula",
-        "acNo": 146,
-        "acType": "GEN",
-        "validVotes": 146816,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 1094,
-            "position": 1,
-            "voteShare": 0.75,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -11148,7 +11094,7 @@
       "Mummidivaram",
       "Amalapuram",
       "Razole",
-      "Gannavaram",
+      "Gannavaram (SC)",
       "Kothapeta",
       "Mandapeta"
     ],
@@ -11725,8 +11671,8 @@
           }
         ]
       },
-      "Gannavaram": {
-        "acName": "Gannavaram",
+      "Gannavaram (SC)": {
+        "acName": "Gannavaram (SC)",
         "acNo": 165,
         "acType": "SC",
         "validVotes": 141898,
@@ -14387,17 +14333,17 @@
       }
     ],
     "assemblyConstituencies": [
-      "Unguturu",
+      "Ungutur",
       "Denduluru",
       "Eluru",
-      "Polavaram",
-      "Chintalapudi",
+      "Polavaram (ST)",
+      "Chintalapudi (SC)",
       "Nuzvid",
       "Kaikalur"
     ],
     "acWiseResults": {
-      "Unguturu": {
-        "acName": "Unguturu",
+      "Ungutur": {
+        "acName": "Ungutur",
         "acNo": 182,
         "acType": "GEN",
         "validVotes": 161813,
@@ -14852,8 +14798,8 @@
           }
         ]
       },
-      "Polavaram": {
-        "acName": "Polavaram",
+      "Polavaram (ST)": {
+        "acName": "Polavaram (ST)",
         "acNo": 186,
         "acType": "ST",
         "validVotes": 163243,
@@ -15004,8 +14950,8 @@
           }
         ]
       },
-      "Chintalapudi": {
-        "acName": "Chintalapudi",
+      "Chintalapudi (SC)": {
+        "acName": "Chintalapudi (SC)",
         "acNo": 187,
         "acType": "SC",
         "validVotes": 201581,
@@ -16218,10 +16164,10 @@
       "Anaparthy",
       "Rajanagaram",
       "Rajahmundry City",
-      "Rajamundry Rural",
+      "Rajahmundry Rural",
       "Kovvur",
       "Nidadavole",
-      "Gopalapuram"
+      "Gopalapuram (SC)"
     ],
     "acWiseResults": {
       "Anaparthy": {
@@ -16653,8 +16599,8 @@
           }
         ]
       },
-      "Rajamundry Rural": {
-        "acName": "Rajamundry Rural",
+      "Rajahmundry Rural": {
+        "acName": "Rajahmundry Rural",
         "acNo": 170,
         "acType": "GEN",
         "validVotes": 166703,
@@ -17082,8 +17028,8 @@
           }
         ]
       },
-      "Gopalapuram": {
-        "acName": "Gopalapuram",
+      "Gopalapuram (SC)": {
+        "acName": "Gopalapuram (SC)",
         "acNo": 185,
         "acType": "SC",
         "validVotes": 185668,
@@ -17985,7 +17931,7 @@
       "Narasapuram",
       "Bhimavaram",
       "Undi",
-      "TANUKU",
+      "Tanuku",
       "Tadepalligudem"
     ],
     "acWiseResults": {
@@ -18704,8 +18650,8 @@
           }
         ]
       },
-      "TANUKU": {
-        "acName": "TANUKU",
+      "Tanuku": {
+        "acName": "Tanuku",
         "acNo": 180,
         "acType": "GEN",
         "validVotes": 178106,
@@ -19603,7 +19549,7 @@
       "Pedana",
       "Machilipatnam",
       "Avanigadda",
-      "Pamarru",
+      "Pamarru (SC)",
       "Penamaluru"
     ],
     "acWiseResults": {
@@ -20187,8 +20133,8 @@
           }
         ]
       },
-      "Pamarru": {
-        "acName": "Pamarru",
+      "Pamarru (SC)": {
+        "acName": "Pamarru (SC)",
         "acNo": 196,
         "acType": "SC",
         "validVotes": 150959,
@@ -21552,17 +21498,17 @@
       }
     ],
     "assemblyConstituencies": [
-      "Tiruvuru",
-      "Vijaywada West",
-      "Vijayawada central",
+      "Tiruvuru (SC)",
+      "Vijayawada West",
+      "Vijayawada Central",
       "Vijayawada East",
       "Mylavaram",
-      "Nandigama",
+      "Nandigama (SC)",
       "Jaggayyapeta"
     ],
     "acWiseResults": {
-      "Tiruvuru": {
-        "acName": "Tiruvuru",
+      "Tiruvuru (SC)": {
+        "acName": "Tiruvuru (SC)",
         "acNo": 188,
         "acType": "SC",
         "validVotes": 162170,
@@ -21767,8 +21713,8 @@
           }
         ]
       },
-      "Vijaywada West": {
-        "acName": "Vijaywada West",
+      "Vijayawada West": {
+        "acName": "Vijayawada West",
         "acNo": 198,
         "acType": "GEN",
         "validVotes": 152850,
@@ -21973,8 +21919,8 @@
           }
         ]
       },
-      "Vijayawada central": {
-        "acName": "Vijayawada central",
+      "Vijayawada Central": {
+        "acName": "Vijayawada Central",
         "acNo": 199,
         "acType": "GEN",
         "validVotes": 168500,
@@ -22591,8 +22537,8 @@
           }
         ]
       },
-      "Nandigama": {
-        "acName": "Nandigama",
+      "Nandigama (SC)": {
+        "acName": "Nandigama (SC)",
         "acNo": 202,
         "acType": "SC",
         "validVotes": 155675,
@@ -23660,19 +23606,17 @@
       }
     ],
     "assemblyConstituencies": [
-      "Tadikonda",
+      "Tadikonda (SC)",
       "Mangalagiri",
       "Ponnur",
       "Tenali",
-      "Prathipadu",
+      "Prathipadu (SC)",
       "Guntur West",
-      "Guntur East",
-      "Tadikonda (SC)",
-      "Prathipadu (SC)"
+      "Guntur East"
     ],
     "acWiseResults": {
-      "Tadikonda": {
-        "acName": "Tadikonda",
+      "Tadikonda (SC)": {
+        "acName": "Tadikonda (SC)",
         "acNo": 205,
         "acType": "SC",
         "validVotes": 158928,
@@ -24162,8 +24106,8 @@
           }
         ]
       },
-      "Prathipadu": {
-        "acName": "Prathipadu",
+      "Prathipadu (SC)": {
+        "acName": "Prathipadu (SC)",
         "acNo": 212,
         "acType": "SC",
         "validVotes": 192500,
@@ -24524,40 +24468,6 @@
             "position": 13,
             "voteShare": 0.08,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Tadikonda (SC)": {
-        "acName": "Tadikonda (SC)",
-        "acNo": 205,
-        "acType": "SC",
-        "validVotes": 158928,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 728,
-            "position": 1,
-            "voteShare": 0.46,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Prathipadu (SC)": {
-        "acName": "Prathipadu (SC)",
-        "acNo": 212,
-        "acType": "SC",
-        "validVotes": 192500,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 834,
-            "position": 1,
-            "voteShare": 0.43,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -25317,18 +25227,17 @@
       }
     ],
     "assemblyConstituencies": [
-      "Vemuru",
+      "Vemuru (SC)",
       "Repalle",
       "Bapatla",
       "Parchur",
       "Addanki",
       "Chirala",
-      "Santhanuthalapadu",
-      "Vemuru (SC)"
+      "Santhanuthalapadu (SC)"
     ],
     "acWiseResults": {
-      "Vemuru": {
-        "acName": "Vemuru",
+      "Vemuru (SC)": {
+        "acName": "Vemuru (SC)",
         "acNo": 208,
         "acType": "SC",
         "validVotes": 158146,
@@ -26176,8 +26085,8 @@
           }
         ]
       },
-      "Santhanuthalapadu": {
-        "acName": "Santhanuthalapadu",
+      "Santhanuthalapadu (SC)": {
+        "acName": "Santhanuthalapadu (SC)",
         "acNo": 226,
         "acType": "SC",
         "validVotes": 166942,
@@ -26315,23 +26224,6 @@
             "position": 15,
             "voteShare": 0.03,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Vemuru (SC)": {
-        "acName": "Vemuru (SC)",
-        "acNo": 208,
-        "acType": "SC",
-        "validVotes": 158146,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 815,
-            "position": 1,
-            "voteShare": 0.52,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -27140,17 +27032,17 @@
       }
     ],
     "assemblyConstituencies": [
-      "Yerragondapalem",
+      "Yerragondapalem (SC)",
       "Darsi",
       "Ongole",
-      "Kondapi",
+      "Kondapi (SC)",
       "Markapuram",
       "Giddalur",
       "Kanigiri"
     ],
     "acWiseResults": {
-      "Yerragondapalem": {
-        "acName": "Yerragondapalem",
+      "Yerragondapalem (SC)": {
+        "acName": "Yerragondapalem (SC)",
         "acNo": 221,
         "acType": "SC",
         "validVotes": 157209,
@@ -27605,8 +27497,8 @@
           }
         ]
       },
-      "Kondapi": {
-        "acName": "Kondapi",
+      "Kondapi (SC)": {
+        "acName": "Kondapi (SC)",
         "acNo": 229,
         "acType": "SC",
         "validVotes": 182165,
@@ -28970,7 +28862,7 @@
     "assemblyConstituencies": [
       "Allagadda",
       "Srisailam",
-      "Nandikotkur",
+      "Nandikotkur (SC)",
       "Panyam",
       "Nandyal",
       "Banaganapalle",
@@ -29263,8 +29155,8 @@
           }
         ]
       },
-      "Nandikotkur": {
-        "acName": "Nandikotkur",
+      "Nandikotkur (SC)": {
+        "acName": "Nandikotkur (SC)",
         "acNo": 255,
         "acType": "SC",
         "validVotes": 159359,
@@ -32499,12 +32391,12 @@
     ],
     "assemblyConstituencies": [
       "Sarvepalli",
-      "Gudur",
-      "Sullurpeta",
+      "Gudur (SC)",
+      "Sullurpeta (SC)",
       "Venkatagiri",
       "Tirupati",
       "Srikalahasti",
-      "Satyavedu"
+      "Satyavedu (SC)"
     ],
     "acWiseResults": {
       "Sarvepalli": {
@@ -32650,8 +32542,8 @@
           }
         ]
       },
-      "Gudur": {
-        "acName": "Gudur",
+      "Gudur (SC)": {
+        "acName": "Gudur (SC)",
         "acNo": 239,
         "acType": "SC",
         "validVotes": 167463,
@@ -32793,8 +32685,8 @@
           }
         ]
       },
-      "Sullurpeta": {
-        "acName": "Sullurpeta",
+      "Sullurpeta (SC)": {
+        "acName": "Sullurpeta (SC)",
         "acNo": 240,
         "acType": "SC",
         "validVotes": 176782,
@@ -33365,8 +33257,8 @@
           }
         ]
       },
-      "Satyavedu": {
-        "acName": "Satyavedu",
+      "Satyavedu (SC)": {
+        "acName": "Satyavedu (SC)",
         "acNo": 288,
         "acType": "SC",
         "validVotes": 160645,
@@ -34263,7 +34155,7 @@
       }
     ],
     "assemblyConstituencies": [
-      "Badvel",
+      "Badvel (SC)",
       "Kadapa",
       "Pulivendla",
       "Kamalapuram",
@@ -34272,8 +34164,8 @@
       "Mydukur"
     ],
     "acWiseResults": {
-      "Badvel": {
-        "acName": "Badvel",
+      "Badvel (SC)": {
+        "acName": "Badvel (SC)",
         "acNo": 243,
         "acType": "SC",
         "validVotes": 154294,
@@ -35784,7 +35676,7 @@
     ],
     "assemblyConstituencies": [
       "Rajampet",
-      "Kodur",
+      "Kodur (SC)",
       "Rayachoti",
       "Thamballapalle",
       "Pileru",
@@ -35890,8 +35782,8 @@
           }
         ]
       },
-      "Kodur": {
-        "acName": "Kodur",
+      "Kodur (SC)": {
+        "acName": "Kodur (SC)",
         "acNo": 246,
         "acType": "SC",
         "validVotes": 136553,
@@ -37137,7 +37029,7 @@
     "assemblyConstituencies": [
       "Kurnool",
       "Pattikonda",
-      "Kodumur",
+      "Kodumur (SC)",
       "Yemmiganur",
       "Mantralayam",
       "Adoni",
@@ -37394,8 +37286,8 @@
           }
         ]
       },
-      "Kodumur": {
-        "acName": "Kodumur",
+      "Kodumur (SC)": {
+        "acName": "Kodumur (SC)",
         "acNo": 262,
         "acType": "SC",
         "validVotes": 151996,
@@ -38729,9 +38621,9 @@
       "Uravakonda",
       "Guntakal",
       "Tadipatri",
-      "Singanamala",
-      "Anantapur urban",
-      "KALYANDURG"
+      "Singanamala (SC)",
+      "Anantapur Urban",
+      "Kalyandurg"
     ],
     "acWiseResults": {
       "Rayadurg": {
@@ -39270,8 +39162,8 @@
           }
         ]
       },
-      "Singanamala": {
-        "acName": "Singanamala",
+      "Singanamala (SC)": {
+        "acName": "Singanamala (SC)",
         "acNo": 271,
         "acType": "SC",
         "validVotes": 176864,
@@ -39404,8 +39296,8 @@
           }
         ]
       },
-      "Anantapur urban": {
-        "acName": "Anantapur urban",
+      "Anantapur Urban": {
+        "acName": "Anantapur Urban",
         "acNo": 272,
         "acType": "GEN",
         "validVotes": 152943,
@@ -39538,8 +39430,8 @@
           }
         ]
       },
-      "KALYANDURG": {
-        "acName": "KALYANDURG",
+      "Kalyandurg": {
+        "acName": "Kalyandurg",
         "acNo": 273,
         "acType": "GEN",
         "validVotes": 167133,
@@ -40330,7 +40222,7 @@
     ],
     "assemblyConstituencies": [
       "Raptadu",
-      "Madakasira",
+      "Madakasira (SC)",
       "Hindupur",
       "Penukonda",
       "Puttaparthi",
@@ -40463,8 +40355,8 @@
           }
         ]
       },
-      "Madakasira": {
-        "acName": "Madakasira",
+      "Madakasira (SC)": {
+        "acName": "Madakasira (SC)",
         "acNo": 275,
         "acType": "SC",
         "validVotes": 157929,
@@ -41627,9 +41519,9 @@
     "assemblyConstituencies": [
       "Chandragiri",
       "Nagari",
-      "Gangadhara Nellore",
+      "Gangadhara Nellore (SC)",
       "Chittoor",
-      "Puthalapattu",
+      "Puthalapattu (SC)",
       "Palamaner",
       "Kuppam"
     ],
@@ -41794,8 +41686,8 @@
           }
         ]
       },
-      "Gangadhara Nellore": {
-        "acName": "Gangadhara Nellore",
+      "Gangadhara Nellore (SC)": {
+        "acName": "Gangadhara Nellore (SC)",
         "acNo": 290,
         "acType": "SC",
         "validVotes": 154591,
@@ -41954,8 +41846,8 @@
           }
         ]
       },
-      "Puthalapattu": {
-        "acName": "Puthalapattu",
+      "Puthalapattu (SC)": {
+        "acName": "Puthalapattu (SC)",
         "acNo": 292,
         "acType": "SC",
         "validVotes": 170065,

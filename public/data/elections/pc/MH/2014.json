@@ -454,16 +454,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "Akkalkuwa",
-      "Shahada",
-      "Nandurbar",
-      "Nawapur",
-      "Sakri",
-      "Shirpur"
+      "Akkalkuwa (ST)",
+      "Shahada (ST)",
+      "Nandurbar (ST)",
+      "Nawapur (ST)",
+      "Sakri (ST)",
+      "Shirpur (ST)"
     ],
     "acWiseResults": {
-      "Akkalkuwa": {
-        "acName": "Akkalkuwa",
+      "Akkalkuwa (ST)": {
+        "acName": "Akkalkuwa (ST)",
         "acNo": 1,
         "acType": "ST",
         "validVotes": 165052,
@@ -560,8 +560,8 @@
           }
         ]
       },
-      "Shahada": {
-        "acName": "Shahada",
+      "Shahada (ST)": {
+        "acName": "Shahada (ST)",
         "acNo": 2,
         "acType": "ST",
         "validVotes": 191242,
@@ -658,8 +658,8 @@
           }
         ]
       },
-      "Nandurbar": {
-        "acName": "Nandurbar",
+      "Nandurbar (ST)": {
+        "acName": "Nandurbar (ST)",
         "acNo": 3,
         "acType": "ST",
         "validVotes": 197221,
@@ -756,8 +756,8 @@
           }
         ]
       },
-      "Nawapur": {
-        "acName": "Nawapur",
+      "Nawapur (ST)": {
+        "acName": "Nawapur (ST)",
         "acNo": 4,
         "acType": "ST",
         "validVotes": 198813,
@@ -854,8 +854,8 @@
           }
         ]
       },
-      "Sakri": {
-        "acName": "Sakri",
+      "Sakri (ST)": {
+        "acName": "Sakri (ST)",
         "acNo": 5,
         "acType": "ST",
         "validVotes": 190567,
@@ -952,8 +952,8 @@
           }
         ]
       },
-      "Shirpur": {
-        "acName": "Shirpur",
+      "Shirpur (ST)": {
+        "acName": "Shirpur (ST)",
         "acNo": 9,
         "acType": "ST",
         "validVotes": 171489,
@@ -1953,9 +1953,9 @@
       "Dhule Rural",
       "Dhule City",
       "Sindkheda",
-      "Malegaon central",
-      "Malegaon outer",
-      "Baglan"
+      "Malegaon Central",
+      "Malegaon Outer",
+      "Baglan (ST)"
     ],
     "acWiseResults": {
       "Dhule Rural": {
@@ -2522,8 +2522,8 @@
           }
         ]
       },
-      "Malegaon central": {
-        "acName": "Malegaon central",
+      "Malegaon Central": {
+        "acName": "Malegaon Central",
         "acNo": 114,
         "acType": "GEN",
         "validVotes": 149501,
@@ -2710,8 +2710,8 @@
           }
         ]
       },
-      "Malegaon outer": {
-        "acName": "Malegaon outer",
+      "Malegaon Outer": {
+        "acName": "Malegaon Outer",
         "acNo": 115,
         "acType": "GEN",
         "validVotes": 165887,
@@ -2898,8 +2898,8 @@
           }
         ]
       },
-      "Baglan": {
-        "acName": "Baglan",
+      "Baglan (ST)": {
+        "acName": "Baglan (ST)",
         "acNo": 116,
         "acType": "ST",
         "validVotes": 152347,
@@ -4162,16 +4162,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "Chopda",
+      "Chopda (ST)",
       "Raver",
-      "Bhusawal",
+      "Bhusawal (SC)",
       "Jamner",
       "Muktainagar",
       "Malkapur"
     ],
     "acWiseResults": {
-      "Chopda": {
-        "acName": "Chopda",
+      "Chopda (ST)": {
+        "acName": "Chopda (ST)",
         "acNo": 10,
         "acType": "ST",
         "validVotes": 176578,
@@ -4618,8 +4618,8 @@
           }
         ]
       },
-      "Bhusawal": {
-        "acName": "Bhusawal",
+      "Bhusawal (SC)": {
+        "acName": "Bhusawal (SC)",
         "acNo": 12,
         "acType": "SC",
         "validVotes": 146899,
@@ -8463,9 +8463,8 @@
       "Buldhana",
       "Chikhli",
       "Sindkhed Raja",
-      "Mehkar",
+      "Mehkar (SC)",
       "Khamgaon",
-      "Jalgaon",
       "Jalgaon (Jamod)"
     ],
     "acWiseResults": {
@@ -8979,8 +8978,8 @@
           }
         ]
       },
-      "Mehkar": {
-        "acName": "Mehkar",
+      "Mehkar (SC)": {
+        "acName": "Mehkar (SC)",
         "acNo": 25,
         "acType": "SC",
         "validVotes": 173412,
@@ -9319,8 +9318,8 @@
           }
         ]
       },
-      "Jalgaon": {
-        "acName": "Jalgaon",
+      "Jalgaon (Jamod)": {
+        "acName": "Jalgaon (Jamod)",
         "acNo": 27,
         "acType": "GEN",
         "validVotes": 166618,
@@ -9476,23 +9475,6 @@
             "position": 17,
             "voteShare": 0.1,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Jalgaon (Jamod)": {
-        "acName": "Jalgaon (Jamod)",
-        "acNo": 27,
-        "acType": "GEN",
-        "validVotes": 166618,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 1660,
-            "position": 1,
-            "voteShare": 1,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -9873,7 +9855,7 @@
       "Balapur",
       "Akola West",
       "Akola East",
-      "Murtizapur",
+      "Murtizapur (SC)",
       "Risod"
     ],
     "acWiseResults": {
@@ -10197,8 +10179,8 @@
           }
         ]
       },
-      "Murtizapur": {
-        "acName": "Murtizapur",
+      "Murtizapur (SC)": {
+        "acName": "Murtizapur (SC)",
         "acNo": 32,
         "acType": "SC",
         "validVotes": 161365,
@@ -11565,16 +11547,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "Washim",
+      "Washim (SC)",
       "Karanja",
-      "Ralegaon",
+      "Ralegaon (ST)",
       "Yavatmal",
       "Digras",
       "Pusad"
     ],
     "acWiseResults": {
-      "Washim": {
-        "acName": "Washim",
+      "Washim (SC)": {
+        "acName": "Washim (SC)",
         "acNo": 34,
         "acType": "SC",
         "validVotes": 183150,
@@ -12075,8 +12057,8 @@
           }
         ]
       },
-      "Ralegaon": {
-        "acName": "Ralegaon",
+      "Ralegaon (ST)": {
+        "acName": "Ralegaon (ST)",
         "acNo": 77,
         "acType": "ST",
         "validVotes": 172633,
@@ -14067,17 +14049,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "Dhamamgaon railway",
+      "Dhamangaon Railway",
       "Morshi",
       "Arvi",
       "Deoli",
       "Hinganghat",
-      "Wardha",
-      "Dhamangaon railway"
+      "Wardha"
     ],
     "acWiseResults": {
-      "Dhamamgaon railway": {
-        "acName": "Dhamamgaon railway",
+      "Dhamangaon Railway": {
+        "acName": "Dhamangaon Railway",
         "acNo": 36,
         "acType": "GEN",
         "validVotes": 182966,
@@ -15302,23 +15283,6 @@
             "depositLost": true
           }
         ]
-      },
-      "Dhamangaon railway": {
-        "acName": "Dhamangaon railway",
-        "acNo": 36,
-        "acType": "GEN",
-        "validVotes": 182966,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 634,
-            "position": 1,
-            "voteShare": 0.35,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
       }
     },
     "schemaId": "MH-08",
@@ -16223,8 +16187,8 @@
       "Badnera",
       "Amravati",
       "Teosa",
-      "Daryapur",
-      "Melghat",
+      "Daryapur (SC)",
+      "Melghat (ST)",
       "Achalpur"
     ],
     "acWiseResults": {
@@ -16792,8 +16756,8 @@
           }
         ]
       },
-      "Daryapur": {
-        "acName": "Daryapur",
+      "Daryapur (SC)": {
+        "acName": "Daryapur (SC)",
         "acNo": 40,
         "acType": "SC",
         "validVotes": 181563,
@@ -16980,8 +16944,8 @@
           }
         ]
       },
-      "Melghat": {
-        "acName": "Melghat",
+      "Melghat (ST)": {
+        "acName": "Melghat (ST)",
         "acNo": 41,
         "acType": "ST",
         "validVotes": 169856,
@@ -18435,7 +18399,7 @@
       "Katol",
       "Savner",
       "Hingna",
-      "Umred",
+      "Umred (SC)",
       "Kamthi",
       "Ramtek"
     ],
@@ -19112,8 +19076,8 @@
           }
         ]
       },
-      "Umred": {
-        "acName": "Umred",
+      "Umred (SC)": {
+        "acName": "Umred (SC)",
         "acNo": 51,
         "acType": "SC",
         "validVotes": 177646,
@@ -21303,7 +21267,7 @@
       "Nagpur South West",
       "Nagpur South",
       "Nagpur East",
-      "Nagpur central",
+      "Nagpur Central",
       "Nagpur West",
       "Nagpur North"
     ],
@@ -22250,8 +22214,8 @@
           }
         ]
       },
-      "Nagpur central": {
-        "acName": "Nagpur central",
+      "Nagpur Central": {
+        "acName": "Nagpur Central",
         "acNo": 55,
         "acType": "GEN",
         "validVotes": 167972,
@@ -24401,9 +24365,9 @@
     ],
     "assemblyConstituencies": [
       "Tumsar",
-      "Bhandara",
+      "Bhandara (SC)",
       "Sakoli",
-      "Arjuni-morgaon",
+      "Arjuni Morgaon(SC)",
       "Tirora",
       "Gondiya"
     ],
@@ -24659,8 +24623,8 @@
           }
         ]
       },
-      "Bhandara": {
-        "acName": "Bhandara",
+      "Bhandara (SC)": {
+        "acName": "Bhandara (SC)",
         "acNo": 61,
         "acType": "SC",
         "validVotes": 234585,
@@ -25161,8 +25125,8 @@
           }
         ]
       },
-      "Arjuni-morgaon": {
-        "acName": "Arjuni-morgaon",
+      "Arjuni Morgaon(SC)": {
+        "acName": "Arjuni Morgaon(SC)",
         "acNo": 63,
         "acType": "SC",
         "validVotes": 178616,
@@ -26462,16 +26426,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "Amgaon",
-      "Armori",
-      "Gadchiroli",
-      "Aheri",
+      "Amgaon (ST)",
+      "Armori (ST)",
+      "Gadchiroli (ST)",
+      "Aheri (ST)",
       "Brahmapuri",
       "Chimur"
     ],
     "acWiseResults": {
-      "Amgaon": {
-        "acName": "Amgaon",
+      "Amgaon (ST)": {
+        "acName": "Amgaon (ST)",
         "acNo": 66,
         "acType": "ST",
         "validVotes": 164683,
@@ -26586,8 +26550,8 @@
           }
         ]
       },
-      "Armori": {
-        "acName": "Armori",
+      "Armori (ST)": {
+        "acName": "Armori (ST)",
         "acNo": 67,
         "acType": "ST",
         "validVotes": 168562,
@@ -26702,8 +26666,8 @@
           }
         ]
       },
-      "Gadchiroli": {
-        "acName": "Gadchiroli",
+      "Gadchiroli (ST)": {
+        "acName": "Gadchiroli (ST)",
         "acNo": 68,
         "acType": "ST",
         "validVotes": 189433,
@@ -26818,8 +26782,8 @@
           }
         ]
       },
-      "Aheri": {
-        "acName": "Aheri",
+      "Aheri (ST)": {
+        "acName": "Aheri (ST)",
         "acNo": 69,
         "acType": "ST",
         "validVotes": 141001,
@@ -28023,11 +27987,11 @@
     ],
     "assemblyConstituencies": [
       "Rajura",
-      "Chandrapur",
+      "Chandrapur (SC)",
       "Ballarpur",
       "Warora",
       "Wani",
-      "Arni"
+      "Arni (ST)"
     ],
     "acWiseResults": {
       "Rajura": {
@@ -28209,8 +28173,8 @@
           }
         ]
       },
-      "Chandrapur": {
-        "acName": "Chandrapur",
+      "Chandrapur (SC)": {
+        "acName": "Chandrapur (SC)",
         "acNo": 71,
         "acType": "SC",
         "validVotes": 190414,
@@ -28925,8 +28889,8 @@
           }
         ]
       },
-      "Arni": {
-        "acName": "Arni",
+      "Arni (ST)": {
+        "acName": "Arni (ST)",
         "acNo": 80,
         "acType": "ST",
         "validVotes": 187184,
@@ -30180,7 +30144,7 @@
       }
     ],
     "assemblyConstituencies": [
-      "Umarkhed",
+      "Umarkhed (SC)",
       "Kinwat",
       "Hadgaon",
       "Basmath",
@@ -30188,8 +30152,8 @@
       "Hingoli"
     ],
     "acWiseResults": {
-      "Umarkhed": {
-        "acName": "Umarkhed",
+      "Umarkhed (SC)": {
+        "acName": "Umarkhed (SC)",
         "acNo": 82,
         "acType": "SC",
         "validVotes": 180634,
@@ -32612,7 +32576,7 @@
       "Nanded North",
       "Nanded South",
       "Naigaon",
-      "Deglur",
+      "Deglur (SC)",
       "Mukhed"
     ],
     "acWiseResults": {
@@ -33512,8 +33476,8 @@
           }
         ]
       },
-      "Deglur": {
-        "acName": "Deglur",
+      "Deglur (SC)": {
+        "acName": "Deglur (SC)",
         "acNo": 90,
         "acType": "SC",
         "validVotes": 167658,
@@ -34820,7 +34784,7 @@
       "Latur Rural",
       "Latur City",
       "Ahmadpur",
-      "Udgir",
+      "Udgir (SC)",
       "Nilanga"
     ],
     "acWiseResults": {
@@ -35540,8 +35504,8 @@
           }
         ]
       },
-      "Udgir": {
-        "acName": "Udgir",
+      "Udgir (SC)": {
+        "acName": "Udgir (SC)",
         "acNo": 237,
         "acType": "SC",
         "validVotes": 164712,
@@ -38771,7 +38735,7 @@
     ],
     "assemblyConstituencies": [
       "Jalna",
-      "Badnapur",
+      "Badnapur (SC)",
       "Bhokardan",
       "Sillod",
       "Phulambri",
@@ -38993,8 +38957,8 @@
           }
         ]
       },
-      "Badnapur": {
-        "acName": "Badnapur",
+      "Badnapur (SC)": {
+        "acName": "Badnapur (SC)",
         "acNo": 102,
         "acType": "SC",
         "validVotes": 180109,
@@ -41321,8 +41285,8 @@
     ],
     "assemblyConstituencies": [
       "Kannad",
-      "Aurangabad central",
-      "Aurangabad West",
+      "Aurangabad Central",
+      "AurangabadWest(SC)",
       "Aurangabad East",
       "Gangapur",
       "Vaijapur"
@@ -41588,8 +41552,8 @@
           }
         ]
       },
-      "Aurangabad central": {
-        "acName": "Aurangabad central",
+      "Aurangabad Central": {
+        "acName": "Aurangabad Central",
         "acNo": 107,
         "acType": "GEN",
         "validVotes": 164677,
@@ -41848,8 +41812,8 @@
           }
         ]
       },
-      "Aurangabad West": {
-        "acName": "Aurangabad West",
+      "AurangabadWest(SC)": {
+        "acName": "AurangabadWest(SC)",
         "acNo": 108,
         "acType": "SC",
         "validVotes": 170488,
@@ -43393,11 +43357,11 @@
     ],
     "assemblyConstituencies": [
       "Nandgaon",
-      "Kalwan",
+      "Kalwan (ST)",
       "Chandvad",
       "Yevla",
       "Niphad",
-      "Dindori"
+      "Dindori (ST)"
     ],
     "acWiseResults": {
       "Nandgaon": {
@@ -43507,8 +43471,8 @@
           }
         ]
       },
-      "Kalwan": {
-        "acName": "Kalwan",
+      "Kalwan (ST)": {
+        "acName": "Kalwan (ST)",
         "acNo": 117,
         "acType": "ST",
         "validVotes": 169321,
@@ -43935,8 +43899,8 @@
           }
         ]
       },
-      "Dindori": {
-        "acName": "Dindori",
+      "Dindori (ST)": {
+        "acName": "Dindori (ST)",
         "acNo": 122,
         "acType": "ST",
         "validVotes": 181520,
@@ -44768,10 +44732,10 @@
     "assemblyConstituencies": [
       "Sinnar",
       "Nashik East",
-      "Nashik central",
+      "Nashik Central",
       "Nashik West",
-      "Devlali",
-      "Igatpuri"
+      "Deolali (SC)",
+      "Igatpuri (ST)"
     ],
     "acWiseResults": {
       "Sinnar": {
@@ -45078,8 +45042,8 @@
           }
         ]
       },
-      "Nashik central": {
-        "acName": "Nashik central",
+      "Nashik Central": {
+        "acName": "Nashik Central",
         "acNo": 124,
         "acType": "GEN",
         "validVotes": 148954,
@@ -45382,8 +45346,8 @@
           }
         ]
       },
-      "Devlali": {
-        "acName": "Devlali",
+      "Deolali (SC)": {
+        "acName": "Deolali (SC)",
         "acNo": 126,
         "acType": "SC",
         "validVotes": 145377,
@@ -45534,8 +45498,8 @@
           }
         ]
       },
-      "Igatpuri": {
-        "acName": "Igatpuri",
+      "Igatpuri (ST)": {
+        "acName": "Igatpuri (ST)",
         "acNo": 127,
         "acType": "ST",
         "validVotes": 159029,
@@ -46190,16 +46154,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "Dahanu",
-      "Vikramgad",
-      "Palghar",
-      "Boisar",
+      "Dahanu (ST)",
+      "Vikramgad (ST)",
+      "Palghar (ST)",
+      "Boisar (ST)",
       "Nalasopara",
       "Vasai"
     ],
     "acWiseResults": {
-      "Dahanu": {
-        "acName": "Dahanu",
+      "Dahanu (ST)": {
+        "acName": "Dahanu (ST)",
         "acNo": 128,
         "acType": "ST",
         "validVotes": 157588,
@@ -46305,8 +46269,8 @@
           }
         ]
       },
-      "Vikramgad": {
-        "acName": "Vikramgad",
+      "Vikramgad (ST)": {
+        "acName": "Vikramgad (ST)",
         "acNo": 129,
         "acType": "ST",
         "validVotes": 155736,
@@ -46412,8 +46376,8 @@
           }
         ]
       },
-      "Palghar": {
-        "acName": "Palghar",
+      "Palghar (ST)": {
+        "acName": "Palghar (ST)",
         "acNo": 130,
         "acType": "ST",
         "validVotes": 153372,
@@ -46519,8 +46483,8 @@
           }
         ]
       },
-      "Boisar": {
-        "acName": "Boisar",
+      "Boisar (ST)": {
+        "acName": "Boisar (ST)",
         "acNo": 131,
         "acType": "ST",
         "validVotes": 161587,
@@ -47476,17 +47440,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "Bhiwandi Rural",
-      "shahapur",
+      "Bhiwandi Rural(ST)",
+      "Shahapur (ST)",
       "Bhiwandi West",
       "Bhiwandi East",
       "Kalyan West",
-      "Murbad",
-      "Bhiwandi Rural (S.T.)"
+      "Murbad"
     ],
     "acWiseResults": {
-      "Bhiwandi Rural": {
-        "acName": "Bhiwandi Rural",
+      "Bhiwandi Rural(ST)": {
+        "acName": "Bhiwandi Rural(ST)",
         "acNo": 134,
         "acType": "S",
         "validVotes": 167748,
@@ -47610,8 +47573,8 @@
           }
         ]
       },
-      "shahapur": {
-        "acName": "shahapur",
+      "Shahapur (ST)": {
+        "acName": "Shahapur (ST)",
         "acNo": 135,
         "acType": "ST",
         "validVotes": 142834,
@@ -48276,23 +48239,6 @@
             "position": 14,
             "voteShare": 0.19,
             "sex": "F",
-            "depositLost": true
-          }
-        ]
-      },
-      "Bhiwandi Rural (S.T.)": {
-        "acName": "Bhiwandi Rural (S.T.)",
-        "acNo": 134,
-        "acType": "S",
-        "validVotes": 167748,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 1788,
-            "position": 1,
-            "voteShare": 1.07,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -49153,7 +49099,7 @@
       }
     ],
     "assemblyConstituencies": [
-      "Ambernath",
+      "Ambernath (SC)",
       "Ulhasnagar",
       "Kalyan East",
       "Dombivali",
@@ -49161,8 +49107,8 @@
       "Mumbra-Kalwa"
     ],
     "acWiseResults": {
-      "Ambernath": {
-        "acName": "Ambernath",
+      "Ambernath (SC)": {
+        "acName": "Ambernath (SC)",
         "acNo": 140,
         "acType": "SC",
         "validVotes": 139974,
@@ -51444,7 +51390,7 @@
     ],
     "assemblyConstituencies": [
       "Mira Bhayandar",
-      "Ovala - Majiwada",
+      "Ovala ?Majiwada",
       "Kopri-Pachpakhadi",
       "Thane",
       "Airoli",
@@ -51702,8 +51648,8 @@
           }
         ]
       },
-      "Ovala - Majiwada": {
-        "acName": "Ovala - Majiwada",
+      "Ovala ?Majiwada": {
+        "acName": "Ovala ?Majiwada",
         "acNo": 146,
         "acType": "GEN",
         "validVotes": 167540,
@@ -56094,7 +56040,7 @@
       "Bhandup West",
       "Ghatkopar West",
       "Ghatkopar East",
-      "Mankhurd shivaji Nagar"
+      "Mankhurd Shivaji Nagar"
     ],
     "acWiseResults": {
       "Mulund": {
@@ -57037,8 +56983,8 @@
           }
         ]
       },
-      "Mankhurd shivaji Nagar": {
-        "acName": "Mankhurd shivaji Nagar",
+      "Mankhurd Shivaji Nagar": {
+        "acName": "Mankhurd Shivaji Nagar",
         "acNo": 171,
         "acType": "GEN",
         "validVotes": 122645,
@@ -59759,16 +59705,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "Vile parle",
+      "Vile Parle",
       "Chandivali",
-      "Kurla",
+      "Kurla (SC)",
       "Kalina",
       "Vandre East",
       "Vandre West"
     ],
     "acWiseResults": {
-      "Vile parle": {
-        "acName": "Vile parle",
+      "Vile Parle": {
+        "acName": "Vile Parle",
         "acNo": 167,
         "acType": "GEN",
         "validVotes": 151980,
@@ -60179,8 +60125,8 @@
           }
         ]
       },
-      "Kurla": {
-        "acName": "Kurla",
+      "Kurla (SC)": {
+        "acName": "Kurla (SC)",
         "acNo": 174,
         "acType": "SC",
         "validVotes": 129540,
@@ -61993,8 +61939,8 @@
     "assemblyConstituencies": [
       "Anushakti Nagar",
       "Chembur",
-      "Dharavi",
-      "Sion koliwada",
+      "Dharavi (SC)",
+      "Sion Koliwada",
       "Wadala",
       "Mahim"
     ],
@@ -62411,8 +62357,8 @@
           }
         ]
       },
-      "Dharavi": {
-        "acName": "Dharavi",
+      "Dharavi (SC)": {
+        "acName": "Dharavi (SC)",
         "acNo": 178,
         "acType": "SC",
         "validVotes": 115925,
@@ -62617,8 +62563,8 @@
           }
         ]
       },
-      "Sion koliwada": {
-        "acName": "Sion koliwada",
+      "Sion Koliwada": {
+        "acName": "Sion Koliwada",
         "acNo": 179,
         "acType": "GEN",
         "validVotes": 127818,
@@ -63302,7 +63248,7 @@
       "Worli",
       "Shivadi",
       "Byculla",
-      "Malabar hill",
+      "Malabar Hill",
       "Mumbadevi",
       "Colaba"
     ],
@@ -63358,8 +63304,8 @@
           }
         ]
       },
-      "Malabar hill": {
-        "acName": "Malabar hill",
+      "Malabar Hill": {
+        "acName": "Malabar Hill",
         "acNo": 185,
         "acType": "GEN",
         "validVotes": 144834,
@@ -64314,7 +64260,7 @@
       "Uran",
       "Maval",
       "Chinchwad",
-      "Pimpri"
+      "Pimpri (SC)"
     ],
     "acWiseResults": {
       "Panvel": {
@@ -65257,8 +65203,8 @@
           }
         ]
       },
-      "Pimpri": {
-        "acName": "Pimpri",
+      "Pimpri (SC)": {
+        "acName": "Pimpri (SC)",
         "acNo": 206,
         "acType": "SC",
         "validVotes": 179461,
@@ -67281,7 +67227,7 @@
     "assemblyConstituencies": [
       "Junnar",
       "Ambegaon",
-      "Khed alandi",
+      "Khed Alandi",
       "Shirur",
       "Bhosari",
       "Hadapsar"
@@ -67573,8 +67519,8 @@
           }
         ]
       },
-      "Khed alandi": {
-        "acName": "Khed alandi",
+      "Khed Alandi": {
+        "acName": "Khed Alandi",
         "acNo": 197,
         "acType": "GEN",
         "validVotes": 175022,
@@ -70541,16 +70487,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "VADGAON SHERI",
+      "Vadgaon Sheri",
       "Shivajinagar",
       "Kothrud",
       "Parvati",
-      "Pune cantonment",
-      "Kasba peth"
+      "Pune Cantonment (SC)",
+      "Kasba Peth"
     ],
     "acWiseResults": {
-      "VADGAON SHERI": {
-        "acName": "VADGAON SHERI",
+      "Vadgaon Sheri": {
+        "acName": "Vadgaon Sheri",
         "acNo": 208,
         "acType": "GEN",
         "validVotes": 189587,
@@ -71661,8 +71607,8 @@
           }
         ]
       },
-      "Pune cantonment": {
-        "acName": "Pune cantonment",
+      "Pune Cantonment (SC)": {
+        "acName": "Pune Cantonment (SC)",
         "acNo": 214,
         "acType": "SC",
         "validVotes": 140415,
@@ -71939,8 +71885,8 @@
           }
         ]
       },
-      "Kasba peth": {
-        "acName": "Kasba peth",
+      "Kasba Peth": {
+        "acName": "Kasba Peth",
         "acNo": 215,
         "acType": "GEN",
         "validVotes": 163198,
@@ -72897,16 +72843,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "Akole",
+      "Akole (ST)",
       "Sangamner",
       "Shirdi",
       "Kopargaon",
-      "Shrirampur",
+      "Shrirampur(SC)",
       "Nevasa"
     ],
     "acWiseResults": {
-      "Akole": {
-        "acName": "Akole",
+      "Akole (ST)": {
+        "acName": "Akole (ST)",
         "acNo": 216,
         "acType": "ST",
         "validVotes": 139223,
@@ -73477,8 +73423,8 @@
           }
         ]
       },
-      "Shrirampur": {
-        "acName": "Shrirampur",
+      "Shrirampur(SC)": {
+        "acName": "Shrirampur(SC)",
         "acNo": 220,
         "acType": "SC",
         "validVotes": 171816,
@@ -74402,9 +74348,9 @@
       "Shevgaon",
       "Rahuri",
       "Parner",
-      "Ahmednagar City",
+      "Ahmednagar",
       "Shrigonda",
-      "Karjat jamkhed"
+      "Karjat Jamkhed"
     ],
     "acWiseResults": {
       "Shevgaon": {
@@ -74809,8 +74755,8 @@
           }
         ]
       },
-      "Ahmednagar City": {
-        "acName": "Ahmednagar City",
+      "Ahmednagar": {
+        "acName": "Ahmednagar",
         "acNo": 225,
         "acType": "GEN",
         "validVotes": 146921,
@@ -75077,8 +75023,8 @@
           }
         ]
       },
-      "Karjat jamkhed": {
-        "acName": "Karjat jamkhed",
+      "Karjat Jamkhed": {
+        "acName": "Karjat Jamkhed",
         "acNo": 227,
         "acType": "GEN",
         "validVotes": 183182,
@@ -76996,7 +76942,7 @@
       "Majalgaon",
       "Beed",
       "Ashti",
-      "Kaij",
+      "Kaij (SC)",
       "Parli"
     ],
     "acWiseResults": {
@@ -78472,8 +78418,8 @@
           }
         ]
       },
-      "Kaij": {
-        "acName": "Kaij",
+      "Kaij (SC)": {
+        "acName": "Kaij (SC)",
         "acNo": 232,
         "acType": "SC",
         "validVotes": 214414,
@@ -80447,7 +80393,7 @@
     ],
     "assemblyConstituencies": [
       "Ausa",
-      "Umarga",
+      "Umarga (SC)",
       "Tuljapur",
       "Osmanabad",
       "Paranda",
@@ -80705,8 +80651,8 @@
           }
         ]
       },
-      "Umarga": {
-        "acName": "Umarga",
+      "Umarga (SC)": {
+        "acName": "Umarga (SC)",
         "acNo": 240,
         "acType": "SC",
         "validVotes": 173778,
@@ -83082,9 +83028,9 @@
     "assemblyConstituencies": [
       "Karmala",
       "Madha",
-      "Sangola",
-      "Malshiras",
-      "Phaltan",
+      "Sangole",
+      "Malshiras (SC)",
+      "Phaltan (SC)",
       "Man"
     ],
     "acWiseResults": {
@@ -83554,8 +83500,8 @@
           }
         ]
       },
-      "Sangola": {
-        "acName": "Sangola",
+      "Sangole": {
+        "acName": "Sangole",
         "acNo": 253,
         "acType": "GEN",
         "validVotes": 168035,
@@ -83787,8 +83733,8 @@
           }
         ]
       },
-      "Malshiras": {
-        "acName": "Malshiras",
+      "Malshiras (SC)": {
+        "acName": "Malshiras (SC)",
         "acNo": 254,
         "acType": "SC",
         "validVotes": 199882,
@@ -84020,8 +83966,8 @@
           }
         ]
       },
-      "Phaltan": {
-        "acName": "Phaltan",
+      "Phaltan (SC)": {
+        "acName": "Phaltan (SC)",
         "acNo": 255,
         "acType": "SC",
         "validVotes": 178561,
@@ -85254,16 +85200,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "Mohol",
+      "Mohol (SC)",
       "Solapur City North",
-      "Solapur City central",
+      "Solapur City Central",
       "Akkalkot",
       "Solapur South",
       "Pandharpur"
     ],
     "acWiseResults": {
-      "Mohol": {
-        "acName": "Mohol",
+      "Mohol (SC)": {
+        "acName": "Mohol (SC)",
         "acNo": 247,
         "acType": "SC",
         "validVotes": 175578,
@@ -85584,8 +85530,8 @@
           }
         ]
       },
-      "Solapur City central": {
-        "acName": "Solapur City central",
+      "Solapur City Central": {
+        "acName": "Solapur City Central",
         "acNo": 249,
         "acType": "GEN",
         "validVotes": 140931,
@@ -91601,7 +91547,7 @@
     ],
     "assemblyConstituencies": [
       "Shahuwadi",
-      "Hatkanangle",
+      "Hatkanangle(SC)",
       "Ichalkaranji",
       "Shirol",
       "Islampur",
@@ -91742,8 +91688,8 @@
           }
         ]
       },
-      "Hatkanangle": {
-        "acName": "Hatkanangle",
+      "Hatkanangle(SC)": {
+        "acName": "Hatkanangle(SC)",
         "acNo": 278,
         "acType": "SC",
         "validVotes": 224642,
@@ -93224,16 +93170,16 @@
       }
     ],
     "assemblyConstituencies": [
-      "Miraj",
+      "Miraj (SC)",
       "Sangli",
       "Palus-Kadegaon",
       "Khanapur",
       "Tasgaon-Kavathe Mahankal",
-      "Jath"
+      "Jat"
     ],
     "acWiseResults": {
-      "Miraj": {
-        "acName": "Miraj",
+      "Miraj (SC)": {
+        "acName": "Miraj (SC)",
         "acNo": 281,
         "acType": "SC",
         "validVotes": 184791,
@@ -94082,8 +94028,8 @@
           }
         ]
       },
-      "Jath": {
-        "acName": "Jath",
+      "Jat": {
+        "acName": "Jat",
         "acNo": 288,
         "acType": "GEN",
         "validVotes": 142951,

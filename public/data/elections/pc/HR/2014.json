@@ -902,15 +902,12 @@
       "Kalka",
       "Panchkula",
       "Naraingarh",
-      "Ambala Cantt",
-      "Ambala City",
-      "Mulana",
-      "Sadhaura",
-      "Jagadhri",
-      "Yamunanagar",
       "Ambala Cantt.",
+      "Ambala City",
       "Mulana (SC)",
-      "Sadhaura (SC)"
+      "Sadhaura (SC)",
+      "Jagadhri",
+      "Yamunanagar"
     ],
     "acWiseResults": {
       "Kalka": {
@@ -1342,8 +1339,8 @@
           }
         ]
       },
-      "Ambala Cantt": {
-        "acName": "Ambala Cantt",
+      "Ambala Cantt.": {
+        "acName": "Ambala Cantt.",
         "acNo": 4,
         "acType": "GEN",
         "validVotes": 113923,
@@ -1619,8 +1616,8 @@
           }
         ]
       },
-      "Mulana": {
-        "acName": "Mulana",
+      "Mulana (SC)": {
+        "acName": "Mulana (SC)",
         "acNo": 6,
         "acType": "SC",
         "validVotes": 141505,
@@ -1753,8 +1750,8 @@
           }
         ]
       },
-      "Sadhaura": {
-        "acName": "Sadhaura",
+      "Sadhaura (SC)": {
+        "acName": "Sadhaura (SC)",
         "acNo": 7,
         "acType": "SC",
         "validVotes": 151477,
@@ -2169,57 +2166,6 @@
             "position": 15,
             "voteShare": 0.06,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Ambala Cantt.": {
-        "acName": "Ambala Cantt.",
-        "acNo": 4,
-        "acType": "GEN",
-        "validVotes": 113923,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 976,
-            "position": 1,
-            "voteShare": 0.86,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Mulana (SC)": {
-        "acName": "Mulana (SC)",
-        "acNo": 6,
-        "acType": "SC",
-        "validVotes": 141505,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 681,
-            "position": 1,
-            "voteShare": 0.48,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Sadhaura (SC)": {
-        "acName": "Sadhaura (SC)",
-        "acNo": 7,
-        "acType": "SC",
-        "validVotes": 151477,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 901,
-            "position": 1,
-            "voteShare": 0.59,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -3589,15 +3535,13 @@
     "assemblyConstituencies": [
       "Radaur",
       "Ladwa",
-      "Shahbad",
+      "Shahbad (SC)",
       "Thanesar",
       "Pehowa",
-      "Guhla",
+      "Guhla (SC)",
       "Kalayat",
       "Kaithal",
-      "Pundri",
-      "Shahbad (SC)",
-      "Guhla (SC)"
+      "Pundri"
     ],
     "acWiseResults": {
       "Radaur": {
@@ -4012,8 +3956,8 @@
           }
         ]
       },
-      "Shahbad": {
-        "acName": "Shahbad",
+      "Shahbad (SC)": {
+        "acName": "Shahbad (SC)",
         "acNo": 12,
         "acType": "SC",
         "validVotes": 115208,
@@ -4621,8 +4565,8 @@
           }
         ]
       },
-      "Guhla": {
-        "acName": "Guhla",
+      "Guhla (SC)": {
+        "acName": "Guhla (SC)",
         "acNo": 15,
         "acType": "SC",
         "validVotes": 120638,
@@ -5432,40 +5376,6 @@
             "position": 22,
             "voteShare": 0.06,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Shahbad (SC)": {
-        "acName": "Shahbad (SC)",
-        "acNo": 12,
-        "acType": "SC",
-        "validVotes": 115208,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 209,
-            "position": 1,
-            "voteShare": 0.18,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Guhla (SC)": {
-        "acName": "Guhla (SC)",
-        "acNo": 15,
-        "acType": "SC",
-        "validVotes": 120638,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 303,
-            "position": 1,
-            "voteShare": 0.25,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -6906,21 +6816,19 @@
       }
     ],
     "assemblyConstituencies": [
-      "Nilokheri",
+      "Nilokheri(SC)",
       "Indri",
       "Karnal",
       "Gharaunda",
       "Assandh",
       "Panipat Rural",
       "Panipat City",
-      "Israna",
-      "Samalkha",
-      "Nilokheri (SC)",
-      "Israna (SC)"
+      "Israna (SC)",
+      "Samalkha"
     ],
     "acWiseResults": {
-      "Nilokheri": {
-        "acName": "Nilokheri",
+      "Nilokheri(SC)": {
+        "acName": "Nilokheri(SC)",
         "acNo": 19,
         "acType": "SC",
         "validVotes": 135374,
@@ -8478,8 +8386,8 @@
           }
         ]
       },
-      "Israna": {
-        "acName": "Israna",
+      "Israna (SC)": {
+        "acName": "Israna (SC)",
         "acNo": 26,
         "acType": "SC",
         "validVotes": 115811,
@@ -8913,40 +8821,6 @@
             "position": 24,
             "voteShare": 0.04,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Nilokheri (SC)": {
-        "acName": "Nilokheri (SC)",
-        "acNo": 19,
-        "acType": "SC",
-        "validVotes": 135374,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 256,
-            "position": 1,
-            "voteShare": 0.19,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Israna (SC)": {
-        "acName": "Israna (SC)",
-        "acNo": 26,
-        "acType": "SC",
-        "validVotes": 115811,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 257,
-            "position": 1,
-            "voteShare": 0.22,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -10375,14 +10249,13 @@
     "assemblyConstituencies": [
       "Ganaur",
       "Rai",
-      "Kharkhauda",
+      "Kharkhauda (SC)",
       "Sonipat",
       "Gohana",
       "Baroda",
       "Julana",
       "Safidon",
-      "Jind",
-      "Kharkhauda (SC)"
+      "Jind"
     ],
     "acWiseResults": {
       "Ganaur": {
@@ -10815,8 +10688,8 @@
           }
         ]
       },
-      "Kharkhauda": {
-        "acName": "Kharkhauda",
+      "Kharkhauda (SC)": {
+        "acName": "Kharkhauda (SC)",
         "acNo": 30,
         "acType": "SC",
         "validVotes": 93951,
@@ -12307,23 +12180,6 @@
             "position": 23,
             "voteShare": 0.03,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Kharkhauda (SC)": {
-        "acName": "Kharkhauda (SC)",
-        "acNo": 30,
-        "acType": "SC",
-        "validVotes": 93951,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 182,
-            "position": 1,
-            "voteShare": 0.19,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -14826,21 +14682,19 @@
       }
     ],
     "assemblyConstituencies": [
-      "Uchana kalan",
+      "Uchana Kalan",
       "Adampur",
-      "Uklana",
+      "Uklana (SC)",
       "Narnaund",
       "Hansi",
       "Barwala",
       "Hisar",
       "Nalwa",
-      "Bawani Khera",
-      "Uklana (SC)",
       "Bawani Khera (SC)"
     ],
     "acWiseResults": {
-      "Uchana kalan": {
-        "acName": "Uchana kalan",
+      "Uchana Kalan": {
+        "acName": "Uchana Kalan",
         "acNo": 37,
         "acType": "GEN",
         "validVotes": 150659,
@@ -15611,8 +15465,8 @@
           }
         ]
       },
-      "Uklana": {
-        "acName": "Uklana",
+      "Uklana (SC)": {
+        "acName": "Uklana (SC)",
         "acNo": 48,
         "acType": "SC",
         "validVotes": 140434,
@@ -17918,8 +17772,8 @@
           }
         ]
       },
-      "Bawani Khera": {
-        "acName": "Bawani Khera",
+      "Bawani Khera (SC)": {
+        "acName": "Bawani Khera (SC)",
         "acNo": 59,
         "acType": "SC",
         "validVotes": 133698,
@@ -18291,40 +18145,6 @@
             "position": 41,
             "voteShare": 0,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Uklana (SC)": {
-        "acName": "Uklana (SC)",
-        "acNo": 48,
-        "acType": "SC",
-        "validVotes": 140434,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 145,
-            "position": 1,
-            "voteShare": 0.1,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Bawani Khera (SC)": {
-        "acName": "Bawani Khera (SC)",
-        "acNo": 59,
-        "acType": "SC",
-        "validVotes": 133698,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 118,
-            "position": 1,
-            "voteShare": 0.09,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -19470,22 +19290,19 @@
       }
     ],
     "assemblyConstituencies": [
-      "Narwana",
+      "Narwana (SC)",
       "Tohana",
       "Fatehabad",
-      "Ratia",
-      "Kalawali",
+      "Ratia (SC)",
+      "Kalanwali (SC)",
       "Dabwali",
       "Rania",
       "Sirsa",
-      "Ellenabad",
-      "Narwana (SC)",
-      "Ratia (SC)",
-      "Kalawali (SC)"
+      "Ellenabad"
     ],
     "acWiseResults": {
-      "Narwana": {
-        "acName": "Narwana",
+      "Narwana (SC)": {
+        "acName": "Narwana (SC)",
         "acNo": 38,
         "acType": "SC",
         "validVotes": 143067,
@@ -20012,8 +19829,8 @@
           }
         ]
       },
-      "Ratia": {
-        "acName": "Ratia",
+      "Ratia (SC)": {
+        "acName": "Ratia (SC)",
         "acNo": 41,
         "acType": "SC",
         "validVotes": 151657,
@@ -20182,8 +19999,8 @@
           }
         ]
       },
-      "Kalawali": {
-        "acName": "Kalawali",
+      "Kalanwali (SC)": {
+        "acName": "Kalanwali (SC)",
         "acNo": 42,
         "acType": "SC",
         "validVotes": 129754,
@@ -21064,57 +20881,6 @@
             "position": 19,
             "voteShare": 0.07,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Narwana (SC)": {
-        "acName": "Narwana (SC)",
-        "acNo": 38,
-        "acType": "SC",
-        "validVotes": 143067,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 233,
-            "position": 1,
-            "voteShare": 0.16,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Ratia (SC)": {
-        "acName": "Ratia (SC)",
-        "acNo": 41,
-        "acType": "SC",
-        "validVotes": 151657,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 339,
-            "position": 1,
-            "voteShare": 0.22,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Kalawali (SC)": {
-        "acName": "Kalawali (SC)",
-        "acNo": 42,
-        "acType": "SC",
-        "validVotes": 129754,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 457,
-            "position": 1,
-            "voteShare": 0.35,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -22740,7 +22506,7 @@
       "Ateli",
       "Mahendragarh",
       "Narnaul",
-      "Nangal chaudhry"
+      "Nangal Chaudhry"
     ],
     "acWiseResults": {
       "Loharu": {
@@ -24751,8 +24517,8 @@
           }
         ]
       },
-      "Nangal chaudhry": {
-        "acName": "Nangal chaudhry",
+      "Nangal Chaudhry": {
+        "acName": "Nangal Chaudhry",
         "acNo": 71,
         "acType": "GEN",
         "validVotes": 90550,
@@ -25908,16 +25674,14 @@
     ],
     "assemblyConstituencies": [
       "Meham",
-      "Garhi Sampla-Kiloi",
+      "Garhi Sampla-Kilo",
       "Rohtak",
-      "Kalanaur",
+      "Kalanaur (SC)",
       "Bahadurgarh",
       "Badli",
-      "Jhajjar",
+      "Jhajjar (SC)",
       "Beri",
-      "Kosli",
-      "Kalanaur (SC)",
-      "Jhajjar (SC)"
+      "Kosli"
     ],
     "acWiseResults": {
       "Meham": {
@@ -26063,8 +25827,8 @@
           }
         ]
       },
-      "Garhi Sampla-Kiloi": {
-        "acName": "Garhi Sampla-Kiloi",
+      "Garhi Sampla-Kilo": {
+        "acName": "Garhi Sampla-Kilo",
         "acNo": 61,
         "acType": "GEN",
         "validVotes": 130476,
@@ -26349,8 +26113,8 @@
           }
         ]
       },
-      "Kalanaur": {
-        "acName": "Kalanaur",
+      "Kalanaur (SC)": {
+        "acName": "Kalanaur (SC)",
         "acNo": 63,
         "acType": "SC",
         "validVotes": 118166,
@@ -26769,8 +26533,8 @@
           }
         ]
       },
-      "Jhajjar": {
-        "acName": "Jhajjar",
+      "Jhajjar (SC)": {
+        "acName": "Jhajjar (SC)",
         "acNo": 66,
         "acType": "SC",
         "validVotes": 102700,
@@ -27185,40 +26949,6 @@
             "position": 15,
             "voteShare": 0.04,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Kalanaur (SC)": {
-        "acName": "Kalanaur (SC)",
-        "acNo": 63,
-        "acType": "SC",
-        "validVotes": 118166,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 502,
-            "position": 1,
-            "voteShare": 0.42,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Jhajjar (SC)": {
-        "acName": "Jhajjar (SC)",
-        "acNo": 66,
-        "acType": "SC",
-        "validVotes": 102700,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 464,
-            "position": 1,
-            "voteShare": 0.45,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -28600,21 +28330,19 @@
       }
     ],
     "assemblyConstituencies": [
-      "Bawal",
+      "Bawal (SC)",
       "Rewari",
-      "Pataudi",
+      "Pataudi (SC)",
       "Badshahpur",
       "Gurgaon",
       "Sohna",
       "Nuh",
       "Ferozepur Jhirka",
-      "Punahana",
-      "Bawal (SC)",
-      "Pataudi (SC)"
+      "Punahana"
     ],
     "acWiseResults": {
-      "Bawal": {
-        "acName": "Bawal",
+      "Bawal (SC)": {
+        "acName": "Bawal (SC)",
         "acNo": 72,
         "acType": "SC",
         "validVotes": 133835,
@@ -29034,8 +28762,8 @@
           }
         ]
       },
-      "Pataudi": {
-        "acName": "Pataudi",
+      "Pataudi (SC)": {
+        "acName": "Pataudi (SC)",
         "acNo": 75,
         "acType": "SC",
         "validVotes": 139171,
@@ -30526,40 +30254,6 @@
             "position": 23,
             "voteShare": 0.01,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Bawal (SC)": {
-        "acName": "Bawal (SC)",
-        "acNo": 72,
-        "acType": "SC",
-        "validVotes": 133835,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 172,
-            "position": 1,
-            "voteShare": 0.13,
-            "sex": "NOTA",
-            "depositLost": true
-          }
-        ]
-      },
-      "Pataudi (SC)": {
-        "acName": "Pataudi (SC)",
-        "acNo": 75,
-        "acType": "SC",
-        "validVotes": 139171,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 164,
-            "position": 1,
-            "voteShare": 0.12,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
@@ -32237,15 +31931,14 @@
     ],
     "assemblyConstituencies": [
       "Hathin",
-      "Hodal",
+      "Hodal (SC)",
       "Palwal",
       "Prithla",
       "Faridabad NIT",
       "Badkhal",
       "Ballabhgarh",
       "Faridabad",
-      "Tigaon",
-      "Hodal (SC)"
+      "Tigaon"
     ],
     "acWiseResults": {
       "Hathin": {
@@ -32508,8 +32201,8 @@
           }
         ]
       },
-      "Hodal": {
-        "acName": "Hodal",
+      "Hodal (SC)": {
+        "acName": "Hodal (SC)",
         "acNo": 83,
         "acType": "SC",
         "validVotes": 110211,
@@ -34575,23 +34268,6 @@
             "position": 28,
             "voteShare": 0.02,
             "sex": "M",
-            "depositLost": true
-          }
-        ]
-      },
-      "Hodal (SC)": {
-        "acName": "Hodal (SC)",
-        "acNo": 83,
-        "acType": "SC",
-        "validVotes": 110211,
-        "candidates": [
-          {
-            "name": "None of the Above",
-            "party": "NOTA",
-            "votes": 128,
-            "position": 1,
-            "voteShare": 0.12,
-            "sex": "NOTA",
             "depositLost": true
           }
         ]
