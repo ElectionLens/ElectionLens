@@ -266,7 +266,7 @@ test.describe('Navigation Flow - AC View', () => {
     await page.goto('/karnataka/ac');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
     
-    await expect(page).toHaveURL(/karnataka\/ac$/);
+    await expect(page).toHaveURL(/karnataka\/ac(\?|$)/);
   });
 
   test('navigating to AC in AC view shows panel', async ({ page }) => {
@@ -285,8 +285,10 @@ test.describe('Navigation Flow - AC View Toggle', () => {
     await page.goto('/kerala');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
     
-    // Click AC button in toolbar
-    const acButton = page.locator('.toolbar-btn[title="Assembly Constituencies"]');
+    // Toolbar AC toggle (scoped to center toggle group)
+    const acButton = page
+      .locator('.toolbar-view-toggle')
+      .getByRole('button', { name: /^AC$/i });
     await expect(acButton).toBeVisible();
     await acButton.click();
     

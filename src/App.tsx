@@ -76,7 +76,6 @@ function App(): JSX.Element {
   const {
     currentResult: electionResult,
     availableYears,
-    assemblyNextElectionYear,
     selectedYear,
     getACResult,
     setSelectedYear,
@@ -2008,38 +2007,42 @@ function App(): JSX.Element {
           }
         }
       } else if (view === 'assemblies') {
+        setSelectedACPCYear(null);
         const data = await navigateToAssemblies(currentState);
         setCurrentData(data);
         const acIndex = await loadStateIndex(currentState);
+        const acYears = acIndex?.availableYears ?? [];
+        let yearForUrl = selectedYear;
         if (
-          acIndex?.availableYears?.length &&
-          selectedYear != null &&
-          !acIndex.availableYears.includes(selectedYear)
+          acIndex &&
+          acYears.length > 0 &&
+          (yearForUrl == null || !acYears.includes(yearForUrl))
         ) {
           const latestYear = defaultAssemblyDataYearFromIndex(acIndex);
           if (latestYear != null) {
             setSelectedYear(latestYear);
-            const tab =
-              typeof window !== 'undefined'
-                ? new URLSearchParams(window.location.search).get('tab')
-                : null;
-            const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-            const preservedTab = tab && validTabs.includes(tab) ? tab : null;
-            updateUrlRef.current({
-              state: currentState,
-              view: 'assemblies',
-              pc: null,
-              district: null,
-              assembly: currentAssembly,
-              year: latestYear,
-              pcYear: null,
-              tab: preservedTab,
-              showACs: null,
-              blog: false,
-              blogPost: null,
-            });
+            yearForUrl = latestYear;
           }
         }
+        const tab =
+          typeof window !== 'undefined'
+            ? new URLSearchParams(window.location.search).get('tab')
+            : null;
+        const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
+        const preservedTab = tab && validTabs.includes(tab) ? tab : null;
+        updateUrlRef.current({
+          state: currentState,
+          view: 'assemblies',
+          pc: null,
+          district: null,
+          assembly: currentAssembly,
+          year: yearForUrl,
+          pcYear: null,
+          tab: preservedTab,
+          showACs: null,
+          blog: false,
+          blogPost: null,
+        });
       } else if (view === 'districts') {
         const data = await loadDistrictsForState(currentState);
         setCurrentData(data);
@@ -2086,6 +2089,7 @@ function App(): JSX.Element {
       currentAssembly,
       setSelectedYear,
       setPCSelectedYear,
+      setSelectedACPCYear,
     ]
   );
 
@@ -2100,7 +2104,20 @@ function App(): JSX.Element {
     setSelectedACPCYear(null);
     setCurrentData(null);
     setBlogOpen(false);
-  }, [resetView, selectAssembly, clearElectionResult, clearPCElectionResult]);
+    updateUrl({
+      state: null,
+      view: 'constituencies',
+      pc: null,
+      district: null,
+      assembly: null,
+      year: null,
+      pcYear: null,
+      tab: null,
+      showACs: null,
+      blog: false,
+      blogPost: null,
+    });
+  }, [resetView, selectAssembly, clearElectionResult, clearPCElectionResult, updateUrl]);
 
   /**
    * Handle blog toggle
@@ -2291,9 +2308,6 @@ function App(): JSX.Element {
           isCollapsed={sidebarCollapsed}
           onToggleCollapse={toggleSidebarCollapsed}
           onBlogClick={handleBlogToggle}
-          assemblyAvailableYears={availableYears}
-          assemblyNextElectionYear={assemblyNextElectionYear}
-          pcAvailableYears={pcAvailableYears}
         />
 
         <MapView

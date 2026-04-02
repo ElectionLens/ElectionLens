@@ -118,8 +118,6 @@ export interface UseElectionResultsReturn {
   error: string | null;
   /** Check if election data is available for a state */
   hasElectionData: (stateName: string) => boolean;
-  /** Indicative next assembly year from the loaded state index (for UI copy) */
-  assemblyNextElectionYear: number | null;
   /** Load election index for a state. Pass yearFromUrl to avoid overwriting URL year with latest. */
   loadStateIndex: (
     stateName: string,
@@ -143,7 +141,6 @@ export interface UseElectionResultsReturn {
  */
 export function useElectionResults(): UseElectionResultsReturn {
   const [availableYears, setAvailableYears] = useState<number[]>([]);
-  const [assemblyNextElectionYear, setAssemblyNextElectionYear] = useState<number | null>(null);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [currentResult, setCurrentResult] = useState<ACElectionResult | null>(null);
   const [loading, setLoading] = useState(false);
@@ -179,7 +176,6 @@ export function useElectionResults(): UseElectionResultsReturn {
       const cached = indexCache.current.get(slug);
       if (cached) {
         setAvailableYears(cached.availableYears);
-        setAssemblyNextElectionYear(cached.nextAssemblyElectionYear ?? null);
         if (!preserveYear && !selectedYear && cached.availableYears.length > 0) {
           const defaultYear = defaultAssemblyDataYear(cached.availableYears, {
             nextAssemblyElectionYear: cached.nextAssemblyElectionYear ?? null,
@@ -202,7 +198,6 @@ export function useElectionResults(): UseElectionResultsReturn {
         statesWithData.current.add(slug);
 
         setAvailableYears(index.availableYears);
-        setAssemblyNextElectionYear(index.nextAssemblyElectionYear ?? null);
         if (!preserveYear && !selectedYear && index.availableYears.length > 0) {
           const defaultYear = defaultAssemblyDataYear(index.availableYears, {
             nextAssemblyElectionYear: index.nextAssemblyElectionYear ?? null,
@@ -425,7 +420,6 @@ export function useElectionResults(): UseElectionResultsReturn {
 
   return {
     availableYears,
-    assemblyNextElectionYear,
     selectedYear,
     currentResult,
     loading,

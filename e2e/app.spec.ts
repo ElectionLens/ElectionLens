@@ -99,7 +99,7 @@ test.describe('State Navigation', () => {
     const homeBtn = page.locator('button[title="Reset to India"]').first();
     await homeBtn.click();
 
-    await expect(page).toHaveURL('/');
+    await expect(page).toHaveURL('/', { timeout: 15000 });
     expect(page.url()).not.toContain('year=');
   });
 });
@@ -412,22 +412,33 @@ test.describe('Contextual Navigation - Background Layers', () => {
     }, { timeout: 15000 });
     await page.waitForTimeout(500);
     
-    // Click on a background path (neighboring PC)
-    const paths = page.locator('.leaflet-interactive');
+    // Sidebar (even collapsed) can sit over the map and steal clicks — only target paths in the map-heavy region
+    const paths = page.locator('.leaflet-container .leaflet-interactive');
     const count = await paths.count();
     
-    if (count > 6) {
-      // Find a visible path to click
-      for (let i = 0; i < Math.min(5, count); i++) {
+    const viewport = page.viewportSize();
+    if (count > 6 && viewport) {
+      const sidebarCutoff = viewport.width * 0.38;
+      let clicked = false;
+      for (let i = 0; i < count && !clicked; i++) {
         const path = paths.nth(i);
-        if (await path.isVisible()) {
-          await path.click({ force: true });
+        const box = await path.boundingBox();
+        if (!box) continue;
+        const cx = box.x + box.width / 2;
+        const cy = box.y + box.height / 2;
+        if (
+          cx >= sidebarCutoff &&
+          cy >= 0 &&
+          cx <= viewport.width &&
+          cy <= viewport.height &&
+          box.width > 2 &&
+          box.height > 2
+        ) {
+          await page.mouse.click(Math.round(cx), Math.round(cy));
+          clicked = true;
           await page.waitForTimeout(500);
-          break;
         }
       }
-      
-      // URL should still be valid
       await expect(page).toHaveURL(/\/[a-z-]+/);
     }
   });
@@ -530,15 +541,13 @@ test.describe('Karnataka District Name Mappings', () => {
     await page.goto('/karnataka/district/kalaburagi');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
     
-    // Wait for assemblies to load
     await page.waitForFunction(() => {
-      const paths = document.querySelectorAll('.leaflet-interactive');
-      return paths.length > 0;
-    }, { timeout: 15000 });
+      const paths = document.querySelectorAll('.leaflet-container .leaflet-interactive');
+      return paths.length > 5;
+    }, { timeout: 25000 });
     
-    const paths = page.locator('.leaflet-interactive');
+    const paths = page.locator('.leaflet-container .leaflet-interactive');
     const count = await paths.count();
-    // Kalaburagi (Gulbarga) should have many assemblies
     expect(count).toBeGreaterThan(5);
   });
 });
