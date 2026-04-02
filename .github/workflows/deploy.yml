@@ -28,6 +28,33 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      # deploy-pages POST /pages/deployments returns 404 until a Pages site exists with
+      # build_type workflow. Provision or migrate via REST (pages: write).
+      - name: Ensure GitHub Pages uses GitHub Actions (workflow)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          REPO="${{ github.repository }}"
+          BRANCH="${{ github.ref_name }}"
+          HDR=(-H "Accept: application/vnd.github+json")
+          if gh api "repos/${REPO}/pages" "${HDR[@]}" -o /tmp/gh-pages-site.json 2>/dev/null; then
+            BT="$(jq -r '.build_type // empty' /tmp/gh-pages-site.json)"
+            if [ "$BT" = "workflow" ]; then
+              echo "GitHub Pages already uses workflow builds."
+              exit 0
+            fi
+            echo "Switching GitHub Pages to workflow builds (was: ${BT:-unknown})..."
+            printf '%s' '{"build_type":"workflow"}' | gh api --method PUT "repos/${REPO}/pages" "${HDR[@]}" --input -
+          else
+            echo "Creating GitHub Pages site for workflow builds..."
+            BODY="$(printf '{"build_type":"workflow","source":{"branch":"%s","path":"/"}}' "${BRANCH}")"
+            if ! printf '%s' "${BODY}" | gh api --method POST "repos/${REPO}/pages" "${HDR[@]}" --input -; then
+              echo "POST failed (site may already exist); retrying PUT..."
+              printf '%s' '{"build_type":"workflow"}' | gh api --method PUT "repos/${REPO}/pages" "${HDR[@]}" --input -
+            fi
+          fi
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -69,8 +96,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      # 404 Not Found here = Pages not provisioned for Actions. Repo Settings → Pages →
-      # Build and deployment → Source: GitHub Actions (not only “Deploy from a branch”).
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
