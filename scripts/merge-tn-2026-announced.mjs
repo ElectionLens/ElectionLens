@@ -473,7 +473,8 @@ function main() {
     }
     if (dmk && tvk) dmkTvk++;
 
-    const preferredNdaParty = ammk ? 'AMMK' : null;
+    // Prefer explicitly announced NDA ally candidates over generic ADMK-symbol row.
+    const preferredNdaParty = ammk ? 'AMMK' : bjp ? 'BJP' : null;
     const normalizedRows = normalizeToFourCandidates(rows, { preferredNdaParty });
 
     normalizedRows.forEach((r, i) => {
