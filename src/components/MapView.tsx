@@ -7,7 +7,7 @@ import {
   Maximize2,
   Trash2,
   Building2,
-  Map,
+  Map as MapIcon,
   Layers,
   MessageSquare,
   Landmark,
@@ -54,6 +54,7 @@ import type {
 import { isAssemblyResultEntry, skipAssemblyWinnerColoring } from '../utils/electionResults';
 import { defaultAssemblyDataYearFromIndex } from '../utils/electionSchedule';
 import { buildAcPanelPlaceholder } from '../utils/acPanelPlaceholder';
+import { isAssemblyFeatureSelected } from '../utils/mapSelection';
 import { FeedbackModal } from './FeedbackModal';
 import { VectorTileLayer } from './VectorTileLayer';
 import { useSchema } from '../hooks/useSchema';
@@ -249,7 +250,7 @@ function MapToolbar({
               onClick={() => onSwitchView('districts')}
               title="Districts"
             >
-              <Map size={14} /> Dist
+              <MapIcon size={14} /> Dist
             </button>
             <button
               className={`toolbar-btn toolbar-toggle ${currentView === 'assemblies' ? 'active' : ''}`}
@@ -1805,7 +1806,15 @@ export function MapView({
                   ? `-pcy${selectedACPCYear}`
                   : ''
               : '';
-    return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${selectedAssembly ?? ''}-${showACsWithinPC}-${dataHash}-${firstFeatureName}${yearSuffix}-v${winnersVersion}`;
+    const selectedAssemblyIdentity =
+      level === 'assemblies'
+        ? `-ac${
+            electionResult?.constituencyNo != null
+              ? electionResult.constituencyNo
+              : (electionResult?.schemaId ?? '')
+          }`
+        : '';
+    return `${level}-${currentState ?? 'india'}-${currentPC ?? ''}-${currentDistrict ?? ''}-${selectedAssembly ?? ''}-${showACsWithinPC}-${dataHash}-${firstFeatureName}${yearSuffix}${selectedAssemblyIdentity}-v${winnersVersion}`;
   }, [
     level,
     currentState,
@@ -1818,6 +1827,8 @@ export function MapView({
     pcSelectedYear,
     selectedACPCYear,
     selectedYear,
+    electionResult?.constituencyNo,
+    electionResult?.schemaId,
     winnersVersion,
   ]);
 
@@ -1846,13 +1857,25 @@ export function MapView({
     if (!displayData?.features?.length) return displayData;
     const stateId = currentState ? getStateId(currentState) : '';
     if (level === 'assemblies' && currentState && schema) {
+      const acIdByNo = new Map<number, string>();
+      Object.entries(schema.assemblyConstituencies || {}).forEach(([id, ac]) => {
+        if (ac.stateId !== stateId || typeof ac.acNo !== 'number') return;
+        acIdByNo.set(ac.acNo, id);
+      });
       const enriched = {
         ...displayData,
         features: displayData.features.map((f) => {
           const props = f.properties as AssemblyProperties & { schemaId?: string };
           const acName = props.AC_NAME;
-          if (!acName) return f;
-          const sid = resolveACName(acName, stateId);
+          const acNoRaw = props.AC_NO;
+          const acNo =
+            typeof acNoRaw === 'number'
+              ? acNoRaw
+              : typeof acNoRaw === 'string'
+                ? parseInt(acNoRaw, 10)
+                : NaN;
+          const sidFromNo = Number.isFinite(acNo) ? acIdByNo.get(acNo) : undefined;
+          const sid = sidFromNo ?? (acName ? resolveACName(acName, stateId) : null);
           if (!sid) return f;
           return {
             ...f,
@@ -1890,6 +1913,21 @@ export function MapView({
     resolveACName,
     resolvePCName,
   ]);
+
+  const assemblyNameCounts = useMemo((): Map<string, number> => {
+    const counts = new Map<string, number>();
+    if (level !== 'assemblies' || !displayDataForMap?.features?.length) return counts;
+    for (const feature of displayDataForMap.features) {
+      const props = feature.properties as AssemblyProperties;
+      const key = normalizeName(props.AC_NAME ?? '')
+        .toUpperCase()
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (!key) continue;
+      counts.set(key, (counts.get(key) ?? 0) + 1);
+    }
+    return counts;
+  }, [level, displayDataForMap]);
 
   // Background states - shown dimmed when zoomed into a state for context
   const showBackgroundStates = Boolean(currentState) && statesGeoJSON;
@@ -2270,18 +2308,26 @@ export function MapView({
       // Prefer prop so deep-link / URL load has correct selection before refs are synced
       const currentSelectedAssembly =
         selectedAssembly ?? selectedAssemblyRef.current ?? pendingSelectedAssembly.current;
-      // Normalize so whitespace/encoding differences don't make selected AC think it's not selected (mouseout would then restore white border)
-      const selectedNorm =
-        currentSelectedAssembly && level === 'assemblies'
-          ? normalizeName(currentSelectedAssembly).toUpperCase().replace(/\s+/g, ' ').trim()
+      const selectedAssemblyNo =
+        level === 'assemblies' ? (electionResult?.constituencyNo ?? undefined) : undefined;
+      const selectedSchemaId =
+        level === 'assemblies' ? (electionResult?.schemaId ?? undefined) : undefined;
+      const featureSchemaId =
+        level === 'assemblies'
+          ? ((feature.properties as AssemblyProperties & { schemaId?: string }).schemaId ?? '')
           : '';
-      const nameNorm =
-        level === 'assemblies' ? normalizeName(name).toUpperCase().replace(/\s+/g, ' ').trim() : '';
       const isSelected =
-        Boolean(currentSelectedAssembly) &&
         level === 'assemblies' &&
-        nameNorm.length > 0 &&
-        nameNorm === selectedNorm;
+        isAssemblyFeatureSelected({
+          selectedAssembly: currentSelectedAssembly,
+          selectedConstituencyNo: selectedAssemblyNo,
+          selectedSchemaId,
+          featureName: name,
+          featureSchemaId,
+          featureACNo: (feature.properties as AssemblyProperties & { AC_NO?: string | number })
+            .AC_NO,
+          assemblyNameCounts,
+        });
 
       if (isSelected) {
         typedLayer.setStyle({
@@ -2396,19 +2442,25 @@ export function MapView({
             // Re-apply green to selected AC so it stays green even if another code path overwrote it
             const sel =
               selectedAssembly ?? selectedAssemblyRef.current ?? pendingSelectedAssembly.current;
+            const selectedNo = electionResult?.constituencyNo;
+            const selectedId = electionResult?.schemaId ?? '';
             if (sel && geoJsonRef.current) {
               const geo = geoJsonRef.current;
-              const selectedNorm = normalizeName(sel).toUpperCase().replace(/\s+/g, ' ').trim();
               requestAnimationFrame(() => {
                 geo.eachLayer((layer) => {
                   const f = (layer as unknown as { feature?: GeoJSON.Feature }).feature;
                   if (f) {
-                    const props = f.properties as AssemblyProperties;
-                    const acNorm = normalizeName(props.AC_NAME ?? '')
-                      .toUpperCase()
-                      .replace(/\s+/g, ' ')
-                      .trim();
-                    if (acNorm && acNorm === selectedNorm) {
+                    const props = f.properties as AssemblyProperties & { schemaId?: string };
+                    const shouldSelect = isAssemblyFeatureSelected({
+                      selectedAssembly: sel,
+                      selectedConstituencyNo: selectedNo,
+                      selectedSchemaId: selectedId,
+                      featureName: props.AC_NAME,
+                      featureSchemaId: props.schemaId,
+                      featureACNo: props.AC_NO,
+                      assemblyNameCounts,
+                    });
+                    if (shouldSelect) {
                       (layer as unknown as { setStyle: (s: object) => void }).setStyle(greenStyle);
                       (layer as unknown as { bringToFront: () => void }).bringToFront();
                     }
@@ -2491,7 +2543,17 @@ export function MapView({
         typedLayer.on({ click: clickHandler });
       }
     },
-    [level, selectedAssembly, onStateClick, onDistrictClick, onConstituencyClick, onAssemblyClick]
+    [
+      level,
+      selectedAssembly,
+      electionResult?.constituencyNo,
+      electionResult?.schemaId,
+      assemblyNameCounts,
+      onStateClick,
+      onDistrictClick,
+      onConstituencyClick,
+      onAssemblyClick,
+    ]
   );
 
   // Reset style index when data changes
@@ -2508,23 +2570,31 @@ export function MapView({
       const applyStyle = (): void => {
         if (!geoJsonRef.current) return;
 
-        const selectedNorm = normalizeName(selectedAssembly ?? '')
-          .toUpperCase()
-          .replace(/\s+/g, ' ')
-          .trim();
+        // Clear any previously forced selected style first. This is important when
+        // switching between same-name ACs (e.g. Tiruppattur variants) where the
+        // selectedAssembly string can remain unchanged.
+        geoJsonRef.current.resetStyle();
+
+        const selectedNo = electionResult?.constituencyNo;
+        const selectedId = electionResult?.schemaId ?? '';
         geoJsonRef.current.eachLayer((layer) => {
           const feature = (layer as unknown as { feature?: GeoJSON.Feature }).feature;
           if (feature) {
-            const props = feature.properties as AssemblyProperties;
+            const props = feature.properties as AssemblyProperties & { schemaId?: string };
             const typedLayer = layer as unknown as {
               setStyle: (style: object) => void;
               bringToFront: () => void;
             };
-            const acNorm = normalizeName(props.AC_NAME ?? '')
-              .toUpperCase()
-              .replace(/\s+/g, ' ')
-              .trim();
-            if (acNorm && acNorm === selectedNorm) {
+            const shouldSelect = isAssemblyFeatureSelected({
+              selectedAssembly,
+              selectedConstituencyNo: selectedNo,
+              selectedSchemaId: selectedId,
+              featureName: props.AC_NAME,
+              featureSchemaId: props.schemaId,
+              featureACNo: props.AC_NO,
+              assemblyNameCounts,
+            });
+            if (shouldSelect) {
               typedLayer.setStyle({
                 weight: 4,
                 color: '#065f46',
@@ -2548,7 +2618,14 @@ export function MapView({
       }
     }
     return undefined;
-  }, [selectedAssembly, level, geoJsonKey]);
+  }, [
+    selectedAssembly,
+    electionResult?.constituencyNo,
+    electionResult?.schemaId,
+    level,
+    geoJsonKey,
+    assemblyNameCounts,
+  ]);
 
   // Style function that highlights selected assembly with dark green border and color-codes by party
   const style = useCallback(
@@ -2784,16 +2861,19 @@ export function MapView({
 
       // Highlight selected assembly with dark green border (same normalization as onEachFeature/reapply so name variants match)
       if (selectedAssembly && level === 'assemblies' && feature) {
-        const props = feature.properties as AssemblyProperties;
-        const selectedNorm = normalizeName(selectedAssembly)
-          .toUpperCase()
-          .replace(/\s+/g, ' ')
-          .trim();
-        const acNorm = normalizeName(props.AC_NAME ?? '')
-          .toUpperCase()
-          .replace(/\s+/g, ' ')
-          .trim();
-        if (acNorm && acNorm === selectedNorm) {
+        const props = feature.properties as AssemblyProperties & { schemaId?: string };
+        const selectedNo = electionResult?.constituencyNo;
+        const selectedId = electionResult?.schemaId ?? '';
+        const shouldSelect = isAssemblyFeatureSelected({
+          selectedAssembly,
+          selectedConstituencyNo: selectedNo,
+          selectedSchemaId: selectedId,
+          featureName: props.AC_NAME,
+          featureSchemaId: props.schemaId,
+          featureACNo: props.AC_NO,
+          assemblyNameCounts,
+        });
+        if (shouldSelect) {
           return {
             ...baseStyle,
             weight: 4,
@@ -2809,6 +2889,9 @@ export function MapView({
     [
       level,
       selectedAssembly,
+      electionResult?.constituencyNo,
+      electionResult?.schemaId,
+      assemblyNameCounts,
       selectedACPCYear,
       effectiveConstituencyWinners,
       dominantPCParty,
@@ -2854,19 +2937,22 @@ export function MapView({
         fillOpacity: 0.75,
         opacity: 1,
       };
-      const selectedNorm = normalizeName(selectedAssembly ?? '')
-        .toUpperCase()
-        .replace(/\s+/g, ' ')
-        .trim();
+      const selectedNo = electionResult?.constituencyNo;
+      const selectedId = electionResult?.schemaId ?? '';
       geo.eachLayer((layer) => {
         const feature = (layer as unknown as { feature?: GeoJSON.Feature }).feature;
         if (feature) {
-          const props = feature.properties as AssemblyProperties;
-          const acNorm = normalizeName(props.AC_NAME ?? '')
-            .toUpperCase()
-            .replace(/\s+/g, ' ')
-            .trim();
-          if (acNorm && acNorm === selectedNorm) {
+          const props = feature.properties as AssemblyProperties & { schemaId?: string };
+          const shouldSelect = isAssemblyFeatureSelected({
+            selectedAssembly,
+            selectedConstituencyNo: selectedNo,
+            selectedSchemaId: selectedId,
+            featureName: props.AC_NAME,
+            featureSchemaId: props.schemaId,
+            featureACNo: props.AC_NO,
+            assemblyNameCounts,
+          });
+          if (shouldSelect) {
             (layer as unknown as { setStyle: (s: object) => void }).setStyle(greenStyle);
             (layer as unknown as { bringToFront: () => void }).bringToFront();
           }
@@ -2877,6 +2963,9 @@ export function MapView({
     effectiveConstituencyWinners,
     level,
     selectedAssembly,
+    electionResult?.constituencyNo,
+    electionResult?.schemaId,
+    assemblyNameCounts,
     acFileMetaForMapColors,
     selectedYear,
     selectedACPCYear,
