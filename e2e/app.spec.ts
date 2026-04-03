@@ -1,4 +1,17 @@
 import { test, expect } from '@playwright/test';
+import type { Page } from '@playwright/test';
+
+async function expandPanelOnMobileIfNeeded(page: Page, isMobile: boolean) {
+  if (!isMobile) return;
+
+  const panel = page.locator('.election-panel');
+  const dragHandle = panel.locator('.bottom-sheet-handle');
+  if ((await dragHandle.count()) === 0) return;
+
+  if (await panel.evaluate((el) => el.classList.contains('panel-half'))) {
+    await dragHandle.click();
+  }
+}
 
 test.describe('Election Lens App', () => {
   test.beforeEach(async ({ page }) => {
@@ -174,11 +187,13 @@ test.describe('Election Panel', () => {
     await expect(panel).toBeVisible({ timeout: 15000 });
   });
 
-  test('should display winner information', async ({ page }) => {
+  test('should display winner information', async ({ page, isMobile }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     
     const panel = page.locator('.election-panel');
     await expect(panel).toBeVisible({ timeout: 15000 });
+
+    await expandPanelOnMobileIfNeeded(page, isMobile);
     
     // Should have winner section
     const winnerSection = panel.locator('.winner-card-compact');
@@ -729,9 +744,9 @@ test.describe('Search - District Search', () => {
     
     await page.waitForSelector('.search-results', { timeout: 5000 });
     
-    // Click on the district result
+    // Use DOM click to avoid off-viewport pointer constraints on mobile viewport
     const districtResult = page.locator('.search-result-item[data-type="district"]').first();
-    await districtResult.click();
+    await districtResult.evaluate((el) => (el as HTMLElement).click());
     
     // Should navigate to district URL
     await expect(page).toHaveURL(/\/district\//, { timeout: 10000 });
@@ -769,9 +784,9 @@ test.describe('Search - Assembly Search Navigation', () => {
     
     await page.waitForSelector('.search-results', { timeout: 5000 });
     
-    // Click on the assembly result
+    // Use DOM click to avoid off-viewport pointer constraints on mobile viewport
     const assemblyResult = page.locator('.search-result-item[data-type="assembly"]').first();
-    await assemblyResult.click();
+    await assemblyResult.evaluate((el) => (el as HTMLElement).click());
     
     // Should navigate to AC view URL
     await expect(page).toHaveURL(/\/ac\//, { timeout: 10000 });

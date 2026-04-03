@@ -4,6 +4,17 @@
  * Tests links, navigation flows, and panel visibility across the app.
  */
 import { test, expect } from '@playwright/test';
+import type { Locator } from '@playwright/test';
+
+async function expandPanelOnMobileIfNeeded(panel: Locator, isMobile: boolean) {
+  if (!isMobile) return;
+  const dragHandle = panel.locator('.bottom-sheet-handle');
+  if ((await dragHandle.count()) === 0) return;
+  const isHalf = await panel.evaluate((el) => el.classList.contains('panel-half'));
+  if (isHalf) {
+    await dragHandle.click();
+  }
+}
 
 // =============================================================================
 // LINK VALIDATION TESTS
@@ -95,16 +106,19 @@ test.describe('Link Validation - Year Selector Links', () => {
 });
 
 test.describe('Link Validation - Tab Navigation', () => {
-  test('Overview tab shows summary data', async ({ page }) => {
+  test('Overview tab shows summary data', async ({ page, isMobile }) => {
     await page.goto('/gujarat/pc/ahmedabad-east/ac/maninagar');
     await page.waitForSelector('.election-panel', { timeout: 15000 });
+
+    const panel = page.locator('.election-panel');
+    await expandPanelOnMobileIfNeeded(panel, isMobile);
     
     // Overview tab should be default
     const overviewTab = page.locator('.panel-tab').filter({ hasText: 'Overview' });
     await expect(overviewTab).toHaveClass(/active/);
     
     // Should show winner card
-    await expect(page.locator('.winner-card-compact, .winner-info')).toBeVisible();
+    await expect(panel.locator('.winner-card-compact, .winner-info')).toBeVisible();
   });
 
   test('Candidates tab shows full list (past year)', async ({ page }) => {
@@ -317,11 +331,12 @@ test.describe('Navigation Flow - AC View Toggle', () => {
 // =============================================================================
 
 test.describe('Panel Validation - AC Panel Content', () => {
-  test('AC panel shows all required sections', async ({ page }) => {
+  test('AC panel shows all required sections', async ({ page, isMobile }) => {
     await page.goto('/madhya-pradesh/pc/bhopal/ac/bhopal-uttar');
     await page.waitForSelector('.election-panel', { timeout: 15000 });
     
     const panel = page.locator('.election-panel');
+    await expandPanelOnMobileIfNeeded(panel, isMobile);
     
     // Required elements
     await expect(panel.locator('.election-panel-header, header')).toBeVisible();

@@ -5,6 +5,26 @@
  * to ensure election panels load correctly with data.
  */
 import { test, expect } from '@playwright/test';
+import type { Locator } from '@playwright/test';
+
+async function ensurePanelExpandedOnMobile(panel: Locator, isMobile: boolean) {
+  if (!isMobile) return;
+  const dragHandle = panel.locator('.bottom-sheet-handle');
+  if ((await dragHandle.count()) === 0) return;
+  const isHalf = await panel.evaluate((el) => el.classList.contains('panel-half'));
+  if (isHalf) {
+    await dragHandle.click();
+  }
+}
+
+async function expectPanelDataVisible(
+  panel: Locator,
+  selector: string,
+  isMobile: boolean
+) {
+  await ensurePanelExpandedOnMobile(panel, isMobile);
+  await expect(panel.locator(selector).first()).toBeVisible({ timeout: 5000 });
+}
 
 // Critical URLs that have caused issues in the past
 const criticalUrls = [
@@ -87,7 +107,7 @@ const pcSamples = [
 
 test.describe('URL Validation - Critical URLs', () => {
   for (const { url, description, type } of criticalUrls) {
-    test(`loads ${description}: ${url}`, async ({ page }) => {
+    test(`loads ${description}: ${url}`, async ({ page, isMobile }) => {
       await page.goto(url);
 
       // Wait for map to load
@@ -99,15 +119,19 @@ test.describe('URL Validation - Critical URLs', () => {
 
       if (type === 'ac') {
         // AC panel should have winner info or candidate row
-        await expect(
-          panel.locator('.winner-info, .winner-card-compact, .candidate-row').first()
-        ).toBeVisible({ timeout: 5000 });
+        await expectPanelDataVisible(
+          panel,
+          '.winner-info, .winner-card-compact, .candidate-row',
+          isMobile
+        );
       } else {
         // PC panel should have the pc-panel class and candidate info
         await expect(panel).toHaveClass(/pc-panel/);
-        await expect(
-          panel.locator('.winner-info, .winner-card-compact, .candidate-row, .candidate-card').first()
-        ).toBeVisible({ timeout: 5000 });
+        await expectPanelDataVisible(
+          panel,
+          '.winner-info, .winner-card-compact, .candidate-row, .candidate-card',
+          isMobile
+        );
       }
     });
   }
@@ -115,7 +139,7 @@ test.describe('URL Validation - Critical URLs', () => {
 
 test.describe('URL Validation - AC Samples from Each State', () => {
   for (const { state, url } of stateACSamples) {
-    test(`${state}: ${url}`, async ({ page }) => {
+    test(`${state}: ${url}`, async ({ page, isMobile }) => {
       await page.goto(url);
 
       // Wait for map
@@ -126,16 +150,18 @@ test.describe('URL Validation - AC Samples from Each State', () => {
       await expect(panel).toBeVisible({ timeout: 15000 });
 
       // Panel should have actual election data (winner or candidates)
-      await expect(
-        panel.locator('.winner-info, .winner-card-compact, .candidate-row').first()
-      ).toBeVisible({ timeout: 5000 });
+      await expectPanelDataVisible(
+        panel,
+        '.winner-info, .winner-card-compact, .candidate-row',
+        isMobile
+      );
     });
   }
 });
 
 test.describe('URL Validation - PC Samples (Panel Must Show)', () => {
   for (const { state, url } of pcSamples) {
-    test(`${state}: ${url}`, async ({ page }) => {
+    test(`${state}: ${url}`, async ({ page, isMobile }) => {
       await page.goto(url);
 
       // Wait for map
@@ -149,15 +175,17 @@ test.describe('URL Validation - PC Samples (Panel Must Show)', () => {
       await expect(panel).toHaveClass(/pc-panel/);
 
       // Should have actual candidate data
-      await expect(
-        panel.locator('.winner-info, .winner-card-compact, .candidate-row, .candidate-card').first()
-      ).toBeVisible({ timeout: 5000 });
+      await expectPanelDataVisible(
+        panel,
+        '.winner-info, .winner-card-compact, .candidate-row, .candidate-card',
+        isMobile
+      );
     });
   }
 });
 
 test.describe('URL Validation - Year Fallback', () => {
-  test('falls back to valid year when invalid year specified', async ({ page }) => {
+  test('falls back to valid year when invalid year specified', async ({ page, isMobile }) => {
     // 2022 is not a valid year for Rajasthan (has 2008, 2013, 2018, 2023)
     await page.goto('/rajasthan/pc/nagaur/ac/jayal-(sc)?year=2022');
 
@@ -168,11 +196,10 @@ test.describe('URL Validation - Year Fallback', () => {
     await expect(panel).toBeVisible({ timeout: 15000 });
 
     // Should have election data
-    await expect(
-      panel.locator('.winner-info, .winner-card-compact, .candidate-row').first()
-    ).toBeVisible({ timeout: 5000 });
+    await expectPanelDataVisible(panel, '.winner-info, .winner-card-compact, .candidate-row', isMobile);
 
     // Panel should show election data; year selector may be in panel or toolbar
+    await ensurePanelExpandedOnMobile(panel, isMobile);
     const yearButtons = page.locator('.year-btn, .toolbar-year-btn');
     await expect(yearButtons.first()).toBeVisible({ timeout: 5000 });
     // If there is an active year button, it should not be 2022 (invalid year)
@@ -219,7 +246,7 @@ test.describe('URL Validation - Edge Cases', () => {
     await expect(panel).toBeVisible({ timeout: 15000 });
   });
 
-  test('handles constituency with numbers', async ({ page }) => {
+  test('handles constituency with numbers', async ({ page, isMobile }) => {
     await page.goto('/karnataka/pc/bangalore-south/ac/jayanagar');
 
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
@@ -228,12 +255,10 @@ test.describe('URL Validation - Edge Cases', () => {
     await expect(panel).toBeVisible({ timeout: 15000 });
 
     // Should have election data
-    await expect(
-      panel.locator('.winner-info, .winner-card-compact, .candidate-row').first()
-    ).toBeVisible({ timeout: 5000 });
+    await expectPanelDataVisible(panel, '.winner-info, .winner-card-compact, .candidate-row', isMobile);
   });
 
-  test('district URL loads AC panel', async ({ page }) => {
+  test('district URL loads AC panel', async ({ page, isMobile }) => {
     await page.goto('/rajasthan/district/baran/ac/anta?year=2023');
 
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
@@ -246,14 +271,12 @@ test.describe('URL Validation - Edge Cases', () => {
     await expect(panel).not.toHaveClass(/pc-panel/);
 
     // Should have election data
-    await expect(
-      panel.locator('.winner-info, .winner-card-compact, .candidate-row').first()
-    ).toBeVisible({ timeout: 5000 });
+    await expectPanelDataVisible(panel, '.winner-info, .winner-card-compact, .candidate-row', isMobile);
   });
 });
 
 test.describe('URL Validation - AC-within-PC Year and showACs', () => {
-  test('loads AC-within-PC URL with year=pc-YYYY and showACs', async ({ page }) => {
+  test('loads AC-within-PC URL with year=pc-YYYY and showACs', async ({ page, isMobile }) => {
     await page.goto('/tamil-nadu/pc/dharmapuri/ac/mettur?year=pc-2019&showACs=true');
 
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
@@ -264,9 +287,7 @@ test.describe('URL Validation - AC-within-PC Year and showACs', () => {
     await expect(page).toHaveURL(/year=pc-2019/);
     await expect(page).toHaveURL(/showACs=true/);
 
-    await expect(
-      panel.locator('.winner-info, .winner-card-compact, .candidate-row').first()
-    ).toBeVisible({ timeout: 5000 });
+    await expectPanelDataVisible(panel, '.winner-info, .winner-card-compact, .candidate-row', isMobile);
   });
 
   test('toolbar year change updates URL to year=pc-YYYY in AC-within-PC view', async ({ page }) => {
@@ -282,7 +303,7 @@ test.describe('URL Validation - AC-within-PC Year and showACs', () => {
     }
   });
 
-  test('AC-within-PC URL shows panel and correct year params', async ({ page }) => {
+  test('AC-within-PC URL shows panel and correct year params', async ({ page, isMobile }) => {
     await page.goto('/tamil-nadu/pc/dharmapuri/ac/mettur?year=pc-2019&showACs=true');
 
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
@@ -292,6 +313,7 @@ test.describe('URL Validation - AC-within-PC Year and showACs', () => {
     await expect(page).toHaveURL(/showACs=true/);
 
     const panel = page.locator('.election-panel');
+    await ensurePanelExpandedOnMobile(panel, isMobile);
     const yearButtonsInPanel = panel.locator('.year-btn');
     await expect(yearButtonsInPanel.first()).toBeVisible({ timeout: 5000 });
   });
