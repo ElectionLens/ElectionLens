@@ -48,6 +48,7 @@ jobs:
           gh api "repos/${REPO}/pages" "${HDR[@]}" -o /tmp/gh-pages-site.json 2>"${GET_ERR}"
           GET_RC=$?
           set -e
+          GET_MSG="$(<"${GET_ERR}")"
 
           if [ "$GET_RC" -eq 0 ]; then
             BT="$(jq -r '.build_type // empty' /tmp/gh-pages-site.json)"
@@ -57,16 +58,43 @@ jobs:
             fi
             echo "Switching GitHub Pages to workflow builds (was: ${BT:-unknown})..."
             printf '%s' '{"build_type":"workflow"}' | gh api --method PUT "repos/${REPO}/pages" "${HDR[@]}" --input -
-          elif rg -q "Resource not accessible by integration|HTTP 403" "${GET_ERR}"; then
+          elif [[ "${GET_MSG}" == *"Resource not accessible by integration"* || "${GET_MSG}" == *"HTTP 403"* ]]; then
             echo "Cannot manage Pages settings with this token (HTTP 403)."
             echo "Configure Pages once in repository settings: Build and deployment -> Source = GitHub Actions."
             echo "Continuing without automatic provisioning."
           else
             echo "Creating GitHub Pages site for workflow builds..."
             BODY="$(printf '{"build_type":"workflow","source":{"branch":"%s","path":"/"}}' "${BRANCH}")"
-            if ! printf '%s' "${BODY}" | gh api --method POST "repos/${REPO}/pages" "${HDR[@]}" --input -; then
+            set +e
+            POST_ERR="$(mktemp)"
+            printf '%s' "${BODY}" | gh api --method POST "repos/${REPO}/pages" "${HDR[@]}" --input - 2>"${POST_ERR}"
+            POST_RC=$?
+            set -e
+            if [ "${POST_RC}" -ne 0 ]; then
+              POST_MSG="$(<"${POST_ERR}")"
+              if [[ "${POST_MSG}" == *"Resource not accessible by integration"* || "${POST_MSG}" == *"HTTP 403"* ]]; then
+                echo "Cannot create Pages site with this token (HTTP 403)."
+                echo "Configure Pages once in repository settings: Build and deployment -> Source = GitHub Actions."
+                echo "Continuing without automatic provisioning."
+                exit 0
+              fi
               echo "POST failed (site may already exist); retrying PUT..."
-              printf '%s' '{"build_type":"workflow"}' | gh api --method PUT "repos/${REPO}/pages" "${HDR[@]}" --input -
+              set +e
+              PUT_ERR="$(mktemp)"
+              printf '%s' '{"build_type":"workflow"}' | gh api --method PUT "repos/${REPO}/pages" "${HDR[@]}" --input - 2>"${PUT_ERR}"
+              PUT_RC=$?
+              set -e
+              if [ "${PUT_RC}" -ne 0 ]; then
+                PUT_MSG="$(<"${PUT_ERR}")"
+                if [[ "${PUT_MSG}" == *"Resource not accessible by integration"* || "${PUT_MSG}" == *"HTTP 403"* ]]; then
+                  echo "Cannot update Pages site with this token (HTTP 403)."
+                  echo "Configure Pages once in repository settings: Build and deployment -> Source = GitHub Actions."
+                  echo "Continuing without automatic provisioning."
+                  exit 0
+                fi
+                echo "${PUT_MSG}"
+                exit "${PUT_RC}"
+              fi
             fi
           fi
       
