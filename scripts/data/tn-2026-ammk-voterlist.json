@@ -1,10 +1,14 @@
 {
   "_meta": {
-    "source": "voterlist.co.in",
-    "articleUrl": "https://voterlist.co.in/ammk-candidate-list-2026-tamil-nadu/",
-    "fetchedAt": "2026-04-01T19:16:08.998Z",
-    "uniqueRows": 9,
-    "note": "AMMK NDA slate as published; deduplicated by AC key. Merged into TN/2026.json as party AMMK."
+    "source": "The Week / Live Chennai / voterlist.co.in",
+    "articleUrls": [
+      "https://www.theweek.in/news/india/2026/03/28/ammk-candidate-list-2026-all-11-nominees-named-by-ttv-dhinakaran.html",
+      "https://www.livechennai.com/detailnews.asp?newsid=79278",
+      "https://voterlist.co.in/ammk-candidate-list-2026-tamil-nadu/"
+    ],
+    "fetchedAt": "2026-04-03T00:00:00.000Z",
+    "uniqueRows": 11,
+    "note": "AMMK NDA slate (11 seats) as announced by TTV Dhinakaran. Merged into TN/2026.json as party AMMK."
   },
   "rows": [
     {
@@ -14,43 +18,53 @@
     },
     {
       "order": 2,
-      "constituency": "Sholinganallur",
-      "candidate": "G. Senthilnathan"
+      "constituency": "Poonamallee (SC)",
+      "candidate": "Ezhumalai"
     },
     {
       "order": 3,
-      "constituency": "Thiruchirappalli West",
-      "candidate": "M. Rajasekar"
+      "constituency": "Saidapet",
+      "candidate": "Senthamizhan"
     },
     {
       "order": 4,
+      "constituency": "Madathukulam",
+      "candidate": "Shanmugavelu"
+    },
+    {
+      "order": 5,
+      "constituency": "Thiruchirappalli West",
+      "candidate": "Thottiyam Rajasekaran"
+    },
+    {
+      "order": 6,
       "constituency": "Periyakulam (SC)",
       "candidate": "K. Kathirkamu"
     },
     {
-      "order": 5,
-      "constituency": "Ottapidaram (SC)",
-      "candidate": "Ira. Santharaj"
-    },
-    {
-      "order": 6,
-      "constituency": "Boothapandi (SC)",
-      "candidate": "T.A. Arumugam"
-    },
-    {
       "order": 7,
+      "constituency": "Ottapidaram (SC)",
+      "candidate": "Sundar Rajan"
+    },
+    {
+      "order": 8,
       "constituency": "Mannargudi",
       "candidate": "S. Kamaraj"
     },
     {
-      "order": 8,
-      "constituency": "Thiruvarur",
-      "candidate": "V. Karthikeyan"
+      "order": 9,
+      "constituency": "Thiruvaiyaru",
+      "candidate": "Velu Karthikeyan"
     },
     {
-      "order": 9,
+      "order": 10,
       "constituency": "Karaikudi",
-      "candidate": "V. Theepori Pandi"
+      "candidate": "Therbogi Pandi"
+    },
+    {
+      "order": 11,
+      "constituency": "Tiruppattur",
+      "candidate": "Gnanasekaran"
     }
   ]
 }
