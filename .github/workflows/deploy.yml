@@ -138,6 +138,33 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+      - name: Check whether GitHub Pages is enabled
+        id: pages-status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          REPO="${{ github.repository }}"
+          HDR=(-H "Accept: application/vnd.github+json")
+          set +e
+          ERR_FILE="$(mktemp)"
+          gh api "repos/${REPO}/pages" "${HDR[@]}" >/dev/null 2>"${ERR_FILE}"
+          RC=$?
+          set -e
+          if [ "${RC}" -eq 0 ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          MSG="$(<"${ERR_FILE}")"
+          if [[ "${MSG}" == *"HTTP 404"* || "${MSG}" == *"Not Found"* ]]; then
+            echo "::warning::GitHub Pages is not enabled for this repository. Enable it once in Settings -> Pages -> Build and deployment -> Source = GitHub Actions."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "${MSG}"
+          exit "${RC}"
+
       - name: Deploy to GitHub Pages
         id: deployment
+        if: steps.pages-status.outputs.enabled == 'true'
         uses: actions/deploy-pages@v5
