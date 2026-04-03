@@ -333,6 +333,7 @@ function main() {
 
   let withDmk = 0;
   let withAdmkSymbol = 0;
+  let withPmk = 0;
   let withTvk = 0;
   let withNtk = 0;
   let withAmmk = 0;
@@ -358,6 +359,7 @@ function main() {
 
     const dmk = dmkAssign.byId.get(id);
     const admkSym = admkSymbolAssign.byId.get(id);
+    const pmk = pmkAssign.byId.get(id);
     const tvk = tvkAssign.byId.get(id);
     const ntk = ntkAssign.byId.get(id);
     const ammk = ammkAssign.byId.get(id);
@@ -382,10 +384,12 @@ function main() {
       withDmk++;
     }
     if (admkSym) {
+      const twoLeavesParty = pmk ? 'PMK' : 'ADMK';
       rows.push(
-        announcedRow('ADMK', toDmkAdmkSymbolDisplayName(admkSym.candidate), admkSym.candidate)
+        announcedRow(twoLeavesParty, toDmkAdmkSymbolDisplayName(admkSym.candidate), admkSym.candidate)
       );
       withAdmkSymbol++;
+      if (pmk) withPmk++;
     }
     if (tvk) {
       rows.push(
@@ -474,7 +478,7 @@ function main() {
     if (dmk && tvk) dmkTvk++;
 
     // Prefer explicitly announced NDA ally candidates over generic ADMK-symbol row.
-    const preferredNdaParty = ammk ? 'AMMK' : bjp ? 'BJP' : null;
+    const preferredNdaParty = ammk ? 'AMMK' : pmk ? 'PMK' : bjp ? 'BJP' : null;
     const normalizedRows = normalizeToFourCandidates(rows, { preferredNdaParty });
 
     normalizedRows.forEach((r, i) => {
@@ -641,7 +645,7 @@ function main() {
 
   fs.writeFileSync(TN2026_PATH, JSON.stringify(tn2026) + '\n');
   console.log(
-    `Wrote TN/2026.json — DMK symbol: ${withDmk}, ADMK symbol: ${withAdmkSymbol}, TVK: ${withTvk}, NTK: ${withNtk}, AMMK: ${withAmmk}, CPI: ${withCpi}, CPM: ${withCpm}, INC: ${withInc}, BJP: ${withBjp}, VCK: ${withVck}, MDMK: ${withMdmk}, TMC: ${withTmc}, IJK: ${withIjk}, IUML: ${withIuml}, PNK: ${withPnk}, Wiki fill: ${withWikiFill}, Manual overrides: ${withManualOverrides}, DMK allies(news): ${withDmkAlliesNews}, DMK+TVK both: ${dmkTvk}`
+    `Wrote TN/2026.json — DMK symbol: ${withDmk}, ADMK symbol: ${withAdmkSymbol}, PMK-labeled in Two Leaves: ${withPmk}, TVK: ${withTvk}, NTK: ${withNtk}, AMMK: ${withAmmk}, CPI: ${withCpi}, CPM: ${withCpm}, INC: ${withInc}, BJP: ${withBjp}, VCK: ${withVck}, MDMK: ${withMdmk}, TMC: ${withTmc}, IJK: ${withIjk}, IUML: ${withIuml}, PNK: ${withPnk}, Wiki fill: ${withWikiFill}, Manual overrides: ${withManualOverrides}, DMK allies(news): ${withDmkAlliesNews}, DMK+TVK both: ${dmkTvk}`
   );
 }
 
