@@ -24,6 +24,7 @@ import type { ACElectionResult, ElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName } from '../utils/partyData';
 import { trackShare } from '../utils/firebase';
 import type { BoothResults, BoothWithResult, PostalData } from '../hooks/useBoothData';
+import { YearSelector, type YearOption } from './YearSelector';
 
 function formatNumber(num: number | undefined | null): string {
   if (num === undefined || num === null) return '—';
@@ -509,30 +510,30 @@ export function ElectionResultPanel({
 
       {/* Year selector - shows assembly and parliament years interleaved */}
       {allYearItems.length > 0 && (
-        <div className="election-year-selector">
-          {allYearItems.map((item) =>
-            item.type === 'assembly' ? (
-              <button
-                key={`ac-${item.year}`}
-                className={`year-btn ${item.year === selectedYear && !selectedPCYear ? 'active' : ''}`}
-                onClick={() => {
-                  setSelectedPCYear(null);
-                  onYearChange?.(item.year);
-                }}
-              >
-                {item.year}
-              </button>
-            ) : (
-              <button
-                key={`pc-${item.year}`}
-                className={`year-btn parliament-year ${selectedPCYear === item.year ? 'active' : ''}`}
-                onClick={() => setSelectedPCYear(item.year)}
-              >
-                {item.year}-PC
-              </button>
-            )
+        <YearSelector
+          className="election-year-selector"
+          options={allYearItems.map<YearOption>((item) =>
+            item.type === 'assembly'
+              ? {
+                  id: `ac-${item.year}`,
+                  label: `${item.year}`,
+                  title: `Assembly Election ${item.year}`,
+                  isActive: item.year === selectedYear && !selectedPCYear,
+                  onClick: () => {
+                    setSelectedPCYear(null);
+                    onYearChange?.(item.year);
+                  },
+                }
+              : {
+                  id: `pc-${item.year}`,
+                  label: `${item.year}-PC`,
+                  title: `Parliament Election ${item.year}`,
+                  isActive: selectedPCYear === item.year,
+                  onClick: () => setSelectedPCYear(item.year),
+                  tone: 'parliament',
+                }
           )}
-        </div>
+        />
       )}
 
       {/* Tab switcher: parliament or past assembly = full tabs; future assembly = Overview + All candidates only */}
