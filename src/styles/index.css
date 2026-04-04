@@ -6291,3 +6291,444 @@ path:focus {
     font-size: 16px;
   }
 }
+
+/* ========================================
+   Modern Apple-like UI Refresh Overrides
+   ======================================== */
+
+:root {
+  --ui-font-sans:
+    'Inter', 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --ui-bg: #f3f5f8;
+  --ui-surface: #ffffff;
+  --ui-surface-soft: #f7f9fc;
+  --ui-surface-tint: #eef2f7;
+  --ui-border: #dce3ec;
+  --ui-border-strong: #c6d2e1;
+  --ui-text: #0f172a;
+  --ui-text-muted: #526076;
+  --ui-text-soft: #7f8aa0;
+  --ui-accent: #2563eb;
+  --ui-accent-soft: #dbeafe;
+  --ui-state: #f59e0b;
+  --ui-parliament: #8b5cf6;
+  --ui-assembly: #10b981;
+  --ui-radius-sm: 8px;
+  --ui-radius-md: 12px;
+  --ui-radius-lg: 16px;
+  --ui-radius-xl: 22px;
+  --ui-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --ui-shadow-md: 0 8px 24px rgba(15, 23, 42, 0.1);
+  --ui-shadow-lg: 0 16px 42px rgba(15, 23, 42, 0.14);
+  --ui-speed-fast: 140ms;
+  --ui-speed: 220ms;
+  --ui-speed-slow: 360ms;
+  --ui-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --color-state: var(--ui-state);
+  --color-parliament: var(--ui-parliament);
+  --color-assembly: var(--ui-assembly);
+}
+
+body {
+  font-family: var(--ui-font-sans);
+  background:
+    radial-gradient(circle at 10% -10%, rgba(37, 99, 235, 0.08), transparent 30%),
+    radial-gradient(circle at 90% -20%, rgba(139, 92, 246, 0.08), transparent 32%), var(--ui-bg);
+  color: var(--ui-text);
+}
+
+.container {
+  background: transparent;
+}
+
+.sidebar {
+  background: color-mix(in srgb, var(--ui-surface) 94%, #ffffff 6%);
+  border-right: 1px solid var(--ui-border);
+  box-shadow: var(--ui-shadow-md);
+  backdrop-filter: blur(14px) saturate(130%);
+  transition:
+    width var(--ui-speed-slow) var(--ui-ease),
+    transform var(--ui-speed-slow) var(--ui-ease);
+}
+
+.sidebar-header {
+  background:
+    linear-gradient(160deg, #0f172a 0%, #172554 60%, #1e3a8a 100%),
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.16), transparent 42%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.sidebar-collapse-btn {
+  background: linear-gradient(145deg, #0f172a 0%, #1e3a8a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: var(--ui-shadow-md);
+  transition: all var(--ui-speed-fast) var(--ui-ease);
+}
+
+.sidebar-collapse-btn:hover {
+  background: linear-gradient(145deg, #1d4ed8 0%, #2563eb 100%);
+  transform: translateY(-1px) scale(1.05);
+}
+
+.info-panel {
+  background: linear-gradient(180deg, var(--ui-surface) 0%, var(--ui-surface-soft) 100%);
+  color: var(--ui-text);
+}
+
+.info-title {
+  color: var(--ui-text);
+  border-bottom-color: var(--ui-border);
+  letter-spacing: -0.01em;
+}
+
+.stat-card {
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-sm);
+}
+
+.stat-value {
+  color: var(--ui-text);
+}
+
+.stat-label {
+  color: var(--ui-text-soft);
+  letter-spacing: 0.04em;
+}
+
+.breadcrumb {
+  background: color-mix(in srgb, var(--ui-surface) 78%, var(--ui-surface-soft) 22%);
+  border-bottom: 1px solid var(--ui-border);
+}
+
+.breadcrumb a {
+  color: var(--ui-accent);
+  text-underline-offset: 2px;
+  transition: color var(--ui-speed-fast) var(--ui-ease);
+}
+
+.breadcrumb a:hover {
+  color: #1d4ed8;
+}
+
+.breadcrumb span {
+  color: var(--ui-text-muted);
+}
+
+.share-btn {
+  border-radius: var(--ui-radius-sm);
+  color: var(--ui-text-muted);
+  transition: all var(--ui-speed-fast) var(--ui-ease);
+}
+
+.share-btn:hover {
+  background: var(--ui-accent-soft);
+  color: var(--ui-accent);
+}
+
+.map-toolbar {
+  background: color-mix(in srgb, var(--ui-surface) 84%, #ffffff 16%);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-xl);
+  box-shadow: var(--ui-shadow-lg);
+  backdrop-filter: blur(16px) saturate(135%);
+}
+
+.toolbar-section:not(:last-child) {
+  border-right-color: var(--ui-border);
+}
+
+.toolbar-btn {
+  background: var(--ui-surface-soft);
+  color: var(--ui-text-muted);
+  border: 1px solid transparent;
+  border-radius: 11px;
+  transition: all var(--ui-speed-fast) var(--ui-ease);
+}
+
+.toolbar-btn:hover {
+  background: var(--ui-surface);
+  border-color: var(--ui-border);
+  color: var(--ui-text);
+}
+
+.toolbar-btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.toolbar-btn.toolbar-toggle.active {
+  background: linear-gradient(140deg, #1d4ed8 0%, #1e40af 100%);
+  border-color: transparent;
+}
+
+.toolbar-year-selector {
+  border-top-color: var(--ui-border);
+}
+
+.toolbar-year-btn {
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  color: var(--ui-text-muted);
+  border-radius: 999px;
+}
+
+.toolbar-year-btn:hover {
+  border-color: var(--ui-accent);
+  color: var(--ui-accent);
+}
+
+.toolbar-year-btn.active,
+.toolbar-year-btn.parliament-year.active {
+  background: var(--ui-accent);
+  border-color: var(--ui-accent);
+  color: #ffffff;
+}
+
+.toolbar-dropdown-menu {
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-md);
+}
+
+.toolbar-dropdown-item {
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+}
+
+.toolbar-dropdown-item:hover {
+  background: var(--ui-surface-soft);
+  color: var(--ui-text);
+}
+
+.toolbar-dropdown-item.active {
+  background: #1d4ed8;
+}
+
+.map-legend {
+  background: color-mix(in srgb, var(--ui-surface) 86%, #ffffff 14%);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-md);
+  backdrop-filter: blur(10px) saturate(125%);
+}
+
+.search-input {
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: var(--ui-shadow-sm);
+  transition: all var(--ui-speed) var(--ui-ease);
+}
+
+.search-input::placeholder {
+  color: var(--ui-text-soft);
+}
+
+.search-input:focus {
+  border-color: color-mix(in srgb, var(--ui-accent) 50%, white);
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.14),
+    var(--ui-shadow-md);
+}
+
+.search-icon {
+  color: var(--ui-text-soft);
+}
+
+.search-clear {
+  background: var(--ui-surface-tint);
+  color: var(--ui-text-muted);
+}
+
+.search-clear:hover {
+  background: var(--ui-border);
+  color: var(--ui-text);
+}
+
+.search-results {
+  background: color-mix(in srgb, var(--ui-surface) 94%, var(--ui-surface-soft) 6%);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-lg);
+  backdrop-filter: blur(8px);
+}
+
+.search-result-item {
+  border-bottom-color: color-mix(in srgb, var(--ui-border) 64%, transparent);
+  transition: all var(--ui-speed-fast) var(--ui-ease);
+}
+
+.result-name {
+  color: var(--ui-text);
+}
+
+.result-state {
+  color: var(--ui-text-soft);
+}
+
+.election-panel {
+  background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+  border-left: 1px solid var(--ui-border);
+  box-shadow: -12px 0 42px rgba(15, 23, 42, 0.16);
+}
+
+.election-panel-header {
+  background:
+    linear-gradient(145deg, #0f172a 0%, #1e3a8a 72%, #1d4ed8 100%),
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.2), transparent 40%);
+}
+
+.election-panel-close {
+  border-radius: 10px;
+}
+
+.election-year-selector {
+  background: linear-gradient(180deg, var(--ui-surface-soft) 0%, #f2f6fb 100%);
+  border-bottom-color: var(--ui-border);
+}
+
+.year-chip-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.year-dropdown-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ui-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.year-dropdown {
+  min-width: 138px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 12px;
+  outline: none;
+  transition: border-color var(--ui-speed-fast) var(--ui-ease);
+}
+
+.year-dropdown:hover,
+.year-dropdown:focus {
+  border-color: var(--ui-accent);
+}
+
+.year-chip {
+  border: 1px solid var(--ui-border);
+  border-radius: 999px;
+  color: var(--ui-text-muted);
+  background: var(--ui-surface);
+  transition: all var(--ui-speed-fast) var(--ui-ease);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 10px 22px;
+  min-height: 46px;
+}
+
+.year-chip:hover {
+  border-color: var(--ui-accent);
+  color: var(--ui-accent);
+  background: color-mix(in srgb, var(--ui-surface) 80%, #dbeafe 20%);
+}
+
+.year-chip.active,
+.year-chip.parliament-year.active {
+  background: var(--ui-accent);
+  border-color: var(--ui-accent);
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.28);
+}
+
+.year-chip.parliament-year:not(.active) {
+  color: color-mix(in srgb, var(--ui-accent) 70%, var(--ui-text-muted));
+  border-color: color-mix(in srgb, var(--ui-accent) 24%, var(--ui-border));
+}
+
+.panel-tabs {
+  background: var(--ui-surface);
+  border-bottom: 1px solid var(--ui-border);
+  gap: 8px;
+  padding: 8px 12px;
+}
+
+.panel-tab {
+  border-radius: 10px;
+  border: 1px solid transparent;
+  color: var(--ui-text-muted);
+  transition: all var(--ui-speed-fast) var(--ui-ease);
+}
+
+.panel-tab:hover {
+  background: var(--ui-surface-soft);
+  color: var(--ui-text);
+}
+
+.panel-tab.active {
+  background: #e7efff;
+  border-color: #b7ceff;
+  color: #1e40af;
+}
+
+.copy-toast {
+  background: linear-gradient(140deg, #047857 0%, #059669 100%);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  box-shadow: var(--ui-shadow-md);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 88%;
+    max-width: 360px;
+    box-shadow: 14px 0 42px rgba(15, 23, 42, 0.24);
+  }
+
+  .sidebar-overlay {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(3px);
+  }
+
+  .map-toolbar {
+    border-radius: var(--ui-radius-lg);
+  }
+
+  .election-panel.panel-peek,
+  .election-panel.panel-half,
+  .election-panel.panel-full {
+    border-top: 1px solid var(--ui-border);
+    box-shadow: 0 -12px 32px rgba(15, 23, 42, 0.16);
+  }
+
+  .bottom-sheet-handle {
+    background: color-mix(in srgb, var(--ui-text-soft) 40%, transparent);
+    border-radius: 999px;
+  }
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[role='button']:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.8);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

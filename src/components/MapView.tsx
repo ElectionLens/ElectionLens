@@ -57,6 +57,7 @@ import { buildAcPanelPlaceholder } from '../utils/acPanelPlaceholder';
 import { isAssemblyFeatureSelected } from '../utils/mapSelection';
 import { FeedbackModal } from './FeedbackModal';
 import { VectorTileLayer } from './VectorTileLayer';
+import { YearSelector, type YearOption } from './YearSelector';
 import { useSchema } from '../hooks/useSchema';
 
 // Lazy load panel components - only loaded when user clicks a constituency
@@ -264,95 +265,71 @@ function MapToolbar({
           {/* Year selection - show below AC/PC buttons - always visible when AC, PC, or districts view is active */}
           {(currentView === 'assemblies' ||
             currentView === 'constituencies' ||
-            currentView === 'districts') && (
-            <div className="toolbar-year-selector">
-              {currentView === 'assemblies' && showACCheckbox ? (
-                /* AC within PC: show only PC years, synced with panel */
-                (pcAvailableYears?.length ? pcAvailableYears : availablePCYears || []).length >
-                0 ? (
-                  (pcAvailableYears?.length ? pcAvailableYears : availablePCYears || []).map(
-                    (year) => (
-                      <button
-                        key={year}
-                        className={`toolbar-year-btn ${selectedPCYear === year ? 'active' : ''}`}
-                        onClick={() => {
-                          onPCYearChange?.(year);
-                        }}
-                        title={`Parliament Election ${year}`}
-                      >
-                        {year}
-                      </button>
-                    )
-                  )
-                ) : null
-              ) : currentView === 'assemblies' || currentView === 'districts' ? (
-                <>
-                  {/* State-level AC view or districts view: assembly + PC years interleaved */}
-                  {(() => {
-                    type YearItem = { year: number; type: 'assembly' | 'parliament' };
-                    const allYearItems: YearItem[] = [
-                      ...(availableYears || []).map((y) => ({
-                        year: y,
-                        type: 'assembly' as const,
-                      })),
-                      ...(availablePCYears || []).map((y) => ({
-                        year: y,
-                        type: 'parliament' as const,
-                      })),
-                    ].sort((a, b) => a.year - b.year);
+            currentView === 'districts') &&
+            (() => {
+              let yearOptions: YearOption[] = [];
 
-                    return allYearItems.map((item) =>
-                      item.type === 'assembly' ? (
-                        <button
-                          key={`ac-${item.year}`}
-                          className={`toolbar-year-btn ${selectedYear === item.year && selectedPCYear === null ? 'active' : ''}`}
-                          onClick={() => {
-                            if (onPCYearChange) {
-                              (onPCYearChange as (year: number | null) => void)(null);
-                            }
-                            onYearChange?.(item.year);
-                          }}
-                          title={`Assembly Election ${item.year}`}
-                        >
-                          {item.year}
-                        </button>
-                      ) : (
-                        <button
-                          key={`pc-${item.year}`}
-                          className={`toolbar-year-btn parliament-year ${selectedPCYear === item.year ? 'active' : ''}`}
-                          onClick={() => {
-                            onPCYearChange?.(item.year);
-                          }}
-                          title={`Parliament Election ${item.year}`}
-                        >
-                          {item.year}-PC
-                        </button>
-                      )
-                    );
-                  })()}
-                </>
-              ) : /* Parliament years for constituencies view; AC-within-PC uses selectedACPCYear + onACPCYearChange so URL gets year=pc-YYYY */
-              pcAvailableYears && pcAvailableYears.length > 0 ? (
-                (() => {
-                  const isACWithinPC = showACCheckbox && selectedAssembly != null;
-                  const displayYear = isACWithinPC ? selectedPCYear : pcSelectedYear;
-                  const onYearClick = isACWithinPC
-                    ? (y: number) => onPCYearChange?.(y)
-                    : (y: number) => onPCYearChangeForPC?.(y);
-                  return pcAvailableYears.map((year) => (
-                    <button
-                      key={year}
-                      className={`toolbar-year-btn ${displayYear === year ? 'active' : ''}`}
-                      onClick={() => onYearClick(year)}
-                      title={`Parliament Election ${year}`}
-                    >
-                      {year}
-                    </button>
-                  ));
-                })()
-              ) : null}
-            </div>
-          )}
+              if (currentView === 'assemblies' && showACCheckbox) {
+                yearOptions = (
+                  pcAvailableYears?.length ? pcAvailableYears : availablePCYears || []
+                ).map((year) => ({
+                  id: `pc-${year}`,
+                  label: `${year}`,
+                  title: `Parliament Election ${year}`,
+                  isActive: selectedPCYear === year,
+                  onClick: () => onPCYearChange?.(year),
+                }));
+              } else if (currentView === 'assemblies' || currentView === 'districts') {
+                type YearItem = { year: number; type: 'assembly' | 'parliament' };
+                const allYearItems: YearItem[] = [
+                  ...(availableYears || []).map((y) => ({ year: y, type: 'assembly' as const })),
+                  ...(availablePCYears || []).map((y) => ({
+                    year: y,
+                    type: 'parliament' as const,
+                  })),
+                ].sort((a, b) => a.year - b.year);
+
+                yearOptions = allYearItems.map((item) =>
+                  item.type === 'assembly'
+                    ? {
+                        id: `ac-${item.year}`,
+                        label: `${item.year}`,
+                        title: `Assembly Election ${item.year}`,
+                        isActive: selectedYear === item.year && selectedPCYear === null,
+                        onClick: () => {
+                          if (onPCYearChange) {
+                            (onPCYearChange as (year: number | null) => void)(null);
+                          }
+                          onYearChange?.(item.year);
+                        },
+                      }
+                    : {
+                        id: `pc-${item.year}`,
+                        label: `${item.year}-PC`,
+                        title: `Parliament Election ${item.year}`,
+                        isActive: selectedPCYear === item.year,
+                        onClick: () => onPCYearChange?.(item.year),
+                        tone: 'parliament',
+                      }
+                );
+              } else if (pcAvailableYears && pcAvailableYears.length > 0) {
+                const isACWithinPC = showACCheckbox && selectedAssembly != null;
+                const displayYear = isACWithinPC ? selectedPCYear : pcSelectedYear;
+                const onYearClick = isACWithinPC
+                  ? (y: number) => onPCYearChange?.(y)
+                  : (y: number) => onPCYearChangeForPC?.(y);
+
+                yearOptions = pcAvailableYears.map((year) => ({
+                  id: `pc-${year}`,
+                  label: `${year}`,
+                  title: `Parliament Election ${year}`,
+                  isActive: displayYear === year,
+                  onClick: () => onYearClick(year),
+                }));
+              }
+
+              return <YearSelector className="toolbar-year-selector" options={yearOptions} />;
+            })()}
 
           {/* Show ACs checkbox - when viewing a specific PC, toggle between PC boundary and ACs within PC */}
           {showACCheckbox && onShowACsWithinPCChange && (

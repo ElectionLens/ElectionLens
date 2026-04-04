@@ -14,6 +14,7 @@ import { useState, useCallback, memo, useRef } from 'react';
 import type { PCElectionResult, PCElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName } from '../utils/partyData';
 import { trackShare } from '../utils/firebase';
+import { YearSelector, type YearOption } from './YearSelector';
 
 function formatNumber(num: number): string {
   return num.toLocaleString('en-IN');
@@ -235,17 +236,16 @@ export function PCElectionResultPanel({
 
       {/* Year selector */}
       {availableYears.length > 1 && (
-        <div className="election-year-selector">
-          {availableYears.map((year) => (
-            <button
-              key={year}
-              className={`year-btn ${year === selectedYear ? 'active' : ''}`}
-              onClick={() => onYearChange?.(year)}
-            >
-              {year}
-            </button>
-          ))}
-        </div>
+        <YearSelector
+          className="election-year-selector"
+          options={availableYears.map<YearOption>((year) => ({
+            id: `pc-${year}`,
+            label: `${year}`,
+            title: `Parliament Election ${year}`,
+            isActive: year === selectedYear,
+            onClick: () => onYearChange?.(year),
+          }))}
+        />
       )}
 
       <div className="panel-tabs">
