@@ -65,6 +65,18 @@ export const ELECTIONS = {
     `${ELECTION_DATA_BASE}/ac/${stateId}/${year}.json`,
 } as const;
 
+/**
+ * Use on assembly counting day: append a short-lived query so updated static JSON
+ * is not stuck behind the browser cache (see VITE_ASSEMBLY_LIVE_REFRESH).
+ */
+export function assemblyElectionFetchUrl(resourcePath: string): string {
+  const v = import.meta.env.VITE_ASSEMBLY_LIVE_REFRESH;
+  const live = v === '1' || v === 'true';
+  if (!live) return resourcePath;
+  const sep = resourcePath.includes('?') ? '&' : '?';
+  return `${resourcePath}${sep}t=${Math.floor(Date.now() / 60000)}`;
+}
+
 /** State-level winners (party with most Lok Sabha seats per state, latest PC election) - legacy */
 export const STATE_WINNERS_PATH = `${ELECTION_DATA_BASE}/state-winners.json`;
 

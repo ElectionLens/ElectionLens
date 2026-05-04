@@ -44,7 +44,12 @@ const AC_STYLE_VARIANTS: Record<string, string[]> = {
 };
 import { clearAllCache } from '../utils/db';
 import { getPartyColor } from '../utils/partyData';
-import { ELECTIONS, PC_ELECTIONS, STATE_WINNERS_AC_PATH } from '../constants/paths';
+import {
+  ELECTIONS,
+  PC_ELECTIONS,
+  STATE_WINNERS_AC_PATH,
+  assemblyElectionFetchUrl,
+} from '../constants/paths';
 import type {
   ElectionResultsByConstituency,
   ElectionResultsFileMeta,
@@ -1040,7 +1045,7 @@ export function MapView({
         } else if (selectedYear) {
           // Load AC election results
           try {
-            const acPath = ELECTIONS.getYearPath(stateId, selectedYear);
+            const acPath = assemblyElectionFetchUrl(ELECTIONS.getYearPath(stateId, selectedYear));
             const response = await fetch(acPath);
             if (response.ok) {
               const results = (await response.json()) as ElectionResultsByConstituency;
@@ -1099,7 +1104,7 @@ export function MapView({
           (currentView === 'districts' || currentView === 'assemblies' || Boolean(currentDistrict))
         ) {
           try {
-            const indexRes = await fetch(ELECTIONS.getIndexPath(stateId));
+            const indexRes = await fetch(assemblyElectionFetchUrl(ELECTIONS.getIndexPath(stateId)));
             if (indexRes.ok) {
               const index = (await indexRes.json()) as StateElectionIndex;
               const years = index.availableYears ?? [];
@@ -1108,7 +1113,9 @@ export function MapView({
                 defaultAssemblyDataYearFromIndex(index) ??
                 (years.length > 0 ? years[years.length - 1] : null);
               if (latestYear != null) {
-                const response = await fetch(ELECTIONS.getYearPath(stateId, latestYear));
+                const response = await fetch(
+                  assemblyElectionFetchUrl(ELECTIONS.getYearPath(stateId, latestYear))
+                );
                 if (response.ok) {
                   const results = (await response.json()) as ElectionResultsByConstituency;
                   const acFileMeta = results._meta;
@@ -1207,14 +1214,18 @@ export function MapView({
                 const missingPCIds = statePCIds.filter((id) => !winners[id]);
                 if (missingPCIds.length > 0) {
                   try {
-                    const acIndexRes = await fetch(ELECTIONS.getIndexPath(stateId));
+                    const acIndexRes = await fetch(
+                      assemblyElectionFetchUrl(ELECTIONS.getIndexPath(stateId))
+                    );
                     if (acIndexRes.ok) {
                       const acIndex = (await acIndexRes.json()) as { availableYears?: number[] };
                       const acYears = acIndex.availableYears ?? [];
                       const assemblyYear =
                         acYears.filter((y) => y <= yearToLoad).pop() ?? acYears[acYears.length - 1];
                       if (assemblyYear != null) {
-                        const acRes = await fetch(ELECTIONS.getYearPath(stateId, assemblyYear));
+                        const acRes = await fetch(
+                          assemblyElectionFetchUrl(ELECTIONS.getYearPath(stateId, assemblyYear))
+                        );
                         if (acRes.ok) {
                           const acResults = (await acRes.json()) as ElectionResultsByConstituency;
                           const acFillMeta = acResults._meta;
@@ -1416,7 +1427,9 @@ export function MapView({
             const acYear = urlYearParam ? parseInt(urlYearParam, 10) : selectedYear;
             if (!isNaN(acYear ?? NaN)) {
               try {
-                const acResponse = await fetch(ELECTIONS.getYearPath(stateId, acYear as number));
+                const acResponse = await fetch(
+                  assemblyElectionFetchUrl(ELECTIONS.getYearPath(stateId, acYear as number))
+                );
                 if (acResponse.ok) {
                   const contentType = acResponse.headers.get('content-type');
                   if (contentType?.includes('application/json')) {

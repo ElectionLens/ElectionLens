@@ -101,9 +101,9 @@ function generateShareText(
     const head = `🗳️ ${loc}${st ? `, ${st}` : ''} | ${result.year}`;
     const lines = result.candidates.map((c) => `${c.name} (${c.party})`);
     if (lines.length > 0) {
-      return `${head}\n\nPre-poll: votes not counted yet. Candidates: ${lines.join('; ')}.`.trim();
+      return `${head}\n\nCandidates: ${lines.join('; ')}.`.trim();
     }
-    return `${head}\n\nPre-poll: votes not counted yet. No sourced candidate data for this seat yet.`.trim();
+    return `${head}\n\nNo candidate list for this seat yet.`.trim();
   }
   const winner = result.candidates[0];
   if (!winner) return '';
@@ -774,18 +774,6 @@ export function ElectionResultPanel({
                 </div>
               </div>
             )}
-            {resultsPending && !acResultsLoading && (
-              <div className="prepoll-banner">
-                <AlertTriangle size={16} aria-hidden />
-                <div className="prepoll-banner-body">
-                  <strong>Pre-poll ({result.year}).</strong> Votes are not counted yet. Listed names
-                  reflect sourced pre-counting data where available.
-                  {!hasAnnouncedCandidates && (
-                    <span> This seat has no merged candidate list yet.</span>
-                  )}
-                </div>
-              </div>
-            )}
             {/* Compact Winner card */}
             {winner && (
               <div
@@ -892,15 +880,6 @@ export function ElectionResultPanel({
           </div>
         ) : activeTab === 'candidates' ? (
           <div className="candidates-view">
-            {resultsPending && !acResultsLoading && (
-              <div className="prepoll-banner" style={{ marginBottom: 12 }}>
-                <AlertTriangle size={16} aria-hidden />
-                <div className="prepoll-banner-body">
-                  <strong>Pre-poll ({result.year}).</strong> Votes are not counted yet. Listed names
-                  reflect sourced pre-counting data where available.
-                </div>
-              </div>
-            )}
             {!acResultsLoading && !hasAnnouncedCandidates && resultsPending ? (
               <p style={{ fontSize: 13, margin: 0, color: 'var(--muted-foreground, #64748b)' }}>
                 No sourced candidate names for this constituency yet.

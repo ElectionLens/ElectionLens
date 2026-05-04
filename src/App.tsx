@@ -9,7 +9,7 @@ import { useElectionResults } from './hooks/useElectionResults';
 import { useParliamentResults } from './hooks/useParliamentResults';
 import { useUrlState, type UrlState } from './hooks/useUrlState';
 import { useSchema } from './hooks/useSchema';
-import { ELECTIONS, PC_ELECTIONS } from './constants/paths';
+import { ELECTIONS, PC_ELECTIONS, assemblyElectionFetchUrl } from './constants/paths';
 import { STATE_FILE_MAP } from './constants';
 import { normalizeName, toTitleCase } from './utils/helpers';
 import { isAssemblyResultEntry, skipAssemblyWinnerColoring } from './utils/electionResults';
@@ -610,7 +610,9 @@ function App(): JSX.Element {
               const missingPCIds = statePCIds.filter((id) => !winners[id]);
               if (missingPCIds.length > 0) {
                 try {
-                  const acIndexRes = await fetch(ELECTIONS.getIndexPath(stateId));
+                  const acIndexRes = await fetch(
+                    assemblyElectionFetchUrl(ELECTIONS.getIndexPath(stateId))
+                  );
                   if (acIndexRes.ok) {
                     const acIndex = (await acIndexRes.json()) as { availableYears?: number[] };
                     const acYears = acIndex.availableYears ?? [];
@@ -618,7 +620,9 @@ function App(): JSX.Element {
                       acYears.filter((y) => y <= urlState.year!).pop() ??
                       acYears[acYears.length - 1];
                     if (assemblyYear != null) {
-                      const acRes = await fetch(ELECTIONS.getYearPath(stateId, assemblyYear));
+                      const acRes = await fetch(
+                        assemblyElectionFetchUrl(ELECTIONS.getYearPath(stateId, assemblyYear))
+                      );
                       if (acRes.ok) {
                         const acResults = (await acRes.json()) as ElectionResultsByConstituency;
                         const navigateAcFileMeta = acResults._meta;

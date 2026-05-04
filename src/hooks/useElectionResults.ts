@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react';
-import { ELECTIONS } from '../constants/paths';
+import { ELECTIONS, assemblyElectionFetchUrl } from '../constants/paths';
 import type { StateElectionIndex, ElectionResultsByConstituency, ACElectionResult } from '../types';
 import { isAssemblyElectionResult } from '../utils/electionResults';
 import { defaultAssemblyDataYear } from '../utils/electionSchedule';
@@ -139,6 +139,12 @@ export interface UseElectionResultsReturn {
 /**
  * Hook for loading and managing election results data
  */
+/** When true, bypass static JSON caches so redeployed / updated AC files show during counting (see vite-env.d.ts). */
+function assemblyLiveRefresh(): boolean {
+  const v = import.meta.env.VITE_ASSEMBLY_LIVE_REFRESH;
+  return v === '1' || v === 'true';
+}
+
 export function useElectionResults(): UseElectionResultsReturn {
   const [availableYears, setAvailableYears] = useState<number[]>([]);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
@@ -171,10 +177,11 @@ export function useElectionResults(): UseElectionResultsReturn {
     ): Promise<StateElectionIndex | null> => {
       const slug = getStateSlug(stateName);
       const preserveYear = options?.yearFromUrl != null;
+      const live = assemblyLiveRefresh();
 
       // Check cache
       const cached = indexCache.current.get(slug);
-      if (cached) {
+      if (!live && cached) {
         setAvailableYears(cached.availableYears);
         if (!preserveYear && !selectedYear && cached.availableYears.length > 0) {
           const defaultYear = defaultAssemblyDataYear(cached.availableYears, {
@@ -188,13 +195,15 @@ export function useElectionResults(): UseElectionResultsReturn {
       }
 
       try {
-        const response = await fetch(ELECTIONS.getIndexPath(slug));
+        const response = await fetch(assemblyElectionFetchUrl(ELECTIONS.getIndexPath(slug)));
         if (!response.ok) {
           return null;
         }
 
         const index = (await response.json()) as StateElectionIndex;
-        indexCache.current.set(slug, index);
+        if (!live) {
+          indexCache.current.set(slug, index);
+        }
         statesWithData.current.add(slug);
 
         setAvailableYears(index.availableYears);
@@ -223,20 +232,23 @@ export function useElectionResults(): UseElectionResultsReturn {
       const slug = getStateSlug(stateName);
       const cacheKey = `${slug}_${year}`;
 
-      // Check cache
+      const live = assemblyLiveRefresh();
+      // Check cache (skip during live refresh so updated JSON is picked up after redeploy / CDN swap)
       const cached = resultsCache.current.get(cacheKey);
-      if (cached) return cached;
+      if (!live && cached) return cached;
 
       setError(null);
 
       try {
-        const response = await fetch(ELECTIONS.getYearPath(slug, year));
+        const response = await fetch(assemblyElectionFetchUrl(ELECTIONS.getYearPath(slug, year)));
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
         }
 
         const results = (await response.json()) as ElectionResultsByConstituency;
-        resultsCache.current.set(cacheKey, results);
+        if (!live) {
+          resultsCache.current.set(cacheKey, results);
+        }
 
         return results;
       } catch (err) {

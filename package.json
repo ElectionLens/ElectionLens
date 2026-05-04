@@ -29,6 +29,8 @@
     "data:verify-elections": "node scripts/verify-election-data-integrity.mjs",
     "data:verify-elections:ci": "node scripts/verify-election-data-integrity.mjs --ci",
     "data:rebuild-pc-2024:eci-segment-xls": "python3 scripts/rebuild-pc-2024-from-eci-segment-xls.py",
+    "data:fetch-ac-may2026": "node scripts/fetch-may2026-assembly-from-eci.mjs",
+    "data:fetch-ac-may2026:poll": "node scripts/fetch-may2026-assembly-from-eci.mjs --poll 180",
     "generate:ac-2026": "node scripts/generate-ac-2026-upcoming.mjs",
     "data:ac-2026-placeholder": "node scripts/add-ac-2026-placeholder-all-states.mjs",
     "data:ac-years-through-2029": "node scripts/sync-ac-years-through-2029.mjs",
