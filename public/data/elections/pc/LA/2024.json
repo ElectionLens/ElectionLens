@@ -1,77 +1,76 @@
 {
   "LA-01": {
-    "constituencyName": "LADAKH",
-    "constituencyNameOriginal": "Ladakh",
+    "constituencyName": "LAKSHADWEEP",
+    "constituencyNameOriginal": "Lakshadweep",
     "constituencyNo": 1,
     "constituencyType": "GEN",
-    "state": "Ladakh",
+    "state": "Lakshadweep",
     "year": 2024,
-    "electors": 190576,
-    "validVotes": 131718,
-    "turnout": 69.12,
-    "totalCandidates": 3,
+    "electors": 57953,
+    "validVotes": 48498,
+    "turnout": 83.69,
+    "totalCandidates": 4,
     "candidates": [
       {
-        "name": "MOHMAD HANEEFA",
-        "party": "IND",
-        "votes": 64443,
-        "voteShare": 48.92,
+        "name": "MUHAMMED HAMDULLAH SAYEED",
+        "party": "INC",
+        "votes": 25405,
+        "voteShare": 52.38,
         "position": 1,
         "acWiseVotes": [
           {
-            "acName": "Leh",
-            "votes": 5733,
-            "voteShare": 9.68
-          },
-          {
-            "acName": "Kargil",
-            "votes": 58710,
-            "voteShare": 81
+            "acName": "Lakshadweep",
+            "votes": 25405,
+            "voteShare": 52.38
           }
         ],
-        "margin": 28673
+        "margin": 2568
       },
       {
-        "name": "TSERING NAMGYAL",
-        "party": "INC",
-        "votes": 35770,
-        "voteShare": 27.16,
+        "name": "MOHAMMED FAIZAL PP",
+        "party": "NCPSP",
+        "votes": 22837,
+        "voteShare": 47.09,
         "position": 2,
         "acWiseVotes": [
           {
-            "acName": "Leh",
-            "votes": 32014,
-            "voteShare": 54.04
-          },
-          {
-            "acName": "Kargil",
-            "votes": 3756,
-            "voteShare": 5.18
+            "acName": "Lakshadweep",
+            "votes": 22837,
+            "voteShare": 47.09
           }
         ]
       },
       {
-        "name": "TASHI GYALSON",
-        "party": "BJP",
-        "votes": 31505,
-        "voteShare": 23.92,
+        "name": "YOUSUF TP",
+        "party": "NCP",
+        "votes": 198,
+        "voteShare": 0.41,
         "position": 3,
         "acWiseVotes": [
           {
-            "acName": "Leh",
-            "votes": 21493,
-            "voteShare": 36.28
-          },
+            "acName": "Lakshadweep",
+            "votes": 198,
+            "voteShare": 0.41
+          }
+        ]
+      },
+      {
+        "name": "KOYA",
+        "party": "IND",
+        "votes": 58,
+        "voteShare": 0.12,
+        "position": 4,
+        "acWiseVotes": [
           {
-            "acName": "Kargil",
-            "votes": 10012,
-            "voteShare": 13.81
+            "acName": "Lakshadweep",
+            "votes": 58,
+            "voteShare": 0.12
           }
         ]
       }
     ],
     "schemaId": "LA-01",
-    "name": "Ladakh",
+    "name": "Lakshadweep",
     "type": "GEN"
   }
 }
