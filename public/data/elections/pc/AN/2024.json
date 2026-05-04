@@ -58,13 +58,13 @@
         "name": "D AYYAPPAN",
         "party": "CPI(M)",
         "votes": 6009,
-        "voteShare": 3,
+        "voteShare": 3.0,
         "position": 4,
         "acWiseVotes": [
           {
             "acName": "ANDAMAN AND NICOBAR ISLANDS",
             "votes": 6009,
-            "voteShare": 3
+            "voteShare": 3.0
           }
         ]
       },
@@ -181,9 +181,8 @@
         ]
       }
     ],
-    "_unmatchedKey": true,
     "schemaId": "AN-01",
-    "name": "Andaman & Nicobar",
+    "name": "Andaman & Nicobar Islands",
     "type": "GEN"
   }
 }
