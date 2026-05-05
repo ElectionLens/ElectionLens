@@ -65,16 +65,28 @@ export const ELECTIONS = {
     `${ELECTION_DATA_BASE}/ac/${stateId}/${year}.json`,
 } as const;
 
+/** True when `VITE_ASSEMBLY_LIVE_REFRESH` is set — bypass caches for assembly JSON. */
+export function isAssemblyLiveRefreshEnabled(): boolean {
+  const v = import.meta.env.VITE_ASSEMBLY_LIVE_REFRESH;
+  return v === '1' || v === 'true';
+}
+
+/** Poll interval when live refresh is used client-side (ms). Default 45s; minimum 5s. */
+export function getAssemblyLivePollIntervalMs(): number {
+  const raw = import.meta.env.VITE_ASSEMBLY_POLL_INTERVAL_MS;
+  if (raw == null || raw === '') return 45_000;
+  const n = parseInt(String(raw), 10);
+  return Number.isFinite(n) && n >= 5_000 ? n : 45_000;
+}
+
 /**
- * Use on assembly counting day: append a short-lived query so updated static JSON
+ * Use on assembly counting day: append a cache-busting query so updated static JSON
  * is not stuck behind the browser cache (see VITE_ASSEMBLY_LIVE_REFRESH).
  */
 export function assemblyElectionFetchUrl(resourcePath: string): string {
-  const v = import.meta.env.VITE_ASSEMBLY_LIVE_REFRESH;
-  const live = v === '1' || v === 'true';
-  if (!live) return resourcePath;
+  if (!isAssemblyLiveRefreshEnabled()) return resourcePath;
   const sep = resourcePath.includes('?') ? '&' : '?';
-  return `${resourcePath}${sep}t=${Math.floor(Date.now() / 60000)}`;
+  return `${resourcePath}${sep}t=${Date.now()}`;
 }
 
 /** State-level winners (party with most Lok Sabha seats per state, latest PC election) - legacy */

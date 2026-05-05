@@ -7,8 +7,10 @@ declare module '*.geojson' {
 
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string;
-  /** Set to `1` during assembly counting night so JSON is refetched (~1 min buckets), no in-memory results cache */
+  /** Set to `1` during assembly counting night so assembly JSON is cache-busted and hooks skip static caches */
   readonly VITE_ASSEMBLY_LIVE_REFRESH?: string;
+  /** Optional client poll interval (ms) when using live refresh helpers (default 45000, min 5000) */
+  readonly VITE_ASSEMBLY_POLL_INTERVAL_MS?: string;
   readonly MODE: string;
   readonly DEV: boolean;
   readonly PROD: boolean;

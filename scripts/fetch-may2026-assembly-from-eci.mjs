@@ -128,8 +128,48 @@ function calcEnop(cands) {
   return sumSq > 0 ? Math.round((1 / sumSq) * 100) / 100 : 0;
 }
 
+/** Lowercase ECI party label → TCPD-style abbreviation (Tamil Nadu exports match 2021 files). */
+const TN_PARTY_ABBREV = Object.freeze({
+  'dravida munnetra kazhagam': 'DMK',
+  'all india anna dravida munnetra kazhagam': 'AIADMK',
+  'tamilaga vettri kazhagam': 'TVK',
+  'naam tamilar katchi': 'NTK',
+  'pattali makkal katchi': 'PMK',
+  'desiya murpokku dravida kazhagam': 'DMDK',
+  'viduthalai chiruthaigal katchi': 'VCK',
+  'marumalarchi dravida munnetra kazhagam': 'MDMK',
+  'makkal needhi maiam': 'MNM',
+  'amma makkal munnetra kazhagam': 'AMMK',
+  'bharatiya janata party': 'BJP',
+  'indian national congress': 'INC',
+  'communist party of india (marxist)': 'CPM',
+  'communist party of india': 'CPI',
+  'bahujan samaj party': 'BSP',
+  'naadaalum makkal katchi': 'NMK',
+  'puthiya tamilagam': 'PT',
+  'manithaneya jananayaga katchi': 'MJK',
+  'tamizhaga maanila congress': 'TMC(M)',
+  'tamil maanila congress (moopanar)': 'TMC(M)',
+  'tamizhaga vaazhvurimai katchi': 'TNLK',
+  'thamizhaga vazhvurimai katchi': 'TNLK',
+  'indhu dravida makkal katchi': 'INDHU',
+  'ind': 'IND',
+  independent: 'IND',
+  nota: 'NOTA',
+  'none of the above': 'NOTA',
+});
+
+function abbrevPartyTn(raw) {
+  const p = raw.trim();
+  if (!p) return p;
+  const k = p.toLowerCase().replace(/\s+/g, ' ').trim();
+  return TN_PARTY_ABBREV[k] ?? p;
+}
+
 /**
  * Parse candidateswise HTML into structured result.
+ * ECI May2026 final layout: votes in `<div class='cand-info'>…<div class='status …'><div>94320 <span>(+ …)</span></div>`;
+ * older/trend layout used `<div>VOTES <span>( share % )</span></div>`.
  */
 function parseCandidatesHtml(html) {
   const title = html.match(/Assembly Constituency <span>\s*(\d+)\s*-\s*([\s\S]*?)<\/span>/);
@@ -138,22 +178,34 @@ function parseCandidatesHtml(html) {
   assemblyRaw = assemblyRaw.replace(/<strong>[\s\S]*$/i, '').trim();
 
   const candidates = [];
-  const segments = html.split(/<div class='cand-box/g).slice(1);
+  const segments = html.split(/<div[^>]*class=['"]cand-box['"]/gi).slice(1);
   for (const seg of segments) {
     const nameM = seg.match(/<h5>([^<]*)<\/h5>/);
     const partyM = seg.match(/<h6>([^<]*)<\/h6>/);
-    const voteM = seg.match(/<div>(\d+)\s*<span>\(\s*([\d.]+)\s*\)<\/span><\/div>/);
     if (!nameM || !partyM) continue;
+
+    let votes = 0;
+    const candInfoIdx = seg.indexOf("<div class='cand-info'");
+    const candInfoIdx2 = candInfoIdx >= 0 ? candInfoIdx : seg.indexOf('<div class="cand-info"');
+    const infoIdx = candInfoIdx >= 0 ? candInfoIdx : candInfoIdx2;
+    if (infoIdx >= 0) {
+      const afterInfo = seg.slice(infoIdx);
+      const vm = afterInfo.match(/<div>([\d,]+)\s*<span>/);
+      if (vm) votes = parseInt(vm[1].replace(/,/g, ''), 10) || 0;
+    }
+    if (!votes) {
+      const voteM = seg.match(/<div>([\d,]+)\s*<span>\(\s*([\d.]+)\s*\)<\/span><\/div>/);
+      if (voteM) votes = parseInt(voteM[1].replace(/,/g, ''), 10) || 0;
+    }
+
     const nm = nameM[1].trim().toUpperCase();
     const party = partyM[1].trim();
-    const votes = voteM ? parseInt(voteM[1], 10) || 0 : 0;
-    const voteShare = voteM ? parseFloat(voteM[2]) || 0 : 0;
     if (!nm && party === '') continue;
     candidates.push({
       name: nm,
       party,
       votes,
-      voteShare,
+      voteShare: 0,
       sex: 'M',
       age: null,
       depositLost: false,
@@ -217,6 +269,10 @@ function buildEntry(year, stateCfg, parsed, eciNo) {
   const ctype = reservationFromName(parsed.assemblyName || '');
   const serial = parsed.assemblyNo || eciNo;
   const schemaId = `${stateCfg.code}-${String(serial).padStart(3, '0')}`;
+  const candidates =
+    stateCfg.code === 'TN'
+      ? parsed.candidates.map((c) => ({ ...c, party: abbrevPartyTn(c.party) }))
+      : parsed.candidates;
 
   return {
     year,
@@ -229,12 +285,38 @@ function buildEntry(year, stateCfg, parsed, eciNo) {
     electors: 0,
     turnout: 0,
     enop: parsed.enop,
-    totalCandidates: parsed.totalCandidates,
-    candidates: parsed.candidates,
+    totalCandidates: candidates.length,
+    candidates,
     schemaId,
     name: displayNameFromUpper(parsed.assemblyName || cleanName),
     type: ctype,
   };
+}
+
+/** Copy district + electors from a prior-year assembly file (same schema keys), recompute turnout from new validVotes. */
+function enrichFromPriorAssemblyYear(out, stateCode, priorYear) {
+  const prevPath = path.join(AC_BASE, stateCode, `${priorYear}.json`);
+  if (!fs.existsSync(prevPath)) return;
+  let prev;
+  try {
+    prev = JSON.parse(fs.readFileSync(prevPath, 'utf8'));
+  } catch {
+    return;
+  }
+  for (const [k, row] of Object.entries(out)) {
+    if (k.startsWith('_') || !row || typeof row !== 'object') continue;
+    const ref = prev[k];
+    if (!ref || typeof ref !== 'object') continue;
+    if (typeof ref.districtName === 'string' && ref.districtName.trim()) {
+      row.districtName = ref.districtName;
+    }
+    if (typeof ref.electors === 'number' && ref.electors > 0) {
+      row.electors = ref.electors;
+      if (typeof row.validVotes === 'number' && row.validVotes > 0) {
+        row.turnout = Math.round((row.validVotes / ref.electors) * 10000) / 100;
+      }
+    }
+  }
 }
 
 async function collectAllRows(eciPrefix) {
@@ -304,6 +386,13 @@ async function fetchState(year, stateKey, stateCfg, opts) {
   console.log(`Done ${stateKey}: ${ok} ok, ${fail} failed.`);
 
   if (!dryRun && Object.keys(out).length > 0) {
+    if (stateCfg.code === 'TN') {
+      enrichFromPriorAssemblyYear(out, 'TN', 2021);
+      out._meta = {
+        resultsPending: false,
+        lastUpdated: new Date().toISOString(),
+      };
+    }
     const dir = path.join(AC_BASE, stateCfg.code);
     fs.mkdirSync(dir, { recursive: true });
     const outPath = path.join(dir, `${year}.json`);
@@ -319,7 +408,7 @@ async function fetchState(year, stateKey, stateCfg, opts) {
     idx.stateCode = stateCfg.code;
     idx.stateSlug = stateCfg.slug;
     idx.delimitation = idx.delimitation ?? 2008;
-    idx.totalConstituencies = Object.keys(out).length;
+    idx.totalConstituencies = Object.keys(out).filter((k) => !k.startsWith('_')).length;
     idx.lastUpdated = new Date().toISOString();
     idx.source = 'ECI ResultAcGenMay2026 (live import)';
     const years = new Set(idx.availableYears || []);

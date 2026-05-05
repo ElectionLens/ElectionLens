@@ -63,6 +63,13 @@ describe('partyData', () => {
       expect(dmkInfo.name).toBe('Dravida Munnetra Kazhagam');
     });
 
+    it('maps ECI-style full party names to canonical codes (Tamil Nadu)', () => {
+      expect(getPartyInfo('DRAVIDA MUNNETRA KAZHAGAM').shortName).toBe('DMK');
+      expect(getPartyInfo('ALL INDIA ANNA DRAVIDA MUNNETRA KAZHAGAM').shortName).toBe('AIADMK');
+      expect(getPartyInfo('NAAM TAMILAR KATCHI').shortName).toBe('NTK');
+      expect(getPartyInfo('TAMIZHAGA VAAZHVURIMAI KATCHI').shortName).toBe('TNLK');
+    });
+
     it('should handle party codes with spaces', () => {
       const info = getPartyInfo('  BJP  ');
       expect(info.name).toBe('Bharatiya Janata Party');

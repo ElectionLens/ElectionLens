@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, afterEach, vi } from 'vitest';
 import {
   GEO_DATA_BASE,
   ELECTION_DATA_BASE,
@@ -12,6 +12,9 @@ import {
   DATA_VERSION,
   isAssemblyGeoJSONCacheComplete,
   ASSEMBLY_GEOJSON_MIN_VALID_FEATURES,
+  assemblyElectionFetchUrl,
+  isAssemblyLiveRefreshEnabled,
+  getAssemblyLivePollIntervalMs,
 } from './paths';
 
 describe('Path Constants', () => {
@@ -165,6 +168,54 @@ describe('Path Constants', () => {
         },
       }));
       expect(isAssemblyGeoJSONCacheComplete({ features })).toBe(true);
+    });
+  });
+
+  describe('Assembly live refresh', () => {
+    afterEach(() => {
+      vi.unstubAllEnvs();
+    });
+
+    it('assemblyElectionFetchUrl returns path unchanged when live refresh is off', () => {
+      vi.stubEnv('VITE_ASSEMBLY_LIVE_REFRESH', '');
+      expect(assemblyElectionFetchUrl('/data/elections/ac/TN/2026.json')).toBe(
+        '/data/elections/ac/TN/2026.json'
+      );
+    });
+
+    it('assemblyElectionFetchUrl appends cache-bust query when live refresh is enabled', () => {
+      vi.stubEnv('VITE_ASSEMBLY_LIVE_REFRESH', '1');
+      const u = assemblyElectionFetchUrl('/data/elections/ac/TN/2026.json');
+      expect(u).toMatch(/^\/data\/elections\/ac\/TN\/2026\.json\?t=\d+$/);
+    });
+
+    it('assemblyElectionFetchUrl uses & when path already has query', () => {
+      vi.stubEnv('VITE_ASSEMBLY_LIVE_REFRESH', 'true');
+      const u = assemblyElectionFetchUrl('/data/foo.json?x=1');
+      expect(u).toMatch(/^\/data\/foo\.json\?x=1&t=\d+$/);
+    });
+
+    it('isAssemblyLiveRefreshEnabled is true for 1 and true', () => {
+      vi.stubEnv('VITE_ASSEMBLY_LIVE_REFRESH', '1');
+      expect(isAssemblyLiveRefreshEnabled()).toBe(true);
+      vi.unstubAllEnvs();
+      vi.stubEnv('VITE_ASSEMBLY_LIVE_REFRESH', 'true');
+      expect(isAssemblyLiveRefreshEnabled()).toBe(true);
+    });
+
+    it('getAssemblyLivePollIntervalMs defaults to 45s', () => {
+      vi.stubEnv('VITE_ASSEMBLY_POLL_INTERVAL_MS', '');
+      expect(getAssemblyLivePollIntervalMs()).toBe(45_000);
+    });
+
+    it('getAssemblyLivePollIntervalMs reads VITE_ASSEMBLY_POLL_INTERVAL_MS', () => {
+      vi.stubEnv('VITE_ASSEMBLY_POLL_INTERVAL_MS', '12000');
+      expect(getAssemblyLivePollIntervalMs()).toBe(12_000);
+    });
+
+    it('getAssemblyLivePollIntervalMs falls back when value is below 5000', () => {
+      vi.stubEnv('VITE_ASSEMBLY_POLL_INTERVAL_MS', '1000');
+      expect(getAssemblyLivePollIntervalMs()).toBe(45_000);
     });
   });
 });
