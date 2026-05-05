@@ -560,13 +560,50 @@ describe('useElectionResults - getACResult matching strategies', () => {
     const { result } = renderHook(() => useElectionResults());
 
     await act(async () => {
-      // Query with schema ID - should always match regardless of name spelling
+      // schemaId alone (no canonicalName): trusts the keyed row even if acName placeholder differs
       await result.current.getACResult('any-name', 'Tamil Nadu', 2021, { schemaId: 'TN-001' });
     });
 
     // Should find match via schema ID
     expect(result.current.currentResult).not.toBeNull();
     expect(result.current.currentResult?.constituencyName).toBe('TIRUCHIRAPALLI WEST');
+  });
+
+  it('with canonicalName, skips schema-key row when its labels mismatch (mis-keyed JSON), then resolves by name', async () => {
+    // Mirrors production where schema maps Dhing → AS-083 but a year file may wrongly put Margherita under that key.
+    const mockIndex = { availableYears: [2026] };
+    const wrongUnderKey = minimalAc(83, 'MARGHERITA', {
+      constituencyNameOriginal: 'MARGHERITA',
+      name: 'Margherita',
+      year: 2026,
+      schemaId: 'AS-083',
+    });
+    const dhingRow = minimalAc(55, 'DHING', {
+      constituencyNameOriginal: 'DHING',
+      name: 'Dhing',
+      year: 2026,
+      schemaId: 'AS-055',
+    });
+    const mockResults = { 'AS-083': wrongUnderKey, 'AS-055': dhingRow };
+
+    mockFetch
+      .mockResolvedValueOnce({ ok: true, json: async () => mockIndex })
+      .mockResolvedValueOnce({ ok: true, json: async () => mockResults });
+
+    const { result } = renderHook(() => useElectionResults());
+
+    await act(async () => {
+      await result.current.getACResult('DHING', 'Assam', 2026, {
+        schemaId: 'AS-083',
+        canonicalName: 'Dhing',
+      });
+    });
+
+    expect(result.current.error).toBeNull();
+    expect(result.current.currentResult).not.toBeNull();
+    expect(result.current.currentResult?.constituencyName).toBe('DHING');
+    expect(result.current.currentResult?.constituencyNo).toBe(55);
+    expect(result.current.currentResult?.schemaId).toBe('AS-055');
   });
 
   it('distinguishes Coimbatore (South) from Coimbatore (North) when matching by name', async () => {

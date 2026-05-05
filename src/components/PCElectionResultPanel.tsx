@@ -12,7 +12,8 @@ import {
 } from 'lucide-react';
 import { useState, useCallback, memo, useRef } from 'react';
 import type { PCElectionResult, PCElectionCandidate } from '../types';
-import { getPartyColor, getPartyFullName } from '../utils/partyData';
+import { getPartyColor, getPartyFullName, getPartyShortName } from '../utils/partyData';
+import { shouldUseShortPartyLabelsPC } from '../utils/partyDisplay';
 import { trackShare } from '../utils/firebase';
 import { YearSelector, type YearOption } from './YearSelector';
 
@@ -35,7 +36,11 @@ function normalizeText(text: string): string {
   return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
-function generateShareText(result: PCElectionResult, stateName?: string): string {
+function generateShareText(
+  result: PCElectionResult,
+  stateName: string | undefined,
+  formatParty: (p: string) => string
+): string {
   const winner = result.candidates[0];
   if (!winner) return '';
 
@@ -49,7 +54,7 @@ function generateShareText(result: PCElectionResult, stateName?: string): string
   const topCandidates = result.candidates.slice(0, 3);
   const medals = ['🥇', '🥈', '🥉'];
   topCandidates.forEach((c, i) => {
-    text += `${medals[i]} ${c.name} (${c.party}) - ${c.voteShare.toFixed(1)}%\n`;
+    text += `${medals[i]} ${c.name} (${formatParty(c.party)}) - ${c.voteShare.toFixed(1)}%\n`;
   });
   if (result.candidates.length > 3) {
     text += `...+${result.candidates.length - 3} more\n`;
@@ -88,6 +93,8 @@ export function PCElectionResultPanel({
   }, []);
 
   const winner = result.candidates[0];
+  const shortPartyUi = shouldUseShortPartyLabelsPC(result, stateName);
+  const pl = (p: string) => (shortPartyUi ? getPartyShortName(p) : p);
 
   const handleCopyLink = useCallback(async () => {
     const url = shareUrl ?? window.location.href;
@@ -104,12 +111,14 @@ export function PCElectionResultPanel({
   const panelRef = useRef<HTMLDivElement>(null);
 
   const handleShareToX = useCallback(() => {
-    const text = generateShareText(result, stateName);
+    const text = generateShareText(result, stateName, (p) =>
+      shortPartyUi ? getPartyShortName(p) : p
+    );
     const url = shareUrl ?? window.location.href;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     window.open(twitterUrl, '_blank', 'width=550,height=420');
     trackShare('twitter', 'parliament');
-  }, [result, shareUrl, stateName]);
+  }, [result, shareUrl, stateName, shortPartyUi]);
 
   const handleSaveScreenshot = useCallback(async () => {
     const el = panelRef.current;
@@ -192,7 +201,7 @@ export function PCElectionResultPanel({
           {/* Peek mode: show winner inline */}
           {isMobilePortrait && panelState === 'peek' && winner && (
             <span className="peek-winner">
-              🏆 {winner.name} ({winner.party}) - {winner.voteShare.toFixed(1)}%
+              🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare.toFixed(1)}%
             </span>
           )}
           {(!isMobilePortrait || panelState !== 'peek') && (
@@ -286,6 +295,7 @@ export function PCElectionResultPanel({
                     candidate={candidate}
                     isWinner={idx === 0}
                     isRunnerUp={idx === 1}
+                    partyShortNames={shortPartyUi}
                   />
                 ))}
               </div>
@@ -309,7 +319,7 @@ export function PCElectionResultPanel({
                     style={{ backgroundColor: getPartyColor(winner.party) }}
                     title={getPartyFullName(winner.party)}
                   >
-                    {winner.party}
+                    {pl(winner.party)}
                   </div>
                 </div>
                 <div className="winner-stats-compact">
@@ -354,7 +364,12 @@ export function PCElectionResultPanel({
             <div className="candidates-preview">
               <h4>Top candidates</h4>
               {result.candidates.slice(0, 3).map((candidate, idx) => (
-                <PCCandidateRowCompact key={idx} candidate={candidate} isWinner={idx === 0} />
+                <PCCandidateRowCompact
+                  key={idx}
+                  candidate={candidate}
+                  isWinner={idx === 0}
+                  partyShortNames={shortPartyUi}
+                />
               ))}
               {result.candidates.length > 3 && (
                 <button
@@ -390,11 +405,14 @@ export function PCElectionResultPanel({
 const PCCandidateRowCompact = memo(function PCCandidateRowCompact({
   candidate,
   isWinner,
+  partyShortNames = false,
 }: {
   candidate: PCElectionCandidate;
   isWinner: boolean;
+  partyShortNames?: boolean;
 }): JSX.Element {
   const partyColor = getPartyColor(candidate.party);
+  const partyText = partyShortNames ? getPartyShortName(candidate.party) : candidate.party;
 
   return (
     <div className={`candidate-row-compact ${isWinner ? 'winner' : ''}`}>
@@ -405,7 +423,7 @@ const PCCandidateRowCompact = memo(function PCCandidateRowCompact({
         style={{ backgroundColor: partyColor, color: 'white' }}
         title={getPartyFullName(candidate.party)}
       >
-        {candidate.party}
+        {partyText}
       </span>
       <span className="votes">{formatNumber(candidate.votes)}</span>
       <span className="share">{candidate.voteShare.toFixed(1)}%</span>
@@ -422,12 +440,15 @@ const PCCandidateRow = memo(function PCCandidateRow({
   candidate,
   isWinner,
   isRunnerUp,
+  partyShortNames = false,
 }: {
   candidate: PCElectionCandidate;
   isWinner: boolean;
   isRunnerUp: boolean;
+  partyShortNames?: boolean;
 }): JSX.Element {
   const partyColor = getPartyColor(candidate.party);
+  const partyText = partyShortNames ? getPartyShortName(candidate.party) : candidate.party;
 
   return (
     <div className={`candidate-row ${isWinner ? 'winner' : ''} ${isRunnerUp ? 'runner-up' : ''}`}>
@@ -445,7 +466,7 @@ const PCCandidateRow = memo(function PCCandidateRow({
           borderColor: partyColor,
         }}
       >
-        {candidate.party}
+        {partyText}
       </span>
       <span className="col-votes">{formatNumber(candidate.votes)}</span>
       <span className="col-share">{candidate.voteShare.toFixed(1)}%</span>

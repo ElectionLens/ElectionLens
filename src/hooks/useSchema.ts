@@ -149,7 +149,10 @@ export function useSchema(): UseSchemaReturn {
   const resolvePCName = useCallback(
     (name: string, stateId: string): string | null => {
       if (!schema?.indices?.pcByName) return null;
-      const normalized = normalizeName(name);
+      // URL paths often append "(ex-FormerSeat)" after delimitation; indexes use compact keys like DARRANGUDALGURI|AS.
+      // Strip parentheticals before normalize/namePart so slugs resolve (matches MapView PC JSON lookup / useParliamentResults).
+      const withoutParens = name.replace(/\s*\([^)]*\)\s*/g, '').trim();
+      const normalized = normalizeName(withoutParens);
       const key = `${normalized}|${stateId}`;
       let id = schema.indices.pcByName[key];
       if (!id) {

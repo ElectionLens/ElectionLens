@@ -17,7 +17,9 @@ export function YearSelector({ options, className = '' }: YearSelectorProps): JS
     return null;
   }
 
-  const selectedOption = options.find((option) => option.isActive) ?? options[0]!;
+  /** When nothing matches (e.g. stale state), prefer latest year — never default to oldest (2009). */
+  const selectedOption =
+    options.find((option) => option.isActive) ?? options[options.length - 1] ?? options[0]!;
 
   return (
     <div className={`year-chip-group ${className}`.trim()}>

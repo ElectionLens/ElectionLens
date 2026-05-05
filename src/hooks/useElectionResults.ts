@@ -96,6 +96,25 @@ function getACNameSearchVariants(normalized: string): string[] {
   return added ?? [normalized];
 }
 
+/** True if row name fields match URL/schema search variants (same rules as Strategy 3). */
+function assemblyRowMatchesSearchVariants(
+  acVal: ACElectionResult,
+  searchVariants: string[]
+): boolean {
+  const namesToCheck = [acVal.constituencyName, acVal.constituencyNameOriginal, acVal.name].filter(
+    (n): n is string => Boolean(n)
+  );
+
+  for (const name of namesToCheck) {
+    const normalizedName = normalizeACName(name);
+    if (searchVariants.includes(normalizedName)) return true;
+    if (getACNameSearchVariants(normalizedName).some((rv) => searchVariants.includes(rv))) {
+      return true;
+    }
+  }
+  return false;
+}
+
 /** Options for getACResult */
 export interface GetACResultOptions {
   /** Schema ID for direct lookup (e.g., "RJ-108") */
@@ -155,6 +174,8 @@ export function useElectionResults(): UseElectionResultsReturn {
   // Cache for loaded data
   const indexCache = useRef<Map<string, StateElectionIndex>>(new Map());
   const resultsCache = useRef<Map<string, ElectionResultsByConstituency>>(new Map());
+  /** Ignore stale async completions when getACResult is invoked again (e.g. rapid URL/nav changes). */
+  const acResultRequestSeqRef = useRef(0);
 
   // States with available election data (dynamically populated)
   const statesWithData = useRef(new Set<string>());
@@ -277,6 +298,7 @@ export function useElectionResults(): UseElectionResultsReturn {
       const slug = getStateSlug(stateName);
       const { schemaId, canonicalName } = options ?? {};
 
+      const requestId = ++acResultRequestSeqRef.current;
       setCurrentResult(null);
       setLoading(true);
       setError(null);
@@ -291,7 +313,9 @@ export function useElectionResults(): UseElectionResultsReturn {
             year != null ? { yearFromUrl: year } : undefined
           );
           if (!loadedIndex) {
-            setError('Could not load election index for this state.');
+            if (requestId === acResultRequestSeqRef.current) {
+              setError('Could not load election index for this state.');
+            }
             return null;
           }
           index = loadedIndex;
@@ -333,15 +357,32 @@ export function useElectionResults(): UseElectionResultsReturn {
           return null;
         }
 
+        if (requestId !== acResultRequestSeqRef.current) {
+          return null;
+        }
+
         // Find the AC result using simplified lookup (schema ID or name matching)
         const searchName = canonicalName ?? acName;
         const normalizedSearch = normalizeACName(searchName);
         const searchVariants = getACNameSearchVariants(normalizedSearch);
 
-        // Strategy 1: Schema ID direct lookup (primary path for new data format)
+        // Strategy 1: Schema ID direct lookup (primary path for new data format).
+        // When we have a canonical name from schema, require the row to match it — JSON keys can be
+        // misaligned with schema IDs (wrong row under the key). Callers that only pass schemaId still
+        // trust the key (see useElectionResults tests / legacy paths).
         if (schemaId) {
           const hit = results[schemaId];
-          if (isAssemblyElectionResult(hit)) result = hit;
+          if (isAssemblyElectionResult(hit)) {
+            const canonical = canonicalName?.trim();
+            if (canonical) {
+              const verifyVariants = getACNameSearchVariants(normalizeACName(canonical));
+              if (assemblyRowMatchesSearchVariants(hit, verifyVariants)) {
+                result = hit;
+              }
+            } else {
+              result = hit;
+            }
+          }
         }
 
         // Strategy 2: Direct key match (for any legacy data)
@@ -402,21 +443,29 @@ export function useElectionResults(): UseElectionResultsReturn {
           }
         }
 
+        if (requestId !== acResultRequestSeqRef.current) {
+          return null;
+        }
+
         if (result) {
           setError(null);
           setCurrentResult(result);
           setSelectedYear(targetYear);
-        } else {
+        } else if (requestId === acResultRequestSeqRef.current) {
           setError('Constituency not found in election data for this year.');
         }
 
         return result ?? null;
       } catch (e) {
         console.error('getACResult failed:', e);
-        setError('Could not load constituency results.');
+        if (requestId === acResultRequestSeqRef.current) {
+          setError('Could not load constituency results.');
+        }
         return null;
       } finally {
-        setLoading(false);
+        if (requestId === acResultRequestSeqRef.current) {
+          setLoading(false);
+        }
       }
     },
     [loadStateIndex, loadYearResults]

@@ -388,10 +388,21 @@ async function fetchState(year, stateKey, stateCfg, opts) {
   if (!dryRun && Object.keys(out).length > 0) {
     if (stateCfg.code === 'TN') {
       enrichFromPriorAssemblyYear(out, 'TN', 2021);
-    } else if (stateCfg.code === 'KL' || stateCfg.code === 'WB' || stateCfg.code === 'PY') {
+    } else if (
+      stateCfg.code === 'KL' ||
+      stateCfg.code === 'WB' ||
+      stateCfg.code === 'PY' ||
+      stateCfg.code === 'AS'
+    ) {
       enrichFromPriorAssemblyYear(out, stateCfg.code, 2021);
     }
-    if (stateCfg.code === 'TN' || stateCfg.code === 'KL' || stateCfg.code === 'WB' || stateCfg.code === 'PY') {
+    if (
+      stateCfg.code === 'TN' ||
+      stateCfg.code === 'KL' ||
+      stateCfg.code === 'WB' ||
+      stateCfg.code === 'PY' ||
+      stateCfg.code === 'AS'
+    ) {
       out._meta = {
         resultsPending: false,
         lastUpdated: new Date().toISOString(),

@@ -27,6 +27,8 @@ export const PARLIAMENT = {
 export const ASSEMBLY = {
   /** Assembly constituency boundaries */
   CONSTITUENCIES: `${GEO_DATA_BASE}/assembly/constituencies.geojson`,
+  /** Assam only: AC polygons before the 2024 delimitation (assembly years before 2024) */
+  ASSAM_PRE_DELIMITATION: `${GEO_DATA_BASE}/assembly/assam-ac-pre2024.geojson`,
 } as const;
 
 /** Districts data paths */
@@ -116,7 +118,7 @@ export const PC_ELECTIONS = {
 } as const;
 
 /** Data version for cache invalidation (bump when geo cache semantics change) */
-export const DATA_VERSION = '1.1.0';
+export const DATA_VERSION = '1.1.1';
 
 /**
  * Nationwide assembly GeoJSON after AC_NAME filter is ~4.1k features. IndexedDB can persist a

@@ -503,6 +503,41 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
     symbol: '🐘',
     symbolEmoji: '🐘',
   },
+  RD: {
+    name: 'Raijor Dal',
+    shortName: 'RD',
+    color: '#C2410C',
+    symbol: '🏛️',
+    symbolEmoji: '🏛️',
+  },
+  AJP: {
+    name: 'Assam Jatiya Parishad',
+    shortName: 'AJP',
+    color: '#0369A1',
+    symbol: '🏛️',
+    symbolEmoji: '🏛️',
+  },
+  BGP: {
+    name: 'Bharatiya Gana Parishad',
+    shortName: 'BGP',
+    color: '#15803D',
+    symbol: '🏛️',
+    symbolEmoji: '🏛️',
+  },
+  GSP: {
+    name: 'Gana Suraksha Party',
+    shortName: 'GSP',
+    color: '#65A30D',
+    symbol: '🛡️',
+    symbolEmoji: '🛡️',
+  },
+  VIP: {
+    name: 'Vikas India Party',
+    shortName: 'VIP',
+    color: '#7C3AED',
+    symbol: '📈',
+    symbolEmoji: '📈',
+  },
   NDPP: {
     name: 'Nationalist Democratic Progressive Party',
     shortName: 'NDPP',
@@ -721,6 +756,92 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
     symbol: '🏛️',
     symbolEmoji: '🏛️',
   },
+
+  /** Kerala / West Bengal — ECI 2026 & regional registrations */
+  KCB: {
+    name: 'Kerala Congress (B)',
+    shortName: 'KC(B)',
+    color: '#CA8A04',
+    symbol: '🌴',
+    symbolEmoji: '🌴',
+  },
+  SDPI: {
+    name: 'Social Democratic Party Of India',
+    shortName: 'SDPI',
+    color: '#059669',
+    symbol: '🕌',
+    symbolEmoji: '🕌',
+  },
+  PDS: {
+    name: 'Party for Democratic Socialism',
+    shortName: 'PDS',
+    color: '#BE123C',
+    symbol: '☭',
+    symbolEmoji: '☭',
+  },
+  T20: {
+    name: 'Twenty 20 Party',
+    shortName: 'T20',
+    color: '#6366F1',
+    symbol: '2️⃣',
+    symbolEmoji: '2️⃣',
+  },
+  WBSP: {
+    name: 'West Bengal Socialist Party',
+    shortName: 'WBSP',
+    color: '#DC2626',
+    symbol: '✊',
+    symbolEmoji: '✊',
+  },
+  GNLF: {
+    name: 'Akhil Bharatiya Gorkha League',
+    shortName: 'GNLF',
+    color: '#15803D',
+    symbol: '🏔️',
+    symbolEmoji: '🏔️',
+  },
+  INL: {
+    name: 'Indian National League',
+    shortName: 'INL',
+    color: '#0EA5E9',
+    symbol: '📖',
+    symbolEmoji: '📖',
+  },
+  CSP: {
+    name: 'Congress (Secular)',
+    shortName: 'Cong(S)',
+    color: '#38BDF8',
+    symbol: '✋',
+    symbolEmoji: '✋',
+  },
+  CPIMLRS: {
+    name: 'Communist Party of India (Marxist-Leninist) Red Star',
+    shortName: 'CPI(ML) RS',
+    color: '#991B1B',
+    symbol: '☭',
+    symbolEmoji: '☭',
+  },
+  KPPPU: {
+    name: "Kamatapur People's Party (United)",
+    shortName: 'KPP(U)',
+    color: '#65A30D',
+    symbol: '🗺️',
+    symbolEmoji: '🗺️',
+  },
+  WPI: {
+    name: 'Welfare Party Of India',
+    shortName: 'WPI',
+    color: '#047857',
+    symbol: '🤝',
+    symbolEmoji: '🤝',
+  },
+  NBP: {
+    name: "North Bengal People's Party",
+    shortName: 'NBP',
+    color: '#0D9488',
+    symbol: '🏔️',
+    symbolEmoji: '🏔️',
+  },
 };
 
 /** Maps full names / data variants (uppercase) to canonical PARTY_DATA key. Avoids gray for winner parties. */
@@ -770,23 +891,70 @@ const WINNER_PARTY_ALIASES: Record<string, string> = {
   'PATTALI MAKKAL KATCHI': 'PMK',
   'TAMIZHAGA VAAZHVURIMAI KATCHI': 'TNLK',
   'THAMIZHAGA VAZHVURIMAI KATCHI': 'TNLK',
+
+  /* Assam — ECI / CSV full strings → canonical keys (short labels in UI) */
+  'ASOM GANA PARISHAD': 'AGP',
+  'RAIJOR DAL': 'RD',
+  'BODOLAND PEOPLES FRONT': 'BOPF',
+  'ASSAM JATIYA PARISHAD': 'AJP',
+  'BHARATIYA GANA PARISHAD': 'BGP',
+  'GANA SURAKSHA PARTY': 'GSP',
+  'VIKAS INDIA PARTY': 'VIP',
+  'ALL INDIA UNITED DEMOCRATIC FRONT': 'AIUDF',
+  "UNITED PEOPLE'S PARTY, LIBERAL": 'UPPL',
+  'UNITED PEOPLES PARTY, LIBERAL': 'UPPL',
+  "NATIONAL PEOPLE'S PARTY": 'NPP',
+
+  /* Kerala / West Bengal 2026 AC data — ECI full names → canonical keys */
+  'NATIONALIST CONGRESS PARTY': 'NCP',
+  'KERALA CONGRESS (M)': 'KCM',
+  'KERALA CONGRESS (B)': 'KCB',
+  'ALL INDIA MAJLIS-E-INQUILAB-E-MILLAT': 'AIMIM',
+  'SOCIAL DEMOCRATIC PARTY OF INDIA': 'SDPI',
+  'PARTY FOR DEMOCRATIC SOCIALISM': 'PDS',
+  'TWENTY 20 PARTY': 'T20',
+  'WEST BENGAL SOCIALIST PARTY': 'WBSP',
+  'AKHIL BHARATIYA GORKHA LEAGUE': 'GNLF',
+  'INDIAN NATIONAL LEAGUE': 'INL',
+  'CONGRESS (SECULAR)': 'CSP',
+  'COMMUNIST PARTY OF INDIA (MARXIST-LENINIST) RED STAR': 'CPIMLRS',
+  "KAMATAPUR PEOPLE'S PARTY (UNITED)": 'KPPPU',
+  'WELFARE PARTY OF INDIA': 'WPI',
+  'SOCIALIST UNITY CENTRE OF INDIA (COMMUNIST)': 'SUCI',
+  'REPUBLICAN PARTY OF INDIA (ATHAWALE)': 'RPI(A)',
+  "NORTH BENGAL PEOPLE'S PARTY": 'NBP',
 };
+
+/** Decode HTML entities & normalize spaces from scraped JSON before alias lookup */
+function normalizePartyRaw(raw: string): string {
+  return raw
+    .trim()
+    .replace(/&#0?39;/g, "'")
+    .replace(/&#x27;/gi, "'")
+    .replace(/\s+/g, ' ');
+}
 
 /**
  * Get party information
  */
 export function getPartyInfo(partyCode: string): PartyInfo {
-  const code = partyCode.toUpperCase().trim();
+  const normalized = normalizePartyRaw(partyCode);
+  const code = normalized.toUpperCase().trim();
   const key = WINNER_PARTY_ALIASES[code] ?? code;
   return (
     PARTY_DATA[key] ?? {
-      name: partyCode,
-      shortName: partyCode,
+      name: normalized,
+      shortName: normalized,
       color: '#6B7280',
       symbol: '🏛️',
       symbolEmoji: '🏛️',
     }
   );
+}
+
+/** Canonical short label for maps, legends, and compact panels (e.g. INC, CPI(M), TMC). */
+export function getPartyShortName(partyCode: string): string {
+  return getPartyInfo(partyCode).shortName;
 }
 
 /**

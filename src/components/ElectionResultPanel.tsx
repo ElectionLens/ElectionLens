@@ -21,7 +21,8 @@ import {
 } from 'lucide-react';
 import { useState, useCallback, memo, useMemo, useEffect, useRef } from 'react';
 import type { ACElectionResult, ElectionCandidate } from '../types';
-import { getPartyColor, getPartyFullName } from '../utils/partyData';
+import { getPartyColor, getPartyFullName, getPartyShortName } from '../utils/partyData';
+import { shouldUseShortPartyLabelsAssembly } from '../utils/partyDisplay';
 import { trackShare } from '../utils/firebase';
 import type { BoothResults, BoothWithResult, PostalData } from '../hooks/useBoothData';
 import { YearSelector, type YearOption } from './YearSelector';
@@ -92,14 +93,15 @@ function normalizeText(text: string): string {
 function generateShareText(
   result: ACElectionResult,
   stateName?: string,
-  includeAllCandidates = false
+  includeAllCandidates = false,
+  formatParty: (p: string) => string = (p) => p
 ): string {
   if (result.resultsPending) {
     const loc =
       result.constituencyNameOriginal ?? result.name ?? result.constituencyName ?? 'Constituency';
     const st = stateName ? normalizeText(stateName) : '';
     const head = `🗳️ ${loc}${st ? `, ${st}` : ''} | ${result.year}`;
-    const lines = result.candidates.map((c) => `${c.name} (${c.party})`);
+    const lines = result.candidates.map((c) => `${c.name} (${formatParty(c.party)})`);
     if (lines.length > 0) {
       return `${head}\n\nCandidates: ${lines.join('; ')}.`.trim();
     }
@@ -119,14 +121,14 @@ function generateShareText(
     const topCandidates = result.candidates.slice(0, 3);
     const medals = ['🥇', '🥈', '🥉'];
     topCandidates.forEach((c, i) => {
-      text += `${medals[i]} ${c.name} (${c.party}) - ${c.voteShare.toFixed(1)}%\n`;
+      text += `${medals[i]} ${c.name} (${formatParty(c.party)}) - ${c.voteShare.toFixed(1)}%\n`;
     });
     if (result.candidates.length > 3) {
       text += `...+${result.candidates.length - 3} more\n`;
     }
   } else {
     const marginText = winner.margin ? ` by ${formatNumber(winner.margin)} votes` : '';
-    text += `🏆 ${winner.name} (${winner.party})${marginText}\n`;
+    text += `🏆 ${winner.name} (${formatParty(winner.party)})${marginText}\n`;
     text += `📊 ${winner.voteShare?.toFixed(1) ?? '0.0'}% vote share\n`;
   }
 
@@ -281,6 +283,8 @@ export function ElectionResultPanel({
   const hideAssemblyVoteFigures = resultsPending && !acResultsLoading;
   const currentPCContribution = selectedPCYear ? parliamentContributions[selectedPCYear] : null;
   const pcWinner = currentPCContribution?.candidates[0];
+  const shortPartyUi = shouldUseShortPartyLabelsAssembly(result, stateName);
+  const pl = (p: string) => (shortPartyUi ? getPartyShortName(p) : p);
 
   /** Parliament-year panel is always “past” style (full tabs). Assembly pre-poll/loading: only Overview + All candidates. */
   const inParliamentYearMode = Boolean(selectedPCYear && currentPCContribution);
@@ -322,7 +326,7 @@ export function ElectionResultPanel({
       return 'GEN';
     })();
 
-  // Create combined year items: when AC within PC view, only PC years; otherwise assembly + parliament interleaved
+  // Combined year items: assembly + parliament (sorted by year). showOnlyPCYears limits to parliament only (rare).
   type YearItem = { year: number; type: 'assembly' | 'parliament' };
   const allYearItems: YearItem[] = showOnlyPCYears
     ? availablePCYears
@@ -362,12 +366,14 @@ export function ElectionResultPanel({
 
   const handleShareToX = useCallback(() => {
     if (acResultsLoading) return;
-    const text = generateShareText(result, stateName, true);
+    const text = generateShareText(result, stateName, true, (p) =>
+      shortPartyUi ? getPartyShortName(p) : p
+    );
     const url = shareUrlWithTab ?? shareUrl ?? window.location.href;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     window.open(twitterUrl, '_blank', 'width=550,height=420');
     trackShare('twitter', 'assembly');
-  }, [result, shareUrlWithTab, shareUrl, stateName, acResultsLoading]);
+  }, [result, shareUrlWithTab, shareUrl, stateName, acResultsLoading, shortPartyUi]);
 
   const handleSaveScreenshot = useCallback(async () => {
     if (acResultsLoading) return;
@@ -453,7 +459,7 @@ export function ElectionResultPanel({
           {/* Peek mode: show winner inline */}
           {isMobilePortrait && panelState === 'peek' && winner && (
             <span className="peek-winner">
-              🏆 {winner.name} ({winner.party}) - {winner.voteShare?.toFixed(1) ?? '0.0'}%
+              🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare?.toFixed(1) ?? '0.0'}%
             </span>
           )}
           {(!isMobilePortrait || panelState !== 'peek') && (
@@ -598,9 +604,10 @@ export function ElectionResultPanel({
               selectedBoothId={selectedBoothId}
               onBoothSelect={setSelectedBoothId}
               selectedBooth={selectedBooth}
+              partyShortNames={shortPartyUi}
             />
           ) : activeTab === 'postal' && boothResults?.postal ? (
-            <PostalBallotsView postal={boothResults.postal} />
+            <PostalBallotsView postal={boothResults.postal} partyShortNames={shortPartyUi} />
           ) : activeTab === 'analysis' ? (
             <BoothwiseAnalysis
               boothResults={boothResults}
@@ -610,6 +617,7 @@ export function ElectionResultPanel({
                 setActiveTab('booths');
               }}
               officialWinner={result.candidates[0]?.party}
+              partyShortNames={shortPartyUi}
             />
           ) : activeTab === 'candidates' ? (
             <div className="candidates-view">
@@ -636,14 +644,14 @@ export function ElectionResultPanel({
                       </span>
                       <span
                         className="col-party"
-                        title={c.party}
+                        title={getPartyFullName(c.party)}
                         style={{
                           backgroundColor: `${getPartyColor(c.party)}20`,
                           color: getPartyColor(c.party),
                           borderColor: getPartyColor(c.party),
                         }}
                       >
-                        {c.party}
+                        {pl(c.party)}
                       </span>
                       <span className="col-votes">{formatNumber(c.votes)}</span>
                       <span className="col-share">{c.voteShare.toFixed(1)}%</span>
@@ -677,7 +685,7 @@ export function ElectionResultPanel({
                       style={{ backgroundColor: getPartyColor(pcWinner.party) }}
                       title={getPartyFullName(pcWinner.party)}
                     >
-                      {pcWinner.party}
+                      {pl(pcWinner.party)}
                     </div>
                   </div>
                   <div className="winner-stats-compact">
@@ -725,7 +733,7 @@ export function ElectionResultPanel({
                       className="party"
                       style={{ backgroundColor: getPartyColor(c.party), color: 'white' }}
                     >
-                      {c.party}
+                      {pl(c.party)}
                     </span>
                     <span className="votes">{formatNumber(c.votes)}</span>
                     <span className="share">{c.voteShare.toFixed(1)}%</span>
@@ -791,7 +799,7 @@ export function ElectionResultPanel({
                     style={{ backgroundColor: getPartyColor(winner.party) }}
                     title={getPartyFullName(winner.party)}
                   >
-                    {winner.party}
+                    {pl(winner.party)}
                   </div>
                 </div>
                 <div className="winner-stats-compact">
@@ -862,6 +870,7 @@ export function ElectionResultPanel({
                       candidate={candidate}
                       isWinner={!resultsPending && !acResultsLoading && idx === 0}
                       hideVoteStats={hideAssemblyVoteFigures}
+                      partyShortNames={shortPartyUi}
                     />
                   ))}
                   {!acResultsLoading && assemblyCandidates.length > 3 && (
@@ -901,6 +910,7 @@ export function ElectionResultPanel({
                       isWinner={!resultsPending && !acResultsLoading && idx === 0}
                       isRunnerUp={!resultsPending && !acResultsLoading && idx === 1}
                       hideVoteStats={hideAssemblyVoteFigures}
+                      partyShortNames={shortPartyUi}
                     />
                   ))}
                 </div>
@@ -909,7 +919,7 @@ export function ElectionResultPanel({
           </div>
         ) : activeTab === 'postal' && boothResults?.postal ? (
           /* Postal Ballots view */
-          <PostalBallotsView postal={boothResults.postal} />
+          <PostalBallotsView postal={boothResults.postal} partyShortNames={shortPartyUi} />
         ) : activeTab === 'analysis' ? (
           /* Boothwise Analysis */
           <BoothwiseAnalysis
@@ -920,6 +930,7 @@ export function ElectionResultPanel({
               setActiveTab('booths');
             }}
             officialWinner={result.candidates[0]?.party}
+            partyShortNames={shortPartyUi}
           />
         ) : (
           /* Booth-wise view */
@@ -929,6 +940,7 @@ export function ElectionResultPanel({
             selectedBoothId={selectedBoothId}
             onBoothSelect={setSelectedBoothId}
             selectedBooth={selectedBooth}
+            partyShortNames={shortPartyUi}
           />
         )}
       </div>
@@ -954,12 +966,15 @@ const CandidateRowCompact = memo(function CandidateRowCompact({
   candidate,
   isWinner,
   hideVoteStats = false,
+  partyShortNames = false,
 }: {
   candidate: ElectionCandidate;
   isWinner: boolean;
   hideVoteStats?: boolean;
+  partyShortNames?: boolean;
 }): JSX.Element {
   const partyColor = getPartyColor(candidate.party);
+  const partyText = partyShortNames ? getPartyShortName(candidate.party) : candidate.party;
 
   return (
     <div className={`candidate-row-compact ${isWinner ? 'winner' : ''}`}>
@@ -970,7 +985,7 @@ const CandidateRowCompact = memo(function CandidateRowCompact({
         style={{ backgroundColor: partyColor, color: 'white' }}
         title={getPartyFullName(candidate.party)}
       >
-        {candidate.party}
+        {partyText}
       </span>
       <span className="votes">{hideVoteStats ? '—' : formatNumber(candidate.votes)}</span>
       <span className="share">{hideVoteStats ? '—' : `${candidate.voteShare.toFixed(1)}%`}</span>
@@ -990,13 +1005,16 @@ const CandidateRow = memo(function CandidateRow({
   isWinner,
   isRunnerUp,
   hideVoteStats = false,
+  partyShortNames = false,
 }: {
   candidate: ElectionCandidate;
   isWinner: boolean;
   isRunnerUp: boolean;
   hideVoteStats?: boolean;
+  partyShortNames?: boolean;
 }): JSX.Element {
   const partyColor = getPartyColor(candidate.party);
+  const partyText = partyShortNames ? getPartyShortName(candidate.party) : candidate.party;
 
   return (
     <div className={`candidate-row ${isWinner ? 'winner' : ''} ${isRunnerUp ? 'runner-up' : ''}`}>
@@ -1014,7 +1032,7 @@ const CandidateRow = memo(function CandidateRow({
           borderColor: partyColor,
         }}
       >
-        {candidate.party}
+        {partyText}
       </span>
       <span className="col-votes">{hideVoteStats ? '—' : formatNumber(candidate.votes)}</span>
       <span className="col-share">
@@ -1036,9 +1054,13 @@ const CandidateRow = memo(function CandidateRow({
 // Postal Ballots view component
 interface PostalBallotsViewProps {
   postal: PostalData;
+  partyShortNames?: boolean;
 }
 
-function PostalBallotsView({ postal }: PostalBallotsViewProps): JSX.Element {
+function PostalBallotsView({
+  postal,
+  partyShortNames = false,
+}: PostalBallotsViewProps): JSX.Element {
   // Sort postal candidates by postal votes descending
   const sortedCandidates = useMemo(() => {
     return [...postal.candidates]
@@ -1105,7 +1127,7 @@ function PostalBallotsView({ postal }: PostalBallotsViewProps): JSX.Element {
                   style={{ backgroundColor: getPartyColor(candidate.party) }}
                   title={`${candidate.name} (${getPartyFullName(candidate.party)})`}
                 >
-                  {candidate.party}
+                  {partyShortNames ? getPartyShortName(candidate.party) : candidate.party}
                 </span>
                 <span className="col-postal">
                   {formatNumber(candidate.postal)}
@@ -1138,6 +1160,7 @@ interface BoothWiseViewProps {
   selectedBoothId: string | null;
   onBoothSelect: (boothId: string | null) => void;
   selectedBooth: BoothWithResult | null;
+  partyShortNames?: boolean;
 }
 
 function BoothWiseView({
@@ -1146,7 +1169,9 @@ function BoothWiseView({
   selectedBoothId,
   onBoothSelect,
   selectedBooth,
+  partyShortNames = false,
 }: BoothWiseViewProps): JSX.Element {
+  const pl = (p: string) => (partyShortNames ? getPartyShortName(p) : p);
   return (
     <div className="booth-wise-view">
       {/* Booth selector dropdown */}
@@ -1240,7 +1265,7 @@ function BoothWiseView({
                       className="value party-badge"
                       style={{ backgroundColor: getPartyColor(selectedBooth.winner.party) }}
                     >
-                      {selectedBooth.winner.party} ({selectedBooth.winner.percent.toFixed(1)}%)
+                      {pl(selectedBooth.winner.party)} ({selectedBooth.winner.percent.toFixed(1)}%)
                     </span>
                   </div>
                 )}
@@ -1271,7 +1296,7 @@ function BoothWiseView({
                         >
                           <div className="candidate-info">
                             <span className="party-tag" style={{ backgroundColor: partyColor }}>
-                              {candidate.party}
+                              {pl(candidate.party)}
                             </span>
                             <span className="candidate-name">{candidate.name}</span>
                           </div>
@@ -1312,6 +1337,8 @@ interface BoothwiseAnalysisProps {
   boothsWithResults: BoothWithResult[];
   onBoothClick?: (boothId: string) => void;
   officialWinner?: string | undefined; // Official winner party from election results
+  /** Kerala / West Bengal 2026 — show INC, CPI(M), TMC, etc. instead of full ECI names */
+  partyShortNames?: boolean;
 }
 
 interface LinkedBooth {
@@ -1403,11 +1430,16 @@ function BoothwiseAnalysis({
   boothsWithResults,
   onBoothClick,
   officialWinner,
+  partyShortNames = false,
 }: BoothwiseAnalysisProps): JSX.Element {
+  const pl = (p: string) => (partyShortNames ? getPartyShortName(p) : p);
+
   const analysis = useMemo(() => {
     if (!boothResults || !boothResults.candidates || boothsWithResults.length === 0) {
       return null;
     }
+
+    const fmtParty = (p: string) => (partyShortNames ? getPartyShortName(p) : p);
 
     const candidates = boothResults.candidates;
     const boothsWithData = boothsWithResults.filter((b) => b.result && b.winner);
@@ -1666,7 +1698,7 @@ function BoothwiseAnalysis({
           linkedBooths: sortedOpposition.map((b) => ({
             id: b.booth.id,
             name: b.booth.boothNo,
-            detail: `${b.party} ${b.percent.toFixed(1)}%`,
+            detail: `${fmtParty(b.party)} ${b.percent.toFixed(1)}%`,
           })),
         });
       }
@@ -1733,7 +1765,7 @@ function BoothwiseAnalysis({
           0
         );
         const description = partiesWithZero
-          .map(([party, booths]) => `${party}: ${booths.length}`)
+          .map(([party, booths]) => `${fmtParty(party)}: ${booths.length}`)
           .join(', ');
 
         // Combine all linked booths
@@ -1741,7 +1773,7 @@ function BoothwiseAnalysis({
           booths.map((b) => ({
             id: b.id,
             name: b.boothNo,
-            detail: `${party}=0`,
+            detail: `${fmtParty(party)}=0`,
           }))
         );
 
@@ -1776,7 +1808,7 @@ function BoothwiseAnalysis({
         title: 'Women Voter Analysis',
         description:
           diff > 5
-            ? `Won ${womenWinPercent.toFixed(0)}% of women's booths vs ${regularWinPercent.toFixed(0)}% regular. Women voters favored ${winnerParty}.`
+            ? `Won ${womenWinPercent.toFixed(0)}% of women's booths vs ${regularWinPercent.toFixed(0)}% regular. Women voters favored ${fmtParty(winnerParty)}.`
             : diff < -5
               ? `Only ${womenWinPercent.toFixed(0)}% of women's booths vs ${regularWinPercent.toFixed(0)}% regular. Gender gap is a vulnerability.`
               : `Similar: ${womenWinPercent.toFixed(0)}% women's booths, ${regularWinPercent.toFixed(0)}% regular. No gender-based pattern.`,
@@ -1785,7 +1817,7 @@ function BoothwiseAnalysis({
         linkedBooths: womenBoothsWithResults.map((b) => ({
           id: b.id,
           name: `${b.boothNo} 👩`,
-          detail: `${b.winner?.party} ${b.winner?.percent.toFixed(0)}%`,
+          detail: `${fmtParty(b.winner?.party ?? '')} ${b.winner?.percent.toFixed(0)}%`,
         })),
       });
     }
@@ -1870,7 +1902,7 @@ function BoothwiseAnalysis({
         linkedBooths: weakAreaBooths.map((b) => ({
           id: b.id,
           name: b.boothNo,
-          detail: `${b.winner?.party} ${b.winner?.percent.toFixed(0)}%`,
+          detail: `${fmtParty(b.winner?.party ?? '')} ${b.winner?.percent.toFixed(0)}%`,
         })),
       });
     }
@@ -1887,21 +1919,21 @@ function BoothwiseAnalysis({
       if (runnerUpBoothCount > winnerBoothCount) {
         insights.push({
           type: 'opportunity',
-          title: `${runnerUpParty} Booth Dominance`,
-          description: `${runnerUpParty} won ${runnerUpBoothCount} booths vs ${winnerParty}'s ${winnerBoothCount} — but lost overall! Postal votes likely flipped the result. Strong grassroots presence but couldn't convert to victory.`,
+          title: `${fmtParty(runnerUpParty)} Booth Dominance`,
+          description: `${fmtParty(runnerUpParty)} won ${runnerUpBoothCount} booths vs ${fmtParty(winnerParty)}'s ${winnerBoothCount} — but lost overall! Postal votes likely flipped the result. Strong grassroots presence but couldn't convert to victory.`,
           value: `${runnerUpBoothCount} booths`,
           icon: 'alert',
           linkedBooths: runnerUpBooths.map((b) => ({
             id: b.id,
             name: b.boothNo,
-            detail: `${runnerUpParty} ${b.winner?.percent.toFixed(0)}%`,
+            detail: `${fmtParty(runnerUpParty)} ${b.winner?.percent.toFixed(0)}%`,
           })),
         });
       } else {
         insights.push({
           type: 'insight',
           title: 'Competition Strike Rate',
-          description: `${runnerUpParty}: ${runnerUpStrikeRate}% (${runnerUpBoothCount} booths). ${
+          description: `${fmtParty(runnerUpParty)}: ${runnerUpStrikeRate}% (${runnerUpBoothCount} booths). ${
             competitionRatio > 2
               ? `Distant second — no threat.`
               : competitionRatio > 1.3
@@ -1913,7 +1945,7 @@ function BoothwiseAnalysis({
           linkedBooths: runnerUpBooths.map((b) => ({
             id: b.id,
             name: b.boothNo,
-            detail: `${runnerUpParty} ${b.winner?.percent.toFixed(0)}%`,
+            detail: `${fmtParty(runnerUpParty)} ${b.winner?.percent.toFixed(0)}%`,
           })),
         });
       }
@@ -1944,7 +1976,7 @@ function BoothwiseAnalysis({
       weakestAreas,
       strikeRates,
     };
-  }, [boothResults, boothsWithResults, officialWinner]);
+  }, [boothResults, boothsWithResults, officialWinner, partyShortNames]);
 
   // State for expanded party sections
   const [expandedParties, setExpandedParties] = useState<Set<string>>(new Set());
@@ -2004,10 +2036,10 @@ function BoothwiseAnalysis({
                   width: `${(count / analysis.totalBooths) * 100}%`,
                   backgroundColor: getPartyColor(party),
                 }}
-                title={`${party}: ${count} booths (${((count / analysis.totalBooths) * 100).toFixed(1)}%)`}
+                title={`${getPartyFullName(party)}: ${count} booths (${((count / analysis.totalBooths) * 100).toFixed(1)}%)`}
               >
                 {count > analysis.totalBooths * 0.1 && (
-                  <span className="segment-label">{party}</span>
+                  <span className="segment-label">{pl(party)}</span>
                 )}
               </div>
             ))}
@@ -2019,7 +2051,7 @@ function BoothwiseAnalysis({
             .map(([party, count]) => (
               <div key={party} className="legend-item">
                 <span className="legend-color" style={{ backgroundColor: getPartyColor(party) }} />
-                <span className="legend-party">{party}</span>
+                <span className="legend-party">{pl(party)}</span>
                 <span className="legend-count">{count}</span>
               </div>
             ))}
@@ -2061,7 +2093,7 @@ function BoothwiseAnalysis({
                   >
                     <div className="party-info">
                       <span className="party-badge" style={{ backgroundColor: partyColor }}>
-                        {party}
+                        {pl(party)}
                       </span>
                       <span className="booth-count">{count} booths won</span>
                     </div>
@@ -2143,7 +2175,7 @@ function BoothwiseAnalysis({
             <div key={sr.party} className={`strike-rate-row ${idx === 0 ? 'winner' : ''}`}>
               <span className="sr-rank">{idx + 1}</span>
               <span className="sr-party" style={{ backgroundColor: getPartyColor(sr.party) }}>
-                {sr.party}
+                {pl(sr.party)}
               </span>
               <span className="sr-booths">{sr.wins} booths</span>
               <span className="sr-rate">{sr.strikeRate}%</span>

@@ -267,6 +267,8 @@ export interface UseElectionDataReturn {
   statesGeoJSON: StatesGeoJSON | null;
   parliamentGeoJSON: ConstituenciesGeoJSON | null;
   assemblyGeoJSON: AssembliesGeoJSON | null;
+  /** Assam pre-2024 delimitation AC layer (null if fetch failed) */
+  assamAssemblyPre2024Geo: AssembliesGeoJSON | null;
   districtsCache: DistrictsCache;
 
   // Navigation state

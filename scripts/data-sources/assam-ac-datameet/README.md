@@ -13,7 +13,7 @@
 - **File in repo:** `assam-ac.geojson` (133 raw features → **126** after dedupe by `AC_NO` in `scripts/replace-assam-ac-geojson.mjs`).
 - **Upstream URL:** `https://raw.githubusercontent.com/datameet/maps/master/docs/data/geojson/ac.geojson`
 - **License:** [MIT](https://raw.githubusercontent.com/datameet/maps/master/LICENSE) (DataMeet India community, 2020).
-- **Vintage caveat:** Layer attributes include `STATUS: "Pre delimitation"` on samples; Assam’s **2023 delimitation** adjusted reservations and some geography. This geometry is the best **open, downloadable** national AC layer we could wire in without a manual desktop file. When ECI or Assam CEO publishes an authoritative post-2023 AC shapefile, replace `assam-ac.geojson` and re-run the replace script.
+- **Delimitation label in app:** **`2024`** — reflects **post‑2023** boundaries (Desktop/Eci-derived GeoJSON or refreshed layers). The DataMeet national snapshot alone may still lag the full 2023 legal order; prefer replacing `assam-ac.geojson` or pass `--input=/path/to/assam.geojson` when you have a newer extract.
 
 ## Refresh upstream snapshot
 
@@ -26,3 +26,11 @@ Then merge into the app dataset:
 ```bash
 node scripts/replace-assam-ac-geojson.mjs
 ```
+
+After replacing Assam **assembly** polygons (e.g. from Desktop), align **Lok Sabha** PC shapes and `PC_NO` on each AC for PC 2024 / assembly 2026 views:
+
+```bash
+npm run data:assam-sync-assembly-pc
+```
+
+This uses each AC’s centroid inside the **last-committed** Assam PC map from git, then dissolves ACs by seat 1–14. Set `ASSAM_PC_BASE_REF` if you need a different base PC layer.

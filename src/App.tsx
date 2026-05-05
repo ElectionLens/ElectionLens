@@ -11,9 +11,10 @@ import { useUrlState, type UrlState } from './hooks/useUrlState';
 import { useSchema } from './hooks/useSchema';
 import { ELECTIONS, PC_ELECTIONS, assemblyElectionFetchUrl } from './constants/paths';
 import { STATE_FILE_MAP } from './constants';
-import { normalizeName, toTitleCase } from './utils/helpers';
+import { normalizeName, normalizePcNameCompact, toTitleCase } from './utils/helpers';
 import { isAssemblyResultEntry, skipAssemblyWinnerColoring } from './utils/electionResults';
 import { defaultAssemblyDataYearFromIndex } from './utils/electionSchedule';
+import { mergeAssamAssemblyGeoForYear, assamMapDataForYear } from './utils/assamAssemblyGeo';
 import { trackPageView, trackConstituencySelect } from './utils/firebase';
 import type {
   GeoJSONData,
@@ -53,6 +54,7 @@ function App(): JSX.Element {
     statesGeoJSON,
     parliamentGeoJSON,
     assemblyGeoJSON,
+    assamAssemblyPre2024Geo,
     districtsCache,
     currentState,
     currentView,
@@ -186,6 +188,10 @@ function App(): JSX.Element {
         }
       }
       setInitialPCWinners(null);
+      // Any deep link that selects an assembly must drop prior parliamentContributions (effect only fills when empty).
+      if (urlState.assembly) {
+        setParliamentContributions({});
+      }
 
       // AC-within-PC: set selectedYear from URL before any await so Update URL effect
       // does not overwrite the URL when navigateToState/navigateToPC trigger re-renders
@@ -368,10 +374,14 @@ function App(): JSX.Element {
             schemaId: schemaId ?? undefined,
             canonicalName: schemaId ? getAC(schemaId)?.name : undefined,
           });
+          if (urlState.pcYear) {
+            setSelectedACPCYear(urlState.pcYear);
+          } else {
+            setSelectedACPCYear(null);
+          }
           // Parliament contributions loaded by useEffect when currentAssembly changes
           // Re-apply URL year so we win over any in-flight loadStateIndex() that overwrote it
           if (urlState.year != null) setSelectedYear(urlState.year);
-          if (!urlState.pcYear) setSelectedACPCYear(null);
         }
       } else if (urlState.view === 'assemblies') {
         // #region agent log
@@ -488,9 +498,13 @@ function App(): JSX.Element {
             schemaId: schemaId ?? undefined,
             canonicalName: schemaId ? getAC(schemaId)?.name : undefined,
           });
+          if (urlState.pcYear) {
+            setSelectedACPCYear(urlState.pcYear);
+          } else {
+            setSelectedACPCYear(null);
+          }
           // Re-apply URL year so we win over any in-flight loadStateIndex() that overwrote it
           if (urlState.year != null) setSelectedYear(urlState.year);
-          if (!urlState.pcYear) setSelectedACPCYear(null);
         }
       } else if (urlState.view === 'districts') {
         const data = await loadDistrictsForState(matchedState);
@@ -836,6 +850,38 @@ function App(): JSX.Element {
     }
   }, [currentView, currentAssembly, currentState, selectedYear]);
 
+  /** After schema fetch, redo AC lookup with schemaId (first navigation often ran before schema was ready → fuzzy Strategy 4 could pick wrong AC; pc-* URLs skipped the yearly resync above). */
+  const assemblySchemaPanelFetchRef = useRef<string>('');
+
+  useEffect(() => {
+    assemblySchemaPanelFetchRef.current = '';
+  }, [currentAssembly, currentState]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!schema || currentView !== 'assemblies' || !currentAssembly || !currentState) return;
+
+    const stateId = getStateIdFromName(currentState);
+    const schemaId = resolveACName(currentAssembly, stateId);
+    if (!schemaId) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const rawYearParam = params.get('year');
+    const parsedAsmYear =
+      rawYearParam && !rawYearParam.startsWith('pc-') ? parseInt(rawYearParam, 10) : NaN;
+    const yearForACResult = !Number.isNaN(parsedAsmYear) ? parsedAsmYear : undefined;
+
+    const fetchKey = `${currentState}|${currentAssembly}|${schemaId}|${rawYearParam ?? ''}`;
+    if (assemblySchemaPanelFetchRef.current === fetchKey) return;
+    assemblySchemaPanelFetchRef.current = fetchKey;
+
+    const canonicalName = getAC(schemaId)?.name;
+    void getACResult(currentAssembly, currentState, yearForACResult, {
+      schemaId,
+      canonicalName,
+    });
+  }, [schema, currentView, currentAssembly, currentState, resolveACName, getAC, getACResult]);
+
   // Mobile sidebar state
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
@@ -847,6 +893,45 @@ function App(): JSX.Element {
 
   // Current displayed data
   const [currentData, setCurrentData] = useState<GeoJSONData | null>(null);
+
+  /**
+   * Year used only for Assam pre/post-delimitation AC geometry:
+   * - AC-in-PC map: Lok Sabha year (`pcSelectedYear`).
+   * - State AC map with `?year=pc-YYYY` (PC contribution coloring): use that PC year so boundaries match the LS election (post-delimitation for 2024).
+   * - Otherwise assembly result year (`selectedYear`).
+   */
+  const assamMapBoundaryYear = useMemo((): number | null => {
+    if (!currentState || getStateIdFromName(currentState) !== 'AS') {
+      return selectedYear ?? null;
+    }
+    if (currentPC && showACsWithinPC) {
+      return pcSelectedYear ?? selectedYear ?? null;
+    }
+    if (selectedACPCYear != null) {
+      return selectedACPCYear;
+    }
+    return selectedYear ?? null;
+  }, [currentState, currentPC, showACsWithinPC, pcSelectedYear, selectedYear, selectedACPCYear]);
+
+  /** Assembly GeoJSON with historical Assam polygons when boundary year is before 2024 */
+  const assemblyGeoForMap = useMemo(
+    () =>
+      mergeAssamAssemblyGeoForYear(assemblyGeoJSON, assamAssemblyPre2024Geo, assamMapBoundaryYear),
+    [assemblyGeoJSON, assamAssemblyPre2024Geo, assamMapBoundaryYear]
+  );
+
+  /** Map layer data — swaps Assam AC shapes for pre-delimitation using {@link assamMapBoundaryYear} */
+  const mapViewCurrentData = useMemo(
+    () =>
+      assamMapDataForYear(
+        currentData,
+        assemblyGeoJSON,
+        assamAssemblyPre2024Geo,
+        currentState,
+        assamMapBoundaryYear
+      ),
+    [currentData, assemblyGeoJSON, assamAssemblyPre2024Geo, currentState, assamMapBoundaryYear]
+  );
 
   // PC winners for state-level PC view first paint (set in handleUrlNavigate so map has colors before MapView loadResults)
   const [initialPCWinners, setInitialPCWinners] = useState<Record<
@@ -1197,19 +1282,27 @@ function App(): JSX.Element {
               return null;
             };
 
-            // Find the PC in the data - try multiple matching strategies
-            const pcKey = pcName.toUpperCase();
-            let pc = pcData[pcKey];
+            // Find PC in JSON: schema id (AS-NN) is authoritative; avoid pcKey.includes("") / TEZPUR-in-SONITPUR substring false positives.
+            const pcKeyUpper = pcName.toUpperCase().trim();
+            let pc: (typeof pcData)[string] | undefined;
+            if (stateId) {
+              const pcSchemaId = resolvePCName(pcName, stateId);
+              if (pcSchemaId && pcData[pcSchemaId]) pc = pcData[pcSchemaId];
+            }
+            if (!pc) pc = pcData[pcKeyUpper];
 
             if (!pc) {
-              // Try finding by name fields
-              pc = Object.values(pcData).find(
-                (p) =>
-                  p.constituencyName?.toUpperCase() === pcKey ||
-                  p.constituencyNameOriginal?.toUpperCase() === pcKey ||
-                  p.constituencyName?.toUpperCase().includes(pcKey) ||
-                  pcKey.includes(p.constituencyName?.toUpperCase() || '')
-              ) as typeof pc;
+              const targetCompact = normalizePcNameCompact(pcName);
+              pc = Object.values(pcData).find((p) => {
+                const origU = (p.constituencyNameOriginal ?? '').toUpperCase().trim();
+                const nameU = (p.constituencyName ?? '').toUpperCase().trim();
+                return (
+                  origU === pcKeyUpper ||
+                  nameU === pcKeyUpper ||
+                  normalizePcNameCompact(p.constituencyNameOriginal ?? '') === targetCompact ||
+                  normalizePcNameCompact(p.constituencyName ?? '') === targetCompact
+                );
+              });
             }
 
             // Extract AC-wise results from each candidate's acWiseVotes
@@ -1430,7 +1523,7 @@ function App(): JSX.Element {
 
       setParliamentContributions(contributions);
     },
-    [resolveStateName]
+    [resolveStateName, resolvePCName]
   );
 
   /**
@@ -1440,17 +1533,17 @@ function App(): JSX.Element {
    */
   useEffect(() => {
     if (currentAssembly && currentState && Object.keys(parliamentContributions).length === 0) {
-      // Try to find the PC name from assemblyGeoJSON first
-      let pcName: string | null = null;
+      // URL / navigateToPC already set the correct PC; GeoJSON PC_NAME is often blank after merges.
+      let pcName: string | null = currentPC;
 
-      if (assemblyGeoJSON) {
-        const acFeature = assemblyGeoJSON.features.find(
+      if (!pcName && assemblyGeoForMap) {
+        const acFeature = assemblyGeoForMap.features.find(
           (f) => f.properties.AC_NAME?.toUpperCase() === currentAssembly.toUpperCase()
         );
-        pcName = acFeature?.properties.PC_NAME ?? null;
+        const fromGeo = acFeature?.properties.PC_NAME?.trim();
+        pcName = fromGeo || null;
       }
 
-      // Fallback to schema if assemblyGeoJSON doesn't have the feature
       if (!pcName) {
         const stateId = resolveStateName(currentState);
         if (stateId) {
@@ -1474,7 +1567,8 @@ function App(): JSX.Element {
   }, [
     currentAssembly,
     currentState,
-    assemblyGeoJSON,
+    currentPC,
+    assemblyGeoForMap,
     parliamentContributions,
     loadAllParliamentContributions,
     resolveStateName,
@@ -2287,14 +2381,14 @@ function App(): JSX.Element {
         <Sidebar
           statesGeoJSON={statesGeoJSON}
           parliamentGeoJSON={parliamentGeoJSON}
-          assemblyGeoJSON={assemblyGeoJSON}
+          assemblyGeoJSON={assemblyGeoForMap}
           districtsCache={districtsCache}
           currentState={currentState}
           currentView={currentView}
           currentPC={currentPC}
           currentDistrict={currentDistrict}
           cacheStats={cacheStats}
-          currentData={currentData}
+          currentData={mapViewCurrentData}
           onStateClick={handleStateClick}
           onDistrictClick={handleDistrictClick}
           onConstituencyClick={handleConstituencyClick}
@@ -2318,7 +2412,7 @@ function App(): JSX.Element {
           statesGeoJSON={statesGeoJSON}
           parliamentGeoJSON={parliamentGeoJSON}
           districtsCache={districtsCache}
-          currentData={currentData}
+          currentData={mapViewCurrentData}
           currentState={currentState}
           initialPCWinners={initialPCWinners}
           currentView={currentView}

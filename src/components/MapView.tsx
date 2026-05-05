@@ -21,6 +21,7 @@ import {
   getFeatureStyle,
   getHoverStyle,
   normalizeName,
+  normalizePcNameCompact,
   getStateFileName,
   getElectionStateId,
 } from '../utils/helpers';
@@ -41,6 +42,9 @@ const AC_STYLE_VARIANTS: Record<string, string[]> = {
   TADIPATRI: ['TADIPATRI', 'TADPATRI'],
   PAPPIREDDIPPATTI: ['PAPPIREDDIPPATTI', 'PAPPIREDDIPATTI'],
   PAPPIREDDIPATTI: ['PAPPIREDDIPATTI', 'PAPPIREDDIPPATTI'],
+  /** Assam PC 2024 acWiseVotes uses "Mangaldai"; GeoJSON / schema often "Mangaldoi" */
+  MANGALDOI: ['MANGALDOI', 'MANGALDAI'],
+  MANGALDAI: ['MANGALDAI', 'MANGALDOI'],
 };
 import { clearAllCache } from '../utils/db';
 import { getPartyColor } from '../utils/partyData';
@@ -820,17 +824,32 @@ export function MapView({
     return out;
   }, [schema?.assemblyConstituencies, constituencyWinners]);
 
-  /** No party colouring from assembly files that are pre-poll or announced-candidates-only (unless PC-contribution year is active). */
-  const suppressAssemblyFilePartyMapColors = useMemo(
-    () =>
-      selectedACPCYear == null &&
-      Boolean(
-        acFileMetaForMapColors &&
-        (acFileMetaForMapColors.resultsPending ||
-          acFileMetaForMapColors.candidatesPolicy === 'announced_only')
-      ),
-    [selectedACPCYear, acFileMetaForMapColors]
-  );
+  /**
+   * Grey out misleading colours when the assembly JSON is pre-poll / announced-only.
+   * Bypass when map colours come from Lok Sabha data: `year=pc-*` (selectedACPCYear), plain
+   * `?year=YYYY` on a PC route (toolbar / URL before hooks sync), or pcSelectedYear from parliament hook.
+   */
+  const suppressAssemblyFilePartyMapColors = useMemo(() => {
+    const metaBad = Boolean(
+      acFileMetaForMapColors &&
+      (acFileMetaForMapColors.resultsPending ||
+        acFileMetaForMapColors.candidatesPolicy === 'announced_only')
+    );
+    if (!metaBad) return false;
+    if (selectedACPCYear != null) return false;
+    if (pcSelectedYear != null) return false;
+    if (currentView === 'constituencies' && typeof window !== 'undefined') {
+      const seg = window.location.pathname.split('/').filter(Boolean);
+      if (seg.length >= 2 && seg[1]?.toLowerCase() === 'pc') {
+        const py = new URLSearchParams(window.location.search).get('year');
+        if (py && !py.startsWith('pc-')) {
+          const y = parseInt(py, 10);
+          if (!Number.isNaN(y)) return false;
+        }
+      }
+    }
+    return true;
+  }, [selectedACPCYear, pcSelectedYear, acFileMetaForMapColors, currentView]);
 
   // Load state-level winners for India view (latest AC election per state, not PC)
   useEffect(() => {
@@ -891,9 +910,25 @@ export function MapView({
       }
       const pcYearForColoring = selectedACPCYear ?? urlDerivedPcYear;
 
+      // `currentView` can still be constituencies briefly after handleUrlNavigate (before navigateToAssemblies commits).
+      // URL /state/ac[/name] means assembly-layer coloring from AC JSON — do not mis-route to Lok Sabha loader for ?year=2026 when no pc/YYYY file exists (that leaves winners empty and falls back to a past assembly year ↔ wrong colours on map).
+      let urlLooksLikeAssemblyMapData = false;
+      if (typeof window !== 'undefined') {
+        const segs = window.location.pathname.split('/').filter(Boolean);
+        const stateWideAc = segs.length >= 2 && segs[1]?.toLowerCase() === 'ac' && segs.length <= 3;
+        const districtAc =
+          segs.length >= 5 &&
+          segs[1]?.toLowerCase() === 'district' &&
+          segs[3]?.toLowerCase() === 'ac';
+        urlLooksLikeAssemblyMapData = stateWideAc || districtAc;
+      }
+
       // District detail (currentDistrict) needs AC data for coloring; currentView can be stale (constituencies) on first run
       const needsACOrPCDistrictData =
-        currentView === 'assemblies' || currentView === 'districts' || Boolean(currentDistrict);
+        currentView === 'assemblies' ||
+        currentView === 'districts' ||
+        Boolean(currentDistrict) ||
+        urlLooksLikeAssemblyMapData;
       if (needsACOrPCDistrictData) {
         // For AC/districts view (or district detail), check if we're viewing PC contribution year or assembly year
         if (pcYearForColoring) {
@@ -1168,7 +1203,9 @@ export function MapView({
                 return Number.isNaN(y) ? null : y;
               })()
             : null;
-        const yearToLoad = pcSelectedYear ?? urlYear;
+        // `year=pc-2024` is the Lok Sabha year for map coloring / acWiseVotes — urlYear above skips pc-* (assembly-only slot).
+        // urlDerivedPcYear is parsed at loadResults start; selectedACPCYear mirrors URL pc year before parliament hook syncs.
+        const yearToLoad = pcSelectedYear ?? selectedACPCYear ?? urlYear ?? urlDerivedPcYear;
         let hadPCResultForSelectedPC = false; // true when selected PC exists in PC file (so we have acWiseResults)
         if (yearToLoad) {
           try {
@@ -1315,7 +1352,8 @@ export function MapView({
                     return (
                       name.toUpperCase() === currentPC.toUpperCase().trim() ||
                       n === pcNorm ||
-                      normalizeName(name).toUpperCase().replace(/\s+/g, ' ') === pcNorm
+                      normalizeName(name).toUpperCase().replace(/\s+/g, ' ') === pcNorm ||
+                      normalizePcNameCompact(name) === normalizePcNameCompact(currentPC)
                     );
                   })?.[1];
                 if (pcResult) {
@@ -3191,7 +3229,6 @@ export function MapView({
               availablePCYears={availablePCYears}
               selectedPCYear={selectedACPCYear}
               onPCYearChange={onACPCYearChange}
-              showOnlyPCYears={Boolean(currentPC)}
               pcContributionShareUrl={pcContributionShareUrl}
               boothResults={boothResults}
               boothsWithResults={boothsWithResults}

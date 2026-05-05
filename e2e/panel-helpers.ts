@@ -45,16 +45,31 @@ export async function expandMobileElectionPanelToFull(panel: Locator, page: Page
   }
 }
 
-/** First matching element in DOM order may be hidden on mobile (e.g. winner card in half mode). */
+/**
+ * First DOM match for a comma selector may be hidden on mobile (winner card in half mode, loading).
+ * Poll until something substantive is visible — including half-mode preview rows or year control.
+ */
 export async function expectFirstVisibleMatch(panel: Locator, selector: string): Promise<void> {
-  const matches = panel.locator(selector);
-  const n = await matches.count();
-  for (let i = 0; i < n; i++) {
-    const item = matches.nth(i);
-    if (await item.isVisible().catch(() => false)) {
-      await expect(item).toBeVisible({ timeout: 10000 });
-      return;
-    }
-  }
-  await expect(matches.first()).toBeVisible({ timeout: 10000 });
+  await expect
+    .poll(
+      async () => {
+        const primary = panel.locator(selector);
+        for (let i = 0; i < (await primary.count()); i++) {
+          if (await primary.nth(i).isVisible().catch(() => false)) return true;
+        }
+        const preview = panel.locator(
+          '.candidates-preview .candidate-row-compact, .candidates-preview .candidate-row'
+        );
+        for (let i = 0; i < (await preview.count()); i++) {
+          if (await preview.nth(i).isVisible().catch(() => false)) return true;
+        }
+        const yearSel = panel.locator('select.year-dropdown');
+        for (let i = 0; i < (await yearSel.count()); i++) {
+          if (await yearSel.nth(i).isVisible().catch(() => false)) return true;
+        }
+        return false;
+      },
+      { timeout: 15000, intervals: [100, 200, 400] }
+    )
+    .toBe(true);
 }

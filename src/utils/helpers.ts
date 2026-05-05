@@ -19,6 +19,18 @@ export function normalizeName(name: string | null | undefined): string {
 }
 
 /**
+ * Compact PC key for matching URL slugs / JSON names (strip parens like "(ex-OldSeat)", non-alphanumeric).
+ * Aligns with PC election hooks when resolving ls_seat_name vs path segment.
+ */
+export function normalizePcNameCompact(name: string): string {
+  return stripDiacritics(name)
+    .toUpperCase()
+    .replace(/\s*\([^)]*\)\s*/g, '')
+    .replace(/[^A-Z0-9]/g, '')
+    .trim();
+}
+
+/**
  * Get the file name for a state's GeoJSON data
  */
 export function getStateFileName(stateName: string | null | undefined): string {

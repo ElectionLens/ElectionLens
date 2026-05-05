@@ -41,11 +41,11 @@ These ids exist in `schema.json` but have **no** feature with matching `properti
 
 **Note:** The file may still have **duplicate `schemaId` rows** for some **JK** and **AR** features from earlier merges. **Assam** was consolidated to **one feature per `schemaId`** via `scripts/replace-assam-ac-geojson.mjs` (Apr 2026).
 
-### 2. Assam — geometry vintage vs 2023 legal delimitation
+### 2. Assam — post‑2023 assembly boundaries
 
-**Done (pipeline):** `scripts/data-sources/assam-ac-datameet/assam-ac.geojson` (DataMeet / ECI-derived national AC layer, MIT) + `scripts/replace-assam-ac-geojson.mjs` refresh the master file, dedupe polygons, and set `delimitation: 2023` on Assam in `schema.json` and `public/data/elections/ac/AS/index.json`.
+**Done (pipeline):** `scripts/replace-assam-ac-geojson.mjs` merges Assam AC polygons (DataMeet bundle and/or **Desktop `assam.geojson`**), dedupes by `AS-*`, and sets **`delimitation: 2024`** on Assam in `schema.json` and `public/data/elections/ac/AS/index.json` (year labels **boundaries after the 2023 round**, not the old 2008 vintage).
 
-**Caveat:** The upstream GeoJSON is from the DataMeet national AC extract; it may **not** match every boundary adjustment from the 2023 Assam delimitation order until ECI or Assam CEO publishes an authoritative post-2023 shapefile. See `scripts/data-sources/assam-ac-datameet/README.md`.
+**Caveat:** Until ECI or Assam CEO publishes a single canonical shapefile, verify boundaries against your source of truth. See `scripts/data-sources/assam-ac-datameet/README.md`.
 
 ---
 

@@ -5,9 +5,9 @@ import {
   STATE_FILE_MAP,
   ASM_STATE_ALIASES,
   DISTRICT_NAME_MAPPINGS,
-  PC_NAME_MAPPINGS,
   PC_STATE_ALIASES,
 } from '../constants';
+import { resolveAssemblyFeaturesForPC } from '../utils/assemblyForPCFilter';
 import {
   BOUNDARIES,
   PARLIAMENT,
@@ -39,6 +39,9 @@ export function useElectionData(): UseElectionDataReturn {
   const [statesGeoJSON, setStatesGeoJSON] = useState<StatesGeoJSON | null>(null);
   const [parliamentGeoJSON, setParliamentGeoJSON] = useState<ConstituenciesGeoJSON | null>(null);
   const [assemblyGeoJSON, setAssemblyGeoJSON] = useState<AssembliesGeoJSON | null>(null);
+  const [assamAssemblyPre2024Geo, setAssamAssemblyPre2024Geo] = useState<AssembliesGeoJSON | null>(
+    null
+  );
   const [districtsCache, setDistrictsCache] = useState<DistrictsCache>({});
 
   // UI states
@@ -205,6 +208,26 @@ export function useElectionData(): UseElectionDataReturn {
   }, []);
 
   /**
+   * Historical Assam assembly boundaries (before 2024 delimitation) when viewing years before 2024.
+   */
+  const loadAssamPreDelimitationGeo = useCallback(async (): Promise<void> => {
+    try {
+      const response = await fetch(ASSEMBLY.ASSAM_PRE_DELIMITATION);
+      if (!response.ok) return;
+      const raw = (await response.json()) as AssembliesGeoJSON;
+      if (raw?.type !== 'FeatureCollection' || !raw.features?.length) return;
+      const features = raw.features.filter((f): f is AssemblyFeature =>
+        Boolean(f.properties?.AC_NAME && f.properties.AC_NAME.trim() !== '')
+      );
+      if (features.length) {
+        setAssamAssemblyPre2024Geo({ type: 'FeatureCollection', features });
+      }
+    } catch {
+      // Optional: map falls back to current-year boundaries only
+    }
+  }, []);
+
+  /**
    * Preload all district GeoJSON files for fast switching
    */
   const preloadAllDistricts = useCallback(async (): Promise<void> => {
@@ -246,6 +269,7 @@ export function useElectionData(): UseElectionDataReturn {
       await loadStatesData();
       await loadParliamentData();
       await loadAssemblyData();
+      await loadAssamPreDelimitationGeo();
       preloadAllDistricts();
     }
     init();
@@ -284,53 +308,9 @@ export function useElectionData(): UseElectionDataReturn {
   const getAssembliesForPC = useCallback(
     (pcName: string, stateName: string): AssemblyFeature[] => {
       if (!assemblyGeoJSON) return [];
-
-      let normalizedPC = pcName.toUpperCase().trim();
-      const normalizedState = normalizeName(stateName).toUpperCase();
-
-      const asmState = ASM_STATE_ALIASES[normalizedState] ?? normalizedState;
-
-      const mappingKey = `${normalizedPC}|${normalizedState}`;
-      const mappedPC = PC_NAME_MAPPINGS[mappingKey];
-      if (mappedPC) {
-        normalizedPC = mappedPC;
-      }
-
-      const result = assemblyGeoJSON.features.filter((f): boolean => {
-        // Skip features without valid AC_NAME
-        if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
-
-        const asmPC = (f.properties.PC_NAME ?? '').toUpperCase().trim();
-        const asmStateName = (f.properties.ST_NAME ?? '').toUpperCase().trim();
-
-        if (asmStateName !== asmState) return false;
-
-        if (asmPC === normalizedPC) return true;
-
-        // Check for SC/ST suffixes
-        if (
-          asmPC === normalizedPC + ' (SC)' ||
-          asmPC === normalizedPC + ' (ST)' ||
-          asmPC === normalizedPC + '(SC)' ||
-          asmPC === normalizedPC + '(ST)'
-        )
-          return true;
-
-        // Check cleaned PC name
-        const cleanAsmPC = asmPC.replace(/\s*\([^)]*\)\s*$/, '').trim();
-        if (cleanAsmPC === normalizedPC) return true;
-
-        // Check for prefix matching
-        if (asmPC.startsWith(normalizedPC) || normalizedPC.startsWith(asmPC)) {
-          const minLen = Math.min(asmPC.length, normalizedPC.length);
-          if (minLen >= 10) return true;
-        }
-
-        return false;
-      });
-      return result;
+      return resolveAssemblyFeaturesForPC(pcName, stateName, assemblyGeoJSON, parliamentGeoJSON);
     },
-    [assemblyGeoJSON]
+    [assemblyGeoJSON, parliamentGeoJSON]
   );
 
   /**
@@ -505,45 +485,12 @@ export function useElectionData(): UseElectionDataReturn {
           return { type: 'FeatureCollection', features: [] };
         }
 
-        // Filter assemblies using fresh data with SC/ST suffix matching
-        let normalizedPC = normalizeName(pcName).toUpperCase().trim();
-        const normalizedState = normalizeName(stateName).toUpperCase().trim();
-        const asmState = ASM_STATE_ALIASES[normalizedState] ?? normalizedState;
-
-        // Check PC name mappings (for renamed constituencies)
-        const mappingKey = `${normalizedPC}|${normalizedState}`;
-        const mappedPC = PC_NAME_MAPPINGS[mappingKey];
-        if (mappedPC) {
-          normalizedPC = mappedPC;
-        }
-
-        const assemblies = asmData.features.filter((f) => {
-          if (!f.properties.AC_NAME || f.properties.AC_NAME.trim() === '') return false;
-          const asmStateName = (f.properties.ST_NAME ?? '').toUpperCase().trim();
-          if (asmStateName !== asmState) return false;
-
-          const asmPC = normalizeName(f.properties.PC_NAME ?? '')
-            .toUpperCase()
-            .trim();
-
-          // Exact match
-          if (asmPC === normalizedPC) return true;
-
-          // Check for SC/ST suffixes (e.g., "KANCHEEPURAM (SC)")
-          if (
-            asmPC === normalizedPC + ' (SC)' ||
-            asmPC === normalizedPC + ' (ST)' ||
-            asmPC === normalizedPC + '(SC)' ||
-            asmPC === normalizedPC + '(ST)'
-          )
-            return true;
-
-          // Check cleaned PC name (remove suffixes)
-          const cleanAsmPC = asmPC.replace(/\s*\([^)]*\)\s*$/, '').trim();
-          if (cleanAsmPC === normalizedPC) return true;
-
-          return false;
-        });
+        const assemblies = resolveAssemblyFeaturesForPC(
+          pcName,
+          stateName,
+          asmData,
+          parliamentGeoJSON
+        );
 
         setCurrentState(stateName);
         setCurrentView('constituencies');
@@ -556,7 +503,7 @@ export function useElectionData(): UseElectionDataReturn {
         setLoading(false);
       }
     },
-    [assemblyGeoJSON, loadAssemblyData]
+    [assemblyGeoJSON, parliamentGeoJSON, loadAssemblyData]
   );
 
   /**
@@ -699,6 +646,7 @@ export function useElectionData(): UseElectionDataReturn {
     statesGeoJSON,
     parliamentGeoJSON,
     assemblyGeoJSON,
+    assamAssemblyPre2024Geo,
     districtsCache,
 
     // State

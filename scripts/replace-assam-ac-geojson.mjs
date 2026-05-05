@@ -6,8 +6,8 @@
  * - Strips existing Assam rows (ST_NAME / schemaId AS-*).
  * - Maps AC_NO → schemaId AS-### (must exist in schema.json).
  * - Dedupes multiple polygons per AC_NO (keeps largest Shape_Area).
- * - Sets schema delimitation year to 2023 for Assam (legal round); geometry vintage
- *   may still lag — see data-sources/assam-ac-datameet/README.md.
+ * - Sets schema delimitation year to 2024 for Assam (boundaries after the 2023 round /
+ *   published post-2023 — e.g. Desktop shapefile); see data-sources/assam-ac-datameet/README.md.
  *
  * Usage: node scripts/replace-assam-ac-geojson.mjs [--dry-run]
  */
@@ -155,12 +155,12 @@ currentGeo.features.sort((a, b) => {
 let schemaDelimUpdated = 0;
 for (const id of asSchemaIds) {
   if (schema.assemblyConstituencies[id]) {
-    schema.assemblyConstituencies[id].delimitation = 2023;
+    schema.assemblyConstituencies[id].delimitation = 2024;
     schemaDelimUpdated++;
   }
 }
 if (schema.states?.AS) {
-  schema.states.AS.delimitation = 2023;
+  schema.states.AS.delimitation = 2024;
 }
 schema.lastUpdated = new Date().toISOString();
 
@@ -170,5 +170,5 @@ if (!dryRun) {
 }
 
 console.log(`\n✅ Complete${dryRun ? ' (dry-run)' : ''}`);
-console.log(`   Schema Assam delimitation → 2023 (${schemaDelimUpdated} AC rows)`);
+console.log(`   Schema Assam delimitation → 2024 (${schemaDelimUpdated} AC rows)`);
 console.log(`   Total features in constituencies.geojson: ${currentGeo.features.length}`);

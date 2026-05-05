@@ -23,6 +23,18 @@ const mockSchema = {
       delimitation: 2008,
       elections: { assembly: [2021], parliament: [2024] },
     },
+    AS: {
+      id: 'AS',
+      name: 'Assam',
+      aliases: ['assam'],
+      isoCode: 'IN-AS',
+      censusCode: '18',
+      type: 'state',
+      loksabhaSeats: 14,
+      assemblySeats: 126,
+      delimitation: 2026,
+      elections: { assembly: [2021], parliament: [2024] },
+    },
   },
   parliamentaryConstituencies: {
     'TN-01': {
@@ -34,6 +46,16 @@ const mockSchema = {
       type: 'GEN',
       assemblyIds: ['TN-001', 'TN-002'],
       delimitation: 2008,
+    },
+    'AS-04': {
+      id: 'AS-04',
+      stateId: 'AS',
+      pcNo: 4,
+      name: 'Darrang Udalguri (ex Mangaldoi)',
+      aliases: [],
+      type: 'GEN',
+      assemblyIds: [],
+      delimitation: 2026,
     },
   },
   assemblyConstituencies: {
@@ -123,8 +145,12 @@ const mockSchema = {
     },
   },
   indices: {
-    stateByName: { 'tamil nadu': 'TN' },
-    pcByName: { 'chennai north|TN': 'TN-01' },
+    stateByName: { 'tamil nadu': 'TN', assam: 'AS' },
+    pcByName: {
+      'chennai north|TN': 'TN-01',
+      'darrang udalguri|AS': 'AS-04',
+      'DARRANGUDALGURI|AS': 'AS-04',
+    },
     acByName: {
       'anna nagar|TN': 'TN-001',
       'villivakkam sc|TN': 'TN-002', // parentheses removed by normalization
@@ -244,6 +270,14 @@ describe('useSchema', () => {
       await waitFor(() => expect(result.current.isReady).toBe(true));
 
       expect(result.current.resolvePCName('Chennai North', 'TN')).toBe('TN-01');
+    });
+
+    it('resolves PC from URL slug with (ex-rename) segment', async () => {
+      const { result } = renderHook(() => useSchema());
+      await waitFor(() => expect(result.current.isReady).toBe(true));
+
+      expect(result.current.resolvePCName('darrang-udalguri-(ex-mangaldoi)', 'AS')).toBe('AS-04');
+      expect(result.current.resolvePCName('Darrang Udalguri (ex Mangaldoi)', 'AS')).toBe('AS-04');
     });
 
     it('resolves AC name with reservation suffix', async () => {

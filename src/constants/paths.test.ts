@@ -44,6 +44,9 @@ describe('Path Constants', () => {
     it('has correct constituencies path', () => {
       expect(ASSEMBLY.CONSTITUENCIES).toBe('/data/geo/assembly/constituencies.geojson');
     });
+    it('has Assam pre-delimitation layer path', () => {
+      expect(ASSEMBLY.ASSAM_PRE_DELIMITATION).toBe('/data/geo/assembly/assam-ac-pre2024.geojson');
+    });
   });
 
   describe('DISTRICTS', () => {
@@ -139,7 +142,7 @@ describe('Path Constants', () => {
 
   describe('DATA_VERSION', () => {
     it('has correct version string', () => {
-      expect(DATA_VERSION).toBe('1.1.0');
+      expect(DATA_VERSION).toBe('1.1.1');
     });
 
     it('follows semver format', () => {

@@ -494,49 +494,39 @@ test.describe('Karnataka District Name Mappings', () => {
     // Yadgir was carved from Gulbarga in 2010
     await page.goto('/karnataka/district/yadgir');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
-    // Wait for assemblies to load
-    await page.waitForFunction(() => {
-      const paths = document.querySelectorAll('.leaflet-interactive');
-      return paths.length > 0;
-    }, { timeout: 15000 });
-    
-    // Should have assemblies visible (mapped from Gulbarga)
-    const paths = page.locator('.leaflet-interactive');
-    const count = await paths.count();
-    expect(count).toBeGreaterThan(0);
+
+    await expect
+      .poll(async () => page.locator('.leaflet-container .leaflet-interactive').count(), {
+        timeout: 25000,
+        intervals: [100, 200, 400, 800],
+      })
+      .toBeGreaterThan(0);
   });
 
   test('should load Ramanagara district with assemblies from Bangalore Rural', async ({ page }) => {
     // Ramanagara was carved from Bangalore Rural in 2007
     await page.goto('/karnataka/district/ramanagara');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
-    // Wait for assemblies to load
-    await page.waitForFunction(() => {
-      const paths = document.querySelectorAll('.leaflet-interactive');
-      return paths.length > 0;
-    }, { timeout: 15000 });
-    
-    const paths = page.locator('.leaflet-interactive');
-    const count = await paths.count();
-    expect(count).toBeGreaterThan(0);
+
+    await expect
+      .poll(async () => page.locator('.leaflet-container .leaflet-interactive').count(), {
+        timeout: 25000,
+        intervals: [100, 200, 400, 800],
+      })
+      .toBeGreaterThan(0);
   });
 
   test('should load Chikkaballapura district with assemblies from Kolar', async ({ page }) => {
     // Chikkaballapura was carved from Kolar in 2007
     await page.goto('/karnataka/district/chikkaballapura');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
-    // Wait for assemblies to load
-    await page.waitForFunction(() => {
-      const paths = document.querySelectorAll('.leaflet-interactive');
-      return paths.length > 0;
-    }, { timeout: 15000 });
-    
-    const paths = page.locator('.leaflet-interactive');
-    const count = await paths.count();
-    expect(count).toBeGreaterThan(0);
+
+    await expect
+      .poll(async () => page.locator('.leaflet-container .leaflet-interactive').count(), {
+        timeout: 25000,
+        intervals: [100, 200, 400, 800],
+      })
+      .toBeGreaterThan(0);
   });
 
   test('should load Kalaburagi district (formerly Gulbarga)', async ({ page }) => {
