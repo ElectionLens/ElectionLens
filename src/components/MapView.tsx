@@ -67,7 +67,6 @@ import {
   aggregatePcVotesForMappedFeatures,
   aggregateSeatsFromPartyList,
 } from '../utils/aggregateStateMapElectionStats';
-import { StateMapSummaryPanel } from './StateMapSummaryPanel';
 import { FeedbackModal } from './FeedbackModal';
 import { VectorTileLayer } from './VectorTileLayer';
 import { YearSelector, type YearOption } from './YearSelector';
@@ -751,6 +750,10 @@ export function MapView({
   onPCYearChange,
   showACsWithinPC = true,
   onShowACsWithinPCChange,
+  selectedSummaryParty = null,
+  onSummaryPartyChange,
+  onSummaryPartyOptionsChange,
+  onStateSummaryDataChange,
 }: MapViewProps): JSX.Element {
   const acPanelPlaceholderResult = useMemo(() => {
     if (!selectedAssembly || currentView !== 'assemblies') return null;
@@ -1724,7 +1727,6 @@ export function MapView({
 
   // Feedback modal state
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
-  const [selectedSummaryParty, setSelectedSummaryParty] = useState<string | null>(null);
   // Base layer state - 'Vector' uses VectorTileLayer, others use TileLayer
   const [baseLayer, setBaseLayer] = useState<LayerName>('Streets');
   // Booth data hook - loads booth data for selected assembly
@@ -2046,27 +2048,70 @@ export function MapView({
     getStateId,
   ]);
 
-  const toggleSummaryPartyFilter = useCallback((party: string): void => {
-    setSelectedSummaryParty((prev) => (prev === party ? null : party));
-  }, []);
-
   useEffect(() => {
-    if (
-      electionResult ||
-      pcElectionResult ||
-      (!assemblyLayerMapSummary && !parliamentLayerMapSummary)
-    ) {
-      setSelectedSummaryParty(null);
+    if (electionResult || pcElectionResult) {
+      onSummaryPartyChange?.(null);
     }
-  }, [assemblyLayerMapSummary, parliamentLayerMapSummary, electionResult, pcElectionResult]);
+  }, [electionResult, pcElectionResult, onSummaryPartyChange]);
 
   useEffect(() => {
     if (!selectedSummaryParty) return;
     const rows = assemblyLayerMapSummary?.seats ?? parliamentLayerMapSummary?.seats ?? [];
     if (!rows.some((r) => r.party === selectedSummaryParty)) {
-      setSelectedSummaryParty(null);
+      onSummaryPartyChange?.(null);
     }
-  }, [assemblyLayerMapSummary, parliamentLayerMapSummary, selectedSummaryParty]);
+  }, [
+    assemblyLayerMapSummary,
+    parliamentLayerMapSummary,
+    selectedSummaryParty,
+    onSummaryPartyChange,
+  ]);
+
+  useEffect(() => {
+    const parties =
+      assemblyLayerMapSummary?.seats.map((s) => s.party) ??
+      parliamentLayerMapSummary?.seats.map((s) => s.party) ??
+      [];
+    onSummaryPartyOptionsChange?.(parties);
+  }, [assemblyLayerMapSummary, parliamentLayerMapSummary, onSummaryPartyOptionsChange]);
+
+  useEffect(() => {
+    if (assemblyLayerMapSummary && !electionResult) {
+      onStateSummaryDataChange?.({
+        variant: 'assembly',
+        stateDisplayName: normalizeName(currentState ?? 'State'),
+        subtitle: assemblyLayerMapSummary.subtitle,
+        seatRows: assemblyLayerMapSummary.seats,
+        voteRows: assemblyLayerMapSummary.voteRows,
+        totalValidVotes: assemblyLayerMapSummary.totalValidVotes,
+        constituenciesCounted: assemblyLayerMapSummary.voteUnits,
+        seatUnitLabel: 'ACs',
+        suppressSummaryMessage: assemblyLayerMapSummary.suppressMsg,
+      });
+      return;
+    }
+    if (parliamentLayerMapSummary && !electionResult) {
+      onStateSummaryDataChange?.({
+        variant: 'parliament',
+        stateDisplayName: normalizeName(currentState ?? 'State'),
+        subtitle: parliamentLayerMapSummary.subtitle,
+        seatRows: parliamentLayerMapSummary.seats,
+        voteRows: parliamentLayerMapSummary.voteRows,
+        totalValidVotes: parliamentLayerMapSummary.totalValidVotes,
+        constituenciesCounted: parliamentLayerMapSummary.voteUnits,
+        seatUnitLabel: 'PCs',
+        suppressSummaryMessage: null,
+      });
+      return;
+    }
+    onStateSummaryDataChange?.(null);
+  }, [
+    assemblyLayerMapSummary,
+    parliamentLayerMapSummary,
+    electionResult,
+    currentState,
+    onStateSummaryDataChange,
+  ]);
 
   // Create unique key for GeoJSON to force re-render when data, selection, or coloring year changes
   // Include year so changing PC/AC year remounts the layer and applies new constituencyWinners style
@@ -3185,11 +3230,7 @@ export function MapView({
 
   // Determine if any panel is open (for desktop sidebar layout) — include AC selected so panel area shows even while loading
   const hasPanelOpen =
-    !!electionResult ||
-    !!pcElectionResult ||
-    (currentView === 'assemblies' && !!selectedAssembly) ||
-    !!assemblyLayerMapSummary ||
-    !!parliamentLayerMapSummary;
+    !!electionResult || !!pcElectionResult || (currentView === 'assemblies' && !!selectedAssembly);
 
   return (
     <div className={`map-container ${hasPanelOpen ? 'panel-open' : ''}`}>
@@ -3383,37 +3424,6 @@ export function MapView({
           />
         )}
       </MapContainer>
-
-      {/* State-wide aggregates (no constituency selected): assembly or parliament map */}
-      {assemblyLayerMapSummary && !electionResult && (
-        <StateMapSummaryPanel
-          variant="assembly"
-          stateDisplayName={normalizeName(currentState ?? 'State')}
-          subtitle={assemblyLayerMapSummary.subtitle}
-          seatRows={assemblyLayerMapSummary.seats}
-          voteRows={assemblyLayerMapSummary.voteRows}
-          totalValidVotes={assemblyLayerMapSummary.totalValidVotes}
-          constituenciesCounted={assemblyLayerMapSummary.voteUnits}
-          seatUnitLabel="ACs"
-          suppressSummaryMessage={assemblyLayerMapSummary.suppressMsg}
-          selectedParty={selectedSummaryParty}
-          onPartyToggle={toggleSummaryPartyFilter}
-        />
-      )}
-      {parliamentLayerMapSummary && !electionResult && (
-        <StateMapSummaryPanel
-          variant="parliament"
-          stateDisplayName={normalizeName(currentState ?? 'State')}
-          subtitle={parliamentLayerMapSummary.subtitle}
-          seatRows={parliamentLayerMapSummary.seats}
-          voteRows={parliamentLayerMapSummary.voteRows}
-          totalValidVotes={parliamentLayerMapSummary.totalValidVotes}
-          constituenciesCounted={parliamentLayerMapSummary.voteUnits}
-          seatUnitLabel="PCs"
-          selectedParty={selectedSummaryParty}
-          onPartyToggle={toggleSummaryPartyFilter}
-        />
-      )}
 
       {/* AC panel: real result or full ElectionResultPanel with skeleton rows while loading / on error */}
       {(electionResult ||

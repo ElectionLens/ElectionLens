@@ -395,6 +395,22 @@ export interface MapViewProps {
   /** When viewing a specific PC: show ACs within PC (true) or PC boundary only (false). Synced to URL. */
   showACsWithinPC?: boolean;
   onShowACsWithinPCChange?: (show: boolean) => void;
+  selectedSummaryParty?: string | null;
+  onSummaryPartyChange?: (party: string | null) => void;
+  onSummaryPartyOptionsChange?: (parties: string[]) => void;
+  onStateSummaryDataChange?: (summary: StateSummaryPanelData | null) => void;
+}
+
+export interface StateSummaryPanelData {
+  variant: 'assembly' | 'parliament';
+  stateDisplayName: string;
+  subtitle: string;
+  seatRows: Array<{ party: string; seats: number }>;
+  voteRows: Array<{ party: string; votes: number; pct: number }> | null;
+  totalValidVotes: number;
+  constituenciesCounted: number;
+  seatUnitLabel: string;
+  suppressSummaryMessage?: string | null;
 }
 
 /** MapControls component props */

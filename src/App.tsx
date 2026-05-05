@@ -25,6 +25,7 @@ import type {
   ViewMode,
   ElectionResultsByConstituency,
   PCElectionResultsByConstituency,
+  StateSummaryPanelData,
 } from './types';
 
 /**
@@ -796,6 +797,9 @@ function App(): JSX.Element {
   const isDataReady = Boolean(statesGeoJSON);
   // When viewing a specific PC: true = show ACs within PC, false = show PC boundary only (synced to URL)
   const [showACsWithinPC, setShowACsWithinPC] = useState<boolean>(true);
+  const [selectedSummaryParty, setSelectedSummaryParty] = useState<string | null>(null);
+  const [summaryPartyOptions, setSummaryPartyOptions] = useState<string[]>([]);
+  const [stateSummaryData, setStateSummaryData] = useState<StateSummaryPanelData | null>(null);
   // Use the appropriate year based on context:
   // - For AC view (assemblies) or districts: use assembly year (selectedYear) or pcYear (selectedACPCYear)
   // - For PC view (constituencies): use parliament year (pcSelectedYear)
@@ -2406,6 +2410,10 @@ function App(): JSX.Element {
           isCollapsed={sidebarCollapsed}
           onToggleCollapse={toggleSidebarCollapsed}
           onBlogClick={handleBlogToggle}
+          selectedSummaryParty={selectedSummaryParty}
+          onSummaryPartyChange={setSelectedSummaryParty}
+          summaryPartyOptions={summaryPartyOptions}
+          stateSummaryData={stateSummaryData}
         />
 
         <MapView
@@ -2447,6 +2455,10 @@ function App(): JSX.Element {
           onPCYearChange={handlePCYearChange}
           showACsWithinPC={showACsWithinPC}
           onShowACsWithinPCChange={setShowACsWithinPC}
+          selectedSummaryParty={selectedSummaryParty}
+          onSummaryPartyChange={setSelectedSummaryParty}
+          onSummaryPartyOptionsChange={setSummaryPartyOptions}
+          onStateSummaryDataChange={setStateSummaryData}
         />
       </div>
 

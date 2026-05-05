@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
   Map,
   Building2,
@@ -12,6 +12,7 @@ import {
   BookOpen,
 } from 'lucide-react';
 import { normalizeName, getFeatureColor } from '../utils/helpers';
+import { getPartyColor, getPartyShortName } from '../utils/partyData';
 import { SearchBox } from './SearchBox';
 import type {
   InfoPanelContent,
@@ -32,6 +33,7 @@ import type {
   ViewMode,
   CacheStats,
   HexColor,
+  StateSummaryPanelData,
 } from '../types';
 import type { ReactNode, CSSProperties } from 'react';
 
@@ -72,6 +74,10 @@ interface SidebarProps {
   isCollapsed?: boolean;
   onToggleCollapse?: () => void;
   onBlogClick?: () => void;
+  selectedSummaryParty?: string | null;
+  onSummaryPartyChange?: (party: string | null) => void;
+  summaryPartyOptions?: string[];
+  stateSummaryData?: StateSummaryPanelData | null;
 }
 
 /** Extended CSS properties to allow custom CSS variables */
@@ -111,9 +117,22 @@ export function Sidebar({
   isCollapsed = false,
   onToggleCollapse,
   onBlogClick,
+  selectedSummaryParty = null,
+  onSummaryPartyChange,
+  summaryPartyOptions = [],
+  stateSummaryData = null,
 }: SidebarProps): JSX.Element {
   const [copied, setCopied] = useState(false);
+  const [sidebarTab, setSidebarTab] = useState<'list' | 'summary'>('list');
   const displayState = currentState ? normalizeName(currentState) : null;
+
+  useEffect(() => {
+    if (stateSummaryData) {
+      setSidebarTab('summary');
+    } else {
+      setSidebarTab('list');
+    }
+  }, [stateSummaryData]);
 
   const handleShareClick = useCallback(() => {
     onShare();
@@ -169,6 +188,11 @@ export function Sidebar({
   };
 
   const info = getInfoContent();
+
+  const formatIn = (num: number): string => {
+    if (!Number.isFinite(num)) return '—';
+    return Math.round(num).toLocaleString('en-IN');
+  };
 
   /**
    * Render breadcrumb navigation
@@ -541,6 +565,114 @@ export function Sidebar({
     return null;
   };
 
+  const renderSummary = (): ReactNode => {
+    if (!stateSummaryData) return null;
+
+    return (
+      <div className="sidebar-summary">
+        <div className="sidebar-summary-subtitle">{stateSummaryData.subtitle}</div>
+
+        {summaryPartyOptions.length > 0 && (
+          <div className="summary-party-tabs" aria-label="Map party filter">
+            <button
+              type="button"
+              className={`summary-party-tab ${!selectedSummaryParty ? 'active' : ''}`}
+              onClick={() => onSummaryPartyChange?.(null)}
+            >
+              All
+            </button>
+            {summaryPartyOptions.map((party) => (
+              <button
+                key={party}
+                type="button"
+                className={`summary-party-tab ${selectedSummaryParty === party ? 'active' : ''}`}
+                onClick={() =>
+                  onSummaryPartyChange?.(selectedSummaryParty === party ? null : party)
+                }
+                title={party}
+              >
+                {getPartyShortName(party)}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="state-map-summary-section">
+          <h4 className="state-map-summary-heading">
+            Seats won ({stateSummaryData.seatUnitLabel})
+          </h4>
+          {stateSummaryData.suppressSummaryMessage ? (
+            <p className="state-map-summary-muted">{stateSummaryData.suppressSummaryMessage}</p>
+          ) : stateSummaryData.seatRows.length === 0 ? (
+            <p className="state-map-summary-muted">No seat data mapped yet.</p>
+          ) : (
+            <ul className="state-map-summary-list">
+              {stateSummaryData.seatRows.map((row) => {
+                const col = getPartyColor(row.party);
+                return (
+                  <li key={row.party} className="state-map-summary-row">
+                    <span
+                      className="state-map-summary-swatch"
+                      style={{ backgroundColor: col, boxShadow: `0 0 0 1px ${col}40` }}
+                    />
+                    <span className="state-map-summary-party" title={row.party}>
+                      {getPartyShortName(row.party)}
+                    </span>
+                    <span className="state-map-summary-value">{row.seats}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+
+        <div className="state-map-summary-section">
+          <h4 className="state-map-summary-heading">
+            Vote share ({stateSummaryData.variant === 'parliament' ? 'state' : 'statewide'})
+          </h4>
+          {!stateSummaryData.voteRows?.length ? (
+            <p className="state-map-summary-muted">
+              {stateSummaryData.suppressSummaryMessage ??
+                'Loading or no result file matched to the map.'}
+            </p>
+          ) : (
+            <ul className="state-map-summary-list">
+              {stateSummaryData.voteRows.map((row) => {
+                const col = getPartyColor(row.party);
+                return (
+                  <li key={row.party} className="state-map-summary-row">
+                    <span
+                      className="state-map-summary-swatch"
+                      style={{ backgroundColor: col, boxShadow: `0 0 0 1px ${col}40` }}
+                    />
+                    <span className="state-map-summary-party" title={row.party}>
+                      {getPartyShortName(row.party)}
+                    </span>
+                    <span className="state-map-summary-votepct">
+                      {row.pct.toFixed(1)}%
+                      <span className="state-map-summary-voteabs"> ({formatIn(row.votes)})</span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+
+        <div className="share-bar state-map-summary-footer">
+          <div className="share-bar-info">
+            <span className="district-label">
+              {stateSummaryData.constituenciesCounted} {stateSummaryData.seatUnitLabel} counted
+              {stateSummaryData.totalValidVotes > 0
+                ? ` · ${formatIn(stateSummaryData.totalValidVotes)} valid votes`
+                : ''}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   // Show view toggle only when state is selected and not in assembly view
   const showViewToggle = currentState && !currentPC && !currentDistrict;
 
@@ -642,7 +774,28 @@ export function Sidebar({
                 </div>
               )}
 
-              {renderList()}
+              {showViewToggle && stateSummaryData && (
+                <div className="sidebar-content-tabs">
+                  <button
+                    type="button"
+                    className={`sidebar-content-tab ${sidebarTab === 'list' ? 'active' : ''}`}
+                    onClick={() => setSidebarTab('list')}
+                  >
+                    Map
+                  </button>
+                  <button
+                    type="button"
+                    className={`sidebar-content-tab ${sidebarTab === 'summary' ? 'active' : ''}`}
+                    onClick={() => setSidebarTab('summary')}
+                  >
+                    Summary
+                  </button>
+                </div>
+              )}
+
+              {showViewToggle && stateSummaryData && sidebarTab === 'summary'
+                ? renderSummary()
+                : renderList()}
             </div>
 
             <div className="cache-status">
