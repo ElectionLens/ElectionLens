@@ -1557,6 +1557,88 @@ path:focus {
   animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
 }
 
+/* State map aggregate (seats + vote share) — reuses .election-panel positioning */
+.state-map-summary-panel .election-panel-title h3 {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.state-map-summary-section {
+  padding: 0 16px 14px;
+}
+
+.state-map-summary-heading {
+  margin: 4px 0 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+}
+
+.state-map-summary-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.state-map-summary-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.875rem;
+}
+
+.state-map-summary-row:last-child {
+  border-bottom: none;
+}
+
+.state-map-summary-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.state-map-summary-party {
+  flex: 1;
+  min-width: 0;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.state-map-summary-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.state-map-summary-votepct {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.state-map-summary-voteabs {
+  font-weight: 500;
+  color: #64748b;
+  font-size: 0.82em;
+}
+
+.state-map-summary-muted {
+  margin: 0;
+  padding: 4px 0 8px;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.state-map-summary-footer.share-bar {
+  margin-top: auto;
+  border-radius: 0;
+}
+
 /* Copy toast notification */
 .copy-toast {
   position: absolute;
