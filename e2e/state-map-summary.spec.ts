@@ -64,6 +64,48 @@ test.describe('State map summary panel', () => {
       .toBe(true);
   });
 
+  test('clicking a summary party dims other assembly polygons and toggles off', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac?year=2021');
+    await page.waitForSelector('.leaflet-container', { timeout: 20000 });
+    await page.waitForFunction(() => document.querySelectorAll('.leaflet-interactive').length > 10, {
+      timeout: 25000,
+    });
+
+    const summary = page.locator('.state-map-summary-panel.state-map-summary-assembly');
+    await expect(summary).toBeVisible({ timeout: 30000 });
+    await expandSummaryIfMobile(page);
+
+    const partyBtn = summary.locator('.state-map-summary-party-btn').first();
+    await expect(partyBtn).toBeVisible();
+
+    const countDimmed = async () =>
+      page.evaluate(() => {
+        const paths = Array.from(document.querySelectorAll<SVGPathElement>('.leaflet-interactive'));
+        return paths.filter((p) => {
+          const opRaw = p.getAttribute('fill-opacity');
+          const op = opRaw == null ? NaN : Number(opRaw);
+          return Number.isFinite(op) && op <= 0.21;
+        }).length;
+      });
+
+    const baselineDimmed = await countDimmed();
+
+    await partyBtn.click();
+    await expect(partyBtn).toHaveAttribute('aria-pressed', 'true');
+
+    await expect
+      .poll(async () => countDimmed(), { timeout: 15000, intervals: [150, 300, 500] })
+      .toBeGreaterThan(baselineDimmed);
+    const dimmedAfterSelect = await countDimmed();
+
+    await partyBtn.click();
+    await expect(partyBtn).toHaveAttribute('aria-pressed', 'false');
+
+    await expect
+      .poll(async () => countDimmed(), { timeout: 15000, intervals: [150, 300, 500] })
+      .toBeLessThanOrEqual(dimmedAfterSelect);
+  });
+
   test('hides state map summary when an assembly is selected', async ({ page }) => {
     await page.goto('/tamil-nadu/ac/anna-nagar?year=2021');
     await page.waitForSelector('.leaflet-container', { timeout: 20000 });

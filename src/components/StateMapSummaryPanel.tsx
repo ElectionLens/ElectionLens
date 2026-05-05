@@ -17,6 +17,8 @@ export interface StateMapSummaryPanelProps {
   seatUnitLabel: string;
   /** When set, replaces seat listing and warns on vote section (pre-poll / announced-only bundles). */
   suppressSummaryMessage?: string | null;
+  selectedParty?: string | null;
+  onPartyToggle?: (party: string) => void;
 }
 
 function formatIn(num: number): string {
@@ -34,6 +36,8 @@ export function StateMapSummaryPanel({
   constituenciesCounted,
   seatUnitLabel,
   suppressSummaryMessage,
+  selectedParty = null,
+  onPartyToggle,
 }: StateMapSummaryPanelProps): JSX.Element {
   const title =
     variant === 'assembly' ? `Assembly • ${stateDisplayName}` : `Lok Sabha • ${stateDisplayName}`;
@@ -65,7 +69,10 @@ export function StateMapSummaryPanel({
               const col = getPartyColor(row.party);
               const label = getPartyShortName(row.party);
               return (
-                <li key={row.party} className="state-map-summary-row">
+                <li
+                  key={row.party}
+                  className={`state-map-summary-row ${selectedParty === row.party ? 'is-selected' : ''}`}
+                >
                   <span
                     className="state-map-summary-swatch"
                     style={{
@@ -73,10 +80,18 @@ export function StateMapSummaryPanel({
                       boxShadow: `0 0 0 1px ${col}40`,
                     }}
                   />
-                  <span className="state-map-summary-party" title={row.party}>
-                    {label}
-                  </span>
-                  <span className="state-map-summary-value">{row.seats}</span>
+                  <button
+                    type="button"
+                    className="state-map-summary-party-btn"
+                    title={`Filter map by ${row.party}`}
+                    {...(onPartyToggle && { 'aria-pressed': selectedParty === row.party })}
+                    onClick={() => onPartyToggle?.(row.party)}
+                  >
+                    <span className="state-map-summary-party" title={row.party}>
+                      {label}
+                    </span>
+                    <span className="state-map-summary-value">{row.seats}</span>
+                  </button>
                 </li>
               );
             })}

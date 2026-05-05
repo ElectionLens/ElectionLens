@@ -1610,6 +1610,39 @@ path:focus {
   color: #1e293b;
 }
 
+.state-map-summary-party-btn {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.state-map-summary-party-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.state-map-summary-row:hover .state-map-summary-party-btn,
+.state-map-summary-row.is-selected .state-map-summary-party-btn {
+  color: #0f172a;
+}
+
+.state-map-summary-row.is-selected {
+  background: #eff6ff;
+  border-radius: 6px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
 .state-map-summary-value {
   font-variant-numeric: tabular-nums;
   font-weight: 700;

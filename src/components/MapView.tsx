@@ -35,6 +35,7 @@ const NEUTRAL_MAP_STYLE: L.PathOptions = {
   weight: 1,
   opacity: 1,
 };
+const DIMMED_MAP_OPACITY = 0.2;
 
 import { clearAllCache } from '../utils/db';
 import { getPartyColor } from '../utils/partyData';
@@ -1723,6 +1724,7 @@ export function MapView({
 
   // Feedback modal state
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
+  const [selectedSummaryParty, setSelectedSummaryParty] = useState<string | null>(null);
   // Base layer state - 'Vector' uses VectorTileLayer, others use TileLayer
   const [baseLayer, setBaseLayer] = useState<LayerName>('Streets');
   // Booth data hook - loads booth data for selected assembly
@@ -2043,6 +2045,28 @@ export function MapView({
     resolvePCName,
     getStateId,
   ]);
+
+  const toggleSummaryPartyFilter = useCallback((party: string): void => {
+    setSelectedSummaryParty((prev) => (prev === party ? null : party));
+  }, []);
+
+  useEffect(() => {
+    if (
+      electionResult ||
+      pcElectionResult ||
+      (!assemblyLayerMapSummary && !parliamentLayerMapSummary)
+    ) {
+      setSelectedSummaryParty(null);
+    }
+  }, [assemblyLayerMapSummary, parliamentLayerMapSummary, electionResult, pcElectionResult]);
+
+  useEffect(() => {
+    if (!selectedSummaryParty) return;
+    const rows = assemblyLayerMapSummary?.seats ?? parliamentLayerMapSummary?.seats ?? [];
+    if (!rows.some((r) => r.party === selectedSummaryParty)) {
+      setSelectedSummaryParty(null);
+    }
+  }, [assemblyLayerMapSummary, parliamentLayerMapSummary, selectedSummaryParty]);
 
   // Create unique key for GeoJSON to force re-render when data, selection, or coloring year changes
   // Include year so changing PC/AC year remounts the layer and applies new constituencyWinners style
@@ -2988,6 +3012,18 @@ export function MapView({
             opacity: 1,
           };
         }
+        if (
+          selectedSummaryParty &&
+          assemblyLayerMapSummary &&
+          (!asmWinner || asmWinner.party !== selectedSummaryParty)
+        ) {
+          baseStyle = {
+            ...baseStyle,
+            fillOpacity: DIMMED_MAP_OPACITY,
+            opacity: 0.75,
+            color: '#94a3b8',
+          };
+        }
       } else if (feature && level === 'constituencies') {
         const pcProps = feature.properties as ConstituencyProperties;
         const pcWinner = resolvePcMapPolygonWinner({
@@ -3002,6 +3038,18 @@ export function MapView({
             color: '#fff',
             weight: 1.5,
             opacity: 1,
+          };
+        }
+        if (
+          selectedSummaryParty &&
+          parliamentLayerMapSummary &&
+          (!pcWinner || pcWinner.party !== selectedSummaryParty)
+        ) {
+          baseStyle = {
+            ...baseStyle,
+            fillOpacity: DIMMED_MAP_OPACITY,
+            opacity: 0.75,
+            color: '#94a3b8',
           };
         }
       }
@@ -3050,6 +3098,9 @@ export function MapView({
       currentPC,
       resolveDistrictName,
       suppressAssemblyFilePartyMapColors,
+      selectedSummaryParty,
+      assemblyLayerMapSummary,
+      parliamentLayerMapSummary,
     ]
   );
 
@@ -3345,6 +3396,8 @@ export function MapView({
           constituenciesCounted={assemblyLayerMapSummary.voteUnits}
           seatUnitLabel="ACs"
           suppressSummaryMessage={assemblyLayerMapSummary.suppressMsg}
+          selectedParty={selectedSummaryParty}
+          onPartyToggle={toggleSummaryPartyFilter}
         />
       )}
       {parliamentLayerMapSummary && !electionResult && (
@@ -3357,6 +3410,8 @@ export function MapView({
           totalValidVotes={parliamentLayerMapSummary.totalValidVotes}
           constituenciesCounted={parliamentLayerMapSummary.voteUnits}
           seatUnitLabel="PCs"
+          selectedParty={selectedSummaryParty}
+          onPartyToggle={toggleSummaryPartyFilter}
         />
       )}
 

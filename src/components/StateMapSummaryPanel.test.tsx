@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen, within, fireEvent } from '@testing-library/react';
 import { StateMapSummaryPanel } from './StateMapSummaryPanel';
 
 describe('StateMapSummaryPanel', () => {
@@ -93,5 +93,39 @@ describe('StateMapSummaryPanel', () => {
 
     expect(screen.getByText('No seat data mapped yet.')).toBeInTheDocument();
     expect(screen.getByText('Loading or no result file matched to the map.')).toBeInTheDocument();
+  });
+
+  it('renders clickable seat rows and exposes selected state', () => {
+    const onPartyToggle = vi.fn();
+    render(
+      <StateMapSummaryPanel
+        variant="assembly"
+        stateDisplayName="Test State"
+        subtitle="Assembly 2021"
+        seatRows={[
+          { party: 'DMK', seats: 5 },
+          { party: 'AIADMK', seats: 3 },
+        ]}
+        voteRows={null}
+        totalValidVotes={0}
+        constituenciesCounted={8}
+        seatUnitLabel="ACs"
+        selectedParty="DMK"
+        onPartyToggle={onPartyToggle}
+      />
+    );
+
+    const buttons = screen.getAllByRole('button');
+    const dmkBtn = buttons.find(
+      (btn) => btn.textContent?.includes('DMK') && !btn.textContent?.includes('AIADMK')
+    );
+    const aiadmkBtn = buttons.find((btn) => btn.textContent?.includes('AIADMK'));
+    expect(dmkBtn).toBeDefined();
+    expect(aiadmkBtn).toBeDefined();
+    expect(dmkBtn!).toHaveAttribute('aria-pressed', 'true');
+    expect(aiadmkBtn!).toHaveAttribute('aria-pressed', 'false');
+
+    fireEvent.click(aiadmkBtn!);
+    expect(onPartyToggle).toHaveBeenCalledWith('AIADMK');
   });
 });
