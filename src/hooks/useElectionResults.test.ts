@@ -569,6 +569,36 @@ describe('useElectionResults - getACResult matching strategies', () => {
     expect(result.current.currentResult?.constituencyName).toBe('TIRUCHIRAPALLI WEST');
   });
 
+  it('matches Colachel via schema when file uses COLACHAL spelling (TN-231 variant)', async () => {
+    const mockIndex = { availableYears: [2026] };
+    const mockResults = {
+      'TN-231': minimalAc(231, 'COLACHAL', {
+        constituencyNameOriginal: 'COLACHAL',
+        name: 'Colachel',
+        year: 2026,
+        schemaId: 'TN-231',
+      }),
+    };
+
+    mockFetch
+      .mockResolvedValueOnce({ ok: true, json: async () => mockIndex })
+      .mockResolvedValueOnce({ ok: true, json: async () => mockResults });
+
+    const { result } = renderHook(() => useElectionResults());
+
+    await act(async () => {
+      await result.current.getACResult('COLACHEL', 'Tamil Nadu', 2026, {
+        schemaId: 'TN-231',
+        canonicalName: 'Colachel',
+      });
+    });
+
+    expect(result.current.error).toBeNull();
+    expect(result.current.currentResult).not.toBeNull();
+    expect(result.current.currentResult?.schemaId).toBe('TN-231');
+    expect(result.current.currentResult?.constituencyNo).toBe(231);
+  });
+
   it('with canonicalName, skips schema-key row when its labels mismatch (mis-keyed JSON), then resolves by name', async () => {
     // Mirrors production where schema maps Dhing → AS-083 but a year file may wrongly put Margherita under that key.
     const mockIndex = { availableYears: [2026] };

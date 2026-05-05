@@ -89,6 +89,9 @@ const AC_NAME_VARIANTS: Record<string, string[]> = {
   TADIPATRI: ['TADIPATRI', 'TADPATRI'],
   PAPPIREDDIPATTI: ['PAPPIREDDIPATTI', 'PAPPIREDDIPPATTI'],
   PAPPIREDDIPPATTI: ['PAPPIREDDIPPATTI', 'PAPPIREDDIPATTI'],
+  /** ECI / source typo vs common spelling (Tamil Nadu AC 231) */
+  COLACHEL: ['COLACHEL', 'COLACHAL'],
+  COLACHAL: ['COLACHAL', 'COLACHEL'],
 };
 
 function getACNameSearchVariants(normalized: string): string[] {
