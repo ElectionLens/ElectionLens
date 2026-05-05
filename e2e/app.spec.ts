@@ -1,16 +1,9 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expandMobileElectionPanelToFull } from './panel-helpers';
 
-async function expandPanelOnMobileIfNeeded(page: Page, isMobile: boolean) {
-  if (!isMobile) return;
-
-  const panel = page.locator('.election-panel');
-  const dragHandle = panel.locator('.bottom-sheet-handle');
-  if ((await dragHandle.count()) === 0) return;
-
-  if (await panel.evaluate((el) => el.classList.contains('panel-half'))) {
-    await dragHandle.click();
-  }
+async function expandElectionPanelForWinnerSection(page: Page) {
+  await expandMobileElectionPanelToFull(page.locator('.election-panel'), page);
 }
 
 test.describe('Election Lens App', () => {
@@ -187,13 +180,13 @@ test.describe('Election Panel', () => {
     await expect(panel).toBeVisible({ timeout: 15000 });
   });
 
-  test('should display winner information', async ({ page, isMobile }) => {
+  test('should display winner information', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     
     const panel = page.locator('.election-panel');
     await expect(panel).toBeVisible({ timeout: 15000 });
 
-    await expandPanelOnMobileIfNeeded(page, isMobile);
+    await expandElectionPanelForWinnerSection(page);
     
     // Should have winner section
     const winnerSection = panel.locator('.winner-card-compact');
@@ -205,13 +198,10 @@ test.describe('Election Panel', () => {
     
     await page.waitForSelector('.election-panel', { timeout: 15000 });
     
-    // Year selector should be visible
-    const yearSelector = page.locator('.election-year-selector');
-    await expect(yearSelector).toBeVisible();
-    
-    // Should have year buttons
-    const yearButtons = yearSelector.locator('.year-btn');
-    expect(await yearButtons.count()).toBeGreaterThan(0);
+    // Year control is a <select> (YearSelector), not chip buttons
+    const yearDropdown = page.locator('.election-year-selector select.year-dropdown');
+    await expect(yearDropdown).toBeVisible();
+    expect(await yearDropdown.locator('option').count()).toBeGreaterThan(0);
   });
 
   test('should switch years when year button clicked', async ({ page }) => {
@@ -219,10 +209,9 @@ test.describe('Election Panel', () => {
     
     await page.waitForSelector('.election-panel', { timeout: 15000 });
     
-    // Click a different year
-    const yearButton = page.locator('.year-btn').filter({ hasText: '2016' });
-    if (await yearButton.count() > 0) {
-      await yearButton.click();
+    const yearDropdown = page.locator('.election-year-selector select.year-dropdown');
+    if ((await yearDropdown.locator('option[value="ac-2016"]').count()) > 0) {
+      await yearDropdown.selectOption('ac-2016');
       await expect(page).toHaveURL(/year=2016/);
     }
   });
@@ -232,9 +221,9 @@ test.describe('Election Panel', () => {
     await page.waitForSelector('.election-panel', { timeout: 15000 });
     await expect(page).toHaveURL(/year=pc-2019/);
 
-    const toolbar2024 = page.locator('.toolbar-year-btn').filter({ hasText: '2024' });
-    if ((await toolbar2024.count()) > 0) {
-      await toolbar2024.first().click();
+    const toolbarSelect = page.locator('.toolbar-year-selector select.year-dropdown');
+    if ((await toolbarSelect.locator('option[value="pc-2024"]').count()) > 0) {
+      await toolbarSelect.selectOption('pc-2024');
       await expect(page).toHaveURL(/year=pc-2024/, { timeout: 5000 });
     }
   });
@@ -357,9 +346,7 @@ test.describe('Tab Navigation in Election Panel', () => {
     expect(await rows.count()).toBeGreaterThan(1);
   });
 
-  test('2026 pre-poll AC: Overview shows Candidates preview without switching tab', async ({
-    page,
-  }) => {
+  test('2026 AC: Overview shows candidate preview without switching tab', async ({ page }) => {
     await page.goto('/tamil-nadu/ac/mettuppalayam?year=2026');
 
     await page.waitForSelector('.election-panel', { timeout: 30000 });
@@ -368,11 +355,11 @@ test.describe('Tab Navigation in Election Panel', () => {
 
     const preview = page.locator('.election-panel .candidates-preview');
     await expect(preview).toBeVisible();
-    await expect(preview.getByRole('heading', { name: 'Candidates' })).toBeVisible();
+    await expect(preview.getByRole('heading', { name: /Candidates|Top candidates/i })).toBeVisible();
 
     await expect(preview.locator('.candidate-row-compact').first()).toBeVisible({ timeout: 20000 });
 
-    await expect(page.locator('.panel-tab').filter({ hasText: /All candidates/i })).toBeVisible();
+    await expect(page.locator('.panel-tab').filter({ hasText: /All candidates|^Candidates\s*\(/i })).toBeVisible();
   });
 });
 

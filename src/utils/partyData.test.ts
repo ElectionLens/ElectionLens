@@ -70,6 +70,20 @@ describe('partyData', () => {
       expect(getPartyInfo('TAMIZHAGA VAAZHVURIMAI KATCHI').shortName).toBe('TNLK');
     });
 
+    it('maps ECI full names to colors (Kerala, West Bengal, Tamil Nadu 2026 AC data)', () => {
+      const gray = '#6B7280';
+      expect(getPartyColor('Indian National Congress')).not.toBe(gray);
+      expect(getPartyColor('Communist Party of India (Marxist)')).toBe(getPartyColor('CPM'));
+      expect(getPartyColor('Bharatiya Janata Party')).toBe(getPartyColor('BJP'));
+      expect(getPartyColor('All India Trinamool Congress')).toBe(getPartyColor('TMC'));
+      expect(getPartyColor('All India Secular Front')).not.toBe(gray);
+      expect(getPartyColor('Aam Janata Unnayan party')).not.toBe(gray);
+      expect(getPartyColor('Kerala Congress (Jacob)')).not.toBe(gray);
+      expect(getPartyColor('Revolutionary Socialist Party')).not.toBe(gray);
+      expect(getPartyColor('Indian Union Muslim League')).toBe(getPartyColor('IUML'));
+      expect(getPartyColor('Amma Makkal Munnettra Kazagam')).toBe(getPartyColor('AMMK'));
+    });
+
     it('should handle party codes with spaces', () => {
       const info = getPartyInfo('  BJP  ');
       expect(info.name).toBe('Bharatiya Janata Party');

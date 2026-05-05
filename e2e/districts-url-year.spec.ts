@@ -17,22 +17,19 @@ test.describe('Districts view — year query param', () => {
   test('clicking assembly year in toolbar replaces year=pc- with assembly year', async ({
     page,
   }) => {
-    const acBtn = page.locator('button.toolbar-year-btn[title^="Assembly Election"]');
-    await expect(acBtn.first()).toBeVisible({ timeout: 10000 });
-    await acBtn.filter({ hasText: '2021' }).first().click();
+    const toolbarSelect = page.locator('.toolbar-year-selector select.year-dropdown');
+    await expect(toolbarSelect).toBeVisible({ timeout: 10000 });
+    await toolbarSelect.selectOption('ac-2021');
     await expect(page).toHaveURL(/year=2021/, { timeout: 8000 });
     expect(page.url()).not.toContain('year=pc-');
   });
 
   test('clicking parliament year in toolbar sets year=pc-YYYY', async ({ page }) => {
-    // Switch to assembly year first so we can switch back to PC
-    const acBtn = page.locator('button.toolbar-year-btn[title^="Assembly Election"]');
-    await acBtn.filter({ hasText: '2021' }).first().click();
+    const toolbarSelect = page.locator('.toolbar-year-selector select.year-dropdown');
+    await toolbarSelect.selectOption('ac-2021');
     await expect(page).toHaveURL(/year=2021/);
 
-    const pcBtn = page.locator('button.toolbar-year-btn[title^="Parliament Election"]');
-    await expect(pcBtn.filter({ hasText: '2024' }).first()).toBeVisible({ timeout: 5000 });
-    await pcBtn.filter({ hasText: '2024' }).first().click();
+    await toolbarSelect.selectOption('pc-2024');
     await expect(page).toHaveURL(/year=pc-2024/, { timeout: 8000 });
   });
 });

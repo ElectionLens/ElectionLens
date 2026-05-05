@@ -245,9 +245,8 @@ test.describe('Mobile Portrait - Panel Content Visibility', () => {
     const yearSelector = panel.locator('.election-year-selector');
     await expect(yearSelector).toBeVisible();
 
-    // Check that year buttons exist and are interactive
-    const yearButtons = yearSelector.locator('.year-btn');
-    expect(await yearButtons.count()).toBeGreaterThan(0);
+    const yearDropdown = yearSelector.locator('select.year-dropdown');
+    expect(await yearDropdown.locator('option').count()).toBeGreaterThan(0);
   });
 });
 
@@ -339,12 +338,20 @@ test.describe('Mobile Landscape - Right Sidebar Layout', () => {
     const viewportSize = page.viewportSize();
     expect(viewportSize).not.toBeNull();
 
-    // Prefer right-rail layout, but some breakpoints use a near-full-width column; require non-trivial panel geometry
-    const rect = await panel.evaluate((el) => {
-      const r = el.getBoundingClientRect();
-      return { left: r.left, width: r.width, height: r.height };
-    });
-    expect(rect.width).toBeGreaterThan(160);
+    // Layout can settle after map/panel paint; avoid reading 0×0 bounds during transition
+    let rect = { left: 0, top: 0, width: 0, height: 0 };
+    await expect
+      .poll(
+        async () => {
+          rect = await panel.evaluate((el) => {
+            const r = el.getBoundingClientRect();
+            return { left: r.left, top: r.top, width: r.width, height: r.height };
+          });
+          return rect.width;
+        },
+        { timeout: 15000, intervals: [100, 250, 500] }
+      )
+      .toBeGreaterThan(160);
     expect(rect.height).toBeGreaterThan(100);
     const rightRail = rect.left > viewportSize!.width * 0.33;
     const splitColumn = rect.width < viewportSize!.width * 0.92;
@@ -528,20 +535,19 @@ test.describe('Mobile Touch Targets', () => {
     await setPortraitViewport(page);
   });
 
-  test('should have adequately sized year buttons', async ({ page }) => {
+  test('should have adequately sized year control', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
     const panel = page.locator('.election-panel');
     await expect(panel).toBeVisible({ timeout: 15000 });
 
-    const yearButton = panel.locator('.year-btn').first();
-    const buttonBox = await yearButton.boundingBox();
+    const yearControl = panel.locator('.election-year-selector select.year-dropdown');
+    const box = await yearControl.boundingBox();
 
-    expect(buttonBox).not.toBeNull();
-    // Minimum touch target should be around 32px (WCAG recommends 44px)
-    expect(buttonBox!.height).toBeGreaterThanOrEqual(28);
-    expect(buttonBox!.width).toBeGreaterThanOrEqual(40);
+    expect(box).not.toBeNull();
+    expect(box!.height).toBeGreaterThanOrEqual(28);
+    expect(box!.width).toBeGreaterThanOrEqual(40);
   });
 
   test('should have adequately sized close button', async ({ page }) => {

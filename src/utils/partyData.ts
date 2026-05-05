@@ -429,6 +429,50 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
     symbol: '🌴',
     symbolEmoji: '🌴',
   },
+  KCJ: {
+    name: 'Kerala Congress (Jacob)',
+    shortName: 'KC(J)',
+    color: '#CA8A04',
+    symbol: '🌴',
+    symbolEmoji: '🌴',
+  },
+  CMKSC: {
+    name: 'Communist Marxist Party Kerala State Committee',
+    shortName: 'CMP(KSC)',
+    color: '#9F1239',
+    symbol: '☭',
+    symbolEmoji: '☭',
+  },
+  RSP: {
+    name: 'Revolutionary Socialist Party',
+    shortName: 'RSP',
+    color: '#E11D48',
+    symbol: '✊',
+    symbolEmoji: '✊',
+  },
+  RMPI: {
+    name: 'Revolutionary Marxist Party of India',
+    shortName: 'RMPI',
+    color: '#BE185D',
+    symbol: '⭐',
+    symbolEmoji: '⭐',
+  },
+
+  // Regional - West Bengal (ECI full names / alliances)
+  AISF: {
+    name: 'All India Secular Front',
+    shortName: 'AISF',
+    color: '#047857',
+    symbol: '🤝',
+    symbolEmoji: '🤝',
+  },
+  AJUP: {
+    name: 'Aam Janata Unnayan Party',
+    shortName: 'AJUP',
+    color: '#57534E',
+    symbol: '🏛️',
+    symbolEmoji: '🏛️',
+  },
 
   // Regional - North East
   NPP: {
@@ -681,6 +725,26 @@ export const PARTY_DATA: Record<string, PartyInfo> = {
 
 /** Maps full names / data variants (uppercase) to canonical PARTY_DATA key. Avoids gray for winner parties. */
 const WINNER_PARTY_ALIASES: Record<string, string> = {
+  'BHARATIYA JANATA PARTY': 'BJP',
+  'INDIAN NATIONAL CONGRESS': 'INC',
+  'COMMUNIST PARTY OF INDIA (MARXIST)': 'CPM',
+  'COMMUNIST PARTY OF INDIA': 'CPI',
+  'ALL INDIA TRINAMOOL CONGRESS': 'TMC',
+  'NONE OF THE ABOVE': 'NOTA',
+  INDEPENDENT: 'IND',
+  'AAM AADMI PARTY': 'AAP',
+  'BAHUJAN SAMAJ PARTY': 'BSP',
+  'RASHTRIYA JANATA DAL': 'RJD',
+  'INDIAN UNION MUSLIM LEAGUE': 'IUML',
+  'KERALA CONGRESS': 'KC',
+  'KERALA CONGRESS (JACOB)': 'KCJ',
+  'COMMUNIST MARXIST PARTY KERALA STATE COMMITTEE': 'CMKSC',
+  'REVOLUTIONARY MARXIST PARTY OF INDIA': 'RMPI',
+  'REVOLUTIONARY SOCIALIST PARTY': 'RSP',
+  'ALL INDIA SECULAR FRONT': 'AISF',
+  'AAM JANATA UNNAYAN PARTY': 'AJUP',
+  'ALL INDIA N.R. CONGRESS': 'AINRC',
+  'AMMA MAKKAL MUNNETTRA KAZAGAM': 'AMMK',
   'JANATA DAL(UNITED)': 'JDU',
   'COMMUNIST PARTY OF INDIA(MARXIST)': 'CPM',
   'CPI(M (L)L)': 'CPI(ML)(L)',

@@ -29,20 +29,44 @@ const stateDirs = fs.readdirSync(AC_BASE).filter((d) => {
 
 const stateWinners = {};
 
+function fileHasAcResults(yearPath) {
+  if (!fs.existsSync(yearPath)) return false;
+  let data;
+  try {
+    data = loadJSON(yearPath);
+  } catch {
+    return false;
+  }
+  for (const [k, row] of Object.entries(data)) {
+    if (k.startsWith('_') || !row?.candidates?.length) continue;
+    return true;
+  }
+  return false;
+}
+
 for (const stateId of stateDirs) {
   const indexPath = path.join(AC_BASE, stateId, 'index.json');
   if (!fs.existsSync(indexPath)) continue;
   const index = loadJSON(indexPath);
-  const years = index.availableYears ?? index.years ?? [];
+  const years = [...(index.availableYears ?? index.years ?? [])].sort((a, b) => b - a);
   if (years.length === 0) continue;
-  const latestYear = Math.max(...years);
-  const yearPath = path.join(AC_BASE, stateId, `${latestYear}.json`);
-  if (!fs.existsSync(yearPath)) continue;
-  const results = loadJSON(yearPath);
+
+  let results = null;
+  let latestYear = null;
+  for (const y of years) {
+    const yearPath = path.join(AC_BASE, stateId, `${y}.json`);
+    if (!fileHasAcResults(yearPath)) continue;
+    results = loadJSON(yearPath);
+    latestYear = y;
+    break;
+  }
+  if (!results || latestYear == null) continue;
+
   const partySeats = {};
   for (const acResult of Object.values(results)) {
     if (!acResult?.candidates?.length) continue;
-    const winner = acResult.candidates[0];
+    const winner =
+      acResult.candidates.find((c) => c.position === 1) ?? acResult.candidates[0];
     const party = (winner.party || 'IND').trim();
     partySeats[party] = (partySeats[party] || 0) + 1;
   }

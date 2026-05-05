@@ -48,6 +48,7 @@
     "merge:wb-kl-2026-announced": "node scripts/merge-wb-kl-2026-announced.mjs",
     "refresh:ac-2026-announced": "node scripts/generate-ac-2026-upcoming.mjs && node scripts/fetch-tn-2026-dmk-voterlist.mjs && node scripts/fetch-tn-2026-dmk-hindu.mjs && node scripts/fetch-tn-2026-admk.mjs && node scripts/fetch-tn-2026-admk-voterlist.mjs && node scripts/fetch-tn-2026-tvk-hindu.mjs && node scripts/fetch-tn-2026-pmk.mjs && node scripts/fetch-tn-2026-ntk-tnliv.mjs && node scripts/fetch-tn-2026-ammk-voterlist.mjs && node scripts/merge-tn-2026-announced.mjs && node scripts/fetch-wb-2026-voterlist-master.mjs && node scripts/fetch-kl-2026-voterlist.mjs && node scripts/merge-wb-kl-2026-announced.mjs",
     "ci": "npm run typecheck && npm run lint && npm run test:coverage && npm run build",
+    "e2e:install": "playwright install chromium",
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui",
     "e2e:headed": "playwright test --headed",

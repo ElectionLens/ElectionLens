@@ -4,16 +4,11 @@
  * Tests links, navigation flows, and panel visibility across the app.
  */
 import { test, expect } from '@playwright/test';
-import type { Locator } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
+import { expandMobileElectionPanelToFull, expectFirstVisibleMatch } from './panel-helpers';
 
-async function expandPanelOnMobileIfNeeded(panel: Locator, isMobile: boolean) {
-  if (!isMobile) return;
-  const dragHandle = panel.locator('.bottom-sheet-handle');
-  if ((await dragHandle.count()) === 0) return;
-  const isHalf = await panel.evaluate((el) => el.classList.contains('panel-half'));
-  if (isHalf) {
-    await dragHandle.click();
-  }
+async function expandPanelOnMobileIfNeeded(panel: Locator, page: Page) {
+  await expandMobileElectionPanelToFull(panel, page);
 }
 
 // =============================================================================
@@ -67,41 +62,31 @@ test.describe('Link Validation - Breadcrumb Navigation', () => {
 });
 
 test.describe('Link Validation - Year Selector Links', () => {
-  test('year buttons update panel content', async ({ page }) => {
+  test('year dropdown updates panel content', async ({ page }) => {
     await page.goto('/maharashtra/pc/pune/ac/kothrud');
     await page.waitForSelector('.election-panel', { timeout: 15000 });
     
-    // Get available year buttons
-    const yearButtons = page.locator('.year-btn, .election-year-selector button');
-    const count = await yearButtons.count();
+    const yearSelect = page.locator('.election-year-selector select.year-dropdown');
+    await expect(yearSelect).toBeVisible();
+    const optionCount = await yearSelect.locator('option').count();
+    expect(optionCount).toBeGreaterThan(0);
     
-    expect(count).toBeGreaterThan(0);
-    
-    // Click a different year if available
-    if (count > 1) {
-      const secondYear = yearButtons.nth(1);
-      await secondYear.click();
-      
-      // Year button should become active
-      await expect(secondYear).toHaveClass(/active/);
-      
-      // Panel should still be visible with data
-      await expect(page.locator('.election-panel')).toBeVisible();
+    if (optionCount > 1) {
+      const secondValue = await yearSelect.locator('option').nth(1).getAttribute('value');
+      if (secondValue) {
+        await yearSelect.selectOption(secondValue);
+        await expect(page.locator('.election-panel')).toBeVisible();
+      }
     }
   });
 
-  test('all year buttons are functional', async ({ page }) => {
+  test('year dropdown is interactive', async ({ page }) => {
     await page.goto('/rajasthan/pc/jaipur/ac/civil-lines');
     await page.waitForSelector('.election-panel', { timeout: 15000 });
     
-    const yearButtons = page.locator('.year-btn, .election-year-selector button');
-    const count = await yearButtons.count();
-    
-    // Each year button should be clickable
-    for (let i = 0; i < Math.min(count, 4); i++) {
-      const btn = yearButtons.nth(i);
-      await expect(btn).toBeEnabled();
-    }
+    const yearSelect = page.locator('.election-year-selector select.year-dropdown');
+    await expect(yearSelect).toBeEnabled();
+    expect(await yearSelect.locator('option').count()).toBeGreaterThan(0);
   });
 });
 
@@ -111,7 +96,7 @@ test.describe('Link Validation - Tab Navigation', () => {
     await page.waitForSelector('.election-panel', { timeout: 15000 });
 
     const panel = page.locator('.election-panel');
-    await expandPanelOnMobileIfNeeded(panel, isMobile);
+    await expandPanelOnMobileIfNeeded(panel, page);
     
     // Overview tab should be default
     const overviewTab = page.locator('.panel-tab').filter({ hasText: 'Overview' });
@@ -336,7 +321,7 @@ test.describe('Panel Validation - AC Panel Content', () => {
     await page.waitForSelector('.election-panel', { timeout: 15000 });
     
     const panel = page.locator('.election-panel');
-    await expandPanelOnMobileIfNeeded(panel, isMobile);
+    await expandPanelOnMobileIfNeeded(panel, page);
     
     // Required elements
     await expect(panel.locator('.election-panel-header, header')).toBeVisible();
@@ -350,7 +335,9 @@ test.describe('Panel Validation - AC Panel Content', () => {
   test('AC panel winner card has correct structure', async ({ page }) => {
     await page.goto('/odisha/pc/bhubaneswar/ac/bhubaneswar-central');
     await page.waitForSelector('.election-panel', { timeout: 15000 });
-    
+
+    await expandPanelOnMobileIfNeeded(page.locator('.election-panel'), page);
+
     const winnerCard = page.locator('.winner-card-compact, .winner-info').first();
     await expect(winnerCard).toBeVisible();
     
@@ -390,6 +377,7 @@ test.describe('Panel Validation - PC Panel Content', () => {
     await page.waitForSelector('.election-panel.pc-panel', { timeout: 15000 });
     
     const panel = page.locator('.election-panel.pc-panel');
+    await expandPanelOnMobileIfNeeded(panel, page);
     
     // Should have winner/MP info
     await expect(panel.locator('.winner-card-compact, .winner-info, .candidate-card').first()).toBeVisible();
@@ -399,12 +387,9 @@ test.describe('Panel Validation - PC Panel Content', () => {
     await page.goto('/uttar-pradesh/pc/varanasi');
     await page.waitForSelector('.election-panel.pc-panel', { timeout: 15000 });
     
-    const yearSelector = page.locator('.election-year-selector');
-    await expect(yearSelector).toBeVisible();
-    
-    // Should have multiple years for Varanasi (2024, 2019, 2014, etc.)
-    const yearButtons = yearSelector.locator('button, .year-btn');
-    expect(await yearButtons.count()).toBeGreaterThan(0);
+    const yearDropdown = page.locator('.election-panel.pc-panel .election-year-selector select.year-dropdown');
+    await expect(yearDropdown).toBeVisible();
+    expect(await yearDropdown.locator('option').count()).toBeGreaterThan(0);
   });
 });
 
@@ -468,6 +453,8 @@ test.describe('Cross-State Validation', () => {
       if (type === 'pc') {
         await expect(panel).toHaveClass(/pc-panel/);
       }
+
+      await expandPanelOnMobileIfNeeded(panel, page);
       
       // Wait for staggered animations to complete
       await page.waitForTimeout(500);
@@ -483,8 +470,7 @@ test.describe('Cross-State Validation', () => {
         '.candidates-section',
         '.pc-mp-info'
       ];
-      const hasData = await panel.locator(dataSelectors.join(', ')).first().isVisible().catch(() => false);
-      expect(hasData).toBe(true);
+      await expectFirstVisibleMatch(panel, dataSelectors.join(', '));
     });
   }
 });
