@@ -9,6 +9,8 @@ import {
   DB_NAME,
   DB_VERSION,
   STORE_NAME,
+  isBoothDataAvailable,
+  INCOMPLETE_2024_BOOTH_PCS,
 } from './index';
 
 describe('STATE_FILE_MAP', () => {
@@ -171,6 +173,31 @@ describe('PC_STATE_ALIASES', () => {
 
   it('normalizes J&K name variations', () => {
     expect(PC_STATE_ALIASES['Jammu & Kashmir']).toBe('Jammu and Kashmir');
+  });
+});
+
+describe('isBoothDataAvailable', () => {
+  it('returns false for non-Tamil Nadu AC ids', () => {
+    expect(isBoothDataAvailable('MH-01', 'MH-01')).toBe(false);
+  });
+
+  it('returns false when pcId is missing', () => {
+    expect(isBoothDataAvailable('TN-101', undefined)).toBe(false);
+  });
+
+  it('uses incomplete 2024 PC set for year 2024', () => {
+    const incompletePc = [...INCOMPLETE_2024_BOOTH_PCS][0]!;
+    expect(isBoothDataAvailable('TN-101', incompletePc, 2024)).toBe(false);
+    expect(isBoothDataAvailable('TN-101', 'TN-99', 2024)).toBe(true);
+  });
+
+  it('defaults non-2024 non-2021 years to 2024 PC completeness check', () => {
+    expect(isBoothDataAvailable('TN-101', 'TN-01', 2019)).toBe(false);
+    expect(isBoothDataAvailable('TN-101', 'TN-99', 2019)).toBe(true);
+  });
+
+  it('allows all TN ACs for 2021 when broken set is empty', () => {
+    expect(isBoothDataAvailable('TN-101', 'TN-01', 2021)).toBe(true);
   });
 });
 

@@ -34,3 +34,15 @@ test.describe('Districts view — year query param', () => {
     await expect(page).toHaveURL(/year=pc-2024/, { timeout: 8000 });
   });
 });
+
+test.describe('Districts view — base URL', () => {
+  test('state districts route loads map and sidebar year control', async ({ page }) => {
+    await page.goto('/tamil-nadu/districts');
+    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    await openSidebarSheet(page);
+
+    await expect(page).toHaveURL(/tamil-nadu\/districts/);
+    const yearSelect = sidebarYearSelectorSelect(page, 'sidebar-map-year');
+    await expect(yearSelect).toBeAttached({ timeout: 15000 });
+  });
+});

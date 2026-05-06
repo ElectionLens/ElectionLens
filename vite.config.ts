@@ -87,10 +87,10 @@ export default defineConfig({
       ],
       // Coverage thresholds - focused on testable utilities and hooks
       thresholds: {
-        lines: 80,
-        functions: 85,
-        branches: 70,
-        statements: 80
+        lines: 90,
+        statements: 90,
+        functions: 90,
+        branches: 75
       }
     },
     // Reporter options
