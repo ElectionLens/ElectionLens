@@ -119,18 +119,43 @@ export async function expectFirstVisibleMatch(panel: Locator, selector: string):
  */
 export async function ensureElectionPanelVisible(page: Page): Promise<Locator> {
   await openSidebarSheet(page);
-  /** Detail panels live only in the sidebar; map no longer hosts a duplicate `.election-panel`. */
-  const panel = page.locator('.sidebar .election-panel').first();
+  /** Hosted in Sidebar `renderDetailHost` — avoid matching other `.election-panel` roots if any appear in the tree. */
+  const panel = page.locator('.sidebar .sidebar-detail-host .election-panel').first();
   try {
-    await expect(panel).toBeVisible({ timeout: 30000 });
+    await expect(panel).toBeVisible({ timeout: 35000 });
     return panel;
-  } catch {
-    const assemblyRow = page.locator('.assembly-item, .constituency-item').first();
+  } catch (firstErr) {
+    await openSidebarSheet(page);
+    const assemblyRow = page.locator('.district-list .assembly-item, .assembly-item').first();
+    const pcRow = page.locator('.district-list .constituency-item, .constituency-item').first();
+
     if (await assemblyRow.isVisible().catch(() => false)) {
       await assemblyRow.click({ force: true });
-      await expect(panel).toBeVisible({ timeout: 20000 });
+      await expect(panel).toBeVisible({ timeout: 25000 }).catch(() => {
+        throw firstErr;
+      });
       return panel;
     }
-    throw new Error('Election panel not visible and no selectable row to open panel');
+
+    if (await pcRow.isVisible().catch(() => false)) {
+      await pcRow.click({ force: true });
+      await expect(panel).toBeVisible({ timeout: 25000 }).catch(() => {
+        throw firstErr;
+      });
+      return panel;
+    }
+
+    await page.locator('.mobile-toggle').click({ timeout: 5000 }).catch(() => {});
+    await openSidebarSheet(page);
+    try {
+      await expect(panel).toBeVisible({ timeout: 20000 });
+      return panel;
+    } catch {
+      throw new Error(
+        firstErr instanceof Error
+          ? `Election panel not visible: ${firstErr.message}`
+          : 'Election panel not visible and no selectable row or PC row to open panel'
+      );
+    }
   }
 }

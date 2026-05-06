@@ -339,13 +339,16 @@ export function Sidebar({
   );
 
   const acPanelPlaceholderResult = useMemo(() => {
-    if (!selectedAssembly) return null;
-    const inAssembliesLayer = currentView === 'assemblies';
-    const inDrilledAcContext = Boolean(currentPC || currentDistrict);
-    if (!inAssembliesLayer && !inDrilledAcContext) return null;
+    if (!selectedAssembly || !currentState) return null;
+    // Suppress orphaned panel chrome on statewide browse maps (PC grid or districts overview).
+    // Keeps placeholder during PC+AC / district+AC hydration and transient drill state.
+    const isNakedStateConstituenciesGrid =
+      currentView === 'constituencies' && !currentPC && !currentDistrict;
+    const isDistrictsOverview = currentView === 'districts' && !currentPC && !currentDistrict;
+    if (isNakedStateConstituenciesGrid || isDistrictsOverview) return null;
     const y = selectedYear ?? new Date().getFullYear();
     return buildAcPanelPlaceholder(selectedAssembly, y);
-  }, [selectedAssembly, selectedYear, currentView, currentPC, currentDistrict]);
+  }, [selectedAssembly, selectedYear, currentView, currentPC, currentDistrict, currentState]);
 
   const showACDetailPanel = Boolean(
     (electionResult || acPanelPlaceholderResult) && onCloseElectionPanel
