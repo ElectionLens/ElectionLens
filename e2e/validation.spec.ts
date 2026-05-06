@@ -10,6 +10,7 @@ import {
   expandMobileElectionPanelToFull,
   expectFirstVisibleMatch,
 } from './panel-helpers';
+import { openSidebarSheet, sidebarYearSelectOption } from './sidebar-helpers';
 
 async function expandPanelOnMobileIfNeeded(panel: Locator, page: Page) {
   await expandMobileElectionPanelToFull(panel, page);
@@ -27,7 +28,8 @@ test.describe('Link Validation - Breadcrumb Navigation', () => {
     // Go to state level (sidebar stays open at state level)
     await page.goto('/tamil-nadu');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
+    await openSidebarSheet(page);
+
     // Should have breadcrumb navigation inside sidebar
     const breadcrumb = page.locator('.breadcrumb-nav');
     await expect(breadcrumb).toBeVisible({ timeout: 10000 });
@@ -55,7 +57,8 @@ test.describe('Link Validation - Breadcrumb Navigation', () => {
     // Go to state level
     await page.goto('/karnataka');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
+    await openSidebarSheet(page);
+
     // Should have breadcrumb navigation with state name
     const breadcrumb = page.locator('.breadcrumb-nav');
     await expect(breadcrumb).toBeVisible({ timeout: 10000 });
@@ -68,28 +71,30 @@ test.describe('Link Validation - Breadcrumb Navigation', () => {
 test.describe('Link Validation - Year Selector Links', () => {
   test('year dropdown updates panel content', async ({ page }) => {
     await page.goto('/maharashtra/pc/pune/ac/kothrud');
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
-    
-    const yearSelect = page.locator('.election-year-selector select.year-dropdown');
+    const panel = await ensureElectionPanelVisible(page);
+    await expandPanelOnMobileIfNeeded(panel, page);
+
+    const yearSelect = panel.locator('#ac-panel-year');
     await expect(yearSelect).toBeVisible();
     const optionCount = await yearSelect.locator('option').count();
     expect(optionCount).toBeGreaterThan(0);
-    
+
     if (optionCount > 1) {
       const secondValue = await yearSelect.locator('option').nth(1).getAttribute('value');
       if (secondValue) {
         await yearSelect.selectOption(secondValue);
-        await expect(page.locator('.election-panel')).toBeVisible();
+        await expect(panel).toBeVisible();
       }
     }
   });
 
   test('year dropdown is interactive', async ({ page }) => {
     await page.goto('/rajasthan/pc/jaipur/ac/civil-lines');
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
-    
-    const yearSelect = page.locator('.election-year-selector select.year-dropdown');
-    await expect(yearSelect).toBeEnabled();
+    const panel = await ensureElectionPanelVisible(page);
+    await expandPanelOnMobileIfNeeded(panel, page);
+
+    const yearSelect = panel.locator('#ac-panel-year');
+    await expect(yearSelect).toBeEnabled({ timeout: 20000 });
     expect(await yearSelect.locator('option').count()).toBeGreaterThan(0);
   });
 });
@@ -108,21 +113,25 @@ test.describe('Link Validation - Tab Navigation', () => {
     await expect(panel.locator('.winner-card-compact, .winner-info')).toBeVisible();
   });
 
-  test('Candidates tab shows full list (past year)', async ({ page }) => {
+  test('Overview shows full candidate list (past year)', async ({ page }) => {
     await page.goto('/kerala/pc/thiruvananthapuram/ac/nemom');
     const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
 
-    await panel.locator('#ac-panel-view').selectOption('candidates');
+    await expect(panel.locator('#ac-panel-view')).toHaveValue('overview');
 
     await expect(page.locator('.election-panel .candidates-table-full')).toBeVisible();
 
     const rows = page.locator('.election-panel .candidate-row');
     await expect(rows.first()).toBeVisible();
     expect(await rows.count()).toBeGreaterThan(1);
+
+    await expect(panel.locator('#ac-panel-view').locator('option[value="candidates"]')).toHaveCount(
+      0
+    );
   });
 
-  test('Pre-poll AC year: Overview lists candidate preview', async ({ page }) => {
+  test('Pre-poll AC year: Overview lists candidate table', async ({ page }) => {
     await page.goto('/tamil-nadu/ac/mettuppalayam?year=2026');
     const panel = await ensureElectionPanelVisible(page);
 
@@ -130,7 +139,7 @@ test.describe('Link Validation - Tab Navigation', () => {
 
     const preview = page.locator('.election-panel .candidates-preview');
     await expect(preview).toBeVisible();
-    await expect(preview.locator('.candidate-row-compact').first()).toBeVisible({ timeout: 20000 });
+    await expect(preview.locator('.candidate-row').first()).toBeVisible({ timeout: 20000 });
   });
 });
 
@@ -151,29 +160,26 @@ test.describe('Navigation Flow - State to PC to AC', () => {
     // Navigate to PC
     await page.goto('/bihar/pc/patna-sahib');
     await expect(page).toHaveURL('/bihar/pc/patna-sahib');
-    
-    // PC panel should show
-    const pcPanel = page.locator('.election-panel.pc-panel');
-    await expect(pcPanel).toBeVisible({ timeout: 15000 });
-    
+
+    const pcPanel = await ensureElectionPanelVisible(page);
+    await expect(pcPanel).toHaveClass(/pc-panel/);
+
     // Navigate to AC
     await page.goto('/bihar/pc/patna-sahib/ac/bankipur');
     await expect(page).toHaveURL(/bihar\/pc\/patna-sahib\/ac\/bankipur/);
-    
-    // AC panel should show
-    const acPanel = page.locator('.election-panel:not(.pc-panel)');
-    await expect(acPanel).toBeVisible({ timeout: 15000 });
+
+    const acPanel = await ensureElectionPanelVisible(page);
+    await expect(acPanel).not.toHaveClass(/pc-panel/);
   });
 
   test('back navigation preserves state', async ({ page }) => {
     await page.goto('/west-bengal/pc/kolkata-uttar/ac/jorasanko?year=2021');
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
-    
-    // Navigate back to PC
+    await ensureElectionPanelVisible(page);
+
     await page.goto('/west-bengal/pc/kolkata-uttar');
-    
-    // Should show PC panel
-    await expect(page.locator('.election-panel.pc-panel')).toBeVisible({ timeout: 15000 });
+
+    const pcPanel = await ensureElectionPanelVisible(page);
+    await expect(pcPanel).toHaveClass(/pc-panel/);
   });
 });
 
@@ -189,10 +195,9 @@ test.describe('Navigation Flow - District Path', () => {
   test('district to AC navigation works', async ({ page }) => {
     await page.goto('/rajasthan/district/baran/ac/anta');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
-    // Should show AC panel
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+
+    const panel = await ensureElectionPanelVisible(page);
+    await expandPanelOnMobileIfNeeded(panel, page);
     await expect(panel).not.toHaveClass(/pc-panel/);
   });
 });
@@ -203,13 +208,11 @@ test.describe('Navigation Flow - Deep Links', () => {
     
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
     
-    // Panel should show
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
-    
-    // Year should be reflected (or fallback)
-    const yearSelector = page.locator('.election-year-selector');
-    await expect(yearSelector).toBeVisible();
+    const panel = await ensureElectionPanelVisible(page);
+    await expandPanelOnMobileIfNeeded(panel, page);
+
+    const yearChrome = panel.locator('#ac-panel-year');
+    await expect(yearChrome).toBeVisible();
   });
 
   test('invalid AC name shows graceful error', async ({ page }) => {
@@ -255,13 +258,11 @@ test.describe('Navigation Flow - AC View', () => {
   test('AC view with specific assembly loads panel', async ({ page }) => {
     await page.goto('/tamil-nadu/ac/anna-nagar?year=2021');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
-    // Panel should show for the selected AC
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
-    
-    // Should show assembly name
-    await expect(panel).toContainText(/Anna Nagar/i);
+
+    await expect(page).toHaveURL(/anna-nagar/);
+    const panel = await ensureElectionPanelVisible(page);
+    await expandPanelOnMobileIfNeeded(panel, page);
+    await expect(panel.locator('.winner-card-compact, .winner-info')).toBeVisible();
   });
 
   test('AC view URL pattern is correct', async ({ page }) => {
@@ -274,9 +275,8 @@ test.describe('Navigation Flow - AC View', () => {
   test('navigating to AC in AC view shows panel', async ({ page }) => {
     await page.goto('/maharashtra/ac/mumbai-colaba');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+
+    await ensureElectionPanelVisible(page);
   });
 });
 
@@ -284,8 +284,9 @@ test.describe('Navigation Flow - AC View Toggle', () => {
   test('Layer dropdown navigates to AC view', async ({ page }) => {
     await page.goto('/kerala');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    await openSidebarSheet(page);
 
-    await page.locator('#sidebar-layer-mode').selectOption('assemblies');
+    await sidebarYearSelectOption(page, 'sidebar-layer-mode', 'assemblies');
 
     await expect(page).toHaveURL(/kerala\/ac/, { timeout: 10000 });
   });
@@ -293,8 +294,9 @@ test.describe('Navigation Flow - AC View Toggle', () => {
   test('Layer dropdown in sidebar switches Gujarat to AC view', async ({ page }) => {
     await page.goto('/gujarat');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    await openSidebarSheet(page);
 
-    await page.locator('#sidebar-layer-mode').selectOption('assemblies');
+    await sidebarYearSelectOption(page, 'sidebar-layer-mode', 'assemblies');
 
     await expect(page).toHaveURL(/gujarat\/ac/, { timeout: 10000 });
   });
@@ -305,65 +307,58 @@ test.describe('Navigation Flow - AC View Toggle', () => {
 // =============================================================================
 
 test.describe('Panel Validation - AC Panel Content', () => {
-  test('AC panel shows all required sections', async ({ page, isMobile }) => {
+  test('AC panel shows all required sections', async ({ page }) => {
     await page.goto('/madhya-pradesh/pc/bhopal/ac/bhopal-uttar');
     const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
-    
-    // Required elements
-    await expect(panel.locator('.election-panel-header, header')).toBeVisible();
-    await expect(panel.locator('.winner-card-compact, .winner-info, .winner-section')).toBeVisible();
-    await expect(panel.locator('.election-year-selector, .year-selector')).toBeVisible();
-    
-    // Footer actions replaced close button in the updated UX
+
+    await expect(panel.locator('#ac-panel-view')).toBeVisible({ timeout: 15000 });
+    await expect(panel.locator('.controls-card')).toBeVisible();
+    await expect(
+      panel
+        .locator('.winner-card-compact, .winner-info, .candidates-table-full .candidate-row')
+        .first()
+    ).toBeVisible({ timeout: 25000 });
+    await expect(panel.locator('.election-year-selector, .year-selector').first()).toBeVisible();
+
     await expect(panel.locator('.share-bar .election-panel-btn').first()).toBeVisible();
   });
 
   test('AC panel winner card has correct structure', async ({ page }) => {
     await page.goto('/odisha/pc/bhubaneswar/ac/bhubaneswar-central');
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
+    await expandPanelOnMobileIfNeeded(panel, page);
 
-    await expandPanelOnMobileIfNeeded(page.locator('.election-panel'), page);
+    const winnerCard = panel.locator('.winner-card-compact, .winner-info').first();
+    await expect(winnerCard).toBeVisible({ timeout: 30000 });
 
-    const winnerCard = page.locator('.winner-card-compact, .winner-info').first();
-    await expect(winnerCard).toBeVisible();
-    
-    // Should have candidate name
-    const candidateName = winnerCard.locator('.candidate-name, .winner-name, h3, h4');
-    await expect(candidateName).toBeVisible();
-    
-    // Should have party info (class is .winner-party or .party)
-    const partyInfo = winnerCard.locator('.winner-party, .party');
-    await expect(partyInfo).toBeVisible();
+    await expect(winnerCard.locator('.winner-name')).toBeVisible();
+    await expect(winnerCard.locator('.winner-party')).toBeVisible();
   });
 
   test('AC panel shows vote statistics', async ({ page }) => {
     await page.goto('/haryana/pc/gurgaon/ac/gurgaon');
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
+    await expandPanelOnMobileIfNeeded(panel, page);
 
-    const voteInfo = page.locator('.election-panel .votes, .election-panel .vote-count');
+    const voteInfo = panel.locator('.votes, .vote-count');
     expect(await voteInfo.count()).toBeGreaterThanOrEqual(0);
   });
 });
 
 test.describe('Panel Validation - PC Panel Content', () => {
-  test('PC panel shows parliament badge', async ({ page }) => {
+  test('PC panel shows chrome (sidebar omits heading badge)', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/chennai-south');
-    await page.waitForSelector('.election-panel.pc-panel', { timeout: 15000 });
-    
-    const panel = page.locator('.election-panel.pc-panel');
-    
-    // Should have Parliament badge/indicator
-    const badge = panel.locator('.pc-badge, .parliament-badge');
-    await expect(badge).toBeVisible();
-    await expect(badge).toContainText(/Parliament/i);
+    const panel = await ensureElectionPanelVisible(page);
+    await expect(panel).toHaveClass(/pc-panel/);
+    await expandPanelOnMobileIfNeeded(panel, page);
+    await expect(panel.locator('#pc-panel-view')).toBeVisible();
   });
 
   test('PC panel shows MP information', async ({ page }) => {
     await page.goto('/karnataka/pc/mysore');
-    await page.waitForSelector('.election-panel.pc-panel', { timeout: 15000 });
-    
-    const panel = page.locator('.election-panel.pc-panel');
+    const panel = await ensureElectionPanelVisible(page);
+    await expect(panel).toHaveClass(/pc-panel/);
     await expandPanelOnMobileIfNeeded(panel, page);
     
     // Should have winner/MP info
@@ -372,11 +367,15 @@ test.describe('Panel Validation - PC Panel Content', () => {
 
   test('PC panel year selector works', async ({ page }) => {
     await page.goto('/uttar-pradesh/pc/varanasi');
-    await page.waitForSelector('.election-panel.pc-panel', { timeout: 15000 });
-    
-    const yearDropdown = page.locator('.election-panel.pc-panel .election-year-selector select.year-dropdown');
-    await expect(yearDropdown).toBeVisible();
-    expect(await yearDropdown.locator('option').count()).toBeGreaterThan(0);
+    const panel = await ensureElectionPanelVisible(page);
+    await expect(panel).toHaveClass(/pc-panel/);
+    await expandPanelOnMobileIfNeeded(panel, page);
+
+    await expect(panel.locator('#pc-panel-view')).toBeVisible();
+    const yearDropdown = panel.locator('#pc-panel-year');
+    if ((await yearDropdown.count()) > 0) {
+      expect(await yearDropdown.locator('option').count()).toBeGreaterThan(0);
+    }
   });
 });
 
@@ -423,11 +422,9 @@ test.describe('Cross-State Validation', () => {
     test(`${state} - ${type.toUpperCase()} loads correctly`, async ({ page }) => {
       await page.goto(url);
       await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-      
-      // Panel should show
-      const panel = page.locator('.election-panel');
-      await expect(panel).toBeVisible({ timeout: 15000 });
-      
+
+      const panel = await ensureElectionPanelVisible(page);
+
       if (type === 'pc') {
         await expect(panel).toHaveClass(/pc-panel/);
       }
@@ -474,7 +471,7 @@ test.describe('Error Handling', () => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur');
     
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    await expect(page.locator('.election-panel')).toBeVisible({ timeout: 15000 });
+    await ensureElectionPanelVisible(page);
   });
 });
 

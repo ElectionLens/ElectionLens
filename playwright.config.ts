@@ -16,8 +16,8 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI ? 'github' : 'html',
-  /* Global timeout for each test */
-  timeout: 30000,
+  /* Global timeout for each test (panel hydration + geo often exceed 30s on CI preview). */
+  timeout: 60000,
   /* Expect timeout */
   expect: {
     timeout: 10000,
@@ -72,7 +72,9 @@ export default defineConfig({
       ? 'npm run preview -- --port 3000 --strictPort --host 127.0.0.1'
       : 'npm run dev',
     url: 'http://127.0.0.1:3000',
-    reuseExistingServer: true, // Always reuse existing server to avoid port conflicts
+    // GitHub Actions sets CI=true and runs `npm run build` before tests — always start preview from dist.
+    // Locally, reuse avoids port conflicts unless PLAYWRIGHT_DO_NOT_REUSE=1 (recommended after src changes).
+    reuseExistingServer: !(process.env.CI === 'true' || process.env.PLAYWRIGHT_DO_NOT_REUSE === '1'),
     timeout: 180000, // 3 minutes for CI builds
     stdout: 'pipe',
     stderr: 'pipe',

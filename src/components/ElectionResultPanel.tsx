@@ -19,12 +19,32 @@ import {
   Camera,
 } from 'lucide-react';
 import { useState, useCallback, memo, useMemo, useEffect, useRef } from 'react';
+import type { CSSProperties } from 'react';
 import type { ACElectionResult, ElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName, getPartyShortName } from '../utils/partyData';
 import { shouldUseShortPartyLabelsAssembly } from '../utils/partyDisplay';
 import { trackShare } from '../utils/firebase';
 import type { BoothResults, BoothWithResult, PostalData } from '../hooks/useBoothData';
 import { YearSelector, type YearOption } from './YearSelector';
+
+/** Softer outline chips for the embedded sidebar election panel */
+function embeddedPartyChipStyle(hex: string): CSSProperties {
+  return {
+    backgroundColor: `${hex}14`,
+    color: hex,
+    border: `1px solid ${hex}66`,
+    fontWeight: 600,
+    boxSizing: 'border-box',
+  };
+}
+
+function solidPartyChipStyle(hex: string): CSSProperties {
+  return { backgroundColor: hex, color: '#ffffff', border: 'none' };
+}
+
+function winnerPartyChipStyle(hex: string, embedded: boolean): CSSProperties {
+  return embedded ? embeddedPartyChipStyle(hex) : solidPartyChipStyle(hex);
+}
 
 function formatNumber(num: number | undefined | null): string {
   if (num === undefined || num === null) return '—';
@@ -82,6 +102,11 @@ interface ElectionResultPanelProps {
   acResultsLoading?: boolean;
   /** Shown when load failed (panel stays open with placeholder result) */
   acResultsLoadError?: string | null;
+  layerOptions?: YearOption[] | undefined;
+  /** When embedded in sidebar with title shown in the info header, hide duplicate h3 */
+  omitConstituencyHeading?: boolean;
+  /** Wired from App so `?tab=` stays aligned with centralized URL bookkeeping */
+  onViewTabSync?: ((tab: 'overview' | 'booths' | 'postal' | 'analysis') => void) | undefined;
 }
 
 /** Remove diacritics from text (e.g., Tamil Nādu → Tamil Nadu) */
@@ -134,7 +159,7 @@ function generateShareText(
   return text.trim();
 }
 
-type TabType = 'overview' | 'candidates' | 'booths' | 'postal' | 'analysis';
+type TabType = 'overview' | 'booths' | 'postal' | 'analysis';
 
 export function ElectionResultPanel({
   result,
@@ -154,14 +179,20 @@ export function ElectionResultPanel({
   boothsWithResults = [],
   acResultsLoading = false,
   acResultsLoadError = null,
+  layerOptions = [],
+  omitConstituencyHeading = false,
+  onViewTabSync,
 }: ElectionResultPanelProps): JSX.Element {
   // Read tab from URL on mount
   const getTabFromUrl = useCallback((): TabType => {
     if (typeof window === 'undefined') return 'overview';
     const searchParams = new URLSearchParams(window.location.search);
     const tabParam = searchParams.get('tab');
-    const validTabs: TabType[] = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-    if (tabParam && validTabs.includes(tabParam as TabType)) {
+    if (!tabParam) return 'overview';
+    /** Legacy deeplinks merged into Overview */
+    if (tabParam === 'candidates') return 'overview';
+    const validTabs: TabType[] = ['overview', 'booths', 'postal', 'analysis'];
+    if (validTabs.includes(tabParam as TabType)) {
       return tabParam as TabType;
     }
     return 'overview';
@@ -170,8 +201,10 @@ export function ElectionResultPanel({
   const [activeTab, setActiveTab] = useState<TabType>(() => {
     if (typeof window === 'undefined') return 'overview';
     const tabParam = new URLSearchParams(window.location.search).get('tab');
-    const validTabs: TabType[] = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-    if (tabParam && validTabs.includes(tabParam as TabType)) {
+    if (!tabParam) return 'overview';
+    if (tabParam === 'candidates') return 'overview';
+    const validTabs: TabType[] = ['overview', 'booths', 'postal', 'analysis'];
+    if (validTabs.includes(tabParam as TabType)) {
       return tabParam as TabType;
     }
     return 'overview';
@@ -190,27 +223,9 @@ export function ElectionResultPanel({
     Object.keys(boothResults.results).length > 0
   );
 
-  // Update URL when tab changes
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const searchParams = new URLSearchParams(window.location.search);
-
-    // Only update tab param if it's different from current
-    const currentTab = searchParams.get('tab');
-    if (currentTab !== activeTab) {
-      if (activeTab === 'overview') {
-        // Remove tab param for overview (default)
-        searchParams.delete('tab');
-      } else {
-        searchParams.set('tab', activeTab);
-      }
-
-      const newUrl = searchParams.toString()
-        ? `${window.location.pathname}?${searchParams.toString()}`
-        : window.location.pathname;
-      window.history.replaceState({}, '', newUrl);
-    }
-  }, [activeTab]);
+    onViewTabSync?.(activeTab);
+  }, [activeTab, onViewTabSync]);
 
   // Read tab from URL when URL changes (e.g., browser back/forward)
   useEffect(() => {
@@ -222,20 +237,6 @@ export function ElectionResultPanel({
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, [getTabFromUrl]);
-
-  useEffect(
-    () => () => {
-      if (typeof window === 'undefined') return;
-      const searchParams = new URLSearchParams(window.location.search);
-      if (!searchParams.get('tab')) return;
-      searchParams.delete('tab');
-      const newUrl = searchParams.toString()
-        ? `${window.location.pathname}?${searchParams.toString()}`
-        : window.location.pathname;
-      window.history.replaceState({}, '', newUrl);
-    },
-    []
-  );
 
   // Reset to overview tab if booth data becomes unavailable while on booths/postal/analysis tab
   useEffect(() => {
@@ -299,7 +300,7 @@ export function ElectionResultPanel({
   const shortPartyUi = shouldUseShortPartyLabelsAssembly(result, stateName);
   const pl = (p: string) => (shortPartyUi ? getPartyShortName(p) : p);
 
-  /** Parliament-year panel is always “past” style (full tabs). Assembly pre-poll/loading: only Overview + All candidates. */
+  /** Parliament-year panel: Overview (full assembly + PC breakdown) plus Booths / Postal / Analysis when data exists. Assembly list always on Overview (no separate Candidates tab). */
   const inParliamentYearMode = Boolean(selectedPCYear && currentPCContribution);
   const isFutureAssemblySidebar = !inParliamentYearMode && (acResultsLoading || resultsPending);
   const showBoothTabs = !isFutureAssemblySidebar && hasBoothData;
@@ -358,19 +359,6 @@ export function ElectionResultPanel({
         isActive: activeTab === 'overview',
         onClick: () => setActiveTab('overview'),
       },
-      {
-        id: 'candidates',
-        label:
-          inParliamentYearMode && currentPCContribution
-            ? `Candidates (${currentPCContribution.candidates.length})`
-            : isFutureAssemblySidebar
-              ? 'Candidates'
-              : assemblyCandidates.length > 0
-                ? `Candidates (${assemblyCandidates.length})`
-                : 'Candidates',
-        isActive: activeTab === 'candidates',
-        onClick: () => setActiveTab('candidates'),
-      },
     ];
 
     if (showBoothTabs) {
@@ -398,15 +386,7 @@ export function ElectionResultPanel({
       });
     }
     return options;
-  }, [
-    activeTab,
-    inParliamentYearMode,
-    currentPCContribution,
-    isFutureAssemblySidebar,
-    assemblyCandidates.length,
-    showBoothTabs,
-    boothResults?.postal,
-  ]);
+  }, [activeTab, showBoothTabs, boothResults?.postal]);
 
   const handleCopyLink = useCallback(async () => {
     if (acResultsLoading) return;
@@ -503,10 +483,24 @@ export function ElectionResultPanel({
     }
   }, [result, acResultsLoading]);
 
+  const peekWinnerLine =
+    isMobilePortrait && panelState === 'peek' && winner ? (
+      <span className="peek-winner">
+        🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare?.toFixed(1) ?? '0.0'}%
+      </span>
+    ) : null;
+  const showElectionPanelHeader = !omitConstituencyHeading || peekWinnerLine != null;
+
   return (
     <div
       ref={panelRef}
-      className={`election-panel ${isMobilePortrait ? `panel-${panelState}` : ''}`}
+      className={[
+        'election-panel',
+        omitConstituencyHeading && 'election-panel--embed',
+        isMobilePortrait && `panel-${panelState}`,
+      ]
+        .filter(Boolean)
+        .join(' ')}
     >
       {/* Mobile drag handle - click to cycle states */}
       {isMobilePortrait && (
@@ -519,34 +513,45 @@ export function ElectionResultPanel({
       )}
 
       <div className="controls-card pane-section">
-        <div
-          className="election-panel-header"
-          onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
-        >
-          <div className="election-panel-title">
-            <h3>
-              {result.constituencyNameOriginal ??
-                result.name ??
-                result.constituencyName ??
-                'Unknown'}
-            </h3>
-            {/* Peek mode: show winner inline */}
-            {isMobilePortrait && panelState === 'peek' && winner && (
-              <span className="peek-winner">
-                🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare?.toFixed(1) ?? '0.0'}%
-              </span>
-            )}
-            {(!isMobilePortrait || panelState !== 'peek') && (
-              <span className={`constituency-type type-${constituencyType.toLowerCase()}`}>
-                {constituencyType}
-              </span>
-            )}
+        {showElectionPanelHeader && (
+          <div
+            className="election-panel-header"
+            onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
+          >
+            <div className="election-panel-title">
+              {!omitConstituencyHeading && (
+                <h3>
+                  {result.constituencyNameOriginal ??
+                    result.name ??
+                    result.constituencyName ??
+                    'Unknown'}
+                </h3>
+              )}
+              {peekWinnerLine}
+              {!omitConstituencyHeading && (!isMobilePortrait || panelState !== 'peek') && (
+                <span className={`constituency-type type-${constituencyType.toLowerCase()}`}>
+                  {constituencyType}
+                </span>
+              )}
+            </div>
           </div>
-        </div>
+        )}
+
+        {layerOptions.length > 0 && (
+          <YearSelector
+            label="Layer"
+            fieldId="ac-panel-layer"
+            className="election-year-selector pane-section-tight"
+            variant="stacked"
+            options={layerOptions}
+          />
+        )}
 
         {/* Year selector - shows assembly and parliament years interleaved */}
         {allYearItems.length > 0 && (
           <YearSelector
+            label="Year"
+            fieldId="ac-panel-year"
             className="election-year-selector pane-section-tight"
             variant="stacked"
             options={allYearItems.map<YearOption>((item) =>
@@ -585,7 +590,7 @@ export function ElectionResultPanel({
       {/* Tab content */}
       <div className="panel-tab-content">
         {selectedPCYear && currentPCContribution ? (
-          /* Parliament year: overview (top 3) + candidates tab + booths / postal / analysis */
+          /* Parliament year: overview (full PC candidate list) + booths / postal / analysis */
           activeTab === 'booths' ? (
             <BoothWiseView
               boothResults={boothResults}
@@ -594,9 +599,14 @@ export function ElectionResultPanel({
               onBoothSelect={setSelectedBoothId}
               selectedBooth={selectedBooth}
               partyShortNames={shortPartyUi}
+              embeddedPanel={omitConstituencyHeading}
             />
           ) : activeTab === 'postal' && boothResults?.postal ? (
-            <PostalBallotsView postal={boothResults.postal} partyShortNames={shortPartyUi} />
+            <PostalBallotsView
+              postal={boothResults.postal}
+              partyShortNames={shortPartyUi}
+              embeddedPanel={omitConstituencyHeading}
+            />
           ) : activeTab === 'analysis' ? (
             <BoothwiseAnalysis
               boothResults={boothResults}
@@ -607,55 +617,8 @@ export function ElectionResultPanel({
               }}
               officialWinner={result.candidates[0]?.party}
               partyShortNames={shortPartyUi}
+              embeddedPanel={omitConstituencyHeading}
             />
-          ) : activeTab === 'candidates' ? (
-            <div className="candidates-view">
-              <h4 style={{ margin: '12px 0 8px', fontSize: 14 }}>
-                Candidates — Parliament {currentPCContribution.year}
-              </h4>
-              <div className="candidates-table-full">
-                <div className="candidates-header">
-                  <span className="col-pos">#</span>
-                  <span className="col-name">Candidate</span>
-                  <span className="col-party">Party</span>
-                  <span className="col-votes">Votes</span>
-                  <span className="col-share">%</span>
-                </div>
-                <div className="candidates-scroll">
-                  {currentPCContribution.candidates.map((c, idx) => (
-                    <div
-                      key={idx}
-                      className={`candidate-row ${idx === 0 ? 'winner' : ''} ${idx === 1 ? 'runner-up' : ''}`}
-                    >
-                      <span className="col-pos">{c.position}</span>
-                      <span className="col-name" title={c.name}>
-                        {c.name}
-                      </span>
-                      <span
-                        className="col-party"
-                        title={getPartyFullName(c.party)}
-                        style={{
-                          backgroundColor: `${getPartyColor(c.party)}20`,
-                          color: getPartyColor(c.party),
-                          borderColor: getPartyColor(c.party),
-                        }}
-                      >
-                        {pl(c.party)}
-                      </span>
-                      <span className="col-votes">{formatNumber(c.votes)}</span>
-                      <span className="col-share">{c.voteShare.toFixed(1)}%</span>
-                      <div
-                        className="vote-bar"
-                        style={{
-                          width: `${Math.min(c.voteShare, 100)}%`,
-                          backgroundColor: getPartyColor(c.party),
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
           ) : (
             <div className="overview-view">
               {pcWinner && (
@@ -671,7 +634,10 @@ export function ElectionResultPanel({
                     <div className="winner-name">{pcWinner.name}</div>
                     <div
                       className="winner-party"
-                      style={{ backgroundColor: getPartyColor(pcWinner.party) }}
+                      style={winnerPartyChipStyle(
+                        getPartyColor(pcWinner.party),
+                        omitConstituencyHeading
+                      )}
                       title={getPartyFullName(pcWinner.party)}
                     >
                       {pl(pcWinner.party)}
@@ -713,33 +679,55 @@ export function ElectionResultPanel({
               </div>
 
               <div className="candidates-preview">
-                <h4>Parliament {currentPCContribution.year} — top candidates</h4>
-                {currentPCContribution.candidates.slice(0, 3).map((c, idx) => (
-                  <div key={idx} className={`candidate-row-compact ${idx === 0 ? 'winner' : ''}`}>
-                    <span className="pos">{c.position}</span>
-                    <span className="name">{c.name}</span>
-                    <span
-                      className="party"
-                      style={{ backgroundColor: getPartyColor(c.party), color: 'white' }}
-                    >
-                      {pl(c.party)}
-                    </span>
-                    <span className="votes">{formatNumber(c.votes)}</span>
-                    <span className="share">{c.voteShare.toFixed(1)}%</span>
-                    <div
-                      className="bar"
-                      style={{
-                        width: `${Math.min(c.voteShare, 100)}%`,
-                        backgroundColor: getPartyColor(c.party),
-                      }}
-                    />
+                <h4>Parliament {currentPCContribution.year} — candidates</h4>
+                <div className="candidates-table-full">
+                  <div className="candidates-header">
+                    <span className="col-pos">#</span>
+                    <span className="col-name">Candidate</span>
+                    <span className="col-party">Party</span>
+                    <span className="col-votes">Votes</span>
+                    <span className="col-share">%</span>
                   </div>
-                ))}
-                {currentPCContribution.candidates.length > 3 && (
-                  <button className="view-all-btn" onClick={() => setActiveTab('candidates')}>
-                    View all {currentPCContribution.candidates.length} candidates →
-                  </button>
-                )}
+                  <div className="candidates-scroll">
+                    {currentPCContribution.candidates.map((c, idx) => (
+                      <div
+                        key={idx}
+                        className={`candidate-row ${idx === 0 ? 'winner' : ''} ${idx === 1 ? 'runner-up' : ''}`}
+                      >
+                        <span className="col-pos">{c.position}</span>
+                        <span className="col-name" title={c.name}>
+                          {c.name}
+                        </span>
+                        <span
+                          className="col-party"
+                          title={getPartyFullName(c.party)}
+                          style={
+                            omitConstituencyHeading
+                              ? embeddedPartyChipStyle(getPartyColor(c.party))
+                              : {
+                                  backgroundColor: `${getPartyColor(c.party)}20`,
+                                  color: getPartyColor(c.party),
+                                  borderColor: getPartyColor(c.party),
+                                  borderWidth: 1,
+                                  borderStyle: 'solid',
+                                }
+                          }
+                        >
+                          {pl(c.party)}
+                        </span>
+                        <span className="col-votes">{formatNumber(c.votes)}</span>
+                        <span className="col-share">{c.voteShare.toFixed(1)}%</span>
+                        <div
+                          className="vote-bar"
+                          style={{
+                            width: `${Math.min(c.voteShare, 100)}%`,
+                            backgroundColor: getPartyColor(c.party),
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           )
@@ -785,7 +773,10 @@ export function ElectionResultPanel({
                   <div className="winner-name">{winner.name}</div>
                   <div
                     className="winner-party"
-                    style={{ backgroundColor: getPartyColor(winner.party) }}
+                    style={winnerPartyChipStyle(
+                      getPartyColor(winner.party),
+                      omitConstituencyHeading
+                    )}
                     title={getPartyFullName(winner.party)}
                   >
                     {pl(winner.party)}
@@ -846,69 +837,44 @@ export function ElectionResultPanel({
             </div>
 
             <div className="candidates-preview">
-              <h4>{isFutureAssemblySidebar ? 'Candidates' : 'Top candidates'}</h4>
+              <h4>Candidates</h4>
               {!acResultsLoading && !hasAnnouncedCandidates && resultsPending ? (
                 <p style={{ fontSize: 13, margin: 0, color: 'var(--muted-foreground, #64748b)' }}>
                   No sourced candidate names for this constituency yet.
                 </p>
               ) : (
-                <>
-                  {displayCandidates.slice(0, 3).map((candidate, idx) => (
-                    <CandidateRowCompact
-                      key={idx}
-                      candidate={candidate}
-                      isWinner={!resultsPending && !acResultsLoading && idx === 0}
-                      hideVoteStats={hideAssemblyVoteFigures}
-                      partyShortNames={shortPartyUi}
-                    />
-                  ))}
-                  {!acResultsLoading && assemblyCandidates.length > 3 && (
-                    <button className="view-all-btn" onClick={() => setActiveTab('candidates')}>
-                      View all {assemblyCandidates.length} →
-                    </button>
-                  )}
-                  {acResultsLoading && (
-                    <button className="view-all-btn" onClick={() => setActiveTab('candidates')}>
-                      View all →
-                    </button>
-                  )}
-                </>
+                <div className="candidates-table-full">
+                  <div className="candidates-header">
+                    <span className="col-pos">#</span>
+                    <span className="col-name">Candidate</span>
+                    <span className="col-party">Party</span>
+                    <span className="col-votes">Votes</span>
+                    <span className="col-share">%</span>
+                  </div>
+                  <div className="candidates-scroll">
+                    {displayCandidates.map((candidate, idx) => (
+                      <CandidateRow
+                        key={idx}
+                        candidate={candidate}
+                        isWinner={!resultsPending && !acResultsLoading && idx === 0}
+                        isRunnerUp={!resultsPending && !acResultsLoading && idx === 1}
+                        hideVoteStats={hideAssemblyVoteFigures}
+                        partyShortNames={shortPartyUi}
+                        embeddedPanel={omitConstituencyHeading}
+                      />
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
           </div>
-        ) : activeTab === 'candidates' ? (
-          <div className="candidates-view">
-            {!acResultsLoading && !hasAnnouncedCandidates && resultsPending ? (
-              <p style={{ fontSize: 13, margin: 0, color: 'var(--muted-foreground, #64748b)' }}>
-                No sourced candidate names for this constituency yet.
-              </p>
-            ) : (
-              <div className="candidates-table-full">
-                <div className="candidates-header">
-                  <span className="col-pos">#</span>
-                  <span className="col-name">Candidate</span>
-                  <span className="col-party">Party</span>
-                  <span className="col-votes">Votes</span>
-                  <span className="col-share">%</span>
-                </div>
-                <div className="candidates-scroll">
-                  {displayCandidates.map((candidate, idx) => (
-                    <CandidateRow
-                      key={idx}
-                      candidate={candidate}
-                      isWinner={!resultsPending && !acResultsLoading && idx === 0}
-                      isRunnerUp={!resultsPending && !acResultsLoading && idx === 1}
-                      hideVoteStats={hideAssemblyVoteFigures}
-                      partyShortNames={shortPartyUi}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
         ) : activeTab === 'postal' && boothResults?.postal ? (
           /* Postal Ballots view */
-          <PostalBallotsView postal={boothResults.postal} partyShortNames={shortPartyUi} />
+          <PostalBallotsView
+            postal={boothResults.postal}
+            partyShortNames={shortPartyUi}
+            embeddedPanel={omitConstituencyHeading}
+          />
         ) : activeTab === 'analysis' ? (
           /* Boothwise Analysis */
           <BoothwiseAnalysis
@@ -920,6 +886,7 @@ export function ElectionResultPanel({
             }}
             officialWinner={result.candidates[0]?.party}
             partyShortNames={shortPartyUi}
+            embeddedPanel={omitConstituencyHeading}
           />
         ) : (
           /* Booth-wise view */
@@ -930,6 +897,7 @@ export function ElectionResultPanel({
             onBoothSelect={setSelectedBoothId}
             selectedBooth={selectedBooth}
             partyShortNames={shortPartyUi}
+            embeddedPanel={omitConstituencyHeading}
           />
         )}
       </div>
@@ -984,43 +952,6 @@ export function ElectionResultPanel({
   );
 }
 
-const CandidateRowCompact = memo(function CandidateRowCompact({
-  candidate,
-  isWinner,
-  hideVoteStats = false,
-  partyShortNames = false,
-}: {
-  candidate: ElectionCandidate;
-  isWinner: boolean;
-  hideVoteStats?: boolean;
-  partyShortNames?: boolean;
-}): JSX.Element {
-  const partyColor = getPartyColor(candidate.party);
-  const partyText = partyShortNames ? getPartyShortName(candidate.party) : candidate.party;
-
-  return (
-    <div className={`candidate-row-compact ${isWinner ? 'winner' : ''}`}>
-      <span className="pos">{candidate.position}</span>
-      <span className="name">{candidate.name}</span>
-      <span
-        className="party"
-        style={{ backgroundColor: partyColor, color: 'white' }}
-        title={getPartyFullName(candidate.party)}
-      >
-        {partyText}
-      </span>
-      <span className="votes">{hideVoteStats ? '—' : formatNumber(candidate.votes)}</span>
-      <span className="share">{hideVoteStats ? '—' : `${candidate.voteShare.toFixed(1)}%`}</span>
-      {!hideVoteStats && (
-        <div
-          className="bar"
-          style={{ width: `${Math.min(candidate.voteShare, 100)}%`, backgroundColor: partyColor }}
-        />
-      )}
-    </div>
-  );
-});
-
 // Memoized full candidate row - expensive due to complex styling
 const CandidateRow = memo(function CandidateRow({
   candidate,
@@ -1028,15 +959,27 @@ const CandidateRow = memo(function CandidateRow({
   isRunnerUp,
   hideVoteStats = false,
   partyShortNames = false,
+  embeddedPanel = false,
 }: {
   candidate: ElectionCandidate;
   isWinner: boolean;
   isRunnerUp: boolean;
   hideVoteStats?: boolean;
   partyShortNames?: boolean;
+  embeddedPanel?: boolean;
 }): JSX.Element {
   const partyColor = getPartyColor(candidate.party);
   const partyText = partyShortNames ? getPartyShortName(candidate.party) : candidate.party;
+
+  const partyChipStyle: CSSProperties = embeddedPanel
+    ? embeddedPartyChipStyle(partyColor)
+    : {
+        backgroundColor: `${partyColor}20`,
+        color: partyColor,
+        borderColor: partyColor,
+        borderWidth: 1,
+        borderStyle: 'solid',
+      };
 
   return (
     <div className={`candidate-row ${isWinner ? 'winner' : ''} ${isRunnerUp ? 'runner-up' : ''}`}>
@@ -1045,15 +988,7 @@ const CandidateRow = memo(function CandidateRow({
         {candidate.name}
         {candidate.sex && <span className="sex-badge">{candidate.sex}</span>}
       </span>
-      <span
-        className="col-party"
-        title={getPartyFullName(candidate.party)}
-        style={{
-          backgroundColor: `${partyColor}20`,
-          color: partyColor,
-          borderColor: partyColor,
-        }}
-      >
+      <span className="col-party" title={getPartyFullName(candidate.party)} style={partyChipStyle}>
         {partyText}
       </span>
       <span className="col-votes">{hideVoteStats ? '—' : formatNumber(candidate.votes)}</span>
@@ -1077,11 +1012,13 @@ const CandidateRow = memo(function CandidateRow({
 interface PostalBallotsViewProps {
   postal: PostalData;
   partyShortNames?: boolean;
+  embeddedPanel?: boolean;
 }
 
 function PostalBallotsView({
   postal,
   partyShortNames = false,
+  embeddedPanel = false,
 }: PostalBallotsViewProps): JSX.Element {
   // Sort postal candidates by postal votes descending
   const sortedCandidates = useMemo(() => {
@@ -1146,7 +1083,11 @@ function PostalBallotsView({
                 <span className="col-rank">{idx + 1}</span>
                 <span
                   className="col-party"
-                  style={{ backgroundColor: getPartyColor(candidate.party) }}
+                  style={
+                    embeddedPanel
+                      ? embeddedPartyChipStyle(getPartyColor(candidate.party))
+                      : solidPartyChipStyle(getPartyColor(candidate.party))
+                  }
                   title={`${candidate.name} (${getPartyFullName(candidate.party)})`}
                 >
                   {partyShortNames ? getPartyShortName(candidate.party) : candidate.party}
@@ -1183,6 +1124,7 @@ interface BoothWiseViewProps {
   onBoothSelect: (boothId: string | null) => void;
   selectedBooth: BoothWithResult | null;
   partyShortNames?: boolean;
+  embeddedPanel?: boolean;
 }
 
 function BoothWiseView({
@@ -1192,6 +1134,7 @@ function BoothWiseView({
   onBoothSelect,
   selectedBooth,
   partyShortNames = false,
+  embeddedPanel = false,
 }: BoothWiseViewProps): JSX.Element {
   const pl = (p: string) => (partyShortNames ? getPartyShortName(p) : p);
   return (
@@ -1287,7 +1230,11 @@ function BoothWiseView({
                     <span className="label">Winner</span>
                     <span
                       className="value party-badge"
-                      style={{ backgroundColor: getPartyColor(selectedBooth.winner.party) }}
+                      style={
+                        embeddedPanel
+                          ? embeddedPartyChipStyle(getPartyColor(selectedBooth.winner.party))
+                          : solidPartyChipStyle(getPartyColor(selectedBooth.winner.party))
+                      }
                     >
                       {pl(selectedBooth.winner.party)} ({selectedBooth.winner.percent.toFixed(1)}%)
                     </span>
@@ -1319,7 +1266,14 @@ function BoothWiseView({
                           className={`booth-candidate-row ${isWinner ? 'winner' : ''}`}
                         >
                           <div className="candidate-info">
-                            <span className="party-tag" style={{ backgroundColor: partyColor }}>
+                            <span
+                              className="party-tag"
+                              style={
+                                embeddedPanel
+                                  ? embeddedPartyChipStyle(partyColor)
+                                  : solidPartyChipStyle(partyColor)
+                              }
+                            >
                               {pl(candidate.party)}
                             </span>
                             <span className="candidate-name">{candidate.name}</span>
@@ -1363,6 +1317,7 @@ interface BoothwiseAnalysisProps {
   officialWinner?: string | undefined; // Official winner party from election results
   /** Kerala / West Bengal 2026 — show INC, CPI(M), TMC, etc. instead of full ECI names */
   partyShortNames?: boolean;
+  embeddedPanel?: boolean;
 }
 
 interface LinkedBooth {
@@ -1455,6 +1410,7 @@ function BoothwiseAnalysis({
   onBoothClick,
   officialWinner,
   partyShortNames = false,
+  embeddedPanel = false,
 }: BoothwiseAnalysisProps): JSX.Element {
   const pl = (p: string) => (partyShortNames ? getPartyShortName(p) : p);
 
@@ -2116,7 +2072,14 @@ function BoothwiseAnalysis({
                     style={{ borderLeftColor: partyColor }}
                   >
                     <div className="party-info">
-                      <span className="party-badge" style={{ backgroundColor: partyColor }}>
+                      <span
+                        className="party-badge"
+                        style={
+                          embeddedPanel
+                            ? embeddedPartyChipStyle(partyColor)
+                            : solidPartyChipStyle(partyColor)
+                        }
+                      >
                         {pl(party)}
                       </span>
                       <span className="booth-count">{count} booths won</span>
@@ -2198,7 +2161,14 @@ function BoothwiseAnalysis({
           {analysis.strikeRates.slice(0, 5).map((sr, idx) => (
             <div key={sr.party} className={`strike-rate-row ${idx === 0 ? 'winner' : ''}`}>
               <span className="sr-rank">{idx + 1}</span>
-              <span className="sr-party" style={{ backgroundColor: getPartyColor(sr.party) }}>
+              <span
+                className="sr-party"
+                style={
+                  embeddedPanel
+                    ? embeddedPartyChipStyle(getPartyColor(sr.party))
+                    : solidPartyChipStyle(getPartyColor(sr.party))
+                }
+              >
                 {pl(sr.party)}
               </span>
               <span className="sr-booths">{sr.wins} booths</span>

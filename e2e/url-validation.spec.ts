@@ -11,6 +11,7 @@ import {
   expandMobileElectionPanelToFull,
   expectFirstVisibleMatch,
 } from './panel-helpers';
+import { openSidebarSheet, sidebarYearSelectOption, sidebarYearSelectorSelect } from './sidebar-helpers';
 
 async function expectPanelDataVisible(panel: Locator, page: Page, selector: string) {
   await expandMobileElectionPanelToFull(panel, page);
@@ -188,7 +189,7 @@ test.describe('URL Validation - Year Fallback', () => {
     // Panel should show election data; year selector may be in panel or sidebar map controls
     const yearSelect = page
       .locator(
-        '.election-year-selector select.year-dropdown, #sidebar-map-year'
+        '.election-year-selector select.year-dropdown, select#sidebar-map-year-proxy, select#sidebar-map-year'
       )
       .first();
     await expect(yearSelect).toBeVisible({ timeout: 5000 });
@@ -208,7 +209,11 @@ test.describe('URL Validation - Year Fallback', () => {
 
     const hasYearChrome =
       (await page.locator('select.year-dropdown').count()) > 0 ||
-      (await page.locator('.election-year-selector, .year-selector, #sidebar-map-year').count()) >
+      (
+        await page.locator(
+          '.election-year-selector, .year-selector, select#sidebar-map-year-proxy, select#sidebar-map-year'
+        ).count()
+      ) >
         0;
 
     let hasVisibleResults = false;
@@ -260,8 +265,8 @@ test.describe('URL Validation - Edge Cases', () => {
     // Should show AC election panel
     const panel = await ensureElectionPanelVisible(page);
 
-    // Should NOT have pc-panel class (it's an AC panel)
-    await expect(panel).not.toHaveClass(/pc-panel/);
+    await expect(panel.locator('#ac-panel-view')).toBeVisible({ timeout: 15000 });
+    await expect(panel.locator('#pc-panel-view')).toHaveCount(0);
 
     // Should have election data
     await expectPanelDataVisible(panel, page, '.winner-info, .winner-card-compact, .candidate-row');
@@ -274,8 +279,7 @@ test.describe('URL Validation - AC-within-PC Year and showACs', () => {
 
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
 
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
 
     await expect(page).toHaveURL(/year=pc-2019/);
     await expect(page).toHaveURL(/showACs=true/);
@@ -288,10 +292,11 @@ test.describe('URL Validation - AC-within-PC Year and showACs', () => {
 
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
     await expect(page).toHaveURL(/year=pc-2019/);
+    await openSidebarSheet(page);
 
-    const mapYearSelect = page.locator('#sidebar-map-year');
+    const mapYearSelect = sidebarYearSelectorSelect(page, 'sidebar-map-year');
     if ((await mapYearSelect.locator('option[value="pc-2024"]').count()) > 0) {
-      await mapYearSelect.selectOption('pc-2024');
+      await sidebarYearSelectOption(page, 'sidebar-map-year', 'pc-2024');
       await expect(page).toHaveURL(/year=pc-2024/, { timeout: 5000 });
     }
   });
@@ -305,7 +310,7 @@ test.describe('URL Validation - AC-within-PC Year and showACs', () => {
     await expect(page).toHaveURL(/showACs=true/);
 
     await expandMobileElectionPanelToFull(visiblePanel, page);
-    const yearDropdown = visiblePanel.locator('.election-year-selector select.year-dropdown');
+    const yearDropdown = visiblePanel.locator('#ac-panel-year');
     await expect(yearDropdown).toBeVisible({ timeout: 5000 });
   });
 });

@@ -341,8 +341,6 @@ export interface SidebarProps {
   onReset: () => void;
   onGoBackToState: () => void;
   onBlogClick?: () => void;
-  isCollapsed?: boolean;
-  onToggleCollapse?: () => void;
   selectedSummaryParty?: string | null;
   onSummaryPartyChange?: (party: string | null) => void;
   stateSummaryData?: StateSummaryPanelData | null;

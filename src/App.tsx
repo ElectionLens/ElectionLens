@@ -7,7 +7,7 @@ import { MetaTags } from './components/MetaTags';
 import { useElectionData } from './hooks/useElectionData';
 import { useElectionResults } from './hooks/useElectionResults';
 import { useParliamentResults } from './hooks/useParliamentResults';
-import { useUrlState, type UrlState } from './hooks/useUrlState';
+import { useUrlState, type UrlState, type UrlUpdateInput } from './hooks/useUrlState';
 import { useSchema } from './hooks/useSchema';
 import { ELECTIONS, PC_ELECTIONS, assemblyElectionFetchUrl } from './constants/paths';
 import { STATE_FILE_MAP } from './constants';
@@ -297,7 +297,6 @@ function App(): JSX.Element {
                 assembly: urlState.assembly ?? null,
                 year: latestYear,
                 pcYear: null,
-                tab: null,
                 showACs: null,
                 blog: false,
                 blogPost: null,
@@ -338,7 +337,6 @@ function App(): JSX.Element {
                 assembly: urlState.assembly ?? null,
                 year: latestYear,
                 pcYear: null,
-                tab: null,
                 showACs: null,
                 blog: false,
                 blogPost: null,
@@ -453,7 +451,6 @@ function App(): JSX.Element {
                 assembly: urlState.assembly ?? null,
                 year: latestYear,
                 pcYear: null,
-                tab: null,
                 showACs: null,
                 blog: false,
                 blogPost: null,
@@ -480,7 +477,6 @@ function App(): JSX.Element {
                 assembly: urlState.assembly ?? null,
                 year: latestYear,
                 pcYear: null,
-                tab: null,
                 showACs: null,
                 blog: false,
                 blogPost: null,
@@ -537,7 +533,6 @@ function App(): JSX.Element {
                 assembly: null,
                 year: latestYear,
                 pcYear: null,
-                tab: null,
                 showACs: null,
                 blog: false,
                 blogPost: null,
@@ -564,7 +559,6 @@ function App(): JSX.Element {
                 assembly: null,
                 year: latestYear,
                 pcYear: null,
-                tab: null,
                 showACs: null,
                 blog: false,
                 blogPost: null,
@@ -732,7 +726,6 @@ function App(): JSX.Element {
                 assembly: null,
                 year: latestYear,
                 pcYear: null,
-                tab: null,
                 showACs: null,
                 blog: false,
                 blogPost: null,
@@ -755,7 +748,6 @@ function App(): JSX.Element {
                 assembly: null,
                 year: latestYear,
                 pcYear: null,
-                tab: null,
                 showACs: null,
                 blog: false,
                 blogPost: null,
@@ -797,6 +789,8 @@ function App(): JSX.Element {
   const isDataReady = Boolean(statesGeoJSON);
   // When viewing a specific PC: true = show ACs within PC, false = show PC boundary only (synced to URL)
   const [showACsWithinPC, setShowACsWithinPC] = useState<boolean>(true);
+  // Blog section state (declared before useUrlState so the hook can sync `blog=` with other query params)
+  const [blogOpen, setBlogOpen] = useState<boolean>(false);
   const [selectedSummaryParty, setSelectedSummaryParty] = useState<string | null>(null);
   const [stateSummaryData, setStateSummaryData] = useState<StateSummaryPanelData | null>(null);
   // Use the appropriate year based on context:
@@ -814,11 +808,12 @@ function App(): JSX.Element {
     selectedACPCYear,
     handleUrlNavigate,
     isDataReady,
-    showACsWithinPC
+    showACsWithinPC,
+    blogOpen
   );
 
   // Ref to store updateUrl for use in handleUrlNavigate
-  const updateUrlRef = useRef(updateUrl);
+  const updateUrlRef = useRef<(state: UrlUpdateInput) => void>(updateUrl);
   useEffect(() => {
     updateUrlRef.current = updateUrl;
   }, [updateUrl]);
@@ -885,14 +880,14 @@ function App(): JSX.Element {
     });
   }, [schema, currentView, currentAssembly, currentState, resolveACName, getAC, getACResult]);
 
-  // Mobile sidebar state
-  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
-
-  // Desktop sidebar collapsed state
-  const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
-
-  // Blog section state
-  const [blogOpen, setBlogOpen] = useState<boolean>(false);
+  /**
+   * Sidebar visibility: mobile starts closed (sheet); desktop starts open (docked beside map).
+   * Wide layout keeps the map usable while the sidebar is open (no overlay / no hiding map controls).
+   */
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return true;
+    return window.innerWidth > 768;
+  });
 
   // Current displayed data
   const [currentData, setCurrentData] = useState<GeoJSONData | null>(null);
@@ -968,32 +963,17 @@ function App(): JSX.Element {
     trackPageView(window.location.pathname, title);
   }, [currentState, currentPC, currentDistrict, currentAssembly, electionResult]);
 
-  /**
-   * Toggle mobile sidebar visibility
-   */
   const toggleSidebar = useCallback((): void => {
     setSidebarOpen((prev) => !prev);
   }, []);
 
-  /**
-   * Close mobile sidebar
-   */
   const closeSidebar = useCallback((): void => {
     setSidebarOpen(false);
   }, []);
 
-  /**
-   * Toggle desktop sidebar collapsed state
-   */
-  const toggleSidebarCollapsed = useCallback((): void => {
-    setSidebarCollapsed((prev) => !prev);
-  }, []);
-
-  /**
-   * Close sidebar on mobile after action
-   */
-  const closeSidebarOnMobile = useCallback((): void => {
-    if (window.innerWidth <= 768) {
+  /** Close mobile sheet after navigation so the map stays usable without an extra tap. */
+  const closeSidebarAfterAction = useCallback((): void => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
       closeSidebar();
     }
   }, [closeSidebar]);
@@ -1035,7 +1015,7 @@ function App(): JSX.Element {
    */
   const handleStateClick = useCallback(
     async (stateName: string, _feature: StateFeature): Promise<void> => {
-      closeSidebarOnMobile();
+      closeSidebarAfterAction();
       clearElectionResult();
       clearPCElectionResult();
       const data = await navigateToState(stateName);
@@ -1059,7 +1039,6 @@ function App(): JSX.Element {
             assembly: null,
             year: latestYear,
             pcYear: null,
-            tab: null,
             showACs: null,
             blog: false,
             blogPost: null,
@@ -1071,7 +1050,7 @@ function App(): JSX.Element {
     },
     [
       navigateToState,
-      closeSidebarOnMobile,
+      closeSidebarAfterAction,
       loadStateIndex,
       loadPCStateIndex,
       clearElectionResult,
@@ -1086,7 +1065,7 @@ function App(): JSX.Element {
    */
   const handleDistrictClick = useCallback(
     async (districtName: string, _feature: DistrictFeature): Promise<void> => {
-      closeSidebarOnMobile();
+      closeSidebarAfterAction();
       if (!currentState) return;
       selectAssembly(null); // Clear assembly when navigating to new district
       clearElectionResult();
@@ -1099,7 +1078,7 @@ function App(): JSX.Element {
     [
       navigateToDistrict,
       currentState,
-      closeSidebarOnMobile,
+      closeSidebarAfterAction,
       selectAssembly,
       clearElectionResult,
       clearPCElectionResult,
@@ -1111,7 +1090,7 @@ function App(): JSX.Element {
    */
   const handleConstituencyClick = useCallback(
     async (pcName: string, _feature: ConstituencyFeature): Promise<void> => {
-      closeSidebarOnMobile();
+      closeSidebarAfterAction();
       if (!currentState) return;
       selectAssembly(null); // Clear assembly when navigating to new PC
       clearElectionResult();
@@ -1134,7 +1113,7 @@ function App(): JSX.Element {
       navigateToPC,
       currentState,
       pcSelectedYear,
-      closeSidebarOnMobile,
+      closeSidebarAfterAction,
       selectAssembly,
       clearElectionResult,
       getPCResult,
@@ -1575,7 +1554,7 @@ function App(): JSX.Element {
    */
   const handleAssemblyClick = useCallback(
     async (acName: string, feature: AssemblyFeature): Promise<void> => {
-      closeSidebarOnMobile(); // Close sidebar on mobile to show map + panel
+      closeSidebarAfterAction(); // Hide sheet so map + panel stay visible after drill-down
       selectAssembly(acName);
       clearPCElectionResult(); // Close PC panel to show AC panel
       setParliamentContributions({}); // Clear previous contributions
@@ -1650,7 +1629,7 @@ function App(): JSX.Element {
       }
     },
     [
-      closeSidebarOnMobile,
+      closeSidebarAfterAction,
       selectAssembly,
       currentState,
       currentPC,
@@ -1688,12 +1667,12 @@ function App(): JSX.Element {
    */
   const handleSearchStateSelect = useCallback(
     async (stateName: string, _feature: StateFeature): Promise<void> => {
-      closeSidebarOnMobile();
+      closeSidebarAfterAction();
       const data = await navigateToState(stateName);
       setCurrentData(data);
       void loadStateIndex(stateName);
     },
-    [navigateToState, closeSidebarOnMobile, loadStateIndex]
+    [navigateToState, closeSidebarAfterAction, loadStateIndex]
   );
 
   /**
@@ -1701,14 +1680,14 @@ function App(): JSX.Element {
    */
   const handleSearchConstituencySelect = useCallback(
     async (pcName: string, stateName: string, _feature: ConstituencyFeature): Promise<void> => {
-      closeSidebarOnMobile();
+      closeSidebarAfterAction();
       // First navigate to the state
       await navigateToState(stateName);
       // Then navigate to the PC
       const data = await navigateToPC(pcName, stateName);
       setCurrentData(data);
     },
-    [navigateToState, navigateToPC, closeSidebarOnMobile]
+    [navigateToState, navigateToPC, closeSidebarAfterAction]
   );
 
   /**
@@ -1718,7 +1697,7 @@ function App(): JSX.Element {
    */
   const handleSearchAssemblySelect = useCallback(
     async (acName: string, stateName: string, feature: AssemblyFeature): Promise<void> => {
-      closeSidebarOnMobile();
+      closeSidebarAfterAction();
       clearPCElectionResult();
       setParliamentContributions({});
 
@@ -1784,7 +1763,7 @@ function App(): JSX.Element {
       navigateToAssemblies,
       selectAssembly,
       getACResult,
-      closeSidebarOnMobile,
+      closeSidebarAfterAction,
       clearPCElectionResult,
       getStateIdFromName,
       resolveACName,
@@ -1805,7 +1784,7 @@ function App(): JSX.Element {
    */
   const handleSearchDistrictSelect = useCallback(
     async (districtName: string, stateName: string, _feature: DistrictFeature): Promise<void> => {
-      closeSidebarOnMobile();
+      closeSidebarAfterAction();
       clearElectionResult();
       clearPCElectionResult();
 
@@ -1816,7 +1795,7 @@ function App(): JSX.Element {
       // Track analytics
       trackConstituencySelect('district', districtName, stateName);
     },
-    [navigateToDistrict, closeSidebarOnMobile, clearElectionResult, clearPCElectionResult]
+    [navigateToDistrict, closeSidebarAfterAction, clearElectionResult, clearPCElectionResult]
   );
 
   /**
@@ -1839,12 +1818,6 @@ function App(): JSX.Element {
       setSelectedYear(year);
       // Sync year to URL in assemblies or state districts map view (with or without assembly selected)
       if (currentState && (currentView === 'assemblies' || currentView === 'districts')) {
-        const tab =
-          typeof window !== 'undefined'
-            ? new URLSearchParams(window.location.search).get('tab')
-            : null;
-        const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-        const preservedTab = tab && validTabs.includes(tab) ? tab : null;
         updateUrlRef.current({
           state: currentState,
           view: currentView,
@@ -1853,7 +1826,6 @@ function App(): JSX.Element {
           assembly: currentAssembly,
           year,
           pcYear: null,
-          tab: preservedTab,
           showACs: currentPC ? (showACsWithinPC ?? true) : null,
           blog: false,
           blogPost: null,
@@ -1900,12 +1872,6 @@ function App(): JSX.Element {
           currentView === 'districts' ||
           (currentPC != null && currentAssembly != null));
       if (!shouldSyncPcYearToUrl) return;
-      const tab =
-        typeof window !== 'undefined'
-          ? new URLSearchParams(window.location.search).get('tab')
-          : null;
-      const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-      const preservedTab = tab && validTabs.includes(tab) ? tab : null;
       updateUrlRef.current({
         state: currentState,
         view: currentView,
@@ -1914,7 +1880,6 @@ function App(): JSX.Element {
         assembly: currentAssembly,
         year: null,
         pcYear: year,
-        tab: preservedTab,
         showACs: currentPC ? (showACsWithinPC ?? true) : null,
         blog: false,
         blogPost: null,
@@ -1930,12 +1895,6 @@ function App(): JSX.Element {
     async (year: number): Promise<void> => {
       setPCSelectedYear(year);
       if (currentState && (currentPC || currentView === 'constituencies')) {
-        const tab =
-          typeof window !== 'undefined'
-            ? new URLSearchParams(window.location.search).get('tab')
-            : null;
-        const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-        const preservedTab = tab && validTabs.includes(tab) ? tab : null;
         updateUrlRef.current({
           state: currentState,
           view: currentView,
@@ -1944,7 +1903,6 @@ function App(): JSX.Element {
           assembly: currentAssembly,
           year,
           pcYear: null,
-          tab: preservedTab,
           showACs: currentPC ? (showACsWithinPC ?? true) : null,
           blog: false,
           blogPost: null,
@@ -1962,6 +1920,45 @@ function App(): JSX.Element {
       currentDistrict,
       currentAssembly,
       getPCResult,
+    ]
+  );
+
+  /**
+   * Keep `?tab=` in sync when the embedded election panel switches View (Overview / Booths / …).
+   */
+  const handleElectionPanelViewTabSync = useCallback(
+    (panelTab: 'overview' | 'booths' | 'postal' | 'analysis'): void => {
+      if (!currentState || !currentAssembly) return;
+      const searchParams =
+        typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+      const blogPostParam =
+        blogOpen && searchParams?.get('blogPost') ? searchParams.get('blogPost') : null;
+      const pcYearActive = selectedACPCYear != null;
+      updateUrl({
+        state: currentState,
+        view: currentView,
+        pc: currentPC,
+        district: currentDistrict,
+        assembly: currentAssembly,
+        year: pcYearActive ? null : selectedYear,
+        pcYear: pcYearActive ? selectedACPCYear : null,
+        tab: panelTab === 'overview' ? null : panelTab,
+        showACs: currentPC ? (showACsWithinPC ?? true) : null,
+        blog: blogOpen,
+        blogPost: blogPostParam,
+      });
+    },
+    [
+      blogOpen,
+      currentAssembly,
+      currentDistrict,
+      currentPC,
+      currentState,
+      currentView,
+      selectedACPCYear,
+      selectedYear,
+      showACsWithinPC,
+      updateUrl,
     ]
   );
 
@@ -2076,12 +2073,6 @@ function App(): JSX.Element {
           const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
           if (latestYear !== undefined) {
             setPCSelectedYear(latestYear);
-            const tab =
-              typeof window !== 'undefined'
-                ? new URLSearchParams(window.location.search).get('tab')
-                : null;
-            const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-            const preservedTab = tab && validTabs.includes(tab) ? tab : null;
             updateUrlRef.current({
               state: currentState,
               view: 'constituencies',
@@ -2090,7 +2081,6 @@ function App(): JSX.Element {
               assembly: null,
               year: latestYear,
               pcYear: null,
-              tab: preservedTab,
               showACs: null,
               blog: false,
               blogPost: null,
@@ -2115,12 +2105,6 @@ function App(): JSX.Element {
             yearForUrl = latestYear;
           }
         }
-        const tab =
-          typeof window !== 'undefined'
-            ? new URLSearchParams(window.location.search).get('tab')
-            : null;
-        const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-        const preservedTab = tab && validTabs.includes(tab) ? tab : null;
         updateUrlRef.current({
           state: currentState,
           view: 'assemblies',
@@ -2129,7 +2113,6 @@ function App(): JSX.Element {
           assembly: currentAssembly,
           year: yearForUrl,
           pcYear: null,
-          tab: preservedTab,
           showACs: null,
           blog: false,
           blogPost: null,
@@ -2145,12 +2128,6 @@ function App(): JSX.Element {
           latestYear != null && (selectedYear == null || !acYears.includes(selectedYear));
         if (needsCorrection) {
           setSelectedYear(latestYear);
-          const tab =
-            typeof window !== 'undefined'
-              ? new URLSearchParams(window.location.search).get('tab')
-              : null;
-          const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-          const preservedTab = tab && validTabs.includes(tab) ? tab : null;
           updateUrlRef.current({
             state: currentState,
             view: 'districts',
@@ -2159,7 +2136,6 @@ function App(): JSX.Element {
             assembly: null,
             year: latestYear,
             pcYear: null,
-            tab: preservedTab,
             showACs: null,
             blog: false,
             blogPost: null,
@@ -2229,7 +2205,6 @@ function App(): JSX.Element {
         assembly: currentAssembly,
         year: selectedYear,
         pcYear: selectedACPCYear,
-        tab: null,
         showACs: currentPC ? (showACsWithinPC ?? true) : null,
         blog: true,
         blogPost: null,
@@ -2244,7 +2219,6 @@ function App(): JSX.Element {
         assembly: currentAssembly,
         year: selectedYear,
         pcYear: selectedACPCYear,
-        tab: null,
         showACs: currentPC ? (showACsWithinPC ?? true) : null,
         blog: false,
         blogPost: null,
@@ -2278,7 +2252,6 @@ function App(): JSX.Element {
       assembly: currentAssembly,
       year: selectedYear,
       pcYear: selectedACPCYear,
-      tab: null,
       showACs: currentPC ? (showACsWithinPC ?? true) : null,
       blog: false,
       blogPost: null,
@@ -2361,10 +2334,11 @@ function App(): JSX.Element {
 
   return (
     <>
-      {/* Mobile toggle button */}
+      {/* Menu / close — toggles docked sidebar on web; slide-over sheet on narrow viewports */}
       <button
         className={`mobile-toggle ${sidebarOpen ? 'active' : ''}`}
         onClick={toggleSidebar}
+        type="button"
         aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
       >
         {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
@@ -2396,8 +2370,6 @@ function App(): JSX.Element {
           onShare={handleShare}
           isOpen={sidebarOpen}
           onClose={closeSidebar}
-          isCollapsed={sidebarCollapsed}
-          onToggleCollapse={toggleSidebarCollapsed}
           onBlogClick={handleBlogToggle}
           selectedSummaryParty={selectedSummaryParty}
           onSummaryPartyChange={setSelectedSummaryParty}
@@ -2424,6 +2396,7 @@ function App(): JSX.Element {
           pcShareUrl={currentPCShareUrl}
           onCloseElectionPanel={handleCloseElectionPanel}
           onClosePCElectionPanel={handleClosePCElectionPanel}
+          onElectionPanelViewTabSync={handleElectionPanelViewTabSync}
         />
 
         <MapView

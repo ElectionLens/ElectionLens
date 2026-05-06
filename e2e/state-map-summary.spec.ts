@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { expandMobileElectionPanelToFull } from './panel-helpers';
+import { openSidebarSheet, sidebarYearSelectOption } from './sidebar-helpers';
 
 test.describe('State map summary panel', () => {
   async function expandSummaryIfMobile(page: import('@playwright/test').Page) {
@@ -14,6 +15,7 @@ test.describe('State map summary panel', () => {
       () => document.querySelectorAll('.leaflet-interactive').length > 10,
       { timeout: 25000 }
     );
+    await openSidebarSheet(page);
 
     const seatsPane = page.locator('.sidebar-summary[data-summary-pane="seats"]');
     await expect(seatsPane).toBeVisible({ timeout: 30000 });
@@ -29,7 +31,7 @@ test.describe('State map summary panel', () => {
       )
       .toBe(true);
 
-    await page.getByLabel('View').selectOption('votes');
+    await sidebarYearSelectOption(page, 'sidebar-panel-view', 'votes');
 
     const votesPane = page.locator('.sidebar-summary[data-summary-pane="votes"]');
     await expect(votesPane).toBeVisible();
@@ -55,6 +57,7 @@ test.describe('State map summary panel', () => {
       () => document.querySelectorAll('.leaflet-interactive').length > 3,
       { timeout: 25000 }
     );
+    await openSidebarSheet(page);
 
     const seatsPane = page.locator('.sidebar-summary[data-summary-pane="seats"]');
     await expect(seatsPane).toBeVisible({ timeout: 30000 });
@@ -70,7 +73,7 @@ test.describe('State map summary panel', () => {
       )
       .toBe(true);
 
-    await page.getByLabel('View').selectOption('votes');
+    await sidebarYearSelectOption(page, 'sidebar-panel-view', 'votes');
 
     const votesPane = page.locator('.sidebar-summary[data-summary-pane="votes"]');
     await expect(votesPane).toBeVisible();
@@ -92,6 +95,7 @@ test.describe('State map summary panel', () => {
     await page.waitForFunction(() => document.querySelectorAll('.leaflet-interactive').length > 10, {
       timeout: 25000,
     });
+    await openSidebarSheet(page);
 
     const summary = page.locator('.sidebar-summary[data-summary-pane="seats"]');
     await expect(summary).toBeVisible({ timeout: 30000 });
@@ -131,7 +135,8 @@ test.describe('State map summary panel', () => {
   test('hides state map summary when an assembly is selected', async ({ page }) => {
     await page.goto('/tamil-nadu/ac/anna-nagar?year=2021');
     await page.waitForSelector('.leaflet-container', { timeout: 20000 });
-    await page.waitForSelector('.election-panel', { timeout: 25000 });
+    await openSidebarSheet(page);
+    await page.waitForSelector('.sidebar .election-panel', { timeout: 25000 });
 
     await expect(page.locator('.sidebar-summary')).toHaveCount(0);
   });
@@ -142,6 +147,7 @@ test.describe('State map summary panel', () => {
     // With showACs=false, map level is constituencies — summary hides when currentPC is set.
     await page.goto('/tamil-nadu/pc/salem?showACs=false');
     await page.waitForSelector('.leaflet-container', { timeout: 20000 });
+    await openSidebarSheet(page);
     await expect(page.locator('.pc-panel')).toBeVisible({ timeout: 20000 });
 
     await expect(page.locator('.sidebar-summary')).toHaveCount(0);

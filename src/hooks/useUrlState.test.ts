@@ -151,6 +151,110 @@ describe('useUrlState', () => {
     expect(urlState.district).toBeNull();
   });
 
+  it('parses election panel tab=booths from query', () => {
+    window.location.pathname = '/tamil-nadu/pc/salem/ac/omalur';
+    window.location.search = '?year=2021&tab=booths';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+    expect(result.current.getUrlState().tab).toBe('booths');
+  });
+
+  it('does not expose legacy tab=candidates as UrlState.tab', () => {
+    window.location.pathname = '/tamil-nadu/pc/salem/ac/omalur';
+    window.location.search = '?year=2021&tab=candidates';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+    expect(result.current.getUrlState().tab).toBeNull();
+  });
+
+  it('updateUrl merges same-path query and preserves tab when tab is omitted', () => {
+    window.location.pathname = '/tamil-nadu/pc/salem/ac/omalur';
+    window.location.search = '?year=2021&tab=booths';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(
+        'Tamil Nadu',
+        'constituencies',
+        'Salem',
+        null,
+        'Omalur',
+        2021,
+        null,
+        onNavigate,
+        false,
+        null,
+        false
+      )
+    );
+
+    act(() => {
+      result.current.updateUrl({
+        state: 'Tamil Nadu',
+        view: 'constituencies',
+        pc: 'Salem',
+        district: null,
+        assembly: 'Omalur',
+        year: 2021,
+        pcYear: null,
+        showACs: null,
+        blog: false,
+        blogPost: null,
+      });
+    });
+
+    const merged =
+      mockHistory.replaceState.mock.calls.at(-1)?.[2] ??
+      mockHistory.pushState.mock.calls.at(-1)?.[2];
+    expect(String(merged)).toContain('tab=booths');
+    expect(String(merged)).toContain('year=2021');
+  });
+
+  it('updateUrl removes tab when tab is explicitly null', () => {
+    window.location.pathname = '/tamil-nadu/pc/salem/ac/omalur';
+    window.location.search = '?year=2021&tab=booths';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(
+        'Tamil Nadu',
+        'constituencies',
+        'Salem',
+        null,
+        'Omalur',
+        2021,
+        null,
+        onNavigate,
+        false,
+        null,
+        false
+      )
+    );
+
+    act(() => {
+      result.current.updateUrl({
+        state: 'Tamil Nadu',
+        view: 'constituencies',
+        pc: 'Salem',
+        district: null,
+        assembly: 'Omalur',
+        year: 2021,
+        pcYear: null,
+        tab: null,
+        showACs: null,
+        blog: false,
+        blogPost: null,
+      });
+    });
+
+    const merged =
+      mockHistory.replaceState.mock.calls.at(-1)?.[2] ??
+      mockHistory.pushState.mock.calls.at(-1)?.[2];
+    expect(String(merged)).not.toContain('tab=');
+  });
+
   it('parses assemblies view with specific AC URL correctly', () => {
     window.location.pathname = '/tamil-nadu/ac/anna-nagar';
     window.location.search = '?year=2021';

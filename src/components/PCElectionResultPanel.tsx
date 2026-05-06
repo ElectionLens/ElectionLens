@@ -18,6 +18,9 @@ interface PCElectionResultPanelProps {
   onYearChange?: ((year: number) => void) | undefined;
   shareUrl?: string | undefined;
   stateName?: string | undefined;
+  layerOptions?: YearOption[] | undefined;
+  /** When embedded in sidebar with title shown in the info header, hide duplicate h3 */
+  omitConstituencyHeading?: boolean;
 }
 
 /** Remove diacritics from text (e.g., Tamil Nādu → Tamil Nadu) */
@@ -60,6 +63,8 @@ export function PCElectionResultPanel({
   onYearChange,
   shareUrl,
   stateName,
+  layerOptions = [],
+  omitConstituencyHeading = false,
 }: PCElectionResultPanelProps): JSX.Element {
   const [copied, setCopied] = useState(false);
   const getTabFromUrl = useCallback((): 'overview' | 'candidates' => {
@@ -230,6 +235,14 @@ export function PCElectionResultPanel({
     }
   }, [result]);
 
+  const peekWinnerLine =
+    isMobilePortrait && panelState === 'peek' && winner ? (
+      <span className="peek-winner">
+        🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare.toFixed(1)}%
+      </span>
+    ) : null;
+  const showElectionPanelHeader = !omitConstituencyHeading || peekWinnerLine != null;
+
   return (
     <div
       ref={panelRef}
@@ -246,34 +259,45 @@ export function PCElectionResultPanel({
       )}
 
       <div className="controls-card pane-section">
-        <div
-          className="election-panel-header"
-          onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
-        >
-          <div className="election-panel-title">
-            <h3>{result.constituencyNameOriginal}</h3>
-            {/* Peek mode: show winner inline */}
-            {isMobilePortrait && panelState === 'peek' && winner && (
-              <span className="peek-winner">
-                🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare.toFixed(1)}%
-              </span>
-            )}
-            {(!isMobilePortrait || panelState !== 'peek') && (
-              <div className="title-badges">
-                <span className="pc-badge">Parliament</span>
-                <span
-                  className={`constituency-type type-${result.constituencyType?.toLowerCase() ?? 'gen'}`}
-                >
-                  {result.constituencyType ?? 'GEN'}
-                </span>
-              </div>
-            )}
+        {showElectionPanelHeader && (
+          <div
+            className="election-panel-header"
+            onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
+          >
+            <div className="election-panel-title">
+              {!omitConstituencyHeading && (
+                <h3>{result.constituencyNameOriginal || result.constituencyName}</h3>
+              )}
+              {peekWinnerLine}
+              {!omitConstituencyHeading && (!isMobilePortrait || panelState !== 'peek') && (
+                <div className="title-badges">
+                  <span className="pc-badge">Parliament</span>
+                  <span
+                    className={`constituency-type type-${result.constituencyType?.toLowerCase() ?? 'gen'}`}
+                  >
+                    {result.constituencyType ?? 'GEN'}
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
+
+        {layerOptions.length > 0 && (
+          <YearSelector
+            label="Layer"
+            fieldId="pc-panel-layer"
+            className="election-year-selector pane-section-tight"
+            variant="stacked"
+            options={layerOptions}
+          />
+        )}
 
         {/* Year selector */}
         {availableYears.length > 1 && (
           <YearSelector
+            label="Year"
+            fieldId="pc-panel-year"
             className="election-year-selector pane-section-tight"
             variant="stacked"
             options={availableYears.map<YearOption>((year) => ({

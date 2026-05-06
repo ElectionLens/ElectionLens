@@ -1,16 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
-import {
-  Map,
-  Building2,
-  Landmark,
-  Database,
-  Check,
-  Link2,
-  Clock,
-  ChevronLeft,
-  ChevronRight,
-  BookOpen,
-} from 'lucide-react';
+import { Map, Building2, Landmark, Database, Check, Link2, Clock, BookOpen } from 'lucide-react';
 import { normalizeName, getFeatureColor } from '../utils/helpers';
 import { getPartyColor, getPartyShortName } from '../utils/partyData';
 import { SearchBox } from './SearchBox';
@@ -79,8 +68,6 @@ interface SidebarProps {
   onShare: () => void;
   isOpen: boolean;
   onClose: () => void;
-  isCollapsed?: boolean;
-  onToggleCollapse?: () => void;
   onBlogClick?: () => void;
   selectedSummaryParty?: string | null;
   onSummaryPartyChange?: (party: string | null) => void;
@@ -122,6 +109,8 @@ interface SidebarProps {
   onPCYearChange?: (year: number) => void;
   showACsWithinPC?: boolean;
   onShowACsWithinPCChange?: (show: boolean) => void;
+  /** Sync sidebar election panel View with `?tab=` via App URL state */
+  onElectionPanelViewTabSync?: (tab: 'overview' | 'booths' | 'postal' | 'analysis') => void;
 }
 
 /** Extended CSS properties to allow custom CSS variables */
@@ -167,8 +156,6 @@ export function Sidebar({
   onShare,
   isOpen,
   onClose,
-  isCollapsed = false,
-  onToggleCollapse,
   onBlogClick,
   selectedSummaryParty = null,
   onSummaryPartyChange,
@@ -195,8 +182,21 @@ export function Sidebar({
   onPCYearChange,
   showACsWithinPC = true,
   onShowACsWithinPCChange,
+  onElectionPanelViewTabSync,
 }: SidebarProps): JSX.Element {
   const { boothResults, boothsWithResults, loadBoothData, loadBoothResults } = useBoothData();
+  const [isMobileSidebar, setIsMobileSidebar] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth <= 768;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const onResize = () => setIsMobileSidebar(window.innerWidth <= 768);
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   useEffect(() => {
     if (!electionResult?.schemaId?.startsWith('TN-')) return;
@@ -338,6 +338,21 @@ export function Sidebar({
     ]
   );
 
+  const acPanelPlaceholderResult = useMemo(() => {
+    if (!selectedAssembly) return null;
+    const inAssembliesLayer = currentView === 'assemblies';
+    const inDrilledAcContext = Boolean(currentPC || currentDistrict);
+    if (!inAssembliesLayer && !inDrilledAcContext) return null;
+    const y = selectedYear ?? new Date().getFullYear();
+    return buildAcPanelPlaceholder(selectedAssembly, y);
+  }, [selectedAssembly, selectedYear, currentView, currentPC, currentDistrict]);
+
+  const showACDetailPanel = Boolean(
+    (electionResult || acPanelPlaceholderResult) && onCloseElectionPanel
+  );
+  const showPCDetailPanel = Boolean(pcElectionResult && onClosePCElectionPanel);
+  const hasDetailPanel = showACDetailPanel || showPCDetailPanel;
+
   const sidebarPanelViewOptions = useMemo<YearOption[]>(() => {
     return [
       {
@@ -371,6 +386,37 @@ export function Sidebar({
    * Determine what to show in info panel based on current navigation
    */
   const getInfoContent = (): InfoPanelContent => {
+    const acDetailResult = electionResult ?? acPanelPlaceholderResult;
+    if (showPCDetailPanel && pcElectionResult) {
+      const count = currentData?.features?.length ?? 0;
+      return {
+        title:
+          pcElectionResult.constituencyNameOriginal ??
+          pcElectionResult.name ??
+          pcElectionResult.constituencyName ??
+          '',
+        statValue: displayState ?? '',
+        statLabel: '',
+        subValue: count,
+        subLabel: 'Assembly Constituencies',
+      };
+    }
+    if (showACDetailPanel && acDetailResult && currentView === 'assemblies') {
+      const count = currentData?.features?.length ?? 0;
+      const title =
+        acDetailResult.constituencyNameOriginal ??
+        acDetailResult.name ??
+        acDetailResult.constituencyName ??
+        selectedAssembly ??
+        '';
+      return {
+        title: title || (displayState ?? ''),
+        statValue: displayState ?? '',
+        statLabel: '',
+        subValue: count,
+        subLabel: 'Assembly Constituencies',
+      };
+    }
     if (currentPC) {
       return {
         title: currentPC,
@@ -415,17 +461,22 @@ export function Sidebar({
   };
 
   const info = getInfoContent();
+  const compactMetaParts = [info.statValue, info.subValue]
+    .map((value, index) => {
+      const label = index === 0 ? info.statLabel : info.subLabel;
+      if (value === null || value === undefined) return null;
+      const valueText = String(value).trim();
+      const labelText = String(label ?? '').trim();
+      if (!valueText) return null;
+      if (valueText === '-') return labelText || null;
+      return labelText ? `${valueText} ${labelText}` : valueText;
+    })
+    .filter((segment): segment is string => Boolean(segment));
 
   const formatIn = (num: number): string => {
     if (!Number.isFinite(num)) return '—';
     return Math.round(num).toLocaleString('en-IN');
   };
-
-  const acPanelPlaceholderResult = useMemo(() => {
-    if (!selectedAssembly || currentView !== 'assemblies') return null;
-    const y = selectedYear ?? new Date().getFullYear();
-    return buildAcPanelPlaceholder(selectedAssembly, y);
-  }, [selectedAssembly, selectedYear, currentView]);
 
   /**
    * Render breadcrumb navigation
@@ -927,6 +978,7 @@ export function Sidebar({
           <ElectionResultPanel
             result={electionResult ?? acPanelPlaceholderResult!}
             onClose={onCloseElectionPanel!}
+            omitConstituencyHeading
             shareUrl={shareUrl}
             stateName={currentState ?? undefined}
             availableYears={availableYears}
@@ -941,6 +993,8 @@ export function Sidebar({
             boothsWithResults={boothsWithResults}
             acResultsLoading={!electionResult && acResultsLoading}
             acResultsLoadError={!electionResult ? acResultsLoadError : null}
+            layerOptions={sidebarLayerOptions}
+            onViewTabSync={onElectionPanelViewTabSync}
           />
         </div>
       );
@@ -951,11 +1005,13 @@ export function Sidebar({
           <PCElectionResultPanel
             result={pcElectionResult!}
             onClose={onClosePCElectionPanel!}
+            omitConstituencyHeading
             shareUrl={pcShareUrl}
             stateName={currentState ?? undefined}
             availableYears={pcAvailableYears}
             selectedYear={pcSelectedYear ?? undefined}
             onYearChange={onPCYearChange}
+            layerOptions={sidebarLayerOptions}
           />
         </div>
       );
@@ -967,92 +1023,92 @@ export function Sidebar({
   const showStateMapControls = Boolean(currentState);
   /** Summary View dropdown + seats/votes panels only on undrilled state map. */
   const showSummarySidebarUI = Boolean(currentState && !currentPC && !currentDistrict);
-  const showACDetailPanel = Boolean(
-    (electionResult || acPanelPlaceholderResult) && onCloseElectionPanel
-  );
-  const showPCDetailPanel = Boolean(pcElectionResult && onClosePCElectionPanel);
-  const hasDetailPanel = showACDetailPanel || showPCDetailPanel;
-  const effectiveCollapsed = isCollapsed;
-  const effectiveOpen = isOpen || hasDetailPanel;
+  const hasSidebarMapControlRows =
+    !hasDetailPanel ||
+    (showSummarySidebarUI && Boolean(stateSummaryData)) ||
+    (Boolean(currentPC) && Boolean(onShowACsWithinPCChange));
+  const effectiveOpen = isOpen;
+  /** Dim map + block overlay tap-to-close only on mobile; web keeps map controls usable when expanded. */
+  const showSidebarOverlay = isMobileSidebar && isOpen;
+
+  const acDetailForBadge = showACDetailPanel ? (electionResult ?? acPanelPlaceholderResult) : null;
 
   return (
     <>
-      <div
-        className={`sidebar ${effectiveOpen ? 'open' : ''} ${effectiveCollapsed ? 'collapsed' : ''}`}
-      >
-        {/* Desktop collapse toggle button */}
-        {onToggleCollapse && (
-          <button
-            className="sidebar-collapse-btn"
-            onClick={onToggleCollapse}
-            title={effectiveCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          >
-            {effectiveCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
-          </button>
-        )}
-
+      <div className={`sidebar ${effectiveOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <h1>
             <img src="/favicon.svg" alt="" width={24} height={24} />
-            {!effectiveCollapsed && 'Election Lens'}
+            Election Lens
           </h1>
-          {!effectiveCollapsed && (
-            <div className="sidebar-header-actions">
-              <p>India Electoral Map</p>
-              {onBlogClick && (
-                <button className="blog-btn" onClick={onBlogClick} title="View Blog">
-                  <BookOpen size={16} />
-                  <span>Blog</span>
-                </button>
-              )}
-            </div>
-          )}
+          <div className="sidebar-header-actions">
+            <p>India Electoral Map</p>
+            {onBlogClick && (
+              <button className="blog-btn" onClick={onBlogClick} title="View Blog">
+                <BookOpen size={16} />
+                <span>Blog</span>
+              </button>
+            )}
+          </div>
         </div>
 
-        {/* Collapsible content - hidden when sidebar is collapsed */}
-        {!effectiveCollapsed && (
-          <>
-            <div className="breadcrumb pane-section pane-section-tight">
-              <div className="breadcrumb-nav">{renderBreadcrumb()}</div>
-              {currentState && (
-                <button
-                  className={`share-btn ${copied ? 'copied' : ''}`}
-                  onClick={handleShareClick}
-                  title={copied ? 'Copied!' : 'Copy shareable link'}
+        <div className="sidebar-scroll">
+          <div className="breadcrumb pane-section pane-section-tight">
+            <div className="breadcrumb-nav">{renderBreadcrumb()}</div>
+            {currentState && (
+              <button
+                className={`share-btn ${copied ? 'copied' : ''}`}
+                onClick={handleShareClick}
+                title={copied ? 'Copied!' : 'Copy shareable link'}
+              >
+                {copied ? <Check size={16} /> : <Link2 size={16} />}
+              </button>
+            )}
+          </div>
+
+          <div className="pane-section pane-section-tight">
+            <SearchBox
+              statesGeoJSON={statesGeoJSON}
+              parliamentGeoJSON={parliamentGeoJSON}
+              assemblyGeoJSON={assemblyGeoJSON}
+              districtsCache={districtsCache}
+              onStateSelect={onSearchStateSelect}
+              onConstituencySelect={onSearchConstituencySelect}
+              onAssemblySelect={onSearchAssemblySelect}
+              onDistrictSelect={onSearchDistrictSelect}
+            />
+          </div>
+
+          <div className="info-panel pane-content">
+            <div className="info-title info-title-row pane-section-header">
+              <span className="info-title-text">{info.title}</span>
+              {acDetailForBadge && (
+                <span
+                  className={`constituency-type type-${acDetailForBadge.constituencyType.toLowerCase()}`}
                 >
-                  {copied ? <Check size={16} /> : <Link2 size={16} />}
-                </button>
+                  {acDetailForBadge.constituencyType}
+                </span>
+              )}
+              {showPCDetailPanel && pcElectionResult && (
+                <>
+                  <span className="pc-badge">Parliament</span>
+                  <span
+                    className={`constituency-type type-${(pcElectionResult.constituencyType ?? 'GEN').toLowerCase()}`}
+                  >
+                    {pcElectionResult.constituencyType ?? 'GEN'}
+                  </span>
+                </>
               )}
             </div>
-
-            <div className="pane-section pane-section-tight">
-              <SearchBox
-                statesGeoJSON={statesGeoJSON}
-                parliamentGeoJSON={parliamentGeoJSON}
-                assemblyGeoJSON={assemblyGeoJSON}
-                districtsCache={districtsCache}
-                onStateSelect={onSearchStateSelect}
-                onConstituencySelect={onSearchConstituencySelect}
-                onAssemblySelect={onSearchAssemblySelect}
-                onDistrictSelect={onSearchDistrictSelect}
-              />
-            </div>
-
-            <div className="info-panel pane-content">
-              <div className="info-title pane-section-header">{info.title}</div>
-              <div className="info-stats pane-section pane-section-tight">
-                <div className="stat-card">
-                  <div className="stat-value">{info.statValue}</div>
-                  <div className="stat-label">{info.statLabel}</div>
-                </div>
-                <div className="stat-card">
-                  <div className="stat-value">{info.subValue}</div>
-                  <div className="stat-label">{info.subLabel}</div>
-                </div>
+            {compactMetaParts.length > 0 && (
+              <div className="info-meta-line pane-section pane-section-tight">
+                {compactMetaParts.join(' • ')}
               </div>
+            )}
 
-              {showStateMapControls && (
-                <div className="sidebar-map-controls pane-section pane-control-stack">
+            {showStateMapControls && hasSidebarMapControlRows && (
+              <div className="sidebar-map-controls pane-section pane-control-stack">
+                {!hasDetailPanel && (
                   <div className="sidebar-view-selector-wrap">
                     <YearSelector
                       label="Layer"
@@ -1062,73 +1118,72 @@ export function Sidebar({
                       options={sidebarLayerOptions}
                     />
                   </div>
-                  {mapYearOptions.length > 0 && !hasDetailPanel && (
-                    <div className="sidebar-view-selector-wrap">
-                      <YearSelector
-                        label="Year"
-                        fieldId="sidebar-map-year"
-                        className="sidebar-view-selector"
-                        variant="stacked"
-                        options={mapYearOptions}
-                      />
-                    </div>
-                  )}
-                  {showSummarySidebarUI && stateSummaryData && (
-                    <div className="sidebar-view-selector-wrap">
-                      <YearSelector
-                        label="View"
-                        fieldId="sidebar-panel-view"
-                        className="sidebar-view-selector"
-                        variant="stacked"
-                        options={sidebarPanelViewOptions}
-                      />
-                    </div>
-                  )}
-                  {Boolean(currentPC) && onShowACsWithinPCChange && (
-                    <label className="sidebar-show-acs">
-                      <input
-                        type="checkbox"
-                        checked={showACsWithinPC}
-                        onChange={(e) => onShowACsWithinPCChange(e.target.checked)}
-                        aria-label="Show assembly constituencies within this PC"
-                      />
-                      <span>Show ACs</span>
-                    </label>
-                  )}
-                </div>
-              )}
-
-              <div className="pane-section pane-content-body">
-                {renderDetailPanel() ??
-                  (showSummarySidebarUI && stateSummaryData && sidebarTab === 'seats'
-                    ? renderSummarySeats()
-                    : showSummarySidebarUI && stateSummaryData && sidebarTab === 'votes'
-                      ? renderSummaryVotes()
-                      : renderList())}
+                )}
+                {mapYearOptions.length > 0 && !hasDetailPanel && (
+                  <div className="sidebar-view-selector-wrap">
+                    <YearSelector
+                      label="Year"
+                      fieldId="sidebar-map-year"
+                      className="sidebar-view-selector"
+                      variant="stacked"
+                      options={mapYearOptions}
+                    />
+                  </div>
+                )}
+                {showSummarySidebarUI && stateSummaryData && (
+                  <div className="sidebar-view-selector-wrap">
+                    <YearSelector
+                      label="View"
+                      fieldId="sidebar-panel-view"
+                      className="sidebar-view-selector"
+                      variant="stacked"
+                      options={sidebarPanelViewOptions}
+                    />
+                  </div>
+                )}
+                {Boolean(currentPC) && onShowACsWithinPCChange && (
+                  <label className="sidebar-show-acs">
+                    <input
+                      type="checkbox"
+                      checked={showACsWithinPC}
+                      onChange={(e) => onShowACsWithinPCChange(e.target.checked)}
+                      aria-label="Show assembly constituencies within this PC"
+                    />
+                    <span>Show ACs</span>
+                  </label>
+                )}
               </div>
-            </div>
+            )}
 
-            <div className="cache-status">
-              <Database size={12} className="cache-icon" />
-              <strong> DB:</strong> {cacheStats.dbCount}
-              {' | '}
-              <Map size={12} className="cache-icon state-icon" /> {cacheStats.memCount}/
-              {cacheStats.totalStates}
-              {' | '}
-              <Building2 size={12} className="cache-icon pc-icon" /> {cacheStats.pcCount}
-              {' | '}
-              <Landmark size={11} className="cache-icon ac-icon" /> {cacheStats.acCount}
-              {cacheStats.memCount >= (cacheStats.totalStates ?? 0) &&
-                cacheStats.pcCount > 0 &&
-                cacheStats.acCount > 0 && <Check size={14} className="cache-check" />}
+            <div className="pane-section pane-content-body">
+              {renderDetailPanel() ??
+                (showSummarySidebarUI && stateSummaryData && sidebarTab === 'seats'
+                  ? renderSummarySeats()
+                  : showSummarySidebarUI && stateSummaryData && sidebarTab === 'votes'
+                    ? renderSummaryVotes()
+                    : renderList())}
             </div>
-          </>
-        )}
+          </div>
+
+          <div className="cache-status">
+            <Database size={12} className="cache-icon" />
+            <strong> DB:</strong> {cacheStats.dbCount}
+            {' | '}
+            <Map size={12} className="cache-icon state-icon" /> {cacheStats.memCount}/
+            {cacheStats.totalStates}
+            {' | '}
+            <Building2 size={12} className="cache-icon pc-icon" /> {cacheStats.pcCount}
+            {' | '}
+            <Landmark size={11} className="cache-icon ac-icon" /> {cacheStats.acCount}
+            {cacheStats.memCount >= (cacheStats.totalStates ?? 0) &&
+              cacheStats.pcCount > 0 &&
+              cacheStats.acCount > 0 && <Check size={14} className="cache-check" />}
+          </div>
+        </div>
       </div>
 
-      {/* Mobile overlay */}
       <div
-        className={`sidebar-overlay ${effectiveOpen ? 'visible' : ''}`}
+        className={`sidebar-overlay ${showSidebarOverlay ? 'visible' : ''}`}
         onClick={onClose}
         role="button"
         tabIndex={-1}

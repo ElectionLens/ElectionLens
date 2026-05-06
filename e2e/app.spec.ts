@@ -1,9 +1,13 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
-import { ensureElectionPanelVisible, expandMobileElectionPanelToFull } from './panel-helpers';
+import {
+  ensureElectionPanelVisible,
+  expandMobileElectionPanelToFull,
+} from './panel-helpers';
+import { openSidebarSheet, sidebarYearSelectOption, sidebarYearSelectorSelect } from './sidebar-helpers';
 
 async function expandElectionPanelForWinnerSection(page: Page) {
-  await expandMobileElectionPanelToFull(page.locator('.election-panel'), page);
+  await expandMobileElectionPanelToFull(page.locator('.sidebar .election-panel'), page);
 }
 
 test.describe('Election Lens App', () => {
@@ -23,12 +27,11 @@ test.describe('Election Lens App', () => {
   });
 
   test('should display the sidebar', async ({ page }) => {
+    await openSidebarSheet(page);
     const sidebar = page.locator('.sidebar');
     await expect(sidebar).toBeVisible();
-    // Check for "Election Lens" text - it's in the h1, may be collapsed on mobile
-    const electionLensText = page.getByText('Election Lens', { exact: false });
-    // Text might not be visible if sidebar is collapsed, so just check sidebar exists
-    await expect(sidebar).toBeVisible();
+    await expect(sidebar).toHaveClass(/open/);
+    await expect(page.getByText('Election Lens', { exact: false }).first()).toBeVisible();
   });
 
   test('should have state boundaries visible', async ({ page }) => {
@@ -84,6 +87,7 @@ test.describe('State Navigation', () => {
     const statePath = page.locator('.leaflet-interactive').first();
     await statePath.click({ force: true });
     await page.waitForURL(/\/[a-z-]+/, { timeout: 10000 });
+    await openSidebarSheet(page);
 
     // Click India link in breadcrumb (home navigation)
     const indiaLink = page.getByRole('link', { name: 'India' }).or(
@@ -113,10 +117,11 @@ test.describe('State Navigation', () => {
 test.describe('Deep Linking', () => {
   test('should load state from URL', async ({ page }) => {
     await page.goto('/tamil-nadu');
-    
+
     // Map should show Tamil Nadu
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    await expect(page).toHaveURL('/tamil-nadu');
+    // Bare /{state} redirects to parliament constituency map with default year / summary params.
+    await expect(page).toHaveURL(/\/tamil-nadu\/pc/);
   });
 
   test('should load PC view from URL', async ({ page }) => {
@@ -197,7 +202,7 @@ test.describe('Election Panel', () => {
     await ensureElectionPanelVisible(page);
     
     // Year control is a <select> (YearSelector), not chip buttons
-    const yearDropdown = page.locator('.election-year-selector select.year-dropdown');
+    const yearDropdown = page.locator('#ac-panel-year');
     await expect(yearDropdown).toBeVisible();
     expect(await yearDropdown.locator('option').count()).toBeGreaterThan(0);
   });
@@ -208,10 +213,7 @@ test.describe('Election Panel', () => {
 
     const panel = await ensureElectionPanelVisible(page);
 
-    const yearDropdown = page
-      .locator('.election-panel')
-      .locator('.election-year-selector select.year-dropdown')
-      .first();
+    const yearDropdown = panel.locator('#ac-panel-year');
     await expect(yearDropdown).toBeVisible({ timeout: 10000 });
 
     if ((await yearDropdown.locator('option[value="ac-2016"]').count()) > 0) {
@@ -225,9 +227,9 @@ test.describe('Election Panel', () => {
     await ensureElectionPanelVisible(page);
     await expect(page).toHaveURL(/year=pc-2019/);
 
-    const mapYearSelect = page.locator('#sidebar-map-year');
+    const mapYearSelect = sidebarYearSelectorSelect(page, 'sidebar-map-year');
     if ((await mapYearSelect.locator('option[value="pc-2024"]').count()) > 0) {
-      await mapYearSelect.selectOption('pc-2024');
+      await sidebarYearSelectOption(page, 'sidebar-map-year', 'pc-2024');
       await expect(page).toHaveURL(/year=pc-2024/, { timeout: 5000 });
     }
   });
@@ -239,13 +241,48 @@ test.describe('Election Panel', () => {
     await expect(panel.locator('.share-bar .election-panel-btn').first()).toBeVisible();
     await expect(panel.locator('.election-panel-close')).toHaveCount(0);
   });
+
+  test('View selector writes tab= and survives blog toggle (URL merge)', async ({ page }) => {
+    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
+
+    const panel = await ensureElectionPanelVisible(page);
+
+    const viewSelect = panel.locator('.election-view-selector').locator('select.year-dropdown').first();
+    await viewSelect.waitFor({ state: 'attached', timeout: 12000 });
+
+    await viewSelect.selectOption({ value: 'booths' }, { force: true });
+    await expect
+      .poll(() => new URL(page.url()).searchParams.get('tab'))
+      .toBe('booths');
+
+    await page.evaluate(() => {
+      document.querySelector('button.blog-btn')?.dispatchEvent(
+        new MouseEvent('click', { bubbles: true, cancelable: true })
+      );
+    });
+
+    await expect
+      .poll(() => new URL(page.url()).searchParams.get('tab'))
+      .toBe('booths');
+
+    await page.evaluate(() => {
+      document.querySelector('button.blog-btn')?.dispatchEvent(
+        new MouseEvent('click', { bubbles: true, cancelable: true })
+      );
+    });
+
+    await expect
+      .poll(() => new URL(page.url()).searchParams.get('tab'))
+      .toBe('booths');
+  });
 });
 
 test.describe('Share Functionality', () => {
   test('should have share button in sidebar', async ({ page }) => {
     await page.goto('/tamil-nadu');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
+    await openSidebarSheet(page);
+
     const shareButton = page.locator('.share-btn');
     await expect(shareButton).toBeVisible();
   });
@@ -258,7 +295,8 @@ test.describe('Share Functionality', () => {
     
     await page.goto('/tamil-nadu');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
+    await openSidebarSheet(page);
+
     // Grant clipboard permissions (works on Chromium/Firefox)
     try {
       await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
@@ -309,51 +347,50 @@ test.describe('Responsive Design', () => {
 test.describe('Parliament Results', () => {
   test('should show parliament panel for PC', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem');
-    
-    // Wait for PC panel
-    const panel = page.locator('.pc-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+
+    const panel = await ensureElectionPanelVisible(page);
+    await expect(panel).toHaveClass(/pc-panel/);
   });
 
-  test('should show Parliament badge', async ({ page }) => {
+  test('should show PC panel view control in sidebar', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem');
-    
-    await page.waitForSelector('.pc-panel', { timeout: 15000 });
-    
-    const badge = page.locator('.pc-badge');
-    await expect(badge).toContainText('Parliament');
+
+    const panel = await ensureElectionPanelVisible(page);
+    await expect(panel.locator('#pc-panel-view')).toBeVisible();
   });
 });
 
 test.describe('Tab Navigation in Election Panel', () => {
-  test('past year: Overview + Candidates tabs; full list on Candidates', async ({ page }) => {
+  test('past year: Overview shows full assembly candidate table', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
 
     const panel = await ensureElectionPanelVisible(page);
     const viewSelect = panel.locator('#ac-panel-view');
     await expect(viewSelect).toBeVisible();
     await expect(viewSelect).toHaveValue('overview');
-    await viewSelect.selectOption('candidates');
-    const table = page.locator('.election-panel .candidates-table-full');
+
+    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
+
+    const table = panel.locator('.candidates-table-full');
     await expect(table).toBeVisible();
-    const rows = page.locator('.election-panel .candidate-row');
+    const rows = panel.locator('.candidate-row');
     expect(await rows.count()).toBeGreaterThan(1);
   });
 
-  test('2026 AC: Overview shows candidate preview without switching tab', async ({ page }) => {
+  test('2026 AC: Overview lists all candidates without Candidates tab', async ({ page }) => {
     await page.goto('/tamil-nadu/ac/mettuppalayam?year=2026');
 
     const panel = await ensureElectionPanelVisible(page);
     const viewSelect = panel.locator('#ac-panel-view');
     await expect(viewSelect).toHaveValue('overview');
 
-    const preview = page.locator('.election-panel .candidates-preview');
+    const preview = panel.locator('.candidates-preview');
     await expect(preview).toBeVisible();
-    await expect(preview.getByRole('heading', { name: /Candidates|Top candidates/i })).toBeVisible();
+    await expect(preview.getByRole('heading', { name: /^Candidates$/i })).toBeVisible();
 
-    await expect(preview.locator('.candidate-row-compact').first()).toBeVisible({ timeout: 20000 });
+    await expect(preview.locator('.candidate-row').first()).toBeVisible({ timeout: 20000 });
 
-    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(1);
+    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
   });
 });
 
@@ -362,20 +399,13 @@ test.describe('Contextual Navigation - Background Layers', () => {
     // Navigate to a PC view
     await page.goto('/tamil-nadu/pc/namakkal');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
-    // Wait for GeoJSON layers to render
-    await page.waitForFunction(() => {
-      const paths = document.querySelectorAll('.leaflet-interactive');
-      return paths.length > 5; // Should have assemblies + background layers
-    }, { timeout: 15000 });
-    
-    // Background states should be rendered (gray semi-transparent polygons)
-    // These are in the backgroundPane which has higher z-index
-    const backgroundPane = page.locator('.leaflet-backgroundPane-pane, [class*="backgroundPane"]');
-    // At minimum, we should have multiple interactive paths
-    const paths = page.locator('.leaflet-interactive');
-    const count = await paths.count();
-    expect(count).toBeGreaterThan(5);
+
+    await expect
+      .poll(async () => page.locator('.leaflet-interactive').count(), {
+        timeout: 25000,
+        intervals: [100, 250, 500],
+      })
+      .toBeGreaterThan(5);
   });
 
   test('should show background PCs with orange color in PC view', async ({ page }) => {
@@ -571,10 +601,7 @@ test.describe('Assembly View', () => {
     // URL should be correct
     await expect(page).toHaveURL(/tamil-nadu\/ac\/anna-nagar/);
     
-    // Election panel should appear for the selected AC
-    // Note: May take a moment for results to load
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 20000 });
+    await ensureElectionPanelVisible(page);
   });
 
   test('Layer dropdown includes Assembly when in state view', async ({ page }) => {
@@ -586,9 +613,10 @@ test.describe('Assembly View', () => {
       const paths = document.querySelectorAll('.leaflet-interactive');
       return paths.length > 0;
     }, { timeout: 15000 });
-    
-    const layerSelect = page.locator('#sidebar-layer-mode');
-    await expect(layerSelect).toBeVisible();
+    await openSidebarSheet(page);
+
+    const layerSelect = sidebarYearSelectorSelect(page, 'sidebar-layer-mode');
+    await expect(layerSelect).toBeAttached();
     await expect(layerSelect.locator('option[value="assemblies"]')).toHaveCount(1);
   });
 
@@ -601,8 +629,9 @@ test.describe('Assembly View', () => {
       const paths = document.querySelectorAll('.leaflet-interactive');
       return paths.length > 0;
     }, { timeout: 15000 });
-    
-    await page.locator('#sidebar-layer-mode').selectOption('assemblies');
+    await openSidebarSheet(page);
+
+    await sidebarYearSelectOption(page, 'sidebar-layer-mode', 'assemblies');
     await expect(page).toHaveURL(/tamil-nadu\/ac(\?|$)/, { timeout: 10000 });
   });
 
@@ -610,10 +639,7 @@ test.describe('Assembly View', () => {
     // Use direct URL to specific AC to avoid click targeting issues
     await page.goto('/tamil-nadu/ac/anna-nagar?year=2021');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
-    // Election panel should appear for the selected AC
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    await ensureElectionPanelVisible(page);
   });
 
   test('should use green color scheme for assemblies', async ({ page }) => {
@@ -641,8 +667,7 @@ test.describe('Assembly View', () => {
       return paths.length > 10;
     }, { timeout: 20000 });
 
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    await ensureElectionPanelVisible(page);
 
     // Selected AC border — Leaflet SVG may expose stroke as hex or rgb(...)
     await expect
@@ -757,9 +782,7 @@ test.describe('Search - Assembly Search Navigation', () => {
     // Should navigate to AC view URL
     await expect(page).toHaveURL(/\/ac\//, { timeout: 10000 });
     
-    // Election panel should show
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    await ensureElectionPanelVisible(page);
   });
 
   test('assembly search shows AC badge', async ({ page }) => {

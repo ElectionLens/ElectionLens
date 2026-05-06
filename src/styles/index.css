@@ -17,90 +17,23 @@ body {
 
 .container {
   display: flex;
+  position: relative;
   height: 100vh;
 }
 
-/* Left sidebar */
+/* Desktop/web: sidebar docked beside map; width animates to 0 when `.open` removed (FAB toggles). */
 .sidebar {
+  position: relative;
+  flex-shrink: 0;
   width: 360px;
+  height: 100%;
+  min-height: 0;
   background: #fff;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   z-index: 1000;
-  position: relative;
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Desktop collapsed sidebar */
-@media (min-width: 769px) {
-  .sidebar.collapsed {
-    width: 56px;
-    overflow: visible;
-  }
-
-  .sidebar.collapsed .sidebar-header {
-    padding: 16px 8px;
-    text-align: center;
-  }
-
-  .sidebar.collapsed .sidebar-header h1 {
-    font-size: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-  }
-
-  .sidebar.collapsed .sidebar-header h1 img {
-    margin: 0 !important;
-    width: 32px;
-    height: 32px;
-  }
-
-  .sidebar.collapsed .sidebar-header p {
-    display: none;
-  }
-}
-
-/* Sidebar collapse toggle button */
-.sidebar-collapse-btn {
-  display: none;
-  position: absolute;
-  top: 70px;
-  right: -16px;
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, #1e3a5f 0%, #16213e 100%);
-  border: 2px solid white;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 1001;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s;
-}
-
-.sidebar-collapse-btn:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
-}
-
-.sidebar-collapse-btn:active {
-  transform: scale(0.95);
-}
-
-/* When sidebar is collapsed, move button to edge */
-.sidebar.collapsed .sidebar-collapse-btn {
-  right: -16px;
-}
-
-@media (min-width: 769px) {
-  .sidebar-collapse-btn {
-    display: flex;
-  }
+  overflow-x: visible;
 }
 
 .sidebar-header {
@@ -139,9 +72,42 @@ body {
 .info-title {
   font-size: 1.5rem;
   color: #1a1a2e;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   padding-bottom: 10px;
   border-bottom: 2px solid #e0e0e0;
+}
+
+.info-title.info-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  row-gap: 4px;
+}
+
+.info-title-row .info-title-text {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.info-title-row .constituency-type,
+.info-title-row .pc-badge {
+  flex-shrink: 0;
+}
+
+/* GEN pill: default .type-gen assumes dark panel header; sidebar info row is light */
+.info-title-row .constituency-type.type-gen {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.info-meta-line {
+  margin-bottom: 14px;
+  font-size: 0.82rem;
+  color: #6b7280;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
 }
 
 .info-stats {
@@ -1252,9 +1218,9 @@ path:focus {
   opacity: 0.9;
 }
 
-/* Mobile toggle button */
+/* FAB: open/close sidebar on all viewports (docked collapse on web, sheet on narrow) */
 .mobile-toggle {
-  display: none;
+  display: flex;
   position: fixed;
   bottom: 20px;
   left: 20px;
@@ -1304,28 +1270,18 @@ path:focus {
     flex-direction: column;
   }
 
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 85%;
-    max-width: 320px;
-    height: 100vh;
-    transform: translateX(-100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1000;
-  }
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
+  /* Sheet geometry + `.sidebar.open` handled in Modern UI `@media (max-width: 768px)` sidebar rules later. */
 
   .sidebar-overlay.visible {
     display: block;
   }
 
-  .mobile-toggle {
-    display: flex;
+  .container:has(.sidebar.open) .leaflet-control-zoom,
+  .container:has(.sidebar.open) .map-toolbar,
+  .container:has(.sidebar.open) .map-legend {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   /* Position toolbar on mobile */
@@ -1337,15 +1293,6 @@ path:focus {
     padding: 4px 6px;
     gap: 4px;
     max-width: calc(100% - 80px);
-  }
-
-  /* Hide controls when sidebar is open on mobile */
-  .container:has(.sidebar.open) .leaflet-control-zoom,
-  .container:has(.sidebar.open) .map-toolbar,
-  .container:has(.sidebar.open) .map-legend {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
   }
 
   .toolbar-section {
@@ -1419,7 +1366,68 @@ path:focus {
 
   /* Info panel mobile */
   .info-panel {
-    padding: 15px;
+    padding: 12px;
+  }
+
+  .pane-content {
+    padding: 10px 10px 8px;
+    gap: 8px;
+  }
+
+  .pane-control-stack {
+    padding: 8px 10px;
+  }
+
+  .sidebar-view-selector-wrap + .sidebar-view-selector-wrap {
+    margin-top: 6px;
+  }
+
+  .year-chip-group[data-variant='stacked'] {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .year-chip-group[data-variant='stacked'] .year-dropdown-label {
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    color: var(--ui-text-soft);
+    text-transform: uppercase;
+  }
+
+  /* Keep mobile selectors touch friendly and avoid iOS zoom/jump on focus. */
+  .year-chip-group,
+  .sidebar-view-selector-wrap .sidebar-view-selector {
+    width: 100%;
+  }
+
+  .year-dropdown {
+    min-height: 44px;
+    height: 44px;
+    font-size: 16px;
+    line-height: 1.2;
+    padding: 0 38px 0 12px;
+    border-radius: 12px;
+  }
+
+  .year-dropdown-label {
+    display: block;
+    width: 100%;
+    margin: 0 0 2px;
+  }
+
+  .sidebar-view-selector-wrap .sidebar-view-selector .year-dropdown,
+  .election-year-selector .year-dropdown,
+  .election-view-selector .year-dropdown {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .year-chip-group.mobile-dropdown-open {
+    z-index: 1201;
+  }
+
+  .district-list {
+    margin-top: 8px;
   }
 
   .stat-card {
@@ -3817,6 +3825,16 @@ path:focus {
     line-height: 1.3;
   }
 
+  .info-title.info-title-row {
+    gap: 6px;
+    padding-bottom: 8px;
+  }
+
+  .info-meta-line {
+    font-size: 0.78rem;
+    margin-bottom: 12px;
+  }
+
   .election-panel-title h3 {
     font-size: 1.1rem;
     line-height: 1.25;
@@ -4635,7 +4653,7 @@ path:focus {
 
 .booth-candidate-row .candidate-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
 }
 
@@ -4653,9 +4671,12 @@ path:focus {
   font-size: 12px;
   color: #374151;
   flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  min-width: 0;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .booth-candidate-row .candidate-votes {
@@ -5580,7 +5601,7 @@ path:focus {
   padding: 10px 12px;
   border-bottom: 1px solid #f3f4f6;
   font-size: 13px;
-  align-items: center;
+  align-items: start;
 }
 
 .postal-candidate-row:last-child {
@@ -5603,9 +5624,11 @@ path:focus {
 .postal-candidate-row .col-name {
   font-weight: 500;
   color: #374151;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .postal-candidate-row .col-party {
@@ -6521,35 +6544,106 @@ body {
 
 .container {
   background: transparent;
+  position: relative;
 }
 
-.sidebar {
-  background: color-mix(in srgb, var(--ui-surface) 94%, #ffffff 6%);
-  border-right: 1px solid var(--ui-border);
-  box-shadow: var(--ui-shadow-md);
-  backdrop-filter: blur(14px) saturate(130%);
+@media (min-width: 769px) {
+  .sidebar {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 360px;
+    max-width: none;
+    height: 100%;
+    z-index: 1000;
+    isolation: isolate;
+    background: color-mix(in srgb, var(--ui-surface) 94%, #ffffff 6%);
+    border-right: 1px solid var(--ui-border);
+    box-shadow: var(--ui-shadow-md);
+    backdrop-filter: blur(14px) saturate(130%);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow-x: visible;
+    overflow-y: hidden;
+    overscroll-behavior: contain;
+    transition:
+      width var(--ui-speed-slow) var(--ui-ease),
+      opacity 0.22s ease,
+      transform var(--ui-speed-slow) var(--ui-ease);
+  }
+
+  /* Collapses in-flow so the map expands; leaflet controls stay visible (unlike mobile). */
+  .sidebar:not(.open) {
+    width: 0 !important;
+    min-width: 0;
+    max-width: 0;
+    overflow: hidden !important;
+    overflow-y: hidden;
+    opacity: 0;
+    pointer-events: none;
+    border-right-width: 0;
+    border-right-color: transparent;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .sidebar.open {
+    opacity: 1;
+    pointer-events: auto;
+    overflow-x: visible;
+    overflow-y: hidden;
+    border-right: 1px solid var(--ui-border);
+    box-shadow: var(--ui-shadow-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: min(360px, 92vw);
+    max-width: 390px;
+    height: 100%;
+    z-index: 1000;
+    isolation: isolate;
+    background: color-mix(in srgb, var(--ui-surface) 94%, #ffffff 6%);
+    border-right: 1px solid var(--ui-border);
+    box-shadow: var(--ui-shadow-md);
+    backdrop-filter: blur(14px) saturate(130%);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow-x: visible;
+    overflow-y: hidden;
+    overscroll-behavior: contain;
+    transition:
+      left var(--ui-speed-slow) var(--ui-ease),
+      transform var(--ui-speed-slow) var(--ui-ease);
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+}
+
+/* Scroll region below fixed header only */
+.sidebar-scroll {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+  z-index: 0;
+  overflow-x: visible;
   overflow-y: auto;
   overscroll-behavior: contain;
-  transition:
-    width var(--ui-speed-slow) var(--ui-ease),
-    transform var(--ui-speed-slow) var(--ui-ease);
+  scrollbar-gutter: stable;
 }
 
 .sidebar-header {
   background: linear-gradient(180deg, #1e3a8a 0%, #1d4ed8 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-}
-
-.sidebar-collapse-btn {
-  background: linear-gradient(145deg, #1d4ed8 0%, #2563eb 100%);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  box-shadow: var(--ui-shadow-md);
-  transition: all var(--ui-speed-fast) var(--ui-ease);
-}
-
-.sidebar-collapse-btn:hover {
-  background: linear-gradient(145deg, #2563eb 0%, #3b82f6 100%);
-  transform: translateY(-1px) scale(1.05);
 }
 
 .info-panel {
@@ -6604,6 +6698,15 @@ body {
   color: var(--ui-text);
   border-bottom-color: var(--ui-border);
   letter-spacing: -0.01em;
+}
+
+.info-meta-line {
+  color: var(--ui-text-soft);
+}
+
+.info-title-row .constituency-type.type-gen {
+  background: color-mix(in srgb, var(--ui-text-soft) 12%, var(--ui-surface-soft));
+  color: var(--ui-text);
 }
 
 .stat-card {
@@ -6838,6 +6941,7 @@ body {
   align-items: center;
   gap: 8px;
   width: 100%;
+  position: relative;
 }
 
 .year-dropdown-label {
@@ -6866,6 +6970,54 @@ body {
 .year-dropdown:hover,
 .year-dropdown:focus {
   border-color: var(--ui-accent);
+}
+
+.year-dropdown-native-proxy {
+  display: none;
+}
+
+.year-dropdown-trigger {
+  text-align: left;
+  cursor: pointer;
+}
+
+.year-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow-md);
+  max-height: min(260px, 42vh);
+  overflow-y: auto;
+}
+
+.year-dropdown-option {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--ui-text);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 10px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.year-dropdown-option:hover {
+  background: color-mix(in srgb, var(--ui-surface-soft) 84%, #e0ecff 16%);
+}
+
+.year-dropdown-option.active {
+  background: color-mix(in srgb, var(--ui-accent) 85%, white 15%);
+  color: #ffffff;
 }
 
 .year-chip {
@@ -6958,10 +7110,12 @@ body {
 
 .sidebar-detail-host .election-panel {
   border-color: var(--ui-border);
-  box-shadow: var(--ui-shadow-sm);
+  box-shadow: none;
   overflow: visible;
   overflow-y: visible;
-  border-radius: var(--ui-radius-md);
+  border-radius: 0;
+  border: none;
+  background: transparent;
 }
 
 .sidebar-detail-host .panel-tab-content,
@@ -6974,6 +7128,46 @@ body {
 .sidebar-summary {
   max-height: none;
   overflow: visible;
+}
+
+.sidebar-detail-host .controls-card {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar-detail-host .panel-tab-content {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* Soften detail panel cards and candidate section chrome to blend with pane background. */
+.sidebar-detail-host .winner-card-compact {
+  background: color-mix(in srgb, var(--ui-surface) 94%, #f8fbff 6%);
+  border: 1px solid color-mix(in srgb, var(--ui-border) 80%, transparent);
+  border-left-width: 3px;
+  box-shadow: none;
+}
+
+.sidebar-detail-host .stat-card {
+  background: color-mix(in srgb, var(--ui-surface) 92%, #f8fafc 8%);
+  border-color: color-mix(in srgb, var(--ui-border) 70%, transparent);
+  box-shadow: none;
+}
+
+.sidebar-detail-host .candidates-header {
+  border-bottom: 1px solid color-mix(in srgb, var(--ui-border) 75%, transparent);
+}
+
+.sidebar-detail-host .candidate-row {
+  border-bottom: 1px solid color-mix(in srgb, var(--ui-border) 45%, transparent);
+}
+
+.sidebar-detail-host .candidate-row:last-child {
+  border-bottom: none;
 }
 
 .election-panel-header {
@@ -7006,6 +7200,48 @@ body {
   color: var(--ui-text);
 }
 
+/* Light share-bar inside sidebar: footer was built for navy gradient panel */
+.sidebar-detail-host .share-bar-info {
+  color: var(--ui-text-soft);
+}
+
+.sidebar-detail-host .share-bar-actions .election-panel-btn {
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  border: 1px solid var(--ui-border);
+}
+
+.sidebar-detail-host .share-bar-actions .election-panel-btn:hover {
+  background: color-mix(in srgb, var(--ui-accent) 10%, var(--ui-surface));
+  color: var(--ui-text);
+}
+
+.sidebar-detail-host .election-panel-btn.twitter-btn {
+  color: #1da1f2;
+}
+
+.sidebar-detail-host .election-panel-btn.twitter-btn:hover {
+  background: rgba(29, 161, 242, 0.12);
+  color: #1a8cd8;
+}
+
+.sidebar-detail-host .election-panel-btn.screenshot-btn {
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  border: 1px solid var(--ui-border);
+}
+
+.sidebar-detail-host .election-panel-btn.screenshot-btn:hover {
+  background: color-mix(in srgb, var(--ui-accent) 10%, var(--ui-surface));
+  color: var(--ui-text);
+}
+
+.sidebar-detail-host .election-panel-btn.copied {
+  color: #059669;
+  background: color-mix(in srgb, #10b981 14%, var(--ui-surface));
+  border-color: color-mix(in srgb, #10b981 35%, var(--ui-border));
+}
+
 .candidates-table-full {
   overflow-x: visible;
   border: none;
@@ -7031,12 +7267,9 @@ body {
   overflow-wrap: anywhere;
   word-break: normal;
   white-space: normal;
-  overflow: hidden;
-  text-overflow: initial;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  line-height: 1.2;
+  overflow: visible;
+  text-overflow: unset;
+  line-height: 1.35;
 }
 
 .col-party {
@@ -7095,6 +7328,137 @@ body {
     width: 38px;
     font-size: 0.66rem;
   }
+}
+
+/* -----------------------------------------------------------------------------
+   Embedded sidebar election panel — full names, compact party chips, softer chrome
+   ----------------------------------------------------------------------------- */
+
+.election-panel--embed .col-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.election-panel--embed .col-party {
+  width: auto;
+  min-width: 48px;
+  max-width: 88px;
+  font-size: 0.56rem;
+  font-weight: 600;
+  margin: 0 4px;
+  border-radius: 999px;
+}
+
+.election-panel--embed .candidate-row .col-party {
+  max-width: 92px;
+}
+
+.election-panel--embed .winner-card-compact {
+  border-left-width: 2px;
+  box-shadow: none;
+}
+
+.election-panel--embed .winner-card-compact .winner-party {
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.election-panel--embed .postal-candidates {
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--ui-border) 72%, transparent);
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.election-panel--embed .postal-candidates-header {
+  background: color-mix(in srgb, var(--ui-surface-soft) 88%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--ui-border) 60%, transparent);
+}
+
+.election-panel--embed .postal-candidate-row .col-party {
+  border-radius: 999px;
+  padding: 2px 6px;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.election-panel--embed .booth-candidate-row {
+  border-bottom-color: color-mix(in srgb, var(--ui-border) 55%, transparent);
+}
+
+.election-panel--embed .booth-candidate-row.winner {
+  background: color-mix(in srgb, #ecfdf5 55%, transparent);
+  margin: 0 -8px;
+  padding: 8px 8px;
+  border-radius: 8px;
+}
+
+.election-panel--embed .postal-candidate-row {
+  border-bottom-color: color-mix(in srgb, var(--ui-border) 50%, transparent);
+}
+
+.election-panel--embed .postal-candidate-row.winner {
+  background: color-mix(in srgb, #ecfdf5 50%, transparent);
+}
+
+.election-panel--embed .booth-list-item .col-booth {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  line-height: 1.3;
+}
+
+.election-panel--embed .boothwise-analysis {
+  gap: 14px;
+  padding: 12px 2px;
+}
+
+.election-panel--embed .booth-distribution,
+.election-panel--embed .party-booth-breakdown,
+.election-panel--embed .strike-rate-table,
+.election-panel--embed .analysis-quick-stats-section {
+  background: color-mix(in srgb, var(--ui-surface) 96%, #f8fafc 4%);
+  border: 1px solid color-mix(in srgb, var(--ui-border) 65%, transparent);
+  box-shadow: none;
+}
+
+.election-panel--embed .party-booth-card {
+  border-color: color-mix(in srgb, var(--ui-border) 70%, transparent);
+  box-shadow: none;
+}
+
+.election-panel--embed .section-heading {
+  font-size: 11px;
+  letter-spacing: 0.35px;
+  color: var(--ui-text-muted);
+}
+
+.election-panel--embed .segment-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-shadow: none;
+}
+
+.election-panel--embed .party-tag {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 999px;
+  min-width: 0;
+}
+
+.election-panel--embed .insight-card {
+  background: color-mix(in srgb, var(--ui-surface) 97%, #f8fafc 3%);
+  border-color: color-mix(in srgb, var(--ui-border) 62%, transparent);
+  box-shadow: none;
+}
+
+.election-panel--embed .insight-card:hover {
+  box-shadow: none;
+  border-color: color-mix(in srgb, var(--ui-border) 78%, transparent);
 }
 
 .panel-tab {

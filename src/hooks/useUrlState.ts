@@ -10,19 +10,26 @@ export interface UrlState {
   assembly: string | null;
   year: number | null;
   pcYear: number | null; // Parliament year for AC view (from year=pc-YYYY format)
-  tab: string | null; // Active tab: 'overview', 'candidates', 'booths', 'postal', 'analysis'
+  /** When set, one of `booths` | `postal` | `analysis` (Overview is the default and omits `tab=`) */
+  tab: string | null;
   /** When viewing a specific PC: true = show ACs within PC, false = show PC boundary only */
   showACs: boolean | null;
   blog: boolean; // Whether blog section is open
   blogPost: string | null; // Selected blog post ID (e.g., 'ammk-admk-alliance')
 }
 
+/**
+ * `tab` is optional: omit it to keep the current `tab` query on the same pathname;
+ * pass `null` to remove `tab=`; pass a string to set it.
+ */
+export type UrlUpdateInput = Omit<UrlState, 'tab'> & { tab?: string | null };
+
 /** Hook return type */
 export interface UseUrlStateReturn {
   /** Parse current URL to get state */
   getUrlState: () => UrlState;
   /** Update URL with new state (doesn't trigger navigation) */
-  updateUrl: (state: UrlState) => void;
+  updateUrl: (state: UrlUpdateInput) => void;
   /** Generate a shareable URL */
   getShareableUrl: (state: UrlState) => string;
 }
@@ -58,6 +65,116 @@ function decodePathSegment(segment: string): string {
   return decoded;
 }
 
+function isPersistedElectionTabValue(value: string): value is 'booths' | 'postal' | 'analysis' {
+  return value === 'booths' || value === 'postal' || value === 'analysis';
+}
+
+/** Remove legacy or invalid `tab=` values; keep only booth/postal/analysis sub-views. */
+function stripStaleElectionTabQueryParam(params: URLSearchParams): void {
+  const raw = params.get('tab');
+  if (raw !== null && raw !== '' && !isPersistedElectionTabValue(raw)) {
+    params.delete('tab');
+  }
+}
+
+function buildPathFromUrlState(
+  state: Pick<UrlState, 'state' | 'view' | 'pc' | 'district' | 'assembly'>
+): string {
+  let path = '/';
+
+  if (state.state) {
+    path = `/${encodePathSegment(state.state)}`;
+
+    if (state.pc) {
+      path += `/pc/${encodePathSegment(state.pc)}`;
+      if (state.assembly) {
+        path += `/ac/${encodePathSegment(state.assembly)}`;
+      }
+    } else if (state.district) {
+      path += `/district/${encodePathSegment(state.district)}`;
+      if (state.assembly) {
+        path += `/ac/${encodePathSegment(state.assembly)}`;
+      }
+    } else if (state.view === 'assemblies') {
+      path += '/ac';
+      if (state.assembly) {
+        path += `/${encodePathSegment(state.assembly)}`;
+      }
+    } else if (state.view === 'districts') {
+      path += '/districts';
+    } else if (state.view === 'constituencies') {
+      path += '/pc';
+    }
+  }
+
+  return path;
+}
+
+function applyYearAndScopedQueryParams(params: URLSearchParams, state: UrlUpdateInput): void {
+  if (state.state) {
+    if (state.assembly) {
+      if (state.pcYear) {
+        params.set('year', `pc-${state.pcYear}`);
+      } else if (state.year) {
+        params.set('year', String(state.year));
+      }
+    } else if (state.pc && state.year) {
+      params.set('year', String(state.year));
+    } else if (state.view === 'constituencies' && state.year) {
+      params.set('year', String(state.year));
+    } else if (state.view === 'assemblies') {
+      if (state.pcYear) {
+        params.set('year', `pc-${state.pcYear}`);
+      } else if (state.year) {
+        params.set('year', String(state.year));
+      }
+    } else if (state.view === 'districts') {
+      if (state.pcYear) {
+        params.set('year', `pc-${state.pcYear}`);
+      } else if (state.year) {
+        params.set('year', String(state.year));
+      }
+    }
+  }
+}
+
+/**
+ * Merge canonical navigation query keys from {@link state}.
+ * Caller must clone or create `params` first.
+ */
+function applyCanonicalQueryKeys(params: URLSearchParams, state: UrlUpdateInput): void {
+  params.delete('year');
+  params.delete('showACs');
+  params.delete('blog');
+  params.delete('blogPost');
+
+  applyYearAndScopedQueryParams(params, state);
+
+  if (state.pc != null && state.showACs != null) {
+    params.set('showACs', state.showACs ? 'true' : 'false');
+  }
+
+  if (state.blog) {
+    params.set('blog', 'true');
+    if (state.blogPost) {
+      params.set('blogPost', state.blogPost);
+    }
+  }
+
+  stripStaleElectionTabQueryParam(params);
+
+  const hasExplicitTabProp = Object.prototype.hasOwnProperty.call(state, 'tab');
+
+  if (hasExplicitTabProp) {
+    const t = state.tab;
+    if (t === null || t === undefined || t === '' || t === 'overview' || t === 'candidates') {
+      params.delete('tab');
+    } else {
+      params.set('tab', t);
+    }
+  }
+}
+
 /**
  * Custom hook for managing URL state for deep linking
  * URL format: /[state]/[view]/[pc-or-district]/[assembly]
@@ -80,7 +197,8 @@ export function useUrlState(
   selectedPCYear: number | null,
   onNavigate: (state: UrlState) => void | Promise<void>,
   isDataReady: boolean = true,
-  showACsWithinPC: boolean | null = null
+  showACsWithinPC: boolean | null = null,
+  blogOpen: boolean = false
 ): UseUrlStateReturn {
   const isInitialMount = useRef(true);
   const hasNavigatedFromUrl = useRef(false);
@@ -134,13 +252,9 @@ export function useUrlState(
       }
     }
 
-    // Parse tab from query params
     const tabParam = searchParams.get('tab');
-    if (tabParam) {
-      const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-      if (validTabs.includes(tabParam)) {
-        result.tab = tabParam;
-      }
+    if (tabParam && isPersistedElectionTabValue(tabParam)) {
+      result.tab = tabParam;
     }
 
     // Parse blog from query params
@@ -216,116 +330,36 @@ export function useUrlState(
       result.showACs = true;
     }
 
-    // #region agent log
-    if (result.state && (result.district || result.assembly)) {
-      fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          location: 'useUrlState.ts:getUrlState',
-          message: 'Parsed URL state',
-          data: {
-            state: result.state,
-            view: result.view,
-            district: result.district,
-            assembly: result.assembly,
-            year: result.year,
-            pcYear: result.pcYear,
-            path: typeof window !== 'undefined' ? window.location.pathname : '',
-            search: typeof window !== 'undefined' ? window.location.search : '',
-          },
-          timestamp: Date.now(),
-          sessionId: 'debug-session',
-          hypothesisId: 'B',
-        }),
-      }).catch(() => {});
-    }
-    // #endregion
     return result;
   }, []);
 
   /**
    * Update browser URL without triggering navigation
    */
-  const updateUrl = useCallback((state: UrlState): void => {
-    let path = '/';
+  const updateUrl = useCallback((state: UrlUpdateInput): void => {
+    const path = buildPathFromUrlState(state);
 
-    if (state.state) {
-      path = `/${encodePathSegment(state.state)}`;
+    const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+    const samePath = pathname === path;
+    const params =
+      samePath && typeof window !== 'undefined'
+        ? new URLSearchParams(window.location.search)
+        : new URLSearchParams();
 
-      if (state.pc) {
-        path += `/pc/${encodePathSegment(state.pc)}`;
-        if (state.assembly) {
-          path += `/ac/${encodePathSegment(state.assembly)}`;
-        }
-      } else if (state.district) {
-        path += `/district/${encodePathSegment(state.district)}`;
-        if (state.assembly) {
-          path += `/ac/${encodePathSegment(state.assembly)}`;
-        }
-      } else if (state.view === 'assemblies') {
-        path += '/ac';
-        if (state.assembly) {
-          path += `/${encodePathSegment(state.assembly)}`;
-        }
-      } else if (state.view === 'districts') {
-        path += '/districts';
-      } else if (state.view === 'constituencies') {
-        // Always include /pc for constituencies view (state-level)
-        path += '/pc';
-      }
-    }
-
-    // Add query params for year and tab. When at home (no state), do not add year.
-    const params = new URLSearchParams();
-
-    if (state.state) {
-      if (state.assembly) {
-        if (state.pcYear) {
-          params.set('year', `pc-${state.pcYear}`);
-        } else if (state.year) {
-          params.set('year', String(state.year));
-        }
-      } else if (state.pc && state.year) {
-        params.set('year', String(state.year));
-      } else if (state.view === 'constituencies' && state.year) {
-        params.set('year', String(state.year));
-      } else if (state.view === 'assemblies') {
-        if (state.pcYear) {
-          params.set('year', `pc-${state.pcYear}`);
-        } else if (state.year) {
-          params.set('year', String(state.year));
-        }
-      } else if (state.view === 'districts') {
-        if (state.pcYear) {
-          params.set('year', `pc-${state.pcYear}`);
-        } else if (state.year) {
-          params.set('year', String(state.year));
-        }
-      }
-    }
-
-    if (state.tab) {
-      params.set('tab', state.tab);
-    }
-
-    if (state.pc != null && state.showACs != null) {
-      params.set('showACs', state.showACs ? 'true' : 'false');
-    }
-
-    if (state.blog) {
-      params.set('blog', 'true');
-      if (state.blogPost) {
-        params.set('blogPost', state.blogPost);
-      }
-    }
+    applyCanonicalQueryKeys(params, state);
 
     const fullPath = params.toString() ? `${path}?${params.toString()}` : path;
 
-    // Only update if path changed
     if (fullPath !== lastUrl.current) {
       lastUrl.current = fullPath;
-      window.history.pushState({ ...state }, '', fullPath);
+      const historySnapshot: UrlState = {
+        ...(state as UrlState),
+        tab: params.get('tab'),
+        blog: params.get('blog') === 'true' || Boolean(params.get('blogPost')),
+        blogPost: params.get('blogPost'),
+      };
+      const pathChanged = path !== pathname;
+      window.history[pathChanged ? 'pushState' : 'replaceState'](historySnapshot, '', fullPath);
     }
   }, []);
 
@@ -334,64 +368,15 @@ export function useUrlState(
    */
   const getShareableUrl = useCallback((state: UrlState): string => {
     const base = window.location.origin;
-    let path = '/';
+    let path = buildPathFromUrlState(state);
 
-    if (state.state) {
-      path = `/${encodePathSegment(state.state)}`;
-
-      if (state.pc) {
-        path += `/pc/${encodePathSegment(state.pc)}`;
-        if (state.assembly) {
-          path += `/ac/${encodePathSegment(state.assembly)}`;
-        }
-      } else if (state.district) {
-        path += `/district/${encodePathSegment(state.district)}`;
-        if (state.assembly) {
-          path += `/ac/${encodePathSegment(state.assembly)}`;
-        }
-      } else if (state.view === 'assemblies') {
-        path += '/ac';
-        if (state.assembly) {
-          path += `/${encodePathSegment(state.assembly)}`;
-        }
-      } else if (state.view === 'districts') {
-        path += '/districts';
-      } else if (state.view === 'constituencies') {
-        // Always include /pc for constituencies view (state-level)
-        path += '/pc';
-      }
-    }
-
-    // Add query params for year and tab. When at home (no state), do not add year.
     const params = new URLSearchParams();
 
     if (state.state) {
-      if (state.assembly) {
-        if (state.pcYear) {
-          params.set('year', `pc-${state.pcYear}`);
-        } else if (state.year) {
-          params.set('year', String(state.year));
-        }
-      } else if (state.pc && state.year) {
-        params.set('year', String(state.year));
-      } else if (state.view === 'constituencies' && state.year) {
-        params.set('year', String(state.year));
-      } else if (state.view === 'assemblies') {
-        if (state.pcYear) {
-          params.set('year', `pc-${state.pcYear}`);
-        } else if (state.year) {
-          params.set('year', String(state.year));
-        }
-      } else if (state.view === 'districts') {
-        if (state.pcYear) {
-          params.set('year', `pc-${state.pcYear}`);
-        } else if (state.year) {
-          params.set('year', String(state.year));
-        }
-      }
+      applyYearAndScopedQueryParams(params, state);
     }
 
-    if (state.tab) {
+    if (state.tab && isPersistedElectionTabValue(state.tab)) {
       params.set('tab', state.tab);
     }
 
@@ -417,27 +402,6 @@ export function useUrlState(
   useEffect(() => {
     if (isDataReady && !hasNavigatedFromUrl.current) {
       const urlState = getUrlState();
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          location: 'useUrlState.ts:initialNav',
-          message: 'About to call handleUrlNavigate',
-          data: {
-            hasNavigatedFromUrl: hasNavigatedFromUrl.current,
-            isDataReady,
-            urlStateYear: urlState.year,
-            urlStatePcYear: urlState.pcYear,
-            urlStateDistrict: urlState.district,
-            urlStateAssembly: urlState.assembly,
-          },
-          timestamp: Date.now(),
-          sessionId: 'debug-session',
-          hypothesisId: 'D',
-        }),
-      }).catch(() => {});
-      // #endregion
       // Only navigate if URL has state info
       if (urlState.state) {
         // Mark that we're processing URL navigation to prevent URL updates during this time
@@ -466,13 +430,10 @@ export function useUrlState(
   useEffect(() => {
     // Don't update URL during initial mount or while processing URL-based navigation
     if (!isInitialMount.current && !isProcessingUrlNavigation.current) {
-      // Preserve tab from current URL when updating
-      const currentTab =
-        typeof window !== 'undefined'
-          ? new URLSearchParams(window.location.search).get('tab')
-          : null;
-      const validTabs = ['overview', 'candidates', 'booths', 'postal', 'analysis'];
-      const preservedTab = currentTab && validTabs.includes(currentTab) ? currentTab : null;
+      const searchParams =
+        typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+      const blogPostToSync =
+        blogOpen && searchParams?.get('blogPost') ? searchParams.get('blogPost') : null;
 
       // When at home (no state), do not add year to URL — home is always clean root
       const atHome = !currentState;
@@ -517,10 +478,9 @@ export function useUrlState(
         assembly: currentAssembly,
         year: yearToUse,
         pcYear: pcYearToUse,
-        tab: preservedTab, // Preserve tab from current URL
         showACs: currentPC ? (showACsWithinPC ?? true) : null,
-        blog: false, // Blog is managed in App component
-        blogPost: null,
+        blog: blogOpen,
+        blogPost: blogPostToSync,
       });
     }
   }, [
@@ -532,6 +492,7 @@ export function useUrlState(
     selectedYear,
     selectedPCYear,
     showACsWithinPC,
+    blogOpen,
     updateUrl,
   ]);
 
