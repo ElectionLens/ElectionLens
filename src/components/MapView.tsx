@@ -25,7 +25,7 @@ const NEUTRAL_MAP_STYLE: L.PathOptions = {
   weight: 1,
   opacity: 1,
 };
-const DIMMED_MAP_OPACITY = 0.2;
+import { mergeDimmedNonFocusStyle } from '../utils/mapDimming';
 
 import { clearAllCache } from '../utils/db';
 import { getPartyColor } from '../utils/partyData';
@@ -2081,11 +2081,11 @@ export function MapView({
         opacity: 0.85,
       };
       if (!feature) {
-        return {
+        return mergeDimmedNonFocusStyle({
           ...base,
           fillColor: NEUTRAL_MAP_STYLE.fillColor!,
           color: NEUTRAL_MAP_STYLE.color!,
-        };
+        });
       }
       const props = feature.properties as ConstituencyProperties;
       const pcName = (props.ls_seat_name ?? props.PC_NAME ?? '').trim();
@@ -2101,9 +2101,13 @@ export function MapView({
           (backgroundPCWinners[pcName.toUpperCase()] ??
             effectiveConstituencyWinners[pcName.toUpperCase()]));
       if (winner) {
-        return { ...base, fillColor: getPartyColor(winner.party ?? '') };
+        return mergeDimmedNonFocusStyle({ ...base, fillColor: getPartyColor(winner.party ?? '') });
       }
-      return { ...base, fillColor: NEUTRAL_MAP_STYLE.fillColor!, color: NEUTRAL_MAP_STYLE.color! };
+      return mergeDimmedNonFocusStyle({
+        ...base,
+        fillColor: NEUTRAL_MAP_STYLE.fillColor!,
+        color: NEUTRAL_MAP_STYLE.color!,
+      });
     },
     [backgroundPCWinners, effectiveConstituencyWinners]
   );
@@ -2242,14 +2246,14 @@ export function MapView({
         color: NEUTRAL_MAP_STYLE.color!,
       };
       if (suppressAssemblyFilePartyMapColors) {
-        return neutral;
+        return mergeDimmedNonFocusStyle(neutral);
       }
       if (!feature || !currentState || Object.keys(districtWinners).length === 0) {
-        return neutral;
+        return mergeDimmedNonFocusStyle(neutral);
       }
       const props = feature.properties as DistrictProperties;
       const districtName = (props.district ?? props.NAME ?? props.DISTRICT ?? '').trim();
-      if (!districtName) return neutral;
+      if (!districtName) return mergeDimmedNonFocusStyle(neutral);
       const stateId = getStateId(currentState);
       const districtId = resolveDistrictName(districtName, stateId);
       let party = districtId ? districtWinners[districtId] : undefined;
@@ -2273,9 +2277,9 @@ export function MapView({
         }
       }
       if (party) {
-        return { ...base, fillColor: getPartyColor(party) };
+        return mergeDimmedNonFocusStyle({ ...base, fillColor: getPartyColor(party) });
       }
-      return neutral;
+      return mergeDimmedNonFocusStyle(neutral);
     },
     [
       currentState,
@@ -2787,12 +2791,21 @@ export function MapView({
           assemblyLayerMapSummary &&
           (!asmWinner || asmWinner.party !== selectedSummaryParty)
         ) {
-          baseStyle = {
-            ...baseStyle,
-            fillOpacity: DIMMED_MAP_OPACITY,
-            opacity: 0.75,
-            color: '#94a3b8',
-          };
+          baseStyle = mergeDimmedNonFocusStyle(baseStyle);
+        }
+        if (selectedAssembly) {
+          const asmFocusSelected = isAssemblyFeatureSelected({
+            selectedAssembly,
+            selectedConstituencyNo: electionResult?.constituencyNo,
+            selectedSchemaId: electionResult?.schemaId ?? '',
+            featureName: asmProps.AC_NAME,
+            featureSchemaId: asmProps.schemaId,
+            featureACNo: asmProps.AC_NO,
+            assemblyNameCounts,
+          });
+          if (!asmFocusSelected) {
+            baseStyle = mergeDimmedNonFocusStyle(baseStyle);
+          }
         }
       } else if (feature && level === 'constituencies') {
         const pcProps = feature.properties as ConstituencyProperties;
@@ -2815,12 +2828,7 @@ export function MapView({
           parliamentLayerMapSummary &&
           (!pcWinner || pcWinner.party !== selectedSummaryParty)
         ) {
-          baseStyle = {
-            ...baseStyle,
-            fillOpacity: DIMMED_MAP_OPACITY,
-            opacity: 0.75,
-            color: '#94a3b8',
-          };
+          baseStyle = mergeDimmedNonFocusStyle(baseStyle);
         }
       }
 
