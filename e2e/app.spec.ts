@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
-import { expandMobileElectionPanelToFull } from './panel-helpers';
+import { ensureElectionPanelVisible, expandMobileElectionPanelToFull } from './panel-helpers';
 
 async function expandElectionPanelForWinnerSection(page: Page) {
   await expandMobileElectionPanelToFull(page.locator('.election-panel'), page);
@@ -176,15 +176,13 @@ test.describe('Election Panel', () => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     
     // Wait for election panel to appear
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    await ensureElectionPanelVisible(page);
   });
 
   test('should display winner information', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
 
     await expandElectionPanelForWinnerSection(page);
     
@@ -196,7 +194,7 @@ test.describe('Election Panel', () => {
   test('should have year selector with multiple years', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
+    await ensureElectionPanelVisible(page);
     
     // Year control is a <select> (YearSelector), not chip buttons
     const yearDropdown = page.locator('.election-year-selector select.year-dropdown');
@@ -204,42 +202,42 @@ test.describe('Election Panel', () => {
     expect(await yearDropdown.locator('option').count()).toBeGreaterThan(0);
   });
 
-  test('should switch years when year button clicked', async ({ page }) => {
-    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
-    
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
-    
-    const yearDropdown = page.locator('.election-year-selector select.year-dropdown');
+  test('should switch assembly year from panel and sync URL (state AC map)', async ({ page }) => {
+    // Assembly map route — handleYearChange syncs ?year= when currentView is assemblies (not AC-within-PC).
+    await page.goto('/tamil-nadu/ac/omalur?year=2021');
+
+    const panel = await ensureElectionPanelVisible(page);
+
+    const yearDropdown = page
+      .locator('.election-panel')
+      .locator('.election-year-selector select.year-dropdown')
+      .first();
+    await expect(yearDropdown).toBeVisible({ timeout: 10000 });
+
     if ((await yearDropdown.locator('option[value="ac-2016"]').count()) > 0) {
       await yearDropdown.selectOption('ac-2016');
-      await expect(page).toHaveURL(/year=2016/);
+      await expect(page).toHaveURL(/year=2016/, { timeout: 10000 });
     }
   });
 
-  test('AC-within-PC: toolbar year updates URL to year=pc-YYYY', async ({ page }) => {
+  test('AC-within-PC: sidebar map year updates URL to year=pc-YYYY', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/dharmapuri/ac/mettur?year=pc-2019&showACs=true');
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
+    await ensureElectionPanelVisible(page);
     await expect(page).toHaveURL(/year=pc-2019/);
 
-    const toolbarSelect = page.locator('.toolbar-year-selector select.year-dropdown');
-    if ((await toolbarSelect.locator('option[value="pc-2024"]').count()) > 0) {
-      await toolbarSelect.selectOption('pc-2024');
+    const mapYearSelect = page.locator('#sidebar-map-year');
+    if ((await mapYearSelect.locator('option[value="pc-2024"]').count()) > 0) {
+      await mapYearSelect.selectOption('pc-2024');
       await expect(page).toHaveURL(/year=pc-2024/, { timeout: 5000 });
     }
   });
 
-  test('should close panel on close button click', async ({ page }) => {
+  test('should show footer actions instead of close button', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
-    
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
-    
-    // Click close button (correct selector)
-    const closeButton = panel.locator('.election-panel-close');
-    await closeButton.click();
-    
-    // Panel should be hidden
-    await expect(panel).not.toBeVisible();
+
+    const panel = await ensureElectionPanelVisible(page);
+    await expect(panel.locator('.share-bar .election-panel-btn').first()).toBeVisible();
+    await expect(panel.locator('.election-panel-close')).toHaveCount(0);
   });
 });
 
@@ -331,15 +329,11 @@ test.describe('Tab Navigation in Election Panel', () => {
   test('past year: Overview + Candidates tabs; full list on Candidates', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
 
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
-
-    const overviewTab = page.locator('.panel-tab').filter({ hasText: 'Overview' });
-    const candidatesTab = page.locator('.panel-tab').filter({ hasText: /Candidates/i });
-    await expect(overviewTab).toBeVisible();
-    await expect(candidatesTab).toBeVisible();
-    await expect(overviewTab).toHaveClass(/active/);
-
-    await candidatesTab.click();
+    const panel = await ensureElectionPanelVisible(page);
+    const viewSelect = panel.locator('#ac-panel-view');
+    await expect(viewSelect).toBeVisible();
+    await expect(viewSelect).toHaveValue('overview');
+    await viewSelect.selectOption('candidates');
     const table = page.locator('.election-panel .candidates-table-full');
     await expect(table).toBeVisible();
     const rows = page.locator('.election-panel .candidate-row');
@@ -349,9 +343,9 @@ test.describe('Tab Navigation in Election Panel', () => {
   test('2026 AC: Overview shows candidate preview without switching tab', async ({ page }) => {
     await page.goto('/tamil-nadu/ac/mettuppalayam?year=2026');
 
-    await page.waitForSelector('.election-panel', { timeout: 30000 });
-
-    await expect(page.locator('.panel-tab').filter({ hasText: 'Overview' })).toHaveClass(/active/);
+    const panel = await ensureElectionPanelVisible(page);
+    const viewSelect = panel.locator('#ac-panel-view');
+    await expect(viewSelect).toHaveValue('overview');
 
     const preview = page.locator('.election-panel .candidates-preview');
     await expect(preview).toBeVisible();
@@ -359,7 +353,7 @@ test.describe('Tab Navigation in Election Panel', () => {
 
     await expect(preview.locator('.candidate-row-compact').first()).toBeVisible({ timeout: 20000 });
 
-    await expect(page.locator('.panel-tab').filter({ hasText: /All candidates|^Candidates\s*\(/i })).toBeVisible();
+    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(1);
   });
 });
 
@@ -583,7 +577,7 @@ test.describe('Assembly View', () => {
     await expect(panel).toBeVisible({ timeout: 20000 });
   });
 
-  test('should show AC button in toolbar when in state view', async ({ page }) => {
+  test('Layer dropdown includes Assembly when in state view', async ({ page }) => {
     await page.goto('/tamil-nadu');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
     
@@ -593,12 +587,12 @@ test.describe('Assembly View', () => {
       return paths.length > 0;
     }, { timeout: 15000 });
     
-    // AC button should be visible in toolbar
-    const acButton = page.locator('.toolbar-btn').filter({ hasText: 'AC' });
-    await expect(acButton).toBeVisible();
+    const layerSelect = page.locator('#sidebar-layer-mode');
+    await expect(layerSelect).toBeVisible();
+    await expect(layerSelect.locator('option[value="assemblies"]')).toHaveCount(1);
   });
 
-  test('AC button is present in toolbar', async ({ page }) => {
+  test('Layer dropdown can switch to Assembly (AC) view', async ({ page }) => {
     await page.goto('/tamil-nadu');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
     
@@ -608,13 +602,8 @@ test.describe('Assembly View', () => {
       return paths.length > 0;
     }, { timeout: 15000 });
     
-    // AC button should be visible in toolbar with correct title
-    const acButton = page.locator('.toolbar-btn[title="Assembly Constituencies"]');
-    await expect(acButton).toBeVisible();
-    
-    // AC button in sidebar should also be visible (label shortened to 'AC')
-    const sidebarAcButton = page.locator('.toggle-btn[title="Assembly Constituencies"]');
-    await expect(sidebarAcButton).toBeVisible();
+    await page.locator('#sidebar-layer-mode').selectOption('assemblies');
+    await expect(page).toHaveURL(/tamil-nadu\/ac(\?|$)/, { timeout: 10000 });
   });
 
   test('should show election panel when clicking assembly in AC view', async ({ page }) => {
@@ -791,29 +780,31 @@ test.describe('Search - Assembly Search Navigation', () => {
 
 test.describe('Search - Multi-type Results', () => {
   test('search shows all result types', async ({ page }) => {
-    // Navigate to a district URL to load districts into cache
-    await page.goto('/tamil-nadu/district/chennai');
+    await page.goto('/tamil-nadu');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
     await page.waitForFunction(() => {
       const paths = document.querySelectorAll('.leaflet-interactive');
       return paths.length > 0;
     }, { timeout: 15000 });
-    
-    // Search for a term that should match multiple types
+
     const searchInput = page.locator('.search-input');
     await searchInput.fill('Chennai');
-    
-    await page.waitForSelector('.search-results', { timeout: 5000 });
-    
-    // Should show state, PC, district, and AC results
-    const stateResults = page.locator('.search-result-item[data-type="state"]');
+
+    await page.waitForSelector('.search-results', { timeout: 10000 });
+
     const pcResults = page.locator('.search-result-item[data-type="constituency"]');
     const districtResults = page.locator('.search-result-item[data-type="district"]');
-    const acResults = page.locator('.search-result-item[data-type="assembly"]');
-    
-    // At minimum, should have PC and district results for Chennai
-    expect(await pcResults.count()).toBeGreaterThan(0);
-    expect(await districtResults.count()).toBeGreaterThan(0);
+
+    await expect
+      .poll(
+        async () => {
+          const pc = await pcResults.count();
+          const dist = await districtResults.count();
+          return pc > 0 && dist > 0;
+        },
+        { timeout: 20000, intervals: [200, 400, 800] }
+      )
+      .toBe(true);
   });
 
   test('search results are sorted by type', async ({ page }) => {

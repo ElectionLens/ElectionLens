@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import {
   Map,
   Building2,
@@ -14,8 +14,16 @@ import {
 import { normalizeName, getFeatureColor } from '../utils/helpers';
 import { getPartyColor, getPartyShortName } from '../utils/partyData';
 import { SearchBox } from './SearchBox';
+import { YearSelector, type YearOption } from './YearSelector';
+import { buildMapYearDropdownOptions } from '../utils/mapYearOptions';
+import { buildAcPanelPlaceholder } from '../utils/acPanelPlaceholder';
+import { ElectionResultPanel } from './ElectionResultPanel';
+import { PCElectionResultPanel } from './PCElectionResultPanel';
+import { useBoothData } from '../hooks/useBoothData';
 import type {
+  ACElectionResult,
   InfoPanelContent,
+  PCElectionResult,
   StateFeature,
   DistrictFeature,
   ConstituencyFeature,
@@ -76,13 +84,58 @@ interface SidebarProps {
   onBlogClick?: () => void;
   selectedSummaryParty?: string | null;
   onSummaryPartyChange?: (party: string | null) => void;
-  summaryPartyOptions?: string[];
   stateSummaryData?: StateSummaryPanelData | null;
+  electionResult?: ACElectionResult | null;
+  acResultsLoading?: boolean;
+  acResultsLoadError?: string | null;
+  shareUrl?: string | undefined;
+  parliamentContributions?: Record<
+    number,
+    {
+      pcName: string;
+      year: number;
+      candidates: Array<{
+        name: string;
+        party: string;
+        votes: number;
+        voteShare: number;
+        position: number;
+      }>;
+      validVotes: number;
+    }
+  >;
+  pcContributionShareUrl?: string | undefined;
+  pcElectionResult?: PCElectionResult | null;
+  pcShareUrl?: string | undefined;
+  onCloseElectionPanel?: () => void;
+  onClosePCElectionPanel?: () => void;
+  /** Map toolbar controls moved into sidebar */
+  selectedAssembly?: string | null;
+  availableYears?: number[];
+  selectedYear?: number | null;
+  availablePCYears?: number[];
+  selectedACPCYear?: number | null;
+  pcAvailableYears?: number[];
+  pcSelectedYear?: number | null;
+  onYearChange?: (year: number) => void;
+  onACPCYearChange?: (year: number | null) => void;
+  onPCYearChange?: (year: number) => void;
+  showACsWithinPC?: boolean;
+  onShowACsWithinPCChange?: (show: boolean) => void;
 }
 
 /** Extended CSS properties to allow custom CSS variables */
 interface ExtendedCSSProperties extends CSSProperties {
   '--item-color'?: string;
+}
+
+type SidebarTab = 'list' | 'seats' | 'votes';
+
+function getSidebarTabFromUrl(): SidebarTab {
+  if (typeof window === 'undefined') return 'list';
+  const value = new URLSearchParams(window.location.search).get('summaryView');
+  if (value === 'constituencies' || value === 'constituecies') return 'list';
+  return value === 'seats' || value === 'votes' || value === 'list' ? value : 'list';
 }
 
 /**
@@ -119,26 +172,200 @@ export function Sidebar({
   onBlogClick,
   selectedSummaryParty = null,
   onSummaryPartyChange,
-  summaryPartyOptions = [],
   stateSummaryData = null,
+  electionResult = null,
+  acResultsLoading = false,
+  acResultsLoadError = null,
+  shareUrl,
+  parliamentContributions,
+  pcContributionShareUrl,
+  pcElectionResult = null,
+  pcShareUrl,
+  onCloseElectionPanel,
+  onClosePCElectionPanel,
+  selectedAssembly = null,
+  availableYears = [],
+  selectedYear = null,
+  availablePCYears = [],
+  selectedACPCYear = null,
+  pcAvailableYears = [],
+  pcSelectedYear = null,
+  onYearChange,
+  onACPCYearChange,
+  onPCYearChange,
+  showACsWithinPC = true,
+  onShowACsWithinPCChange,
 }: SidebarProps): JSX.Element {
+  const { boothResults, boothsWithResults, loadBoothData, loadBoothResults } = useBoothData();
+
+  useEffect(() => {
+    if (!electionResult?.schemaId?.startsWith('TN-')) return;
+    const yearToLoad = selectedACPCYear ?? selectedYear ?? electionResult.year;
+    if (!yearToLoad) return;
+    void loadBoothData('TN', electionResult.schemaId, yearToLoad);
+  }, [
+    electionResult?.schemaId,
+    electionResult?.year,
+    selectedACPCYear,
+    selectedYear,
+    loadBoothData,
+  ]);
+
+  useEffect(() => {
+    if (!electionResult?.schemaId?.startsWith('TN-')) return;
+    const yearToLoad = selectedACPCYear ?? selectedYear ?? electionResult.year;
+    if (!yearToLoad) return;
+    void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
+  }, [
+    electionResult?.schemaId,
+    electionResult?.year,
+    selectedACPCYear,
+    selectedYear,
+    loadBoothResults,
+  ]);
+
   const [copied, setCopied] = useState(false);
-  const [sidebarTab, setSidebarTab] = useState<'list' | 'summary'>('list');
+  const [sidebarTab, setSidebarTab] = useState<SidebarTab>(() => getSidebarTabFromUrl());
   const displayState = currentState ? normalizeName(currentState) : null;
 
   useEffect(() => {
     if (stateSummaryData) {
-      setSidebarTab('summary');
+      const tabFromUrl = getSidebarTabFromUrl();
+      setSidebarTab(tabFromUrl === 'votes' ? 'votes' : 'seats');
     } else {
       setSidebarTab('list');
     }
   }, [stateSummaryData]);
+
+  useEffect(() => {
+    const handlePopState = (): void => {
+      const tabFromUrl = getSidebarTabFromUrl();
+      setSidebarTab(tabFromUrl);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const searchParams = new URLSearchParams(window.location.search);
+    const currentSummaryView = searchParams.get('summaryView');
+
+    if (!stateSummaryData) {
+      if (!currentSummaryView) return;
+      searchParams.delete('summaryView');
+    } else if (sidebarTab === 'list') {
+      if (currentSummaryView !== 'constituencies') {
+        searchParams.set('summaryView', 'constituencies');
+      } else {
+        return;
+      }
+    } else if (currentSummaryView !== sidebarTab) {
+      searchParams.set('summaryView', sidebarTab);
+    } else {
+      return;
+    }
+
+    const newUrl = searchParams.toString()
+      ? `${window.location.pathname}?${searchParams.toString()}`
+      : window.location.pathname;
+    window.history.replaceState({}, '', newUrl);
+  }, [sidebarTab, stateSummaryData]);
 
   const handleShareClick = useCallback(() => {
     onShare();
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }, [onShare]);
+
+  const sidebarLayerOptions = useMemo<YearOption[]>(
+    () => [
+      {
+        id: 'constituencies',
+        label: 'Parliament (PC)',
+        title: 'Parliamentary constituencies',
+        isActive: currentView === 'constituencies',
+        onClick: () => onSwitchView('constituencies'),
+      },
+      {
+        id: 'districts',
+        label: 'Districts',
+        title: 'District boundaries',
+        isActive: currentView === 'districts',
+        onClick: () => onSwitchView('districts'),
+      },
+      {
+        id: 'assemblies',
+        label: 'Assembly (AC)',
+        title: 'Assembly constituencies',
+        isActive: currentView === 'assemblies',
+        onClick: () => onSwitchView('assemblies'),
+      },
+    ],
+    [currentView, onSwitchView]
+  );
+
+  const mapYearOptions = useMemo(
+    () =>
+      buildMapYearDropdownOptions({
+        currentView,
+        showACCheckbox: Boolean(currentPC),
+        selectedAssembly,
+        availableYears,
+        selectedYear,
+        availablePCYears,
+        selectedPCYear: selectedACPCYear,
+        pcAvailableYears,
+        pcSelectedYear,
+        ...(onYearChange ? { onYearChange } : {}),
+        ...(onACPCYearChange ? { onPCYearChange: onACPCYearChange } : {}),
+        ...(onPCYearChange ? { onPCYearChangeForPC: onPCYearChange } : {}),
+      }),
+    [
+      currentView,
+      currentPC,
+      selectedAssembly,
+      availableYears,
+      selectedYear,
+      availablePCYears,
+      selectedACPCYear,
+      pcAvailableYears,
+      pcSelectedYear,
+      onYearChange,
+      onACPCYearChange,
+      onPCYearChange,
+    ]
+  );
+
+  const sidebarPanelViewOptions = useMemo<YearOption[]>(() => {
+    return [
+      {
+        id: 'list',
+        label: 'Constituencies',
+        isActive: sidebarTab === 'list',
+        onClick: () => {
+          setSidebarTab('list');
+        },
+      },
+      {
+        id: 'seats',
+        label: 'Seats won',
+        isActive: sidebarTab === 'seats',
+        onClick: () => {
+          setSidebarTab('seats');
+        },
+      },
+      {
+        id: 'votes',
+        label: 'Vote share',
+        isActive: sidebarTab === 'votes',
+        onClick: () => {
+          setSidebarTab('votes');
+        },
+      },
+    ];
+  }, [sidebarTab]);
 
   /**
    * Determine what to show in info panel based on current navigation
@@ -193,6 +420,12 @@ export function Sidebar({
     if (!Number.isFinite(num)) return '—';
     return Math.round(num).toLocaleString('en-IN');
   };
+
+  const acPanelPlaceholderResult = useMemo(() => {
+    if (!selectedAssembly || currentView !== 'assemblies') return null;
+    const y = selectedYear ?? new Date().getFullYear();
+    return buildAcPanelPlaceholder(selectedAssembly, y);
+  }, [selectedAssembly, selectedYear, currentView]);
 
   /**
    * Render breadcrumb navigation
@@ -565,42 +798,31 @@ export function Sidebar({
     return null;
   };
 
-  const renderSummary = (): ReactNode => {
+  const summaryFooter = (): ReactNode => {
     if (!stateSummaryData) return null;
-
     return (
-      <div className="sidebar-summary">
-        <div className="sidebar-summary-subtitle">{stateSummaryData.subtitle}</div>
+      <div className="share-bar state-map-summary-footer">
+        <div className="share-bar-info">
+          <span className="district-label">
+            {stateSummaryData.constituenciesCounted} {stateSummaryData.seatUnitLabel} counted
+            {stateSummaryData.totalValidVotes > 0
+              ? ` · ${formatIn(stateSummaryData.totalValidVotes)} valid votes`
+              : ''}
+          </span>
+        </div>
+      </div>
+    );
+  };
 
-        {summaryPartyOptions.length > 0 && (
-          <div className="summary-party-tabs" aria-label="Map party filter">
-            <button
-              type="button"
-              className={`summary-party-tab ${!selectedSummaryParty ? 'active' : ''}`}
-              onClick={() => onSummaryPartyChange?.(null)}
-            >
-              All
-            </button>
-            {summaryPartyOptions.map((party) => (
-              <button
-                key={party}
-                type="button"
-                className={`summary-party-tab ${selectedSummaryParty === party ? 'active' : ''}`}
-                onClick={() =>
-                  onSummaryPartyChange?.(selectedSummaryParty === party ? null : party)
-                }
-                title={party}
-              >
-                {getPartyShortName(party)}
-              </button>
-            ))}
-          </div>
-        )}
-
+  const renderSummarySeats = (): ReactNode => {
+    if (!stateSummaryData) return null;
+    return (
+      <div
+        className="sidebar-summary"
+        data-summary-variant={stateSummaryData.variant}
+        data-summary-pane="seats"
+      >
         <div className="state-map-summary-section">
-          <h4 className="state-map-summary-heading">
-            Seats won ({stateSummaryData.seatUnitLabel})
-          </h4>
           {stateSummaryData.suppressSummaryMessage ? (
             <p className="state-map-summary-muted">{stateSummaryData.suppressSummaryMessage}</p>
           ) : stateSummaryData.seatRows.length === 0 ? (
@@ -609,15 +831,27 @@ export function Sidebar({
             <ul className="state-map-summary-list">
               {stateSummaryData.seatRows.map((row) => {
                 const col = getPartyColor(row.party);
+                const isSelected = selectedSummaryParty === row.party;
                 return (
-                  <li key={row.party} className="state-map-summary-row">
+                  <li
+                    key={row.party}
+                    className={`state-map-summary-row ${isSelected ? 'is-selected' : ''}`}
+                  >
                     <span
                       className="state-map-summary-swatch"
                       style={{ backgroundColor: col, boxShadow: `0 0 0 1px ${col}40` }}
                     />
-                    <span className="state-map-summary-party" title={row.party}>
-                      {getPartyShortName(row.party)}
-                    </span>
+                    <button
+                      type="button"
+                      className="state-map-summary-party-link"
+                      title={`Filter map by ${row.party}`}
+                      onClick={() => onSummaryPartyChange?.(isSelected ? null : row.party)}
+                      {...(onSummaryPartyChange && { 'aria-pressed': isSelected })}
+                    >
+                      <span className="state-map-summary-party" title={row.party}>
+                        {getPartyShortName(row.party)}
+                      </span>
+                    </button>
                     <span className="state-map-summary-value">{row.seats}</span>
                   </li>
                 );
@@ -626,10 +860,20 @@ export function Sidebar({
           )}
         </div>
 
+        {summaryFooter()}
+      </div>
+    );
+  };
+
+  const renderSummaryVotes = (): ReactNode => {
+    if (!stateSummaryData) return null;
+    return (
+      <div
+        className="sidebar-summary"
+        data-summary-variant={stateSummaryData.variant}
+        data-summary-pane="votes"
+      >
         <div className="state-map-summary-section">
-          <h4 className="state-map-summary-heading">
-            Vote share ({stateSummaryData.variant === 'parliament' ? 'state' : 'statewide'})
-          </h4>
           {!stateSummaryData.voteRows?.length ? (
             <p className="state-map-summary-muted">
               {stateSummaryData.suppressSummaryMessage ??
@@ -639,15 +883,27 @@ export function Sidebar({
             <ul className="state-map-summary-list">
               {stateSummaryData.voteRows.map((row) => {
                 const col = getPartyColor(row.party);
+                const isSelected = selectedSummaryParty === row.party;
                 return (
-                  <li key={row.party} className="state-map-summary-row">
+                  <li
+                    key={row.party}
+                    className={`state-map-summary-row ${isSelected ? 'is-selected' : ''}`}
+                  >
                     <span
                       className="state-map-summary-swatch"
                       style={{ backgroundColor: col, boxShadow: `0 0 0 1px ${col}40` }}
                     />
-                    <span className="state-map-summary-party" title={row.party}>
-                      {getPartyShortName(row.party)}
-                    </span>
+                    <button
+                      type="button"
+                      className="state-map-summary-party-link"
+                      title={`Filter map by ${row.party}`}
+                      onClick={() => onSummaryPartyChange?.(isSelected ? null : row.party)}
+                      {...(onSummaryPartyChange && { 'aria-pressed': isSelected })}
+                    >
+                      <span className="state-map-summary-party" title={row.party}>
+                        {getPartyShortName(row.party)}
+                      </span>
+                    </button>
                     <span className="state-map-summary-votepct">
                       {row.pct.toFixed(1)}%
                       <span className="state-map-summary-voteabs"> ({formatIn(row.votes)})</span>
@@ -659,43 +915,88 @@ export function Sidebar({
           )}
         </div>
 
-        <div className="share-bar state-map-summary-footer">
-          <div className="share-bar-info">
-            <span className="district-label">
-              {stateSummaryData.constituenciesCounted} {stateSummaryData.seatUnitLabel} counted
-              {stateSummaryData.totalValidVotes > 0
-                ? ` · ${formatIn(stateSummaryData.totalValidVotes)} valid votes`
-                : ''}
-            </span>
-          </div>
-        </div>
+        {summaryFooter()}
       </div>
     );
   };
 
-  // Show view toggle only when state is selected and not in assembly view
-  const showViewToggle = currentState && !currentPC && !currentDistrict;
+  const renderDetailPanel = (): ReactNode => {
+    if (showACDetailPanel) {
+      return (
+        <div className="sidebar-detail-host">
+          <ElectionResultPanel
+            result={electionResult ?? acPanelPlaceholderResult!}
+            onClose={onCloseElectionPanel!}
+            shareUrl={shareUrl}
+            stateName={currentState ?? undefined}
+            availableYears={availableYears}
+            selectedYear={selectedYear ?? undefined}
+            onYearChange={onYearChange}
+            parliamentContributions={parliamentContributions}
+            availablePCYears={availablePCYears}
+            selectedPCYear={selectedACPCYear}
+            onPCYearChange={onACPCYearChange}
+            pcContributionShareUrl={pcContributionShareUrl}
+            boothResults={boothResults}
+            boothsWithResults={boothsWithResults}
+            acResultsLoading={!electionResult && acResultsLoading}
+            acResultsLoadError={!electionResult ? acResultsLoadError : null}
+          />
+        </div>
+      );
+    }
+    if (showPCDetailPanel) {
+      return (
+        <div className="sidebar-detail-host">
+          <PCElectionResultPanel
+            result={pcElectionResult!}
+            onClose={onClosePCElectionPanel!}
+            shareUrl={pcShareUrl}
+            stateName={currentState ?? undefined}
+            availableYears={pcAvailableYears}
+            selectedYear={pcSelectedYear ?? undefined}
+            onYearChange={onPCYearChange}
+          />
+        </div>
+      );
+    }
+    return null;
+  };
+
+  /** Layer / year / Show ACs — same scope as the former map toolbar center. */
+  const showStateMapControls = Boolean(currentState);
+  /** Summary View dropdown + seats/votes panels only on undrilled state map. */
+  const showSummarySidebarUI = Boolean(currentState && !currentPC && !currentDistrict);
+  const showACDetailPanel = Boolean(
+    (electionResult || acPanelPlaceholderResult) && onCloseElectionPanel
+  );
+  const showPCDetailPanel = Boolean(pcElectionResult && onClosePCElectionPanel);
+  const hasDetailPanel = showACDetailPanel || showPCDetailPanel;
+  const effectiveCollapsed = isCollapsed;
+  const effectiveOpen = isOpen || hasDetailPanel;
 
   return (
     <>
-      <div className={`sidebar ${isOpen ? 'open' : ''} ${isCollapsed ? 'collapsed' : ''}`}>
+      <div
+        className={`sidebar ${effectiveOpen ? 'open' : ''} ${effectiveCollapsed ? 'collapsed' : ''}`}
+      >
         {/* Desktop collapse toggle button */}
         {onToggleCollapse && (
           <button
             className="sidebar-collapse-btn"
             onClick={onToggleCollapse}
-            title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            title={effectiveCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
-            {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+            {effectiveCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
           </button>
         )}
 
         <div className="sidebar-header">
           <h1>
             <img src="/favicon.svg" alt="" width={24} height={24} />
-            {!isCollapsed && 'Election Lens'}
+            {!effectiveCollapsed && 'Election Lens'}
           </h1>
-          {!isCollapsed && (
+          {!effectiveCollapsed && (
             <div className="sidebar-header-actions">
               <p>India Electoral Map</p>
               {onBlogClick && (
@@ -709,9 +1010,9 @@ export function Sidebar({
         </div>
 
         {/* Collapsible content - hidden when sidebar is collapsed */}
-        {!isCollapsed && (
+        {!effectiveCollapsed && (
           <>
-            <div className="breadcrumb">
+            <div className="breadcrumb pane-section pane-section-tight">
               <div className="breadcrumb-nav">{renderBreadcrumb()}</div>
               {currentState && (
                 <button
@@ -724,20 +1025,22 @@ export function Sidebar({
               )}
             </div>
 
-            <SearchBox
-              statesGeoJSON={statesGeoJSON}
-              parliamentGeoJSON={parliamentGeoJSON}
-              assemblyGeoJSON={assemblyGeoJSON}
-              districtsCache={districtsCache}
-              onStateSelect={onSearchStateSelect}
-              onConstituencySelect={onSearchConstituencySelect}
-              onAssemblySelect={onSearchAssemblySelect}
-              onDistrictSelect={onSearchDistrictSelect}
-            />
+            <div className="pane-section pane-section-tight">
+              <SearchBox
+                statesGeoJSON={statesGeoJSON}
+                parliamentGeoJSON={parliamentGeoJSON}
+                assemblyGeoJSON={assemblyGeoJSON}
+                districtsCache={districtsCache}
+                onStateSelect={onSearchStateSelect}
+                onConstituencySelect={onSearchConstituencySelect}
+                onAssemblySelect={onSearchAssemblySelect}
+                onDistrictSelect={onSearchDistrictSelect}
+              />
+            </div>
 
-            <div className="info-panel">
-              <div className="info-title">{info.title}</div>
-              <div className="info-stats">
+            <div className="info-panel pane-content">
+              <div className="info-title pane-section-header">{info.title}</div>
+              <div className="info-stats pane-section pane-section-tight">
                 <div className="stat-card">
                   <div className="stat-value">{info.statValue}</div>
                   <div className="stat-label">{info.statLabel}</div>
@@ -748,54 +1051,61 @@ export function Sidebar({
                 </div>
               </div>
 
-              {showViewToggle && (
-                <div className="view-toggle">
-                  <button
-                    className={`toggle-btn ${currentView === 'constituencies' ? 'active' : ''}`}
-                    onClick={() => onSwitchView('constituencies')}
-                    title="Parliamentary Constituencies"
-                  >
-                    <Building2 size={14} className="toggle-icon" /> PC
-                  </button>
-                  <button
-                    className={`toggle-btn ${currentView === 'districts' ? 'active' : ''}`}
-                    onClick={() => onSwitchView('districts')}
-                    title="Districts"
-                  >
-                    <Map size={14} className="toggle-icon" /> Districts
-                  </button>
-                  <button
-                    className={`toggle-btn ${currentView === 'assemblies' ? 'active' : ''}`}
-                    onClick={() => onSwitchView('assemblies')}
-                    title="Assembly Constituencies"
-                  >
-                    <Landmark size={14} className="toggle-icon" /> AC
-                  </button>
+              {showStateMapControls && (
+                <div className="sidebar-map-controls pane-section pane-control-stack">
+                  <div className="sidebar-view-selector-wrap">
+                    <YearSelector
+                      label="Layer"
+                      fieldId="sidebar-layer-mode"
+                      className="sidebar-view-selector"
+                      variant="stacked"
+                      options={sidebarLayerOptions}
+                    />
+                  </div>
+                  {mapYearOptions.length > 0 && !hasDetailPanel && (
+                    <div className="sidebar-view-selector-wrap">
+                      <YearSelector
+                        label="Year"
+                        fieldId="sidebar-map-year"
+                        className="sidebar-view-selector"
+                        variant="stacked"
+                        options={mapYearOptions}
+                      />
+                    </div>
+                  )}
+                  {showSummarySidebarUI && stateSummaryData && (
+                    <div className="sidebar-view-selector-wrap">
+                      <YearSelector
+                        label="View"
+                        fieldId="sidebar-panel-view"
+                        className="sidebar-view-selector"
+                        variant="stacked"
+                        options={sidebarPanelViewOptions}
+                      />
+                    </div>
+                  )}
+                  {Boolean(currentPC) && onShowACsWithinPCChange && (
+                    <label className="sidebar-show-acs">
+                      <input
+                        type="checkbox"
+                        checked={showACsWithinPC}
+                        onChange={(e) => onShowACsWithinPCChange(e.target.checked)}
+                        aria-label="Show assembly constituencies within this PC"
+                      />
+                      <span>Show ACs</span>
+                    </label>
+                  )}
                 </div>
               )}
 
-              {showViewToggle && stateSummaryData && (
-                <div className="sidebar-content-tabs">
-                  <button
-                    type="button"
-                    className={`sidebar-content-tab ${sidebarTab === 'list' ? 'active' : ''}`}
-                    onClick={() => setSidebarTab('list')}
-                  >
-                    Map
-                  </button>
-                  <button
-                    type="button"
-                    className={`sidebar-content-tab ${sidebarTab === 'summary' ? 'active' : ''}`}
-                    onClick={() => setSidebarTab('summary')}
-                  >
-                    Summary
-                  </button>
-                </div>
-              )}
-
-              {showViewToggle && stateSummaryData && sidebarTab === 'summary'
-                ? renderSummary()
-                : renderList()}
+              <div className="pane-section pane-content-body">
+                {renderDetailPanel() ??
+                  (showSummarySidebarUI && stateSummaryData && sidebarTab === 'seats'
+                    ? renderSummarySeats()
+                    : showSummarySidebarUI && stateSummaryData && sidebarTab === 'votes'
+                      ? renderSummaryVotes()
+                      : renderList())}
+              </div>
             </div>
 
             <div className="cache-status">
@@ -818,7 +1128,7 @@ export function Sidebar({
 
       {/* Mobile overlay */}
       <div
-        className={`sidebar-overlay ${isOpen ? 'visible' : ''}`}
+        className={`sidebar-overlay ${effectiveOpen ? 'visible' : ''}`}
         onClick={onClose}
         role="button"
         tabIndex={-1}

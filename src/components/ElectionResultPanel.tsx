@@ -1,5 +1,4 @@
 import {
-  X,
   Award,
   TrendingUp,
   Vote,
@@ -139,7 +138,7 @@ type TabType = 'overview' | 'candidates' | 'booths' | 'postal' | 'analysis';
 
 export function ElectionResultPanel({
   result,
-  onClose,
+  onClose: _onClose,
   availableYears = [],
   selectedYear,
   onYearChange,
@@ -223,6 +222,20 @@ export function ElectionResultPanel({
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, [getTabFromUrl]);
+
+  useEffect(
+    () => () => {
+      if (typeof window === 'undefined') return;
+      const searchParams = new URLSearchParams(window.location.search);
+      if (!searchParams.get('tab')) return;
+      searchParams.delete('tab');
+      const newUrl = searchParams.toString()
+        ? `${window.location.pathname}?${searchParams.toString()}`
+        : window.location.pathname;
+      window.history.replaceState({}, '', newUrl);
+    },
+    []
+  );
 
   // Reset to overview tab if booth data becomes unavailable while on booths/postal/analysis tab
   useEffect(() => {
@@ -337,6 +350,64 @@ export function ElectionResultPanel({
         ...availablePCYears.map((y) => ({ year: y, type: 'parliament' as const })),
       ].sort((a, b) => a.year - b.year);
 
+  const viewOptions = useMemo<YearOption[]>(() => {
+    const options: YearOption[] = [
+      {
+        id: 'overview',
+        label: 'Overview',
+        isActive: activeTab === 'overview',
+        onClick: () => setActiveTab('overview'),
+      },
+      {
+        id: 'candidates',
+        label:
+          inParliamentYearMode && currentPCContribution
+            ? `Candidates (${currentPCContribution.candidates.length})`
+            : isFutureAssemblySidebar
+              ? 'Candidates'
+              : assemblyCandidates.length > 0
+                ? `Candidates (${assemblyCandidates.length})`
+                : 'Candidates',
+        isActive: activeTab === 'candidates',
+        onClick: () => setActiveTab('candidates'),
+      },
+    ];
+
+    if (showBoothTabs) {
+      options.push({
+        id: 'booths',
+        label: 'Booths',
+        isActive: activeTab === 'booths',
+        onClick: () => setActiveTab('booths'),
+      });
+    }
+    if (showBoothTabs && boothResults?.postal) {
+      options.push({
+        id: 'postal',
+        label: 'Postal',
+        isActive: activeTab === 'postal',
+        onClick: () => setActiveTab('postal'),
+      });
+    }
+    if (showBoothTabs) {
+      options.push({
+        id: 'analysis',
+        label: 'Analysis',
+        isActive: activeTab === 'analysis',
+        onClick: () => setActiveTab('analysis'),
+      });
+    }
+    return options;
+  }, [
+    activeTab,
+    inParliamentYearMode,
+    currentPCContribution,
+    isFutureAssemblySidebar,
+    assemblyCandidates.length,
+    showBoothTabs,
+    boothResults?.postal,
+  ]);
+
   const handleCopyLink = useCallback(async () => {
     if (acResultsLoading) return;
     const urlToShare = shareUrlWithTab ?? shareUrl ?? window.location.href;
@@ -447,150 +518,68 @@ export function ElectionResultPanel({
         />
       )}
 
-      {/* Header */}
-      <div
-        className="election-panel-header"
-        onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
-      >
-        <div className="election-panel-title">
-          <h3>
-            {result.constituencyNameOriginal ?? result.name ?? result.constituencyName ?? 'Unknown'}
-          </h3>
-          {/* Peek mode: show winner inline */}
-          {isMobilePortrait && panelState === 'peek' && winner && (
-            <span className="peek-winner">
-              🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare?.toFixed(1) ?? '0.0'}%
-            </span>
-          )}
-          {(!isMobilePortrait || panelState !== 'peek') && (
-            <span className={`constituency-type type-${constituencyType.toLowerCase()}`}>
-              {constituencyType}
-            </span>
-          )}
+      <div className="controls-card pane-section">
+        <div
+          className="election-panel-header"
+          onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
+        >
+          <div className="election-panel-title">
+            <h3>
+              {result.constituencyNameOriginal ??
+                result.name ??
+                result.constituencyName ??
+                'Unknown'}
+            </h3>
+            {/* Peek mode: show winner inline */}
+            {isMobilePortrait && panelState === 'peek' && winner && (
+              <span className="peek-winner">
+                🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare?.toFixed(1) ?? '0.0'}%
+              </span>
+            )}
+            {(!isMobilePortrait || panelState !== 'peek') && (
+              <span className={`constituency-type type-${constituencyType.toLowerCase()}`}>
+                {constituencyType}
+              </span>
+            )}
+          </div>
         </div>
-        <div className="election-panel-actions">
-          <button
-            type="button"
-            className="election-panel-btn twitter-btn"
-            onClick={handleShareToX}
-            disabled={acResultsLoading}
-            title={
-              acResultsLoading
-                ? 'Share is available after results load'
-                : 'Share candidates on Twitter'
-            }
-          >
-            <Twitter size={18} />
-          </button>
-          <button
-            type="button"
-            className="election-panel-btn screenshot-btn"
-            onClick={handleSaveScreenshot}
-            disabled={acResultsLoading}
-            title={
-              acResultsLoading ? 'Screenshot is available after results load' : 'Save screenshot'
-            }
-          >
-            <Camera size={18} />
-          </button>
-          <button
-            type="button"
-            className={`election-panel-btn ${copied ? 'copied' : ''}`}
-            onClick={handleCopyLink}
-            disabled={acResultsLoading}
-            title={
-              acResultsLoading
-                ? 'Copy link is available after results load'
-                : copied
-                  ? 'Copied!'
-                  : 'Copy link'
-            }
-          >
-            {copied ? <Check size={18} /> : <Link2 size={18} />}
-          </button>
-          <button className="election-panel-close" onClick={onClose} title="Close">
-            <X size={20} />
-          </button>
-        </div>
-      </div>
 
-      {/* Year selector - shows assembly and parliament years interleaved */}
-      {allYearItems.length > 0 && (
+        {/* Year selector - shows assembly and parliament years interleaved */}
+        {allYearItems.length > 0 && (
+          <YearSelector
+            className="election-year-selector pane-section-tight"
+            variant="stacked"
+            options={allYearItems.map<YearOption>((item) =>
+              item.type === 'assembly'
+                ? {
+                    id: `ac-${item.year}`,
+                    label: `${item.year}`,
+                    title: `Assembly Election ${item.year}`,
+                    isActive: item.year === selectedYear && !selectedPCYear,
+                    onClick: () => {
+                      setSelectedPCYear(null);
+                      onYearChange?.(item.year);
+                    },
+                  }
+                : {
+                    id: `pc-${item.year}`,
+                    label: `${item.year}-PC`,
+                    title: `Parliament Election ${item.year}`,
+                    isActive: selectedPCYear === item.year,
+                    onClick: () => setSelectedPCYear(item.year),
+                    tone: 'parliament',
+                  }
+            )}
+          />
+        )}
+
         <YearSelector
-          className="election-year-selector"
-          options={allYearItems.map<YearOption>((item) =>
-            item.type === 'assembly'
-              ? {
-                  id: `ac-${item.year}`,
-                  label: `${item.year}`,
-                  title: `Assembly Election ${item.year}`,
-                  isActive: item.year === selectedYear && !selectedPCYear,
-                  onClick: () => {
-                    setSelectedPCYear(null);
-                    onYearChange?.(item.year);
-                  },
-                }
-              : {
-                  id: `pc-${item.year}`,
-                  label: `${item.year}-PC`,
-                  title: `Parliament Election ${item.year}`,
-                  isActive: selectedPCYear === item.year,
-                  onClick: () => setSelectedPCYear(item.year),
-                  tone: 'parliament',
-                }
-          )}
+          label="View"
+          fieldId="ac-panel-view"
+          className="election-view-selector pane-section-tight"
+          variant="stacked"
+          options={viewOptions}
         />
-      )}
-
-      {/* Tab switcher: parliament or past assembly = full tabs; future assembly = Overview + All candidates only */}
-      <div className="panel-tabs">
-        <button
-          className={`panel-tab ${activeTab === 'overview' ? 'active' : ''}`}
-          onClick={() => setActiveTab('overview')}
-        >
-          <Award size={14} />
-          Overview
-        </button>
-        <button
-          className={`panel-tab ${activeTab === 'candidates' ? 'active' : ''}`}
-          onClick={() => setActiveTab('candidates')}
-        >
-          <BarChart3 size={14} />
-          {inParliamentYearMode && currentPCContribution
-            ? `All ${currentPCContribution.candidates.length} candidates`
-            : isFutureAssemblySidebar
-              ? 'All candidates'
-              : assemblyCandidates.length > 0
-                ? `Candidates (${assemblyCandidates.length})`
-                : 'Candidates'}
-        </button>
-        {showBoothTabs && (
-          <button
-            className={`panel-tab ${activeTab === 'booths' ? 'active' : ''}`}
-            onClick={() => setActiveTab('booths')}
-          >
-            <MapPin size={14} />
-            Booths
-          </button>
-        )}
-        {showBoothTabs && boothResults?.postal && (
-          <button
-            className={`panel-tab ${activeTab === 'postal' ? 'active' : ''}`}
-            onClick={() => setActiveTab('postal')}
-          >
-            <Mail size={14} />
-            Postal
-          </button>
-        )}
-        {showBoothTabs && (
-          <button
-            className={`panel-tab ${activeTab === 'analysis' ? 'active' : ''}`}
-            onClick={() => setActiveTab('analysis')}
-          >
-            <Lightbulb size={14} />
-            Analysis
-          </button>
-        )}
       </div>
 
       {/* Tab content */}
@@ -952,9 +941,42 @@ export function ElectionResultPanel({
           <span className="district-name">{result.districtName}</span>
         </div>
         <div className="share-bar-actions">
-          <button className="share-bar-btn share-copy" onClick={handleCopyLink} title="Copy link">
-            {copied ? <Check size={14} /> : <Link2 size={14} />}
-            <span>{copied ? 'Copied!' : 'Copy'}</span>
+          <button
+            type="button"
+            className="election-panel-btn twitter-btn"
+            onClick={handleShareToX}
+            disabled={acResultsLoading}
+            title={
+              acResultsLoading ? 'Share is available after results load' : 'Share candidates on X'
+            }
+          >
+            <Twitter size={18} />
+          </button>
+          <button
+            type="button"
+            className="election-panel-btn screenshot-btn"
+            onClick={handleSaveScreenshot}
+            disabled={acResultsLoading}
+            title={
+              acResultsLoading ? 'Screenshot is available after results load' : 'Save screenshot'
+            }
+          >
+            <Camera size={18} />
+          </button>
+          <button
+            type="button"
+            className={`election-panel-btn ${copied ? 'copied' : ''}`}
+            onClick={handleCopyLink}
+            disabled={acResultsLoading}
+            title={
+              acResultsLoading
+                ? 'Copy link is available after results load'
+                : copied
+                  ? 'Copied!'
+                  : 'Copy link'
+            }
+          >
+            {copied ? <Check size={18} /> : <Link2 size={18} />}
           </button>
         </div>
       </div>
@@ -1182,6 +1204,8 @@ function BoothWiseView({
             value={selectedBoothId ?? ''}
             onChange={(e) => onBoothSelect(e.target.value || null)}
             className="booth-dropdown"
+            aria-label="Select booth"
+            title="Select booth"
           >
             <option value="">-- Select a booth --</option>
             {boothsWithResults.map((booth) => (

@@ -798,7 +798,6 @@ function App(): JSX.Element {
   // When viewing a specific PC: true = show ACs within PC, false = show PC boundary only (synced to URL)
   const [showACsWithinPC, setShowACsWithinPC] = useState<boolean>(true);
   const [selectedSummaryParty, setSelectedSummaryParty] = useState<string | null>(null);
-  const [summaryPartyOptions, setSummaryPartyOptions] = useState<string[]>([]);
   const [stateSummaryData, setStateSummaryData] = useState<StateSummaryPanelData | null>(null);
   // Use the appropriate year based on context:
   // - For AC view (assemblies) or districts: use assembly year (selectedYear) or pcYear (selectedACPCYear)
@@ -989,16 +988,6 @@ function App(): JSX.Element {
   const toggleSidebarCollapsed = useCallback((): void => {
     setSidebarCollapsed((prev) => !prev);
   }, []);
-
-  /**
-   * Auto-collapse sidebar on desktop when election panel opens
-   */
-  useEffect(() => {
-    const hasPanelOpen = !!electionResult || !!pcElectionResult || blogOpen;
-    if (hasPanelOpen && window.innerWidth > 768) {
-      setSidebarCollapsed(true);
-    }
-  }, [electionResult, pcElectionResult, blogOpen]);
 
   /**
    * Close sidebar on mobile after action
@@ -2412,8 +2401,29 @@ function App(): JSX.Element {
           onBlogClick={handleBlogToggle}
           selectedSummaryParty={selectedSummaryParty}
           onSummaryPartyChange={setSelectedSummaryParty}
-          summaryPartyOptions={summaryPartyOptions}
           stateSummaryData={stateSummaryData}
+          selectedAssembly={currentAssembly}
+          availableYears={availableYears}
+          selectedYear={selectedYear}
+          availablePCYears={availablePCYears}
+          selectedACPCYear={selectedACPCYear}
+          pcAvailableYears={pcAvailableYears}
+          pcSelectedYear={pcSelectedYear}
+          onYearChange={handleYearChange}
+          onACPCYearChange={handleACPCYearChange}
+          onPCYearChange={handlePCYearChange}
+          showACsWithinPC={showACsWithinPC}
+          onShowACsWithinPCChange={setShowACsWithinPC}
+          electionResult={electionResult}
+          acResultsLoading={acResultsLoading}
+          acResultsLoadError={acResultsLoadError}
+          shareUrl={currentShareUrl}
+          parliamentContributions={parliamentContributions}
+          pcContributionShareUrl={pcContributionShareUrl}
+          pcElectionResult={pcElectionResult}
+          pcShareUrl={currentPCShareUrl}
+          onCloseElectionPanel={handleCloseElectionPanel}
+          onClosePCElectionPanel={handleClosePCElectionPanel}
         />
 
         <MapView
@@ -2448,16 +2458,13 @@ function App(): JSX.Element {
           onSwitchView={handleSwitchView}
           onReset={handleReset}
           onGoBack={handleGoBack}
-          onCloseElectionPanel={handleCloseElectionPanel}
           onYearChange={handleYearChange}
           onACPCYearChange={handleACPCYearChange}
-          onClosePCElectionPanel={handleClosePCElectionPanel}
           onPCYearChange={handlePCYearChange}
           showACsWithinPC={showACsWithinPC}
           onShowACsWithinPCChange={setShowACsWithinPC}
           selectedSummaryParty={selectedSummaryParty}
           onSummaryPartyChange={setSelectedSummaryParty}
-          onSummaryPartyOptionsChange={setSummaryPartyOptions}
           onStateSummaryDataChange={setStateSummaryData}
         />
       </div>

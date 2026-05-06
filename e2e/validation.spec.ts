@@ -5,7 +5,11 @@
  */
 import { test, expect } from '@playwright/test';
 import type { Locator, Page } from '@playwright/test';
-import { expandMobileElectionPanelToFull, expectFirstVisibleMatch } from './panel-helpers';
+import {
+  ensureElectionPanelVisible,
+  expandMobileElectionPanelToFull,
+  expectFirstVisibleMatch,
+} from './panel-helpers';
 
 async function expandPanelOnMobileIfNeeded(panel: Locator, page: Page) {
   await expandMobileElectionPanelToFull(panel, page);
@@ -93,14 +97,12 @@ test.describe('Link Validation - Year Selector Links', () => {
 test.describe('Link Validation - Tab Navigation', () => {
   test('Overview tab shows summary data', async ({ page, isMobile }) => {
     await page.goto('/gujarat/pc/ahmedabad-east/ac/maninagar');
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
-
-    const panel = page.locator('.election-panel');
+    const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
     
-    // Overview tab should be default
-    const overviewTab = page.locator('.panel-tab').filter({ hasText: 'Overview' });
-    await expect(overviewTab).toHaveClass(/active/);
+    const viewSelect = panel.locator('#ac-panel-view');
+    await expect(viewSelect).toBeVisible();
+    await expect(viewSelect).toHaveValue('overview');
     
     // Should show winner card
     await expect(panel.locator('.winner-card-compact, .winner-info')).toBeVisible();
@@ -108,9 +110,10 @@ test.describe('Link Validation - Tab Navigation', () => {
 
   test('Candidates tab shows full list (past year)', async ({ page }) => {
     await page.goto('/kerala/pc/thiruvananthapuram/ac/nemom');
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
+    await expandPanelOnMobileIfNeeded(panel, page);
 
-    await page.locator('.panel-tab').filter({ hasText: /Candidates/i }).click();
+    await panel.locator('#ac-panel-view').selectOption('candidates');
 
     await expect(page.locator('.election-panel .candidates-table-full')).toBeVisible();
 
@@ -121,9 +124,9 @@ test.describe('Link Validation - Tab Navigation', () => {
 
   test('Pre-poll AC year: Overview lists candidate preview', async ({ page }) => {
     await page.goto('/tamil-nadu/ac/mettuppalayam?year=2026');
-    await page.waitForSelector('.election-panel', { timeout: 30000 });
+    const panel = await ensureElectionPanelVisible(page);
 
-    await expect(page.locator('.panel-tab').filter({ hasText: 'Overview' })).toHaveClass(/active/);
+    await expect(panel.locator('#ac-panel-view')).toHaveValue('overview');
 
     const preview = page.locator('.election-panel .candidates-preview');
     await expect(preview).toBeVisible();
@@ -278,35 +281,21 @@ test.describe('Navigation Flow - AC View', () => {
 });
 
 test.describe('Navigation Flow - AC View Toggle', () => {
-  test('AC button in toolbar navigates to AC view', async ({ page, isMobile }) => {
-    test.skip(isMobile === true, 'Toolbar not available on mobile');
-    
+  test('Layer dropdown navigates to AC view', async ({ page }) => {
     await page.goto('/kerala');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
-    // Toolbar AC toggle (scoped to center toggle group)
-    const acButton = page
-      .locator('.toolbar-view-toggle')
-      .getByRole('button', { name: /^AC$/i });
-    await expect(acButton).toBeVisible();
-    await acButton.click();
-    
-    // Should navigate to AC view
+
+    await page.locator('#sidebar-layer-mode').selectOption('assemblies');
+
     await expect(page).toHaveURL(/kerala\/ac/, { timeout: 10000 });
   });
 
-  test('AC toggle in sidebar shows AC view', async ({ page, isMobile }) => {
-    test.skip(isMobile === true, 'Sidebar view toggle not available on mobile');
-    
+  test('Layer dropdown in sidebar switches Gujarat to AC view', async ({ page }) => {
     await page.goto('/gujarat');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
-    // Click AC toggle button in sidebar
-    const acToggle = page.locator('.toggle-btn').filter({ hasText: 'AC' });
-    await expect(acToggle).toBeVisible({ timeout: 10000 });
-    await acToggle.click();
-    
-    // Should navigate to AC view
+
+    await page.locator('#sidebar-layer-mode').selectOption('assemblies');
+
     await expect(page).toHaveURL(/gujarat\/ac/, { timeout: 10000 });
   });
 });
@@ -318,9 +307,7 @@ test.describe('Navigation Flow - AC View Toggle', () => {
 test.describe('Panel Validation - AC Panel Content', () => {
   test('AC panel shows all required sections', async ({ page, isMobile }) => {
     await page.goto('/madhya-pradesh/pc/bhopal/ac/bhopal-uttar');
-    await page.waitForSelector('.election-panel', { timeout: 15000 });
-    
-    const panel = page.locator('.election-panel');
+    const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
     
     // Required elements
@@ -328,8 +315,8 @@ test.describe('Panel Validation - AC Panel Content', () => {
     await expect(panel.locator('.winner-card-compact, .winner-info, .winner-section')).toBeVisible();
     await expect(panel.locator('.election-year-selector, .year-selector')).toBeVisible();
     
-    // Close button
-    await expect(panel.locator('.election-panel-close')).toBeVisible();
+    // Footer actions replaced close button in the updated UX
+    await expect(panel.locator('.share-bar .election-panel-btn').first()).toBeVisible();
   });
 
   test('AC panel winner card has correct structure', async ({ page }) => {
@@ -394,36 +381,27 @@ test.describe('Panel Validation - PC Panel Content', () => {
 });
 
 test.describe('Panel Validation - Panel Interactions', () => {
-  test('close button hides panel', async ({ page }) => {
+  test('footer actions are visible and panel stays mounted', async ({ page }) => {
     await page.goto('/chhattisgarh/pc/raipur/ac/raipur-city-south');
     
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
-    
-    // Click close
-    const closeBtn = panel.locator('.election-panel-close');
-    await closeBtn.click();
-    
-    // Panel should be hidden
-    await expect(panel).not.toBeVisible();
+    const panel = await ensureElectionPanelVisible(page);
+    await expandPanelOnMobileIfNeeded(panel, page);
+    await expect(panel.locator('.share-bar .election-panel-btn').first()).toBeVisible();
+    await expect(panel).toBeVisible();
   });
 
-  test('panel reopens when navigating to new AC', async ({ page }) => {
+  test('panel updates when navigating to new AC', async ({ page }) => {
     await page.goto('/jharkhand/pc/ranchi/ac/ranchi');
     
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
-    
-    // Close panel
-    const closeBtn = panel.locator('.election-panel-close');
-    await closeBtn.click();
-    await expect(panel).not.toBeVisible();
+    const panel = await ensureElectionPanelVisible(page);
+    await expect(panel).toBeVisible();
     
     // Navigate to different AC
     await page.goto('/jharkhand/pc/ranchi/ac/hatia');
     
     // Panel should show again
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const updatedPanel = await ensureElectionPanelVisible(page);
+    await expect(updatedPanel).toBeVisible({ timeout: 15000 });
   });
 });
 

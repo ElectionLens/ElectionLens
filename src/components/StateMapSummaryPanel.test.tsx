@@ -3,7 +3,7 @@ import { render, screen, within, fireEvent } from '@testing-library/react';
 import { StateMapSummaryPanel } from './StateMapSummaryPanel';
 
 describe('StateMapSummaryPanel', () => {
-  it('renders assembly title, seat and vote sections', () => {
+  it('renders seat and vote lists and footer', () => {
     render(
       <StateMapSummaryPanel
         variant="assembly"
@@ -17,22 +17,17 @@ describe('StateMapSummaryPanel', () => {
       />
     );
 
-    const root = screen
-      .getByRole('heading', { name: /Assembly • Test State/i })
-      .closest('.state-map-summary-panel');
+    const root = document.querySelector('.state-map-summary-panel');
     expect(root).not.toBeNull();
     expect(root).toHaveClass('state-map-summary-assembly');
 
-    expect(screen.getByText('Assembly 2021')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Seats won \(ACs\)/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Vote share \(statewide\)/i })).toBeInTheDocument();
     expect(screen.getByText('5')).toBeInTheDocument();
     expect(screen.getByText(/50\.0%/)).toBeInTheDocument();
     expect(screen.getByText(/10 ACs counted/)).toBeInTheDocument();
     expect(screen.getByText(/2,000 valid votes/)).toBeInTheDocument();
   });
 
-  it('uses “state” vote share label for parliament variant', () => {
+  it('renders parliament variant lists', () => {
     render(
       <StateMapSummaryPanel
         variant="parliament"
@@ -46,9 +41,8 @@ describe('StateMapSummaryPanel', () => {
       />
     );
 
-    expect(screen.getByRole('heading', { name: /Lok Sabha • Test State/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Seats won \(PCs\)/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Vote share \(state\)/i })).toBeInTheDocument();
+    expect(document.querySelector('.state-map-summary-parliament')).not.toBeNull();
+    expect(screen.getByText(/100\.0%/)).toBeInTheDocument();
   });
 
   it('shows suppress message in seat section and in vote section when votes are empty', () => {
@@ -67,14 +61,10 @@ describe('StateMapSummaryPanel', () => {
       />
     );
 
-    const seatSection = screen.getByRole('heading', { name: /Seats won/i }).closest('div');
-    expect(seatSection).not.toBeNull();
-    expect(within(seatSection!).getByText(msg)).toBeInTheDocument();
-
-    const voteHeading = screen.getByRole('heading', { name: /Vote share/i });
-    const voteSection = voteHeading.closest('.state-map-summary-section');
-    expect(voteSection).not.toBeNull();
-    expect(within(voteSection!).getByText(msg)).toBeInTheDocument();
+    const sections = document.querySelectorAll('.state-map-summary-section');
+    expect(sections.length).toBeGreaterThanOrEqual(2);
+    expect(within(sections[0] as HTMLElement).getByText(msg)).toBeInTheDocument();
+    expect(within(sections[1] as HTMLElement).getByText(msg)).toBeInTheDocument();
   });
 
   it('shows empty seat copy when no rows and not suppressed', () => {
@@ -127,5 +117,8 @@ describe('StateMapSummaryPanel', () => {
 
     fireEvent.click(aiadmkBtn!);
     expect(onPartyToggle).toHaveBeenCalledWith('AIADMK');
+
+    fireEvent.click(dmkBtn!);
+    expect(onPartyToggle).toHaveBeenLastCalledWith(null);
   });
 });

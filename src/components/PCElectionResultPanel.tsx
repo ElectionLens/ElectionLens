@@ -1,16 +1,5 @@
-import {
-  X,
-  Award,
-  TrendingUp,
-  Vote,
-  Link2,
-  Check,
-  Twitter,
-  Users,
-  BarChart3,
-  Camera,
-} from 'lucide-react';
-import { useState, useCallback, memo, useRef } from 'react';
+import { Award, TrendingUp, Vote, Link2, Check, Twitter, Users, Camera } from 'lucide-react';
+import { useState, useCallback, memo, useEffect, useMemo, useRef } from 'react';
 import type { PCElectionResult, PCElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName, getPartyShortName } from '../utils/partyData';
 import { shouldUseShortPartyLabelsPC } from '../utils/partyDisplay';
@@ -65,7 +54,7 @@ function generateShareText(
 
 export function PCElectionResultPanel({
   result,
-  onClose,
+  onClose: _onClose,
   availableYears = [],
   selectedYear,
   onYearChange,
@@ -73,7 +62,13 @@ export function PCElectionResultPanel({
   stateName,
 }: PCElectionResultPanelProps): JSX.Element {
   const [copied, setCopied] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'candidates'>('overview');
+  const getTabFromUrl = useCallback((): 'overview' | 'candidates' => {
+    if (typeof window === 'undefined') return 'overview';
+    const tab = new URLSearchParams(window.location.search).get('tab');
+    return tab === 'candidates' ? 'candidates' : 'overview';
+  }, []);
+
+  const [activeTab, setActiveTab] = useState<'overview' | 'candidates'>(() => getTabFromUrl());
 
   // Mobile panel expansion state
   const [panelState, setPanelState] = useState<'peek' | 'half' | 'full'>('half');
@@ -95,6 +90,65 @@ export function PCElectionResultPanel({
   const winner = result.candidates[0];
   const shortPartyUi = shouldUseShortPartyLabelsPC(result, stateName);
   const pl = (p: string) => (shortPartyUi ? getPartyShortName(p) : p);
+  const viewOptions = useMemo<YearOption[]>(
+    () => [
+      {
+        id: 'overview',
+        label: 'Overview',
+        isActive: activeTab === 'overview',
+        onClick: () => setActiveTab('overview'),
+      },
+      {
+        id: 'candidates',
+        label: `Candidates (${result.totalCandidates})`,
+        isActive: activeTab === 'candidates',
+        onClick: () => setActiveTab('candidates'),
+      },
+    ],
+    [activeTab, result.totalCandidates]
+  );
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const searchParams = new URLSearchParams(window.location.search);
+    const currentTab = searchParams.get('tab');
+
+    if (activeTab === 'overview') {
+      if (!currentTab) return;
+      searchParams.delete('tab');
+    } else if (currentTab !== 'candidates') {
+      searchParams.set('tab', 'candidates');
+    } else {
+      return;
+    }
+
+    const newUrl = searchParams.toString()
+      ? `${window.location.pathname}?${searchParams.toString()}`
+      : window.location.pathname;
+    window.history.replaceState({}, '', newUrl);
+  }, [activeTab]);
+
+  useEffect(() => {
+    const handlePopState = (): void => {
+      setActiveTab(getTabFromUrl());
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [getTabFromUrl]);
+
+  useEffect(
+    () => () => {
+      if (typeof window === 'undefined') return;
+      const searchParams = new URLSearchParams(window.location.search);
+      if (!searchParams.get('tab')) return;
+      searchParams.delete('tab');
+      const newUrl = searchParams.toString()
+        ? `${window.location.pathname}?${searchParams.toString()}`
+        : window.location.pathname;
+      window.history.replaceState({}, '', newUrl);
+    },
+    []
+  );
 
   const handleCopyLink = useCallback(async () => {
     const url = shareUrl ?? window.location.href;
@@ -191,89 +245,54 @@ export function PCElectionResultPanel({
         />
       )}
 
-      {/* Header */}
-      <div
-        className="election-panel-header"
-        onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
-      >
-        <div className="election-panel-title">
-          <h3>{result.constituencyNameOriginal}</h3>
-          {/* Peek mode: show winner inline */}
-          {isMobilePortrait && panelState === 'peek' && winner && (
-            <span className="peek-winner">
-              🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare.toFixed(1)}%
-            </span>
-          )}
-          {(!isMobilePortrait || panelState !== 'peek') && (
-            <div className="title-badges">
-              <span className="pc-badge">Parliament</span>
-              <span
-                className={`constituency-type type-${result.constituencyType?.toLowerCase() ?? 'gen'}`}
-              >
-                {result.constituencyType ?? 'GEN'}
+      <div className="controls-card pane-section">
+        <div
+          className="election-panel-header"
+          onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
+        >
+          <div className="election-panel-title">
+            <h3>{result.constituencyNameOriginal}</h3>
+            {/* Peek mode: show winner inline */}
+            {isMobilePortrait && panelState === 'peek' && winner && (
+              <span className="peek-winner">
+                🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare.toFixed(1)}%
               </span>
-            </div>
-          )}
+            )}
+            {(!isMobilePortrait || panelState !== 'peek') && (
+              <div className="title-badges">
+                <span className="pc-badge">Parliament</span>
+                <span
+                  className={`constituency-type type-${result.constituencyType?.toLowerCase() ?? 'gen'}`}
+                >
+                  {result.constituencyType ?? 'GEN'}
+                </span>
+              </div>
+            )}
+          </div>
         </div>
-        <div className="election-panel-actions">
-          <button
-            className="election-panel-btn twitter-btn"
-            onClick={handleShareToX}
-            title="Share candidates on Twitter"
-          >
-            <Twitter size={18} />
-          </button>
-          <button
-            className="election-panel-btn screenshot-btn"
-            onClick={handleSaveScreenshot}
-            title="Save screenshot"
-          >
-            <Camera size={18} />
-          </button>
-          <button
-            className={`election-panel-btn ${copied ? 'copied' : ''}`}
-            onClick={handleCopyLink}
-            title={copied ? 'Copied!' : 'Copy link'}
-          >
-            {copied ? <Check size={18} /> : <Link2 size={18} />}
-          </button>
-          <button className="election-panel-close" onClick={onClose} title="Close">
-            <X size={20} />
-          </button>
-        </div>
-      </div>
 
-      {/* Year selector */}
-      {availableYears.length > 1 && (
+        {/* Year selector */}
+        {availableYears.length > 1 && (
+          <YearSelector
+            className="election-year-selector pane-section-tight"
+            variant="stacked"
+            options={availableYears.map<YearOption>((year) => ({
+              id: `pc-${year}`,
+              label: `${year}`,
+              title: `Parliament Election ${year}`,
+              isActive: year === selectedYear,
+              onClick: () => onYearChange?.(year),
+            }))}
+          />
+        )}
+
         <YearSelector
-          className="election-year-selector"
-          options={availableYears.map<YearOption>((year) => ({
-            id: `pc-${year}`,
-            label: `${year}`,
-            title: `Parliament Election ${year}`,
-            isActive: year === selectedYear,
-            onClick: () => onYearChange?.(year),
-          }))}
+          label="View"
+          fieldId="pc-panel-view"
+          className="election-view-selector pane-section-tight"
+          variant="stacked"
+          options={viewOptions}
         />
-      )}
-
-      <div className="panel-tabs">
-        <button
-          className={`panel-tab ${activeTab === 'overview' ? 'active' : ''}`}
-          onClick={() => setActiveTab('overview')}
-          type="button"
-        >
-          <Award size={14} />
-          Overview
-        </button>
-        <button
-          className={`panel-tab ${activeTab === 'candidates' ? 'active' : ''}`}
-          onClick={() => setActiveTab('candidates')}
-          type="button"
-        >
-          <BarChart3 size={14} />
-          All {result.totalCandidates} candidates
-        </button>
       </div>
 
       <div className="panel-tab-content">
@@ -392,9 +411,29 @@ export function PCElectionResultPanel({
           <span className="district-name">{result.stateName ?? stateName ?? '—'}</span>
         </div>
         <div className="share-bar-actions">
-          <button className="share-bar-btn share-copy" onClick={handleCopyLink} title="Copy link">
-            {copied ? <Check size={14} /> : <Link2 size={14} />}
-            <span>{copied ? 'Copied!' : 'Copy'}</span>
+          <button
+            type="button"
+            className="election-panel-btn twitter-btn"
+            onClick={handleShareToX}
+            title="Share candidates on X"
+          >
+            <Twitter size={18} />
+          </button>
+          <button
+            type="button"
+            className="election-panel-btn screenshot-btn"
+            onClick={handleSaveScreenshot}
+            title="Save screenshot"
+          >
+            <Camera size={18} />
+          </button>
+          <button
+            type="button"
+            className={`election-panel-btn ${copied ? 'copied' : ''}`}
+            onClick={handleCopyLink}
+            title={copied ? 'Copied!' : 'Copy link'}
+          >
+            {copied ? <Check size={18} /> : <Link2 size={18} />}
           </button>
         </div>
       </div>

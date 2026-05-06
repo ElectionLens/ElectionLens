@@ -10,9 +10,21 @@ export interface YearOption {
 interface YearSelectorProps {
   options: YearOption[];
   className?: string;
+  /** Visible label beside the select (default: Year — election year picker). */
+  label?: string;
+  /** Stable id for label/select pairing; avoids collisions when multiple selectors share a className. */
+  fieldId?: string;
+  /** Visual variant used to keep layer/year/view controls consistent by context. */
+  variant?: 'default' | 'stacked';
 }
 
-export function YearSelector({ options, className = '' }: YearSelectorProps): JSX.Element | null {
+export function YearSelector({
+  options,
+  className = '',
+  label = 'Year',
+  fieldId,
+  variant = 'default',
+}: YearSelectorProps): JSX.Element | null {
   if (options.length === 0) {
     return null;
   }
@@ -21,13 +33,15 @@ export function YearSelector({ options, className = '' }: YearSelectorProps): JS
   const selectedOption =
     options.find((option) => option.isActive) ?? options[options.length - 1] ?? options[0]!;
 
+  const selectId = fieldId ?? `year-dropdown-${(className || 'default').replace(/\s+/g, '-')}`;
+
   return (
-    <div className={`year-chip-group ${className}`.trim()}>
-      <label className="year-dropdown-label" htmlFor={`year-dropdown-${className || 'default'}`}>
-        Year
+    <div className={`year-chip-group ${className}`.trim()} data-variant={variant}>
+      <label className="year-dropdown-label" htmlFor={selectId}>
+        {label}
       </label>
       <select
-        id={`year-dropdown-${className || 'default'}`}
+        id={selectId}
         className="year-dropdown"
         value={selectedOption.id}
         onChange={(event) => {

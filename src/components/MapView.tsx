@@ -1,17 +1,7 @@
-import { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { MapContainer, TileLayer, GeoJSON, useMap, ScaleControl } from 'react-leaflet';
 import L from 'leaflet';
-import {
-  Home,
-  ChevronLeft,
-  Maximize2,
-  Trash2,
-  Building2,
-  Map as MapIcon,
-  Layers,
-  MessageSquare,
-  Landmark,
-} from 'lucide-react';
+import { Home, ChevronLeft, Maximize2, Trash2, Layers, MessageSquare } from 'lucide-react';
 import type {
   Layer,
   LeafletMouseEvent as LLeafletMouseEvent,
@@ -25,7 +15,7 @@ import {
   getStateFileName,
   getElectionStateId,
 } from '../utils/helpers';
-import { COLOR_PALETTES, isBoothDataAvailable } from '../constants';
+import { COLOR_PALETTES } from '../constants';
 
 /** App-wide neutral map style when no party data — same default color in all views (districts, background districts/PCs/states) */
 const NEUTRAL_MAP_STYLE: L.PathOptions = {
@@ -53,7 +43,6 @@ import type {
 } from '../types';
 import { isAssemblyResultEntry, skipAssemblyWinnerColoring } from '../utils/electionResults';
 import { defaultAssemblyDataYearFromIndex } from '../utils/electionSchedule';
-import { buildAcPanelPlaceholder } from '../utils/acPanelPlaceholder';
 import { isAssemblyFeatureSelected } from '../utils/mapSelection';
 import {
   resolveAssemblyMapPolygonWinner,
@@ -69,38 +58,7 @@ import {
 } from '../utils/aggregateStateMapElectionStats';
 import { FeedbackModal } from './FeedbackModal';
 import { VectorTileLayer } from './VectorTileLayer';
-import { YearSelector, type YearOption } from './YearSelector';
 import { useSchema } from '../hooks/useSchema';
-
-// Lazy load panel components - only loaded when user clicks a constituency
-const ElectionResultPanel = lazy(() =>
-  import('./ElectionResultPanel').then((m) => ({ default: m.ElectionResultPanel }))
-);
-const PCElectionResultPanel = lazy(() =>
-  import('./PCElectionResultPanel').then((m) => ({ default: m.PCElectionResultPanel }))
-);
-import { useBoothData } from '../hooks/useBoothData';
-
-// Lightweight loading skeleton for panels
-const PanelSkeleton = () => (
-  <div className="election-panel" style={{ minHeight: '200px' }}>
-    <div className="election-panel-header">
-      <div style={{ height: '24px', width: '60%', background: '#e2e8f0', borderRadius: '4px' }} />
-    </div>
-    <div style={{ padding: '16px' }}>
-      <div
-        style={{
-          height: '16px',
-          width: '80%',
-          background: '#e2e8f0',
-          borderRadius: '4px',
-          marginBottom: '8px',
-        }}
-      />
-      <div style={{ height: '16px', width: '60%', background: '#e2e8f0', borderRadius: '4px' }} />
-    </div>
-  </div>
-);
 import type {
   MapViewProps,
   FitBoundsProps,
@@ -116,7 +74,6 @@ import type {
   ConstituencyFeature,
   AssemblyFeature,
   HexColor,
-  ViewMode,
 } from '../types';
 
 /** PC acWiseResults row: prefer first non-NOTA by votes for map winner */
@@ -143,31 +100,12 @@ function assignAcWinnerBySchemaId(
   winners[sid] = { party, candidate };
 }
 
-/** Map toolbar props */
+/** Map toolbar props — navigation, feedback, basemap (year / layer mode live in sidebar). */
 interface MapToolbarProps {
-  currentView: ViewMode;
-  showViewToggle: boolean;
   showBackButton: boolean;
   onReset: () => void;
-  onSwitchView: (view: ViewMode) => void;
   onGoBack: () => void;
   onFeedbackClick: () => void;
-  // Show ACs checkbox (when viewing a specific PC)
-  showACCheckbox?: boolean;
-  showACsWithinPC?: boolean;
-  onShowACsWithinPCChange?: (show: boolean) => void;
-  /** When set with showACCheckbox, we're in AC-within-PC view: year selector should use selectedACPCYear and onACPCYearChange (syncs URL year=pc-YYYY) */
-  selectedAssembly?: string | null;
-  // Year selection props
-  availableYears?: number[];
-  selectedYear?: number | null;
-  availablePCYears?: number[]; // PC years for AC view (parliament contributions)
-  selectedPCYear?: number | null;
-  pcAvailableYears?: number[]; // PC years for PC view (parliament elections)
-  pcSelectedYear?: number | null;
-  onYearChange?: (year: number) => void;
-  onPCYearChange?: ((year: number) => void) | ((year: number | null) => void);
-  onPCYearChangeForPC?: ((year: number) => void) | undefined; // For PC view year changes
 }
 
 /** Layer option */
@@ -177,26 +115,10 @@ type LayerName = 'Streets' | 'Light' | 'Satellite' | 'Terrain' | 'Vector';
  * Map Toolbar Component - Rendered as React overlay at top center
  */
 function MapToolbar({
-  currentView,
-  showViewToggle,
   showBackButton,
   onReset,
-  onSwitchView,
   onGoBack,
   onFeedbackClick,
-  showACCheckbox = false,
-  showACsWithinPC = true,
-  onShowACsWithinPCChange,
-  selectedAssembly = null,
-  availableYears = [],
-  selectedYear = null,
-  availablePCYears = [],
-  selectedPCYear = null,
-  pcAvailableYears = [],
-  pcSelectedYear = null,
-  onYearChange,
-  onPCYearChange,
-  onPCYearChangeForPC,
 }: MapToolbarProps): JSX.Element {
   const [activeLayer, setActiveLayer] = useState<LayerName>('Streets');
   const [layerMenuOpen, setLayerMenuOpen] = useState(false);
@@ -246,117 +168,6 @@ function MapToolbar({
           </button>
         )}
       </div>
-
-      {/* Center section - view toggle */}
-      {showViewToggle && (
-        <div className="toolbar-section toolbar-center">
-          <div className="toolbar-view-toggle">
-            <button
-              className={`toolbar-btn toolbar-toggle ${currentView === 'constituencies' ? 'active' : ''}`}
-              onClick={() => onSwitchView('constituencies')}
-              title="Parliamentary Constituencies"
-            >
-              <Building2 size={14} /> PC
-            </button>
-            <button
-              className={`toolbar-btn toolbar-toggle ${currentView === 'districts' ? 'active' : ''}`}
-              onClick={() => onSwitchView('districts')}
-              title="Districts"
-            >
-              <MapIcon size={14} /> Dist
-            </button>
-            <button
-              className={`toolbar-btn toolbar-toggle ${currentView === 'assemblies' ? 'active' : ''}`}
-              onClick={() => onSwitchView('assemblies')}
-              title="Assembly Constituencies"
-            >
-              <Landmark size={14} /> AC
-            </button>
-          </div>
-
-          {/* Year selection - show below AC/PC buttons - always visible when AC, PC, or districts view is active */}
-          {(currentView === 'assemblies' ||
-            currentView === 'constituencies' ||
-            currentView === 'districts') &&
-            (() => {
-              let yearOptions: YearOption[] = [];
-
-              if (currentView === 'assemblies' && showACCheckbox) {
-                yearOptions = (
-                  pcAvailableYears?.length ? pcAvailableYears : availablePCYears || []
-                ).map((year) => ({
-                  id: `pc-${year}`,
-                  label: `${year}`,
-                  title: `Parliament Election ${year}`,
-                  isActive: selectedPCYear === year,
-                  onClick: () => onPCYearChange?.(year),
-                }));
-              } else if (currentView === 'assemblies' || currentView === 'districts') {
-                type YearItem = { year: number; type: 'assembly' | 'parliament' };
-                const allYearItems: YearItem[] = [
-                  ...(availableYears || []).map((y) => ({ year: y, type: 'assembly' as const })),
-                  ...(availablePCYears || []).map((y) => ({
-                    year: y,
-                    type: 'parliament' as const,
-                  })),
-                ].sort((a, b) => a.year - b.year);
-
-                yearOptions = allYearItems.map((item) =>
-                  item.type === 'assembly'
-                    ? {
-                        id: `ac-${item.year}`,
-                        label: `${item.year}`,
-                        title: `Assembly Election ${item.year}`,
-                        isActive: selectedYear === item.year && selectedPCYear === null,
-                        onClick: () => {
-                          if (onPCYearChange) {
-                            (onPCYearChange as (year: number | null) => void)(null);
-                          }
-                          onYearChange?.(item.year);
-                        },
-                      }
-                    : {
-                        id: `pc-${item.year}`,
-                        label: `${item.year}-PC`,
-                        title: `Parliament Election ${item.year}`,
-                        isActive: selectedPCYear === item.year,
-                        onClick: () => onPCYearChange?.(item.year),
-                        tone: 'parliament',
-                      }
-                );
-              } else if (pcAvailableYears && pcAvailableYears.length > 0) {
-                const isACWithinPC = showACCheckbox && selectedAssembly != null;
-                const displayYear = isACWithinPC ? selectedPCYear : pcSelectedYear;
-                const onYearClick = isACWithinPC
-                  ? (y: number) => onPCYearChange?.(y)
-                  : (y: number) => onPCYearChangeForPC?.(y);
-
-                yearOptions = pcAvailableYears.map((year) => ({
-                  id: `pc-${year}`,
-                  label: `${year}`,
-                  title: `Parliament Election ${year}`,
-                  isActive: displayYear === year,
-                  onClick: () => onYearClick(year),
-                }));
-              }
-
-              return <YearSelector className="toolbar-year-selector" options={yearOptions} />;
-            })()}
-
-          {/* Show ACs checkbox - when viewing a specific PC, toggle between PC boundary and ACs within PC */}
-          {showACCheckbox && onShowACsWithinPCChange && (
-            <label className="toolbar-show-acs">
-              <input
-                type="checkbox"
-                checked={showACsWithinPC}
-                onChange={(e) => onShowACsWithinPCChange(e.target.checked)}
-                aria-label="Show assembly constituencies within this PC"
-              />
-              <span>Show ACs</span>
-            </label>
-          )}
-        </div>
-      )}
 
       {/* Right section - feedback and layer switcher */}
       <div className="toolbar-section toolbar-right">
@@ -723,44 +534,22 @@ export function MapView({
   currentDistrict,
   selectedAssembly,
   electionResult,
-  acResultsLoading = false,
-  acResultsLoadError = null,
-  shareUrl,
   availableYears,
   selectedYear,
-  parliamentContributions,
-  availablePCYears,
   selectedACPCYear,
-  pcContributionShareUrl,
   pcElectionResult,
-  pcShareUrl,
-  pcAvailableYears,
   pcSelectedYear,
   onStateClick,
   onDistrictClick,
   onConstituencyClick,
   onAssemblyClick,
-  onSwitchView,
   onReset,
   onGoBack,
-  onCloseElectionPanel,
-  onYearChange,
-  onACPCYearChange,
-  onClosePCElectionPanel,
-  onPCYearChange,
   showACsWithinPC = true,
-  onShowACsWithinPCChange,
   selectedSummaryParty = null,
   onSummaryPartyChange,
-  onSummaryPartyOptionsChange,
   onStateSummaryDataChange,
 }: MapViewProps): JSX.Element {
-  const acPanelPlaceholderResult = useMemo(() => {
-    if (!selectedAssembly || currentView !== 'assemblies') return null;
-    const y = selectedYear ?? new Date().getFullYear();
-    return buildAcPanelPlaceholder(selectedAssembly, y);
-  }, [selectedAssembly, selectedYear, currentView]);
-
   const geoJsonRef = useRef<GeoJSONRef>(null);
   // Track pending selected assembly to handle click -> mouseout race condition
   const pendingSelectedAssembly = useRef<string | null>(null);
@@ -808,8 +597,7 @@ export function MapView({
   const getStateId = useCallback((stateName: string): string => getElectionStateId(stateName), []);
 
   // Schema hook - used for resolveACName/resolvePCName in loadResults and getAC for booth data
-  const { getAC, resolveACName, resolvePCName, resolveDistrictName, getDistrict, schema } =
-    useSchema();
+  const { resolveACName, resolvePCName, resolveDistrictName, getDistrict, schema } = useSchema();
 
   // Dominant party per district (from AC winners) for colouring neighbouring districts
   const districtWinners = useMemo((): Record<string, string> => {
@@ -1729,61 +1517,6 @@ export function MapView({
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
   // Base layer state - 'Vector' uses VectorTileLayer, others use TileLayer
   const [baseLayer, setBaseLayer] = useState<LayerName>('Streets');
-  // Booth data hook - loads booth data for selected assembly
-  const { boothResults, boothsWithResults, loadBoothData, loadBoothResults } = useBoothData();
-
-  // Check if booth data is available for the current AC and year
-  // When viewing PC contribution (selectedACPCYear), use that year for booth data
-  // Otherwise use selectedYear or election result's year
-  const acEntity = electionResult?.schemaId ? getAC(electionResult.schemaId) : null;
-  // For booth data availability check, use the same year that will be loaded
-  const boothDataYear = selectedACPCYear ?? selectedYear ?? electionResult?.year ?? undefined;
-  const boothDataEnabled = acEntity
-    ? isBoothDataAvailable(electionResult?.schemaId ?? '', acEntity.pcId, boothDataYear)
-    : false;
-
-  // Load booth data when a Tamil Nadu AC is selected
-  // Try to load even if boothDataEnabled is false - let the availability check happen in ElectionResultPanel
-  useEffect(() => {
-    if (electionResult?.schemaId?.startsWith('TN-')) {
-      // When viewing PC contribution (selectedACPCYear), use that year for booth data
-      // Otherwise use selectedYear or election result's year
-      const yearToLoad = selectedACPCYear ?? selectedYear ?? electionResult?.year;
-      if (yearToLoad) {
-        void loadBoothData('TN', electionResult.schemaId, yearToLoad);
-      }
-    }
-  }, [
-    electionResult?.schemaId,
-    electionResult?.year,
-    loadBoothData,
-    selectedYear,
-    selectedACPCYear,
-    acEntity,
-    boothDataYear,
-    boothDataEnabled,
-  ]);
-
-  // Load booth results when year changes
-  // Try to load even if boothDataEnabled is false - let the availability check happen in ElectionResultPanel
-  useEffect(() => {
-    if (electionResult?.schemaId?.startsWith('TN-')) {
-      // When viewing PC contribution (selectedACPCYear), use that year for booth data
-      // Otherwise use selectedYear or election result's year
-      const yearToLoad = selectedACPCYear ?? selectedYear ?? electionResult?.year;
-      if (yearToLoad) {
-        void loadBoothResults('TN', electionResult.schemaId, yearToLoad);
-      }
-    }
-  }, [
-    electionResult?.schemaId,
-    electionResult?.year,
-    selectedYear,
-    loadBoothResults,
-    selectedACPCYear,
-    boothDataEnabled,
-  ]);
-
   // Listen for layer change events from toolbar
   useEffect(() => {
     const handleLayerChange = (e: Event): void => {
@@ -2066,14 +1799,6 @@ export function MapView({
     selectedSummaryParty,
     onSummaryPartyChange,
   ]);
-
-  useEffect(() => {
-    const parties =
-      assemblyLayerMapSummary?.seats.map((s) => s.party) ??
-      parliamentLayerMapSummary?.seats.map((s) => s.party) ??
-      [];
-    onSummaryPartyOptionsChange?.(parties);
-  }, [assemblyLayerMapSummary, parliamentLayerMapSummary, onSummaryPartyOptionsChange]);
 
   useEffect(() => {
     if (assemblyLayerMapSummary && !electionResult) {
@@ -3213,8 +2938,6 @@ export function MapView({
     selectedACPCYear,
   ]);
 
-  // Show view toggle buttons whenever we're in a state (even if PC or district is selected)
-  const showViewToggle = Boolean(currentState);
   // Show back button when not at home (India) level
   const showBackButton = Boolean(currentState);
 
@@ -3228,45 +2951,17 @@ export function MapView({
     );
   }
 
-  // Determine if any panel is open (for desktop sidebar layout) — include AC selected so panel area shows even while loading
-  const hasPanelOpen =
-    !!electionResult || !!pcElectionResult || (currentView === 'assemblies' && !!selectedAssembly);
+  // Right pane panels moved into sidebar; map should not reserve right-panel space.
+  const hasPanelOpen = false;
 
   return (
-    <div className={`map-container ${hasPanelOpen ? 'panel-open' : ''}`}>
+    <div className="map-container">
       {/* Top center toolbar */}
       <MapToolbar
-        currentView={currentView}
-        showViewToggle={showViewToggle}
         showBackButton={showBackButton}
         onReset={onReset}
-        onSwitchView={onSwitchView}
         onGoBack={onGoBack}
         onFeedbackClick={() => setFeedbackModalOpen(true)}
-        showACCheckbox={Boolean(currentPC)}
-        showACsWithinPC={showACsWithinPC}
-        {...(onShowACsWithinPCChange != null && { onShowACsWithinPCChange })}
-        selectedAssembly={selectedAssembly}
-        {...(availableYears && { availableYears })}
-        {...(selectedYear !== null && selectedYear !== undefined && { selectedYear })}
-        {...(() => {
-          // For AC view: use availablePCYears if available (specific AC selected),
-          // otherwise fall back to pcAvailableYears (state-level PC years)
-          const pcYearsForAC =
-            availablePCYears && availablePCYears.length > 0
-              ? availablePCYears
-              : pcAvailableYears && pcAvailableYears.length > 0
-                ? pcAvailableYears
-                : undefined;
-          return pcYearsForAC ? { availablePCYears: pcYearsForAC } : {};
-        })()}
-        {...(selectedACPCYear !== null &&
-          selectedACPCYear !== undefined && { selectedPCYear: selectedACPCYear })}
-        {...(pcAvailableYears && pcAvailableYears.length > 0 && { pcAvailableYears })}
-        {...(pcSelectedYear !== null && pcSelectedYear !== undefined && { pcSelectedYear })}
-        {...(onYearChange && { onYearChange })}
-        {...(onACPCYearChange && { onPCYearChange: onACPCYearChange })}
-        {...(onPCYearChange && { onPCYearChangeForPC: onPCYearChange })}
       />
 
       <MapContainer
@@ -3424,48 +3119,6 @@ export function MapView({
           />
         )}
       </MapContainer>
-
-      {/* AC panel: real result or full ElectionResultPanel with skeleton rows while loading / on error */}
-      {(electionResult ||
-        (currentView === 'assemblies' && selectedAssembly && onCloseElectionPanel)) &&
-        onCloseElectionPanel &&
-        (electionResult || acPanelPlaceholderResult) && (
-          <Suspense fallback={<PanelSkeleton />}>
-            <ElectionResultPanel
-              result={electionResult ?? acPanelPlaceholderResult!}
-              onClose={onCloseElectionPanel}
-              shareUrl={shareUrl}
-              stateName={currentState ?? undefined}
-              availableYears={availableYears ?? []}
-              selectedYear={selectedYear ?? undefined}
-              onYearChange={onYearChange}
-              parliamentContributions={parliamentContributions}
-              availablePCYears={availablePCYears}
-              selectedPCYear={selectedACPCYear}
-              onPCYearChange={onACPCYearChange}
-              pcContributionShareUrl={pcContributionShareUrl}
-              boothResults={boothResults}
-              boothsWithResults={boothsWithResults}
-              acResultsLoading={!electionResult && acResultsLoading}
-              acResultsLoadError={!electionResult ? acResultsLoadError : null}
-            />
-          </Suspense>
-        )}
-
-      {/* PC Election Result Panel - Show when in PC view and no AC selected */}
-      {pcElectionResult && !electionResult && onClosePCElectionPanel && (
-        <Suspense fallback={<PanelSkeleton />}>
-          <PCElectionResultPanel
-            result={pcElectionResult}
-            onClose={onClosePCElectionPanel}
-            shareUrl={pcShareUrl}
-            stateName={currentState ?? undefined}
-            availableYears={pcAvailableYears ?? []}
-            selectedYear={pcSelectedYear ?? undefined}
-            onYearChange={onPCYearChange}
-          />
-        </Suspense>
-      )}
 
       {/* Feedback Modal */}
       <FeedbackModal isOpen={feedbackModalOpen} onClose={() => setFeedbackModalOpen(false)} />

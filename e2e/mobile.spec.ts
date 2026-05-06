@@ -1,4 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
+import { ensureElectionPanelVisible, expandMobileElectionPanelToFull } from './panel-helpers';
 
 /**
  * Mobile-specific E2E tests for portrait and landscape modes
@@ -33,8 +34,7 @@ test.describe('Mobile Portrait - Bottom Sheet Behavior', () => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
 
     // Drag handle should be visible in portrait
     const dragHandle = panel.locator('.bottom-sheet-handle');
@@ -45,8 +45,7 @@ test.describe('Mobile Portrait - Bottom Sheet Behavior', () => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
 
     // Panel should have half class
     await expect(panel).toHaveClass(/panel-half/);
@@ -56,8 +55,7 @@ test.describe('Mobile Portrait - Bottom Sheet Behavior', () => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
     await expect(panel).toHaveClass(/panel-half/);
 
     // Click drag handle to expand
@@ -272,28 +270,24 @@ test.describe('Mobile Portrait - Map Interaction', () => {
     expect(mapBox!.height).toBeGreaterThan(100);
   });
 
-  test('should show close button on panel', async ({ page }) => {
+  test('should show footer action buttons on panel', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
-
-    const closeButton = panel.locator('.election-panel-close');
-    await expect(closeButton).toBeVisible();
+    const panel = await ensureElectionPanelVisible(page);
+    await expandMobileElectionPanelToFull(panel, page);
+    await expect(panel.locator('.share-bar .election-panel-btn').first()).toBeVisible();
+    await expect(panel.locator('.election-panel-close')).toHaveCount(0);
   });
 
-  test('should close panel and show full map on close', async ({ page }) => {
+  test('should keep panel visible after footer action click', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
-
-    const closeButton = panel.locator('.election-panel-close');
-    await closeButton.click();
-
-    await expect(panel).not.toBeVisible();
+    const panel = await ensureElectionPanelVisible(page);
+    await expandMobileElectionPanelToFull(panel, page);
+    await panel.locator('.share-bar .election-panel-btn').first().click();
+    await expect(panel).toBeVisible();
   });
 });
 
@@ -550,15 +544,14 @@ test.describe('Mobile Touch Targets', () => {
     expect(box!.width).toBeGreaterThanOrEqual(40);
   });
 
-  test('should have adequately sized close button', async ({ page }) => {
+  test('should have adequately sized footer action button', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
-
-    const closeButton = panel.locator('.election-panel-close');
-    const buttonBox = await closeButton.boundingBox();
+    const panel = await ensureElectionPanelVisible(page);
+    await expandMobileElectionPanelToFull(panel, page);
+    const actionButton = panel.locator('.share-bar .election-panel-btn').first();
+    const buttonBox = await actionButton.boundingBox();
 
     expect(buttonBox).not.toBeNull();
     expect(buttonBox!.height).toBeGreaterThanOrEqual(24);

@@ -73,3 +73,23 @@ export async function expectFirstVisibleMatch(panel: Locator, selector: string):
     )
     .toBe(true);
 }
+
+/**
+ * Ensure an election panel is visible.
+ * If deep-link hydration does not auto-open a panel, click a visible assembly list row to open it.
+ */
+export async function ensureElectionPanelVisible(page: Page): Promise<Locator> {
+  const panel = page.locator('.election-panel').first();
+  try {
+    await expect(panel).toBeVisible({ timeout: 12000 });
+    return panel;
+  } catch {
+    const assemblyRow = page.locator('.assembly-item, .constituency-item').first();
+    if (await assemblyRow.isVisible().catch(() => false)) {
+      await assemblyRow.click({ force: true });
+      await expect(panel).toBeVisible({ timeout: 15000 });
+      return panel;
+    }
+    throw new Error('Election panel not visible and no selectable row to open panel');
+  }
+}

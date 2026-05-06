@@ -1,7 +1,6 @@
 /**
  * Aggregate party seats + vote share when viewing full state assembly or parliament map (no constituency selected).
  */
-import { PieChart } from 'lucide-react';
 import { getPartyColor, getPartyShortName } from '../utils/partyData';
 import type { PartySeatRow, PartyVoteRow } from '../utils/aggregateStateMapElectionStats';
 
@@ -18,7 +17,7 @@ export interface StateMapSummaryPanelProps {
   /** When set, replaces seat listing and warns on vote section (pre-poll / announced-only bundles). */
   suppressSummaryMessage?: string | null;
   selectedParty?: string | null;
-  onPartyToggle?: (party: string) => void;
+  onPartyToggle?: (party: string | null) => void;
 }
 
 function formatIn(num: number): string {
@@ -28,8 +27,8 @@ function formatIn(num: number): string {
 
 export function StateMapSummaryPanel({
   variant,
-  stateDisplayName,
-  subtitle,
+  stateDisplayName: _stateDisplayName,
+  subtitle: _subtitle,
   seatRows,
   voteRows,
   totalValidVotes,
@@ -39,26 +38,9 @@ export function StateMapSummaryPanel({
   selectedParty = null,
   onPartyToggle,
 }: StateMapSummaryPanelProps): JSX.Element {
-  const title =
-    variant === 'assembly' ? `Assembly • ${stateDisplayName}` : `Lok Sabha • ${stateDisplayName}`;
-
   return (
     <div className={`election-panel state-map-summary-panel state-map-summary-${variant}`}>
-      <div className="election-panel-header">
-        <div className="election-panel-title">
-          <h3>
-            <PieChart
-              size={22}
-              style={{ verticalAlign: 'middle', marginRight: 8, opacity: 0.85 }}
-            />
-            {title}
-          </h3>
-          <span className={`constituency-type type-gen`}>{subtitle}</span>
-        </div>
-      </div>
-
       <div className="state-map-summary-section">
-        <h4 className="state-map-summary-heading">Seats won ({seatUnitLabel})</h4>
         {suppressSummaryMessage ? (
           <p className="state-map-summary-muted">{suppressSummaryMessage}</p>
         ) : seatRows.length === 0 ? (
@@ -82,16 +64,16 @@ export function StateMapSummaryPanel({
                   />
                   <button
                     type="button"
-                    className="state-map-summary-party-btn"
+                    className="state-map-summary-party-link"
                     title={`Filter map by ${row.party}`}
                     {...(onPartyToggle && { 'aria-pressed': selectedParty === row.party })}
-                    onClick={() => onPartyToggle?.(row.party)}
+                    onClick={() => onPartyToggle?.(selectedParty === row.party ? null : row.party)}
                   >
                     <span className="state-map-summary-party" title={row.party}>
                       {label}
                     </span>
-                    <span className="state-map-summary-value">{row.seats}</span>
                   </button>
+                  <span className="state-map-summary-value">{row.seats}</span>
                 </li>
               );
             })}
@@ -100,9 +82,6 @@ export function StateMapSummaryPanel({
       </div>
 
       <div className="state-map-summary-section">
-        <h4 className="state-map-summary-heading">
-          Vote share ({variant === 'parliament' ? 'state' : 'statewide'})
-        </h4>
         {!voteRows?.length ? (
           <p className="state-map-summary-muted">
             {suppressSummaryMessage
@@ -115,7 +94,10 @@ export function StateMapSummaryPanel({
               const col = getPartyColor(row.party);
               const label = getPartyShortName(row.party);
               return (
-                <li key={row.party} className="state-map-summary-row">
+                <li
+                  key={row.party}
+                  className={`state-map-summary-row ${selectedParty === row.party ? 'is-selected' : ''}`}
+                >
                   <span
                     className="state-map-summary-swatch"
                     style={{
@@ -123,9 +105,17 @@ export function StateMapSummaryPanel({
                       boxShadow: `0 0 0 1px ${col}40`,
                     }}
                   />
-                  <span className="state-map-summary-party" title={row.party}>
-                    {label}
-                  </span>
+                  <button
+                    type="button"
+                    className="state-map-summary-party-link"
+                    title={`Filter map by ${row.party}`}
+                    {...(onPartyToggle && { 'aria-pressed': selectedParty === row.party })}
+                    onClick={() => onPartyToggle?.(selectedParty === row.party ? null : row.party)}
+                  >
+                    <span className="state-map-summary-party" title={row.party}>
+                      {label}
+                    </span>
+                  </button>
                   <span className="state-map-summary-votepct">
                     {row.pct.toFixed(1)}%
                     <span className="state-map-summary-voteabs"> ({formatIn(row.votes)})</span>

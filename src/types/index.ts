@@ -311,6 +311,9 @@ export interface UseElectionDataReturn {
 /** Sidebar component props */
 export interface SidebarProps {
   statesGeoJSON: StatesGeoJSON | null;
+  parliamentGeoJSON: ConstituenciesGeoJSON | null;
+  assemblyGeoJSON: AssembliesGeoJSON | null;
+  districtsCache: DistrictsCache;
   currentState: string | null;
   currentView: ViewMode;
   currentPC: string | null;
@@ -322,8 +325,49 @@ export interface SidebarProps {
   onConstituencyClick: (pcName: string, feature: ConstituencyFeature) => void;
   onAssemblyClick?: (acName: string, feature: AssemblyFeature) => void;
   onSwitchView: (view: ViewMode) => void;
+  onSearchStateSelect: (stateName: string, feature: StateFeature) => void;
+  onSearchConstituencySelect: (
+    pcName: string,
+    stateName: string,
+    feature: ConstituencyFeature
+  ) => void;
+  onSearchAssemblySelect: (acName: string, stateName: string, feature: AssemblyFeature) => void;
+  onSearchDistrictSelect: (
+    districtName: string,
+    stateName: string,
+    feature: DistrictFeature
+  ) => void;
+  onShare: () => void;
   onReset: () => void;
   onGoBackToState: () => void;
+  onBlogClick?: () => void;
+  isCollapsed?: boolean;
+  onToggleCollapse?: () => void;
+  selectedSummaryParty?: string | null;
+  onSummaryPartyChange?: (party: string | null) => void;
+  stateSummaryData?: StateSummaryPanelData | null;
+  selectedAssembly?: string | null;
+  availableYears?: number[];
+  selectedYear?: number | null;
+  availablePCYears?: number[];
+  selectedACPCYear?: number | null;
+  pcAvailableYears?: number[];
+  pcSelectedYear?: number | null;
+  onYearChange?: (year: number) => void;
+  onACPCYearChange?: (year: number | null) => void;
+  onPCYearChange?: (year: number) => void;
+  showACsWithinPC?: boolean;
+  onShowACsWithinPCChange?: (show: boolean) => void;
+  electionResult?: ACElectionResult | null;
+  acResultsLoading?: boolean;
+  acResultsLoadError?: string | null;
+  shareUrl?: string | undefined;
+  parliamentContributions?: MapViewProps['parliamentContributions'];
+  pcContributionShareUrl?: string | undefined;
+  pcElectionResult?: PCElectionResult | null;
+  pcShareUrl?: string | undefined;
+  onCloseElectionPanel?: () => void;
+  onClosePCElectionPanel?: () => void;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -397,7 +441,6 @@ export interface MapViewProps {
   onShowACsWithinPCChange?: (show: boolean) => void;
   selectedSummaryParty?: string | null;
   onSummaryPartyChange?: (party: string | null) => void;
-  onSummaryPartyOptionsChange?: (parties: string[]) => void;
   onStateSummaryDataChange?: (summary: StateSummaryPanelData | null) => void;
 }
 

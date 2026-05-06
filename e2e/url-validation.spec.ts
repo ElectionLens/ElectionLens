@@ -7,6 +7,7 @@
 import { test, expect } from '@playwright/test';
 import type { Locator, Page } from '@playwright/test';
 import {
+  ensureElectionPanelVisible,
   expandMobileElectionPanelToFull,
   expectFirstVisibleMatch,
 } from './panel-helpers';
@@ -104,8 +105,7 @@ test.describe('URL Validation - Critical URLs', () => {
       await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
 
       // Both AC and PC should show election panel
-      const panel = page.locator('.election-panel');
-      await expect(panel).toBeVisible({ timeout: 15000 });
+      const panel = await ensureElectionPanelVisible(page);
 
       if (type === 'ac') {
         // AC panel should have winner info or candidate row
@@ -136,8 +136,7 @@ test.describe('URL Validation - AC Samples from Each State', () => {
       await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
 
       // Should show election panel with data
-      const panel = page.locator('.election-panel');
-      await expect(panel).toBeVisible({ timeout: 15000 });
+      const panel = await ensureElectionPanelVisible(page);
 
       // Panel should have actual election data (winner or candidates)
       await expectPanelDataVisible(
@@ -158,8 +157,7 @@ test.describe('URL Validation - PC Samples (Panel Must Show)', () => {
       await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
 
       // PC URL should show election panel (this was the bug!)
-      const panel = page.locator('.election-panel');
-      await expect(panel).toBeVisible({ timeout: 15000 });
+      const panel = await ensureElectionPanelVisible(page);
 
       // Should have the pc-panel class
       await expect(panel).toHaveClass(/pc-panel/);
@@ -182,15 +180,16 @@ test.describe('URL Validation - Year Fallback', () => {
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
 
     // Should still show panel (falls back to closest year)
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
 
     // Should have election data
     await expectPanelDataVisible(panel, page, '.winner-info, .winner-card-compact, .candidate-row');
 
-    // Panel should show election data; year selector may be in panel or toolbar
+    // Panel should show election data; year selector may be in panel or sidebar map controls
     const yearSelect = page
-      .locator('.election-year-selector select.year-dropdown, .toolbar-year-selector select.year-dropdown')
+      .locator(
+        '.election-year-selector select.year-dropdown, #sidebar-map-year'
+      )
       .first();
     await expect(yearSelect).toBeVisible({ timeout: 5000 });
     const selectedValue = await yearSelect.inputValue();
@@ -203,14 +202,13 @@ test.describe('URL Validation - Year Fallback', () => {
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
 
     // Should still show panel with latest available year
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
 
     await expandMobileElectionPanelToFull(panel, page);
 
     const hasYearChrome =
       (await page.locator('select.year-dropdown').count()) > 0 ||
-      (await page.locator('.election-year-selector, .year-selector, .toolbar-year-selector').count()) >
+      (await page.locator('.election-year-selector, .year-selector, #sidebar-map-year').count()) >
         0;
 
     let hasVisibleResults = false;
@@ -240,8 +238,7 @@ test.describe('URL Validation - Edge Cases', () => {
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
 
     // Should show election panel with data
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
   });
 
   test('handles constituency with numbers', async ({ page }) => {
@@ -249,8 +246,7 @@ test.describe('URL Validation - Edge Cases', () => {
 
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
 
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
 
     // Should have election data
     await expectPanelDataVisible(panel, page, '.winner-info, .winner-card-compact, .candidate-row');
@@ -262,8 +258,7 @@ test.describe('URL Validation - Edge Cases', () => {
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
 
     // Should show AC election panel
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
 
     // Should NOT have pc-panel class (it's an AC panel)
     await expect(panel).not.toHaveClass(/pc-panel/);
@@ -288,15 +283,15 @@ test.describe('URL Validation - AC-within-PC Year and showACs', () => {
     await expectPanelDataVisible(panel, page, '.winner-info, .winner-card-compact, .candidate-row');
   });
 
-  test('toolbar year change updates URL to year=pc-YYYY in AC-within-PC view', async ({ page }) => {
+  test('sidebar map year change updates URL to year=pc-YYYY in AC-within-PC view', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/dharmapuri/ac/mettur?year=pc-2019&showACs=true');
 
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
     await expect(page).toHaveURL(/year=pc-2019/);
 
-    const toolbarSelect = page.locator('.toolbar-year-selector select.year-dropdown');
-    if ((await toolbarSelect.locator('option[value="pc-2024"]').count()) > 0) {
-      await toolbarSelect.selectOption('pc-2024');
+    const mapYearSelect = page.locator('#sidebar-map-year');
+    if ((await mapYearSelect.locator('option[value="pc-2024"]').count()) > 0) {
+      await mapYearSelect.selectOption('pc-2024');
       await expect(page).toHaveURL(/year=pc-2024/, { timeout: 5000 });
     }
   });
@@ -305,14 +300,12 @@ test.describe('URL Validation - AC-within-PC Year and showACs', () => {
     await page.goto('/tamil-nadu/pc/dharmapuri/ac/mettur?year=pc-2019&showACs=true');
 
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
-    await expect(page.locator('.election-panel')).toBeVisible({ timeout: 15000 });
-
+    const visiblePanel = await ensureElectionPanelVisible(page);
     await expect(page).toHaveURL(/year=pc-2019/);
     await expect(page).toHaveURL(/showACs=true/);
 
-    const panel = page.locator('.election-panel');
-    await expandMobileElectionPanelToFull(panel, page);
-    const yearDropdown = panel.locator('.election-year-selector select.year-dropdown');
+    await expandMobileElectionPanelToFull(visiblePanel, page);
+    const yearDropdown = visiblePanel.locator('.election-year-selector select.year-dropdown');
     await expect(yearDropdown).toBeVisible({ timeout: 5000 });
   });
 });
@@ -324,8 +317,7 @@ test.describe('URL Validation - Parliament Panel in AC View', () => {
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
 
     // Should show AC election panel
-    const panel = page.locator('.election-panel');
-    await expect(panel).toBeVisible({ timeout: 15000 });
+    const panel = await ensureElectionPanelVisible(page);
 
     // Wait for parliament section to potentially load
     await page.waitForTimeout(2000);

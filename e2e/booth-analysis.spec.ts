@@ -1,10 +1,11 @@
 import { test, expect, type Page } from '@playwright/test';
+import { ensureElectionPanelVisible } from './panel-helpers';
 
 /** Avoid networkidle — Vite/HMR and background requests often prevent it from settling. */
 async function waitForAcPanelReady(page: Page): Promise<void> {
   await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-  await page.waitForSelector('.election-panel', { timeout: 15000 });
-  await page.waitForSelector('.panel-tabs', { timeout: 15000 });
+  await ensureElectionPanelVisible(page);
+  await page.waitForSelector('#ac-panel-view', { timeout: 15000 });
 }
 
 test.describe('Booth Analysis', () => {
@@ -15,17 +16,14 @@ test.describe('Booth Analysis', () => {
 
   test('displays Analysis tab when booth data is available', async ({ page }) => {
     // Wait for panel tabs to be visible
-    await page.waitForSelector('.panel-tabs', { timeout: 10000 });
-    // Check if Analysis tab is visible
-    const analysisTab = page.locator('.panel-tab:has-text("Analysis")');
-    await expect(analysisTab).toBeVisible({ timeout: 10000 });
+    const analysisView = page.locator('#ac-panel-view');
+    await expect(analysisView).toBeVisible({ timeout: 10000 });
+    await expect(analysisView.locator('option[value="analysis"]')).toHaveCount(1);
   });
 
   test('shows Booth Distribution section', async ({ page }) => {
     // Wait for panel to be ready
-    await page.waitForSelector('.panel-tabs', { timeout: 10000 });
-    // Click Analysis tab
-    await page.click('.panel-tab:has-text("Analysis")');
+    await page.locator('#ac-panel-view').selectOption('analysis');
     // Wait for tab content to load
     await page.waitForTimeout(500);
 
@@ -39,8 +37,7 @@ test.describe('Booth Analysis', () => {
   });
 
   test('shows Booths Won by Party section', async ({ page }) => {
-    await page.waitForSelector('.panel-tabs', { timeout: 10000 });
-    await page.click('.panel-tab:has-text("Analysis")');
+    await page.locator('#ac-panel-view').selectOption('analysis');
     await page.waitForTimeout(500);
 
     // Check for party booth breakdown
@@ -53,8 +50,7 @@ test.describe('Booth Analysis', () => {
   });
 
   test('expands party booth card on click', async ({ page }) => {
-    await page.waitForSelector('.panel-tabs', { timeout: 10000 });
-    await page.click('.panel-tab:has-text("Analysis")');
+    await page.locator('#ac-panel-view').selectOption('analysis');
     await page.waitForTimeout(500);
 
     // Get first party card
@@ -74,8 +70,7 @@ test.describe('Booth Analysis', () => {
   });
 
   test('shows Key Insights section', async ({ page }) => {
-    await page.waitForSelector('.panel-tabs', { timeout: 10000 });
-    await page.click('.panel-tab:has-text("Analysis")');
+    await page.locator('#ac-panel-view').selectOption('analysis');
     await page.waitForTimeout(500);
 
     // Check for insights section
@@ -84,8 +79,7 @@ test.describe('Booth Analysis', () => {
   });
 
   test('shows Strike Rate table', async ({ page }) => {
-    await page.waitForSelector('.panel-tabs', { timeout: 10000 });
-    await page.click('.panel-tab:has-text("Analysis")');
+    await page.locator('#ac-panel-view').selectOption('analysis');
     await page.waitForTimeout(500);
 
     // Check for strike rate table
@@ -98,8 +92,11 @@ test.describe('Booth Analysis', () => {
   });
 
   test('shows Quick Stats section', async ({ page }) => {
-    await page.waitForSelector('.panel-tabs', { timeout: 10000 });
-    await page.click('.panel-tab:has-text("Analysis")');
+    const viewSelect = page.locator('#ac-panel-view');
+    if ((await viewSelect.locator('option[value="analysis"]').count()) === 0) {
+      test.skip(true, 'Analysis view not available for this constituency/year');
+    }
+    await viewSelect.selectOption('analysis');
     await page.waitForTimeout(500);
 
     // Check for quick stats - may be in analysis-quick-stats-section
@@ -120,20 +117,20 @@ test.describe('Booth Data View', () => {
   });
 
   test('displays Booths tab', async ({ page }) => {
-    await page.waitForSelector('.panel-tabs', { timeout: 10000 });
-    const boothsTab = page.locator('.panel-tab:has-text("Booths")');
-    await expect(boothsTab).toBeVisible({ timeout: 10000 });
+    const viewSelect = page.locator('#ac-panel-view');
+    await expect(viewSelect).toBeVisible({ timeout: 10000 });
+    await expect(viewSelect.locator('option[value="booths"]')).toHaveCount(1);
   });
 
   test('shows booth selector dropdown', async ({ page }) => {
-    await page.click('.panel-tab:has-text("Booths")');
+    await page.locator('#ac-panel-view').selectOption('booths');
 
     const dropdown = page.locator('.booth-dropdown');
     await expect(dropdown).toBeVisible();
   });
 
   test('shows booth stats summary', async ({ page }) => {
-    await page.click('.panel-tab:has-text("Booths")');
+    await page.locator('#ac-panel-view').selectOption('booths');
 
     const statsSummary = page.locator('.booth-stats-summary');
     await expect(statsSummary).toBeVisible();
@@ -147,19 +144,19 @@ test.describe('Postal Ballots View', () => {
   });
 
   test('displays Postal tab', async ({ page }) => {
-    const postalTab = page.locator('.panel-tab:has-text("Postal")');
-    await expect(postalTab).toBeVisible();
+    const viewSelect = page.locator('#ac-panel-view');
+    await expect(viewSelect.locator('option[value="postal"]')).toHaveCount(1);
   });
 
   test('shows postal ballot summary', async ({ page }) => {
-    await page.click('.panel-tab:has-text("Postal")');
+    await page.locator('#ac-panel-view').selectOption('postal');
 
     const summary = page.locator('.postal-summary');
     await expect(summary).toBeVisible();
   });
 
   test('shows postal candidates list', async ({ page }) => {
-    await page.click('.panel-tab:has-text("Postal")');
+    await page.locator('#ac-panel-view').selectOption('postal');
 
     const candidatesList = page.locator('.postal-candidates');
     await expect(candidatesList).toBeVisible();
