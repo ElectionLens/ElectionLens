@@ -140,6 +140,9 @@ test.describe('Link Validation - Tab Navigation', () => {
     const preview = page.locator('.election-panel .candidates-preview');
     await expect(preview).toBeVisible();
     await expect(preview.locator('.candidate-row').first()).toBeVisible({ timeout: 20000 });
+
+    const femaleBadge = preview.locator('.sex-badge').filter({ hasText: /^F$/ });
+    await expect(femaleBadge.first()).toBeVisible({ timeout: 20000 });
   });
 });
 

@@ -75,22 +75,10 @@ export function PCElectionResultPanel({
 
   const [activeTab, setActiveTab] = useState<'overview' | 'candidates'>(() => getTabFromUrl());
 
-  // Mobile panel expansion state
-  const [panelState, setPanelState] = useState<'peek' | 'half' | 'full'>('half');
-
-  // Check if we're on mobile portrait
   const isMobilePortrait =
     typeof window !== 'undefined' &&
     window.innerWidth <= 768 &&
     window.innerHeight > window.innerWidth;
-
-  const handleDragHandleClick = useCallback(() => {
-    setPanelState((prev) => {
-      if (prev === 'peek') return 'half';
-      if (prev === 'half') return 'full';
-      return 'peek';
-    });
-  }, []);
 
   const winner = result.candidates[0];
   const shortPartyUi = shouldUseShortPartyLabelsPC(result, stateName);
@@ -235,50 +223,26 @@ export function PCElectionResultPanel({
     }
   }, [result]);
 
-  const peekWinnerLine =
-    isMobilePortrait && panelState === 'peek' && winner ? (
-      <span className="peek-winner">
-        🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare.toFixed(1)}%
-      </span>
-    ) : null;
-  const showElectionPanelHeader = !omitConstituencyHeading || peekWinnerLine != null;
+  const showElectionPanelHeader = !omitConstituencyHeading;
 
   return (
     <div
       ref={panelRef}
-      className={`election-panel pc-panel ${isMobilePortrait ? `panel-${panelState}` : ''}`}
+      className={`election-panel pc-panel ${isMobilePortrait ? 'panel-full' : ''}`}
     >
-      {/* Mobile drag handle */}
-      {isMobilePortrait && (
-        <div
-          className="bottom-sheet-handle"
-          onClick={handleDragHandleClick}
-          role="button"
-          aria-label={`Panel is ${panelState}. Click to ${panelState === 'full' ? 'minimize' : 'expand'}`}
-        />
-      )}
-
       <div className="controls-card pane-section">
         {showElectionPanelHeader && (
-          <div
-            className="election-panel-header"
-            onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
-          >
+          <div className="election-panel-header">
             <div className="election-panel-title">
-              {!omitConstituencyHeading && (
-                <h3>{result.constituencyNameOriginal || result.constituencyName}</h3>
-              )}
-              {peekWinnerLine}
-              {!omitConstituencyHeading && (!isMobilePortrait || panelState !== 'peek') && (
-                <div className="title-badges">
-                  <span className="pc-badge">Parliament</span>
-                  <span
-                    className={`constituency-type type-${result.constituencyType?.toLowerCase() ?? 'gen'}`}
-                  >
-                    {result.constituencyType ?? 'GEN'}
-                  </span>
-                </div>
-              )}
+              <h3>{result.constituencyNameOriginal || result.constituencyName}</h3>
+              <div className="title-badges">
+                <span className="pc-badge">Parliament</span>
+                <span
+                  className={`constituency-type type-${result.constituencyType?.toLowerCase() ?? 'gen'}`}
+                >
+                  {result.constituencyType ?? 'GEN'}
+                </span>
+              </div>
             </div>
           </div>
         )}

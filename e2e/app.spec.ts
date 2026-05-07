@@ -390,6 +390,10 @@ test.describe('Tab Navigation in Election Panel', () => {
 
     await expect(preview.locator('.candidate-row').first()).toBeVisible({ timeout: 20000 });
 
+    // TN-111 Mettuppalayam data: inference marks SMT.* candidates as F (not default M for all rows)
+    const femaleBadge = preview.locator('.sex-badge').filter({ hasText: /^F$/ });
+    await expect(femaleBadge.first()).toBeVisible({ timeout: 20000 });
+
     await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
   });
 });

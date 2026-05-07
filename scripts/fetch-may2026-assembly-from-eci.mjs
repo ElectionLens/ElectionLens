@@ -15,6 +15,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { inferSexFromAnnouncedName } from './lib/infer-candidate-sex.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.join(__dirname, '..');
@@ -206,7 +207,7 @@ function parseCandidatesHtml(html) {
       party,
       votes,
       voteShare: 0,
-      sex: 'M',
+      sex: inferSexFromAnnouncedName(nm),
       age: null,
       depositLost: false,
     });

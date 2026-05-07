@@ -131,7 +131,7 @@ function convertData(sourceData) {
         voteShare: 0, // Will be calculated
         margin: null,
         marginPct: null,
-        sex: 'M', // Not available in source data
+        sex: '',
         age: 0, // Not available in source data
         depositLost: false, // Will be calculated
       });

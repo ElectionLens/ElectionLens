@@ -1276,9 +1276,9 @@ path:focus {
     display: block;
   }
 
-  .container:has(.sidebar.open) .leaflet-control-zoom,
-  .container:has(.sidebar.open) .map-toolbar,
-  .container:has(.sidebar.open) .map-legend {
+  .container:has(.sidebar.open .sidebar-detail-host) .leaflet-control-zoom,
+  .container:has(.sidebar.open .sidebar-detail-host) .map-toolbar,
+  .container:has(.sidebar.open .sidebar-detail-host) .map-legend {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -2977,10 +2977,15 @@ path:focus {
     font-size: 0.6rem;
   }
 
-  /* Compact candidates section */
+  /* Compact candidates section (lists outside election panel only; panel scrolls internally) */
   .candidates-section {
     padding: 0 10px 12px;
     max-height: 180px;
+  }
+
+  .election-panel .candidates-section {
+    max-height: none;
+    overflow-y: visible;
   }
 
   .candidates-section h4 {
@@ -3968,10 +3973,14 @@ path:focus {
     margin-top: 4px;
   }
 
-  /* HALF MODE - header + years + tabs + top candidates ONLY */
+  /* HALF MODE — fixed sheet height; tab body scrolls */
   .election-panel.panel-half {
     height: 45vh !important;
     max-height: 45vh !important;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Hide winner card in half mode */
@@ -3994,40 +4003,32 @@ path:focus {
     display: none !important;
   }
 
-  /* Show candidates preview with limited height */
-  .election-panel.panel-half .candidates-preview {
-    margin-top: 8px;
-    max-height: 180px;
-    overflow: hidden;
-    position: relative;
+  /* Scroll long lists in tab body (not a clipped candidates-preview) */
+  .election-panel.panel-half .panel-tab-content,
+  .election-panel.panel-full .panel-tab-content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  /* Fade hint at bottom */
-  .election-panel.panel-half .candidates-preview::after {
-    content: '▼ Expand for more';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 36px;
-    background: linear-gradient(transparent, white 50%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 6px;
-    font-size: 0.7rem;
-    color: #64748b;
-    pointer-events: none;
+  .election-panel.panel-half .candidates-preview {
+    margin-top: 8px;
+  }
+
+  .election-panel.panel-half .candidates-scroll,
+  .election-panel.panel-full .candidates-scroll {
+    max-height: none;
   }
 
   /* FULL MODE - everything visible */
   .election-panel.panel-full {
     height: 85vh !important;
     max-height: 85vh !important;
-  }
-
-  .election-panel.panel-full .candidates-preview::after {
-    display: none;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Drag handle state colors */
@@ -7116,6 +7117,37 @@ body {
   border-radius: 0;
   border: none;
   background: transparent;
+}
+
+/* Mobile: keep embedded AC/PC panels in sidebar column (scroll via .sidebar-scroll), not fixed bottom-sheet */
+@media (max-width: 768px) {
+  .sidebar-detail-host .election-panel,
+  .sidebar-detail-host .election-panel.panel-half,
+  .sidebar-detail-host .election-panel.panel-full {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    animation: none !important;
+    overflow: visible !important;
+    overflow-y: visible !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .sidebar-detail-host .election-panel.panel-half .panel-tab-content,
+  .sidebar-detail-host .election-panel.panel-full .panel-tab-content {
+    flex: none !important;
+    min-height: 0;
+    overflow-y: visible !important;
+  }
 }
 
 .sidebar-detail-host .panel-tab-content,

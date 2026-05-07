@@ -241,7 +241,7 @@ function processCSV(csvPath, stateSlug, year) {
       voteShare,
       margin: null,
       marginPct: null,
-      sex: 'M',
+      sex: '',
       age: 0,
       depositLost: voteShare < 16.67,
     });

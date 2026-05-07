@@ -128,6 +128,18 @@ function calculateENOP(candidates) {
   return sumSquares > 0 ? parseFloat((1 / sumSquares).toFixed(2)) : 0;
 }
 
+/** Map CSV gender cell to ECI-style M/F; empty when unknown (do not default to male). */
+function normalizeSexCell(raw) {
+  const s = String(raw ?? '').trim();
+  if (!s) return '';
+  const u = s.toUpperCase();
+  if (u === 'M' || u === 'MALE' || u === 'MAN') return 'M';
+  if (u === 'F' || u === 'FEMALE' || u === 'WOMAN') return 'F';
+  const first = u.charAt(0);
+  if (first === 'M' || first === 'F') return first;
+  return '';
+}
+
 /**
  * Process CSV file
  */
@@ -220,7 +232,7 @@ function processCSV(csvPath, stateSlug, year) {
       voteShare: cols.voteShare >= 0 ? parseFloat(values[cols.voteShare]) || 0 : 0,
       margin: null,
       marginPct: null,
-      sex: cols.gender >= 0 ? (values[cols.gender] || 'M').charAt(0).toUpperCase() : 'M',
+      sex: cols.gender >= 0 ? normalizeSexCell(values[cols.gender]) : '',
       age: cols.age >= 0 ? parseInt(values[cols.age]) || 0 : 0,
       depositLost: false,
     });

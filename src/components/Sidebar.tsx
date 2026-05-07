@@ -1031,8 +1031,8 @@ export function Sidebar({
     (showSummarySidebarUI && Boolean(stateSummaryData)) ||
     (Boolean(currentPC) && Boolean(onShowACsWithinPCChange));
   const effectiveOpen = isOpen;
-  /** Dim map + block overlay tap-to-close only on mobile; web keeps map controls usable when expanded. */
-  const showSidebarOverlay = isMobileSidebar && isOpen;
+  /** Mobile only: dim map when AC/PC detail pane is open (list/summary sidebar keeps map usable like web). */
+  const showSidebarOverlay = isMobileSidebar && isOpen && hasDetailPanel;
 
   const acDetailForBadge = showACDetailPanel ? (electionResult ?? acPanelPlaceholderResult) : null;
 

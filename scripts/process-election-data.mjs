@@ -155,6 +155,18 @@ function normalizeConstituencyName(name) {
     .replace(/-/g, ' ');
 }
 
+/** Map TCPD/ECI sex column to M/F; empty when unknown. */
+function normalizeSex(raw) {
+  const s = String(raw ?? '').trim();
+  if (!s) return '';
+  const u = s.toUpperCase();
+  if (u === 'MALE' || u === 'M' || u === 'MAN') return 'M';
+  if (u === 'FEMALE' || u === 'F' || u === 'WOMAN') return 'F';
+  const first = u.charAt(0);
+  if (first === 'M' || first === 'F') return first;
+  return '';
+}
+
 /**
  * Identify general election years for a state
  * General elections have most constituencies (>50% of max) voting
@@ -305,7 +317,7 @@ async function processElectionData(csvPath, outputDir) {
       voteShare,
       margin: position === 1 ? margin : null,
       marginPct: position === 1 ? marginPct : null,
-      sex: sex === 'MALE' ? 'M' : sex === 'FEMALE' ? 'F' : sex,
+      sex: normalizeSex(sex),
       age: age || null,
       depositLost: depositLost === 'yes'
     });

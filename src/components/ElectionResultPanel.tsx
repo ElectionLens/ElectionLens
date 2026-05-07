@@ -256,23 +256,11 @@ export function ElectionResultPanel({
   const [copied, setCopied] = useState(false);
   const [selectedPCYearInternal, setSelectedPCYearInternal] = useState<number | null>(null);
 
-  // Mobile panel expansion state: 'peek' (minimal), 'half' (default), 'full' (all content)
-  const [panelState, setPanelState] = useState<'peek' | 'half' | 'full'>('half');
-
-  // Check if we're on mobile portrait
+  // Mobile portrait: single expanded sheet (full height class); no peek/half cycling
   const isMobilePortrait =
     typeof window !== 'undefined' &&
     window.innerWidth <= 768 &&
     window.innerHeight > window.innerWidth;
-
-  // Cycle through panel states on drag handle click
-  const handleDragHandleClick = useCallback(() => {
-    setPanelState((prev) => {
-      if (prev === 'peek') return 'half';
-      if (prev === 'half') return 'full';
-      return 'peek';
-    });
-  }, []);
 
   // Use prop if provided (controlled), otherwise use internal state (uncontrolled)
   const selectedPCYear =
@@ -483,13 +471,7 @@ export function ElectionResultPanel({
     }
   }, [result, acResultsLoading]);
 
-  const peekWinnerLine =
-    isMobilePortrait && panelState === 'peek' && winner ? (
-      <span className="peek-winner">
-        🏆 {winner.name} ({pl(winner.party)}) - {winner.voteShare?.toFixed(1) ?? '0.0'}%
-      </span>
-    ) : null;
-  const showElectionPanelHeader = !omitConstituencyHeading || peekWinnerLine != null;
+  const showElectionPanelHeader = !omitConstituencyHeading;
 
   return (
     <div
@@ -497,42 +479,24 @@ export function ElectionResultPanel({
       className={[
         'election-panel',
         omitConstituencyHeading && 'election-panel--embed',
-        isMobilePortrait && `panel-${panelState}`,
+        isMobilePortrait && 'panel-full',
       ]
         .filter(Boolean)
         .join(' ')}
     >
-      {/* Mobile drag handle - click to cycle states */}
-      {isMobilePortrait && (
-        <div
-          className="bottom-sheet-handle"
-          onClick={handleDragHandleClick}
-          role="button"
-          aria-label={`Panel is ${panelState}. Click to ${panelState === 'full' ? 'minimize' : 'expand'}`}
-        />
-      )}
-
       <div className="controls-card pane-section">
         {showElectionPanelHeader && (
-          <div
-            className="election-panel-header"
-            onClick={() => isMobilePortrait && panelState === 'peek' && setPanelState('half')}
-          >
+          <div className="election-panel-header">
             <div className="election-panel-title">
-              {!omitConstituencyHeading && (
-                <h3>
-                  {result.constituencyNameOriginal ??
-                    result.name ??
-                    result.constituencyName ??
-                    'Unknown'}
-                </h3>
-              )}
-              {peekWinnerLine}
-              {!omitConstituencyHeading && (!isMobilePortrait || panelState !== 'peek') && (
-                <span className={`constituency-type type-${constituencyType.toLowerCase()}`}>
-                  {constituencyType}
-                </span>
-              )}
+              <h3>
+                {result.constituencyNameOriginal ??
+                  result.name ??
+                  result.constituencyName ??
+                  'Unknown'}
+              </h3>
+              <span className={`constituency-type type-${constituencyType.toLowerCase()}`}>
+                {constituencyType}
+              </span>
             </div>
           </div>
         )}

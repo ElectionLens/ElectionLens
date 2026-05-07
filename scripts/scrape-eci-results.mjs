@@ -66,6 +66,18 @@ function fetchUrl(url) {
   });
 }
 
+/** Normalize API gender to M/F; empty string when missing or unknown. */
+function normalizeSexApi(raw) {
+  const s = String(raw ?? '').trim();
+  if (!s) return '';
+  const u = s.toUpperCase();
+  if (u === 'M' || u === 'MALE') return 'M';
+  if (u === 'F' || u === 'FEMALE') return 'F';
+  const first = u.charAt(0);
+  if (first === 'M' || first === 'F') return first;
+  return '';
+}
+
 /**
  * Parse ECI JSON response for constituency results
  */
@@ -92,7 +104,7 @@ function parseEciResults(jsonData, stateConfig) {
         voteShare: parseFloat(c.vote_share || c.percentage || 0),
         margin: c.position === 1 ? parseInt(c.margin || 0) : null,
         marginPct: c.position === 1 ? parseFloat(c.margin_percentage || 0) : null,
-        sex: c.gender || c.sex || 'M',
+        sex: normalizeSexApi(c.gender ?? c.sex),
         age: parseInt(c.age || 0),
         depositLost: parseFloat(c.vote_share || 0) < 16.67,
       }));
@@ -231,7 +243,7 @@ function createManualTemplate(stateSlug, year) {
           voteShare: 0,
           margin: 0,
           marginPct: 0,
-          sex: 'M',
+          sex: '',
           age: 0,
           depositLost: false,
         },
@@ -243,7 +255,7 @@ function createManualTemplate(stateSlug, year) {
           voteShare: 0,
           margin: null,
           marginPct: null,
-          sex: 'M',
+          sex: '',
           age: 0,
           depositLost: false,
         },
