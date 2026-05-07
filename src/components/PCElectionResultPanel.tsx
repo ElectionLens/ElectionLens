@@ -67,13 +67,6 @@ export function PCElectionResultPanel({
   omitConstituencyHeading = false,
 }: PCElectionResultPanelProps): JSX.Element {
   const [copied, setCopied] = useState(false);
-  const getTabFromUrl = useCallback((): 'overview' | 'candidates' => {
-    if (typeof window === 'undefined') return 'overview';
-    const tab = new URLSearchParams(window.location.search).get('tab');
-    return tab === 'candidates' ? 'candidates' : 'overview';
-  }, []);
-
-  const [activeTab, setActiveTab] = useState<'overview' | 'candidates'>(() => getTabFromUrl());
 
   const isMobilePortrait =
     typeof window !== 'undefined' &&
@@ -88,60 +81,24 @@ export function PCElectionResultPanel({
       {
         id: 'overview',
         label: 'Overview',
-        isActive: activeTab === 'overview',
-        onClick: () => setActiveTab('overview'),
-      },
-      {
-        id: 'candidates',
-        label: `Candidates (${result.totalCandidates})`,
-        isActive: activeTab === 'candidates',
-        onClick: () => setActiveTab('candidates'),
+        isActive: true,
+        onClick: () => {},
       },
     ],
-    [activeTab, result.totalCandidates]
+    []
   );
 
+  /** Legacy deeplink support: remove tab=candidates since PC now embeds list in Overview. */
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const searchParams = new URLSearchParams(window.location.search);
-    const currentTab = searchParams.get('tab');
-
-    if (activeTab === 'overview') {
-      if (!currentTab) return;
-      searchParams.delete('tab');
-    } else if (currentTab !== 'candidates') {
-      searchParams.set('tab', 'candidates');
-    } else {
-      return;
-    }
-
+    if (searchParams.get('tab') !== 'candidates') return;
+    searchParams.delete('tab');
     const newUrl = searchParams.toString()
       ? `${window.location.pathname}?${searchParams.toString()}`
       : window.location.pathname;
     window.history.replaceState({}, '', newUrl);
-  }, [activeTab]);
-
-  useEffect(() => {
-    const handlePopState = (): void => {
-      setActiveTab(getTabFromUrl());
-    };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, [getTabFromUrl]);
-
-  useEffect(
-    () => () => {
-      if (typeof window === 'undefined') return;
-      const searchParams = new URLSearchParams(window.location.search);
-      if (!searchParams.get('tab')) return;
-      searchParams.delete('tab');
-      const newUrl = searchParams.toString()
-        ? `${window.location.pathname}?${searchParams.toString()}`
-        : window.location.pathname;
-      window.history.replaceState({}, '', newUrl);
-    },
-    []
-  );
+  }, []);
 
   const handleCopyLink = useCallback(async () => {
     const url = shareUrl ?? window.location.href;
@@ -284,9 +241,67 @@ export function PCElectionResultPanel({
       </div>
 
       <div className="panel-tab-content">
-        {activeTab === 'candidates' ? (
-          <div className="candidates-view">
-            <h4 style={{ margin: '12px 0 8px', fontSize: 14 }}>Candidates</h4>
+        <div className="overview-view">
+          {winner && (
+            <div
+              className="winner-card-compact"
+              style={{ borderColor: getPartyColor(winner.party) }}
+            >
+              <div className="winner-main">
+                <div className="winner-badge-small">
+                  <Award size={14} />
+                  Winner
+                </div>
+                <div className="winner-name">{winner.name}</div>
+                <div
+                  className="winner-party"
+                  style={{ backgroundColor: getPartyColor(winner.party) }}
+                  title={getPartyFullName(winner.party)}
+                >
+                  {pl(winner.party)}
+                </div>
+              </div>
+              <div className="winner-stats-compact">
+                <div className="stat-compact">
+                  <Vote size={12} />
+                  <span>{formatNumber(winner.votes)}</span>
+                </div>
+                <div className="stat-compact highlight">
+                  <TrendingUp size={12} />
+                  <span>{winner.voteShare.toFixed(1)}%</span>
+                </div>
+                {winner.margin && (
+                  <div className="stat-compact margin">
+                    <span>+{formatNumber(winner.margin)}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          <div className="stats-inline">
+            <div className="stat-inline">
+              <Users size={12} />
+              <span className="label">Voters</span>
+              <span className="value">
+                {result.electors > 0 ? formatNumber(result.electors) : '—'}
+              </span>
+            </div>
+            <div className="stat-inline">
+              <Vote size={12} />
+              <span className="label">Polled</span>
+              <span className="value">{formatNumber(result.validVotes)}</span>
+            </div>
+            <div className="stat-inline highlight">
+              <span className="label">Turnout</span>
+              <span className="value">
+                {result.turnout > 0 ? `${result.turnout.toFixed(1)}%` : '—'}
+              </span>
+            </div>
+          </div>
+
+          <div className="candidates-preview">
+            <h4>Candidates</h4>
             <div className="candidates-table-full">
               <div className="candidates-header">
                 <span className="col-pos">#</span>
@@ -308,88 +323,7 @@ export function PCElectionResultPanel({
               </div>
             </div>
           </div>
-        ) : (
-          <div className="overview-view">
-            {winner && (
-              <div
-                className="winner-card-compact"
-                style={{ borderColor: getPartyColor(winner.party) }}
-              >
-                <div className="winner-main">
-                  <div className="winner-badge-small">
-                    <Award size={14} />
-                    Winner
-                  </div>
-                  <div className="winner-name">{winner.name}</div>
-                  <div
-                    className="winner-party"
-                    style={{ backgroundColor: getPartyColor(winner.party) }}
-                    title={getPartyFullName(winner.party)}
-                  >
-                    {pl(winner.party)}
-                  </div>
-                </div>
-                <div className="winner-stats-compact">
-                  <div className="stat-compact">
-                    <Vote size={12} />
-                    <span>{formatNumber(winner.votes)}</span>
-                  </div>
-                  <div className="stat-compact highlight">
-                    <TrendingUp size={12} />
-                    <span>{winner.voteShare.toFixed(1)}%</span>
-                  </div>
-                  {winner.margin && (
-                    <div className="stat-compact margin">
-                      <span>+{formatNumber(winner.margin)}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            <div className="stats-inline">
-              <div className="stat-inline">
-                <Users size={12} />
-                <span className="label">Voters</span>
-                <span className="value">
-                  {result.electors > 0 ? formatNumber(result.electors) : '—'}
-                </span>
-              </div>
-              <div className="stat-inline">
-                <Vote size={12} />
-                <span className="label">Polled</span>
-                <span className="value">{formatNumber(result.validVotes)}</span>
-              </div>
-              <div className="stat-inline highlight">
-                <span className="label">Turnout</span>
-                <span className="value">
-                  {result.turnout > 0 ? `${result.turnout.toFixed(1)}%` : '—'}
-                </span>
-              </div>
-            </div>
-
-            <div className="candidates-preview">
-              <h4>Top candidates</h4>
-              {result.candidates.slice(0, 3).map((candidate, idx) => (
-                <PCCandidateRowCompact
-                  key={idx}
-                  candidate={candidate}
-                  isWinner={idx === 0}
-                  partyShortNames={shortPartyUi}
-                />
-              ))}
-              {result.candidates.length > 3 && (
-                <button
-                  className="view-all-btn"
-                  onClick={() => setActiveTab('candidates')}
-                  type="button"
-                >
-                  View all {result.candidates.length} candidates →
-                </button>
-              )}
-            </div>
-          </div>
-        )}
+        </div>
       </div>
 
       {/* Footer */}
@@ -428,39 +362,6 @@ export function PCElectionResultPanel({
     </div>
   );
 }
-
-const PCCandidateRowCompact = memo(function PCCandidateRowCompact({
-  candidate,
-  isWinner,
-  partyShortNames = false,
-}: {
-  candidate: PCElectionCandidate;
-  isWinner: boolean;
-  partyShortNames?: boolean;
-}): JSX.Element {
-  const partyColor = getPartyColor(candidate.party);
-  const partyText = partyShortNames ? getPartyShortName(candidate.party) : candidate.party;
-
-  return (
-    <div className={`candidate-row-compact ${isWinner ? 'winner' : ''}`}>
-      <span className="pos">{candidate.position}</span>
-      <span className="name">{candidate.name}</span>
-      <span
-        className="party"
-        style={{ backgroundColor: partyColor, color: 'white' }}
-        title={getPartyFullName(candidate.party)}
-      >
-        {partyText}
-      </span>
-      <span className="votes">{formatNumber(candidate.votes)}</span>
-      <span className="share">{candidate.voteShare.toFixed(1)}%</span>
-      <div
-        className="bar"
-        style={{ width: `${Math.min(candidate.voteShare, 100)}%`, backgroundColor: partyColor }}
-      />
-    </div>
-  );
-});
 
 // Memoized full PC candidate row
 const PCCandidateRow = memo(function PCCandidateRow({

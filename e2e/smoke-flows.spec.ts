@@ -35,7 +35,13 @@ test.describe('Smoke flows', () => {
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
 
     const panel = await ensureElectionPanelVisible(page);
-    await expect(panel.locator('#pc-panel-view')).toBeVisible({ timeout: 20000 });
+    const viewSelect = panel.locator('#pc-panel-view');
+    await expect(viewSelect).toBeVisible({ timeout: 20000 });
+    await expect(viewSelect).toHaveValue('overview');
+    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
+    await expect(
+      panel.locator('.candidates-preview').getByRole('heading', { name: /^Candidates$/i })
+    ).toBeVisible();
   });
 
   test('statewide assembly map loads many polygons', async ({ page }) => {

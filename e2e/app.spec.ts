@@ -356,7 +356,15 @@ test.describe('Parliament Results', () => {
     await page.goto('/tamil-nadu/pc/salem');
 
     const panel = await ensureElectionPanelVisible(page);
-    await expect(panel.locator('#pc-panel-view')).toBeVisible();
+    const viewSelect = panel.locator('#pc-panel-view');
+    await expect(viewSelect).toBeVisible();
+    await expect(viewSelect).toHaveValue('overview');
+    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
+
+    const preview = panel.locator('.candidates-preview');
+    await expect(preview).toBeVisible();
+    await expect(preview.getByRole('heading', { name: /^Candidates$/i })).toBeVisible();
+    expect(await preview.locator('.candidate-row').count()).toBeGreaterThan(1);
   });
 });
 

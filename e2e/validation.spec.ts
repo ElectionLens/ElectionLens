@@ -355,7 +355,11 @@ test.describe('Panel Validation - PC Panel Content', () => {
     const panel = await ensureElectionPanelVisible(page);
     await expect(panel).toHaveClass(/pc-panel/);
     await expandPanelOnMobileIfNeeded(panel, page);
-    await expect(panel.locator('#pc-panel-view')).toBeVisible();
+    const viewSelect = panel.locator('#pc-panel-view');
+    await expect(viewSelect).toBeVisible();
+    await expect(viewSelect).toHaveValue('overview');
+    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
+    await expect(panel.locator('.candidates-preview .candidates-table-full')).toBeVisible();
   });
 
   test('PC panel shows MP information', async ({ page }) => {
@@ -374,7 +378,10 @@ test.describe('Panel Validation - PC Panel Content', () => {
     await expect(panel).toHaveClass(/pc-panel/);
     await expandPanelOnMobileIfNeeded(panel, page);
 
-    await expect(panel.locator('#pc-panel-view')).toBeVisible();
+    const viewSelect = panel.locator('#pc-panel-view');
+    await expect(viewSelect).toBeVisible();
+    await expect(viewSelect).toHaveValue('overview');
+    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
     const yearDropdown = panel.locator('#pc-panel-year');
     if ((await yearDropdown.count()) > 0) {
       expect(await yearDropdown.locator('option').count()).toBeGreaterThan(0);

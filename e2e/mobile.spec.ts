@@ -419,11 +419,15 @@ test.describe('Mobile Portrait - PC Panel', () => {
     await waitForMapReady(page);
 
     const panel = await ensureElectionPanelVisible(page);
-    await tapBottomSheetHandle(panel); // half -> full so controls are in view
+    await expandMobileElectionPanelToFull(panel, page); // half -> full when bottom sheet is present
 
     // PCElectionResultPanel in the sidebar passes omitConstituencyHeading, so .pc-badge is not rendered;
     // the View selector is always present and is unique to the PC panel.
     await expect(panel.locator('#pc-panel-view')).toBeVisible({ timeout: 15000 });
+    // Mobile YearSelector uses a button trigger; proxy select carries stable value/options for assertions.
+    const viewProxy = panel.locator('#pc-panel-view-proxy');
+    await expect(viewProxy).toHaveValue('overview');
+    await expect(viewProxy.locator('option[value="candidates"]')).toHaveCount(0);
   });
 
   test('should cycle through panel states for PC panel', async ({ page }) => {
