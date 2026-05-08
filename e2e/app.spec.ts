@@ -145,6 +145,37 @@ test.describe('Deep Linking', () => {
     await expect(page).toHaveURL(/tamil-nadu\/pc\/salem\/ac\/omalur/);
   });
 
+  test('state AC map syncs paneView when switching summary View to Vote share', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac?year=2021');
+    await page.waitForSelector('.leaflet-container', { timeout: 20000 });
+    await page.waitForFunction(
+      () => document.querySelectorAll('.leaflet-interactive').length > 10,
+      { timeout: 25000 }
+    );
+    await openSidebarSheet(page);
+    await expect(page.locator('.sidebar-summary[data-summary-pane="seats"]')).toBeVisible({
+      timeout: 30000,
+    });
+
+    await sidebarYearSelectOption(page, 'sidebar-panel-view', 'votes');
+
+    await expect
+      .poll(() => new URL(page.url()).searchParams.get('paneView'))
+      .toBe('votes');
+    await expect
+      .poll(() => new URL(page.url()).searchParams.get('pane') ?? '')
+      .toMatch(/^(summary|region)$/);
+  });
+
+  test('deep link restores left pane summary via pane and paneView query', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac?year=2021&pane=summary&paneView=seats');
+    await page.waitForSelector('.leaflet-container', { timeout: 20000 });
+    await openSidebarSheet(page);
+    await expect(page.locator('.sidebar-summary[data-summary-pane="seats"]')).toBeVisible({
+      timeout: 30000,
+    });
+  });
+
   test('selected state has prominent black boundary in state view', async ({ page }) => {
     await page.goto('/tamil-nadu/pc');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });

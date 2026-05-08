@@ -53,6 +53,9 @@ describe('useUrlState', () => {
     expect(urlState.district).toBeNull();
     expect(urlState.assembly).toBeNull();
     expect(urlState.year).toBeNull();
+    expect(urlState.pane).toBe('root');
+    expect(urlState.paneView).toBeNull();
+    expect(urlState.paneParty).toBeNull();
   });
 
   it('parses state-only URL correctly', () => {
@@ -169,6 +172,29 @@ describe('useUrlState', () => {
       useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
     );
     expect(result.current.getUrlState().tab).toBeNull();
+  });
+
+  it('parses left pane stack params from query string', () => {
+    window.location.pathname = '/tamil-nadu/ac';
+    window.location.search = '?year=2021&pane=party&paneView=seats&paneParty=DMK';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+
+    const urlState = result.current.getUrlState();
+    expect(urlState.pane).toBe('party');
+    expect(urlState.paneView).toBe('seats');
+    expect(urlState.paneParty).toBe('DMK');
+  });
+
+  it('ignores invalid pane query value (keeps root)', () => {
+    window.location.search = '?pane=not-a-pane';
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState(null, 'constituencies', null, null, null, null, null, onNavigate)
+    );
+    expect(result.current.getUrlState().pane).toBe('root');
   });
 
   it('updateUrl merges same-path query and preserves tab when tab is omitted', () => {
@@ -654,5 +680,33 @@ describe('useUrlState - Additional Functionality', () => {
 
     expect(url).toContain('year=pc-2019');
     expect(url).toContain('showACs=true');
+  });
+
+  it('generates shareable URL with pane stack params', () => {
+    const onNavigate = vi.fn();
+    const { result } = renderHook(() =>
+      useUrlState('Tamil Nadu', 'assemblies', null, null, null, 2021, null, onNavigate)
+    );
+
+    const url = result.current.getShareableUrl({
+      state: 'Tamil Nadu',
+      view: 'assemblies',
+      pc: null,
+      district: null,
+      assembly: null,
+      year: 2021,
+      pcYear: null,
+      tab: null,
+      showACs: null,
+      blog: false,
+      blogPost: null,
+      pane: 'party',
+      paneView: 'votes',
+      paneParty: 'Dravida Munnetra Kazhagam',
+    });
+
+    expect(url).toContain('pane=party');
+    expect(url).toContain('paneView=votes');
+    expect(url).toMatch(/paneParty=/);
   });
 });

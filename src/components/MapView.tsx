@@ -52,7 +52,9 @@ import {
 import type { PartyVoteRow } from '../utils/aggregateStateMapElectionStats';
 import {
   aggregateAssemblyVotesForMappedFeatures,
+  aggregateAssemblyPartyCandidatesForMappedFeatures,
   aggregateParliamentVotesStatewide,
+  aggregatePcPartyCandidatesForMappedFeatures,
   aggregatePcVotesForMappedFeatures,
   aggregateSeatsFromPartyList,
 } from '../utils/aggregateStateMapElectionStats';
@@ -74,6 +76,7 @@ import type {
   ConstituencyFeature,
   AssemblyFeature,
   HexColor,
+  PartyCandidateRow,
 } from '../types';
 
 /** PC acWiseResults row: prefer first non-NOTA by votes for map winner */
@@ -1646,6 +1649,7 @@ export function MapView({
     let voteRows: PartyVoteRow[] | null = null;
     let totalValidVotes = 0;
     let voteUnits = featureCount;
+    let partyCandidateRowsByParty: Record<string, PartyCandidateRow[]> | undefined;
 
     if (
       pcY != null &&
@@ -1658,6 +1662,14 @@ export function MapView({
         totalValidVotes = agg.totalValidVotes;
         voteUnits = agg.pcsIncluded;
       }
+      const partyRows = aggregatePcPartyCandidatesForMappedFeatures({
+        results: persistedParliamentElections.data,
+        features: currentData.features,
+        stateId,
+        stateName: normalizeName(currentState),
+        resolvePCName,
+      });
+      if (partyRows) partyCandidateRowsByParty = partyRows;
     } else if (persistedAssemblyElections?.stateId === stateId) {
       const agg = aggregateAssemblyVotesForMappedFeatures({
         results: persistedAssemblyElections.data,
@@ -1668,6 +1680,12 @@ export function MapView({
         totalValidVotes = agg.totalValidVotes;
         voteUnits = agg.mappedConstituencies;
       }
+      const partyRows = aggregateAssemblyPartyCandidatesForMappedFeatures({
+        results: persistedAssemblyElections.data,
+        features: currentData.features,
+        stateName: normalizeName(currentState),
+      });
+      if (partyRows) partyCandidateRowsByParty = partyRows;
     }
 
     const yearLabelAsm = persistedAssemblyElections?.year ?? selectedYear ?? null;
@@ -1691,6 +1709,7 @@ export function MapView({
       subtitle: subtitleParts.join(' · ') || 'Assembly',
       suppressMsg,
       stateId,
+      partyCandidateRowsByParty,
     };
   }, [
     level,
@@ -1708,6 +1727,7 @@ export function MapView({
     persistedAssemblyElections,
     resolvedPcYearForAcMap,
     selectedYear,
+    resolvePCName,
   ]);
 
   const parliamentLayerMapSummary = useMemo(() => {
@@ -1748,6 +1768,16 @@ export function MapView({
             resolvePCName,
           })
         : null;
+    const partyCandidateRowsByParty =
+      persistedParliamentElections?.stateId === stateId
+        ? aggregatePcPartyCandidatesForMappedFeatures({
+            results: persistedParliamentElections.data,
+            features: currentData.features,
+            stateId,
+            stateName: normalizeName(currentState),
+            resolvePCName,
+          })
+        : null;
 
     let pcYearHint: number | null = pcSelectedYear ?? null;
     if (typeof window !== 'undefined') {
@@ -1765,6 +1795,7 @@ export function MapView({
       voteUnits: votesAgg?.mappedConstituencies ?? featureCount,
       subtitle: pcYearHint != null ? `Lok Sabha ${pcYearHint}` : 'Parliament constituencies',
       stateId,
+      partyCandidateRowsByParty: partyCandidateRowsByParty ?? undefined,
     };
   }, [
     level,
@@ -1808,6 +1839,9 @@ export function MapView({
         subtitle: assemblyLayerMapSummary.subtitle,
         seatRows: assemblyLayerMapSummary.seats,
         voteRows: assemblyLayerMapSummary.voteRows,
+        ...(assemblyLayerMapSummary.partyCandidateRowsByParty
+          ? { partyCandidateRowsByParty: assemblyLayerMapSummary.partyCandidateRowsByParty }
+          : {}),
         totalValidVotes: assemblyLayerMapSummary.totalValidVotes,
         constituenciesCounted: assemblyLayerMapSummary.voteUnits,
         seatUnitLabel: 'ACs',
@@ -1822,6 +1856,9 @@ export function MapView({
         subtitle: parliamentLayerMapSummary.subtitle,
         seatRows: parliamentLayerMapSummary.seats,
         voteRows: parliamentLayerMapSummary.voteRows,
+        ...(parliamentLayerMapSummary.partyCandidateRowsByParty
+          ? { partyCandidateRowsByParty: parliamentLayerMapSummary.partyCandidateRowsByParty }
+          : {}),
         totalValidVotes: parliamentLayerMapSummary.totalValidVotes,
         constituenciesCounted: parliamentLayerMapSummary.voteUnits,
         seatUnitLabel: 'PCs',

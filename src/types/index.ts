@@ -343,6 +343,7 @@ export interface SidebarProps {
   onBlogClick?: () => void;
   selectedSummaryParty?: string | null;
   onSummaryPartyChange?: (party: string | null) => void;
+  onSummaryCandidateSelect?: (row: PartyCandidateRow) => void;
   stateSummaryData?: StateSummaryPanelData | null;
   selectedAssembly?: string | null;
   availableYears?: number[];
@@ -448,10 +449,27 @@ export interface StateSummaryPanelData {
   subtitle: string;
   seatRows: Array<{ party: string; seats: number }>;
   voteRows: Array<{ party: string; votes: number; pct: number }> | null;
+  partyCandidateRowsByParty?: Record<string, PartyCandidateRow[]>;
   totalValidVotes: number;
   constituenciesCounted: number;
   seatUnitLabel: string;
   suppressSummaryMessage?: string | null;
+}
+
+export interface PartyCandidateRow {
+  party: string;
+  candidateName: string;
+  sex?: string;
+  constituencyName: string;
+  constituencyType: 'AC' | 'PC';
+  stateName: string;
+  votes: number;
+  voteShare: number;
+  position: number;
+  acName?: string;
+  acNo?: number | null;
+  pcName?: string;
+  schemaId?: string;
 }
 
 /** MapControls component props */

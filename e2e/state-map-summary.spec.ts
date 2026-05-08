@@ -89,7 +89,9 @@ test.describe('State map summary panel', () => {
       .toBe(true);
   });
 
-  test('clicking a summary party dims other assembly polygons and toggles off', async ({ page }) => {
+  test('clicking a summary party opens candidate drill-down and dims other polygons', async ({
+    page,
+  }) => {
     await page.goto('/tamil-nadu/ac?year=2021');
     await page.waitForSelector('.leaflet-container', { timeout: 20000 });
     await page.waitForFunction(() => document.querySelectorAll('.leaflet-interactive').length > 10, {
@@ -116,20 +118,91 @@ test.describe('State map summary panel', () => {
 
     const baselineDimmed = await countDimmed();
 
+    const partyLabel = await partyBtn.innerText();
     await partyBtn.click();
-    await expect(partyBtn).toHaveAttribute('aria-pressed', 'true');
 
     await expect
       .poll(async () => countDimmed(), { timeout: 15000, intervals: [150, 300, 500] })
       .toBeGreaterThan(baselineDimmed);
-    const dimmedAfterSelect = await countDimmed();
-
-    await partyBtn.click();
-    await expect(partyBtn).toHaveAttribute('aria-pressed', 'false');
-
+    const candidatesPane = page.locator('.sidebar-summary[data-summary-pane="party-candidates"]');
+    await expect(candidatesPane).toBeVisible({ timeout: 15000 });
+    await expect(candidatesPane).toContainText(/candidates/i);
+    await expect(candidatesPane).toContainText(partyLabel.trim().slice(0, 3));
     await expect
-      .poll(async () => countDimmed(), { timeout: 15000, intervals: [150, 300, 500] })
-      .toBeLessThanOrEqual(dimmedAfterSelect);
+      .poll(() => new URL(page.url()).searchParams.get('pane'))
+      .toBe('party');
+
+    await page.goBack();
+    await expect
+      .poll(() => new URL(page.url()).searchParams.get('pane') ?? '')
+      .toMatch(/^(|summary|region)$/);
+
+    await page.goForward();
+    await expect
+      .poll(() => new URL(page.url()).searchParams.get('pane') ?? '')
+      .toMatch(/^(|party|summary|region)$/);
+  });
+
+  test('party candidate row click navigates to constituency panel', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac?year=2021');
+    await page.waitForSelector('.leaflet-container', { timeout: 20000 });
+    await page.waitForFunction(() => document.querySelectorAll('.leaflet-interactive').length > 10, {
+      timeout: 25000,
+    });
+    await openSidebarSheet(page);
+
+    const summary = page.locator('.sidebar-summary[data-summary-pane="seats"]');
+    await expect(summary).toBeVisible({ timeout: 30000 });
+    await summary.locator('.state-map-summary-party-link').first().click();
+
+    const candidateRow = page.locator('.party-candidate-row').first();
+    await expect(candidateRow).toBeVisible({ timeout: 15000 });
+    await candidateRow.click();
+
+    await expect(page.locator('.sidebar .election-panel, .sidebar .pc-panel').first()).toBeVisible({
+      timeout: 25000,
+    });
+    const paneAfterClick = new URL(page.url()).searchParams.get('pane');
+    expect(['ac', 'pc']).toContain(paneAfterClick);
+
+    await page.goBack();
+    await expect
+      .poll(() => new URL(page.url()).searchParams.get('pane') ?? '')
+      .toMatch(/^(|party|summary|region|ac|pc)$/);
+  });
+
+  test('party drill-down syncs paneParty in URL', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac?year=2021');
+    await page.waitForSelector('.leaflet-container', { timeout: 20000 });
+    await page.waitForFunction(() => document.querySelectorAll('.leaflet-interactive').length > 10, {
+      timeout: 25000,
+    });
+    await openSidebarSheet(page);
+    const summary = page.locator('.sidebar-summary[data-summary-pane="seats"]');
+    await expect(summary).toBeVisible({ timeout: 30000 });
+    await expandSummaryIfMobile(page);
+    await summary.locator('.state-map-summary-party-link').first().click();
+    await expect
+      .poll(() => Boolean(new URL(page.url()).searchParams.get('paneParty')))
+      .toBe(true);
+    await expect
+      .poll(() => new URL(page.url()).searchParams.get('pane'))
+      .toBe('party');
+  });
+
+  test('deep link restores summary pane and pane back button', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac?year=2021&pane=summary&paneView=votes');
+    await page.waitForSelector('.leaflet-container', { timeout: 20000 });
+    await openSidebarSheet(page);
+    await expect(page.locator('.sidebar-summary[data-summary-pane="votes"]')).toBeVisible({
+      timeout: 30000,
+    });
+    const backBtn = page.locator('.pane-stack-header button').first();
+    await expect(backBtn).toBeVisible();
+    await backBtn.click();
+    await expect
+      .poll(() => new URL(page.url()).searchParams.get('pane'))
+      .toBe('region');
   });
 
   test('hides state map summary when an assembly is selected', async ({ page }) => {

@@ -16,6 +16,9 @@ export interface UrlState {
   showACs: boolean | null;
   blog: boolean; // Whether blog section is open
   blogPost: string | null; // Selected blog post ID (e.g., 'ammk-admk-alliance')
+  pane?: 'root' | 'region' | 'summary' | 'party' | 'ac' | 'pc';
+  paneView?: 'seats' | 'votes' | null;
+  paneParty?: string | null;
 }
 
 /**
@@ -147,6 +150,9 @@ function applyCanonicalQueryKeys(params: URLSearchParams, state: UrlUpdateInput)
   params.delete('showACs');
   params.delete('blog');
   params.delete('blogPost');
+  params.delete('pane');
+  params.delete('paneView');
+  params.delete('paneParty');
 
   applyYearAndScopedQueryParams(params, state);
 
@@ -159,6 +165,16 @@ function applyCanonicalQueryKeys(params: URLSearchParams, state: UrlUpdateInput)
     if (state.blogPost) {
       params.set('blogPost', state.blogPost);
     }
+  }
+
+  if (state.pane) {
+    params.set('pane', state.pane);
+  }
+  if (state.paneView) {
+    params.set('paneView', state.paneView);
+  }
+  if (state.paneParty) {
+    params.set('paneParty', state.paneParty);
   }
 
   stripStaleElectionTabQueryParam(params);
@@ -198,7 +214,10 @@ export function useUrlState(
   onNavigate: (state: UrlState) => void | Promise<void>,
   isDataReady: boolean = true,
   showACsWithinPC: boolean | null = null,
-  blogOpen: boolean = false
+  blogOpen: boolean = false,
+  leftPane: UrlState['pane'] = 'root',
+  leftPaneView: UrlState['paneView'] = null,
+  leftPaneParty: string | null = null
 ): UseUrlStateReturn {
   const isInitialMount = useRef(true);
   const hasNavigatedFromUrl = useRef(false);
@@ -231,6 +250,9 @@ export function useUrlState(
       showACs: null,
       blog: false,
       blogPost: null,
+      pane: 'root',
+      paneView: null,
+      paneParty: null,
     };
 
     // Parse year from query params
@@ -268,6 +290,26 @@ export function useUrlState(
     if (blogPostParam) {
       result.blogPost = blogPostParam;
       result.blog = true; // Opening a post implies blog is open
+    }
+
+    const paneParam = searchParams.get('pane');
+    if (
+      paneParam === 'root' ||
+      paneParam === 'region' ||
+      paneParam === 'summary' ||
+      paneParam === 'party' ||
+      paneParam === 'ac' ||
+      paneParam === 'pc'
+    ) {
+      result.pane = paneParam;
+    }
+    const paneViewParam = searchParams.get('paneView');
+    if (paneViewParam === 'seats' || paneViewParam === 'votes') {
+      result.paneView = paneViewParam;
+    }
+    const panePartyParam = searchParams.get('paneParty');
+    if (panePartyParam) {
+      result.paneParty = panePartyParam;
     }
 
     // showACs: when viewing a specific PC, showACs=true (show ACs) or false (show PC boundary)
@@ -391,6 +433,16 @@ export function useUrlState(
       }
     }
 
+    if (state.pane) {
+      params.set('pane', state.pane);
+    }
+    if (state.paneView) {
+      params.set('paneView', state.paneView);
+    }
+    if (state.paneParty) {
+      params.set('paneParty', state.paneParty);
+    }
+
     if (params.toString()) {
       path = `${path}?${params.toString()}`;
     }
@@ -481,6 +533,9 @@ export function useUrlState(
         showACs: currentPC ? (showACsWithinPC ?? true) : null,
         blog: blogOpen,
         blogPost: blogPostToSync,
+        pane: leftPane,
+        paneView: leftPaneView,
+        paneParty: leftPaneParty,
       });
     }
   }, [
@@ -493,6 +548,9 @@ export function useUrlState(
     selectedPCYear,
     showACsWithinPC,
     blogOpen,
+    leftPane,
+    leftPaneView,
+    leftPaneParty,
     updateUrl,
   ]);
 

@@ -68,6 +68,21 @@ test.describe('Link Validation - Breadcrumb Navigation', () => {
   });
 });
 
+test.describe('Link Validation - Left pane stack', () => {
+  test('pane stack header with Back appears on state assembly map', async ({ page, isMobile }) => {
+    test.skip(isMobile === true, 'Sidebar breadcrumb/stack chrome differs on mobile');
+    await page.goto('/tamil-nadu/ac?year=2021');
+    await page.waitForSelector('.leaflet-container', { timeout: 20000 });
+    await page.waitForFunction(
+      () => document.querySelectorAll('.leaflet-interactive').length > 10,
+      { timeout: 25000 }
+    );
+    await openSidebarSheet(page);
+    await expect(page.locator('.pane-stack-header')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.pane-stack-header button')).toContainText(/back/i);
+  });
+});
+
 test.describe('Link Validation - Year Selector Links', () => {
   test('year dropdown updates panel content', async ({ page }) => {
     await page.goto('/maharashtra/pc/pune/ac/kothrud');

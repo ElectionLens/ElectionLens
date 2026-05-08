@@ -8,6 +8,7 @@ import type {
   ElectionResultsByConstituency,
   ElectionResultsFileMeta,
   Feature,
+  PartyCandidateRow,
   PCElectionResult,
   PCElectionResultsByConstituency,
 } from '../types';
@@ -318,6 +319,126 @@ export function aggregateParliamentVotesStatewide(
     totalValidVotes,
     pcsIncluded: n,
   };
+}
+
+function pushPartyCandidateRow(
+  byParty: Record<string, PartyCandidateRow[]>,
+  row: PartyCandidateRow
+): void {
+  const key = row.party?.trim() || 'Unknown';
+  if (!byParty[key]) byParty[key] = [];
+  byParty[key].push({ ...row, party: key });
+}
+
+export function aggregateAssemblyPartyCandidatesForMappedFeatures(params: {
+  results: ElectionResultsByConstituency | null;
+  features: Feature[] | undefined | null;
+  stateName: string;
+}): Record<string, PartyCandidateRow[]> | null {
+  const { results, features, stateName } = params;
+  if (!results || !features?.length) return null;
+
+  const fileMeta = results._meta;
+  const byParty: Record<string, PartyCandidateRow[]> = {};
+
+  for (const f of features) {
+    const props = f.properties as AssemblyProperties;
+    if (!props.AC_NAME?.trim()) continue;
+    const election = findAssemblyElectionRowForProps(props, results, fileMeta);
+    if (!election) continue;
+
+    const constituencyName =
+      election.constituencyNameOriginal ??
+      election.constituencyName ??
+      election.name ??
+      props.AC_NAME;
+    const acName = props.AC_NAME ?? election.constituencyName ?? constituencyName;
+    const acNoRaw = props.AC_NO ?? String(election.constituencyNo ?? '');
+    const parsedAcNo = parseInt(acNoRaw, 10);
+    const acNo = Number.isNaN(parsedAcNo) ? null : parsedAcNo;
+    const pcName = props.PC_NAME?.trim();
+    const schemaId = (props.schemaId ?? election.schemaId)?.trim();
+
+    for (const candidate of election.candidates ?? []) {
+      pushPartyCandidateRow(byParty, {
+        party: candidate.party,
+        candidateName: candidate.name,
+        sex: candidate.sex,
+        constituencyName,
+        constituencyType: 'AC',
+        stateName,
+        votes: typeof candidate.votes === 'number' ? candidate.votes : 0,
+        voteShare: typeof candidate.voteShare === 'number' ? candidate.voteShare : 0,
+        position: typeof candidate.position === 'number' ? candidate.position : 0,
+        acName,
+        acNo,
+        ...(pcName ? { pcName } : {}),
+        ...(schemaId ? { schemaId } : {}),
+      });
+    }
+  }
+
+  for (const rows of Object.values(byParty)) {
+    rows.sort((a, b) =>
+      b.voteShare !== a.voteShare
+        ? b.voteShare - a.voteShare
+        : a.constituencyName.localeCompare(b.constituencyName)
+    );
+  }
+
+  return byParty;
+}
+
+export function aggregatePcPartyCandidatesForMappedFeatures(params: {
+  results: PCElectionResultsByConstituency | null;
+  features: Feature[] | undefined | null;
+  stateId: string;
+  stateName: string;
+  resolvePCName: (name: string, stateId: string) => string | null;
+}): Record<string, PartyCandidateRow[]> | null {
+  const { results, features, stateId, stateName, resolvePCName } = params;
+  if (!results || !features?.length) return null;
+
+  const byParty: Record<string, PartyCandidateRow[]> = {};
+
+  for (const f of features) {
+    const props = f.properties as ConstituencyProperties;
+    const hasName = (props.ls_seat_name ?? props.PC_NAME ?? '').trim();
+    if (!hasName && !props.schemaId) continue;
+
+    const election = findPcElectionRowForProps(props, results, resolvePCName, stateId);
+    if (!election) continue;
+    const constituencyName =
+      election.constituencyNameOriginal ?? election.constituencyName ?? election.name ?? hasName;
+    const pcName = election.constituencyName ?? election.name ?? hasName;
+    const schemaId = (election.schemaId ?? props.schemaId)?.trim();
+
+    for (const candidate of election.candidates ?? []) {
+      pushPartyCandidateRow(byParty, {
+        party: candidate.party,
+        candidateName: candidate.name,
+        sex: candidate.sex,
+        constituencyName,
+        constituencyType: 'PC',
+        stateName,
+        votes: typeof candidate.votes === 'number' ? candidate.votes : 0,
+        voteShare: typeof candidate.voteShare === 'number' ? candidate.voteShare : 0,
+        position: typeof candidate.position === 'number' ? candidate.position : 0,
+        pcName,
+        ...(schemaId ? { schemaId } : {}),
+      });
+    }
+  }
+
+  for (const rows of Object.values(byParty)) {
+    rows.sort((a, b) =>
+      b.voteShare !== a.voteShare
+        ? b.voteShare - a.voteShare
+        : a.constituencyName.localeCompare(b.constituencyName)
+    );
+  }
+
+  return byParty;
 }
 
 export { PC_KEY_PATTERN };

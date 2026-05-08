@@ -25,6 +25,7 @@ import type {
   ViewMode,
   ElectionResultsByConstituency,
   PCElectionResultsByConstituency,
+  PartyCandidateRow,
   StateSummaryPanelData,
 } from './types';
 
@@ -51,6 +52,8 @@ function getStateIdFromName(stateName: string): string {
  * Orchestrates data loading, navigation, and UI state
  */
 function App(): JSX.Element {
+  type LeftPane = NonNullable<UrlState['pane']>;
+  type LeftPaneView = NonNullable<UrlState['paneView']> | null;
   const {
     statesGeoJSON,
     parliamentGeoJSON,
@@ -167,6 +170,9 @@ function App(): JSX.Element {
       }).catch(() => {});
       // #endregion
       if (!urlState.state) {
+        setLeftPane('root');
+        setLeftPaneView(null);
+        setLeftPaneParty(null);
         resetView();
         setCurrentData(null);
         setInitialPCWinners(null);
@@ -176,6 +182,9 @@ function App(): JSX.Element {
         }
         return;
       }
+      setLeftPane(urlState.pane ?? 'root');
+      setLeftPaneView(urlState.paneView ?? null);
+      setLeftPaneParty(urlState.paneParty ?? null);
 
       // Find matching state name (case insensitive)
       let matchedState = urlState.state;
@@ -793,6 +802,18 @@ function App(): JSX.Element {
   const [blogOpen, setBlogOpen] = useState<boolean>(false);
   const [selectedSummaryParty, setSelectedSummaryParty] = useState<string | null>(null);
   const [stateSummaryData, setStateSummaryData] = useState<StateSummaryPanelData | null>(null);
+  const [leftPane, setLeftPane] = useState<LeftPane>('root');
+  const [leftPaneView, setLeftPaneView] = useState<LeftPaneView>(null);
+  const [leftPaneParty, setLeftPaneParty] = useState<string | null>(null);
+
+  const handleLeftPaneChange = useCallback(
+    (next: { pane: LeftPane; paneView?: LeftPaneView; paneParty?: string | null }) => {
+      setLeftPane(next.pane);
+      setLeftPaneView(next.paneView ?? null);
+      setLeftPaneParty(next.paneParty ?? null);
+    },
+    []
+  );
   // Use the appropriate year based on context:
   // - For AC view (assemblies) or districts: use assembly year (selectedYear) or pcYear (selectedACPCYear)
   // - For PC view (constituencies): use parliament year (pcSelectedYear)
@@ -809,8 +830,53 @@ function App(): JSX.Element {
     handleUrlNavigate,
     isDataReady,
     showACsWithinPC,
-    blogOpen
+    blogOpen,
+    leftPane,
+    leftPaneView,
+    leftPaneParty
   );
+
+  useEffect(() => {
+    if (!currentState) {
+      if (leftPane !== 'root' || leftPaneView !== null || leftPaneParty !== null) {
+        setLeftPane('root');
+        setLeftPaneView(null);
+        setLeftPaneParty(null);
+      }
+      return;
+    }
+    if (pcElectionResult) {
+      if (leftPane !== 'pc') setLeftPane('pc');
+      return;
+    }
+    if (electionResult || currentAssembly) {
+      if (leftPane !== 'ac') setLeftPane('ac');
+      return;
+    }
+    if (currentPC || currentDistrict) {
+      if (leftPane !== 'region') setLeftPane('region');
+      return;
+    }
+    if (leftPane === 'root' || leftPane === 'ac' || leftPane === 'pc') {
+      setLeftPane('region');
+    }
+  }, [
+    currentState,
+    currentPC,
+    currentDistrict,
+    currentAssembly,
+    electionResult,
+    pcElectionResult,
+    leftPane,
+    leftPaneView,
+    leftPaneParty,
+  ]);
+
+  useEffect(() => {
+    if (leftPaneParty && selectedSummaryParty !== leftPaneParty) {
+      setSelectedSummaryParty(leftPaneParty);
+    }
+  }, [leftPaneParty, selectedSummaryParty]);
 
   // Ref to store updateUrl for use in handleUrlNavigate
   const updateUrlRef = useRef<(state: UrlUpdateInput) => void>(updateUrl);
@@ -1798,6 +1864,67 @@ function App(): JSX.Element {
     [navigateToDistrict, closeSidebarAfterAction, clearElectionResult, clearPCElectionResult]
   );
 
+  const handleSummaryCandidateSelect = useCallback(
+    async (row: PartyCandidateRow): Promise<void> => {
+      if (row.constituencyType === 'AC') {
+        const targetAcName = row.acName ?? row.constituencyName;
+        const normalizedTarget = normalizeName(targetAcName).toUpperCase();
+        let acFeature =
+          assemblyGeoForMap?.features.find((f) => {
+            const featureName = normalizeName(f.properties.AC_NAME ?? '').toUpperCase();
+            return (
+              (row.schemaId && f.properties.schemaId === row.schemaId) ||
+              featureName === normalizedTarget
+            );
+          }) ?? null;
+
+        if (!acFeature && row.stateName) {
+          await navigateToState(row.stateName);
+          const assemblyData = await navigateToAssemblies(row.stateName);
+          setCurrentData(assemblyData);
+          acFeature =
+            assemblyData.features.find((f) => {
+              const featureName = normalizeName(f.properties.AC_NAME ?? '').toUpperCase();
+              return (
+                (row.schemaId && f.properties.schemaId === row.schemaId) ||
+                featureName === normalizedTarget
+              );
+            }) ?? null;
+        }
+
+        if (acFeature) {
+          await handleSearchAssemblySelect(targetAcName, row.stateName, acFeature);
+        }
+        return;
+      }
+
+      const targetPcName = row.pcName ?? row.constituencyName;
+      const normalizedPcTarget = normalizePcNameCompact(targetPcName);
+      const pcFeature =
+        parliamentGeoJSON?.features.find((f) => {
+          const featureName = normalizePcNameCompact(
+            f.properties.ls_seat_name ?? f.properties.PC_NAME ?? ''
+          );
+          return (
+            (row.schemaId && f.properties.schemaId === row.schemaId) ||
+            featureName === normalizedPcTarget
+          );
+        }) ?? null;
+
+      if (pcFeature) {
+        await handleSearchConstituencySelect(targetPcName, row.stateName, pcFeature);
+      }
+    },
+    [
+      assemblyGeoForMap,
+      navigateToState,
+      navigateToAssemblies,
+      handleSearchAssemblySelect,
+      parliamentGeoJSON,
+      handleSearchConstituencySelect,
+    ]
+  );
+
   /**
    * Copy the current browser URL to clipboard (matches the address bar, including query and hash).
    */
@@ -2373,6 +2500,7 @@ function App(): JSX.Element {
           onBlogClick={handleBlogToggle}
           selectedSummaryParty={selectedSummaryParty}
           onSummaryPartyChange={setSelectedSummaryParty}
+          onSummaryCandidateSelect={handleSummaryCandidateSelect}
           stateSummaryData={stateSummaryData}
           selectedAssembly={currentAssembly}
           availableYears={availableYears}
@@ -2397,6 +2525,10 @@ function App(): JSX.Element {
           onCloseElectionPanel={handleCloseElectionPanel}
           onClosePCElectionPanel={handleClosePCElectionPanel}
           onElectionPanelViewTabSync={handleElectionPanelViewTabSync}
+          leftPane={leftPane}
+          leftPaneView={leftPaneView}
+          leftPaneParty={leftPaneParty}
+          onLeftPaneChange={handleLeftPaneChange}
         />
 
         <MapView

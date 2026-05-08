@@ -27,6 +27,7 @@ import type {
   AssembliesGeoJSON,
   DistrictsCache,
   GeoJSONData,
+  PartyCandidateRow,
   ViewMode,
   CacheStats,
   HexColor,
@@ -78,6 +79,7 @@ interface SidebarProps {
   onBlogClick?: () => void;
   selectedSummaryParty?: string | null;
   onSummaryPartyChange?: (party: string | null) => void;
+  onSummaryCandidateSelect?: (row: PartyCandidateRow) => void;
   stateSummaryData?: StateSummaryPanelData | null;
   electionResult?: ACElectionResult | null;
   acResultsLoading?: boolean;
@@ -118,6 +120,14 @@ interface SidebarProps {
   onShowACsWithinPCChange?: (show: boolean) => void;
   /** Sync sidebar election panel View with `?tab=` via App URL state */
   onElectionPanelViewTabSync?: (tab: 'overview' | 'booths' | 'postal' | 'analysis') => void;
+  leftPane?: 'root' | 'region' | 'summary' | 'party' | 'ac' | 'pc';
+  leftPaneView?: 'seats' | 'votes' | null;
+  leftPaneParty?: string | null;
+  onLeftPaneChange?: (next: {
+    pane: 'root' | 'region' | 'summary' | 'party' | 'ac' | 'pc';
+    paneView?: 'seats' | 'votes' | null;
+    paneParty?: string | null;
+  }) => void;
 }
 
 /** Extended CSS properties to allow custom CSS variables */
@@ -129,7 +139,13 @@ type SidebarTab = 'list' | 'seats' | 'votes';
 
 function getSidebarTabFromUrl(): SidebarTab {
   if (typeof window === 'undefined') return 'list';
-  const value = new URLSearchParams(window.location.search).get('summaryView');
+  const params = new URLSearchParams(window.location.search);
+  const pane = params.get('pane');
+  if (pane === 'summary' || pane === 'party') {
+    const paneView = params.get('paneView');
+    return paneView === 'votes' ? 'votes' : 'seats';
+  }
+  const value = params.get('summaryView');
   if (value === 'constituencies' || value === 'constituecies') return 'list';
   return value === 'seats' || value === 'votes' || value === 'list' ? value : 'list';
 }
@@ -166,6 +182,7 @@ export function Sidebar({
   onBlogClick,
   selectedSummaryParty = null,
   onSummaryPartyChange,
+  onSummaryCandidateSelect,
   stateSummaryData = null,
   electionResult = null,
   acResultsLoading = false,
@@ -190,6 +207,10 @@ export function Sidebar({
   showACsWithinPC = true,
   onShowACsWithinPCChange,
   onElectionPanelViewTabSync,
+  leftPane = 'root',
+  leftPaneView = null,
+  leftPaneParty = null,
+  onLeftPaneChange,
 }: SidebarProps): JSX.Element {
   const { boothResults, boothsWithResults, loadBoothData, loadBoothResults } = useBoothData();
   const [isMobileSidebar, setIsMobileSidebar] = useState<boolean>(() => {
@@ -233,16 +254,31 @@ export function Sidebar({
 
   const [copied, setCopied] = useState(false);
   const [sidebarTab, setSidebarTab] = useState<SidebarTab>(() => getSidebarTabFromUrl());
+  const [summaryReturnTab, setSummaryReturnTab] = useState<'seats' | 'votes'>('seats');
+  const [partyCandidateQuery, setPartyCandidateQuery] = useState('');
+  const [partyCandidateSort, setPartyCandidateSort] = useState<'share' | 'constituency'>('share');
   const displayState = currentState ? normalizeName(currentState) : null;
 
   useEffect(() => {
     if (stateSummaryData) {
       const tabFromUrl = getSidebarTabFromUrl();
       setSidebarTab(tabFromUrl === 'votes' ? 'votes' : 'seats');
+      setPartyCandidateQuery('');
     } else {
       setSidebarTab('list');
+      setPartyCandidateQuery('');
     }
   }, [stateSummaryData]);
+
+  useEffect(() => {
+    if (leftPaneView === 'votes') {
+      setSidebarTab('votes');
+    } else if (leftPaneView === 'seats') {
+      setSidebarTab('seats');
+    } else if (leftPane === 'region' || leftPane === 'root') {
+      setSidebarTab('list');
+    }
+  }, [leftPane, leftPaneView]);
 
   useEffect(() => {
     const handlePopState = (): void => {
@@ -255,30 +291,13 @@ export function Sidebar({
   }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const searchParams = new URLSearchParams(window.location.search);
-    const currentSummaryView = searchParams.get('summaryView');
-
-    if (!stateSummaryData) {
-      if (!currentSummaryView) return;
-      searchParams.delete('summaryView');
-    } else if (sidebarTab === 'list') {
-      if (currentSummaryView !== 'constituencies') {
-        searchParams.set('summaryView', 'constituencies');
-      } else {
-        return;
-      }
-    } else if (currentSummaryView !== sidebarTab) {
-      searchParams.set('summaryView', sidebarTab);
-    } else {
-      return;
+    if (!stateSummaryData || !currentState) return;
+    if (sidebarTab === 'seats') {
+      onLeftPaneChange?.({ pane: 'summary', paneView: 'seats', paneParty: null });
+    } else if (sidebarTab === 'votes') {
+      onLeftPaneChange?.({ pane: 'summary', paneView: 'votes', paneParty: null });
     }
-
-    const newUrl = searchParams.toString()
-      ? `${window.location.pathname}?${searchParams.toString()}`
-      : window.location.pathname;
-    window.history.replaceState({}, '', newUrl);
-  }, [sidebarTab, stateSummaryData]);
+  }, [sidebarTab, stateSummaryData, currentState, onLeftPaneChange]);
 
   const handleShareClick = useCallback(() => {
     onShare();
@@ -371,6 +390,11 @@ export function Sidebar({
         isActive: sidebarTab === 'list',
         onClick: () => {
           setSidebarTab('list');
+          onLeftPaneChange?.({
+            pane: currentState ? 'region' : 'root',
+            paneView: null,
+            paneParty: null,
+          });
         },
       },
       {
@@ -379,6 +403,7 @@ export function Sidebar({
         isActive: sidebarTab === 'seats',
         onClick: () => {
           setSidebarTab('seats');
+          onLeftPaneChange?.({ pane: 'summary', paneView: 'seats', paneParty: null });
         },
       },
       {
@@ -387,10 +412,11 @@ export function Sidebar({
         isActive: sidebarTab === 'votes',
         onClick: () => {
           setSidebarTab('votes');
+          onLeftPaneChange?.({ pane: 'summary', paneView: 'votes', paneParty: null });
         },
       },
     ];
-  }, [sidebarTab]);
+  }, [sidebarTab, onLeftPaneChange, currentState]);
 
   /**
    * Determine what to show in info panel based on current navigation
@@ -896,6 +922,110 @@ export function Sidebar({
     );
   };
 
+  const openPartyCandidates = useCallback(
+    (party: string, sourceTab: 'seats' | 'votes'): void => {
+      onSummaryPartyChange?.(party);
+      setSummaryReturnTab(sourceTab);
+      onLeftPaneChange?.({ pane: 'party', paneView: sourceTab, paneParty: party });
+    },
+    [onSummaryPartyChange, onLeftPaneChange]
+  );
+
+  const renderPartyCandidatesPanel = (): ReactNode => {
+    const party = leftPaneParty ?? selectedSummaryParty;
+    if (!stateSummaryData || !party) return null;
+    const sourceRows = stateSummaryData.partyCandidateRowsByParty?.[party] ?? [];
+    const query = partyCandidateQuery.trim().toLowerCase();
+    const filtered = sourceRows.filter((row) => {
+      if (!query) return true;
+      return (
+        row.candidateName.toLowerCase().includes(query) ||
+        row.constituencyName.toLowerCase().includes(query)
+      );
+    });
+    const rows = [...filtered].sort((a, b) => {
+      if (partyCandidateSort === 'constituency') {
+        const byConst = a.constituencyName.localeCompare(b.constituencyName);
+        if (byConst !== 0) return byConst;
+      }
+      return b.voteShare !== a.voteShare ? b.voteShare - a.voteShare : a.position - b.position;
+    });
+
+    return (
+      <div className="sidebar-summary party-candidates-panel" data-summary-pane="party-candidates">
+        <div className="party-candidates-header">
+          <button
+            type="button"
+            className="party-candidates-back"
+            onClick={() => {
+              setSidebarTab(summaryReturnTab);
+              onLeftPaneChange?.({
+                pane: 'summary',
+                paneView: summaryReturnTab,
+                paneParty: null,
+              });
+            }}
+          >
+            ← Back
+          </button>
+          <h4>{getPartyShortName(party)} candidates</h4>
+          <p aria-live="polite">
+            {rows.length} of {sourceRows.length} shown
+          </p>
+        </div>
+        <div className="party-candidates-controls">
+          <input
+            type="text"
+            value={partyCandidateQuery}
+            onChange={(e) => setPartyCandidateQuery(e.target.value)}
+            placeholder="Filter candidate or constituency"
+            aria-label="Filter party candidates"
+          />
+          <label>
+            Sort
+            <select
+              value={partyCandidateSort}
+              onChange={(e) => setPartyCandidateSort(e.target.value as 'share' | 'constituency')}
+            >
+              <option value="share">Vote share</option>
+              <option value="constituency">Constituency</option>
+            </select>
+          </label>
+        </div>
+        <div className="party-candidates-list">
+          {rows.length === 0 ? (
+            <p className="state-map-summary-muted">No candidates match this filter.</p>
+          ) : (
+            rows.map((row, index) => (
+              <button
+                type="button"
+                key={`${row.party}-${row.candidateName}-${row.constituencyName}-${index}`}
+                className="party-candidate-row interactive-row"
+                onClick={() => {
+                  onLeftPaneChange?.({
+                    pane: row.constituencyType === 'PC' ? 'pc' : 'ac',
+                    paneView: leftPaneView ?? summaryReturnTab,
+                    paneParty: party,
+                  });
+                  onSummaryCandidateSelect?.(row);
+                }}
+              >
+                <span className="party-candidate-main">
+                  <strong>{row.candidateName}</strong>
+                  <span>{row.constituencyName}</span>
+                </span>
+                <span className="party-candidate-metrics">
+                  <span>{row.voteShare.toFixed(1)}%</span>
+                  <span>{formatIn(row.votes)}</span>
+                </span>
+              </button>
+            ))
+          )}
+        </div>
+      </div>
+    );
+  };
+
   const renderSummarySeats = (): ReactNode => {
     if (!stateSummaryData) return null;
     return (
@@ -927,7 +1057,7 @@ export function Sidebar({
                       type="button"
                       className="state-map-summary-party-link"
                       title={`Filter map by ${row.party}`}
-                      onClick={() => onSummaryPartyChange?.(isSelected ? null : row.party)}
+                      onClick={() => openPartyCandidates(row.party, 'seats')}
                       {...(onSummaryPartyChange && { 'aria-pressed': isSelected })}
                     >
                       <span className="state-map-summary-party" title={row.party}>
@@ -979,7 +1109,7 @@ export function Sidebar({
                       type="button"
                       className="state-map-summary-party-link"
                       title={`Filter map by ${row.party}`}
-                      onClick={() => onSummaryPartyChange?.(isSelected ? null : row.party)}
+                      onClick={() => openPartyCandidates(row.party, 'votes')}
                       {...(onSummaryPartyChange && { 'aria-pressed': isSelected })}
                     >
                       <span className="state-map-summary-party" title={row.party}>
@@ -1063,6 +1193,54 @@ export function Sidebar({
   const showSidebarOverlay = isMobileSidebar && isOpen && hasDetailPanel;
 
   const acDetailForBadge = showACDetailPanel ? (electionResult ?? acPanelPlaceholderResult) : null;
+  const renderPaneHeader = (): ReactNode => {
+    if (leftPane === 'root') return null;
+    let title = 'Region';
+    let onBack = onReset;
+    if (leftPane === 'summary') {
+      title = leftPaneView === 'votes' ? 'Vote share' : 'Seats won';
+      onBack = () => onLeftPaneChange?.({ pane: 'region', paneView: null, paneParty: null });
+    } else if (leftPane === 'party') {
+      title = 'Party candidates';
+      onBack = () =>
+        onLeftPaneChange?.({
+          pane: 'summary',
+          paneView: leftPaneView ?? summaryReturnTab,
+          paneParty: null,
+        });
+    } else if (leftPane === 'ac') {
+      title = 'Assembly detail';
+      onBack = () => {
+        onCloseElectionPanel?.();
+        onLeftPaneChange?.({
+          pane: leftPaneParty ? 'party' : 'region',
+          paneView: leftPaneView ?? summaryReturnTab,
+          paneParty: leftPaneParty,
+        });
+      };
+    } else if (leftPane === 'pc') {
+      title = 'Parliament detail';
+      onBack = () => {
+        onClosePCElectionPanel?.();
+        onLeftPaneChange?.({
+          pane: leftPaneParty ? 'party' : 'region',
+          paneView: leftPaneView ?? summaryReturnTab,
+          paneParty: leftPaneParty,
+        });
+      };
+    } else if (leftPane === 'region') {
+      title = 'Region';
+      onBack = onReset;
+    }
+    return (
+      <div className="pane-stack-header">
+        <button type="button" className="party-candidates-back" onClick={onBack}>
+          ← Back
+        </button>
+        <span className="pane-stack-title">{title}</span>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -1111,6 +1289,7 @@ export function Sidebar({
           </div>
 
           <div className="info-panel pane-content">
+            {renderPaneHeader()}
             <div className="info-title info-title-row pane-section-header">
               <span className="info-title-text">{info.title}</span>
               {acDetailForBadge && (
@@ -1188,11 +1367,17 @@ export function Sidebar({
 
             <div className="pane-section pane-content-body">
               {renderDetailPanel() ??
-                (showSummarySidebarUI && stateSummaryData && sidebarTab === 'seats'
-                  ? renderSummarySeats()
-                  : showSummarySidebarUI && stateSummaryData && sidebarTab === 'votes'
-                    ? renderSummaryVotes()
-                    : renderList())}
+                (showSummarySidebarUI && stateSummaryData && leftPane === 'party'
+                  ? renderPartyCandidatesPanel()
+                  : showSummarySidebarUI &&
+                      stateSummaryData &&
+                      (leftPane === 'summary' ? leftPaneView === 'seats' : sidebarTab === 'seats')
+                    ? renderSummarySeats()
+                    : showSummarySidebarUI &&
+                        stateSummaryData &&
+                        (leftPane === 'summary' ? leftPaneView === 'votes' : sidebarTab === 'votes')
+                      ? renderSummaryVotes()
+                      : renderList())}
             </div>
           </div>
 
