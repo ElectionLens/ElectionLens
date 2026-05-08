@@ -154,6 +154,9 @@ if (pcMissing.length === 0) {
   }
 }
 
+/** Above this count per state-year, gaps are often schema/key skew or bulk incompleteness—not row-by-row “missing polls.” */
+const LARGE_GAP_THRESHOLD = 10;
+
 const totalAc = acMissing.reduce((s, m) => s + m.missingCount, 0);
 const totalPc = pcMissing.reduce((s, m) => s + m.missingCount, 0);
 console.log('---');
@@ -176,14 +179,48 @@ if (pcSmall.length > 0) {
   }
 }
 
+function renderMissingBlocks(missingList) {
+  const lines = [];
+  for (const m of missingList) {
+    lines.push(`### ${m.stateId} ${m.year}`);
+    lines.push('');
+    lines.push(`- Expected: ${m.expectedCount} | In file: ${m.presentCount} | Missing: ${m.missingCount}`);
+    lines.push('');
+    for (const { id, name } of m.missing) {
+      lines.push(`- ${id} ${name}`);
+    }
+    lines.push('');
+  }
+  return lines;
+}
+
 if (process.argv.includes('--doc')) {
   const docPath = path.join(process.cwd(), 'docs', 'missing-constituency-data.md');
+
+  const acActionable = acMissing.filter((m) => m.missingCount <= LARGE_GAP_THRESHOLD);
+  const acLarge = acMissing.filter((m) => m.missingCount > LARGE_GAP_THRESHOLD);
+  const pcActionable = pcMissing.filter((m) => m.missingCount <= LARGE_GAP_THRESHOLD);
+  const pcLarge = pcMissing.filter((m) => m.missingCount > LARGE_GAP_THRESHOLD);
+
   const lines = [
     '# Missing constituency data',
     '',
-    'Constituencies that exist in the schema but are **missing from the election JSON** for that state and year. Similar to previously missing: Aravakurichi & Thanjavur (TN 2016 AC, deferred poll), Vellore PC (TN 2019, countermanded).',
+    'Constituencies that exist in the schema but are **missing from the election JSON** for that state and year (exact key match only). Examples of genuinely missing published results: Aravakurichi & Thanjavur (TN 2016 AC, deferred poll), Vellore PC (TN 2019, countermanded).',
     '',
-    '**How to regenerate:** run `node scripts/find-missing-constituencies.mjs --doc`',
+    '## How to read this',
+    '',
+    '- **Small gap (1–5 per state-year)** in **Likely deferred / countermanded** below: best targets to backfill from ECI / Form 20 / bypoll data into `public/data/elections/{ac,pc}/…`.',
+    `- **Actionable full-list sections** (≤ ${LARGE_GAP_THRESHOLD} missing keys): still reasonable to audit and fix keys or add rows.`,
+    `- **Large-gap sections** (>${LARGE_GAP_THRESHOLD} missing): usually **schema vs file key skew** (e.g. AP numbering vs \`schema.assemblyConstituencies\`), **delimitation**, or a partially keyed file—not hundreds of separate missing polls. Normalize IDs or remap keys before treating every line as a data hole.`,
+    '- **Jammu & Kashmir:** older files may not align with current schema AC IDs (delimitation).',
+    '',
+    '**How to regenerate this file:** `node scripts/find-missing-constituencies.mjs --doc`',
+    '',
+    '_See also:_ [booth-data-extraction-guide.md](./booth-data-extraction-guide.md), [100-percent-extraction-strategy.md](./100-percent-extraction-strategy.md).',
+    '',
+    '### Data backfill (manual)',
+    '',
+    'Optional JSON updates for small-gap constituencies are **not automated here**: add sourced rows under `public/data/elections/ac/<STATE>/<YEAR>.json` or `public/data/elections/pc/<STATE>/<YEAR>.json` after verifying against official results.',
     '',
     '---',
     '',
@@ -193,6 +230,11 @@ if (process.argv.includes('--doc')) {
     `|------|------------------------|-----------------|`,
     `| Assembly (AC) | ${totalAc} | ${acMissing.length} state-year files |`,
     `| Parliament (PC) | ${totalPc} | ${pcMissing.length} state-year files |`,
+    '',
+    `| Bucket | Assembly (AC) state-years | Parliament (PC) state-years |`,
+    `|--------|---------------------------|------------------------------|`,
+    `| Actionable (≤ ${LARGE_GAP_THRESHOLD} missing) | ${acActionable.length} | ${pcActionable.length} |`,
+    `| Large gap (>${LARGE_GAP_THRESHOLD} missing) | ${acLarge.length} | ${pcLarge.length} |`,
     '',
     '---',
     '',
@@ -218,35 +260,38 @@ if (process.argv.includes('--doc')) {
     '',
     '---',
     '',
-    '## Full list: Assembly (AC)',
+    `## Full list: Assembly (AC) — actionable (≤ ${LARGE_GAP_THRESHOLD} missing)`,
     '',
+    ...(acActionable.length > 0
+      ? renderMissingBlocks(acActionable)
+      : ['_None._', '']),
+    '---',
+    '',
+    `## Full list: Assembly (AC) — large gaps (>${LARGE_GAP_THRESHOLD} missing, check ID alignment)`,
+    '',
+    '_**AP:** verify election JSON keys use the same `AP-xxx` scheme as `schema.assemblyConstituencies`._',
+    '',
+    ...(acLarge.length > 0
+      ? renderMissingBlocks(acLarge)
+      : ['_None._', '']),
+    '---',
+    '',
+    `## Full list: Parliament (PC) — actionable (≤ ${LARGE_GAP_THRESHOLD} missing)`,
+    '',
+    ...(pcActionable.length > 0
+      ? renderMissingBlocks(pcActionable)
+      : ['_None._', '']),
+    '---',
+    '',
+    `## Full list: Parliament (PC) — large gaps (>${LARGE_GAP_THRESHOLD} missing, check ID alignment)`,
+    '',
+    ...(pcLarge.length > 0
+      ? renderMissingBlocks(pcLarge)
+      : ['_None._', '']),
+    '---',
+    '',
+    '*Generated by `scripts/find-missing-constituencies.mjs --doc`*',
   ];
-
-  for (const m of acMissing) {
-    lines.push(`### ${m.stateId} ${m.year}`);
-    lines.push('');
-    lines.push(`- Expected: ${m.expectedCount} | In file: ${m.presentCount} | Missing: ${m.missingCount}`);
-    lines.push('');
-    for (const { id, name } of m.missing) {
-      lines.push(`- ${id} ${name}`);
-    }
-    lines.push('');
-  }
-
-  lines.push('---', '', '## Full list: Parliament (PC)', '');
-
-  for (const m of pcMissing) {
-    lines.push(`### ${m.stateId} ${m.year}`);
-    lines.push('');
-    lines.push(`- Expected: ${m.expectedCount} | In file: ${m.presentCount} | Missing: ${m.missingCount}`);
-    lines.push('');
-    for (const { id, name } of m.missing) {
-      lines.push(`- ${id} ${name}`);
-    }
-    lines.push('');
-  }
-
-  lines.push('---', '', '*Generated by `scripts/find-missing-constituencies.mjs --doc`*');
 
   fs.mkdirSync(path.dirname(docPath), { recursive: true });
   fs.writeFileSync(docPath, lines.join('\n'), 'utf8');

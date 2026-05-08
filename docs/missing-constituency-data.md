@@ -1,8 +1,21 @@
 # Missing constituency data
 
-Constituencies that exist in the schema but are **missing from the election JSON** for that state and year. Similar to previously missing: Aravakurichi & Thanjavur (TN 2016 AC, deferred poll), Vellore PC (TN 2019, countermanded).
+Constituencies that exist in the schema but are **missing from the election JSON** for that state and year (exact key match only). Examples of genuinely missing published results: Aravakurichi & Thanjavur (TN 2016 AC, deferred poll), Vellore PC (TN 2019, countermanded).
 
-**How to regenerate:** run `node scripts/find-missing-constituencies.mjs --doc`
+## How to read this
+
+- **Small gap (1–5 per state-year)** in **Likely deferred / countermanded** below: best targets to backfill from ECI / Form 20 / bypoll data into `public/data/elections/{ac,pc}/…`.
+- **Actionable full-list sections** (≤ 10 missing keys): still reasonable to audit and fix keys or add rows.
+- **Large-gap sections** (>10 missing): usually **schema vs file key skew** (e.g. AP numbering vs `schema.assemblyConstituencies`), **delimitation**, or a partially keyed file—not hundreds of separate missing polls. Normalize IDs or remap keys before treating every line as a data hole.
+- **Jammu & Kashmir:** older files may not align with current schema AC IDs (delimitation).
+
+**How to regenerate this file:** `node scripts/find-missing-constituencies.mjs --doc`
+
+_See also:_ [booth-data-extraction-guide.md](./booth-data-extraction-guide.md), [100-percent-extraction-strategy.md](./100-percent-extraction-strategy.md).
+
+### Data backfill (manual)
+
+Optional JSON updates for small-gap constituencies are **not automated here**: add sourced rows under `public/data/elections/ac/<STATE>/<YEAR>.json` or `public/data/elections/pc/<STATE>/<YEAR>.json` after verifying against official results.
 
 ---
 
@@ -10,8 +23,13 @@ Constituencies that exist in the schema but are **missing from the election JSON
 
 | Type | Total missing entries | Files with gaps |
 |------|------------------------|-----------------|
-| Assembly (AC) | 525 | 19 state-year files |
-| Parliament (PC) | 21 | 4 state-year files |
+| Assembly (AC) | 3775 | 45 state-year files |
+| Parliament (PC) | 18 | 3 state-year files |
+
+| Bucket | Assembly (AC) state-years | Parliament (PC) state-years |
+|--------|---------------------------|------------------------------|
+| Actionable (≤ 10 missing) | 13 | 3 |
+| Large gap (>10 missing) | 32 | 0 |
 
 ---
 
@@ -35,11 +53,104 @@ These are the best candidates for adding missing data (e.g. Form 20 / bypolls).
 - **WB 2021** (1 missing): WB-146 BISHNUPUR (SC)
 
 ### Parliament (PC)
-- **AS 2024** (3 missing): AS-02 Dhubri, AS-05 Gauhati, AS-12 Lakhimpur
+- None
 
 ---
 
-## Full list: Assembly (AC)
+## Full list: Assembly (AC) — actionable (≤ 10 missing)
+
+### BR 2025
+
+- Expected: 243 | In file: 241 | Missing: 2
+
+- BR-042 Pipra
+- BR-131 Kalyanpur (SC)
+
+### GJ 2012
+
+- Expected: 182 | In file: 179 | Missing: 3
+
+- GJ-038 KALOL
+- GJ-074 JETPUR
+- GJ-089 MANGROL
+
+### GJ 2017
+
+- Expected: 182 | In file: 179 | Missing: 3
+
+- GJ-038 KALOL
+- GJ-074 JETPUR
+- GJ-089 MANGROL
+
+### GJ 2022
+
+- Expected: 182 | In file: 179 | Missing: 3
+
+- GJ-038 KALOL
+- GJ-074 JETPUR
+- GJ-089 MANGROL
+
+### OD 2019
+
+- Expected: 147 | In file: 146 | Missing: 1
+
+- OD-096 PATKURA
+
+### RJ 2018
+
+- Expected: 200 | In file: 199 | Missing: 1
+
+- RJ-067 Ramgarh
+
+### RJ 2023
+
+- Expected: 200 | In file: 199 | Missing: 1
+
+- RJ-181 Shahpura(SC)
+
+### TN 2011
+
+- Expected: 234 | In file: 232 | Missing: 2
+
+- TN-050 Tiruppattur
+- TN-140 Tiruchirappalli West
+
+### TN 2016
+
+- Expected: 234 | In file: 232 | Missing: 2
+
+- TN-050 Tiruppattur
+- TN-140 Tiruchirappalli West
+
+### TS 2023
+
+- Expected: 119 | In file: 118 | Missing: 1
+
+- TS-017 Nizamabad (Urban)
+
+### WB 2011
+
+- Expected: 294 | In file: 293 | Missing: 1
+
+- WB-146 BISHNUPUR (SC)
+
+### WB 2016
+
+- Expected: 294 | In file: 293 | Missing: 1
+
+- WB-146 BISHNUPUR (SC)
+
+### WB 2021
+
+- Expected: 294 | In file: 293 | Missing: 1
+
+- WB-146 BISHNUPUR (SC)
+
+---
+
+## Full list: Assembly (AC) — large gaps (>10 missing, check ID alignment)
+
+_**AP:** verify election JSON keys use the same `AP-xxx` scheme as `schema.assemblyConstituencies`._
 
 ### AP 2009
 
@@ -514,36 +625,1111 @@ These are the best candidates for adding missing data (e.g. Form 20 / bypolls).
 - AP-293 Palamaner
 - AP-294 Kuppam
 
-### BR 2025
+### AP 2029
 
-- Expected: 243 | In file: 241 | Missing: 2
+- Expected: 132 | In file: 0 | Missing: 132
 
+- AP-122 Tekkali
+- AP-130 Kurupam (ST)
+- AP-132 Salur (ST)
+- AP-136 Nellimarla
+- AP-137 Vizianagaram
+- AP-139 Bhimili
+- AP-146 Madugula
+- AP-149 Anakapalle
+- AP-151 Yelamanchili
+- AP-152 Payakaraopet (SC)
+- AP-155 Prathipadu
+- AP-159 Anaparthy
+- AP-165 Gannavaram (SC)
+- AP-169 Rajahmundry City
+- AP-170 Rajahmundry Rural
+- AP-172 Rampachodavaram(ST)
+- AP-176 Palacole
+- AP-177 Narasapuram
+- AP-178 Bhimavaram
+- AP-179 Undi
+- AP-180 Tanuku
+- AP-181 Tadepalligudem
+- AP-182 Ungutur
+- AP-183 Denduluru
+- AP-184 Eluru
+- AP-185 Gopalapuram (SC)
+- AP-186 Polavaram (ST)
+- AP-187 Chintalapudi (SC)
+- AP-188 Tiruvuru (SC)
+- AP-189 Nuzvid
+- AP-190 Gannavaram
+- AP-191 Gudivada
+- AP-192 Kaikalur
+- AP-193 Pedana
+- AP-194 Machilipatnam
+- AP-195 Avanigadda
+- AP-196 Pamarru (SC)
+- AP-197 Penamaluru
+- AP-198 Vijayawada West
+- AP-199 Vijayawada Central
+- AP-200 Vijayawada East
+- AP-201 Mylavaram
+- AP-202 Nandigama (SC)
+- AP-203 Jaggayyapeta
+- AP-204 Pedakurapadu
+- AP-205 Tadikonda (SC)
+- AP-206 Mangalagiri
+- AP-207 Ponnur
+- AP-208 Vemuru (SC)
+- AP-209 Repalle
+- AP-210 Tenali
+- AP-211 Bapatla
+- AP-212 Prathipadu (SC)
+- AP-213 Guntur West
+- AP-214 Guntur East
+- AP-215 Chilakaluripet
+- AP-216 Narasaraopet
+- AP-218 Vinukonda
+- AP-220 Macherla
+- AP-221 Yerragondapalem (SC)
+- AP-222 Darsi
+- AP-223 Parchur
+- AP-224 Addanki
+- AP-225 Chirala
+- AP-226 Santhanuthalapadu (SC)
+- AP-227 Ongole
+- AP-228 Kandukur
+- AP-229 Kondapi (SC)
+- AP-230 Markapuram
+- AP-231 Giddalur
+- AP-232 Kanigiri
+- AP-233 Kavali
+- AP-234 Atmakur
+- AP-235 Kovur
+- AP-236 Nellore City
+- AP-237 Nellore Rural
+- AP-238 Sarvepalli
+- AP-239 Gudur (SC)
+- AP-240 Sullurpeta (SC)
+- AP-241 Venkatagiri
+- AP-242 Udayagiri
+- AP-243 Badvel (SC)
+- AP-244 Rajampet
+- AP-245 Kadapa
+- AP-246 Kodur (SC)
+- AP-247 Rayachoti
+- AP-248 Pulivendla
+- AP-249 Kamalapuram
+- AP-250 Jammalamadugu
+- AP-251 Proddatur
+- AP-252 Mydukur
+- AP-253 Allagadda
+- AP-254 Srisailam
+- AP-255 Nandikotkur (SC)
+- AP-256 Kurnool
+- AP-257 Panyam
+- AP-258 Nandyal
+- AP-259 Banaganapalle
+- AP-260 Dhone
+- AP-261 Pattikonda
+- AP-262 Kodumur (SC)
+- AP-263 Yemmiganur
+- AP-264 Mantralayam
+- AP-265 Adoni
+- AP-266 Alur
+- AP-267 Rayadurg
+- AP-268 Uravakonda
+- AP-269 Guntakal
+- AP-271 Singanamala (SC)
+- AP-272 Anantapur Urban
+- AP-273 Kalyandurg
+- AP-274 Raptadu
+- AP-275 Madakasira (SC)
+- AP-276 Hindupur
+- AP-277 Penukonda
+- AP-278 Puttaparthi
+- AP-279 Dharmavaram
+- AP-280 Kadiri
+- AP-281 Thamballapalle
+- AP-282 Pileru
+- AP-283 Madanapalle
+- AP-284 Punganur
+- AP-285 Chandragiri
+- AP-286 Tirupati
+- AP-287 Srikalahasti
+- AP-288 Satyavedu (SC)
+- AP-289 Nagari
+- AP-290 Gangadhara Nellore (SC)
+- AP-291 Chittoor
+- AP-292 Puthalapattu (SC)
+- AP-293 Palamaner
+- AP-294 Kuppam
+
+### AR 2029
+
+- Expected: 60 | In file: 0 | Missing: 60
+
+- AR-001 Lumla
+- AR-002 Tawang
+- AR-003 Mukto
+- AR-004 Dirang
+- AR-005 Kalaktang
+- AR-006 Thrizino-Buragaon
+- AR-007 Bomdila
+- AR-008 Bameng
+- AR-009 Chayangtajo
+- AR-010 Seppa East
+- AR-011 Seppa West
+- AR-012 Pakke-Kasang
+- AR-013 Itanagar
+- AR-014 Doimukh
+- AR-015 Sagalee
+- AR-016 Yachuli
+- AR-017 Ziro-Hapoli
+- AR-018 Palin
+- AR-019 Nyapin
+- AR-020 Tali
+- AR-021 Koloriang
+- AR-022 Nacho
+- AR-023 Taliha
+- AR-024 Daporijo
+- AR-025 Raga
+- AR-026 Damporijo
+- AR-027 Liromoba
+- AR-028 Likabali
+- AR-029 Basar
+- AR-030 Along West
+- AR-031 Along East
+- AR-032 Rumgong
+- AR-033 Mechuka
+- AR-034 Tuting-Yinkgkiong
+- AR-035 Pangin
+- AR-036 Nari-Koyu
+- AR-037 Pasighat West
+- AR-038 Pasighat East
+- AR-039 Mebo
+- AR-040 Mariyang-Geku
+- AR-041 Anini
+- AR-042 Dambuk
+- AR-043 Roing
+- AR-044 Tezu
+- AR-045 Hauyuliang
+- AR-046 Chowkham
+- AR-047 Namsai
+- AR-048 Lekang
+- AR-049 Bordumsa-Diyum
+- AR-050 Miao
+- AR-051 Nampong
+- AR-052 Changlang South
+- AR-053 Changlang North
+- AR-054 Namsang
+- AR-055 Khonsa East
+- AR-056 Khonsa West
+- AR-057 Borduria- Bagapani
+- AR-058 Kanubari
+- AR-059 Longding-Pumao
+- AR-060 Pongchou-Wakka
+
+### BR 2030
+
+- Expected: 243 | In file: 0 | Missing: 243
+
+- BR-001 Valmiki Nagar
+- BR-002 Ramnagar (SC)
+- BR-003 Narkatiaganj
+- BR-004 Bagaha
+- BR-005 Lauriya
+- BR-006 Nautan
+- BR-007 Chanpatia
+- BR-008 Bettiah
+- BR-009 Sikta
+- BR-010 Raxaul
+- BR-011 Sugauli
+- BR-012 Narkatia
+- BR-013 Harsidhi (SC)
+- BR-014 Govindganj
+- BR-015 Kesaria
+- BR-016 Kalyanpur
+- BR-017 Pipra
+- BR-018 Madhuban
+- BR-019 Motihari
+- BR-020 Chiraia
+- BR-021 Dhaka
+- BR-022 Sheohar
+- BR-023 Riga
+- BR-024 Bathnaha (SC)
+- BR-025 Parihar
+- BR-026 Sursand
+- BR-027 Bajpatti
+- BR-028 Sitamarhi
+- BR-029 Runnisaidpur
+- BR-030 Belsand
+- BR-031 Harlakhi
+- BR-032 Benipatti
+- BR-033 Khajauli
+- BR-034 Babubarhi
+- BR-035 Bisfi
+- BR-036 Madhubani
+- BR-037 Rajnagar (SC)
+- BR-038 Jhanjharpur
+- BR-039 Phulparas
+- BR-040 Laukaha
+- BR-041 Nirmali
 - BR-042 Pipra
+- BR-043 Supaul
+- BR-044 Triveniganj (SC)
+- BR-045 Chhatapur
+- BR-046 Narpatganj
+- BR-047 Raniganj (SC)
+- BR-048 Forbesganj
+- BR-049 Araria
+- BR-050 Jokihat
+- BR-051 Sikti
+- BR-052 Bahadurganj
+- BR-053 Thakurganj
+- BR-054 Kishanganj
+- BR-055 Kochadhaman
+- BR-056 Amour
+- BR-057 Baisi
+- BR-058 Kasba
+- BR-059 Banmankhi (SC)
+- BR-060 Rupauli
+- BR-061 Dhamdaha
+- BR-062 Purnia
+- BR-063 Katihar
+- BR-064 Kadwa
+- BR-065 Balrampur
+- BR-066 Pranpur
+- BR-067 Manihari (ST)
+- BR-068 Barari
+- BR-069 Korha (SC)
+- BR-070 Alamnagar
+- BR-071 Bihariganj
+- BR-072 Singheshwar (SC)
+- BR-073 Madhepura
+- BR-074 Sonbarsha (SC)
+- BR-075 Saharsa
+- BR-076 Simri Bakhtiarpur
+- BR-077 Mahishi
+- BR-078 Kusheshwar Asthan (SC)
+- BR-079 Gaura Bauram
+- BR-080 Benipur
+- BR-081 Alinagar
+- BR-082 Darbhanga Rural
+- BR-083 Darbhanga
+- BR-084 Hayaghat
+- BR-085 Bahadurpur
+- BR-086 Keoti
+- BR-087 Jale
+- BR-088 Gaighat
+- BR-089 Aurai
+- BR-090 Minapur
+- BR-091 Bochaha (SC)
+- BR-092 Sakra (SC)
+- BR-093 Kurhani
+- BR-094 Muzaffarpur
+- BR-095 Kanti
+- BR-096 Baruraj
+- BR-097 Paroo
+- BR-098 Sahebganj
+- BR-099 Baikunthpur
+- BR-100 Barauli
+- BR-101 Gopalganj
+- BR-102 Kuchaikote
+- BR-103 Bhorey (SC)
+- BR-104 Hathua
+- BR-105 Siwan
+- BR-106 Ziradei
+- BR-107 Darauli (SC)
+- BR-108 Raghunathpur
+- BR-109 Daraundha
+- BR-110 Barharia
+- BR-111 Goriakothi
+- BR-112 Maharajganj
+- BR-113 Ekma
+- BR-114 Manjhi
+- BR-115 Baniapur
+- BR-116 Taraiya
+- BR-117 Marhaura
+- BR-118 Chapra
+- BR-119 Garkha (SC)
+- BR-120 Amnour
+- BR-121 Parsa
+- BR-122 Sonepur
+- BR-123 Hajipur
+- BR-124 Lalganj
+- BR-125 Vaishali
+- BR-126 Mahua
+- BR-127 Raja Pakar (SC)
+- BR-128 Raghopur
+- BR-129 Mahnar
+- BR-130 Patepur (SC)
 - BR-131 Kalyanpur (SC)
+- BR-132 Warisnagar
+- BR-133 Samastipur
+- BR-134 Ujiarpur
+- BR-135 Morwa
+- BR-136 Sarairanjan
+- BR-137 Mohiuddinnagar
+- BR-138 Bibhutipur
+- BR-139 Rosera (SC)
+- BR-140 Hasanpur
+- BR-141 Cheria Bariarpur
+- BR-142 Bachhwara
+- BR-143 Teghra
+- BR-144 Matihani
+- BR-145 Sahebpur Kamal
+- BR-146 Begusarai
+- BR-147 Bakhri (SC)
+- BR-148 Alauli (SC)
+- BR-149 Khagaria
+- BR-150 Beldaur
+- BR-151 Parbatta
+- BR-152 Bihpur
+- BR-153 Gopalpur
+- BR-154 Pirpainti (SC)
+- BR-155 Kahalgaon
+- BR-156 Bhagalpur
+- BR-157 Sultanganj
+- BR-158 Nathnagar
+- BR-159 Amarpur
+- BR-160 Dhauraiya (SC)
+- BR-161 Banka
+- BR-162 Katoria (ST)
+- BR-163 Belhar
+- BR-164 Tarapur
+- BR-165 Munger
+- BR-166 Jamalpur
+- BR-167 Suryagarha
+- BR-168 Lakhisarai
+- BR-169 Sheikhpura
+- BR-170 Barbigha
+- BR-171 Asthawan
+- BR-172 Biharsharif
+- BR-173 Rajgir (SC)
+- BR-174 Islampur
+- BR-175 Hilsa
+- BR-176 Nalanda
+- BR-177 Harnaut
+- BR-178 Mokama
+- BR-179 Barh
+- BR-180 Bakhtiarpur
+- BR-181 Digha
+- BR-182 Bankipur
+- BR-183 Kumhrar
+- BR-184 Patna Sahib
+- BR-185 Fatuha
+- BR-186 Danapur
+- BR-187 Maner
+- BR-188 Phulwari (SC)
+- BR-189 Masaurhi (SC)
+- BR-190 Paliganj
+- BR-191 Bikram
+- BR-192 Sandesh
+- BR-193 Barhara
+- BR-194 Arrah
+- BR-195 Agiaon (SC)
+- BR-196 Tarari
+- BR-197 Jagdishpur
+- BR-198 Shahpur
+- BR-199 Brahampur
+- BR-200 Buxar
+- BR-201 Dumraon
+- BR-202 Rajpur (SC)
+- BR-203 Ramgarh
+- BR-204 Mohania (SC)
+- BR-205 Bhabua
+- BR-206 Chainpur
+- BR-207 Chenari (SC)
+- BR-208 Sasaram
+- BR-209 Kargahar
+- BR-210 Dinara
+- BR-211 Nokha
+- BR-212 Dehri
+- BR-213 Karakat
+- BR-214 Arwal
+- BR-215 Kurtha
+- BR-216 Jehanabad
+- BR-217 Ghosi
+- BR-218 Makhdumpur (SC)
+- BR-219 Goh
+- BR-220 Obra
+- BR-221 Nabinagar
+- BR-222 Kutumba (SC)
+- BR-223 Aurangabad
+- BR-224 Rafiganj
+- BR-225 Gurua
+- BR-226 Sherghati
+- BR-227 Imamganj (SC)
+- BR-228 Barachatti (SC)
+- BR-229 Bodh Gaya (SC)
+- BR-230 Gaya Town
+- BR-231 Tikari
+- BR-232 Belaganj
+- BR-233 Atri
+- BR-234 Wazirganj
+- BR-235 Rajauli (SC)
+- BR-236 Hisua
+- BR-237 Nawada
+- BR-238 Gobindpur
+- BR-239 Warsaliganj
+- BR-240 Sikandra (SC)
+- BR-241 Jamui
+- BR-242 Jhajha
+- BR-243 Chakai
 
-### GJ 2012
+### CG 2028
 
-- Expected: 182 | In file: 179 | Missing: 3
+- Expected: 90 | In file: 0 | Missing: 90
 
+- CG-001 Bharatpur-Sonhat (S
+- CG-002 Manendragarh
+- CG-003 Baikunthpur
+- CG-004 Premnagar
+- CG-005 Bhatgaon
+- CG-006 Pratappur (ST)
+- CG-007 Ramanujganj (ST)
+- CG-008 Samri (ST)
+- CG-009 Lundra (ST)
+- CG-010 Ambikapur
+- CG-011 Sitapur (ST)
+- CG-012 Jashpur (ST)
+- CG-013 Kunkuri (ST)
+- CG-014 Pathalgaon (ST)
+- CG-015 Lailunga (ST)
+- CG-016 Raigarh
+- CG-017 Sarangarh (SC)
+- CG-018 Kharsia
+- CG-019 Dharamjaigarh (ST)
+- CG-020 Rampur (ST)
+- CG-021 Korba
+- CG-022 Katghora
+- CG-023 Pali-Tanakhar (ST)
+- CG-024 Marwahi (ST)
+- CG-025 Kota
+- CG-026 Lormi
+- CG-027 Mungeli (SC)
+- CG-028 Takhatpur
+- CG-029 Bilha
+- CG-030 Bilaspur
+- CG-031 Beltara
+- CG-032 Masturi (SC)
+- CG-033 Akaltara
+- CG-034 Janjgir-Champa
+- CG-035 Sakti
+- CG-036 Chandrapur
+- CG-037 Jaijaipur
+- CG-038 Pamgarh (SC)
+- CG-039 Saraipali (SC)
+- CG-040 Basna
+- CG-041 Khallari
+- CG-042 Mahasamund
+- CG-043 Bilaigarh (SC)
+- CG-044 Kasdol
+- CG-045 Baloda Bazar
+- CG-046 Bhatapara
+- CG-047 Dharsiwa
+- CG-048 Raipur Rural
+- CG-049 Raipur City West
+- CG-050 Raipur City North
+- CG-051 Raipur City South
+- CG-052 Arang (SC)
+- CG-053 Abhanpur
+- CG-054 Rajim
+- CG-055 Bindranawagarh (ST)
+- CG-056 Sihawa (ST)
+- CG-057 Kurud
+- CG-058 Dhamtari
+- CG-059 Sanjari Balod
+- CG-060 Dondi Lohara (ST)
+- CG-061 Gunderdehi
+- CG-062 Patan
+- CG-063 Durg-Rural
+- CG-064 Durg City
+- CG-065 Bhilai Nagar
+- CG-066 Vaishali Nagar
+- CG-067 Ahiwara (SC)
+- CG-068 Saja
+- CG-069 Bemetara
+- CG-070 Nawagarh (SC)
+- CG-071 Pandariya
+- CG-072 Kawardha
+- CG-073 Khairagarh
+- CG-074 Dongargarh (SC)
+- CG-075 Rajnandgaon
+- CG-076 Dongargaon
+- CG-077 Khujji
+- CG-078 Mohla-Manpur (ST)
+- CG-079 Antagarh (ST)
+- CG-080 Bhanupratappur (ST)
+- CG-081 Kanker (ST)
+- CG-082 Keshkal (ST)
+- CG-083 Kondagaon (ST)
+- CG-084 Narayanpur (ST)
+- CG-085 Bastar (ST)
+- CG-086 Jagdalpur
+- CG-087 Chitrakot (ST)
+- CG-088 Dantewada (ST)
+- CG-089 Bijapur (ST)
+- CG-090 Konta (ST)
+
+### DL 2030
+
+- Expected: 70 | In file: 0 | Missing: 70
+
+- DL-001 Nerela
+- DL-002 Burari
+- DL-003 Timarpur
+- DL-004 Adarsh Nagar
+- DL-005 Badli
+- DL-006 Rithala
+- DL-007 Bawana (SC)
+- DL-008 Mundka
+- DL-009 Kirari
+- DL-010 Sultan Pur Majra(SC)
+- DL-011 Nangloi Jat
+- DL-012 Mangol Puri (SC)
+- DL-013 Rohini
+- DL-014 Shalimar Bagh
+- DL-015 Shakur Basti
+- DL-016 Tri Nagar
+- DL-017 Wazirpur
+- DL-018 Model Town
+- DL-019 Sadar Bazar
+- DL-020 Chandni Chowk
+- DL-021 Matia Mahal
+- DL-022 Ballimaran
+- DL-023 Karol Bagh (SC)
+- DL-024 Patel Nagar (SC)
+- DL-025 Moti Nagar
+- DL-026 Madipur (SC)
+- DL-027 Rajouri Garden
+- DL-028 Hari Nagar
+- DL-029 Tilak Nagar
+- DL-030 Janakpuri
+- DL-031 Vikaspuri
+- DL-032 Uttam Nagar
+- DL-033 Dwarka
+- DL-034 Matiala
+- DL-035 Najafgarh
+- DL-036 Bijwasan
+- DL-037 Palam
+- DL-038 Delhi Cantt
+- DL-039 Rajinder Nagar
+- DL-040 New Delhi
+- DL-041 Jangpura
+- DL-042 Kasturba Nagar
+- DL-043 Malviya Nagar
+- DL-044 R.K. Puram
+- DL-045 Mehrauli
+- DL-046 Chhatarpur
+- DL-047 Deoli (SC)
+- DL-048 Ambedkar Nagar(SC)
+- DL-049 Sangam Vihar
+- DL-050 Greater Kailash
+- DL-051 Kalkaji
+- DL-052 Tughlakabad
+- DL-053 Badarpur
+- DL-054 Okhla
+- DL-055 Trilokpuri (SC)
+- DL-056 Kondli (SC)
+- DL-057 Patparganj
+- DL-058 Laxmi Nagar
+- DL-059 Vishwas Nagar
+- DL-060 Krishna Nagar
+- DL-061 Gandhi Nagar
+- DL-062 Shahdara
+- DL-063 Seemapuri (SC)
+- DL-064 Rohtas Nagar
+- DL-065 Seelam Pur
+- DL-066 Ghonda
+- DL-067 Babarpur
+- DL-068 Gokalpur (SC)
+- DL-069 Mustafabad
+- DL-070 Karawal Nagar
+
+### GA 2027
+
+- Expected: 40 | In file: 0 | Missing: 40
+
+- GA-001 Mandrem
+- GA-002 Pernem (SC)
+- GA-003 Bicholim
+- GA-004 Tivim
+- GA-005 Mapusa
+- GA-006 Siolim
+- GA-007 Saligao
+- GA-008 Calangute
+- GA-009 Porvorim
+- GA-010 Aldona
+- GA-011 Panaji
+- GA-012 Taleigao
+- GA-013 St. Cruz
+- GA-014 St. Andre
+- GA-015 Cumbarjua
+- GA-016 Maem
+- GA-017 Sanquelim
+- GA-018 Poriem
+- GA-019 Valpoi
+- GA-020 Priol
+- GA-021 Ponda
+- GA-022 Siroda
+- GA-023 Marcaim
+- GA-024 Mormugao
+- GA-025 Vasco-Da-Gama
+- GA-026 Dabolim
+- GA-027 Cortalim
+- GA-028 Nuvem
+- GA-029 Curtorim
+- GA-030 Fatorda
+- GA-031 Margao
+- GA-032 Benaulim
+- GA-033 Navelim
+- GA-034 Cuncolim
+- GA-035 Velim
+- GA-036 Quepem
+- GA-037 Curchorem
+- GA-038 Sanvordem
+- GA-039 Sanguem
+- GA-040 Canacona
+
+### GJ 2027
+
+- Expected: 182 | In file: 0 | Missing: 182
+
+- GJ-001 ABDASA
+- GJ-002 MANDVI
+- GJ-003 BHUJ
+- GJ-004 ANJAR
+- GJ-005 GANDHIDHAM
+- GJ-006 RAPAR
+- GJ-007 VAV
+- GJ-008 THARAD
+- GJ-009 DHANERA
+- GJ-010 DANTA
+- GJ-011 VADGAM
+- GJ-012 PALANPUR
+- GJ-013 DEESA
+- GJ-014 DEODAR
+- GJ-015 KANKREJ
+- GJ-016 RADHANPUR
+- GJ-017 CHANASMA
+- GJ-018 PATAN
+- GJ-019 SIDHPUR
+- GJ-020 KHERALU
+- GJ-021 UNJHA
+- GJ-022 VISNAGAR
+- GJ-023 BECHARAJI
+- GJ-024 KADI
+- GJ-025 MAHESANA
+- GJ-026 VIJAPUR
+- GJ-027 HIMATNAGAR
+- GJ-028 IDAR
+- GJ-029 KHEDBRAHMA
+- GJ-030 BHILODA
+- GJ-031 MODASA
+- GJ-032 BAYAD
+- GJ-033 PRANTIJ
+- GJ-034 DAHEGAM
+- GJ-035 GANDHINAGAR(SOUTH)
+- GJ-036 GANDHINAGAR(NORTH)
+- GJ-037 MANSA
 - GJ-038 KALOL
+- GJ-039 VIRAMGAM
+- GJ-040 SANAND
+- GJ-041 GHATLODIA
+- GJ-042 VEJALPUR
+- GJ-043 VATVA
+- GJ-044 ELLISBRIDGE
+- GJ-045 NARANPURA
+- GJ-046 NIKOL
+- GJ-047 NARODA
+- GJ-048 THAKKAR BAPANAGAR
+- GJ-049 BAPUNAGAR
+- GJ-050 AMRAIWADI
+- GJ-051 DARIYAPUR
+- GJ-052 JAMALPUR-KHADIA
+- GJ-053 MANINAGAR
+- GJ-054 DANILIMDA
+- GJ-055 SABARMATI
+- GJ-056 ASARWA
+- GJ-057 DASKROI
+- GJ-058 DHOLKA
+- GJ-059 DHANDHUKA
+- GJ-060 DASADA
+- GJ-061 LIMBDI
+- GJ-062 WADHWAN
+- GJ-063 CHOTILA
+- GJ-064 DHRANGADHRA
+- GJ-065 MORBI
+- GJ-066 TANKARA
+- GJ-067 WANKANER
+- GJ-068 RAJKOT EAST
+- GJ-069 RAJKOT WEST
+- GJ-070 RAJKOT SOUTH
+- GJ-071 RAJKOT RURAL
+- GJ-072 JASDAN
+- GJ-073 GONDAL
 - GJ-074 JETPUR
+- GJ-075 DHORAJI
+- GJ-076 KALAVAD
+- GJ-077 JAMNAGAR
+- GJ-078 JAMNAGAR NORTH
+- GJ-079 JAMNAGAR SOUTH
+- GJ-080 JAMJODHPUR
+- GJ-081 KHAMBHALIA
+- GJ-082 DWARKA
+- GJ-083 PORBANDAR
+- GJ-084 KUTIYANA
+- GJ-085 MANAVADAR
+- GJ-086 JUNAGADH
+- GJ-087 VISAVADAR
+- GJ-088 KESHOD
 - GJ-089 MANGROL
+- GJ-090 SOMNATH
+- GJ-091 TALALA
+- GJ-092 KODINAR
+- GJ-093 UNA
+- GJ-094 DHARI
+- GJ-095 AMRELI
+- GJ-096 LATHI
+- GJ-097 SAVARKUNDLA
+- GJ-098 RAJULA
+- GJ-099 MAHUVA
+- GJ-100 TALAJA
+- GJ-101 GARIADHAR
+- GJ-102 PALITANA
+- GJ-103 BHAVNAGAR RURAL
+- GJ-104 BHAVNAGAR EAST
+- GJ-105 BHAVNAGAR WEST
+- GJ-106 GADHADA
+- GJ-107 BOTAD
+- GJ-108 KHAMBHAT
+- GJ-109 BORSAD
+- GJ-110 ANKLAV
+- GJ-111 UMRETH
+- GJ-112 ANAND
+- GJ-113 PETLAD
+- GJ-114 SOJITRA
+- GJ-115 MATAR
+- GJ-116 NADIAD
+- GJ-117 MEHMEDABAD
+- GJ-118 MAHUDHA
+- GJ-119 THASRA
+- GJ-120 KAPADVANJ
+- GJ-121 BALASINOR
+- GJ-122 LUNAWADA
+- GJ-123 SANTRAMPUR
+- GJ-124 SHEHRA
+- GJ-125 MORVA HADAF
+- GJ-126 GODHRA
+- GJ-127 KALOL
+- GJ-128 HALOL
+- GJ-129 FATEPURA
+- GJ-130 JHALOD
+- GJ-131 LIMKHEDA
+- GJ-132 DAHOD
+- GJ-133 GARBADA
+- GJ-134 DEVGADHBARIA
+- GJ-135 SAVLI
+- GJ-136 VAGHODIA
+- GJ-137 CHHOTA UDAIPUR (ST
+- GJ-138 JETPUR
+- GJ-139 SANKHEDA
+- GJ-140 DABHOI
+- GJ-141 VADODARA CITY
+- GJ-142 SAYAJIGUNJ
+- GJ-143 AKOTA
+- GJ-144 RAOPURA
+- GJ-145 MANJALPUR
+- GJ-146 PADRA
+- GJ-147 KARJAN
+- GJ-148 NANDOD
+- GJ-149 DEDIAPADA
+- GJ-150 JAMBUSAR
+- GJ-151 VAGRA
+- GJ-152 JHAGADIA
+- GJ-153 BHARUCH
+- GJ-154 ANKLESHWAR
+- GJ-155 OLPAD
+- GJ-156 MANGROL
+- GJ-157 MANDVI
+- GJ-158 KAMREJ
+- GJ-159 SURAT EAST
+- GJ-160 SURAT NORTH
+- GJ-161 VARACHHA ROAD
+- GJ-162 KARANJ
+- GJ-163 LIMBAYAT
+- GJ-164 UDHNA
+- GJ-165 MAJURA
+- GJ-166 KATARGAM
+- GJ-167 SURAT WEST
+- GJ-168 CHORYASI
+- GJ-169 BARDOLI
+- GJ-170 MAHUVA
+- GJ-171 VYARA
+- GJ-172 NIZAR
+- GJ-173 DANGS
+- GJ-174 JALALPORE
+- GJ-175 NAVSARI
+- GJ-176 GANDEVI
+- GJ-177 VANSDA
+- GJ-178 DHARAMPUR
+- GJ-179 VALSAD
+- GJ-180 PARDI
+- GJ-181 KAPRADA
+- GJ-182 UMBERGAON
 
-### GJ 2017
+### HP 2027
 
-- Expected: 182 | In file: 179 | Missing: 3
+- Expected: 68 | In file: 0 | Missing: 68
 
-- GJ-038 KALOL
-- GJ-074 JETPUR
-- GJ-089 MANGROL
+- HP-001 Churah (SC)
+- HP-002 Bharmour (ST)
+- HP-003 Chamba
+- HP-004 Dalhousie
+- HP-005 Bhattiyat
+- HP-006 Nurpur
+- HP-007 Indora (SC)
+- HP-008 Fatehpur
+- HP-009 Jawali
+- HP-010 Dehra
+- HP-011 Jaswan-Pragpur
+- HP-012 Jawalamukhi
+- HP-013 Jaisinghpur (SC)
+- HP-014 Sullah
+- HP-015 Nagrota
+- HP-016 Kangra
+- HP-017 Shahpur
+- HP-018 Dharamshala
+- HP-019 Palampur
+- HP-020 Baijnath (SC)
+- HP-021 Lahaul & Spiti (ST)
+- HP-022 Manali
+- HP-023 Kullu
+- HP-024 Banjar
+- HP-025 Anni (SC)
+- HP-026 Karsog (SC)
+- HP-027 Sundernagar
+- HP-028 Nachan (SC)
+- HP-029 Seraj
+- HP-030 Darang
+- HP-031 Jogindernagar
+- HP-032 Dharampur
+- HP-033 Mandi
+- HP-034 Balh (SC)
+- HP-035 Sarkaghat
+- HP-036 Bhoranj (SC)
+- HP-037 Sujanpur
+- HP-038 Hamirpur
+- HP-039 Barsar
+- HP-040 Nadaun
+- HP-041 Chintpurni (SC)
+- HP-042 Gagret
+- HP-043 Haroli
+- HP-044 Una
+- HP-045 Kutlehar
+- HP-046 Jhanduta (SC)
+- HP-047 Ghumarwin
+- HP-048 Bilaspur
+- HP-049 Sri Naina Deviji
+- HP-050 Arki
+- HP-051 Nalagarh
+- HP-052 Doon
+- HP-053 Solan (SC)
+- HP-054 Kasauli (SC)
+- HP-055 Pachhad (SC)
+- HP-056 Nahan
+- HP-057 Sri Renukaji (SC
+- HP-058 Paonta Sahib
+- HP-059 Shillai
+- HP-060 Chopal
+- HP-061 Theog
+- HP-062 Kasumpti
+- HP-063 Shimla
+- HP-064 Shimla Rural
+- HP-065 Jubbal-Kotkhai
+- HP-066 Rampur (SC)
+- HP-067 Rohru (SC)
+- HP-068 Kinnaur (ST)
 
-### GJ 2022
+### HR 2029
 
-- Expected: 182 | In file: 179 | Missing: 3
+- Expected: 90 | In file: 0 | Missing: 90
 
-- GJ-038 KALOL
-- GJ-074 JETPUR
-- GJ-089 MANGROL
+- HR-001 Kalka
+- HR-002 Panchkula
+- HR-003 Naraingarh
+- HR-004 Ambala Cantt.
+- HR-005 Ambala City
+- HR-006 Mulana (SC)
+- HR-007 Sadhaura (SC)
+- HR-008 Jagadhri
+- HR-009 Yamunanagar
+- HR-010 Radaur
+- HR-011 Ladwa
+- HR-012 Shahbad (SC)
+- HR-013 Thanesar
+- HR-014 Pehowa
+- HR-015 Guhla (SC)
+- HR-016 Kalayat
+- HR-017 Kaithal
+- HR-018 Pundri
+- HR-019 Nilokheri(SC)
+- HR-020 Indri
+- HR-021 Karnal
+- HR-022 Gharaunda
+- HR-023 Assandh
+- HR-024 Panipat Rural
+- HR-025 Panipat City
+- HR-026 Israna (SC)
+- HR-027 Samalkha
+- HR-028 Ganaur
+- HR-029 Rai
+- HR-030 Kharkhauda (SC)
+- HR-031 Sonipat
+- HR-032 Gohana
+- HR-033 Baroda
+- HR-034 Julana
+- HR-035 Safidon
+- HR-036 Jind
+- HR-037 Uchana Kalan
+- HR-038 Narwana (SC)
+- HR-039 Tohana
+- HR-040 Fatehabad
+- HR-041 Ratia (SC)
+- HR-042 Kalanwali (SC)
+- HR-043 Dabwali
+- HR-044 Rania
+- HR-045 Sirsa
+- HR-046 Ellenabad
+- HR-047 Adampur
+- HR-048 Uklana (SC)
+- HR-049 Narnaund
+- HR-050 Hansi
+- HR-051 Barwala
+- HR-052 Hisar
+- HR-053 Nalwa
+- HR-054 Loharu
+- HR-055 Badhra
+- HR-056 Dadri
+- HR-057 Bhiwani
+- HR-058 Tosham
+- HR-059 Bawani Khera (SC)
+- HR-060 Meham
+- HR-061 Garhi Sampla-Kilo
+- HR-062 Rohtak
+- HR-063 Kalanaur (SC)
+- HR-064 Bahadurgarh
+- HR-065 Badli
+- HR-066 Jhajjar (SC)
+- HR-067 Beri
+- HR-068 Ateli
+- HR-069 Mahendragarh
+- HR-070 Narnaul
+- HR-071 Nangal Chaudhry
+- HR-072 Bawal (SC)
+- HR-073 Kosli
+- HR-074 Rewari
+- HR-075 Pataudi (SC)
+- HR-076 Badshahpur
+- HR-077 Gurgaon
+- HR-078 Sohna
+- HR-079 Nuh
+- HR-080 Ferozepur Jhirka
+- HR-081 Punahana
+- HR-082 Hathin
+- HR-083 Hodal (SC)
+- HR-084 Palwal
+- HR-085 Prithla
+- HR-086 Faridabad NIT
+- HR-087 Badkhal
+- HR-088 Ballabhgarh
+- HR-089 Faridabad
+- HR-090 Tigaon
+
+### JH 2029
+
+- Expected: 81 | In file: 0 | Missing: 81
+
+- JH-001 RAJMAHAL
+- JH-002 BORIO (ST)
+- JH-003 BARHAIT (ST)
+- JH-004 LITIPARA (ST)
+- JH-005 PAKAUR
+- JH-006 MAHESHPUR (ST)
+- JH-007 SIKARIPARA (ST)
+- JH-008 NALA
+- JH-009 JAMTARA
+- JH-010 DUMKA (ST)
+- JH-011 JAMA (ST)
+- JH-012 JARMUNDI
+- JH-013 MADHUPUR
+- JH-014 SARATH
+- JH-015 DEOGHAR (SC)
+- JH-016 POREYAHAT
+- JH-017 GODDA
+- JH-018 MAHAGAMA
+- JH-019 KODARMA
+- JH-020 BARKATHA
+- JH-021 BARHI
+- JH-022 BARKAGAON
+- JH-023 RAMGARH
+- JH-024 MANDU
+- JH-025 HAZARIBAGH
+- JH-026 SIMARIA (SC)
+- JH-027 CHATRA (SC)
+- JH-028 DHANWAR
+- JH-029 BAGODAR
+- JH-030 JAMUA (SC)
+- JH-031 GANDEY
+- JH-032 GIRIDIH
+- JH-033 DUMRI
+- JH-034 GOMIA
+- JH-035 BERMO
+- JH-036 BOKARO
+- JH-037 CHANDANKIYARI (SC)
+- JH-038 SINDRI
+- JH-039 NIRSA
+- JH-040 DHANBAD
+- JH-041 JHARIA
+- JH-042 TUNDI
+- JH-043 BAGHMARA
+- JH-044 BAHARAGORA
+- JH-045 GHATSILA (ST)
+- JH-046 POTKA (ST)
+- JH-047 JUGSALAI (SC)
+- JH-048 JAMSHEDPUR EAST
+- JH-049 JAMSHEDPUR WEST
+- JH-050 ICHAGARH
+- JH-051 SERAIKELLA (ST)
+- JH-052 CHAIBASA (ST)
+- JH-053 MAJHGAON (ST)
+- JH-054 JAGANATHPUR (ST)
+- JH-055 MANOHARPUR (ST)
+- JH-056 CHAKRADHARPUR (ST)
+- JH-057 KHARASAWAN (ST)
+- JH-058 TAMAR (ST)
+- JH-059 TORPA (ST)
+- JH-060 KHUNTI (ST)
+- JH-061 SILLI
+- JH-062 KHIJRI (ST)
+- JH-063 RANCHI
+- JH-064 HATIA
+- JH-065 KANKE (SC)
+- JH-066 MANDAR (ST)
+- JH-067 SISAI (ST)
+- JH-068 GUMLA (ST)
+- JH-069 BISHNUPUR (ST)
+- JH-070 SIMDEGA (ST)
+- JH-071 KOLEBIRA (ST)
+- JH-072 LOHARDAGA (ST)
+- JH-073 MANIKA (ST)
+- JH-074 LATEHAR (SC)
+- JH-075 PANKI
+- JH-076 DALTONGANJ
+- JH-077 BISHRAMPUR
+- JH-078 CHHATARPUR (SC)
+- JH-079 HUSSAINABAD
+- JH-080 GARHWA
+- JH-081 BHAWANATHPUR
 
 ### JK 2008
 
@@ -605,65 +1791,2283 @@ These are the best candidates for adding missing data (e.g. Form 20 / bypolls).
 - JK-111 Budhal
 - JK-112 Thannamandi
 
-### OD 2019
+### JK 2029
 
-- Expected: 147 | In file: 146 | Missing: 1
+- Expected: 90 | In file: 0 | Missing: 90
 
+- JK-001 Karnah
+- JK-002 Trehgam
+- JK-003 Kupwara
+- JK-004 Lolab
+- JK-005 Handwara
+- JK-006 Langate
+- JK-007 Sopore
+- JK-008 Rafiabad
+- JK-009 Uri
+- JK-010 Baramulla
+- JK-011 Gulmarg
+- JK-013 Pattan
+- JK-014 Sonawari
+- JK-015 Bandipora
+- JK-016 Gurez
+- JK-017 Kangan
+- JK-018 Ganderbal
+- JK-019 Hazratbal
+- JK-020 Khanyar
+- JK-021 Habbakadal
+- JK-022 Lal Chowk
+- JK-026 Central Shalteng
+- JK-027 Budgam
+- JK-028 Beerwah
+- JK-029 Khansahib
+- JK-031 Chadoora
+- JK-032 Pampore
+- JK-033 Tral
+- JK-034 Pulwama
+- JK-036 Zainapora
+- JK-038 D.H. Pora
+- JK-040 Devsar
+- JK-041 Dooru
+- JK-042 Kokernag
+- JK-043 Anantnag West
+- JK-046 Shangus - Anantnag East
+- JK-051 Bhadarwah
+- JK-052 Doda
+- JK-053 Doda West
+- JK-055 Banihal
+- JK-056 Gulabgarh
+- JK-057 Reasi
+- JK-058 Shri Mata Vaishno Devi
+- JK-061 Chenani
+- JK-062 Ramnagar
+- JK-063 Bani
+- JK-064 Billawar
+- JK-065 Basohli
+- JK-066 Jasrota
+- JK-067 Kathua
+- JK-068 Hiranagar
+- JK-069 Ramgarh
+- JK-070 Samba
+- JK-072 Bishnah
+- JK-073 Suchetgarh
+- JK-074 R.S. Pura - Jammu South
+- JK-076 Jammu East
+- JK-077 Nagrota
+- JK-079 Jammu North
+- JK-080 Marh
+- JK-081 Akhnoor
+- JK-083 Kalakote - Sunderbani
+- JK-085 Rajouri
+- JK-086 Budhal
+- JK-087 Thannamandi
+- JK-088 Surankote
+- JK-089 Poonch Haveli
+- JK-090 Mendhar
+- JK-091 Channapora
+- JK-092 Central Shalteng
+- JK-093 Chrar-i-Sharief
+- JK-094 Zainapora
+- JK-095 D.H. Pora
+- JK-096 Anantnag West
+- JK-097 Srigufwara - Bijbehara
+- JK-098 Shangus - Anantnag East
+- JK-099 Padder-Nagseni
+- JK-100 Bhadarwah
+- JK-101 Doda West
+- JK-102 Shri Mata Vaishno Devi
+- JK-103 Udhampur West
+- JK-104 Udhampur East
+- JK-105 Jasrota
+- JK-106 Ramgarh
+- JK-107 R.S. Pura - Jammu South
+- JK-108 Bahu
+- JK-109 Jammu North
+- JK-110 Kalakote - Sunderbani
+- JK-111 Budhal
+- JK-112 Thannamandi
+
+### KA 2028
+
+- Expected: 224 | In file: 0 | Missing: 224
+
+- KA-001 Nippani
+- KA-002 Chikkodi-Sadalga
+- KA-003 Athani
+- KA-004 Kagwad
+- KA-005 Kudachi (SC)
+- KA-006 Raybag (SC)
+- KA-007 Hukkeri
+- KA-008 Arabhavi
+- KA-009 Gokak
+- KA-010 Yemkanmardi (ST)
+- KA-011 Belgaum Uttar
+- KA-012 Belgaum Dakshin
+- KA-013 Belgaum Rural
+- KA-014 Khanapur
+- KA-015 Kittur
+- KA-016 Bailhongal
+- KA-017 Saundatti Yellamma
+- KA-018 Ramdurg
+- KA-019 Mudhol (SC)
+- KA-020 Terdal
+- KA-021 Jamkhandi
+- KA-022 Bilgi
+- KA-023 Badami
+- KA-024 Bagalkot
+- KA-025 Hungund
+- KA-026 Muddebihal
+- KA-027 Devar Hippargi
+- KA-028 Basavana Bagevadi
+- KA-029 Babaleshwar
+- KA-030 Bijapur City
+- KA-031 Nagthan (SC)
+- KA-032 Indi
+- KA-033 Sindgi
+- KA-034 Afzalpur
+- KA-035 Jevargi
+- KA-036 Shorapur (ST)
+- KA-037 Shahapur
+- KA-038 Yadgir
+- KA-039 Gurmitkal
+- KA-040 Chittapur (SC)
+- KA-041 Sedam
+- KA-042 Chincholi (SC)
+- KA-043 Gulbarga Rural(SC)
+- KA-044 Gulbarga Dakshin
+- KA-045 Gulbarga Uttar
+- KA-046 Aland
+- KA-047 Basavakalyan
+- KA-048 Homnabad
+- KA-049 Bidar South
+- KA-050 Bidar
+- KA-051 Bhalki
+- KA-052 Aurad (SC)
+- KA-053 Raichur Rural (ST)
+- KA-054 Raichur
+- KA-055 Manvi (ST)
+- KA-056 Devadurga (ST)
+- KA-057 Lingsugur (SC)
+- KA-058 Sindhanur
+- KA-059 Maski (ST)
+- KA-060 Kushtagi
+- KA-061 Kanakagiri (SC)
+- KA-062 Gangawati
+- KA-063 Yelburga
+- KA-064 Koppal
+- KA-065 Shirahatti (SC)
+- KA-066 Gadag
+- KA-067 Ron
+- KA-068 Nargund
+- KA-069 Navalgund
+- KA-070 Kundgol
+- KA-071 Dharwad
+- KA-072 Hubli-Dharwad-East(SC)
+- KA-073 Hubli-Dharwad-Central
+- KA-074 Hubli-Dharwad-West
+- KA-075 Kalghatgi
+- KA-076 Haliyal
+- KA-077 Karwar
+- KA-078 Kumta
+- KA-079 Bhatkal
+- KA-080 Sirsi
+- KA-081 Yellapur
+- KA-082 Hangal
+- KA-083 Shiggaon
+- KA-084 Haveri (SC)
+- KA-085 Byadgi
+- KA-086 Hirekerur
+- KA-087 Ranibennur
+- KA-088 Hadagalli (SC)
+- KA-089 Hagaribommanahalli(SC)
+- KA-090 Vijayanagara
+- KA-091 Kampli (ST)
+- KA-092 Siruguppa (ST)
+- KA-093 Bellary (ST)
+- KA-094 Bellary City
+- KA-095 Sandur (ST)
+- KA-096 Kudligi (ST)
+- KA-097 Molakalmuru (ST)
+- KA-098 Challakere (ST)
+- KA-099 Chitradurga
+- KA-100 Hiriyur
+- KA-101 Hosadurga
+- KA-102 Holalkere (SC)
+- KA-103 Jagalur (ST)
+- KA-104 Harapanahalli
+- KA-105 Harihar
+- KA-106 Davanagere North
+- KA-107 Davanagere South
+- KA-108 Mayakonda (SC)
+- KA-109 Channagiri
+- KA-110 Honnali
+- KA-111 Shimoga Rural (SC)
+- KA-112 Bhadravati
+- KA-113 Shimoga
+- KA-114 Tirthahalli
+- KA-115 Shikaripura
+- KA-116 Sorab
+- KA-117 Sagar
+- KA-118 Byndoor
+- KA-119 Kundapura
+- KA-120 Udupi
+- KA-121 Kapu
+- KA-122 Karkal
+- KA-123 Sringeri
+- KA-124 Mudigere (SC)
+- KA-125 Chikmagalur
+- KA-126 Tarikere
+- KA-127 Kadur
+- KA-128 Chiknayakanhalli
+- KA-129 Tiptur
+- KA-130 Turuvekere
+- KA-131 Kunigal
+- KA-132 Tumkur City
+- KA-133 Tumkur Rural
+- KA-134 Koratagere (SC)
+- KA-135 Gubbi
+- KA-136 Sira
+- KA-137 Pavagada (SC)
+- KA-138 Madhugiri
+- KA-139 Gauribidanur
+- KA-140 Bagepalli
+- KA-141 Chikkaballapur
+- KA-142 Sidlaghatta
+- KA-143 Chintamani
+- KA-144 Srinivaspur
+- KA-145 Mulbagal (SC)
+- KA-146 Kolar Gold Field(SC)
+- KA-147 Bangarapet (SC)
+- KA-148 Kolar
+- KA-149 Malur
+- KA-150 Yelahanka
+- KA-151 K.R.Pura
+- KA-152 Byatarayanapura
+- KA-153 Yeshvanthapura
+- KA-154 Rajarajeshwarinagar
+- KA-155 Dasarahalli
+- KA-156 Mahalakshmi Layout
+- KA-157 Malleshwaram
+- KA-158 Hebbal
+- KA-159 Pulakeshinagar(SC)
+- KA-160 Sarvagnanagar
+- KA-161 C.V. Raman Nagar(SC)
+- KA-162 Shivajinagar
+- KA-163 Shanti Nagar
+- KA-164 Gandhi Nagar
+- KA-165 Rajaji Nagar
+- KA-166 Govindraj Nagar
+- KA-167 Vijay Nagar
+- KA-168 Chamrajpet
+- KA-169 Chickpet
+- KA-170 Basavanagudi
+- KA-171 Padmanaba Nagar
+- KA-172 B.T.M Layout
+- KA-173 Jayanagar
+- KA-174 Mahadevapura
+- KA-175 Bommanahalli
+- KA-176 Bangalore South
+- KA-177 Anekal (SC)
+- KA-178 Hosakote
+- KA-179 Devanahalli (SC)
+- KA-180 Doddaballapur
+- KA-181 Nelamangala (SC)
+- KA-182 Magadi
+- KA-183 Ramanagaram
+- KA-184 Kanakapura
+- KA-185 Channapatna
+- KA-186 Malavalli (SC)
+- KA-187 Maddur
+- KA-188 Melukote
+- KA-189 Mandya
+- KA-190 Shrirangapattana
+- KA-191 Nagamangala
+- KA-192 Krishnarajpet
+- KA-193 Shravanabelagola
+- KA-194 Arsikere
+- KA-195 Belur
+- KA-196 Hassan
+- KA-197 Holenarasipur
+- KA-198 Arkalgud
+- KA-199 Sakleshpur (SC)
+- KA-200 Belthangady
+- KA-201 Moodabidri
+- KA-202 Mangalore City North
+- KA-203 Mangalore City South
+- KA-204 Mangalore
+- KA-205 Bantval
+- KA-206 Puttur
+- KA-207 Sullia (SC)
+- KA-208 Madikeri
+- KA-209 Virajpet
+- KA-210 Piriyapatna
+- KA-211 Krishnarajanagara
+- KA-212 Hunsur
+- KA-213 Heggadadevankote(ST)
+- KA-214 Nanjangud (SC)
+- KA-215 Chamundeshwari
+- KA-216 Krishnaraja
+- KA-217 Chamaraja
+- KA-218 Narasimharaja
+- KA-219 Varuna
+- KA-220 T.Narasipur (SC)
+- KA-221 Hanur
+- KA-222 Kollegal (SC)
+- KA-223 Chamarajanagar
+- KA-224 Gundlupet
+
+### MH 2029
+
+- Expected: 288 | In file: 0 | Missing: 288
+
+- MH-001 Akkalkuwa (ST)
+- MH-002 Shahada (ST)
+- MH-003 Nandurbar (ST)
+- MH-004 Nawapur (ST)
+- MH-005 Sakri (ST)
+- MH-006 Dhule Rural
+- MH-007 Dhule City
+- MH-008 Sindkheda
+- MH-009 Shirpur (ST)
+- MH-010 Chopda (ST)
+- MH-011 Raver
+- MH-012 Bhusawal (SC)
+- MH-013 Jalgaon City
+- MH-014 Jalgaon Rural
+- MH-015 Amalner
+- MH-016 Erandol
+- MH-017 Chalisgaon
+- MH-018 Pachora
+- MH-019 Jamner
+- MH-020 Muktainagar
+- MH-021 Malkapur
+- MH-022 Buldhana
+- MH-023 Chikhli
+- MH-024 Sindkhed Raja
+- MH-025 Mehkar (SC)
+- MH-026 Khamgaon
+- MH-027 Jalgaon (Jamod)
+- MH-028 Akot
+- MH-029 Balapur
+- MH-030 Akola West
+- MH-031 Akola East
+- MH-032 Murtizapur (SC)
+- MH-033 Risod
+- MH-034 Washim (SC)
+- MH-035 Karanja
+- MH-036 Dhamangaon Railway
+- MH-037 Badnera
+- MH-038 Amravati
+- MH-039 Teosa
+- MH-040 Daryapur (SC)
+- MH-041 Melghat (ST)
+- MH-042 Achalpur
+- MH-043 Morshi
+- MH-044 Arvi
+- MH-045 Deoli
+- MH-046 Hinganghat
+- MH-047 Wardha
+- MH-048 Katol
+- MH-049 Savner
+- MH-050 Hingna
+- MH-051 Umred (SC)
+- MH-052 Nagpur South West
+- MH-053 Nagpur South
+- MH-054 Nagpur East
+- MH-055 Nagpur Central
+- MH-056 Nagpur West
+- MH-057 Nagpur North
+- MH-058 Kamthi
+- MH-059 Ramtek
+- MH-060 Tumsar
+- MH-061 Bhandara (SC)
+- MH-062 Sakoli
+- MH-063 Arjuni Morgaon(SC)
+- MH-064 Tirora
+- MH-065 Gondiya
+- MH-066 Amgaon (ST)
+- MH-067 Armori (ST)
+- MH-068 Gadchiroli (ST)
+- MH-069 Aheri (ST)
+- MH-070 Rajura
+- MH-071 Chandrapur (SC)
+- MH-072 Ballarpur
+- MH-073 Brahmapuri
+- MH-074 Chimur
+- MH-075 Warora
+- MH-076 Wani
+- MH-077 Ralegaon (ST)
+- MH-078 Yavatmal
+- MH-079 Digras
+- MH-080 Arni (ST)
+- MH-081 Pusad
+- MH-082 Umarkhed (SC)
+- MH-083 Kinwat
+- MH-084 Hadgaon
+- MH-085 Bhokar
+- MH-086 Nanded North
+- MH-087 Nanded South
+- MH-088 Loha
+- MH-089 Naigaon
+- MH-090 Deglur (SC)
+- MH-091 Mukhed
+- MH-092 Basmath
+- MH-093 Kalamnuri
+- MH-094 Hingoli
+- MH-095 Jintur
+- MH-096 Parbhani
+- MH-097 Gangakhed
+- MH-098 Pathri
+- MH-099 Partur
+- MH-100 Ghansawangi
+- MH-101 Jalna
+- MH-102 Badnapur (SC)
+- MH-103 Bhokardan
+- MH-104 Sillod
+- MH-105 Kannad
+- MH-106 Phulambri
+- MH-107 Aurangabad Central
+- MH-108 AurangabadWest(SC)
+- MH-109 Aurangabad East
+- MH-110 Paithan
+- MH-111 Gangapur
+- MH-112 Vaijapur
+- MH-113 Nandgaon
+- MH-114 Malegaon Central
+- MH-115 Malegaon Outer
+- MH-116 Baglan (ST)
+- MH-117 Kalwan (ST)
+- MH-118 Chandvad
+- MH-119 Yevla
+- MH-120 Sinnar
+- MH-121 Niphad
+- MH-122 Dindori (ST)
+- MH-123 Nashik East
+- MH-124 Nashik Central
+- MH-125 Nashik West
+- MH-126 Deolali (SC)
+- MH-127 Igatpuri (ST)
+- MH-128 Dahanu (ST)
+- MH-129 Vikramgad (ST)
+- MH-130 Palghar (ST)
+- MH-131 Boisar (ST)
+- MH-132 Nalasopara
+- MH-133 Vasai
+- MH-134 Bhiwandi Rural(ST)
+- MH-135 Shahapur (ST)
+- MH-136 Bhiwandi West
+- MH-137 Bhiwandi East
+- MH-138 Kalyan West
+- MH-139 Murbad
+- MH-140 Ambernath (SC)
+- MH-141 Ulhasnagar
+- MH-142 Kalyan East
+- MH-143 Dombivali
+- MH-144 Kalyan Rural
+- MH-145 Mira Bhayandar
+- MH-146 Ovala ?Majiwada
+- MH-147 Kopri-Pachpakhadi
+- MH-148 Thane
+- MH-149 Mumbra-Kalwa
+- MH-150 Airoli
+- MH-151 Belapur
+- MH-152 Borivali
+- MH-153 Dahisar
+- MH-154 Magathane
+- MH-155 Mulund
+- MH-156 Vikhroli
+- MH-157 Bhandup West
+- MH-158 Jogeshwari East
+- MH-159 Dindoshi
+- MH-160 Kandivali East
+- MH-161 Charkop
+- MH-162 Malad West
+- MH-163 Goregaon
+- MH-164 Versova
+- MH-165 Andheri West
+- MH-166 Andheri East
+- MH-167 Vile Parle
+- MH-168 Chandivali
+- MH-169 Ghatkopar West
+- MH-170 Ghatkopar East
+- MH-171 Mankhurd Shivaji Nagar
+- MH-172 Anushakti Nagar
+- MH-173 Chembur
+- MH-174 Kurla (SC)
+- MH-175 Kalina
+- MH-176 Vandre East
+- MH-177 Vandre West
+- MH-178 Dharavi (SC)
+- MH-179 Sion Koliwada
+- MH-180 Wadala
+- MH-181 Mahim
+- MH-182 Worli
+- MH-183 Shivadi
+- MH-184 Byculla
+- MH-185 Malabar Hill
+- MH-186 Mumbadevi
+- MH-187 Colaba
+- MH-188 Panvel
+- MH-189 Karjat
+- MH-190 Uran
+- MH-191 Pen
+- MH-192 Alibag
+- MH-193 Shrivardhan
+- MH-194 Mahad
+- MH-195 Junnar
+- MH-196 Ambegaon
+- MH-197 Khed Alandi
+- MH-198 Shirur
+- MH-199 Daund
+- MH-200 Indapur
+- MH-201 Baramati
+- MH-202 Purandar
+- MH-203 Bhor
+- MH-204 Maval
+- MH-205 Chinchwad
+- MH-206 Pimpri (SC)
+- MH-207 Bhosari
+- MH-208 Vadgaon Sheri
+- MH-209 Shivajinagar
+- MH-210 Kothrud
+- MH-211 Khadakwasala
+- MH-212 Parvati
+- MH-213 Hadapsar
+- MH-214 Pune Cantonment (SC)
+- MH-215 Kasba Peth
+- MH-216 Akole (ST)
+- MH-217 Sangamner
+- MH-218 Shirdi
+- MH-219 Kopargaon
+- MH-220 Shrirampur(SC)
+- MH-221 Nevasa
+- MH-222 Shevgaon
+- MH-223 Rahuri
+- MH-224 Parner
+- MH-225 Ahmednagar
+- MH-226 Shrigonda
+- MH-227 Karjat Jamkhed
+- MH-228 Georai
+- MH-229 Majalgaon
+- MH-230 Beed
+- MH-231 Ashti
+- MH-232 Kaij (SC)
+- MH-233 Parli
+- MH-234 Latur Rural
+- MH-235 Latur City
+- MH-236 Ahmadpur
+- MH-237 Udgir (SC)
+- MH-238 Nilanga
+- MH-239 Ausa
+- MH-240 Umarga (SC)
+- MH-241 Tuljapur
+- MH-242 Osmanabad
+- MH-243 Paranda
+- MH-244 Karmala
+- MH-245 Madha
+- MH-246 Barshi
+- MH-247 Mohol (SC)
+- MH-248 Solapur City North
+- MH-249 Solapur City Central
+- MH-250 Akkalkot
+- MH-251 Solapur South
+- MH-252 Pandharpur
+- MH-253 Sangole
+- MH-254 Malshiras (SC)
+- MH-255 Phaltan (SC)
+- MH-256 Wai
+- MH-257 Koregaon
+- MH-258 Man
+- MH-259 Karad North
+- MH-260 Karad South
+- MH-261 Patan
+- MH-262 Satara
+- MH-263 Dapoli
+- MH-264 Guhagar
+- MH-265 Chiplun
+- MH-266 Ratnagiri
+- MH-267 Rajapur
+- MH-268 Kankavli
+- MH-269 Kudal
+- MH-270 Sawantwadi
+- MH-271 Chandgad
+- MH-272 Radhanagari
+- MH-273 Kagal
+- MH-274 Kolhapur South
+- MH-275 Karvir
+- MH-276 Kolhapur North
+- MH-277 Shahuwadi
+- MH-278 Hatkanangle(SC)
+- MH-279 Ichalkaranji
+- MH-280 Shirol
+- MH-281 Miraj (SC)
+- MH-282 Sangli
+- MH-283 Islampur
+- MH-284 Shirala
+- MH-285 Palus-Kadegaon
+- MH-286 Khanapur
+- MH-287 Tasgaon-Kavathe Mahankal
+- MH-288 Jat
+
+### ML 2028
+
+- Expected: 59 | In file: 0 | Missing: 59
+
+- ML-001 Nartiang (ST)
+- ML-002 Jowai (ST)
+- ML-003 Raliang (ST)
+- ML-004 Mowkaiaw (ST)
+- ML-005 Sutnga-Saipung (ST)
+- ML-006 Khliehriat (ST)
+- ML-007 Amlarem (ST)
+- ML-008 Mawhati (ST)
+- ML-009 Nongpoh (ST)
+- ML-010 Jirang (ST)
+- ML-011 Umsning (ST)
+- ML-012 Umroi (ST)
+- ML-013 Mawryngkneng(ST)
+- ML-014 Pynthorumkhrah
+- ML-015 Mawlai (ST)
+- ML-016 East Shillong (ST)
+- ML-017 North Shillong (ST)
+- ML-018 West Shillong
+- ML-019 South Shillong
+- ML-020 Mylliem (ST)
+- ML-021 Nongthymmai (ST)
+- ML-022 Nongkrem (ST)
+- ML-024 Mawphlang (ST)
+- ML-025 Mawsynram (ST)
+- ML-026 Shella (ST)
+- ML-027 Pynursla (ST)
+- ML-028 Sohra (ST)
+- ML-029 Mawkynrew (ST)
+- ML-030 Mairang (ST)
+- ML-031 Mawthadraishan (ST)
+- ML-032 Nongstoin (ST)
+- ML-033 Rambrai Jyrngam (ST
+- ML-034 Mawshynrut (ST)
+- ML-035 Ranikor (ST)
+- ML-036 Mawkyrwat (ST)
+- ML-037 Kharkutta (ST)
+- ML-038 Mendipathar (ST)
+- ML-039 Resubelpara (ST)
+- ML-040 Bajengdoba (ST)
+- ML-041 Songsak (ST)
+- ML-042 Rongjeng (ST)
+- ML-043 William Nagar (ST)
+- ML-044 Raksamgre (ST)
+- ML-045 Tikrikila (ST)
+- ML-046 Phulbari
+- ML-047 Rajabala
+- ML-048 Selsella (ST)
+- ML-049 Dadenggre (ST)
+- ML-050 North Tura (ST)
+- ML-051 SouthTura (ST)
+- ML-052 Rangsakona (ST)
+- ML-053 Ampathi (ST)
+- ML-054 Mahendraganj (ST)
+- ML-055 Salmanpara (ST)
+- ML-056 Gambegre (ST)
+- ML-057 Dalu (ST)
+- ML-058 Rongara-Siju (ST)
+- ML-059 Chokpot (ST)
+- ML-060 Baghmara (ST)
+
+### MN 2027
+
+- Expected: 60 | In file: 0 | Missing: 60
+
+- MN-001 Khundrakpam
+- MN-002 Heingang
+- MN-003 Khurai
+- MN-004 Khetrigao
+- MN-005 Thongju
+- MN-006 Keirao
+- MN-007 Andro
+- MN-008 Lamlai
+- MN-009 Thangmeiband
+- MN-010 Uripok
+- MN-011 Sagolband
+- MN-012 Keisamthong
+- MN-013 Singjamei
+- MN-014 Yaiskul
+- MN-015 Wangkhei
+- MN-016 Sekmai
+- MN-017 Lamsang
+- MN-018 Konthoujam
+- MN-019 Patsoi
+- MN-020 langthabal
+- MN-021 Naoriya Pakhanglak*
+- MN-022 Wangoi
+- MN-023 Mayang Imphal
+- MN-024 Nambol
+- MN-025 Oinam
+- MN-026 Bishenpur
+- MN-027 Moirang
+- MN-028 Thanga
+- MN-029 Kumbi
+- MN-030 Lilong
+- MN-031 Thoubal
+- MN-032 Wangkhem
+- MN-033 Heirok
+- MN-034 Wangjing Tentha
+- MN-035 Khangabo
+- MN-036 Wabgai
+- MN-037 Kakching
+- MN-038 Hiyanglam
+- MN-039 Sugnoo
+- MN-040 Jiribam
+- MN-041 Chandel
+- MN-042 Tengnoupal
+- MN-043 Phungyar
+- MN-044 Ukhrul
+- MN-045 Chingai
+- MN-046 Saikul
+- MN-047 Karong
+- MN-048 Mao
+- MN-049 Tadubi
+- MN-050 Kangpokpi
+- MN-051 Saitu
+- MN-052 Tamei
+- MN-053 Tamenglong
+- MN-054 Nungba
+- MN-055 Tipaimukh
+- MN-056 Thanlon
+- MN-057 Henglep
+- MN-058 Churachandpur
+- MN-059 Saikot
+- MN-060 Singhat
+
+### MP 2028
+
+- Expected: 226 | In file: 0 | Missing: 226
+
+- MP-001 Sheopur
+- MP-002 Vijaypur
+- MP-003 Sabalgarh
+- MP-004 Joura
+- MP-005 Sumawali
+- MP-006 Morena
+- MP-007 Dimani
+- MP-008 Ambah (SC)
+- MP-009 Ater
+- MP-010 Bhind
+- MP-011 Lahar
+- MP-012 Mehgaon
+- MP-013 Gohad (SC)
+- MP-014 Gwalior Rural
+- MP-015 Gwalior
+- MP-016 Gwalior East
+- MP-017 Gwalior South
+- MP-018 Bhitarwar
+- MP-019 Dabra (SC)
+- MP-020 Sewda
+- MP-021 Bhander (SC)
+- MP-022 Datia
+- MP-023 Karera (SC)
+- MP-024 Pohari
+- MP-025 Shivpuri
+- MP-026 Pichhore
+- MP-027 Kolaras
+- MP-028 Bamori
+- MP-029 Guna (SC)
+- MP-030 Chachoura
+- MP-031 Raghogarh
+- MP-032 Ashok Nagar (SC)
+- MP-033 Chanderi
+- MP-034 Mungaoli
+- MP-035 Bina (SC)
+- MP-036 Khurai
+- MP-037 Surkhi
+- MP-038 Deori
+- MP-039 Rehli
+- MP-040 Naryoli (SC)
+- MP-041 Sagar
+- MP-042 Banda
+- MP-043 Tikamgarh
+- MP-044 Jatara (SC)
+- MP-045 Prithvipur
+- MP-046 Niwari
+- MP-047 Khargapur
+- MP-048 Maharajpur
+- MP-049 Chandla (SC)
+- MP-050 Rajnagar
+- MP-051 Chhatarpur
+- MP-052 Bijawar
+- MP-053 Malhara
+- MP-054 Pathariya
+- MP-055 Damoh
+- MP-056 Jabera
+- MP-057 Hatta (SC)
+- MP-058 Pawai
+- MP-059 Gunnaor (SC)
+- MP-060 Panna
+- MP-061 Chitrakoot
+- MP-062 Raigaon (SC)
+- MP-063 Satna
+- MP-064 Nagod
+- MP-065 Maihar
+- MP-066 Amarpatan
+- MP-067 Rampur-Baghelan
+- MP-068 Sirmour
+- MP-069 Semariya
+- MP-070 Teonthar
+- MP-071 Mauganj
+- MP-072 Deotalab
+- MP-073 Mangawan (SC)
+- MP-074 Rewa
+- MP-075 Gurh
+- MP-076 Churhat
+- MP-077 Sidhi
+- MP-078 Sihawal
+- MP-079 Chitrangi (ST)
+- MP-080 Singrauli
+- MP-081 Devsar (SC)
+- MP-082 Dhauhani (ST)
+- MP-083 Beohari (ST)
+- MP-084 Jaisinghnagar (ST)
+- MP-085 Jaitpur (ST)
+- MP-086 Kotma
+- MP-087 Anuppur (ST)
+- MP-088 Pushprajgarh (ST)
+- MP-089 Bandhavgarh (ST)
+- MP-090 Manpur (ST)
+- MP-091 Barwara (ST)
+- MP-092 Vijayraghavgarh
+- MP-093 Murwara
+- MP-094 Bahoriband
+- MP-095 Patan
+- MP-096 Bargi
+- MP-097 Jabalpur Purba(SC)
+- MP-098 Jabalpur Uttar
+- MP-099 Jabalpur Cantt.
+- MP-100 Jabalpur Paschim
+- MP-101 Panagar
+- MP-102 Sihora (ST)
+- MP-103 Shahpura (ST)
+- MP-104 Dindori (ST)
+- MP-105 Bichhiya (ST)
+- MP-106 Niwas (ST)
+- MP-107 Mandla (ST)
+- MP-108 Baihar (ST)
+- MP-109 Lanji
+- MP-110 Paraswada
+- MP-111 Balaghat
+- MP-112 Waraseoni
+- MP-113 Katangi
+- MP-114 Barghat (ST)
+- MP-115 Seoni
+- MP-116 Keolari
+- MP-117 Lakhnadon(ST)
+- MP-118 Gotegaon (SC)
+- MP-119 Narsingpur
+- MP-120 Tendukheda
+- MP-121 Gadarwara
+- MP-122 Junnardeo (ST)
+- MP-123 Amarwara (ST)
+- MP-124 Churai
+- MP-125 Saunsar
+- MP-126 Chhindwara
+- MP-127 Parasia (SC)
+- MP-128 Pandhurna (ST)
+- MP-129 Multai
+- MP-130 Amla (SC)
+- MP-131 Betul
+- MP-132 Ghoradongri (ST)
+- MP-133 Bhainsdehi (ST)
+- MP-134 Timarni (ST)
+- MP-135 Harda
+- MP-136 Seoni-Malwa
+- MP-137 Hoshangabad
+- MP-138 Sohagpur
+- MP-139 Pipariya (SC)
+- MP-140 Udaipura
+- MP-141 Bhojpur
+- MP-142 Sanchi (SC)
+- MP-143 Silwani
+- MP-144 Vidisha
+- MP-145 Basoda
+- MP-146 Kurwai (SC)
+- MP-147 Sironj
+- MP-148 Shamshabad
+- MP-149 Berasia (SC)
+- MP-150 Bhopal Uttar
+- MP-151 Narela
+- MP-152 Bhopal Dakshin-Paschim
+- MP-153 Bhopal Madhya
+- MP-154 Govindpura
+- MP-155 Huzur
+- MP-156 Budhni
+- MP-157 Ashta (SC)
+- MP-158 Ichhawar
+- MP-159 Sehore
+- MP-160 Narsinghgarh
+- MP-161 Biaora
+- MP-162 Rajgarh
+- MP-163 Khilchipur
+- MP-164 Sarangpur (SC)
+- MP-165 Susner
+- MP-166 Agar (SC)
+- MP-167 Shajapur
+- MP-168 Shujalpur
+- MP-169 Kalapipal
+- MP-170 Sonkatch (SC)
+- MP-171 Dewas
+- MP-172 Hatpipliya
+- MP-173 Khategaon
+- MP-174 Bagali (ST)
+- MP-175 Mandhata
+- MP-176 Harsud (ST)
+- MP-177 Khandwa (SC)
+- MP-178 Pandhana (ST)
+- MP-179 Nepanagar (ST)
+- MP-180 Burhanpur
+- MP-181 Bhikangaon (ST)
+- MP-182 Badwah
+- MP-183 Maheshwar (SC)
+- MP-184 Kasrawad
+- MP-185 Khargone
+- MP-186 Bhagwanpura(ST)
+- MP-187 Sendhawa (ST)
+- MP-188 Rajpur (ST)
+- MP-189 Pansemal (ST)
+- MP-190 Badwani (ST)
+- MP-191 Alirajpur (ST)
+- MP-192 Jobat (ST)
+- MP-193 Jhabua (ST)
+- MP-194 Thandla (ST)
+- MP-195 Petlawad (ST)
+- MP-196 Sardarpur (ST)
+- MP-197 Gandhwani (ST)
+- MP-198 Kukshi (ST)
+- MP-199 Manawar (ST)
+- MP-200 Dharampuri (ST)
+- MP-201 Dhar
+- MP-202 Badnawar
+- MP-203 Depalpur
+- MP-204 Indore-1
+- MP-209 Dr. Ambedkar Nagar-Mhow
+- MP-210 Rau
+- MP-211 Sanwer (SC)
+- MP-212 Nagada-Khachrod
+- MP-213 Mahidpur
+- MP-214 Tarana (SC)
+- MP-215 Ghatiya (SC)
+- MP-216 Ujjain Uttar
+- MP-217 Ujjain Dakshin
+- MP-218 Badnagar
+- MP-219 Ratlam Rural (ST)
+- MP-220 Ratlam City
+- MP-221 Sailana (ST)
+- MP-222 Jaora
+- MP-223 Alot (SC)
+- MP-224 Mandsour
+- MP-225 Malhargarh (SC)
+- MP-226 Suwasra
+- MP-227 Garoth
+- MP-228 Manasa
+- MP-229 Neemuch
+- MP-230 Jawad
+
+### MZ 2028
+
+- Expected: 40 | In file: 0 | Missing: 40
+
+- MZ-001 Hachhek (ST)
+- MZ-002 Dampa (ST)
+- MZ-003 Mamit (ST)
+- MZ-004 Tuirial (ST)
+- MZ-005 Kolasib (ST)
+- MZ-006 Serlui (ST)
+- MZ-007 Tuivawl (ST)
+- MZ-008 Chalfilh (ST)
+- MZ-009 Tawi (ST)
+- MZ-010 Aizawl North-I (ST)
+- MZ-011 Aizawl North-II (ST
+- MZ-012 Aizawl North-III (S
+- MZ-013 Aizawl East-I
+- MZ-014 Aizawl East-II (ST)
+- MZ-015 Aizawl West-I (ST)
+- MZ-016 Aizawl West-II (ST)
+- MZ-017 Aizawl West-III (ST
+- MZ-018 Aizawl South-I (ST)
+- MZ-019 Aizawl South-II (ST
+- MZ-020 Aizawl South-III (S
+- MZ-021 Lengteng (ST)
+- MZ-022 Tuichang (ST)
+- MZ-023 Champhai North (ST)
+- MZ-024 Champhai South (ST)
+- MZ-025 East Tuipui (ST)
+- MZ-026 Serchhip (ST)
+- MZ-027 Tuikum (ST)
+- MZ-028 Hrangturzo (ST)
+- MZ-029 South Tuipui (ST)
+- MZ-030 Lunglei North (ST)
+- MZ-031 Lunglei East (ST)
+- MZ-032 Lunglei West (ST)
+- MZ-033 Lunglei South (ST)
+- MZ-034 Thorang (ST)
+- MZ-035 West Tuipui (ST)
+- MZ-036 Tuichawng (ST)
+- MZ-037 Lawngtlai West (ST)
+- MZ-038 Lawngtlai East (ST)
+- MZ-039 Saiha (ST)
+- MZ-040 Palak (ST)
+
+### NL 2028
+
+- Expected: 60 | In file: 0 | Missing: 60
+
+- NL-001 Dimapur-I
+- NL-002 Dimapur-II
+- NL-003 Dimapur-III
+- NL-004 Ghaspani-I
+- NL-005 Ghaspani-II
+- NL-006 Tenning
+- NL-007 Peren
+- NL-008 Western Angami
+- NL-009 Kohima Town
+- NL-010 Northern Angami - I
+- NL-011 Northern Angami -II
+- NL-012 Tseminyu
+- NL-013 Pughoboto
+- NL-014 Southern Angami-I
+- NL-015 Southern Angami-II
+- NL-016 Pfutsero
+- NL-017 Chizami
+- NL-018 Chazouba
+- NL-019 Phek
+- NL-020 Meluri
+- NL-021 Tuli
+- NL-022 Arkakong
+- NL-023 Impur
+- NL-024 Angetyongpang
+- NL-025 Monguya
+- NL-026 Aonglenden
+- NL-027 Mokokchung Town
+- NL-028 Koridang
+- NL-029 Jangpetkong
+- NL-030 Alungtaki
+- NL-031 Akuluto
+- NL-032 Atoizu
+- NL-033 Suruhuto
+- NL-034 Aghunato
+- NL-035 Zunheboto
+- NL-036 Satakha
+- NL-037 Tyui
+- NL-038 Wokha
+- NL-039 Sanis
+- NL-040 Bhandari
+- NL-041 Tizit
+- NL-042 Wakching
+- NL-043 Tapi
+- NL-044 Phomching
+- NL-045 Tehok
+- NL-046 Mon Town
+- NL-047 Aboi
+- NL-048 Moka
+- NL-049 Tamlu
+- NL-050 Longleng
+- NL-051 Noksen
+- NL-052 Longkhim Chare
+- NL-053 Tuensang Sadar-I
+- NL-054 Tuensang Sadar-II
+- NL-055 Tobu
+- NL-056 Noklak
+- NL-057 Thonoknyu
+- NL-058 Shamtorr-Chessore
+- NL-059 Siyuchong-Sitimi
+- NL-060 Pungro-Kiphire
+
+### OD 2029
+
+- Expected: 147 | In file: 0 | Missing: 147
+
+- OD-001 PADAMPUR
+- OD-002 BIJEPUR
+- OD-003 BARGARH
+- OD-004 ATTABIRA (SC)
+- OD-005 BHATLI
+- OD-006 BRAJARAJNAGAR
+- OD-007 JHARSUGUDA
+- OD-008 TALSARA (ST)
+- OD-009 SUNDARGARH (ST)
+- OD-010 BIRAMITRAPUR (ST)
+- OD-011 RAGHUNATHPALI (SC)
+- OD-012 ROURKELA
+- OD-013 RAJGANGPUR (ST)
+- OD-014 BONAI (ST)
+- OD-015 KUCHINDA (ST)
+- OD-016 RENGALI (SC)
+- OD-017 SAMBALPUR
+- OD-018 RAIRAKHOL
+- OD-019 DEOGARH
+- OD-020 TELKOI (ST)
+- OD-021 GHASIPURA
+- OD-022 ANANDAPUR (SC)
+- OD-023 PATNA (ST)
+- OD-024 KEONJHAR (ST)
+- OD-025 CHAMPUA
+- OD-026 JASHIPUR (ST)
+- OD-027 SARASKANA (ST)
+- OD-028 RAIRANGPUR (ST)
+- OD-029 BANGRIPOSI (ST)
+- OD-030 KARANJIA (ST)
+- OD-031 UDALA (ST)
+- OD-032 BADASAHI (SC)
+- OD-033 BARIPADA (ST)
+- OD-034 MORADA
+- OD-035 JALESWAR
+- OD-036 BHOGRAI
+- OD-037 BASTA
+- OD-038 BALASORE
+- OD-039 REMUNA (SC)
+- OD-040 NILGIRI
+- OD-041 SORO (SC)
+- OD-042 SIMULIA
+- OD-043 BHANDARIPOKHARI
+- OD-044 BHADRAK
+- OD-045 BASUDEVPUR
+- OD-046 DHAMNAGAR (SC)
+- OD-047 CHANDABALI
+- OD-048 BINJHARPUR (SC)
+- OD-049 BARI
+- OD-050 BARACHANA
+- OD-051 DHARMASALA
+- OD-052 JAJPUR
+- OD-053 KOREI
+- OD-054 SUKINDA
+- OD-055 DHENKANAL
+- OD-056 HINDOL (SC)
+- OD-057 KAMAKHYANAGAR
+- OD-058 PARJANGA
+- OD-059 PALLAHARA
+- OD-060 TALCHER
+- OD-061 ANGUL
+- OD-062 CHHENDIPADA (SC)
+- OD-063 ATHAMALLIK
+- OD-064 BIRMAHARAJPUR (SC)
+- OD-065 SONEPUR
+- OD-066 LOISINGHA (SC)
+- OD-067 PATNAGARH
+- OD-068 BOLANGIR
+- OD-069 TITLAGARH
+- OD-070 KANTABANJI
+- OD-071 NUAPADA
+- OD-072 KHARIAR
+- OD-073 UMERKOTE (ST)
+- OD-074 JHARIGAM (ST)
+- OD-075 NABARANGPUR (ST)
+- OD-076 DABUGAM (ST)
+- OD-077 LANJIGARH (ST)
+- OD-078 JUNAGARH
+- OD-079 DHARMGARH
+- OD-080 BHAWANIPATNA (SC)
+- OD-081 NARLA
+- OD-082 BALIGUDA (ST)
+- OD-083 G. UDAYAGIRI (ST)
+- OD-084 PHULBANI (ST)
+- OD-085 KANTAMAL
+- OD-086 BOUDH
+- OD-087 BARAMBA
+- OD-088 BANKI
+- OD-089 ATHAGARH
+- OD-090 BARABATI-CUTTACK
+- OD-091 CHOUDWAR-CUTTACK
+- OD-092 NIALI (SC)
+- OD-093 CUTTACK SADAR (SC)
+- OD-094 SALIPUR
+- OD-095 MAHANGA
 - OD-096 PATKURA
+- OD-097 KENDRAPARA (SC)
+- OD-098 AUL
+- OD-099 RAJANAGAR
+- OD-100 MAHAKALAPADA
+- OD-101 PARADEEP
+- OD-102 TIRTOL (SC)
+- OD-103 BALIKUDA-ERASAMA
+- OD-104 JAGATSINGHPUR
+- OD-105 KAKATPUR (SC)
+- OD-106 NIMAPARA
+- OD-107 PURI
+- OD-108 BRAHMAGIRI
+- OD-109 SATYABADI
+- OD-110 PIPILI
+- OD-111 JAYADEV (SC)
+- OD-112 BHUBANESWAR(MADHYA)
+- OD-113 BHUBANESWAR(UTTAR)
+- OD-114 EKAMRA-BHUBANESHWAR
+- OD-115 JATANI
+- OD-116 BEGUNIA
+- OD-117 KHURDA
+- OD-118 CHILIKA
+- OD-119 RANPUR
+- OD-120 KHANDAPADA
+- OD-121 DASPALLA (SC)
+- OD-122 NAYAGARH
+- OD-123 BHANJANAGAR
+- OD-124 POLASARA
+- OD-125 KABISURYANAGAR
+- OD-126 KHALIKOTE (SC)
+- OD-127 CHHATRAPUR (SC)
+- OD-128 ASKA
+- OD-129 SURADA
+- OD-130 SANAKHEMUNDI
+- OD-131 HINJILI
+- OD-132 GOPALPUR
+- OD-133 BERHAMPUR
+- OD-134 DIGAPAHANDI
+- OD-135 CHIKITI
+- OD-136 MOHANA (ST)
+- OD-137 PARALAKHEMUNDI
+- OD-138 GUNUPUR (ST)
+- OD-139 BISSAM CUTTACK (ST)
+- OD-140 RAYAGADA (ST)
+- OD-141 LAKSHMIPUR (ST)
+- OD-142 KOTPAD (ST)
+- OD-143 JEYPORE
+- OD-144 KORAPUT (SC)
+- OD-145 POTTANGI (ST)
+- OD-146 MALKANGIRI (ST)
+- OD-147 CHITRAKONDA (ST)
 
-### RJ 2018
+### PB 2027
 
-- Expected: 200 | In file: 199 | Missing: 1
+- Expected: 117 | In file: 0 | Missing: 117
 
+- PB-001 Sujanpur
+- PB-002 Bhoa (SC)
+- PB-003 Pathankot
+- PB-004 Gurdaspur
+- PB-005 Dina Nagar (SC)
+- PB-006 Qadian
+- PB-007 Batala
+- PB-008 Sri Hargobindpur (S
+- PB-009 Fatehgarh Churian
+- PB-010 Dera Baba Nanak
+- PB-011 Ajnala
+- PB-012 Raja Sansi
+- PB-013 Majitha
+- PB-014 Jandiala (SC)
+- PB-015 Amritsar North
+- PB-016 Amritsar West (SC)
+- PB-017 Amritsar Central
+- PB-018 Amritsar East
+- PB-019 Amritsar South
+- PB-020 Attari (SC)
+- PB-021 Tarn Taran
+- PB-022 Khem Karan
+- PB-023 Patti
+- PB-024 Khadoor Sahib
+- PB-025 Baba Bakala (SC)
+- PB-026 Bholath
+- PB-027 Kapurthala
+- PB-028 Sultanpur Lodhi
+- PB-029 Phagwara (SC)
+- PB-030 Phillaur (SC)
+- PB-031 Nakodar
+- PB-032 Shahkot
+- PB-033 Kartarpur (SC)
+- PB-034 Jalandhar West (SC)
+- PB-035 Jalandhar Central
+- PB-036 Jalandhar North
+- PB-037 Jalandhar Cantt.
+- PB-038 Adampur (SC)
+- PB-039 Mukerian
+- PB-040 Dasuya
+- PB-041 Urmar
+- PB-042 Sham Chaurasi (SC)
+- PB-043 Hoshiarpur
+- PB-044 Chabbewal (SC)
+- PB-045 Garhshankar
+- PB-046 Banga (SC)
+- PB-047 Nawan Shahr
+- PB-048 Balachaur
+- PB-049 Anandpur Sahib
+- PB-050 Rupnagar
+- PB-051 Chamkaur Sahib (SC)
+- PB-052 Kharar
+- PB-053 S.A.S.Nagar
+- PB-054 Bassi Pathana (SC)
+- PB-055 Fatehgarh Sahib
+- PB-056 Amloh
+- PB-057 Khanna
+- PB-058 Samrala
+- PB-059 Sahnewal
+- PB-060 Ludhiana East
+- PB-061 Ludhiana South
+- PB-062 Atam Nagar
+- PB-063 Ludhiana Central
+- PB-064 Ludhiana West
+- PB-065 Ludhiana North
+- PB-066 Gill (SC)
+- PB-067 Payal (SC)
+- PB-068 Dakha
+- PB-069 Raikot (SC)
+- PB-070 Jagraon (SC)
+- PB-071 Nihal Singhwala (SC
+- PB-072 Bhagha Purana
+- PB-073 Moga
+- PB-074 Dharamkot
+- PB-075 Zira
+- PB-076 Firozpur City
+- PB-077 Firozpur Rural (SC)
+- PB-078 Guru Har Sahai
+- PB-079 Jalalabad
+- PB-080 Fazilka
+- PB-081 Abohar
+- PB-082 Balluana (SC)
+- PB-083 Lambi
+- PB-084 Gidderbaha
+- PB-085 Malout (SC)
+- PB-086 Muktsar
+- PB-087 Faridkot
+- PB-088 Kotkapura
+- PB-089 Jaitu (SC)
+- PB-090 Rampura Phul
+- PB-091 Bhucho Mandi (SC)
+- PB-092 Bathinda Urban
+- PB-093 Bathinda Rural (SC)
+- PB-094 Talwandi Sabo
+- PB-095 Maur
+- PB-096 Mansa
+- PB-097 Sardulgarh
+- PB-098 Budhlada (SC)
+- PB-099 Lehra
+- PB-100 Dirba (SC)
+- PB-101 Sunam
+- PB-102 Bhadaur (SC)
+- PB-103 Barnala
+- PB-104 Mehal Kalan (SC)
+- PB-105 Malerkotla
+- PB-106 Amargarh
+- PB-107 Dhuri
+- PB-108 Sangrur
+- PB-109 Nabha (SC)
+- PB-110 Patiala Rural
+- PB-111 Rajpura
+- PB-112 Dera Bassi
+- PB-113 Ghanaur
+- PB-114 Sanour
+- PB-115 Patiala
+- PB-116 Samana
+- PB-117 Shutrana (SC)
+
+### RJ 2028
+
+- Expected: 200 | In file: 0 | Missing: 200
+
+- RJ-001 Sadulshahar
+- RJ-002 Ganganagar
+- RJ-003 Karanpur
+- RJ-004 Suratgarh
+- RJ-005 Raisinghnagar(SC)
+- RJ-006 Anupgarh (SC)
+- RJ-007 Sangaria
+- RJ-008 Hanumangarh
+- RJ-009 Pilibanga (SC)
+- RJ-010 Nohar
+- RJ-011 Bhadra
+- RJ-012 Khajuwala(SC)
+- RJ-013 Bikaner West
+- RJ-014 Bikaner East
+- RJ-015 Kolayat
+- RJ-016 Lunkaransar
+- RJ-017 Dungargarh
+- RJ-018 Nokha
+- RJ-019 Sadulpur
+- RJ-020 Taranagar
+- RJ-021 Sardarshahar
+- RJ-022 Churu
+- RJ-023 Ratangarh
+- RJ-024 Sujangarh(SC)
+- RJ-025 Pilani (SC)
+- RJ-026 Surajgarh
+- RJ-027 Jhunjhunu
+- RJ-028 Mandawa
+- RJ-029 Nawalgarh
+- RJ-030 Udaipurwati
+- RJ-031 Khetri
+- RJ-032 Fatehpur
+- RJ-033 Lachhmangarh
+- RJ-034 Dhod (SC)
+- RJ-035 Sikar
+- RJ-036 Danta Ramgarh
+- RJ-037 Khandela
+- RJ-038 Neema Ka Thana
+- RJ-039 Srimadhopur
+- RJ-040 Kotputli
+- RJ-041 Viratnagar
+- RJ-042 Shahpura
+- RJ-043 Chomu
+- RJ-044 Phulera
+- RJ-045 Dudu (SC)
+- RJ-046 Jhotwara
+- RJ-047 Amber
+- RJ-048 Jamwa Ramgarh (ST)
+- RJ-049 Hawa Mahal
+- RJ-050 Vidhyadhar Nagar
+- RJ-051 Civil Lines
+- RJ-052 KIshan Pole
+- RJ-053 Adarsh Nagar
+- RJ-054 Malviya Nagar
+- RJ-055 Sanganer
+- RJ-056 Bagru (SC)
+- RJ-057 Bassi (ST)
+- RJ-058 Chaksu (SC)
+- RJ-059 Tijara
+- RJ-060 Kishangarh bas
+- RJ-061 Mundawar
+- RJ-062 Behror
+- RJ-063 Bansur
+- RJ-064 Thanagazi
+- RJ-065 Alwar Rural (SC)
+- RJ-066 Alwar Urban
 - RJ-067 Ramgarh
-
-### RJ 2023
-
-- Expected: 200 | In file: 199 | Missing: 1
-
+- RJ-068 Rajgarh-Laxmangarh (ST)
+- RJ-069 Kathumar (SC)
+- RJ-070 Kaman
+- RJ-071 Nagar
+- RJ-072 Deeg-Kumher
+- RJ-073 Bharatpur
+- RJ-074 Nadbai
+- RJ-075 Weir (SC)
+- RJ-076 Bayana (SC)
+- RJ-077 Baseri (SC)
+- RJ-078 Bari
+- RJ-079 Dholpur
+- RJ-080 Rajakhera
+- RJ-081 Todabhim(ST)
+- RJ-082 Hindaun (SC)
+- RJ-083 Karauli
+- RJ-084 Sapotra (ST)
+- RJ-085 Bandikui
+- RJ-086 Mahuwa
+- RJ-087 Sikrai (SC)
+- RJ-088 Dausa
+- RJ-089 Lalsot (ST)
+- RJ-090 Gangapur
+- RJ-091 Bamanwas(ST)
+- RJ-092 Sawai Madhopur
+- RJ-093 Khandar (SC)
+- RJ-094 Malpura
+- RJ-095 Niwai (SC)
+- RJ-096 Tonk
+- RJ-097 Deoli-Uniara
+- RJ-098 Kishangarh
+- RJ-099 Pushkar
+- RJ-100 Ajmer North
+- RJ-101 Ajmer South (SC)
+- RJ-102 Nasirabad
+- RJ-103 Beawar
+- RJ-104 Masuda
+- RJ-105 Kekri
+- RJ-106 Ladnun
+- RJ-107 Deedwana
+- RJ-108 Jayal (SC)
+- RJ-109 Nagaur
+- RJ-110 Khinwsar
+- RJ-111 Merta (SC)
+- RJ-112 Degana
+- RJ-113 Makrana
+- RJ-114 Parbatsar
+- RJ-115 Nawan
+- RJ-116 Jaitaran
+- RJ-117 Sojat (SC)
+- RJ-118 Pali
+- RJ-119 Marwar Junction
+- RJ-120 Bali
+- RJ-121 Sumerpur
+- RJ-122 Phalodi
+- RJ-123 Lohawat
+- RJ-124 Shergarh
+- RJ-125 Osian
+- RJ-126 Bhopalgarh(SC)
+- RJ-127 Sardarpura
+- RJ-128 Jodhpur
+- RJ-129 Soorsagar
+- RJ-130 Luni
+- RJ-131 Bilara (SC)
+- RJ-132 Jaisalmer
+- RJ-133 Pokaran
+- RJ-134 Sheo
+- RJ-135 Barmer
+- RJ-136 Baytoo
+- RJ-137 Pachpadra
+- RJ-138 Siwana
+- RJ-139 Gudha Malani
+- RJ-140 Chohtan (SC)
+- RJ-141 Ahore
+- RJ-142 Jalore (SC)
+- RJ-143 Bhinmal
+- RJ-144 Sanchore
+- RJ-145 Raniwara
+- RJ-146 Sirohi
+- RJ-147 Pindwara Abu (ST)
+- RJ-148 Reodar(SC)
+- RJ-149 Gogunda(ST)
+- RJ-150 Jhadol(ST)
+- RJ-151 Kherwara(ST)
+- RJ-152 Udaipur Rural(ST)
+- RJ-153 Udaipur
+- RJ-154 Mavli
+- RJ-155 Vallabhnagar
+- RJ-156 Salumber(ST)
+- RJ-157 Dhariawad(ST)
+- RJ-158 Dungarpur(ST)
+- RJ-159 Aspur (ST)
+- RJ-160 Sagwara(ST)
+- RJ-161 Chorasi (ST)
+- RJ-162 Ghatol (ST)
+- RJ-163 Garhi (ST)
+- RJ-164 Banswara(ST)
+- RJ-165 Bagidora(ST)
+- RJ-166 Kushalgarh(ST)
+- RJ-167 Kapasan(SC)
+- RJ-168 Begun
+- RJ-169 Chittorgarh
+- RJ-170 Nimbahera
+- RJ-171 Bari Sadri
+- RJ-172 Pratapgarh(ST)
+- RJ-173 Bhim
+- RJ-174 Kumbhalgarh
+- RJ-175 Rajsamand
+- RJ-176 Nathdwara
+- RJ-177 Asind
+- RJ-178 Mandal
+- RJ-179 Sahara
+- RJ-180 Bhilwara
 - RJ-181 Shahpura(SC)
+- RJ-182 Jahazpur
+- RJ-183 Mandalgarh
+- RJ-184 Hindoli
+- RJ-185 Keshoraipatan(SC)
+- RJ-186 Bundi
+- RJ-187 Pipalda
+- RJ-188 Sangod
+- RJ-189 Kota North
+- RJ-190 Kota South
+- RJ-191 Ladpura
+- RJ-192 Ramganj Mandi (SC)
+- RJ-193 Anta
+- RJ-194 Kishanganj
+- RJ-195 Baran?Atru (SC)
+- RJ-196 Chhabra
+- RJ-197 Dag (SC)
+- RJ-198 Jhalrapatan
+- RJ-199 Khanpur
+- RJ-200 Manohar Thana
 
-### TN 2011
+### SK 2029
 
-- Expected: 234 | In file: 232 | Missing: 2
+- Expected: 31 | In file: 0 | Missing: 31
 
-- TN-050 Tiruppattur
-- TN-140 Tiruchirappalli West
+- SK-001 Yoksam-Tashiding(BL)
+- SK-002 Yangthang
+- SK-003 Maneybung-Dentam
+- SK-004 Gyalshing-Barnyak
+- SK-005 Rinchenpong(BL)
+- SK-006 Daramdin(BL)
+- SK-007 Soreong-Chakung
+- SK-008 Salghari-Zoom (SC)
+- SK-009 Barfung(BL)
+- SK-010 Poklok-Kamrang
+- SK-011 Namchi-Singhithang
+- SK-012 Melli
+- SK-013 Namthang-Rateypani
+- SK-014 Temi-Namphing
+- SK-015 Rangang-Yangang
+- SK-016 Tumen-Lingi(BL)
+- SK-017 Khamdong-Singtam
+- SK-018 West Pendam(SC)
+- SK-019 Rhenock
+- SK-020 Chujachen
+- SK-021 Gnathang-Machong(BL)
+- SK-022 Namcheybung
+- SK-023 Shyari(BL)
+- SK-024 Martam-Rumtek (BL)
+- SK-025 Upper Tadong
+- SK-026 Arithang
+- SK-027 Gangtok(BL)
+- SK-028 Upper Burtuk
+- SK-029 Kabi Lungchuk(BL)
+- SK-030 Djongu(BL)
+- SK-031 Lachen Mangan(BL)
 
-### TN 2016
+### TR 2028
 
-- Expected: 234 | In file: 232 | Missing: 2
+- Expected: 60 | In file: 0 | Missing: 60
 
-- TN-050 Tiruppattur
-- TN-140 Tiruchirappalli West
+- TR-001 SIMNA (ST)
+- TR-002 MOHANPUR
+- TR-003 BAMUTIA (SC)
+- TR-004 BARJALA (SC)
+- TR-005 KHAYERPUR
+- TR-006 AGARTALA
+- TR-007 RAMNAGAR
+- TR-008 TOWN BORDOWALI
+- TR-009 BANAMALIPUR
+- TR-010 MAJLISHPUR
+- TR-011 MANDAIBAZAR(ST)
+- TR-012 TAKARJALA (ST)
+- TR-013 PRATAPGARH (SC)
+- TR-014 BADHARGHAT (SC)
+- TR-015 KAMALASAGAR
+- TR-016 BISHALGARH
+- TR-017 GOLAGHATI (ST)
+- TR-018 SURYAMANINAGAR
+- TR-019 CHARILAM (ST)
+- TR-020 BOXANAGAR
+- TR-021 NALCHAR (SC)
+- TR-022 SONAMURA
+- TR-023 DHANPUR
+- TR-024 RAMCHANDRAGHAT(ST)
+- TR-025 KHOWAI
+- TR-026 ASHARAMBARI (ST)
+- TR-027 KALYANPUR-PRAMODENAGAR
+- TR-028 TELIAMURA
+- TR-029 KRISHNAPUR (ST)
+- TR-030 BAGMA (ST)
+- TR-031 RADHAKISHOREPUR
+- TR-032 MATARBARI
+- TR-033 KAKRABAN-SALGARAH(SC)
+- TR-034 RAJNAGAR (SC)
+- TR-035 BELONIA
+- TR-036 SANTIRBAZAR (ST)
+- TR-037 HRISHYAMUKH
+- TR-038 JOLAIBARI (ST)
+- TR-039 MANU (ST)
+- TR-040 SABROOM
+- TR-041 AMPINAGAR (ST)
+- TR-042 AMARPUR
+- TR-043 KARBOOK (ST)
+- TR-044 RAIMA VALLEY (ST)
+- TR-045 KAMALPUR
+- TR-046 SURMA (SC)
+- TR-047 AMBASSA (ST)
+- TR-048 KARAMCHHARA (ST)
+- TR-049 CHHAWMANU (ST)
+- TR-050 PABIACHHARA (SC)
+- TR-051 FATIKROY (SC)
+- TR-052 CHANDIPUR
+- TR-053 KAILASAHAR
+- TR-054 KADAMTALA - KURTI
+- TR-055 BAGBASSA
+- TR-056 DHARMANAGAR
+- TR-057 JUBARAJNAGAR
+- TR-058 PANISAGAR
+- TR-059 PENCHARTHAL (ST)
+- TR-060 KANCHANPUR (ST)
 
-### TS 2023
+### TS 2028
 
-- Expected: 119 | In file: 118 | Missing: 1
+- Expected: 119 | In file: 0 | Missing: 119
 
+- TS-001 Sirpur
+- TS-002 Chennur
+- TS-003 Bellampalli
+- TS-004 Mancherial
+- TS-005 Asifabad
+- TS-006 Khanapur
+- TS-007 Adilabad
+- TS-008 Boath
+- TS-009 Nirmal
+- TS-010 Mudhole
+- TS-011 Armur
+- TS-012 Bodhan
+- TS-013 Jukkal
+- TS-014 Banswada
+- TS-015 Yellareddy
+- TS-016 Kamareddy
 - TS-017 Nizamabad (Urban)
+- TS-018 Nizamabad (Rural)
+- TS-019 Balkonda
+- TS-020 Koratla
+- TS-021 Jagtial
+- TS-022 Dharmapuri
+- TS-023 Ramagundam
+- TS-024 Manthani
+- TS-025 Peddapalle
+- TS-026 Karimnagar
+- TS-027 Choppadandi
+- TS-028 Vemulawada
+- TS-029 Sircilla
+- TS-030 Manakondur
+- TS-031 Huzurabad
+- TS-032 Husnabad
+- TS-033 Siddipet
+- TS-034 Medak
+- TS-035 Narayankhed
+- TS-036 Andole
+- TS-037 Narsapur
+- TS-038 Zahirabad
+- TS-039 Sangareddy
+- TS-040 Patancheru
+- TS-041 Dubbak
+- TS-042 Gajwel
+- TS-043 Medchal
+- TS-044 Malkajgiri
+- TS-045 Quthbullapur
+- TS-046 Kukatpalle
+- TS-047 Uppal
+- TS-048 Ibrahimpatnam
+- TS-049 Lal Bahadur Nagar
+- TS-050 Maheswaram
+- TS-051 Rajendranagar
+- TS-052 Serilingampally
+- TS-053 Chevella
+- TS-054 Pargi
+- TS-055 Vicarabad
+- TS-056 Tandur
+- TS-057 Musheerabad
+- TS-058 Malakpet
+- TS-059 Amberpet
+- TS-060 Khairatabad
+- TS-061 Jubilee Hills
+- TS-062 Sanathnagar
+- TS-063 Nampally
+- TS-064 Karwan
+- TS-065 Goshamahal
+- TS-066 Charminar
+- TS-067 Chandrayangutta
+- TS-068 Yakutpura
+- TS-069 Bahadurpura
+- TS-070 Secunderabad
+- TS-071 Secunderabad Cantt
+- TS-072 Kodangal
+- TS-073 Narayanpet
+- TS-074 Mahbubnagar
+- TS-075 Jadcherla
+- TS-076 Devarkadra
+- TS-077 Makthal
+- TS-078 Wanaparthy
+- TS-079 Gadwal
+- TS-080 Alampur
+- TS-081 Nagarkurnool
+- TS-082 Achampet
+- TS-083 Kalwakurthy
+- TS-084 Shadnagar
+- TS-085 Kollapur
+- TS-086 Devarakonda
+- TS-087 Nagarjuna Sagar
+- TS-088 Miryalaguda
+- TS-089 Huzurnagar
+- TS-090 Kodad
+- TS-091 Suryapet
+- TS-092 Nalgonda
+- TS-093 Munugode
+- TS-094 Bhongir
+- TS-095 Nakrekal
+- TS-096 Thungathurthi
+- TS-097 Alair
+- TS-098 Jangoan
+- TS-099 Ghanpur (Station)
+- TS-100 Palakurthi
+- TS-101 Dornakal
+- TS-102 Mahabubabad
+- TS-103 Narsampet
+- TS-104 Parkal
+- TS-105 Warangal West
+- TS-106 Warangal East
+- TS-107 Waradhanapet
+- TS-108 Bhupalpalle
+- TS-109 Mulug
+- TS-110 Pinapaka
+- TS-111 Yellandu
+- TS-112 Khammam
+- TS-113 Palair
+- TS-114 Madhira
+- TS-115 Wyra
+- TS-116 Sathupalle
+- TS-117 Kothagudem
+- TS-118 Aswaraopeta
+- TS-119 Bhadrachalam
 
-### WB 2011
+### UK 2027
 
-- Expected: 294 | In file: 293 | Missing: 1
+- Expected: 70 | In file: 0 | Missing: 70
 
-- WB-146 BISHNUPUR (SC)
+- UK-001 Purola (SC)
+- UK-002 Yamunotri
+- UK-003 Gangotri
+- UK-004 Badrinath
+- UK-005 Tharali (SC)
+- UK-006 Karnprayag
+- UK-007 Kedarnath
+- UK-008 Rudraprayag
+- UK-009 Ghanshali (SC)
+- UK-010 Deoprayag
+- UK-011 Narendranagar
+- UK-012 Pratapnagar
+- UK-013 Tehri
+- UK-014 Dhanolti
+- UK-015 Chakrata (ST)
+- UK-016 Vikasnagar
+- UK-017 Sahaspur
+- UK-018 Dharampur
+- UK-019 Raipur
+- UK-020 Rajpur Road (SC
+- UK-021 Dehradun Cantt.
+- UK-022 Mussoorie
+- UK-023 Doiwala
+- UK-024 Rishikesh
+- UK-025 Hardwar
+- UK-026 B.H.E.L. Ranipu
+- UK-027 Jwalapur (SC)
+- UK-028 Bhagwanpur (SC)
+- UK-029 Jhabrera (SC)
+- UK-030 Pirankaliyar
+- UK-031 Roorkee
+- UK-032 Khanpur
+- UK-033 Manglaur
+- UK-034 Laksar
+- UK-035 Hardwar Rural
+- UK-036 Yamkeshwar
+- UK-037 Pauri (SC)
+- UK-038 Srinagar
+- UK-039 Chaubattakhal
+- UK-040 Lansdowne
+- UK-041 Kotdwar
+- UK-042 Dharchula
+- UK-043 Didihat
+- UK-044 Pithoragarh
+- UK-045 Gangolihat (SC)
+- UK-046 Kapkote
+- UK-047 Bageshwar (SC)
+- UK-048 Dwarahat
+- UK-049 Salt
+- UK-050 Ranikhet
+- UK-051 Someshwar (SC)
+- UK-052 Almora
+- UK-053 Jageshwar
+- UK-054 Lohaghat
+- UK-055 Champawat
+- UK-056 Lalkuwa
+- UK-057 Bhimtal
+- UK-058 Nainital (SC)
+- UK-059 Haldwani
+- UK-060 Kaladhungi
+- UK-061 Ramnagar
+- UK-062 Jaspur
+- UK-063 Kashipur
+- UK-064 Bajpur (SC)
+- UK-065 Gadarpur
+- UK-066 Rudrapur
+- UK-067 Kichha
+- UK-068 Sitarganj
+- UK-069 Nanak Matta (ST
+- UK-070 Khatima
 
-### WB 2016
+### UP 2027
 
-- Expected: 294 | In file: 293 | Missing: 1
+- Expected: 403 | In file: 0 | Missing: 403
 
-- WB-146 BISHNUPUR (SC)
-
-### WB 2021
-
-- Expected: 294 | In file: 293 | Missing: 1
-
-- WB-146 BISHNUPUR (SC)
+- UP-001 Behat
+- UP-002 Nakur
+- UP-003 Saharanpur Nagar
+- UP-004 Saharanpur
+- UP-005 Deoband
+- UP-006 Rampur Maniharan(SC)
+- UP-007 Gangoh
+- UP-008 Kairana
+- UP-009 Thana Bhawan
+- UP-010 Shamli
+- UP-011 Budhana
+- UP-012 Charthawal
+- UP-013 Purqazi (SC)
+- UP-014 Muzaffar Nagar
+- UP-015 Khatauli
+- UP-016 Meerapur
+- UP-017 Najibabad
+- UP-018 Nagina (SC)
+- UP-019 Barhapur
+- UP-020 Dhampur
+- UP-021 Nehtaur (SC)
+- UP-022 Bijnor
+- UP-023 Chandpur
+- UP-024 Noorpur
+- UP-025 Kanth
+- UP-026 Thakurdwara
+- UP-027 Moradabad Rural
+- UP-028 Moradabad Nagar
+- UP-029 Kundarki
+- UP-030 Bilari
+- UP-031 Chandausi (SC)
+- UP-032 Asmoli
+- UP-033 Sambhal
+- UP-034 Suar
+- UP-035 Chamraua
+- UP-036 Bilaspur
+- UP-037 Rampur
+- UP-038 Milak (SC)
+- UP-039 Dhanaura (SC)
+- UP-040 Naugawan Sadat
+- UP-041 Amroha
+- UP-042 Hasanpur
+- UP-043 Siwalkhas
+- UP-044 Sardhana
+- UP-045 Hastinapur (SC)
+- UP-046 Kithore
+- UP-047 Meerut Cantt.
+- UP-048 Meerut
+- UP-049 Meerut South
+- UP-050 Chhaprauli
+- UP-051 Baraut
+- UP-052 Baghpat
+- UP-053 Loni
+- UP-054 Muradnagar
+- UP-055 Sahibabad
+- UP-056 Ghaziabad
+- UP-057 Modi Nagar
+- UP-058 Dholana
+- UP-059 Hapur (SC)
+- UP-060 Garhmukteshwar
+- UP-061 Noida
+- UP-062 Dadri
+- UP-063 Jewar
+- UP-064 Sikandrabad
+- UP-065 Bulandshahr
+- UP-066 Syana
+- UP-067 Anupshahr
+- UP-068 Debai
+- UP-069 Shikarpur
+- UP-070 Khurja (SC)
+- UP-071 Khair (SC)
+- UP-072 Barauli
+- UP-073 Atrauli
+- UP-074 Chharra
+- UP-075 Koil
+- UP-076 Aligarh
+- UP-077 Iglas (SC)
+- UP-078 Hathras (SC)
+- UP-079 Sadabad
+- UP-080 Sikandra Rao
+- UP-081 Chhata
+- UP-082 Mant
+- UP-083 Goverdhan
+- UP-084 Mathura
+- UP-085 Baldev (SC)
+- UP-086 Etmadpur
+- UP-087 Agra Cantt. (SC)
+- UP-088 Agra South
+- UP-089 Agra North
+- UP-090 Agra Rural (SC)
+- UP-091 Fatehpur Sikri
+- UP-092 Kheragarh
+- UP-093 Fatehabad
+- UP-094 Bah
+- UP-095 Tundla (SC)
+- UP-096 Jasrana
+- UP-097 Firozabad
+- UP-098 Shikohabad
+- UP-099 Sirsaganj
+- UP-100 Kasganj
+- UP-101 Amanpur
+- UP-102 Patiyali
+- UP-103 Aliganj
+- UP-104 Etah
+- UP-105 Marhara
+- UP-106 Jalesar (SC)
+- UP-107 Mainpuri
+- UP-108 Bhongaon
+- UP-109 Kishani (SC)
+- UP-110 Karhal
+- UP-111 Gunnaur
+- UP-112 Bisauli (SC)
+- UP-113 Sahaswan
+- UP-114 Bilsi
+- UP-115 Badaun
+- UP-116 Shekhupur
+- UP-117 Dataganj
+- UP-118 Baheri
+- UP-119 Meerganj
+- UP-120 Bhojipura
+- UP-121 Nawabganj
+- UP-122 Faridpur (SC)
+- UP-123 Bithari Chainpur
+- UP-124 Bareilly
+- UP-125 Bareilly Cantt.
+- UP-126 Aonla
+- UP-127 Pilibhit
+- UP-128 Barkhera
+- UP-129 Puranpur (SC)
+- UP-130 Bisalpur
+- UP-131 Katra
+- UP-132 Jalalabad
+- UP-133 Tilhar
+- UP-134 Powayan (SC)
+- UP-135 Shahjahanpur
+- UP-136 Dadraul
+- UP-137 Palia
+- UP-138 Nighasan
+- UP-139 Gola Gokrannath
+- UP-140 Sri Nagar (SC)
+- UP-141 Dhaurahra
+- UP-142 Lakhimpur
+- UP-143 Kasta (SC)
+- UP-144 Mohammdi
+- UP-145 Maholi
+- UP-146 Sitapur
+- UP-147 Hargaon (SC)
+- UP-148 Laharpur
+- UP-149 Biswan
+- UP-150 Sevata
+- UP-151 Mahmoodabad
+- UP-152 Sidhauli (SC)
+- UP-153 Misrikh (SC)
+- UP-154 Sawaijpur
+- UP-155 Shahabad
+- UP-156 Hardoi
+- UP-157 Gopamau (SC)
+- UP-158 Sandi (SC)
+- UP-159 Bilgram-Mallanwan
+- UP-160 Balamau (SC)
+- UP-161 Sandila
+- UP-162 Bangermau
+- UP-163 Safipur (SC)
+- UP-164 Mohan (SC)
+- UP-165 Unnao
+- UP-166 Bhagwantnagar
+- UP-167 Purwa
+- UP-168 Malihabad (SC)
+- UP-169 Bakshi Kaa Talab
+- UP-170 Sarojini Nagar
+- UP-171 Lucknow West
+- UP-172 Lucknow North
+- UP-173 Lucknow East
+- UP-174 Lucknow Central
+- UP-175 Lucknow Cantt.
+- UP-176 Mohanlalganj (SC)
+- UP-177 Bachhrawan (SC)
+- UP-178 Tiloi
+- UP-179 Harchandpur
+- UP-180 Rae Bareli
+- UP-181 Salon (SC)
+- UP-182 Sareni
+- UP-183 Unchahar
+- UP-184 Jagdishpur (SC)
+- UP-185 Gauriganj
+- UP-186 Amethi
+- UP-187 Isauli
+- UP-188 Sultanpur
+- UP-189 Sadar
+- UP-190 Lambhua
+- UP-191 Kadipur (SC)
+- UP-192 Kaimganj (SC)
+- UP-193 Amritpur
+- UP-194 Farrukhabad
+- UP-195 Bhojpur
+- UP-196 Chhibramau
+- UP-197 Tirwa
+- UP-198 Kannauj (SC)
+- UP-199 Jaswantnagar
+- UP-200 Etawah
+- UP-201 Bharthana (SC)
+- UP-202 Bidhuna
+- UP-203 Dibiyapur
+- UP-204 Auraiya (SC)
+- UP-205 Rasulabad (SC)
+- UP-206 Akbarpur-Raniya
+- UP-207 Sikandra
+- UP-208 Bhognipur
+- UP-209 Bilhaur (SC)
+- UP-210 Bithoor
+- UP-211 Kalyanpur
+- UP-212 Govindnagar
+- UP-213 Sishamau
+- UP-214 Arya Nagar
+- UP-215 Kidwai Nagar
+- UP-216 Kanpur Cantt.
+- UP-217 Maharajpur
+- UP-218 Ghatampur (SC)
+- UP-219 Madhaugarh
+- UP-220 Kalpi
+- UP-221 Orai (SC)
+- UP-222 Babina
+- UP-223 Jhansi Nagar
+- UP-224 Mauranipur (SC)
+- UP-225 Garautha
+- UP-226 Lalitpur
+- UP-227 Mehroni (SC)
+- UP-228 Hamirpur
+- UP-229 Rath (SC)
+- UP-230 Mahoba
+- UP-231 Charkhari
+- UP-232 Tindwari
+- UP-233 Baberu
+- UP-234 Naraini (SC)
+- UP-235 Banda
+- UP-236 Chitrakoot
+- UP-237 Manikpur
+- UP-238 Jahanabad
+- UP-239 Bindki
+- UP-240 Fatehpur
+- UP-241 Ayah Shah
+- UP-242 Husainganj
+- UP-243 Khaga (SC)
+- UP-244 Rampur Khas
+- UP-245 Babaganj (SC)
+- UP-246 Kunda
+- UP-247 Bishwavnathganj
+- UP-248 Pratapgarh
+- UP-249 Patti
+- UP-250 Raniganj
+- UP-251 Sirathu
+- UP-252 Manjhanpur (SC)
+- UP-253 Chail
+- UP-254 Phaphamau
+- UP-255 Soraon (SC)
+- UP-256 Phulpur
+- UP-257 Pratappur
+- UP-258 Handia
+- UP-259 Meja
+- UP-260 Karachhana
+- UP-261 Allahabad West
+- UP-262 Allahabad North
+- UP-263 Allahabad South
+- UP-264 Bara (SC)
+- UP-265 Koraon (SC)
+- UP-266 Kursi
+- UP-267 Ram Nagar
+- UP-268 Barabanki
+- UP-269 Zaidpur (SC)
+- UP-270 Dariyabad
+- UP-271 Rudauli
+- UP-272 Haidergarh (SC)
+- UP-273 Milkipur (SC)
+- UP-274 Bikapur
+- UP-275 Ayodhya
+- UP-276 Goshainganj
+- UP-277 Katehari
+- UP-278 Tanda
+- UP-279 Alapur (SC)
+- UP-280 Jalalpur
+- UP-281 Akbarpur
+- UP-282 Balha (SC)
+- UP-283 Nanpara
+- UP-284 Matera
+- UP-285 Mahasi
+- UP-286 Bahraich
+- UP-287 Payagpur
+- UP-288 Kaiserganj
+- UP-289 Bhinga
+- UP-290 Shrawasti
+- UP-291 Tulsipur
+- UP-292 Gainsari
+- UP-293 Utraula
+- UP-294 Balrampur (SC)
+- UP-295 Mehnaun
+- UP-296 Gonda
+- UP-297 Katra Bazar
+- UP-298 Colonelganj
+- UP-299 Tarabganj
+- UP-300 Mankapur (SC)
+- UP-301 Gaura
+- UP-302 Shohratgarh
+- UP-303 Kapilvastu (SC)
+- UP-304 Bansi
+- UP-305 Itwa
+- UP-306 Domariyaganj
+- UP-307 Harraiya
+- UP-308 Kaptanganj
+- UP-309 Rudhauli
+- UP-310 Basti Sadar
+- UP-311 Mahadewa (SC)
+- UP-312 Menhdawal
+- UP-313 Khalilabad
+- UP-314 Dhanghata (SC)
+- UP-315 Pharenda
+- UP-316 Nautanwa
+- UP-317 Siswa
+- UP-318 Maharajganj (SC)
+- UP-319 Paniyra
+- UP-320 Caimpiyarganj
+- UP-321 Pipraich
+- UP-322 Gorakhpur Urban
+- UP-323 Gorakhpur Rural
+- UP-324 Sahajanwa
+- UP-325 Khajani (SC)
+- UP-326 Chauri-Chaura
+- UP-327 Bansgaon (SC)
+- UP-328 Chillupar
+- UP-329 Khadda
+- UP-330 Padrauna
+- UP-331 Tamkuhi Raj
+- UP-332 Fazilnagar
+- UP-333 Kushinagar
+- UP-334 Hata
+- UP-335 Ramkola (SC)
+- UP-336 Rudrapur
+- UP-337 Deoria
+- UP-338 Pathardeva
+- UP-339 Rampur Karkhana
+- UP-340 Bhatpar Rani
+- UP-341 Salempur (SC)
+- UP-342 Barhaj
+- UP-343 Atrauliya
+- UP-344 Gopalpur
+- UP-345 Sagri
+- UP-346 Mubarakpur
+- UP-347 Azamgarh
+- UP-348 Nizamabad
+- UP-349 Phoolpur-Pawai
+- UP-350 Didarganj
+- UP-351 Lalganj (SC)
+- UP-352 Mehnagar (SC)
+- UP-353 Madhuban
+- UP-354 Ghosi
+- UP-355 Muhammadabad-Gohna (SC)
+- UP-356 Mau
+- UP-357 Belthara Road (SC)
+- UP-358 Rasara
+- UP-359 Sikanderpur
+- UP-360 Phephana
+- UP-361 Ballia Nagar
+- UP-362 Bansdih
+- UP-363 Bairia
+- UP-364 Badlapur
+- UP-365 Shahganj
+- UP-366 Jaunpur
+- UP-367 Malhani
+- UP-368 Mungra Badshahpur
+- UP-369 Machhlishahr (SC)
+- UP-370 Mariyahu
+- UP-371 Zafrabad
+- UP-372 Kerakat (SC)
+- UP-373 Jakhanian
+- UP-374 Saidpur (SC)
+- UP-375 Ghazipur
+- UP-376 Jangipur (SC)
+- UP-377 Zahoorabad
+- UP-378 Mohammadabad
+- UP-379 Zamania
+- UP-380 Mughalsarai
+- UP-381 Sakaldiha
+- UP-382 Saiyadraja
+- UP-383 Chakia (SC)
+- UP-384 Pindra
+- UP-385 Ajagara (SC)
+- UP-386 Shivpur
+- UP-387 Rohaniya
+- UP-388 Varanasi North
+- UP-389 Varanasi South
+- UP-390 Varanasi Cantt.
+- UP-391 Sevapuri
+- UP-392 Bhadohi
+- UP-393 Gyanpur
+- UP-394 Aurai (SC)
+- UP-395 Chhanbey (SC)
+- UP-396 Mirzapur
+- UP-397 Majhawan
+- UP-398 Chunar
+- UP-399 Marihan
+- UP-400 Ghorawal
+- UP-401 Robertsganj
+- UP-402 Obra
+- UP-403 Duddhi (SC)
 
 ---
 
-## Full list: Parliament (PC)
+## Full list: Parliament (PC) — actionable (≤ 10 missing)
 
 ### AS 2009
 
@@ -698,13 +4102,11 @@ These are the best candidates for adding missing data (e.g. Form 20 / bypolls).
 - AS-08 Silchar
 - AS-14 Jorhat
 
-### AS 2024
+---
 
-- Expected: 12 | In file: 9 | Missing: 3
+## Full list: Parliament (PC) — large gaps (>10 missing, check ID alignment)
 
-- AS-02 Dhubri
-- AS-05 Gauhati
-- AS-12 Lakhimpur
+_None._
 
 ---
 
