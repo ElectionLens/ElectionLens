@@ -335,7 +335,7 @@ export function SearchBox({
           {filteredResults.map((result, index) => (
             <div
               key={`${result.type}-${result.name}-${result.state ?? ''}`}
-              className={`search-result-item ${index === selectedIndex ? 'selected' : ''}`}
+              className={`search-result-item interactive-row ${index === selectedIndex ? 'selected' : ''}`}
               data-type={result.type}
               onClick={() => handleSelect(result)}
               onMouseEnter={() => setSelectedIndex(index)}

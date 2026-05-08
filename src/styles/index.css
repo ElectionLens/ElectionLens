@@ -392,23 +392,29 @@ body {
 .toolbar-dropdown-item {
   display: block;
   width: 100%;
-  padding: 10px 14px;
+  box-sizing: border-box;
+  min-height: var(--row-min-height);
+  padding: var(--row-padding-y) var(--row-padding-x);
   border: none;
   background: white;
   color: #374151;
   font-size: 0.85rem;
   cursor: pointer;
   text-align: left;
-  transition: background 0.15s;
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease;
 }
 
-.toolbar-dropdown-item:hover {
-  background: #f1f5f9;
+.toolbar-dropdown-item:hover:not(.active) {
+  background: transparent;
+  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
 }
 
 .toolbar-dropdown-item.active {
   background: #1a1a2e;
   color: white;
+  box-shadow: none;
 }
 
 .toolbar-dropdown-item .layer-badge {
@@ -601,43 +607,49 @@ body {
 .search-result-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  padding-left: 12px;
-  cursor: pointer;
-  transition: all 0.15s;
-  border-bottom: 1px solid #f1f5f9;
-  border-left: 3px solid transparent;
+  gap: var(--row-gap);
+  padding: var(--row-padding-y) calc(var(--row-padding-x) + 2px);
+  padding-left: var(--row-padding-x);
+  border-bottom: 1px solid var(--row-separator);
+  border-left: var(--row-accent-border-width) solid transparent;
+  border-radius: 0;
 }
 
 .search-result-item:last-child {
   border-bottom: none;
 }
 
-.search-result-item:hover,
-.search-result-item.selected {
-  background: #f8fafc;
+/* Inset wash comes from `.interactive-row`; backgrounds stay light type tints (not full gradients). */
+.search-result-item[data-type='state']:hover {
+  background: color-mix(in srgb, #fef3c7 28%, #ffffff);
 }
 
-/* Hover states with type-specific gradient tints */
-.search-result-item[data-type='state']:hover,
 .search-result-item[data-type='state'].selected {
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  background: color-mix(in srgb, #fef3c7 42%, #f8fafc);
 }
 
-.search-result-item[data-type='constituency']:hover,
+.search-result-item[data-type='constituency']:hover {
+  background: color-mix(in srgb, #ede9fe 30%, #ffffff);
+}
+
 .search-result-item[data-type='constituency'].selected {
-  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+  background: color-mix(in srgb, #ede9fe 44%, #f8fafc);
 }
 
-.search-result-item[data-type='assembly']:hover,
+.search-result-item[data-type='assembly']:hover {
+  background: color-mix(in srgb, #d1fae5 28%, #ffffff);
+}
+
 .search-result-item[data-type='assembly'].selected {
-  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  background: color-mix(in srgb, #d1fae5 40%, #f8fafc);
 }
 
-.search-result-item[data-type='district']:hover,
+.search-result-item[data-type='district']:hover {
+  background: color-mix(in srgb, #bfdbfe 26%, #ffffff);
+}
+
 .search-result-item[data-type='district'].selected {
-  background: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%);
+  background: color-mix(in srgb, #bfdbfe 40%, #f8fafc);
 }
 
 /* Result icon box - matching sidebar item icons */
@@ -676,7 +688,6 @@ body {
 
 .search-result-item:hover .result-icon {
   filter: brightness(1.1);
-  transform: scale(1.05);
 }
 
 .result-info {
@@ -739,23 +750,104 @@ body {
   --color-state: #f59e0b; /* Amber/Saffron */
   --color-parliament: #8b5cf6; /* Soft violet */
   --color-assembly: #10b981; /* Emerald */
+  /* Shared list/table row sizing + interaction (see `.interactive-row`) */
+  --row-min-height: 44px;
+  --row-padding-y: 10px;
+  --row-padding-x: 12px;
+  --row-gap: 8px;
+  --row-radius: 6px;
+  --row-hover-inset: rgba(15, 23, 42, 0.055);
+  --row-active-inset: rgba(15, 23, 42, 0.09);
+  --row-accent-border-width: 4px;
+  --row-font-size-primary: 0.8125rem;
+  --row-font-size-secondary: 0.625rem;
+  --row-separator: #f1f5f9;
+}
+
+/**
+ * Standard row affordance: consistent min-height, padding, hover/active wash, focus ring.
+ * Pair with list-specific classes (e.g. `.district-item.interactive-row`).
+ */
+.interactive-row {
+  box-sizing: border-box;
+  min-height: var(--row-min-height);
+  cursor: pointer;
+  border-radius: var(--row-radius);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    filter 0.15s ease;
+}
+
+.interactive-row:focus {
+  outline: none;
+}
+
+.interactive-row:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.interactive-row:hover {
+  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
+}
+
+.interactive-row:active {
+  box-shadow: inset 0 0 0 9999px var(--row-active-inset);
+}
+
+/* Search rows: match press feedback (options are div[role=option], not focusable buttons). */
+.search-result-item.interactive-row:active {
+  box-shadow: inset 0 0 0 9999px var(--row-active-inset);
+}
+
+/* Summary party rows: hover wash only; primary control remains the inner button. */
+.state-map-summary-row.interactive-row {
+  cursor: default;
+}
+
+.state-map-summary-row.interactive-row:hover {
+  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
+}
+
+.state-map-summary-row.interactive-row:active {
+  box-shadow: none;
+}
+
+/**
+ * Tabular/list rows without primary click action: same inset hover rhythm as `.interactive-row`.
+ */
+.data-row {
+  box-sizing: border-box;
+  min-height: var(--row-min-height);
+  cursor: default;
+  border-radius: var(--row-radius);
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.data-row:hover {
+  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
 }
 
 /* Search result item colors by type */
 .search-result-item[data-type='state'] {
-  border-left: 3px solid #f59e0b;
+  border-left: var(--row-accent-border-width) solid #f59e0b;
 }
 
 .search-result-item[data-type='constituency'] {
-  border-left: 3px solid var(--color-parliament);
+  border-left: var(--row-accent-border-width) solid var(--color-parliament);
 }
 
 .search-result-item[data-type='assembly'] {
-  border-left: 3px solid var(--color-assembly);
+  border-left: var(--row-accent-border-width) solid var(--color-assembly);
 }
 
 .search-result-item[data-type='district'] {
-  border-left: 3px solid #3b82f6;
+  border-left: var(--row-accent-border-width) solid #3b82f6;
 }
 
 .search-no-results {
@@ -1042,23 +1134,23 @@ path:focus {
 }
 
 .district-item {
-  padding: 8px 12px;
-  padding-left: 12px;
+  padding: var(--row-padding-y) var(--row-padding-x);
+  padding-left: var(--row-padding-x);
   background: linear-gradient(135deg, #f8f9fa 0%, #f1f5f9 100%);
   margin-bottom: 5px;
-  border-radius: 5px;
   font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  border-left: 4px solid var(--item-color, #6b7280);
+  transition:
+    box-shadow 0.15s ease,
+    background 0.2s ease,
+    filter 0.2s ease;
+  border-left: var(--row-accent-border-width) solid var(--item-color, #6b7280);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--row-gap);
 }
 
 .district-item:hover {
   background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-  transform: translateX(3px);
 }
 
 .district-item.state-item {
@@ -1093,24 +1185,25 @@ path:focus {
 }
 
 .constituency-item {
-  padding: 8px 12px;
-  padding-left: 12px;
+  padding: var(--row-padding-y) var(--row-padding-x);
+  padding-left: var(--row-padding-x);
   background: linear-gradient(135deg, #f8f9fa 0%, #f5f3ff 100%);
   margin-bottom: 5px;
-  border-radius: 5px;
   font-size: 0.85rem;
-  cursor: pointer;
-  border-left: 4px solid var(--item-color, var(--color-parliament, #8b5cf6));
+  border-left: var(--row-accent-border-width) solid
+    var(--item-color, var(--color-parliament, #8b5cf6));
   display: flex;
   align-items: center;
-  gap: 8px;
-  transition: all 0.2s;
+  gap: var(--row-gap);
+  transition:
+    box-shadow 0.15s ease,
+    background 0.2s ease,
+    filter 0.2s ease;
   justify-content: space-between;
 }
 
 .constituency-item:hover {
   background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
-  transform: translateX(3px);
 }
 
 .constituency-item .item-icon {
@@ -1146,23 +1239,24 @@ path:focus {
 }
 
 .assembly-item {
-  padding: 8px 12px;
-  padding-left: 12px;
+  padding: var(--row-padding-y) var(--row-padding-x);
+  padding-left: var(--row-padding-x);
   background: linear-gradient(135deg, #f8f9fa 0%, #ecfdf5 100%);
   margin-bottom: 5px;
-  border-radius: 5px;
   font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s;
+  transition:
+    box-shadow 0.15s ease,
+    background 0.2s ease,
+    filter 0.2s ease;
   display: flex;
   align-items: center;
-  gap: 8px;
-  border-left: 4px solid var(--item-color, var(--color-assembly, #10b981));
+  gap: var(--row-gap);
+  border-left: var(--row-accent-border-width) solid
+    var(--item-color, var(--color-assembly, #10b981));
 }
 
 .assembly-item:hover {
   background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-  transform: translateX(3px);
 }
 
 .assembly-item .item-icon {
@@ -1266,6 +1360,12 @@ path:focus {
    MOBILE RESPONSIVE STYLES
    ============================================ */
 @media (max-width: 768px) {
+  :root {
+    --row-min-height: 52px;
+    --row-padding-y: 12px;
+    --row-padding-x: 14px;
+  }
+
   .container {
     flex-direction: column;
   }
@@ -1320,7 +1420,7 @@ path:focus {
   }
 
   .toolbar-dropdown-item {
-    padding: 8px 10px;
+    padding: var(--row-padding-y) var(--row-padding-x);
     font-size: 0.8rem;
   }
 
@@ -1338,10 +1438,9 @@ path:focus {
   .district-item,
   .constituency-item,
   .assembly-item {
-    padding: 12px 14px;
-    padding-left: 18px;
+    padding: var(--row-padding-y) var(--row-padding-x);
+    padding-left: calc(var(--row-padding-x) + 4px);
     font-size: 0.9rem;
-    min-height: 44px;
   }
 
   .toggle-btn {
@@ -1638,10 +1737,15 @@ path:focus {
 .state-map-summary-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 0;
-  border-bottom: 1px solid #f1f5f9;
+  gap: var(--row-gap);
+  padding: var(--row-padding-y) var(--row-padding-x);
+  min-height: var(--row-min-height);
+  border-bottom: 1px solid var(--row-separator);
   font-size: 0.875rem;
+  border-radius: var(--row-radius);
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease;
 }
 
 .state-map-summary-row:last-child {
@@ -1687,9 +1791,10 @@ path:focus {
 
 .state-map-summary-row.is-selected {
   background: #eff6ff;
-  border-radius: 6px;
-  padding-left: 6px;
-  padding-right: 6px;
+}
+
+.state-map-summary-row.is-selected:hover {
+  box-shadow: inset 0 0 0 9999px rgba(37, 99, 235, 0.06);
 }
 
 .state-map-summary-value {
@@ -2176,10 +2281,11 @@ path:focus {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 10px;
+  gap: var(--row-gap);
+  min-height: var(--row-min-height);
+  padding: var(--row-padding-y) var(--row-padding-x);
   background: white;
-  border-radius: 8px;
+  border-radius: var(--row-radius);
   margin-bottom: 4px;
   font-size: 0.75rem;
   overflow: hidden;
@@ -2273,10 +2379,11 @@ path:focus {
 .parliament-row-compact {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 8px;
+  gap: var(--row-gap);
+  min-height: var(--row-min-height);
+  padding: var(--row-padding-y) var(--row-padding-x);
   background: white;
-  border-radius: 6px;
+  border-radius: var(--row-radius);
   margin-bottom: 4px;
   font-size: 0.7rem;
 }
@@ -2506,7 +2613,8 @@ path:focus {
 .candidates-header {
   display: flex;
   align-items: center;
-  padding: 10px 12px;
+  min-height: var(--row-min-height);
+  padding: var(--row-padding-y) var(--row-padding-x);
   background: #f1f5f9;
   font-size: 0.7rem;
   font-weight: 700;
@@ -2518,18 +2626,15 @@ path:focus {
 .candidate-row {
   display: flex;
   align-items: center;
-  padding: 10px 12px;
-  border-bottom: 1px solid #f1f5f9;
-  transition: background 0.15s;
+  padding: var(--row-padding-y) var(--row-padding-x);
+  min-height: var(--row-min-height);
+  border-bottom: 1px solid var(--row-separator);
   position: relative;
+  border-radius: 0;
 }
 
 .candidate-row:last-child {
   border-bottom: none;
-}
-
-.candidate-row:hover {
-  background: #f8fafc;
 }
 
 .candidate-row.winner {
@@ -2538,6 +2643,10 @@ path:focus {
 
 .candidate-row.runner-up {
   background: linear-gradient(90deg, #fef3c7 0%, #ffffff 100%);
+}
+
+.candidate-row.interactive-row {
+  cursor: default;
 }
 
 .col-pos {
@@ -2994,7 +3103,7 @@ path:focus {
   }
 
   .candidate-row {
-    padding: 8px 0;
+    padding: var(--row-padding-y) 0;
   }
 }
 
@@ -3167,61 +3276,6 @@ path:focus {
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
-
-.parliament-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 8px;
-  background: white;
-  border-radius: 6px;
-  font-size: 0.75rem;
-}
-
-.parliament-row.winner {
-  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-  border: 1px solid #86efac;
-}
-
-.parliament-row .col-pos {
-  width: 18px;
-  font-weight: 600;
-  color: #64748b;
-}
-
-.parliament-row .col-name {
-  flex: 1;
-  min-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-weight: 500;
-  color: #1e293b;
-}
-
-.parliament-row .col-party {
-  width: 45px;
-  font-size: 0.55rem;
-  font-weight: 700;
-  padding: 2px 4px;
-  border-radius: 3px;
-  text-align: center;
-  border: 1px solid;
-}
-
-.parliament-row .col-votes {
-  width: 55px;
-  text-align: right;
-  font-weight: 600;
-  color: #374151;
-}
-
-.parliament-row .col-share {
-  width: 40px;
-  text-align: right;
-  font-weight: 600;
-  color: #059669;
 }
 
 /* ===========================================
@@ -3686,18 +3740,21 @@ path:focus {
     padding: 10px 16px;
   }
 
-  /* Touch feedback animations */
+  /* Touch feedback — list/table rows use `.interactive-row` inset active state */
   .year-btn,
   .panel-tab,
   .share-bar-btn,
-  .toolbar-btn,
-  .candidate-row,
-  .district-item,
-  .constituency-item,
-  .assembly-item {
+  .toolbar-btn {
     transition:
       transform 0.1s ease,
       background 0.15s ease;
+  }
+
+  .interactive-row {
+    transition:
+      box-shadow 0.12s ease,
+      background 0.15s ease,
+      filter 0.15s ease;
   }
 
   .year-btn:active,
@@ -3705,14 +3762,6 @@ path:focus {
   .share-bar-btn:active,
   .toolbar-btn:active {
     transform: scale(0.96);
-  }
-
-  .candidate-row:active,
-  .district-item:active,
-  .constituency-item:active,
-  .assembly-item:active {
-    background: rgba(0, 0, 0, 0.05) !important;
-    transform: scale(0.99);
   }
 }
 
@@ -3765,8 +3814,9 @@ path:focus {
   }
 
   .search-result-item {
-    min-height: 56px;
-    padding: 14px 16px;
+    min-height: max(52px, var(--row-min-height));
+    padding: var(--row-padding-y) calc(var(--row-padding-x) + 2px);
+    padding-left: var(--row-padding-x);
   }
 
   .result-name {
@@ -4316,6 +4366,14 @@ path:focus {
     transition: none !important;
   }
 
+  .interactive-row {
+    transition: none;
+  }
+
+  .data-row {
+    transition: none;
+  }
+
   .year-btn:active,
   .panel-tab:active,
   .share-bar-btn:active {
@@ -4607,9 +4665,11 @@ path:focus {
 
 .booth-candidates h5 {
   margin: 0 0 10px;
-  font-size: 12px;
-  color: #6b7280;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748b;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .booth-candidates-scroll {
@@ -4637,9 +4697,10 @@ path:focus {
 .booth-candidate-row {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 8px 0;
-  border-bottom: 1px solid #f3f4f6;
+  gap: var(--row-gap);
+  padding: var(--row-padding-y) 0;
+  min-height: var(--row-min-height);
+  border-bottom: 1px solid var(--row-separator);
 }
 
 .booth-candidate-row:last-child {
@@ -4649,17 +4710,17 @@ path:focus {
 .booth-candidate-row.winner {
   background: #f0fdf4;
   margin: 0 -12px;
-  padding: 8px 12px;
+  padding: var(--row-padding-y) var(--row-padding-x);
 }
 
 .booth-candidate-row .candidate-info {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: var(--row-gap);
 }
 
 .booth-candidate-row .party-tag {
-  font-size: 10px;
+  font-size: var(--row-font-size-secondary);
   font-weight: 600;
   color: white;
   padding: 2px 6px;
@@ -4669,7 +4730,7 @@ path:focus {
 }
 
 .booth-candidate-row .candidate-name {
-  font-size: 12px;
+  font-size: var(--row-font-size-primary);
   color: #374151;
   flex: 1;
   min-width: 0;
@@ -4683,7 +4744,7 @@ path:focus {
 .booth-candidate-row .candidate-votes {
   display: flex;
   gap: 12px;
-  font-size: 12px;
+  font-size: var(--row-font-size-primary);
 }
 
 .booth-candidate-row .votes {
@@ -5569,14 +5630,17 @@ path:focus {
 .postal-candidates-header {
   display: grid;
   grid-template-columns: 24px 70px 1fr 1fr 1fr;
-  gap: 6px;
-  padding: 10px 12px;
-  background: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
-  font-size: 11px;
-  font-weight: 600;
-  color: #6b7280;
+  align-items: center;
+  gap: var(--row-gap);
+  min-height: var(--row-min-height);
+  padding: var(--row-padding-y) var(--row-padding-x);
+  background: #f1f5f9;
+  border-bottom: 1px solid var(--row-separator);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
   text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 .postal-candidates-header span {
@@ -5598,10 +5662,11 @@ path:focus {
 .postal-candidate-row {
   display: grid;
   grid-template-columns: 24px 70px 1fr 1fr 1fr;
-  gap: 6px;
-  padding: 10px 12px;
-  border-bottom: 1px solid #f3f4f6;
-  font-size: 13px;
+  gap: var(--row-gap);
+  min-height: var(--row-min-height);
+  padding: var(--row-padding-y) var(--row-padding-x);
+  border-bottom: 1px solid var(--row-separator);
+  font-size: var(--row-font-size-primary);
   align-items: start;
 }
 
@@ -5635,7 +5700,7 @@ path:focus {
 .postal-candidate-row .col-party {
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: 10px;
+  font-size: var(--row-font-size-secondary);
   font-weight: 600;
   color: white;
   text-align: center;
@@ -5650,7 +5715,7 @@ path:focus {
 }
 
 .postal-candidate-row .col-postal .postal-pct {
-  font-size: 10px;
+  font-size: var(--row-font-size-secondary);
   font-weight: 400;
   color: #6b7280;
 }
@@ -6821,17 +6886,27 @@ body {
 }
 
 .toolbar-dropdown-item {
+  box-sizing: border-box;
+  min-height: var(--row-min-height);
+  padding: var(--row-padding-y) var(--row-padding-x);
   background: var(--ui-surface);
   color: var(--ui-text-muted);
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
-.toolbar-dropdown-item:hover {
-  background: var(--ui-surface-soft);
+.toolbar-dropdown-item:hover:not(.active) {
+  background: var(--ui-surface);
   color: var(--ui-text);
+  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
 }
 
 .toolbar-dropdown-item.active {
   background: #1d4ed8;
+  box-shadow: none;
+  color: #ffffff;
 }
 
 .map-legend {
@@ -6999,26 +7074,35 @@ body {
   overflow-y: auto;
 }
 
+/* Row tokens + inset hover (same rhythm as `.interactive-row`); pills use `--row-radius`. */
 .year-dropdown-option {
+  box-sizing: border-box;
   width: 100%;
   text-align: left;
   border: none;
   background: transparent;
   color: var(--ui-text);
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
-  padding: 9px 10px;
-  border-radius: 9px;
+  min-height: var(--row-min-height);
+  padding: var(--row-padding-y) var(--row-padding-x);
+  border-radius: var(--row-radius);
   cursor: pointer;
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
-.year-dropdown-option:hover {
-  background: color-mix(in srgb, var(--ui-surface-soft) 84%, #e0ecff 16%);
+.year-dropdown-option:hover:not(.active) {
+  background: transparent;
+  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
 }
 
 .year-dropdown-option.active {
   background: color-mix(in srgb, var(--ui-accent) 85%, white 15%);
   color: #ffffff;
+  box-shadow: none;
 }
 
 .year-chip {
@@ -7424,8 +7508,8 @@ body {
 .election-panel--embed .booth-candidate-row.winner {
   background: color-mix(in srgb, #ecfdf5 55%, transparent);
   margin: 0 -8px;
-  padding: 8px 8px;
-  border-radius: 8px;
+  padding: var(--row-padding-y) var(--row-padding-x);
+  border-radius: var(--row-radius);
 }
 
 .election-panel--embed .postal-candidate-row {

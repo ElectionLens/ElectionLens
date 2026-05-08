@@ -656,7 +656,7 @@ export function ElectionResultPanel({
                     {currentPCContribution.candidates.map((c, idx) => (
                       <div
                         key={idx}
-                        className={`candidate-row ${idx === 0 ? 'winner' : ''} ${idx === 1 ? 'runner-up' : ''}`}
+                        className={`candidate-row interactive-row ${idx === 0 ? 'winner' : ''} ${idx === 1 ? 'runner-up' : ''}`}
                       >
                         <span className="col-pos">{c.position}</span>
                         <span className="col-name" title={c.name}>
@@ -946,7 +946,9 @@ const CandidateRow = memo(function CandidateRow({
       };
 
   return (
-    <div className={`candidate-row ${isWinner ? 'winner' : ''} ${isRunnerUp ? 'runner-up' : ''}`}>
+    <div
+      className={`candidate-row interactive-row ${isWinner ? 'winner' : ''} ${isRunnerUp ? 'runner-up' : ''}`}
+    >
       <span className="col-pos">{candidate.position}</span>
       <span className="col-name" title={candidate.name}>
         {candidate.name}
@@ -1042,7 +1044,7 @@ function PostalBallotsView({
             return (
               <div
                 key={`${candidate.name}-${candidate.party}`}
-                className={`postal-candidate-row ${idx === 0 ? 'winner' : ''}`}
+                className={`postal-candidate-row data-row ${idx === 0 ? 'winner' : ''}`}
               >
                 <span className="col-rank">{idx + 1}</span>
                 <span
@@ -1227,7 +1229,7 @@ function BoothWiseView({
                       return (
                         <div
                           key={candidate.slNo ?? idx}
-                          className={`booth-candidate-row ${isWinner ? 'winner' : ''}`}
+                          className={`booth-candidate-row data-row ${isWinner ? 'winner' : ''}`}
                         >
                           <div className="candidate-info">
                             <span

@@ -32,7 +32,14 @@ import type {
   HexColor,
   StateSummaryPanelData,
 } from '../types';
-import type { ReactNode, CSSProperties } from 'react';
+import type { ReactNode, CSSProperties, KeyboardEvent } from 'react';
+
+/** Enter / Space activates sidebar list rows rendered as div[role="button"]. */
+function sidebarListRowKeyDown(event: KeyboardEvent, action: () => void): void {
+  if (event.key !== 'Enter' && event.key !== ' ') return;
+  event.preventDefault();
+  action();
+}
 
 /** Extended Sidebar props with search and share */
 interface SidebarProps {
@@ -607,9 +614,14 @@ export function Sidebar({
             return (
               <div
                 key={`assembly-${index}`}
-                className="assembly-item"
+                className="assembly-item interactive-row"
                 style={style}
                 onClick={() => onAssemblyClick?.(name, feature as AssemblyFeature)}
+                onKeyDown={(e) =>
+                  sidebarListRowKeyDown(e, () =>
+                    onAssemblyClick?.(name, feature as AssemblyFeature)
+                  )
+                }
                 role="button"
                 tabIndex={0}
               >
@@ -666,9 +678,14 @@ export function Sidebar({
             return (
               <div
                 key={`pc-${index}`}
-                className="constituency-item"
+                className="constituency-item interactive-row"
                 style={style}
                 onClick={() => onConstituencyClick(name, feature as ConstituencyFeature)}
+                onKeyDown={(e) =>
+                  sidebarListRowKeyDown(e, () =>
+                    onConstituencyClick(name, feature as ConstituencyFeature)
+                  )
+                }
                 role="button"
                 tabIndex={0}
               >
@@ -718,9 +735,12 @@ export function Sidebar({
             return (
               <div
                 key={`district-${index}`}
-                className="district-item"
+                className="district-item interactive-row"
                 style={style}
                 onClick={() => onDistrictClick(name, feature as DistrictFeature)}
+                onKeyDown={(e) =>
+                  sidebarListRowKeyDown(e, () => onDistrictClick(name, feature as DistrictFeature))
+                }
                 role="button"
                 tabIndex={0}
               >
@@ -794,9 +814,14 @@ export function Sidebar({
             return (
               <div
                 key={`assembly-${index}`}
-                className="assembly-item"
+                className="assembly-item interactive-row"
                 style={style}
                 onClick={() => onAssemblyClick?.(name, feature as AssemblyFeature)}
+                onKeyDown={(e) =>
+                  sidebarListRowKeyDown(e, () =>
+                    onAssemblyClick?.(name, feature as AssemblyFeature)
+                  )
+                }
                 role="button"
                 tabIndex={0}
               >
@@ -834,8 +859,11 @@ export function Sidebar({
             return (
               <div
                 key={`state-${index}`}
-                className="district-item state-item"
+                className="district-item state-item interactive-row"
                 onClick={() => onStateClick(name, feature as StateFeature)}
+                onKeyDown={(e) =>
+                  sidebarListRowKeyDown(e, () => onStateClick(name, feature as StateFeature))
+                }
                 role="button"
                 tabIndex={0}
                 style={{ '--item-color': color } as ExtendedCSSProperties}

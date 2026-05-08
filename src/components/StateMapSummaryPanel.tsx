@@ -53,7 +53,7 @@ export function StateMapSummaryPanel({
               return (
                 <li
                   key={row.party}
-                  className={`state-map-summary-row ${selectedParty === row.party ? 'is-selected' : ''}`}
+                  className={`state-map-summary-row interactive-row ${selectedParty === row.party ? 'is-selected' : ''}`}
                 >
                   <span
                     className="state-map-summary-swatch"
@@ -96,7 +96,7 @@ export function StateMapSummaryPanel({
               return (
                 <li
                   key={row.party}
-                  className={`state-map-summary-row ${selectedParty === row.party ? 'is-selected' : ''}`}
+                  className={`state-map-summary-row interactive-row ${selectedParty === row.party ? 'is-selected' : ''}`}
                 >
                   <span
                     className="state-map-summary-swatch"

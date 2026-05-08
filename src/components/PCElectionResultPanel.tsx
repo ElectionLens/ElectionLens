@@ -379,7 +379,9 @@ const PCCandidateRow = memo(function PCCandidateRow({
   const partyText = partyShortNames ? getPartyShortName(candidate.party) : candidate.party;
 
   return (
-    <div className={`candidate-row ${isWinner ? 'winner' : ''} ${isRunnerUp ? 'runner-up' : ''}`}>
+    <div
+      className={`candidate-row interactive-row ${isWinner ? 'winner' : ''} ${isRunnerUp ? 'runner-up' : ''}`}
+    >
       <span className="col-pos">{candidate.position}</span>
       <span className="col-name" title={candidate.name}>
         {candidate.name}
