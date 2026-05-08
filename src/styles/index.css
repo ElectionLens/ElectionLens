@@ -610,7 +610,7 @@ body {
   gap: var(--row-gap);
   padding: var(--row-padding-y) calc(var(--row-padding-x) + 2px);
   padding-left: var(--row-padding-x);
-  border-bottom: 1px solid var(--row-separator);
+  border-bottom: 1px solid var(--left-pane-row-border);
   border-left: var(--row-accent-border-width) solid transparent;
   border-radius: 0;
 }
@@ -762,6 +762,8 @@ body {
   --row-font-size-primary: 0.8125rem;
   --row-font-size-secondary: 0.625rem;
   --row-separator: #f1f5f9;
+  /* Left-pane lists: shared row chrome (borders align across summary, search, party rows, detail tables) */
+  --left-pane-row-border: #e2e8f0;
 }
 
 /**
@@ -1291,6 +1293,43 @@ path:focus {
   margin-left: auto;
 }
 
+/* Sidebar browse lists: shared card border/radius with summary/party/search rows (Sidebar-only). */
+.sidebar-scroll .district-list .district-item.interactive-row,
+.sidebar-scroll .district-list .constituency-item.interactive-row,
+.sidebar-scroll .district-list .assembly-item.interactive-row {
+  border: 1px solid var(--left-pane-row-border);
+  border-left-width: var(--row-accent-border-width);
+  border-radius: var(--row-radius);
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.sidebar-scroll .district-list .district-item.interactive-row {
+  border-left-color: var(--item-color, #6b7280);
+}
+
+.sidebar-scroll .district-list .district-item.state-item.interactive-row {
+  border-left-color: var(--item-color, var(--color-state));
+}
+
+.sidebar-scroll .district-list .constituency-item.interactive-row {
+  border-left-color: var(--item-color, var(--color-parliament, #8b5cf6));
+}
+
+.sidebar-scroll .district-list .assembly-item.interactive-row {
+  border-left-color: var(--item-color, var(--color-assembly, #10b981));
+}
+
+/* Neutral base so .interactive-row inset hover/active reads like other left-pane rows. */
+.sidebar-scroll .district-list .district-item.interactive-row:hover,
+.sidebar-scroll .district-list .constituency-item.interactive-row:hover,
+.sidebar-scroll .district-list .assembly-item.interactive-row:hover,
+.sidebar-scroll .district-list .district-item.interactive-row:active,
+.sidebar-scroll .district-list .constituency-item.interactive-row:active,
+.sidebar-scroll .district-list .assembly-item.interactive-row:active {
+  background: #ffffff;
+}
+
 /* No data message */
 .no-data-message {
   padding: 20px;
@@ -1740,7 +1779,7 @@ path:focus {
   gap: var(--row-gap);
   padding: var(--row-padding-y) var(--row-padding-x);
   min-height: var(--row-min-height);
-  border-bottom: 1px solid var(--row-separator);
+  border-bottom: 1px solid var(--left-pane-row-border);
   font-size: 0.875rem;
   border-radius: var(--row-radius);
   transition:
@@ -1863,23 +1902,76 @@ path:focus {
   color: #64748b;
 }
 
-.party-candidates-back {
-  align-self: flex-start;
-  border: 1px solid #d1d5db;
-  background: #fff;
-  color: #334155;
-  border-radius: 8px;
-  padding: 6px 10px;
-  font-size: 0.75rem;
+/* LeftPaneButton base */
+.left-pane-btn {
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.left-pane-btn--chrome:focus-visible {
+  outline: 2px solid color-mix(in srgb, #2563eb 70%, transparent);
+  outline-offset: 2px;
+}
+
+.left-pane-btn--inline {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
   cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.left-pane-btn--inline:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.left-pane-btn--row:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Stacked left-pane Back — pane header only after party-panel dedupe */
+.pane-stack-back,
+.left-pane-btn--back {
+  box-sizing: border-box;
+  min-height: var(--row-min-height);
+  padding: 8px 14px;
+  border: 1px solid #94a3b8;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--row-separator, #e2e8f0) 38%, #ffffff);
+  color: #1e293b;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.pane-stack-back:hover,
+.left-pane-btn--back:hover {
+  background: color-mix(in srgb, var(--row-separator, #e2e8f0) 55%, #ffffff);
+}
+
+.pane-stack-back:active,
+.left-pane-btn--back:active {
+  background: color-mix(in srgb, var(--row-separator, #e2e8f0) 70%, #ffffff);
+}
+
+.pane-stack-back:focus-visible,
+.left-pane-btn--back:focus-visible {
+  outline: 2px solid color-mix(in srgb, #3b82f6 55%, transparent);
+  outline-offset: 2px;
 }
 
 .pane-stack-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 12px 4px;
-  border-bottom: 1px solid var(--row-separator);
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid var(--left-pane-row-border);
 }
 
 .pane-stack-title {
@@ -1928,7 +2020,8 @@ path:focus {
 
 .party-candidate-row {
   width: 100%;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--left-pane-row-border);
+  border-radius: var(--row-radius);
   background: #fff;
   padding: 10px 12px;
   display: flex;
@@ -2758,7 +2851,7 @@ path:focus {
   align-items: center;
   padding: var(--row-padding-y) var(--row-padding-x);
   min-height: var(--row-min-height);
-  border-bottom: 1px solid var(--row-separator);
+  border-bottom: 1px solid var(--left-pane-row-border);
   position: relative;
   border-radius: 0;
 }

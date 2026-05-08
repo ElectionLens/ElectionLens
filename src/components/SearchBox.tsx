@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { Search, X, Map, Building2, Landmark } from 'lucide-react';
+import { LeftPaneButton } from './LeftPaneButton';
 import { normalizeName, toTitleCase } from '../utils/helpers';
 import { STATE_FILE_MAP } from '../constants';
 import type {
@@ -316,7 +317,8 @@ export function SearchBox({
           aria-autocomplete="list"
         />
         {query && (
-          <button
+          <LeftPaneButton
+            variant="chrome"
             className="search-clear"
             onClick={() => {
               setQuery('');
@@ -326,7 +328,7 @@ export function SearchBox({
             aria-label="Clear search"
           >
             <X size={12} />
-          </button>
+          </LeftPaneButton>
         )}
       </div>
 

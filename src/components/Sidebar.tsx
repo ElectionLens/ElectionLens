@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useMemo } from 'react';
 import { Map, Building2, Landmark, Database, Check, Link2, Clock, BookOpen } from 'lucide-react';
 import { normalizeName, getFeatureColor } from '../utils/helpers';
 import { getPartyColor, getPartyShortName } from '../utils/partyData';
+import { LeftPaneButton } from './LeftPaneButton';
 import { SearchBox } from './SearchBox';
 import { YearSelector, type YearOption } from './YearSelector';
 import { buildMapYearDropdownOptions } from '../utils/mapYearOptions';
@@ -954,20 +955,6 @@ export function Sidebar({
     return (
       <div className="sidebar-summary party-candidates-panel" data-summary-pane="party-candidates">
         <div className="party-candidates-header">
-          <button
-            type="button"
-            className="party-candidates-back"
-            onClick={() => {
-              setSidebarTab(summaryReturnTab);
-              onLeftPaneChange?.({
-                pane: 'summary',
-                paneView: summaryReturnTab,
-                paneParty: null,
-              });
-            }}
-          >
-            ← Back
-          </button>
           <h4>{getPartyShortName(party)} candidates</h4>
           <p aria-live="polite">
             {rows.length} of {sourceRows.length} shown
@@ -997,8 +984,8 @@ export function Sidebar({
             <p className="state-map-summary-muted">No candidates match this filter.</p>
           ) : (
             rows.map((row, index) => (
-              <button
-                type="button"
+              <LeftPaneButton
+                variant="row"
                 key={`${row.party}-${row.candidateName}-${row.constituencyName}-${index}`}
                 className="party-candidate-row interactive-row"
                 onClick={() => {
@@ -1018,7 +1005,7 @@ export function Sidebar({
                   <span>{row.voteShare.toFixed(1)}%</span>
                   <span>{formatIn(row.votes)}</span>
                 </span>
-              </button>
+              </LeftPaneButton>
             ))
           )}
         </div>
@@ -1053,8 +1040,8 @@ export function Sidebar({
                       className="state-map-summary-swatch"
                       style={{ backgroundColor: col, boxShadow: `0 0 0 1px ${col}40` }}
                     />
-                    <button
-                      type="button"
+                    <LeftPaneButton
+                      variant="inline"
                       className="state-map-summary-party-link"
                       title={`Filter map by ${row.party}`}
                       onClick={() => openPartyCandidates(row.party, 'seats')}
@@ -1063,7 +1050,7 @@ export function Sidebar({
                       <span className="state-map-summary-party" title={row.party}>
                         {getPartyShortName(row.party)}
                       </span>
-                    </button>
+                    </LeftPaneButton>
                     <span className="state-map-summary-value">{row.seats}</span>
                   </li>
                 );
@@ -1105,8 +1092,8 @@ export function Sidebar({
                       className="state-map-summary-swatch"
                       style={{ backgroundColor: col, boxShadow: `0 0 0 1px ${col}40` }}
                     />
-                    <button
-                      type="button"
+                    <LeftPaneButton
+                      variant="inline"
                       className="state-map-summary-party-link"
                       title={`Filter map by ${row.party}`}
                       onClick={() => openPartyCandidates(row.party, 'votes')}
@@ -1115,7 +1102,7 @@ export function Sidebar({
                       <span className="state-map-summary-party" title={row.party}>
                         {getPartyShortName(row.party)}
                       </span>
-                    </button>
+                    </LeftPaneButton>
                     <span className="state-map-summary-votepct">
                       {row.pct.toFixed(1)}%
                       <span className="state-map-summary-voteabs"> ({formatIn(row.votes)})</span>
@@ -1234,9 +1221,9 @@ export function Sidebar({
     }
     return (
       <div className="pane-stack-header">
-        <button type="button" className="party-candidates-back" onClick={onBack}>
+        <LeftPaneButton variant="back" aria-label="Go back one level" onClick={onBack}>
           ← Back
-        </button>
+        </LeftPaneButton>
         <span className="pane-stack-title">{title}</span>
       </div>
     );
@@ -1253,10 +1240,15 @@ export function Sidebar({
           <div className="sidebar-header-actions">
             <p>India Electoral Map</p>
             {onBlogClick && (
-              <button className="blog-btn" onClick={onBlogClick} title="View Blog">
+              <LeftPaneButton
+                variant="chrome"
+                className="blog-btn"
+                onClick={onBlogClick}
+                title="View Blog"
+              >
                 <BookOpen size={16} />
                 <span>Blog</span>
-              </button>
+              </LeftPaneButton>
             )}
           </div>
         </div>
@@ -1265,13 +1257,14 @@ export function Sidebar({
           <div className="breadcrumb pane-section pane-section-tight">
             <div className="breadcrumb-nav">{renderBreadcrumb()}</div>
             {currentState && (
-              <button
+              <LeftPaneButton
+                variant="chrome"
                 className={`share-btn ${copied ? 'copied' : ''}`}
                 onClick={handleShareClick}
                 title={copied ? 'Copied!' : 'Copy shareable link'}
               >
                 {copied ? <Check size={16} /> : <Link2 size={16} />}
-              </button>
+              </LeftPaneButton>
             )}
           </div>
 
