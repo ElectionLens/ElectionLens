@@ -594,6 +594,10 @@ body {
   top: 100%;
   left: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--left-pane-row-gap);
+  padding: 6px;
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   border: 1px solid #e2e8f0;
   border-radius: 10px;
@@ -610,46 +614,40 @@ body {
   gap: var(--row-gap);
   padding: var(--row-padding-y) calc(var(--row-padding-x) + 2px);
   padding-left: var(--row-padding-x);
-  border-bottom: 1px solid var(--left-pane-row-border);
-  border-left: var(--row-accent-border-width) solid transparent;
-  border-radius: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--left-pane-row-border);
+  border-left-width: var(--row-accent-border-width);
+  border-radius: var(--row-radius);
+  background: #ffffff;
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
-.search-result-item:last-child {
-  border-bottom: none;
-}
-
-/* Inset wash comes from `.interactive-row`; backgrounds stay light type tints (not full gradients). */
-.search-result-item[data-type='state']:hover {
-  background: color-mix(in srgb, #fef3c7 28%, #ffffff);
-}
-
+/* Inset wash from `.interactive-row`; keep neutral base so hover reads like other left-pane cards. */
+.search-result-item[data-type='state']:hover,
 .search-result-item[data-type='state'].selected {
-  background: color-mix(in srgb, #fef3c7 42%, #f8fafc);
+  background: #ffffff;
 }
 
-.search-result-item[data-type='constituency']:hover {
-  background: color-mix(in srgb, #ede9fe 30%, #ffffff);
-}
-
+.search-result-item[data-type='constituency']:hover,
 .search-result-item[data-type='constituency'].selected {
-  background: color-mix(in srgb, #ede9fe 44%, #f8fafc);
+  background: #ffffff;
 }
 
-.search-result-item[data-type='assembly']:hover {
-  background: color-mix(in srgb, #d1fae5 28%, #ffffff);
-}
-
+.search-result-item[data-type='assembly']:hover,
 .search-result-item[data-type='assembly'].selected {
-  background: color-mix(in srgb, #d1fae5 40%, #f8fafc);
+  background: #ffffff;
 }
 
-.search-result-item[data-type='district']:hover {
-  background: color-mix(in srgb, #bfdbfe 26%, #ffffff);
-}
-
+.search-result-item[data-type='district']:hover,
 .search-result-item[data-type='district'].selected {
-  background: color-mix(in srgb, #bfdbfe 40%, #f8fafc);
+  background: #ffffff;
+}
+
+.search-result-item.selected {
+  border-color: color-mix(in srgb, var(--left-pane-row-border) 55%, #3b82f6 45%);
 }
 
 /* Result icon box - matching sidebar item icons */
@@ -764,6 +762,7 @@ body {
   --row-separator: #f1f5f9;
   /* Left-pane lists: shared row chrome (borders align across summary, search, party rows, detail tables) */
   --left-pane-row-border: #e2e8f0;
+  --left-pane-row-gap: 6px;
 }
 
 /**
@@ -835,21 +834,21 @@ body {
   box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
 }
 
-/* Search result item colors by type */
+/* Search: typed left accent (full box border set on `.search-result-item`) */
 .search-result-item[data-type='state'] {
-  border-left: var(--row-accent-border-width) solid #f59e0b;
+  border-left-color: #f59e0b;
 }
 
 .search-result-item[data-type='constituency'] {
-  border-left: var(--row-accent-border-width) solid var(--color-parliament);
+  border-left-color: var(--color-parliament);
 }
 
 .search-result-item[data-type='assembly'] {
-  border-left: var(--row-accent-border-width) solid var(--color-assembly);
+  border-left-color: var(--color-assembly);
 }
 
 .search-result-item[data-type='district'] {
-  border-left: var(--row-accent-border-width) solid #3b82f6;
+  border-left-color: #3b82f6;
 }
 
 .search-no-results {
@@ -1771,6 +1770,9 @@ path:focus {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--left-pane-row-gap);
 }
 
 .state-map-summary-row {
@@ -1779,16 +1781,15 @@ path:focus {
   gap: var(--row-gap);
   padding: var(--row-padding-y) var(--row-padding-x);
   min-height: var(--row-min-height);
-  border-bottom: 1px solid var(--left-pane-row-border);
-  font-size: 0.875rem;
+  box-sizing: border-box;
+  border: 1px solid var(--left-pane-row-border);
   border-radius: var(--row-radius);
+  background: #ffffff;
+  font-size: 0.875rem;
   transition:
     box-shadow 0.15s ease,
-    background 0.15s ease;
-}
-
-.state-map-summary-row:last-child {
-  border-bottom: none;
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .state-map-summary-swatch {
@@ -1830,6 +1831,7 @@ path:focus {
 
 .state-map-summary-row.is-selected {
   background: #eff6ff;
+  border-color: #93c5fd;
 }
 
 .state-map-summary-row.is-selected:hover {
@@ -2014,7 +2016,7 @@ path:focus {
 .party-candidates-list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--left-pane-row-gap);
   padding: 0 16px;
 }
 
@@ -2507,9 +2509,11 @@ path:focus {
   gap: var(--row-gap);
   min-height: var(--row-min-height);
   padding: var(--row-padding-y) var(--row-padding-x);
+  box-sizing: border-box;
+  border: 1px solid var(--left-pane-row-border);
   background: white;
   border-radius: var(--row-radius);
-  margin-bottom: 4px;
+  margin-bottom: var(--left-pane-row-gap);
   font-size: 0.75rem;
   overflow: hidden;
 }
@@ -2655,11 +2659,15 @@ path:focus {
   flex: 1;
   display: flex;
   flex-direction: column;
+  gap: var(--left-pane-row-gap);
   min-height: 0;
 }
 
 .candidates-scroll {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--left-pane-row-gap);
   overflow-y: auto;
   max-height: calc(100vh - 350px);
 }
@@ -2838,6 +2846,9 @@ path:focus {
   align-items: center;
   min-height: var(--row-min-height);
   padding: var(--row-padding-y) var(--row-padding-x);
+  box-sizing: border-box;
+  border: 1px solid var(--left-pane-row-border);
+  border-radius: var(--row-radius);
   background: #f1f5f9;
   font-size: 0.7rem;
   font-weight: 700;
@@ -2851,13 +2862,12 @@ path:focus {
   align-items: center;
   padding: var(--row-padding-y) var(--row-padding-x);
   min-height: var(--row-min-height);
-  border-bottom: 1px solid var(--left-pane-row-border);
+  box-sizing: border-box;
   position: relative;
-  border-radius: 0;
-}
-
-.candidate-row:last-child {
-  border-bottom: none;
+  border: 1px solid var(--left-pane-row-border);
+  border-radius: var(--row-radius);
+  background: #ffffff;
+  overflow: hidden;
 }
 
 .candidate-row.winner {
@@ -4572,7 +4582,7 @@ path:focus {
   }
 
   .candidate-row {
-    border-bottom: 2px solid #000;
+    border: 2px solid #000;
   }
 }
 
@@ -4896,7 +4906,9 @@ path:focus {
 }
 
 .booth-candidates-scroll {
-  /* No nested scroll - uses main panel scroll */
+  display: flex;
+  flex-direction: column;
+  gap: var(--left-pane-row-gap);
 }
 
 .booth-candidates-scroll::-webkit-scrollbar {
@@ -4921,19 +4933,17 @@ path:focus {
   display: flex;
   flex-direction: column;
   gap: var(--row-gap);
-  padding: var(--row-padding-y) 0;
+  padding: var(--row-padding-y) var(--row-padding-x);
   min-height: var(--row-min-height);
-  border-bottom: 1px solid var(--row-separator);
-}
-
-.booth-candidate-row:last-child {
-  border-bottom: none;
+  box-sizing: border-box;
+  border: 1px solid var(--left-pane-row-border);
+  border-radius: var(--row-radius);
+  background: #ffffff;
+  overflow: hidden;
 }
 
 .booth-candidate-row.winner {
   background: #f0fdf4;
-  margin: 0 -12px;
-  padding: var(--row-padding-y) var(--row-padding-x);
 }
 
 .booth-candidate-row .candidate-info {
@@ -5697,6 +5707,7 @@ path:focus {
 .booth-list-items {
   display: flex;
   flex-direction: column;
+  gap: var(--left-pane-row-gap);
 }
 
 .booth-list-item {
@@ -5704,9 +5715,10 @@ path:focus {
   grid-template-columns: 1.5fr 1fr 0.8fr;
   gap: 8px;
   padding: 8px 12px;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #f3f4f6;
+  box-sizing: border-box;
+  border: 1px solid var(--left-pane-row-border);
+  border-radius: var(--row-radius);
+  background: #ffffff;
   cursor: pointer;
   text-align: left;
   transition: background 0.15s ease;
@@ -5714,10 +5726,6 @@ path:focus {
 
 .booth-list-item:hover {
   background: #f0fdf4;
-}
-
-.booth-list-item:last-child {
-  border-bottom: none;
 }
 
 .booth-list-item .col-booth {
@@ -5844,10 +5852,13 @@ path:focus {
 }
 
 .postal-candidates {
-  background: white;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--left-pane-row-gap);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
 }
 
 .postal-candidates-header {
@@ -5857,8 +5868,10 @@ path:focus {
   gap: var(--row-gap);
   min-height: var(--row-min-height);
   padding: var(--row-padding-y) var(--row-padding-x);
+  box-sizing: border-box;
+  border: 1px solid var(--left-pane-row-border);
+  border-radius: var(--row-radius);
   background: #f1f5f9;
-  border-bottom: 1px solid var(--row-separator);
   font-size: 0.7rem;
   font-weight: 700;
   color: #64748b;
@@ -5879,7 +5892,9 @@ path:focus {
 }
 
 .postal-candidates-list {
-  /* No nested scroll - uses main panel scroll */
+  display: flex;
+  flex-direction: column;
+  gap: var(--left-pane-row-gap);
 }
 
 .postal-candidate-row {
@@ -5888,13 +5903,12 @@ path:focus {
   gap: var(--row-gap);
   min-height: var(--row-min-height);
   padding: var(--row-padding-y) var(--row-padding-x);
-  border-bottom: 1px solid var(--row-separator);
+  box-sizing: border-box;
+  border: 1px solid var(--left-pane-row-border);
+  border-radius: var(--row-radius);
+  background: #ffffff;
   font-size: var(--row-font-size-primary);
   align-items: start;
-}
-
-.postal-candidate-row:last-child {
-  border-bottom: none;
 }
 
 .postal-candidate-row.winner {
@@ -7175,6 +7189,10 @@ body {
 }
 
 .search-results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--left-pane-row-gap);
+  padding: 6px;
   background: color-mix(in srgb, var(--ui-surface) 94%, var(--ui-surface-soft) 6%);
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-md);
@@ -7201,8 +7219,16 @@ body {
 }
 
 .search-result-item {
-  border-bottom-color: color-mix(in srgb, var(--ui-border) 64%, transparent);
-  transition: all var(--ui-speed-fast) var(--ui-ease);
+  border-color: color-mix(in srgb, var(--ui-border) 78%, var(--left-pane-row-border));
+  background: var(--ui-surface);
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.search-result-item.selected {
+  border-color: color-mix(in srgb, var(--left-pane-row-border) 45%, #3b82f6 55%);
 }
 
 .result-name {
@@ -7593,12 +7619,12 @@ body {
 }
 
 .candidates-header {
-  border-bottom: none;
-  background: transparent;
+  background: color-mix(in srgb, var(--ui-surface-soft) 88%, #f1f5f9 12%);
+  border-color: color-mix(in srgb, var(--ui-border) 70%, var(--left-pane-row-border));
 }
 
 .candidate-row {
-  border-bottom: none;
+  border-color: color-mix(in srgb, var(--ui-border) 55%, var(--left-pane-row-border));
 }
 
 .col-name {
@@ -7707,14 +7733,14 @@ body {
 
 .election-panel--embed .postal-candidates {
   background: transparent;
-  border: 1px solid color-mix(in srgb, var(--ui-border) 72%, transparent);
-  border-radius: 10px;
+  border: none;
+  border-radius: 0;
   box-shadow: none;
 }
 
 .election-panel--embed .postal-candidates-header {
   background: color-mix(in srgb, var(--ui-surface-soft) 88%, transparent);
-  border-bottom-color: color-mix(in srgb, var(--ui-border) 60%, transparent);
+  border-color: color-mix(in srgb, var(--ui-border) 65%, var(--left-pane-row-border));
 }
 
 .election-panel--embed .postal-candidate-row .col-party {
@@ -7725,18 +7751,15 @@ body {
 }
 
 .election-panel--embed .booth-candidate-row {
-  border-bottom-color: color-mix(in srgb, var(--ui-border) 55%, transparent);
+  border-color: color-mix(in srgb, var(--ui-border) 55%, var(--left-pane-row-border));
 }
 
 .election-panel--embed .booth-candidate-row.winner {
   background: color-mix(in srgb, #ecfdf5 55%, transparent);
-  margin: 0 -8px;
-  padding: var(--row-padding-y) var(--row-padding-x);
-  border-radius: var(--row-radius);
 }
 
 .election-panel--embed .postal-candidate-row {
-  border-bottom-color: color-mix(in srgb, var(--ui-border) 50%, transparent);
+  border-color: color-mix(in srgb, var(--ui-border) 50%, var(--left-pane-row-border));
 }
 
 .election-panel--embed .postal-candidate-row.winner {

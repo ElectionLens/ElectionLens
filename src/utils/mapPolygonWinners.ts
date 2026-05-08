@@ -2,7 +2,7 @@
  * Resolve winning party for map polygon styling — keep in sync with MapView colour logic.
  */
 import { normalizeName } from './helpers';
-import type { AssemblyProperties, ConstituencyProperties } from '../types';
+import type { AssemblyProperties, ConstituencyProperties, DistrictProperties } from '../types';
 
 /** AC name spelling variants for style lookup (GeoJSON vs election data) */
 export const AC_STYLE_VARIANTS: Record<string, string[]> = {
@@ -166,6 +166,62 @@ export function resolveAssemblyMapPolygonWinner(params: {
   }
 
   return winner;
+}
+
+/**
+ * Dominant party string for a district feature (same lookup as MapView district layers).
+ */
+export function resolveDistrictPolygonParty(
+  props: Pick<DistrictProperties, 'district' | 'NAME' | 'DISTRICT' | 'schemaId'>,
+  opts: {
+    districtWinners: Record<string, string>;
+    currentState: string | null;
+    getStateId: (stateName: string) => string;
+    resolveDistrictName: (districtName: string, stateId: string) => string | null;
+    getDistrict?: (districtId: string) => { name?: string } | null | undefined;
+    /** Mirrors {@link suppressAssemblyFilePartyMapColors} on district map layers. */
+    suppressPartyColors: boolean;
+  }
+): string | undefined {
+  const {
+    districtWinners,
+    currentState,
+    getStateId,
+    resolveDistrictName,
+    getDistrict,
+    suppressPartyColors,
+  } = opts;
+
+  if (suppressPartyColors) return undefined;
+  if (!currentState || Object.keys(districtWinners).length === 0) return undefined;
+
+  const districtNameRaw = props.district ?? props.NAME ?? props.DISTRICT ?? '';
+  const districtName = String(districtNameRaw).trim();
+  if (!districtName) return undefined;
+
+  const stateId = getStateId(currentState);
+  const districtId = resolveDistrictName(String(districtName), stateId);
+  let party: string | undefined = districtId ? districtWinners[districtId] : undefined;
+
+  if (!party && getDistrict) {
+    const districtNorm = normalizeName(String(districtName)).toLowerCase().replace(/\s+/g, ' ');
+    for (const [did, p] of Object.entries(districtWinners)) {
+      const dist = getDistrict(did);
+      const name = dist?.name?.trim();
+      if (!name) continue;
+      const schemaNorm = normalizeName(name).toLowerCase().replace(/\s+/g, ' ');
+      if (
+        schemaNorm === districtNorm ||
+        schemaNorm === districtNorm.replace(/e$/, '') ||
+        schemaNorm === districtNorm + 'e'
+      ) {
+        party = p;
+        break;
+      }
+    }
+  }
+
+  return party;
 }
 
 export function resolvePcMapPolygonWinner(params: {

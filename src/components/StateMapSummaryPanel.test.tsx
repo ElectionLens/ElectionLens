@@ -21,6 +21,9 @@ describe('StateMapSummaryPanel', () => {
     expect(root).not.toBeNull();
     expect(root).toHaveClass('state-map-summary-assembly');
 
+    expect(document.querySelector('.state-map-summary-list')).not.toBeNull();
+    expect(document.querySelectorAll('.state-map-summary-row').length).toBeGreaterThan(0);
+
     expect(screen.getByText('5')).toBeInTheDocument();
     expect(screen.getByText(/50\.0%/)).toBeInTheDocument();
     expect(screen.getByText(/10 ACs counted/)).toBeInTheDocument();

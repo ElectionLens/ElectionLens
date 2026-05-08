@@ -67,6 +67,7 @@ test.describe('Booth Analysis', () => {
     // Check for booth list
     const boothList = firstCard.locator('.party-booth-list');
     await expect(boothList).toBeVisible({ timeout: 5000 });
+    await expect(firstCard.locator('.booth-list-item').first()).toBeVisible({ timeout: 5000 });
   });
 
   test('shows Key Insights section', async ({ page }) => {
@@ -160,5 +161,30 @@ test.describe('Postal Ballots View', () => {
 
     const candidatesList = page.locator('.postal-candidates');
     await expect(candidatesList).toBeVisible();
+  });
+
+  test('postal tab renders candidate rows in the card list', async ({ page }) => {
+    await page.locator('#ac-panel-view').selectOption('postal');
+    await expect(page.locator('.postal-candidates-list')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.postal-candidate-row').first()).toBeVisible({ timeout: 15000 });
+  });
+});
+
+test.describe('Booth Data View — candidate cards', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/tamil-nadu/ac/gummidipundi?year=2021');
+    await waitForAcPanelReady(page);
+  });
+
+  test('shows booth-wise candidate card rows when a booth is selected', async ({ page }) => {
+    await page.locator('#ac-panel-view').selectOption('booths');
+    const dropdown = page.locator('.booth-dropdown');
+    await expect(dropdown).toBeVisible();
+    const optionCount = await dropdown.locator('option').count();
+    if (optionCount <= 1) {
+      test.skip(true, 'No booth options for this fixture');
+    }
+    await dropdown.selectOption({ index: 1 });
+    await expect(page.locator('.booth-candidate-row').first()).toBeVisible({ timeout: 20000 });
   });
 });

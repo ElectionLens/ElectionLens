@@ -27,29 +27,52 @@ function isWideLayout(page: Page): boolean {
  * — Desktop: `.open` is required plus non-zero width; class alone is not enough if the dock was collapsed.
  */
 export async function openSidebarSheet(page: Page): Promise<void> {
-  const sidebar = page.locator('.sidebar').first();
-  const toggle = page.locator('.mobile-toggle');
+  await page.waitForLoadState('domcontentloaded');
   const wide = isWideLayout(page);
 
-  await sidebar.waitFor({ state: 'attached', timeout: 45000 });
+  await page.waitForFunction(() => document.querySelector('.sidebar') != null, {
+    timeout: 40000,
+  });
+  await page.waitForFunction(() => document.querySelector('.mobile-toggle') != null, {
+    timeout: 40000,
+  });
 
   const hasUsefulDockWidth = async (): Promise<boolean> => {
-    const box = await sidebar.boundingBox();
-    return box != null && box.width > 100;
+    return page.evaluate(() => {
+      const sidebar = document.querySelector('.sidebar');
+      if (!sidebar) return false;
+      const box = sidebar.getBoundingClientRect();
+      return box.width > 100;
+    });
   };
 
   for (let attempt = 0; attempt < 5; attempt++) {
-    const isOpen = await sidebar.evaluate((el: HTMLElement) => el.classList.contains('open'));
+    const { open, wideDock, hasSidebar } = await page.evaluate(() => {
+      const sidebar = document.querySelector('.sidebar');
+      if (!sidebar) return { open: false, wideDock: false, hasSidebar: false };
+      const open = sidebar.classList.contains('open');
+      const box = sidebar.getBoundingClientRect();
+      return { open, wideDock: box.width > 100, hasSidebar: true };
+    });
+
+    if (!hasSidebar) {
+      await page.waitForTimeout(200);
+      continue;
+    }
     if (wide) {
-      if (isOpen && (await hasUsefulDockWidth())) return;
-    } else if (isOpen) {
+      if (open && wideDock) return;
+    } else if (open) {
       return;
     }
 
-    await toggle.click();
-    await expect(sidebar).toHaveClass(/open/, { timeout: 15000 });
+    await page.evaluate(() => {
+      document.querySelector<HTMLElement>('.mobile-toggle')?.click();
+    });
+    await expect(page.locator('.sidebar').first()).toHaveClass(/open/, { timeout: 20000 });
     if (wide) {
-      await expect.poll(hasUsefulDockWidth, { timeout: 12000 }).toBeTruthy();
+      await expect.poll(hasUsefulDockWidth, { timeout: 15000 }).toBeTruthy();
     }
   }
+
+  throw new Error('openSidebarSheet: sidebar did not reach an open, usable state');
 }

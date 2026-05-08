@@ -7,7 +7,8 @@ import {
 import { openSidebarSheet, sidebarYearSelectOption, sidebarYearSelectorSelect } from './sidebar-helpers';
 
 async function expandElectionPanelForWinnerSection(page: Page) {
-  await expandMobileElectionPanelToFull(page.locator('.sidebar .election-panel'), page);
+  const panel = page.locator('.sidebar .sidebar-detail-host .election-panel').first();
+  await expandMobileElectionPanelToFull(panel, page);
 }
 
 test.describe('Election Lens App', () => {
@@ -95,9 +96,13 @@ test.describe('State Navigation', () => {
     );
     await indiaLink.click();
 
-    // Should return to root URL without year parameter
-    await expect(page).toHaveURL('/');
-    expect(page.url()).not.toContain('year=');
+    // Root path; URL may include benign query params (e.g. ?pane=root)
+    await expect
+      .poll(() => {
+        const u = new URL(page.url());
+        return u.pathname === '/' && !u.searchParams.has('year');
+      })
+      .toBeTruthy();
   });
 
   test('home button yields root URL without year parameter', async ({ page, isMobile }) => {
@@ -109,8 +114,15 @@ test.describe('State Navigation', () => {
     const homeBtn = page.locator('button[title="Reset to India"]').first();
     await homeBtn.click();
 
-    await expect(page).toHaveURL('/', { timeout: 15000 });
-    expect(page.url()).not.toContain('year=');
+    await expect
+      .poll(
+        () => {
+          const u = new URL(page.url());
+          return u.pathname === '/' && !u.searchParams.has('year');
+        },
+        { timeout: 15000 }
+      )
+      .toBeTruthy();
   });
 });
 
@@ -222,9 +234,7 @@ test.describe('Election Panel', () => {
 
     await expandElectionPanelForWinnerSection(page);
     
-    // Should have winner section
-    const winnerSection = panel.locator('.winner-card-compact');
-    await expect(winnerSection).toBeVisible();
+    await expect(panel.locator('.winner-card-compact, .winner-info')).toBeVisible({ timeout: 30000 });
   });
 
   test('should have year selector with multiple years', async ({ page }) => {

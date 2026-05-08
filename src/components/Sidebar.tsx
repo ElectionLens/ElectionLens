@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import { Map, Building2, Landmark, Database, Check, Link2, Clock, BookOpen } from 'lucide-react';
-import { normalizeName, getFeatureColor } from '../utils/helpers';
+import { normalizeName, getFeatureColor, getElectionStateId } from '../utils/helpers';
 import { getPartyColor, getPartyShortName } from '../utils/partyData';
 import { LeftPaneButton } from './LeftPaneButton';
 import { SearchBox } from './SearchBox';
@@ -12,6 +12,7 @@ import { PCElectionResultPanel } from './PCElectionResultPanel';
 import { useBoothData } from '../hooks/useBoothData';
 import type {
   ACElectionResult,
+  BrowseListWinnersContext,
   InfoPanelContent,
   PCElectionResult,
   StateFeature,
@@ -34,6 +35,11 @@ import type {
   HexColor,
   StateSummaryPanelData,
 } from '../types';
+import {
+  resolveAssemblyMapPolygonWinner,
+  resolveDistrictPolygonParty,
+  resolvePcMapPolygonWinner,
+} from '../utils/mapPolygonWinners';
 import type { ReactNode, CSSProperties, KeyboardEvent } from 'react';
 
 /** Enter / Space activates sidebar list rows rendered as div[role="button"]. */
@@ -129,6 +135,9 @@ interface SidebarProps {
     paneView?: 'seats' | 'votes' | null;
     paneParty?: string | null;
   }) => void;
+  browseListWinnersContext?: BrowseListWinnersContext | null;
+  resolveDistrictName?: (districtName: string, stateId: string) => string | null;
+  getDistrict?: (districtId: string) => { name?: string } | null | undefined;
 }
 
 /** Extended CSS properties to allow custom CSS variables */
@@ -212,6 +221,9 @@ export function Sidebar({
   leftPaneView = null,
   leftPaneParty = null,
   onLeftPaneChange,
+  browseListWinnersContext = null,
+  resolveDistrictName,
+  getDistrict,
 }: SidebarProps): JSX.Element {
   const { boothResults, boothsWithResults, loadBoothData, loadBoothResults } = useBoothData();
   const [isMobileSidebar, setIsMobileSidebar] = useState<boolean>(() => {
@@ -635,7 +647,21 @@ export function Sidebar({
           {sorted.map(({ feature, index }) => {
             const name = feature.properties.AC_NAME ?? '';
             const acNo = feature.properties.AC_NO ?? '';
-            const color = getFeatureColor(index, 'assemblies');
+            const aw = resolveAssemblyMapPolygonWinner({
+              props: feature.properties,
+              winners: browseListWinnersContext?.constituencyWinners ?? {},
+              suppressAssemblyPartyMapColors:
+                browseListWinnersContext?.suppressAssemblyPartyMapColors ?? false,
+              currentPC,
+              currentDistrict,
+              currentState,
+              getStateId: getElectionStateId,
+              districtWinners: browseListWinnersContext?.districtWinners ?? {},
+              resolveDistrictName: resolveDistrictName ?? (() => null),
+            });
+            const color: HexColor = aw?.party
+              ? (getPartyColor(aw.party) as HexColor)
+              : getFeatureColor(index, 'assemblies');
             const style: ExtendedCSSProperties = { '--item-color': color };
 
             return (
@@ -699,7 +725,14 @@ export function Sidebar({
           {sorted.map(({ feature, index }) => {
             const name = feature.properties.ls_seat_name ?? feature.properties.PC_NAME ?? 'Unknown';
             const pcNo = feature.properties.ls_seat_code ?? feature.properties.PC_No ?? '';
-            const color = getFeatureColor(index, 'constituencies');
+            const pw = resolvePcMapPolygonWinner({
+              props: feature.properties,
+              winners: browseListWinnersContext?.constituencyWinners ?? {},
+              dominantPCParty: browseListWinnersContext?.dominantPCParty ?? null,
+            });
+            const color: HexColor = pw?.party
+              ? (getPartyColor(pw.party) as HexColor)
+              : getFeatureColor(index, 'constituencies');
             const style: ExtendedCSSProperties = { '--item-color': color };
 
             return (
@@ -757,7 +790,20 @@ export function Sidebar({
         <div className="district-list">
           <h3>Districts ({currentData.features.length})</h3>
           {districts.map(({ name, index, feature }) => {
-            const color = getFeatureColor(index, 'districts');
+            const dp =
+              browseListWinnersContext && currentState
+                ? resolveDistrictPolygonParty(feature.properties, {
+                    districtWinners: browseListWinnersContext.districtWinners,
+                    currentState,
+                    getStateId: getElectionStateId,
+                    resolveDistrictName: resolveDistrictName ?? (() => null),
+                    suppressPartyColors: browseListWinnersContext.suppressAssemblyPartyMapColors,
+                    ...(getDistrict ? { getDistrict } : {}),
+                  })
+                : undefined;
+            const color: HexColor = dp
+              ? (getPartyColor(dp) as HexColor)
+              : getFeatureColor(index, 'districts');
             const style: ExtendedCSSProperties = { '--item-color': color };
             return (
               <div
@@ -835,7 +881,21 @@ export function Sidebar({
           {sorted.map(({ feature, index }) => {
             const name = feature.properties.AC_NAME ?? '';
             const acNo = feature.properties.AC_NO ?? '';
-            const color = getFeatureColor(index, 'assemblies');
+            const aw = resolveAssemblyMapPolygonWinner({
+              props: feature.properties,
+              winners: browseListWinnersContext?.constituencyWinners ?? {},
+              suppressAssemblyPartyMapColors:
+                browseListWinnersContext?.suppressAssemblyPartyMapColors ?? false,
+              currentPC,
+              currentDistrict,
+              currentState,
+              getStateId: getElectionStateId,
+              districtWinners: browseListWinnersContext?.districtWinners ?? {},
+              resolveDistrictName: resolveDistrictName ?? (() => null),
+            });
+            const color: HexColor = aw?.party
+              ? (getPartyColor(aw.party) as HexColor)
+              : getFeatureColor(index, 'assemblies');
             const style: ExtendedCSSProperties = { '--item-color': color };
 
             return (
@@ -882,7 +942,11 @@ export function Sidebar({
           <h3>States & Union Territories ({states.length})</h3>
           {states.map(({ name, index, feature }) => {
             const displayName = normalizeName(name);
-            const color: HexColor = getFeatureColor(index, 'states');
+            const stateId = feature.properties.schemaId ?? getElectionStateId(name);
+            const sw = browseListWinnersContext?.stateWinners[stateId]?.party;
+            const color: HexColor = sw
+              ? (getPartyColor(sw) as HexColor)
+              : getFeatureColor(index, 'states');
             return (
               <div
                 key={`state-${index}`}
@@ -940,8 +1004,8 @@ export function Sidebar({
     const filtered = sourceRows.filter((row) => {
       if (!query) return true;
       return (
-        row.candidateName.toLowerCase().includes(query) ||
-        row.constituencyName.toLowerCase().includes(query)
+        (row.candidateName ?? '').toLowerCase().includes(query) ||
+        (row.constituencyName ?? '').toLowerCase().includes(query)
       );
     });
     const rows = [...filtered].sort((a, b) => {
@@ -1287,9 +1351,9 @@ export function Sidebar({
               <span className="info-title-text">{info.title}</span>
               {acDetailForBadge && (
                 <span
-                  className={`constituency-type type-${acDetailForBadge.constituencyType.toLowerCase()}`}
+                  className={`constituency-type type-${(acDetailForBadge.constituencyType ?? 'GEN').toLowerCase()}`}
                 >
-                  {acDetailForBadge.constituencyType}
+                  {acDetailForBadge.constituencyType ?? 'GEN'}
                 </span>
               )}
               {showPCDetailPanel && pcElectionResult && (

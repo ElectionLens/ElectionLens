@@ -308,6 +308,15 @@ export interface UseElectionDataReturn {
 // Component Props Types
 // ============================================================
 
+/** Winner snapshot for sidebar list accent colors (mirrors MapView effective winners). */
+export interface BrowseListWinnersContext {
+  stateWinners: Record<string, { party: string; year: number }>;
+  constituencyWinners: Record<string, { party: string; candidate: string }>;
+  districtWinners: Record<string, string>;
+  dominantPCParty: string | null;
+  suppressAssemblyPartyMapColors: boolean;
+}
+
 /** Sidebar component props */
 export interface SidebarProps {
   statesGeoJSON: StatesGeoJSON | null;
@@ -367,6 +376,10 @@ export interface SidebarProps {
   pcShareUrl?: string | undefined;
   onCloseElectionPanel?: () => void;
   onClosePCElectionPanel?: () => void;
+  /** Map winner context for list row accent colors (from MapView). */
+  browseListWinnersContext?: BrowseListWinnersContext | null;
+  resolveDistrictName?: (districtName: string, stateId: string) => string | null;
+  getDistrict?: (districtId: string) => { name?: string } | null | undefined;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -441,6 +454,8 @@ export interface MapViewProps {
   selectedSummaryParty?: string | null;
   onSummaryPartyChange?: (party: string | null) => void;
   onStateSummaryDataChange?: (summary: StateSummaryPanelData | null) => void;
+  /** Push winner maps for sidebar list row accent colors (aligned with map layers). */
+  onBrowseListWinnersContext?: (ctx: BrowseListWinnersContext | null) => void;
 }
 
 export interface StateSummaryPanelData {

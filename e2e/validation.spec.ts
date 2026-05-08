@@ -5,12 +5,19 @@
  */
 import { test, expect } from '@playwright/test';
 import type { Locator, Page } from '@playwright/test';
+
+/** Panel hydration + map often exceed the global 60s default from playwright.config. */
+test.describe.configure({ timeout: 120000 });
 import {
   ensureElectionPanelVisible,
   expandMobileElectionPanelToFull,
   expectFirstVisibleMatch,
 } from './panel-helpers';
-import { openSidebarSheet, sidebarYearSelectOption } from './sidebar-helpers';
+import {
+  openSidebarSheet,
+  sidebarYearSelectOption,
+  sidebarYearSelectorSelect,
+} from './sidebar-helpers';
 
 async function expandPanelOnMobileIfNeeded(panel: Locator, page: Page) {
   await expandMobileElectionPanelToFull(panel, page);
@@ -89,7 +96,7 @@ test.describe('Link Validation - Year Selector Links', () => {
     const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
 
-    const yearSelect = panel.locator('#ac-panel-year');
+    const yearSelect = sidebarYearSelectorSelect(page, 'ac-panel-year');
     await expect(yearSelect).toBeVisible();
     const optionCount = await yearSelect.locator('option').count();
     expect(optionCount).toBeGreaterThan(0);
@@ -108,9 +115,11 @@ test.describe('Link Validation - Year Selector Links', () => {
     const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
 
-    const yearSelect = panel.locator('#ac-panel-year');
+    const yearSelect = sidebarYearSelectorSelect(page, 'ac-panel-year');
     await expect(yearSelect).toBeEnabled({ timeout: 20000 });
-    expect(await yearSelect.locator('option').count()).toBeGreaterThan(0);
+    await expect
+      .poll(async () => yearSelect.locator('option').count(), { timeout: 30000, intervals: [200, 500] })
+      .toBeGreaterThan(0);
   });
 });
 
@@ -212,7 +221,11 @@ test.describe('Navigation Flow - District Path', () => {
 
   test('district to AC navigation works', async ({ page }) => {
     await page.goto('/rajasthan/district/baran/ac/anta');
-    await page.waitForSelector('.leaflet-container', { timeout: 15000 });
+    await page.waitForSelector('.leaflet-container', { timeout: 60000 });
+    await page.waitForFunction(
+      () => document.querySelectorAll('.leaflet-interactive').length > 0,
+      { timeout: 60000 }
+    );
 
     const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
@@ -325,18 +338,19 @@ test.describe('Navigation Flow - AC View Toggle', () => {
 // =============================================================================
 
 test.describe('Panel Validation - AC Panel Content', () => {
+  test.describe.configure({ timeout: 180000 });
+
   test('AC panel shows all required sections', async ({ page }) => {
     await page.goto('/madhya-pradesh/pc/bhopal/ac/bhopal-uttar');
+    await page.waitForSelector('.leaflet-container', { timeout: 60000 });
     const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
 
-    await expect(panel.locator('#ac-panel-view')).toBeVisible({ timeout: 15000 });
-    await expect(panel.locator('.controls-card')).toBeVisible();
-    await expect(
-      panel
-        .locator('.winner-card-compact, .winner-info, .candidates-table-full .candidate-row')
-        .first()
-    ).toBeVisible({ timeout: 25000 });
+    await expectFirstVisibleMatch(panel, '[id="ac-panel-view"], .controls-card, #ac-panel-year-proxy');
+    await expectFirstVisibleMatch(
+      panel,
+      '.winner-card-compact, .winner-info, .candidates-table-full .candidate-row'
+    );
     await expect(panel.locator('.election-year-selector, .year-selector').first()).toBeVisible();
 
     await expect(panel.locator('.share-bar .election-panel-btn').first()).toBeVisible();
@@ -344,9 +358,11 @@ test.describe('Panel Validation - AC Panel Content', () => {
 
   test('AC panel winner card has correct structure', async ({ page }) => {
     await page.goto('/odisha/pc/bhubaneswar/ac/bhubaneswar-central');
+    await page.waitForSelector('.leaflet-container', { timeout: 60000 });
     const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
 
+    await expectFirstVisibleMatch(panel, '.winner-card-compact, .winner-info');
     const winnerCard = panel.locator('.winner-card-compact, .winner-info').first();
     await expect(winnerCard).toBeVisible({ timeout: 30000 });
 

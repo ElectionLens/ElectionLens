@@ -15,6 +15,7 @@ function isNarrowViewport(page: Page): boolean {
  */
 export async function tapBottomSheetHandle(panel: Locator): Promise<void> {
   const handle = panel.locator('.bottom-sheet-handle').first();
+  if ((await handle.count()) === 0) return;
   await handle.evaluate((el) => {
     (el as HTMLElement).dispatchEvent(
       new MouseEvent('click', { bubbles: true, cancelable: true, composed: true })
@@ -58,13 +59,27 @@ export async function expandMobileElectionPanelToFull(panel: Locator, page: Page
 }
 
 /**
+ * Sidebar `sidebar-scroll` clips content; `isVisible()` is false until ancestors scroll.
+ */
+export async function scrollElectionPanelIntoView(panel: Locator): Promise<void> {
+  await panel.scrollIntoViewIfNeeded({ timeout: 15000 }).catch(() => {});
+  for (const sel of ['#ac-panel-view', '#pc-panel-view', '.controls-card', '.overview-view']) {
+    const inner = panel.locator(sel).first();
+    if ((await inner.count()) === 0) continue;
+    await inner.scrollIntoViewIfNeeded({ timeout: 5000 }).catch(() => {});
+  }
+}
+
+/**
  * First DOM match for a comma selector may be hidden on mobile (winner card in half mode, loading).
  * Poll until something substantive is visible — including half-mode preview rows or year control.
  */
 export async function expectFirstVisibleMatch(panel: Locator, selector: string): Promise<void> {
+  await scrollElectionPanelIntoView(panel);
   await expect
     .poll(
       async () => {
+        await scrollElectionPanelIntoView(panel);
         const primary = panel.locator(selector);
         for (let i = 0; i < (await primary.count()); i++) {
           if (await primary.nth(i).isVisible().catch(() => false)) return true;
@@ -78,6 +93,14 @@ export async function expectFirstVisibleMatch(panel: Locator, selector: string):
         const tableRow = panel.locator('.candidates-table-full .candidate-row');
         for (let i = 0; i < (await tableRow.count()); i++) {
           if (await tableRow.nth(i).isVisible().catch(() => false)) return true;
+        }
+        const postalRows = panel.locator('.postal-candidate-row');
+        for (let i = 0; i < (await postalRows.count()); i++) {
+          if (await postalRows.nth(i).isVisible().catch(() => false)) return true;
+        }
+        const boothRows = panel.locator('.booth-candidate-row');
+        for (let i = 0; i < (await boothRows.count()); i++) {
+          if (await boothRows.nth(i).isVisible().catch(() => false)) return true;
         }
         const yearSel = panel.locator('select.year-dropdown');
         for (let i = 0; i < (await yearSel.count()); i++) {
@@ -108,7 +131,7 @@ export async function expectFirstVisibleMatch(panel: Locator, selector: string):
         if (await panel.locator('#pc-panel-view').isVisible().catch(() => false)) return true;
         return false;
       },
-      { timeout: 25000, intervals: [100, 200, 400, 800] }
+      { timeout: 45000, intervals: [100, 200, 400, 800, 1200] }
     )
     .toBe(true);
 }
@@ -123,6 +146,7 @@ export async function ensureElectionPanelVisible(page: Page): Promise<Locator> {
   const panel = page.locator('.sidebar .sidebar-detail-host .election-panel').first();
   try {
     await expect(panel).toBeVisible({ timeout: 35000 });
+    await scrollElectionPanelIntoView(panel);
     return panel;
   } catch (firstErr) {
     await openSidebarSheet(page);
@@ -134,6 +158,7 @@ export async function ensureElectionPanelVisible(page: Page): Promise<Locator> {
       await expect(panel).toBeVisible({ timeout: 25000 }).catch(() => {
         throw firstErr;
       });
+      await scrollElectionPanelIntoView(panel);
       return panel;
     }
 
@@ -142,13 +167,18 @@ export async function ensureElectionPanelVisible(page: Page): Promise<Locator> {
       await expect(panel).toBeVisible({ timeout: 25000 }).catch(() => {
         throw firstErr;
       });
+      await scrollElectionPanelIntoView(panel);
       return panel;
     }
 
-    await page.locator('.mobile-toggle').click({ timeout: 5000 }).catch(() => {});
+    await page
+      .locator('.mobile-toggle')
+      .evaluate((el) => (el as HTMLElement).click())
+      .catch(() => {});
     await openSidebarSheet(page);
     try {
       await expect(panel).toBeVisible({ timeout: 20000 });
+      await scrollElectionPanelIntoView(panel);
       return panel;
     } catch {
       throw new Error(

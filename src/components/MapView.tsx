@@ -36,6 +36,7 @@ import {
   assemblyElectionFetchUrl,
 } from '../constants/paths';
 import type {
+  BrowseListWinnersContext,
   ElectionResultsByConstituency,
   ElectionResultsFileMeta,
   PCElectionResultsByConstituency,
@@ -46,6 +47,7 @@ import { defaultAssemblyDataYearFromIndex } from '../utils/electionSchedule';
 import { isAssemblyFeatureSelected } from '../utils/mapSelection';
 import {
   resolveAssemblyMapPolygonWinner,
+  resolveDistrictPolygonParty,
   resolvePcMapPolygonWinner,
   AC_STYLE_VARIANTS,
 } from '../utils/mapPolygonWinners';
@@ -552,6 +554,7 @@ export function MapView({
   selectedSummaryParty = null,
   onSummaryPartyChange,
   onStateSummaryDataChange,
+  onBrowseListWinnersContext,
 }: MapViewProps): JSX.Element {
   const geoJsonRef = useRef<GeoJSONRef>(null);
   // Track pending selected assembly to handle click -> mouseout race condition
@@ -1602,6 +1605,31 @@ export function MapView({
     return maxParty;
   }, [level, currentState, currentPC, effectiveConstituencyWinners]);
 
+  useEffect(() => {
+    if (!onBrowseListWinnersContext) return;
+    const payload: BrowseListWinnersContext = {
+      stateWinners,
+      constituencyWinners: effectiveConstituencyWinners,
+      districtWinners,
+      dominantPCParty,
+      suppressAssemblyPartyMapColors: suppressAssemblyFilePartyMapColors,
+    };
+    onBrowseListWinnersContext(payload);
+  }, [
+    onBrowseListWinnersContext,
+    stateWinners,
+    effectiveConstituencyWinners,
+    districtWinners,
+    dominantPCParty,
+    suppressAssemblyFilePartyMapColors,
+  ]);
+
+  useEffect(() => {
+    return () => {
+      onBrowseListWinnersContext?.(null);
+    };
+  }, [onBrowseListWinnersContext]);
+
   const resolvedPcYearForAcMap = useMemo((): number | null => {
     if (typeof window === 'undefined') return selectedACPCYear ?? null;
     const py = new URLSearchParams(window.location.search).get('year');
@@ -2289,30 +2317,14 @@ export function MapView({
         return mergeDimmedNonFocusStyle(neutral);
       }
       const props = feature.properties as DistrictProperties;
-      const districtName = (props.district ?? props.NAME ?? props.DISTRICT ?? '').trim();
-      if (!districtName) return mergeDimmedNonFocusStyle(neutral);
-      const stateId = getStateId(currentState);
-      const districtId = resolveDistrictName(districtName, stateId);
-      let party = districtId ? districtWinners[districtId] : undefined;
-      // Fallback: match by normalized name (handles GeoJSON/schema spelling variants e.g. Bagalkote/Bagalkot, Belagavi/Belgaum)
-      if (!party && getDistrict && Object.keys(districtWinners).length > 0) {
-        const districtNorm = normalizeName(districtName).toLowerCase().replace(/\s+/g, ' ');
-        for (const [did, p] of Object.entries(districtWinners)) {
-          const dist = getDistrict(did);
-          const name = dist?.name?.trim();
-          if (!name) continue;
-          const schemaNorm = normalizeName(name).toLowerCase().replace(/\s+/g, ' ');
-          if (schemaNorm === districtNorm) {
-            party = p;
-            break;
-          }
-          // Also try without trailing 'e' / with trailing 'e'
-          if (schemaNorm === districtNorm.replace(/e$/, '') || schemaNorm === districtNorm + 'e') {
-            party = p;
-            break;
-          }
-        }
-      }
+      const party = resolveDistrictPolygonParty(props, {
+        districtWinners,
+        currentState,
+        getStateId,
+        resolveDistrictName,
+        getDistrict,
+        suppressPartyColors: suppressAssemblyFilePartyMapColors,
+      });
       if (party) {
         return mergeDimmedNonFocusStyle({ ...base, fillColor: getPartyColor(party) });
       }
@@ -2760,34 +2772,14 @@ export function MapView({
       if (level === 'districts' && feature && currentState) {
         baseStyle = { ...NEUTRAL_MAP_STYLE };
         const props = feature.properties as DistrictProperties;
-        const districtName =
-          props.district ?? props.NAME ?? (props as Record<string, unknown>)['DISTRICT'] ?? '';
-        const stateId = getStateId(currentState);
-        const districtId = districtName ? resolveDistrictName(String(districtName), stateId) : null;
-        let party =
-          districtId && Object.keys(districtWinners).length > 0
-            ? districtWinners[districtId]
-            : undefined;
-        // Fallback: match by normalized name (GeoJSON/schema spelling variants e.g. Bagalkote/Bagalkot)
-        if (!party && getDistrict && districtName && Object.keys(districtWinners).length > 0) {
-          const districtNorm = normalizeName(String(districtName))
-            .toLowerCase()
-            .replace(/\s+/g, ' ');
-          for (const [did, p] of Object.entries(districtWinners)) {
-            const dist = getDistrict(did);
-            const name = dist?.name?.trim();
-            if (!name) continue;
-            const schemaNorm = normalizeName(name).toLowerCase().replace(/\s+/g, ' ');
-            if (
-              schemaNorm === districtNorm ||
-              schemaNorm === districtNorm.replace(/e$/, '') ||
-              schemaNorm === districtNorm + 'e'
-            ) {
-              party = p;
-              break;
-            }
-          }
-        }
+        const party = resolveDistrictPolygonParty(props, {
+          districtWinners,
+          currentState,
+          getStateId,
+          resolveDistrictName,
+          getDistrict,
+          suppressPartyColors: suppressAssemblyFilePartyMapColors,
+        });
         if (party && !suppressAssemblyFilePartyMapColors) {
           baseStyle = {
             fillColor: getPartyColor(party),

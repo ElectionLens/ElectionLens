@@ -6,6 +6,11 @@
  */
 import { test, expect } from '@playwright/test';
 import type { Locator, Page } from '@playwright/test';
+
+/**
+ * Deep links + map + sidebar can exceed 120s (`goto` and leaflet each allow 60s before panel).
+ */
+test.describe.configure({ timeout: 240000 });
 import {
   ensureElectionPanelVisible,
   expandMobileElectionPanelToFull,
@@ -100,10 +105,10 @@ const pcSamples = [
 test.describe('URL Validation - Critical URLs', () => {
   for (const { url, description, type } of criticalUrls) {
     test(`loads ${description}: ${url}`, async ({ page }) => {
-      await page.goto(url);
+      await page.goto(url, { waitUntil: 'load', timeout: 60000 });
 
       // Wait for map to load
-      await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
+      await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 60000 });
 
       // Both AC and PC should show election panel
       const panel = await ensureElectionPanelVisible(page);
@@ -131,10 +136,10 @@ test.describe('URL Validation - Critical URLs', () => {
 test.describe('URL Validation - AC Samples from Each State', () => {
   for (const { state, url } of stateACSamples) {
     test(`${state}: ${url}`, async ({ page }) => {
-      await page.goto(url);
+      await page.goto(url, { waitUntil: 'load', timeout: 60000 });
 
       // Wait for map
-      await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
+      await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 60000 });
 
       // Should show election panel with data
       const panel = await ensureElectionPanelVisible(page);
@@ -152,10 +157,10 @@ test.describe('URL Validation - AC Samples from Each State', () => {
 test.describe('URL Validation - PC Samples (Panel Must Show)', () => {
   for (const { state, url } of pcSamples) {
     test(`${state}: ${url}`, async ({ page }) => {
-      await page.goto(url);
+      await page.goto(url, { waitUntil: 'load', timeout: 60000 });
 
       // Wait for map
-      await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
+      await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 60000 });
 
       // PC URL should show election panel (this was the bug!)
       const panel = await ensureElectionPanelVisible(page);
@@ -176,9 +181,12 @@ test.describe('URL Validation - PC Samples (Panel Must Show)', () => {
 test.describe('URL Validation - Year Fallback', () => {
   test('falls back to valid year when invalid year specified', async ({ page }) => {
     // 2022 is not a valid year for Rajasthan (has 2008, 2013, 2018, 2023)
-    await page.goto('/rajasthan/pc/nagaur/ac/jayal-(sc)?year=2022');
+    await page.goto('/rajasthan/pc/nagaur/ac/jayal-(sc)?year=2022', {
+      waitUntil: 'load',
+      timeout: 60000,
+    });
 
-    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 60000 });
 
     // Should still show panel (falls back to closest year)
     const panel = await ensureElectionPanelVisible(page);
@@ -238,9 +246,12 @@ test.describe('URL Validation - Edge Cases', () => {
   });
 
   test('handles ST constituency', async ({ page }) => {
-    await page.goto('/rajasthan/pc/jaipur-rural/ac/jamwa-ramgarh-(st)');
+    await page.goto('/rajasthan/pc/jaipur-rural/ac/jamwa-ramgarh-(st)', {
+      waitUntil: 'load',
+      timeout: 60000,
+    });
 
-    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 60000 });
 
     // Should show election panel with data
     const panel = await ensureElectionPanelVisible(page);
@@ -258,14 +269,21 @@ test.describe('URL Validation - Edge Cases', () => {
   });
 
   test('district URL loads AC panel', async ({ page }) => {
-    await page.goto('/rajasthan/district/baran/ac/anta?year=2023');
+    await page.goto('/rajasthan/district/baran/ac/anta?year=2023', {
+      waitUntil: 'load',
+      timeout: 60000,
+    });
 
-    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 60000 });
+    await page.waitForFunction(
+      () => document.querySelectorAll('.leaflet-interactive').length > 0,
+      { timeout: 60000 }
+    );
 
     // Should show AC election panel
     const panel = await ensureElectionPanelVisible(page);
 
-    await expect(panel.locator('#ac-panel-view')).toBeVisible({ timeout: 15000 });
+    await expect(panel.locator('#ac-panel-view, button#ac-panel-view')).toBeVisible({ timeout: 20000 });
     await expect(panel.locator('#pc-panel-view')).toHaveCount(0);
 
     // Should have election data

@@ -2,7 +2,7 @@ import { test, expect, Page } from '@playwright/test';
 import {
   ensureElectionPanelVisible,
   expandMobileElectionPanelToFull,
-  tapBottomSheetHandle,
+  expectFirstVisibleMatch,
 } from './panel-helpers';
 
 /**
@@ -29,134 +29,41 @@ async function waitForMapReady(page: Page) {
   }, { timeout: 15000 });
 }
 
-test.describe('Mobile Portrait - Bottom Sheet Behavior', () => {
+test.describe('Mobile Portrait - Embedded election panel', () => {
   test.beforeEach(async ({ page }) => {
     await setPortraitViewport(page);
   });
 
-  test('should show drag handle on panel in portrait mode', async ({ page }) => {
+  /**
+   * Sidebar AC panel: portrait uses a single expanded sheet (panel-full + election-panel--embed).
+   * Peek/half cycling and .bottom-sheet-handle were removed from React; CSS may still define them.
+   */
+  test('should use expanded embed panel (panel-full) for AC in portrait', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
     const panel = await ensureElectionPanelVisible(page);
 
-    // Drag handle should be visible in portrait
-    const dragHandle = panel.locator('.bottom-sheet-handle');
-    await expect(dragHandle).toBeVisible();
-  });
-
-  test('should start in half mode by default', async ({ page }) => {
-    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
-    await waitForMapReady(page);
-
-    const panel = await ensureElectionPanelVisible(page);
-
-    // Panel should have half class
-    await expect(panel).toHaveClass(/panel-half/);
-  });
-
-  test('should expand to full mode on drag handle click from half', async ({ page }) => {
-    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
-    await waitForMapReady(page);
-
-    const panel = await ensureElectionPanelVisible(page);
-    await expect(panel).toHaveClass(/panel-half/);
-
-    // Click drag handle to expand
-    await tapBottomSheetHandle(panel);
-
-    // Should now be in full mode
     await expect(panel).toHaveClass(/panel-full/);
+    await expect(panel).toHaveClass(/election-panel--embed/);
+    await expect(panel.locator('.bottom-sheet-handle')).toHaveCount(0);
   });
 
-  test('should collapse to peek mode on drag handle click from full', async ({ page }) => {
+  test('should show year and view controls in portrait embed', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
     const panel = await ensureElectionPanelVisible(page);
-
-    await tapBottomSheetHandle(panel); // half -> full
-    await expect(panel).toHaveClass(/panel-full/);
-
-    await tapBottomSheetHandle(panel); // full -> peek
-    await expect(panel).toHaveClass(/panel-peek/);
+    await expect(panel.locator('.election-year-selector').first()).toBeVisible();
+    await expect(panel.locator('[id="ac-panel-view"]')).toBeVisible({ timeout: 30000 });
   });
 
-  test('should cycle through all three states', async ({ page }) => {
+  test('should show winner or candidate rows after results load', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
     const panel = await ensureElectionPanelVisible(page);
-
-    // Start at half
-    await expect(panel).toHaveClass(/panel-half/);
-
-    await tapBottomSheetHandle(panel);
-    await expect(panel).toHaveClass(/panel-full/);
-
-    await tapBottomSheetHandle(panel);
-    await expect(panel).toHaveClass(/panel-peek/);
-
-    await tapBottomSheetHandle(panel);
-    await expect(panel).toHaveClass(/panel-half/);
-  });
-
-  test('should show peek winner summary in peek mode', async ({ page }) => {
-    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
-    await waitForMapReady(page);
-
-    const panel = await ensureElectionPanelVisible(page);
-
-    await tapBottomSheetHandle(panel); // half -> full
-    await tapBottomSheetHandle(panel); // full -> peek
-
-    // Peek winner should be visible
-    const peekWinner = panel.locator('.peek-winner');
-    await expect(peekWinner).toBeVisible();
-  });
-
-  test('should hide winner card in half mode', async ({ page }) => {
-    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
-    await waitForMapReady(page);
-
-    const panel = await ensureElectionPanelVisible(page);
-    await expect(panel).toHaveClass(/panel-half/);
-
-    // Winner card should be hidden in half mode
-    const winnerCard = panel.locator('.winner-card, .winner-card-compact');
-    await expect(winnerCard).not.toBeVisible();
-  });
-
-  test('should show winner card in full mode', async ({ page }) => {
-    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
-    await waitForMapReady(page);
-
-    const panel = await ensureElectionPanelVisible(page);
-
-    await tapBottomSheetHandle(panel);
-    await expect(panel).toHaveClass(/panel-full/);
-
-    // Winner card should be visible in full mode
-    const winnerCard = panel.locator('.winner-card-compact');
-    await expect(winnerCard).toBeVisible();
-  });
-
-  test('should expand panel when header clicked in peek mode', async ({ page }) => {
-    await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
-    await waitForMapReady(page);
-
-    const panel = await ensureElectionPanelVisible(page);
-
-    await tapBottomSheetHandle(panel); // half -> full
-    await tapBottomSheetHandle(panel); // full -> peek
-    await expect(panel).toHaveClass(/panel-peek/);
-
-    // Click on header to expand
-    const header = panel.locator('.election-panel-header');
-    await header.click({ force: true });
-
-    // Should expand to half
-    await expect(panel).toHaveClass(/panel-half/);
+    await expectFirstVisibleMatch(panel, '.winner-card-compact, .candidates-table-full .candidate-row');
   });
 });
 
@@ -165,7 +72,7 @@ test.describe('Mobile Portrait - Panel Content Visibility', () => {
     await setPortraitViewport(page);
   });
 
-  test('should show year selector in all modes', async ({ page }) => {
+  test('should show year selector in portrait embed', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
@@ -173,34 +80,30 @@ test.describe('Mobile Portrait - Panel Content Visibility', () => {
     const yearSelectors = panel.locator('.election-year-selector');
 
     await expect(yearSelectors.first()).toBeVisible();
-
-    await tapBottomSheetHandle(panel);
-    await expect(yearSelectors.first()).toBeVisible();
+    expect(
+      await panel.locator('#ac-panel-year-proxy option, #ac-panel-year option').count()
+    ).toBeGreaterThan(0);
   });
 
-  test('should hide stats in half mode', async ({ page }) => {
+  test('should show summary or winner content when results load (embed uses panel-full)', async ({
+    page,
+  }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
     const panel = await ensureElectionPanelVisible(page);
-    await expect(panel).toHaveClass(/panel-half/);
+    await expect(panel).toHaveClass(/panel-full/);
 
-    // Stats should be hidden in half mode
-    const stats = panel.locator('.stats-inline, .constituency-stats');
-    const statsCount = await stats.count();
-    if (statsCount > 0) {
-      await expect(stats.first()).not.toBeVisible();
-    }
+    await expectFirstVisibleMatch(panel, '.stats-inline, .constituency-stats, .winner-card-compact');
   });
 
-  test('should show candidates preview in half mode', async ({ page }) => {
+  test('should show candidate table or preview on overview', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
     const panel = await ensureElectionPanelVisible(page);
-    await expect(panel).toHaveClass(/panel-half/);
+    await expect(panel).toHaveClass(/panel-full/);
 
-    // Past year: preview or table on overview
     const candidates = panel.locator(
       '.candidates-section, .candidates-preview, .candidates-view, .candidates-table-full'
     );
@@ -210,17 +113,19 @@ test.describe('Mobile Portrait - Panel Content Visibility', () => {
     }
   });
 
-  test('should have horizontally scrollable year selector', async ({ page }) => {
+  test('should have year options via native select or proxy on mobile', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
     const panel = await ensureElectionPanelVisible(page);
 
-    const yearSelector = panel.locator('.election-year-selector').nth(1);
-    await expect(yearSelector).toBeVisible();
+    const yearSelectorRow = panel.locator('.election-year-selector').filter({
+      has: page.locator('label:has-text("Year")'),
+    });
+    await expect(yearSelectorRow.first()).toBeVisible();
 
-    const yearDropdown = yearSelector.locator('select.year-dropdown');
-    expect(await yearDropdown.locator('option').count()).toBeGreaterThan(0);
+    const opts = panel.locator('#ac-panel-year-proxy option, #ac-panel-year option');
+    expect(await opts.count()).toBeGreaterThan(0);
   });
 });
 
@@ -229,7 +134,7 @@ test.describe('Mobile Portrait - Map Interaction', () => {
     await setPortraitViewport(page);
   });
 
-  test('should keep map visible when panel is in half mode', async ({ page }) => {
+  test('should keep map visible with embed panel open', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
@@ -237,7 +142,7 @@ test.describe('Mobile Portrait - Map Interaction', () => {
     const panel = await ensureElectionPanelVisible(page);
 
     await expect(map).toBeVisible();
-    await expect(panel).toHaveClass(/panel-half/);
+    await expect(panel).toHaveClass(/panel-full/);
 
     // Map should still be visible (not completely covered)
     const mapBox = await map.boundingBox();
@@ -403,15 +308,15 @@ test.describe('Mobile Portrait - PC Panel', () => {
     await setPortraitViewport(page);
   });
 
-  test('should show PC panel with drag handle', async ({ page }) => {
+  test('should show PC panel expanded in portrait (no bottom-sheet handle)', async ({ page }) => {
     await page.goto('/karnataka/pc/bangalore-north');
     await waitForMapReady(page);
 
     const panel = page.locator('.election-panel.pc-panel');
     await expect(panel).toBeVisible({ timeout: 15000 });
 
-    const dragHandle = panel.locator('.bottom-sheet-handle');
-    await expect(dragHandle).toBeVisible();
+    await expect(panel).toHaveClass(/panel-full/);
+    await expect(panel.locator('.bottom-sheet-handle')).toHaveCount(0);
   });
 
   test('should show PC panel chrome (sidebar omits heading and Parliament badge)', async ({ page }) => {
@@ -419,7 +324,7 @@ test.describe('Mobile Portrait - PC Panel', () => {
     await waitForMapReady(page);
 
     const panel = await ensureElectionPanelVisible(page);
-    await expandMobileElectionPanelToFull(panel, page); // half -> full when bottom sheet is present
+    await expandMobileElectionPanelToFull(panel, page);
 
     // PCElectionResultPanel in the sidebar passes omitConstituencyHeading, so .pc-badge is not rendered;
     // the View selector is always present and is unique to the PC panel.
@@ -430,18 +335,13 @@ test.describe('Mobile Portrait - PC Panel', () => {
     await expect(viewProxy.locator('option[value="candidates"]')).toHaveCount(0);
   });
 
-  test('should cycle through panel states for PC panel', async ({ page }) => {
+  test('should keep PC panel at panel-full in portrait embed', async ({ page }) => {
     await page.goto('/karnataka/pc/bangalore-north');
     await waitForMapReady(page);
 
     const panel = await ensureElectionPanelVisible(page);
-    await expect(panel).toHaveClass(/panel-half/);
-
-    await tapBottomSheetHandle(panel);
     await expect(panel).toHaveClass(/panel-full/);
-
-    await tapBottomSheetHandle(panel);
-    await expect(panel).toHaveClass(/panel-peek/);
+    await expect(panel.locator('.bottom-sheet-handle')).toHaveCount(0);
   });
 });
 
@@ -455,8 +355,7 @@ test.describe('Orientation Change Simulation', () => {
     let panel = page.locator('.election-panel');
     await expect(panel).toBeVisible({ timeout: 15000 });
 
-    // Should have panel state in portrait
-    await expect(panel).toHaveClass(/panel-half/);
+    await expect(panel).toHaveClass(/panel-full/);
 
     // Switch to landscape and reload (React components check viewport at mount)
     await setLandscapeViewport(page);
@@ -472,26 +371,23 @@ test.describe('Orientation Change Simulation', () => {
     await expect(dragHandle).not.toBeVisible();
   });
 
-  test('should show drag handle when navigating in portrait after landscape', async ({ page }) => {
-    // Start in landscape, verify no drag handle
+  test('should show embed panel in portrait after landscape (no drag handle)', async ({ page }) => {
     await setLandscapeViewport(page);
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
     const panelLandscape = page.locator('.election-panel');
     await expect(panelLandscape).toBeVisible({ timeout: 15000 });
-    await expect(panelLandscape.locator('.bottom-sheet-handle')).not.toBeVisible();
+    await expect(panelLandscape.locator('.bottom-sheet-handle')).toHaveCount(0);
 
-    // Now navigate fresh in portrait mode
     await setPortraitViewport(page);
     await page.goto('/karnataka/pc/bangalore-north/ac/hebbal');
     await waitForMapReady(page);
 
-    // Panel should have drag handle in portrait
     const panelPortrait = page.locator('.election-panel');
     await expect(panelPortrait).toBeVisible({ timeout: 15000 });
-    const dragHandle = panelPortrait.locator('.bottom-sheet-handle');
-    await expect(dragHandle).toBeVisible();
+    await expect(panelPortrait).toHaveClass(/panel-full/);
+    await expect(panelPortrait.locator('.bottom-sheet-handle')).toHaveCount(0);
   });
 });
 
@@ -533,18 +429,17 @@ test.describe('Mobile Touch Targets', () => {
     expect(buttonBox!.width).toBeGreaterThanOrEqual(24);
   });
 
-  test('should have adequately sized drag handle', async ({ page }) => {
+  test('should have adequately sized year trigger in portrait', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
 
     const panel = await ensureElectionPanelVisible(page);
 
-    const dragHandle = panel.locator('.bottom-sheet-handle');
-    const handleBox = await dragHandle.boundingBox();
-
-    expect(handleBox).not.toBeNull();
-    // Handle should be wide enough to easily tap
-    expect(handleBox!.width).toBeGreaterThanOrEqual(40);
+    const trigger = panel.locator('#ac-panel-year').first();
+    const box = await trigger.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.width).toBeGreaterThanOrEqual(40);
+    expect(box!.height).toBeGreaterThanOrEqual(28);
   });
 });
 

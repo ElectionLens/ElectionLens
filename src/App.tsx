@@ -17,6 +17,7 @@ import { defaultAssemblyDataYearFromIndex } from './utils/electionSchedule';
 import { mergeAssamAssemblyGeoForYear, assamMapDataForYear } from './utils/assamAssemblyGeo';
 import { trackPageView, trackConstituencySelect } from './utils/firebase';
 import type {
+  BrowseListWinnersContext,
   GeoJSONData,
   StateFeature,
   DistrictFeature,
@@ -103,7 +104,19 @@ function App(): JSX.Element {
   } = useParliamentResults();
 
   // Schema for canonical name resolution
-  const { getAC, getPC, resolveACName, resolveStateName, resolvePCName, schema } = useSchema();
+  const {
+    getAC,
+    getPC,
+    getDistrict,
+    resolveACName,
+    resolveStateName,
+    resolvePCName,
+    resolveDistrictName,
+    schema,
+  } = useSchema();
+
+  const [browseListWinnersContext, setBrowseListWinnersContext] =
+    useState<BrowseListWinnersContext | null>(null);
 
   // State for AC's parliament contributions (all years)
   const [parliamentContributions, setParliamentContributions] = useState<
@@ -2529,6 +2542,9 @@ function App(): JSX.Element {
           leftPaneView={leftPaneView}
           leftPaneParty={leftPaneParty}
           onLeftPaneChange={handleLeftPaneChange}
+          browseListWinnersContext={browseListWinnersContext}
+          resolveDistrictName={resolveDistrictName}
+          getDistrict={getDistrict}
         />
 
         <MapView
@@ -2571,6 +2587,7 @@ function App(): JSX.Element {
           selectedSummaryParty={selectedSummaryParty}
           onSummaryPartyChange={setSelectedSummaryParty}
           onStateSummaryDataChange={setStateSummaryData}
+          onBrowseListWinnersContext={setBrowseListWinnersContext}
         />
       </div>
 
