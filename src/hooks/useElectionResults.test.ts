@@ -599,6 +599,36 @@ describe('useElectionResults - getACResult matching strategies', () => {
     expect(result.current.currentResult?.constituencyNo).toBe(231);
   });
 
+  it('matches Tiruvottiyur via schema when row uses THIRUVOTTIYUR / Thiruvottiyur (TN-010-style spelling)', async () => {
+    const mockIndex = { availableYears: [2026] };
+    const mockResults = {
+      'TN-010': minimalAc(10, 'THIRUVOTTIYUR', {
+        constituencyNameOriginal: 'THIRUVOTTIYUR',
+        name: 'Thiruvottiyur',
+        year: 2026,
+        schemaId: 'TN-010',
+      }),
+    };
+
+    mockFetch
+      .mockResolvedValueOnce({ ok: true, json: async () => mockIndex })
+      .mockResolvedValueOnce({ ok: true, json: async () => mockResults });
+
+    const { result } = renderHook(() => useElectionResults());
+
+    await act(async () => {
+      await result.current.getACResult('TIRUVOTTIYUR', 'Tamil Nadu', 2026, {
+        schemaId: 'TN-010',
+        canonicalName: 'Tiruvottiyur',
+      });
+    });
+
+    expect(result.current.error).toBeNull();
+    expect(result.current.currentResult).not.toBeNull();
+    expect(result.current.currentResult?.schemaId).toBe('TN-010');
+    expect(result.current.currentResult?.constituencyNo).toBe(10);
+  });
+
   it('with canonicalName, skips schema-key row when its labels mismatch (mis-keyed JSON), then resolves by name', async () => {
     // Mirrors production where schema maps Dhing → AS-083 but a year file may wrongly put Margherita under that key.
     const mockIndex = { availableYears: [2026] };

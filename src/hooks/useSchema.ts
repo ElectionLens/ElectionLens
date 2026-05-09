@@ -61,6 +61,8 @@ const AC_NAME_LOOKUP_VARIANTS: Record<string, string[]> = {
   tadipatri: ['tadipatri', 'tadpatri'],
   pappireddipatti: ['pappireddipatti', 'pappireddippatti'],
   pappireddippatti: ['pappireddippatti', 'pappireddipatti'],
+  tiruvottiyur: ['tiruvottiyur', 'thiruvottiyur'],
+  thiruvottiyur: ['thiruvottiyur', 'tiruvottiyur'],
 };
 
 function getACNameLookupVariants(normalized: string): string[] {

@@ -92,6 +92,9 @@ const AC_NAME_VARIANTS: Record<string, string[]> = {
   /** ECI / source typo vs common spelling (Tamil Nadu AC 231) */
   COLACHEL: ['COLACHEL', 'COLACHAL'],
   COLACHAL: ['COLACHAL', 'COLACHEL'],
+  /** Schema/geo uses "Tiruvottiyur"; some ECI rows use "THIRUVOTTIYUR" / display name "Thiruvottiyur" (TN-010, etc.) */
+  TIRUVOTTIYUR: ['TIRUVOTTIYUR', 'THIRUVOTTIYUR'],
+  THIRUVOTTIYUR: ['THIRUVOTTIYUR', 'TIRUVOTTIYUR'],
 };
 
 function getACNameSearchVariants(normalized: string): string[] {
