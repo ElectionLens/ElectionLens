@@ -1,9 +1,10 @@
 ---
-name: 🐛 Bug Report
+name: "\U0001F41B Bug Report"
 about: Report a bug to help us improve
 title: "[BUG] "
 labels: bug
 assignees: ''
+
 ---
 
 ## Describe the Bug
@@ -38,6 +39,3 @@ assignees: ''
 ## Additional Context
 
 <!-- Add any other context about the problem here -->
-
-
-
