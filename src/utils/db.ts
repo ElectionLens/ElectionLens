@@ -58,11 +58,12 @@ export async function initDB(): Promise<IDBDatabase | null> {
  * @returns The stored GeoJSON data or null if not found
  */
 export async function getFromDB(key: string): Promise<GeoJSONData | null> {
-  if (!db) return null;
+  const connection = db;
+  if (!connection) return null;
 
   return new Promise((resolve) => {
     try {
-      const transaction = db!.transaction([STORE_NAME], 'readonly');
+      const transaction = connection.transaction([STORE_NAME], 'readonly');
       const store = transaction.objectStore(STORE_NAME);
       const request = store.get(key);
 
@@ -85,11 +86,12 @@ export async function getFromDB(key: string): Promise<GeoJSONData | null> {
  * @returns True if save was successful, false otherwise
  */
 export async function saveToDB(key: string, data: GeoJSONData): Promise<boolean> {
-  if (!db) return false;
+  const connection = db;
+  if (!connection) return false;
 
   return new Promise((resolve) => {
     try {
-      const transaction = db!.transaction([STORE_NAME], 'readwrite');
+      const transaction = connection.transaction([STORE_NAME], 'readwrite');
       const store = transaction.objectStore(STORE_NAME);
 
       const item: DBStoredItem<GeoJSONData> = {
@@ -113,11 +115,12 @@ export async function saveToDB(key: string, data: GeoJSONData): Promise<boolean>
  * @returns Object containing item count
  */
 export async function getDBStats(): Promise<DBStats> {
-  if (!db) return { count: 0 };
+  const connection = db;
+  if (!connection) return { count: 0 };
 
   return new Promise((resolve) => {
     try {
-      const transaction = db!.transaction([STORE_NAME], 'readonly');
+      const transaction = connection.transaction([STORE_NAME], 'readonly');
       const store = transaction.objectStore(STORE_NAME);
       const countRequest = store.count();
 

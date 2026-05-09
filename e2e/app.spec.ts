@@ -4,6 +4,7 @@ import {
   ensureElectionPanelVisible,
   expandMobileElectionPanelToFull,
 } from './panel-helpers';
+import { acPanelYearNative, acPanelViewNative, pcPanelViewNative } from './panel-select-helpers';
 import { openSidebarSheet, sidebarYearSelectOption, sidebarYearSelectorSelect } from './sidebar-helpers';
 
 async function expandElectionPanelForWinnerSection(page: Page) {
@@ -242,10 +243,10 @@ test.describe('Election Panel', () => {
     
     await ensureElectionPanelVisible(page);
     
-    // Year control is a <select> (YearSelector), not chip buttons
-    const yearDropdown = page.locator('#ac-panel-year');
-    await expect(yearDropdown).toBeVisible();
-    expect(await yearDropdown.locator('option').count()).toBeGreaterThan(0);
+    // Year control: visible chrome is #ac-panel-year; options live on native <select> (or -proxy on mobile).
+    await expect(page.locator('#ac-panel-year')).toBeVisible();
+    const yearNative = acPanelYearNative(page);
+    expect(await yearNative.locator('option').count()).toBeGreaterThan(0);
   });
 
   test('should switch assembly year from panel and sync URL (state AC map)', async ({ page }) => {
@@ -254,11 +255,11 @@ test.describe('Election Panel', () => {
 
     const panel = await ensureElectionPanelVisible(page);
 
-    const yearDropdown = panel.locator('#ac-panel-year');
-    await expect(yearDropdown).toBeVisible({ timeout: 10000 });
+    await expect(panel.locator('#ac-panel-year')).toBeVisible({ timeout: 10000 });
+    const yearDropdown = acPanelYearNative(panel);
 
     if ((await yearDropdown.locator('option[value="ac-2016"]').count()) > 0) {
-      await yearDropdown.selectOption('ac-2016');
+      await yearDropdown.selectOption('ac-2016', { force: true });
       await expect(page).toHaveURL(/year=2016/, { timeout: 10000 });
     }
   });
@@ -397,10 +398,10 @@ test.describe('Parliament Results', () => {
     await page.goto('/tamil-nadu/pc/salem');
 
     const panel = await ensureElectionPanelVisible(page);
-    const viewSelect = panel.locator('#pc-panel-view');
-    await expect(viewSelect).toBeVisible();
-    await expect(viewSelect).toHaveValue('overview');
-    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
+    await expect(panel.locator('#pc-panel-view')).toBeVisible();
+    const viewNative = pcPanelViewNative(panel);
+    await expect(viewNative).toHaveValue('overview');
+    await expect(viewNative.locator('option[value="candidates"]')).toHaveCount(0);
 
     const preview = panel.locator('.candidates-preview');
     await expect(preview).toBeVisible();
@@ -414,11 +415,11 @@ test.describe('Tab Navigation in Election Panel', () => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
 
     const panel = await ensureElectionPanelVisible(page);
-    const viewSelect = panel.locator('#ac-panel-view');
-    await expect(viewSelect).toBeVisible();
-    await expect(viewSelect).toHaveValue('overview');
+    await expect(panel.locator('#ac-panel-view')).toBeVisible();
+    const viewNative = acPanelViewNative(panel);
+    await expect(viewNative).toHaveValue('overview');
 
-    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
+    await expect(viewNative.locator('option[value="candidates"]')).toHaveCount(0);
 
     const table = panel.locator('.candidates-table-full');
     await expect(table).toBeVisible();
@@ -430,8 +431,8 @@ test.describe('Tab Navigation in Election Panel', () => {
     await page.goto('/tamil-nadu/ac/mettuppalayam?year=2026');
 
     const panel = await ensureElectionPanelVisible(page);
-    const viewSelect = panel.locator('#ac-panel-view');
-    await expect(viewSelect).toHaveValue('overview');
+    const viewNative = acPanelViewNative(panel);
+    await expect(viewNative).toHaveValue('overview');
 
     const preview = panel.locator('.candidates-preview');
     await expect(preview).toBeVisible();
@@ -443,7 +444,7 @@ test.describe('Tab Navigation in Election Panel', () => {
     const femaleBadge = preview.locator('.sex-badge').filter({ hasText: /^F$/ });
     await expect(femaleBadge.first()).toBeVisible({ timeout: 20000 });
 
-    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
+    await expect(viewNative.locator('option[value="candidates"]')).toHaveCount(0);
   });
 });
 
@@ -609,15 +610,13 @@ test.describe('Karnataka District Name Mappings', () => {
   test('should load Kalaburagi district (formerly Gulbarga)', async ({ page }) => {
     await page.goto('/karnataka/district/kalaburagi');
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
-    
-    await page.waitForFunction(() => {
-      const paths = document.querySelectorAll('.leaflet-container .leaflet-interactive');
-      return paths.length > 5;
-    }, { timeout: 25000 });
-    
-    const paths = page.locator('.leaflet-container .leaflet-interactive');
-    const count = await paths.count();
-    expect(count).toBeGreaterThan(5);
+
+    await expect
+      .poll(async () => page.locator('.leaflet-container .leaflet-interactive').count(), {
+        timeout: 45000,
+        intervals: [100, 200, 400, 800, 1200],
+      })
+      .toBeGreaterThan(5);
   });
 });
 

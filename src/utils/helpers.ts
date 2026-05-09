@@ -123,3 +123,22 @@ export function toTitleCase(str: string | null | undefined): string {
   if (!str) return '';
   return str.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
 }
+
+/** English ordinal for finish rank (1st, 2nd, 11th, 21st). */
+export function formatOrdinal(n: number): string {
+  const k = Math.abs(Math.floor(n));
+  const hundredMod = k % 100;
+  if (hundredMod >= 11 && hundredMod <= 13) {
+    return `${k}th`;
+  }
+  switch (k % 10) {
+    case 1:
+      return `${k}st`;
+    case 2:
+      return `${k}nd`;
+    case 3:
+      return `${k}rd`;
+    default:
+      return `${k}th`;
+  }
+}

@@ -17,11 +17,15 @@ import {
 } from '../utils/helpers';
 import { COLOR_PALETTES } from '../constants';
 
+/** Resolved stroke/fill strings for Leaflet paths (avoid `!` on `L.PathOptions` optional fields). */
+const NEUTRAL_FILL_COLOR = '#9ca3af';
+const NEUTRAL_STROKE_COLOR = '#6b7280';
+
 /** App-wide neutral map style when no party data — same default color in all views (districts, background districts/PCs/states) */
 const NEUTRAL_MAP_STYLE: L.PathOptions = {
-  fillColor: '#9ca3af',
+  fillColor: NEUTRAL_FILL_COLOR,
   fillOpacity: 0.6,
-  color: '#6b7280',
+  color: NEUTRAL_STROKE_COLOR,
   weight: 1,
   opacity: 1,
 };
@@ -2065,8 +2069,8 @@ export function MapView({
       if (!feature || Object.keys(stateWinners).length === 0) {
         return {
           ...base,
-          fillColor: NEUTRAL_MAP_STYLE.fillColor!,
-          color: NEUTRAL_MAP_STYLE.color!,
+          fillColor: NEUTRAL_FILL_COLOR,
+          color: NEUTRAL_STROKE_COLOR,
         };
       }
       const props = feature.properties as StateProperties;
@@ -2077,7 +2081,7 @@ export function MapView({
       if (winner) {
         return { ...base, fillColor: getPartyColor(winner.party ?? '') };
       }
-      return { ...base, fillColor: NEUTRAL_MAP_STYLE.fillColor!, color: NEUTRAL_MAP_STYLE.color! };
+      return { ...base, fillColor: NEUTRAL_FILL_COLOR, color: NEUTRAL_STROKE_COLOR };
     },
     [stateWinners, getStateId]
   );
@@ -2148,8 +2152,8 @@ export function MapView({
       if (!feature) {
         return mergeDimmedNonFocusStyle({
           ...base,
-          fillColor: NEUTRAL_MAP_STYLE.fillColor!,
-          color: NEUTRAL_MAP_STYLE.color!,
+          fillColor: NEUTRAL_FILL_COLOR,
+          color: NEUTRAL_STROKE_COLOR,
         });
       }
       const props = feature.properties as ConstituencyProperties;
@@ -2170,8 +2174,8 @@ export function MapView({
       }
       return mergeDimmedNonFocusStyle({
         ...base,
-        fillColor: NEUTRAL_MAP_STYLE.fillColor!,
-        color: NEUTRAL_MAP_STYLE.color!,
+        fillColor: NEUTRAL_FILL_COLOR,
+        color: NEUTRAL_STROKE_COLOR,
       });
     },
     [backgroundPCWinners, effectiveConstituencyWinners]
@@ -2307,8 +2311,8 @@ export function MapView({
       };
       const neutral = {
         ...base,
-        fillColor: NEUTRAL_MAP_STYLE.fillColor!,
-        color: NEUTRAL_MAP_STYLE.color!,
+        fillColor: NEUTRAL_FILL_COLOR,
+        color: NEUTRAL_STROKE_COLOR,
       };
       if (suppressAssemblyFilePartyMapColors) {
         return mergeDimmedNonFocusStyle(neutral);

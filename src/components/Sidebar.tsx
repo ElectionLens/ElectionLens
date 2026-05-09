@@ -1,6 +1,11 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import { Map, Building2, Landmark, Database, Check, Link2, Clock, BookOpen } from 'lucide-react';
-import { normalizeName, getFeatureColor, getElectionStateId } from '../utils/helpers';
+import {
+  normalizeName,
+  getFeatureColor,
+  getElectionStateId,
+  formatOrdinal,
+} from '../utils/helpers';
 import { getPartyColor, getPartyShortName } from '../utils/partyData';
 import { LeftPaneButton } from './LeftPaneButton';
 import { SearchBox } from './SearchBox';
@@ -41,6 +46,14 @@ import {
   resolvePcMapPolygonWinner,
 } from '../utils/mapPolygonWinners';
 import type { ReactNode, CSSProperties, KeyboardEvent } from 'react';
+
+/** Result label for party candidate rows (votes pane): Won / Lost (Nth) / — */
+function partyCandidateOutcomeLabel(row: PartyCandidateRow): string {
+  const pos = row.position;
+  if (typeof pos !== 'number' || pos < 1) return '—';
+  if (pos === 1) return 'Won';
+  return `Lost (${formatOrdinal(pos)})`;
+}
 
 /** Enter / Space activates sidebar list rows rendered as div[role="button"]. */
 function sidebarListRowKeyDown(event: KeyboardEvent, action: () => void): void {
@@ -1016,6 +1029,8 @@ export function Sidebar({
       return b.voteShare !== a.voteShare ? b.voteShare - a.voteShare : a.position - b.position;
     });
 
+    const showVotePaneOutcome = leftPaneView === 'votes';
+
     return (
       <div className="sidebar-summary party-candidates-panel" data-summary-pane="party-candidates">
         <div className="party-candidates-header">
@@ -1047,30 +1062,47 @@ export function Sidebar({
           {rows.length === 0 ? (
             <p className="state-map-summary-muted">No candidates match this filter.</p>
           ) : (
-            rows.map((row, index) => (
-              <LeftPaneButton
-                variant="row"
-                key={`${row.party}-${row.candidateName}-${row.constituencyName}-${index}`}
-                className="party-candidate-row interactive-row"
-                onClick={() => {
-                  onLeftPaneChange?.({
-                    pane: row.constituencyType === 'PC' ? 'pc' : 'ac',
-                    paneView: leftPaneView ?? summaryReturnTab,
-                    paneParty: party,
-                  });
-                  onSummaryCandidateSelect?.(row);
-                }}
-              >
-                <span className="party-candidate-main">
-                  <strong>{row.candidateName}</strong>
-                  <span>{row.constituencyName}</span>
-                </span>
-                <span className="party-candidate-metrics">
-                  <span>{row.voteShare.toFixed(1)}%</span>
-                  <span>{formatIn(row.votes)}</span>
-                </span>
-              </LeftPaneButton>
-            ))
+            rows.map((row, index) => {
+              const outcomeText = partyCandidateOutcomeLabel(row);
+              return (
+                <LeftPaneButton
+                  variant="row"
+                  key={`${row.party}-${row.candidateName}-${row.constituencyName}-${index}`}
+                  className="party-candidate-row interactive-row"
+                  onClick={() => {
+                    onLeftPaneChange?.({
+                      pane: row.constituencyType === 'PC' ? 'pc' : 'ac',
+                      paneView: leftPaneView ?? summaryReturnTab,
+                      paneParty: party,
+                    });
+                    onSummaryCandidateSelect?.(row);
+                  }}
+                >
+                  <span className="party-candidate-main">
+                    <strong>{row.candidateName}</strong>
+                    <span>{row.constituencyName}</span>
+                  </span>
+                  {showVotePaneOutcome ? (
+                    <span
+                      className={`party-candidate-outcome ${
+                        row.position === 1
+                          ? 'party-candidate-outcome--won'
+                          : typeof row.position === 'number' && row.position > 1
+                            ? 'party-candidate-outcome--lost'
+                            : ''
+                      }`}
+                      title={outcomeText}
+                    >
+                      {outcomeText}
+                    </span>
+                  ) : null}
+                  <span className="party-candidate-metrics">
+                    <span>{row.voteShare.toFixed(1)}%</span>
+                    <span>{formatIn(row.votes)}</span>
+                  </span>
+                </LeftPaneButton>
+              );
+            })
           )}
         </div>
       </div>
@@ -1185,11 +1217,16 @@ export function Sidebar({
 
   const renderDetailPanel = (): ReactNode => {
     if (showACDetailPanel) {
+      const acResult = electionResult ?? acPanelPlaceholderResult;
+      const onCloseAc = onCloseElectionPanel;
+      if (!acResult || !onCloseAc) {
+        return null;
+      }
       return (
         <div className="sidebar-detail-host">
           <ElectionResultPanel
-            result={electionResult ?? acPanelPlaceholderResult!}
-            onClose={onCloseElectionPanel!}
+            result={acResult}
+            onClose={onCloseAc}
             omitConstituencyHeading
             shareUrl={shareUrl}
             stateName={currentState ?? undefined}
@@ -1212,11 +1249,14 @@ export function Sidebar({
       );
     }
     if (showPCDetailPanel) {
+      if (!pcElectionResult || !onClosePCElectionPanel) {
+        return null;
+      }
       return (
         <div className="sidebar-detail-host">
           <PCElectionResultPanel
-            result={pcElectionResult!}
-            onClose={onClosePCElectionPanel!}
+            result={pcElectionResult}
+            onClose={onClosePCElectionPanel}
             omitConstituencyHeading
             shareUrl={pcShareUrl}
             stateName={currentState ?? undefined}

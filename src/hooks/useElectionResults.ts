@@ -351,7 +351,10 @@ export function useElectionResults(): UseElectionResultsReturn {
               closestYear = availableYear;
             }
           }
-          targetYear = closestYear!;
+          if (closestYear == null) {
+            return null;
+          }
+          targetYear = closestYear;
         }
 
         // Load results for the year

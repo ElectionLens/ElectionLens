@@ -595,10 +595,11 @@ function App(): JSX.Element {
         let pcWinners: Record<string, { party: string; candidate: string }> | null = null;
 
         if (urlState.year != null) {
+          const urlPcElectionYear = urlState.year;
           // Fetch state GeoJSON and PC results in parallel so first paint has party colors
           const [stateData, pcResults] = await Promise.all([
             navigateToState(matchedState),
-            fetch(PC_ELECTIONS.getYearPath(stateId, urlState.year)).then((r) =>
+            fetch(PC_ELECTIONS.getYearPath(stateId, urlPcElectionYear)).then((r) =>
               r.ok ? (r.json() as Promise<PCElectionResultsByConstituency>) : null
             ),
           ]);
@@ -648,7 +649,7 @@ function App(): JSX.Element {
                     const acIndex = (await acIndexRes.json()) as { availableYears?: number[] };
                     const acYears = acIndex.availableYears ?? [];
                     const assemblyYear =
-                      acYears.filter((y) => y <= urlState.year!).pop() ??
+                      acYears.filter((y) => y <= urlPcElectionYear).pop() ??
                       acYears[acYears.length - 1];
                     if (assemblyYear != null) {
                       const acRes = await fetch(
@@ -800,6 +801,8 @@ function App(): JSX.Element {
       loadPCStateIndex,
       resolvePCName,
       schema,
+      getAC,
+      resolveACName,
       setSelectedYear,
       setPCSelectedYear,
       setSelectedACPCYear,
@@ -920,12 +923,11 @@ function App(): JSX.Element {
       setSelectedACPCYear(null);
       const ac = currentAssembly;
       const state = currentState;
-      const loadResult = (): void => {
-        getACResultRef.current(ac, state, urlYear);
-      };
-      void Promise.resolve().then(loadResult);
+      void (async (): Promise<void> => {
+        await getACResultRef.current(ac, state, urlYear);
+      })();
     }
-  }, [currentView, currentAssembly, currentState, selectedYear]);
+  }, [currentView, currentAssembly, currentState, selectedYear, setSelectedYear]);
 
   /** After schema fetch, redo AC lookup with schemaId (first navigation often ran before schema was ready → fuzzy Strategy 4 could pick wrong AC; pc-* URLs skipped the yearly resync above). */
   const assemblySchemaPanelFetchRef = useRef<string>('');
@@ -1844,7 +1846,6 @@ function App(): JSX.Element {
       getACResult,
       closeSidebarAfterAction,
       clearPCElectionResult,
-      getStateIdFromName,
       resolveACName,
       getAC,
       currentPC,
@@ -1988,9 +1989,9 @@ function App(): JSX.Element {
       currentView,
       currentDistrict,
       getACResult,
-      getStateIdFromName,
       resolveACName,
       getAC,
+      showACsWithinPC,
     ]
   );
 
@@ -2025,7 +2026,15 @@ function App(): JSX.Element {
         blogPost: null,
       });
     },
-    [currentAssembly, currentState, currentView, currentPC, currentDistrict]
+    [
+      currentAssembly,
+      currentState,
+      currentView,
+      currentPC,
+      currentDistrict,
+      setPCSelectedYear,
+      showACsWithinPC,
+    ]
   );
 
   /**
@@ -2060,6 +2069,7 @@ function App(): JSX.Element {
       currentDistrict,
       currentAssembly,
       getPCResult,
+      showACsWithinPC,
     ]
   );
 
@@ -2160,6 +2170,7 @@ function App(): JSX.Element {
     currentDistrict,
     currentAssembly,
     selectedACPCYear,
+    showACsWithinPC,
     blogOpen,
   ]);
 
@@ -2376,6 +2387,7 @@ function App(): JSX.Element {
     currentAssembly,
     selectedYear,
     selectedACPCYear,
+    showACsWithinPC,
   ]);
 
   /**
@@ -2405,6 +2417,7 @@ function App(): JSX.Element {
     currentAssembly,
     selectedYear,
     selectedACPCYear,
+    showACsWithinPC,
   ]);
 
   /**

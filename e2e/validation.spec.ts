@@ -14,6 +14,11 @@ import {
   expectFirstVisibleMatch,
 } from './panel-helpers';
 import {
+  acPanelViewNative,
+  pcPanelViewNative,
+  pcPanelYearNative,
+} from './panel-select-helpers';
+import {
   openSidebarSheet,
   sidebarYearSelectOption,
   sidebarYearSelectorSelect,
@@ -96,15 +101,16 @@ test.describe('Link Validation - Year Selector Links', () => {
     const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
 
+    await expect(page.locator('#ac-panel-year')).toBeVisible();
     const yearSelect = sidebarYearSelectorSelect(page, 'ac-panel-year');
-    await expect(yearSelect).toBeVisible();
+    await expect(yearSelect).toBeAttached();
     const optionCount = await yearSelect.locator('option').count();
     expect(optionCount).toBeGreaterThan(0);
 
     if (optionCount > 1) {
       const secondValue = await yearSelect.locator('option').nth(1).getAttribute('value');
       if (secondValue) {
-        await yearSelect.selectOption(secondValue);
+        await yearSelect.selectOption(secondValue, { force: true });
         await expect(panel).toBeVisible();
       }
     }
@@ -129,9 +135,8 @@ test.describe('Link Validation - Tab Navigation', () => {
     const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
     
-    const viewSelect = panel.locator('#ac-panel-view');
-    await expect(viewSelect).toBeVisible();
-    await expect(viewSelect).toHaveValue('overview');
+    await expect(panel.locator('#ac-panel-view')).toBeVisible();
+    await expect(acPanelViewNative(panel)).toHaveValue('overview');
     
     // Should show winner card
     await expect(panel.locator('.winner-card-compact, .winner-info')).toBeVisible();
@@ -142,7 +147,7 @@ test.describe('Link Validation - Tab Navigation', () => {
     const panel = await ensureElectionPanelVisible(page);
     await expandPanelOnMobileIfNeeded(panel, page);
 
-    await expect(panel.locator('#ac-panel-view')).toHaveValue('overview');
+    await expect(acPanelViewNative(panel)).toHaveValue('overview');
 
     await expect(page.locator('.election-panel .candidates-table-full')).toBeVisible();
 
@@ -150,16 +155,14 @@ test.describe('Link Validation - Tab Navigation', () => {
     await expect(rows.first()).toBeVisible();
     expect(await rows.count()).toBeGreaterThan(1);
 
-    await expect(panel.locator('#ac-panel-view').locator('option[value="candidates"]')).toHaveCount(
-      0
-    );
+    await expect(acPanelViewNative(panel).locator('option[value="candidates"]')).toHaveCount(0);
   });
 
   test('Pre-poll AC year: Overview lists candidate table', async ({ page }) => {
     await page.goto('/tamil-nadu/ac/mettuppalayam?year=2026');
     const panel = await ensureElectionPanelVisible(page);
 
-    await expect(panel.locator('#ac-panel-view')).toHaveValue('overview');
+    await expect(acPanelViewNative(panel)).toHaveValue('overview');
 
     const preview = page.locator('.election-panel .candidates-preview');
     await expect(preview).toBeVisible();
@@ -386,10 +389,10 @@ test.describe('Panel Validation - PC Panel Content', () => {
     const panel = await ensureElectionPanelVisible(page);
     await expect(panel).toHaveClass(/pc-panel/);
     await expandPanelOnMobileIfNeeded(panel, page);
-    const viewSelect = panel.locator('#pc-panel-view');
-    await expect(viewSelect).toBeVisible();
-    await expect(viewSelect).toHaveValue('overview');
-    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
+    await expect(panel.locator('#pc-panel-view')).toBeVisible();
+    const pcViewNative = pcPanelViewNative(panel);
+    await expect(pcViewNative).toHaveValue('overview');
+    await expect(pcViewNative.locator('option[value="candidates"]')).toHaveCount(0);
     await expect(panel.locator('.candidates-preview .candidates-table-full')).toBeVisible();
   });
 
@@ -409,11 +412,11 @@ test.describe('Panel Validation - PC Panel Content', () => {
     await expect(panel).toHaveClass(/pc-panel/);
     await expandPanelOnMobileIfNeeded(panel, page);
 
-    const viewSelect = panel.locator('#pc-panel-view');
-    await expect(viewSelect).toBeVisible();
-    await expect(viewSelect).toHaveValue('overview');
-    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
-    const yearDropdown = panel.locator('#pc-panel-year');
+    await expect(panel.locator('#pc-panel-view')).toBeVisible();
+    const pcViewNative = pcPanelViewNative(panel);
+    await expect(pcViewNative).toHaveValue('overview');
+    await expect(pcViewNative.locator('option[value="candidates"]')).toHaveCount(0);
+    const yearDropdown = pcPanelYearNative(panel);
     if ((await yearDropdown.count()) > 0) {
       expect(await yearDropdown.locator('option').count()).toBeGreaterThan(0);
     }

@@ -63,7 +63,14 @@ export async function expandMobileElectionPanelToFull(panel: Locator, page: Page
  */
 export async function scrollElectionPanelIntoView(panel: Locator): Promise<void> {
   await panel.scrollIntoViewIfNeeded({ timeout: 15000 }).catch(() => {});
-  for (const sel of ['#ac-panel-view', '#pc-panel-view', '.controls-card', '.overview-view']) {
+  for (const sel of [
+    'select#ac-panel-view-proxy, select#ac-panel-view',
+    'select#pc-panel-view-proxy, select#pc-panel-view',
+    '#ac-panel-view',
+    '#pc-panel-view',
+    '.controls-card',
+    '.overview-view',
+  ]) {
     const inner = panel.locator(sel).first();
     if ((await inner.count()) === 0) continue;
     await inner.scrollIntoViewIfNeeded({ timeout: 5000 }).catch(() => {});

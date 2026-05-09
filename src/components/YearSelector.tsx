@@ -64,8 +64,11 @@ export function YearSelector({
   }
 
   /** When nothing matches (e.g. stale state), prefer latest year — never default to oldest (2009). */
-  const selectedOption =
-    options.find((option) => option.isActive) ?? options[options.length - 1] ?? options[0]!;
+  const fallbackOption = options[options.length - 1];
+  const selectedOption = options.find((option) => option.isActive) ?? fallbackOption ?? options[0];
+  if (!selectedOption) {
+    return null;
+  }
 
   const selectId = fieldId ?? `year-dropdown-${(className || 'default').replace(/\s+/g, '-')}`;
   const listboxId = `${selectId}-listbox`;

@@ -2029,8 +2029,26 @@ path:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
   text-align: left;
   color: #1e293b;
+}
+
+.party-candidate-outcome {
+  flex-shrink: 0;
+  max-width: 78px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.party-candidate-outcome--won {
+  color: #059669;
+}
+
+.party-candidate-outcome--lost {
+  color: #64748b;
 }
 
 .party-candidate-main {

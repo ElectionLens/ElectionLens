@@ -7,6 +7,7 @@ import {
   getFeatureStyle,
   getHoverStyle,
   toTitleCase,
+  formatOrdinal,
 } from './helpers';
 
 describe('normalizeName', () => {
@@ -192,5 +193,14 @@ describe('toTitleCase', () => {
   it('handles names with numbers', () => {
     expect(toTitleCase('indore-1')).toBe('Indore-1');
     expect(toTitleCase('WARD 123')).toBe('Ward 123');
+  });
+});
+
+describe('formatOrdinal', () => {
+  it('formats English ordinals', () => {
+    expect(formatOrdinal(1)).toBe('1st');
+    expect(formatOrdinal(2)).toBe('2nd');
+    expect(formatOrdinal(11)).toBe('11th');
+    expect(formatOrdinal(21)).toBe('21st');
   });
 });

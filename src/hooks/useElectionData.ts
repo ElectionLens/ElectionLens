@@ -90,7 +90,7 @@ export function useElectionData(): UseElectionDataReturn {
         const response = await fetch(BOUNDARIES.STATES);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         data = (await response.json()) as StatesGeoJSON;
-        saveToDB(CACHE_KEYS.STATES, data);
+        void saveToDB(CACHE_KEYS.STATES, data);
       }
 
       setStatesGeoJSON(data);
@@ -130,7 +130,7 @@ export function useElectionData(): UseElectionDataReturn {
         }
 
         data = { type: 'FeatureCollection', features };
-        saveToDB(CACHE_KEYS.PARLIAMENT, data);
+        void saveToDB(CACHE_KEYS.PARLIAMENT, data);
       }
 
       setParliamentGeoJSON(data);
@@ -248,7 +248,7 @@ export function useElectionData(): UseElectionDataReturn {
         if (response.ok) {
           const data = (await response.json()) as DistrictsGeoJSON;
           districtsCacheRef.current[fileName] = data;
-          saveToDB(cacheKey, data);
+          void saveToDB(cacheKey, data);
           return true;
         }
       } catch {
@@ -259,7 +259,7 @@ export function useElectionData(): UseElectionDataReturn {
 
     await Promise.all(loadPromises);
     setDistrictsCache({ ...districtsCacheRef.current });
-    updateCacheStats();
+    await updateCacheStats();
   }, [updateCacheStats]);
 
   // Initialize database and load initial data
@@ -270,15 +270,15 @@ export function useElectionData(): UseElectionDataReturn {
       await loadParliamentData();
       await loadAssemblyData();
       await loadAssamPreDelimitationGeo();
-      preloadAllDistricts();
+      await preloadAllDistricts();
     }
-    init();
+    void init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Update cache stats when data changes
   useEffect(() => {
-    updateCacheStats();
+    void updateCacheStats();
   }, [statesGeoJSON, parliamentGeoJSON, assemblyGeoJSON, districtsCache, updateCacheStats]);
 
   /**
@@ -382,8 +382,9 @@ export function useElectionData(): UseElectionDataReturn {
       try {
         let data: DistrictsGeoJSON | null = null;
 
-        if (districtsCacheRef.current[fileName]) {
-          data = districtsCacheRef.current[fileName]!;
+        const memDistricts = districtsCacheRef.current[fileName];
+        if (memDistricts) {
+          data = memDistricts;
         } else {
           data = (await getFromDB(cacheKey)) as DistrictsGeoJSON | null;
           if (data) {
@@ -396,7 +397,7 @@ export function useElectionData(): UseElectionDataReturn {
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           data = (await response.json()) as DistrictsGeoJSON;
           districtsCacheRef.current[fileName] = data;
-          saveToDB(cacheKey, data);
+          void saveToDB(cacheKey, data);
         }
 
         setDistrictsCache({ ...districtsCacheRef.current });
@@ -405,7 +406,7 @@ export function useElectionData(): UseElectionDataReturn {
         setCurrentPC(null);
         setCurrentDistrict(null);
         setCurrentAssembly(null);
-        updateCacheStats();
+        await updateCacheStats();
 
         return data;
       } catch (err) {

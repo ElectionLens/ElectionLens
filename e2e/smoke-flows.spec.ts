@@ -5,6 +5,7 @@
  */
 import { test, expect } from '@playwright/test';
 import { ensureElectionPanelVisible } from './panel-helpers';
+import { pcPanelViewNative } from './panel-select-helpers';
 import { openSidebarSheet } from './sidebar-helpers';
 
 test.describe('Smoke flows', () => {
@@ -35,10 +36,10 @@ test.describe('Smoke flows', () => {
     await page.waitForSelector('.leaflet-container', { timeout: 15000 });
 
     const panel = await ensureElectionPanelVisible(page);
-    const viewSelect = panel.locator('#pc-panel-view');
-    await expect(viewSelect).toBeVisible({ timeout: 20000 });
-    await expect(viewSelect).toHaveValue('overview');
-    await expect(viewSelect.locator('option[value="candidates"]')).toHaveCount(0);
+    await expect(panel.locator('#pc-panel-view')).toBeVisible({ timeout: 20000 });
+    const viewNative = pcPanelViewNative(panel);
+    await expect(viewNative).toHaveValue('overview');
+    await expect(viewNative.locator('option[value="candidates"]')).toHaveCount(0);
     await expect(
       panel.locator('.candidates-preview').getByRole('heading', { name: /^Candidates$/i })
     ).toBeVisible();

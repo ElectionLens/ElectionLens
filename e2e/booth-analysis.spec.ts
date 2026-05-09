@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import { ensureElectionPanelVisible } from './panel-helpers';
+import { acPanelViewNative } from './panel-select-helpers';
 
 /** Avoid networkidle — Vite/HMR and background requests often prevent it from settling. */
 async function waitForAcPanelReady(page: Page): Promise<void> {
@@ -15,15 +16,13 @@ test.describe('Booth Analysis', () => {
   });
 
   test('displays Analysis tab when booth data is available', async ({ page }) => {
-    // Wait for panel tabs to be visible
-    const analysisView = page.locator('#ac-panel-view');
-    await expect(analysisView).toBeVisible({ timeout: 10000 });
-    await expect(analysisView.locator('option[value="analysis"]')).toHaveCount(1);
+    await expect(page.locator('#ac-panel-view')).toBeVisible({ timeout: 10000 });
+    await expect(acPanelViewNative(page).locator('option[value="analysis"]')).toHaveCount(1);
   });
 
   test('shows Booth Distribution section', async ({ page }) => {
     // Wait for panel to be ready
-    await page.locator('#ac-panel-view').selectOption('analysis');
+    await acPanelViewNative(page).selectOption('analysis', { force: true });
     // Wait for tab content to load
     await page.waitForTimeout(500);
 
@@ -37,7 +36,7 @@ test.describe('Booth Analysis', () => {
   });
 
   test('shows Booths Won by Party section', async ({ page }) => {
-    await page.locator('#ac-panel-view').selectOption('analysis');
+    await acPanelViewNative(page).selectOption('analysis', { force: true });
     await page.waitForTimeout(500);
 
     // Check for party booth breakdown
@@ -50,7 +49,7 @@ test.describe('Booth Analysis', () => {
   });
 
   test('expands party booth card on click', async ({ page }) => {
-    await page.locator('#ac-panel-view').selectOption('analysis');
+    await acPanelViewNative(page).selectOption('analysis', { force: true });
     await page.waitForTimeout(500);
 
     // Get first party card
@@ -71,7 +70,7 @@ test.describe('Booth Analysis', () => {
   });
 
   test('shows Key Insights section', async ({ page }) => {
-    await page.locator('#ac-panel-view').selectOption('analysis');
+    await acPanelViewNative(page).selectOption('analysis', { force: true });
     await page.waitForTimeout(500);
 
     // Check for insights section
@@ -80,7 +79,7 @@ test.describe('Booth Analysis', () => {
   });
 
   test('shows Strike Rate table', async ({ page }) => {
-    await page.locator('#ac-panel-view').selectOption('analysis');
+    await acPanelViewNative(page).selectOption('analysis', { force: true });
     await page.waitForTimeout(500);
 
     // Check for strike rate table
@@ -93,11 +92,11 @@ test.describe('Booth Analysis', () => {
   });
 
   test('shows Quick Stats section', async ({ page }) => {
-    const viewSelect = page.locator('#ac-panel-view');
-    if ((await viewSelect.locator('option[value="analysis"]').count()) === 0) {
+    const viewNative = acPanelViewNative(page);
+    if ((await viewNative.locator('option[value="analysis"]').count()) === 0) {
       test.skip(true, 'Analysis view not available for this constituency/year');
     }
-    await viewSelect.selectOption('analysis');
+    await viewNative.selectOption('analysis', { force: true });
     await page.waitForTimeout(500);
 
     // Check for quick stats - may be in analysis-quick-stats-section
@@ -118,20 +117,19 @@ test.describe('Booth Data View', () => {
   });
 
   test('displays Booths tab', async ({ page }) => {
-    const viewSelect = page.locator('#ac-panel-view');
-    await expect(viewSelect).toBeVisible({ timeout: 10000 });
-    await expect(viewSelect.locator('option[value="booths"]')).toHaveCount(1);
+    await expect(page.locator('#ac-panel-view')).toBeVisible({ timeout: 10000 });
+    await expect(acPanelViewNative(page).locator('option[value="booths"]')).toHaveCount(1);
   });
 
   test('shows booth selector dropdown', async ({ page }) => {
-    await page.locator('#ac-panel-view').selectOption('booths');
+    await acPanelViewNative(page).selectOption('booths', { force: true });
 
     const dropdown = page.locator('.booth-dropdown');
     await expect(dropdown).toBeVisible();
   });
 
   test('shows booth stats summary', async ({ page }) => {
-    await page.locator('#ac-panel-view').selectOption('booths');
+    await acPanelViewNative(page).selectOption('booths', { force: true });
 
     const statsSummary = page.locator('.booth-stats-summary');
     await expect(statsSummary).toBeVisible();
@@ -145,26 +143,25 @@ test.describe('Postal Ballots View', () => {
   });
 
   test('displays Postal tab', async ({ page }) => {
-    const viewSelect = page.locator('#ac-panel-view');
-    await expect(viewSelect.locator('option[value="postal"]')).toHaveCount(1);
+    await expect(acPanelViewNative(page).locator('option[value="postal"]')).toHaveCount(1);
   });
 
   test('shows postal ballot summary', async ({ page }) => {
-    await page.locator('#ac-panel-view').selectOption('postal');
+    await acPanelViewNative(page).selectOption('postal', { force: true });
 
     const summary = page.locator('.postal-summary');
     await expect(summary).toBeVisible();
   });
 
   test('shows postal candidates list', async ({ page }) => {
-    await page.locator('#ac-panel-view').selectOption('postal');
+    await acPanelViewNative(page).selectOption('postal', { force: true });
 
     const candidatesList = page.locator('.postal-candidates');
     await expect(candidatesList).toBeVisible();
   });
 
   test('postal tab renders candidate rows in the card list', async ({ page }) => {
-    await page.locator('#ac-panel-view').selectOption('postal');
+    await acPanelViewNative(page).selectOption('postal', { force: true });
     await expect(page.locator('.postal-candidates-list')).toBeVisible({ timeout: 15000 });
     await expect(page.locator('.postal-candidate-row').first()).toBeVisible({ timeout: 15000 });
   });
@@ -177,7 +174,7 @@ test.describe('Booth Data View — candidate cards', () => {
   });
 
   test('shows booth-wise candidate card rows when a booth is selected', async ({ page }) => {
-    await page.locator('#ac-panel-view').selectOption('booths');
+    await acPanelViewNative(page).selectOption('booths', { force: true });
     const dropdown = page.locator('.booth-dropdown');
     await expect(dropdown).toBeVisible();
     const optionCount = await dropdown.locator('option').count();
