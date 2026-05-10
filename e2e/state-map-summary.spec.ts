@@ -103,7 +103,7 @@ test.describe('State map summary panel', () => {
     await expect(summary).toBeVisible({ timeout: 30000 });
     await expandSummaryIfMobile(page);
 
-    const partyBtn = summary.locator('.state-map-summary-party-link').first();
+    const partyBtn = summary.locator('.state-map-summary-row').first();
     await expect(partyBtn).toBeVisible();
 
     const countDimmed = async () =>
@@ -153,10 +153,11 @@ test.describe('State map summary panel', () => {
 
     const summary = page.locator('.sidebar-summary[data-summary-pane="seats"]');
     await expect(summary).toBeVisible({ timeout: 30000 });
-    await summary.locator('.state-map-summary-party-link').first().click();
+    await summary.locator('.state-map-summary-row').first().click();
 
     const candidateRow = page.locator('.party-candidate-row').first();
     await expect(candidateRow).toBeVisible({ timeout: 15000 });
+    await expect(candidateRow.locator('.party-candidate-main-top')).toBeVisible();
     await candidateRow.click();
 
     await expect(page.locator('.sidebar .election-panel, .sidebar .pc-panel').first()).toBeVisible({
@@ -181,7 +182,7 @@ test.describe('State map summary panel', () => {
     const summary = page.locator('.sidebar-summary[data-summary-pane="seats"]');
     await expect(summary).toBeVisible({ timeout: 30000 });
     await expandSummaryIfMobile(page);
-    await summary.locator('.state-map-summary-party-link').first().click();
+    await summary.locator('.state-map-summary-row').first().click();
     await expect
       .poll(() => Boolean(new URL(page.url()).searchParams.get('paneParty')))
       .toBe(true);

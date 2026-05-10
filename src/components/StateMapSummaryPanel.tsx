@@ -51,29 +51,26 @@ export function StateMapSummaryPanel({
               const col = getPartyColor(row.party);
               const label = getPartyShortName(row.party);
               return (
-                <li
-                  key={row.party}
-                  className={`state-map-summary-row interactive-row ${selectedParty === row.party ? 'is-selected' : ''}`}
-                >
-                  <span
-                    className="state-map-summary-swatch"
-                    style={{
-                      backgroundColor: col,
-                      boxShadow: `0 0 0 1px ${col}40`,
-                    }}
-                  />
+                <li key={row.party} className="state-map-summary-list-item">
                   <button
                     type="button"
-                    className="state-map-summary-party-link"
+                    className={`state-map-summary-row interactive-row ${selectedParty === row.party ? 'is-selected' : ''}`}
                     title={`Filter map by ${row.party}`}
                     {...(onPartyToggle && { 'aria-pressed': selectedParty === row.party })}
                     onClick={() => onPartyToggle?.(selectedParty === row.party ? null : row.party)}
                   >
+                    <span
+                      className="state-map-summary-swatch"
+                      style={{
+                        backgroundColor: col,
+                        boxShadow: `0 0 0 1px ${col}40`,
+                      }}
+                    />
                     <span className="state-map-summary-party" title={row.party}>
                       {label}
                     </span>
+                    <span className="state-map-summary-value">{row.seats}</span>
                   </button>
-                  <span className="state-map-summary-value">{row.seats}</span>
                 </li>
               );
             })}
@@ -94,32 +91,29 @@ export function StateMapSummaryPanel({
               const col = getPartyColor(row.party);
               const label = getPartyShortName(row.party);
               return (
-                <li
-                  key={row.party}
-                  className={`state-map-summary-row interactive-row ${selectedParty === row.party ? 'is-selected' : ''}`}
-                >
-                  <span
-                    className="state-map-summary-swatch"
-                    style={{
-                      backgroundColor: col,
-                      boxShadow: `0 0 0 1px ${col}40`,
-                    }}
-                  />
+                <li key={row.party} className="state-map-summary-list-item">
                   <button
                     type="button"
-                    className="state-map-summary-party-link"
+                    className={`state-map-summary-row interactive-row ${selectedParty === row.party ? 'is-selected' : ''}`}
                     title={`Filter map by ${row.party}`}
                     {...(onPartyToggle && { 'aria-pressed': selectedParty === row.party })}
                     onClick={() => onPartyToggle?.(selectedParty === row.party ? null : row.party)}
                   >
+                    <span
+                      className="state-map-summary-swatch"
+                      style={{
+                        backgroundColor: col,
+                        boxShadow: `0 0 0 1px ${col}40`,
+                      }}
+                    />
                     <span className="state-map-summary-party" title={row.party}>
                       {label}
                     </span>
+                    <span className="state-map-summary-votepct">
+                      {row.pct.toFixed(1)}%
+                      <span className="state-map-summary-voteabs"> ({formatIn(row.votes)})</span>
+                    </span>
                   </button>
-                  <span className="state-map-summary-votepct">
-                    {row.pct.toFixed(1)}%
-                    <span className="state-map-summary-voteabs"> ({formatIn(row.votes)})</span>
-                  </span>
                 </li>
               );
             })}

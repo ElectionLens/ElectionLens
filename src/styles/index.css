@@ -803,15 +803,7 @@ body {
   box-shadow: inset 0 0 0 9999px var(--row-active-inset);
 }
 
-/* Summary party rows: hover wash only; primary control remains the inner button. */
-.state-map-summary-row.interactive-row {
-  cursor: default;
-}
-
-.state-map-summary-row.interactive-row:hover {
-  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
-}
-
+/* Summary party rows: full row is the button; flatter active press (no dark inset). */
 .state-map-summary-row.interactive-row:active {
   box-shadow: none;
 }
@@ -1775,6 +1767,12 @@ path:focus {
   gap: var(--left-pane-row-gap);
 }
 
+.state-map-summary-list-item {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .state-map-summary-row {
   display: flex;
   align-items: center;
@@ -1792,6 +1790,15 @@ path:focus {
     border-color 0.15s ease;
 }
 
+button.state-map-summary-row {
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
 .state-map-summary-swatch {
   width: 10px;
   height: 10px;
@@ -1806,26 +1813,8 @@ path:focus {
   color: #1e293b;
 }
 
-.state-map-summary-party-link {
-  flex: 1;
-  min-width: 0;
-  border: none;
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  text-align: left;
-  font: inherit;
-}
-
-.state-map-summary-party-link:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.state-map-summary-row:hover .state-map-summary-party-link,
-.state-map-summary-row.is-selected .state-map-summary-party-link {
+.state-map-summary-row:hover .state-map-summary-party,
+.state-map-summary-row.is-selected .state-map-summary-party {
   color: #0f172a;
 }
 
@@ -2026,21 +2015,29 @@ path:focus {
   border-radius: var(--row-radius);
   background: #fff;
   padding: 10px 12px;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 8px;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
   text-align: left;
   color: #1e293b;
 }
 
+.party-candidate-main-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
 .party-candidate-outcome {
   flex-shrink: 0;
-  max-width: 78px;
   font-size: 0.62rem;
   font-weight: 700;
   line-height: 1.15;
-  text-align: center;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .party-candidate-outcome--won {
@@ -2059,11 +2056,16 @@ path:focus {
 }
 
 .party-candidate-main strong {
+  min-width: 0;
+  flex: 1 1 auto;
   font-size: 0.82rem;
   line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.party-candidate-main span {
+.party-candidate-constituency {
   font-size: 0.74rem;
   color: #64748b;
   white-space: nowrap;

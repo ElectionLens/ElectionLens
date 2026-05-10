@@ -1079,23 +1079,25 @@ export function Sidebar({
                   }}
                 >
                   <span className="party-candidate-main">
-                    <strong>{row.candidateName}</strong>
-                    <span>{row.constituencyName}</span>
-                  </span>
-                  {showVotePaneOutcome ? (
-                    <span
-                      className={`party-candidate-outcome ${
-                        row.position === 1
-                          ? 'party-candidate-outcome--won'
-                          : typeof row.position === 'number' && row.position > 1
-                            ? 'party-candidate-outcome--lost'
-                            : ''
-                      }`}
-                      title={outcomeText}
-                    >
-                      {outcomeText}
+                    <span className="party-candidate-main-top">
+                      <strong>{row.candidateName}</strong>
+                      {showVotePaneOutcome ? (
+                        <span
+                          className={`party-candidate-outcome ${
+                            row.position === 1
+                              ? 'party-candidate-outcome--won'
+                              : typeof row.position === 'number' && row.position > 1
+                                ? 'party-candidate-outcome--lost'
+                                : ''
+                          }`}
+                          title={outcomeText}
+                        >
+                          {outcomeText}
+                        </span>
+                      ) : null}
                     </span>
-                  ) : null}
+                    <span className="party-candidate-constituency">{row.constituencyName}</span>
+                  </span>
                   <span className="party-candidate-metrics">
                     <span>{row.voteShare.toFixed(1)}%</span>
                     <span>{formatIn(row.votes)}</span>
@@ -1128,26 +1130,23 @@ export function Sidebar({
                 const col = getPartyColor(row.party);
                 const isSelected = selectedSummaryParty === row.party;
                 return (
-                  <li
-                    key={row.party}
-                    className={`state-map-summary-row ${isSelected ? 'is-selected' : ''}`}
-                  >
-                    <span
-                      className="state-map-summary-swatch"
-                      style={{ backgroundColor: col, boxShadow: `0 0 0 1px ${col}40` }}
-                    />
+                  <li key={row.party} className="state-map-summary-list-item">
                     <LeftPaneButton
-                      variant="inline"
-                      className="state-map-summary-party-link"
+                      variant="row"
+                      className={`state-map-summary-row interactive-row ${isSelected ? 'is-selected' : ''}`}
                       title={`Filter map by ${row.party}`}
                       onClick={() => openPartyCandidates(row.party, 'seats')}
                       {...(onSummaryPartyChange && { 'aria-pressed': isSelected })}
                     >
+                      <span
+                        className="state-map-summary-swatch"
+                        style={{ backgroundColor: col, boxShadow: `0 0 0 1px ${col}40` }}
+                      />
                       <span className="state-map-summary-party" title={row.party}>
                         {getPartyShortName(row.party)}
                       </span>
+                      <span className="state-map-summary-value">{row.seats}</span>
                     </LeftPaneButton>
-                    <span className="state-map-summary-value">{row.seats}</span>
                   </li>
                 );
               })}
@@ -1180,29 +1179,26 @@ export function Sidebar({
                 const col = getPartyColor(row.party);
                 const isSelected = selectedSummaryParty === row.party;
                 return (
-                  <li
-                    key={row.party}
-                    className={`state-map-summary-row ${isSelected ? 'is-selected' : ''}`}
-                  >
-                    <span
-                      className="state-map-summary-swatch"
-                      style={{ backgroundColor: col, boxShadow: `0 0 0 1px ${col}40` }}
-                    />
+                  <li key={row.party} className="state-map-summary-list-item">
                     <LeftPaneButton
-                      variant="inline"
-                      className="state-map-summary-party-link"
+                      variant="row"
+                      className={`state-map-summary-row interactive-row ${isSelected ? 'is-selected' : ''}`}
                       title={`Filter map by ${row.party}`}
                       onClick={() => openPartyCandidates(row.party, 'votes')}
                       {...(onSummaryPartyChange && { 'aria-pressed': isSelected })}
                     >
+                      <span
+                        className="state-map-summary-swatch"
+                        style={{ backgroundColor: col, boxShadow: `0 0 0 1px ${col}40` }}
+                      />
                       <span className="state-map-summary-party" title={row.party}>
                         {getPartyShortName(row.party)}
                       </span>
+                      <span className="state-map-summary-votepct">
+                        {row.pct.toFixed(1)}%
+                        <span className="state-map-summary-voteabs"> ({formatIn(row.votes)})</span>
+                      </span>
                     </LeftPaneButton>
-                    <span className="state-map-summary-votepct">
-                      {row.pct.toFixed(1)}%
-                      <span className="state-map-summary-voteabs"> ({formatIn(row.votes)})</span>
-                    </span>
                   </li>
                 );
               })}

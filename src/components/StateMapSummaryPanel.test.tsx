@@ -23,6 +23,11 @@ describe('StateMapSummaryPanel', () => {
 
     expect(document.querySelector('.state-map-summary-list')).not.toBeNull();
     expect(document.querySelectorAll('.state-map-summary-row').length).toBeGreaterThan(0);
+    expect(document.querySelectorAll('.state-map-summary-list-item').length).toBe(2);
+    expect(
+      document.querySelectorAll('.state-map-summary-list-item > button.state-map-summary-row')
+        .length
+    ).toBe(2);
 
     expect(screen.getByText('5')).toBeInTheDocument();
     expect(screen.getByText(/50\.0%/)).toBeInTheDocument();
@@ -123,5 +128,47 @@ describe('StateMapSummaryPanel', () => {
 
     fireEvent.click(dmkBtn!);
     expect(onPartyToggle).toHaveBeenLastCalledWith(null);
+  });
+
+  it('wraps each row in a list item whose direct child is the full-width summary button', () => {
+    render(
+      <StateMapSummaryPanel
+        variant="assembly"
+        stateDisplayName="Test State"
+        subtitle="Assembly 2021"
+        seatRows={[{ party: 'AAA', seats: 1 }]}
+        voteRows={[{ party: 'BBB', votes: 50, pct: 25 }]}
+        totalValidVotes={50}
+        constituenciesCounted={2}
+        seatUnitLabel="ACs"
+      />
+    );
+
+    const items = document.querySelectorAll('.state-map-summary-list-item');
+    expect(items.length).toBe(2);
+    items.forEach((li) => {
+      expect(li.querySelector(':scope > button.state-map-summary-row')).not.toBeNull();
+      expect(li.querySelectorAll('button').length).toBe(1);
+    });
+  });
+
+  it('calls onPartyToggle when vote share is clicked (full-width row)', () => {
+    const onPartyToggle = vi.fn();
+    render(
+      <StateMapSummaryPanel
+        variant="assembly"
+        stateDisplayName="S"
+        subtitle="Y"
+        seatRows={[{ party: 'DMK', seats: 5 }]}
+        voteRows={[{ party: 'DMK', votes: 800, pct: 40 }]}
+        totalValidVotes={800}
+        constituenciesCounted={2}
+        seatUnitLabel="ACs"
+        onPartyToggle={onPartyToggle}
+      />
+    );
+
+    fireEvent.click(screen.getByText(/40\.0%/));
+    expect(onPartyToggle).toHaveBeenCalledWith('DMK');
   });
 });

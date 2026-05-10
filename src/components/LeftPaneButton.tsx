@@ -15,7 +15,7 @@ const variantClass: Record<LeftPaneButtonVariant, string> = {
 
 /**
  * Shared left-pane control: consistent type="button", focus, and variant styling.
- * Pair variant `row` / `inline` with existing layout classes (e.g. `party-candidate-row`, `state-map-summary-party-link`).
+ * Pair variant `row` / `inline` with existing layout classes (e.g. `party-candidate-row`, `state-map-summary-row`).
  */
 export const LeftPaneButton = forwardRef<HTMLButtonElement, LeftPaneButtonProps>(
   function LeftPaneButton({ variant, className = '', type = 'button', ...rest }, ref) {
