@@ -30,6 +30,7 @@ const NEUTRAL_MAP_STYLE: L.PathOptions = {
   opacity: 1,
 };
 import { mergeDimmedNonFocusStyle } from '../utils/mapDimming';
+import { isSummaryPartyPresent } from '../utils/summaryParty';
 
 import { clearAllCache } from '../utils/db';
 import { getPartyColor } from '../utils/partyData';
@@ -1852,8 +1853,10 @@ export function MapView({
 
   useEffect(() => {
     if (!selectedSummaryParty) return;
-    const rows = assemblyLayerMapSummary?.seats ?? parliamentLayerMapSummary?.seats ?? [];
-    if (!rows.some((r) => r.party === selectedSummaryParty)) {
+    const seats = assemblyLayerMapSummary?.seats ?? parliamentLayerMapSummary?.seats ?? [];
+    const voteRows =
+      assemblyLayerMapSummary?.voteRows ?? parliamentLayerMapSummary?.voteRows ?? null;
+    if (!isSummaryPartyPresent(selectedSummaryParty, seats, voteRows)) {
       onSummaryPartyChange?.(null);
     }
   }, [
