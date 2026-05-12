@@ -1,16 +1,16 @@
 {
   "version": "2.0.0",
-  "generated": "2026-05-05T04:16:15.591Z",
+  "generated": "2026-05-12T03:17:09.345Z",
   "schema": {
     "path": "schema.json",
     "version": "1.0.0",
-    "size": 2322059,
-    "hash": "029b5e5e",
+    "size": 1212662,
+    "hash": "deed2e69",
     "counts": {
       "states": 36,
-      "pcs": 541,
+      "pcs": 545,
       "acs": 4074,
-      "districts": 588
+      "districts": 572
     }
   },
   "geo": {
@@ -31,8 +31,8 @@
     "assembly": {
       "all": {
         "path": "geo/assembly/constituencies.geojson",
-        "size": 26393145,
-        "hash": "fef78ab2"
+        "size": 26388383,
+        "hash": "b7441b45"
       }
     },
     "districts": {
@@ -43,28 +43,28 @@
       },
       "AP": {
         "path": "geo/districts/AP.geojson",
-        "size": 1262850,
-        "hash": "9fb16ab0"
+        "size": 1263170,
+        "hash": "cd20dc1e"
       },
       "AR": {
         "path": "geo/districts/AR.geojson",
-        "size": 82016,
-        "hash": "de39ee65"
+        "size": 82216,
+        "hash": "ee45581c"
       },
       "AS": {
         "path": "geo/districts/AS.geojson",
-        "size": 173914,
-        "hash": "31f2ed0f"
+        "size": 174174,
+        "hash": "f73a44cb"
       },
       "BR": {
         "path": "geo/districts/BR.geojson",
-        "size": 202232,
-        "hash": "dee233e9"
+        "size": 202312,
+        "hash": "42342d58"
       },
       "CG": {
         "path": "geo/districts/CG.geojson",
-        "size": 175486,
-        "hash": "fc1ad4f2"
+        "size": 175786,
+        "hash": "83cc217c"
       },
       "CH": {
         "path": "geo/districts/CH.geojson",
@@ -88,33 +88,33 @@
       },
       "GJ": {
         "path": "geo/districts/GJ.geojson",
-        "size": 248256,
-        "hash": "1d46f882"
+        "size": 248536,
+        "hash": "d3aa5ca9"
       },
       "HP": {
         "path": "geo/districts/HP.geojson",
-        "size": 67741,
-        "hash": "a3f3fdfd"
+        "size": 67761,
+        "hash": "0d07fe83"
       },
       "HR": {
         "path": "geo/districts/HR.geojson",
-        "size": 103884,
-        "hash": "540d74e2"
+        "size": 103964,
+        "hash": "a27a7509"
       },
       "JH": {
         "path": "geo/districts/JH.geojson",
-        "size": 139098,
-        "hash": "433a10d2"
+        "size": 139258,
+        "hash": "c302d516"
       },
       "JK": {
         "path": "geo/districts/JK.geojson",
-        "size": 72466,
-        "hash": "6b6dec99"
+        "size": 72684,
+        "hash": "f87fbf9c"
       },
       "KA": {
         "path": "geo/districts/KA.geojson",
-        "size": 229526,
-        "hash": "5306d20f"
+        "size": 229846,
+        "hash": "0237a1d6"
       },
       "KL": {
         "path": "geo/districts/KL.geojson",
@@ -133,88 +133,93 @@
       },
       "MH": {
         "path": "geo/districts/MH.geojson",
-        "size": 325968,
-        "hash": "33c4dc83"
+        "size": 326128,
+        "hash": "9257fb6c"
       },
       "ML": {
         "path": "geo/districts/ML.geojson",
-        "size": 35326,
-        "hash": "317e9b84"
+        "size": 35426,
+        "hash": "e08cae3a"
       },
       "MN": {
         "path": "geo/districts/MN.geojson",
-        "size": 59511,
-        "hash": "20b874ee"
+        "size": 59651,
+        "hash": "7850cacb"
       },
       "MP": {
         "path": "geo/districts/MP.geojson",
-        "size": 422428,
-        "hash": "2299c877"
+        "size": 422608,
+        "hash": "1d08ec0a"
       },
       "MZ": {
         "path": "geo/districts/MZ.geojson",
-        "size": 185641,
-        "hash": "e83c7386"
+        "size": 185681,
+        "hash": "aba405f1"
       },
       "NL": {
         "path": "geo/districts/NL.geojson",
-        "size": 33498,
-        "hash": "b5e121fb"
+        "size": 33558,
+        "hash": "d9a0f24f"
       },
       "OD": {
         "path": "geo/districts/OD.geojson",
-        "size": 204083,
-        "hash": "4c2a7e7d"
+        "size": 204123,
+        "hash": "6985f837"
       },
       "PB": {
         "path": "geo/districts/PB.geojson",
-        "size": 117072,
-        "hash": "b101d029"
+        "size": 117232,
+        "hash": "2e8678a8"
       },
       "PY": {
         "path": "geo/districts/PY.geojson",
-        "size": 10781,
-        "hash": "9c524a22"
+        "size": 10801,
+        "hash": "66e0e1c9"
       },
       "RJ": {
         "path": "geo/districts/RJ.geojson",
-        "size": 292915,
-        "hash": "4f41c139"
+        "size": 293015,
+        "hash": "c41af24f"
       },
       "SK": {
         "path": "geo/districts/SK.geojson",
-        "size": 10560,
-        "hash": "f423ade5"
+        "size": 10640,
+        "hash": "752b0c8e"
+      },
+      "TN-ac-spatial": {
+        "path": "geo/districts/TN-ac-spatial.geojson",
+        "size": 107669,
+        "hash": "9bf2e986"
       },
       "TN": {
         "path": "geo/districts/TN.geojson",
-        "size": 177698,
-        "hash": "0fca687f"
+        "size": 250590,
+        "hash": "aa0a540a"
       },
       "TR": {
         "path": "geo/districts/TR.geojson",
-        "size": 23533,
-        "hash": "8e035a5d"
+        "size": 23613,
+        "hash": "7a15ddc3"
       },
       "TS": {
         "path": "geo/districts/TS.geojson",
-        "size": 155329,
-        "hash": "3c7d4f19"
+        "size": 155989,
+        "hash": "619e07ff"
       },
       "UK": {
         "path": "geo/districts/UK.geojson",
-        "size": 74744,
-        "hash": "1f2bbaef"
+        "size": 74784,
+        "hash": "0d28b9ed"
       },
       "UP": {
         "path": "geo/districts/UP.geojson",
-        "size": 478716,
-        "hash": "0eee8a53"
+        "size": 478916,
+        "hash": "2851298d"
       },
       "WB": {
         "path": "geo/districts/WB.geojson",
-        "size": 170030,
-        "hash": "252d985d"
+        "size": 170290,
+        "hash": "27eb6f34"
       }
     }
   },
@@ -324,14 +329,14 @@
           },
           "2026": {
             "path": "elections/ac/AS/2026.json",
-            "size": 285037,
-            "hash": "7f4dc1ef"
+            "size": 294041,
+            "hash": "34f34a93"
           }
         },
         "index": {
           "path": "elections/ac/AS/index.json",
           "size": 378,
-          "hash": "95d8ae60"
+          "hash": "7867c2ed"
         }
       },
       "BR": {
@@ -762,14 +767,14 @@
           },
           "2026": {
             "path": "elections/ac/KL/2026.json",
-            "size": 351711,
-            "hash": "263269ff"
+            "size": 350700,
+            "hash": "0656ec5a"
           }
         },
         "index": {
           "path": "elections/ac/KL/index.json",
           "size": 380,
-          "hash": "658f8e3c"
+          "hash": "5f370871"
         }
       },
       "MH": {
@@ -1116,14 +1121,14 @@
           },
           "2026": {
             "path": "elections/ac/PY/2026.json",
-            "size": 104378,
-            "hash": "c1f467a7"
+            "size": 104060,
+            "hash": "2442532a"
           }
         },
         "index": {
           "path": "elections/ac/PY/index.json",
           "size": 387,
-          "hash": "f1d22183"
+          "hash": "9d6a53d5"
         }
       },
       "RJ": {
@@ -1230,14 +1235,14 @@
           },
           "2026": {
             "path": "elections/ac/TN/2026.json",
-            "size": 1251298,
-            "hash": "e7ece387"
+            "size": 1247122,
+            "hash": "ca543f70"
           }
         },
         "index": {
           "path": "elections/ac/TN/index.json",
           "size": 388,
-          "hash": "71b15e71"
+          "hash": "35a0b99b"
         }
       },
       "TR": {
@@ -1410,14 +1415,14 @@
           },
           "2026": {
             "path": "elections/ac/WB/2026.json",
-            "size": 1047605,
-            "hash": "cb54969c"
+            "size": 1044410,
+            "hash": "f8b5500e"
           }
         },
         "index": {
           "path": "elections/ac/WB/index.json",
           "size": 390,
-          "hash": "2916262e"
+          "hash": "0d8c1c62"
         }
       }
     },
@@ -2655,12 +2660,12 @@
     }
   },
   "stats": {
-    "totalFiles": 378,
-    "totalSize": 183512384,
+    "totalFiles": 379,
+    "totalSize": 182583648,
     "acStates": 31,
     "pcStates": 36,
     "acYears": 138,
     "pcYears": 133,
-    "totalSizeFormatted": "175.0 MB"
+    "totalSizeFormatted": "174.1 MB"
   }
 }

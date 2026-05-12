@@ -463,7 +463,7 @@ export function Sidebar({
         subLabel: 'Assembly Constituencies',
       };
     }
-    if (showACDetailPanel && acDetailResult && currentView === 'assemblies') {
+    if (showACDetailPanel && acDetailResult) {
       const count = currentData?.features?.length ?? 0;
       const title =
         acDetailResult.constituencyNameOriginal ??
@@ -561,9 +561,28 @@ export function Sidebar({
         crumbs.push(<span key="sep2"> › </span>);
         if (currentPC) {
           crumbs.push(<span key="pc">{currentPC}</span>);
+          if (selectedAssembly) {
+            const acCrumbLabel =
+              electionResult?.constituencyNameOriginal ??
+              electionResult?.name ??
+              electionResult?.constituencyName ??
+              selectedAssembly;
+            crumbs.push(<span key="sep-pc-ac"> › </span>);
+            crumbs.push(<span key="ac-under-pc">{acCrumbLabel}</span>);
+          }
         } else if (currentDistrict) {
           crumbs.push(<span key="district">{currentDistrict}</span>);
-          crumbs.push(<span key="sep3"> › Assemblies</span>);
+          if (selectedAssembly) {
+            const acCrumbLabel =
+              electionResult?.constituencyNameOriginal ??
+              electionResult?.name ??
+              electionResult?.constituencyName ??
+              selectedAssembly;
+            crumbs.push(<span key="sep-dist-ac"> › </span>);
+            crumbs.push(<span key="ac-under-district">{acCrumbLabel}</span>);
+          } else {
+            crumbs.push(<span key="sep3"> › Assemblies</span>);
+          }
         }
       } else {
         crumbs.push(<span key="state">{displayState}</span>);

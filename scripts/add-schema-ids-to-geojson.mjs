@@ -35,6 +35,58 @@ function collapseRepeated(s) {
   return s.replace(/(.)\1+/g, '$1');
 }
 
+/**
+ * Parse `DISTRICT_NAME_MAPPINGS` from src/constants/index.ts so GeoJSON schema IDs
+ * stay aligned with DISTRICT_NAME_MAPPINGS in the app (no duplicate data file).
+ */
+function loadDistrictNameMappingsFromConstants() {
+  const tsPath = path.join(__dirname, '../src/constants/index.ts');
+  const src = fs.readFileSync(tsPath, 'utf8');
+  const startNeedle = 'export const DISTRICT_NAME_MAPPINGS';
+  const start = src.indexOf(startNeedle);
+  if (start === -1) throw new Error(`Missing ${startNeedle} in index.ts`);
+  const braceOpen = src.indexOf('{', start);
+  if (braceOpen === -1) throw new Error('Missing opening { for DISTRICT_NAME_MAPPINGS');
+
+  let depth = 0;
+  let i = braceOpen;
+  let inStr = false;
+  let strQuote = '';
+  let escaped = false;
+  for (; i < src.length; i++) {
+    const c = src[i];
+    if (inStr) {
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+      if (c === '\\') {
+        escaped = true;
+        continue;
+      }
+      if (c === strQuote) inStr = false;
+      continue;
+    }
+    if (c === "'" || c === '"') {
+      inStr = true;
+      strQuote = c;
+      continue;
+    }
+    if (c === '{') depth++;
+    else if (c === '}') {
+      depth--;
+      if (depth === 0) {
+        i++;
+        break;
+      }
+    }
+  }
+
+  let body = src.slice(braceOpen, i);
+  body = body.replace(/^\s*\/\/[^\n]*/gm, '');
+  return Function(`"use strict"; return (${body});`)();
+}
+
 function loadJSON(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 }
@@ -327,7 +379,7 @@ function addSchemaIdsToStates(schema) {
   return { matched, unmatched, unmatchedList, total: geo.features.length };
 }
 
-function addSchemaIdsToDistricts(schema) {
+function addSchemaIdsToDistricts(schema, districtNameMappings) {
   const districtsDir = path.join(DATA_DIR, 'geo/districts');
   const files = fs.readdirSync(districtsDir).filter(f => f.endsWith('.geojson'));
   
@@ -342,7 +394,7 @@ function addSchemaIdsToDistricts(schema) {
     for (const feature of geo.features) {
       const props = feature.properties;
       const stateName = normalizeName(props.st_nm);
-      const districtName = normalizeName(props.district);
+      let districtName = normalizeName(props.district);
       
       // Find state ID
       const stateId = schema.indices.stateByName[stateName];
@@ -354,10 +406,21 @@ function addSchemaIdsToDistricts(schema) {
         continue;
       }
 
-      // Find district
-      const lookupKey = `${districtName}|${stateId}`;
-      const districtId = schema.indices.districtByName[lookupKey];
-      
+      // Find district (same keys as schema.indices.districtByName)
+      let lookupKey = `${districtName}|${stateId}`;
+      let districtId = schema.indices.districtByName[lookupKey];
+
+      // Fallback: geo names often differ from census/schema names (see DISTRICT_NAME_MAPPINGS)
+      if (!districtId && props.district && props.st_nm) {
+        const mappingKey = `${props.district.toUpperCase().trim()}|${normalizeName(props.st_nm).toUpperCase().trim()}`;
+        const mappedAsmName = districtNameMappings[mappingKey];
+        if (mappedAsmName) {
+          districtName = normalizeName(mappedAsmName);
+          lookupKey = `${districtName}|${stateId}`;
+          districtId = schema.indices.districtByName[lookupKey];
+        }
+      }
+
       if (districtId) {
         props.schemaId = districtId;
         totalMatched++;
@@ -383,6 +446,10 @@ async function main() {
   console.log('🔄 Loading schema...');
   const schema = loadJSON(path.join(DATA_DIR, 'schema.json'));
   console.log(`   Loaded ${Object.keys(schema.assemblyConstituencies).length} ACs, ${Object.keys(schema.parliamentaryConstituencies).length} PCs`);
+
+  console.log('🔄 Loading DISTRICT_NAME_MAPPINGS from src/constants/index.ts...');
+  const districtNameMappings = loadDistrictNameMappingsFromConstants();
+  console.log(`   Loaded ${Object.keys(districtNameMappings).length} district name mappings`);
 
   console.log('\n📍 Adding schema IDs to GeoJSON files...\n');
 
@@ -421,7 +488,7 @@ async function main() {
 
   // Districts
   console.log('\n4. District boundaries...');
-  const distResult = addSchemaIdsToDistricts(schema);
+  const distResult = addSchemaIdsToDistricts(schema, districtNameMappings);
   console.log(`   ✓ ${distResult.matched}/${distResult.total} matched`);
   if (distResult.unmatched > 0) {
     console.log(`   ⚠ ${distResult.unmatched} unmatched:`);

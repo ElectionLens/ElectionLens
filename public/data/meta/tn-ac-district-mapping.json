@@ -1,0 +1,2351 @@
+{
+  "generated": "2026-05-12T03:17:10.375Z",
+  "districtGeoSources": {
+    "mapDisplay38": "hybrid: scripts/lib/build-tn-hybrid-districts.mjs (udit Nagapattinam − datta Mayiladuthurai + Mayil polygon)",
+    "acSpatialJoin37": "https://cdn.jsdelivr.net/gh/udit-001/india-maps-data@master/geojson/states/tamil-nadu.geojson",
+    "mayiladuthuraiPolygon": "https://raw.githubusercontent.com/datta07/INDIAN-SHAPEFILES/master/STATES/TAMIL%20NADU/TAMIL%20NADU_DISTRICTS.geojson"
+  },
+  "eciConstituencyList": "https://results.eci.gov.in/ResultAcGenMay2026/statewiseS221.htm",
+  "assemblyConstituencies": [
+    {
+      "schemaId": "TN-001",
+      "acNo": 1,
+      "acName": "Gummidipoondi",
+      "eciListName": "GUMMIDIPOONDI",
+      "geoDistrict": "Thiruvallur",
+      "districtId": "TN-D01",
+      "distName": "THIRUVALLUR",
+      "dtCode": 1
+    },
+    {
+      "schemaId": "TN-002",
+      "acNo": 2,
+      "acName": "Ponneri (SC)",
+      "eciListName": "PONNERI",
+      "geoDistrict": "Thiruvallur",
+      "districtId": "TN-D01",
+      "distName": "THIRUVALLUR",
+      "dtCode": 1
+    },
+    {
+      "schemaId": "TN-003",
+      "acNo": 3,
+      "acName": "Tiruttani",
+      "eciListName": "TIRUTTANI",
+      "geoDistrict": "Thiruvallur",
+      "districtId": "TN-D01",
+      "distName": "THIRUVALLUR",
+      "dtCode": 1
+    },
+    {
+      "schemaId": "TN-004",
+      "acNo": 4,
+      "acName": "Thiruvallur",
+      "eciListName": "THIRUVALLUR",
+      "geoDistrict": "Thiruvallur",
+      "districtId": "TN-D01",
+      "distName": "THIRUVALLUR",
+      "dtCode": 1
+    },
+    {
+      "schemaId": "TN-005",
+      "acNo": 5,
+      "acName": "Poonamallee (SC)",
+      "eciListName": "POONAMALLEE",
+      "geoDistrict": "Thiruvallur",
+      "districtId": "TN-D01",
+      "distName": "THIRUVALLUR",
+      "dtCode": 1
+    },
+    {
+      "schemaId": "TN-006",
+      "acNo": 6,
+      "acName": "Avadi",
+      "eciListName": "AVADI",
+      "geoDistrict": "Thiruvallur",
+      "districtId": "TN-D01",
+      "distName": "THIRUVALLUR",
+      "dtCode": 1
+    },
+    {
+      "schemaId": "TN-007",
+      "acNo": 7,
+      "acName": "Maduravoyal",
+      "eciListName": "MADURAVOYAL",
+      "geoDistrict": "Thiruvallur",
+      "districtId": "TN-D01",
+      "distName": "THIRUVALLUR",
+      "dtCode": 1
+    },
+    {
+      "schemaId": "TN-008",
+      "acNo": 8,
+      "acName": "Ambattur",
+      "eciListName": "AMBATTUR",
+      "geoDistrict": "Thiruvallur",
+      "districtId": "TN-D01",
+      "distName": "THIRUVALLUR",
+      "dtCode": 1
+    },
+    {
+      "schemaId": "TN-009",
+      "acNo": 9,
+      "acName": "Madavaram",
+      "eciListName": "MADAVARAM",
+      "geoDistrict": "Thiruvallur",
+      "districtId": "TN-D01",
+      "distName": "THIRUVALLUR",
+      "dtCode": 1
+    },
+    {
+      "schemaId": "TN-010",
+      "acNo": 10,
+      "acName": "Tiruvottiyur",
+      "eciListName": null,
+      "geoDistrict": "Thiruvallur",
+      "districtId": "TN-D01",
+      "distName": "THIRUVALLUR",
+      "dtCode": 1
+    },
+    {
+      "schemaId": "TN-011",
+      "acNo": 11,
+      "acName": "Dr.Radhakrishnan Naga",
+      "eciListName": null,
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-012",
+      "acNo": 12,
+      "acName": "Perambur",
+      "eciListName": "PERAMBUR",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-013",
+      "acNo": 13,
+      "acName": "Kolathur",
+      "eciListName": "KOLATHUR",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-014",
+      "acNo": 14,
+      "acName": "Villivakkam",
+      "eciListName": "VILLIVAKKAM",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-015",
+      "acNo": 15,
+      "acName": "Thiru-Vi-Ka-Nagar(SC)",
+      "eciListName": "THIRU-VI-KA-NAGAR",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-016",
+      "acNo": 16,
+      "acName": "Egmore (SC)",
+      "eciListName": "EGMORE",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-017",
+      "acNo": 17,
+      "acName": "Royapuram",
+      "eciListName": "ROYAPURAM",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-018",
+      "acNo": 18,
+      "acName": "Harbour",
+      "eciListName": "HARBOUR",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-019",
+      "acNo": 19,
+      "acName": "Chepauk-Thiruvalliken",
+      "eciListName": null,
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-020",
+      "acNo": 20,
+      "acName": "Thousand Lights",
+      "eciListName": "THOUSAND LIGHTS",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-021",
+      "acNo": 21,
+      "acName": "Anna Nagar",
+      "eciListName": "ANNA NAGAR",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-022",
+      "acNo": 22,
+      "acName": "Virugampakkam",
+      "eciListName": "VIRUGAMPAKKAM",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-023",
+      "acNo": 23,
+      "acName": "Saidapet",
+      "eciListName": "SAIDAPET",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-024",
+      "acNo": 24,
+      "acName": "Thiyagarayanagar",
+      "eciListName": "THIYAGARAYANAGAR",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-025",
+      "acNo": 25,
+      "acName": "Mylapore",
+      "eciListName": "MYLAPORE",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-026",
+      "acNo": 26,
+      "acName": "Velachery",
+      "eciListName": "VELACHERY",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-027",
+      "acNo": 27,
+      "acName": "Shozhinganallur",
+      "eciListName": "SHOZHINGANALLUR",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-028",
+      "acNo": 28,
+      "acName": "Alandur",
+      "eciListName": "ALANDUR",
+      "geoDistrict": "Chennai",
+      "districtId": "TN-D02",
+      "distName": "CHENNAI",
+      "dtCode": 2
+    },
+    {
+      "schemaId": "TN-029",
+      "acNo": 29,
+      "acName": "Sriperumbudur (SC)",
+      "eciListName": "SRIPERUMBUDUR",
+      "geoDistrict": "Kancheepuram",
+      "districtId": "TN-D03",
+      "distName": "KANCHEEPURAM",
+      "dtCode": 3
+    },
+    {
+      "schemaId": "TN-030",
+      "acNo": 30,
+      "acName": "Pallavaram",
+      "eciListName": "PALLAVARAM",
+      "geoDistrict": "Chengalpattu",
+      "districtId": "TN-D03",
+      "distName": "KANCHEEPURAM",
+      "dtCode": 3
+    },
+    {
+      "schemaId": "TN-031",
+      "acNo": 31,
+      "acName": "Tambaram",
+      "eciListName": "TAMBARAM",
+      "geoDistrict": "Chengalpattu",
+      "districtId": "TN-D03",
+      "distName": "KANCHEEPURAM",
+      "dtCode": 3
+    },
+    {
+      "schemaId": "TN-032",
+      "acNo": 32,
+      "acName": "Chengalpattu",
+      "eciListName": "CHENGALPATTU",
+      "geoDistrict": "Chengalpattu",
+      "districtId": "TN-D03",
+      "distName": "KANCHEEPURAM",
+      "dtCode": 3
+    },
+    {
+      "schemaId": "TN-033",
+      "acNo": 33,
+      "acName": "Thiruporur",
+      "eciListName": "THIRUPORUR",
+      "geoDistrict": "Chengalpattu",
+      "districtId": "TN-D03",
+      "distName": "KANCHEEPURAM",
+      "dtCode": 3
+    },
+    {
+      "schemaId": "TN-034",
+      "acNo": 34,
+      "acName": "Cheyyur (SC)",
+      "eciListName": "CHEYYUR",
+      "geoDistrict": "Chengalpattu",
+      "districtId": "TN-D03",
+      "distName": "KANCHEEPURAM",
+      "dtCode": 3
+    },
+    {
+      "schemaId": "TN-035",
+      "acNo": 35,
+      "acName": "Madurantakam (SC)",
+      "eciListName": "MADURANTAKAM",
+      "geoDistrict": "Chengalpattu",
+      "districtId": "TN-D03",
+      "distName": "KANCHEEPURAM",
+      "dtCode": 3
+    },
+    {
+      "schemaId": "TN-036",
+      "acNo": 36,
+      "acName": "Uthiramerur",
+      "eciListName": "UTHIRAMERUR",
+      "geoDistrict": "Kancheepuram",
+      "districtId": "TN-D03",
+      "distName": "KANCHEEPURAM",
+      "dtCode": 3
+    },
+    {
+      "schemaId": "TN-037",
+      "acNo": 37,
+      "acName": "Kancheepuram",
+      "eciListName": "KANCHEEPURAM",
+      "geoDistrict": "Kancheepuram",
+      "districtId": "TN-D03",
+      "distName": "KANCHEEPURAM",
+      "dtCode": 3
+    },
+    {
+      "schemaId": "TN-038",
+      "acNo": 38,
+      "acName": "Arakkonam (SC)",
+      "eciListName": "ARAKKONAM",
+      "geoDistrict": "Ranipet",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-039",
+      "acNo": 39,
+      "acName": "Sholingur",
+      "eciListName": "SHOLINGUR",
+      "geoDistrict": "Ranipet",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-040",
+      "acNo": 40,
+      "acName": "Katpadi",
+      "eciListName": "KATPADI",
+      "geoDistrict": "Vellore",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-041",
+      "acNo": 41,
+      "acName": "Ranipet",
+      "eciListName": "RANIPET",
+      "geoDistrict": "Ranipet",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-042",
+      "acNo": 42,
+      "acName": "Arcot",
+      "eciListName": "ARCOT",
+      "geoDistrict": "Ranipet",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-043",
+      "acNo": 43,
+      "acName": "Vellore",
+      "eciListName": "VELLORE",
+      "geoDistrict": "Vellore",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-044",
+      "acNo": 44,
+      "acName": "Anaikattu",
+      "eciListName": "ANAIKATTU",
+      "geoDistrict": "Vellore",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-045",
+      "acNo": 45,
+      "acName": "Kilvaithinankuppam(SC",
+      "eciListName": null,
+      "geoDistrict": "Vellore",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-046",
+      "acNo": 46,
+      "acName": "Gudiyattam (SC)",
+      "eciListName": "GUDIYATTAM",
+      "geoDistrict": "Vellore",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-047",
+      "acNo": 47,
+      "acName": "Vaniyambadi",
+      "eciListName": "VANIYAMBADI",
+      "geoDistrict": "Tirupathur",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-048",
+      "acNo": 48,
+      "acName": "Ambur",
+      "eciListName": "AMBUR",
+      "geoDistrict": "Tirupathur",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-049",
+      "acNo": 49,
+      "acName": "Jolarpet",
+      "eciListName": "JOLARPET",
+      "geoDistrict": "Tirupathur",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-185",
+      "acNo": 50,
+      "acName": "Tiruppattur",
+      "eciListName": "TIRUPPATTUR",
+      "geoDistrict": "Tirupathur",
+      "districtId": "TN-D04",
+      "distName": "VELLORE",
+      "dtCode": 4
+    },
+    {
+      "schemaId": "TN-051",
+      "acNo": 51,
+      "acName": "Uthangarai (SC)",
+      "eciListName": "UTHANGARAI",
+      "geoDistrict": "Krishnagiri",
+      "districtId": "TN-D31",
+      "distName": "KRISHNAGIRI",
+      "dtCode": 31
+    },
+    {
+      "schemaId": "TN-052",
+      "acNo": 52,
+      "acName": "Bargur",
+      "eciListName": "BARGUR",
+      "geoDistrict": "Krishnagiri",
+      "districtId": "TN-D31",
+      "distName": "KRISHNAGIRI",
+      "dtCode": 31
+    },
+    {
+      "schemaId": "TN-053",
+      "acNo": 53,
+      "acName": "Krishnagiri",
+      "eciListName": "KRISHNAGIRI",
+      "geoDistrict": "Krishnagiri",
+      "districtId": "TN-D31",
+      "distName": "KRISHNAGIRI",
+      "dtCode": 31
+    },
+    {
+      "schemaId": "TN-054",
+      "acNo": 54,
+      "acName": "Veppanahalli",
+      "eciListName": "VEPPANAHALLI",
+      "geoDistrict": "Krishnagiri",
+      "districtId": "TN-D31",
+      "distName": "KRISHNAGIRI",
+      "dtCode": 31
+    },
+    {
+      "schemaId": "TN-055",
+      "acNo": 55,
+      "acName": "Hosur",
+      "eciListName": "HOSUR",
+      "geoDistrict": "Krishnagiri",
+      "districtId": "TN-D31",
+      "distName": "KRISHNAGIRI",
+      "dtCode": 31
+    },
+    {
+      "schemaId": "TN-056",
+      "acNo": 56,
+      "acName": "Thalli",
+      "eciListName": "THALLI",
+      "geoDistrict": "Krishnagiri",
+      "districtId": "TN-D31",
+      "distName": "KRISHNAGIRI",
+      "dtCode": 31
+    },
+    {
+      "schemaId": "TN-057",
+      "acNo": 57,
+      "acName": "Palacodu",
+      "eciListName": "PALACODU",
+      "geoDistrict": "Dharmapuri",
+      "districtId": "TN-D05",
+      "distName": "DHARMAPURI",
+      "dtCode": 5
+    },
+    {
+      "schemaId": "TN-058",
+      "acNo": 58,
+      "acName": "Pennagaram",
+      "eciListName": "PENNAGARAM",
+      "geoDistrict": "Dharmapuri",
+      "districtId": "TN-D05",
+      "distName": "DHARMAPURI",
+      "dtCode": 5
+    },
+    {
+      "schemaId": "TN-059",
+      "acNo": 59,
+      "acName": "Dharmapuri",
+      "eciListName": "DHARMAPURI",
+      "geoDistrict": "Dharmapuri",
+      "districtId": "TN-D05",
+      "distName": "DHARMAPURI",
+      "dtCode": 5
+    },
+    {
+      "schemaId": "TN-060",
+      "acNo": 60,
+      "acName": "Pappireddippatti",
+      "eciListName": null,
+      "geoDistrict": "Dharmapuri",
+      "districtId": "TN-D05",
+      "distName": "DHARMAPURI",
+      "dtCode": 5
+    },
+    {
+      "schemaId": "TN-061",
+      "acNo": 61,
+      "acName": "Harur (SC)",
+      "eciListName": "HARUR",
+      "geoDistrict": "Dharmapuri",
+      "districtId": "TN-D05",
+      "distName": "DHARMAPURI",
+      "dtCode": 5
+    },
+    {
+      "schemaId": "TN-062",
+      "acNo": 62,
+      "acName": "Chengam (SC)",
+      "eciListName": "CHENGAM",
+      "geoDistrict": "Tiruvannamalai",
+      "districtId": "TN-D06",
+      "distName": "TIRUVANNAMALAI",
+      "dtCode": 6
+    },
+    {
+      "schemaId": "TN-063",
+      "acNo": 63,
+      "acName": "Tiruvannamalai",
+      "eciListName": "TIRUVANNAMALAI",
+      "geoDistrict": "Tiruvannamalai",
+      "districtId": "TN-D06",
+      "distName": "TIRUVANNAMALAI",
+      "dtCode": 6
+    },
+    {
+      "schemaId": "TN-064",
+      "acNo": 64,
+      "acName": "Kilpennathur",
+      "eciListName": "KILPENNATHUR",
+      "geoDistrict": "Tiruvannamalai",
+      "districtId": "TN-D06",
+      "distName": "TIRUVANNAMALAI",
+      "dtCode": 6
+    },
+    {
+      "schemaId": "TN-065",
+      "acNo": 65,
+      "acName": "Kalasapakkam",
+      "eciListName": "KALASAPAKKAM",
+      "geoDistrict": "Tiruvannamalai",
+      "districtId": "TN-D06",
+      "distName": "TIRUVANNAMALAI",
+      "dtCode": 6
+    },
+    {
+      "schemaId": "TN-066",
+      "acNo": 66,
+      "acName": "Polur",
+      "eciListName": "POLUR",
+      "geoDistrict": "Tiruvannamalai",
+      "districtId": "TN-D06",
+      "distName": "TIRUVANNAMALAI",
+      "dtCode": 6
+    },
+    {
+      "schemaId": "TN-067",
+      "acNo": 67,
+      "acName": "Arani",
+      "eciListName": "ARANI",
+      "geoDistrict": "Tiruvannamalai",
+      "districtId": "TN-D06",
+      "distName": "TIRUVANNAMALAI",
+      "dtCode": 6
+    },
+    {
+      "schemaId": "TN-068",
+      "acNo": 68,
+      "acName": "Cheyyar",
+      "eciListName": "CHEYYAR",
+      "geoDistrict": "Tiruvannamalai",
+      "districtId": "TN-D06",
+      "distName": "TIRUVANNAMALAI",
+      "dtCode": 6
+    },
+    {
+      "schemaId": "TN-069",
+      "acNo": 69,
+      "acName": "Vandavasi (SC)",
+      "eciListName": "VANDAVASI",
+      "geoDistrict": "Tiruvannamalai",
+      "districtId": "TN-D06",
+      "distName": "TIRUVANNAMALAI",
+      "dtCode": 6
+    },
+    {
+      "schemaId": "TN-070",
+      "acNo": 70,
+      "acName": "Gingee",
+      "eciListName": "GINGEE",
+      "geoDistrict": "Viluppuram",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-071",
+      "acNo": 71,
+      "acName": "Mailam",
+      "eciListName": "MAILAM",
+      "geoDistrict": "Viluppuram",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-072",
+      "acNo": 72,
+      "acName": "Tindivanam (SC)",
+      "eciListName": "TINDIVANAM",
+      "geoDistrict": "Viluppuram",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-073",
+      "acNo": 73,
+      "acName": "Vanur (SC)",
+      "eciListName": "VANUR",
+      "geoDistrict": "Viluppuram",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-074",
+      "acNo": 74,
+      "acName": "Viluppuram",
+      "eciListName": "VILUPPURAM",
+      "geoDistrict": "Viluppuram",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-075",
+      "acNo": 75,
+      "acName": "Vikravandi",
+      "eciListName": "VIKRAVANDI",
+      "geoDistrict": "Viluppuram",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-076",
+      "acNo": 76,
+      "acName": "Tirukkoyilur",
+      "eciListName": "TIRUKKOYILUR",
+      "geoDistrict": "Viluppuram",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-077",
+      "acNo": 77,
+      "acName": "Ulundurpettai",
+      "eciListName": "ULUNDURPETTAI",
+      "geoDistrict": "Kallakurichi",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-078",
+      "acNo": 78,
+      "acName": "Rishivandiyam",
+      "eciListName": "RISHIVANDIYAM",
+      "geoDistrict": "Kallakurichi",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-079",
+      "acNo": 79,
+      "acName": "Sankarapuram",
+      "eciListName": "SANKARAPURAM",
+      "geoDistrict": "Kallakurichi",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-080",
+      "acNo": 80,
+      "acName": "Kallakurichi (SC)",
+      "eciListName": "KALLAKURICHI",
+      "geoDistrict": "Kallakurichi",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-081",
+      "acNo": 81,
+      "acName": "Gangavalli (SC)",
+      "eciListName": "GANGAVALLI",
+      "geoDistrict": "Salem",
+      "districtId": "TN-D08",
+      "distName": "SALEM",
+      "dtCode": 8
+    },
+    {
+      "schemaId": "TN-082",
+      "acNo": 82,
+      "acName": "Attur(SC)",
+      "eciListName": "ATTUR",
+      "geoDistrict": "Salem",
+      "districtId": "TN-D08",
+      "distName": "SALEM",
+      "dtCode": 8
+    },
+    {
+      "schemaId": "TN-083",
+      "acNo": 83,
+      "acName": "Yercaud (ST)",
+      "eciListName": "YERCAUD",
+      "geoDistrict": "Salem",
+      "districtId": "TN-D08",
+      "distName": "SALEM",
+      "dtCode": 8
+    },
+    {
+      "schemaId": "TN-084",
+      "acNo": 84,
+      "acName": "Omalur",
+      "eciListName": "OMALUR",
+      "geoDistrict": "Salem",
+      "districtId": "TN-D08",
+      "distName": "SALEM",
+      "dtCode": 8
+    },
+    {
+      "schemaId": "TN-085",
+      "acNo": 85,
+      "acName": "Mettur",
+      "eciListName": "METTUR",
+      "geoDistrict": "Salem",
+      "districtId": "TN-D08",
+      "distName": "SALEM",
+      "dtCode": 8
+    },
+    {
+      "schemaId": "TN-086",
+      "acNo": 86,
+      "acName": "Edappadi",
+      "eciListName": "EDAPPADI",
+      "geoDistrict": "Salem",
+      "districtId": "TN-D08",
+      "distName": "SALEM",
+      "dtCode": 8
+    },
+    {
+      "schemaId": "TN-087",
+      "acNo": 87,
+      "acName": "Sankari",
+      "eciListName": "SANKARI",
+      "geoDistrict": "Salem",
+      "districtId": "TN-D08",
+      "distName": "SALEM",
+      "dtCode": 8
+    },
+    {
+      "schemaId": "TN-088",
+      "acNo": 88,
+      "acName": "Salem (West)",
+      "eciListName": "SALEM (WEST)",
+      "geoDistrict": "Salem",
+      "districtId": "TN-D08",
+      "distName": "SALEM",
+      "dtCode": 8
+    },
+    {
+      "schemaId": "TN-089",
+      "acNo": 89,
+      "acName": "Salem (North)",
+      "eciListName": "SALEM (NORTH)",
+      "geoDistrict": "Salem",
+      "districtId": "TN-D08",
+      "distName": "SALEM",
+      "dtCode": 8
+    },
+    {
+      "schemaId": "TN-090",
+      "acNo": 90,
+      "acName": "Salem (South)",
+      "eciListName": "SALEM (SOUTH)",
+      "geoDistrict": "Salem",
+      "districtId": "TN-D08",
+      "distName": "SALEM",
+      "dtCode": 8
+    },
+    {
+      "schemaId": "TN-091",
+      "acNo": 91,
+      "acName": "Veerapandi",
+      "eciListName": "VEERAPANDI",
+      "geoDistrict": "Salem",
+      "districtId": "TN-D08",
+      "distName": "SALEM",
+      "dtCode": 8
+    },
+    {
+      "schemaId": "TN-092",
+      "acNo": 92,
+      "acName": "Rasipuram (SC)",
+      "eciListName": "RASIPURAM",
+      "geoDistrict": "Namakkal",
+      "districtId": "TN-D09",
+      "distName": "NAMAKKAL   *",
+      "dtCode": 9
+    },
+    {
+      "schemaId": "TN-093",
+      "acNo": 93,
+      "acName": "Senthamangalam(ST)",
+      "eciListName": "SENTHAMANGALAM",
+      "geoDistrict": "Namakkal",
+      "districtId": "TN-D09",
+      "distName": "NAMAKKAL   *",
+      "dtCode": 9
+    },
+    {
+      "schemaId": "TN-094",
+      "acNo": 94,
+      "acName": "Namakkal",
+      "eciListName": "NAMAKKAL",
+      "geoDistrict": "Namakkal",
+      "districtId": "TN-D09",
+      "distName": "NAMAKKAL   *",
+      "dtCode": 9
+    },
+    {
+      "schemaId": "TN-095",
+      "acNo": 95,
+      "acName": "Paramathi-Velur",
+      "eciListName": "PARAMATHI-VELUR",
+      "geoDistrict": "Namakkal",
+      "districtId": "TN-D09",
+      "distName": "NAMAKKAL   *",
+      "dtCode": 9
+    },
+    {
+      "schemaId": "TN-096",
+      "acNo": 96,
+      "acName": "Tiruchengodu",
+      "eciListName": "TIRUCHENGODU",
+      "geoDistrict": "Namakkal",
+      "districtId": "TN-D09",
+      "distName": "NAMAKKAL   *",
+      "dtCode": 9
+    },
+    {
+      "schemaId": "TN-097",
+      "acNo": 97,
+      "acName": "Kumarapalayam",
+      "eciListName": "KUMARAPALAYAM",
+      "geoDistrict": "Namakkal",
+      "districtId": "TN-D09",
+      "distName": "NAMAKKAL   *",
+      "dtCode": 9
+    },
+    {
+      "schemaId": "TN-098",
+      "acNo": 98,
+      "acName": "Erode (East)",
+      "eciListName": "ERODE (EAST)",
+      "geoDistrict": "Erode",
+      "districtId": "TN-D10",
+      "distName": "ERODE",
+      "dtCode": 10
+    },
+    {
+      "schemaId": "TN-099",
+      "acNo": 99,
+      "acName": "Erode (West)",
+      "eciListName": "ERODE (WEST)",
+      "geoDistrict": "Erode",
+      "districtId": "TN-D10",
+      "distName": "ERODE",
+      "dtCode": 10
+    },
+    {
+      "schemaId": "TN-100",
+      "acNo": 100,
+      "acName": "Modakkurichi",
+      "eciListName": "MODAKKURICHI",
+      "geoDistrict": "Erode",
+      "districtId": "TN-D10",
+      "distName": "ERODE",
+      "dtCode": 10
+    },
+    {
+      "schemaId": "TN-101",
+      "acNo": 101,
+      "acName": "Dharapuram (SC)",
+      "eciListName": "DHARAPURAM",
+      "geoDistrict": "Tiruppur",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-102",
+      "acNo": 102,
+      "acName": "Kangayam",
+      "eciListName": "KANGAYAM",
+      "geoDistrict": "Tiruppur",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-103",
+      "acNo": 103,
+      "acName": "Perundurai",
+      "eciListName": "PERUNDURAI",
+      "geoDistrict": "Erode",
+      "districtId": "TN-D10",
+      "distName": "ERODE",
+      "dtCode": 10
+    },
+    {
+      "schemaId": "TN-104",
+      "acNo": 104,
+      "acName": "Bhavani",
+      "eciListName": "BHAVANI",
+      "geoDistrict": "Erode",
+      "districtId": "TN-D10",
+      "distName": "ERODE",
+      "dtCode": 10
+    },
+    {
+      "schemaId": "TN-105",
+      "acNo": 105,
+      "acName": "Anthiyur",
+      "eciListName": "ANTHIYUR",
+      "geoDistrict": "Erode",
+      "districtId": "TN-D10",
+      "distName": "ERODE",
+      "dtCode": 10
+    },
+    {
+      "schemaId": "TN-106",
+      "acNo": 106,
+      "acName": "Gobichettipalayam",
+      "eciListName": "GOBICHETTIPALAYAM",
+      "geoDistrict": "Erode",
+      "districtId": "TN-D10",
+      "distName": "ERODE",
+      "dtCode": 10
+    },
+    {
+      "schemaId": "TN-107",
+      "acNo": 107,
+      "acName": "Bhavanisagar",
+      "eciListName": "BHAVANISAGAR",
+      "geoDistrict": "Erode",
+      "districtId": "TN-D10",
+      "distName": "ERODE",
+      "dtCode": 10
+    },
+    {
+      "schemaId": "TN-108",
+      "acNo": 108,
+      "acName": "Udhagamandalam",
+      "eciListName": "UDHAGAMANDALAM",
+      "geoDistrict": "Nilgiris",
+      "districtId": "TN-D11",
+      "distName": "THE NILGIRIS",
+      "dtCode": 11
+    },
+    {
+      "schemaId": "TN-109",
+      "acNo": 109,
+      "acName": "Gudalur (SC)",
+      "eciListName": "GUDALUR",
+      "geoDistrict": "Nilgiris",
+      "districtId": "TN-D11",
+      "distName": "THE NILGIRIS",
+      "dtCode": 11
+    },
+    {
+      "schemaId": "TN-110",
+      "acNo": 110,
+      "acName": "Coonoor",
+      "eciListName": "COONOOR",
+      "geoDistrict": "Nilgiris",
+      "districtId": "TN-D11",
+      "distName": "THE NILGIRIS",
+      "dtCode": 11
+    },
+    {
+      "schemaId": "TN-111",
+      "acNo": 111,
+      "acName": "Mettuppalayam",
+      "eciListName": "METTUPPALAYAM",
+      "geoDistrict": "Coimbatore",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-112",
+      "acNo": 112,
+      "acName": "Avanashi (SC)",
+      "eciListName": "AVANASHI",
+      "geoDistrict": "Tiruppur",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-113",
+      "acNo": 113,
+      "acName": "Tiruppur (North)",
+      "eciListName": "TIRUPPUR (NORTH)",
+      "geoDistrict": "Tiruppur",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-114",
+      "acNo": 114,
+      "acName": "Tiruppur (South)",
+      "eciListName": "TIRUPPUR (SOUTH)",
+      "geoDistrict": "Tiruppur",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-115",
+      "acNo": 115,
+      "acName": "Palladam",
+      "eciListName": "PALLADAM",
+      "geoDistrict": "Tiruppur",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-116",
+      "acNo": 116,
+      "acName": "Sulur",
+      "eciListName": "SULUR",
+      "geoDistrict": "Tiruppur",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-117",
+      "acNo": 117,
+      "acName": "Kavundampalayam",
+      "eciListName": "KAVUNDAMPALAYAM",
+      "geoDistrict": "Coimbatore",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-118",
+      "acNo": 118,
+      "acName": "Coimbatore(North)",
+      "eciListName": "COIMBATORE (NORTH)",
+      "geoDistrict": "Coimbatore",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-119",
+      "acNo": 119,
+      "acName": "Thondamuthur",
+      "eciListName": "THONDAMUTHUR",
+      "geoDistrict": "Coimbatore",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-120",
+      "acNo": 120,
+      "acName": "Coimbatore(South)",
+      "eciListName": "COIMBATORE (SOUTH)",
+      "geoDistrict": "Coimbatore",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-121",
+      "acNo": 121,
+      "acName": "Singanallur",
+      "eciListName": "SINGANALLUR",
+      "geoDistrict": "Coimbatore",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-122",
+      "acNo": 122,
+      "acName": "Kinathukadavu",
+      "eciListName": "KINATHUKADAVU",
+      "geoDistrict": "Coimbatore",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-123",
+      "acNo": 123,
+      "acName": "Pollachi",
+      "eciListName": "POLLACHI",
+      "geoDistrict": "Coimbatore",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-124",
+      "acNo": 124,
+      "acName": "Valparai (SC)",
+      "eciListName": "VALPARAI",
+      "geoDistrict": "Coimbatore",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-125",
+      "acNo": 125,
+      "acName": "Udumalaipettai",
+      "eciListName": "UDUMALAIPETTAI",
+      "geoDistrict": "Coimbatore",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-126",
+      "acNo": 126,
+      "acName": "Madathukulam",
+      "eciListName": "MADATHUKULAM",
+      "geoDistrict": "Tiruppur",
+      "districtId": "TN-D12",
+      "distName": "COIMBATORE",
+      "dtCode": 12
+    },
+    {
+      "schemaId": "TN-127",
+      "acNo": 127,
+      "acName": "Palani",
+      "eciListName": "PALANI",
+      "geoDistrict": "Dindigul",
+      "districtId": "TN-D13",
+      "distName": "DINDIGUL",
+      "dtCode": 13
+    },
+    {
+      "schemaId": "TN-128",
+      "acNo": 128,
+      "acName": "Oddanchatram",
+      "eciListName": "ODDANCHATRAM",
+      "geoDistrict": "Dindigul",
+      "districtId": "TN-D13",
+      "distName": "DINDIGUL",
+      "dtCode": 13
+    },
+    {
+      "schemaId": "TN-129",
+      "acNo": 129,
+      "acName": "Athoor",
+      "eciListName": "ATHOOR",
+      "geoDistrict": "Dindigul",
+      "districtId": "TN-D13",
+      "distName": "DINDIGUL",
+      "dtCode": 13
+    },
+    {
+      "schemaId": "TN-130",
+      "acNo": 130,
+      "acName": "Nilakkottai (SC)",
+      "eciListName": "NILAKKOTTAI",
+      "geoDistrict": "Dindigul",
+      "districtId": "TN-D13",
+      "distName": "DINDIGUL",
+      "dtCode": 13
+    },
+    {
+      "schemaId": "TN-131",
+      "acNo": 131,
+      "acName": "Natham",
+      "eciListName": "NATHAM",
+      "geoDistrict": "Dindigul",
+      "districtId": "TN-D13",
+      "distName": "DINDIGUL",
+      "dtCode": 13
+    },
+    {
+      "schemaId": "TN-132",
+      "acNo": 132,
+      "acName": "Dindigul",
+      "eciListName": "DINDIGUL",
+      "geoDistrict": "Dindigul",
+      "districtId": "TN-D13",
+      "distName": "DINDIGUL",
+      "dtCode": 13
+    },
+    {
+      "schemaId": "TN-133",
+      "acNo": 133,
+      "acName": "Vedasandur",
+      "eciListName": "VEDASANDUR",
+      "geoDistrict": "Dindigul",
+      "districtId": "TN-D13",
+      "distName": "DINDIGUL",
+      "dtCode": 13
+    },
+    {
+      "schemaId": "TN-134",
+      "acNo": 134,
+      "acName": "Aravakurichi",
+      "eciListName": "ARAVAKURICHI",
+      "geoDistrict": "Karur",
+      "districtId": "TN-D14",
+      "distName": "KARUR  *",
+      "dtCode": 14
+    },
+    {
+      "schemaId": "TN-135",
+      "acNo": 135,
+      "acName": "Karur",
+      "eciListName": "KARUR",
+      "geoDistrict": "Karur",
+      "districtId": "TN-D14",
+      "distName": "KARUR  *",
+      "dtCode": 14
+    },
+    {
+      "schemaId": "TN-136",
+      "acNo": 136,
+      "acName": "Krishnarayapuram(SC)",
+      "eciListName": "KRISHNARAYAPURAM",
+      "geoDistrict": "Karur",
+      "districtId": "TN-D14",
+      "distName": "KARUR  *",
+      "dtCode": 14
+    },
+    {
+      "schemaId": "TN-137",
+      "acNo": 137,
+      "acName": "Kulithalai",
+      "eciListName": "KULITHALAI",
+      "geoDistrict": "Karur",
+      "districtId": "TN-D14",
+      "distName": "KARUR  *",
+      "dtCode": 14
+    },
+    {
+      "schemaId": "TN-138",
+      "acNo": 138,
+      "acName": "Manapparai",
+      "eciListName": "MANAPPARAI",
+      "geoDistrict": "Tiruchirappalli",
+      "districtId": "TN-D15",
+      "distName": "TIRUCHIRAPPALLI",
+      "dtCode": 15
+    },
+    {
+      "schemaId": "TN-139",
+      "acNo": 139,
+      "acName": "Srirangam",
+      "eciListName": "SRIRANGAM",
+      "geoDistrict": "Tiruchirappalli",
+      "districtId": "TN-D15",
+      "distName": "TIRUCHIRAPPALLI",
+      "dtCode": 15
+    },
+    {
+      "schemaId": "TN-140",
+      "acNo": 140,
+      "acName": "Tiruchirappalli West",
+      "eciListName": "TIRUCHIRAPPALLI (WEST)",
+      "geoDistrict": "Tiruchirappalli",
+      "districtId": "TN-D15",
+      "distName": "TIRUCHIRAPPALLI",
+      "dtCode": 15
+    },
+    {
+      "schemaId": "TN-141",
+      "acNo": 141,
+      "acName": "Tiruchirappalli East",
+      "eciListName": "TIRUCHIRAPPALLI (EAST)",
+      "geoDistrict": "Tiruchirappalli",
+      "districtId": "TN-D15",
+      "distName": "TIRUCHIRAPPALLI",
+      "dtCode": 15
+    },
+    {
+      "schemaId": "TN-142",
+      "acNo": 142,
+      "acName": "Thiruverumbur",
+      "eciListName": "THIRUVERUMBUR",
+      "geoDistrict": "Tiruchirappalli",
+      "districtId": "TN-D15",
+      "distName": "TIRUCHIRAPPALLI",
+      "dtCode": 15
+    },
+    {
+      "schemaId": "TN-143",
+      "acNo": 143,
+      "acName": "Lalgudi",
+      "eciListName": "LALGUDI",
+      "geoDistrict": "Tiruchirappalli",
+      "districtId": "TN-D15",
+      "distName": "TIRUCHIRAPPALLI",
+      "dtCode": 15
+    },
+    {
+      "schemaId": "TN-144",
+      "acNo": 144,
+      "acName": "Manachanallur",
+      "eciListName": "MANACHANALLUR",
+      "geoDistrict": "Tiruchirappalli",
+      "districtId": "TN-D15",
+      "distName": "TIRUCHIRAPPALLI",
+      "dtCode": 15
+    },
+    {
+      "schemaId": "TN-145",
+      "acNo": 145,
+      "acName": "Musiri",
+      "eciListName": "MUSIRI",
+      "geoDistrict": "Tiruchirappalli",
+      "districtId": "TN-D15",
+      "distName": "TIRUCHIRAPPALLI",
+      "dtCode": 15
+    },
+    {
+      "schemaId": "TN-146",
+      "acNo": 146,
+      "acName": "Thuraiyur (SC)",
+      "eciListName": "THURAIYUR",
+      "geoDistrict": "Tiruchirappalli",
+      "districtId": "TN-D15",
+      "distName": "TIRUCHIRAPPALLI",
+      "dtCode": 15
+    },
+    {
+      "schemaId": "TN-147",
+      "acNo": 147,
+      "acName": "Perambalur (SC)",
+      "eciListName": "PERAMBALUR",
+      "geoDistrict": "Perambalur",
+      "districtId": "TN-D16",
+      "distName": "PERAMBALUR",
+      "dtCode": 16
+    },
+    {
+      "schemaId": "TN-148",
+      "acNo": 148,
+      "acName": "Kunnam",
+      "eciListName": "KUNNAM",
+      "geoDistrict": "Perambalur",
+      "districtId": "TN-D16",
+      "distName": "PERAMBALUR",
+      "dtCode": 16
+    },
+    {
+      "schemaId": "TN-149",
+      "acNo": 149,
+      "acName": "Ariyalur",
+      "eciListName": "ARIYALUR",
+      "geoDistrict": "Ariyalur",
+      "districtId": "TN-D16",
+      "distName": "PERAMBALUR",
+      "dtCode": 16
+    },
+    {
+      "schemaId": "TN-150",
+      "acNo": 150,
+      "acName": "Jayankondam",
+      "eciListName": "JAYANKONDAM",
+      "geoDistrict": "Ariyalur",
+      "districtId": "TN-D16",
+      "distName": "PERAMBALUR",
+      "dtCode": 16
+    },
+    {
+      "schemaId": "TN-151",
+      "acNo": 151,
+      "acName": "Tittakudi (SC)",
+      "eciListName": "TITTAKUDI",
+      "geoDistrict": "Cuddalore",
+      "districtId": "TN-D18",
+      "distName": "CUDDALORE",
+      "dtCode": 18
+    },
+    {
+      "schemaId": "TN-152",
+      "acNo": 152,
+      "acName": "Vriddhachalam",
+      "eciListName": "VRIDDHACHALAM",
+      "geoDistrict": "Cuddalore",
+      "districtId": "TN-D18",
+      "distName": "CUDDALORE",
+      "dtCode": 18
+    },
+    {
+      "schemaId": "TN-153",
+      "acNo": 153,
+      "acName": "Neyveli",
+      "eciListName": "NEYVELI",
+      "geoDistrict": "Cuddalore",
+      "districtId": "TN-D18",
+      "distName": "CUDDALORE",
+      "dtCode": 18
+    },
+    {
+      "schemaId": "TN-154",
+      "acNo": 154,
+      "acName": "Panruti",
+      "eciListName": "PANRUTI",
+      "geoDistrict": "Cuddalore",
+      "districtId": "TN-D18",
+      "distName": "CUDDALORE",
+      "dtCode": 18
+    },
+    {
+      "schemaId": "TN-155",
+      "acNo": 155,
+      "acName": "Cuddalore",
+      "eciListName": "CUDDALORE",
+      "geoDistrict": "Viluppuram",
+      "districtId": "TN-D07",
+      "distName": "VILUPPURAM",
+      "dtCode": 7
+    },
+    {
+      "schemaId": "TN-156",
+      "acNo": 156,
+      "acName": "Kurinjipadi",
+      "eciListName": "KURINJIPADI",
+      "geoDistrict": "Cuddalore",
+      "districtId": "TN-D18",
+      "distName": "CUDDALORE",
+      "dtCode": 18
+    },
+    {
+      "schemaId": "TN-157",
+      "acNo": 157,
+      "acName": "Bhuvanagiri",
+      "eciListName": "BHUVANAGIRI",
+      "geoDistrict": "Cuddalore",
+      "districtId": "TN-D18",
+      "distName": "CUDDALORE",
+      "dtCode": 18
+    },
+    {
+      "schemaId": "TN-158",
+      "acNo": 158,
+      "acName": "Chidambaram",
+      "eciListName": "CHIDAMBARAM",
+      "geoDistrict": "Cuddalore",
+      "districtId": "TN-D18",
+      "distName": "CUDDALORE",
+      "dtCode": 18
+    },
+    {
+      "schemaId": "TN-159",
+      "acNo": 159,
+      "acName": "Kattumannarkoil(SC)",
+      "eciListName": "KATTUMANNARKOIL",
+      "geoDistrict": "Cuddalore",
+      "districtId": "TN-D18",
+      "distName": "CUDDALORE",
+      "dtCode": 18
+    },
+    {
+      "schemaId": "TN-160",
+      "acNo": 160,
+      "acName": "Sirkazhi (SC)",
+      "eciListName": "SIRKAZHI",
+      "geoDistrict": "Nagapattinam",
+      "districtId": "TN-D19",
+      "distName": "NAGAPATTINAM  *",
+      "dtCode": 19
+    },
+    {
+      "schemaId": "TN-161",
+      "acNo": 161,
+      "acName": "Mayiladuthurai",
+      "eciListName": "MAYILADUTHURAI",
+      "geoDistrict": "Nagapattinam",
+      "districtId": "TN-D19",
+      "distName": "MAYILADUTHURAI",
+      "dtCode": 796
+    },
+    {
+      "schemaId": "TN-162",
+      "acNo": 162,
+      "acName": "Poompuhar",
+      "eciListName": "POOMPUHAR",
+      "geoDistrict": "Nagapattinam",
+      "districtId": "TN-D19",
+      "distName": "NAGAPATTINAM  *",
+      "dtCode": 19
+    },
+    {
+      "schemaId": "TN-163",
+      "acNo": 163,
+      "acName": "Nagapattinam",
+      "eciListName": "NAGAPATTINAM",
+      "geoDistrict": "Nagapattinam",
+      "districtId": "TN-D19",
+      "distName": "NAGAPATTINAM  *",
+      "dtCode": 19
+    },
+    {
+      "schemaId": "TN-164",
+      "acNo": 164,
+      "acName": "Kilvelur (SC)",
+      "eciListName": "KILVELUR",
+      "geoDistrict": "Nagapattinam",
+      "districtId": "TN-D19",
+      "distName": "NAGAPATTINAM  *",
+      "dtCode": 19
+    },
+    {
+      "schemaId": "TN-165",
+      "acNo": 165,
+      "acName": "Vedaranyam",
+      "eciListName": "VEDARANYAM",
+      "geoDistrict": "Nagapattinam",
+      "districtId": "TN-D19",
+      "distName": "NAGAPATTINAM  *",
+      "dtCode": 19
+    },
+    {
+      "schemaId": "TN-166",
+      "acNo": 166,
+      "acName": "Thiruthuraipoondi(SC)",
+      "eciListName": "THIRUTHURAIPOONDI",
+      "geoDistrict": "Thiruvarur",
+      "districtId": "TN-D20",
+      "distName": "THIRUVARUR",
+      "dtCode": 20
+    },
+    {
+      "schemaId": "TN-167",
+      "acNo": 167,
+      "acName": "Mannargudi",
+      "eciListName": "MANNARGUDI",
+      "geoDistrict": "Thiruvarur",
+      "districtId": "TN-D20",
+      "distName": "THIRUVARUR",
+      "dtCode": 20
+    },
+    {
+      "schemaId": "TN-168",
+      "acNo": 168,
+      "acName": "Thiruvarur",
+      "eciListName": "THIRUVARUR",
+      "geoDistrict": "Thiruvarur",
+      "districtId": "TN-D20",
+      "distName": "THIRUVARUR",
+      "dtCode": 20
+    },
+    {
+      "schemaId": "TN-169",
+      "acNo": 169,
+      "acName": "Nannilam",
+      "eciListName": "NANNILAM",
+      "geoDistrict": "Thiruvarur",
+      "districtId": "TN-D20",
+      "distName": "THIRUVARUR",
+      "dtCode": 20
+    },
+    {
+      "schemaId": "TN-170",
+      "acNo": 170,
+      "acName": "Thiruvidaimarudur",
+      "eciListName": "THIRUVIDAIMARUDUR",
+      "geoDistrict": "Thanjavur",
+      "districtId": "TN-D21",
+      "distName": "THANJAVUR",
+      "dtCode": 21
+    },
+    {
+      "schemaId": "TN-171",
+      "acNo": 171,
+      "acName": "Kumbakonam",
+      "eciListName": "KUMBAKONAM",
+      "geoDistrict": "Thanjavur",
+      "districtId": "TN-D21",
+      "distName": "THANJAVUR",
+      "dtCode": 21
+    },
+    {
+      "schemaId": "TN-172",
+      "acNo": 172,
+      "acName": "Papanasam",
+      "eciListName": "PAPANASAM",
+      "geoDistrict": "Thanjavur",
+      "districtId": "TN-D21",
+      "distName": "THANJAVUR",
+      "dtCode": 21
+    },
+    {
+      "schemaId": "TN-173",
+      "acNo": 173,
+      "acName": "Thiruvaiyaru",
+      "eciListName": "THIRUVAIYARU",
+      "geoDistrict": "Thanjavur",
+      "districtId": "TN-D21",
+      "distName": "THANJAVUR",
+      "dtCode": 21
+    },
+    {
+      "schemaId": "TN-174",
+      "acNo": 174,
+      "acName": "Thanjavur",
+      "eciListName": "THANJAVUR",
+      "geoDistrict": "Thanjavur",
+      "districtId": "TN-D21",
+      "distName": "THANJAVUR",
+      "dtCode": 21
+    },
+    {
+      "schemaId": "TN-175",
+      "acNo": 175,
+      "acName": "Orathanadu",
+      "eciListName": "ORATHANADU",
+      "geoDistrict": "Thanjavur",
+      "districtId": "TN-D21",
+      "distName": "THANJAVUR",
+      "dtCode": 21
+    },
+    {
+      "schemaId": "TN-176",
+      "acNo": 176,
+      "acName": "Pattukkottai",
+      "eciListName": "PATTUKKOTTAI",
+      "geoDistrict": "Thanjavur",
+      "districtId": "TN-D21",
+      "distName": "THANJAVUR",
+      "dtCode": 21
+    },
+    {
+      "schemaId": "TN-177",
+      "acNo": 177,
+      "acName": "Peravurani",
+      "eciListName": "PERAVURANI",
+      "geoDistrict": "Thanjavur",
+      "districtId": "TN-D21",
+      "distName": "THANJAVUR",
+      "dtCode": 21
+    },
+    {
+      "schemaId": "TN-178",
+      "acNo": 178,
+      "acName": "Gandharvakottai(SC)",
+      "eciListName": "GANDHARVAKOTTAI",
+      "geoDistrict": "Pudukkottai",
+      "districtId": "TN-D22",
+      "distName": "PUDUKKOTTAI",
+      "dtCode": 22
+    },
+    {
+      "schemaId": "TN-179",
+      "acNo": 179,
+      "acName": "Viralimalai",
+      "eciListName": "VIRALIMALAI",
+      "geoDistrict": "Pudukkottai",
+      "districtId": "TN-D22",
+      "distName": "PUDUKKOTTAI",
+      "dtCode": 22
+    },
+    {
+      "schemaId": "TN-180",
+      "acNo": 180,
+      "acName": "Pudukkottai",
+      "eciListName": "PUDUKKOTTAI",
+      "geoDistrict": "Pudukkottai",
+      "districtId": "TN-D22",
+      "distName": "PUDUKKOTTAI",
+      "dtCode": 22
+    },
+    {
+      "schemaId": "TN-181",
+      "acNo": 181,
+      "acName": "Thirumayam",
+      "eciListName": "THIRUMAYAM",
+      "geoDistrict": "Pudukkottai",
+      "districtId": "TN-D22",
+      "distName": "PUDUKKOTTAI",
+      "dtCode": 22
+    },
+    {
+      "schemaId": "TN-182",
+      "acNo": 182,
+      "acName": "Alangudi",
+      "eciListName": "ALANGUDI",
+      "geoDistrict": "Pudukkottai",
+      "districtId": "TN-D22",
+      "distName": "PUDUKKOTTAI",
+      "dtCode": 22
+    },
+    {
+      "schemaId": "TN-183",
+      "acNo": 183,
+      "acName": "Aranthangi",
+      "eciListName": "ARANTHANGI",
+      "geoDistrict": "Pudukkottai",
+      "districtId": "TN-D22",
+      "distName": "PUDUKKOTTAI",
+      "dtCode": 22
+    },
+    {
+      "schemaId": "TN-184",
+      "acNo": 184,
+      "acName": "Karaikudi",
+      "eciListName": "KARAIKUDI",
+      "geoDistrict": "Sivaganga",
+      "districtId": "TN-D23",
+      "distName": "SIVAGANGA",
+      "dtCode": 23
+    },
+    {
+      "schemaId": "TN-185",
+      "acNo": 185,
+      "acName": "Tiruppattur",
+      "eciListName": "TIRUPPATTUR",
+      "geoDistrict": "Sivaganga",
+      "districtId": "TN-D23",
+      "distName": "SIVAGANGA",
+      "dtCode": 23
+    },
+    {
+      "schemaId": "TN-186",
+      "acNo": 186,
+      "acName": "Sivaganga",
+      "eciListName": "SIVAGANGA",
+      "geoDistrict": "Sivaganga",
+      "districtId": "TN-D23",
+      "distName": "SIVAGANGA",
+      "dtCode": 23
+    },
+    {
+      "schemaId": "TN-187",
+      "acNo": 187,
+      "acName": "Manamadurai(SC)",
+      "eciListName": "MANAMADURAI",
+      "geoDistrict": "Sivaganga",
+      "districtId": "TN-D23",
+      "distName": "SIVAGANGA",
+      "dtCode": 23
+    },
+    {
+      "schemaId": "TN-188",
+      "acNo": 188,
+      "acName": "Melur",
+      "eciListName": "MELUR",
+      "geoDistrict": "Madurai",
+      "districtId": "TN-D24",
+      "distName": "MADURAI",
+      "dtCode": 24
+    },
+    {
+      "schemaId": "TN-189",
+      "acNo": 189,
+      "acName": "Madurai East",
+      "eciListName": "MADURAI EAST",
+      "geoDistrict": "Madurai",
+      "districtId": "TN-D24",
+      "distName": "MADURAI",
+      "dtCode": 24
+    },
+    {
+      "schemaId": "TN-190",
+      "acNo": 190,
+      "acName": "Sholavandan(SC)",
+      "eciListName": "SHOLAVANDAN",
+      "geoDistrict": "Madurai",
+      "districtId": "TN-D24",
+      "distName": "MADURAI",
+      "dtCode": 24
+    },
+    {
+      "schemaId": "TN-191",
+      "acNo": 191,
+      "acName": "Madurai North",
+      "eciListName": "MADURAI NORTH",
+      "geoDistrict": "Madurai",
+      "districtId": "TN-D24",
+      "distName": "MADURAI",
+      "dtCode": 24
+    },
+    {
+      "schemaId": "TN-192",
+      "acNo": 192,
+      "acName": "Madurai South",
+      "eciListName": "MADURAI SOUTH",
+      "geoDistrict": "Madurai",
+      "districtId": "TN-D24",
+      "distName": "MADURAI",
+      "dtCode": 24
+    },
+    {
+      "schemaId": "TN-193",
+      "acNo": 193,
+      "acName": "Madurai Central",
+      "eciListName": "MADURAI CENTRAL",
+      "geoDistrict": "Madurai",
+      "districtId": "TN-D24",
+      "distName": "MADURAI",
+      "dtCode": 24
+    },
+    {
+      "schemaId": "TN-194",
+      "acNo": 194,
+      "acName": "Madurai West",
+      "eciListName": "MADURAI WEST",
+      "geoDistrict": "Madurai",
+      "districtId": "TN-D24",
+      "distName": "MADURAI",
+      "dtCode": 24
+    },
+    {
+      "schemaId": "TN-195",
+      "acNo": 195,
+      "acName": "Thiruparankundram",
+      "eciListName": "THIRUPARANKUNDRAM",
+      "geoDistrict": "Madurai",
+      "districtId": "TN-D24",
+      "distName": "MADURAI",
+      "dtCode": 24
+    },
+    {
+      "schemaId": "TN-196",
+      "acNo": 196,
+      "acName": "Thirumangalam",
+      "eciListName": "THIRUMANGALAM",
+      "geoDistrict": "Madurai",
+      "districtId": "TN-D24",
+      "distName": "MADURAI",
+      "dtCode": 24
+    },
+    {
+      "schemaId": "TN-197",
+      "acNo": 197,
+      "acName": "Usilampatti",
+      "eciListName": "USILAMPATTI",
+      "geoDistrict": "Madurai",
+      "districtId": "TN-D24",
+      "distName": "MADURAI",
+      "dtCode": 24
+    },
+    {
+      "schemaId": "TN-198",
+      "acNo": 198,
+      "acName": "Andipatti",
+      "eciListName": "ANDIPATTI",
+      "geoDistrict": "Theni",
+      "districtId": "TN-D25",
+      "distName": "THENI  *",
+      "dtCode": 25
+    },
+    {
+      "schemaId": "TN-199",
+      "acNo": 199,
+      "acName": "Periyakulam",
+      "eciListName": "PERIYAKULAM",
+      "geoDistrict": "Theni",
+      "districtId": "TN-D25",
+      "distName": "THENI  *",
+      "dtCode": 25
+    },
+    {
+      "schemaId": "TN-200",
+      "acNo": 200,
+      "acName": "Bodinayakanur",
+      "eciListName": "BODINAYAKANUR",
+      "geoDistrict": "Theni",
+      "districtId": "TN-D25",
+      "distName": "THENI  *",
+      "dtCode": 25
+    },
+    {
+      "schemaId": "TN-201",
+      "acNo": 201,
+      "acName": "Cumbum",
+      "eciListName": "CUMBUM",
+      "geoDistrict": "Theni",
+      "districtId": "TN-D25",
+      "distName": "THENI  *",
+      "dtCode": 25
+    },
+    {
+      "schemaId": "TN-202",
+      "acNo": 202,
+      "acName": "Rajapalayam",
+      "eciListName": "RAJAPALAYAM",
+      "geoDistrict": "Virudhunagar",
+      "districtId": "TN-D26",
+      "distName": "VIRUDHUNAGAR",
+      "dtCode": 26
+    },
+    {
+      "schemaId": "TN-203",
+      "acNo": 203,
+      "acName": "Srivilliputhur(SC)",
+      "eciListName": "SRIVILLIPUTHUR",
+      "geoDistrict": "Virudhunagar",
+      "districtId": "TN-D26",
+      "distName": "VIRUDHUNAGAR",
+      "dtCode": 26
+    },
+    {
+      "schemaId": "TN-204",
+      "acNo": 204,
+      "acName": "Sattur",
+      "eciListName": "SATTUR",
+      "geoDistrict": "Virudhunagar",
+      "districtId": "TN-D26",
+      "distName": "VIRUDHUNAGAR",
+      "dtCode": 26
+    },
+    {
+      "schemaId": "TN-205",
+      "acNo": 205,
+      "acName": "Sivakasi",
+      "eciListName": "SIVAKASI",
+      "geoDistrict": "Virudhunagar",
+      "districtId": "TN-D26",
+      "distName": "VIRUDHUNAGAR",
+      "dtCode": 26
+    },
+    {
+      "schemaId": "TN-206",
+      "acNo": 206,
+      "acName": "Virudhunagar",
+      "eciListName": "VIRUDHUNAGAR",
+      "geoDistrict": "Virudhunagar",
+      "districtId": "TN-D26",
+      "distName": "VIRUDHUNAGAR",
+      "dtCode": 26
+    },
+    {
+      "schemaId": "TN-207",
+      "acNo": 207,
+      "acName": "Aruppukkottai",
+      "eciListName": "ARUPPUKKOTTAI",
+      "geoDistrict": "Virudhunagar",
+      "districtId": "TN-D26",
+      "distName": "VIRUDHUNAGAR",
+      "dtCode": 26
+    },
+    {
+      "schemaId": "TN-208",
+      "acNo": 208,
+      "acName": "Tiruchuli",
+      "eciListName": "TIRUCHULI",
+      "geoDistrict": "Virudhunagar",
+      "districtId": "TN-D26",
+      "distName": "VIRUDHUNAGAR",
+      "dtCode": 26
+    },
+    {
+      "schemaId": "TN-209",
+      "acNo": 209,
+      "acName": "Paramakudi (SC)",
+      "eciListName": "PARAMAKUDI",
+      "geoDistrict": "Ramanathapuram",
+      "districtId": "TN-D27",
+      "distName": "RAMANATHAPURAM",
+      "dtCode": 27
+    },
+    {
+      "schemaId": "TN-210",
+      "acNo": 210,
+      "acName": "Tiruvadanai",
+      "eciListName": "TIRUVADANAI",
+      "geoDistrict": "Ramanathapuram",
+      "districtId": "TN-D27",
+      "distName": "RAMANATHAPURAM",
+      "dtCode": 27
+    },
+    {
+      "schemaId": "TN-211",
+      "acNo": 211,
+      "acName": "Ramanathapuram",
+      "eciListName": "RAMANATHAPURAM",
+      "geoDistrict": "Ramanathapuram",
+      "districtId": "TN-D27",
+      "distName": "RAMANATHAPURAM",
+      "dtCode": 27
+    },
+    {
+      "schemaId": "TN-212",
+      "acNo": 212,
+      "acName": "Mudhukulathur",
+      "eciListName": "MUDHUKULATHUR",
+      "geoDistrict": "Ramanathapuram",
+      "districtId": "TN-D27",
+      "distName": "RAMANATHAPURAM",
+      "dtCode": 27
+    },
+    {
+      "schemaId": "TN-213",
+      "acNo": 213,
+      "acName": "Vilathikulam",
+      "eciListName": "VILATHIKULAM",
+      "geoDistrict": "Thoothukkudi",
+      "districtId": "TN-D28",
+      "distName": "THOOTHUKKUDI",
+      "dtCode": 28
+    },
+    {
+      "schemaId": "TN-214",
+      "acNo": 214,
+      "acName": "Thoothukkudi",
+      "eciListName": "THOOTHUKKUDI",
+      "geoDistrict": "Thoothukkudi",
+      "districtId": "TN-D28",
+      "distName": "THOOTHUKKUDI",
+      "dtCode": 28
+    },
+    {
+      "schemaId": "TN-215",
+      "acNo": 215,
+      "acName": "Tiruchendur",
+      "eciListName": "TIRUCHENDUR",
+      "geoDistrict": "Thoothukkudi",
+      "districtId": "TN-D28",
+      "distName": "THOOTHUKKUDI",
+      "dtCode": 28
+    },
+    {
+      "schemaId": "TN-216",
+      "acNo": 216,
+      "acName": "Srivaikuntam",
+      "eciListName": "SRIVAIKUNTAM",
+      "geoDistrict": "Thoothukkudi",
+      "districtId": "TN-D28",
+      "distName": "THOOTHUKKUDI",
+      "dtCode": 28
+    },
+    {
+      "schemaId": "TN-217",
+      "acNo": 217,
+      "acName": "Ottapidaram(SC)",
+      "eciListName": "OTTAPIDARAM",
+      "geoDistrict": "Thoothukkudi",
+      "districtId": "TN-D28",
+      "distName": "THOOTHUKKUDI",
+      "dtCode": 28
+    },
+    {
+      "schemaId": "TN-218",
+      "acNo": 218,
+      "acName": "Kovilpatti",
+      "eciListName": "KOVILPATTI",
+      "geoDistrict": "Thoothukkudi",
+      "districtId": "TN-D28",
+      "distName": "THOOTHUKKUDI",
+      "dtCode": 28
+    },
+    {
+      "schemaId": "TN-219",
+      "acNo": 219,
+      "acName": "Sankarankovil(SC)",
+      "eciListName": "SANKARANKOVIL",
+      "geoDistrict": "Tenkasi",
+      "districtId": "TN-D29",
+      "distName": "TIRUNELVELI",
+      "dtCode": 29
+    },
+    {
+      "schemaId": "TN-220",
+      "acNo": 220,
+      "acName": "Vasudevanallur(SC)",
+      "eciListName": "VASUDEVANALLUR",
+      "geoDistrict": "Tenkasi",
+      "districtId": "TN-D29",
+      "distName": "TIRUNELVELI",
+      "dtCode": 29
+    },
+    {
+      "schemaId": "TN-221",
+      "acNo": 221,
+      "acName": "Kadayanallur",
+      "eciListName": "KADAYANALLUR",
+      "geoDistrict": "Tenkasi",
+      "districtId": "TN-D29",
+      "distName": "TIRUNELVELI",
+      "dtCode": 29
+    },
+    {
+      "schemaId": "TN-222",
+      "acNo": 222,
+      "acName": "Tenkasi",
+      "eciListName": "TENKASI",
+      "geoDistrict": "Tenkasi",
+      "districtId": "TN-D29",
+      "distName": "TIRUNELVELI",
+      "dtCode": 29
+    },
+    {
+      "schemaId": "TN-223",
+      "acNo": 223,
+      "acName": "Alangulam",
+      "eciListName": "ALANGULAM",
+      "geoDistrict": "Tenkasi",
+      "districtId": "TN-D29",
+      "distName": "TIRUNELVELI",
+      "dtCode": 29
+    },
+    {
+      "schemaId": "TN-224",
+      "acNo": 224,
+      "acName": "Tirunelveli",
+      "eciListName": "TIRUNELVELI",
+      "geoDistrict": "Tirunelveli",
+      "districtId": "TN-D29",
+      "distName": "TIRUNELVELI",
+      "dtCode": 29
+    },
+    {
+      "schemaId": "TN-225",
+      "acNo": 225,
+      "acName": "Ambasamudram",
+      "eciListName": "AMBASAMUDRAM",
+      "geoDistrict": "Tirunelveli",
+      "districtId": "TN-D29",
+      "distName": "TIRUNELVELI",
+      "dtCode": 29
+    },
+    {
+      "schemaId": "TN-226",
+      "acNo": 226,
+      "acName": "Palayamkottai",
+      "eciListName": "PALAYAMKOTTAI",
+      "geoDistrict": "Tirunelveli",
+      "districtId": "TN-D29",
+      "distName": "TIRUNELVELI",
+      "dtCode": 29
+    },
+    {
+      "schemaId": "TN-227",
+      "acNo": 227,
+      "acName": "Nanguneri",
+      "eciListName": "NANGUNERI",
+      "geoDistrict": "Tirunelveli",
+      "districtId": "TN-D29",
+      "distName": "TIRUNELVELI",
+      "dtCode": 29
+    },
+    {
+      "schemaId": "TN-228",
+      "acNo": 228,
+      "acName": "Radhapuram",
+      "eciListName": "RADHAPURAM",
+      "geoDistrict": "Tirunelveli",
+      "districtId": "TN-D29",
+      "distName": "TIRUNELVELI",
+      "dtCode": 29
+    },
+    {
+      "schemaId": "TN-229",
+      "acNo": 229,
+      "acName": "Kanniyakumari",
+      "eciListName": "KANNIYAKUMARI",
+      "geoDistrict": "Kanyakumari",
+      "districtId": "TN-D30",
+      "distName": "KANNIYAKUMARI",
+      "dtCode": 30
+    },
+    {
+      "schemaId": "TN-230",
+      "acNo": 230,
+      "acName": "Nagercoil",
+      "eciListName": "NAGERCOIL",
+      "geoDistrict": "Kanyakumari",
+      "districtId": "TN-D30",
+      "distName": "KANNIYAKUMARI",
+      "dtCode": 30
+    },
+    {
+      "schemaId": "TN-231",
+      "acNo": 231,
+      "acName": "Colachel",
+      "eciListName": null,
+      "geoDistrict": "Kanyakumari",
+      "districtId": "TN-D30",
+      "distName": "KANNIYAKUMARI",
+      "dtCode": 30
+    },
+    {
+      "schemaId": "TN-232",
+      "acNo": 232,
+      "acName": "Padmanabhapuram",
+      "eciListName": "PADMANABHAPURAM",
+      "geoDistrict": "Kanyakumari",
+      "districtId": "TN-D30",
+      "distName": "KANNIYAKUMARI",
+      "dtCode": 30
+    },
+    {
+      "schemaId": "TN-233",
+      "acNo": 233,
+      "acName": "Vilavancode",
+      "eciListName": "VILAVANCODE",
+      "geoDistrict": "Kanyakumari",
+      "districtId": "TN-D30",
+      "distName": "KANNIYAKUMARI",
+      "dtCode": 30
+    },
+    {
+      "schemaId": "TN-234",
+      "acNo": 234,
+      "acName": "Killiyoor",
+      "eciListName": "KILLIYOOR",
+      "geoDistrict": "Kanyakumari",
+      "districtId": "TN-D30",
+      "distName": "KANNIYAKUMARI",
+      "dtCode": 30
+    }
+  ]
+}
