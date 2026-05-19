@@ -2,7 +2,7 @@
   "acId": "TN-067",
   "acName": "ARANI",
   "state": "Tamil Nadu",
-  "totalBooths": 311,
+  "totalBooths": 386,
   "lastUpdated": "2021-04-06",
   "source": "Tamil Nadu CEO - Polling Stations",
   "booths": [
@@ -25,15 +25,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-3(A)",
-      "boothNo": "3(A)",
-      "num": 3,
-      "type": "regular",
-      "name": "Reddipalayam, kattukanallur 632312 Panchyat union elementary school",
-      "address": "Reddipalayam, kattukanallur 632312 Panchyat union elementary school, New Building, reddipalayam",
-      "area": ""
-    },
-    {
       "id": "TN-067-3",
       "boothNo": "3",
       "num": 3,
@@ -43,13 +34,13 @@
       "area": ""
     },
     {
-      "id": "TN-067-4(A)",
-      "boothNo": "4(A)",
-      "num": 4,
+      "id": "TN-067-3(A)",
+      "boothNo": "3(A)",
+      "num": 3,
       "type": "regular",
-      "name": "Kattukanallur village & pin 632312 Arumugam aided middle school (north building) Kattukanallur",
-      "address": "Kattukanallur village & pin 632312 Arumugam aided middle school (north building) Kattukanallur",
-      "area": "All Voters"
+      "name": "Reddipalayam, kattukanallur 632312 Panchyat union elementary school",
+      "address": "Reddipalayam, kattukanallur 632312 Panchyat union elementary school, New Building, reddipalayam",
+      "area": ""
     },
     {
       "id": "TN-067-4",
@@ -58,6 +49,15 @@
       "type": "regular",
       "name": "Kattukanallur village & pin 632312 Arumugam aided middle school (South building) Kattukanallur",
       "address": "Kattukanallur village & pin 632312 Arumugam aided middle school (South building) Kattukanallur",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-067-4(A)",
+      "boothNo": "4(A)",
+      "num": 4,
+      "type": "regular",
+      "name": "Kattukanallur village & pin 632312 Arumugam aided middle school (north building) Kattukanallur",
+      "address": "Kattukanallur village & pin 632312 Arumugam aided middle school (north building) Kattukanallur",
       "area": "All Voters"
     },
     {
@@ -349,8 +349,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-32(A)",
-      "boothNo": "32(A)",
+      "id": "TN-067-32",
+      "boothNo": "32",
       "num": 32,
       "type": "regular",
       "name": "Onnupuram village post 632315 Panchayat union Middle School S S A Building New Building",
@@ -358,8 +358,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-32",
-      "boothNo": "32",
+      "id": "TN-067-32(A)",
+      "boothNo": "32(A)",
       "num": 32,
       "type": "regular",
       "name": "Onnupuram village post 632315 Panchayat union Middle School S S A Building New Building",
@@ -664,8 +664,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-64(A)",
-      "boothNo": "64(A)",
+      "id": "TN-067-64",
+      "boothNo": "64",
       "num": 64,
       "type": "regular",
       "name": "Sirumoor village & post 632314 Government high school \u0002 S S A Building New Building South Side West Part",
@@ -673,8 +673,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-64",
-      "boothNo": "64",
+      "id": "TN-067-64(A)",
+      "boothNo": "64(A)",
       "num": 64,
       "type": "regular",
       "name": "Sirumoor village & post 632314 Government high school \u0002 S S A Building New Building South Side West Part",
@@ -754,8 +754,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-73(A)",
-      "boothNo": "73(A)",
+      "id": "TN-067-73",
+      "boothNo": "73",
       "num": 73,
       "type": "regular",
       "name": "Mullandiram village & post 632512 Government hr sec school west side new building",
@@ -763,8 +763,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-73",
-      "boothNo": "73",
+      "id": "TN-067-73(A)",
+      "boothNo": "73(A)",
       "num": 73,
       "type": "regular",
       "name": "Mullandiram village & post 632512 Government hr sec school west side new building",
@@ -817,8 +817,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-78(A)",
-      "boothNo": "78(A)",
+      "id": "TN-067-78",
+      "boothNo": "78",
       "num": 78,
       "type": "regular",
       "name": "Morappanthangal velleri post 632317 Panchayat union middle school oondigudisai",
@@ -826,8 +826,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-78",
-      "boothNo": "78",
+      "id": "TN-067-78(A)",
+      "boothNo": "78(A)",
       "num": 78,
       "type": "regular",
       "name": "Morappanthangal velleri post 632317 Panchayat union middle school oondigudisai",
@@ -970,8 +970,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-93(A)",
-      "boothNo": "93(A)",
+      "id": "TN-067-93",
+      "boothNo": "93",
       "num": 93,
       "type": "regular",
       "name": "Sangeethavadi post 632504 Panchayat Union Primary School",
@@ -979,8 +979,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-93",
-      "boothNo": "93",
+      "id": "TN-067-93(A)",
+      "boothNo": "93(A)",
       "num": 93,
       "type": "regular",
       "name": "Sangeethavadi post 632504 Panchayat Union Primary School",
@@ -1087,8 +1087,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-102(A)",
-      "boothNo": "102(A)",
+      "id": "TN-067-102",
+      "boothNo": "102",
       "num": 102,
       "type": "regular",
       "name": "Kanigilluppai 632317 Panchayat union middle school North building",
@@ -1096,8 +1096,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-102",
-      "boothNo": "102",
+      "id": "TN-067-102(A)",
+      "boothNo": "102(A)",
       "num": 102,
       "type": "regular",
       "name": "Kanigilluppai 632317 Panchayat union middle school North building",
@@ -1195,15 +1195,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-112(A)",
-      "boothNo": "112(A)",
-      "num": 112,
-      "type": "regular",
-      "name": "S.v.nagaram Panchayat Union",
-      "address": "Vijiya Nagaram Rajamesthiri Street , 2.Sathiya Vijiya Nagaram village & post Elementary School S S A Ayarpadi Street , 3.Sathiya Vijiya Nagaram 632317 New Building centre Mariyamman Koil Street , 4.Sathiya vijiya nagaram subaramanisawamy Building koil street , 5.Sathiya Vijiya Nagaram Muslim Street , 6.Sathiya vijiya nagaram vettakara street , 7.Sathiya Vijiya Nagaram Udiyar Street",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-067-112",
       "boothNo": "112",
       "num": 112,
@@ -1213,8 +1204,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-113(A)",
-      "boothNo": "113(A)",
+      "id": "TN-067-112(A)",
+      "boothNo": "112(A)",
+      "num": 112,
+      "type": "regular",
+      "name": "S.v.nagaram Panchayat Union",
+      "address": "Vijiya Nagaram Rajamesthiri Street , 2.Sathiya Vijiya Nagaram village & post Elementary School S S A Ayarpadi Street , 3.Sathiya Vijiya Nagaram 632317 New Building centre Mariyamman Koil Street , 4.Sathiya vijiya nagaram subaramanisawamy Building koil street , 5.Sathiya Vijiya Nagaram Muslim Street , 6.Sathiya vijiya nagaram vettakara street , 7.Sathiya Vijiya Nagaram Udiyar Street",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-067-113",
+      "boothNo": "113",
       "num": 113,
       "type": "regular",
       "name": "S.V.Nagaram Government higher",
@@ -1222,8 +1222,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-113",
-      "boothNo": "113",
+      "id": "TN-067-113(A)",
+      "boothNo": "113(A)",
       "num": 113,
       "type": "regular",
       "name": "S.V.Nagaram Government higher",
@@ -1375,8 +1375,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-128(A)",
-      "boothNo": "128(A)",
+      "id": "TN-067-128",
+      "boothNo": "128",
       "num": 128,
       "type": "regular",
       "name": "Rattinamangalam Post 632316 Panchayat union Primary school New Building East side",
@@ -1384,8 +1384,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-128",
-      "boothNo": "128",
+      "id": "TN-067-128(A)",
+      "boothNo": "128(A)",
       "num": 128,
       "type": "regular",
       "name": "Rattinamangalam Post 632316 Panchayat union Primary school New Building East side",
@@ -1429,8 +1429,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-133(A)",
-      "boothNo": "133(A)",
+      "id": "TN-067-133",
+      "boothNo": "133",
       "num": 133,
       "type": "regular",
       "name": "Sriram Nagar Sevoor Post 632316 Panchayat union primary school",
@@ -1438,8 +1438,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-133",
-      "boothNo": "133",
+      "id": "TN-067-133(A)",
+      "boothNo": "133(A)",
       "num": 133,
       "type": "regular",
       "name": "Sriram Nagar Sevoor Post 632316 Panchayat union primary school",
@@ -1546,8 +1546,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-143(A)",
-      "boothNo": "143(A)",
+      "id": "TN-067-143",
+      "boothNo": "143",
       "num": 143,
       "type": "regular",
       "name": "Kunnathur Post 632314 Government higher secondary south building",
@@ -1555,8 +1555,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-143",
-      "boothNo": "143",
+      "id": "TN-067-143(A)",
+      "boothNo": "143(A)",
       "num": 143,
       "type": "regular",
       "name": "Kunnathur Post 632314 Government higher secondary south building",
@@ -1690,8 +1690,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-157(A)",
-      "boothNo": "157(A)",
+      "id": "TN-067-157",
+      "boothNo": "157",
       "num": 157,
       "type": "regular",
       "name": "Mulipattu Post 632316 Government high school west Side North building",
@@ -1699,8 +1699,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-157",
-      "boothNo": "157",
+      "id": "TN-067-157(A)",
+      "boothNo": "157(A)",
       "num": 157,
       "type": "regular",
       "name": "Mulipattu Post 632316 Government high school west Side North building",
@@ -1735,8 +1735,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-161(A)",
-      "boothNo": "161(A)",
+      "id": "TN-067-161",
+      "boothNo": "161",
       "num": 161,
       "type": "regular",
       "name": "Anadapuram, Saidapet Arni (M) 632301 Municipal Middle school old building south side",
@@ -1744,8 +1744,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-161",
-      "boothNo": "161",
+      "id": "TN-067-161(A)",
+      "boothNo": "161(A)",
       "num": 161,
       "type": "regular",
       "name": "Anadapuram, Saidapet Arni (M) 632301 Municipal Middle school old building south side",
@@ -1843,15 +1843,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-171(A)",
-      "boothNo": "171(A)",
-      "num": 171,
-      "type": "regular",
-      "name": "Arni (M) 632301 Subramaniya sasthriyar higher secondary school room no 52",
-      "address": "Arni (M) 632301 Subramaniya sasthriyar higher secondary school room no 52",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-067-171",
       "boothNo": "171",
       "num": 171,
@@ -1861,12 +1852,12 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-172(A)",
-      "boothNo": "172(A)",
-      "num": 172,
+      "id": "TN-067-171(A)",
+      "boothNo": "171(A)",
+      "num": 171,
       "type": "regular",
-      "name": "Arni (M) 632301 Subramaniya sasthriyar higher secondary school room no 51",
-      "address": "Arni (M) 632301 Subramaniya sasthriyar higher secondary school room no 51",
+      "name": "Arni (M) 632301 Subramaniya sasthriyar higher secondary school room no 52",
+      "address": "Arni (M) 632301 Subramaniya sasthriyar higher secondary school room no 52",
       "area": "All Voters"
     },
     {
@@ -1879,8 +1870,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-173(A)",
-      "boothNo": "173(A)",
+      "id": "TN-067-172(A)",
+      "boothNo": "172(A)",
+      "num": 172,
+      "type": "regular",
+      "name": "Arni (M) 632301 Subramaniya sasthriyar higher secondary school room no 51",
+      "address": "Arni (M) 632301 Subramaniya sasthriyar higher secondary school room no 51",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-067-173",
+      "boothNo": "173",
       "num": 173,
       "type": "regular",
       "name": "Arni (M) 632301 Subramaniya sasthriyar higher secondary school room no 57",
@@ -1888,8 +1888,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-173",
-      "boothNo": "173",
+      "id": "TN-067-173(A)",
+      "boothNo": "173(A)",
       "num": 173,
       "type": "regular",
       "name": "Arni (M) 632301 Subramaniya sasthriyar higher secondary school room no 57",
@@ -1924,15 +1924,6 @@
       "area": ""
     },
     {
-      "id": "TN-067-176(A)",
-      "boothNo": "176(A)",
-      "num": 176,
-      "type": "regular",
-      "name": "Arni (M) 632301 Government Boys Higher Secondary School Nabard South Building East Side",
-      "address": "Arni (M) 632301 Government Boys Higher Secondary School Nabard South Building East Side",
-      "area": ""
-    },
-    {
       "id": "TN-067-176",
       "boothNo": "176",
       "num": 176,
@@ -1942,8 +1933,17 @@
       "area": ""
     },
     {
-      "id": "TN-067-177(A)",
-      "boothNo": "177(A)",
+      "id": "TN-067-176(A)",
+      "boothNo": "176(A)",
+      "num": 176,
+      "type": "regular",
+      "name": "Arni (M) 632301 Government Boys Higher Secondary School Nabard South Building East Side",
+      "address": "Arni (M) 632301 Government Boys Higher Secondary School Nabard South Building East Side",
+      "area": ""
+    },
+    {
+      "id": "TN-067-177",
+      "boothNo": "177",
       "num": 177,
       "type": "regular",
       "name": "Arni (M) 632301 Government giril high secondary school North Building",
@@ -1951,8 +1951,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-177",
-      "boothNo": "177",
+      "id": "TN-067-177(A)",
+      "boothNo": "177(A)",
       "num": 177,
       "type": "regular",
       "name": "Arni (M) 632301 Government giril high secondary school North Building",
@@ -2050,15 +2050,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-187(A)",
-      "boothNo": "187(A)",
-      "num": 187,
-      "type": "regular",
-      "name": "Arni (M) 632301 Municipal Middle school east building north mada veethi",
-      "address": "Arni (M) 632301 Municipal Middle school east building north mada veethi",
-      "area": ""
-    },
-    {
       "id": "TN-067-187",
       "boothNo": "187",
       "num": 187,
@@ -2068,8 +2059,17 @@
       "area": ""
     },
     {
-      "id": "TN-067-188(A)",
-      "boothNo": "188(A)",
+      "id": "TN-067-187(A)",
+      "boothNo": "187(A)",
+      "num": 187,
+      "type": "regular",
+      "name": "Arni (M) 632301 Municipal Middle school east building north mada veethi",
+      "address": "Arni (M) 632301 Municipal Middle school east building north mada veethi",
+      "area": ""
+    },
+    {
+      "id": "TN-067-188",
+      "boothNo": "188",
       "num": 188,
       "type": "regular",
       "name": "Arni (M) 632301 Municipal Middle school west building north mada street",
@@ -2077,8 +2077,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-188",
-      "boothNo": "188",
+      "id": "TN-067-188(A)",
+      "boothNo": "188(A)",
       "num": 188,
       "type": "regular",
       "name": "Arni (M) 632301 Municipal Middle school west building north mada street",
@@ -2095,8 +2095,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-190(A)",
-      "boothNo": "190(A)",
+      "id": "TN-067-190",
+      "boothNo": "190",
       "num": 190,
       "type": "regular",
       "name": "Arni M 632301 Amasaveni ammal municipal middle school north side New Building",
@@ -2104,8 +2104,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-190",
-      "boothNo": "190",
+      "id": "TN-067-190(A)",
+      "boothNo": "190(A)",
       "num": 190,
       "type": "regular",
       "name": "Arni M 632301 Amasaveni ammal municipal middle school north side New Building",
@@ -2230,8 +2230,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-204(A)",
-      "boothNo": "204(A)",
+      "id": "TN-067-204",
+      "boothNo": "204",
       "num": 204,
       "type": "regular",
       "name": "Arni (m) 632301 Municipal primary school west roompalani andavar Koil Street",
@@ -2239,8 +2239,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-204",
-      "boothNo": "204",
+      "id": "TN-067-204(A)",
+      "boothNo": "204(A)",
       "num": 204,
       "type": "regular",
       "name": "Arni (m) 632301 Municipal primary school west roompalani andavar Koil Street",
@@ -2302,15 +2302,6 @@
       "area": ""
     },
     {
-      "id": "TN-067-210(A)",
-      "boothNo": "210(A)",
-      "num": 210,
-      "type": "regular",
-      "name": "Arni (M) 632301 Municipal middle school front side (north building)Front side Thatchur road",
-      "address": "Arni (M) 632301 Municipal middle school front side (north building)Front side Thatchur road",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-067-210",
       "boothNo": "210",
       "num": 210,
@@ -2320,8 +2311,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-211(A)",
-      "boothNo": "211(A)",
+      "id": "TN-067-210(A)",
+      "boothNo": "210(A)",
+      "num": 210,
+      "type": "regular",
+      "name": "Arni (M) 632301 Municipal middle school front side (north building)Front side Thatchur road",
+      "address": "Arni (M) 632301 Municipal middle school front side (north building)Front side Thatchur road",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-067-211",
+      "boothNo": "211",
       "num": 211,
       "type": "regular",
       "name": "Arni (M) 632301 Municipal middle school fornt side south building Thatchur Road",
@@ -2329,8 +2329,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-211",
-      "boothNo": "211",
+      "id": "TN-067-211(A)",
+      "boothNo": "211(A)",
       "num": 211,
       "type": "regular",
       "name": "Arni (M) 632301 Municipal middle school fornt side south building Thatchur Road",
@@ -2356,8 +2356,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-214(A)",
-      "boothNo": "214(A)",
+      "id": "TN-067-214",
+      "boothNo": "214",
       "num": 214,
       "type": "regular",
       "name": "Arni (M) 632301 RCM Girs Primary School West Facing Building",
@@ -2365,8 +2365,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-214",
-      "boothNo": "214",
+      "id": "TN-067-214(A)",
+      "boothNo": "214(A)",
       "num": 214,
       "type": "regular",
       "name": "Arni (M) 632301 RCM Girs Primary School West Facing Building",
@@ -2401,8 +2401,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-218(A)",
-      "boothNo": "218(A)",
+      "id": "TN-067-218",
+      "boothNo": "218",
       "num": 218,
       "type": "regular",
       "name": "Paiyur 632317 Panchayat Union Primary School South Building Easternside",
@@ -2410,8 +2410,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-218",
-      "boothNo": "218",
+      "id": "TN-067-218(A)",
+      "boothNo": "218(A)",
       "num": 218,
       "type": "regular",
       "name": "Paiyur 632317 Panchayat Union Primary School South Building Easternside",
@@ -2437,8 +2437,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-221(A)",
-      "boothNo": "221(A)",
+      "id": "TN-067-221",
+      "boothNo": "221",
       "num": 221,
       "type": "regular",
       "name": "Paiyur village and post 632317 Panchayat union Middle School",
@@ -2446,8 +2446,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-221",
-      "boothNo": "221",
+      "id": "TN-067-221(A)",
+      "boothNo": "221(A)",
       "num": 221,
       "type": "regular",
       "name": "Paiyur village and post 632317 Panchayat union Middle School",
@@ -2509,8 +2509,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-226(A)",
-      "boothNo": "226(A)",
+      "id": "TN-067-226",
+      "boothNo": "226",
       "num": 226,
       "type": "regular",
       "name": "Velapadi village and post 632317 Panchyat union Primary school south building",
@@ -2518,8 +2518,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-226",
-      "boothNo": "226",
+      "id": "TN-067-226(A)",
+      "boothNo": "226(A)",
       "num": 226,
       "type": "regular",
       "name": "Velapadi village and post 632317 Panchyat union Primary school south building",
@@ -2581,8 +2581,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-231(A)",
-      "boothNo": "231(A)",
+      "id": "TN-067-231",
+      "boothNo": "231",
       "num": 231,
       "type": "regular",
       "name": "Thunthirigampattu Chitheri Post 632317 Panchayat Union Midde school West Building",
@@ -2590,8 +2590,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-231",
-      "boothNo": "231",
+      "id": "TN-067-231(A)",
+      "boothNo": "231(A)",
       "num": 231,
       "type": "regular",
       "name": "Thunthirigampattu Chitheri Post 632317 Panchayat Union Midde school West Building",
@@ -2689,8 +2689,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-240(A)",
-      "boothNo": "240(A)",
+      "id": "TN-067-240",
+      "boothNo": "240",
       "num": 240,
       "type": "regular",
       "name": "Melsheshamangala m 606504 Government high school East Side Building",
@@ -2698,8 +2698,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-240",
-      "boothNo": "240",
+      "id": "TN-067-240(A)",
+      "boothNo": "240(A)",
       "num": 240,
       "type": "regular",
       "name": "Melsheshamangala m 606504 Government high school East Side Building",
@@ -2716,8 +2716,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-242(A)",
-      "boothNo": "242(A)",
+      "id": "TN-067-242",
+      "boothNo": "242",
       "num": 242,
       "type": "regular",
       "name": "Melsheshamangala m and post 606504 Panchayat union primary school New Building",
@@ -2725,8 +2725,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-242",
-      "boothNo": "242",
+      "id": "TN-067-242(A)",
+      "boothNo": "242(A)",
       "num": 242,
       "type": "regular",
       "name": "Melsheshamangala m and post 606504 Panchayat union primary school New Building",
@@ -2815,8 +2815,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-251(A)",
-      "boothNo": "251(A)",
+      "id": "TN-067-251",
+      "boothNo": "251",
       "num": 251,
       "type": "regular",
       "name": "kaduganoor Panchayat union primary",
@@ -2824,8 +2824,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-251",
-      "boothNo": "251",
+      "id": "TN-067-251(A)",
+      "boothNo": "251(A)",
       "num": 251,
       "type": "regular",
       "name": "kaduganoor Panchayat union primary",
@@ -2869,8 +2869,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-255(A)",
-      "boothNo": "255(A)",
+      "id": "TN-067-255",
+      "boothNo": "255",
       "num": 255,
       "type": "regular",
       "name": "Melmattai Vinnamangalam Village Panchayat union primary school",
@@ -2878,8 +2878,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-255",
-      "boothNo": "255",
+      "id": "TN-067-255(A)",
+      "boothNo": "255(A)",
       "num": 255,
       "type": "regular",
       "name": "Melmattai Vinnamangalam Village Panchayat union primary school",
@@ -2914,8 +2914,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-259(A)",
-      "boothNo": "259(A)",
+      "id": "TN-067-259",
+      "boothNo": "259",
       "num": 259,
       "type": "regular",
       "name": "pillandi Panchayat union primary",
@@ -2923,8 +2923,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-259",
-      "boothNo": "259",
+      "id": "TN-067-259(A)",
+      "boothNo": "259(A)",
       "num": 259,
       "type": "regular",
       "name": "pillandi Panchayat union primary",
@@ -2950,8 +2950,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-262(A)",
-      "boothNo": "262(A)",
+      "id": "TN-067-262",
+      "boothNo": "262",
       "num": 262,
       "type": "regular",
       "name": "Thirumani Post 604504 Govt High school WesternBuilding North side",
@@ -2959,8 +2959,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-262",
-      "boothNo": "262",
+      "id": "TN-067-262(A)",
+      "boothNo": "262(A)",
       "num": 262,
       "type": "regular",
       "name": "Thirumani Post 604504 Govt High school WesternBuilding North side",
@@ -3004,8 +3004,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-267(A)",
-      "boothNo": "267(A)",
+      "id": "TN-067-267",
+      "boothNo": "267",
       "num": 267,
       "type": "regular",
       "name": "Agharam and post 632316 Panchayat union middle school",
@@ -3013,8 +3013,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-267",
-      "boothNo": "267",
+      "id": "TN-067-267(A)",
+      "boothNo": "267(A)",
       "num": 267,
       "type": "regular",
       "name": "Agharam and post 632316 Panchayat union middle school",
@@ -3058,8 +3058,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-271(A)",
-      "boothNo": "271(A)",
+      "id": "TN-067-271",
+      "boothNo": "271",
       "num": 271,
       "type": "regular",
       "name": "Araiyalam 632326 Panchayat union middle school new building",
@@ -3067,8 +3067,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-271",
-      "boothNo": "271",
+      "id": "TN-067-271(A)",
+      "boothNo": "271(A)",
       "num": 271,
       "type": "regular",
       "name": "Araiyalam 632326 Panchayat union middle school new building",
@@ -3112,8 +3112,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-276(A)",
-      "boothNo": "276(A)",
+      "id": "TN-067-276",
+      "boothNo": "276",
       "num": 276,
       "type": "regular",
       "name": "Vadugasattu and post 632316 Panchayat Union Primary School North Building East Side",
@@ -3121,8 +3121,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-276",
-      "boothNo": "276",
+      "id": "TN-067-276(A)",
+      "boothNo": "276(A)",
       "num": 276,
       "type": "regular",
       "name": "Vadugasattu and post 632316 Panchayat Union Primary School North Building East Side",
@@ -3184,8 +3184,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-283(A)",
-      "boothNo": "283(A)",
+      "id": "TN-067-283",
+      "boothNo": "283",
       "num": 283,
       "type": "regular",
       "name": "Seenvasapuram, 606903 Panchayat union Middle school",
@@ -3193,8 +3193,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-067-283",
-      "boothNo": "283",
+      "id": "TN-067-283(A)",
+      "boothNo": "283(A)",
       "num": 283,
       "type": "regular",
       "name": "Seenvasapuram, 606903 Panchayat union Middle school",
@@ -3454,8 +3454,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-310(A)",
-      "boothNo": "310(A)",
+      "id": "TN-067-310",
+      "boothNo": "310",
       "num": 310,
       "type": "regular",
       "name": "Karipur, Village Devikapuram post 606902 Panchayat union Middle school additional new building 1.KARIPOOR Bajanai Koil Street",
@@ -3463,8 +3463,8 @@
       "area": ""
     },
     {
-      "id": "TN-067-310",
-      "boothNo": "310",
+      "id": "TN-067-310(A)",
+      "boothNo": "310(A)",
       "num": 310,
       "type": "regular",
       "name": "Karipur, Village Devikapuram post 606902 Panchayat union Middle school additional new building 1.KARIPOOR Bajanai Koil Street",

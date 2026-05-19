@@ -2,19 +2,10 @@
   "acId": "TN-201",
   "acName": "CUMBUM",
   "state": "Tamil Nadu",
-  "totalBooths": 297,
+  "totalBooths": 392,
   "lastUpdated": "2021-04-06",
   "source": "Tamil Nadu CEO - Polling Stations",
   "booths": [
-    {
-      "id": "TN-201-1A",
-      "boothNo": "1A",
-      "num": 1,
-      "type": "regular",
-      "name": "St.Therasa Middle School North Side",
-      "address": "St.Therasa Middle School North Side, Thevaram",
-      "area": ""
-    },
     {
       "id": "TN-201-1",
       "boothNo": "1",
@@ -25,8 +16,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-2A",
-      "boothNo": "2A",
+      "id": "TN-201-1A",
+      "boothNo": "1A",
+      "num": 1,
+      "type": "regular",
+      "name": "St.Therasa Middle School North Side",
+      "address": "St.Therasa Middle School North Side, Thevaram",
+      "area": ""
+    },
+    {
+      "id": "TN-201-2",
+      "boothNo": "2",
       "num": 2,
       "type": "regular",
       "name": "St.Therasa Middle School South Building",
@@ -34,8 +34,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-2",
-      "boothNo": "2",
+      "id": "TN-201-2A",
+      "boothNo": "2A",
       "num": 2,
       "type": "regular",
       "name": "St.Therasa Middle School South Building",
@@ -52,8 +52,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-4A",
-      "boothNo": "4A",
+      "id": "TN-201-4",
+      "boothNo": "4",
       "num": 4,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -61,8 +61,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-4",
-      "boothNo": "4",
+      "id": "TN-201-4A",
+      "boothNo": "4A",
       "num": 4,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -106,8 +106,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-8A",
-      "boothNo": "8A",
+      "id": "TN-201-8",
+      "boothNo": "8",
       "num": 8,
       "type": "regular",
       "name": "Govt. Hr. Sec. School",
@@ -115,8 +115,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-8",
-      "boothNo": "8",
+      "id": "TN-201-8A",
+      "boothNo": "8A",
       "num": 8,
       "type": "regular",
       "name": "Govt. Hr. Sec. School",
@@ -133,15 +133,6 @@
       "area": ""
     },
     {
-      "id": "TN-201-10A",
-      "boothNo": "10A",
-      "num": 10,
-      "type": "regular",
-      "name": "Govt. Hr. Sec. School Western Side",
-      "address": "Govt. Hr. Sec. School Western Side, Important Building, Thevaram",
-      "area": ""
-    },
-    {
       "id": "TN-201-10",
       "boothNo": "10",
       "num": 10,
@@ -151,12 +142,12 @@
       "area": ""
     },
     {
-      "id": "TN-201-11A",
-      "boothNo": "11A",
-      "num": 11,
+      "id": "TN-201-10A",
+      "boothNo": "10A",
+      "num": 10,
       "type": "regular",
-      "name": "Ka.Su.Valluvar Ele. School East Block",
-      "address": "Ka.Su.Valluvar Ele. School East Block, South Side, Ward No.9, Thevaram",
+      "name": "Govt. Hr. Sec. School Western Side",
+      "address": "Govt. Hr. Sec. School Western Side, Important Building, Thevaram",
       "area": ""
     },
     {
@@ -169,8 +160,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-12A",
-      "boothNo": "12A",
+      "id": "TN-201-11A",
+      "boothNo": "11A",
+      "num": 11,
+      "type": "regular",
+      "name": "Ka.Su.Valluvar Ele. School East Block",
+      "address": "Ka.Su.Valluvar Ele. School East Block, South Side, Ward No.9, Thevaram",
+      "area": ""
+    },
+    {
+      "id": "TN-201-12",
+      "boothNo": "12",
       "num": 12,
       "type": "regular",
       "name": "Ka.Su.Valluvar Ele. School South Block",
@@ -178,8 +178,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-12",
-      "boothNo": "12",
+      "id": "TN-201-12A",
+      "boothNo": "12A",
       "num": 12,
       "type": "regular",
       "name": "Ka.Su.Valluvar Ele. School South Block",
@@ -250,8 +250,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-20A",
-      "boothNo": "20A",
+      "id": "TN-201-20",
+      "boothNo": "20",
       "num": 20,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -259,8 +259,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-20",
-      "boothNo": "20",
+      "id": "TN-201-20A",
+      "boothNo": "20A",
       "num": 20,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -295,8 +295,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-23A",
-      "boothNo": "23A",
+      "id": "TN-201-23",
+      "boothNo": "23",
       "num": 23,
       "type": "regular",
       "name": "Panchayat Union Ele. School",
@@ -304,8 +304,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-23",
-      "boothNo": "23",
+      "id": "TN-201-23A",
+      "boothNo": "23A",
       "num": 23,
       "type": "regular",
       "name": "Panchayat Union Ele. School",
@@ -403,8 +403,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-32A",
-      "boothNo": "32A",
+      "id": "TN-201-32",
+      "boothNo": "32",
       "num": 32,
       "type": "regular",
       "name": "Panchayat Union Ele School S.S.A Building",
@@ -412,8 +412,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-32",
-      "boothNo": "32",
+      "id": "TN-201-32A",
+      "boothNo": "32A",
       "num": 32,
       "type": "regular",
       "name": "Panchayat Union Ele School S.S.A Building",
@@ -457,15 +457,6 @@
       "area": ""
     },
     {
-      "id": "TN-201-36A",
-      "boothNo": "36A",
-      "num": 36,
-      "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School, Western Side, Pannaipuram",
-      "area": ""
-    },
-    {
       "id": "TN-201-36",
       "boothNo": "36",
       "num": 36,
@@ -475,8 +466,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-37A",
-      "boothNo": "37A",
+      "id": "TN-201-36A",
+      "boothNo": "36A",
+      "num": 36,
+      "type": "regular",
+      "name": "Panchayat Union Ele. School",
+      "address": "Panchayat Union Ele. School, Western Side, Pannaipuram",
+      "area": ""
+    },
+    {
+      "id": "TN-201-37",
+      "boothNo": "37",
       "num": 37,
       "type": "regular",
       "name": "Govt. Higher Secondary School",
@@ -484,8 +484,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-37",
-      "boothNo": "37",
+      "id": "TN-201-37A",
+      "boothNo": "37A",
       "num": 37,
       "type": "regular",
       "name": "Govt. Higher Secondary School",
@@ -628,8 +628,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-50A",
-      "boothNo": "50A",
+      "id": "TN-201-50",
+      "boothNo": "50",
       "num": 50,
       "type": "regular",
       "name": "Lingammal Aided Ele. School New Building",
@@ -637,8 +637,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-50",
-      "boothNo": "50",
+      "id": "TN-201-50A",
+      "boothNo": "50A",
       "num": 50,
       "type": "regular",
       "name": "Lingammal Aided Ele. School New Building",
@@ -673,15 +673,6 @@
       "area": ""
     },
     {
-      "id": "TN-201-53A",
-      "boothNo": "53A",
-      "num": 53,
-      "type": "regular",
-      "name": "Muncipal Middle School",
-      "address": "Muncipal Middle School, South Building, East Side, Colony School Street, Chinnamanur",
-      "area": ""
-    },
-    {
       "id": "TN-201-53",
       "boothNo": "53",
       "num": 53,
@@ -691,8 +682,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-54A",
-      "boothNo": "54A",
+      "id": "TN-201-53A",
+      "boothNo": "53A",
+      "num": 53,
+      "type": "regular",
+      "name": "Muncipal Middle School",
+      "address": "Muncipal Middle School, South Building, East Side, Colony School Street, Chinnamanur",
+      "area": ""
+    },
+    {
+      "id": "TN-201-54",
+      "boothNo": "54",
       "num": 54,
       "type": "regular",
       "name": "Panchayat Union Office",
@@ -700,8 +700,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-54",
-      "boothNo": "54",
+      "id": "TN-201-54A",
+      "boothNo": "54A",
       "num": 54,
       "type": "regular",
       "name": "Panchayat Union Office",
@@ -790,8 +790,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-63A",
-      "boothNo": "63A",
+      "id": "TN-201-63",
+      "boothNo": "63",
       "num": 63,
       "type": "regular",
       "name": "NKP Municipal Ele. School New Building, South Side, Chinnamanur",
@@ -799,8 +799,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-63",
-      "boothNo": "63",
+      "id": "TN-201-63A",
+      "boothNo": "63A",
       "num": 63,
       "type": "regular",
       "name": "NKP Municipal Ele. School New Building, South Side, Chinnamanur",
@@ -970,15 +970,6 @@
       "area": ""
     },
     {
-      "id": "TN-201-79A",
-      "boothNo": "79A",
-      "num": 79,
-      "type": "regular",
-      "name": "Sri Krishna Ayyar Hr.Sec.School",
-      "address": "Sri Krishna Ayyar Hr.Sec.School, New building, Eastern Side, South Block, Seepalakottai Road, Chinnamanur",
-      "area": ""
-    },
-    {
       "id": "TN-201-79",
       "boothNo": "79",
       "num": 79,
@@ -988,8 +979,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-80A",
-      "boothNo": "80A",
+      "id": "TN-201-79A",
+      "boothNo": "79A",
+      "num": 79,
+      "type": "regular",
+      "name": "Sri Krishna Ayyar Hr.Sec.School",
+      "address": "Sri Krishna Ayyar Hr.Sec.School, New building, Eastern Side, South Block, Seepalakottai Road, Chinnamanur",
+      "area": ""
+    },
+    {
+      "id": "TN-201-80",
+      "boothNo": "80",
       "num": 80,
       "type": "regular",
       "name": "Sri Krishna Ayyar Hr.Sec.School",
@@ -997,8 +997,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-80",
-      "boothNo": "80",
+      "id": "TN-201-80A",
+      "boothNo": "80A",
       "num": 80,
       "type": "regular",
       "name": "Sri Krishna Ayyar Hr.Sec.School",
@@ -1015,8 +1015,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-82A",
-      "boothNo": "82A",
+      "id": "TN-201-82",
+      "boothNo": "82",
       "num": 82,
       "type": "regular",
       "name": "Sri Krishna Ayyar Hr.Sec.School",
@@ -1024,8 +1024,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-82",
-      "boothNo": "82",
+      "id": "TN-201-82A",
+      "boothNo": "82A",
       "num": 82,
       "type": "regular",
       "name": "Sri Krishna Ayyar Hr.Sec.School",
@@ -1042,15 +1042,6 @@
       "area": ""
     },
     {
-      "id": "TN-201-84A",
-      "boothNo": "84A",
-      "num": 84,
-      "type": "regular",
-      "name": "Municipal Middle School West Building",
-      "address": "Municipal Middle School West Building, South Block, Sangoli Chetti Thidal, Chinnamanur",
-      "area": ""
-    },
-    {
       "id": "TN-201-84",
       "boothNo": "84",
       "num": 84,
@@ -1060,8 +1051,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-85A",
-      "boothNo": "85A",
+      "id": "TN-201-84A",
+      "boothNo": "84A",
+      "num": 84,
+      "type": "regular",
+      "name": "Municipal Middle School West Building",
+      "address": "Municipal Middle School West Building, South Block, Sangoli Chetti Thidal, Chinnamanur",
+      "area": ""
+    },
+    {
+      "id": "TN-201-85",
+      "boothNo": "85",
       "num": 85,
       "type": "regular",
       "name": "Municipal Ele. School Ayyanarpuram Main Building",
@@ -1069,8 +1069,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-85",
-      "boothNo": "85",
+      "id": "TN-201-85A",
+      "boothNo": "85A",
       "num": 85,
       "type": "regular",
       "name": "Municipal Ele. School Ayyanarpuram Main Building",
@@ -1240,15 +1240,6 @@
       "area": ""
     },
     {
-      "id": "TN-201-102A",
-      "boothNo": "102A",
-      "num": 102,
-      "type": "regular",
-      "name": "Panchayat Union Ele. School",
-      "address": "Panchayat Union Ele. School, East Block, Odaipatti",
-      "area": ""
-    },
-    {
       "id": "TN-201-102",
       "boothNo": "102",
       "num": 102,
@@ -1258,8 +1249,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-103A",
-      "boothNo": "103A",
+      "id": "TN-201-102A",
+      "boothNo": "102A",
+      "num": 102,
+      "type": "regular",
+      "name": "Panchayat Union Ele. School",
+      "address": "Panchayat Union Ele. School, East Block, Odaipatti",
+      "area": ""
+    },
+    {
+      "id": "TN-201-103",
+      "boothNo": "103",
       "num": 103,
       "type": "regular",
       "name": "Govt. Hr. Sec. School",
@@ -1267,8 +1267,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-103",
-      "boothNo": "103",
+      "id": "TN-201-103A",
+      "boothNo": "103A",
       "num": 103,
       "type": "regular",
       "name": "Govt. Hr. Sec. School",
@@ -1348,8 +1348,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-111A",
-      "boothNo": "111A",
+      "id": "TN-201-111",
+      "boothNo": "111",
       "num": 111,
       "type": "regular",
       "name": "Panchayat Union Ele. School",
@@ -1357,8 +1357,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-111",
-      "boothNo": "111",
+      "id": "TN-201-111A",
+      "boothNo": "111A",
       "num": 111,
       "type": "regular",
       "name": "Panchayat Union Ele. School",
@@ -1582,8 +1582,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-132A",
-      "boothNo": "132A",
+      "id": "TN-201-132",
+      "boothNo": "132",
       "num": 132,
       "type": "regular",
       "name": "Panchayat Union Ele.School",
@@ -1591,8 +1591,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-132",
-      "boothNo": "132",
+      "id": "TN-201-132A",
+      "boothNo": "132A",
       "num": 132,
       "type": "regular",
       "name": "Panchayat Union Ele.School",
@@ -1861,15 +1861,6 @@
       "area": ""
     },
     {
-      "id": "TN-201-161A",
-      "boothNo": "161A",
-      "num": 161,
-      "type": "regular",
-      "name": "High School, Southern Side",
-      "address": "High School, Southern Side, U.Ammapatti. U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti",
-      "area": ""
-    },
-    {
       "id": "TN-201-161",
       "boothNo": "161",
       "num": 161,
@@ -1879,8 +1870,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-162A",
-      "boothNo": "162A",
+      "id": "TN-201-161A",
+      "boothNo": "161A",
+      "num": 161,
+      "type": "regular",
+      "name": "High School, Southern Side",
+      "address": "High School, Southern Side, U.Ammapatti. U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti U.Ammapatti",
+      "area": ""
+    },
+    {
+      "id": "TN-201-162",
+      "boothNo": "162",
       "num": 162,
       "type": "regular",
       "name": "School, Additional Building",
@@ -1888,8 +1888,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-162",
-      "boothNo": "162",
+      "id": "TN-201-162A",
+      "boothNo": "162A",
       "num": 162,
       "type": "regular",
       "name": "School, Additional Building",
@@ -1906,8 +1906,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-164A",
-      "boothNo": "164A",
+      "id": "TN-201-164",
+      "boothNo": "164",
       "num": 164,
       "type": "regular",
       "name": "Periyanayagi Middle School",
@@ -1915,8 +1915,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-164",
-      "boothNo": "164",
+      "id": "TN-201-164A",
+      "boothNo": "164A",
       "num": 164,
       "type": "regular",
       "name": "Periyanayagi Middle School",
@@ -1933,8 +1933,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-166A",
-      "boothNo": "166A",
+      "id": "TN-201-166",
+      "boothNo": "166",
       "num": 166,
       "type": "regular",
       "name": "Joseph Periyanayagi Elementary School",
@@ -1942,8 +1942,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-166",
-      "boothNo": "166",
+      "id": "TN-201-166A",
+      "boothNo": "166A",
       "num": 166,
       "type": "regular",
       "name": "Joseph Periyanayagi Elementary School",
@@ -2005,8 +2005,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-173A",
-      "boothNo": "173A",
+      "id": "TN-201-173",
+      "boothNo": "173",
       "num": 173,
       "type": "regular",
       "name": "Panchayat Union Office Council Hall",
@@ -2014,8 +2014,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-173",
-      "boothNo": "173",
+      "id": "TN-201-173A",
+      "boothNo": "173A",
       "num": 173,
       "type": "regular",
       "name": "Panchayat Union Office Council Hall",
@@ -2041,8 +2041,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-175A",
-      "boothNo": "175A",
+      "id": "TN-201-175",
+      "boothNo": "175",
       "num": 175,
       "type": "regular",
       "name": "Panchayat Union Office",
@@ -2050,8 +2050,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-175",
-      "boothNo": "175",
+      "id": "TN-201-175A",
+      "boothNo": "175A",
       "num": 175,
       "type": "regular",
       "name": "Panchayat Union Office",
@@ -2167,8 +2167,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-184A",
-      "boothNo": "184A",
+      "id": "TN-201-184",
+      "boothNo": "184",
       "num": 184,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -2176,8 +2176,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-184",
-      "boothNo": "184",
+      "id": "TN-201-184A",
+      "boothNo": "184A",
       "num": 184,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -2248,8 +2248,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-191A",
-      "boothNo": "191A",
+      "id": "TN-201-191",
+      "boothNo": "191",
       "num": 191,
       "type": "regular",
       "name": "Govt. Kallar Ele. School",
@@ -2257,8 +2257,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-191",
-      "boothNo": "191",
+      "id": "TN-201-191A",
+      "boothNo": "191A",
       "num": 191,
       "type": "regular",
       "name": "Govt. Kallar Ele. School",
@@ -2275,8 +2275,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-193A",
-      "boothNo": "193A",
+      "id": "TN-201-193",
+      "boothNo": "193",
       "num": 193,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -2284,8 +2284,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-193",
-      "boothNo": "193",
+      "id": "TN-201-193A",
+      "boothNo": "193A",
       "num": 193,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -2437,15 +2437,6 @@
       "area": ""
     },
     {
-      "id": "TN-201-207A",
-      "boothNo": "207A",
-      "num": 207,
-      "type": "regular",
-      "name": "St. Aloysis Higher Sec.School",
-      "address": "St. Aloysis Higher Sec.School, Western Side Boys Section, Rayappanpatti",
-      "area": ""
-    },
-    {
       "id": "TN-201-207",
       "boothNo": "207",
       "num": 207,
@@ -2455,12 +2446,12 @@
       "area": ""
     },
     {
-      "id": "TN-201-208A",
-      "boothNo": "208A",
-      "num": 208,
+      "id": "TN-201-207A",
+      "boothNo": "207A",
+      "num": 207,
       "type": "regular",
-      "name": "Govt. Kallar Ele. School",
-      "address": "Govt. Kallar Ele. School, New Building, North Side, East Block, Nagaiyagoundanpatti",
+      "name": "St. Aloysis Higher Sec.School",
+      "address": "St. Aloysis Higher Sec.School, Western Side Boys Section, Rayappanpatti",
       "area": ""
     },
     {
@@ -2473,8 +2464,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-209A",
-      "boothNo": "209A",
+      "id": "TN-201-208A",
+      "boothNo": "208A",
+      "num": 208,
+      "type": "regular",
+      "name": "Govt. Kallar Ele. School",
+      "address": "Govt. Kallar Ele. School, New Building, North Side, East Block, Nagaiyagoundanpatti",
+      "area": ""
+    },
+    {
+      "id": "TN-201-209",
+      "boothNo": "209",
       "num": 209,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -2482,8 +2482,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-209",
-      "boothNo": "209",
+      "id": "TN-201-209A",
+      "boothNo": "209A",
       "num": 209,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -2536,8 +2536,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-215A",
-      "boothNo": "215A",
+      "id": "TN-201-215",
+      "boothNo": "215",
       "num": 215,
       "type": "regular",
       "name": "St. Joseph Middle School",
@@ -2545,8 +2545,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-215",
-      "boothNo": "215",
+      "id": "TN-201-215A",
+      "boothNo": "215A",
       "num": 215,
       "type": "regular",
       "name": "St. Joseph Middle School",
@@ -2608,15 +2608,6 @@
       "area": ""
     },
     {
-      "id": "TN-201-222A",
-      "boothNo": "222A",
-      "num": 222,
-      "type": "regular",
-      "name": "D.S.S.Middle School Kakkilchikkaianpatti",
-      "address": "And South Street , And West Street , And North Street , And Kakkil Sikkayanpatti Harijana North Street Panchayat Union Ele. School, South Block , 1.C. Puthupatti And ,9,13,14&15 Cumbum Road , 223 Cumbum Road, 2.C. Puthupatti And Kaliamman Kovil Street C.Puthupatti Panchayat Union Ele. School, Main Building, 1.C. Puthupatti And Muslim Street North Block, 2.C. Puthupatti And Karnam Street , 224 Eastern Side, 3.C. Puthupatti And Villlage Munsiff Street , Cumbum Road, 4.C. Puthupatti And Veera Arsiamman Kovil Street C.Puthupatti. Govt. Kallar Ele. School",
-      "area": ""
-    },
-    {
       "id": "TN-201-222",
       "boothNo": "222",
       "num": 222,
@@ -2626,8 +2617,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-223A",
-      "boothNo": "223A",
+      "id": "TN-201-222A",
+      "boothNo": "222A",
+      "num": 222,
+      "type": "regular",
+      "name": "D.S.S.Middle School Kakkilchikkaianpatti",
+      "address": "And South Street , And West Street , And North Street , And Kakkil Sikkayanpatti Harijana North Street Panchayat Union Ele. School, South Block , 1.C. Puthupatti And ,9,13,14&15 Cumbum Road , 223 Cumbum Road, 2.C. Puthupatti And Kaliamman Kovil Street C.Puthupatti Panchayat Union Ele. School, Main Building, 1.C. Puthupatti And Muslim Street North Block, 2.C. Puthupatti And Karnam Street , 224 Eastern Side, 3.C. Puthupatti And Villlage Munsiff Street , Cumbum Road, 4.C. Puthupatti And Veera Arsiamman Kovil Street C.Puthupatti. Govt. Kallar Ele. School",
+      "area": ""
+    },
+    {
+      "id": "TN-201-223",
+      "boothNo": "223",
       "num": 223,
       "type": "regular",
       "name": "School, South Block",
@@ -2635,8 +2635,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-223",
-      "boothNo": "223",
+      "id": "TN-201-223A",
+      "boothNo": "223A",
       "num": 223,
       "type": "regular",
       "name": "School, South Block",
@@ -2680,15 +2680,6 @@
       "area": ""
     },
     {
-      "id": "TN-201-228A",
-      "boothNo": "228A",
-      "num": 228,
-      "type": "regular",
-      "name": "School, Northern Side",
-      "address": "School, Northern Side, New Building, C.Puthupatti 1.C. Puthupatti And",
-      "area": ""
-    },
-    {
       "id": "TN-201-228",
       "boothNo": "228",
       "num": 228,
@@ -2698,8 +2689,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-229A",
-      "boothNo": "229A",
+      "id": "TN-201-228A",
+      "boothNo": "228A",
+      "num": 228,
+      "type": "regular",
+      "name": "School, Northern Side",
+      "address": "School, Northern Side, New Building, C.Puthupatti 1.C. Puthupatti And",
+      "area": ""
+    },
+    {
+      "id": "TN-201-229",
+      "boothNo": "229",
       "num": 229,
       "type": "regular",
       "name": "School, New Building North Side",
@@ -2707,8 +2707,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-229",
-      "boothNo": "229",
+      "id": "TN-201-229A",
+      "boothNo": "229A",
       "num": 229,
       "type": "regular",
       "name": "School, New Building North Side",
@@ -2806,8 +2806,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-238A",
-      "boothNo": "238A",
+      "id": "TN-201-238",
+      "boothNo": "238",
       "num": 238,
       "type": "regular",
       "name": "Ilahi Oriental Arabic High School",
@@ -2815,8 +2815,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-238",
-      "boothNo": "238",
+      "id": "TN-201-238A",
+      "boothNo": "238A",
       "num": 238,
       "type": "regular",
       "name": "Ilahi Oriental Arabic High School",
@@ -2878,8 +2878,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-243A",
-      "boothNo": "243A",
+      "id": "TN-201-243",
+      "boothNo": "243",
       "num": 243,
       "type": "regular",
       "name": "Govt. Kallar Ele. School Two Classes Building",
@@ -2887,8 +2887,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-243",
-      "boothNo": "243",
+      "id": "TN-201-243A",
+      "boothNo": "243A",
       "num": 243,
       "type": "regular",
       "name": "Govt. Kallar Ele. School Two Classes Building",
@@ -2914,8 +2914,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-246A",
-      "boothNo": "246A",
+      "id": "TN-201-246",
+      "boothNo": "246",
       "num": 246,
       "type": "regular",
       "name": "Govt. Kallar Ele. Sec School",
@@ -2923,8 +2923,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-246",
-      "boothNo": "246",
+      "id": "TN-201-246A",
+      "boothNo": "246A",
       "num": 246,
       "type": "regular",
       "name": "Govt. Kallar Ele. Sec School",
@@ -2950,8 +2950,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-249A",
-      "boothNo": "249A",
+      "id": "TN-201-249",
+      "boothNo": "249",
       "num": 249,
       "type": "regular",
       "name": "Govt. Kallar Ele. School",
@@ -2959,8 +2959,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-249",
-      "boothNo": "249",
+      "id": "TN-201-249A",
+      "boothNo": "249A",
       "num": 249,
       "type": "regular",
       "name": "Govt. Kallar Ele. School",
@@ -3049,8 +3049,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-258A",
-      "boothNo": "258A",
+      "id": "TN-201-258",
+      "boothNo": "258",
       "num": 258,
       "type": "regular",
       "name": "Sri Mukthi Vinayagar Middle School",
@@ -3058,8 +3058,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-258",
-      "boothNo": "258",
+      "id": "TN-201-258A",
+      "boothNo": "258A",
       "num": 258,
       "type": "regular",
       "name": "Sri Mukthi Vinayagar Middle School",
@@ -3202,8 +3202,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-269A",
-      "boothNo": "269A",
+      "id": "TN-201-269",
+      "boothNo": "269",
       "num": 269,
       "type": "regular",
       "name": "Govt, Girls Hr. Sec. School",
@@ -3211,8 +3211,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-269",
-      "boothNo": "269",
+      "id": "TN-201-269A",
+      "boothNo": "269A",
       "num": 269,
       "type": "regular",
       "name": "Govt, Girls Hr. Sec. School",
@@ -3283,8 +3283,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-274A",
-      "boothNo": "274A",
+      "id": "TN-201-274",
+      "boothNo": "274",
       "num": 274,
       "type": "regular",
       "name": "CPU Hr.Sec.School, Main Building",
@@ -3292,8 +3292,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-274",
-      "boothNo": "274",
+      "id": "TN-201-274A",
+      "boothNo": "274A",
       "num": 274,
       "type": "regular",
       "name": "CPU Hr.Sec.School, Main Building",
@@ -3472,15 +3472,6 @@
       "area": ""
     },
     {
-      "id": "TN-201-291A",
-      "boothNo": "291A",
-      "num": 291,
-      "type": "regular",
-      "name": "Municipal Middle School (Sungam) New building",
-      "address": "Municipal Middle School (Sungam) New building, Eastern side, T.T.Kulam,Cumbum",
-      "area": ""
-    },
-    {
       "id": "TN-201-291",
       "boothNo": "291",
       "num": 291,
@@ -3490,8 +3481,17 @@
       "area": ""
     },
     {
-      "id": "TN-201-292A",
-      "boothNo": "292A",
+      "id": "TN-201-291A",
+      "boothNo": "291A",
+      "num": 291,
+      "type": "regular",
+      "name": "Municipal Middle School (Sungam) New building",
+      "address": "Municipal Middle School (Sungam) New building, Eastern side, T.T.Kulam,Cumbum",
+      "area": ""
+    },
+    {
+      "id": "TN-201-292",
+      "boothNo": "292",
       "num": 292,
       "type": "regular",
       "name": "Sri Mukthi Vinayagar Middle School",
@@ -3499,8 +3499,8 @@
       "area": ""
     },
     {
-      "id": "TN-201-292",
-      "boothNo": "292",
+      "id": "TN-201-292A",
+      "boothNo": "292A",
       "num": 292,
       "type": "regular",
       "name": "Sri Mukthi Vinayagar Middle School",

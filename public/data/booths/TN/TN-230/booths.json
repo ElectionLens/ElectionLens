@@ -2,7 +2,7 @@
   "acId": "TN-230",
   "acName": "NAGERCOIL",
   "state": "Tamil Nadu",
-  "totalBooths": 275,
+  "totalBooths": 390,
   "lastUpdated": "2021-04-06",
   "source": "Tamil Nadu CEO - Polling Stations",
   "booths": [
@@ -160,8 +160,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-13M",
-      "boothNo": "13M",
+      "id": "TN-230-13A(W)",
+      "boothNo": "13A(W)",
       "num": 13,
       "type": "regular",
       "name": "13A( W) Government High School",
@@ -169,8 +169,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-13A(W)",
-      "boothNo": "13A(W)",
+      "id": "TN-230-13M",
+      "boothNo": "13M",
       "num": 13,
       "type": "regular",
       "name": "13A( W) Government High School",
@@ -349,15 +349,6 @@
       "area": ""
     },
     {
-      "id": "TN-230-28M",
-      "boothNo": "28M",
-      "num": 28,
-      "type": "regular",
-      "name": "28A( W) Government Middle School",
-      "address": "28A( W) Government Middle School, Asaripallam, New Terraced Building, Eastern Portion",
-      "area": ""
-    },
-    {
       "id": "TN-230-28A(W)",
       "boothNo": "28A(W)",
       "num": 28,
@@ -367,12 +358,12 @@
       "area": ""
     },
     {
-      "id": "TN-230-29M",
-      "boothNo": "29M",
-      "num": 29,
+      "id": "TN-230-28M",
+      "boothNo": "28M",
+      "num": 28,
       "type": "regular",
-      "name": "29A( W) Government Middle School",
-      "address": "29A( W) Government Middle School, Asaripallam, New Terraced Building, South Portion",
+      "name": "28A( W) Government Middle School",
+      "address": "28A( W) Government Middle School, Asaripallam, New Terraced Building, Eastern Portion",
       "area": ""
     },
     {
@@ -385,8 +376,17 @@
       "area": ""
     },
     {
-      "id": "TN-230-30M",
-      "boothNo": "30M",
+      "id": "TN-230-29M",
+      "boothNo": "29M",
+      "num": 29,
+      "type": "regular",
+      "name": "29A( W) Government Middle School",
+      "address": "29A( W) Government Middle School, Asaripallam, New Terraced Building, South Portion",
+      "area": ""
+    },
+    {
+      "id": "TN-230-30A(W)",
+      "boothNo": "30A(W)",
       "num": 30,
       "type": "regular",
       "name": "30A( W) St. Judes Middle School",
@@ -394,8 +394,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-30A(W)",
-      "boothNo": "30A(W)",
+      "id": "TN-230-30M",
+      "boothNo": "30M",
       "num": 30,
       "type": "regular",
       "name": "30A( W) St. Judes Middle School",
@@ -493,8 +493,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-40M",
-      "boothNo": "40M",
+      "id": "TN-230-40A(W)",
+      "boothNo": "40A(W)",
       "num": 40,
       "type": "regular",
       "name": "40A( W) Government Primary school",
@@ -502,8 +502,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-40A(W)",
-      "boothNo": "40A(W)",
+      "id": "TN-230-40M",
+      "boothNo": "40M",
       "num": 40,
       "type": "regular",
       "name": "40A( W) Government Primary school",
@@ -565,8 +565,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-47M",
-      "boothNo": "47M",
+      "id": "TN-230-47A(W)",
+      "boothNo": "47A(W)",
       "num": 47,
       "type": "regular",
       "name": "47A( W) Government Middle School",
@@ -574,8 +574,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-47A(W)",
-      "boothNo": "47A(W)",
+      "id": "TN-230-47M",
+      "boothNo": "47M",
       "num": 47,
       "type": "regular",
       "name": "47A( W) Government Middle School",
@@ -637,8 +637,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-54M",
-      "boothNo": "54M",
+      "id": "TN-230-54A(W)",
+      "boothNo": "54A(W)",
       "num": 54,
       "type": "regular",
       "name": "54A( W) Government Middle School",
@@ -646,8 +646,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-54A(W)",
-      "boothNo": "54A(W)",
+      "id": "TN-230-54M",
+      "boothNo": "54M",
       "num": 54,
       "type": "regular",
       "name": "54A( W) Government Middle School",
@@ -709,8 +709,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-60M",
-      "boothNo": "60M",
+      "id": "TN-230-60A(W)",
+      "boothNo": "60A(W)",
       "num": 60,
       "type": "regular",
       "name": "60M Government Primary and High School",
@@ -718,8 +718,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-60A(W)",
-      "boothNo": "60A(W)",
+      "id": "TN-230-60M",
+      "boothNo": "60M",
       "num": 60,
       "type": "regular",
       "name": "60M Government Primary and High School",
@@ -745,8 +745,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-63M",
-      "boothNo": "63M",
+      "id": "TN-230-63A(W)",
+      "boothNo": "63A(W)",
       "num": 63,
       "type": "regular",
       "name": "63A( W) Governement Primary School",
@@ -754,8 +754,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-63A(W)",
-      "boothNo": "63A(W)",
+      "id": "TN-230-63M",
+      "boothNo": "63M",
       "num": 63,
       "type": "regular",
       "name": "63A( W) Governement Primary School",
@@ -844,8 +844,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-71M",
-      "boothNo": "71M",
+      "id": "TN-230-71A(W)",
+      "boothNo": "71A(W)",
       "num": 71,
       "type": "regular",
       "name": "71A( W) Government Higher Secondary School",
@@ -853,8 +853,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-71A(W)",
-      "boothNo": "71A(W)",
+      "id": "TN-230-71M",
+      "boothNo": "71M",
       "num": 71,
       "type": "regular",
       "name": "71A( W) Government Higher Secondary School",
@@ -907,8 +907,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-76M",
-      "boothNo": "76M",
+      "id": "TN-230-76A(W)",
+      "boothNo": "76A(W)",
       "num": 76,
       "type": "regular",
       "name": "Joseph High School, Rajakkamangalamthurai",
@@ -916,8 +916,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-76A(W)",
-      "boothNo": "76A(W)",
+      "id": "TN-230-76M",
+      "boothNo": "76M",
       "num": 76,
       "type": "regular",
       "name": "Joseph High School, Rajakkamangalamthurai",
@@ -961,8 +961,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-79M",
-      "boothNo": "79M",
+      "id": "TN-230-79A(W)",
+      "boothNo": "79A(W)",
       "num": 79,
       "type": "regular",
       "name": "79A( W) Government Middle School",
@@ -970,8 +970,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-79A(W)",
-      "boothNo": "79A(W)",
+      "id": "TN-230-79M",
+      "boothNo": "79M",
       "num": 79,
       "type": "regular",
       "name": "79A( W) Government Middle School",
@@ -1096,15 +1096,6 @@
       "area": ""
     },
     {
-      "id": "TN-230-89M",
-      "boothNo": "89M",
-      "num": 89,
-      "type": "regular",
-      "name": "89A( W) SNM Hindhu Vidhiyalaya School Vetturnimadam (North Centre Bulding West Postion)",
-      "address": "89A( W) SNM Hindhu Vidhiyalaya School Vetturnimadam (North Centre Bulding West Postion), North Centre Bulding West Postion",
-      "area": ""
-    },
-    {
       "id": "TN-230-89A(W)",
       "boothNo": "89A(W)",
       "num": 89,
@@ -1114,8 +1105,17 @@
       "area": ""
     },
     {
-      "id": "TN-230-90M",
-      "boothNo": "90M",
+      "id": "TN-230-89M",
+      "boothNo": "89M",
+      "num": 89,
+      "type": "regular",
+      "name": "89A( W) SNM Hindhu Vidhiyalaya School Vetturnimadam (North Centre Bulding West Postion)",
+      "address": "89A( W) SNM Hindhu Vidhiyalaya School Vetturnimadam (North Centre Bulding West Postion), North Centre Bulding West Postion",
+      "area": ""
+    },
+    {
+      "id": "TN-230-90A(W)",
+      "boothNo": "90A(W)",
       "num": 90,
       "type": "regular",
       "name": "90A( W) Salvation Army Higher Secondary School",
@@ -1123,8 +1123,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-90A(W)",
-      "boothNo": "90A(W)",
+      "id": "TN-230-90M",
+      "boothNo": "90M",
       "num": 90,
       "type": "regular",
       "name": "90A( W) Salvation Army Higher Secondary School",
@@ -1150,8 +1150,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-92M",
-      "boothNo": "92M",
+      "id": "TN-230-92A(W)",
+      "boothNo": "92A(W)",
       "num": 92,
       "type": "regular",
       "name": "92A( W) Salvation Army Higher Secondary School",
@@ -1159,8 +1159,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-92A(W)",
-      "boothNo": "92A(W)",
+      "id": "TN-230-92M",
+      "boothNo": "92M",
       "num": 92,
       "type": "regular",
       "name": "92A( W) Salvation Army Higher Secondary School",
@@ -1186,8 +1186,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-95M",
-      "boothNo": "95M",
+      "id": "TN-230-95A(W)",
+      "boothNo": "95A(W)",
       "num": 95,
       "type": "regular",
       "name": "95A( W) Government Middle School",
@@ -1195,8 +1195,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-95A(W)",
-      "boothNo": "95A(W)",
+      "id": "TN-230-95M",
+      "boothNo": "95M",
       "num": 95,
       "type": "regular",
       "name": "95A( W) Government Middle School",
@@ -1312,15 +1312,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-107M",
-      "boothNo": "107M",
-      "num": 107,
-      "type": "regular",
-      "name": "107A( W) Government High School",
-      "address": "107A( W) Government High School , Weavers Street, Vadasery (Main Bulding South Postion North Door), Main Bulding South Postion North Door",
-      "area": ""
-    },
-    {
       "id": "TN-230-107A(W)",
       "boothNo": "107A(W)",
       "num": 107,
@@ -1330,8 +1321,17 @@
       "area": ""
     },
     {
-      "id": "TN-230-108M",
-      "boothNo": "108M",
+      "id": "TN-230-107M",
+      "boothNo": "107M",
+      "num": 107,
+      "type": "regular",
+      "name": "107A( W) Government High School",
+      "address": "107A( W) Government High School , Weavers Street, Vadasery (Main Bulding South Postion North Door), Main Bulding South Postion North Door",
+      "area": ""
+    },
+    {
+      "id": "TN-230-108A(W)",
+      "boothNo": "108A(W)",
       "num": 108,
       "type": "regular",
       "name": "108A( W) Government Primary School",
@@ -1339,8 +1339,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-108A(W)",
-      "boothNo": "108A(W)",
+      "id": "TN-230-108M",
+      "boothNo": "108M",
       "num": 108,
       "type": "regular",
       "name": "108A( W) Government Primary School",
@@ -1429,8 +1429,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-117M",
-      "boothNo": "117M",
+      "id": "TN-230-117A(W)",
+      "boothNo": "117A(W)",
       "num": 117,
       "type": "regular",
       "name": "117A( W) S. M.R.V. Higher Secondary School",
@@ -1438,8 +1438,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-117A(W)",
-      "boothNo": "117A(W)",
+      "id": "TN-230-117M",
+      "boothNo": "117M",
       "num": 117,
       "type": "regular",
       "name": "117A( W) S. M.R.V. Higher Secondary School",
@@ -1600,8 +1600,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-132M",
-      "boothNo": "132M",
+      "id": "TN-230-132A(W)",
+      "boothNo": "132A(W)",
       "num": 132,
       "type": "regular",
       "name": "132A( W) Scott Christian Higher Secondary School",
@@ -1609,8 +1609,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-132A(W)",
-      "boothNo": "132A(W)",
+      "id": "TN-230-132M",
+      "boothNo": "132M",
       "num": 132,
       "type": "regular",
       "name": "132A( W) Scott Christian Higher Secondary School",
@@ -1933,8 +1933,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-159M",
-      "boothNo": "159M",
+      "id": "TN-230-159A(W)",
+      "boothNo": "159A(W)",
       "num": 159,
       "type": "regular",
       "name": "159A( W) Govt. High School",
@@ -1942,8 +1942,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-159A(W)",
-      "boothNo": "159A(W)",
+      "id": "TN-230-159M",
+      "boothNo": "159M",
       "num": 159,
       "type": "regular",
       "name": "159A( W) Govt. High School",
@@ -1978,8 +1978,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-162M",
-      "boothNo": "162M",
+      "id": "TN-230-162A(W)",
+      "boothNo": "162A(W)",
       "num": 162,
       "type": "regular",
       "name": "162M Govt. Primary School",
@@ -1987,8 +1987,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-162A(W)",
-      "boothNo": "162A(W)",
+      "id": "TN-230-162M",
+      "boothNo": "162M",
       "num": 162,
       "type": "regular",
       "name": "162M Govt. Primary School",
@@ -2032,8 +2032,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-166M",
-      "boothNo": "166M",
+      "id": "TN-230-166A(W)",
+      "boothNo": "166A(W)",
       "num": 166,
       "type": "regular",
       "name": "166A( W) Govt. Primary School",
@@ -2041,8 +2041,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-166A(W)",
-      "boothNo": "166A(W)",
+      "id": "TN-230-166M",
+      "boothNo": "166M",
       "num": 166,
       "type": "regular",
       "name": "166A( W) Govt. Primary School",
@@ -2122,8 +2122,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-173M",
-      "boothNo": "173M",
+      "id": "TN-230-173A(W)",
+      "boothNo": "173A(W)",
       "num": 173,
       "type": "regular",
       "name": "173A( W) SLB Govt. Girls High School",
@@ -2131,8 +2131,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-173A(W)",
-      "boothNo": "173A(W)",
+      "id": "TN-230-173M",
+      "boothNo": "173M",
       "num": 173,
       "type": "regular",
       "name": "173A( W) SLB Govt. Girls High School",
@@ -2149,8 +2149,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-175M",
-      "boothNo": "175M",
+      "id": "TN-230-175A(W)",
+      "boothNo": "175A(W)",
       "num": 175,
       "type": "regular",
       "name": "175A( W) SLB Govt. Girls High School",
@@ -2158,8 +2158,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-175A(W)",
-      "boothNo": "175A(W)",
+      "id": "TN-230-175M",
+      "boothNo": "175M",
       "num": 175,
       "type": "regular",
       "name": "175A( W) SLB Govt. Girls High School",
@@ -2266,8 +2266,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-184M",
-      "boothNo": "184M",
+      "id": "TN-230-184A(W)",
+      "boothNo": "184A(W)",
       "num": 184,
       "type": "regular",
       "name": "184A( W) Concordia High School",
@@ -2275,8 +2275,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-184A(W)",
-      "boothNo": "184A(W)",
+      "id": "TN-230-184M",
+      "boothNo": "184M",
       "num": 184,
       "type": "regular",
       "name": "184A( W) Concordia High School",
@@ -2356,8 +2356,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-191M",
-      "boothNo": "191M",
+      "id": "TN-230-191A(W)",
+      "boothNo": "191A(W)",
       "num": 191,
       "type": "regular",
       "name": "191M St. Antonys High School",
@@ -2365,8 +2365,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-191A(W)",
-      "boothNo": "191A(W)",
+      "id": "TN-230-191M",
+      "boothNo": "191M",
       "num": 191,
       "type": "regular",
       "name": "191M St. Antonys High School",
@@ -2455,15 +2455,6 @@
       "area": ""
     },
     {
-      "id": "TN-230-199M",
-      "boothNo": "199M",
-      "num": 199,
-      "type": "regular",
-      "name": "199A( W) Holy Cross college",
-      "address": "199A( W) Holy Cross college, Kurusady, Nagercoil, Gladdin Block, Room No. 54",
-      "area": ""
-    },
-    {
       "id": "TN-230-199A(W)",
       "boothNo": "199A(W)",
       "num": 199,
@@ -2473,8 +2464,17 @@
       "area": ""
     },
     {
-      "id": "TN-230-200M",
-      "boothNo": "200M",
+      "id": "TN-230-199M",
+      "boothNo": "199M",
+      "num": 199,
+      "type": "regular",
+      "name": "199A( W) Holy Cross college",
+      "address": "199A( W) Holy Cross college, Kurusady, Nagercoil, Gladdin Block, Room No. 54",
+      "area": ""
+    },
+    {
+      "id": "TN-230-200A(W)",
+      "boothNo": "200A(W)",
       "num": 200,
       "type": "regular",
       "name": "200A( W) Holy Cross college",
@@ -2482,8 +2482,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-200A(W)",
-      "boothNo": "200A(W)",
+      "id": "TN-230-200M",
+      "boothNo": "200M",
       "num": 200,
       "type": "regular",
       "name": "200A( W) Holy Cross college",
@@ -2500,8 +2500,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-202M",
-      "boothNo": "202M",
+      "id": "TN-230-202A(W)",
+      "boothNo": "202A(W)",
       "num": 202,
       "type": "regular",
       "name": "202A( W) Holy Cross college",
@@ -2509,8 +2509,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-202A(W)",
-      "boothNo": "202A(W)",
+      "id": "TN-230-202M",
+      "boothNo": "202M",
       "num": 202,
       "type": "regular",
       "name": "202A( W) Holy Cross college",
@@ -2572,8 +2572,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-209M",
-      "boothNo": "209M",
+      "id": "TN-230-209A(W)",
+      "boothNo": "209A(W)",
       "num": 209,
       "type": "regular",
       "name": "209A( W) Government Primary School",
@@ -2581,8 +2581,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-209A(W)",
-      "boothNo": "209A(W)",
+      "id": "TN-230-209M",
+      "boothNo": "209M",
       "num": 209,
       "type": "regular",
       "name": "209A( W) Government Primary School",
@@ -2680,8 +2680,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-219M",
-      "boothNo": "219M",
+      "id": "TN-230-219A(W)",
+      "boothNo": "219A(W)",
       "num": 219,
       "type": "regular",
       "name": "219A( W) S. T. Hindu College",
@@ -2689,8 +2689,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-219A(W)",
-      "boothNo": "219A(W)",
+      "id": "TN-230-219M",
+      "boothNo": "219M",
       "num": 219,
       "type": "regular",
       "name": "219A( W) S. T. Hindu College",
@@ -2743,8 +2743,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-223M",
-      "boothNo": "223M",
+      "id": "TN-230-223A(W)",
+      "boothNo": "223A(W)",
       "num": 223,
       "type": "regular",
       "name": "223A( W) Government High School",
@@ -2752,8 +2752,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-223A(W)",
-      "boothNo": "223A(W)",
+      "id": "TN-230-223M",
+      "boothNo": "223M",
       "num": 223,
       "type": "regular",
       "name": "223A( W) Government High School",
@@ -2797,8 +2797,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-226M",
-      "boothNo": "226M",
+      "id": "TN-230-226A(W)",
+      "boothNo": "226A(W)",
       "num": 226,
       "type": "regular",
       "name": "226A( W) KDVP Govt. Girls Higher Secondary School",
@@ -2806,8 +2806,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-226A(W)",
-      "boothNo": "226A(W)",
+      "id": "TN-230-226M",
+      "boothNo": "226M",
       "num": 226,
       "type": "regular",
       "name": "226A( W) KDVP Govt. Girls Higher Secondary School",
@@ -2824,15 +2824,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-228M",
-      "boothNo": "228M",
-      "num": 228,
-      "type": "regular",
-      "name": "228A( W) KDVP Govt. Girls Higher Secondary School",
-      "address": "228A( W) KDVP Govt. Girls Higher Secondary School, Kottar, East New building, North portion",
-      "area": ""
-    },
-    {
       "id": "TN-230-228A(W)",
       "boothNo": "228A(W)",
       "num": 228,
@@ -2842,8 +2833,17 @@
       "area": ""
     },
     {
-      "id": "TN-230-229M",
-      "boothNo": "229M",
+      "id": "TN-230-228M",
+      "boothNo": "228M",
+      "num": 228,
+      "type": "regular",
+      "name": "228A( W) KDVP Govt. Girls Higher Secondary School",
+      "address": "228A( W) KDVP Govt. Girls Higher Secondary School, Kottar, East New building, North portion",
+      "area": ""
+    },
+    {
+      "id": "TN-230-229A(W)",
+      "boothNo": "229A(W)",
       "num": 229,
       "type": "regular",
       "name": "229A( W) Government High School",
@@ -2851,8 +2851,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-229A(W)",
-      "boothNo": "229A(W)",
+      "id": "TN-230-229M",
+      "boothNo": "229M",
       "num": 229,
       "type": "regular",
       "name": "229A( W) Government High School",
@@ -2869,15 +2869,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-231M",
-      "boothNo": "231M",
-      "num": 231,
-      "type": "regular",
-      "name": "231A( W) Government High School",
-      "address": "231A( W) Government High School, Ezhagaram, South Building East portion",
-      "area": ""
-    },
-    {
       "id": "TN-230-231A(W)",
       "boothNo": "231A(W)",
       "num": 231,
@@ -2887,12 +2878,12 @@
       "area": ""
     },
     {
-      "id": "TN-230-232M",
-      "boothNo": "232M",
-      "num": 232,
+      "id": "TN-230-231M",
+      "boothNo": "231M",
+      "num": 231,
       "type": "regular",
-      "name": "232A( W) Government High School",
-      "address": "232A( W) Government High School, Ezhagaram, South Building West portion",
+      "name": "231A( W) Government High School",
+      "address": "231A( W) Government High School, Ezhagaram, South Building East portion",
       "area": ""
     },
     {
@@ -2905,8 +2896,17 @@
       "area": ""
     },
     {
-      "id": "TN-230-233M",
-      "boothNo": "233M",
+      "id": "TN-230-232M",
+      "boothNo": "232M",
+      "num": 232,
+      "type": "regular",
+      "name": "232A( W) Government High School",
+      "address": "232A( W) Government High School, Ezhagaram, South Building West portion",
+      "area": ""
+    },
+    {
+      "id": "TN-230-233A(W)",
+      "boothNo": "233A(W)",
       "num": 233,
       "type": "regular",
       "name": "233A( W) Government High School",
@@ -2914,8 +2914,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-233A(W)",
-      "boothNo": "233A(W)",
+      "id": "TN-230-233M",
+      "boothNo": "233M",
       "num": 233,
       "type": "regular",
       "name": "233A( W) Government High School",
@@ -2959,8 +2959,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-236M",
-      "boothNo": "236M",
+      "id": "TN-230-236A(W)",
+      "boothNo": "236A(W)",
       "num": 236,
       "type": "regular",
       "name": "236A( W) Sathavathani Seiku Thambi Bavalar Govt. Higher Secondary School",
@@ -2968,8 +2968,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-236A(W)",
-      "boothNo": "236A(W)",
+      "id": "TN-230-236M",
+      "boothNo": "236M",
       "num": 236,
       "type": "regular",
       "name": "236A( W) Sathavathani Seiku Thambi Bavalar Govt. Higher Secondary School",
@@ -3058,8 +3058,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-243M",
-      "boothNo": "243M",
+      "id": "TN-230-243A(W)",
+      "boothNo": "243A(W)",
       "num": 243,
       "type": "regular",
       "name": "243A( W) Government Primary School",
@@ -3067,8 +3067,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-243A(W)",
-      "boothNo": "243A(W)",
+      "id": "TN-230-243M",
+      "boothNo": "243M",
       "num": 243,
       "type": "regular",
       "name": "243A( W) Government Primary School",
@@ -3202,15 +3202,6 @@
       "area": ""
     },
     {
-      "id": "TN-230-254M",
-      "boothNo": "254M",
-      "num": 254,
-      "type": "regular",
-      "name": "254A( W) Govt. Middle School",
-      "address": "254A( W) Govt. Middle School, Keezhamaravankudiyiruppu, Main Building, North Portion",
-      "area": ""
-    },
-    {
       "id": "TN-230-254A(W)",
       "boothNo": "254A(W)",
       "num": 254,
@@ -3220,8 +3211,17 @@
       "area": ""
     },
     {
-      "id": "TN-230-255M",
-      "boothNo": "255M",
+      "id": "TN-230-254M",
+      "boothNo": "254M",
+      "num": 254,
+      "type": "regular",
+      "name": "254A( W) Govt. Middle School",
+      "address": "254A( W) Govt. Middle School, Keezhamaravankudiyiruppu, Main Building, North Portion",
+      "area": ""
+    },
+    {
+      "id": "TN-230-255A(W)",
+      "boothNo": "255A(W)",
       "num": 255,
       "type": "regular",
       "name": "255M Govt. Middle School",
@@ -3229,8 +3229,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-255A(W)",
-      "boothNo": "255A(W)",
+      "id": "TN-230-255M",
+      "boothNo": "255M",
       "num": 255,
       "type": "regular",
       "name": "255M Govt. Middle School",
@@ -3256,8 +3256,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-257M",
-      "boothNo": "257M",
+      "id": "TN-230-257A(W)",
+      "boothNo": "257A(W)",
       "num": 257,
       "type": "regular",
       "name": "257A( W) Government Primary and High School",
@@ -3265,8 +3265,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-257A(W)",
-      "boothNo": "257A(W)",
+      "id": "TN-230-257M",
+      "boothNo": "257M",
       "num": 257,
       "type": "regular",
       "name": "257A( W) Government Primary and High School",
@@ -3301,8 +3301,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-260M",
-      "boothNo": "260M",
+      "id": "TN-230-260A(W)",
+      "boothNo": "260A(W)",
       "num": 260,
       "type": "regular",
       "name": "260M Government Primary and High School",
@@ -3310,8 +3310,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-260A(W)",
-      "boothNo": "260A(W)",
+      "id": "TN-230-260M",
+      "boothNo": "260M",
       "num": 260,
       "type": "regular",
       "name": "260M Government Primary and High School",
@@ -3328,8 +3328,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-262M",
-      "boothNo": "262M",
+      "id": "TN-230-262A(W)",
+      "boothNo": "262A(W)",
       "num": 262,
       "type": "regular",
       "name": "262A( W) Government Primary and High School",
@@ -3337,8 +3337,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-262A(W)",
-      "boothNo": "262A(W)",
+      "id": "TN-230-262M",
+      "boothNo": "262M",
       "num": 262,
       "type": "regular",
       "name": "262A( W) Government Primary and High School",
@@ -3364,8 +3364,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-264M",
-      "boothNo": "264M",
+      "id": "TN-230-264A(W)",
+      "boothNo": "264A(W)",
       "num": 264,
       "type": "regular",
       "name": "264A( W) Government Primary School",
@@ -3373,8 +3373,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-264A(W)",
-      "boothNo": "264A(W)",
+      "id": "TN-230-264M",
+      "boothNo": "264M",
       "num": 264,
       "type": "regular",
       "name": "264A( W) Government Primary School",
@@ -3400,8 +3400,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-267M",
-      "boothNo": "267M",
+      "id": "TN-230-267A(W)",
+      "boothNo": "267A(W)",
       "num": 267,
       "type": "regular",
       "name": "267M St. Micheal Primary School",
@@ -3409,8 +3409,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-267A(W)",
-      "boothNo": "267A(W)",
+      "id": "TN-230-267M",
+      "boothNo": "267M",
       "num": 267,
       "type": "regular",
       "name": "267M St. Micheal Primary School",
@@ -3499,8 +3499,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-230-275M",
-      "boothNo": "275M",
+      "id": "TN-230-275A(W)",
+      "boothNo": "275A(W)",
       "num": 275,
       "type": "regular",
       "name": "275A( W) Government High School",
@@ -3508,8 +3508,8 @@
       "area": ""
     },
     {
-      "id": "TN-230-275A(W)",
-      "boothNo": "275A(W)",
+      "id": "TN-230-275M",
+      "boothNo": "275M",
       "num": 275,
       "type": "regular",
       "name": "275A( W) Government High School",

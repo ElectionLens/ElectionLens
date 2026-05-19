@@ -2,19 +2,10 @@
   "acId": "TN-194",
   "acName": "MADURAI WEST",
   "state": "Tamil Nadu",
-  "totalBooths": 232,
-  "lastUpdated": "2021-04-06",
+  "totalBooths": 485,
+  "lastUpdated": "2026-05-08",
   "source": "Tamil Nadu CEO - Polling Stations",
   "booths": [
-    {
-      "id": "TN-194-1(A)",
-      "boothNo": "1(A)",
-      "num": 1,
-      "type": "regular",
-      "name": "Government Hr.Sec.School",
-      "address": "Government Hr.Sec.School ,R.C.C Building East Portion South Side Paravai- 625402",
-      "area": "All Voters"
-    },
     {
       "id": "TN-194-1",
       "boothNo": "1",
@@ -25,8 +16,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-2(A)",
-      "boothNo": "2(A)",
+      "id": "TN-194-1(A)",
+      "boothNo": "1(A)",
+      "num": 1,
+      "type": "regular",
+      "name": "Government Hr.Sec.School",
+      "address": "Government Hr.Sec.School ,R.C.C Building East Portion South Side Paravai- 625402",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-2",
+      "boothNo": "2",
       "num": 2,
       "type": "regular",
       "name": "Government Panchayat Primary School",
@@ -34,8 +34,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-2",
-      "boothNo": "2",
+      "id": "TN-194-2(A)",
+      "boothNo": "2(A)",
       "num": 2,
       "type": "regular",
       "name": "Government Panchayat Primary School",
@@ -79,8 +79,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-6(A)",
-      "boothNo": "6(A)",
+      "id": "TN-194-6",
+      "boothNo": "6",
       "num": 6,
       "type": "regular",
       "name": "Paravai Special Grade Samuthayakoodam",
@@ -88,8 +88,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-6",
-      "boothNo": "6",
+      "id": "TN-194-6(A)",
+      "boothNo": "6(A)",
       "num": 6,
       "type": "regular",
       "name": "Paravai Special Grade Samuthayakoodam",
@@ -115,8 +115,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-8(A)",
-      "boothNo": "8(A)",
+      "id": "TN-194-8",
+      "boothNo": "8",
       "num": 8,
       "type": "regular",
       "name": "M.T.S Primary School",
@@ -124,8 +124,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-8",
-      "boothNo": "8",
+      "id": "TN-194-8(A)",
+      "boothNo": "8(A)",
       "num": 8,
       "type": "regular",
       "name": "M.T.S Primary School",
@@ -187,8 +187,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-14(A)",
-      "boothNo": "14(A)",
+      "id": "TN-194-14",
+      "boothNo": "14",
       "num": 14,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -196,8 +196,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-14",
-      "boothNo": "14",
+      "id": "TN-194-14(A)",
+      "boothNo": "14(A)",
       "num": 14,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -232,8 +232,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-17(A)",
-      "boothNo": "17(A)",
+      "id": "TN-194-17",
+      "boothNo": "17",
       "num": 17,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -241,8 +241,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-17",
-      "boothNo": "17",
+      "id": "TN-194-17(A)",
+      "boothNo": "17(A)",
       "num": 17,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -268,15 +268,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-19(A)",
-      "boothNo": "19(A)",
-      "num": 19,
-      "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,R.C.C. Building, East Side, Kovilpappakudi- 625018",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-19",
       "boothNo": "19",
       "num": 19,
@@ -286,8 +277,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-20(A)",
-      "boothNo": "20(A)",
+      "id": "TN-194-19(A)",
+      "boothNo": "19(A)",
+      "num": 19,
+      "type": "regular",
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School ,R.C.C. Building, East Side, Kovilpappakudi- 625018",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-20",
+      "boothNo": "20",
       "num": 20,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -295,8 +295,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-20",
-      "boothNo": "20",
+      "id": "TN-194-20(A)",
+      "boothNo": "20(A)",
       "num": 20,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -331,8 +331,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-23(A)",
-      "boothNo": "23(A)",
+      "id": "TN-194-23",
+      "boothNo": "23",
       "num": 23,
       "type": "regular",
       "name": "NREP Community Hall, East side",
@@ -340,8 +340,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-23",
-      "boothNo": "23",
+      "id": "TN-194-23(A)",
+      "boothNo": "23(A)",
       "num": 23,
       "type": "regular",
       "name": "NREP Community Hall, East side",
@@ -448,8 +448,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-33(A)",
-      "boothNo": "33(A)",
+      "id": "TN-194-33",
+      "boothNo": "33",
       "num": 33,
       "type": "regular",
       "name": "Saint Antony Middle School",
@@ -457,8 +457,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-33",
-      "boothNo": "33",
+      "id": "TN-194-33(A)",
+      "boothNo": "33(A)",
       "num": 33,
       "type": "regular",
       "name": "Saint Antony Middle School",
@@ -520,15 +520,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-38(A)",
-      "boothNo": "38(A)",
-      "num": 38,
-      "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,South Building West Side, Vilankudi-625018",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-38",
       "boothNo": "38",
       "num": 38,
@@ -538,8 +529,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-39(A)",
-      "boothNo": "39(A)",
+      "id": "TN-194-38(A)",
+      "boothNo": "38(A)",
+      "num": 38,
+      "type": "regular",
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School ,South Building West Side, Vilankudi-625018",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-39",
+      "boothNo": "39",
       "num": 39,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -547,8 +547,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-39",
-      "boothNo": "39",
+      "id": "TN-194-39(A)",
+      "boothNo": "39(A)",
       "num": 39,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -619,15 +619,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-46(A)",
-      "boothNo": "46(A)",
-      "num": 46,
-      "type": "regular",
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,South Side Building, Vilankudi-625018",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-46",
       "boothNo": "46",
       "num": 46,
@@ -637,8 +628,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-47(A)",
-      "boothNo": "47(A)",
+      "id": "TN-194-46(A)",
+      "boothNo": "46(A)",
+      "num": 46,
+      "type": "regular",
+      "name": "Panchayat Union Middle School",
+      "address": "Panchayat Union Middle School ,South Side Building, Vilankudi-625018",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-47",
+      "boothNo": "47",
       "num": 47,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -646,8 +646,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-47",
-      "boothNo": "47",
+      "id": "TN-194-47(A)",
+      "boothNo": "47(A)",
       "num": 47,
       "type": "regular",
       "name": "Panchayat Union Middle School",
@@ -745,8 +745,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-53(A)",
-      "boothNo": "53(A)",
+      "id": "TN-194-53",
+      "boothNo": "53",
       "num": 53,
       "type": "regular",
       "name": "Corporation Elementary School",
@@ -754,8 +754,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-53",
-      "boothNo": "53",
+      "id": "TN-194-53(A)",
+      "boothNo": "53(A)",
       "num": 53,
       "type": "regular",
       "name": "Corporation Elementary School",
@@ -781,15 +781,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-55(A)",
-      "boothNo": "55(A)",
-      "num": 55,
-      "type": "regular",
-      "name": "Fatima Middle School Arappalayam",
-      "address": "Fatima Middle School Arappalayam ,New Building North Block Eastern Side- 625016",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-55",
       "boothNo": "55",
       "num": 55,
@@ -799,8 +790,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-56(A)",
-      "boothNo": "56(A)",
+      "id": "TN-194-55(A)",
+      "boothNo": "55(A)",
+      "num": 55,
+      "type": "regular",
+      "name": "Fatima Middle School Arappalayam",
+      "address": "Fatima Middle School Arappalayam ,New Building North Block Eastern Side- 625016",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-56",
+      "boothNo": "56",
       "num": 56,
       "type": "regular",
       "name": "Fatima Middle School Arappalayam",
@@ -808,8 +808,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-56",
-      "boothNo": "56",
+      "id": "TN-194-56(A)",
+      "boothNo": "56(A)",
       "num": 56,
       "type": "regular",
       "name": "Fatima Middle School Arappalayam",
@@ -853,8 +853,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-59(A)",
-      "boothNo": "59(A)",
+      "id": "TN-194-59",
+      "boothNo": "59",
       "num": 59,
       "type": "regular",
       "name": "St.Mary of Lucca Matric Higher Secondary School",
@@ -862,8 +862,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-59",
-      "boothNo": "59",
+      "id": "TN-194-59(A)",
+      "boothNo": "59(A)",
       "num": 59,
       "type": "regular",
       "name": "St.Mary of Lucca Matric Higher Secondary School",
@@ -889,8 +889,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-61(A)",
-      "boothNo": "61(A)",
+      "id": "TN-194-61",
+      "boothNo": "61",
       "num": 61,
       "type": "regular",
       "name": "St.Mary of Lucca Matric Higher Secondary School",
@@ -898,8 +898,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-61",
-      "boothNo": "61",
+      "id": "TN-194-61(A)",
+      "boothNo": "61(A)",
       "num": 61,
       "type": "regular",
       "name": "St.Mary of Lucca Matric Higher Secondary School",
@@ -943,8 +943,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-64(A)",
-      "boothNo": "64(A)",
+      "id": "TN-194-64",
+      "boothNo": "64",
       "num": 64,
       "type": "regular",
       "name": "St.Mary of Lucca Matric Higher Secondary School",
@@ -952,8 +952,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-64",
-      "boothNo": "64",
+      "id": "TN-194-64(A)",
+      "boothNo": "64(A)",
       "num": 64,
       "type": "regular",
       "name": "St.Mary of Lucca Matric Higher Secondary School",
@@ -1096,8 +1096,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-78(A)",
-      "boothNo": "78(A)",
+      "id": "TN-194-78",
+      "boothNo": "78",
       "num": 78,
       "type": "regular",
       "name": "Govt. High School, Additional Building West Zone",
@@ -1105,8 +1105,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-78",
-      "boothNo": "78",
+      "id": "TN-194-78(A)",
+      "boothNo": "78(A)",
       "num": 78,
       "type": "regular",
       "name": "Govt. High School, Additional Building West Zone",
@@ -1177,8 +1177,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-85(A)",
-      "boothNo": "85(A)",
+      "id": "TN-194-85",
+      "boothNo": "85",
       "num": 85,
       "type": "regular",
       "name": "Kallar Elementary School",
@@ -1186,8 +1186,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-85",
-      "boothNo": "85",
+      "id": "TN-194-85(A)",
+      "boothNo": "85(A)",
       "num": 85,
       "type": "regular",
       "name": "Kallar Elementary School",
@@ -1231,15 +1231,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-89(A)",
-      "boothNo": "89(A)",
-      "num": 89,
-      "type": "regular",
-      "name": "School, South Facing Building",
-      "address": "School , South Facing Building, West Enterance 4th std, Achampathu-625019 99",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-89",
       "boothNo": "89",
       "num": 89,
@@ -1249,8 +1240,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-90(A)",
-      "boothNo": "90(A)",
+      "id": "TN-194-89(A)",
+      "boothNo": "89(A)",
+      "num": 89,
+      "type": "regular",
+      "name": "School, South Facing Building",
+      "address": "School , South Facing Building, West Enterance 4th std, Achampathu-625019 99",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-90",
+      "boothNo": "90",
       "num": 90,
       "type": "regular",
       "name": "Pt.Union Ele.School, North Side Building",
@@ -1258,8 +1258,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-90",
-      "boothNo": "90",
+      "id": "TN-194-90(A)",
+      "boothNo": "90(A)",
       "num": 90,
       "type": "regular",
       "name": "Pt.Union Ele.School, North Side Building",
@@ -1312,15 +1312,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-95(A)",
-      "boothNo": "95(A)",
-      "num": 95,
-      "type": "regular",
-      "name": "St. John Matric School",
-      "address": "St. John Matric School ,West Side Western Portion, Kochadai 625016",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-95",
       "boothNo": "95",
       "num": 95,
@@ -1330,12 +1321,12 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-96(A)",
-      "boothNo": "96(A)",
-      "num": 96,
+      "id": "TN-194-95(A)",
+      "boothNo": "95(A)",
+      "num": 95,
       "type": "regular",
       "name": "St. John Matric School",
-      "address": "St. John Matric School ,East Side Building 2nd Room North Side Kochadai- 625016",
+      "address": "St. John Matric School ,West Side Western Portion, Kochadai 625016",
       "area": "All Voters"
     },
     {
@@ -1348,8 +1339,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-97(A)",
-      "boothNo": "97(A)",
+      "id": "TN-194-96(A)",
+      "boothNo": "96(A)",
+      "num": 96,
+      "type": "regular",
+      "name": "St. John Matric School",
+      "address": "St. John Matric School ,East Side Building 2nd Room North Side Kochadai- 625016",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-97",
+      "boothNo": "97",
       "num": 97,
       "type": "regular",
       "name": "St. John Matric School",
@@ -1357,8 +1357,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-97",
-      "boothNo": "97",
+      "id": "TN-194-97(A)",
+      "boothNo": "97(A)",
       "num": 97,
       "type": "regular",
       "name": "St. John Matric School",
@@ -1447,15 +1447,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-104(A)",
-      "boothNo": "104(A)",
-      "num": 104,
-      "type": "regular",
-      "name": "KGV Sala Middle School",
-      "address": "KGV Sala Middle School ,Mel Side, Virattipathu -625016",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-104",
       "boothNo": "104",
       "num": 104,
@@ -1465,8 +1456,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-105(A)",
-      "boothNo": "105(A)",
+      "id": "TN-194-104(A)",
+      "boothNo": "104(A)",
+      "num": 104,
+      "type": "regular",
+      "name": "KGV Sala Middle School",
+      "address": "KGV Sala Middle School ,Mel Side, Virattipathu -625016",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-105",
+      "boothNo": "105",
       "num": 105,
       "type": "regular",
       "name": "KGV Sala Middle School",
@@ -1474,8 +1474,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-105",
-      "boothNo": "105",
+      "id": "TN-194-105(A)",
+      "boothNo": "105(A)",
       "num": 105,
       "type": "regular",
       "name": "KGV Sala Middle School",
@@ -1654,8 +1654,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-119(A)",
-      "boothNo": "119(A)",
+      "id": "TN-194-119",
+      "boothNo": "119",
       "num": 119,
       "type": "regular",
       "name": "ALM Matriculation School",
@@ -1663,8 +1663,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-119",
-      "boothNo": "119",
+      "id": "TN-194-119(A)",
+      "boothNo": "119(A)",
       "num": 119,
       "type": "regular",
       "name": "ALM Matriculation School",
@@ -1681,8 +1681,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-121(A)",
-      "boothNo": "121(A)",
+      "id": "TN-194-121",
+      "boothNo": "121",
       "num": 121,
       "type": "regular",
       "name": "ALM Matriculation School",
@@ -1690,8 +1690,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-121",
-      "boothNo": "121",
+      "id": "TN-194-121(A)",
+      "boothNo": "121(A)",
       "num": 121,
       "type": "regular",
       "name": "ALM Matriculation School",
@@ -1744,8 +1744,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-127(A)",
-      "boothNo": "127(A)",
+      "id": "TN-194-127",
+      "boothNo": "127",
       "num": 127,
       "type": "regular",
       "name": "Madurai Pillaimar Sangam Hr.Sec.School",
@@ -1753,8 +1753,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-127",
-      "boothNo": "127",
+      "id": "TN-194-127(A)",
+      "boothNo": "127(A)",
       "num": 127,
       "type": "regular",
       "name": "Madurai Pillaimar Sangam Hr.Sec.School",
@@ -1771,8 +1771,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-129(A)",
-      "boothNo": "129(A)",
+      "id": "TN-194-129",
+      "boothNo": "129",
       "num": 129,
       "type": "regular",
       "name": "Madurai Pillaimar Sangam Ele.School",
@@ -1780,8 +1780,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-129",
-      "boothNo": "129",
+      "id": "TN-194-129(A)",
+      "boothNo": "129(A)",
       "num": 129,
       "type": "regular",
       "name": "Madurai Pillaimar Sangam Ele.School",
@@ -1807,8 +1807,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-131(A)",
-      "boothNo": "131(A)",
+      "id": "TN-194-131",
+      "boothNo": "131",
       "num": 131,
       "type": "regular",
       "name": "Madurai Pillaimar Sangam Ele.School",
@@ -1816,8 +1816,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-131",
-      "boothNo": "131",
+      "id": "TN-194-131(A)",
+      "boothNo": "131(A)",
       "num": 131,
       "type": "regular",
       "name": "Madurai Pillaimar Sangam Ele.School",
@@ -1879,8 +1879,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-135(A)",
-      "boothNo": "135(A)",
+      "id": "TN-194-135",
+      "boothNo": "135",
       "num": 135,
       "type": "regular",
       "name": "Noon Meal Centre, Western Side",
@@ -1888,8 +1888,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-135",
-      "boothNo": "135",
+      "id": "TN-194-135(A)",
+      "boothNo": "135(A)",
       "num": 135,
       "type": "regular",
       "name": "Noon Meal Centre, Western Side",
@@ -1951,15 +1951,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-141(A)",
-      "boothNo": "141(A)",
-      "num": 141,
-      "type": "regular",
-      "name": "Corporation Ele.School",
-      "address": "Corporation Ele.School ,Old Building North Side West Zone New building Westernside, Ponmeni-625010",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-141",
       "boothNo": "141",
       "num": 141,
@@ -1969,12 +1960,12 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-142(A)",
-      "boothNo": "142(A)",
-      "num": 142,
+      "id": "TN-194-141(A)",
+      "boothNo": "141(A)",
+      "num": 141,
       "type": "regular",
       "name": "Corporation Ele.School",
-      "address": "Corporation Ele.School ,Old Building North Side East Zone Northeast Class Room, Ponmeni-625010",
+      "address": "Corporation Ele.School ,Old Building North Side West Zone New building Westernside, Ponmeni-625010",
       "area": "All Voters"
     },
     {
@@ -1987,12 +1978,12 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-143(A)",
-      "boothNo": "143(A)",
-      "num": 143,
+      "id": "TN-194-142(A)",
+      "boothNo": "142(A)",
+      "num": 142,
       "type": "regular",
       "name": "Corporation Ele.School",
-      "address": "Corporation Ele.School ,Old Building North Side East Zone Southwest Corner Room, Ponmeni-625010",
+      "address": "Corporation Ele.School ,Old Building North Side East Zone Northeast Class Room, Ponmeni-625010",
       "area": "All Voters"
     },
     {
@@ -2005,8 +1996,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-144(A)",
-      "boothNo": "144(A)",
+      "id": "TN-194-143(A)",
+      "boothNo": "143(A)",
+      "num": 143,
+      "type": "regular",
+      "name": "Corporation Ele.School",
+      "address": "Corporation Ele.School ,Old Building North Side East Zone Southwest Corner Room, Ponmeni-625010",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-144",
+      "boothNo": "144",
       "num": 144,
       "type": "regular",
       "name": "Pillaimar Sangam Hr.Sec.School",
@@ -2014,8 +2014,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-144",
-      "boothNo": "144",
+      "id": "TN-194-144(A)",
+      "boothNo": "144(A)",
       "num": 144,
       "type": "regular",
       "name": "Pillaimar Sangam Hr.Sec.School",
@@ -2041,8 +2041,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-146(A)",
-      "boothNo": "146(A)",
+      "id": "TN-194-146",
+      "boothNo": "146",
       "num": 146,
       "type": "regular",
       "name": "Pillaimar Sangam Hr.Sec.School",
@@ -2050,8 +2050,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-146",
-      "boothNo": "146",
+      "id": "TN-194-146(A)",
+      "boothNo": "146(A)",
       "num": 146,
       "type": "regular",
       "name": "Pillaimar Sangam Hr.Sec.School",
@@ -2095,15 +2095,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-149(A)",
-      "boothNo": "149(A)",
-      "num": 149,
-      "type": "regular",
-      "name": "Corporation Middle School",
-      "address": "Corporation Middle School ,Middle Block Class Room, south side , Madakulam -625003",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-149",
       "boothNo": "149",
       "num": 149,
@@ -2113,12 +2104,12 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-150(A)",
-      "boothNo": "150(A)",
-      "num": 150,
+      "id": "TN-194-149(A)",
+      "boothNo": "149(A)",
+      "num": 149,
       "type": "regular",
       "name": "Corporation Middle School",
-      "address": "Corporation Middle School ,South Block Class Room, North side ,Madakulam- 625003",
+      "address": "Corporation Middle School ,Middle Block Class Room, south side , Madakulam -625003",
       "area": "All Voters"
     },
     {
@@ -2131,8 +2122,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-151(A)",
-      "boothNo": "151(A)",
+      "id": "TN-194-150(A)",
+      "boothNo": "150(A)",
+      "num": 150,
+      "type": "regular",
+      "name": "Corporation Middle School",
+      "address": "Corporation Middle School ,South Block Class Room, North side ,Madakulam- 625003",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-151",
+      "boothNo": "151",
       "num": 151,
       "type": "regular",
       "name": "Corporation Middle School",
@@ -2140,8 +2140,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-151",
-      "boothNo": "151",
+      "id": "TN-194-151(A)",
+      "boothNo": "151(A)",
       "num": 151,
       "type": "regular",
       "name": "Corporation Middle School",
@@ -2176,15 +2176,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-154(A)",
-      "boothNo": "154(A)",
-      "num": 154,
-      "type": "regular",
-      "name": "R.C.Ele.School, Near H.M.Room",
-      "address": "R.C.Ele.School ,Near H.M.Room, Palanganatham-625003",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-154",
       "boothNo": "154",
       "num": 154,
@@ -2194,8 +2185,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-155(A)",
-      "boothNo": "155(A)",
+      "id": "TN-194-154(A)",
+      "boothNo": "154(A)",
+      "num": 154,
+      "type": "regular",
+      "name": "R.C.Ele.School, Near H.M.Room",
+      "address": "R.C.Ele.School ,Near H.M.Room, Palanganatham-625003",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-155",
+      "boothNo": "155",
       "num": 155,
       "type": "regular",
       "name": "Aurobindo Meera Matric School",
@@ -2203,8 +2203,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-155",
-      "boothNo": "155",
+      "id": "TN-194-155(A)",
+      "boothNo": "155(A)",
       "num": 155,
       "type": "regular",
       "name": "Aurobindo Meera Matric School",
@@ -2320,8 +2320,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-163(A)",
-      "boothNo": "163(A)",
+      "id": "TN-194-163",
+      "boothNo": "163",
       "num": 163,
       "type": "regular",
       "name": "Somasundara Bharathiyar Corporation Higher Sec School",
@@ -2329,8 +2329,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-163",
-      "boothNo": "163",
+      "id": "TN-194-163(A)",
+      "boothNo": "163(A)",
       "num": 163,
       "type": "regular",
       "name": "Somasundara Bharathiyar Corporation Higher Sec School",
@@ -2410,15 +2410,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-169(A)",
-      "boothNo": "169(A)",
-      "num": 169,
-      "type": "regular",
-      "name": "Aurobindo Meera Matric School",
-      "address": "Aurobindo Meera Matric School ,North Side 2nd Room, Nehru Nagar Byepass Road",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-169",
       "boothNo": "169",
       "num": 169,
@@ -2428,8 +2419,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-170(A)",
-      "boothNo": "170(A)",
+      "id": "TN-194-169(A)",
+      "boothNo": "169(A)",
+      "num": 169,
+      "type": "regular",
+      "name": "Aurobindo Meera Matric School",
+      "address": "Aurobindo Meera Matric School ,North Side 2nd Room, Nehru Nagar Byepass Road",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-170",
+      "boothNo": "170",
       "num": 170,
       "type": "regular",
       "name": "Corporation Ele.School",
@@ -2437,8 +2437,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-170",
-      "boothNo": "170",
+      "id": "TN-194-170(A)",
+      "boothNo": "170(A)",
       "num": 170,
       "type": "regular",
       "name": "Corporation Ele.School",
@@ -2464,8 +2464,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-173(A)",
-      "boothNo": "173(A)",
+      "id": "TN-194-173",
+      "boothNo": "173",
       "num": 173,
       "type": "regular",
       "name": "Jeyapaul Karodia Corporation Primary School",
@@ -2473,8 +2473,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-173",
-      "boothNo": "173",
+      "id": "TN-194-173(A)",
+      "boothNo": "173(A)",
       "num": 173,
       "type": "regular",
       "name": "Jeyapaul Karodia Corporation Primary School",
@@ -2554,8 +2554,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-179(A)",
-      "boothNo": "179(A)",
+      "id": "TN-194-179",
+      "boothNo": "179",
       "num": 179,
       "type": "regular",
       "name": "Roobi School, South Side Building 2nd Room From East Side Thiruvalluvar Nagar Madurai-625004",
@@ -2563,8 +2563,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-179",
-      "boothNo": "179",
+      "id": "TN-194-179(A)",
+      "boothNo": "179(A)",
       "num": 179,
       "type": "regular",
       "name": "Roobi School, South Side Building 2nd Room From East Side Thiruvalluvar Nagar Madurai-625004",
@@ -2581,8 +2581,8 @@
       "area": ""
     },
     {
-      "id": "TN-194-181(A)",
-      "boothNo": "181(A)",
+      "id": "TN-194-181",
+      "boothNo": "181",
       "num": 181,
       "type": "regular",
       "name": "Roobi School, RCC Building Room No-",
@@ -2590,8 +2590,8 @@
       "area": ""
     },
     {
-      "id": "TN-194-181",
-      "boothNo": "181",
+      "id": "TN-194-181(A)",
+      "boothNo": "181(A)",
       "num": 181,
       "type": "regular",
       "name": "Roobi School, RCC Building Room No-",
@@ -2635,8 +2635,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-185(A)",
-      "boothNo": "185(A)",
+      "id": "TN-194-185",
+      "boothNo": "185",
       "num": 185,
       "type": "regular",
       "name": "T.V.S Lakshmi Matric. School",
@@ -2644,8 +2644,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-185",
-      "boothNo": "185",
+      "id": "TN-194-185(A)",
+      "boothNo": "185(A)",
       "num": 185,
       "type": "regular",
       "name": "T.V.S Lakshmi Matric. School",
@@ -2716,8 +2716,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-191(A)",
-      "boothNo": "191(A)",
+      "id": "TN-194-191",
+      "boothNo": "191",
       "num": 191,
       "type": "regular",
       "name": "Kallar High School, South Facing",
@@ -2725,8 +2725,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-191",
-      "boothNo": "191",
+      "id": "TN-194-191(A)",
+      "boothNo": "191(A)",
       "num": 191,
       "type": "regular",
       "name": "Kallar High School, South Facing",
@@ -2743,8 +2743,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-193(A)",
-      "boothNo": "193(A)",
+      "id": "TN-194-193",
+      "boothNo": "193",
       "num": 193,
       "type": "regular",
       "name": "Kallar High School, Westernside New Building 7th Std",
@@ -2752,8 +2752,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-193",
-      "boothNo": "193",
+      "id": "TN-194-193(A)",
+      "boothNo": "193(A)",
       "num": 193,
       "type": "regular",
       "name": "Kallar High School, Westernside New Building 7th Std",
@@ -2788,15 +2788,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-197(A)",
-      "boothNo": "197(A)",
-      "num": 197,
-      "type": "regular",
-      "name": "T V S Elementary School",
-      "address": "T V S Elementary School , UKG 'A' Section, West side, North Portion, T V S Nagar Madurai",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-197",
       "boothNo": "197",
       "num": 197,
@@ -2806,8 +2797,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-198(A)",
-      "boothNo": "198(A)",
+      "id": "TN-194-197(A)",
+      "boothNo": "197(A)",
+      "num": 197,
+      "type": "regular",
+      "name": "T V S Elementary School",
+      "address": "T V S Elementary School , UKG 'A' Section, West side, North Portion, T V S Nagar Madurai",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-198",
+      "boothNo": "198",
       "num": 198,
       "type": "regular",
       "name": "T.V.S.Ele.School, West Side T.V.S.Nagar-625003",
@@ -2815,8 +2815,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-198",
-      "boothNo": "198",
+      "id": "TN-194-198(A)",
+      "boothNo": "198(A)",
       "num": 198,
       "type": "regular",
       "name": "T.V.S.Ele.School, West Side T.V.S.Nagar-625003",
@@ -2905,15 +2905,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-204(A)",
-      "boothNo": "204(A)",
-      "num": 204,
-      "type": "regular",
-      "name": "T V S Elementary School LKG 'B' Section",
-      "address": "T V S Elementary School LKG 'B' Section, North Side Buliding, Madurai- 625003",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-204",
       "boothNo": "204",
       "num": 204,
@@ -2923,12 +2914,12 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-205(A)",
-      "boothNo": "205(A)",
-      "num": 205,
+      "id": "TN-194-204(A)",
+      "boothNo": "204(A)",
+      "num": 204,
       "type": "regular",
-      "name": "Corporation Middle School",
-      "address": "Corporation Middle School ,South Side,Muthupatti-625003",
+      "name": "T V S Elementary School LKG 'B' Section",
+      "address": "T V S Elementary School LKG 'B' Section, North Side Buliding, Madurai- 625003",
       "area": "All Voters"
     },
     {
@@ -2941,12 +2932,12 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-206(A)",
-      "boothNo": "206(A)",
-      "num": 206,
+      "id": "TN-194-205(A)",
+      "boothNo": "205(A)",
+      "num": 205,
       "type": "regular",
       "name": "Corporation Middle School",
-      "address": "Corporation Middle School , West Side Muthupatti-625003",
+      "address": "Corporation Middle School ,South Side,Muthupatti-625003",
       "area": "All Voters"
     },
     {
@@ -2959,8 +2950,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-207(A)",
-      "boothNo": "207(A)",
+      "id": "TN-194-206(A)",
+      "boothNo": "206(A)",
+      "num": 206,
+      "type": "regular",
+      "name": "Corporation Middle School",
+      "address": "Corporation Middle School , West Side Muthupatti-625003",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-207",
+      "boothNo": "207",
       "num": 207,
       "type": "regular",
       "name": "Corporation Middle School",
@@ -2968,8 +2968,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-207",
-      "boothNo": "207",
+      "id": "TN-194-207(A)",
+      "boothNo": "207(A)",
       "num": 207,
       "type": "regular",
       "name": "Corporation Middle School",
@@ -3031,8 +3031,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-211(A)",
-      "boothNo": "211(A)",
+      "id": "TN-194-211",
+      "boothNo": "211",
       "num": 211,
       "type": "regular",
       "name": "T V S Hr Sec School, 5th 'A' Std",
@@ -3040,8 +3040,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-211",
-      "boothNo": "211",
+      "id": "TN-194-211(A)",
+      "boothNo": "211(A)",
       "num": 211,
       "type": "regular",
       "name": "T V S Hr Sec School, 5th 'A' Std",
@@ -3085,8 +3085,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-214(A)",
-      "boothNo": "214(A)",
+      "id": "TN-194-214",
+      "boothNo": "214",
       "num": 214,
       "type": "regular",
       "name": "T V S High School, West Side North Black Class Room No.15",
@@ -3094,8 +3094,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-214",
-      "boothNo": "214",
+      "id": "TN-194-214(A)",
+      "boothNo": "214(A)",
       "num": 214,
       "type": "regular",
       "name": "T V S High School, West Side North Black Class Room No.15",
@@ -3175,8 +3175,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-221(A)",
-      "boothNo": "221(A)",
+      "id": "TN-194-221",
+      "boothNo": "221",
       "num": 221,
       "type": "regular",
       "name": "Sri Murugan Middle School",
@@ -3184,8 +3184,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-221",
-      "boothNo": "221",
+      "id": "TN-194-221(A)",
+      "boothNo": "221(A)",
       "num": 221,
       "type": "regular",
       "name": "Sri Murugan Middle School",
@@ -3328,8 +3328,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-233(A)",
-      "boothNo": "233(A)",
+      "id": "TN-194-233",
+      "boothNo": "233",
       "num": 233,
       "type": "regular",
       "name": "Sethu Rajan Padma Matriculation Higher Sec School",
@@ -3337,8 +3337,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-233",
-      "boothNo": "233",
+      "id": "TN-194-233(A)",
+      "boothNo": "233(A)",
       "num": 233,
       "type": "regular",
       "name": "Sethu Rajan Padma Matriculation Higher Sec School",
@@ -3436,8 +3436,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-243(A)",
-      "boothNo": "243(A)",
+      "id": "TN-194-243",
+      "boothNo": "243",
       "num": 243,
       "type": "regular",
       "name": "Grace Matriculation School",
@@ -3445,8 +3445,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-243",
-      "boothNo": "243",
+      "id": "TN-194-243(A)",
+      "boothNo": "243(A)",
       "num": 243,
       "type": "regular",
       "name": "Grace Matriculation School",
@@ -3535,8 +3535,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-251(A)",
-      "boothNo": "251(A)",
+      "id": "TN-194-251",
+      "boothNo": "251",
       "num": 251,
       "type": "regular",
       "name": "Grace Matriculation School",
@@ -3544,8 +3544,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-251",
-      "boothNo": "251",
+      "id": "TN-194-251(A)",
+      "boothNo": "251(A)",
       "num": 251,
       "type": "regular",
       "name": "Grace Matriculation School",
@@ -3571,8 +3571,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-253(A)",
-      "boothNo": "253(A)",
+      "id": "TN-194-253",
+      "boothNo": "253",
       "num": 253,
       "type": "regular",
       "name": "Grace Matric School, South Side Room No.2 Jaihindupuram-625011",
@@ -3580,8 +3580,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-253",
-      "boothNo": "253",
+      "id": "TN-194-253(A)",
+      "boothNo": "253(A)",
       "num": 253,
       "type": "regular",
       "name": "Grace Matric School, South Side Room No.2 Jaihindupuram-625011",
@@ -3616,8 +3616,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-256(A)",
-      "boothNo": "256(A)",
+      "id": "TN-194-256",
+      "boothNo": "256",
       "num": 256,
       "type": "regular",
       "name": "Radasamy Madurai Ele.School",
@@ -3625,8 +3625,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-256",
-      "boothNo": "256",
+      "id": "TN-194-256(A)",
+      "boothNo": "256(A)",
       "num": 256,
       "type": "regular",
       "name": "Radasamy Madurai Ele.School",
@@ -3679,8 +3679,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-261(A)",
-      "boothNo": "261(A)",
+      "id": "TN-194-261",
+      "boothNo": "261",
       "num": 261,
       "type": "regular",
       "name": "Sethu Rajan Padma Matriculation School",
@@ -3688,8 +3688,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-261",
-      "boothNo": "261",
+      "id": "TN-194-261(A)",
+      "boothNo": "261(A)",
       "num": 261,
       "type": "regular",
       "name": "Sethu Rajan Padma Matriculation School",
@@ -3742,8 +3742,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-265(A)",
-      "boothNo": "265(A)",
+      "id": "TN-194-265",
+      "boothNo": "265",
       "num": 265,
       "type": "regular",
       "name": "Yadava Matric Hr. Sec. School",
@@ -3751,8 +3751,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-265",
-      "boothNo": "265",
+      "id": "TN-194-265(A)",
+      "boothNo": "265(A)",
       "num": 265,
       "type": "regular",
       "name": "Yadava Matric Hr. Sec. School",
@@ -3796,15 +3796,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-269(A)",
-      "boothNo": "269(A)",
-      "num": 269,
-      "type": "regular",
-      "name": "Radasamy Primary School",
-      "address": "Radasamy Primary School ,North Zone Subramaniyapuram-625011",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-194-269",
       "boothNo": "269",
       "num": 269,
@@ -3814,12 +3805,12 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-270(A)",
-      "boothNo": "270(A)",
-      "num": 270,
+      "id": "TN-194-269(A)",
+      "boothNo": "269(A)",
+      "num": 269,
       "type": "regular",
-      "name": "Yadava Matriculation Hr.Sec.School South Facing",
-      "address": "Yadava Matriculation Hr.Sec.School South Facing , LKG Room, Jaihindpuram-625011",
+      "name": "Radasamy Primary School",
+      "address": "Radasamy Primary School ,North Zone Subramaniyapuram-625011",
       "area": "All Voters"
     },
     {
@@ -3832,8 +3823,17 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-271(A)",
-      "boothNo": "271(A)",
+      "id": "TN-194-270(A)",
+      "boothNo": "270(A)",
+      "num": 270,
+      "type": "regular",
+      "name": "Yadava Matriculation Hr.Sec.School South Facing",
+      "address": "Yadava Matriculation Hr.Sec.School South Facing , LKG Room, Jaihindpuram-625011",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-194-271",
+      "boothNo": "271",
       "num": 271,
       "type": "regular",
       "name": "Yadava Matriculation Hr.Sec.School",
@@ -3841,8 +3841,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-271",
-      "boothNo": "271",
+      "id": "TN-194-271(A)",
+      "boothNo": "271(A)",
       "num": 271,
       "type": "regular",
       "name": "Yadava Matriculation Hr.Sec.School",
@@ -3868,8 +3868,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-274(A)",
-      "boothNo": "274(A)",
+      "id": "TN-194-274",
+      "boothNo": "274",
       "num": 274,
       "type": "regular",
       "name": "Neethirajan Bharathi Middle School",
@@ -3877,8 +3877,8 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-274",
-      "boothNo": "274",
+      "id": "TN-194-274(A)",
+      "boothNo": "274(A)",
       "num": 274,
       "type": "regular",
       "name": "Neethirajan Bharathi Middle School",
@@ -3895,6 +3895,15 @@
       "area": "All Voters"
     },
     {
+      "id": "TN-194-276",
+      "boothNo": "276",
+      "num": 276,
+      "type": "regular",
+      "name": "Neethirajan Bharathi Middle School",
+      "address": "Neethirajan Bharathi Middle School ,East Side, Jaihindpuram-625011",
+      "area": "All Voters"
+    },
+    {
       "id": "TN-194-276(A)",
       "boothNo": "276(A)",
       "num": 276,
@@ -3904,13 +3913,514 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-194-276",
-      "boothNo": "276",
-      "num": 276,
+      "id": "TN-194-277",
+      "boothNo": "277",
+      "num": 277,
       "type": "regular",
-      "name": "Neethirajan Bharathi Middle School",
-      "address": "Neethirajan Bharathi Middle School ,East Side, Jaihindpuram-625011",
-      "area": "All Voters"
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-278",
+      "boothNo": "278",
+      "num": 278,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-279",
+      "boothNo": "279",
+      "num": 279,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-280",
+      "boothNo": "280",
+      "num": 280,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-281",
+      "boothNo": "281",
+      "num": 281,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-282",
+      "boothNo": "282",
+      "num": 282,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-283",
+      "boothNo": "283",
+      "num": 283,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-284",
+      "boothNo": "284",
+      "num": 284,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-285",
+      "boothNo": "285",
+      "num": 285,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-286",
+      "boothNo": "286",
+      "num": 286,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-287",
+      "boothNo": "287",
+      "num": 287,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-288",
+      "boothNo": "288",
+      "num": 288,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-289",
+      "boothNo": "289",
+      "num": 289,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-290",
+      "boothNo": "290",
+      "num": 290,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-291",
+      "boothNo": "291",
+      "num": 291,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-292",
+      "boothNo": "292",
+      "num": 292,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-293",
+      "boothNo": "293",
+      "num": 293,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-294",
+      "boothNo": "294",
+      "num": 294,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-295",
+      "boothNo": "295",
+      "num": 295,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-296",
+      "boothNo": "296",
+      "num": 296,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-297",
+      "boothNo": "297",
+      "num": 297,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-298",
+      "boothNo": "298",
+      "num": 298,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-299",
+      "boothNo": "299",
+      "num": 299,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-300",
+      "boothNo": "300",
+      "num": 300,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-301",
+      "boothNo": "301",
+      "num": 301,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-302",
+      "boothNo": "302",
+      "num": 302,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-303",
+      "boothNo": "303",
+      "num": 303,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-304",
+      "boothNo": "304",
+      "num": 304,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-305",
+      "boothNo": "305",
+      "num": 305,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-306",
+      "boothNo": "306",
+      "num": 306,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-307",
+      "boothNo": "307",
+      "num": 307,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-308",
+      "boothNo": "308",
+      "num": 308,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-309",
+      "boothNo": "309",
+      "num": 309,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-310",
+      "boothNo": "310",
+      "num": 310,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-311",
+      "boothNo": "311",
+      "num": 311,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-312",
+      "boothNo": "312",
+      "num": 312,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-313",
+      "boothNo": "313",
+      "num": 313,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-314",
+      "boothNo": "314",
+      "num": 314,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-315",
+      "boothNo": "315",
+      "num": 315,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-316",
+      "boothNo": "316",
+      "num": 316,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-317",
+      "boothNo": "317",
+      "num": 317,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-318",
+      "boothNo": "318",
+      "num": 318,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-319",
+      "boothNo": "319",
+      "num": 319,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-320",
+      "boothNo": "320",
+      "num": 320,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-321",
+      "boothNo": "321",
+      "num": 321,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-322",
+      "boothNo": "322",
+      "num": 322,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-323",
+      "boothNo": "323",
+      "num": 323,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-324",
+      "boothNo": "324",
+      "num": 324,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-325",
+      "boothNo": "325",
+      "num": 325,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-326",
+      "boothNo": "326",
+      "num": 326,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-194-327",
+      "boothNo": "327",
+      "num": 327,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
     }
   ]
 }

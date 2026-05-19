@@ -293,7 +293,7 @@ def row_cells_to_record(
     booth_raw = (cells[0] or "").replace("\n", "").strip()
     if not booth_raw:
         return None
-    if booth_raw.upper().startswith("TOTAL") or "POSTAL" in booth_raw.upper():
+    if booth_raw.upper().startswith("TOTAL") or _is_postal_summary_row(cells):
         return None
     if not re.match(r"^[\dA-Za-z().\-/]+$", booth_raw):
         return None
@@ -330,6 +330,220 @@ def row_cells_to_record(
     }
 
 
+def _row_text_blob(row: list[Any]) -> str:
+    return " ".join(str(c or "") for c in row).replace("\n", " ")
+
+
+def _is_postal_summary_row(row: list[Any]) -> bool:
+    if not row:
+        return False
+    blob = _row_text_blob(row).upper()
+    if "POSTAL" not in blob:
+        return False
+    if "RECORDED" in blob:
+        return True
+    return "VOTE" in blob or "BALLOT" in blob or "TOTAL" in blob
+
+
+def ballot_order_column_map(json_candidates: list[dict]) -> tuple[dict[int, int], int, int]:
+    """JSON index -> PDF column (1-based); NOTA uses sentinel -1."""
+    nota_i = next(i for i, c in enumerate(json_candidates) if c.get("name", "").strip().upper() == "NOTA")
+    j_idx = [i for i in range(len(json_candidates)) if i != nota_i]
+    cmap: dict[int, int] = {ji: slot + 1 for slot, ji in enumerate(j_idx)}
+    cmap[nota_i] = -1
+    return cmap, nota_i, len(j_idx)
+
+
+def _scan_postal_votes_in_pdf(
+    pdf: Any,
+    n_person: int,
+    rej: int | None,
+    json_to_pdf_col: dict[int, int],
+    nota_i: int,
+    json_candidates: list[dict],
+) -> list[int] | None:
+    """Find postal summary rows in any table or page text (footer tables need no header match)."""
+    for page in pdf.pages:
+        for tab in page.extract_tables() or []:
+            tab = _maybe_strip_sl_no_column(tab)
+            for row in tab or []:
+                if not row or not _is_postal_summary_row(row):
+                    continue
+                use_rej = rej
+                use_n = n_person
+                if (use_rej is None or use_n < 1) and len(row) >= 10:
+                    use_rej = len(row) - 4
+                    use_n = use_rej - 2
+                if use_rej is None or use_n < 1:
+                    continue
+                postal = row_cells_to_candidate_votes_out(
+                    row, use_n, use_rej, json_to_pdf_col, nota_i, json_candidates
+                )
+                if postal is not None:
+                    return postal
+    for page in pdf.pages:
+        text = page.extract_text() or ""
+        for ln in text.split("\n"):
+            if "POSTAL" not in ln.upper():
+                continue
+            postal = parse_postal_text_line(
+                ln, n_person, json_to_pdf_col, nota_i, json_candidates
+            )
+            if postal is not None:
+                return postal
+    return None
+
+
+def _postal_from_pymupdf_summary(pdf_path: Path, json_candidates: list[dict]) -> list[int] | None:
+    """CEO PDFs sometimes export the last 3 summary rows as vertical integer lines (PyMuPDF)."""
+    try:
+        import fitz
+    except ImportError:
+        return None
+
+    json_to_pdf_col, nota_i, n_person = ballot_order_column_map(json_candidates)
+    n_cand = len(json_candidates)
+    chunk = n_cand + 4
+
+    doc = fitz.open(str(pdf_path))
+    try:
+        ints: list[int] = []
+        for page in doc[max(0, len(doc) - 3) :]:
+            for ln in (page.get_text() or "").split("\n"):
+                s = ln.strip().replace(",", "")
+                if re.fullmatch(r"\d+", s):
+                    ints.append(int(s))
+        if len(ints) < 3 * chunk:
+            return None
+        a, b, c = ints[-3 * chunk : -2 * chunk], ints[-2 * chunk : -chunk], ints[-chunk:]
+        if not all(c[i] >= a[i] for i in range(min(n_cand, len(a), len(b), len(c)))):
+            return None
+        vote_cells = b[:n_cand]
+        if sum(vote_cells) < 1:
+            return None
+        votes_out: list[int] = [0] * n_cand
+        for ji, _c in enumerate(json_candidates):
+            if ji == nota_i:
+                votes_out[ji] = vote_cells[nota_i] if nota_i < len(vote_cells) else vote_cells[-1]
+                continue
+            pdf_col = json_to_pdf_col[ji]
+            if pdf_col < 1 or pdf_col > len(vote_cells):
+                return None
+            votes_out[ji] = vote_cells[pdf_col - 1]
+        return votes_out
+    finally:
+        doc.close()
+
+
+def _postal_from_ocr_pdf(pdf_path: Path, json_candidates: list[dict]) -> list[int] | None:
+    json_to_pdf_col, nota_i, n_person = ballot_order_column_map(json_candidates)
+    try:
+        from form20_ocr_strategies import (
+            _OCR_PREPROCESS,
+            _OCR_PSM,
+            _easyocr_available,
+            _ocr_available,
+            _preprocess_image,
+            extract_postal_votes_easyocr,
+        )
+    except ImportError:
+        return None
+
+    if _easyocr_available():
+        postal = extract_postal_votes_easyocr(
+            pdf_path, json_candidates, json_to_pdf_col, nota_i
+        )
+        if postal is not None:
+            return postal
+
+    if not _ocr_available():
+        return None
+    import pytesseract
+    from pdf2image import convert_from_path
+    from pdf2image.pdf2image import pdfinfo_from_path
+
+    try:
+        n_pages = pdfinfo_from_path(str(pdf_path))["Pages"]
+        first_page = max(1, n_pages - 4)
+        images = convert_from_path(str(pdf_path), dpi=400, first_page=first_page, last_page=n_pages)
+    except Exception:
+        return None
+    for image in images:
+        for prep in _OCR_PREPROCESS:
+            try:
+                processed = _preprocess_image(image, prep)
+            except Exception:
+                processed = image
+            for psm in _OCR_PSM:
+                try:
+                    text = pytesseract.image_to_string(processed, config=f"--psm {psm} --oem 3")
+                except Exception:
+                    continue
+                for ln in text.split("\n"):
+                    if "POSTAL" not in ln.upper():
+                        continue
+                    postal = parse_postal_text_line(
+                        ln, n_person, json_to_pdf_col, nota_i, json_candidates
+                    )
+                    if postal is not None:
+                        return postal
+    return None
+
+
+def extract_form20_postal_votes(
+    pdf_path: Path,
+    json_candidates: list[dict],
+    *,
+    allow_extra_pdf_columns: bool = False,
+    use_ocr: bool = True,
+) -> list[int] | None:
+    """Postal totals even when booth-table header parsing fails."""
+    json_to_pdf_col, nota_i, n_person = ballot_order_column_map(json_candidates)
+    image_only = _form20_pdf_probably_image_only(pdf_path)
+
+    if use_ocr and image_only:
+        postal = _postal_from_ocr_pdf(pdf_path, json_candidates)
+        if postal is not None:
+            return postal
+
+    try:
+        _names, _by, _ni, _d, postal = parse_form20_pdf(
+            pdf_path, json_candidates, allow_extra_pdf_columns=allow_extra_pdf_columns
+        )
+        if postal is not None:
+            return postal
+    except ValueError:
+        pass
+
+    if not image_only:
+        ensure_pdfplumber()
+        import pdfplumber
+
+        with pdfplumber.open(str(pdf_path)) as pdf:
+            postal = _scan_postal_votes_in_pdf(
+                pdf, n_person, None, json_to_pdf_col, nota_i, json_candidates
+            )
+            if postal is not None:
+                return postal
+
+    postal = _postal_from_pymupdf_summary(pdf_path, json_candidates)
+    if postal is not None:
+        return postal
+
+    if use_ocr:
+        return _postal_from_ocr_pdf(pdf_path, json_candidates)
+    return None
+
+
+def _ints_from_row_cells(row: list[Any], start: int = 0) -> list[int]:
+    out: list[int] = []
+    for c in row[start:]:
+        s = str(c or "").strip().replace(",", "")
+        if re.fullmatch(r"\d+", s):
+            out.append(int(s))
+    return out
+
+
 def row_cells_to_candidate_votes_out(
     cells: list[Any],
     n_person: int,
@@ -339,15 +553,46 @@ def row_cells_to_candidate_votes_out(
     json_candidates: list[dict],
 ) -> list[int] | None:
     """Parse candidate-column votes from a non-booth summary row (e.g. postal totals)."""
-    try:
-        vote_cells = [int(str(cells[j] or "0").replace(",", "")) for j in range(1, rej - 1)]
-    except ValueError:
-        return None
-    if len(vote_cells) != n_person:
-        return None
-    try:
-        nota_val = int(str(cells[rej + 1] or "0").replace(",", ""))
-    except ValueError:
+    vote_cells: list[int] | None = None
+    nota_val: int | None = None
+
+    if _is_postal_summary_row(cells):
+        # CEO layout: col0 = "Total/Postal/Ballot", col1 = "Votes", candidate counts from col2.
+        for vote_start in (2, 1):
+            try:
+                vc = [
+                    int(str(cells[j] or "0").replace(",", ""))
+                    for j in range(vote_start, vote_start + n_person)
+                ]
+            except (ValueError, IndexError):
+                continue
+            if len(vc) == n_person:
+                vote_cells = vc
+                break
+        if vote_cells is None:
+            nums = _ints_from_row_cells(cells, 1)
+            if len(nums) >= n_person:
+                vote_cells = nums[:n_person]
+        try:
+            nota_val = int(str(cells[rej + 1] or "0").replace(",", ""))
+        except (ValueError, IndexError):
+            if vote_cells is not None:
+                tail = _ints_from_row_cells(cells, 1)[len(vote_cells) :]
+                if len(tail) >= 2:
+                    nota_val = tail[1] if len(tail) > 1 else tail[0]
+    else:
+        try:
+            vote_cells = [int(str(cells[j] or "0").replace(",", "")) for j in range(1, rej - 1)]
+        except ValueError:
+            return None
+        if len(vote_cells) != n_person:
+            return None
+        try:
+            nota_val = int(str(cells[rej + 1] or "0").replace(",", ""))
+        except ValueError:
+            return None
+
+    if vote_cells is None or len(vote_cells) != n_person or nota_val is None:
         return None
 
     votes_out: list[int] = [0] * len(json_candidates)
@@ -356,6 +601,45 @@ def row_cells_to_candidate_votes_out(
             votes_out[ji] = nota_val
             continue
         pdf_col = json_to_pdf_col[ji]
+        if pdf_col < 1:
+            return None
+        votes_out[ji] = vote_cells[pdf_col - 1]
+    return votes_out
+
+
+def parse_postal_text_line(
+    ln: str,
+    n_person: int,
+    json_to_pdf_col: dict[int, int],
+    nota_i: int,
+    json_candidates: list[dict],
+    *,
+    n_tail: int = 5,
+) -> list[int] | None:
+    """Parse 'Postal Votes …' summary lines from page text when table cells are split."""
+    s = ln.strip()
+    if not s or "POSTAL" not in s.upper():
+        return None
+    if re.match(r"^\s*\d", s):
+        return None
+    # Booth data lines start with a PS number.
+    nums = [int(x) for x in re.findall(r"\d+", s)]
+    if len(nums) < n_person + 3:
+        return None
+    if len(nums) == n_person + n_tail + 1:
+        nums = nums[1:]
+    if len(nums) < n_person + 3:
+        return None
+    vote_cells = nums[:n_person]
+    nota_val = nums[n_person + 1] if len(nums) > n_person + 1 else nums[-1]
+    votes_out: list[int] = [0] * len(json_candidates)
+    for ji, _c in enumerate(json_candidates):
+        if ji == nota_i:
+            votes_out[ji] = nota_val
+            continue
+        pdf_col = json_to_pdf_col[ji]
+        if pdf_col < 1:
+            return None
         votes_out[ji] = vote_cells[pdf_col - 1]
     return votes_out
 
@@ -458,7 +742,7 @@ def parse_form20_pdf(
                     if not row or len(row) < rej + 3:
                         continue
                     booth_raw = (row[0] or "").replace("\n", "").strip()
-                    if postal_votes is None and booth_raw and "POSTAL" in booth_raw.upper():
+                    if postal_votes is None and _is_postal_summary_row(row):
                         postal_votes = row_cells_to_candidate_votes_out(
                             row, n_person, rej, json_to_pdf_col, nota_i, json_candidates
                         )
@@ -477,6 +761,11 @@ def parse_form20_pdf(
                 rec = parse_text_data_line(ln, n_person, json_to_pdf_col, nota_i, json_candidates, n_tail)
                 if rec:
                     by_booth[rec["booth"]] = rec
+
+        if postal_votes is None:
+            postal_votes = _scan_postal_votes_in_pdf(
+                pdf, n_person, rej, json_to_pdf_col, nota_i, json_candidates
+            )
 
         m = DATE_LINE.search(pdf.pages[0].extract_text() or "")
         date_s = m.group(1) if m else ""
@@ -611,6 +900,233 @@ def build_summary(
     }
 
 
+_BOOTH_KEY_NUM_SUFFIX = re.compile(r"^(\d+)(.+)$")
+
+
+def synthetic_booth_meta(ac_id: str, booth_key: str, num: int) -> dict[str, Any]:
+    """Booth row for Form20 PS numbers absent from legacy booths.json."""
+    return {
+        "id": f"{ac_id}-{booth_key}",
+        "boothNo": booth_key,
+        "num": num,
+        "type": "regular",
+        "name": "",
+        "address": "",
+        "area": "",
+        "_form20Synthetic": True,
+    }
+
+
+def resolve_booth_metas_for_form20_key(
+    booth_key: str,
+    booths: list[dict[str, Any]],
+    *,
+    ac_id: str | None = None,
+    allow_synthetic: bool = True,
+) -> list[dict[str, Any]]:
+    """Map Form20 booth cell string to one or more legacy booth rows (id, boothNo, num, …).
+
+    - Exact ``boothNo`` (case-insensitive).
+    - Pure digits: all booths with ``num``; if none, optional synthetic row.
+    - ``19A`` / ``225A``: CEO Form20 auxiliary suffix → single booth ``boothNo`` ``19`` / ``225``.
+    - ``7`` with multiple ``num=7`` rows (``7M``, ``7A(W)``): all matches (caller may split votes).
+    - Otherwise: booths whose ``boothNo`` starts with the key (e.g. partial suffix match).
+    """
+    key = str(booth_key).strip()
+    if not key:
+        return []
+
+    exact = [b for b in booths if b.get("boothNo") == key]
+    if exact:
+        return exact
+
+    key_low = key.lower()
+    ci = [b for b in booths if str(b.get("boothNo") or "").lower() == key_low]
+    if ci:
+        return ci
+
+    def _synthetic(num: int) -> list[dict[str, Any]]:
+        if allow_synthetic and ac_id:
+            return [synthetic_booth_meta(ac_id, key, num)]
+        return []
+
+    if key.isdigit():
+        n = int(key, 10)
+        by_num = [b for b in booths if b.get("num") == n]
+        if by_num:
+            return sorted(by_num, key=lambda b: str(b.get("boothNo") or ""))
+        return _synthetic(n)
+
+    m = _BOOTH_KEY_NUM_SUFFIX.match(key)
+    if m:
+        n = int(m.group(1))
+        suffix = m.group(2)
+        # Form20 "19A" is often the same physical PS as CEO list boothNo "19".
+        if suffix.upper() == "A":
+            base = [b for b in booths if str(b.get("boothNo")) == str(n)]
+            if len(base) == 1:
+                return base
+        by_num = [b for b in booths if b.get("num") == n]
+        if by_num:
+            exact_num = [b for b in by_num if str(b.get("boothNo")) == key]
+            if exact_num:
+                return exact_num
+            pref = [
+                b
+                for b in by_num
+                if str(b.get("boothNo") or "").upper().startswith(key.upper())
+                or key.upper() in str(b.get("boothNo") or "").upper()
+            ]
+            if pref:
+                return sorted(pref, key=lambda b: str(b.get("boothNo") or ""))
+            if len(by_num) == 1:
+                return by_num
+            return sorted(by_num, key=lambda b: str(b.get("boothNo") or ""))
+
+        starts = [
+            b
+            for b in booths
+            if str(b.get("boothNo") or "").upper().startswith(key.upper())
+        ]
+        if starts:
+            return sorted(starts, key=lambda b: str(b.get("boothNo") or ""))
+
+        return _synthetic(n)
+
+    if allow_synthetic and ac_id:
+        m2 = re.match(r"^(\d+)", key)
+        num = int(m2.group(1)) if m2 else 0
+        return _synthetic(num)
+    return []
+
+
+def split_form20_record_equal(rec: dict[str, Any], k: int) -> list[dict[str, Any]]:
+    """Split one Form20 row across *k* legacy booths with largest-remainder integer fair split."""
+    if k <= 0:
+        raise ValueError("k must be positive")
+    if k == 1:
+        return [rec]
+    votes = [int(x or 0) for x in (rec.get("votes") or [])]
+    rejected = int(rec.get("rejected") or 0)
+    out: list[dict[str, Any]] = []
+    for part in range(k):
+        part_votes: list[int] = []
+        for v in votes:
+            base, rem = divmod(v, k)
+            part_votes.append(base + (1 if part < rem else 0))
+        br, rr = divmod(rejected, k)
+        part_rejected = br + (1 if part < rr else 0)
+        tv = sum(part_votes) + part_rejected
+        out.append({"votes": part_votes, "total": tv, "rejected": part_rejected})
+    return out
+
+
+def assemble_2026_json_doc(
+    ac_id: str,
+    schema_row: dict[str, Any],
+    econ: dict[str, Any],
+    json_candidates: list[dict[str, Any]],
+    by_booth: dict[str, dict[str, Any]],
+    date_s: str,
+    postal_votes: list[int] | None,
+    pdf_source: str,
+    booths_doc: dict[str, Any],
+) -> dict[str, Any]:
+    """Build the 2026.json document dict from parsed booth rows (boothNo → Form20 rec)."""
+    booths_list = list(booths_doc.get("booths") or [])
+    results: dict[str, Any] = {}
+    synthetic_keys: list[str] = []
+    split_rows = 0
+    split_samples: list[str] = []
+    for booth_no, rec in sorted(by_booth.items(), key=lambda kv: (len(kv[0]), kv[0])):
+        metas = resolve_booth_metas_for_form20_key(
+            booth_no, booths_list, ac_id=ac_id, allow_synthetic=True
+        )
+        if not metas:
+            continue
+        if any(m.get("_form20Synthetic") for m in metas):
+            synthetic_keys.append(booth_no)
+        if len(metas) > 1:
+            split_rows += 1
+            frags = split_form20_record_equal(rec, len(metas))
+            split_samples.append(booth_no)
+        else:
+            frags = [rec]
+        for meta, frag in zip(metas, frags):
+            bid = meta.get("id")
+            if not bid:
+                continue
+            entry = {
+                "votes": frag["votes"],
+                "total": frag["total"],
+                "rejected": frag["rejected"],
+            }
+            entry["name"] = meta.get("name", "")
+            entry["address"] = meta.get("address", "")
+            entry["area"] = meta.get("area", "")
+            results[bid] = entry
+
+    if split_rows:
+        samp = ", ".join(split_samples[:6])
+        more = f" (+{split_rows - 6} more)" if split_rows > 6 else ""
+        print(
+            f"{ac_id}: split {split_rows} Form20 PS row(s) across multiple legacy booths (equal split); "
+            f"sample keys: {samp}{more}",
+            file=sys.stderr,
+        )
+
+    if synthetic_keys:
+        samp = ", ".join(synthetic_keys[:8])
+        more = f" (+{len(synthetic_keys) - 8} more)" if len(synthetic_keys) > 8 else ""
+        print(
+            f"{ac_id}: mapped {len(synthetic_keys)} Form20 PS row(s) not in legacy booths.json "
+            f"(synthetic booth ids; sample: {samp}{more})",
+            file=sys.stderr,
+        )
+
+    booth_sums = [0] * len(json_candidates)
+    for rv in results.values():
+        for i, v in enumerate(rv.get("votes") or []):
+            booth_sums[i] += v
+
+    postal_candidates = None
+    if postal_votes is not None and len(postal_votes) == len(json_candidates):
+        postal_candidates = []
+        for i, c in enumerate(json_candidates):
+            postal_val = postal_votes[i]
+            booth_val = booth_sums[i]
+            postal_candidates.append(
+                {
+                    "name": c.get("name", ""),
+                    "party": c.get("party", ""),
+                    "postal": postal_val,
+                    "booth": booth_val,
+                    "total": booth_val + postal_val,
+                }
+            )
+    else:
+        print(f"{ac_id}: WARN no postal totals parsed from Form 20", file=sys.stderr)
+
+    ac_name = (
+        (econ.get("constituencyName") or econ.get("name") or schema_row.get("name") or ac_id).upper()
+    )
+    out_doc: dict[str, Any] = {
+        "acId": ac_id,
+        "acName": ac_name,
+        "year": 2026,
+        "electionType": "assembly",
+        "date": date_s or "2026-05-08",
+        "source": pdf_source,
+        "candidates": slim_candidates(json_candidates),
+        "results": results,
+        "summary": build_summary(json_candidates, results, econ.get("electors")),
+        "totalBooths": booths_doc.get("totalBooths", len(results)),
+    }
+    if postal_candidates is not None:
+        out_doc["postal"] = {"candidates": postal_candidates}
+    return out_doc
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="TN 2026 Form 20 → 2026.json")
     ap.add_argument("--ac", help="Comma-separated schema AC ids")
@@ -738,35 +1254,19 @@ def main() -> None:
             continue
         booths_doc = json.loads(booths_path.read_text(encoding="utf-8"))
 
-        booth_ids_by_no = {b["boothNo"]: b["id"] for b in booths_doc.get("booths", [])}
-
-        results: dict[str, Any] = {}
-        missing_map: list[str] = []
-        for booth_no, rec in sorted(by_booth.items(), key=lambda kv: (len(kv[0]), kv[0])):
-            bid = booth_ids_by_no.get(booth_no)
-            if not bid:
-                missing_map.append(booth_no)
-                continue
-            meta = next((x for x in booths_doc.get("booths", []) if x.get("boothNo") == booth_no), None)
-            entry = {
-                "votes": rec["votes"],
-                "total": rec["total"],
-                "rejected": rec["rejected"],
-            }
-            if meta:
-                entry["name"] = meta.get("name", "")
-                entry["address"] = meta.get("address", "")
-                entry["area"] = meta.get("area", "")
-            results[bid] = entry
-
-        if missing_map:
-            print(
-                f"{ac_id}: skipped {len(missing_map)} Form20 rows with no matching boothNo in legacy booths.json "
-                f"(sample: {missing_map[:8]})",
-                file=sys.stderr,
-            )
-
-        expected_booths = int(booths_doc.get("totalBooths") or len(booth_ids_by_no))
+        out_doc = assemble_2026_json_doc(
+            ac_id,
+            row,
+            econ,
+            json_candidates,
+            by_booth,
+            date_s,
+            postal_votes,
+            pdf_url or pdf_path.resolve().as_uri(),
+            booths_doc,
+        )
+        results = out_doc.get("results") or {}
+        expected_booths = int(booths_doc.get("totalBooths") or len(booths_doc.get("booths") or []))
         if expected_booths >= 20 and len(results) == 0:
             print(
                 f"{ac_id}: skip write: zero booths mapped (booths.json total {expected_booths}); "
@@ -774,48 +1274,6 @@ def main() -> None:
                 file=sys.stderr,
             )
             continue
-
-        # Sum booth votes in JSON candidate order so we can populate AC-level postal totals:
-        # `postal.candidates[] = {postal, booth, total}`.
-        booth_sums = [0] * len(json_candidates)
-        for rv in results.values():
-            for i, v in enumerate(rv.get("votes") or []):
-                booth_sums[i] += v
-
-        postal_candidates = None
-        if postal_votes is not None and len(postal_votes) == len(json_candidates):
-            postal_candidates = []
-            for i, c in enumerate(json_candidates):
-                postal_val = postal_votes[i]
-                booth_val = booth_sums[i]
-                postal_candidates.append(
-                    {
-                        "name": c.get("name", ""),
-                        "party": c.get("party", ""),
-                        "postal": postal_val,
-                        "booth": booth_val,
-                        "total": booth_val + postal_val,
-                    }
-                )
-        else:
-            print(f"{ac_id}: WARN no postal totals parsed from Form 20", file=sys.stderr)
-
-        ac_name = (econ.get("constituencyName") or econ.get("name") or row.get("name") or ac_id).upper()
-        out_doc: dict[str, Any] = {
-            "acId": ac_id,
-            "acName": ac_name,
-            "year": 2026,
-            "electionType": "assembly",
-            "date": date_s or "2026-05-08",
-            "source": pdf_url or pdf_path.resolve().as_uri(),
-            "candidates": slim_candidates(json_candidates),
-            "results": results,
-            "summary": build_summary(json_candidates, results, econ.get("electors")),
-            "totalBooths": booths_doc.get("totalBooths", len(results)),
-        }
-
-        if postal_candidates is not None:
-            out_doc["postal"] = {"candidates": postal_candidates}
 
         out_path = BOOTHS_TN / ac_id / "2026.json"
         if args.write:

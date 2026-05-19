@@ -17,6 +17,12 @@ SCHEMA_PATH = REPO_ROOT / "public/data/schema.json"
 ELECTIONS_TN_2026 = REPO_ROOT / "public/data/elections/ac/TN/2026.json"
 BOOTHS_TN = REPO_ROOT / "public/data/booths/TN"
 
+# In-scope 230 ACs minus these (no Desktop Form20 PDF staged).
+EXCLUDED_IN_SCOPE_230: frozenset[int] = frozenset({213, 214, 217, 218})
+
+# Image-only Form20 scans with poor OCR yield; do not run booth OCR ensemble (CEO text PDF needed).
+SKIP_FORM20_OCR_AC_NOS: frozenset[int] = frozenset(range(152, 160))
+
 PSLIST_INDEX = "https://www.elections.tn.gov.in/PSLIST_06042026.aspx"
 FORM20_INDEX = "https://www.elections.tn.gov.in/Form20_TNLA2026.aspx"
 USER_AGENT = "ElectionLens/1.0 (+https://github.com/) booth-data-script"
@@ -106,6 +112,27 @@ def probe_pslist_pdf(ac_no: int, *, timeout: float = 12.0) -> tuple[bytes, str] 
             if is_pdf_bytes(raw):
                 return raw, url
     return None
+
+
+def filter_in_scope_ac_nos(
+    ac_nos: list[int],
+    *,
+    in_scope_230: bool = False,
+    skip_ocr: bool = True,
+) -> list[int]:
+    """Drop excluded / skipped AC numbers from a target list."""
+    out: list[int] = []
+    for n in ac_nos:
+        if in_scope_230 and n in EXCLUDED_IN_SCOPE_230:
+            continue
+        if skip_ocr and n in SKIP_FORM20_OCR_AC_NOS:
+            continue
+        out.append(n)
+    return out
+
+
+def is_skipped_form20_ocr(ac_no: int) -> bool:
+    return ac_no in SKIP_FORM20_OCR_AC_NOS
 
 
 def load_schema_tn_ac_map() -> dict[int, dict[str, Any]]:

@@ -2,19 +2,10 @@
   "acId": "TN-221",
   "acName": "KADAYANALLUR",
   "state": "Tamil Nadu",
-  "totalBooths": 325,
-  "lastUpdated": "2021-04-06",
+  "totalBooths": 450,
+  "lastUpdated": "2026-05-08",
   "source": "Tamil Nadu CEO - Polling Stations",
   "booths": [
-    {
-      "id": "TN-221-1M",
-      "boothNo": "1M",
-      "num": 1,
-      "type": "auxiliary",
-      "name": "Govt Hr Sec School, S.S.A. Building Northern SideEastern Portion",
-      "address": "Govt Hr Sec School,S.S.A. Building Northern SideEastern Portion,Puliyarai",
-      "area": "All Voters"
-    },
     {
       "id": "TN-221-1A(W)",
       "boothNo": "1A(W)",
@@ -25,10 +16,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-2M",
-      "boothNo": "2M",
-      "num": 2,
+      "id": "TN-221-1M",
+      "boothNo": "1M",
+      "num": 1,
       "type": "auxiliary",
+      "name": "Govt Hr Sec School, S.S.A. Building Northern SideEastern Portion",
+      "address": "Govt Hr Sec School,S.S.A. Building Northern SideEastern Portion,Puliyarai",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-221-2",
+      "boothNo": "2",
+      "num": 2,
+      "type": "regular",
       "name": "Govt Hr Sec School, S.S.A. Building Northern SideEastern Portion",
       "address": "Govt Hr Sec School,S.S.A. Building Northern SideEastern Portion,Puliyarai",
       "area": "All Voters"
@@ -43,10 +43,10 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-2",
-      "boothNo": "2",
+      "id": "TN-221-2M",
+      "boothNo": "2M",
       "num": 2,
-      "type": "regular",
+      "type": "auxiliary",
       "name": "Govt Hr Sec School, S.S.A. Building Northern SideEastern Portion",
       "address": "Govt Hr Sec School,S.S.A. Building Northern SideEastern Portion,Puliyarai",
       "area": "All Voters"
@@ -178,19 +178,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-16M",
-      "boothNo": "16M",
+      "id": "TN-221-16A(W)",
+      "boothNo": "16A(W)",
       "num": 16,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Govt Primary School, Western Portion",
       "address": "Govt Primary School,Western Portion,Thavanai",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-16A(W)",
-      "boothNo": "16A(W)",
+      "id": "TN-221-16M",
+      "boothNo": "16M",
       "num": 16,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Govt Primary School, Western Portion",
       "address": "Govt Primary School,Western Portion,Thavanai",
       "area": "All Voters"
@@ -214,19 +214,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-19M",
-      "boothNo": "19M",
+      "id": "TN-221-19A(W)",
+      "boothNo": "19A(W)",
       "num": 19,
-      "type": "auxiliary",
+      "type": "women",
       "name": "A.G.Primary School, Kannupulimettu",
       "address": "A.G.Primary School,Kannupulimettu",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-19A(W)",
-      "boothNo": "19A(W)",
+      "id": "TN-221-19M",
+      "boothNo": "19M",
       "num": 19,
-      "type": "women",
+      "type": "auxiliary",
       "name": "A.G.Primary School, Kannupulimettu",
       "address": "A.G.Primary School,Kannupulimettu",
       "area": "All Voters"
@@ -349,15 +349,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-30M",
-      "boothNo": "30M",
-      "num": 30,
-      "type": "auxiliary",
-      "name": "S M S S Govt Boys Hr Sec School",
-      "address": "S M S S Govt Boys Hr Sec School,Central Hall,Sengottai",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-221-30A(W)",
       "boothNo": "30A(W)",
       "num": 30,
@@ -367,9 +358,9 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-31M",
-      "boothNo": "31M",
-      "num": 31,
+      "id": "TN-221-30M",
+      "boothNo": "30M",
+      "num": 30,
       "type": "auxiliary",
       "name": "S M S S Govt Boys Hr Sec School",
       "address": "S M S S Govt Boys Hr Sec School,Central Hall,Sengottai",
@@ -380,6 +371,15 @@
       "boothNo": "31A(W)",
       "num": 31,
       "type": "women",
+      "name": "S M S S Govt Boys Hr Sec School",
+      "address": "S M S S Govt Boys Hr Sec School,Central Hall,Sengottai",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-221-31M",
+      "boothNo": "31M",
+      "num": 31,
+      "type": "auxiliary",
       "name": "S M S S Govt Boys Hr Sec School",
       "address": "S M S S Govt Boys Hr Sec School,Central Hall,Sengottai",
       "area": "All Voters"
@@ -529,19 +529,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-44M",
-      "boothNo": "44M",
+      "id": "TN-221-44A(W)",
+      "boothNo": "44A(W)",
       "num": 44,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Govt High School, East Building",
       "address": "Govt High School,East Building,Northern Portion,Melur Sengottai",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-44A(W)",
-      "boothNo": "44A(W)",
+      "id": "TN-221-44M",
+      "boothNo": "44M",
       "num": 44,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Govt High School, East Building",
       "address": "Govt High School,East Building,Northern Portion,Melur Sengottai",
       "area": "All Voters"
@@ -601,15 +601,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-50M",
-      "boothNo": "50M",
-      "num": 50,
-      "type": "auxiliary",
-      "name": "A.G.Primary School, Addititional Building North Portion East Facing",
-      "address": "A.G.Primary School,Addititional Building North Portion East Facing,Piranoor",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-221-50A(W)",
       "boothNo": "50A(W)",
       "num": 50,
@@ -619,9 +610,9 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-51M",
-      "boothNo": "51M",
-      "num": 51,
+      "id": "TN-221-50M",
+      "boothNo": "50M",
+      "num": 50,
       "type": "auxiliary",
       "name": "A.G.Primary School, Addititional Building North Portion East Facing",
       "address": "A.G.Primary School,Addititional Building North Portion East Facing,Piranoor",
@@ -632,6 +623,15 @@
       "boothNo": "51A(W)",
       "num": 51,
       "type": "women",
+      "name": "A.G.Primary School, Addititional Building North Portion East Facing",
+      "address": "A.G.Primary School,Addititional Building North Portion East Facing,Piranoor",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-221-51M",
+      "boothNo": "51M",
+      "num": 51,
+      "type": "auxiliary",
       "name": "A.G.Primary School, Addititional Building North Portion East Facing",
       "address": "A.G.Primary School,Addititional Building North Portion East Facing,Piranoor",
       "area": "All Voters"
@@ -754,19 +754,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-63M",
-      "boothNo": "63M",
+      "id": "TN-221-63A(W)",
+      "boothNo": "63A(W)",
       "num": 63,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Pachayat Union Library Centre",
       "address": "Pachayat Union Library Centre,Western Portion,Vallam 99",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-63A(W)",
-      "boothNo": "63A(W)",
+      "id": "TN-221-63M",
+      "boothNo": "63M",
       "num": 63,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Pachayat Union Library Centre",
       "address": "Pachayat Union Library Centre,Western Portion,Vallam 99",
       "area": "All Voters"
@@ -781,19 +781,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-65M",
-      "boothNo": "65M",
+      "id": "TN-221-65A(W)",
+      "boothNo": "65A(W)",
       "num": 65,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Pachayat Union Library Centre",
       "address": "Pachayat Union Library Centre,Eastern Portion,Vallam 1.VALLAM VALLAM , 99",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-65A(W)",
-      "boothNo": "65A(W)",
+      "id": "TN-221-65M",
+      "boothNo": "65M",
       "num": 65,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Pachayat Union Library Centre",
       "address": "Pachayat Union Library Centre,Eastern Portion,Vallam 1.VALLAM VALLAM , 99",
       "area": "All Voters"
@@ -979,19 +979,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-85M",
-      "boothNo": "85M",
+      "id": "TN-221-85A(W)",
+      "boothNo": "85A(W)",
       "num": 85,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Govt Primary School, Eastern Building",
       "address": "Govt Primary School,Eastern Building,Achanputhur",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-85A(W)",
-      "boothNo": "85A(W)",
+      "id": "TN-221-85M",
+      "boothNo": "85M",
       "num": 85,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Govt Primary School, Eastern Building",
       "address": "Govt Primary School,Eastern Building,Achanputhur",
       "area": "All Voters"
@@ -1015,19 +1015,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-88M",
-      "boothNo": "88M",
+      "id": "TN-221-88A(W)",
+      "boothNo": "88A(W)",
       "num": 88,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Nagoor Meerasa Middle School",
       "address": "Nagoor Meerasa Middle School,Northern Portion,Achenputhur",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-88A(W)",
-      "boothNo": "88A(W)",
+      "id": "TN-221-88M",
+      "boothNo": "88M",
       "num": 88,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Nagoor Meerasa Middle School",
       "address": "Nagoor Meerasa Middle School,Northern Portion,Achenputhur",
       "area": "All Voters"
@@ -1051,19 +1051,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-91M",
-      "boothNo": "91M",
+      "id": "TN-221-91A(W)",
+      "boothNo": "91A(W)",
       "num": 91,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Town Panchayat Office",
       "address": "Town Panchayat Office,Main Building,Achanpudur",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-91A(W)",
-      "boothNo": "91A(W)",
+      "id": "TN-221-91M",
+      "boothNo": "91M",
       "num": 91,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Town Panchayat Office",
       "address": "Town Panchayat Office,Main Building,Achanpudur",
       "area": "All Voters"
@@ -1087,19 +1087,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-93M",
-      "boothNo": "93M",
+      "id": "TN-221-93A(W)",
+      "boothNo": "93A(W)",
       "num": 93,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Town Panchayat Office",
       "address": "Town Panchayat Office,Main Building,Achanpudur",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-93A(W)",
-      "boothNo": "93A(W)",
+      "id": "TN-221-93M",
+      "boothNo": "93M",
       "num": 93,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Town Panchayat Office",
       "address": "Town Panchayat Office,Main Building,Achanpudur",
       "area": "All Voters"
@@ -1132,19 +1132,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-96M",
-      "boothNo": "96M",
+      "id": "TN-221-96A(W)",
+      "boothNo": "96A(W)",
       "num": 96,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Thajeel Islam Primary School",
       "address": "Thajeel Islam Primary School,Vavanagaram,Vadakarai Kilpidagai Pallivasal st , 99",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-96A(W)",
-      "boothNo": "96A(W)",
+      "id": "TN-221-96M",
+      "boothNo": "96M",
       "num": 96,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Thajeel Islam Primary School",
       "address": "Thajeel Islam Primary School,Vavanagaram,Vadakarai Kilpidagai Pallivasal st , 99",
       "area": "All Voters"
@@ -1168,19 +1168,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-99M",
-      "boothNo": "99M",
+      "id": "TN-221-99A(W)",
+      "boothNo": "99A(W)",
       "num": 99,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Panchayat Union Primary School",
       "address": "Panchayat Union Primary School,Northern Building,VadakaraiKilpidagai 99",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-99A(W)",
-      "boothNo": "99A(W)",
+      "id": "TN-221-99M",
+      "boothNo": "99M",
       "num": 99,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Panchayat Union Primary School",
       "address": "Panchayat Union Primary School,Northern Building,VadakaraiKilpidagai 99",
       "area": "All Voters"
@@ -1213,19 +1213,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-102M",
-      "boothNo": "102M",
+      "id": "TN-221-102A(W)",
+      "boothNo": "102A(W)",
       "num": 102,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Muslim Primary School",
       "address": "Muslim Primary School,Eastern Building South Portion,Vadakarai Kilpadigai. 99",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-102A(W)",
-      "boothNo": "102A(W)",
+      "id": "TN-221-102M",
+      "boothNo": "102M",
       "num": 102,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Muslim Primary School",
       "address": "Muslim Primary School,Eastern Building South Portion,Vadakarai Kilpadigai. 99",
       "area": "All Voters"
@@ -1258,19 +1258,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-106M",
-      "boothNo": "106M",
+      "id": "TN-221-106A(W)",
+      "boothNo": "106A(W)",
       "num": 106,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Usainiya Muslim Primary School",
       "address": "Usainiya Muslim Primary School,Eastern Portion,West Side,Vadakaraikilpidagai 99",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-106A(W)",
-      "boothNo": "106A(W)",
+      "id": "TN-221-106M",
+      "boothNo": "106M",
       "num": 106,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Usainiya Muslim Primary School",
       "address": "Usainiya Muslim Primary School,Eastern Portion,West Side,Vadakaraikilpidagai 99",
       "area": "All Voters"
@@ -1411,19 +1411,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-121M",
-      "boothNo": "121M",
+      "id": "TN-221-121A(W)",
+      "boothNo": "121A(W)",
       "num": 121,
-      "type": "auxiliary",
+      "type": "women",
       "name": "I.M.Govt. Hr.Sec. School",
       "address": "I.M.Govt. Hr.Sec. School,Addititional Main Building 9C Section Hall Eastern Middle Portion,Panpoli",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-121A(W)",
-      "boothNo": "121A(W)",
+      "id": "TN-221-121M",
+      "boothNo": "121M",
       "num": 121,
-      "type": "women",
+      "type": "auxiliary",
       "name": "I.M.Govt. Hr.Sec. School",
       "address": "I.M.Govt. Hr.Sec. School,Addititional Main Building 9C Section Hall Eastern Middle Portion,Panpoli",
       "area": "All Voters"
@@ -1546,19 +1546,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-133M",
-      "boothNo": "133M",
+      "id": "TN-221-133A(W)",
+      "boothNo": "133A(W)",
       "num": 133,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Middle School, Southern Building",
       "address": "Middle School,Southern Building,North Part,Viswanathpuram Periyapillai Valasai W. No. 2 Puthumanai st. , Periyapillai Valasai W. No. 3 Mangamma st. , Periyapillai Valasai W. No. 3 M.R. Lane st. , Periyapillai Valasai W. No. 3 Karnam st. , Periyapillai Valasai W. No. 3 Post Office st. , 99",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-133A(W)",
-      "boothNo": "133A(W)",
+      "id": "TN-221-133M",
+      "boothNo": "133M",
       "num": 133,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Middle School, Southern Building",
       "address": "Middle School,Southern Building,North Part,Viswanathpuram Periyapillai Valasai W. No. 2 Puthumanai st. , Periyapillai Valasai W. No. 3 Mangamma st. , Periyapillai Valasai W. No. 3 M.R. Lane st. , Periyapillai Valasai W. No. 3 Karnam st. , Periyapillai Valasai W. No. 3 Post Office st. , 99",
       "area": "All Voters"
@@ -1600,19 +1600,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-138M",
-      "boothNo": "138M",
+      "id": "TN-221-138A(W)",
+      "boothNo": "138A(W)",
       "num": 138,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Hindu Middle School, Western Portion",
       "address": "Hindu Middle School,Western Portion,Singilipatti",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-138A(W)",
-      "boothNo": "138A(W)",
+      "id": "TN-221-138M",
+      "boothNo": "138M",
       "num": 138,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Hindu Middle School, Western Portion",
       "address": "Hindu Middle School,Western Portion,Singilipatti",
       "area": "All Voters"
@@ -1870,19 +1870,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-165M",
-      "boothNo": "165M",
+      "id": "TN-221-165A(W)",
+      "boothNo": "165A(W)",
       "num": 165,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Panchayat Union MiddleSchool",
       "address": "Panchayat Union MiddleSchool,1st and 2nd Std.,West Facing,BalaArunachalapruram. 99",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-165A(W)",
-      "boothNo": "165A(W)",
+      "id": "TN-221-165M",
+      "boothNo": "165M",
       "num": 165,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Panchayat Union MiddleSchool",
       "address": "Panchayat Union MiddleSchool,1st and 2nd Std.,West Facing,BalaArunachalapruram. 99",
       "area": "All Voters"
@@ -1897,19 +1897,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-167M",
-      "boothNo": "167M",
+      "id": "TN-221-167A(W)",
+      "boothNo": "167A(W)",
       "num": 167,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Rukmani High School, Southern Portion New Middle Building",
       "address": "Rukmani High School,Southern Portion New Middle Building,Mangalapuram. 99",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-167A(W)",
-      "boothNo": "167A(W)",
+      "id": "TN-221-167M",
+      "boothNo": "167M",
       "num": 167,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Rukmani High School, Southern Portion New Middle Building",
       "address": "Rukmani High School,Southern Portion New Middle Building,Mangalapuram. 99",
       "area": "All Voters"
@@ -1933,19 +1933,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-170M",
-      "boothNo": "170M",
+      "id": "TN-221-170A(W)",
+      "boothNo": "170A(W)",
       "num": 170,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Panchayat Union Primary School",
       "address": "Panchayat Union Primary School,North Building West Facing,Kammapatcheri 99",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-170A(W)",
-      "boothNo": "170A(W)",
+      "id": "TN-221-170M",
+      "boothNo": "170M",
       "num": 170,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Panchayat Union Primary School",
       "address": "Panchayat Union Primary School,North Building West Facing,Kammapatcheri 99",
       "area": "All Voters"
@@ -1987,19 +1987,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-175M",
-      "boothNo": "175M",
+      "id": "TN-221-175A(W)",
+      "boothNo": "175A(W)",
       "num": 175,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Panchayat Union Primary School",
       "address": "Panchayat Union Primary School,New Building East side,Kasidharmam",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-175A(W)",
-      "boothNo": "175A(W)",
+      "id": "TN-221-175M",
+      "boothNo": "175M",
       "num": 175,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Panchayat Union Primary School",
       "address": "Panchayat Union Primary School,New Building East side,Kasidharmam",
       "area": "All Voters"
@@ -2086,19 +2086,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-183M",
-      "boothNo": "183M",
+      "id": "TN-221-183A(W)",
+      "boothNo": "183A(W)",
       "num": 183,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Municipal Community Hall",
       "address": "Municipal Community Hall,Krishnapuram",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-183A(W)",
-      "boothNo": "183A(W)",
+      "id": "TN-221-183M",
+      "boothNo": "183M",
       "num": 183,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Municipal Community Hall",
       "address": "Municipal Community Hall,Krishnapuram",
       "area": "All Voters"
@@ -2158,15 +2158,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-190M",
-      "boothNo": "190M",
-      "num": 190,
-      "type": "auxiliary",
-      "name": "Govt.Boys Hr.Sec. School",
-      "address": "Govt.Boys Hr.Sec. School,Laboratory Building,New Building,Kadayanallur",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-221-190A(W)",
       "boothNo": "190A(W)",
       "num": 190,
@@ -2176,9 +2167,9 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-191M",
-      "boothNo": "191M",
-      "num": 191,
+      "id": "TN-221-190M",
+      "boothNo": "190M",
+      "num": 190,
       "type": "auxiliary",
       "name": "Govt.Boys Hr.Sec. School",
       "address": "Govt.Boys Hr.Sec. School,Laboratory Building,New Building,Kadayanallur",
@@ -2189,6 +2180,15 @@
       "boothNo": "191A(W)",
       "num": 191,
       "type": "women",
+      "name": "Govt.Boys Hr.Sec. School",
+      "address": "Govt.Boys Hr.Sec. School,Laboratory Building,New Building,Kadayanallur",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-221-191M",
+      "boothNo": "191M",
+      "num": 191,
+      "type": "auxiliary",
       "name": "Govt.Boys Hr.Sec. School",
       "address": "Govt.Boys Hr.Sec. School,Laboratory Building,New Building,Kadayanallur",
       "area": "All Voters"
@@ -2266,19 +2266,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-198M",
-      "boothNo": "198M",
+      "id": "TN-221-198A(W)",
+      "boothNo": "198A(W)",
       "num": 198,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Govt.Girls Hr.Sec.School",
       "address": "Govt.Girls Hr.Sec.School,Southern Building,12B Standard East Side,Kadayanallur",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-198A(W)",
-      "boothNo": "198A(W)",
+      "id": "TN-221-198M",
+      "boothNo": "198M",
       "num": 198,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Govt.Girls Hr.Sec.School",
       "address": "Govt.Girls Hr.Sec.School,Southern Building,12B Standard East Side,Kadayanallur",
       "area": "All Voters"
@@ -2338,19 +2338,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-204M",
-      "boothNo": "204M",
+      "id": "TN-221-204A(W)",
+      "boothNo": "204A(W)",
       "num": 204,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Rathna High School, Old Building Western Portion",
       "address": "Rathna High School,Old Building Western Portion,Muthukrshnpuram",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-204A(W)",
-      "boothNo": "204A(W)",
+      "id": "TN-221-204M",
+      "boothNo": "204M",
       "num": 204,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Rathna High School, Old Building Western Portion",
       "address": "Rathna High School,Old Building Western Portion,Muthukrshnpuram",
       "area": "All Voters"
@@ -2455,19 +2455,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-213M",
-      "boothNo": "213M",
+      "id": "TN-221-213A(W)",
+      "boothNo": "213A(W)",
       "num": 213,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Govt Girls Hr Sec School",
       "address": "Govt Girls Hr Sec School,Block B,Middle Portion,10th Class Room,Kadayanallur",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-213A(W)",
-      "boothNo": "213A(W)",
+      "id": "TN-221-213M",
+      "boothNo": "213M",
       "num": 213,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Govt Girls Hr Sec School",
       "address": "Govt Girls Hr Sec School,Block B,Middle Portion,10th Class Room,Kadayanallur",
       "area": "All Voters"
@@ -2482,19 +2482,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-215M",
-      "boothNo": "215M",
+      "id": "TN-221-215A(W)",
+      "boothNo": "215A(W)",
       "num": 215,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Municipality Middle School",
       "address": "Municipality Middle School,Western Portion,Pettai,Kadayanallur",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-215A(W)",
-      "boothNo": "215A(W)",
+      "id": "TN-221-215M",
+      "boothNo": "215M",
       "num": 215,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Municipality Middle School",
       "address": "Municipality Middle School,Western Portion,Pettai,Kadayanallur",
       "area": "All Voters"
@@ -2626,19 +2626,19 @@
       "area": ""
     },
     {
-      "id": "TN-221-227M",
-      "boothNo": "227M",
+      "id": "TN-221-227A(W)",
+      "boothNo": "227A(W)",
       "num": 227,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Hithayathul Islam Hr.Sec.School",
       "address": "Hithayathul Islam Hr.Sec.School,Western Wing East Side,Kadayanallur",
       "area": ""
     },
     {
-      "id": "TN-221-227A(W)",
-      "boothNo": "227A(W)",
+      "id": "TN-221-227M",
+      "boothNo": "227M",
       "num": 227,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Hithayathul Islam Hr.Sec.School",
       "address": "Hithayathul Islam Hr.Sec.School,Western Wing East Side,Kadayanallur",
       "area": ""
@@ -2851,19 +2851,19 @@
       "area": ""
     },
     {
-      "id": "TN-221-248M",
-      "boothNo": "248M",
+      "id": "TN-221-248A(W)",
+      "boothNo": "248A(W)",
       "num": 248,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Melapalayam Hindu Middle School",
       "address": "Melapalayam Hindu Middle School,North Portion,Mela Kadayanallur",
       "area": ""
     },
     {
-      "id": "TN-221-248A(W)",
-      "boothNo": "248A(W)",
+      "id": "TN-221-248M",
+      "boothNo": "248M",
       "num": 248,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Melapalayam Hindu Middle School",
       "address": "Melapalayam Hindu Middle School,North Portion,Mela Kadayanallur",
       "area": ""
@@ -3022,19 +3022,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-263M",
-      "boothNo": "263M",
+      "id": "TN-221-263A(W)",
+      "boothNo": "263A(W)",
       "num": 263,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Sri Meenatchi Sundaram Pillai Memorial Hr.Sec.School",
       "address": "Sri Meenatchi Sundaram Pillai Memorial Hr.Sec.School,North New Building Eastern Portion Idaikal",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-263A(W)",
-      "boothNo": "263A(W)",
+      "id": "TN-221-263M",
+      "boothNo": "263M",
       "num": 263,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Sri Meenatchi Sundaram Pillai Memorial Hr.Sec.School",
       "address": "Sri Meenatchi Sundaram Pillai Memorial Hr.Sec.School,North New Building Eastern Portion Idaikal",
       "area": "All Voters"
@@ -3292,19 +3292,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-290M",
-      "boothNo": "290M",
+      "id": "TN-221-290A(W)",
+      "boothNo": "290A(W)",
       "num": 290,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Govt.Middle SchoolNew Building",
       "address": "Govt.Middle SchoolNew Building,Kambili",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-290A(W)",
-      "boothNo": "290A(W)",
+      "id": "TN-221-290M",
+      "boothNo": "290M",
       "num": 290,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Govt.Middle SchoolNew Building",
       "address": "Govt.Middle SchoolNew Building,Kambili",
       "area": "All Voters"
@@ -3373,15 +3373,6 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-297M",
-      "boothNo": "297M",
-      "num": 297,
-      "type": "auxiliary",
-      "name": "Anganwadi Centre, Sambavarvadakrai Keelur 99",
-      "address": "Anganwadi Centre,Sambavarvadakrai Keelur 99",
-      "area": "All Voters"
-    },
-    {
       "id": "TN-221-297A(W)",
       "boothNo": "297A(W)",
       "num": 297,
@@ -3391,9 +3382,9 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-298M",
-      "boothNo": "298M",
-      "num": 298,
+      "id": "TN-221-297M",
+      "boothNo": "297M",
+      "num": 297,
       "type": "auxiliary",
       "name": "Anganwadi Centre, Sambavarvadakrai Keelur 99",
       "address": "Anganwadi Centre,Sambavarvadakrai Keelur 99",
@@ -3404,6 +3395,15 @@
       "boothNo": "298A(W)",
       "num": 298,
       "type": "women",
+      "name": "Anganwadi Centre, Sambavarvadakrai Keelur 99",
+      "address": "Anganwadi Centre,Sambavarvadakrai Keelur 99",
+      "area": "All Voters"
+    },
+    {
+      "id": "TN-221-298M",
+      "boothNo": "298M",
+      "num": 298,
+      "type": "auxiliary",
       "name": "Anganwadi Centre, Sambavarvadakrai Keelur 99",
       "address": "Anganwadi Centre,Sambavarvadakrai Keelur 99",
       "area": "All Voters"
@@ -3490,19 +3490,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-307M",
-      "boothNo": "307M",
+      "id": "TN-221-307A(W)",
+      "boothNo": "307A(W)",
       "num": 307,
-      "type": "auxiliary",
+      "type": "women",
       "name": "PrimarySchool, New Building East Side Middle Portion",
       "address": "PrimarySchool,New Building East Side Middle Portion,Sambavarvadakarai. 99",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-307A(W)",
-      "boothNo": "307A(W)",
+      "id": "TN-221-307M",
+      "boothNo": "307M",
       "num": 307,
-      "type": "women",
+      "type": "auxiliary",
       "name": "PrimarySchool, New Building East Side Middle Portion",
       "address": "PrimarySchool,New Building East Side Middle Portion,Sambavarvadakarai. 99",
       "area": "All Voters"
@@ -3535,19 +3535,19 @@
       "area": ""
     },
     {
-      "id": "TN-221-311M",
-      "boothNo": "311M",
+      "id": "TN-221-311A(W)",
+      "boothNo": "311A(W)",
       "num": 311,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Hindu Primary School",
       "address": "Hindu Primary School,South Portion,East Facing Kallampuli",
       "area": ""
     },
     {
-      "id": "TN-221-311A(W)",
-      "boothNo": "311A(W)",
+      "id": "TN-221-311M",
+      "boothNo": "311M",
       "num": 311,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Hindu Primary School",
       "address": "Hindu Primary School,South Portion,East Facing Kallampuli",
       "area": ""
@@ -3670,19 +3670,19 @@
       "area": "All Voters"
     },
     {
-      "id": "TN-221-323M",
-      "boothNo": "323M",
+      "id": "TN-221-323A(W)",
+      "boothNo": "323A(W)",
       "num": 323,
-      "type": "auxiliary",
+      "type": "women",
       "name": "Govt.Primary. School",
       "address": "Govt.Primary. School,Eastern Wing Urmelalagian",
       "area": "All Voters"
     },
     {
-      "id": "TN-221-323A(W)",
-      "boothNo": "323A(W)",
+      "id": "TN-221-323M",
+      "boothNo": "323M",
       "num": 323,
-      "type": "women",
+      "type": "auxiliary",
       "name": "Govt.Primary. School",
       "address": "Govt.Primary. School,Eastern Wing Urmelalagian",
       "area": "All Voters"
@@ -3704,6 +3704,396 @@
       "name": "Govt Primary School, New Building Southern Portion East Facing",
       "address": "Govt Primary School,New Building Southern Portion East Facing,Kilangadu",
       "area": "All Voters"
+    },
+    {
+      "id": "TN-221-326",
+      "boothNo": "326",
+      "num": 326,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-327",
+      "boothNo": "327",
+      "num": 327,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-328",
+      "boothNo": "328",
+      "num": 328,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-329",
+      "boothNo": "329",
+      "num": 329,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-330",
+      "boothNo": "330",
+      "num": 330,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-331",
+      "boothNo": "331",
+      "num": 331,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-332",
+      "boothNo": "332",
+      "num": 332,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-333",
+      "boothNo": "333",
+      "num": 333,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-334",
+      "boothNo": "334",
+      "num": 334,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-335",
+      "boothNo": "335",
+      "num": 335,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-336",
+      "boothNo": "336",
+      "num": 336,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-337",
+      "boothNo": "337",
+      "num": 337,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-338",
+      "boothNo": "338",
+      "num": 338,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-339",
+      "boothNo": "339",
+      "num": 339,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-340",
+      "boothNo": "340",
+      "num": 340,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-341",
+      "boothNo": "341",
+      "num": 341,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-342",
+      "boothNo": "342",
+      "num": 342,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-343",
+      "boothNo": "343",
+      "num": 343,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-344",
+      "boothNo": "344",
+      "num": 344,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-345",
+      "boothNo": "345",
+      "num": 345,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-346",
+      "boothNo": "346",
+      "num": 346,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-347",
+      "boothNo": "347",
+      "num": 347,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-348",
+      "boothNo": "348",
+      "num": 348,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-349",
+      "boothNo": "349",
+      "num": 349,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-350",
+      "boothNo": "350",
+      "num": 350,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-351",
+      "boothNo": "351",
+      "num": 351,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-352",
+      "boothNo": "352",
+      "num": 352,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-353",
+      "boothNo": "353",
+      "num": 353,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-354",
+      "boothNo": "354",
+      "num": 354,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-355",
+      "boothNo": "355",
+      "num": 355,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-356",
+      "boothNo": "356",
+      "num": 356,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-357",
+      "boothNo": "357",
+      "num": 357,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-358",
+      "boothNo": "358",
+      "num": 358,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-359",
+      "boothNo": "359",
+      "num": 359,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-360",
+      "boothNo": "360",
+      "num": 360,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-361",
+      "boothNo": "361",
+      "num": 361,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-362",
+      "boothNo": "362",
+      "num": 362,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-363",
+      "boothNo": "363",
+      "num": 363,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
+    },
+    {
+      "id": "TN-221-364",
+      "boothNo": "364",
+      "num": 364,
+      "type": "regular",
+      "name": "",
+      "address": "",
+      "area": "",
+      "source": "Tamil Nadu CEO Form20 2026"
     }
   ]
 }
