@@ -18,7 +18,7 @@ ELECTIONS_TN_2026 = REPO_ROOT / "public/data/elections/ac/TN/2026.json"
 BOOTHS_TN = REPO_ROOT / "public/data/booths/TN"
 
 # In-scope 230 ACs minus these (no Desktop Form20 PDF staged).
-EXCLUDED_IN_SCOPE_230: frozenset[int] = frozenset({213, 214, 217, 218})
+EXCLUDED_IN_SCOPE_230: frozenset[int] = frozenset()
 
 # Image-only Form20 scans with poor OCR yield; do not run booth OCR ensemble (CEO text PDF needed).
 SKIP_FORM20_OCR_AC_NOS: frozenset[int] = frozenset(range(152, 160))

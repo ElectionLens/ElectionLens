@@ -24,7 +24,7 @@ from tn_2026_booth_common import BOOTHS_TN, REPO_ROOT, load_schema_tn_ac_map, lo
 from tn_2026_form20_2026 import parse_form20_pdf
 from tn_2026_form20_coverage import sync_booths_json_from_form20
 
-EXCLUDED_IN_SCOPE_230: frozenset[int] = frozenset({213, 214, 217, 218})
+EXCLUDED_IN_SCOPE_230: frozenset[int] = frozenset()
 
 
 def main() -> None:

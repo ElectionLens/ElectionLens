@@ -61,6 +61,7 @@
     "data:tn2026-form20-until-done": "python3 scripts/tn_2026_form20_until_done.py --all --in-scope-230 --phase a --write --sync-booths-json --allow-extra-pdf-columns --fill-missing-zeros --triage-out scripts/cache/tn-2026-form20-until-done-triage.json",
     "data:tn2026-form20-until-strict": "python3 scripts/tn_2026_form20_until_done.py --all --in-scope-230 --phase b --write --allow-extra-pdf-columns --fill-missing-zeros --reconcile --triage-out scripts/cache/tn-2026-form20-strict-triage.json",
     "data:tn2026-force-strict": "python3 scripts/tn_2026_force_strict.py --all --in-scope-230 --write",
+    "data:tn2026-reextract-low-booths": "python3 scripts/tn_2026_reextract_low_booths.py --all --in-scope-230 --write --min-coverage 1.0",
     "data:tn2026-verify-strict": "python3 scripts/tn_2026_verify_booths_2026.py --all --compare-elections --strict-elections --ci",
     "data:tn2026-missing-report": "python3 scripts/tn_2026_missing_data_report.py",
     "data:tn2026-accuracy-report": "python3 scripts/tn_2026_accuracy_report.py",

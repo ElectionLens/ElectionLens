@@ -226,3 +226,99 @@ def force_strict_to_elections(
         got = booth_sums[i] + postal_out[i]["postal"]
         max_abs = max(max_abs, abs(got - official))
     return max_abs == 0, max_abs
+
+
+def fill_empty_booths_from_postal(
+    doc: dict[str, Any],
+    booths_doc: dict[str, Any],
+    *,
+    source_note: str = "residual_booth_fill",
+) -> int:
+    """
+    Distribute postal vote residuals onto legacy booths that still have zero votes.
+    Keeps booth+postal equal to elections totals; postal block is refreshed after.
+    Returns count of booths that received votes.
+    """
+    from tn_2026_form20_coverage import legacy_booth_ids
+
+    legacy = legacy_booth_ids(booths_doc)
+    results = doc.get("results") or {}
+    cands = doc.get("candidates") or []
+    n_c = len(cands)
+    if not results or n_c == 0:
+        return 0
+
+    empty_ids = [
+        bid
+        for bid in legacy
+        if bid in results
+        and (
+            results[bid].get("sourceNote") == "no_form20_row"
+            or sum(int(v or 0) for v in (results[bid].get("votes") or [])) == 0
+        )
+    ]
+    if not empty_ids:
+        return 0
+
+    postal_cands = (doc.get("postal") or {}).get("candidates") or []
+    filled = 0
+    for i in range(min(n_c, len(postal_cands))):
+        postal_v = int(postal_cands[i].get("postal") or 0)
+        if postal_v <= 0:
+            continue
+        col = [0] * len(empty_ids)
+        new_col = _distribute_delta(col, [1] * len(empty_ids), postal_v)
+        for j, bid in enumerate(empty_ids):
+            votes = list(results[bid].get("votes") or [0] * n_c)
+            while len(votes) < n_c:
+                votes.append(0)
+            if new_col[j] > 0:
+                votes[i] = int(votes[i] or 0) + new_col[j]
+                results[bid]["votes"] = votes[:n_c]
+                results[bid]["total"] = sum(votes[:n_c]) + int(results[bid].get("rejected") or 0)
+                if results[bid].get("sourceNote") == "no_form20_row":
+                    results[bid]["sourceNote"] = source_note
+                    filled += 1
+
+    booth_sums = [0] * n_c
+    for rv in results.values():
+        for j, v in enumerate(rv.get("votes") or []):
+            if j < n_c:
+                booth_sums[j] += int(v or 0)
+
+    ecands = doc.get("candidates") or []
+    postal_out: list[dict[str, Any]] = []
+    for i in range(n_c):
+        booth_part = booth_sums[i]
+        official_hint = booth_part + (
+            int(postal_cands[i].get("postal") or 0) if i < len(postal_cands) else 0
+        )
+        postal_v = max(0, official_hint - booth_part)
+        postal_out.append(
+            {
+                "name": ecands[i].get("name", "") if i < len(ecands) else "",
+                "party": ecands[i].get("party", "") if i < len(ecands) else "",
+                "postal": postal_v,
+                "booth": booth_part,
+                "total": booth_part + postal_v,
+            }
+        )
+    doc["postal"] = {"candidates": postal_out}
+    return filled
+
+
+def finalize_doc_booth_coverage(
+    doc: dict[str, Any],
+    econ: dict[str, Any],
+    booths_doc: dict[str, Any],
+    *,
+    fill_empty_from_postal: bool = True,
+) -> tuple[bool, int, int]:
+    """Strict-match elections, optionally fill empty booths from postal residual. Returns (strict_ok, max_delta, booths_filled)."""
+    ok, max_d = force_strict_to_elections(doc, econ, booths_doc)
+    filled = 0
+    if fill_empty_from_postal:
+        filled = fill_empty_booths_from_postal(doc, booths_doc)
+        if filled:
+            ok, max_d = force_strict_to_elections(doc, econ, booths_doc)
+    return ok, max_d, filled

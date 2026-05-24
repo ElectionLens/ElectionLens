@@ -24,7 +24,7 @@ from tn_2026_form20_coverage import (
     phase_a_ok,
 )
 
-EXCLUDED_IN_SCOPE_230: frozenset[int] = frozenset({213, 214, 217, 218})
+EXCLUDED_IN_SCOPE_230: frozenset[int] = frozenset()
 
 
 def main() -> None:

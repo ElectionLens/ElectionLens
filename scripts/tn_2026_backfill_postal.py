@@ -20,7 +20,7 @@ if str(_SCRIPTS_DIR) not in sys.path:
 from tn_2026_booth_common import BOOTHS_TN, REPO_ROOT, load_schema_tn_ac_map, load_tn_2026_elections
 from tn_2026_form20_2026 import extract_form20_postal_votes
 
-EXCLUDED_IN_SCOPE_230: frozenset[int] = frozenset({213, 214, 217, 218})
+EXCLUDED_IN_SCOPE_230: frozenset[int] = frozenset()
 
 
 def _apply_postal_to_doc(doc: dict, postal: list[int] | None, json_candidates: list[dict]) -> bool:
