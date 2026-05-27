@@ -10135,19 +10135,19 @@
     },
     "TN-148-3B": {
       "votes": [
-        27555,
-        64272,
         0,
         0,
-        272,
-        398,
-        357,
         0,
         0,
-        210,
-        348,
-        183,
-        73,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -10156,12 +10156,12 @@
         0,
         0
       ],
-      "total": 93668,
+      "total": 0,
       "rejected": 0,
       "name": "PANCHAYAT UNION MIDDLE SCHOOL NEW TERRACED BUILDING SOUTH PORTION FACING WEST",
       "address": "PANCHAYAT UNION MIDDLE SCHOOL NEW TERRACED BUILDING SOUTH PORTION FACING WEST, THIRUMANDURAI 1.THIRUMANTHURAI KEERNOR , 2.THIRUMANTHURAI NOVA NAGAR , 99",
       "area": "All Voters",
-      "sourceNote": "residual_booth_fill"
+      "sourceNote": "no_form20_row"
     }
   },
   "summary": {
@@ -10187,16 +10187,16 @@
       {
         "name": "SIVASANKAR. S.S",
         "party": "DMK",
-        "postal": 0,
-        "booth": 87237,
-        "total": 87237
+        "postal": 126,
+        "booth": 59682,
+        "total": 59808
       },
       {
         "name": "SARANYA. A",
         "party": "AIADMK",
-        "postal": 0,
-        "booth": 71680,
-        "total": 71680
+        "postal": 968,
+        "booth": 7408,
+        "total": 8376
       },
       {
         "name": "REVATHI MUTHAMILSELVAN",
@@ -10215,23 +10215,23 @@
       {
         "name": "THANASEKAR. R",
         "party": "IND",
-        "postal": 0,
-        "booth": 677,
-        "total": 677
+        "postal": 1,
+        "booth": 405,
+        "total": 406
       },
       {
         "name": "ELANGOVAN. K",
         "party": "NMK",
-        "postal": 0,
-        "booth": 546,
-        "total": 546
+        "postal": 5,
+        "booth": 148,
+        "total": 153
       },
       {
         "name": "SHAJAHAN",
         "party": "IND",
         "postal": 0,
-        "booth": 541,
-        "total": 541
+        "booth": 184,
+        "total": 184
       },
       {
         "name": "NALLATHAMBI. P",
@@ -10251,29 +10251,29 @@
         "name": "VINOTHKUMAR. M",
         "party": "IND",
         "postal": 0,
-        "booth": 421,
-        "total": 421
+        "booth": 211,
+        "total": 211
       },
       {
         "name": "NALLUSAMY. K.M",
         "party": "BSP",
         "postal": 0,
-        "booth": 409,
-        "total": 409
+        "booth": 61,
+        "total": 61
       },
       {
         "name": "MUTHAMILSELVAN. D",
         "party": "IND",
-        "postal": 0,
-        "booth": 268,
-        "total": 268
+        "postal": 1,
+        "booth": 85,
+        "total": 86
       },
       {
         "name": "UDHAYASURIYAN. T",
         "party": "IND",
         "postal": 0,
-        "booth": 210,
-        "total": 210
+        "booth": 137,
+        "total": 137
       },
       {
         "name": "RAJA. S.P",
@@ -10324,7 +10324,186 @@
         "booth": 62,
         "total": 62
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 346,
+    "form20ParsedBooths": 345,
+    "estimatedBooths": 0,
+    "missingBooths": 1,
+    "form20ParsedPct": 99.7,
+    "postalVotes": 1101,
+    "postalPct": 0.5,
+    "unmappedVotes": 92567,
+    "unmappedPct": 40.1,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "SIVASANKAR. S.S",
+        "party": "DMK",
+        "unmapped": 27429,
+        "booth": 59682,
+        "postal": 126,
+        "total": 87237
+      },
+      {
+        "name": "SARANYA. A",
+        "party": "AIADMK",
+        "unmapped": 63304,
+        "booth": 7408,
+        "postal": 968,
+        "total": 71680
+      },
+      {
+        "name": "REVATHI MUTHAMILSELVAN",
+        "party": "TVK",
+        "unmapped": 0,
+        "booth": 59170,
+        "postal": 0,
+        "total": 59170
+      },
+      {
+        "name": "KEERTHIVASAN. R",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 7482,
+        "postal": 0,
+        "total": 7482
+      },
+      {
+        "name": "THANASEKAR. R",
+        "party": "IND",
+        "unmapped": 271,
+        "booth": 405,
+        "postal": 1,
+        "total": 677
+      },
+      {
+        "name": "ELANGOVAN. K",
+        "party": "NMK",
+        "unmapped": 393,
+        "booth": 148,
+        "postal": 5,
+        "total": 546
+      },
+      {
+        "name": "SHAJAHAN",
+        "party": "IND",
+        "unmapped": 357,
+        "booth": 184,
+        "postal": 0,
+        "total": 541
+      },
+      {
+        "name": "NALLATHAMBI. P",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 507,
+        "postal": 0,
+        "total": 507
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 484,
+        "postal": 0,
+        "total": 484
+      },
+      {
+        "name": "VINOTHKUMAR. M",
+        "party": "IND",
+        "unmapped": 210,
+        "booth": 211,
+        "postal": 0,
+        "total": 421
+      },
+      {
+        "name": "NALLUSAMY. K.M",
+        "party": "BSP",
+        "unmapped": 348,
+        "booth": 61,
+        "postal": 0,
+        "total": 409
+      },
+      {
+        "name": "MUTHAMILSELVAN. D",
+        "party": "IND",
+        "unmapped": 182,
+        "booth": 85,
+        "postal": 1,
+        "total": 268
+      },
+      {
+        "name": "UDHAYASURIYAN. T",
+        "party": "IND",
+        "unmapped": 73,
+        "booth": 137,
+        "postal": 0,
+        "total": 210
+      },
+      {
+        "name": "RAJA. S.P",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 189,
+        "postal": 0,
+        "total": 189
+      },
+      {
+        "name": "SIVASANKARAN. P",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 172,
+        "postal": 0,
+        "total": 172
+      },
+      {
+        "name": "ANBUTHAMIZHAN. T",
+        "party": "Thamizh Perarasu Katchi",
+        "unmapped": 0,
+        "booth": 149,
+        "postal": 0,
+        "total": 149
+      },
+      {
+        "name": "VIVEK. T",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 144,
+        "postal": 0,
+        "total": 144
+      },
+      {
+        "name": "SAMINATHAN. C",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 137,
+        "postal": 0,
+        "total": 137
+      },
+      {
+        "name": "CHANDRASEKAR. P",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 85,
+        "postal": 0,
+        "total": 85
+      },
+      {
+        "name": "KATHIRAVAN. A.C",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 62,
+        "postal": 0,
+        "total": 62
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

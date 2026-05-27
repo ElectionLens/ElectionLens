@@ -9242,30 +9242,30 @@
       {
         "name": "KEERTHANA S",
         "party": "TVK",
-        "postal": 928,
+        "postal": 0,
         "booth": 67781,
-        "total": 68709
+        "total": 67781
       },
       {
         "name": "ASHOKAN G",
         "party": "INC",
-        "postal": 843,
+        "postal": 104,
         "booth": 56196,
-        "total": 57039
+        "total": 56300
       },
       {
         "name": "RAJENTHRABHALAJI K T",
         "party": "AIADMK",
-        "postal": 844,
+        "postal": 34,
         "booth": 50234,
-        "total": 51078
+        "total": 50268
       },
       {
         "name": "ESTHER MARY DIANA A",
         "party": "NTK",
-        "postal": 175,
+        "postal": 0,
         "booth": 10016,
-        "total": 10191
+        "total": 10016
       },
       {
         "name": "KANIPANDI M",
@@ -9277,16 +9277,16 @@
       {
         "name": "GANESAN M",
         "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
-        "postal": 58,
+        "postal": 29,
         "booth": 1671,
-        "total": 1729
+        "total": 1700
       },
       {
         "name": "NOTA",
         "party": "NOTA",
-        "postal": 21,
+        "postal": 15,
         "booth": 927,
-        "total": 948
+        "total": 942
       },
       {
         "name": "SURESH K",
@@ -9305,9 +9305,9 @@
       {
         "name": "NAGALAKSHMI V",
         "party": "IND",
-        "postal": 2,
+        "postal": 0,
         "booth": 203,
-        "total": 205
+        "total": 203
       },
       {
         "name": "VENKATESH V",
@@ -9333,9 +9333,9 @@
       {
         "name": "GANESAN S",
         "party": "IND",
-        "postal": 1,
+        "postal": 0,
         "booth": 101,
-        "total": 102
+        "total": 101
       },
       {
         "name": "GANESAN V",
@@ -9344,7 +9344,146 @@
         "booth": 79,
         "total": 80
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "mostly_verified",
+    "totalBooths": 380,
+    "form20ParsedBooths": 380,
+    "estimatedBooths": 0,
+    "missingBooths": 0,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 231,
+    "postalPct": 0.1,
+    "unmappedVotes": 2690,
+    "unmappedPct": 1.4,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "KEERTHANA S",
+        "party": "TVK",
+        "unmapped": 928,
+        "booth": 67781,
+        "postal": 0,
+        "total": 68709
+      },
+      {
+        "name": "ASHOKAN G",
+        "party": "INC",
+        "unmapped": 739,
+        "booth": 56196,
+        "postal": 104,
+        "total": 57039
+      },
+      {
+        "name": "RAJENTHRABHALAJI K T",
+        "party": "AIADMK",
+        "unmapped": 810,
+        "booth": 50234,
+        "postal": 34,
+        "total": 51078
+      },
+      {
+        "name": "ESTHER MARY DIANA A",
+        "party": "NTK",
+        "unmapped": 175,
+        "booth": 10016,
+        "postal": 0,
+        "total": 10191
+      },
+      {
+        "name": "KANIPANDI M",
+        "party": "PT",
+        "unmapped": 0,
+        "booth": 2474,
+        "postal": 39,
+        "total": 2513
+      },
+      {
+        "name": "GANESAN M",
+        "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
+        "unmapped": 29,
+        "booth": 1671,
+        "postal": 29,
+        "total": 1729
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 6,
+        "booth": 927,
+        "postal": 15,
+        "total": 948
+      },
+      {
+        "name": "SURESH K",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 228,
+        "postal": 1,
+        "total": 229
+      },
+      {
+        "name": "RAMESH P",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 210,
+        "postal": 3,
+        "total": 213
+      },
+      {
+        "name": "NAGALAKSHMI V",
+        "party": "IND",
+        "unmapped": 2,
+        "booth": 203,
+        "postal": 0,
+        "total": 205
+      },
+      {
+        "name": "VENKATESH V",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 195,
+        "postal": 4,
+        "total": 199
+      },
+      {
+        "name": "CHINNADURAI ALIAS DIMITRO S",
+        "party": "Communist Party of India (Marxist-Leninist) (Liberation)",
+        "unmapped": 0,
+        "booth": 162,
+        "postal": 0,
+        "total": 162
+      },
+      {
+        "name": "MURUGAN M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 119,
+        "postal": 1,
+        "total": 120
+      },
+      {
+        "name": "GANESAN S",
+        "party": "IND",
+        "unmapped": 1,
+        "booth": 101,
+        "postal": 0,
+        "total": 102
+      },
+      {
+        "name": "GANESAN V",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 79,
+        "postal": 1,
+        "total": 80
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

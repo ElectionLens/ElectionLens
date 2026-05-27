@@ -8051,9 +8051,9 @@
       {
         "name": "N ELAIYARAJA",
         "party": "TVK",
-        "postal": 28262,
+        "postal": 0,
         "booth": 41939,
-        "total": 70201
+        "total": 41939
       },
       {
         "name": "T M  TAMILSELVAM",
@@ -8107,16 +8107,16 @@
       {
         "name": "TAMILMANI",
         "party": "IND",
-        "postal": 61,
+        "postal": 0,
         "booth": 180,
-        "total": 241
+        "total": 180
       },
       {
         "name": "VIJIYAL",
         "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
-        "postal": 12,
+        "postal": 3,
         "booth": 194,
-        "total": 206
+        "total": 197
       },
       {
         "name": "BAKKIYARAJ R",
@@ -8146,7 +8146,138 @@
         "booth": 115,
         "total": 115
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "partial",
+    "totalBooths": 345,
+    "form20ParsedBooths": 345,
+    "estimatedBooths": 0,
+    "missingBooths": 0,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 3,
+    "postalPct": 0.0,
+    "unmappedVotes": 28332,
+    "unmappedPct": 13.8,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "N ELAIYARAJA",
+        "party": "TVK",
+        "unmapped": 28262,
+        "booth": 41939,
+        "postal": 0,
+        "total": 70201
+      },
+      {
+        "name": "T M  TAMILSELVAM",
+        "party": "AIADMK",
+        "unmapped": 0,
+        "booth": 65003,
+        "postal": 0,
+        "total": 65003
+      },
+      {
+        "name": "R KUPPUSAMY",
+        "party": "INC",
+        "unmapped": 0,
+        "booth": 60993,
+        "postal": 0,
+        "total": 60993
+      },
+      {
+        "name": "MEKALA",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 6629,
+        "postal": 0,
+        "total": 6629
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 881,
+        "postal": 0,
+        "total": 881
+      },
+      {
+        "name": "K THAVARAJ",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 291,
+        "postal": 0,
+        "total": 291
+      },
+      {
+        "name": "MUNIRAJ",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 257,
+        "postal": 0,
+        "total": 257
+      },
+      {
+        "name": "KUMARAVEL",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 247,
+        "postal": 0,
+        "total": 247
+      },
+      {
+        "name": "TAMILMANI",
+        "party": "IND",
+        "unmapped": 61,
+        "booth": 180,
+        "postal": 0,
+        "total": 241
+      },
+      {
+        "name": "VIJIYAL",
+        "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
+        "unmapped": 9,
+        "booth": 194,
+        "postal": 3,
+        "total": 206
+      },
+      {
+        "name": "BAKKIYARAJ R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 176,
+        "postal": 0,
+        "total": 176
+      },
+      {
+        "name": "A SAMRAJ",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 155,
+        "postal": 0,
+        "total": 155
+      },
+      {
+        "name": "PALANI R",
+        "party": "Thakkam Katchi",
+        "unmapped": 0,
+        "booth": 135,
+        "postal": 0,
+        "total": 135
+      },
+      {
+        "name": "RAMESHWARI",
+        "party": "Bharat Jan Chikitsa Party",
+        "unmapped": 0,
+        "booth": 115,
+        "postal": 0,
+        "total": 115
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

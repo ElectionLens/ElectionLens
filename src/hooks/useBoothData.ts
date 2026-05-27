@@ -1,4 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
+import type { BoothDataQuality, BoothVoteSource, UnmappedData } from '../utils/boothDataQuality';
+import { boothVoteSource } from '../utils/boothDataQuality';
 
 // Types for booth data
 export interface Booth {
@@ -36,6 +38,7 @@ export interface BoothResult {
   name?: string;
   address?: string;
   area?: string;
+  sourceNote?: string;
 }
 
 export interface PostalCandidate {
@@ -75,12 +78,16 @@ export interface BoothResults {
     marginPercent: number;
   };
   postal?: PostalData;
+  unmapped?: UnmappedData;
+  dataQuality?: BoothDataQuality;
+  reconciledToElections?: boolean;
 }
 
 // Merged booth data for display
 export interface BoothWithResult extends Booth {
   result?: BoothResult;
   winner?: { name: string; party: string; votes: number; percent: number };
+  voteSource?: BoothVoteSource;
 }
 
 interface UseBoothDataReturn {
@@ -241,43 +248,14 @@ export function useBoothData(): UseBoothDataReturn {
         // If result doesn't have name but booth does, keep booth's name (already set above)
       }
 
-      // #region agent log
-      if (
-        acId === 'TN-156' &&
-        (boothId === 'TN-156-1' ||
-          boothId === 'TN-156-2' ||
-          boothId === 'TN-156-002' ||
-          boothId === 'TN-156-016')
-      ) {
-        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            location: 'useBoothData.ts:250',
-            message: 'Booth name check',
-            data: {
-              boothId,
-              acId,
-              year: boothResults?.year,
-              hasBoothInMap: !!boothMap.get(boothId),
-              resultName: result?.name?.substring(0, 50),
-              resultAddress: result?.address?.substring(0, 50),
-              boothName: booth?.name?.substring(0, 50),
-              boothAddress: booth?.address?.substring(0, 50),
-              boothArea: booth?.area?.substring(0, 50),
-            },
-            timestamp: Date.now(),
-            sessionId: 'debug-session',
-            runId: 'booth-names-2024',
-            hypothesisId: 'A',
-          }),
-        }).catch(() => {});
-      }
-      // #endregion
+      const voteTotal = result ? result.votes.reduce((s, v) => s + (v || 0), 0) : 0;
+      const voteSource = result
+        ? boothVoteSource(result.sourceNote, voteTotal)
+        : ('missing' as BoothVoteSource);
 
       let winner: BoothWithResult['winner'] = undefined;
 
-      if (result && boothResults && boothResults.candidates) {
+      if (result && boothResults && boothResults.candidates && voteSource === 'form20') {
         // Calculate AC-level vote totals for validation
         // This helps filter out candidates with corrupted booth data
         const acVoteTotals: number[] = boothResults.candidates.map((_, idx) => {
@@ -353,6 +331,7 @@ export function useBoothData(): UseBoothDataReturn {
         ...booth,
         ...(result !== undefined && { result }),
         ...(winner !== undefined && { winner }),
+        voteSource,
       });
     }
 

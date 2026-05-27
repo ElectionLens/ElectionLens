@@ -13768,16 +13768,16 @@
       {
         "name": "DR.PRABHU. TK",
         "party": "TVK",
-        "postal": 100904,
+        "postal": 316,
         "booth": 454,
-        "total": 101358
+        "total": 770
       },
       {
         "name": "MANGUDI. S",
         "party": "INC",
-        "postal": 24807,
+        "postal": 867,
         "booth": 30477,
-        "total": 55284
+        "total": 31344
       },
       {
         "name": "DHERPOKI V.PANDI",
@@ -13789,16 +13789,16 @@
       {
         "name": "SEEMAN",
         "party": "NTK",
-        "postal": 30483,
+        "postal": 13,
         "booth": 310,
-        "total": 30793
+        "total": 323
       },
       {
         "name": "NEWTON BABU. C",
         "party": "PT",
-        "postal": 219,
+        "postal": 5,
         "booth": 577,
-        "total": 796
+        "total": 582
       },
       {
         "name": "VELU. K",
@@ -13838,44 +13838,44 @@
       {
         "name": "PRABU. G",
         "party": "IND",
-        "postal": 288,
+        "postal": 1,
         "booth": 214,
-        "total": 502
+        "total": 215
       },
       {
         "name": "MANIMARAN. R",
         "party": "IND",
-        "postal": 306,
+        "postal": 9,
         "booth": 165,
-        "total": 471
+        "total": 174
       },
       {
         "name": "KALIDASS. R",
         "party": "IND",
-        "postal": 9,
+        "postal": 2,
         "booth": 460,
-        "total": 469
+        "total": 462
       },
       {
         "name": "RANJITHKUMAR BALUSAMY",
         "party": "BSP",
-        "postal": 197,
+        "postal": 2,
         "booth": 261,
-        "total": 458
+        "total": 263
       },
       {
         "name": "PANDI. S",
         "party": "IND",
-        "postal": 147,
+        "postal": 0,
         "booth": 214,
-        "total": 361
+        "total": 214
       },
       {
         "name": "JEEVITHA. A",
         "party": "IND",
-        "postal": 152,
+        "postal": 0,
         "booth": 169,
-        "total": 321
+        "total": 169
       },
       {
         "name": "AZIZ ABDUL RAHMAN. J",
@@ -13908,16 +13908,16 @@
       {
         "name": "RAMU. M",
         "party": "IND",
-        "postal": 45,
+        "postal": 2,
         "booth": 171,
-        "total": 216
+        "total": 173
       },
       {
         "name": "SURESH. V",
         "party": "IND",
-        "postal": 61,
+        "postal": 0,
         "booth": 155,
-        "total": 216
+        "total": 155
       },
       {
         "name": "MUTHUKUMAR. K",
@@ -13947,7 +13947,234 @@
         "booth": 157,
         "total": 157
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 388,
+    "form20ParsedBooths": 388,
+    "estimatedBooths": 0,
+    "missingBooths": 0,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 1315,
+    "postalPct": 0.6,
+    "unmappedVotes": 156401,
+    "unmappedPct": 68.2,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "DR.PRABHU. TK",
+        "party": "TVK",
+        "unmapped": 100588,
+        "booth": 454,
+        "postal": 316,
+        "total": 101358
+      },
+      {
+        "name": "MANGUDI. S",
+        "party": "INC",
+        "unmapped": 23940,
+        "booth": 30477,
+        "postal": 867,
+        "total": 55284
+      },
+      {
+        "name": "DHERPOKI V.PANDI",
+        "party": "Amma Makkal Munnettra Kazagam",
+        "unmapped": 0,
+        "booth": 33352,
+        "postal": 0,
+        "total": 33352
+      },
+      {
+        "name": "SEEMAN",
+        "party": "NTK",
+        "unmapped": 30470,
+        "booth": 310,
+        "postal": 13,
+        "total": 30793
+      },
+      {
+        "name": "NEWTON BABU. C",
+        "party": "PT",
+        "unmapped": 214,
+        "booth": 577,
+        "postal": 5,
+        "total": 796
+      },
+      {
+        "name": "VELU. K",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 597,
+        "postal": 92,
+        "total": 689
+      },
+      {
+        "name": "KALIMUTHU. A",
+        "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
+        "unmapped": 0,
+        "booth": 602,
+        "postal": 0,
+        "total": 602
+      },
+      {
+        "name": "KARUPPIAH. K",
+        "party": "Republican Party of India (Athawale)",
+        "unmapped": 0,
+        "booth": 590,
+        "postal": 0,
+        "total": 590
+      },
+      {
+        "name": "DINESH. K",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 531,
+        "postal": 0,
+        "total": 531
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 513,
+        "postal": 6,
+        "total": 519
+      },
+      {
+        "name": "PRABU. G",
+        "party": "IND",
+        "unmapped": 287,
+        "booth": 214,
+        "postal": 1,
+        "total": 502
+      },
+      {
+        "name": "MANIMARAN. R",
+        "party": "IND",
+        "unmapped": 297,
+        "booth": 165,
+        "postal": 9,
+        "total": 471
+      },
+      {
+        "name": "KALIDASS. R",
+        "party": "IND",
+        "unmapped": 7,
+        "booth": 460,
+        "postal": 2,
+        "total": 469
+      },
+      {
+        "name": "RANJITHKUMAR BALUSAMY",
+        "party": "BSP",
+        "unmapped": 195,
+        "booth": 261,
+        "postal": 2,
+        "total": 458
+      },
+      {
+        "name": "PANDI. S",
+        "party": "IND",
+        "unmapped": 147,
+        "booth": 214,
+        "postal": 0,
+        "total": 361
+      },
+      {
+        "name": "JEEVITHA. A",
+        "party": "IND",
+        "unmapped": 152,
+        "booth": 169,
+        "postal": 0,
+        "total": 321
+      },
+      {
+        "name": "AZIZ ABDUL RAHMAN. J",
+        "party": "Samaniya Makkal Nala Katchi",
+        "unmapped": 0,
+        "booth": 315,
+        "postal": 0,
+        "total": 315
+      },
+      {
+        "name": "SHANTHI. B",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 263,
+        "postal": 0,
+        "total": 263
+      },
+      {
+        "name": "LAKSHMANAN. R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 258,
+        "postal": 0,
+        "total": 258
+      },
+      {
+        "name": "VEERAMANIKANDAN. V",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 236,
+        "postal": 0,
+        "total": 236
+      },
+      {
+        "name": "RAMU. M",
+        "party": "IND",
+        "unmapped": 43,
+        "booth": 171,
+        "postal": 2,
+        "total": 216
+      },
+      {
+        "name": "SURESH. V",
+        "party": "IND",
+        "unmapped": 61,
+        "booth": 155,
+        "postal": 0,
+        "total": 216
+      },
+      {
+        "name": "MUTHUKUMAR. K",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 175,
+        "postal": 0,
+        "total": 175
+      },
+      {
+        "name": "SELVI. K",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 169,
+        "postal": 0,
+        "total": 169
+      },
+      {
+        "name": "UDHUMAN ALI. M.S",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 166,
+        "postal": 0,
+        "total": 166
+      },
+      {
+        "name": "RAMANATHAN. S.V",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 157,
+        "postal": 0,
+        "total": 157
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

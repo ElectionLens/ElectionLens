@@ -2355,6 +2355,107 @@ button.state-map-summary-row {
   min-width: 0;
 }
 
+.booth-quality-banner {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.booth-quality-banner[data-compact='true'] {
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.booth-quality-info {
+  border-color: rgba(37, 99, 235, 0.35);
+  background: rgba(239, 246, 255, 0.95);
+  color: #1e3a8a;
+}
+
+.booth-quality-warning {
+  border-color: rgba(217, 119, 6, 0.45);
+  background: rgba(255, 251, 235, 0.95);
+  color: #92400e;
+}
+
+.booth-quality-ok {
+  border-color: rgba(22, 163, 74, 0.35);
+  background: rgba(240, 253, 244, 0.95);
+  color: #166534;
+}
+
+.booth-quality-body {
+  min-width: 0;
+}
+
+.booth-source-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.booth-source-missing {
+  background: rgba(254, 226, 226, 0.9);
+  color: #991b1b;
+  border: 1px solid rgba(248, 113, 113, 0.5);
+}
+
+.booth-source-estimated {
+  background: rgba(254, 243, 199, 0.9);
+  color: #92400e;
+  border: 1px solid rgba(251, 191, 36, 0.5);
+}
+
+.booth-no-data-notice {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(217, 119, 6, 0.35);
+  background: rgba(255, 251, 235, 0.9);
+  color: #92400e;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.booth-no-data-notice p {
+  margin: 0;
+}
+
+.unmapped-votes-section {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border, #e2e8f0);
+}
+
+.unmapped-votes-section h4 {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.unmapped-note {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--muted-foreground, #64748b);
+}
+
+.postal-stat.unmapped-stat .stat-value {
+  color: #b45309;
+}
+
 /* Compact Winner Card */
 .winner-card-compact {
   padding: 12px;

@@ -13155,9 +13155,9 @@
       {
         "name": "DR.TAMIZHARASI.P",
         "party": "PMK",
-        "postal": 43362,
+        "postal": 24,
         "booth": 16429,
-        "total": 59791
+        "total": 16453
       },
       {
         "name": "ANANTHI DHANDAPANI",
@@ -13271,7 +13271,178 @@
         "booth": 129,
         "total": 129
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 459,
+    "form20ParsedBooths": 316,
+    "estimatedBooths": 0,
+    "missingBooths": 143,
+    "form20ParsedPct": 68.8,
+    "postalVotes": 24,
+    "postalPct": 0.0,
+    "unmappedVotes": 43338,
+    "unmappedPct": 20.7,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "PREMALLATHA VIJAYAKANT",
+        "party": "DMDK",
+        "unmapped": 0,
+        "booth": 69351,
+        "postal": 0,
+        "total": 69351
+      },
+      {
+        "name": "VIJAY.S",
+        "party": "TVK",
+        "unmapped": 0,
+        "booth": 66964,
+        "postal": 0,
+        "total": 66964
+      },
+      {
+        "name": "DR.TAMIZHARASI.P",
+        "party": "PMK",
+        "unmapped": 43338,
+        "booth": 16429,
+        "postal": 24,
+        "total": 59791
+      },
+      {
+        "name": "ANANTHI DHANDAPANI",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 6047,
+        "postal": 0,
+        "total": 6047
+      },
+      {
+        "name": "ARIVAZHAGAN.E.N",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 1896,
+        "postal": 0,
+        "total": 1896
+      },
+      {
+        "name": "ARIVUDAINAMBI.S",
+        "party": "Anti Corruption Dynamic Party",
+        "unmapped": 0,
+        "booth": 904,
+        "postal": 0,
+        "total": 904
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 755,
+        "postal": 0,
+        "total": 755
+      },
+      {
+        "name": "DURAI.K",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 738,
+        "postal": 0,
+        "total": 738
+      },
+      {
+        "name": "GNANASUNDARI.M",
+        "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
+        "unmapped": 0,
+        "booth": 611,
+        "postal": 0,
+        "total": 611
+      },
+      {
+        "name": "SIVAPRAKASAM.V",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 374,
+        "postal": 0,
+        "total": 374
+      },
+      {
+        "name": "SRINIVASAN.R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 328,
+        "postal": 0,
+        "total": 328
+      },
+      {
+        "name": "BALU.P",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 252,
+        "postal": 0,
+        "total": 252
+      },
+      {
+        "name": "SIDHARTHAN.S",
+        "party": "Desiya Makkal Sakthi Katchi",
+        "unmapped": 0,
+        "booth": 225,
+        "postal": 0,
+        "total": 225
+      },
+      {
+        "name": "EZHILKUMAR.K",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 175,
+        "postal": 0,
+        "total": 175
+      },
+      {
+        "name": "DEIVEEGADASS.M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 163,
+        "postal": 0,
+        "total": 163
+      },
+      {
+        "name": "JAYAPRAKASH.S",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 162,
+        "postal": 0,
+        "total": 162
+      },
+      {
+        "name": "SIVASANKARAN.K",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 161,
+        "postal": 0,
+        "total": 161
+      },
+      {
+        "name": "SATHIYA.B",
+        "party": "Anna Makkal Katchi",
+        "unmapped": 0,
+        "booth": 160,
+        "postal": 0,
+        "total": 160
+      },
+      {
+        "name": "PRABAKARAN.T",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 129,
+        "postal": 0,
+        "total": 129
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

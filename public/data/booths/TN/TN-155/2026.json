@@ -12611,9 +12611,9 @@
       {
         "name": "B.RAJKUMAR",
         "party": "TVK",
-        "postal": 9582,
+        "postal": 1082,
         "booth": 61274,
-        "total": 70856
+        "total": 62356
       },
       {
         "name": "A.S.CHANDARASEKARAN",
@@ -12702,9 +12702,9 @@
       {
         "name": "E.FAROOK ALI",
         "party": "IND",
-        "postal": 53,
+        "postal": 2,
         "booth": 21,
-        "total": 74
+        "total": 23
       },
       {
         "name": "V. SUGANTHI",
@@ -12720,7 +12720,154 @@
         "booth": 51,
         "total": 51
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 490,
+    "form20ParsedBooths": 257,
+    "estimatedBooths": 0,
+    "missingBooths": 233,
+    "form20ParsedPct": 52.4,
+    "postalVotes": 1084,
+    "postalPct": 0.6,
+    "unmappedVotes": 8551,
+    "unmappedPct": 4.5,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "B.RAJKUMAR",
+        "party": "TVK",
+        "unmapped": 8500,
+        "booth": 61274,
+        "postal": 1082,
+        "total": 70856
+      },
+      {
+        "name": "A.S.CHANDARASEKARAN",
+        "party": "INC",
+        "unmapped": 0,
+        "booth": 55337,
+        "postal": 0,
+        "total": 55337
+      },
+      {
+        "name": "M.C.SAMPATH",
+        "party": "AIADMK",
+        "unmapped": 0,
+        "booth": 55258,
+        "postal": 0,
+        "total": 55258
+      },
+      {
+        "name": "S.SARASU",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 5766,
+        "postal": 0,
+        "total": 5766
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 894,
+        "postal": 0,
+        "total": 894
+      },
+      {
+        "name": "K.LENIN",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 623,
+        "postal": 0,
+        "total": 623
+      },
+      {
+        "name": "S. RAMASAMY",
+        "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
+        "unmapped": 0,
+        "booth": 375,
+        "postal": 0,
+        "total": 375
+      },
+      {
+        "name": "P.NAGASUNDARAM",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 327,
+        "postal": 0,
+        "total": 327
+      },
+      {
+        "name": "R. VEERAMANI",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 214,
+        "postal": 0,
+        "total": 214
+      },
+      {
+        "name": "R.RAMACHANDRAN",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 211,
+        "postal": 0,
+        "total": 211
+      },
+      {
+        "name": "P.NATARAJAN",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 136,
+        "postal": 0,
+        "total": 136
+      },
+      {
+        "name": "E.GURUBARAN",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 97,
+        "postal": 0,
+        "total": 97
+      },
+      {
+        "name": "R.MAYAVAN",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 97,
+        "postal": 0,
+        "total": 97
+      },
+      {
+        "name": "E.FAROOK ALI",
+        "party": "IND",
+        "unmapped": 51,
+        "booth": 21,
+        "postal": 2,
+        "total": 74
+      },
+      {
+        "name": "V. SUGANTHI",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 62,
+        "postal": 0,
+        "total": 62
+      },
+      {
+        "name": "S.RAJAMOHAN",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 51,
+        "postal": 0,
+        "total": 51
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

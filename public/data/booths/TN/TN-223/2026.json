@@ -8972,27 +8972,27 @@
     },
     "TN-223-212A": {
       "votes": [
-        1196,
-        788,
-        638,
-        363,
-        45,
-        30,
-        21,
-        6,
-        4,
         0,
-        6,
-        2,
-        10,
-        21
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
-      "total": 3130,
+      "total": 0,
       "rejected": 0,
       "name": "Panchayat office, Meeting Hall",
       "address": "Panchayat office,Meeting Hall,Ravanasamudram. Ravanasamudram Block No 6 Kuyavan Street Southnambiyar Street , Ravanasamudram Block No 7 Pillaiyar Kovil Street , Ravanasamudram Block No 7 Railladi Street Amman Kovil Street , 99",
       "area": "All Voters",
-      "sourceNote": "residual_booth_fill"
+      "sourceNote": "no_form20_row"
     }
   },
   "summary": {
@@ -9018,64 +9018,64 @@
       {
         "name": "PAUL MANOJ PANDIAN",
         "party": "DMK",
-        "postal": 0,
-        "booth": 69170,
-        "total": 69170
+        "postal": 363,
+        "booth": 67974,
+        "total": 68337
       },
       {
         "name": "K R P PRABAKARAN",
         "party": "AIADMK",
-        "postal": 0,
-        "booth": 61372,
-        "total": 61372
+        "postal": 30,
+        "booth": 60584,
+        "total": 60614
       },
       {
         "name": "VIBIN CHAKKARAVARTHY",
         "party": "TVK",
-        "postal": 0,
-        "booth": 60684,
-        "total": 60684
+        "postal": 6,
+        "booth": 60046,
+        "total": 60052
       },
       {
         "name": "R PAULRAJ",
         "party": "NTK",
-        "postal": 0,
-        "booth": 23380,
+        "postal": 363,
+        "booth": 23017,
         "total": 23380
       },
       {
         "name": "MADASAMY",
         "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
-        "postal": 0,
-        "booth": 2158,
+        "postal": 45,
+        "booth": 2113,
         "total": 2158
       },
       {
         "name": "A UDHAYAKUMAR",
         "party": "PT",
-        "postal": 0,
-        "booth": 1620,
-        "total": 1620
+        "postal": 2,
+        "booth": 1590,
+        "total": 1592
       },
       {
         "name": "NOTA",
         "party": "NOTA",
-        "postal": 0,
-        "booth": 982,
+        "postal": 21,
+        "booth": 961,
         "total": 982
       },
       {
         "name": "JEYANTHI",
         "party": "IND",
         "postal": 0,
-        "booth": 432,
-        "total": 432
+        "booth": 426,
+        "total": 426
       },
       {
         "name": "R KOTHERIMOHIDEEN",
         "party": "IND",
-        "postal": 0,
-        "booth": 199,
+        "postal": 4,
+        "booth": 195,
         "total": 199
       },
       {
@@ -9088,32 +9088,163 @@
       {
         "name": "U ARAVIND",
         "party": "IND",
-        "postal": 0,
-        "booth": 189,
+        "postal": 6,
+        "booth": 183,
         "total": 189
       },
       {
         "name": "A SUBASH  CHANDRA BOSE",
         "party": "Thakkam Katchi",
-        "postal": 0,
-        "booth": 182,
+        "postal": 2,
+        "booth": 180,
         "total": 182
       },
       {
         "name": "T  MARIKUMAR",
         "party": "IND",
+        "postal": 6,
+        "booth": 151,
+        "total": 157
+      },
+      {
+        "name": "K ARUNKUMAR",
+        "party": "IND",
+        "postal": 4,
+        "booth": 111,
+        "total": 115
+      }
+    ],
+    "source": "form20"
+  },
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "mostly_verified",
+    "totalBooths": 387,
+    "form20ParsedBooths": 386,
+    "estimatedBooths": 0,
+    "missingBooths": 1,
+    "form20ParsedPct": 99.7,
+    "postalVotes": 852,
+    "postalPct": 0.4,
+    "unmappedVotes": 2278,
+    "unmappedPct": 1.0,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "PAUL MANOJ PANDIAN",
+        "party": "DMK",
+        "unmapped": 833,
+        "booth": 67974,
+        "postal": 363,
+        "total": 69170
+      },
+      {
+        "name": "K R P PRABAKARAN",
+        "party": "AIADMK",
+        "unmapped": 758,
+        "booth": 60584,
+        "postal": 30,
+        "total": 61372
+      },
+      {
+        "name": "VIBIN CHAKKARAVARTHY",
+        "party": "TVK",
+        "unmapped": 632,
+        "booth": 60046,
+        "postal": 6,
+        "total": 60684
+      },
+      {
+        "name": "R PAULRAJ",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 23017,
+        "postal": 363,
+        "total": 23380
+      },
+      {
+        "name": "MADASAMY",
+        "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
+        "unmapped": 0,
+        "booth": 2113,
+        "postal": 45,
+        "total": 2158
+      },
+      {
+        "name": "A UDHAYAKUMAR",
+        "party": "PT",
+        "unmapped": 28,
+        "booth": 1590,
+        "postal": 2,
+        "total": 1620
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 961,
+        "postal": 21,
+        "total": 982
+      },
+      {
+        "name": "JEYANTHI",
+        "party": "IND",
+        "unmapped": 6,
+        "booth": 426,
         "postal": 0,
-        "booth": 161,
+        "total": 432
+      },
+      {
+        "name": "R KOTHERIMOHIDEEN",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 195,
+        "postal": 4,
+        "total": 199
+      },
+      {
+        "name": "W JAYSON",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 196,
+        "postal": 0,
+        "total": 196
+      },
+      {
+        "name": "U ARAVIND",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 183,
+        "postal": 6,
+        "total": 189
+      },
+      {
+        "name": "A SUBASH  CHANDRA BOSE",
+        "party": "Thakkam Katchi",
+        "unmapped": 0,
+        "booth": 180,
+        "postal": 2,
+        "total": 182
+      },
+      {
+        "name": "T  MARIKUMAR",
+        "party": "IND",
+        "unmapped": 4,
+        "booth": 151,
+        "postal": 6,
         "total": 161
       },
       {
         "name": "K ARUNKUMAR",
         "party": "IND",
-        "postal": 0,
-        "booth": 132,
+        "unmapped": 17,
+        "booth": 111,
+        "postal": 4,
         "total": 132
       }
-    ]
-  },
-  "reconciledToElections": true
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

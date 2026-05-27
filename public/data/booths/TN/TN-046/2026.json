@@ -6781,47 +6781,47 @@
     },
     "TN-046-438A": {
       "votes": [
-        38561,
-        4563,
         0,
-        2555,
-        3,
-        157,
         0,
-        25,
         0,
-        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0
       ],
-      "total": 45964,
+      "total": 0,
       "rejected": 0,
       "name": "Adi Dravidar Welfare Middle School Room No. 2 Somalapuram Ambur Taluk-635802 1. Somalapuram",
       "address": "Adi Dravidar Welfare Middle School Room No. 2 Somalapuram Ambur Taluk-635802 1. Somalapuram , Ashok nagar , 2. Somalapuram , Veeraragavapuram , 3. Somalapuram , Chinna Kommesvaram , 4. Somalapuram , Chinna Komeswaran Colony , 5. Somalapuram , Chinnappa Vattam , 6. Somalapuram , Ponnusamy Vattam , 99",
       "area": "All Voters",
-      "sourceNote": "residual_booth_fill"
+      "sourceNote": "no_form20_row"
     },
     "TN-046-671A": {
       "votes": [
-        38562,
-        4563,
         0,
-        2555,
-        4,
-        157,
         0,
-        26,
         0,
-        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0
       ],
-      "total": 45967,
+      "total": 0,
       "rejected": 0,
       "name": "Adi Dravidar Welfare Middle School Room No. 2 Somalapuram Ambur Taluk-635802 1. Somalapuram",
       "address": "Adi Dravidar Welfare Middle School Room No. 2 Somalapuram Ambur Taluk-635802 1. Somalapuram , Ashok nagar , 2. Somalapuram , Veeraragavapuram , 3. Somalapuram , Chinna Kommesvaram , 4. Somalapuram , Chinna Komeswaran Colony , 5. Somalapuram , Chinnappa Vattam , 6. Somalapuram , Ponnusamy Vattam , 99",
       "area": "All Voters",
-      "sourceNote": "residual_booth_fill"
+      "sourceNote": "no_form20_row"
     }
   },
   "summary": {
@@ -6847,16 +6847,16 @@
       {
         "name": "K.SINDU",
         "party": "TVK",
-        "postal": 0,
-        "booth": 82858,
-        "total": 82858
+        "postal": 67,
+        "booth": 5735,
+        "total": 5802
       },
       {
         "name": "K.B.PRADAP",
         "party": "DMDK",
-        "postal": 0,
-        "booth": 72761,
-        "total": 72761
+        "postal": 487,
+        "booth": 63635,
+        "total": 64122
       },
       {
         "name": "PARITHA PURUSHOTHAMAN.G",
@@ -6868,23 +6868,23 @@
       {
         "name": "J.EMALAN",
         "party": "NTK",
-        "postal": 0,
-        "booth": 5802,
-        "total": 5802
+        "postal": 5,
+        "booth": 692,
+        "total": 697
       },
       {
         "name": "NOTA",
         "party": "NOTA",
         "postal": 0,
-        "booth": 799,
-        "total": 799
+        "booth": 792,
+        "total": 792
       },
       {
         "name": "T.POOVARASAN",
         "party": "BSP",
         "postal": 0,
-        "booth": 697,
-        "total": 697
+        "booth": 383,
+        "total": 383
       },
       {
         "name": "SUBAKARAN.A",
@@ -6896,9 +6896,9 @@
       {
         "name": "BHARATH  MATHIRUBAN",
         "party": "IND",
-        "postal": 0,
-        "booth": 400,
-        "total": 400
+        "postal": 2,
+        "booth": 349,
+        "total": 351
       },
       {
         "name": "K.ASHA",
@@ -6910,9 +6910,9 @@
       {
         "name": "K.THABITHAL",
         "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
-        "postal": 0,
-        "booth": 351,
-        "total": 351
+        "postal": 6,
+        "booth": 151,
+        "total": 157
       },
       {
         "name": "A.RAJESH",
@@ -6928,7 +6928,122 @@
         "booth": 157,
         "total": 157
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 321,
+    "form20ParsedBooths": 319,
+    "estimatedBooths": 0,
+    "missingBooths": 2,
+    "form20ParsedPct": 99.4,
+    "postalVotes": 567,
+    "postalPct": 0.2,
+    "unmappedVotes": 91364,
+    "unmappedPct": 39.9,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "K.SINDU",
+        "party": "TVK",
+        "unmapped": 77056,
+        "booth": 5735,
+        "postal": 67,
+        "total": 82858
+      },
+      {
+        "name": "K.B.PRADAP",
+        "party": "DMDK",
+        "unmapped": 8639,
+        "booth": 63635,
+        "postal": 487,
+        "total": 72761
+      },
+      {
+        "name": "PARITHA PURUSHOTHAMAN.G",
+        "party": "AIADMK",
+        "unmapped": 0,
+        "booth": 64122,
+        "postal": 0,
+        "total": 64122
+      },
+      {
+        "name": "J.EMALAN",
+        "party": "NTK",
+        "unmapped": 5105,
+        "booth": 692,
+        "postal": 5,
+        "total": 5802
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 7,
+        "booth": 792,
+        "postal": 0,
+        "total": 799
+      },
+      {
+        "name": "T.POOVARASAN",
+        "party": "BSP",
+        "unmapped": 314,
+        "booth": 383,
+        "postal": 0,
+        "total": 697
+      },
+      {
+        "name": "SUBAKARAN.A",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 519,
+        "postal": 0,
+        "total": 519
+      },
+      {
+        "name": "BHARATH  MATHIRUBAN",
+        "party": "IND",
+        "unmapped": 49,
+        "booth": 349,
+        "postal": 2,
+        "total": 400
+      },
+      {
+        "name": "K.ASHA",
+        "party": "PT",
+        "unmapped": 0,
+        "booth": 383,
+        "postal": 0,
+        "total": 383
+      },
+      {
+        "name": "K.THABITHAL",
+        "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
+        "unmapped": 194,
+        "booth": 151,
+        "postal": 6,
+        "total": 351
+      },
+      {
+        "name": "A.RAJESH",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 227,
+        "postal": 0,
+        "total": 227
+      },
+      {
+        "name": "M.SUMATHI",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 157,
+        "postal": 0,
+        "total": 157
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

@@ -49,6 +49,11 @@ def strict_deltas_for_ac(
     postal_cands = postal_block.get("candidates") or []
     if postal_cands and len(postal_cands) == n_c:
         postal_vals = [int(pc.get("postal") or 0) for pc in postal_cands[:n_c]]
+    unmapped_vals: list[int] | None = None
+    unmapped_block = res_doc.get("unmapped") or {}
+    unmapped_cands = unmapped_block.get("candidates") or []
+    if unmapped_cands and len(unmapped_cands) == n_c:
+        unmapped_vals = [int(uc.get("unmapped") or 0) for uc in unmapped_cands[:n_c]]
     max_abs = 0
     mismatches: list[dict] = []
     n_ec = min(len(ecands), n_c)
@@ -56,7 +61,8 @@ def strict_deltas_for_ac(
         official = int(ecands[i].get("votes") or 0)
         booth_part = sums[i] if i < len(sums) else 0
         postal_part = postal_vals[i] if postal_vals and i < len(postal_vals) else 0
-        got = booth_part + postal_part
+        unmapped_part = unmapped_vals[i] if unmapped_vals and i < len(unmapped_vals) else 0
+        got = booth_part + postal_part + unmapped_part
         d = abs(got - official)
         max_abs = max(max_abs, d)
         if d > 0:
@@ -67,6 +73,7 @@ def strict_deltas_for_ac(
                     "official": official,
                     "boothSum": booth_part,
                     "postal": postal_part,
+                    "unmapped": unmapped_part,
                     "absDelta": d,
                 }
             )

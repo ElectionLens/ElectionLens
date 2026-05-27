@@ -9983,23 +9983,23 @@
       {
         "name": "USHARANI. P",
         "party": "AIADMK",
-        "postal": 877,
+        "postal": 10,
         "booth": 86895,
-        "total": 87772
+        "total": 86905
       },
       {
         "name": "LAKSHMI JANARTHANAN. J",
         "party": "TVK",
-        "postal": 632,
+        "postal": 1,
         "booth": 84951,
-        "total": 85583
+        "total": 84952
       },
       {
         "name": "REVATHI. T.M",
         "party": "DMK",
-        "postal": 893,
+        "postal": 5,
         "booth": 67152,
-        "total": 68045
+        "total": 67157
       },
       {
         "name": "PALANISAMY. M",
@@ -10046,9 +10046,9 @@
       {
         "name": "THANGADURAI. N",
         "party": "IND",
-        "postal": 3,
+        "postal": 0,
         "booth": 291,
-        "total": 294
+        "total": 291
       },
       {
         "name": "VENGATESHSAN. T",
@@ -10074,11 +10074,142 @@
       {
         "name": "KARTHIK. N",
         "party": "IND",
-        "postal": 1,
+        "postal": 0,
         "booth": 93,
+        "total": 93
+      }
+    ],
+    "source": "form20"
+  },
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "mostly_verified",
+    "totalBooths": 429,
+    "form20ParsedBooths": 429,
+    "estimatedBooths": 0,
+    "missingBooths": 0,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 184,
+    "postalPct": 0.1,
+    "unmappedVotes": 2390,
+    "unmappedPct": 0.9,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "USHARANI. P",
+        "party": "AIADMK",
+        "unmapped": 867,
+        "booth": 86895,
+        "postal": 10,
+        "total": 87772
+      },
+      {
+        "name": "LAKSHMI JANARTHANAN. J",
+        "party": "TVK",
+        "unmapped": 631,
+        "booth": 84951,
+        "postal": 1,
+        "total": 85583
+      },
+      {
+        "name": "REVATHI. T.M",
+        "party": "DMK",
+        "unmapped": 888,
+        "booth": 67152,
+        "postal": 5,
+        "total": 68045
+      },
+      {
+        "name": "PALANISAMY. M",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 7472,
+        "postal": 129,
+        "total": 7601
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 1231,
+        "postal": 19,
+        "total": 1250
+      },
+      {
+        "name": "PALANISAMY. K",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 900,
+        "postal": 10,
+        "total": 910
+      },
+      {
+        "name": "GOPI. C",
+        "party": "Communist Party of India (Marxist-Leninist) (Liberation)",
+        "unmapped": 0,
+        "booth": 653,
+        "postal": 5,
+        "total": 658
+      },
+      {
+        "name": "VENKATESAN. S",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 510,
+        "postal": 3,
+        "total": 513
+      },
+      {
+        "name": "PAZHANIVEL. K",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 303,
+        "postal": 0,
+        "total": 303
+      },
+      {
+        "name": "THANGADURAI. N",
+        "party": "IND",
+        "unmapped": 3,
+        "booth": 291,
+        "postal": 0,
+        "total": 294
+      },
+      {
+        "name": "VENGATESHSAN. T",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 234,
+        "postal": 1,
+        "total": 235
+      },
+      {
+        "name": "VIJAYAKUMAR. N",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 210,
+        "postal": 1,
+        "total": 211
+      },
+      {
+        "name": "KALIYAPPAN. A",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 123,
+        "postal": 0,
+        "total": 123
+      },
+      {
+        "name": "KARTHIK. N",
+        "party": "IND",
+        "unmapped": 1,
+        "booth": 93,
+        "postal": 0,
         "total": 94
       }
-    ]
-  },
-  "reconciledToElections": true
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

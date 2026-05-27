@@ -71,13 +71,16 @@ def main() -> None:
         booths_doc = json.loads(booths_path.read_text(encoding="utf-8"))
         econ = elec.get(ac_id) or {}
         cands = econ.get("candidates") or []
+        by_booth: dict = {}
         try:
             _names, by_booth, *_ = parse_form20_pdf(
                 pdf_path, cands, allow_extra_pdf_columns=args.allow_extra_pdf_columns
             )
         except Exception as e:
-            print(f"{ac_id}: parse failed: {e}", file=sys.stderr)
-            continue
+            if not args.from_2026_json:
+                print(f"{ac_id}: parse failed: {e}", file=sys.stderr)
+                continue
+            print(f"{ac_id}: WARN pdf parse ({e}); syncing from 2026.json result ids only", file=sys.stderr)
 
         res_doc = None
         if args.from_2026_json:

@@ -9433,9 +9433,9 @@
       {
         "name": "RAJKUMAR D",
         "party": "TVK",
-        "postal": 31833,
+        "postal": 0,
         "booth": 21277,
-        "total": 53110
+        "total": 21277
       },
       {
         "name": "T  KANNAN",
@@ -9500,7 +9500,122 @@
         "booth": 252,
         "total": 252
       }
-    ]
+    ],
+    "source": "none"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 436,
+    "form20ParsedBooths": 277,
+    "estimatedBooths": 0,
+    "missingBooths": 159,
+    "form20ParsedPct": 63.5,
+    "postalVotes": 0,
+    "postalPct": 0.0,
+    "unmappedVotes": 31833,
+    "unmappedPct": 14.9,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "M.R.K.PANNEERSELVAM",
+        "party": "DMK",
+        "unmapped": 0,
+        "booth": 76695,
+        "postal": 0,
+        "total": 76695
+      },
+      {
+        "name": "A  BHUVANENTHIRAN",
+        "party": "AIADMK",
+        "unmapped": 0,
+        "booth": 69106,
+        "postal": 0,
+        "total": 69106
+      },
+      {
+        "name": "RAJKUMAR D",
+        "party": "TVK",
+        "unmapped": 31833,
+        "booth": 21277,
+        "postal": 0,
+        "total": 53110
+      },
+      {
+        "name": "T  KANNAN",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 7113,
+        "postal": 0,
+        "total": 7113
+      },
+      {
+        "name": "KAVITHA RENGANATHAN",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 4813,
+        "postal": 0,
+        "total": 4813
+      },
+      {
+        "name": "ARUMUGAM  R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 928,
+        "postal": 0,
+        "total": 928
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 629,
+        "postal": 0,
+        "total": 629
+      },
+      {
+        "name": "MANIMALA  R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 458,
+        "postal": 0,
+        "total": 458
+      },
+      {
+        "name": "R  SRINIVASAN",
+        "party": "Tamil Telugu National Party",
+        "unmapped": 0,
+        "booth": 323,
+        "postal": 0,
+        "total": 323
+      },
+      {
+        "name": "M  KANAGARAJ",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 273,
+        "postal": 0,
+        "total": 273
+      },
+      {
+        "name": "DHANAKESAVAMOORTHY A.C.T",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 265,
+        "postal": 0,
+        "total": 265
+      },
+      {
+        "name": "MUTHAZHAGAN  N",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 252,
+        "postal": 0,
+        "total": 252
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

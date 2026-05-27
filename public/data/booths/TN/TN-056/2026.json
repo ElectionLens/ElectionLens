@@ -6276,9 +6276,9 @@
     },
     "TN-056-635": {
       "votes": [
-        33079,
         0,
-        19425,
+        0,
+        0,
         0,
         0,
         0,
@@ -6288,12 +6288,12 @@
         0,
         0
       ],
-      "total": 52504,
+      "total": 0,
       "rejected": 0,
       "name": "Panchayat Union Middle School",
       "address": "Panchayat Union Middle School , Gullatti 635 107. ,East Facing Middle Wing Terraced Building",
       "area": "All Voters",
-      "sourceNote": "residual_booth_fill"
+      "sourceNote": "no_form20_row"
     }
   },
   "summary": {
@@ -6320,8 +6320,8 @@
         "name": "RAMACHANDRAN. T",
         "party": "CPI",
         "postal": 0,
-        "booth": 78283,
-        "total": 78283
+        "booth": 45204,
+        "total": 45204
       },
       {
         "name": "DR.NAGESH KUMAR. C",
@@ -6333,9 +6333,9 @@
       {
         "name": "SURESH. G",
         "party": "TVK",
-        "postal": 0,
-        "booth": 45245,
-        "total": 45245
+        "postal": 29,
+        "booth": 25820,
+        "total": 25849
       },
       {
         "name": "NARASIMMA REDDY ALIAS NARASIMMAN. R",
@@ -6393,7 +6393,114 @@
         "booth": 380,
         "total": 380
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 311,
+    "form20ParsedBooths": 310,
+    "estimatedBooths": 0,
+    "missingBooths": 1,
+    "form20ParsedPct": 99.7,
+    "postalVotes": 29,
+    "postalPct": 0.0,
+    "unmappedVotes": 52475,
+    "unmappedPct": 25.5,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "RAMACHANDRAN. T",
+        "party": "CPI",
+        "unmapped": 33079,
+        "booth": 45204,
+        "postal": 0,
+        "total": 78283
+      },
+      {
+        "name": "DR.NAGESH KUMAR. C",
+        "party": "BJP",
+        "unmapped": 0,
+        "booth": 73043,
+        "postal": 0,
+        "total": 73043
+      },
+      {
+        "name": "SURESH. G",
+        "party": "TVK",
+        "unmapped": 19396,
+        "booth": 25820,
+        "postal": 29,
+        "total": 45245
+      },
+      {
+        "name": "NARASIMMA REDDY ALIAS NARASIMMAN. R",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 4107,
+        "postal": 0,
+        "total": 4107
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 1550,
+        "postal": 0,
+        "total": 1550
+      },
+      {
+        "name": "AJITH. G",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 1017,
+        "postal": 0,
+        "total": 1017
+      },
+      {
+        "name": "ASANRAJA. K",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 701,
+        "postal": 0,
+        "total": 701
+      },
+      {
+        "name": "JAGAN. M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 622,
+        "postal": 0,
+        "total": 622
+      },
+      {
+        "name": "DEVAPPA. Y",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 506,
+        "postal": 0,
+        "total": 506
+      },
+      {
+        "name": "JAYARAM. N",
+        "party": "Anna Makkal Katchi",
+        "unmapped": 0,
+        "booth": 424,
+        "postal": 0,
+        "total": 424
+      },
+      {
+        "name": "KUMAR. D.J",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 380,
+        "postal": 0,
+        "total": 380
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

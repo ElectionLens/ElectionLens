@@ -10484,16 +10484,16 @@
       {
         "name": "DR.THIRUPATHI. N",
         "party": "TVK",
-        "postal": 895,
+        "postal": 1,
         "booth": 104203,
-        "total": 105098
+        "total": 104204
       },
       {
         "name": "NALLATHAMBI. A",
         "party": "DMK",
-        "postal": 571,
+        "postal": 2,
         "booth": 56264,
-        "total": 56835
+        "total": 56266
       },
       {
         "name": "GNANASEKAR. A",
@@ -10568,9 +10568,9 @@
       {
         "name": "THIRUPATHI. S",
         "party": "IND",
-        "postal": 8,
+        "postal": 0,
         "booth": 331,
-        "total": 339
+        "total": 331
       },
       {
         "name": "RAGUJOSEPH. J",
@@ -10582,9 +10582,9 @@
       {
         "name": "KALASTHIRI. S",
         "party": "All India Uzhavargal Uzhaippalargal Katchi",
-        "postal": 5,
+        "postal": 1,
         "booth": 203,
-        "total": 208
+        "total": 204
       },
       {
         "name": "GNANASEKARAN. R",
@@ -10610,9 +10610,9 @@
       {
         "name": "DR.POOVALAGI. P",
         "party": "IND",
-        "postal": 1,
+        "postal": 0,
         "booth": 138,
-        "total": 139
+        "total": 138
       },
       {
         "name": "SATHIYAMOORTHY. S",
@@ -10631,9 +10631,9 @@
       {
         "name": "GNANASEKARAN. M",
         "party": "IND",
-        "postal": 1,
+        "postal": 0,
         "booth": 126,
-        "total": 127
+        "total": 126
       },
       {
         "name": "MOHAN RAJ. R",
@@ -10645,9 +10645,9 @@
       {
         "name": "ANJALI. M",
         "party": "IND",
-        "postal": 5,
+        "postal": 0,
         "booth": 110,
-        "total": 115
+        "total": 110
       },
       {
         "name": "GOVIND. T.G",
@@ -10656,7 +10656,226 @@
         "booth": 55,
         "total": 55
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "mostly_verified",
+    "totalBooths": 303,
+    "form20ParsedBooths": 303,
+    "estimatedBooths": 0,
+    "missingBooths": 0,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 338,
+    "postalPct": 0.2,
+    "unmappedVotes": 1482,
+    "unmappedPct": 0.7,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "DR.THIRUPATHI. N",
+        "party": "TVK",
+        "unmapped": 894,
+        "booth": 104203,
+        "postal": 1,
+        "total": 105098
+      },
+      {
+        "name": "NALLATHAMBI. A",
+        "party": "DMK",
+        "unmapped": 569,
+        "booth": 56264,
+        "postal": 2,
+        "total": 56835
+      },
+      {
+        "name": "GNANASEKAR. A",
+        "party": "Amma Makkal Munnettra Kazagam",
+        "unmapped": 0,
+        "booth": 29817,
+        "postal": 186,
+        "total": 30003
+      },
+      {
+        "name": "ARUMUGAM. V",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 5360,
+        "postal": 122,
+        "total": 5482
+      },
+      {
+        "name": "RAJESH. S",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 485,
+        "postal": 1,
+        "total": 486
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 456,
+        "postal": 8,
+        "total": 464
+      },
+      {
+        "name": "THIRUPATHI. N",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 447,
+        "postal": 0,
+        "total": 447
+      },
+      {
+        "name": "VENKATESAN. K",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 407,
+        "postal": 1,
+        "total": 408
+      },
+      {
+        "name": "SEKAR. N",
+        "party": "All India Youth Development Party",
+        "unmapped": 0,
+        "booth": 385,
+        "postal": 2,
+        "total": 387
+      },
+      {
+        "name": "RAJIV GANDHI. S",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 359,
+        "postal": 2,
+        "total": 361
+      },
+      {
+        "name": "THIRUPATHI. C",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 349,
+        "postal": 6,
+        "total": 355
+      },
+      {
+        "name": "VIJAYAKUMAR. G",
+        "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
+        "unmapped": 0,
+        "booth": 343,
+        "postal": 2,
+        "total": 345
+      },
+      {
+        "name": "THIRUPATHI. S",
+        "party": "IND",
+        "unmapped": 8,
+        "booth": 331,
+        "postal": 0,
+        "total": 339
+      },
+      {
+        "name": "RAGUJOSEPH. J",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 308,
+        "postal": 0,
+        "total": 308
+      },
+      {
+        "name": "KALASTHIRI. S",
+        "party": "All India Uzhavargal Uzhaippalargal Katchi",
+        "unmapped": 4,
+        "booth": 203,
+        "postal": 1,
+        "total": 208
+      },
+      {
+        "name": "GNANASEKARAN. R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 206,
+        "postal": 0,
+        "total": 206
+      },
+      {
+        "name": "NALLATHAMBI. R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 191,
+        "postal": 1,
+        "total": 192
+      },
+      {
+        "name": "SANKAR. S",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 181,
+        "postal": 1,
+        "total": 182
+      },
+      {
+        "name": "DR.POOVALAGI. P",
+        "party": "IND",
+        "unmapped": 1,
+        "booth": 138,
+        "postal": 0,
+        "total": 139
+      },
+      {
+        "name": "SATHIYAMOORTHY. S",
+        "party": "Makkal Nala Kazhagam",
+        "unmapped": 0,
+        "booth": 135,
+        "postal": 1,
+        "total": 136
+      },
+      {
+        "name": "BALABHARATHI. S.V",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 127,
+        "postal": 1,
+        "total": 128
+      },
+      {
+        "name": "GNANASEKARAN. M",
+        "party": "IND",
+        "unmapped": 1,
+        "booth": 126,
+        "postal": 0,
+        "total": 127
+      },
+      {
+        "name": "MOHAN RAJ. R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 119,
+        "postal": 0,
+        "total": 119
+      },
+      {
+        "name": "ANJALI. M",
+        "party": "IND",
+        "unmapped": 5,
+        "booth": 110,
+        "postal": 0,
+        "total": 115
+      },
+      {
+        "name": "GOVIND. T.G",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 55,
+        "postal": 0,
+        "total": 55
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

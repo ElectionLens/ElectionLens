@@ -127,18 +127,27 @@ def main() -> None:
                         print(f"{ac_id}: ERROR postal negative for candidate postal={postal_v}")
                         errors += 1
                     postal_vals.append(postal_v)
+            unmapped_vals: list[int] | None = None
+            unmapped_block = res_doc.get("unmapped") or {}
+            unmapped_cands = unmapped_block.get("candidates") or []
+            if unmapped_cands:
+                unmapped_vals = [int(uc.get("unmapped") or 0) for uc in unmapped_cands[:n_c]]
             for i, ec in enumerate(ecands):
                 official = int(ec.get("votes") or 0)
                 booth_part = sums[i] if i < len(sums) else 0
                 postal_part = 0
                 if postal_vals is not None and i < len(postal_vals):
                     postal_part = postal_vals[i]
-                got = booth_part + postal_part
+                unmapped_part = 0
+                if unmapped_vals is not None and i < len(unmapped_vals):
+                    unmapped_part = unmapped_vals[i]
+                got = booth_part + postal_part + unmapped_part
                 if args.strict_elections:
                     if abs(got - official) > args.allow_abs:
                         print(
                             f"{ac_id}: ERROR candidate {i} {ec.get('name')}: "
-                            f"booth={booth_part} postal={postal_part} sum={got} elections={official}"
+                            f"booth={booth_part} postal={postal_part} unmapped={unmapped_part} "
+                            f"sum={got} elections={official}"
                         )
                         errors += 1
                     continue

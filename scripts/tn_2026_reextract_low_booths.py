@@ -67,6 +67,7 @@ def reextract_ac_doc(
     try_ocr: bool,
     include_skipped_ocr: bool,
     fill_empty_from_postal: bool,
+    force_ocr: bool = False,
 ) -> tuple[dict | None, int, str]:
     """Return (doc, legacy_nonzero_count, strategy_summary)."""
     bpath = BOOTHS_TN / ac_id / "booths.json"
@@ -98,7 +99,12 @@ def reextract_ac_doc(
     used: list[str] = []
 
     for strat in strategies:
-        if strat.ocr_fallback and not image_only and strat.name.startswith("ocr"):
+        if (
+            strat.ocr_fallback
+            and not image_only
+            and strat.name.startswith("ocr")
+            and not force_ocr
+        ):
             # Tesseract full-PDF is slow on text PDFs; unified strategies usually win.
             continue
         try:
@@ -147,6 +153,7 @@ def reextract_ac_doc(
         econ,
         booths_doc,
         fill_empty_from_postal=fill_empty_from_postal,
+        form20_postal=postal,
     )
     summary = ",".join(used) if used else "merged"
     return doc, _legacy_nonzero_count(doc, booths_doc), summary
@@ -172,11 +179,16 @@ def main() -> None:
         help="Run OCR ladder on TN-152..159 (slow)",
     )
     ap.add_argument(
-        "--no-fill-residual",
-        action="store_false",
+        "--force-ocr",
+        action="store_true",
+        help="Run OCR on text PDFs too (for ACs where unified parse maps <10%% booths)",
+    )
+    ap.add_argument(
+        "--fill-residual",
+        action="store_true",
         dest="fill_empty_from_postal",
-        default=True,
-        help="Do not distribute postal onto empty booths",
+        default=False,
+        help="Distribute postal onto empty booths (synthetic; off by default)",
     )
     ap.add_argument("--cache-dir", type=Path, default=REPO_ROOT / "scripts/cache/tn-2026-form20")
     args = ap.parse_args()
@@ -224,6 +236,7 @@ def main() -> None:
             try_ocr=args.try_ocr,
             include_skipped_ocr=args.include_skipped_ocr,
             fill_empty_from_postal=args.fill_empty_from_postal,
+            force_ocr=args.force_ocr,
         )
         new_cov = new_nz / max(1, n_legacy) if doc else prev_cov
         if doc is None or new_cov <= prev_cov + 1e-9:

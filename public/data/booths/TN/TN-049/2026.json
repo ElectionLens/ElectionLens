@@ -8475,30 +8475,30 @@
       {
         "name": "VEERAMANI K.C.",
         "party": "AIADMK",
-        "postal": 819,
+        "postal": 2,
         "booth": 77814,
-        "total": 78633
+        "total": 77816
       },
       {
         "name": "MUNISAMY C",
         "party": "TVK",
-        "postal": 592,
+        "postal": 0,
         "booth": 61958,
-        "total": 62550
+        "total": 61958
       },
       {
         "name": "KAVITHADHANDAPANI",
         "party": "DMK",
-        "postal": 601,
+        "postal": 151,
         "booth": 61376,
-        "total": 61977
+        "total": 61527
       },
       {
         "name": "SASIREKHA K",
         "party": "NTK",
-        "postal": 151,
+        "postal": 4,
         "booth": 5823,
-        "total": 5974
+        "total": 5827
       },
       {
         "name": "NOTA",
@@ -8510,9 +8510,9 @@
       {
         "name": "PRIYA K",
         "party": "IND",
-        "postal": 2,
+        "postal": 1,
         "booth": 452,
-        "total": 454
+        "total": 453
       },
       {
         "name": "KALASTHIRI S",
@@ -8545,9 +8545,9 @@
       {
         "name": "SASI REKA Y",
         "party": "Makkal Arasial Katchi",
-        "postal": 1,
+        "postal": 0,
         "booth": 269,
-        "total": 270
+        "total": 269
       },
       {
         "name": "CHENNA KESAVAN C",
@@ -8573,16 +8573,16 @@
       {
         "name": "KAMATCHI S",
         "party": "IND",
-        "postal": 5,
+        "postal": 1,
         "booth": 123,
-        "total": 128
+        "total": 124
       },
       {
         "name": "SANKAR T.K",
         "party": "TNLK",
-        "postal": 6,
+        "postal": 1,
         "booth": 98,
-        "total": 104
+        "total": 99
       },
       {
         "name": "CHENRAYAN A",
@@ -8612,7 +8612,186 @@
         "booth": 68,
         "total": 69
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "mostly_verified",
+    "totalBooths": 287,
+    "form20ParsedBooths": 287,
+    "estimatedBooths": 0,
+    "missingBooths": 0,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 191,
+    "postalPct": 0.1,
+    "unmappedVotes": 2017,
+    "unmappedPct": 0.9,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "VEERAMANI K.C.",
+        "party": "AIADMK",
+        "unmapped": 817,
+        "booth": 77814,
+        "postal": 2,
+        "total": 78633
+      },
+      {
+        "name": "MUNISAMY C",
+        "party": "TVK",
+        "unmapped": 592,
+        "booth": 61958,
+        "postal": 0,
+        "total": 62550
+      },
+      {
+        "name": "KAVITHADHANDAPANI",
+        "party": "DMK",
+        "unmapped": 450,
+        "booth": 61376,
+        "postal": 151,
+        "total": 61977
+      },
+      {
+        "name": "SASIREKHA K",
+        "party": "NTK",
+        "unmapped": 147,
+        "booth": 5823,
+        "postal": 4,
+        "total": 5974
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 684,
+        "postal": 11,
+        "total": 695
+      },
+      {
+        "name": "PRIYA K",
+        "party": "IND",
+        "unmapped": 1,
+        "booth": 452,
+        "postal": 1,
+        "total": 454
+      },
+      {
+        "name": "KALASTHIRI S",
+        "party": "All India Uzhavargal Uzhaippalargal Katchi",
+        "unmapped": 0,
+        "booth": 368,
+        "postal": 2,
+        "total": 370
+      },
+      {
+        "name": "SENTHAMILSELVAN M",
+        "party": "NMK",
+        "unmapped": 0,
+        "booth": 363,
+        "postal": 0,
+        "total": 363
+      },
+      {
+        "name": "THANGARAJ P",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 356,
+        "postal": 2,
+        "total": 358
+      },
+      {
+        "name": "SIVAKUMAR V C",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 312,
+        "postal": 4,
+        "total": 316
+      },
+      {
+        "name": "SASI REKA Y",
+        "party": "Makkal Arasial Katchi",
+        "unmapped": 1,
+        "booth": 269,
+        "postal": 0,
+        "total": 270
+      },
+      {
+        "name": "CHENNA KESAVAN C",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 214,
+        "postal": 2,
+        "total": 216
+      },
+      {
+        "name": "KAVITHA C",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 155,
+        "postal": 0,
+        "total": 155
+      },
+      {
+        "name": "KRISHNAMOORTHY D",
+        "party": "Makkal Nala Kazhagam",
+        "unmapped": 0,
+        "booth": 145,
+        "postal": 4,
+        "total": 149
+      },
+      {
+        "name": "KAMATCHI S",
+        "party": "IND",
+        "unmapped": 4,
+        "booth": 123,
+        "postal": 1,
+        "total": 128
+      },
+      {
+        "name": "SANKAR T.K",
+        "party": "TNLK",
+        "unmapped": 5,
+        "booth": 98,
+        "postal": 1,
+        "total": 104
+      },
+      {
+        "name": "CHENRAYAN A",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 98,
+        "postal": 1,
+        "total": 99
+      },
+      {
+        "name": "VEERAMANI H",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 84,
+        "postal": 2,
+        "total": 86
+      },
+      {
+        "name": "KAVITHA T",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 74,
+        "postal": 2,
+        "total": 76
+      },
+      {
+        "name": "MOHANRAJ R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 68,
+        "postal": 1,
+        "total": 69
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

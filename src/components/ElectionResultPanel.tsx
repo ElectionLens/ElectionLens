@@ -25,6 +25,8 @@ import { getPartyColor, getPartyFullName, getPartyShortName } from '../utils/par
 import { shouldUseShortPartyLabelsAssembly } from '../utils/partyDisplay';
 import { trackShare } from '../utils/firebase';
 import type { BoothResults, BoothWithResult, PostalData } from '../hooks/useBoothData';
+import { BoothDataQualityBanner, BoothSourceBadge } from './BoothDataQualityBanner';
+import { shouldShowPostalTab, type UnmappedData } from '../utils/boothDataQuality';
 import { YearSelector, type YearOption } from './YearSelector';
 
 /** Softer outline chips for the embedded sidebar election panel */
@@ -357,7 +359,10 @@ export function ElectionResultPanel({
         onClick: () => setActiveTab('booths'),
       });
     }
-    if (showBoothTabs && boothResults?.postal) {
+    if (
+      showBoothTabs &&
+      shouldShowPostalTab(boothResults?.postal, boothResults?.dataQuality, boothResults?.unmapped)
+    ) {
       options.push({
         id: 'postal',
         label: 'Postal',
@@ -374,7 +379,13 @@ export function ElectionResultPanel({
       });
     }
     return options;
-  }, [activeTab, showBoothTabs, boothResults?.postal]);
+  }, [
+    activeTab,
+    showBoothTabs,
+    boothResults?.postal,
+    boothResults?.dataQuality,
+    boothResults?.unmapped,
+  ]);
 
   const handleCopyLink = useCallback(async () => {
     if (acResultsLoading) return;
@@ -568,6 +579,7 @@ export function ElectionResultPanel({
           ) : activeTab === 'postal' && boothResults?.postal ? (
             <PostalBallotsView
               postal={boothResults.postal}
+              unmapped={boothResults.unmapped}
               partyShortNames={shortPartyUi}
               embeddedPanel={omitConstituencyHeading}
             />
@@ -723,6 +735,9 @@ export function ElectionResultPanel({
                 </div>
               </div>
             )}
+            {boothResults?.dataQuality && (
+              <BoothDataQualityBanner quality={boothResults.dataQuality} />
+            )}
             {/* Compact Winner card */}
             {winner && (
               <div
@@ -836,6 +851,7 @@ export function ElectionResultPanel({
           /* Postal Ballots view */
           <PostalBallotsView
             postal={boothResults.postal}
+            unmapped={boothResults.unmapped}
             partyShortNames={shortPartyUi}
             embeddedPanel={omitConstituencyHeading}
           />
@@ -977,12 +993,14 @@ const CandidateRow = memo(function CandidateRow({
 // Postal Ballots view component
 interface PostalBallotsViewProps {
   postal: PostalData;
+  unmapped?: UnmappedData | undefined;
   partyShortNames?: boolean;
   embeddedPanel?: boolean;
 }
 
 function PostalBallotsView({
   postal,
+  unmapped,
   partyShortNames = false,
   embeddedPanel = false,
 }: PostalBallotsViewProps): JSX.Element {
@@ -999,13 +1017,29 @@ function PostalBallotsView({
       .reduce((sum, c) => sum + c.postal, 0);
   }, [postal.candidates]);
 
-  const totalVotes = useMemo(() => {
-    return postal.candidates.reduce((sum, c) => sum + c.total, 0);
-  }, [postal.candidates]);
+  const totalUnmapped = useMemo(() => {
+    return (unmapped?.candidates ?? [])
+      .filter((c) => c.party !== 'NOTA' && c.name !== 'NOTA')
+      .reduce((sum, c) => sum + c.unmapped, 0);
+  }, [unmapped?.candidates]);
+
+  const officialTotal = useMemo(() => {
+    if (unmapped?.candidates?.length) {
+      return unmapped.candidates.reduce((sum, c) => sum + c.total, 0);
+    }
+    return postal.candidates.reduce((sum, c) => sum + c.booth + c.postal, 0);
+  }, [postal.candidates, unmapped?.candidates]);
 
   const postalPercent = useMemo(() => {
-    return totalVotes > 0 ? (totalPostal / totalVotes) * 100 : 0;
-  }, [totalPostal, totalVotes]);
+    const base =
+      officialTotal > 0 ? officialTotal : postal.candidates.reduce((s, c) => s + c.total, 0);
+    return base > 0 ? (totalPostal / base) * 100 : 0;
+  }, [totalPostal, officialTotal, postal.candidates]);
+
+  const unmappedPercent = useMemo(() => {
+    const base = officialTotal > 0 ? officialTotal : 1;
+    return (totalUnmapped / base) * 100;
+  }, [totalUnmapped, officialTotal]);
 
   return (
     <div className="postal-ballots-view">
@@ -1018,12 +1052,18 @@ function PostalBallotsView({
         <div className="postal-stats">
           <div className="postal-stat">
             <span className="stat-value">{formatNumber(totalPostal)}</span>
-            <span className="stat-label">Total Postal Votes</span>
+            <span className="stat-label">Postal Votes (Form20)</span>
           </div>
           <div className="postal-stat">
             <span className="stat-value">{postalPercent.toFixed(1)}%</span>
-            <span className="stat-label">of Total Votes</span>
+            <span className="stat-label">Postal share</span>
           </div>
+          {totalUnmapped > 0 && (
+            <div className="postal-stat unmapped-stat">
+              <span className="stat-value">{formatNumber(totalUnmapped)}</span>
+              <span className="stat-label">Unmapped ({unmappedPercent.toFixed(1)}%)</span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -1038,8 +1078,11 @@ function PostalBallotsView({
         </div>
         <div className="postal-candidates-list">
           {sortedCandidates.map((candidate, idx) => {
-            const postalPercent =
-              candidate.total > 0 ? (candidate.postal / candidate.total) * 100 : 0;
+            const unmappedRow = unmapped?.candidates?.find(
+              (u) => u.name === candidate.name && u.party === candidate.party
+            );
+            const candOfficial = unmappedRow?.total ?? candidate.booth + candidate.postal;
+            const postalShare = candOfficial > 0 ? (candidate.postal / candOfficial) * 100 : 0;
 
             return (
               <div
@@ -1060,22 +1103,54 @@ function PostalBallotsView({
                 </span>
                 <span className="col-postal">
                   {formatNumber(candidate.postal)}
-                  <small className="postal-pct">({postalPercent.toFixed(1)}%)</small>
+                  <small className="postal-pct">({postalShare.toFixed(1)}%)</small>
                 </span>
                 <span className="col-booth">{formatNumber(candidate.booth)}</span>
-                <span className="col-total">{formatNumber(candidate.total)}</span>
+                <span className="col-total">
+                  {formatNumber(candidate.booth + candidate.postal)}
+                </span>
               </div>
             );
           })}
         </div>
       </div>
 
+      {totalUnmapped > 0 && unmapped?.candidates && (
+        <div className="unmapped-votes-section">
+          <h4>Unmapped votes (not postal)</h4>
+          <p className="unmapped-note">{unmapped.note}</p>
+          <div className="postal-candidates-list">
+            {unmapped.candidates
+              .filter((c) => c.party !== 'NOTA' && c.name !== 'NOTA' && c.unmapped > 0)
+              .sort((a, b) => b.unmapped - a.unmapped)
+              .map((candidate) => (
+                <div
+                  key={`u-${candidate.name}-${candidate.party}`}
+                  className="postal-candidate-row data-row"
+                >
+                  <span
+                    className="col-party"
+                    style={
+                      embeddedPanel
+                        ? embeddedPartyChipStyle(getPartyColor(candidate.party))
+                        : solidPartyChipStyle(getPartyColor(candidate.party))
+                    }
+                  >
+                    {partyShortNames ? getPartyShortName(candidate.party) : candidate.party}
+                  </span>
+                  <span className="col-postal">{formatNumber(candidate.unmapped)}</span>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
+
       {/* Note about postal ballots */}
       <div className="postal-note">
         <AlertTriangle size={14} />
         <span>
-          Postal ballots include votes from government employees, military personnel, and voters
-          unable to reach polling stations. Postal = Official Total - Booth Total.
+          Postal counts come from the Form20 summary row only (typically 2–8% of votes). Unmapped
+          votes are booth-level totals not yet extracted — not postal ballots.
         </span>
       </div>
     </div>
@@ -1103,8 +1178,13 @@ function BoothWiseView({
   embeddedPanel = false,
 }: BoothWiseViewProps): JSX.Element {
   const pl = (p: string) => (partyShortNames ? getPartyShortName(p) : p);
+  const quality = boothResults?.dataQuality;
+  const verifiedBooths =
+    quality?.form20ParsedBooths ??
+    boothsWithResults.filter((b) => b.voteSource === 'form20').length;
   return (
     <div className="booth-wise-view">
+      {quality && <BoothDataQualityBanner quality={quality} compact />}
       {/* Booth selector dropdown */}
       <div className="booth-selector">
         <label>Select Booth:</label>
@@ -1122,6 +1202,7 @@ function BoothWiseView({
                 {booth.boothNo} - {booth.name.slice(0, 40)}
                 {booth.name.length > 40 ? '...' : ''}
                 {booth.type === 'women' ? ' 👩' : ''}
+                {booth.voteSource === 'missing' ? ' · no data' : ''}
               </option>
             ))}
           </select>
@@ -1134,6 +1215,10 @@ function BoothWiseView({
         <div className="stat-item">
           <span className="stat-label">Total Booths</span>
           <span className="stat-value">{boothsWithResults.length}</span>
+        </div>
+        <div className="stat-item">
+          <span className="stat-label">Form20 Booths</span>
+          <span className="stat-value">{verifiedBooths}</span>
         </div>
         <div className="stat-item">
           <span className="stat-label">Women Booths</span>
@@ -1160,6 +1245,7 @@ function BoothWiseView({
             <h4>
               Booth {selectedBooth.boothNo}
               {selectedBooth.type === 'women' && <span className="women-badge">👩 Women</span>}
+              {selectedBooth.voteSource && <BoothSourceBadge source={selectedBooth.voteSource} />}
             </h4>
           </div>
 
@@ -1178,7 +1264,15 @@ function BoothWiseView({
             </div>
           </div>
 
-          {selectedBooth.result && boothResults && boothResults.candidates && (
+          {selectedBooth.voteSource === 'missing' ? (
+            <div className="booth-no-data-notice">
+              <AlertTriangle size={16} aria-hidden />
+              <p>
+                No booth-level votes from Form20 for this polling station. Remaining votes are
+                listed under <strong>Unmapped</strong> on the Postal tab (not postal ballots).
+              </p>
+            </div>
+          ) : selectedBooth.result && boothResults && boothResults.candidates ? (
             <>
               <div className="booth-vote-summary">
                 <div className="vote-stat">
@@ -1263,7 +1357,7 @@ function BoothWiseView({
                 </div>
               </div>
             </>
-          )}
+          ) : null}
         </div>
       ) : (
         <div className="no-booth-selected">
@@ -1388,7 +1482,9 @@ function BoothwiseAnalysis({
     const fmtParty = (p: string) => (partyShortNames ? getPartyShortName(p) : p);
 
     const candidates = boothResults.candidates;
-    const boothsWithData = boothsWithResults.filter((b) => b.result && b.winner);
+    const boothsWithData = boothsWithResults.filter(
+      (b) => b.result && b.winner && b.voteSource === 'form20'
+    );
 
     // Calculate booth wins for each party
     const partyBoothWins: Record<string, number> = {};
@@ -1965,6 +2061,9 @@ function BoothwiseAnalysis({
 
   return (
     <div className="boothwise-analysis">
+      {boothResults?.dataQuality && (
+        <BoothDataQualityBanner quality={boothResults.dataQuality} compact />
+      )}
       {/* Booth Distribution Bar */}
       <div className="booth-distribution">
         <h5 className="section-heading">

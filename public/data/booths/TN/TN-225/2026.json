@@ -4883,16 +4883,16 @@
       {
         "name": "DR.ESAKKI SUBAYA",
         "party": "AIADMK",
-        "postal": 957,
+        "postal": 10,
         "booth": 64632,
-        "total": 65589
+        "total": 64642
       },
       {
         "name": "V.P.DURAI",
         "party": "INC",
-        "postal": 722,
+        "postal": 524,
         "booth": 54622,
-        "total": 55344
+        "total": 55146
       },
       {
         "name": "S.RAJAGOPAL",
@@ -4922,7 +4922,74 @@
         "booth": 675,
         "total": 685
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "mostly_verified",
+    "totalBooths": 321,
+    "form20ParsedBooths": 321,
+    "estimatedBooths": 0,
+    "missingBooths": 0,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 1319,
+    "postalPct": 0.7,
+    "unmappedVotes": 1145,
+    "unmappedPct": 0.6,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "DR.ESAKKI SUBAYA",
+        "party": "AIADMK",
+        "unmapped": 947,
+        "booth": 64632,
+        "postal": 10,
+        "total": 65589
+      },
+      {
+        "name": "V.P.DURAI",
+        "party": "INC",
+        "unmapped": 198,
+        "booth": 54622,
+        "postal": 524,
+        "total": 55344
+      },
+      {
+        "name": "S.RAJAGOPAL",
+        "party": "TVK",
+        "unmapped": 0,
+        "booth": 53087,
+        "postal": 524,
+        "total": 53611
+      },
+      {
+        "name": "DR.V.SIVASANKARAN",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 14669,
+        "postal": 237,
+        "total": 14906
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 1046,
+        "postal": 14,
+        "total": 1060
+      },
+      {
+        "name": "R.ESAIKANNAN",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 675,
+        "postal": 10,
+        "total": 685
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

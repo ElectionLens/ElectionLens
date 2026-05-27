@@ -10603,30 +10603,30 @@
       {
         "name": "S.VIJAYAKUMAR",
         "party": "TVK",
-        "postal": 500,
+        "postal": 0,
         "booth": 93820,
-        "total": 94320
+        "total": 93820
       },
       {
         "name": "SUDHAKAR.V",
         "party": "AIADMK",
-        "postal": 481,
+        "postal": 2,
         "booth": 65894,
-        "total": 66375
+        "total": 65896
       },
       {
         "name": "T.J.GOVINDARAJAN",
         "party": "DMK",
-        "postal": 570,
+        "postal": 481,
         "booth": 61922,
-        "total": 62492
+        "total": 62403
       },
       {
         "name": "R.SRIDAR. B.L.,",
         "party": "NTK",
-        "postal": 49,
+        "postal": 6,
         "booth": 4707,
-        "total": 4756
+        "total": 4713
       },
       {
         "name": "NOTA",
@@ -10645,9 +10645,9 @@
       {
         "name": "SDK SANKAR",
         "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
-        "postal": 6,
+        "postal": 1,
         "booth": 593,
-        "total": 599
+        "total": 594
       },
       {
         "name": "G.RANJITH B.SC.L.L.B",
@@ -10666,9 +10666,9 @@
       {
         "name": "D.SUDHAKAR",
         "party": "IND",
-        "postal": 2,
+        "postal": 0,
         "booth": 319,
-        "total": 321
+        "total": 319
       },
       {
         "name": "M.KUMARAN",
@@ -10694,16 +10694,16 @@
       {
         "name": "T.GOVINDAN",
         "party": "IND",
-        "postal": 1,
+        "postal": 0,
         "booth": 205,
-        "total": 206
+        "total": 205
       },
       {
         "name": "GOPAL.K",
         "party": "IND",
-        "postal": 3,
+        "postal": 1,
         "booth": 174,
-        "total": 177
+        "total": 175
       },
       {
         "name": "A.H. SIVA GANESH",
@@ -10712,7 +10712,154 @@
         "booth": 104,
         "total": 104
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "mostly_verified",
+    "totalBooths": 419,
+    "form20ParsedBooths": 419,
+    "estimatedBooths": 0,
+    "missingBooths": 0,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 501,
+    "postalPct": 0.2,
+    "unmappedVotes": 1121,
+    "unmappedPct": 0.5,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "S.VIJAYAKUMAR",
+        "party": "TVK",
+        "unmapped": 500,
+        "booth": 93820,
+        "postal": 0,
+        "total": 94320
+      },
+      {
+        "name": "SUDHAKAR.V",
+        "party": "AIADMK",
+        "unmapped": 479,
+        "booth": 65894,
+        "postal": 2,
+        "total": 66375
+      },
+      {
+        "name": "T.J.GOVINDARAJAN",
+        "party": "DMK",
+        "unmapped": 89,
+        "booth": 61922,
+        "postal": 481,
+        "total": 62492
+      },
+      {
+        "name": "R.SRIDAR. B.L.,",
+        "party": "NTK",
+        "unmapped": 43,
+        "booth": 4707,
+        "postal": 6,
+        "total": 4756
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 931,
+        "postal": 6,
+        "total": 937
+      },
+      {
+        "name": "M.JAGADEESAN",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 695,
+        "postal": 2,
+        "total": 697
+      },
+      {
+        "name": "SDK SANKAR",
+        "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
+        "unmapped": 5,
+        "booth": 593,
+        "postal": 1,
+        "total": 599
+      },
+      {
+        "name": "G.RANJITH B.SC.L.L.B",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 502,
+        "postal": 1,
+        "total": 503
+      },
+      {
+        "name": "K. CHANDRA SEKAR",
+        "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+        "unmapped": 0,
+        "booth": 335,
+        "postal": 1,
+        "total": 336
+      },
+      {
+        "name": "D.SUDHAKAR",
+        "party": "IND",
+        "unmapped": 2,
+        "booth": 319,
+        "postal": 0,
+        "total": 321
+      },
+      {
+        "name": "M.KUMARAN",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 260,
+        "postal": 0,
+        "total": 260
+      },
+      {
+        "name": "D.DINESH",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 222,
+        "postal": 0,
+        "total": 222
+      },
+      {
+        "name": "V.SUDHAKAR",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 217,
+        "postal": 0,
+        "total": 217
+      },
+      {
+        "name": "T.GOVINDAN",
+        "party": "IND",
+        "unmapped": 1,
+        "booth": 205,
+        "postal": 0,
+        "total": 206
+      },
+      {
+        "name": "GOPAL.K",
+        "party": "IND",
+        "unmapped": 2,
+        "booth": 174,
+        "postal": 1,
+        "total": 177
+      },
+      {
+        "name": "A.H. SIVA GANESH",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 104,
+        "postal": 0,
+        "total": 104
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

@@ -8580,23 +8580,23 @@
       {
         "name": "NALLATHAMBI. A",
         "party": "AIADMK",
-        "postal": 1015,
+        "postal": 3,
         "booth": 72152,
-        "total": 73167
+        "total": 72155
       },
       {
         "name": "CHINNADURAI. K",
         "party": "DMK",
-        "postal": 1144,
+        "postal": 1015,
         "booth": 57619,
-        "total": 58763
+        "total": 58634
       },
       {
         "name": "SUJATHA. V",
         "party": "TVK",
-        "postal": 535,
+        "postal": 2,
         "booth": 54756,
-        "total": 55291
+        "total": 54758
       },
       {
         "name": "ABIRAMI. A",
@@ -8615,16 +8615,16 @@
       {
         "name": "BALAKRISHNAN. P",
         "party": "BSP",
-        "postal": 3,
+        "postal": 2,
         "booth": 530,
-        "total": 533
+        "total": 532
       },
       {
         "name": "DHANAPAL. S",
         "party": "IND",
-        "postal": 5,
+        "postal": 1,
         "booth": 439,
-        "total": 444
+        "total": 440
       },
       {
         "name": "RAMESH. S",
@@ -8643,9 +8643,9 @@
       {
         "name": "MARIMUTHU. S",
         "party": "PT",
-        "postal": 2,
+        "postal": 0,
         "booth": 218,
-        "total": 220
+        "total": 218
       },
       {
         "name": "KANNAN. S",
@@ -8657,9 +8657,9 @@
       {
         "name": "TAMILARASAN. T",
         "party": "IND",
-        "postal": 7,
+        "postal": 5,
         "booth": 189,
-        "total": 196
+        "total": 194
       },
       {
         "name": "ANBAZHAGAN. S",
@@ -8675,7 +8675,138 @@
         "booth": 105,
         "total": 105
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "mostly_verified",
+    "totalBooths": 368,
+    "form20ParsedBooths": 368,
+    "estimatedBooths": 0,
+    "missingBooths": 0,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 1162,
+    "postalPct": 0.6,
+    "unmappedVotes": 1683,
+    "unmappedPct": 0.9,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "NALLATHAMBI. A",
+        "party": "AIADMK",
+        "unmapped": 1012,
+        "booth": 72152,
+        "postal": 3,
+        "total": 73167
+      },
+      {
+        "name": "CHINNADURAI. K",
+        "party": "DMK",
+        "unmapped": 129,
+        "booth": 57619,
+        "postal": 1015,
+        "total": 58763
+      },
+      {
+        "name": "SUJATHA. V",
+        "party": "TVK",
+        "unmapped": 533,
+        "booth": 54756,
+        "postal": 2,
+        "total": 55291
+      },
+      {
+        "name": "ABIRAMI. A",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 6134,
+        "postal": 108,
+        "total": 6242
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 712,
+        "postal": 19,
+        "total": 731
+      },
+      {
+        "name": "BALAKRISHNAN. P",
+        "party": "BSP",
+        "unmapped": 1,
+        "booth": 530,
+        "postal": 2,
+        "total": 533
+      },
+      {
+        "name": "DHANAPAL. S",
+        "party": "IND",
+        "unmapped": 4,
+        "booth": 439,
+        "postal": 1,
+        "total": 444
+      },
+      {
+        "name": "RAMESH. S",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 389,
+        "postal": 1,
+        "total": 390
+      },
+      {
+        "name": "KAVIARASAN. T.T",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 230,
+        "postal": 4,
+        "total": 234
+      },
+      {
+        "name": "MARIMUTHU. S",
+        "party": "PT",
+        "unmapped": 2,
+        "booth": 218,
+        "postal": 0,
+        "total": 220
+      },
+      {
+        "name": "KANNAN. S",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 212,
+        "postal": 0,
+        "total": 212
+      },
+      {
+        "name": "TAMILARASAN. T",
+        "party": "IND",
+        "unmapped": 2,
+        "booth": 189,
+        "postal": 5,
+        "total": 196
+      },
+      {
+        "name": "ANBAZHAGAN. S",
+        "party": "Anna Makkal Katchi",
+        "unmapped": 0,
+        "booth": 149,
+        "postal": 2,
+        "total": 151
+      },
+      {
+        "name": "GUNAPRAKASH. D",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 105,
+        "postal": 0,
+        "total": 105
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

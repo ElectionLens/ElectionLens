@@ -9456,9 +9456,6 @@
     },
     "TN-053-110": {
       "votes": [
-        21107,
-        0,
-        21378,
         0,
         0,
         0,
@@ -9468,23 +9465,23 @@
         0,
         0,
         0,
-        4,
-        1,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0
       ],
-      "total": 42490,
+      "total": 0,
       "rejected": 0,
       "name": "Panchayat Union Middle School",
       "address": "Panchayat Union Middle School, Thuduganahalli- 635 101 ,South Facing East Wing Terraced Building",
       "area": "All Voters",
-      "sourceNote": "residual_booth_fill"
+      "sourceNote": "no_form20_row"
     },
     "TN-053-82A": {
       "votes": [
-        21106,
-        0,
-        21378,
         0,
         0,
         0,
@@ -9494,17 +9491,20 @@
         0,
         0,
         0,
-        3,
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0
       ],
-      "total": 42487,
+      "total": 0,
       "rejected": 0,
       "name": "Panchayat Union Primary School",
       "address": "Panchayat Union Primary School, Mathepatti - 635 122 ,South Facing West Wing Terraced Building",
       "area": "All Voters",
-      "sourceNote": "residual_booth_fill"
+      "sourceNote": "no_form20_row"
     }
   },
   "summary": {
@@ -9531,8 +9531,8 @@
         "name": "MUKUNDHAN.P",
         "party": "TVK",
         "postal": 0,
-        "booth": 89374,
-        "total": 89374
+        "booth": 47161,
+        "total": 47161
       },
       {
         "name": "ASHOKKUMAR.K",
@@ -9544,9 +9544,9 @@
       {
         "name": "CHELLAKUMAR.A",
         "party": "INC",
-        "postal": 0,
-        "booth": 59597,
-        "total": 59597
+        "postal": 14,
+        "booth": 16841,
+        "total": 16855
       },
       {
         "name": "SUGANTHI",
@@ -9614,15 +9614,15 @@
       {
         "name": "ADVOCATE.MUTHAIAH.S.",
         "party": "Thakkam Katchi",
-        "postal": 0,
-        "booth": 159,
-        "total": 159
+        "postal": 3,
+        "booth": 152,
+        "total": 155
       },
       {
         "name": "KUMARESAN.M",
         "party": "IND",
-        "postal": 0,
-        "booth": 154,
+        "postal": 1,
+        "booth": 153,
         "total": 154
       },
       {
@@ -9639,7 +9639,154 @@
         "booth": 150,
         "total": 150
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 376,
+    "form20ParsedBooths": 374,
+    "estimatedBooths": 0,
+    "missingBooths": 2,
+    "form20ParsedPct": 99.5,
+    "postalVotes": 18,
+    "postalPct": 0.0,
+    "unmappedVotes": 84959,
+    "unmappedPct": 36.9,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "MUKUNDHAN.P",
+        "party": "TVK",
+        "unmapped": 42213,
+        "booth": 47161,
+        "postal": 0,
+        "total": 89374
+      },
+      {
+        "name": "ASHOKKUMAR.K",
+        "party": "AIADMK",
+        "unmapped": 0,
+        "booth": 70530,
+        "postal": 0,
+        "total": 70530
+      },
+      {
+        "name": "CHELLAKUMAR.A",
+        "party": "INC",
+        "unmapped": 42742,
+        "booth": 16841,
+        "postal": 14,
+        "total": 59597
+      },
+      {
+        "name": "SUGANTHI",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 6398,
+        "postal": 0,
+        "total": 6398
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 1136,
+        "postal": 0,
+        "total": 1136
+      },
+      {
+        "name": "SIVAKUMAR.S",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 608,
+        "postal": 0,
+        "total": 608
+      },
+      {
+        "name": "SINGARAVELAN VISWANATHAN",
+        "party": "Vishwa Tamil Kazhagam",
+        "unmapped": 0,
+        "booth": 535,
+        "postal": 0,
+        "total": 535
+      },
+      {
+        "name": "MUTHULAKSHMI VEERAPPAN",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 366,
+        "postal": 0,
+        "total": 366
+      },
+      {
+        "name": "MANGAMMAL",
+        "party": "Tamilar Makkal Katchi",
+        "unmapped": 0,
+        "booth": 336,
+        "postal": 0,
+        "total": 336
+      },
+      {
+        "name": "SIVAN.C",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 285,
+        "postal": 0,
+        "total": 285
+      },
+      {
+        "name": "SRINIVASAN.K",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 231,
+        "postal": 0,
+        "total": 231
+      },
+      {
+        "name": "VENKATESHRAJA.E",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 168,
+        "postal": 0,
+        "total": 168
+      },
+      {
+        "name": "ADVOCATE.MUTHAIAH.S.",
+        "party": "Thakkam Katchi",
+        "unmapped": 4,
+        "booth": 152,
+        "postal": 3,
+        "total": 159
+      },
+      {
+        "name": "KUMARESAN.M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 153,
+        "postal": 1,
+        "total": 154
+      },
+      {
+        "name": "CHANDRAMOHAN.K.M.",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 154,
+        "postal": 0,
+        "total": 154
+      },
+      {
+        "name": "NANJUNDAN.M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 150,
+        "postal": 0,
+        "total": 150
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

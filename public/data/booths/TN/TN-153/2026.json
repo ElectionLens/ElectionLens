@@ -9537,7 +9537,122 @@
         "booth": 102,
         "total": 102
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": true,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 438,
+    "form20ParsedBooths": 284,
+    "estimatedBooths": 0,
+    "missingBooths": 154,
+    "form20ParsedPct": 64.8,
+    "postalVotes": 0,
+    "postalPct": 0.0,
+    "unmappedVotes": 0,
+    "unmappedPct": 0.0,
+    "acTotalsReconciled": true
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "RAJENDRAN.R",
+        "party": "AIADMK",
+        "unmapped": 0,
+        "booth": 63731,
+        "postal": 0,
+        "total": 63731
+      },
+      {
+        "name": "SABA.RAJENDRAN",
+        "party": "DMK",
+        "unmapped": 0,
+        "booth": 52769,
+        "postal": 0,
+        "total": 52769
+      },
+      {
+        "name": "ANAND.K",
+        "party": "TVK",
+        "unmapped": 0,
+        "booth": 34291,
+        "postal": 0,
+        "total": 34291
+      },
+      {
+        "name": "THIRUMALVALAVAN.T",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 11381,
+        "postal": 0,
+        "total": 11381
+      },
+      {
+        "name": "VEERAMANI.B",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 4444,
+        "postal": 0,
+        "total": 4444
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 768,
+        "postal": 0,
+        "total": 768
+      },
+      {
+        "name": "KARTHIKEYAN.C.M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 459,
+        "postal": 0,
+        "total": 459
+      },
+      {
+        "name": "MANIMARAN.P",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 347,
+        "postal": 0,
+        "total": 347
+      },
+      {
+        "name": "CHEZHIYAN.G",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 221,
+        "postal": 0,
+        "total": 221
+      },
+      {
+        "name": "MAYAKRISHNAN.K",
+        "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+        "unmapped": 0,
+        "booth": 136,
+        "postal": 0,
+        "total": 136
+      },
+      {
+        "name": "JOTHIMURUGAN.V",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 131,
+        "postal": 0,
+        "total": 131
+      },
+      {
+        "name": "SATHIYASEELAN.M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 102,
+        "postal": 0,
+        "total": 102
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

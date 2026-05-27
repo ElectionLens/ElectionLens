@@ -8888,63 +8888,63 @@
     },
     "TN-070-115": {
       "votes": [
-        16076,
-        0,
-        19682,
-        0,
-        0,
-        39,
         0,
         0,
         0,
         0,
-        72,
-        121,
-        106,
         0,
-        36,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 36132,
+      "total": 0,
       "rejected": 0,
       "name": "115 Thadhikulam-604202 Panchayat Union Elementary School",
       "address": "115 Thadhikulam-604202 Panchayat Union Elementary School, South Wing, Thadhikulam-604202",
       "area": "Women Only",
-      "sourceNote": "residual_booth_fill"
+      "sourceNote": "no_form20_row"
     },
     "TN-070-197": {
       "votes": [
-        16076,
-        0,
-        19682,
-        0,
-        0,
-        39,
         0,
         0,
         0,
         0,
-        71,
-        120,
-        105,
         0,
-        35,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 36128,
+      "total": 0,
       "rejected": 0,
       "name": "197 Mazhavanthangal-605701 Panchayat Union Elementary School",
       "address": "197 Mazhavanthangal-605701 Panchayat Union Elementary School, SSA Building West Wing, Mazhavanthangal-605701",
       "area": "",
-      "sourceNote": "residual_booth_fill"
+      "sourceNote": "no_form20_row"
     }
   },
   "summary": {
@@ -8971,8 +8971,8 @@
         "name": "GANESHKUMAR A",
         "party": "PMK",
         "postal": 0,
-        "booth": 78201,
-        "total": 78201
+        "booth": 46049,
+        "total": 46049
       },
       {
         "name": "GINGEE MASTHAN K S",
@@ -8984,9 +8984,9 @@
       {
         "name": "CHANDRASEKARAN B",
         "party": "TVK",
-        "postal": 0,
-        "booth": 61609,
-        "total": 61609
+        "postal": 75,
+        "booth": 22245,
+        "total": 22320
       },
       {
         "name": "ADVOCATE KRISHNAN E",
@@ -9005,9 +9005,9 @@
       {
         "name": "RAMESH R",
         "party": "IND",
-        "postal": 0,
-        "booth": 483,
-        "total": 483
+        "postal": 2,
+        "booth": 405,
+        "total": 407
       },
       {
         "name": "MUNUSAMY A",
@@ -9041,22 +9041,22 @@
         "name": "POYYATHAPPAN K",
         "party": "IND",
         "postal": 0,
-        "booth": 411,
-        "total": 411
+        "booth": 268,
+        "total": 268
       },
       {
         "name": "RANGARAJAN E",
         "party": "BSP",
-        "postal": 0,
-        "booth": 381,
-        "total": 381
+        "postal": 5,
+        "booth": 140,
+        "total": 145
       },
       {
         "name": "DEVENDIRAN M",
         "party": "IND",
-        "postal": 0,
-        "booth": 319,
-        "total": 319
+        "postal": 1,
+        "booth": 108,
+        "total": 109
       },
       {
         "name": "PERUMAL N",
@@ -9069,8 +9069,8 @@
         "name": "THANIGAIMALAI R",
         "party": "Anti Corruption Dynamic Party",
         "postal": 0,
-        "booth": 174,
-        "total": 174
+        "booth": 103,
+        "total": 103
       },
       {
         "name": "SRIDHAR G",
@@ -9107,7 +9107,186 @@
         "booth": 82,
         "total": 82
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 304,
+    "form20ParsedBooths": 302,
+    "estimatedBooths": 0,
+    "missingBooths": 2,
+    "form20ParsedPct": 99.3,
+    "postalVotes": 83,
+    "postalPct": 0.0,
+    "unmappedVotes": 72177,
+    "unmappedPct": 33.3,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "GANESHKUMAR A",
+        "party": "PMK",
+        "unmapped": 32152,
+        "booth": 46049,
+        "postal": 0,
+        "total": 78201
+      },
+      {
+        "name": "GINGEE MASTHAN K S",
+        "party": "DMK",
+        "unmapped": 0,
+        "booth": 65556,
+        "postal": 0,
+        "total": 65556
+      },
+      {
+        "name": "CHANDRASEKARAN B",
+        "party": "TVK",
+        "unmapped": 39289,
+        "booth": 22245,
+        "postal": 75,
+        "total": 61609
+      },
+      {
+        "name": "ADVOCATE KRISHNAN E",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 6371,
+        "postal": 0,
+        "total": 6371
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 508,
+        "postal": 0,
+        "total": 508
+      },
+      {
+        "name": "RAMESH R",
+        "party": "IND",
+        "unmapped": 76,
+        "booth": 405,
+        "postal": 2,
+        "total": 483
+      },
+      {
+        "name": "MUNUSAMY A",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 435,
+        "postal": 0,
+        "total": 435
+      },
+      {
+        "name": "SAKTHIVEL A",
+        "party": "Thakkam Katchi",
+        "unmapped": 0,
+        "booth": 432,
+        "postal": 0,
+        "total": 432
+      },
+      {
+        "name": "PRABAKARAN M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 431,
+        "postal": 0,
+        "total": 431
+      },
+      {
+        "name": "RASANAYAGAM N",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 420,
+        "postal": 0,
+        "total": 420
+      },
+      {
+        "name": "POYYATHAPPAN K",
+        "party": "IND",
+        "unmapped": 143,
+        "booth": 268,
+        "postal": 0,
+        "total": 411
+      },
+      {
+        "name": "RANGARAJAN E",
+        "party": "BSP",
+        "unmapped": 236,
+        "booth": 140,
+        "postal": 5,
+        "total": 381
+      },
+      {
+        "name": "DEVENDIRAN M",
+        "party": "IND",
+        "unmapped": 210,
+        "booth": 108,
+        "postal": 1,
+        "total": 319
+      },
+      {
+        "name": "PERUMAL N",
+        "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
+        "unmapped": 0,
+        "booth": 285,
+        "postal": 0,
+        "total": 285
+      },
+      {
+        "name": "THANIGAIMALAI R",
+        "party": "Anti Corruption Dynamic Party",
+        "unmapped": 71,
+        "booth": 103,
+        "postal": 0,
+        "total": 174
+      },
+      {
+        "name": "SRIDHAR G",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 160,
+        "postal": 0,
+        "total": 160
+      },
+      {
+        "name": "MOHAN A",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 153,
+        "postal": 0,
+        "total": 153
+      },
+      {
+        "name": "MOHAMMAD SIDDIQ M H",
+        "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
+        "unmapped": 0,
+        "booth": 128,
+        "postal": 0,
+        "total": 128
+      },
+      {
+        "name": "GOKULRAJ S",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 113,
+        "postal": 0,
+        "total": 113
+      },
+      {
+        "name": "BANUKUMAR R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 82,
+        "postal": 0,
+        "total": 82
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

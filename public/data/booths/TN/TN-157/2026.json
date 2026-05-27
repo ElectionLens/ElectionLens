@@ -10233,9 +10233,9 @@
       {
         "name": "ARUNMOZHITHEVAN . A",
         "party": "AIADMK",
-        "postal": 28778,
+        "postal": 1079,
         "booth": 46929,
-        "total": 75707
+        "total": 48008
       },
       {
         "name": "SARAVANAN. DURAI . K",
@@ -10247,9 +10247,9 @@
       {
         "name": "MAHALINGAM . T",
         "party": "TVK",
-        "postal": 10648,
+        "postal": 1000,
         "booth": 39256,
-        "total": 49904
+        "total": 40256
       },
       {
         "name": "SUMATHI . S",
@@ -10328,7 +10328,138 @@
         "booth": 49,
         "total": 49
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 434,
+    "form20ParsedBooths": 299,
+    "estimatedBooths": 0,
+    "missingBooths": 135,
+    "form20ParsedPct": 68.9,
+    "postalVotes": 2079,
+    "postalPct": 1.0,
+    "unmappedVotes": 37347,
+    "unmappedPct": 18.0,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "ARUNMOZHITHEVAN . A",
+        "party": "AIADMK",
+        "unmapped": 27699,
+        "booth": 46929,
+        "postal": 1079,
+        "total": 75707
+      },
+      {
+        "name": "SARAVANAN. DURAI . K",
+        "party": "DMK",
+        "unmapped": 0,
+        "booth": 73220,
+        "postal": 0,
+        "total": 73220
+      },
+      {
+        "name": "MAHALINGAM . T",
+        "party": "TVK",
+        "unmapped": 9648,
+        "booth": 39256,
+        "postal": 1000,
+        "total": 49904
+      },
+      {
+        "name": "SUMATHI . S",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 5105,
+        "postal": 0,
+        "total": 5105
+      },
+      {
+        "name": "MUTHAMIZHAN . SEVA",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 912,
+        "postal": 0,
+        "total": 912
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 681,
+        "postal": 0,
+        "total": 681
+      },
+      {
+        "name": "KUMARAVELU . M",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 363,
+        "postal": 0,
+        "total": 363
+      },
+      {
+        "name": "BALAMURUGAN . G. C",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 339,
+        "postal": 0,
+        "total": 339
+      },
+      {
+        "name": "BALAMURUGAN . M. R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 324,
+        "postal": 0,
+        "total": 324
+      },
+      {
+        "name": "ARUNMOZHI . V",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 308,
+        "postal": 0,
+        "total": 308
+      },
+      {
+        "name": "RAJA SEKAR . G",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 239,
+        "postal": 0,
+        "total": 239
+      },
+      {
+        "name": "SARAVANAN . J",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 89,
+        "postal": 0,
+        "total": 89
+      },
+      {
+        "name": "IYYAPPAN . S",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 70,
+        "postal": 0,
+        "total": 70
+      },
+      {
+        "name": "EZHILVENTHAN . P",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 49,
+        "postal": 0,
+        "total": 49
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

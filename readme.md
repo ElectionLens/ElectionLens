@@ -28,11 +28,10 @@ Election Lens provides a unified interface to navigate India's complex electoral
 - **Party Strike Rates** - Conversion rates from contests to wins
 - **Quick Stats** - Landslides, battlegrounds, high NOTA, women's booths
 
-### 🎯 100% Data Accuracy
-- All 234 Tamil Nadu Assembly Constituencies with perfect accuracy
-- 84,009 booth names with complete matching
-- Postal ballot integration with smart candidate matching
-- `booth votes + postal votes = total votes` verified for all candidates
+### 🎯 Data quality (TN 2026)
+- **234 ACs** with official totals reconciled (`booth + postal = official` per candidate)
+- **~74%** of booth rows extracted from Form20 PDFs; remainder in postal or unmapped
+- UI shows **Form20 verified** vs **no booth data** badges per constituency and booth
 
 ### 🗳️ Election Results
 - **Parliamentary Elections** (2009-2024) with AC-wise breakdown

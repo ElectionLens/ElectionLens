@@ -11658,30 +11658,30 @@
       {
         "name": "KADARKARAIRAJ. A",
         "party": "DMK",
-        "postal": 718,
+        "postal": 4,
         "booth": 61342,
-        "total": 62060
+        "total": 61346
       },
       {
         "name": "NAINAR NAGENTHRAN",
         "party": "BJP",
-        "postal": 606,
+        "postal": 594,
         "booth": 55465,
-        "total": 56071
+        "total": 56059
       },
       {
         "name": "AJITH. M",
         "party": "TVK",
-        "postal": 594,
+        "postal": 117,
         "booth": 52904,
-        "total": 53498
+        "total": 53021
       },
       {
         "name": "ESAKKIRAJA. K",
         "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
-        "postal": 117,
+        "postal": 0,
         "booth": 11485,
-        "total": 11602
+        "total": 11485
       },
       {
         "name": "ANANDHARAJA. D.",
@@ -11693,9 +11693,9 @@
       {
         "name": "VELMURUGAN. S",
         "party": "PT",
-        "postal": 50,
+        "postal": 0,
         "booth": 2293,
-        "total": 2343
+        "total": 2293
       },
       {
         "name": "NOTA",
@@ -11742,9 +11742,9 @@
       {
         "name": "MAHENDRAN. M",
         "party": "IND",
-        "postal": 1,
+        "postal": 0,
         "booth": 230,
-        "total": 231
+        "total": 230
       },
       {
         "name": "MAHESHKUMAR. M",
@@ -11756,16 +11756,16 @@
       {
         "name": "SARAVANAN. P",
         "party": "IND",
-        "postal": 4,
+        "postal": 0,
         "booth": 186,
-        "total": 190
+        "total": 186
       },
       {
         "name": "VIJENDRAN. G",
         "party": "IND",
-        "postal": 4,
+        "postal": 1,
         "booth": 186,
-        "total": 190
+        "total": 187
       },
       {
         "name": "THANGA DURAI. P",
@@ -11798,9 +11798,9 @@
       {
         "name": "NARMADA NANDHAKUMAR",
         "party": "IND",
-        "postal": 3,
+        "postal": 1,
         "booth": 85,
-        "total": 88
+        "total": 86
       },
       {
         "name": "AJITHKUMAR. S",
@@ -11816,7 +11816,210 @@
         "booth": 86,
         "total": 86
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "mostly_verified",
+    "totalBooths": 359,
+    "form20ParsedBooths": 359,
+    "estimatedBooths": 0,
+    "missingBooths": 0,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 914,
+    "postalPct": 0.5,
+    "unmappedVotes": 1380,
+    "unmappedPct": 0.7,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "KADARKARAIRAJ. A",
+        "party": "DMK",
+        "unmapped": 714,
+        "booth": 61342,
+        "postal": 4,
+        "total": 62060
+      },
+      {
+        "name": "NAINAR NAGENTHRAN",
+        "party": "BJP",
+        "unmapped": 12,
+        "booth": 55465,
+        "postal": 594,
+        "total": 56071
+      },
+      {
+        "name": "AJITH. M",
+        "party": "TVK",
+        "unmapped": 477,
+        "booth": 52904,
+        "postal": 117,
+        "total": 53498
+      },
+      {
+        "name": "ESAKKIRAJA. K",
+        "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
+        "unmapped": 117,
+        "booth": 11485,
+        "postal": 0,
+        "total": 11602
+      },
+      {
+        "name": "ANANDHARAJA. D.",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 9064,
+        "postal": 171,
+        "total": 9235
+      },
+      {
+        "name": "VELMURUGAN. S",
+        "party": "PT",
+        "unmapped": 50,
+        "booth": 2293,
+        "postal": 0,
+        "total": 2343
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 461,
+        "postal": 15,
+        "total": 476
+      },
+      {
+        "name": "MAYAKKANNAN. V",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 462,
+        "postal": 0,
+        "total": 462
+      },
+      {
+        "name": "MANIVASAGAM.S",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 456,
+        "postal": 0,
+        "total": 456
+      },
+      {
+        "name": "KAMALA VEL SELVAN. P",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 400,
+        "postal": 4,
+        "total": 404
+      },
+      {
+        "name": "RAMESH KUMAR. B",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 339,
+        "postal": 1,
+        "total": 340
+      },
+      {
+        "name": "THANGA MARIAPPAN. J",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 239,
+        "postal": 0,
+        "total": 239
+      },
+      {
+        "name": "MAHENDRAN. M",
+        "party": "IND",
+        "unmapped": 1,
+        "booth": 230,
+        "postal": 0,
+        "total": 231
+      },
+      {
+        "name": "MAHESHKUMAR. M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 193,
+        "postal": 0,
+        "total": 193
+      },
+      {
+        "name": "SARAVANAN. P",
+        "party": "IND",
+        "unmapped": 4,
+        "booth": 186,
+        "postal": 0,
+        "total": 190
+      },
+      {
+        "name": "VIJENDRAN. G",
+        "party": "IND",
+        "unmapped": 3,
+        "booth": 186,
+        "postal": 1,
+        "total": 190
+      },
+      {
+        "name": "THANGA DURAI. P",
+        "party": "Puthiya Makkal Tamil Desam Katchi",
+        "unmapped": 0,
+        "booth": 130,
+        "postal": 0,
+        "total": 130
+      },
+      {
+        "name": "MUTHARASAN. M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 126,
+        "postal": 0,
+        "total": 126
+      },
+      {
+        "name": "VENKATESAN. M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 122,
+        "postal": 1,
+        "total": 123
+      },
+      {
+        "name": "MUTHUKANNU. C",
+        "party": "Tamilaga Makkal Nala Katchi",
+        "unmapped": 0,
+        "booth": 100,
+        "postal": 5,
+        "total": 105
+      },
+      {
+        "name": "NARMADA NANDHAKUMAR",
+        "party": "IND",
+        "unmapped": 2,
+        "booth": 85,
+        "postal": 1,
+        "total": 88
+      },
+      {
+        "name": "AJITHKUMAR. S",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 86,
+        "postal": 0,
+        "total": 86
+      },
+      {
+        "name": "KALIRAJ. M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 86,
+        "postal": 0,
+        "total": 86
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

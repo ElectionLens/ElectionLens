@@ -7906,29 +7906,29 @@
     },
     "TN-047-390M": {
       "votes": [
-        417,
-        354,
-        583,
-        65,
-        8,
-        10,
-        4,
-        2,
-        2,
-        3,
         0,
-        1,
         0,
-        1,
         0,
-        3
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
-      "total": 1453,
+      "total": 0,
       "rejected": 0,
       "name": "Government Higher Secondary School",
       "address": "Government Higher Secondary School,Class Room 17 Vadukamuthampattai 635702 1 - Kurisilapattu , Thalugan Vattam , 2 - Kurisilapattu , Kuricilapattu,999 -",
       "area": "All Voters",
-      "sourceNote": "residual_booth_fill"
+      "sourceNote": "no_form20_row"
     }
   },
   "summary": {
@@ -7954,72 +7954,72 @@
       {
         "name": "SYED FAROOQ BASHA SSB",
         "party": "Indian Union Muslim League",
-        "postal": 0,
-        "booth": 73181,
-        "total": 73181
+        "postal": 354,
+        "booth": 72764,
+        "total": 73118
       },
       {
         "name": "SYED BHURHANUDEEN",
         "party": "TVK",
-        "postal": 0,
-        "booth": 70199,
-        "total": 70199
+        "postal": 3,
+        "booth": 69845,
+        "total": 69848
       },
       {
         "name": "SENDHIL KUMAR.G",
         "party": "AIADMK",
-        "postal": 0,
-        "booth": 61055,
-        "total": 61055
+        "postal": 65,
+        "booth": 60472,
+        "total": 60537
       },
       {
         "name": "MURUGESAN.G",
         "party": "NTK",
-        "postal": 0,
-        "booth": 4849,
-        "total": 4849
+        "postal": 2,
+        "booth": 4784,
+        "total": 4786
       },
       {
         "name": "NOTA",
         "party": "NOTA",
-        "postal": 0,
-        "booth": 624,
+        "postal": 8,
+        "booth": 616,
         "total": 624
       },
       {
         "name": "SUBRAMANI.P",
         "party": "BSP",
-        "postal": 0,
-        "booth": 609,
+        "postal": 10,
+        "booth": 599,
         "total": 609
       },
       {
         "name": "SUNDARAMMAL",
         "party": "Makkal Arasial Katchi",
-        "postal": 0,
-        "booth": 544,
+        "postal": 4,
+        "booth": 540,
         "total": 544
       },
       {
         "name": "ANBARASU.P",
         "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
-        "postal": 0,
-        "booth": 231,
+        "postal": 2,
+        "booth": 229,
         "total": 231
       },
       {
         "name": "RAJESH.T",
         "party": "IND",
-        "postal": 0,
-        "booth": 213,
+        "postal": 2,
+        "booth": 211,
         "total": 213
       },
       {
         "name": "DEVENDRAN.J",
         "party": "TNLK",
         "postal": 0,
-        "booth": 195,
-        "total": 195
+        "booth": 192,
+        "total": 192
       },
       {
         "name": "MANOJ.S",
@@ -8031,8 +8031,8 @@
       {
         "name": "NAVEEN.R",
         "party": "IND",
-        "postal": 0,
-        "booth": 159,
+        "postal": 1,
+        "booth": 158,
         "total": 159
       },
       {
@@ -8046,8 +8046,8 @@
         "name": "MANJUNATH.K",
         "party": "IND",
         "postal": 0,
-        "booth": 140,
-        "total": 140
+        "booth": 139,
+        "total": 139
       },
       {
         "name": "ABDUL WAHID.A",
@@ -8059,11 +8059,158 @@
       {
         "name": "SELVARAJ.M",
         "party": "IND",
+        "postal": 1,
+        "booth": 99,
+        "total": 100
+      }
+    ],
+    "source": "form20"
+  },
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "mostly_verified",
+    "totalBooths": 313,
+    "form20ParsedBooths": 312,
+    "estimatedBooths": 0,
+    "missingBooths": 1,
+    "form20ParsedPct": 99.7,
+    "postalVotes": 452,
+    "postalPct": 0.2,
+    "unmappedVotes": 1001,
+    "unmappedPct": 0.5,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "SYED FAROOQ BASHA SSB",
+        "party": "Indian Union Muslim League",
+        "unmapped": 63,
+        "booth": 72764,
+        "postal": 354,
+        "total": 73181
+      },
+      {
+        "name": "SYED BHURHANUDEEN",
+        "party": "TVK",
+        "unmapped": 351,
+        "booth": 69845,
+        "postal": 3,
+        "total": 70199
+      },
+      {
+        "name": "SENDHIL KUMAR.G",
+        "party": "AIADMK",
+        "unmapped": 518,
+        "booth": 60472,
+        "postal": 65,
+        "total": 61055
+      },
+      {
+        "name": "MURUGESAN.G",
+        "party": "NTK",
+        "unmapped": 63,
+        "booth": 4784,
+        "postal": 2,
+        "total": 4849
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 616,
+        "postal": 8,
+        "total": 624
+      },
+      {
+        "name": "SUBRAMANI.P",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 599,
+        "postal": 10,
+        "total": 609
+      },
+      {
+        "name": "SUNDARAMMAL",
+        "party": "Makkal Arasial Katchi",
+        "unmapped": 0,
+        "booth": 540,
+        "postal": 4,
+        "total": 544
+      },
+      {
+        "name": "ANBARASU.P",
+        "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
+        "unmapped": 0,
+        "booth": 229,
+        "postal": 2,
+        "total": 231
+      },
+      {
+        "name": "RAJESH.T",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 211,
+        "postal": 2,
+        "total": 213
+      },
+      {
+        "name": "DEVENDRAN.J",
+        "party": "TNLK",
+        "unmapped": 3,
+        "booth": 192,
         "postal": 0,
-        "booth": 102,
+        "total": 195
+      },
+      {
+        "name": "MANOJ.S",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 166,
+        "postal": 0,
+        "total": 166
+      },
+      {
+        "name": "NAVEEN.R",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 158,
+        "postal": 1,
+        "total": 159
+      },
+      {
+        "name": "SRINIVASAN.A",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 158,
+        "postal": 0,
+        "total": 158
+      },
+      {
+        "name": "MANJUNATH.K",
+        "party": "IND",
+        "unmapped": 1,
+        "booth": 139,
+        "postal": 0,
+        "total": 140
+      },
+      {
+        "name": "ABDUL WAHID.A",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 109,
+        "postal": 0,
+        "total": 109
+      },
+      {
+        "name": "SELVARAJ.M",
+        "party": "IND",
+        "unmapped": 2,
+        "booth": 99,
+        "postal": 1,
         "total": 102
       }
-    ]
-  },
-  "reconciledToElections": true
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

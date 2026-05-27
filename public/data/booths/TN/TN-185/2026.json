@@ -9328,30 +9328,30 @@
       {
         "name": "SEENIVASA SETHUPATHY. R",
         "party": "TVK",
-        "postal": 54597,
+        "postal": 1183,
         "booth": 28778,
-        "total": 83375
+        "total": 29961
       },
       {
         "name": "PERIAKARUPPAN. KR",
         "party": "DMK",
-        "postal": 1183,
+        "postal": 102,
         "booth": 82191,
-        "total": 83374
+        "total": 82293
       },
       {
         "name": "THIRUMARAN. K.C",
         "party": "BJP",
-        "postal": 13865,
+        "postal": 8,
         "booth": 15189,
-        "total": 29054
+        "total": 15197
       },
       {
         "name": "RAMYA MOHAN",
         "party": "NTK",
-        "postal": 14688,
+        "postal": 365,
         "booth": 603,
-        "total": 15291
+        "total": 968
       },
       {
         "name": "RAJA. K.P.M",
@@ -9370,44 +9370,44 @@
       {
         "name": "UMADEVI. S",
         "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
-        "postal": 231,
+        "postal": 1,
         "booth": 380,
-        "total": 611
+        "total": 381
       },
       {
         "name": "VISHWANATHAN. S",
         "party": "IND",
-        "postal": 362,
+        "postal": 0,
         "booth": 134,
-        "total": 496
+        "total": 134
       },
       {
         "name": "SHANMUGAM. M",
         "party": "IND",
-        "postal": 254,
+        "postal": 1,
         "booth": 129,
-        "total": 383
+        "total": 130
       },
       {
         "name": "DR.VINAYAGA MEYYARASU. T",
         "party": "IND",
-        "postal": 115,
+        "postal": 3,
         "booth": 265,
-        "total": 380
+        "total": 268
       },
       {
         "name": "MARIMUTHU. S",
         "party": "IND",
-        "postal": 130,
+        "postal": 8,
         "booth": 220,
-        "total": 350
+        "total": 228
       },
       {
         "name": "BAKIYALAKSHMI. M",
         "party": "IND",
-        "postal": 131,
+        "postal": 2,
         "booth": 135,
-        "total": 266
+        "total": 137
       },
       {
         "name": "PIRAMAN. P",
@@ -9437,7 +9437,154 @@
         "booth": 129,
         "total": 129
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 368,
+    "form20ParsedBooths": 368,
+    "estimatedBooths": 0,
+    "missingBooths": 0,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 1679,
+    "postalPct": 0.8,
+    "unmappedVotes": 83883,
+    "unmappedPct": 38.9,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "SEENIVASA SETHUPATHY. R",
+        "party": "TVK",
+        "unmapped": 53414,
+        "booth": 28778,
+        "postal": 1183,
+        "total": 83375
+      },
+      {
+        "name": "PERIAKARUPPAN. KR",
+        "party": "DMK",
+        "unmapped": 1081,
+        "booth": 82191,
+        "postal": 102,
+        "total": 83374
+      },
+      {
+        "name": "THIRUMARAN. K.C",
+        "party": "BJP",
+        "unmapped": 13857,
+        "booth": 15189,
+        "postal": 8,
+        "total": 29054
+      },
+      {
+        "name": "RAMYA MOHAN",
+        "party": "NTK",
+        "unmapped": 14323,
+        "booth": 603,
+        "postal": 365,
+        "total": 15291
+      },
+      {
+        "name": "RAJA. K.P.M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 753,
+        "postal": 0,
+        "total": 753
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 741,
+        "postal": 6,
+        "total": 747
+      },
+      {
+        "name": "UMADEVI. S",
+        "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
+        "unmapped": 230,
+        "booth": 380,
+        "postal": 1,
+        "total": 611
+      },
+      {
+        "name": "VISHWANATHAN. S",
+        "party": "IND",
+        "unmapped": 362,
+        "booth": 134,
+        "postal": 0,
+        "total": 496
+      },
+      {
+        "name": "SHANMUGAM. M",
+        "party": "IND",
+        "unmapped": 253,
+        "booth": 129,
+        "postal": 1,
+        "total": 383
+      },
+      {
+        "name": "DR.VINAYAGA MEYYARASU. T",
+        "party": "IND",
+        "unmapped": 112,
+        "booth": 265,
+        "postal": 3,
+        "total": 380
+      },
+      {
+        "name": "MARIMUTHU. S",
+        "party": "IND",
+        "unmapped": 122,
+        "booth": 220,
+        "postal": 8,
+        "total": 350
+      },
+      {
+        "name": "BAKIYALAKSHMI. M",
+        "party": "IND",
+        "unmapped": 129,
+        "booth": 135,
+        "postal": 2,
+        "total": 266
+      },
+      {
+        "name": "PIRAMAN. P",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 223,
+        "postal": 0,
+        "total": 223
+      },
+      {
+        "name": "MALLIKA. A",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 143,
+        "postal": 0,
+        "total": 143
+      },
+      {
+        "name": "SETHU. P",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 135,
+        "postal": 0,
+        "total": 135
+      },
+      {
+        "name": "PANCHAVARNAM. M",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 129,
+        "postal": 0,
+        "total": 129
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }

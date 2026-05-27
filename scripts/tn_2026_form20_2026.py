@@ -315,7 +315,10 @@ def row_cells_to_record(
             votes_out[ji] = nota_val
             continue
         pdf_col = json_to_pdf_col[ji]
-        votes_out[ji] = vote_cells[pdf_col - 1]
+        idx = pdf_col - 1
+        if idx < 0 or idx >= len(vote_cells):
+            return None
+        votes_out[ji] = vote_cells[idx]
     person_sum = sum(votes_out[i] for i in range(len(votes_out)) if i != nota_i)
     if abs(person_sum - total_valid) > 2:
         return None
@@ -603,7 +606,10 @@ def row_cells_to_candidate_votes_out(
         pdf_col = json_to_pdf_col[ji]
         if pdf_col < 1:
             return None
-        votes_out[ji] = vote_cells[pdf_col - 1]
+        idx = pdf_col - 1
+        if idx >= len(vote_cells):
+            return None
+        votes_out[ji] = vote_cells[idx]
     return votes_out
 
 
@@ -640,7 +646,10 @@ def parse_postal_text_line(
         pdf_col = json_to_pdf_col[ji]
         if pdf_col < 1:
             return None
-        votes_out[ji] = vote_cells[pdf_col - 1]
+        idx = pdf_col - 1
+        if idx >= len(vote_cells):
+            return None
+        votes_out[ji] = vote_cells[idx]
     return votes_out
 
 
@@ -842,7 +851,10 @@ def parse_text_data_line(
             votes_out[ji] = nota_val
             continue
         pdf_col = json_to_pdf_col[ji]
-        votes_out[ji] = vote_cells[pdf_col - 1]
+        idx = pdf_col - 1
+        if idx < 0 or idx >= len(vote_cells):
+            return None
+        votes_out[ji] = vote_cells[idx]
     person_sum = sum(votes_out[i] for i in range(len(votes_out)) if i != nota_i)
     # Text-extracted rows (page-footers, CEO PDF merges) can disagree slightly with the PDF total column.
     if abs(person_sum - total_valid) > 15:

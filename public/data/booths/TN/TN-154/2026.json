@@ -9337,9 +9337,9 @@
       {
         "name": "MANIKANDAN. M",
         "party": "TVK",
-        "postal": 15976,
+        "postal": 1013,
         "booth": 40046,
-        "total": 56022
+        "total": 41059
       },
       {
         "name": "BANUPRIYA. M",
@@ -9390,7 +9390,106 @@
         "booth": 141,
         "total": 141
       }
-    ]
+    ],
+    "source": "form20"
   },
-  "reconciledToElections": true
+  "reconciledToElections": false,
+  "dataQuality": {
+    "tier": "incomplete",
+    "totalBooths": 477,
+    "form20ParsedBooths": 309,
+    "estimatedBooths": 0,
+    "missingBooths": 168,
+    "form20ParsedPct": 64.8,
+    "postalVotes": 1013,
+    "postalPct": 0.5,
+    "unmappedVotes": 14963,
+    "unmappedPct": 7.1,
+    "acTotalsReconciled": false
+  },
+  "unmapped": {
+    "candidates": [
+      {
+        "name": "MOHAN. K",
+        "party": "AIADMK",
+        "unmapped": 0,
+        "booth": 78398,
+        "postal": 0,
+        "total": 78398
+      },
+      {
+        "name": "ABDUR RAHMAN. A.R",
+        "party": "VCK",
+        "unmapped": 0,
+        "booth": 67735,
+        "postal": 0,
+        "total": 67735
+      },
+      {
+        "name": "MANIKANDAN. M",
+        "party": "TVK",
+        "unmapped": 14963,
+        "booth": 40046,
+        "postal": 1013,
+        "total": 56022
+      },
+      {
+        "name": "BANUPRIYA. M",
+        "party": "NTK",
+        "unmapped": 0,
+        "booth": 4884,
+        "postal": 0,
+        "total": 4884
+      },
+      {
+        "name": "SURENDAR. R",
+        "party": "TNLK",
+        "unmapped": 0,
+        "booth": 1449,
+        "postal": 0,
+        "total": 1449
+      },
+      {
+        "name": "NOTA",
+        "party": "NOTA",
+        "unmapped": 0,
+        "booth": 907,
+        "postal": 0,
+        "total": 907
+      },
+      {
+        "name": "MOHAMMED SAFI. A",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 431,
+        "postal": 0,
+        "total": 431
+      },
+      {
+        "name": "SRIKANTHU. S",
+        "party": "BSP",
+        "unmapped": 0,
+        "booth": 412,
+        "postal": 0,
+        "total": 412
+      },
+      {
+        "name": "PRAKASH. R",
+        "party": "Thamizhaka Padaippalar Makkal Katchi",
+        "unmapped": 0,
+        "booth": 388,
+        "postal": 0,
+        "total": 388
+      },
+      {
+        "name": "RAMALINGAM. A",
+        "party": "IND",
+        "unmapped": 0,
+        "booth": 141,
+        "postal": 0,
+        "total": 141
+      }
+    ],
+    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
+  }
 }
