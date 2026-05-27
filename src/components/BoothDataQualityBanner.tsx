@@ -1,6 +1,10 @@
 import { AlertTriangle, CheckCircle2, Info } from 'lucide-react';
 import type { BoothDataQuality } from '../utils/boothDataQuality';
-import { tierDescription, tierLabel } from '../utils/boothDataQuality';
+import {
+  tierDescription,
+  tierLabel,
+  shouldShowBoothQualityBanner,
+} from '../utils/boothDataQuality';
 
 interface BoothDataQualityBannerProps {
   quality: BoothDataQuality;
@@ -11,7 +15,7 @@ export function BoothDataQualityBanner({
   quality,
   compact = false,
 }: BoothDataQualityBannerProps): JSX.Element | null {
-  if (quality.tier === 'verified') return null;
+  if (!shouldShowBoothQualityBanner(quality)) return null;
 
   const Icon =
     quality.tier === 'incomplete'

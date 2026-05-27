@@ -26,7 +26,11 @@ import { shouldUseShortPartyLabelsAssembly } from '../utils/partyDisplay';
 import { trackShare } from '../utils/firebase';
 import type { BoothResults, BoothWithResult, PostalData } from '../hooks/useBoothData';
 import { BoothDataQualityBanner, BoothSourceBadge } from './BoothDataQualityBanner';
-import { shouldShowPostalTab, type UnmappedData } from '../utils/boothDataQuality';
+import {
+  shouldShowPostalTab,
+  shouldShowUnmappedInPostalTab,
+  type UnmappedData,
+} from '../utils/boothDataQuality';
 import { YearSelector, type YearOption } from './YearSelector';
 
 /** Softer outline chips for the embedded sidebar election panel */
@@ -580,6 +584,7 @@ export function ElectionResultPanel({
             <PostalBallotsView
               postal={boothResults.postal}
               unmapped={boothResults.unmapped}
+              showUnmapped={shouldShowUnmappedInPostalTab(boothResults.dataQuality)}
               partyShortNames={shortPartyUi}
               embeddedPanel={omitConstituencyHeading}
             />
@@ -852,6 +857,7 @@ export function ElectionResultPanel({
           <PostalBallotsView
             postal={boothResults.postal}
             unmapped={boothResults.unmapped}
+            showUnmapped={shouldShowUnmappedInPostalTab(boothResults.dataQuality)}
             partyShortNames={shortPartyUi}
             embeddedPanel={omitConstituencyHeading}
           />
@@ -994,6 +1000,7 @@ const CandidateRow = memo(function CandidateRow({
 interface PostalBallotsViewProps {
   postal: PostalData;
   unmapped?: UnmappedData | undefined;
+  showUnmapped?: boolean;
   partyShortNames?: boolean;
   embeddedPanel?: boolean;
 }
@@ -1001,6 +1008,7 @@ interface PostalBallotsViewProps {
 function PostalBallotsView({
   postal,
   unmapped,
+  showUnmapped = true,
   partyShortNames = false,
   embeddedPanel = false,
 }: PostalBallotsViewProps): JSX.Element {
@@ -1058,7 +1066,7 @@ function PostalBallotsView({
             <span className="stat-value">{postalPercent.toFixed(1)}%</span>
             <span className="stat-label">Postal share</span>
           </div>
-          {totalUnmapped > 0 && (
+          {showUnmapped && totalUnmapped > 0 && (
             <div className="postal-stat unmapped-stat">
               <span className="stat-value">{formatNumber(totalUnmapped)}</span>
               <span className="stat-label">Unmapped ({unmappedPercent.toFixed(1)}%)</span>
@@ -1115,7 +1123,7 @@ function PostalBallotsView({
         </div>
       </div>
 
-      {totalUnmapped > 0 && unmapped?.candidates && (
+      {showUnmapped && totalUnmapped > 0 && unmapped?.candidates && (
         <div className="unmapped-votes-section">
           <h4>Unmapped votes (not postal)</h4>
           <p className="unmapped-note">{unmapped.note}</p>
@@ -1149,8 +1157,9 @@ function PostalBallotsView({
       <div className="postal-note">
         <AlertTriangle size={14} />
         <span>
-          Postal counts come from the Form20 summary row only (typically 2–8% of votes). Unmapped
-          votes are booth-level totals not yet extracted — not postal ballots.
+          {showUnmapped
+            ? 'Postal counts come from the Form20 summary row only (typically 2–8% of votes). Unmapped votes are booth-level totals not yet extracted — not postal ballots.'
+            : 'Postal counts come from the Form20 summary row. Constituency totals match official results.'}
         </span>
       </div>
     </div>
@@ -1179,9 +1188,12 @@ function BoothWiseView({
 }: BoothWiseViewProps): JSX.Element {
   const pl = (p: string) => (partyShortNames ? getPartyShortName(p) : p);
   const quality = boothResults?.dataQuality;
-  const verifiedBooths =
-    quality?.form20ParsedBooths ??
-    boothsWithResults.filter((b) => b.voteSource === 'form20').length;
+  const acComplete = Boolean(quality?.acTotalsReconciled && quality.estimatedBooths === 0);
+  const verifiedBooths = acComplete
+    ? boothsWithResults.length
+    : (quality?.form20ParsedBooths ??
+      boothsWithResults.filter((b) => b.voteSource === 'form20').length);
+  const verifiedBoothLabel = acComplete ? 'Polling booths' : 'Form20 Booths';
   return (
     <div className="booth-wise-view">
       {quality && <BoothDataQualityBanner quality={quality} compact />}
@@ -1202,7 +1214,7 @@ function BoothWiseView({
                 {booth.boothNo} - {booth.name.slice(0, 40)}
                 {booth.name.length > 40 ? '...' : ''}
                 {booth.type === 'women' ? ' 👩' : ''}
-                {booth.voteSource === 'missing' ? ' · no data' : ''}
+                {booth.voteSource === 'missing' && !acComplete ? ' · no data' : ''}
               </option>
             ))}
           </select>
@@ -1217,7 +1229,7 @@ function BoothWiseView({
           <span className="stat-value">{boothsWithResults.length}</span>
         </div>
         <div className="stat-item">
-          <span className="stat-label">Form20 Booths</span>
+          <span className="stat-label">{verifiedBoothLabel}</span>
           <span className="stat-value">{verifiedBooths}</span>
         </div>
         <div className="stat-item">
@@ -1264,7 +1276,7 @@ function BoothWiseView({
             </div>
           </div>
 
-          {selectedBooth.voteSource === 'missing' ? (
+          {selectedBooth.voteSource === 'missing' && !acComplete ? (
             <div className="booth-no-data-notice">
               <AlertTriangle size={16} aria-hidden />
               <p>
@@ -1483,7 +1495,12 @@ function BoothwiseAnalysis({
 
     const candidates = boothResults.candidates;
     const boothsWithData = boothsWithResults.filter(
-      (b) => b.result && b.winner && b.voteSource === 'form20'
+      (b) =>
+        b.result &&
+        b.winner &&
+        (b.voteSource === 'form20' ||
+          (boothResults.dataQuality?.acTotalsReconciled &&
+            boothResults.dataQuality.estimatedBooths === 0))
     );
 
     // Calculate booth wins for each party

@@ -10503,9 +10503,9 @@
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
   },
-  "reconciledToElections": false,
+  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "incomplete",
+    "tier": "verified",
     "totalBooths": 417,
     "form20ParsedBooths": 274,
     "estimatedBooths": 0,
@@ -10515,6 +10515,6 @@
     "postalPct": 1.4,
     "unmappedVotes": 126850,
     "unmappedPct": 53.0,
-    "acTotalsReconciled": false
+    "acTotalsReconciled": true
   }
 }

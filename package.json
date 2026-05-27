@@ -62,6 +62,7 @@
     "data:tn2026-form20-until-strict": "python3 scripts/tn_2026_form20_until_done.py --all --in-scope-230 --phase b --write --allow-extra-pdf-columns --fill-missing-zeros --reconcile --triage-out scripts/cache/tn-2026-form20-strict-triage.json",
     "data:tn2026-force-strict": "python3 scripts/tn_2026_force_strict.py --all --in-scope-230 --write",
     "data:tn2026-restore-honest-booths": "python3 scripts/tn_2026_restore_honest_booths.py --all --write",
+    "data:tn2026-refresh-data-quality": "python3 scripts/tn_2026_refresh_data_quality.py --write",
     "data:tn2026-improve-low-coverage": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 scripts/tn_2026_improve_low_coverage.py --max-form20-pct 80 --write",
     "data:tn2026-improve-kanyakumari": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 scripts/tn_2026_improve_low_coverage.py --ac TN-229,TN-230,TN-231,TN-232,TN-233,TN-234 --write --force-ocr",
     "data:tn2026-data-quality-report": "python3 scripts/tn_2026_data_quality_report.py",

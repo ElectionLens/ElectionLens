@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import type { BoothDataQuality, BoothVoteSource, UnmappedData } from '../utils/boothDataQuality';
-import { boothVoteSource } from '../utils/boothDataQuality';
+import { effectiveBoothVoteSource } from '../utils/boothDataQuality';
 
 // Types for booth data
 export interface Booth {
@@ -249,9 +249,11 @@ export function useBoothData(): UseBoothDataReturn {
       }
 
       const voteTotal = result ? result.votes.reduce((s, v) => s + (v || 0), 0) : 0;
-      const voteSource = result
-        ? boothVoteSource(result.sourceNote, voteTotal)
-        : ('missing' as BoothVoteSource);
+      const voteSource = effectiveBoothVoteSource(
+        boothResults?.dataQuality,
+        result?.sourceNote,
+        voteTotal
+      );
 
       let winner: BoothWithResult['winner'] = undefined;
 

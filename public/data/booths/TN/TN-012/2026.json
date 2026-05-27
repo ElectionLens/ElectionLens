@@ -26400,9 +26400,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": false,
+  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "incomplete",
+    "tier": "verified",
     "totalBooths": 449,
     "form20ParsedBooths": 298,
     "estimatedBooths": 0,
@@ -26412,7 +26412,7 @@
     "postalPct": 0.0,
     "unmappedVotes": 1262,
     "unmappedPct": 0.6,
-    "acTotalsReconciled": false
+    "acTotalsReconciled": true
   },
   "unmapped": {
     "candidates": [

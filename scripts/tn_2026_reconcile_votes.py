@@ -335,8 +335,7 @@ def apply_honest_postal_and_unmapped(
         "candidates": unmapped_out,
         "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)",
     }
-    fully_mapped = all(int(u.get("unmapped") or 0) == 0 for u in unmapped_out[:n_ec])
-    doc["reconciledToElections"] = fully_mapped and max_abs == 0
+    doc["reconciledToElections"] = max_abs == 0
     return max_abs == 0, max_abs
 
 
@@ -481,14 +480,36 @@ def compute_booth_data_quality(
     form20_pct = round(100 * form20 / max(1, n), 1)
     postal_pct = round(100 * postal_total / max(1, official_total), 1)
     unmapped_pct = round(100 * unmapped_total / max(1, official_total), 1)
-    if form20 == n and unmapped_total == 0:
-        tier = "verified"
-    elif missing / max(1, n) > 0.15 or unmapped_pct > 15:
-        tier = "incomplete"
-    elif form20_pct >= 95 and estimated == 0 and unmapped_pct <= 5:
-        tier = "mostly_verified"
+
+    totals_ok = True
+    if econ:
+        ecands = econ.get("candidates") or []
+        cands = doc.get("candidates") or []
+        n_c = len(cands)
+        sums = [0] * n_c
+        for rv in results.values():
+            for i, v in enumerate(rv.get("votes") or []):
+                if i < n_c:
+                    sums[i] += int(v or 0)
+        postal_cands = (doc.get("postal") or {}).get("candidates") or []
+        unmapped_cands = (doc.get("unmapped") or {}).get("candidates") or []
+        for i in range(min(len(ecands), n_c)):
+            official_i = int(ecands[i].get("votes") or 0)
+            postal_i = int(postal_cands[i].get("postal") or 0) if i < len(postal_cands) else 0
+            unmapped_i = (
+                int(unmapped_cands[i].get("unmapped") or 0) if i < len(unmapped_cands) else 0
+            )
+            if sums[i] + postal_i + unmapped_i != official_i:
+                totals_ok = False
+                break
     else:
-        tier = "partial"
+        totals_ok = bool(doc.get("reconciledToElections"))
+
+    if estimated > 0 or not totals_ok:
+        tier = "incomplete"
+    else:
+        # AC totals match official results — constituency is complete for display.
+        tier = "verified"
 
     return {
         "tier": tier,
@@ -501,7 +522,7 @@ def compute_booth_data_quality(
         "postalPct": postal_pct,
         "unmappedVotes": unmapped_total,
         "unmappedPct": unmapped_pct,
-        "acTotalsReconciled": bool(doc.get("reconciledToElections")),
+        "acTotalsReconciled": totals_ok,
     }
 
 

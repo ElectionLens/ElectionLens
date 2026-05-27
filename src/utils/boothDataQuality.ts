@@ -49,6 +49,28 @@ export function boothSourceLabel(source: BoothVoteSource): string {
   }
 }
 
+export function effectiveBoothVoteSource(
+  quality: BoothDataQuality | undefined,
+  sourceNote?: string,
+  voteTotal = 0
+): BoothVoteSource {
+  if (quality?.acTotalsReconciled && quality.estimatedBooths === 0) {
+    return 'form20';
+  }
+  return boothVoteSource(sourceNote, voteTotal);
+}
+
+export function shouldShowBoothQualityBanner(quality: BoothDataQuality): boolean {
+  if (quality.tier === 'verified') return false;
+  if (quality.acTotalsReconciled && quality.estimatedBooths === 0) return false;
+  return true;
+}
+
+export function shouldShowUnmappedInPostalTab(quality: BoothDataQuality | undefined): boolean {
+  if (!quality) return true;
+  return !(quality.acTotalsReconciled && quality.estimatedBooths === 0);
+}
+
 export function tierLabel(tier: BoothDataTier): string {
   switch (tier) {
     case 'verified':
@@ -56,9 +78,9 @@ export function tierLabel(tier: BoothDataTier): string {
     case 'mostly_verified':
       return 'Mostly verified';
     case 'partial':
-      return 'Partial booth data';
+      return 'Partial booth mapping';
     case 'incomplete':
-      return 'Incomplete booth data';
+      return 'Booth data issue';
   }
 }
 
@@ -84,9 +106,9 @@ export function tierDescription(quality: BoothDataQuality): string {
     );
   }
   if (acTotalsReconciled) {
-    parts.push('Constituency totals match official results.');
+    parts.push('Constituency totals match official results (booth + postal + unmapped).');
   } else {
-    parts.push('Booth + postal + unmapped sum to official totals.');
+    parts.push('Constituency totals do not match official results — data needs review.');
   }
   return parts.join(' ');
 }
