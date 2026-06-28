@@ -101,19 +101,20 @@
         5,
         0,
         0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
         0,
         0,
         1,
-        0
+        1
       ],
-      "total": 573,
+      "total": 577,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School,New Building Room No.01, South Mallal",
-      "area": ""
+      "area": "",
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-2": {
       "votes": [
@@ -309,18 +310,19 @@
         2,
         3,
         1,
-        0,
+        1,
         2,
         1,
         0,
         1,
         0
       ],
-      "total": 807,
+      "total": 808,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,Nallirukkai",
-      "area": "All Voters"
+      "area": "All Voters",
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-11": {
       "votes": [
@@ -2402,18 +2404,19 @@
         0,
         1,
         3,
-        0,
-        0,
+        1,
+        1,
         0,
         0,
         0,
         0
       ],
-      "total": 212,
+      "total": 214,
       "rejected": 0,
       "name": "Ayra Vaishia Matriculation School",
       "address": "Ayra Vaishia Matriculation School, East Building North Portion,East building E block Northern portion, Ramanathapuram",
-      "area": "Women Only"
+      "area": "Women Only",
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-102": {
       "votes": [
@@ -2424,19 +2427,20 @@
         2,
         0,
         0,
-        0,
-        0,
+        1,
+        1,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 435,
+      "total": 437,
       "rejected": 0,
       "name": "Ayra Vaishia Matriculation School",
       "address": "Ayra Vaishia Matriculation School, west Building North Portion XI-A class room, Ramanathapuram",
-      "area": "All Voters"
+      "area": "All Voters",
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-103": {
       "votes": [
@@ -2447,19 +2451,20 @@
         3,
         1,
         1,
-        0,
-        0,
+        1,
+        1,
         1,
         1,
         1,
         0,
         0
       ],
-      "total": 389,
+      "total": 391,
       "rejected": 0,
       "name": "Ayra Vaishia Matriculation School",
       "address": "Ayra Vaishia Matriculation School, East Building North Portion , Ramanathapuram",
-      "area": "All Voters"
+      "area": "All Voters",
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-104": {
       "votes": [
@@ -2470,7 +2475,7 @@
         3,
         0,
         1,
-        0,
+        1,
         0,
         0,
         0,
@@ -2478,11 +2483,12 @@
         0,
         0
       ],
-      "total": 381,
+      "total": 382,
       "rejected": 0,
       "name": "School, Room No 7 Ramanathapuram",
       "address": "School ,Room No 7 Ramanathapuram",
-      "area": "Women Only"
+      "area": "Women Only",
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-105": {
       "votes": [
@@ -2493,7 +2499,7 @@
         8,
         2,
         1,
-        0,
+        1,
         0,
         0,
         0,
@@ -2501,11 +2507,12 @@
         0,
         1
       ],
-      "total": 525,
+      "total": 526,
       "rejected": 0,
       "name": "School, Room No 8 Ramanathapuram",
       "address": "School ,Room No 8 Ramanathapuram",
-      "area": "All Voters"
+      "area": "All Voters",
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-106": {
       "votes": [
@@ -2516,7 +2523,7 @@
         4,
         1,
         0,
-        0,
+        1,
         0,
         0,
         0,
@@ -2524,11 +2531,12 @@
         0,
         0
       ],
-      "total": 574,
+      "total": 575,
       "rejected": 0,
       "name": "Ayra Vaishiya Matriculation School",
       "address": "Ayra Vaishiya Matriculation School, West Building F Block XI thClass , Ramanathapuram",
-      "area": "All Voters"
+      "area": "All Voters",
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-107": {
       "votes": [
@@ -9271,10 +9279,10 @@
     },
     "TN-211-106A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9286,19 +9294,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Ayra Vaishiya Matriculation School",
       "address": "Ayra Vaishiya Matriculation School, West Building F Block XI thClass , Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-108A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9310,19 +9318,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Davala Vinayagar School",
       "address": "Davala Vinayagar School ,New Building X B Class Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-109A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9334,19 +9342,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Crescent High School",
       "address": "Crescent High School, New Building Hall No 2 ,Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-10A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9358,19 +9366,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,Nallirukkai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-113A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9382,19 +9390,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Columbu Alim School, Eastern side Ramanathapuram",
       "address": "Columbu Alim School ,Eastern side Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-115A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9406,19 +9414,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Vallal Parry Middle School",
       "address": "Vallal Parry Middle School, Eastern Portion,Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-117A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9430,19 +9438,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Memorial Municipal School",
       "address": "Memorial Municipal School, Room No.5, Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-119A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9454,19 +9462,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Memorial Municipal School",
       "address": "Memorial Municipal School, Room No. 3,Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-11A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9478,19 +9486,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School,Panaiyadiyendal",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-121A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9502,19 +9510,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Muicipal Girls Higher Secondary school",
       "address": "Muicipal Girls Higher Secondary school, (South Building East Portion )Ramanathapuram",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-122A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9526,19 +9534,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Municipal Girls higher secondary school",
       "address": "Municipal Girls higher secondary school, East side ,Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-127A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9550,19 +9558,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Aringnar Anna Memorial Municipal School",
       "address": "Aringnar Anna Memorial Municipal School,New Building Room No 3 Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-12A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9574,19 +9582,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Govt. High School, Velanoor",
       "address": "Govt. High School ,Velanoor",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-131A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9598,19 +9606,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "School, New Additional Building",
       "address": "School, New Additional Building,Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-133A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9622,19 +9630,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Saba Nadesayyar Elementary School",
       "address": "Saba Nadesayyar Elementary School, Main Building Back Portion, South side Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-137A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9646,19 +9654,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Ramanujam Elementary School",
       "address": "Ramanujam Elementary School, Northern Portion, Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-141A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9670,19 +9678,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "School, North Portion Western side Building",
       "address": "School,North Portion Western side Building ,Ramanathapuram",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-156A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9694,19 +9702,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Panchayat Union Middle School",
       "address": "Panchayat Union Middle School,Old Building West side Kutthukalvalasi",
       "area": "",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-158A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9718,19 +9726,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School,West Side,New Building, 5th std Room,Thinaikkulam",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-160A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9742,19 +9750,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Nadar Mahajana Sanga High School",
       "address": "Nadar Mahajana Sanga High School, Metholodai",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-170A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9766,19 +9774,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Saint Joseph Aided Elementary School",
       "address": "Saint Joseph Aided Elementary School,South Side New building, Room No.02,Muthupettai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-171A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9790,19 +9798,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Government Higher Seconadry School",
       "address": "Government Higher Seconadry School ,New Building Central Phase Periyapattinam",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-173A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9814,19 +9822,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Govt. Higher Secondary School",
       "address": "Govt. Higher Secondary School,Old Building East side Periyapattinam",
       "area": "",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-175A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9838,19 +9846,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Government Higher Secondary School",
       "address": "Government Higher Secondary School,Old Building North side Periyapattinam",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-176A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9862,19 +9870,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Government Higher Secondary School",
       "address": "Government Higher Secondary School, Old Building, South Phase,Periyapattinam",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-17A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9886,19 +9894,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Panchayat Union Middle School",
       "address": "Panchayat Union Middle School,South Building West side, Chinnapalaiyarenthal",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-181A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9910,19 +9918,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "School, West Side South Building Sathankualm",
       "address": "School,West Side South Building Sathankualm",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-182A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9934,19 +9942,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Government Higher Secondary School",
       "address": "Government Higher Secondary School ,South Building, East Side Sathankulam",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-184A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9958,19 +9966,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Govt High. School, North Building South Portion Valantharavai",
       "address": "Govt High. School ,North Building South Portion Valantharavai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-204A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -9982,19 +9990,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,South East Building Thamaraikulam",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-205A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -10006,19 +10014,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Panchayat Union. Elementary School",
       "address": "Panchayat Union. Elementary School ,East side Addl Building Karan",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-217A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -10030,19 +10038,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Govt Higher Sec. School",
       "address": "Govt Higher Sec. School ,West Building North 2nd Room IX-C Enmanankondan",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-218A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -10054,19 +10062,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Govt Higher Sec. School",
       "address": "Govt Higher Sec. School ,East Building South Side 1st Room X-A Enmanankondan",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-221A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        3,
+        5,
+        5,
+        2,
         0,
         0,
         0,
@@ -10078,19 +10086,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 15,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,East Building North Side Uchipuli",
       "area": "",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-226A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10102,19 +10110,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,North Building North Street, Pudumadam",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-230A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10126,19 +10134,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,South Old SSA Building West side North portion Pudumadam",
       "area": "",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-233A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10150,19 +10158,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Govt High School, East Building South Side Irumeni",
       "address": "Govt High School ,East Building South Side Irumeni",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-234A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10174,19 +10182,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union. Middle School",
       "address": "Panchayat Union. Middle School ,New building South Portion VII-Std Pirappan Valasai",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-235A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10198,19 +10206,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Middle School, Addl. Building",
       "address": "Middle School, Addl. Building,New Building North Portion Pirappanvalasai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-239A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10222,19 +10230,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,Middle Room Sundramadaiyan",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-242A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10246,19 +10254,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Govt. Hr Sec School, South side West building central phase 7th B Vethalai",
       "address": "Govt. Hr Sec School ,South side West building central phase 7th B Vethalai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-249A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10270,19 +10278,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Government Girls high School",
       "address": "Government Girls high School,Addl Building South portion X-C Mandapam Camp",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-250A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10294,19 +10302,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Government Girls high School",
       "address": "Government Girls high School,North side Addl Building IX-B Mandapam Camp",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-252A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10318,19 +10326,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Government Girls Higher Secondary School",
       "address": "Government Girls Higher Secondary School, West Phase Building, Mandapam",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-253A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10342,19 +10350,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,Main building South side Mandapam",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-254A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10366,19 +10374,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,Addl. Building North Side East Portion, Mandapam 1.Mandapam And (T.P) Sethurashta mainroad east",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-257A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10390,19 +10398,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union. Elementary .School",
       "address": "Panchayat Union. Elementary .School ,Main Building west Portion, South Side Mandapam",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-262A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10414,19 +10422,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union. Elementary School",
       "address": "Panchayat Union. Elementary School ,New Building South side North Portion Pamban",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-265A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10438,19 +10446,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Punitha Anthoniyar Middle school",
       "address": "Punitha Anthoniyar Middle school ,North Portion, East Side, 4th Std Room, Kamarajar Nagar, Pamban",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-276A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10462,19 +10470,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,Old Building North Side East Portion Room No.2 Pamban",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-278A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10486,19 +10494,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "St. Yakappa High School",
       "address": "St. Yakappa High School, New Northen Building - Middle Portion ,Thangachimadam",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-279A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10510,19 +10518,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Yakappa High School, New Northen Building - Eastern Portion",
       "address": "Yakappa High School, New Northen Building - Eastern Portion,Thangachimadam 1..Pamban Thankachimadam Soosaiyapper pattinam",
       "area": "",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-27A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10534,19 +10542,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union Ele School",
       "address": "Panchayat Union Ele School ,Pullandhai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-285A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10558,19 +10566,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union. Middle. School",
       "address": "Panchayat Union. Middle. School,South side Building Meyyampuli",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-294A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10582,19 +10590,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Govt. Higher Secondary School",
       "address": "Govt. Higher Secondary School,Northern Building East side 11-B Std Room Thangachimadam",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-296A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10606,19 +10614,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "St.Yagappa High School",
       "address": "St.Yagappa High School ,Old Building Eastern side South Portion Thangachimadam",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-299A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10630,19 +10638,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Vivekanandha vidhyalaya Middle School",
       "address": "Vivekanandha vidhyalaya Middle School,North side New Building Middle Portion 5th Std Room Rameswaram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-300A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10654,19 +10662,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Govt. Hr. Sec. School",
       "address": "Govt. Hr. Sec. School,Valluvar Valagham, Easternwing Room No.1, 12 Std Rameswaram",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-303A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10678,19 +10686,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union. Middle No.2 School",
       "address": "Panchayat Union. Middle No.2 School,New Building Rameswaram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-307A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10702,19 +10710,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "St. Josephs Primary School",
       "address": "St. Josephs Primary School,South side Building Eastern porrtion Verkodu Rameswaram",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-308A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10726,19 +10734,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "St. Joseph Primary School",
       "address": "St. Joseph Primary School,Eastern Block Northern wing Verkodu Rameswaram",
       "area": "",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-309A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10750,19 +10758,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "St. Joseph Primary School",
       "address": "St. Joseph Primary School,Eastern Block- Southern Wing, Verkodu, Rameswaram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-310A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10774,19 +10782,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "St. Josephs Hr. Sec.School",
       "address": "St. Josephs Hr. Sec.School,South side Building Middle portion Verkodu Rameswaram",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-323A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10798,19 +10806,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Sri Paruvatha- varthini Amman Girls Hr.Sec.School",
       "address": "Sri Paruvatha- varthini Amman Girls Hr.Sec.School,Main Building, Room No. 9 - (10-A), West side North portion Rameswaram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-324A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        5,
+        1,
         0,
         0,
         0,
@@ -10822,19 +10830,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 13,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,New Building South portion Kattupillaiyar kovil Rameswaram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-325A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        4,
+        1,
         0,
         0,
         0,
@@ -10846,19 +10854,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 12,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,New Building South Portion West side Kattupillaiyar kovil Rameswaram",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-326A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        5,
+        4,
+        1,
         0,
         0,
         0,
@@ -10870,19 +10878,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 12,
       "rejected": 0,
       "name": "National Matric Higher Secondary School North New Building Room No.02",
       "address": "National Matric Higher Secondary School North New Building Room No.02, Rameswaram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-329A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -10894,19 +10902,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Govt.Hr. Sec. School",
       "address": "Govt.Hr. Sec. School, Nehru Hall ,Rameswaram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-32A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -10918,19 +10926,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "C.S.I. Middle School",
       "address": "C.S.I. Middle School ,West side middle building, Keelakarai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-36A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -10942,19 +10950,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Islamia Elementary School",
       "address": "Islamia Elementary School,North Building West Portion, Keelakarai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-39A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -10966,19 +10974,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Islamia Matriculation Higher Secondary School",
       "address": "Islamia Matriculation Higher Secondary School,West Building North side,Keelakarai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-45A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -10990,19 +10998,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Hameediya Matriculation Hr Sec School",
       "address": "Hameediya Matriculation Hr Sec School,West Building South side Keelakarai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-51A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11014,19 +11022,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Panchayat Union Elementary School No. 1",
       "address": "Panchayat Union Elementary School No. 1,South portion Keelakarai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-55A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11038,19 +11046,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "MahDoomia Hr Sec School",
       "address": "MahDoomia Hr Sec School,West Portion North Side Room No 3 Keelkarai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-57A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11062,19 +11070,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Hyrathul Jalaliya Higher Secondary School",
       "address": "Hyrathul Jalaliya Higher Secondary School,6th Room Keelakarai",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-5A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11086,19 +11094,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Higher Secondary School",
       "address": "Higher Secondary School,North Buliding West side T. U. Mangai 1.T.u.mangai T.u.mangai yadava street , 2.T.U.Mangai T.U.Mangai , 3.T.U.Mangai Kalakkudi",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-62A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11110,19 +11118,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Hyrathul Jalaliya Elementary School",
       "address": "Hyrathul Jalaliya Elementary School ,South side 7th Room Keelakarai",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-63A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11134,19 +11142,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Hairathul Jalailiya Primary School",
       "address": "Hairathul Jalailiya Primary School,South side 9th Room Keelakarai",
       "area": "",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-65A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11158,19 +11166,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School,South Building kanjirangkudi",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-67A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11182,19 +11190,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Community Hall, kanjirangkudi",
       "address": "Community Hall,kanjirangkudi",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-69A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11206,19 +11214,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Panchayat Union Middle School",
       "address": "Panchayat Union Middle School,South Building,Lakshmipuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-71A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11230,19 +11238,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Panchayat Union Middle School",
       "address": "Panchayat Union Middle School, North Bulding,South Bulding North Side Lakshmipuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-72A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11254,19 +11262,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School ,North phase East side Room 1 Thathanenthal",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-75A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11278,19 +11286,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Panchayat Union Middle School",
       "address": "Panchayat Union Middle School ,North side East Building Mela Pudukudi",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-79A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11302,19 +11310,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Fathima Teacher Training School",
       "address": "Fathima Teacher Training School, West side North Portion ,Pasumpon Nagar, Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-80A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11326,19 +11334,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Fathima Teacher Training School",
       "address": "Fathima Teacher Training School , West Building South Portion Pasumpon Nagar Ramanathapuram",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-82A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11350,19 +11358,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Panchayat Union Elementary School",
       "address": "Panchayat Union Elementary School, New Building, West Side Building, New Building, West Side, Palkarai",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-83A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11374,19 +11382,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Raja Higher Secondary School",
       "address": "Raja Higher Secondary School, Northern Portion, Room No.19, Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-86A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11398,19 +11406,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Raja Higher Secondary School New Building Eastern Portion",
       "address": "Raja Higher Secondary School New Building Eastern Portion , Ramanathapuram",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-88A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11422,19 +11430,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Elementary School, (South Western Building)",
       "address": "Elementary School, (South Western Building) , Ramanathapuram",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-90A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11446,19 +11454,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Raja Dhinakar Middle School",
       "address": "Raja Dhinakar Middle School, Room No. 5B New Building North Portion, Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-92A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11470,19 +11478,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Raja Dhinagar Middle School",
       "address": "Raja Dhinagar Middle School, Room NO.4A New Building ,Ramanathapuram 1.Ramanathapuram(M) Sigilraja street kenikarai ward8 , 2.Ramanathapuram(M) Savanakara street ward8 , 3.Ramanathapuram(M) Board school santhuward8 , 4.Ramanathapuram(M) Sikil kadaivamban santhu ward8 , 5.Ramanathapuram(M)Sigil kadai mandayan santhu ward8 , 6.Ramanathapuram(M)Rajadinagar aranmanai west street ward8 , 7.Ramanathapuram(M) Kenikarai santhu ward8 , 8.Ramanathapuram(M) DR ambedkar south north street ward7",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-93A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11494,19 +11502,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Women Arts College, East side",
       "address": "Women Arts College,East side,North portion Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-94A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11518,19 +11526,19 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "Women Arts College, East side",
       "address": "Women Arts College,East side,North portion Ramanathapuram",
       "area": "Women Only",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-211-97A": {
       "votes": [
-        0,
-        0,
-        0,
-        0,
+        2,
+        4,
+        4,
+        1,
         0,
         0,
         0,
@@ -11542,12 +11550,12 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 11,
       "rejected": 0,
       "name": "School, Main Building Room No 6 Ramanathapuram",
       "address": "School,Main Building Room No 6 Ramanathapuram",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     }
   },
   "summary": {
@@ -11574,29 +11582,29 @@
         "name": "KATHARBATCHA MUTHURAMALINGAM",
         "party": "DMK",
         "postal": 574,
-        "booth": 88339,
-        "total": 88913
+        "booth": 88563,
+        "total": 89137
       },
       {
         "name": "SHAHUL HAMEED",
         "party": "TVK",
         "postal": 3,
-        "booth": 76228,
-        "total": 76231
+        "booth": 76675,
+        "total": 76678
       },
       {
         "name": "GBS K.NAGENDRAN",
         "party": "BJP",
         "postal": 129,
-        "booth": 57156,
-        "total": 57285
+        "booth": 57601,
+        "total": 57730
       },
       {
         "name": "S.M. MUTHU KESAVAN",
         "party": "NTK",
         "postal": 0,
-        "booth": 10637,
-        "total": 10637
+        "booth": 10766,
+        "total": 10766
       },
       {
         "name": "NOTA",
@@ -11623,22 +11631,22 @@
         "name": "A. CHINNA RAJA",
         "party": "IND",
         "postal": 1,
-        "booth": 343,
-        "total": 344
+        "booth": 349,
+        "total": 350
       },
       {
         "name": "KAN ILANGO",
         "party": "IND",
         "postal": 2,
-        "booth": 340,
-        "total": 342
+        "booth": 345,
+        "total": 347
       },
       {
         "name": "C. PARIRAJAN",
         "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
         "postal": 1,
-        "booth": 226,
-        "total": 227
+        "booth": 228,
+        "total": 229
       },
       {
         "name": "PULLANI",
@@ -11665,8 +11673,8 @@
         "name": "BALAKRISHNAN",
         "party": "IND",
         "postal": 0,
-        "booth": 141,
-        "total": 141
+        "booth": 142,
+        "total": 142
       }
     ],
     "source": "form20"
@@ -11675,14 +11683,14 @@
   "dataQuality": {
     "tier": "verified",
     "totalBooths": 494,
-    "form20ParsedBooths": 399,
-    "estimatedBooths": 0,
-    "missingBooths": 95,
-    "form20ParsedPct": 80.8,
+    "form20ParsedBooths": 391,
+    "estimatedBooths": 103,
+    "missingBooths": 0,
+    "form20ParsedPct": 79.1,
     "postalVotes": 725,
     "postalPct": 0.3,
-    "unmappedVotes": 1259,
-    "unmappedPct": 0.5,
+    "unmappedVotes": 0,
+    "unmappedPct": 0.0,
     "acTotalsReconciled": true
   },
   "unmapped": {
@@ -11690,32 +11698,32 @@
       {
         "name": "KATHARBATCHA MUTHURAMALINGAM",
         "party": "DMK",
-        "unmapped": 224,
-        "booth": 88339,
+        "unmapped": 0,
+        "booth": 88563,
         "postal": 574,
         "total": 89137
       },
       {
         "name": "SHAHUL HAMEED",
         "party": "TVK",
-        "unmapped": 447,
-        "booth": 76228,
+        "unmapped": 0,
+        "booth": 76675,
         "postal": 3,
         "total": 76678
       },
       {
         "name": "GBS K.NAGENDRAN",
         "party": "BJP",
-        "unmapped": 445,
-        "booth": 57156,
+        "unmapped": 0,
+        "booth": 57601,
         "postal": 129,
         "total": 57730
       },
       {
         "name": "S.M. MUTHU KESAVAN",
         "party": "NTK",
-        "unmapped": 129,
-        "booth": 10637,
+        "unmapped": 0,
+        "booth": 10766,
         "postal": 0,
         "total": 10766
       },
@@ -11746,24 +11754,24 @@
       {
         "name": "A. CHINNA RAJA",
         "party": "IND",
-        "unmapped": 6,
-        "booth": 343,
+        "unmapped": 0,
+        "booth": 349,
         "postal": 1,
         "total": 350
       },
       {
         "name": "KAN ILANGO",
         "party": "IND",
-        "unmapped": 5,
-        "booth": 340,
+        "unmapped": 0,
+        "booth": 345,
         "postal": 2,
         "total": 347
       },
       {
         "name": "C. PARIRAJAN",
         "party": "Veerath Thiyagi Viswanathadoss Thozhilalarkal Katchi",
-        "unmapped": 2,
-        "booth": 226,
+        "unmapped": 0,
+        "booth": 228,
         "postal": 1,
         "total": 229
       },
@@ -11794,8 +11802,8 @@
       {
         "name": "BALAKRISHNAN",
         "party": "IND",
-        "unmapped": 1,
-        "booth": 141,
+        "unmapped": 0,
+        "booth": 142,
         "postal": 0,
         "total": 142
       }

@@ -12,6 +12,7 @@ describe('boothDataQuality', () => {
   it('classifies booth vote sources', () => {
     expect(boothVoteSource(undefined, 100)).toBe('form20');
     expect(boothVoteSource('residual_booth_fill', 50)).toBe('estimated');
+    expect(boothVoteSource('unmapped_booth_fill', 50)).toBe('estimated');
     expect(boothVoteSource('no_form20_row', 0)).toBe('missing');
   });
 

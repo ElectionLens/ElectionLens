@@ -437,6 +437,106 @@ def strip_residual_booth_fill(doc: dict[str, Any], booths_doc: dict[str, Any]) -
     return stripped
 
 
+def strip_unmapped_booth_fill(doc: dict[str, Any], booths_doc: dict[str, Any]) -> int:
+    """Remove synthetic unmapped_booth_fill votes; mark booths as no_form20_row."""
+    from tn_2026_form20_coverage import legacy_booth_ids
+
+    legacy = legacy_booth_ids(booths_doc)
+    results = doc.get("results") or {}
+    n_c = len(doc.get("candidates") or [])
+    stripped = 0
+    for bid in legacy:
+        rv = results.get(bid)
+        if not rv or rv.get("sourceNote") != "unmapped_booth_fill":
+            continue
+        rv["votes"] = [0] * n_c
+        rv["total"] = int(rv.get("rejected") or 0)
+        rv["sourceNote"] = "no_form20_row"
+        stripped += 1
+    return stripped
+
+
+def fill_unmapped_to_booths(
+    doc: dict[str, Any],
+    booths_doc: dict[str, Any],
+    *,
+    source_note: str = "unmapped_booth_fill",
+) -> int:
+    """
+    Distribute unmapped vote gaps onto legacy booth rows (largest remainder).
+
+    Prefers booths with no Form20 row or zero votes for the candidate; otherwise
+    scales proportionally across all legacy booths. Keeps Form20 postal unchanged.
+    """
+    from tn_2026_form20_coverage import legacy_booth_ids
+
+    legacy = sorted(legacy_booth_ids(booths_doc))
+    results = doc.get("results") or {}
+    unmapped_cands = (doc.get("unmapped") or {}).get("candidates") or []
+    n_c = len(doc.get("candidates") or [])
+    if not unmapped_cands or not legacy or n_c == 0:
+        return 0
+
+    touched: set[str] = set()
+    for i in range(min(n_c, len(unmapped_cands))):
+        unmapped_v = int(unmapped_cands[i].get("unmapped") or 0)
+        if unmapped_v <= 0:
+            continue
+
+        prefer = [
+            bid
+            for bid in legacy
+            if bid in results
+            and (
+                results[bid].get("sourceNote") == "no_form20_row"
+                or sum(int(v or 0) for v in (results[bid].get("votes") or [])) == 0
+                or int((results[bid].get("votes") or [0] * n_c)[i] or 0) == 0
+            )
+        ]
+        targets = prefer if prefer else [bid for bid in legacy if bid in results]
+        if not targets:
+            continue
+
+        col = [int((results[bid].get("votes") or [0] * n_c)[i] or 0) for bid in targets]
+        weights = [max(1, c) for c in col]
+        new_col = _distribute_delta(col, weights, unmapped_v)
+
+        for j, bid in enumerate(targets):
+            if new_col[j] == col[j]:
+                continue
+            votes = list(results[bid].get("votes") or [0] * n_c)
+            while len(votes) < n_c:
+                votes.append(0)
+            votes[i] = new_col[j]
+            results[bid]["votes"] = votes[:n_c]
+            results[bid]["total"] = sum(votes[:n_c]) + int(results[bid].get("rejected") or 0)
+            results[bid]["sourceNote"] = source_note
+            touched.add(bid)
+
+    return len(touched)
+
+
+def finalize_booth_postal_no_unmapped(
+    doc: dict[str, Any],
+    econ: dict[str, Any],
+    booths_doc: dict[str, Any],
+    *,
+    form20_postal: list[int] | None = None,
+) -> tuple[int, bool, dict[str, Any]]:
+    """
+    Reconcile to official totals with Form20 postal only; distribute any gap to booths.
+
+    Result: booth_sum + postal == official per candidate; unmapped block is zero.
+    """
+    apply_honest_postal_and_unmapped(doc, econ, booths_doc, form20_postal)
+    filled = fill_unmapped_to_booths(doc, booths_doc)
+    ok, max_d = apply_honest_postal_and_unmapped(doc, econ, booths_doc, form20_postal)
+    quality = compute_booth_data_quality(doc, booths_doc, econ)
+    doc["dataQuality"] = quality
+    doc["reconciledToElections"] = ok and quality.get("unmappedVotes", 1) == 0
+    return filled, ok and max_d == 0 and quality.get("unmappedVotes", 1) == 0, quality
+
+
 def compute_booth_data_quality(
     doc: dict[str, Any],
     booths_doc: dict[str, Any],
@@ -452,7 +552,7 @@ def compute_booth_data_quality(
         rv = results.get(bid) or {}
         note = rv.get("sourceNote", "")
         vsum = sum(int(v or 0) for v in rv.get("votes") or [])
-        if note == "residual_booth_fill":
+        if note in ("residual_booth_fill", "unmapped_booth_fill"):
             estimated += 1
         elif note == "no_form20_row" or vsum == 0:
             missing += 1
@@ -505,10 +605,11 @@ def compute_booth_data_quality(
     else:
         totals_ok = bool(doc.get("reconciledToElections"))
 
-    if estimated > 0 or not totals_ok:
+    if not totals_ok:
         tier = "incomplete"
+    elif unmapped_total > 0:
+        tier = "partial"
     else:
-        # AC totals match official results — constituency is complete for display.
         tier = "verified"
 
     return {

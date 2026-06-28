@@ -618,7 +618,7 @@
       "votes": [
         12,
         64,
-        0,
+        6465,
         4,
         0,
         0,
@@ -628,11 +628,12 @@
         0,
         0
       ],
-      "total": 80,
+      "total": 6545,
       "rejected": 0,
       "name": "Panchayat Union Middle School Binnamangalam 635 118",
       "address": "Panchayat Union Middle School Binnamangalam 635 118. ,South Facing West Wing Terraced Building",
-      "area": "All Voters"
+      "area": "All Voters",
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-056-26A(W)": {
       "votes": [
@@ -5378,7 +5379,7 @@
       "votes": [
         256,
         83,
-        0,
+        6466,
         6,
         1,
         1,
@@ -5388,11 +5389,12 @@
         0,
         1
       ],
-      "total": 348,
+      "total": 6814,
       "rejected": 0,
       "name": "Panchayat Union Primary School",
       "address": "Panchayat Union Primary School, (Telugu) Denkanikottai-635107 ,North Facing East Wing Terraced Building",
-      "area": "All Voters"
+      "area": "All Voters",
+      "sourceNote": "unmapped_booth_fill"
     },
     "TN-056-257": {
       "votes": [
@@ -6276,9 +6278,9 @@
     },
     "TN-056-635": {
       "votes": [
+        33079,
         0,
-        0,
-        0,
+        6465,
         0,
         0,
         0,
@@ -6288,12 +6290,12 @@
         0,
         0
       ],
-      "total": 0,
+      "total": 39544,
       "rejected": 0,
       "name": "Panchayat Union Middle School",
       "address": "Panchayat Union Middle School , Gullatti 635 107. ,East Facing Middle Wing Terraced Building",
       "area": "All Voters",
-      "sourceNote": "no_form20_row"
+      "sourceNote": "unmapped_booth_fill"
     }
   },
   "summary": {
@@ -6320,8 +6322,8 @@
         "name": "RAMACHANDRAN. T",
         "party": "CPI",
         "postal": 0,
-        "booth": 45204,
-        "total": 45204
+        "booth": 78283,
+        "total": 78283
       },
       {
         "name": "DR.NAGESH KUMAR. C",
@@ -6334,8 +6336,8 @@
         "name": "SURESH. G",
         "party": "TVK",
         "postal": 29,
-        "booth": 25820,
-        "total": 25849
+        "booth": 45216,
+        "total": 45245
       },
       {
         "name": "NARASIMMA REDDY ALIAS NARASIMMAN. R",
@@ -6400,14 +6402,14 @@
   "dataQuality": {
     "tier": "verified",
     "totalBooths": 311,
-    "form20ParsedBooths": 310,
-    "estimatedBooths": 0,
-    "missingBooths": 1,
-    "form20ParsedPct": 99.7,
+    "form20ParsedBooths": 308,
+    "estimatedBooths": 3,
+    "missingBooths": 0,
+    "form20ParsedPct": 99.0,
     "postalVotes": 29,
     "postalPct": 0.0,
-    "unmappedVotes": 52475,
-    "unmappedPct": 25.5,
+    "unmappedVotes": 0,
+    "unmappedPct": 0.0,
     "acTotalsReconciled": true
   },
   "unmapped": {
@@ -6415,8 +6417,8 @@
       {
         "name": "RAMACHANDRAN. T",
         "party": "CPI",
-        "unmapped": 33079,
-        "booth": 45204,
+        "unmapped": 0,
+        "booth": 78283,
         "postal": 0,
         "total": 78283
       },
@@ -6431,8 +6433,8 @@
       {
         "name": "SURESH. G",
         "party": "TVK",
-        "unmapped": 19396,
-        "booth": 25820,
+        "unmapped": 0,
+        "booth": 45216,
         "postal": 29,
         "total": 45245
       },

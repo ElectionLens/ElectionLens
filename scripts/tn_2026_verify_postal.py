@@ -92,6 +92,10 @@ def verify_postal_ac(
     if residual:
         issues.append(f"{residual} booths still have residual_booth_fill")
 
+    unmapped_total = sum(int(uc.get("unmapped") or 0) for uc in unmapped_cands[:n_c])
+    if unmapped_total > 0:
+        issues.append(f"unmapped votes remain: {unmapped_total:,}")
+
     sums = [0] * n_c
     for rv in (res_doc.get("results") or {}).values():
         for j, v in enumerate(rv.get("votes") or []):

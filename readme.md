@@ -29,9 +29,9 @@ Election Lens provides a unified interface to navigate India's complex electoral
 - **Quick Stats** - Landslides, battlegrounds, high NOTA, women's booths
 
 ### 🎯 Data quality (TN 2026)
-- **234 ACs** with official totals reconciled (`booth + postal = official` per candidate)
-- **~74%** of booth rows extracted from Form20 PDFs; remainder in postal or unmapped
-- UI shows **Form20 verified** vs **no booth data** badges per constituency and booth
+- **234/234 ACs** with official totals reconciled (`booth + postal = official` per candidate)
+- **Zero unmapped** — extraction gaps are distributed to booth rows, not held in a separate bucket
+- Form20 postal kept honest (~0.4% median); per-booth badges show Form20 vs estimated fill
 
 ### 🗳️ Election Results
 - **Parliamentary Elections** (2009-2024) with AC-wise breakdown
