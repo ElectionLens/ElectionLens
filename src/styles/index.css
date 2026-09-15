@@ -681,7 +681,7 @@ body {
 }
 
 .search-result-item[data-type='district'] .result-icon {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, var(--ui-accent-strong) 100%);
 }
 
 .search-result-item:hover .result-icon {
@@ -739,8 +739,8 @@ body {
 }
 
 .result-badge-district {
-  background: #dbeafe;
-  color: #1d4ed8;
+  background: var(--ui-accent-soft);
+  color: var(--ui-accent-strong);
 }
 
 /* Unified color scheme for types */
@@ -6938,8 +6938,9 @@ button.state-map-summary-row {
   --ui-border-strong: #c6d2e1;
   --ui-text: #0f172a;
   --ui-text-muted: #526076;
-  --ui-text-soft: #7f8aa0;
+  --ui-text-soft: #64748b; /* darkened from #7f8aa0 - old value was ~3.1:1 on white, fails WCAG AA (4.5:1) for body text */
   --ui-accent: #2563eb;
+  --ui-accent-strong: #1d4ed8; /* hover/active depth for accent-colored interactive elements */
   --ui-accent-soft: #dbeafe;
   --ui-state: #f59e0b;
   --ui-parliament: #8b5cf6;
