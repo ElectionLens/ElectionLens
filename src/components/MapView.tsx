@@ -47,7 +47,7 @@ import {
   resolveAssemblyMapPolygonWinner,
   resolveDistrictPolygonParty,
   resolvePcMapPolygonWinner,
-  AC_STYLE_VARIANTS,
+  assignWinnerNameKeys,
 } from '../utils/mapPolygonWinners';
 import type { PartyVoteRow } from '../utils/aggregateStateMapElectionStats';
 import {
@@ -338,28 +338,14 @@ export function MapView({
               // Map each AC to its winner from PC contribution
               Object.entries(results).forEach(([_pcId, pcResult]) => {
                 const addWinner = (acName: string, party: string, candidateName: string): void => {
-                  const normalizedName = normalizeName(acName)
-                    .toUpperCase()
-                    .replace(/\s*\([^)]*\)\s*/g, '')
-                    .replace(/\s+/g, ' ')
-                    .trim();
-                  const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
-                  const entry = { party, candidate: candidateName };
-                  winners[normalizedName] = entry;
-                  if (fuzzyKey && fuzzyKey !== normalizedName) {
-                    winners[fuzzyKey] = entry;
-                  }
-                  const originalUpper = acName.toUpperCase().trim();
-                  if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
-                    winners[originalUpper] = entry;
-                  }
-                  // So GeoJSON can match: add opposite spelling (e.g. PC 2024 has "Pappireddipatti", schema has "Pappireddippatti")
-                  const variants = AC_STYLE_VARIANTS[normalizedName];
-                  if (variants) {
-                    for (const v of variants) {
-                      if (v !== normalizedName && !winners[v]) winners[v] = entry;
-                    }
-                  }
+                  // Opposite spellings are seeded too, so GeoJSON can match
+                  // (e.g. PC 2024 has "Pappireddipatti", schema has "Pappireddippatti").
+                  assignWinnerNameKeys(
+                    winners,
+                    acName,
+                    { party, candidate: candidateName },
+                    { style: 'assembly', applyVariants: true }
+                  );
                 };
 
                 if (pcResult.acWiseResults) {
@@ -507,18 +493,7 @@ export function MapView({
                       result.name ||
                       '';
                     if (acName) {
-                      const normalizedName = normalizeName(acName)
-                        .toUpperCase()
-                        .replace(/\s*\([^)]*\)\s*/g, '')
-                        .replace(/\s+/g, ' ')
-                        .trim();
-                      const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
-                      winners[normalizedName] = entry;
-                      if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
-                      const originalUpper = acName.toUpperCase().trim();
-                      if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
-                        winners[originalUpper] = entry;
-                      }
+                      assignWinnerNameKeys(winners, acName, entry, { style: 'assembly' });
                     }
                   }
                 }
@@ -579,18 +554,7 @@ export function MapView({
                           result.name ||
                           '';
                         if (acName) {
-                          const normalizedName = normalizeName(acName)
-                            .toUpperCase()
-                            .replace(/\s*\([^)]*\)\s*/g, '')
-                            .replace(/\s+/g, ' ')
-                            .trim();
-                          const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
-                          winners[normalizedName] = entry;
-                          if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
-                          const originalUpper = acName.toUpperCase().trim();
-                          if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
-                            winners[originalUpper] = entry;
-                          }
+                          assignWinnerNameKeys(winners, acName, entry, { style: 'assembly' });
                         }
                       }
                     }
@@ -643,17 +607,7 @@ export function MapView({
                       result.name ||
                       '';
                     if (pcName) {
-                      const normalizedName = normalizeName(pcName)
-                        .toUpperCase()
-                        .replace(/\s+/g, ' ')
-                        .trim();
-                      const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
-                      winners[normalizedName] = entry;
-                      if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
-                      const originalUpper = pcName.toUpperCase().trim();
-                      if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
-                        winners[originalUpper] = entry;
-                      }
+                      assignWinnerNameKeys(winners, pcName, entry, { style: 'pc' });
                       const sid = resolvePCName(pcName, stateId);
                       if (sid) winners[sid] = entry;
                     }
@@ -720,16 +674,9 @@ export function MapView({
                               winners[pcId] = entry;
                               const pcEntity = schema.parliamentaryConstituencies[pcId];
                               if (pcEntity?.name) {
-                                const normalizedName = normalizeName(pcEntity.name)
-                                  .toUpperCase()
-                                  .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
-                                  .trim()
-                                  .replace(/\s+/g, ' ');
-                                winners[normalizedName] = entry;
-                                const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
-                                if (fuzzyKey && fuzzyKey !== normalizedName)
-                                  winners[fuzzyKey] = entry;
-                                winners[pcEntity.name.toUpperCase().trim()] = entry;
+                                assignWinnerNameKeys(winners, pcEntity.name, entry, {
+                                  style: 'pcSeatSuffix',
+                                });
                               }
                             }
                           }
@@ -780,19 +727,8 @@ export function MapView({
                     party: string,
                     candidateName: string
                   ): void => {
-                    const normalizedName = normalizeName(acName)
-                      .toUpperCase()
-                      .replace(/\s*\([^)]*\)\s*/g, '')
-                      .replace(/\s+/g, ' ')
-                      .trim();
-                    const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
                     const entry = { party, candidate: candidateName };
-                    winners[normalizedName] = entry;
-                    if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
-                    const originalUpper = acName.toUpperCase().trim();
-                    if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
-                      winners[originalUpper] = entry;
-                    }
+                    assignWinnerNameKeys(winners, acName, entry, { style: 'assembly' });
                     const sid = resolveACName(acName, stateId);
                     assignAcWinnerBySchemaId(winners, sid, party, candidateName);
                   };
@@ -912,18 +848,7 @@ export function MapView({
                             result.name ||
                             '';
                           if (acName) {
-                            const normalizedName = normalizeName(acName)
-                              .toUpperCase()
-                              .replace(/\s*\([^)]*\)\s*/g, '')
-                              .replace(/\s+/g, ' ')
-                              .trim();
-                            const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
-                            winners[normalizedName] = entry;
-                            if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
-                            const originalUpper = acName.toUpperCase().trim();
-                            if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
-                              winners[originalUpper] = entry;
-                            }
+                            assignWinnerNameKeys(winners, acName, entry, { style: 'assembly' });
                           }
                         }
                       }
@@ -1002,18 +927,7 @@ export function MapView({
               const pcName =
                 result.constituencyNameOriginal || result.constituencyName || result.name || '';
               if (pcName) {
-                const normalizedName = normalizeName(pcName)
-                  .toUpperCase()
-                  .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
-                  .trim()
-                  .replace(/\s+/g, ' ');
-                const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
-                winners[normalizedName] = entry;
-                if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
-                const originalUpper = pcName.toUpperCase().trim();
-                if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
-                  winners[originalUpper] = entry;
-                }
+                assignWinnerNameKeys(winners, pcName, entry, { style: 'pcSeatSuffix' });
                 const sid = resolvePCName(pcName, stateId);
                 if (sid) winners[sid] = entry;
               }
@@ -1065,18 +979,7 @@ export function MapView({
               const pcName =
                 result.constituencyNameOriginal || result.constituencyName || result.name || '';
               if (pcName) {
-                const normalizedName = normalizeName(pcName)
-                  .toUpperCase()
-                  .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
-                  .trim()
-                  .replace(/\s+/g, ' ');
-                const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
-                winners[normalizedName] = entry;
-                if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
-                const originalUpper = pcName.toUpperCase().trim();
-                if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
-                  winners[originalUpper] = entry;
-                }
+                assignWinnerNameKeys(winners, pcName, entry, { style: 'pcSeatSuffix' });
                 const sid = resolvePCName(pcName, stateId);
                 if (sid) winners[sid] = entry;
               }

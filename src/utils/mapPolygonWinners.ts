@@ -18,6 +18,67 @@ export type MapPolygonWinner = { party: string; candidate?: string };
 
 export type ConstituencyWinnersMap = Record<string, { party: string; candidate: string }>;
 
+/**
+ * How a raw constituency name is folded into its canonical lookup key.
+ *
+ * - `assembly`      strips any parenthetical, e.g. "Arani (SC)" -> "ARANI"
+ * - `pc`            whitespace-collapse only, parentheses preserved
+ * - `pcSeatSuffix`  strips only a trailing "(SC)"/"(ST)" reservation marker
+ */
+export type WinnerNameKeyStyle = 'assembly' | 'pc' | 'pcSeatSuffix';
+
+/** Canonical lookup key for a constituency name. Mirrors the read-side lookup. */
+export function normalizeWinnerNameKey(name: string, style: WinnerNameKeyStyle): string {
+  const upper = normalizeName(name).toUpperCase();
+  if (style === 'assembly') {
+    return upper
+      .replace(/\s*\([^)]*\)\s*/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+  if (style === 'pc') {
+    return upper.replace(/\s+/g, ' ').trim();
+  }
+  return upper
+    .replace(/\s*\(S[CT]\s*\)?\s*$/i, '')
+    .trim()
+    .replace(/\s+/g, ' ');
+}
+
+/**
+ * Register a winner under every key the map-style lookup might ask for:
+ * the normalized name, its alphanumeric-only "fuzzy" form, and the raw
+ * uppercased original (GeoJSON and election JSON disagree on spelling).
+ *
+ * Write-side counterpart of `lookupWinnerByNameKeyPath` - the same key
+ * scheme viewed from the other end, so keep the two in sync.
+ *
+ * @param opts.applyVariants also seed known alternate spellings (AC layer
+ *   only); variants never clobber an existing entry, they only fill gaps.
+ * @returns the normalized key the winner was primarily stored under.
+ */
+export function assignWinnerNameKeys(
+  winners: ConstituencyWinnersMap,
+  rawName: string,
+  entry: { party: string; candidate: string },
+  opts: { style: WinnerNameKeyStyle; applyVariants?: boolean }
+): string {
+  const normalizedName = normalizeWinnerNameKey(rawName, opts.style);
+  const fuzzyKey = normalizedName.replace(/[^A-Z0-9]/g, '');
+  winners[normalizedName] = entry;
+  if (fuzzyKey && fuzzyKey !== normalizedName) winners[fuzzyKey] = entry;
+  const originalUpper = rawName.toUpperCase().trim();
+  if (originalUpper !== normalizedName && originalUpper !== fuzzyKey) {
+    winners[originalUpper] = entry;
+  }
+  if (opts.applyVariants) {
+    for (const v of AC_STYLE_VARIANTS[normalizedName] ?? []) {
+      if (v !== normalizedName && !winners[v]) winners[v] = entry;
+    }
+  }
+  return normalizedName;
+}
+
 export function normalizeAssemblyPolygonNames(props: Pick<AssemblyProperties, 'AC_NAME'>): {
   constituencyName: string | null;
   normalizedConstituencyName: string | null;
