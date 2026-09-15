@@ -155,33 +155,6 @@ function App(): JSX.Element {
    */
   const handleUrlNavigate = useCallback(
     async (urlState: UrlState): Promise<void> => {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          location: 'App.tsx:handleUrlNavigate',
-          message: 'Entry',
-          data: {
-            state: urlState.state,
-            district: urlState.district,
-            assembly: urlState.assembly,
-            year: urlState.year,
-            pcYear: urlState.pcYear,
-            branch: urlState.pc
-              ? 'pc'
-              : urlState.district
-                ? 'district'
-                : urlState.view === 'assemblies'
-                  ? 'assemblies'
-                  : 'other',
-          },
-          timestamp: Date.now(),
-          sessionId: 'debug-session',
-          hypothesisId: 'A',
-        }),
-      }).catch(() => {});
-      // #endregion
       if (!urlState.state) {
         setLeftPane('root');
         setLeftPaneView(null);
@@ -275,28 +248,6 @@ function App(): JSX.Element {
           matchedState,
           urlState.year != null ? { yearFromUrl: urlState.year } : undefined
         );
-        // #region agent log
-        if (matchedState?.toLowerCase().includes('karnataka') && urlState.district) {
-          fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              location: 'App.tsx:handleUrlNavigate district branch',
-              message: 'acIndex and year validation',
-              data: {
-                matchedState,
-                district: urlState.district,
-                urlStateYear: urlState.year,
-                availableYears: acIndex?.availableYears ?? [],
-                yearValid: acIndex ? acIndex.availableYears.includes(urlState.year ?? 0) : false,
-              },
-              timestamp: Date.now(),
-              sessionId: 'debug-session',
-              hypothesisId: 'H4',
-            }),
-          }).catch(() => {});
-        }
-        // #endregion
         if (urlState.pcYear) {
           setSelectedACPCYear(urlState.pcYear);
         } else {
@@ -335,20 +286,6 @@ function App(): JSX.Element {
         ) {
           const latestYear = defaultAssemblyDataYearFromIndex(acIndex);
           if (latestYear != null) {
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                location: 'App.tsx:handleUrlNavigate district branch',
-                message: 'Correcting invalid year to latest',
-                data: { urlStateYear: urlState.year, latestYear, matchedState },
-                timestamp: Date.now(),
-                sessionId: 'debug-session',
-                hypothesisId: 'H4',
-              }),
-            }).catch(() => {});
-            // #endregion
             setSelectedYear(latestYear);
             setTimeout(() => {
               updateUrlRef.current({
@@ -366,25 +303,6 @@ function App(): JSX.Element {
             }, 0);
           }
         }
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            location: 'App.tsx:handleUrlNavigate district branch',
-            message: 'After set year state',
-            data: {
-              urlStateYear: urlState.year,
-              urlStatePcYear: urlState.pcYear,
-              setSelectedACPCYearTo: urlState.pcYear ?? null,
-              setSelectedYearTo: urlState.year ?? null,
-            },
-            timestamp: Date.now(),
-            sessionId: 'debug-session',
-            hypothesisId: 'A',
-          }),
-        }).catch(() => {});
-        // #endregion
         if (urlState.assembly) {
           // Convert assembly name to match GeoJSON format (Title Case, uppercase for comparison)
           const acName = toTitleCase(urlState.assembly).toUpperCase();
@@ -405,25 +323,6 @@ function App(): JSX.Element {
           if (urlState.year != null) setSelectedYear(urlState.year);
         }
       } else if (urlState.view === 'assemblies') {
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            location: 'App.tsx:handleUrlNavigate assemblies branch entry',
-            message: 'urlState year/pcYear and what we set',
-            data: {
-              urlStateYear: urlState.year,
-              urlStatePcYear: urlState.pcYear,
-              settingPcYear: !!urlState.pcYear,
-              settingYearFromUrl: !!urlState.year,
-            },
-            timestamp: Date.now(),
-            sessionId: 'debug-session',
-            hypothesisId: 'H1',
-          }),
-        }).catch(() => {});
-        // #endregion
         // Set PC year from URL immediately so useUrlState doesn't overwrite year=pc-YYYY
         if (urlState.pcYear) {
           setSelectedACPCYear(urlState.pcYear);
@@ -448,20 +347,6 @@ function App(): JSX.Element {
         if (!urlState.year && !urlState.pcYear && acIndex && acIndex.availableYears.length > 0) {
           const latestYear = defaultAssemblyDataYearFromIndex(acIndex);
           if (latestYear != null) {
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/5b91ef4f-6f16-4f42-869d-1ba3b27dc151', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                location: 'App.tsx:handleUrlNavigate set latestYear (no year in URL)',
-                message: 'default year for state-level AC view',
-                data: { latestYear, state: matchedState },
-                timestamp: Date.now(),
-                sessionId: 'debug-session',
-                hypothesisId: 'H2',
-              }),
-            }).catch(() => {});
-            // #endregion
             setSelectedYear(latestYear);
             // Update URL immediately with latest year (preserve assembly if present)
             setTimeout(() => {
