@@ -14,6 +14,7 @@ import { normalizeName, normalizePcNameCompact, getStateIdFromName } from './uti
 import { defaultAssemblyDataYearFromIndex } from './utils/electionSchedule';
 import { mergeAssamAssemblyGeoForYear, assamMapDataForYear } from './utils/assamAssemblyGeo';
 import { trackPageView, trackConstituencySelect } from './utils/firebase';
+import { withUrlLocation, type UrlLocationInput } from './utils/urlLocation';
 import {
   PARLIAMENT_YEARS,
   loadParliamentContributionsForAC,
@@ -158,6 +159,35 @@ function App(): JSX.Element {
   // - For PC view (constituencies): use parliament year (pcSelectedYear)
   const urlYear =
     currentView === 'assemblies' || currentView === 'districts' ? selectedYear : pcSelectedYear;
+
+  /**
+   * Where the user currently is, as the URL layer wants it. Every updateUrl /
+   * getShareableUrl call below derives from this rather than respelling it.
+   */
+  const urlLocation = useMemo(
+    (): UrlLocationInput => ({
+      currentState,
+      currentView,
+      currentPC,
+      currentDistrict,
+      currentAssembly,
+      selectedYear,
+      selectedACPCYear,
+      showACsWithinPC,
+      blogOpen,
+    }),
+    [
+      currentState,
+      currentView,
+      currentPC,
+      currentDistrict,
+      currentAssembly,
+      selectedYear,
+      selectedACPCYear,
+      showACsWithinPC,
+      blogOpen,
+    ]
+  );
   // Current displayed data
   const [currentData, setCurrentData] = useState<GeoJSONData | null>(null);
   // PC winners for state-level PC view first paint (set in handleUrlNavigate so map has colors before MapView loadResults)
@@ -1074,33 +1104,14 @@ function App(): JSX.Element {
         typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
       const blogPostParam =
         blogOpen && searchParams?.get('blogPost') ? searchParams.get('blogPost') : null;
-      const pcYearActive = selectedACPCYear != null;
-      updateUrl({
-        state: currentState,
-        view: currentView,
-        pc: currentPC,
-        district: currentDistrict,
-        assembly: currentAssembly,
-        year: pcYearActive ? null : selectedYear,
-        pcYear: pcYearActive ? selectedACPCYear : null,
-        tab: panelTab === 'overview' ? null : panelTab,
-        showACs: currentPC ? (showACsWithinPC ?? true) : null,
-        blog: blogOpen,
-        blogPost: blogPostParam,
-      });
+      updateUrl(
+        withUrlLocation(urlLocation, {
+          tab: panelTab === 'overview' ? null : panelTab,
+          blogPost: blogPostParam,
+        })
+      );
     },
-    [
-      blogOpen,
-      currentAssembly,
-      currentDistrict,
-      currentPC,
-      currentState,
-      currentView,
-      selectedACPCYear,
-      selectedYear,
-      showACsWithinPC,
-      updateUrl,
-    ]
+    [blogOpen, currentAssembly, currentState, urlLocation, updateUrl]
   );
 
   /**
@@ -1108,90 +1119,39 @@ function App(): JSX.Element {
    */
   const currentShareUrl = useMemo(() => {
     if (!currentAssembly) return undefined;
-    const pcYearActive = selectedACPCYear != null;
-    return getShareableUrl({
-      state: currentState,
-      view: currentView,
-      pc: currentPC,
-      district: currentDistrict,
-      assembly: currentAssembly,
-      year: pcYearActive ? null : selectedYear,
-      pcYear: pcYearActive ? selectedACPCYear : null,
-      tab: null,
-      showACs: currentPC ? (showACsWithinPC ?? true) : null,
-      blog: blogOpen,
-      blogPost: null,
-    });
-  }, [
-    getShareableUrl,
-    currentState,
-    currentView,
-    currentPC,
-    currentDistrict,
-    currentAssembly,
-    selectedYear,
-    selectedACPCYear,
-    showACsWithinPC,
-    blogOpen,
-  ]);
+    return getShareableUrl(withUrlLocation(urlLocation, { tab: null, blogPost: null }));
+  }, [getShareableUrl, urlLocation, currentAssembly]);
 
   /**
    * Get share URL for PC contribution in AC panel (year=pc-YYYY format)
+   *
+   * Identical to {@link currentShareUrl} - when a PC year is active the shared
+   * location already carries `year=pc-YYYY`. It is a separate prop only so the
+   * AC panel can hide its "share contribution" affordance when no PC year is
+   * selected, so the guard is the whole difference.
    */
-  const pcContributionShareUrl = useMemo(() => {
-    if (!currentAssembly || !selectedACPCYear) return undefined;
-    return getShareableUrl({
-      state: currentState,
-      view: currentView,
-      pc: currentPC,
-      district: currentDistrict,
-      assembly: currentAssembly,
-      year: null,
-      pcYear: selectedACPCYear,
-      tab: null,
-      showACs: currentPC ? (showACsWithinPC ?? true) : null,
-      blog: blogOpen,
-      blogPost: null,
-    });
-  }, [
-    getShareableUrl,
-    currentState,
-    currentView,
-    currentPC,
-    currentDistrict,
-    currentAssembly,
-    selectedACPCYear,
-    showACsWithinPC,
-    blogOpen,
-  ]);
+  const pcContributionShareUrl = useMemo(
+    () => (selectedACPCYear ? currentShareUrl : undefined),
+    [currentShareUrl, selectedACPCYear]
+  );
 
   /**
    * Get current share URL for PC election results
    */
   const currentPCShareUrl = useMemo(() => {
     if (!currentPC) return undefined;
-    return getShareableUrl({
-      state: currentState,
-      view: currentView,
-      pc: currentPC,
-      district: null,
-      assembly: null,
-      year: pcSelectedYear,
-      pcYear: null,
-      tab: null,
-      showACs: currentPC ? (showACsWithinPC ?? true) : null,
-      blog: blogOpen,
-      blogPost: null,
-    });
-  }, [
-    getShareableUrl,
-    currentState,
-    currentView,
-    currentPC,
-    pcSelectedYear,
-    showACsWithinPC,
-    blogOpen,
-  ]);
+    // PC-level share: drop the AC-scoped parts and use the parliament year.
+    return getShareableUrl(
+      withUrlLocation(urlLocation, {
+        tab: null,
+        blogPost: null,
+        district: null,
+        assembly: null,
+        year: pcSelectedYear,
+        pcYear: null,
+      })
+    );
+  }, [getShareableUrl, urlLocation, currentPC, pcSelectedYear]);
 
   /**
    * Handle view switch between constituencies and districts
@@ -1338,47 +1298,28 @@ function App(): JSX.Element {
       // Close election panels when opening blog
       clearElectionResult();
       clearPCElectionResult();
-      // Update URL
-      updateUrl({
-        state: currentState,
-        view: currentView,
-        pc: currentPC,
-        district: currentDistrict,
-        assembly: currentAssembly,
-        year: selectedYear,
-        pcYear: selectedACPCYear,
-        showACs: currentPC ? (showACsWithinPC ?? true) : null,
-        blog: true,
-        blogPost: null,
-      });
-    } else {
-      // Update URL to remove blog params
-      updateUrl({
-        state: currentState,
-        view: currentView,
-        pc: currentPC,
-        district: currentDistrict,
-        assembly: currentAssembly,
-        year: selectedYear,
-        pcYear: selectedACPCYear,
-        showACs: currentPC ? (showACsWithinPC ?? true) : null,
-        blog: false,
-        blogPost: null,
-      });
     }
+    // Toggling the blog must not disturb which year the URL is showing, so both
+    // year fields are passed through as-is rather than via the shared
+    // pcYear-wins rule (they land on different branches when a PC is selected
+    // without an assembly).
+    updateUrl(
+      withUrlLocation(urlLocation, {
+        tab: null,
+        blogPost: null,
+        year: selectedYear,
+        pcYear: selectedACPCYear,
+        blog: newBlogOpen,
+      })
+    );
   }, [
     blogOpen,
     clearElectionResult,
     clearPCElectionResult,
     updateUrl,
-    currentState,
-    currentView,
-    currentPC,
-    currentDistrict,
-    currentAssembly,
+    urlLocation,
     selectedYear,
     selectedACPCYear,
-    showACsWithinPC,
   ]);
 
   /**
@@ -1386,30 +1327,17 @@ function App(): JSX.Element {
    */
   const handleBlogClose = useCallback((): void => {
     setBlogOpen(false);
-    // Update URL to remove blog params
-    updateUrl({
-      state: currentState,
-      view: currentView,
-      pc: currentPC,
-      district: currentDistrict,
-      assembly: currentAssembly,
-      year: selectedYear,
-      pcYear: selectedACPCYear,
-      showACs: currentPC ? (showACsWithinPC ?? true) : null,
-      blog: false,
-      blogPost: null,
-    });
-  }, [
-    updateUrl,
-    currentState,
-    currentView,
-    currentPC,
-    currentDistrict,
-    currentAssembly,
-    selectedYear,
-    selectedACPCYear,
-    showACsWithinPC,
-  ]);
+    // Closing the blog leaves the year alone - see handleBlogToggle.
+    updateUrl(
+      withUrlLocation(urlLocation, {
+        tab: null,
+        blogPost: null,
+        year: selectedYear,
+        pcYear: selectedACPCYear,
+        blog: false,
+      })
+    );
+  }, [updateUrl, urlLocation, selectedYear, selectedACPCYear]);
 
   /**
    * Handle go back to state from PC/district
