@@ -48,6 +48,7 @@ import {
   resolveDistrictPolygonParty,
   resolvePcMapPolygonWinner,
   assignWinnerNameKeys,
+  buildPcWinnersFromResults,
 } from '../utils/mapPolygonWinners';
 import {
   readLocation,
@@ -566,26 +567,10 @@ export function MapView({
                 });
               }
               // Map each PC to its winner (store schemaId when key is schemaId, plus name variants)
-              const pcSchemaIdPattern = /^[A-Z]{2}-\d+$/; // e.g. TN-01, UP-1
-              Object.entries(results).forEach(([key, result]) => {
-                if (result.candidates && result.candidates.length > 0) {
-                  const winner = result.candidates[0]; // First candidate is winner (sorted by votes)
-                  if (winner) {
-                    const entry = { party: winner.party, candidate: winner.name };
-                    if (key && pcSchemaIdPattern.test(key)) winners[key] = entry;
-                    const pcName =
-                      result.constituencyNameOriginal ||
-                      result.constituencyName ||
-                      result.name ||
-                      '';
-                    if (pcName) {
-                      assignWinnerNameKeys(winners, pcName, entry, { style: 'pc' });
-                      const sid = resolvePCName(pcName, stateId);
-                      if (sid) winners[sid] = entry;
-                    }
-                  }
-                }
-              });
+              Object.assign(
+                winners,
+                buildPcWinnersFromResults(results, stateId, resolvePCName, 'pc')
+              );
               // Fill PCs missing from file (e.g. Vellore TN-08 in 2019) by deriving winner from AC data
               if (schema?.parliamentaryConstituencies && schema?.assemblyConstituencies) {
                 const statePCIds = Object.values(schema.parliamentaryConstituencies)
@@ -885,24 +870,7 @@ export function MapView({
       .then((res) => (res.ok ? res.json() : null))
       .then((results: PCElectionResultsByConstituency | null) => {
         if (cancelled || !results) return;
-        const winners: Record<string, { party: string; candidate: string }> = {};
-        const pcSchemaIdPattern = /^[A-Z]{2}-\d+$/;
-        Object.entries(results).forEach(([key, result]) => {
-          if (result.candidates && result.candidates.length > 0) {
-            const winner = result.candidates[0];
-            if (winner) {
-              const entry = { party: winner.party, candidate: winner.name };
-              if (key && pcSchemaIdPattern.test(key)) winners[key] = entry;
-              const pcName =
-                result.constituencyNameOriginal || result.constituencyName || result.name || '';
-              if (pcName) {
-                assignWinnerNameKeys(winners, pcName, entry, { style: 'pcSeatSuffix' });
-                const sid = resolvePCName(pcName, stateId);
-                if (sid) winners[sid] = entry;
-              }
-            }
-          }
-        });
+        const winners = buildPcWinnersFromResults(results, stateId, resolvePCName);
         if (!cancelled) {
           setPersistedParliamentElections({ stateId, year: urlYear, data: results });
           setConstituencyWinners(winners);
@@ -937,24 +905,7 @@ export function MapView({
       .then((res) => (res.ok ? res.json() : null))
       .then((results: PCElectionResultsByConstituency | null) => {
         if (cancelled || !results) return;
-        const winners: Record<string, { party: string; candidate: string }> = {};
-        const pcSchemaIdPattern = /^[A-Z]{2}-\d+$/;
-        Object.entries(results).forEach(([key, result]) => {
-          if (result.candidates && result.candidates.length > 0) {
-            const winner = result.candidates[0];
-            if (winner) {
-              const entry = { party: winner.party, candidate: winner.name };
-              if (key && pcSchemaIdPattern.test(key)) winners[key] = entry;
-              const pcName =
-                result.constituencyNameOriginal || result.constituencyName || result.name || '';
-              if (pcName) {
-                assignWinnerNameKeys(winners, pcName, entry, { style: 'pcSeatSuffix' });
-                const sid = resolvePCName(pcName, stateId);
-                if (sid) winners[sid] = entry;
-              }
-            }
-          }
-        });
+        const winners = buildPcWinnersFromResults(results, stateId, resolvePCName);
         if (!cancelled) {
           setPersistedParliamentElections({ stateId, year: urlYear, data: results });
           setConstituencyWinners(winners);

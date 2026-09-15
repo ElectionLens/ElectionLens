@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   assignWinnerNameKeys,
+  buildPcWinnersFromResults,
   normalizeWinnerNameKey,
   type ConstituencyWinnersMap,
 } from './mapPolygonWinners';
@@ -105,5 +106,89 @@ describe('assignWinnerNameKeys', () => {
     expect(key).toBe('TIRUVALLUR');
     expect(winners['TIRUVALLUR']).toEqual(entry('DMK'));
     expect(winners['TIRUVALLUR (SC)']).toEqual(entry('DMK'));
+  });
+});
+
+describe('buildPcWinnersFromResults', () => {
+  const noSchema = (): null => null;
+
+  it('takes candidate[0] as the winner (files arrive pre-sorted by votes)', () => {
+    const winners = buildPcWinnersFromResults(
+      {
+        'TN-01': {
+          candidates: [
+            { party: 'DMK', name: 'Winner' },
+            { party: 'AIADMK', name: 'Runner Up' },
+          ],
+          constituencyName: 'Chennai North',
+        },
+      },
+      'TN',
+      noSchema
+    );
+    expect(winners['TN-01']).toEqual({ party: 'DMK', candidate: 'Winner' });
+    expect(winners['CHENNAI NORTH']).toEqual({ party: 'DMK', candidate: 'Winner' });
+  });
+
+  it('only keys the file key when it looks like a schema ID', () => {
+    const winners = buildPcWinnersFromResults(
+      { 'Chennai North': { candidates: [{ party: 'DMK', name: 'W' }], name: 'Chennai North' } },
+      'TN',
+      noSchema
+    );
+    expect(winners['Chennai North']).toBeUndefined();
+    expect(winners['CHENNAI NORTH']).toEqual({ party: 'DMK', candidate: 'W' });
+  });
+
+  it('registers the schema-resolved ID for the PC name', () => {
+    const winners = buildPcWinnersFromResults(
+      { any: { candidates: [{ party: 'DMK', name: 'W' }], constituencyName: 'Chennai North' } },
+      'TN',
+      () => 'TN-01'
+    );
+    expect(winners['TN-01']).toEqual({ party: 'DMK', candidate: 'W' });
+  });
+
+  it('prefers constituencyNameOriginal over the other name fields', () => {
+    const winners = buildPcWinnersFromResults(
+      {
+        'TN-02': {
+          candidates: [{ party: 'DMK', name: 'W' }],
+          constituencyNameOriginal: 'Tiruvallur (SC)',
+          constituencyName: 'Something Else',
+        },
+      },
+      'TN',
+      noSchema
+    );
+    expect(winners['TIRUVALLUR']).toEqual({ party: 'DMK', candidate: 'W' });
+    expect(winners['SOMETHING ELSE']).toBeUndefined();
+  });
+
+  it('skips rows with no candidates rather than throwing', () => {
+    const winners = buildPcWinnersFromResults(
+      {
+        'TN-01': { candidates: [], constituencyName: 'Empty' },
+        'TN-02': { constituencyName: 'Missing' },
+        'TN-03': { candidates: [{ party: 'DMK', name: 'W' }], constituencyName: 'Good' },
+      },
+      'TN',
+      noSchema
+    );
+    expect(winners['EMPTY']).toBeUndefined();
+    expect(winners['MISSING']).toBeUndefined();
+    expect(winners['GOOD']).toEqual({ party: 'DMK', candidate: 'W' });
+  });
+
+  it('honours the name-key style, which differs between PC files', () => {
+    const results = {
+      'TN-02': { candidates: [{ party: 'DMK', name: 'W' }], constituencyName: 'Tiruvallur (SC)' },
+    };
+    // default pcSeatSuffix strips the reservation marker
+    expect(buildPcWinnersFromResults(results, 'TN', noSchema)['TIRUVALLUR']).toBeDefined();
+    // 'pc' style keeps it, so only the parenthesised form is registered
+    const pcStyle = buildPcWinnersFromResults(results, 'TN', noSchema, 'pc');
+    expect(pcStyle['TIRUVALLUR (SC)']).toBeDefined();
+    expect(pcStyle['TIRUVALLUR']).toBeUndefined();
   });
 });

@@ -79,6 +79,49 @@ export function assignWinnerNameKeys(
   return normalizedName;
 }
 
+/** Minimal shape of a PC election row needed to derive its map winner. */
+type PcResultRow = {
+  candidates?: { party: string; name: string }[];
+  constituencyNameOriginal?: string;
+  constituencyName?: string;
+  name?: string;
+};
+
+/** Schema IDs look like "TN-01" / "UP-1". */
+const SCHEMA_ID_PATTERN = /^[A-Z]{2}-\d+$/;
+
+/**
+ * Build the PC winner lookup for a whole state's Lok Sabha result file.
+ *
+ * Candidates arrive pre-sorted by votes, so index 0 is the winner. Each winner
+ * is registered under its schema ID (when the file is keyed that way), every
+ * name-key variant, and the schema-resolved ID for the PC name.
+ *
+ * @param resolvePCName maps a PC name to its schema ID, or null if unknown.
+ * @param style name-key flavour; PC files disagree on whether the "(SC)"
+ *   reservation suffix is part of the name.
+ */
+export function buildPcWinnersFromResults(
+  results: Record<string, PcResultRow>,
+  stateId: string,
+  resolvePCName: (pcName: string, stateId: string) => string | null,
+  style: WinnerNameKeyStyle = 'pcSeatSuffix'
+): ConstituencyWinnersMap {
+  const winners: ConstituencyWinnersMap = {};
+  for (const [key, result] of Object.entries(results)) {
+    const winner = result.candidates?.[0];
+    if (!winner) continue;
+    const entry = { party: winner.party, candidate: winner.name };
+    if (key && SCHEMA_ID_PATTERN.test(key)) winners[key] = entry;
+    const pcName = result.constituencyNameOriginal || result.constituencyName || result.name || '';
+    if (!pcName) continue;
+    assignWinnerNameKeys(winners, pcName, entry, { style });
+    const sid = resolvePCName(pcName, stateId);
+    if (sid) winners[sid] = entry;
+  }
+  return winners;
+}
+
 export function normalizeAssemblyPolygonNames(props: Pick<AssemblyProperties, 'AC_NAME'>): {
   constituencyName: string | null;
   normalizedConstituencyName: string | null;
