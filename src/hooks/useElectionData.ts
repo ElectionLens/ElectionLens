@@ -266,11 +266,17 @@ export function useElectionData(): UseElectionDataReturn {
   useEffect(() => {
     async function init(): Promise<void> {
       await initDB();
-      await loadStatesData();
-      await loadParliamentData();
-      await loadAssemblyData();
-      await loadAssamPreDelimitationGeo();
-      await preloadAllDistricts();
+      // States + parliament are needed for the default (constituencies) view - fetch
+      // those alongside assembly/assam/districts concurrently instead of one-at-a-time.
+      // Each loader is independent (own setState, own cache key), so this is a pure
+      // network-concurrency win with no change in the data that eventually loads.
+      await Promise.all([
+        loadStatesData(),
+        loadParliamentData(),
+        loadAssemblyData(),
+        loadAssamPreDelimitationGeo(),
+        preloadAllDistricts(),
+      ]);
     }
     void init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
