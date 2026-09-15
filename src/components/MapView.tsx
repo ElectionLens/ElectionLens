@@ -49,6 +49,16 @@ import {
   resolvePcMapPolygonWinner,
   assignWinnerNameKeys,
 } from '../utils/mapPolygonWinners';
+import {
+  readLocation,
+  rawYearParam,
+  parseAssemblyYearParam,
+  parsePcPrefixedYear,
+  isPcPath,
+  isStateLevelPcPath,
+  isAssemblyMapDataPath,
+  stateNameFromPath,
+} from '../utils/mapUrlContext';
 import type { PartyVoteRow } from '../utils/aggregateStateMapElectionStats';
 import {
   aggregateAssemblyVotesForMappedFeatures,
@@ -227,15 +237,9 @@ export function MapView({
     if (!metaBad) return false;
     if (selectedACPCYear != null) return false;
     if (pcSelectedYear != null) return false;
-    if (currentView === 'constituencies' && typeof window !== 'undefined') {
-      const seg = window.location.pathname.split('/').filter(Boolean);
-      if (seg.length >= 2 && seg[1]?.toLowerCase() === 'pc') {
-        const py = new URLSearchParams(window.location.search).get('year');
-        if (py && !py.startsWith('pc-')) {
-          const y = parseInt(py, 10);
-          if (!Number.isNaN(y)) return false;
-        }
-      }
+    if (currentView === 'constituencies') {
+      const loc = readLocation();
+      if (loc && isPcPath(loc.pathname) && parseAssemblyYearParam(loc.search) != null) return false;
     }
     return true;
   }, [selectedACPCYear, pcSelectedYear, acFileMetaForMapColors, currentView]);
@@ -263,16 +267,9 @@ export function MapView({
     if (!currentState) {
       // Don't clear when URL is state-level PC with year= — preload/initialPCWinners may set winners;
       // clearing here wipes them before first paint (handleUrlNavigate sets currentState async).
-      if (typeof window !== 'undefined') {
-        const path = window.location.pathname;
-        const segments = path.split('/').filter(Boolean);
-        const isStateLevelPc =
-          segments.length >= 2 && segments[1]?.toLowerCase() === 'pc' && !segments[2];
-        const q = new URLSearchParams(window.location.search).get('year');
-        const hasYear = q && !q.startsWith('pc-') && !Number.isNaN(parseInt(q, 10));
-        if (isStateLevelPc && hasYear) {
-          return;
-        }
+      const loc = readLocation();
+      if (loc && isStateLevelPcPath(loc.pathname) && parseAssemblyYearParam(loc.search) != null) {
+        return;
       }
       setConstituencyWinners({});
       setAcFileMetaForMapColors(null);
@@ -291,28 +288,11 @@ export function MapView({
       /** When selected assembly year file loads OK but yields no map winners (pre-poll / announced-only), do not backfill latest completed year — avoids wrong-year colours on neighbouring districts. */
       let skipLatestYearFallbackForAC = false;
       setBackgroundPCWinners({});
-      let urlDerivedPcYear: number | null = null;
-      if (typeof window !== 'undefined') {
-        const py = new URLSearchParams(window.location.search).get('year');
-        if (py?.startsWith('pc-')) {
-          const n = parseInt(py.slice(3), 10);
-          if (!Number.isNaN(n)) urlDerivedPcYear = n;
-        }
-      }
+      const urlDerivedPcYear = parsePcPrefixedYear(readLocation()?.search ?? '');
       const pcYearForColoring = selectedACPCYear ?? urlDerivedPcYear;
 
       // `currentView` can still be constituencies briefly after handleUrlNavigate (before navigateToAssemblies commits).
-      // URL /state/ac[/name] means assembly-layer coloring from AC JSON — do not mis-route to Lok Sabha loader for ?year=2026 when no pc/YYYY file exists (that leaves winners empty and falls back to a past assembly year ↔ wrong colours on map).
-      let urlLooksLikeAssemblyMapData = false;
-      if (typeof window !== 'undefined') {
-        const segs = window.location.pathname.split('/').filter(Boolean);
-        const stateWideAc = segs.length >= 2 && segs[1]?.toLowerCase() === 'ac' && segs.length <= 3;
-        const districtAc =
-          segs.length >= 5 &&
-          segs[1]?.toLowerCase() === 'district' &&
-          segs[3]?.toLowerCase() === 'ac';
-        urlLooksLikeAssemblyMapData = stateWideAc || districtAc;
-      }
+      const urlLooksLikeAssemblyMapData = isAssemblyMapDataPath(readLocation()?.pathname ?? '');
 
       // District detail (currentDistrict) needs AC data for coloring; currentView can be stale (constituencies) on first run
       const needsACOrPCDistrictData =
@@ -568,15 +548,7 @@ export function MapView({
         }
       } else if (currentView === 'constituencies') {
         // State-level PC view: use pcSelectedYear, or year from URL when not set yet (avoids race with handleUrlNavigate)
-        const urlYear =
-          typeof window !== 'undefined'
-            ? (() => {
-                const p = new URLSearchParams(window.location.search).get('year');
-                if (!p || p.startsWith('pc-')) return null;
-                const y = parseInt(p, 10);
-                return Number.isNaN(y) ? null : y;
-              })()
-            : null;
+        const urlYear = parseAssemblyYearParam(readLocation()?.search ?? '');
         // `year=pc-2024` is the Lok Sabha year for map coloring / acWiseVotes — urlYear above skips pc-* (assembly-only slot).
         // urlDerivedPcYear is parsed at loadResults start; selectedACPCYear mirrors URL pc year before parliament hook syncs.
         const yearToLoad = pcSelectedYear ?? selectedACPCYear ?? urlYear ?? urlDerivedPcYear;
@@ -812,8 +784,9 @@ export function MapView({
         // When viewing AC within PC (currentPC && selectedAssembly), load assembly (MLA) results
         // only when NOT in PC-contribution mode (year=pc-YYYY). With year=pc-2019 we color by PC
         // contribution only and must not overwrite winners with assembly results.
-        if (currentPC && selectedAssembly && typeof window !== 'undefined') {
-          const urlYearParam = new URLSearchParams(window.location.search).get('year');
+        const acWithinPcLoc = readLocation();
+        if (currentPC && selectedAssembly && acWithinPcLoc) {
+          const urlYearParam = rawYearParam(acWithinPcLoc.search);
           if (!urlYearParam || !urlYearParam.startsWith('pc-')) {
             const acYear = urlYearParam ? parseInt(urlYearParam, 10) : selectedYear;
             if (!isNaN(acYear ?? NaN)) {
@@ -898,17 +871,13 @@ export function MapView({
   // Preload PC results from URL on first load when path is /state/pc?year= (before currentState is set)
   // so first paint of Tamil Nadu PCs already has party colors
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const pathname = window.location.pathname;
-    const segments = pathname.split('/').filter(Boolean);
-    if (segments.length < 2 || segments[1]?.toLowerCase() !== 'pc' || segments[2]) return;
-    const p = new URLSearchParams(window.location.search).get('year');
-    if (!p || p.startsWith('pc-')) return;
-    const urlYear = parseInt(p, 10);
-    if (Number.isNaN(urlYear)) return;
-    const stateSlug = segments[0];
-    if (!stateSlug) return;
-    const stateNameFromSlug = decodeURIComponent(stateSlug).replace(/-/g, ' ');
+    const loc = readLocation();
+    if (!loc) return;
+    if (!isStateLevelPcPath(loc.pathname)) return;
+    const urlYear = parseAssemblyYearParam(loc.search);
+    if (urlYear == null) return;
+    const stateNameFromSlug = stateNameFromPath(loc.pathname);
+    if (!stateNameFromSlug) return;
     const stateId = getStateId(stateNameFromSlug);
 
     let cancelled = false;
@@ -957,10 +926,10 @@ export function MapView({
     ) {
       return;
     }
-    const p = new URLSearchParams(window.location.search).get('year');
-    if (!p || p.startsWith('pc-')) return;
-    const urlYear = parseInt(p, 10);
-    if (Number.isNaN(urlYear)) return;
+    const loc = readLocation();
+    if (!loc) return;
+    const urlYear = parseAssemblyYearParam(loc.search);
+    if (urlYear == null) return;
 
     let cancelled = false;
     const stateId = getStateId(currentState);
@@ -1110,12 +1079,11 @@ export function MapView({
   }, [onBrowseListWinnersContext]);
 
   const resolvedPcYearForAcMap = useMemo((): number | null => {
-    if (typeof window === 'undefined') return selectedACPCYear ?? null;
-    const py = new URLSearchParams(window.location.search).get('year');
-    if (py?.startsWith('pc-')) {
-      const n = parseInt(py.slice(3), 10);
-      return Number.isNaN(n) ? null : n;
-    }
+    const loc = readLocation();
+    if (!loc) return selectedACPCYear ?? null;
+    // A pc- slot is authoritative even when malformed: it says "colour by PC
+    // contribution", so fall through to null rather than an assembly year.
+    if (rawYearParam(loc.search)?.startsWith('pc-')) return parsePcPrefixedYear(loc.search);
     return selectedACPCYear ?? null;
   }, [selectedACPCYear]);
 
@@ -1287,12 +1255,9 @@ export function MapView({
         : null;
 
     let pcYearHint: number | null = pcSelectedYear ?? null;
-    if (typeof window !== 'undefined') {
-      const py = new URLSearchParams(window.location.search).get('year');
-      if (py && !py.startsWith('pc-')) {
-        const y = parseInt(py, 10);
-        if (!Number.isNaN(y)) pcYearHint = y;
-      }
+    const loc = readLocation();
+    if (loc) {
+      pcYearHint = parseAssemblyYearParam(loc.search) ?? pcYearHint;
     }
 
     return {
