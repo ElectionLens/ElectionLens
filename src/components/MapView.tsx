@@ -1,12 +1,7 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
-import { MapContainer, TileLayer, GeoJSON, useMap, ScaleControl } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON, ScaleControl } from 'react-leaflet';
 import L from 'leaflet';
-import { Home, ChevronLeft, Maximize2, Trash2, Layers, MessageSquare } from 'lucide-react';
-import type {
-  Layer,
-  LeafletMouseEvent as LLeafletMouseEvent,
-  LatLngBoundsExpression,
-} from 'leaflet';
+import type { Layer, LeafletMouseEvent as LLeafletMouseEvent } from 'leaflet';
 import {
   getFeatureStyle,
   getHoverStyle,
@@ -15,7 +10,6 @@ import {
   getStateFileName,
   getElectionStateId,
 } from '../utils/helpers';
-import { COLOR_PALETTES } from '../constants';
 
 /** Resolved stroke/fill strings for Leaflet paths (avoid `!` on `L.PathOptions` optional fields). */
 const NEUTRAL_FILL_COLOR = '#9ca3af';
@@ -32,7 +26,6 @@ const NEUTRAL_MAP_STYLE: L.PathOptions = {
 import { mergeDimmedNonFocusStyle } from '../utils/mapDimming';
 import { isSummaryPartyPresent } from '../utils/summaryParty';
 
-import { clearAllCache } from '../utils/db';
 import { getPartyColor } from '../utils/partyData';
 import {
   ELECTIONS,
@@ -70,7 +63,6 @@ import { VectorTileLayer } from './VectorTileLayer';
 import { useSchema } from '../hooks/useSchema';
 import type {
   MapViewProps,
-  FitBoundsProps,
   MapLevel,
   GeoJSONData,
   Feature,
@@ -82,141 +74,20 @@ import type {
   DistrictFeature,
   ConstituencyFeature,
   AssemblyFeature,
-  HexColor,
   PartyCandidateRow,
 } from '../types';
+import {
+  MapToolbar,
+  MapControls,
+  MapResizer,
+  BackgroundPanes,
+  FitBounds,
+  pickNonNotaAcWinner,
+  assignAcWinnerBySchemaId,
+  LAYER_URLS,
+  type LayerName,
+} from './map-view';
 
-/** PC acWiseResults row: prefer first non-NOTA by votes for map winner */
-function pickNonNotaAcWinner<T extends { party?: string; name: string; votes?: number }>(
-  candidates: T[]
-): T | undefined {
-  if (!candidates.length) return undefined;
-  const sorted = [...candidates].sort((a, b) => (b.votes ?? 0) - (a.votes ?? 0));
-  return sorted.find((c) => String(c.party ?? '').toUpperCase() !== 'NOTA') ?? sorted[0];
-}
-
-/** Do not overwrite a real AC party with NOTA from a duplicate/bad acWise row */
-function assignAcWinnerBySchemaId(
-  winners: Record<string, { party: string; candidate: string }>,
-  sid: string | null | undefined,
-  party: string,
-  candidate: string
-): void {
-  if (!sid) return;
-  const nextNota = String(party ?? '').toUpperCase() === 'NOTA';
-  const prev = winners[sid];
-  const prevReal = prev && String(prev.party ?? '').toUpperCase() !== 'NOTA';
-  if (nextNota && prevReal) return;
-  winners[sid] = { party, candidate };
-}
-
-/** Map toolbar props — navigation, feedback, basemap (year / layer mode live in sidebar). */
-interface MapToolbarProps {
-  showBackButton: boolean;
-  onReset: () => void;
-  onGoBack: () => void;
-  onFeedbackClick: () => void;
-}
-
-/** Layer option */
-type LayerName = 'Streets' | 'Light' | 'Satellite' | 'Terrain' | 'Vector';
-
-/**
- * Map Toolbar Component - Rendered as React overlay at top center
- */
-function MapToolbar({
-  showBackButton,
-  onReset,
-  onGoBack,
-  onFeedbackClick,
-}: MapToolbarProps): JSX.Element {
-  const [activeLayer, setActiveLayer] = useState<LayerName>('Streets');
-  const [layerMenuOpen, setLayerMenuOpen] = useState(false);
-
-  const handleFullscreen = (): void => {
-    const mapContainer = document.querySelector('.map-container');
-    if (!document.fullscreenElement) {
-      void mapContainer?.requestFullscreen?.();
-    } else {
-      void document.exitFullscreen?.();
-    }
-  };
-
-  const handleClearCache = async (): Promise<void> => {
-    await clearAllCache();
-  };
-
-  const handleLayerChange = (layer: LayerName): void => {
-    setActiveLayer(layer);
-    setLayerMenuOpen(false);
-    // Dispatch custom event for the map to handle
-    window.dispatchEvent(new CustomEvent('changeBaseLayer', { detail: layer }));
-  };
-
-  const isDev =
-    typeof window !== 'undefined' &&
-    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-
-  return (
-    <div className="map-toolbar">
-      {/* Left section - navigation */}
-      <div className="toolbar-section toolbar-left">
-        {showBackButton && (
-          <button className="toolbar-btn" onClick={onGoBack} title="Go back">
-            <ChevronLeft size={18} />
-          </button>
-        )}
-        <button className="toolbar-btn" onClick={onReset} title="Reset to India">
-          <Home size={18} />
-        </button>
-        <button className="toolbar-btn" onClick={handleFullscreen} title="Toggle fullscreen">
-          <Maximize2 size={18} />
-        </button>
-        {isDev && (
-          <button className="toolbar-btn" onClick={handleClearCache} title="Clear cache">
-            <Trash2 size={18} />
-          </button>
-        )}
-      </div>
-
-      {/* Right section - feedback and layer switcher */}
-      <div className="toolbar-section toolbar-right">
-        <button
-          className="toolbar-btn feedback-btn"
-          onClick={onFeedbackClick}
-          title="Send feedback or report a bug"
-        >
-          <MessageSquare size={18} />
-        </button>
-        <div className="toolbar-dropdown">
-          <button
-            className="toolbar-btn toolbar-dropdown-btn"
-            onClick={() => setLayerMenuOpen(!layerMenuOpen)}
-            title="Change map style"
-          >
-            <Layers size={18} />
-          </button>
-          <div className={`toolbar-dropdown-menu ${layerMenuOpen ? 'visible' : ''}`}>
-            {(['Streets', 'Light', 'Satellite', 'Terrain', 'Vector'] as LayerName[]).map(
-              (layer) => (
-                <button
-                  key={layer}
-                  className={`toolbar-dropdown-item ${activeLayer === layer ? 'active' : ''}`}
-                  onClick={() => handleLayerChange(layer)}
-                >
-                  {layer}
-                  {layer === 'Vector' && <span className="layer-badge">Fast</span>}
-                </button>
-              )
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** Leaflet layer with feature property */
 interface FeatureLayer {
   feature?: Feature;
   setStyle: (style: object) => void;
@@ -232,306 +103,6 @@ interface FeatureLayer {
 /** Leaflet GeoJSON ref type */
 type GeoJSONRef = L.GeoJSON | null;
 
-/** Layer URLs - 'Vector' is handled separately by VectorTileLayer */
-const LAYER_URLS: Record<
-  string,
-  { url: string; maxZoom: number; subdomains?: string; isVector?: boolean }
-> = {
-  Streets: {
-    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    maxZoom: 19,
-    subdomains: 'abcd',
-  },
-  Light: {
-    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    maxZoom: 19,
-    subdomains: 'abcd',
-  },
-  Satellite: {
-    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    maxZoom: 19,
-  },
-  Terrain: {
-    url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-    maxZoom: 17,
-  },
-  Vector: {
-    url: '', // Handled by VectorTileLayer component
-    maxZoom: 19,
-    isVector: true,
-    subdomains: 'abc',
-  },
-};
-
-/** Props for MapControls component */
-interface MapControlsProps {
-  level: MapLevel;
-  name: string;
-  count: number;
-}
-
-/**
- * Map controls component (Leaflet-based)
- * Handles coordinates display, legend, and layer switching
- */
-function MapControls({ level, name, count }: MapControlsProps): null {
-  const map = useMap();
-  const baseLayerRef = useRef<L.TileLayer | null>(null);
-  const legendControlRef = useRef<L.Control | null>(null);
-
-  // Initialize and handle base layer switching
-  useEffect(() => {
-    // Find and store reference to the initial TileLayer
-    map.eachLayer((layer) => {
-      if (layer instanceof L.TileLayer && !baseLayerRef.current) {
-        baseLayerRef.current = layer;
-      }
-    });
-
-    const handleLayerChange = (e: Event): void => {
-      const layerName = (e as CustomEvent).detail as string;
-
-      // Vector tiles are handled by React component, skip Leaflet layer logic
-      if (layerName === 'Vector') {
-        if (baseLayerRef.current) {
-          map.removeLayer(baseLayerRef.current);
-          baseLayerRef.current = null;
-        }
-        return;
-      }
-
-      const defaultLayer = LAYER_URLS['Streets'];
-      const layerConfig = LAYER_URLS[layerName] ?? defaultLayer;
-
-      if (!layerConfig || !layerConfig.url) return;
-
-      // Remove current base layer
-      if (baseLayerRef.current) {
-        map.removeLayer(baseLayerRef.current);
-      }
-
-      // Create and add new raster tile layer
-      const newLayer = L.tileLayer(layerConfig.url, {
-        maxZoom: layerConfig.maxZoom,
-        subdomains: layerConfig.subdomains ?? 'abc',
-      });
-
-      newLayer.addTo(map);
-      newLayer.bringToBack();
-      baseLayerRef.current = newLayer;
-    };
-
-    window.addEventListener('changeBaseLayer', handleLayerChange);
-
-    return (): void => {
-      window.removeEventListener('changeBaseLayer', handleLayerChange);
-    };
-  }, [map]);
-
-  // Legend control (bottom left)
-  useEffect(() => {
-    const LegendControl = L.Control.extend({
-      options: { position: 'bottomleft' as const },
-      onAdd: function (): HTMLElement {
-        const container = L.DomUtil.create('div', 'map-legend');
-        container.id = 'mapLegend';
-        return container;
-      },
-    });
-
-    const legendControl = new LegendControl();
-    legendControlRef.current = legendControl;
-    map.addControl(legendControl);
-
-    return (): void => {
-      map.removeControl(legendControl);
-    };
-  }, [map]);
-
-  // Update legend content when props change
-  useEffect(() => {
-    const legend = document.getElementById('mapLegend');
-    if (!legend) return;
-
-    const levelLabels: Record<MapLevel, { label: string; color: string }> = {
-      states: { label: 'States View', color: '#f59e0b' },
-      districts: { label: 'Districts View', color: '#f59e0b' },
-      constituencies: { label: 'Parliament View', color: '#8b5cf6' },
-      assemblies: { label: 'Assembly View', color: '#10b981' },
-    };
-
-    const { label, color } = levelLabels[level] ?? { label: 'Map', color: '#f59e0b' };
-    const colors: HexColor[] = COLOR_PALETTES[level] ?? COLOR_PALETTES.states;
-    const sampleColors = colors.slice(0, 5);
-
-    const countLabels: Record<MapLevel, string> = {
-      states: 'states/UTs',
-      districts: 'districts',
-      constituencies: 'parliamentary',
-      assemblies: 'assembly',
-    };
-    const countLabel = countLabels[level] ?? 'areas';
-
-    legend.innerHTML = `
-      <h4 style="color: ${color}; margin: 0 0 4px 0; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;">${label}</h4>
-      <div class="legend-content">
-        <div style="font-weight: 600; color: #1f2937; font-size: 0.85rem;">${name}</div>
-        ${count ? `<div style="font-size: 0.7rem; color: #6b7280; margin: 2px 0 4px;">${count} ${countLabel}</div>` : '<div style="margin-bottom: 4px;"></div>'}
-        <div style="display: flex; gap: 2px; margin-top: 4px;">
-          ${sampleColors.map((c) => `<div style="background: ${c}; width: 14px; height: 14px; border-radius: 2px;"></div>`).join('')}
-        </div>
-      </div>
-    `;
-  }, [level, name, count]);
-
-  return null;
-}
-
-/**
- * Component to invalidate map size when panel state changes
- * Leaflet needs to be notified when its container size changes
- */
-function MapResizer({ hasPanelOpen }: { hasPanelOpen: boolean }): null {
-  const map = useMap();
-
-  useEffect(() => {
-    // Delay to let CSS transition complete (0.5s map-container)
-    const timer = setTimeout(() => {
-      // Don't animate view on resize so borders don't shift during panel transition
-      map.invalidateSize({ animate: false });
-    }, 520);
-
-    return () => clearTimeout(timer);
-  }, [map, hasPanelOpen]);
-
-  return null;
-}
-
-/**
- * Background context (other states / PCs / districts) must render *below* the primary
- * GeoJSON on overlayPane (z-index 400). A pane at 450 was above overlay and painted
- * neighbors on top of the current state’s constituencies.
- */
-function BackgroundPanes(): null {
-  const map = useMap();
-
-  useEffect(() => {
-    let pane = map.getPane('backgroundPane');
-    if (!pane) {
-      pane = map.createPane('backgroundPane');
-      pane.style.pointerEvents = 'auto';
-    }
-    pane.style.zIndex = '360';
-  }, [map]);
-
-  return null;
-}
-
-/** Extended FitBounds props with optional selected feature and panel state */
-interface ExtendedFitBoundsProps extends FitBoundsProps {
-  selectedFeatureName?: string | null;
-  /** When true, defer fit until after panel transition so borders don't shift during animation */
-  hasPanelOpen?: boolean;
-}
-
-/**
- * Get padding for map bounds based on screen size
- * Portrait mobile: panel overlays map, need offset to push feature up
- * Landscape/Desktop: map shrinks, standard padding works
- */
-function getMapPadding(hasSelectedFeature: boolean): L.FitBoundsOptions['padding'] {
-  const isMobile = window.innerWidth <= 768;
-
-  if (hasSelectedFeature) {
-    // Landscape & Desktop: map shrinks with margin-right, standard padding
-    return isMobile ? ([40, 40] as [number, number]) : ([60, 60] as [number, number]);
-  }
-
-  // Default padding for fitting all features
-  return isMobile ? ([20, 20] as [number, number]) : ([30, 30] as [number, number]);
-}
-
-/** Wait for panel/map-container transition before fitting so borders don't shift in any view */
-const FIT_DEFER_MS_WHEN_PANEL_OPEN = 520;
-
-/**
- * Component to fit map bounds to GeoJSON data or selected feature.
- * When the panel is open, defers the fly until after the panel transition (all views:
- * states, constituencies, districts, assemblies) so the map container is stable and borders don't shift.
- */
-function FitBounds({
-  geojson,
-  selectedFeatureName,
-  hasPanelOpen = false,
-}: ExtendedFitBoundsProps): null {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!geojson?.features?.length) return;
-
-    const runFit = (): void => {
-      try {
-        // If a feature is selected, zoom to just that feature
-        if (selectedFeatureName) {
-          const selectedFeature = geojson.features.find((f) => {
-            const props = f.properties as AssemblyProperties;
-            return props.AC_NAME?.toUpperCase() === selectedFeatureName.toUpperCase();
-          });
-
-          if (selectedFeature) {
-            const featureLayer = L.geoJSON(selectedFeature as GeoJSON.Feature);
-            const bounds = featureLayer.getBounds();
-            if (bounds.isValid()) {
-              const isMobile = window.innerWidth <= 768;
-              const isLandscape = window.innerWidth > window.innerHeight;
-
-              if (isMobile && !isLandscape) {
-                // Portrait mobile: offset center to push feature into top portion
-                const center = bounds.getCenter();
-                const latSpan = bounds.getNorth() - bounds.getSouth();
-                const offsetCenter = L.latLng(center.lat - latSpan * 0.4, center.lng);
-
-                const zoom = map.getBoundsZoom(bounds, false, L.point(30, 30));
-                const targetZoom = Math.min(zoom - 0.5, 11);
-
-                map.flyTo(offsetCenter, targetZoom, { duration: 0.5 });
-              } else {
-                map.flyToBounds(bounds as LatLngBoundsExpression, {
-                  padding: [60, 60],
-                  duration: 0.5,
-                  maxZoom: 12,
-                });
-              }
-            }
-            return;
-          }
-        }
-
-        // Default: fit to all features
-        const layer = L.geoJSON(geojson as GeoJSON.FeatureCollection);
-        const bounds = layer.getBounds();
-        if (bounds.isValid()) {
-          const padding = getMapPadding(false);
-          map.flyToBounds(bounds as LatLngBoundsExpression, { padding, duration: 0.5 });
-        }
-      } catch (e) {
-        console.warn('Failed to fit bounds:', e);
-      }
-    };
-
-    // In all views: when panel is open, wait for panel transition so borders don't shift
-    const delayMs = hasPanelOpen ? FIT_DEFER_MS_WHEN_PANEL_OPEN : 0;
-    const timer = setTimeout(runFit, delayMs);
-    return () => clearTimeout(timer);
-  }, [map, geojson, selectedFeatureName, hasPanelOpen]);
-
-  return null;
-}
-
-/**
- * Main map component
- * Renders the Leaflet map with GeoJSON layers
- */
 export function MapView({
   statesGeoJSON,
   parliamentGeoJSON,
