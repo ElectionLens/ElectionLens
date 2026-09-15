@@ -74,6 +74,24 @@ export function getElectionStateId(stateName: string | null | undefined): string
 }
 
 /**
+ * Get state ID from state display name (e.g. "Tamil Nadu" -> "TN") for PC path lookup.
+ * NOTE: near-duplicate of getElectionStateId above (moved here verbatim from App.tsx
+ * during a refactor) - fallback behavior differs subtly for states not in STATE_FILE_MAP.
+ * Left as-is rather than merged to avoid a behavior change; worth unifying later.
+ */
+export function getStateIdFromName(stateName: string): string {
+  const normalized = normalizeName(stateName);
+  const byState = STATE_FILE_MAP[stateName as keyof typeof STATE_FILE_MAP];
+  if (byState) return byState;
+  const byNorm = STATE_FILE_MAP[normalized as keyof typeof STATE_FILE_MAP];
+  if (byNorm) return byNorm;
+  for (const [key, value] of Object.entries(STATE_FILE_MAP)) {
+    if (normalizeName(key) === normalized) return value;
+  }
+  return normalized.toUpperCase().slice(0, 2);
+}
+
+/**
  * Get color for a feature based on index and map level
  * Colors cycle through the palette when index exceeds length
  */

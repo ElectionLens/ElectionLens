@@ -10,8 +10,12 @@ import { useParliamentResults } from './hooks/useParliamentResults';
 import { useUrlState, type UrlState, type UrlUpdateInput } from './hooks/useUrlState';
 import { useSchema } from './hooks/useSchema';
 import { ELECTIONS, PC_ELECTIONS, assemblyElectionFetchUrl } from './constants/paths';
-import { STATE_FILE_MAP } from './constants';
-import { normalizeName, normalizePcNameCompact, toTitleCase } from './utils/helpers';
+import {
+  normalizeName,
+  normalizePcNameCompact,
+  toTitleCase,
+  getStateIdFromName,
+} from './utils/helpers';
 import { isAssemblyResultEntry, skipAssemblyWinnerColoring } from './utils/electionResults';
 import { defaultAssemblyDataYearFromIndex } from './utils/electionSchedule';
 import { mergeAssamAssemblyGeoForYear, assamMapDataForYear } from './utils/assamAssemblyGeo';
@@ -33,19 +37,6 @@ import type {
   PartyCandidateRow,
   StateSummaryPanelData,
 } from './types';
-
-/** Get state ID from state display name (e.g. "Tamil Nadu" -> "TN") for PC path lookup */
-function getStateIdFromName(stateName: string): string {
-  const normalized = normalizeName(stateName);
-  const byState = STATE_FILE_MAP[stateName as keyof typeof STATE_FILE_MAP];
-  if (byState) return byState;
-  const byNorm = STATE_FILE_MAP[normalized as keyof typeof STATE_FILE_MAP];
-  if (byNorm) return byNorm;
-  for (const [key, value] of Object.entries(STATE_FILE_MAP)) {
-    if (normalizeName(key) === normalized) return value;
-  }
-  return normalized.toUpperCase().slice(0, 2);
-}
 
 /**
  * Main application component
