@@ -24,6 +24,7 @@ These are not aesthetic. Found by reading the code, not by squinting at screensh
 | B6 | **Result panel opens mid-scroll.** Rank-1 winner row is clipped at the top on load; users land on rank 2. | AC drill-down | Medium |
 | B7 | **Floating red  overlaps content** and reads as destructive. It is the sidebar toggle. | Bottom-left, all views | Medium |
 | B8 | **`README` claims Tailwind CSS v4.** There is no Tailwind — no dependency, no config, no `@tailwind`/`@import` directive. It is 8,030 lines of hand-rolled CSS. | `package.json`, `src/styles/index.css` | Low (docs) but signals drift |
+| B9 | **Data→map navigation is a race.** `BlogSection` closes itself, awaits a state load, then fires `onAssemblyClick` inside `setTimeout(…, 300)` — guessing how long geography takes. Misses on cold cache/slow network; click silently does nothing. Root cause of §2. | `BlogSection.tsx:203` | **High** — silent dead click |
 
 **B1–B3 are a half-day of work and buy more perceived quality than the entire rest of this plan.** Do them first.
 
@@ -57,45 +58,111 @@ Walmart front-end standard is **WCAG 2.2 AA**. We are not close.
 
 ---
 
-## 2. What to steal from them (and what to ignore)
+---
 
-### Steal
+## 2. Two navigation modes: data-based and map-based
 
-**S1. The podium + KPI strip.** Their single best idea. Above the fold:
-a 4-card row (Winner / Runner-up / 3rd / Margin) with party-colored left borders and
-candidate photos, then a 7-cell KPI strip (Total, Valid, NOTA, Rejected, Winner-led
-booths, Runner-led booths, Total booths). You know the whole result in two seconds.
-Our equivalent data is *below* a raw candidate table. **Invert that.**
+> **This is the organising idea of the revamp.** §3 (width) is downstream of it.
 
-**S2. Winner-led vs runner-led booth counts as a headline stat.** They surface
-`244 / 80` in the KPI strip. We compute richer versions of this in
-`boothwiseAnalysisEngine.ts` (607 lines of it!) and bury it in a tab. Promote it.
+There are two legitimate ways into the same fact, and they suit different questions:
 
-**S3. Indian digit grouping everywhere.** They show `2,32,630`. We're inconsistent (B3).
+| | **Map-based nav** | **Data-based nav** |
+|---|---|---|
+| Question | "what happened *here*?" | "*where* did X happen?" |
+| Entry | click geography, drill down | rank/filter/search a list, jump to place |
+| Good at | adjacency, clusters, regional patterns | superlatives, outliers, comparison |
+| Bad at | "top 10 closest seats" | "is this seat coastal?" |
+| Competitor | **absent** | their whole app (card directory + tabs) |
+| Us today | **strong** | **exists but hidden and broken** |
 
-**S4. Ranked horizontal bars beside the candidate table.** Their All-Candidates view
-pairs a ranked bar chart with exact tabular numbers — scan *and* precision. Our
-candidate list is numbers only, no visual weight.
+The competitor only has data-nav *because they have no map*. We should not treat that
+as a reason to copy it — we should treat it as the half we under-built. **Neither mode
+is primary. They are peers over one shared selection state.**
 
-**S5. Explicit tab bar with underline-active state.** Theirs is scannable at a glance;
-ours is a `<select>` dropdown that hides sibling options.
+### This reframes the earlier plan (and corrects it)
 
-**S6. Booth mini-cards with sparkline bars.** For 344 booths they use lightweight
-repeated cards with 3 mini-bars instead of 344 charts. Good pattern for our 84k booths
-— though we'll need virtualization they didn't bother with.
+§3 framed panel width as "map vs data fighting over pixels". With two explicit modes
+the three widths stop being an arbitrary compromise and become **the physical expression
+of which mode you are in**:
 
-**S7. Their restraint with chart types.** Doughnut + bar. That's it. No chart that
-needs a legend to decode.
+| Mode | Panel | Map | Driving question |
+|---|---|---|---|
+| Map-first (Browse) | 360px | 75%+ | "what's around here?" |
+| Balanced (Analyse) | 520px | ~64% | "what happened in this seat?" |
+| Data-first (Deep-dive) | ~900px | strip/hidden | "which seats did X?" |
 
-### Do not steal
-- **Their homepage.** A 234-card unpaginated scroll wall. Our map *is* the better index.
-- **Their flat card grid as primary navigation.** We have geography; they don't. Don't throw away our biggest differentiator to imitate a site that lacks it.
-- **Their single-state, single-year scope.** Obviously.
-- **Chart.js as a hard dependency** — see §4.
+Same geometry as §3, better justification. **Panel width follows navigation mode, not
+drill-down depth.** A user asking "top 20 closest contests statewide" wants data-first
+at *state* level — depth alone would wrongly give them a narrow panel.
+
+### We already have both halves — unevenly built
+
+**Data-nav already exists in three places and none of them know about each other:**
+
+1. `SearchBox` — finds `state | constituency | assembly | district`. **Geographic names
+   only.** Cannot search a party, candidate, or booth. It's a gazetteer, not data-nav.
+2. `browse-list/` (542 lines, 5 components) — hierarchical lists that take the *same*
+   `onStateClick`/`onAssemblyClick` handlers as the map. **This is already a
+   parallel navigation surface and is the correct foundation** — it just only offers
+   alphabetical hierarchy, never "rank by margin".
+3. `BlogSection` (687 lines) — genuinely analytical: flip lists, margin leaderboards,
+   booth tables. Click a constituency and it navigates the map to it.
+
+**The finding: `BlogSection` is real data-based navigation trapped in a blog modal.**
+It already does the exact interaction we want — "rank constituencies by a metric, click
+one, land on the map" — but it is reachable only via a Blog button, hardcoded to Tamil
+Nadu 2021, and closes itself to navigate.
+
+We don't need to invent data-nav. **We need to promote it out of the blog and
+generalise it beyond one hardcoded post.**
+
+### The bug this mode-split exposes
+
+`BlogSection.tsx:203` — data→map navigation is wired through a **race condition**:
+
+```js
+onClose();
+if (onNavigateToState) await onNavigateToState('Tamil Nadu');
+if (onAssemblyClick) {
+  setTimeout(() => { onAssemblyClick(acName.toUpperCase(), mockFeature); }, 300);
+}
+```
+
+It guesses that a state's geography loads in 300ms. On a cold IndexedDB cache or a slow
+connection it misses and the click silently does nothing.
+
+*(Checked the other 8 `setTimeout`s in `useUrlNavigate.ts` — those are all `, 0)`,
+ordinary "defer past this render" deferrals, not races. **This 300ms one is the only
+genuine race.** Worth stating plainly so nobody rewrites the wrong eight.)*
+
+The root cause is that **data-nav is bolted onto map-nav instead of both being peers
+over shared selection state.** Promoting one to a first-class mode requires fixing this
+properly: `selectLocation({state, ac})` awaits geography, then commits selection — both
+modes call the same function, no timing guesses.
+
+### What data-based navigation should offer
+
+Beyond alphabetical lists we already have — all computable from data in hand:
+
+- **Rank/sort** — closest contests, biggest margins, highest turnout, highest NOTA,
+  most booths, biggest swing. (`boothwiseAnalysisEngine.ts` already computes most.)
+- **Filter** — by party, alliance, reservation (GEN/SC/ST), district, margin band.
+- **Compare** — pin 2–4 constituencies side by side.
+- **Search that finds non-geography** — candidates and parties, not just place names.
+
+Each row stays **map-linked**: hover highlights the polygon, click flies to it. That
+bidirectional link is precisely what the competitor cannot do, and it only pays off if
+both modes are first-class.
+
+### Sequencing impact
+
+Adds a phase, and **moves the shared-selection fix earlier** — it is a prerequisite for
+data-nav, not polish. Revised in §7.
 
 ---
 
-## 2b. The map/data coexistence problem
+
+## 3. The map/data coexistence problem
 
 > **This section supersedes the naive reading of Phase 2.** Their app has no map, so
 > "copy their podium" is not directly portable. Getting this wrong means importing
@@ -193,7 +260,46 @@ overview, and a podium for a place you haven't chosen yet is noise.
 
 ---
 
-## 3. Phased plan
+## 4. What to steal from them (and what to ignore)
+
+### Steal
+
+**S1. The podium + KPI strip.** Their single best idea. Above the fold:
+a 4-card row (Winner / Runner-up / 3rd / Margin) with party-colored left borders and
+candidate photos, then a 7-cell KPI strip (Total, Valid, NOTA, Rejected, Winner-led
+booths, Runner-led booths, Total booths). You know the whole result in two seconds.
+Our equivalent data is *below* a raw candidate table. **Invert that.**
+
+**S2. Winner-led vs runner-led booth counts as a headline stat.** They surface
+`244 / 80` in the KPI strip. We compute richer versions of this in
+`boothwiseAnalysisEngine.ts` (607 lines of it!) and bury it in a tab. Promote it.
+
+**S3. Indian digit grouping everywhere.** They show `2,32,630`. We're inconsistent (B3).
+
+**S4. Ranked horizontal bars beside the candidate table.** Their All-Candidates view
+pairs a ranked bar chart with exact tabular numbers — scan *and* precision. Our
+candidate list is numbers only, no visual weight.
+
+**S5. Explicit tab bar with underline-active state.** Theirs is scannable at a glance;
+ours is a `<select>` dropdown that hides sibling options.
+
+**S6. Booth mini-cards with sparkline bars.** For 344 booths they use lightweight
+repeated cards with 3 mini-bars instead of 344 charts. Good pattern for our 84k booths
+— though we'll need virtualization they didn't bother with.
+
+**S7. Their restraint with chart types.** Doughnut + bar. That's it. No chart that
+needs a legend to decode.
+
+### Do not steal
+- **Their homepage.** A 234-card unpaginated scroll wall. Our map *is* the better index.
+- **Their flat card grid as primary navigation.** We have geography; they don't. Don't throw away our biggest differentiator to imitate a site that lacks it.
+- **Their single-state, single-year scope.** Obviously.
+- **Chart.js as a hard dependency** — see §4.
+
+---
+
+
+## 5. Phased plan
 
 ### Phase 0 — Stop the bleeding (½ day)
 Highest value-per-hour in this document.
@@ -220,24 +326,41 @@ No visual change intended. Pure groundwork. Behaviour-preserving.
 
 **Exit:** `grep -c '#[0-9a-f]\{3,6\}' src/styles/*.css` ≈ 0 outside `tokens.css`. Visual diff via Playwright screenshots shows no unintended change.
 
-### Phase 2 — Responsive panel width + podium (4–5 days)
-The headline change. **Read §2b first** — the width work is a prerequisite, not a detail.
+### Phase 2 — Shared selection + responsive panel width (4–5 days)
+The structural change. **Read §2 and §3 first.**
 
-- [ ] **Panel width modes first.** `--panel-w` token driving 360 / 520 / ~900px, switched
-      by navigation depth (Browse / Analyse / Deep-dive), animated, with a user override
-      that sticks. Below 1152px viewport, stay at 360px. Nothing else in this phase fits
-      until this lands.
+- [ ] **`selectLocation()` as the single selection entry point.** One async function that
+      awaits geography then commits selection; map clicks, browse-list clicks, search
+      results and data-nav rows all call it. **Fixes B9** and removes the 300ms guess.
+      Everything else in this phase depends on it.
+- [ ] **Panel width modes.** `--panel-w` token driving 360 / 520 / ~900px, switched by
+      *navigation mode* (§2), animated, with a user override that sticks. Below 1152px
+      viewport, stay at 360px.
 - [ ] `<ResultPodium>` — **2×2 grid** (Winner/Runner-up/3rd/Margin), party-coloured left
       border, vote count dominant, share % secondary. Collapses to one row at 360px. (S1)
 - [ ] `<KpiStrip>` — Total / Valid / NOTA / Rejected / Winner-led / Runner-led / Booths,
-      **wrapping to 2 rows**, never 7 across. Data already exists in
+      **wrapping to 2 rows**, never 7 across. Data already in
       `boothwiseAnalysisEngine.ts`. (S1, S2)
 - [ ] `<CandidateBars>` — ranked horizontal bars beside the table. (S4)
 - [ ] Reorder: **Podium → KPI strip → charts → full candidate table.**
-- [ ] Replace the `<select>` view switcher with a real tab bar at ≥520px
-      (`role="tablist"`/`tab`/`tabpanel`, arrow-key nav), keeping `<select>` at 360px and
-      mobile where it genuinely is the better control.
+- [ ] Real tab bar at ≥520px (`role="tablist"`/`tab`/`tabpanel`, arrow-key nav), keeping
+      `<select>` at 360px and mobile.
 - [ ] Bidirectional hover-link between candidate/booth rows and map geography.
+
+### Phase 2.5 — Data-based navigation as a first-class mode (3–4 days)
+Depends on `selectLocation()` landing in Phase 2. See §2.
+
+- [ ] **Promote the analytical views out of `BlogSection`.** Its flip/margin
+      leaderboards are already real data-nav — extract them into a reusable
+      `<RankedConstituencyList>` driven by a metric prop, not a hardcoded TN-2021 post.
+- [ ] **Rank/sort surface**: closest contests, biggest margins, turnout, NOTA, swing.
+      Most already computed in `boothwiseAnalysisEngine.ts`.
+- [ ] **Filters**: party, alliance, reservation (GEN/SC/ST), district, margin band.
+- [ ] **Extend `SearchBox` beyond geography** — candidates and parties, not just place
+      names. Currently `state | constituency | assembly | district` only.
+- [ ] Every row map-linked: hover highlights polygon, click flies to it.
+- [ ] Mode toggle in the panel header; remembered per session.
+- [ ] *(Stretch)* pin 2–4 constituencies to compare side by side.
 
 ### Phase 3 — Accessibility to WCAG 2.2 AA (2 days)
 Mandatory, not optional.
@@ -251,7 +374,7 @@ Mandatory, not optional.
 - [ ] Add `@axe-core/playwright` to the e2e suite so this can't regress.
 
 ### Phase 4 — Map & mobile polish (2–3 days)
-Mostly **wiring up CSS that already exists** — see §2b.
+Mostly **wiring up CSS that already exists** — see §3.
 
 - [ ] Desaturate/greyscale the basemap under thematic fills so party colour is the only
       saturated thing on screen (we currently stack 0.6–0.75 opacity party fills over a
@@ -269,7 +392,7 @@ Nearly free once Phase 1 lands — add a `[data-theme="dark"]` token block. **Th
 
 ---
 
-## 4. Charting decision
+## 6. Charting decision
 
 They use Chart.js 4.4.4 via CDN. Our house default for reports is Chart.js too, so it's the path of least resistance — but:
 
@@ -286,17 +409,18 @@ Revisit only if we need time-series/swing charts across many years, where hand-r
 
 ---
 
-## 5. Effort & sequencing
+## 7. Effort & sequencing
 
 | Phase | Effort | Risk | Visible impact |
 |---|---|---|---|
 | 0 — Stop the bleeding | **0.5 d** | Very low | **Huge** |
 | 1 — Token consolidation | 1–2 d | Low (no visual change) | None (enables rest) |
-| 2 — Panel width + podium | 4–5 d | Medium | **Huge** |
+| 2 — Shared selection + panel width + podium | 4–5 d | Medium | **Huge** |
+| 2.5 — Data-based navigation | 3–4 d | Medium | **High** (new capability) |
 | 3 — WCAG 2.2 AA | 2 d | Low | Low visually, mandatory |
 | 4 — Map & mobile | 2–3 d | Medium | High |
 | 5 — Dark mode | 1–2 d | Low | Medium |
-| | **~11–15 d** | | |
+| | **~14–19 d** | | |
 
 **Ship Phase 0 today.** Phases 1→2 are the real revamp. 3 is non-negotiable before any public push. 4–5 are polish.
 
@@ -308,7 +432,7 @@ Revisit only if we need time-series/swing charts across many years, where hand-r
 
 ---
 
-## 6. The one-paragraph summary
+## 8. The one-paragraph summary
 
 Their app looks better than ours despite doing far less, because they spent their
 effort on the first screen: a podium, a KPI strip, consistent party color, and Indian
@@ -320,9 +444,14 @@ theirs." It is: fix the four embarrassing bugs, finish the token migration someo
 already started, and promote the analysis we already compute to the top of the panel.**
 
 But we cannot copy their layout directly, because **they have no map and we do**
-(§2b). Their podium needs ~318px cards; our 360px sidebar affords 74px. The fix is a
-panel that widens with intent — 360px to browse, 520px to analyse, ~900px to deep-dive —
-so the map is de-emphasised in proportion to how zoomed-in the question is, never
-replaced. The map stops being wallpaper and becomes a coordinated view: hover a
-candidate, light up the geography. **That is the thing they structurally cannot copy,
-and it is worth more than the podium.**
+(§3). Their podium needs ~318px cards; our 360px sidebar affords 74px. The fix is a
+panel that widens with intent — 360px to browse, 520px to analyse, ~900px to deep-dive.
+
+The organising idea (§2) is that **map-based and data-based navigation are peers, not
+a hierarchy**: "what happened here?" and "where did X happen?" are different questions
+over one shared selection. The competitor has only the second, because they have no map.
+We have a strong first and a hidden, broken second — real analytical navigation exists
+today but is trapped inside a blog modal, hardcoded to one state, and wired through a
+300ms `setTimeout` race. Fix the shared selection, promote data-nav out of the blog, and
+keep every row map-linked. **Hover a candidate, light up the geography — that is the
+thing they structurally cannot copy, and it is worth more than the podium.**
