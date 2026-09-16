@@ -8,14 +8,20 @@ def pdf_rows(pdf, non_nota, max_booth=2000):
  text=subprocess.run(['pdftotext','-raw',str(pdf),'-'],capture_output=True,text=True,timeout=120,check=False).stdout; found={}
  for line in text.splitlines():
   nums=[int(x) for x in re.findall(r'(?<![A-Za-z])\d+',line)]
+  if not nums: continue
   starts=(2,1) if len(nums)>1 and nums[0]==nums[1] else (1,2)
   for start in starts:
-   if len(nums)<start+non_nota+5: continue
-   booth=nums[0]
-   if start==2 and nums[0]==nums[1]: booth=nums[1]
+   if start==2 and len(nums)<2: continue
+   booth=nums[1] if start==2 and nums[0]==nums[1] else nums[0]
    if not 1<=booth<=max_booth: continue
-   cand=nums[start:start+non_nota]; valid,rejected,nota,total,tendered=nums[start+non_nota:start+non_nota+5]
-   if sum(cand)==valid and valid+rejected+nota==total and booth not in found: found[booth]=(cand,valid,rejected,nota,total,tendered); break
+   for tail_len in (5,4):
+    if len(nums)<start+non_nota+tail_len: continue
+    cand=nums[start:start+non_nota]; tail=nums[start+non_nota:start+non_nota+tail_len]
+    if tail_len==5: valid,rejected,nota,total,tendered=tail
+    else: valid,rejected,nota,total=tail; tendered=0
+    if sum(cand)==valid and valid+rejected+nota==total:
+     if booth not in found: found[booth]=(cand,valid,rejected,nota,total,tendered)
+     break
  return found
 
 def process(ac_id,ac,folder):
