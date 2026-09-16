@@ -1,10 +1,12 @@
 {
   "acId": "TN-208",
   "acName": "TIRUCHULI",
+  "state": "Tamil Nadu",
   "year": 2026,
   "electionType": "assembly",
-  "date": "2026-05-08",
-  "source": "file:///Users/pkumar/Documents/GitHub/ElectionLens/scripts/cache/tn-2026-form20/AC208_f20.pdf",
+  "date": "2026-05-07",
+  "totalBooths": 292,
+  "source": "/Users/p0s097d/Desktop/archive/boothwise_dataset/208-Tiruchuli/208-Tiruchuli_Form_20.pdf",
   "candidates": [
     {
       "slNo": 1,
@@ -160,31 +162,28 @@
         24,
         2,
         1,
+        0,
+        0,
         1,
-        1,
-        1,
-        1,
+        0,
         1,
         0,
         2,
-        1,
-        1,
+        0,
+        0,
         0,
         0,
         1,
         1,
         0,
+        0,
         1,
-        1,
-        1,
+        0,
         0
       ],
-      "total": 480,
+      "total": 473,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, New Building, Eastern facing, Mangulam- 626106 Mangulam Mangulam , Mangulam Udikulam",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-2": {
       "votes": [
@@ -205,8 +204,8 @@
         1,
         3,
         1,
-        1,
         0,
+        1,
         1,
         0,
         1,
@@ -215,9 +214,7 @@
       ],
       "total": 721,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,West Portion old building, Kurandi- 626106 1.Kurandi(R.V), Kurandi (P) Ward 1 Kurandi , 2.Kurandy(R.V), Kurandy (P) Ward 2 Kurandy",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-3": {
       "votes": [
@@ -248,9 +245,7 @@
       ],
       "total": 581,
       "rejected": 0,
-      "name": "High School, Easternside Add.Building South Portion",
-      "address": "High School ,Easternside Add.Building South Portion, Kurandi- 626106 Kurandy Kurandy , Kurandy Ward",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-4": {
       "votes": [
@@ -271,8 +266,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -281,9 +276,7 @@
       ],
       "total": 873,
       "rejected": 0,
-      "name": "Panchayat Union Middle School Melakallangulam",
-      "address": "Panchayat Union Middle School Melakallangulam ,Melakallangulam 1.K.Alangulam, Melakallankulam Melakallankulam , 2.K.Alangulam, Melakallankulam Melakallankulam , 3.K.Alangulam, Melakallankulam Melakallankulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-5": {
       "votes": [
@@ -314,9 +307,7 @@
       ],
       "total": 347,
       "rejected": 0,
-      "name": "Panchayat Union primary School Nasarpuliyankulam",
-      "address": "Panchayat Union primary School Nasarpuliyankulam ,Panchayat union primary school East side building west facing Nasarpuliyankulam 1.K.Alangulam, Mustakuruchi Nasarpuliyankulam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-6": {
       "votes": [
@@ -337,8 +328,8 @@
         1,
         0,
         1,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -347,9 +338,7 @@
       ],
       "total": 373,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,SSA Additional Class Room Building,East facing,south side Room k.Alangulam 1.K.alangulam, Melakallankulam K.alangulam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-7": {
       "votes": [
@@ -370,8 +359,8 @@
         0,
         0,
         1,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -380,141 +369,69 @@
       ],
       "total": 599,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Soth Portion, New Building Thimmapuram- 626106 Thimmapuram Thimmapuram , Thimmapuram Thimmapuram",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-8A(W)": {
+    "TN-208-8": {
       "votes": [
-        143,
-        61,
-        48,
-        19,
+        285,
+        121,
+        95,
+        38,
         1,
         0,
-        0,
-        1,
-        1,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        1,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 278,
-      "rejected": 0,
-      "name": "Panchayat Union Elementary School",
-      "address": "Panchayat Union Elementary School ,Soth Portion, Mustakurutchi- 626106 Mustakuruchi Mustakuruchi , Mustakuruchi Petharenthal , Mustakuruchi Naganenthal , Mustakuruchi Kesiganenthal , Mustakuruchi Kottankulam",
-      "area": "All Voters"
-    },
-    "TN-208-8M": {
-      "votes": [
-        142,
-        60,
-        47,
-        19,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 269,
-      "rejected": 0,
-      "name": "Panchayat Union Elementary School",
-      "address": "Panchayat Union Elementary School ,Soth Portion, Mustakurutchi- 626106 Mustakuruchi Mustakuruchi , Mustakuruchi Petharenthal , Mustakuruchi Naganenthal , Mustakuruchi Kesiganenthal , Mustakuruchi Kottankulam",
-      "area": "All Voters"
-    },
-    "TN-208-9A(W)": {
-      "votes": [
-        105,
-        90,
-        58,
-        22,
-        1,
-        0,
-        6,
-        2,
         0,
         2,
+        1,
+        1,
+        0,
+        0,
         0,
         1,
         0,
         1,
-        1,
         0,
         1,
-        1,
-        1,
         0,
-        1,
+        0,
+        0,
         0,
         0,
         0
       ],
-      "total": 293,
+      "total": 547,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,North portion, old building Arasakulam- 626106 Arasakulam arasakulam , Arasakulam Arasakulam , Arasakulam Rayarpatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-9M": {
+    "TN-208-9": {
       "votes": [
-        104,
-        90,
-        58,
-        22,
+        209,
+        180,
+        116,
+        44,
+        2,
+        0,
+        12,
+        3,
+        0,
+        3,
+        0,
         1,
         0,
-        6,
+        1,
         1,
         0,
         1,
+        1,
+        1,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
         0,
         0,
         0
       ],
-      "total": 283,
+      "total": 576,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,North portion, old building Arasakulam- 626106 Arasakulam arasakulam , Arasakulam Arasakulam , Arasakulam Rayarpatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-10": {
       "votes": [
@@ -524,31 +441,28 @@
         55,
         2,
         4,
-        1,
-        1,
+        0,
+        0,
         1,
         1,
         0,
         1,
-        1,
+        0,
         1,
         1,
         0,
-        1,
         1,
         2,
+        1,
+        0,
         0,
         1,
-        1,
-        1,
+        0,
         0
       ],
-      "total": 1035,
+      "total": 1030,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Old building South portion, Arasakulam- 626106 Arasakulam Arasakulam , Arasakulam Arasakulam , Aviyoor Seeganendal",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-11": {
       "votes": [
@@ -579,9 +493,7 @@
       ],
       "total": 642,
       "rejected": 0,
-      "name": "Govt Higher Sec School",
-      "address": "Govt Higher Sec School, South Building,west side, IX class Room.Aviyoor Aviyoor Aviyoor",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-12": {
       "votes": [
@@ -612,9 +524,7 @@
       ],
       "total": 891,
       "rejected": 0,
-      "name": "Govt Higher Sec School East Building",
-      "address": "Govt Higher Sec School East Building, South side. Aviyoor Aviyoor Aviyoor",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-13": {
       "votes": [
@@ -645,9 +555,7 @@
       ],
       "total": 673,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,South Portion, Aviyur-626106 Aviyoor Aviyoor",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-14": {
       "votes": [
@@ -668,8 +576,8 @@
         1,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -678,18 +586,16 @@
       ],
       "total": 558,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,SSA Building, East Portion, Aviyur-626106 Aviyoor & 6 Aviyoor",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-15A(W)": {
+    "TN-208-15": {
       "votes": [
-        134,
-        299,
-        16,
-        16,
-        1,
-        1,
+        268,
+        597,
+        31,
+        31,
+        2,
+        2,
         0,
         0,
         0,
@@ -698,55 +604,20 @@
         0,
         0,
         1,
-        1,
-        1,
+        2,
+        2,
         0,
+        2,
         0,
-        1,
         0,
         1,
         1,
         0,
         1
       ],
-      "total": 474,
+      "total": 941,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,SSA Building, West Portion, Aviyur-626106 Aviyoor Aviyoor , Aviyoor & 4 Aviyoor , Aviyoor Aviyoor",
-      "area": "All Voters"
-    },
-    "TN-208-15M": {
-      "votes": [
-        134,
-        298,
-        15,
-        15,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 467,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,SSA Building, West Portion, Aviyur-626106 Aviyoor Aviyoor , Aviyoor & 4 Aviyoor , Aviyoor Aviyoor",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-16": {
       "votes": [
@@ -767,8 +638,8 @@
         2,
         0,
         2,
-        0,
         2,
+        0,
         1,
         0,
         0,
@@ -777,9 +648,7 @@
       ],
       "total": 1056,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Old Building D. Kadambangulam 1.D.Kadambankulam, D.Kadambankulam D.kadambankulam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-17": {
       "votes": [
@@ -810,24 +679,22 @@
       ],
       "total": 588,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,East Side Building Pullur 1.D.Kadambankulam, D.Kadanpankulam Thoduvampatti. Thoduvampatti , 2.D.Kadambankulam, D.Kadambankulam pullur Pullur",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-18A(W)": {
+    "TN-208-18": {
       "votes": [
-        150,
-        119,
-        44,
-        27,
-        4,
-        1,
-        3,
-        1,
-        1,
+        300,
+        238,
+        88,
+        53,
+        7,
+        2,
+        5,
         1,
         1,
+        2,
         1,
+        2,
         1,
         0,
         1,
@@ -841,44 +708,9 @@
         0,
         1
       ],
-      "total": 357,
+      "total": 704,
       "rejected": 0,
-      "name": "Panchayat Union Elementary School",
-      "address": "Panchayat Union Elementary School ,Keela upplikundu-625022 1.D.Kadambankulam, D.Kadambankulam uppilikundu , 2.D.Kadambankulam, D.Kadambankulam Uppilikundu , 3.D.Kadambankulam, D.Kadambankulam Uppilikundu",
-      "area": "All Voters"
-    },
-    "TN-208-18M": {
-      "votes": [
-        150,
-        119,
-        44,
-        26,
-        3,
-        1,
-        2,
-        0,
-        0,
-        1,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 347,
-      "rejected": 0,
-      "name": "Panchayat Union Elementary School",
-      "address": "Panchayat Union Elementary School ,Keela upplikundu-625022 1.D.Kadambankulam, D.Kadambankulam uppilikundu , 2.D.Kadambankulam, D.Kadambankulam Uppilikundu , 3.D.Kadambankulam, D.Kadambankulam Uppilikundu",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-19": {
       "votes": [
@@ -899,8 +731,8 @@
         1,
         0,
         0,
-        3,
         1,
+        3,
         1,
         1,
         0,
@@ -909,9 +741,7 @@
       ],
       "total": 967,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building, South side, S.Kallupatti-626106 1.S.Kallupatti, S.Kallupatti S.Kallupatti",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-20": {
       "votes": [
@@ -932,8 +762,8 @@
         1,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         0,
@@ -942,9 +772,7 @@
       ],
       "total": 772,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building, Nouth side, S.Kallupatti-626106 1.S.Kallupatti, S.Kallupatti Chinnakallupatti , 2.S.Kallupatti, Kambikudi Pitchampatti , 3.S.Kallupatti, Kambikudi Puliyankulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-21": {
       "votes": [
@@ -965,8 +793,8 @@
         0,
         0,
         1,
-        1,
         2,
+        1,
         0,
         0,
         0,
@@ -975,9 +803,7 @@
       ],
       "total": 684,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,East Building (Old Building) Kambikudi-626106 Kambikudi Kambikudi , Kambikudi Kambikudi",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-22": {
       "votes": [
@@ -1008,75 +834,38 @@
       ],
       "total": 510,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Tharaganendal-626106 Kambikudi Kanjamanaickenpatti , Kambikudi Tharaganendal",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-23A(W)": {
+    "TN-208-23": {
       "votes": [
-        172,
-        110,
-        32,
-        17,
+        344,
+        219,
+        64,
+        34,
+        5,
+        1,
+        2,
         3,
-        1,
+        3,
+        0,
         1,
         2,
-        2,
-        0,
-        1,
-        1,
         0,
         0,
         0,
         0,
         1,
-        0,
         1,
+        0,
         0,
         0,
         1,
         0,
         0
       ],
-      "total": 345,
+      "total": 681,
       "rejected": 0,
-      "name": "PRIMARY SCHOOL, North Building",
-      "address": "PRIMARY SCHOOL, North Building, East side, 5th class Room. Manthiriodai Kambikudi Manthiriodai",
-      "area": ""
-    },
-    "TN-208-23M": {
-      "votes": [
-        172,
-        109,
-        32,
-        17,
-        2,
-        0,
-        1,
-        1,
-        1,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 336,
-      "rejected": 0,
-      "name": "PRIMARY SCHOOL, North Building",
-      "address": "PRIMARY SCHOOL, North Building, East side, 5th class Room. Manthiriodai Kambikudi Manthiriodai",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-24": {
       "votes": [
@@ -1097,8 +886,8 @@
         1,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         1,
@@ -1107,9 +896,7 @@
       ],
       "total": 567,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Meenatchipuram - Gopalakrishnapuram Kambikudi Meenatchipuram",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-25": {
       "votes": [
@@ -1130,8 +917,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         0,
@@ -1140,9 +927,7 @@
       ],
       "total": 551,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,New Building Pappanam Pappanam Pappanam , Pappanam Pappanam , Pappanam Pallavarendal , Pappanam Sakkarakottai",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-26": {
       "votes": [
@@ -1173,9 +958,7 @@
       ],
       "total": 576,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,New Building V.Nangoor 1.V.Nangoor, V.Nangoor V.Nangoor , V.Nangoor Anmaiperukki , V.Nangoor Anmaiperukki , V.Nangoor Kooranendal , V.Nangoor Vitilarendal",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-27": {
       "votes": [
@@ -1206,9 +989,7 @@
       ],
       "total": 649,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,East side New Building T Veppankulam 1.T.Veppankulam, T.Veppankulam T.Veppankulam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-28": {
       "votes": [
@@ -1239,9 +1020,7 @@
       ],
       "total": 845,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,South Side Building East Facing A Thotiyankulam 1.1.T.Veppankulam T.Veppankulam A.Thottiyankulam A.Thottiyankulam , 2.T.Veppankulam, T.Veppankulam A.Thottiankulam , 3.M.Iluppaikulam, T.Veppankulam M.Iluppaikulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-29": {
       "votes": [
@@ -1272,9 +1051,7 @@
       ],
       "total": 349,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,M.Iluppaikulam- 626106 1.T.Veppankulam, T.Veppankulam A.Thottiankulam , Mudukkankulam N.Nedunkulam , T.Veppankulam Kurinjakulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-30": {
       "votes": [
@@ -1305,9 +1082,7 @@
       ],
       "total": 483,
       "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,RMSA Additional Double class Room. West Facing 9th Std B Mudukkankulam- 626106 Mudukkankulam Mudukkankulam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-31": {
       "votes": [
@@ -1338,9 +1113,7 @@
       ],
       "total": 441,
       "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,Eastern portion Building Mudukkankulam Mudukkankulam Mudukkankulam , Mudukkankulam Mudukkankulam , Mudukkankulam Sirukulam , Mudukkankulam Sirukulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-32": {
       "votes": [
@@ -1361,8 +1134,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         1,
         0,
         0,
@@ -1371,28 +1144,26 @@
       ],
       "total": 504,
       "rejected": 0,
-      "name": "Panchayat Union Elementary School",
-      "address": "Panchayat Union Elementary School ,North Building North Portion, Sokkanenthal 1.Sokkanenthal, Mudukkankulam Sokkanenthal , 2.Peria alangulam, Mudukkankulam Peria alangulam , 3.Chinna Alangulam, Mudukkankulam Chinna Alangulam , 4",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-33A(W)": {
+    "TN-208-33": {
       "votes": [
-        151,
-        140,
-        50,
-        19,
+        301,
+        280,
+        100,
+        37,
+        12,
+        0,
+        4,
         6,
-        0,
-        2,
+        1,
         3,
+        0,
+        3,
+        0,
         1,
+        0,
         2,
-        0,
-        2,
-        0,
-        1,
-        0,
-        1,
         1,
         0,
         0,
@@ -1402,44 +1173,9 @@
         0,
         0
       ],
-      "total": 381,
+      "total": 753,
       "rejected": 0,
-      "name": "Panchayat Union Elementary School",
-      "address": "Panchayat Union Elementary School ,New Building, South Portion Thenoor 1.Sooranoor, Sooranoor Sooranoor K.Nedunkulam , 2.Thenoor, Sooranoor Thenoor , 3.Koovarkulam, Sooranoor Koovarkulam , 4",
-      "area": "All Voters"
-    },
-    "TN-208-33M": {
-      "votes": [
-        150,
-        140,
-        50,
-        18,
-        6,
-        0,
-        2,
-        3,
-        0,
-        1,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 372,
-      "rejected": 0,
-      "name": "Panchayat Union Elementary School",
-      "address": "Panchayat Union Elementary School ,New Building, South Portion Thenoor 1.Sooranoor, Sooranoor Sooranoor K.Nedunkulam , 2.Thenoor, Sooranoor Thenoor , 3.Koovarkulam, Sooranoor Koovarkulam , 4",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-34": {
       "votes": [
@@ -1470,9 +1206,7 @@
       ],
       "total": 380,
       "rejected": 0,
-      "name": "High Sec School, Eastern Side",
-      "address": "High Sec School ,Eastern Side, New building S.Maraikulam- 626607 Maraikulam Maraikulam , Maraikulam Sitthanenthal",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-35": {
       "votes": [
@@ -1503,27 +1237,25 @@
       ],
       "total": 540,
       "rejected": 0,
-      "name": "Govt Higher Secendary School S Maraikulam",
-      "address": "Govt Higher Secendary School S Maraikulam ,East Portion S.Maraikulam-626607 Maraikulam Maraikulam , Maraikulam Maraikulam , Maraikulam Maraikulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-36A(W)": {
+    "TN-208-36": {
       "votes": [
-        104,
-        84,
-        61,
-        21,
+        207,
+        167,
+        122,
+        42,
+        4,
+        0,
+        1,
+        0,
+        0,
+        1,
+        2,
         2,
         0,
-        1,
         0,
-        0,
-        1,
-        1,
-        1,
-        0,
-        0,
-        1,
+        2,
         0,
         0,
         0,
@@ -1534,44 +1266,9 @@
         0,
         0
       ],
-      "total": 278,
+      "total": 551,
       "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,Main Block North Portion,West Corner Room Vallappanpatti-626106 Allalaperi Allalaperi , Allalaperi Vallapanpatti , Allalaperi Veetrilai murianpatti , Allalaperi Allalaperi",
-      "area": "All Voters"
-    },
-    "TN-208-36M": {
-      "votes": [
-        103,
-        83,
-        61,
-        21,
-        2,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 273,
-      "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,Main Block North Portion,West Corner Room Vallappanpatti-626106 Allalaperi Allalaperi , Allalaperi Vallapanpatti , Allalaperi Veetrilai murianpatti , Allalaperi Allalaperi",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-37": {
       "votes": [
@@ -1592,8 +1289,8 @@
         0,
         0,
         1,
-        1,
         0,
+        1,
         2,
         0,
         0,
@@ -1602,9 +1299,7 @@
       ],
       "total": 735,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North Building, Sathirapuliyankulam-626106 Satthiram Puliyankulam Satthiram Puliyankulam , Satthiram Puliyankulam Chinna kadambankulam , Satthiram Puliyankulam Ward",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-38": {
       "votes": [
@@ -1625,8 +1320,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         1,
         0,
@@ -1635,9 +1330,7 @@
       ],
       "total": 702,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,West Building, Thoppur-626106 Thoopur Thoopur , Thoopur Thammapuram",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-39": {
       "votes": [
@@ -1658,8 +1351,8 @@
         2,
         0,
         0,
-        0,
         1,
+        0,
         0,
         2,
         0,
@@ -1668,22 +1361,20 @@
       ],
       "total": 1088,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,SSA ,southern side of the Weastern portion of the Building , Thoppur-626106 Thoopur Thoopur",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-40A(W)": {
+    "TN-208-40": {
       "votes": [
-        197,
-        125,
-        50,
-        26,
-        3,
-        1,
-        3,
-        0,
-        0,
+        393,
+        250,
+        100,
+        52,
+        5,
         2,
+        5,
+        0,
+        0,
+        4,
         1,
         0,
         1,
@@ -1699,44 +1390,9 @@
         0,
         0
       ],
-      "total": 411,
+      "total": 815,
       "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,Kaluvanacheri- 626106 Thoopur Kaluvanacheri , Thoopur Kaluvanacherri",
-      "area": "All Voters"
-    },
-    "TN-208-40M": {
-      "votes": [
-        196,
-        125,
-        50,
-        26,
-        2,
-        1,
-        2,
-        0,
-        0,
-        2,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 404,
-      "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,Kaluvanacheri- 626106 Thoopur Kaluvanacheri , Thoopur Kaluvanacherri",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-41": {
       "votes": [
@@ -1767,25 +1423,23 @@
       ],
       "total": 719,
       "rejected": 0,
-      "name": "Govt Primary School, East Building West Facing 5th standard Room Kariapatti-626106",
-      "address": "Govt Primary School ,East Building West Facing 5th standard Room Kariapatti-626106",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-42A(W)": {
+    "TN-208-42": {
       "votes": [
-        104,
-        98,
-        56,
-        13,
+        207,
+        196,
+        112,
+        26,
+        3,
+        0,
+        2,
+        2,
+        2,
+        6,
+        2,
         2,
         0,
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        0,
         0,
         0,
         1,
@@ -1798,44 +1452,9 @@
         0,
         0
       ],
-      "total": 284,
+      "total": 563,
       "rejected": 0,
-      "name": "Govt Primary School, North East Building South Facing 2nd Std Kariapatti-626106",
-      "address": "Govt Primary School , North East Building South Facing 2nd Std Kariapatti-626106",
-      "area": "All Voters"
-    },
-    "TN-208-42M": {
-      "votes": [
-        103,
-        98,
-        56,
-        13,
-        1,
-        0,
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 279,
-      "rejected": 0,
-      "name": "Govt Primary School, North East Building South Facing 2nd Std Kariapatti-626106",
-      "address": "Govt Primary School , North East Building South Facing 2nd Std Kariapatti-626106",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-43": {
       "votes": [
@@ -1856,8 +1475,8 @@
         1,
         1,
         0,
-        0,
         7,
+        0,
         0,
         0,
         0,
@@ -1866,9 +1485,7 @@
       ],
       "total": 670,
       "rejected": 0,
-      "name": "Govt.Girls Higher Secondary School",
-      "address": "Govt.Girls Higher Secondary School ,North Middle side building west portion Kariapatti- 626106 2.kariapatti (S.P) Annanagar 1st street , 3.kariapatti (S.P) Annanagar 2nd Street",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-44": {
       "votes": [
@@ -1889,8 +1506,8 @@
         0,
         0,
         0,
-        2,
         3,
+        2,
         1,
         1,
         0,
@@ -1899,9 +1516,7 @@
       ],
       "total": 497,
       "rejected": 0,
-      "name": "Govt Girl. Higher Secondary School",
-      "address": "Govt Girl. Higher Secondary School ,North middle building south portion Kariapatti-626106 1.kariapatti (S.P) Annanagar 4th street",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-45": {
       "votes": [
@@ -1932,9 +1547,7 @@
       ],
       "total": 833,
       "rejected": 0,
-      "name": "Govt. Girls Higher Secondary School",
-      "address": "Govt. Girls Higher Secondary School ,South side East black Middle portion Room No.3 Kariapatti-626106",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-46": {
       "votes": [
@@ -1955,8 +1568,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         1,
         1,
         1,
@@ -1965,22 +1578,20 @@
       ],
       "total": 599,
       "rejected": 0,
-      "name": "Govt. Girls Higher Secondary School",
-      "address": "Govt. Girls Higher Secondary School ,North West Building, Kariapatti-626106",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-47A(W)": {
+    "TN-208-47": {
       "votes": [
-        132,
-        105,
-        24,
-        7,
+        263,
+        209,
+        48,
+        14,
         1,
         0,
         1,
         1,
         1,
-        1,
+        2,
         0,
         1,
         0,
@@ -1996,44 +1607,9 @@
         0,
         0
       ],
-      "total": 275,
+      "total": 542,
       "rejected": 0,
-      "name": "Govt.Girls Higher Secondary School",
-      "address": "Govt.Girls Higher Secondary School ,South Side, West Building Room No.5 (Near Water Tank), Kariapatti-626106",
-      "area": "All Voters"
-    },
-    "TN-208-47M": {
-      "votes": [
-        131,
-        104,
-        24,
-        7,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 267,
-      "rejected": 0,
-      "name": "Govt.Girls Higher Secondary School",
-      "address": "Govt.Girls Higher Secondary School ,South Side, West Building Room No.5 (Near Water Tank), Kariapatti-626106",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-48": {
       "votes": [
@@ -2054,8 +1630,8 @@
         0,
         0,
         1,
-        0,
         1,
+        0,
         1,
         0,
         0,
@@ -2064,9 +1640,7 @@
       ],
       "total": 764,
       "rejected": 0,
-      "name": "Govt.Girls Higher Secondary School",
-      "address": "Govt.Girls Higher Secondary School ,Opposite Room to Water Tank, Kariapatti-626106 1.kariapatti (S.P) Adhithiravidar street -1 , 2.kariapatti (S.P) Muthdalamman koil 1st lane , 3.kariapatti (S.P) Muthdalamman koil 2nd lane , 4.kariapatti (S.P) Muthdalamman koil west street 1st lane , 5.kariapatti (S.P) Adhithiravidar street-2",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-49": {
       "votes": [
@@ -2097,16 +1671,14 @@
       ],
       "total": 565,
       "rejected": 0,
-      "name": "Amala High School, North New Building",
-      "address": "Amala High School ,North New Building, East Portion Room No 4 Kariapatti-626106 4.kariapatti (S.P) Thiruchuli - Kallikudi Road 5.kariapatti (S.P) Thiruchuli - Kallikudi Road 6.kariapatti (S.P) Thiruchuli - Kallikudi Road",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-50A(W)": {
+    "TN-208-50": {
       "votes": [
-        74,
-        94,
-        31,
-        7,
+        148,
+        187,
+        62,
+        14,
         0,
         1,
         1,
@@ -2128,44 +1700,9 @@
         0,
         0
       ],
-      "total": 212,
+      "total": 417,
       "rejected": 0,
-      "name": "Amala High School, North New Building",
-      "address": "Amala High School ,North New Building, East Portion Room No 3 Kariapatti-626106 1.kariapatti (S.P) Thiruchuli - Kallikudi Road 2.kariapatti (S.P) Pandiyan nagar Street-1 , 4.kariapatti (S.P) Pandiyan nagar Street -3 , 5.kariapatti (S.P) Pandiyan nagar Street-4 , 8.kariapatti (S.P) Govt.Employee housing board 9.kariapatti (S.P) Govt.employee housing board",
-      "area": "All Voters"
-    },
-    "TN-208-50M": {
-      "votes": [
-        74,
-        93,
-        31,
-        7,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 205,
-      "rejected": 0,
-      "name": "Amala High School, North New Building",
-      "address": "Amala High School ,North New Building, East Portion Room No 3 Kariapatti-626106 1.kariapatti (S.P) Thiruchuli - Kallikudi Road 2.kariapatti (S.P) Pandiyan nagar Street-1 , 4.kariapatti (S.P) Pandiyan nagar Street -3 , 5.kariapatti (S.P) Pandiyan nagar Street-4 , 8.kariapatti (S.P) Govt.Employee housing board 9.kariapatti (S.P) Govt.employee housing board",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-51": {
       "votes": [
@@ -2196,9 +1733,7 @@
       ],
       "total": 694,
       "rejected": 0,
-      "name": "Amala High School, North Eastern New Building",
-      "address": "Amala High School ,North Eastern New Building , Room No",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-52": {
       "votes": [
@@ -2229,9 +1764,7 @@
       ],
       "total": 581,
       "rejected": 0,
-      "name": "Amala High School, North Western",
-      "address": "Amala High School ,North Western, New building Emmerich Hall \"C\" Block Room No 15, Kariapatti -626106",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-53": {
       "votes": [
@@ -2252,8 +1785,8 @@
         0,
         1,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -2262,9 +1795,7 @@
       ],
       "total": 439,
       "rejected": 0,
-      "name": "Amala High School, North New Building East Portion",
-      "address": "Amala High School ,North New Building East Portion, Room 2 Kariapatti-626106 1.kariapatti (S.P) E.P.colony Street-2",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-54": {
       "votes": [
@@ -2295,9 +1826,7 @@
       ],
       "total": 580,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Eastern Portion, K.Sevalpatti- 626106 1.kariapatti (S.P) MADURAI , TUTICORIN ROAD 1ST STREET 2.kariapatti (S.P) MADURAI, TUTICORIN ROAD 2ND STREET 3.kariapatti (S.P) pillaiyar koil 1st street , 4.kariapatti (S.P) Kaliyamman koil 2nd Street , 5.kariapatti (S.P) Kaliyammankoil 3rd Street , 6.kariapatti (S.P) Kaliyamman koil 4th Street , 7.kariapatti (S.P) Kaliyamman koil 5th Street",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-55": {
       "votes": [
@@ -2328,9 +1857,7 @@
       ],
       "total": 603,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,west Portion, K.Sevalpatti- 626106 2.kariapatti (S.P) 4-5th Pillaiyar koil street-1 , 3.kariapatti (S.P) Madurai, Tuticorin Road 1st Street",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-56": {
       "votes": [
@@ -2361,9 +1888,7 @@
       ],
       "total": 488,
       "rejected": 0,
-      "name": "Adi Dravidar Primary School",
-      "address": "Adi Dravidar Primary School ,K.Karisalkulam- 622106 2.kariapatti (S.P) Amman koil street 1st lane , 3.kariapatti (S.P) Amman koil street 2nd lane , 5.kariapatti (S.P) Doctor Ambathgar 2 & 1st lane , 6.kariapatti (S.P) Doctor Ambathgar 3 & 2nd lane , 7.kariapatti (S.P) Doctor Ambathgar 4 & 3rd lane , 8.kariapatti (S.P) Doctor Ambathgar 5 & 4th lane , 9.kariapatti (S.P) Doctor Ambathgar 6 & 5th lane , 10.kariapatti (S.P) Doctor Ambathgar 7 & 6th lane , 11.kariapatti (S.P) Pillaiyar koil street-2 , 12.kariapatti (S.P) K.karisalkulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-57": {
       "votes": [
@@ -2384,8 +1909,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         1,
         0,
         0,
@@ -2394,9 +1919,7 @@
       ],
       "total": 449,
       "rejected": 0,
-      "name": "Govt High School, New building Pambatti Pambatti Pambatti",
-      "address": "Govt High School ,New building Pambatti Pambatti Pambatti , Pambatti Ward",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-58": {
       "votes": [
@@ -2427,9 +1950,7 @@
       ],
       "total": 658,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Pisindi- 626106 Pichindi Pichindi , Pichindi Pichindi , Pichindi Vadakarai",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-59": {
       "votes": [
@@ -2450,8 +1971,8 @@
         0,
         0,
         1,
-        0,
         1,
+        0,
         1,
         0,
         1,
@@ -2460,9 +1981,7 @@
       ],
       "total": 552,
       "rejected": 0,
-      "name": "Panchayat Union Middle School Achankulam",
-      "address": "Panchayat Union Middle School Achankulam ,Anchankulam Pichindi Achankulam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-60": {
       "votes": [
@@ -2483,8 +2002,8 @@
         0,
         1,
         1,
-        0,
         2,
+        0,
         0,
         0,
         0,
@@ -2493,9 +2012,7 @@
       ],
       "total": 669,
       "rejected": 0,
-      "name": "High School, North side first Room",
-      "address": "High School,North side first Room, East Facing. Manthoppu. Pin.626106 Manthoppu Manthoppu , Manthoppu Manthoppu , Manthoppu Manthoppu",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-61": {
       "votes": [
@@ -2516,8 +2033,8 @@
         3,
         1,
         0,
-        0,
         1,
+        0,
         1,
         0,
         0,
@@ -2526,9 +2043,7 @@
       ],
       "total": 793,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,SSA New building Northern side western portion Puthuvaiampattii Manthoppu Old Vaiyampatti New Vaiyampatti",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-62": {
       "votes": [
@@ -2559,9 +2074,7 @@
       ],
       "total": 925,
       "rejected": 0,
-      "name": "Govt Higher Secondary School",
-      "address": "Govt Higher Secondary School ,New Building Middle Portion Alagiyanalloor- 626001 Alagiya Nalloor Alagiya Nalloor , Alagiya Nalloor Kila Alagiya Nalloor",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-63": {
       "votes": [
@@ -2582,8 +2095,8 @@
         3,
         0,
         1,
-        1,
         2,
+        1,
         0,
         0,
         1,
@@ -2592,9 +2105,7 @@
       ],
       "total": 950,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,SSA Central portion of New Building KeelaAlagiyanalloor Alagiya Nalloor Alagiya Nalloor , Alagiya Nalloor Kila Alagiya Nalloor",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-64": {
       "votes": [
@@ -2625,9 +2136,7 @@
       ],
       "total": 684,
       "rejected": 0,
-      "name": "Govt Primary School, East portion South facing Keppilingampatti- 626001 Alagiya Nalloor Keppilingampatti",
-      "address": "Govt Primary School ,East portion South facing Keppilingampatti- 626001 Alagiya Nalloor Keppilingampatti",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-65": {
       "votes": [
@@ -2658,9 +2167,7 @@
       ],
       "total": 584,
       "rejected": 0,
-      "name": "Govt Primary School, West portion south focing Building Keppilingampatti- 626001 Alagiya Nalloor Keppilingampatti",
-      "address": "Govt Primary School ,West portion south focing Building Keppilingampatti- 626001 Alagiya Nalloor Keppilingampatti",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-66": {
       "votes": [
@@ -2691,9 +2198,7 @@
       ],
       "total": 583,
       "rejected": 0,
-      "name": "Govt Middle School, East Side New Building",
-      "address": "Govt Middle School ,East Side New Building, Solaikuoundanpatti- 626001 Alagiya Nalloor Solaikavundanpatti , Alagiya Nalloor Solaikavundanpatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-67": {
       "votes": [
@@ -2724,9 +2229,7 @@
       ],
       "total": 777,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, North Building, West Side, Melathulukkankulam-626109 Nandhikundu & 3 Kilathulukkankulam , Nanthi kundu Melathulukkankulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-68": {
       "votes": [
@@ -2757,9 +2260,7 @@
       ],
       "total": 367,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School, NorthBuilding, East Side, Melathulukkankulam-626109. Nanthikundu Mela Thulukkankulam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-69": {
       "votes": [
@@ -2790,9 +2291,7 @@
       ],
       "total": 510,
       "rejected": 0,
-      "name": "Hindu Kannappar primary School",
-      "address": "Hindu Kannappar primary School ,Nanthikundu- 626104 Nandikundu Nandikundu",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-70": {
       "votes": [
@@ -2823,9 +2322,7 @@
       ],
       "total": 473,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,South portion Old Building, Thandiyenthal- 626104 Thandiyanendal Thandiyanendal , Thendiyenandal Periya Puliyampatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-71": {
       "votes": [
@@ -2856,9 +2353,7 @@
       ],
       "total": 393,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Beraignar Anna Memorial Annversary Building SSA Northern Portion of the New Building, Thandiyenthal- 626104 Thendiyanendal Thendiyanendal",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-72": {
       "votes": [
@@ -2889,9 +2384,7 @@
       ],
       "total": 646,
       "rejected": 0,
-      "name": "Panchayat Union primary School",
-      "address": "Panchayat Union primary School ,Eastern portion, Thonugal- 626104 Dhonukal & 2 Dhonukal",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-73": {
       "votes": [
@@ -2922,9 +2415,7 @@
       ],
       "total": 625,
       "rejected": 0,
-      "name": "Panchayat Union primary School",
-      "address": "Panchayat Union primary School ,west Portion , Thonugal- 626104 Dhonukal Dhonukal , Dhonukal Puliyampatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-74": {
       "votes": [
@@ -2945,8 +2436,8 @@
         1,
         0,
         3,
-        2,
         0,
+        2,
         0,
         0,
         0,
@@ -2955,9 +2446,7 @@
       ],
       "total": 608,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,SSA New Building, South Portion, Vakkanangundu-626104",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-75": {
       "votes": [
@@ -2978,8 +2467,8 @@
         2,
         0,
         1,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -2988,9 +2477,7 @@
       ],
       "total": 590,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,south building south Portion, Kariyanendal-626104 1.Johilpatti Johilpatti (U) & 5 Kariyanendal",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-76": {
       "votes": [
@@ -3011,8 +2498,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         0,
@@ -3021,9 +2508,7 @@
       ],
       "total": 535,
       "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,Chithumoondradaippu-626106",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-77": {
       "votes": [
@@ -3044,8 +2529,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         1,
         0,
@@ -3054,9 +2539,7 @@
       ],
       "total": 722,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New building, Allikulam-626106",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-78": {
       "votes": [
@@ -3087,9 +2570,7 @@
       ],
       "total": 526,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,West Portion, New building, Kilavaneri-626106",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-79": {
       "votes": [
@@ -3120,9 +2601,7 @@
       ],
       "total": 863,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Thulukkankulam-626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-80": {
       "votes": [
@@ -3143,8 +2622,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         1,
         0,
@@ -3153,75 +2632,69 @@
       ],
       "total": 776,
       "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,East Portion, Kambali-626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-81A(W)": {
+    "TN-208-81": {
       "votes": [
-        238,
-        169,
-        27,
-        18,
+        476,
+        338,
+        54,
+        36,
         0,
         0,
-        1,
+        2,
+        3,
         2,
         1,
         1,
         1,
+        0,
+        0,
+        0,
+        0,
+        0,
         1,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
         1,
         0,
         1,
         0,
         0
       ],
-      "total": 462,
+      "total": 917,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Thamaraikulam 1.T.Chettikulam , T. chettikulam (u) t.chettikulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-81M": {
+    "TN-208-82": {
       "votes": [
-        238,
-        169,
+        289,
+        294,
+        61,
         27,
-        18,
+        2,
+        5,
+        4,
+        1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         1,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         0
       ],
-      "total": 455,
+      "total": 688,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Thamaraikulam 1.T.Chettikulam , T. chettikulam (u) t.chettikulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-83": {
       "votes": [
@@ -3252,9 +2725,7 @@
       ],
       "total": 687,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,panikurippu-626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-84": {
       "votes": [
@@ -3285,75 +2756,38 @@
       ],
       "total": 600,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Pandenendal-626104",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-85A(W)": {
+    "TN-208-85": {
       "votes": [
-        82,
-        64,
-        45,
-        13,
+        163,
+        128,
+        90,
+        25,
         0,
-        1,
+        2,
+        3,
         2,
         1,
         1,
+        2,
         1,
-        1,
-        1,
-        0,
         0,
         0,
         0,
         0,
         0,
         1,
+        0,
         0,
         0,
         1,
         0,
         0
       ],
-      "total": 214,
+      "total": 420,
       "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,SSA New Building, South Room West Portion, Kalkurichi-626104",
-      "area": "All Voters"
-    },
-    "TN-208-85M": {
-      "votes": [
-        81,
-        64,
-        45,
-        12,
-        0,
-        1,
-        1,
-        1,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 206,
-      "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,SSA New Building, South Room West Portion, Kalkurichi-626104",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-86": {
       "votes": [
@@ -3374,8 +2808,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         1,
         0,
         0,
@@ -3384,20 +2818,18 @@
       ],
       "total": 655,
       "rejected": 0,
-      "name": "Govt Higher Secondary School",
-      "address": "Govt Higher Secondary School ,AVT Hall, Johilpatti-626104",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-87A(W)": {
+    "TN-208-87": {
       "votes": [
-        154,
-        90,
-        56,
-        56,
-        6,
+        307,
+        180,
+        111,
+        112,
+        11,
         0,
-        1,
-        1,
+        2,
+        2,
         0,
         1,
         0,
@@ -3415,55 +2847,20 @@
         0,
         0
       ],
-      "total": 367,
+      "total": 728,
       "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School,Main Building Middle portion, Kalkurichi-626104",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-87M": {
+    "TN-208-88": {
       "votes": [
-        153,
-        90,
-        55,
-        56,
-        5,
-        0,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 361,
-      "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School,Main Building Middle portion, Kalkurichi-626104",
-      "area": "All Voters"
-    },
-    "TN-208-88A(W)": {
-      "votes": [
-        105,
-        62,
-        53,
-        22,
+        210,
+        123,
+        106,
+        44,
         1,
         1,
         1,
-        1,
+        2,
         0,
         0,
         0,
@@ -3481,44 +2878,9 @@
         0,
         0
       ],
-      "total": 248,
+      "total": 490,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Middle building East Portion, Kalkuruichi- 626104",
-      "area": "All Voters"
-    },
-    "TN-208-88M": {
-      "votes": [
-        105,
-        61,
-        53,
-        22,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 242,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Middle building East Portion, Kalkuruichi- 626104",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-89": {
       "votes": [
@@ -3539,8 +2901,8 @@
         1,
         0,
         0,
-        1,
         0,
+        1,
         2,
         0,
         0,
@@ -3549,9 +2911,7 @@
       ],
       "total": 488,
       "rejected": 0,
-      "name": "Panchayat Union Elementry School",
-      "address": "Panchayat Union Elementry School, Main Building, South Facing, Chandrankulam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-90": {
       "votes": [
@@ -3572,8 +2932,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         1,
         0,
@@ -3582,9 +2942,7 @@
       ],
       "total": 464,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School, New building, South side first Room, Mallankinar-626109",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-91": {
       "votes": [
@@ -3615,9 +2973,7 @@
       ],
       "total": 729,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School,New building, North side, last room, Mallankinar-626109",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-92": {
       "votes": [
@@ -3648,9 +3004,7 @@
       ],
       "total": 342,
       "rejected": 0,
-      "name": "M.S.P.Senthilkumar Nadar Hr.Sec.School",
-      "address": "M.S.P.Senthilkumar Nadar Hr.Sec.School ,Main North Building, East Portion, Mallankinar-626109",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-93": {
       "votes": [
@@ -3681,9 +3035,7 @@
       ],
       "total": 735,
       "rejected": 0,
-      "name": "Government Primary school",
-      "address": "Government Primary school ,Northern side of the Building Ayannreddiyapatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-94": {
       "votes": [
@@ -3714,9 +3066,7 @@
       ],
       "total": 839,
       "rejected": 0,
-      "name": "M.S.P.Senthilkumar Nadar Hr.Sec.School",
-      "address": "M.S.P.Senthilkumar Nadar Hr.Sec.School ,New Building, room No 1 West Portion, Mallankinar-626109",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-95": {
       "votes": [
@@ -3747,9 +3097,7 @@
       ],
       "total": 508,
       "rejected": 0,
-      "name": "M.S.P.Senthilkumar Nadar Hr.Sec.School",
-      "address": "M.S.P.Senthilkumar Nadar Hr.Sec.School ,West Building,room no 3, Mallankinar- 626109",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-96": {
       "votes": [
@@ -3770,8 +3118,8 @@
         1,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         1,
@@ -3780,9 +3128,7 @@
       ],
       "total": 911,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,West building, North Portion, Mallankinar-626109",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-97": {
       "votes": [
@@ -3813,9 +3159,7 @@
       ],
       "total": 556,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,West Building south portion, Mallankinar",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-98": {
       "votes": [
@@ -3836,8 +3180,8 @@
         0,
         1,
         1,
-        0,
         1,
+        0,
         1,
         0,
         0,
@@ -3846,9 +3190,7 @@
       ],
       "total": 593,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,West Building north portion, Mallankinar",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-99": {
       "votes": [
@@ -3869,8 +3211,8 @@
         0,
         1,
         0,
-        2,
         1,
+        2,
         0,
         0,
         0,
@@ -3879,9 +3221,7 @@
       ],
       "total": 444,
       "rejected": 0,
-      "name": "M.S.P.Senthilkumar Nadar Hr.Sec.School",
-      "address": "M.S.P.Senthilkumar Nadar Hr.Sec.School ,West Building, Room No 4 Mallankinar-626109",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-100": {
       "votes": [
@@ -3898,24 +3238,21 @@
         0,
         4,
         1,
-        1,
+        0,
         3,
         2,
         0,
         1,
         1,
         1,
-        1,
-        1,
-        1,
+        0,
+        0,
+        0,
         0
       ],
-      "total": 875,
+      "total": 871,
       "rejected": 0,
-      "name": "M.S.P.Senthilkumar Nadar Hr.Sec.School",
-      "address": "M.S.P.Senthilkumar Nadar Hr.Sec.School ,West Building, room 5 Mallankinar-626109",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-101": {
       "votes": [
@@ -3924,32 +3261,29 @@
         78,
         25,
         8,
-        1,
+        0,
         3,
         3,
         4,
         3,
         3,
         0,
-        1,
+        0,
         2,
         1,
         0,
         0,
-        1,
-        1,
         0,
         0,
-        1,
-        1,
+        0,
+        0,
+        0,
+        0,
         0
       ],
-      "total": 521,
+      "total": 515,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School, East building, south facing, Valaiyankulam -Mallankinar- 626109",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-102": {
       "votes": [
@@ -3958,7 +3292,7 @@
         97,
         25,
         2,
-        1,
+        0,
         5,
         1,
         1,
@@ -3970,20 +3304,17 @@
         1,
         1,
         1,
-        1,
+        0,
         1,
         0,
         0,
-        1,
+        0,
         0,
         0
       ],
-      "total": 693,
+      "total": 690,
       "rejected": 0,
-      "name": "Govt. High School, West middle building North last room",
-      "address": "Govt. High School ,West middle building North last room , Mallankinar- 626109",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-103": {
       "votes": [
@@ -3994,9 +3325,9 @@
         3,
         4,
         1,
-        1,
+        0,
         4,
-        1,
+        0,
         0,
         2,
         0,
@@ -4004,20 +3335,17 @@
         3,
         0,
         0,
-        1,
-        1,
+        0,
+        0,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 673,
+      "total": 669,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,West Building, Varalotti-626001",
-      "area": "",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-104": {
       "votes": [
@@ -4026,19 +3354,19 @@
         101,
         39,
         4,
+        0,
+        2,
+        0,
         1,
         2,
         1,
-        1,
-        2,
-        1,
         0,
         0,
         0,
         1,
         1,
         0,
-        1,
+        0,
         0,
         1,
         0,
@@ -4046,12 +3374,9 @@
         0,
         0
       ],
-      "total": 672,
+      "total": 669,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,South Building, Varalotti- 626001",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-105": {
       "votes": [
@@ -4064,7 +3389,7 @@
         2,
         4,
         5,
-        1,
+        0,
         4,
         1,
         2,
@@ -4072,20 +3397,17 @@
         0,
         2,
         1,
-        1,
         0,
+        1,
         0,
         1,
         0,
         1,
         1
       ],
-      "total": 670,
+      "total": 669,
       "rejected": 0,
-      "name": "Hidnu Primary School",
-      "address": "Hidnu Primary School ,New Building Valukkalotti",
-      "area": "",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-106": {
       "votes": [
@@ -4094,32 +3416,29 @@
         65,
         49,
         49,
-        1,
-        1,
+        0,
+        0,
         6,
-        1,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
         0,
         0,
         1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         1,
+        0,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 774,
+      "total": 770,
       "rejected": 0,
-      "name": "Hidnu Primary School",
-      "address": "Hidnu Primary School ,Old Building Valukkalotti Valukkalotti (U) & 4 Valukkalotti",
-      "area": "",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-107": {
       "votes": [
@@ -4150,9 +3469,7 @@
       ],
       "total": 520,
       "rejected": 0,
-      "name": "PANCHAYAT UNION Primary SCHOOL",
-      "address": "PANCHAYAT UNION Primary SCHOOL ,Karuvakkudi",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-108": {
       "votes": [
@@ -4162,8 +3479,8 @@
         89,
         5,
         2,
-        1,
-        1,
+        0,
+        0,
         2,
         1,
         1,
@@ -4181,31 +3498,28 @@
         0,
         1
       ],
-      "total": 628,
+      "total": 626,
       "rejected": 0,
-      "name": "PANCHAYAT UNION Primary SCHOOL",
-      "address": "PANCHAYAT UNION Primary SCHOOL,Boombidagai ,1.Boombidagai",
-      "area": "",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-109A(W)": {
+    "TN-208-109": {
       "votes": [
-        114,
-        93,
-        50,
-        8,
+        228,
+        186,
+        99,
+        16,
+        4,
+        0,
+        4,
+        0,
+        1,
         2,
-        1,
         2,
-        1,
-        1,
-        1,
-        1,
         0,
         0,
         1,
         0,
-        1,
+        2,
         0,
         0,
         0,
@@ -4215,57 +3529,20 @@
         0,
         0
       ],
-      "total": 276,
+      "total": 545,
       "rejected": 0,
-      "name": "PANCHAYAT UNION Primary SCHOOL",
-      "address": "PANCHAYAT UNION Primary SCHOOL, S.NANKUR ,NEW BUILDING, SOUTH PORTION, S. Nankoor 1.Kallumadai boolangulam Boombidagai (R V) Kallumadai,Poolangulam",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-109M": {
+    "TN-208-110": {
       "votes": [
-        114,
-        93,
-        49,
-        8,
-        2,
+        230,
+        170,
+        37,
+        25,
+        3,
         1,
         2,
-        1,
-        1,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 274,
-      "rejected": 0,
-      "name": "PANCHAYAT UNION Primary SCHOOL",
-      "address": "PANCHAYAT UNION Primary SCHOOL, S.NANKUR ,NEW BUILDING, SOUTH PORTION, S. Nankoor 1.Kallumadai boolangulam Boombidagai (R V) Kallumadai,Poolangulam",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
-    },
-    "TN-208-110A(W)": {
-      "votes": [
-        115,
-        85,
-        19,
-        13,
-        2,
-        1,
-        1,
-        2,
+        4,
         1,
         0,
         0,
@@ -4283,45 +3560,9 @@
         1,
         0
       ],
-      "total": 244,
+      "total": 478,
       "rejected": 0,
-      "name": "PANCHAYAT UNION PRIMARY SCHOOL",
-      "address": "PANCHAYAT UNION PRIMARY SCHOOL ,West WING PILLAYARKULAM",
-      "area": "All Voters"
-    },
-    "TN-208-110M": {
-      "votes": [
-        115,
-        85,
-        18,
-        12,
-        1,
-        1,
-        1,
-        2,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 236,
-      "rejected": 0,
-      "name": "PANCHAYAT UNION PRIMARY SCHOOL",
-      "address": "PANCHAYAT UNION PRIMARY SCHOOL ,West WING PILLAYARKULAM",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-111": {
       "votes": [
@@ -4342,8 +3583,8 @@
         0,
         0,
         2,
-        1,
         0,
+        1,
         1,
         1,
         0,
@@ -4352,9 +3593,7 @@
       ],
       "total": 941,
       "rejected": 0,
-      "name": "PANCHAYAT UNION PRIMARY SCHOOL",
-      "address": "PANCHAYAT UNION PRIMARY SCHOOL ,NORTH WING PILLAYARKULAM",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-112": {
       "votes": [
@@ -4385,28 +3624,26 @@
       ],
       "total": 876,
       "rejected": 0,
-      "name": "PANCHAYAT UNION Primary SCHOOL",
-      "address": "PANCHAYAT UNION Primary SCHOOL,New Building V.Karisalkulam 1.V. karisalgulam (R V) V.karisalkulam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-113A(W)": {
+    "TN-208-113": {
       "votes": [
-        83,
-        68,
-        45,
-        8,
-        8,
+        166,
+        135,
+        89,
+        15,
+        16,
         1,
         1,
         1,
-        1,
-        2,
+        0,
+        4,
         0,
         0,
         0,
         1,
         1,
-        2,
+        4,
         0,
         0,
         0,
@@ -4416,114 +3653,40 @@
         0,
         0
       ],
-      "total": 222,
+      "total": 434,
       "rejected": 0,
-      "name": "PANCHAYAT UNION Primary SCHOOL",
-      "address": "PANCHAYAT UNION Primary SCHOOL,TIRUVIDAINALOOR",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-113M": {
+    "TN-208-114": {
       "votes": [
-        83,
-        67,
-        44,
-        7,
-        8,
+        319,
+        229,
+        103,
+        43,
         1,
+        0,
+        4,
+        2,
+        2,
+        0,
         1,
-        1,
-        1,
+        0,
+        0,
+        2,
         2,
         0,
         0,
         0,
         0,
         0,
-        2,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        3,
         0
       ],
-      "total": 217,
+      "total": 711,
       "rejected": 0,
-      "name": "PANCHAYAT UNION Primary SCHOOL",
-      "address": "PANCHAYAT UNION Primary SCHOOL,TIRUVIDAINALOOR",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
-    },
-    "TN-208-114A(W)": {
-      "votes": [
-        160,
-        115,
-        52,
-        22,
-        1,
-        1,
-        2,
-        1,
-        1,
-        0,
-        1,
-        0,
-        0,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        2,
-        0
-      ],
-      "total": 360,
-      "rejected": 0,
-      "name": "PANCHAYAT UNION MIDDLE SCHOOL",
-      "address": "PANCHAYAT UNION MIDDLE SCHOOL ,New Building, Thachanethal 1.V. karisalgulam Thiruvidainallur (R V) Thamaraikkulam , 2.V. karisalgulam Thiruvidainallur (R V) Thachanenthal",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
-    },
-    "TN-208-114M": {
-      "votes": [
-        159,
-        114,
-        51,
-        21,
-        0,
-        1,
-        2,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0
-      ],
-      "total": 353,
-      "rejected": 0,
-      "name": "PANCHAYAT UNION MIDDLE SCHOOL",
-      "address": "PANCHAYAT UNION MIDDLE SCHOOL ,New Building, Thachanethal 1.V. karisalgulam Thiruvidainallur (R V) Thamaraikkulam , 2.V. karisalgulam Thiruvidainallur (R V) Thachanenthal",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-115": {
       "votes": [
@@ -4532,7 +3695,7 @@
         92,
         14,
         11,
-        1,
+        0,
         4,
         1,
         1,
@@ -4552,80 +3715,40 @@
         1,
         0
       ],
-      "total": 551,
+      "total": 550,
       "rejected": 0,
-      "name": "PANCHAYAT UNION Primary SCHOOL",
-      "address": "PANCHAYAT UNION Primary SCHOOL ,New Building west Portion, Eluani",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-116A(W)": {
+    "TN-208-116": {
       "votes": [
-        84,
-        72,
-        31,
-        6,
+        168,
+        144,
+        61,
+        12,
+        3,
+        1,
+        0,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
         2,
         1,
         1,
-        1,
-        1,
-        0,
-        0,
-        0,
         0,
         1,
-        1,
-        1,
         0,
-        0,
-        1,
         0,
         1,
         1,
         0,
         0
       ],
-      "total": 205,
+      "total": 400,
       "rejected": 0,
-      "name": "PANCHAYAT UNION PRIMARY SCHOOL",
-      "address": "PANCHAYAT UNION PRIMARY SCHOOL,North WING building , PULVAIKARAI",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
-    },
-    "TN-208-116M": {
-      "votes": [
-        84,
-        72,
-        30,
-        6,
-        1,
-        1,
-        0,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 197,
-      "rejected": 0,
-      "name": "PANCHAYAT UNION PRIMARY SCHOOL",
-      "address": "PANCHAYAT UNION PRIMARY SCHOOL,North WING building , PULVAIKARAI",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-117": {
       "votes": [
@@ -4646,8 +3769,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -4656,9 +3779,7 @@
       ],
       "total": 378,
       "rejected": 0,
-      "name": "PANCHAYAT UNION PRIMARY SCHOOL",
-      "address": "PANCHAYAT UNION PRIMARY SCHOOL,North side building , PULVAIKARAI",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-118": {
       "votes": [
@@ -4689,9 +3810,7 @@
       ],
       "total": 402,
       "rejected": 0,
-      "name": "I GOVT HIGHER SECONDARY SCHOOL",
-      "address": "I GOVT HIGHER SECONDARY SCHOOL,NORTH WING NEW BUILDING East Portion A.MUKKULAM 1.A.mukkulam (R V) A. mukkulam , 2.A.mukkulam (R V) A. mukkulam , 3.A.mukkulam (R V) A. mukkulam , 4.A.mukkulam (R V) A. mukkulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-119": {
       "votes": [
@@ -4700,7 +3819,7 @@
         37,
         46,
         1,
-        1,
+        0,
         3,
         2,
         0,
@@ -4712,20 +3831,17 @@
         0,
         1,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 405,
+      "total": 404,
       "rejected": 0,
-      "name": "I GOVT HIGHER SECONDARY SCHOOL",
-      "address": "I GOVT HIGHER SECONDARY SCHOOL,South Building East Portion, A.Mukkulam 1.A.mukkulam (R V) A.mukkulam , 2.A.mukkulam (R V) U. kidakulam , 3.A.mukkulam (R V) U. kidakulam , 4.A.mukkulam (R V) U. kidakulam ward",
-      "area": "",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-120": {
       "votes": [
@@ -4756,9 +3872,7 @@
       ],
       "total": 503,
       "rejected": 0,
-      "name": "Govt High School, New building",
-      "address": "Govt High School, New building, West Facing, East portion, Siruvanoor",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-121": {
       "votes": [
@@ -4767,7 +3881,7 @@
         39,
         67,
         0,
-        1,
+        0,
         7,
         1,
         2,
@@ -4779,20 +3893,17 @@
         3,
         1,
         0,
-        2,
         1,
+        2,
         1,
         0,
         1,
         0,
         0
       ],
-      "total": 640,
+      "total": 639,
       "rejected": 0,
-      "name": "SIVASUBRAMANIAN Primary SCHOOL",
-      "address": "SIVASUBRAMANIAN Primary SCHOOL,ALAGAPURI a.mukkulam Kundukulam (R V) Azhagapuri , A.mukkulam Kundukulam (R V) Kundugulam",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-122": {
       "votes": [
@@ -4803,7 +3914,7 @@
         0,
         2,
         0,
-        1,
+        0,
         0,
         0,
         1,
@@ -4821,12 +3932,9 @@
         0,
         0
       ],
-      "total": 407,
+      "total": 406,
       "rejected": 0,
-      "name": "KADAMBA VINAYAGAR Primary SCHOOL",
-      "address": "KADAMBA VINAYAGAR Primary SCHOOL,NEW BUILDING KURAVAIKULAM 1.1azhagapuri M.Pudhukulam (R V) Guravakkulam",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-123": {
       "votes": [
@@ -4847,8 +3955,8 @@
         1,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         0,
@@ -4857,9 +3965,7 @@
       ],
       "total": 810,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School , Naloor - 626607",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-124": {
       "votes": [
@@ -4868,9 +3974,9 @@
         64,
         20,
         1,
-        1,
         0,
-        1,
+        0,
+        0,
         0,
         1,
         1,
@@ -4888,12 +3994,9 @@
         0,
         0
       ],
-      "total": 335,
+      "total": 333,
       "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School , Naloor - 262607",
-      "area": "",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-125": {
       "votes": [
@@ -4914,8 +4017,8 @@
         0,
         3,
         1,
-        0,
         1,
+        0,
         0,
         0,
         2,
@@ -4924,9 +4027,7 @@
       ],
       "total": 608,
       "rejected": 0,
-      "name": "Govt. Primary SCHOOL",
-      "address": "Govt. Primary SCHOOL,West Building ULUTHIMADAI",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-126": {
       "votes": [
@@ -4957,19 +4058,17 @@
       ],
       "total": 766,
       "rejected": 0,
-      "name": "Govt. Primary School",
-      "address": "Govt. Primary School ,East Building Ulithimadai",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-127A(W)": {
+    "TN-208-127": {
       "votes": [
-        128,
-        92,
-        31,
-        19,
+        256,
+        184,
+        61,
+        37,
         1,
         1,
-        1,
+        2,
         1,
         1,
         0,
@@ -4988,45 +4087,9 @@
         0,
         0
       ],
-      "total": 276,
+      "total": 545,
       "rejected": 0,
-      "name": "PANCHAYAT UNION PRIMARY SCHOOL",
-      "address": "PANCHAYAT UNION PRIMARY SCHOOL ,P Puliyankulam",
-      "area": "All Voters"
-    },
-    "TN-208-127M": {
-      "votes": [
-        128,
-        92,
-        30,
-        18,
-        0,
-        0,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 270,
-      "rejected": 0,
-      "name": "PANCHAYAT UNION PRIMARY SCHOOL",
-      "address": "PANCHAYAT UNION PRIMARY SCHOOL ,P Puliyankulam",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-128": {
       "votes": [
@@ -5047,8 +4110,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         1,
@@ -5057,9 +4120,7 @@
       ],
       "total": 763,
       "rejected": 0,
-      "name": "Government Hr, Sec.School",
-      "address": "Government Hr,Sec.School,North Building West Portion, Kattanoor",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-129": {
       "votes": [
@@ -5070,7 +4131,7 @@
         3,
         1,
         0,
-        1,
+        0,
         3,
         1,
         3,
@@ -5080,20 +4141,17 @@
         0,
         0,
         1,
-        1,
         0,
+        1,
         1,
         1,
         0,
         0,
         0
       ],
-      "total": 681,
+      "total": 680,
       "rejected": 0,
-      "name": "GOVT HIGHER SECONDARY SCHOOL",
-      "address": "GOVT HIGHER SECONDARY SCHOOL,North BUILDING East PORTION KATTANOOR arasagulam Kattanur (R V) Kattanur",
-      "area": "",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-130": {
       "votes": [
@@ -5104,7 +4162,7 @@
         4,
         1,
         2,
-        1,
+        0,
         1,
         2,
         0,
@@ -5122,12 +4180,9 @@
         0,
         0
       ],
-      "total": 531,
+      "total": 530,
       "rejected": 0,
-      "name": "GOVT HIGHER SECONDARY SCHOOL",
-      "address": "GOVT HIGHER SECONDARY SCHOOL,North new building west portion Kattanoor Arasagulam Kattanur (R V) Kattanur , Arasagulam Kattanur (R V) Kattanur",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-131": {
       "votes": [
@@ -5138,7 +4193,7 @@
         2,
         1,
         2,
-        1,
+        0,
         2,
         0,
         0,
@@ -5148,20 +4203,17 @@
         1,
         0,
         0,
-        1,
         0,
+        1,
         1,
         0,
         0,
         0,
         0
       ],
-      "total": 697,
+      "total": 696,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building West portion, Ulakkudi - 626607 Ulakkudi (U) Ulakkudi",
-      "area": "",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-132": {
       "votes": [
@@ -5182,8 +4234,8 @@
         0,
         1,
         0,
-        1,
         0,
+        1,
         1,
         0,
         1,
@@ -5192,9 +4244,7 @@
       ],
       "total": 425,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Southweast Building, Ulakkudi - 626607",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-133": {
       "votes": [
@@ -5215,8 +4265,8 @@
         2,
         0,
         0,
-        2,
         1,
+        2,
         1,
         0,
         1,
@@ -5225,9 +4275,7 @@
       ],
       "total": 524,
       "rejected": 0,
-      "name": "Govt. High School, Ground floor 10th std Class Room Irunjirai - 626612",
-      "address": "Govt. High School ,Ground floor 10th std Class Room Irunjirai - 626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-134": {
       "votes": [
@@ -5258,9 +4306,7 @@
       ],
       "total": 916,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Vadakumadai - 626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-135": {
       "votes": [
@@ -5291,30 +4337,28 @@
       ],
       "total": 613,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Additional Building Dharmam - 626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-136A(W)": {
+    "TN-208-136": {
       "votes": [
-        103,
-        117,
-        33,
-        18,
+        206,
+        234,
+        66,
+        35,
+        5,
+        1,
+        2,
+        0,
+        1,
+        1,
+        1,
+        2,
+        0,
+        1,
         3,
-        1,
-        1,
         0,
-        1,
-        1,
-        1,
-        1,
         0,
-        1,
         2,
-        0,
-        0,
-        1,
         1,
         1,
         0,
@@ -5322,56 +4366,21 @@
         0,
         0
       ],
-      "total": 287,
+      "total": 563,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building Kottakaichiyendal - 623608",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-136M": {
+    "TN-208-137": {
       "votes": [
-        103,
-        117,
-        33,
-        17,
+        264,
+        184,
+        36,
+        51,
+        1,
+        4,
+        0,
+        4,
         2,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 276,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building Kottakaichiyendal - 623608",
-      "area": "All Voters"
-    },
-    "TN-208-137A(W)": {
-      "votes": [
-        132,
-        92,
-        18,
-        26,
-        1,
-        2,
-        0,
-        2,
-        1,
         0,
         0,
         1,
@@ -5388,44 +4397,9 @@
         0,
         0
       ],
-      "total": 276,
+      "total": 548,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Kilavikulam",
-      "area": "All Voters"
-    },
-    "TN-208-137M": {
-      "votes": [
-        132,
-        92,
-        18,
-        25,
-        0,
-        2,
-        0,
-        2,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 272,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Kilavikulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-138": {
       "votes": [
@@ -5456,9 +4430,7 @@
       ],
       "total": 536,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,West Building Velaneri - 623608",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-139": {
       "votes": [
@@ -5479,8 +4451,8 @@
         0,
         0,
         2,
-        1,
         0,
+        1,
         2,
         1,
         2,
@@ -5489,9 +4461,7 @@
       ],
       "total": 831,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Vallakkulam - 623608",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-140": {
       "votes": [
@@ -5522,9 +4492,7 @@
       ],
       "total": 156,
       "rejected": 0,
-      "name": "Panchayat Union Elimentary School",
-      "address": "Panchayat Union Elimentary School ,V.Pudhur - 623608",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-141": {
       "votes": [
@@ -5545,8 +4513,8 @@
         1,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -5555,9 +4523,7 @@
       ],
       "total": 333,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,North Building T. Velankudi - 623608 1.T.Velangudi , T. velangudi T. Velangudi , 2.T.Velangudi (R.V.), T. Velangudi (U) T. Velangudi , 3.T.Velangudi , T. Velangudi (U) Pattamankalam , 4.T.Velangudi , T. Velangudi (U) , Pattamankalam , 5.T.Velangudi , T. Velangudi (U) Chinnamulgudi",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-142": {
       "votes": [
@@ -5588,9 +4554,7 @@
       ],
       "total": 526,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,East Building Maraiyur - 626607",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-143": {
       "votes": [
@@ -5621,9 +4585,7 @@
       ],
       "total": 416,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,West Building Maraiyur - 626607",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-144": {
       "votes": [
@@ -5654,9 +4616,7 @@
       ],
       "total": 660,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Addtitional Building West Portion Manoor - 626607",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-145": {
       "votes": [
@@ -5677,8 +4637,8 @@
         0,
         0,
         1,
-        1,
         0,
+        1,
         0,
         1,
         0,
@@ -5687,9 +4647,7 @@
       ],
       "total": 577,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building North Side Salai Illuppaikulam - 626607 Salai Eluppaikulam (U) , Salai Eluppaikulam , Salai Iluppaikulam (U) Manickanendal",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-146": {
       "votes": [
@@ -5720,9 +4678,7 @@
       ],
       "total": 253,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building South Side SalaiIlupaikulam 1.Sottamuri R.V), Salai Eluppaikulam (U) Sottamuri , 2.Salai iluppaikulam , Salai Eluppaikulam (U) Eruvarkulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-147": {
       "votes": [
@@ -5753,9 +4709,7 @@
       ],
       "total": 200,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building South Portion Kandukondanmanickam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-148": {
       "votes": [
@@ -5786,9 +4740,7 @@
       ],
       "total": 791,
       "rejected": 0,
-      "name": "Katchi Vinayagar Hindu Aided Primary School",
-      "address": "Katchi Vinayagar Hindu Aided Primary School ,West Building Isali - 626607 ISALI ISALI , ISALI Isali , 3",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-149": {
       "votes": [
@@ -5819,75 +4771,38 @@
       ],
       "total": 653,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Melakumilankulam - 626607 ISALI Ianakkaneri , ISALI Melakumilankulam , ISALI Melakumilankulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-150A(W)": {
+    "TN-208-150": {
       "votes": [
-        128,
-        105,
-        32,
-        24,
+        255,
+        209,
+        64,
+        48,
+        5,
+        1,
+        2,
+        4,
+        1,
+        1,
+        2,
+        2,
+        0,
+        1,
+        0,
         3,
         1,
         1,
-        2,
-        1,
-        1,
-        1,
-        1,
         0,
-        1,
-        0,
-        2,
-        1,
-        0,
-        1,
         0,
         1,
         0,
         1,
         0
       ],
-      "total": 307,
+      "total": 602,
       "rejected": 0,
-      "name": "Roman Catholic Primary School",
-      "address": "Roman Catholic Primary School ,Pannaikudi - 626607",
-      "area": "All Voters"
-    },
-    "TN-208-150M": {
-      "votes": [
-        127,
-        104,
-        32,
-        24,
-        2,
-        0,
-        1,
-        2,
-        0,
-        0,
-        1,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 295,
-      "rejected": 0,
-      "name": "Roman Catholic Primary School",
-      "address": "Roman Catholic Primary School ,Pannaikudi - 626607",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-151": {
       "votes": [
@@ -5908,8 +4823,8 @@
         0,
         1,
         1,
-        2,
         1,
+        2,
         0,
         0,
         0,
@@ -5918,20 +4833,18 @@
       ],
       "total": 681,
       "rejected": 0,
-      "name": "Government Higher Secondary School",
-      "address": "Government Higher Secondary School ,North Side West Building Narikudi - 626607 , Narikudi (u) Narikudi",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-152A(W)": {
+    "TN-208-152": {
       "votes": [
-        79,
-        46,
-        7,
-        6,
+        157,
+        92,
+        14,
+        12,
         0,
         1,
-        1,
-        1,
+        2,
+        2,
         0,
         0,
         0,
@@ -5949,44 +4862,9 @@
         1,
         0
       ],
-      "total": 143,
+      "total": 282,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School, New Building, West facing, North Portion, Narikudi-626607",
-      "area": "All Voters"
-    },
-    "TN-208-152M": {
-      "votes": [
-        78,
-        46,
-        7,
-        6,
-        0,
-        0,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 139,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School, New Building, West facing, North Portion, Narikudi-626607",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-153": {
       "votes": [
@@ -6007,8 +4885,8 @@
         0,
         3,
         1,
-        3,
         2,
+        3,
         0,
         0,
         0,
@@ -6017,9 +4895,7 @@
       ],
       "total": 757,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building West Side South Facing Room-Veerakudi - 626607",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-154": {
       "votes": [
@@ -6040,8 +4916,8 @@
         1,
         0,
         0,
-        1,
         0,
+        1,
         1,
         0,
         0,
@@ -6050,9 +4926,7 @@
       ],
       "total": 434,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,New Building Varisaiyur - 626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-155": {
       "votes": [
@@ -6073,8 +4947,8 @@
         0,
         0,
         0,
-        2,
         1,
+        2,
         0,
         4,
         0,
@@ -6083,9 +4957,7 @@
       ],
       "total": 627,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Melaparuthiyur - 626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-156": {
       "votes": [
@@ -6106,8 +4978,8 @@
         0,
         1,
         1,
-        0,
         1,
+        0,
         1,
         1,
         0,
@@ -6116,9 +4988,7 @@
       ],
       "total": 705,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,East Building West portion Veerasolan",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-157": {
       "votes": [
@@ -6149,9 +5019,7 @@
       ],
       "total": 422,
       "rejected": 0,
-      "name": "Panchayat Union middle School",
-      "address": "Panchayat Union middle School ,East building Middle Portion Veerasolan(West) - 626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-158": {
       "votes": [
@@ -6182,9 +5050,7 @@
       ],
       "total": 828,
       "rejected": 0,
-      "name": "Panchayat Union middle School Grirls",
-      "address": "Panchayat Union middle School Grirls ,East Building, veerasolan - 626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-159": {
       "votes": [
@@ -6215,9 +5081,7 @@
       ],
       "total": 314,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,South Building East Portion Veerasolan (East )- 626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-160": {
       "votes": [
@@ -6248,9 +5112,7 @@
       ],
       "total": 817,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,South Building West Portion Veerasolan (East) - 626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-161": {
       "votes": [
@@ -6271,8 +5133,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         0,
@@ -6281,9 +5143,7 @@
       ],
       "total": 459,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,North Building, East Side, Veerasolan-626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-162": {
       "votes": [
@@ -6314,9 +5174,7 @@
       ],
       "total": 841,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North Building West Side, Veerasolan (East)-626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-163": {
       "votes": [
@@ -6337,8 +5195,8 @@
         0,
         0,
         1,
-        1,
         0,
+        1,
         2,
         0,
         0,
@@ -6347,9 +5205,38 @@
       ],
       "total": 620,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building East Portion Pappankulam - 626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
+    },
+    "TN-208-164": {
+      "votes": [
+        339,
+        306,
+        107,
+        74,
+        1,
+        0,
+        2,
+        2,
+        2,
+        0,
+        1,
+        1,
+        1,
+        0,
+        3,
+        0,
+        0,
+        3,
+        1,
+        1,
+        0,
+        2,
+        2,
+        0
+      ],
+      "total": 848,
+      "rejected": 0,
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-165": {
       "votes": [
@@ -6370,8 +5257,8 @@
         0,
         0,
         1,
-        2,
         1,
+        2,
         0,
         0,
         0,
@@ -6380,9 +5267,7 @@
       ],
       "total": 617,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building, Kuraiyaravasithan - 626607",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-166": {
       "votes": [
@@ -6403,8 +5288,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         1,
         0,
@@ -6413,9 +5298,7 @@
       ],
       "total": 692,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Muthaneri - 626607",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-167": {
       "votes": [
@@ -6446,9 +5329,7 @@
       ],
       "total": 638,
       "rejected": 0,
-      "name": "Government Adi Drividar Welfare primary School",
-      "address": "Government Adi Drividar Welfare primary School ,Nallukuruchi - 626612",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-168": {
       "votes": [
@@ -6479,9 +5360,7 @@
       ],
       "total": 361,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Sullankudi - 626612",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-169": {
       "votes": [
@@ -6512,9 +5391,7 @@
       ],
       "total": 344,
       "rejected": 0,
-      "name": "Bharatha Hindu Aided Primary School",
-      "address": "Bharatha Hindu Aided Primary School ,Nathakulam - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-170": {
       "votes": [
@@ -6545,9 +5422,7 @@
       ],
       "total": 524,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,New Building West Portion Chellaiyapuram - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-171": {
       "votes": [
@@ -6568,8 +5443,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         0,
@@ -6578,23 +5453,21 @@
       ],
       "total": 328,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,New Building East Side Chellaiyapuram - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-172A(W)": {
+    "TN-208-172": {
       "votes": [
-        103,
-        51,
+        206,
+        101,
+        48,
         24,
-        12,
         0,
         0,
         1,
         1,
         0,
         0,
-        1,
+        2,
         0,
         0,
         1,
@@ -6609,44 +5482,9 @@
         0,
         0
       ],
-      "total": 195,
+      "total": 385,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North Side Panaiyur - 626129",
-      "area": "All Voters"
-    },
-    "TN-208-172M": {
-      "votes": [
-        103,
-        50,
-        24,
-        12,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 190,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North Side Panaiyur - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-173": {
       "votes": [
@@ -6677,9 +5515,7 @@
       ],
       "total": 718,
       "rejected": 0,
-      "name": "T.E.L.C Elemintary School",
-      "address": "T.E.L.C Elemintary School ,Pillaiyarnatham - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-174": {
       "votes": [
@@ -6700,8 +5536,8 @@
         1,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         0,
@@ -6710,9 +5546,7 @@
       ],
       "total": 444,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Sethupuram - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-175": {
       "votes": [
@@ -6743,9 +5577,7 @@
       ],
       "total": 388,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North side Anaikulam - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-176": {
       "votes": [
@@ -6776,9 +5608,7 @@
       ],
       "total": 497,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,West Building, Anaikulam - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-177": {
       "votes": [
@@ -6809,9 +5639,7 @@
       ],
       "total": 702,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School , West Facing Room Muthuramalingapuram - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-178": {
       "votes": [
@@ -6842,9 +5670,7 @@
       ],
       "total": 394,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School , West Building South Facing Room Muthuramalingapuram - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-179": {
       "votes": [
@@ -6865,8 +5691,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -6875,9 +5701,7 @@
       ],
       "total": 575,
       "rejected": 0,
-      "name": "Church of South India Aided Primary School",
-      "address": "Church of South India Aided Primary School ,Poomalaipatti - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-180": {
       "votes": [
@@ -6908,9 +5732,7 @@
       ],
       "total": 626,
       "rejected": 0,
-      "name": "Nadar K.V. Sala School",
-      "address": "Nadar K.V. Sala School ,Main Building Iluppaiyur - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-181": {
       "votes": [
@@ -6941,9 +5763,7 @@
       ],
       "total": 762,
       "rejected": 0,
-      "name": "PANCHAYAT UNION PRIMARY SCHOOL",
-      "address": "PANCHAYAT UNION PRIMARY SCHOOL ,East Portion New Building Kathanpatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-182": {
       "votes": [
@@ -6974,63 +5794,28 @@
       ],
       "total": 528,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,North Portion New Building Udaiaservaikaranpatti - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-183A(W)": {
+    "TN-208-183": {
       "votes": [
-        194,
-        61,
-        87,
-        15,
+        387,
+        122,
+        173,
+        29,
         1,
-        13,
+        25,
         1,
-        1,
+        2,
         0,
-        0,
-        1,
         0,
         1,
-        0,
-        0,
-        0,
-        0,
         0,
         1,
         0,
         0,
         0,
         0,
-        0
-      ],
-      "total": 376,
-      "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,South Building Udaiaservaikaranpatti - 626129",
-      "area": "All Voters"
-    },
-    "TN-208-183M": {
-      "votes": [
-        193,
-        61,
-        86,
-        14,
-        0,
-        12,
-        0,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         0,
         0,
         0,
@@ -7038,11 +5823,9 @@
         0,
         0
       ],
-      "total": 367,
+      "total": 743,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,South Building Udaiaservaikaranpatti - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-184": {
       "votes": [
@@ -7073,9 +5856,7 @@
       ],
       "total": 422,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Ammanpatti - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-185": {
       "votes": [
@@ -7106,9 +5887,7 @@
       ],
       "total": 880,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Old Building P. Puthupatti - 626129 1.P.Pudupatti , P.pudupatti P.Pudupatti , 2.P.Pudupatti , P.Pudupatti (U) P.Pudupatti , 3.P.Pudupatti , P.Pudupatti (U) P.Pudupatti , 4.P.Pudupatti , P.Pudupatti Perunjali",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-186": {
       "votes": [
@@ -7129,8 +5908,8 @@
         2,
         0,
         1,
-        0,
         1,
+        0,
         0,
         0,
         1,
@@ -7139,9 +5918,7 @@
       ],
       "total": 823,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,South Building P.M. Puthupatti - 626129 1.PannaiMoondradaippu, PannaiMoondradaipu (U) PannaiMoondradaipu",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-187": {
       "votes": [
@@ -7172,9 +5949,7 @@
       ],
       "total": 567,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,North Building P.M. Puthupatti - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-188": {
       "votes": [
@@ -7205,9 +5980,7 @@
       ],
       "total": 724,
       "rejected": 0,
-      "name": "Panchayat Union Primary School East Portion",
-      "address": "Panchayat Union Primary School East Portion ,K. Pudur - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-189": {
       "votes": [
@@ -7238,9 +6011,7 @@
       ],
       "total": 617,
       "rejected": 0,
-      "name": "Panchayat Union Primary School West Portion",
-      "address": "Panchayat Union Primary School West Portion ,K. Pudur - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-190": {
       "votes": [
@@ -7261,8 +6032,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         1,
         0,
@@ -7271,9 +6042,7 @@
       ],
       "total": 281,
       "rejected": 0,
-      "name": "PANCHAYAT UNION PRIMARY SCHOOL",
-      "address": "PANCHAYAT UNION PRIMARY SCHOOL ,West Building West Portion East Facing Room-Udaiyanampatti - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-191": {
       "votes": [
@@ -7304,9 +6073,7 @@
       ],
       "total": 695,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building Sennilaikudi - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-192": {
       "votes": [
@@ -7337,9 +6104,7 @@
       ],
       "total": 528,
       "rejected": 0,
-      "name": "Mukkulathor Kalvi Nilayam",
-      "address": "Mukkulathor Kalvi Nilayam ,South building, Puliyankulam - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-193": {
       "votes": [
@@ -7370,9 +6135,7 @@
       ],
       "total": 614,
       "rejected": 0,
-      "name": "Mukkulathor Kalvi Nilayam",
-      "address": "Mukkulathor Kalvi Nilayam ,East building, Puliyankulam - 626129 1.Ambaner i, Mithilaikulam (U) puliyankulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-194": {
       "votes": [
@@ -7403,9 +6166,7 @@
       ],
       "total": 745,
       "rejected": 0,
-      "name": "Panchayat Union Middile School",
-      "address": "Panchayat Union Middile School ,Velayuthapuram - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-195": {
       "votes": [
@@ -7436,9 +6197,7 @@
       ],
       "total": 552,
       "rejected": 0,
-      "name": "Panchayat Union primary School vidathakulam",
-      "address": "Panchayat Union primary School vidathakulam ,New Building, North side, Vidathakulam - 626607",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-196": {
       "votes": [
@@ -7469,75 +6228,38 @@
       ],
       "total": 415,
       "rejected": 0,
-      "name": "Govt High School, Old Building",
-      "address": "Govt High School, Old Building, East facing, South Side, Vidathakulam - 626607",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-197A(W)": {
+    "TN-208-197": {
       "votes": [
-        235,
-        90,
-        75,
-        32,
+        469,
+        180,
+        150,
+        63,
+        3,
+        5,
+        6,
+        4,
+        4,
+        5,
+        1,
         2,
         3,
-        3,
+        4,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
         2,
-        2,
-        3,
-        1,
-        1,
-        2,
-        2,
-        0,
-        0,
-        0,
-        1,
-        1,
-        0,
-        0,
-        1,
         1,
         0
       ],
-      "total": 457,
+      "total": 904,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,North Building, Karendal - 626129",
-      "area": "All Voters"
-    },
-    "TN-208-197M": {
-      "votes": [
-        234,
-        90,
-        75,
-        31,
-        1,
-        2,
-        3,
-        2,
-        2,
-        2,
-        0,
-        1,
-        1,
-        2,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      "total": 447,
-      "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,North Building, Karendal - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-198": {
       "votes": [
@@ -7568,9 +6290,7 @@
       ],
       "total": 516,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Pallimadam - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-199": {
       "votes": [
@@ -7601,9 +6321,7 @@
       ],
       "total": 832,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New building Maile - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-200": {
       "votes": [
@@ -7634,9 +6352,7 @@
       ],
       "total": 479,
       "rejected": 0,
-      "name": "T.E.L.C.Primary School",
-      "address": "T.E.L.C.Primary School ,Pallapatcheri - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-201": {
       "votes": [
@@ -7667,9 +6383,7 @@
       ],
       "total": 893,
       "rejected": 0,
-      "name": "T.U.N.S.V. Higher Secondary School",
-      "address": "T.U.N.S.V. Higher Secondary School ,South west building, West portion, Thiruchuli - 626129",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-202": {
       "votes": [
@@ -7700,9 +6414,7 @@
       ],
       "total": 538,
       "rejected": 0,
-      "name": "T.U.N.S.V. Higher Secondary School",
-      "address": "T.U.N.S.V. Higher Secondary School ,Southwest side building, Eest portion, Thiruchuli - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-203": {
       "votes": [
@@ -7733,9 +6445,7 @@
       ],
       "total": 520,
       "rejected": 0,
-      "name": "T.U.N.S.V. Higher Secondary School",
-      "address": "T.U.N.S.V. Higher Secondary School ,North Building East side Thiruchuli - 626129",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-204": {
       "votes": [
@@ -7766,141 +6476,69 @@
       ],
       "total": 579,
       "rejected": 0,
-      "name": "T.U.N.S.V. Higher Secondary School",
-      "address": "T.U.N.S.V. Higher Secondary School ,North Building west Portion Thiruchuli - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-205A(W)": {
+    "TN-208-205": {
       "votes": [
-        181,
-        120,
-        66,
-        19,
+        361,
+        239,
+        132,
+        37,
         1,
-        4,
-        4,
-        4,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
+        7,
+        7,
+        8,
         2,
         0,
         0,
         0,
         1,
-        1,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 405,
-      "rejected": 0,
-      "name": "T.U.N.S.V. Higher Secondary School",
-      "address": "T.U.N.S.V. Higher Secondary School ,East Building Thiruchuli - 626129",
-      "area": ""
-    },
-    "TN-208-205M": {
-      "votes": [
-        180,
-        119,
-        66,
-        18,
         0,
         3,
-        3,
-        4,
-        1,
         0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 396,
-      "rejected": 0,
-      "name": "T.U.N.S.V. Higher Secondary School",
-      "address": "T.U.N.S.V. Higher Secondary School ,East Building Thiruchuli - 626129",
-      "area": ""
-    },
-    "TN-208-206A(W)": {
-      "votes": [
-        117,
-        102,
-        123,
-        21,
-        1,
-        1,
-        1,
-        3,
-        0,
-        3,
-        1,
-        1,
-        1,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 377,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North Building, Tamilpadi - 626129",
-      "area": "All Voters"
-    },
-    "TN-208-206M": {
-      "votes": [
-        117,
-        102,
-        122,
-        21,
-        0,
-        1,
-        0,
-        2,
         0,
         2,
         0,
         1,
         0,
+        0,
+        0,
+        0
+      ],
+      "total": 801,
+      "rejected": 0,
+      "sourceNote": "official_form20_pdf"
+    },
+    "TN-208-206": {
+      "votes": [
+        234,
+        204,
+        245,
+        42,
         1,
-        0,
-        0,
-        0,
+        2,
         1,
+        5,
         0,
+        5,
+        1,
+        2,
+        1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 370,
+      "total": 747,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North Building, Tamilpadi - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-207": {
       "votes": [
@@ -7921,8 +6559,8 @@
         1,
         0,
         2,
-        0,
         1,
+        0,
         1,
         0,
         0,
@@ -7931,9 +6569,7 @@
       ],
       "total": 886,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School, North Building, South Facing Room Tamilpadi - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-208": {
       "votes": [
@@ -7964,9 +6600,7 @@
       ],
       "total": 694,
       "rejected": 0,
-      "name": "Govt. High School, North building",
-      "address": "Govt. High School, North building, Chithalakundu - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-209": {
       "votes": [
@@ -7997,9 +6631,7 @@
       ],
       "total": 662,
       "rejected": 0,
-      "name": "Govt. High School South Side Additional building",
-      "address": "Govt. High School South Side Additional building, Chithalakundu - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-210": {
       "votes": [
@@ -8030,9 +6662,7 @@
       ],
       "total": 916,
       "rejected": 0,
-      "name": "Panchayat Union Elimentary School",
-      "address": "Panchayat Union Elimentary School ,Konappanendal - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-211": {
       "votes": [
@@ -8053,8 +6683,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         0,
@@ -8063,9 +6693,7 @@
       ],
       "total": 995,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Norh Building Pulikuruchi - 626129",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-212": {
       "votes": [
@@ -8096,9 +6724,7 @@
       ],
       "total": 451,
       "rejected": 0,
-      "name": "Nadar Magajana Sangam Sermathai Vasan Primary School",
-      "address": "Nadar Magajana Sangam Sermathai Vasan Primary School ,Manavarayanendal",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-213": {
       "votes": [
@@ -8129,9 +6755,7 @@
       ],
       "total": 275,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North building West side, P.Thottiyankulam - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-214": {
       "votes": [
@@ -8152,8 +6776,8 @@
         0,
         1,
         1,
-        0,
         1,
+        0,
         0,
         1,
         0,
@@ -8162,9 +6786,7 @@
       ],
       "total": 910,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,South building , P.Thottiyankulam - 626129",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-215": {
       "votes": [
@@ -8195,75 +6817,38 @@
       ],
       "total": 503,
       "rejected": 0,
-      "name": "Gandhi Kalvi Nilaya Primary School",
-      "address": "Gandhi Kalvi Nilaya Primary School ,Krishnapuram - 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-216A(W)": {
+    "TN-208-216": {
       "votes": [
-        133,
-        167,
-        58,
-        30,
+        266,
+        333,
+        116,
+        59,
         1,
+        1,
+        0,
+        3,
+        3,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         1,
         0,
         2,
-        2,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
         0,
         0,
         0,
         0
       ],
-      "total": 398,
+      "total": 787,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Additional Building, Faceing West Meelakandamangulam- 626159 gulasekara nallur melakkandamankalam",
-      "area": ""
-    },
-    "TN-208-216M": {
-      "votes": [
-        133,
-        166,
-        58,
-        29,
-        0,
-        0,
-        0,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 389,
-      "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Additional Building, Faceing West Meelakandamangulam- 626159 gulasekara nallur melakkandamankalam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-217": {
       "votes": [
@@ -8294,9 +6879,7 @@
       ],
       "total": 277,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,New Additional Building, North East Cornor Building,Facing South,west Portion Melakandamankulam gulasekara nallur melakkandamankalam T R S Mill Quarters",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-218": {
       "votes": [
@@ -8317,8 +6900,8 @@
         0,
         1,
         1,
-        2,
         0,
+        2,
         0,
         0,
         0,
@@ -8327,9 +6910,7 @@
       ],
       "total": 655,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Mangulam - 626106 Mangulam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-219": {
       "votes": [
@@ -8360,9 +6941,7 @@
       ],
       "total": 517,
       "rejected": 0,
-      "name": "Govt High School, South Facing West Side Room-NO 9- Kulasekaranallur-626159",
-      "address": "Govt High School ,South Facing West Side Room-NO 9- Kulasekaranallur-626159",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-220": {
       "votes": [
@@ -8383,8 +6962,8 @@
         0,
         2,
         1,
-        1,
         0,
+        1,
         0,
         1,
         0,
@@ -8393,75 +6972,38 @@
       ],
       "total": 557,
       "rejected": 0,
-      "name": "Govt High School, South Facing East Side Room-NO 10- Kulasekaranallur-626159",
-      "address": "Govt High School ,South Facing East Side Room-NO 10- Kulasekaranallur-626159",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-221A(W)": {
+    "TN-208-221": {
       "votes": [
-        190,
-        100,
-        54,
-        26,
+        379,
+        200,
+        107,
+        52,
         1,
         0,
-        3,
+        5,
         1,
-        3,
-        3,
-        2,
+        5,
+        5,
+        4,
         0,
         0,
-        2,
+        3,
+        0,
         0,
         0,
         0,
         1,
-        0,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 386,
+      "total": 763,
       "rejected": 0,
-      "name": "Panchayat Union Middile School",
-      "address": "Panchayat Union Middile School ,Additional Building Facing West Madathupatti",
-      "area": "All Voters"
-    },
-    "TN-208-221M": {
-      "votes": [
-        189,
-        100,
-        53,
-        26,
-        0,
-        0,
-        2,
-        0,
-        2,
-        2,
-        2,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 377,
-      "rejected": 0,
-      "name": "Panchayat Union Middile School",
-      "address": "Panchayat Union Middile School ,Additional Building Facing West Madathupatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-222": {
       "votes": [
@@ -8492,9 +7034,7 @@
       ],
       "total": 517,
       "rejected": 0,
-      "name": "I Primary School, North Portion Aladipatti- 626129",
-      "address": "I Primary School ,North Portion Aladipatti- 626129",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-223": {
       "votes": [
@@ -8515,8 +7055,8 @@
         2,
         1,
         0,
-        0,
         2,
+        0,
         0,
         0,
         0,
@@ -8525,9 +7065,7 @@
       ],
       "total": 740,
       "rejected": 0,
-      "name": "I Primary School, South Portion Aladipatti- 626129",
-      "address": "I Primary School ,South Portion Aladipatti- 626129",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-224": {
       "votes": [
@@ -8558,9 +7096,7 @@
       ],
       "total": 666,
       "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,West wing, Savaspuram - 626159 Sawaspuram , Sawaspuram",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-225": {
       "votes": [
@@ -8581,8 +7117,8 @@
         1,
         1,
         0,
-        3,
         0,
+        3,
         0,
         0,
         0,
@@ -8591,9 +7127,7 @@
       ],
       "total": 987,
       "rejected": 0,
-      "name": "Government High School",
-      "address": "Government High School ,East Portion, Savaspuram - 626159 Savaspuram , Savaspuram",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-226": {
       "votes": [
@@ -8614,8 +7148,8 @@
         2,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -8624,9 +7158,7 @@
       ],
       "total": 477,
       "rejected": 0,
-      "name": "Panchayat Union Elementary School",
-      "address": "Panchayat Union Elementary School ,Kullampatti - 626106 Kullampatti , Kullampatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-227": {
       "votes": [
@@ -8657,9 +7189,7 @@
       ],
       "total": 870,
       "rejected": 0,
-      "name": "SBK Higher Secondary School",
-      "address": "SBK Higher Secondary School ,West building Room No 19 Kalloorani - 626105 Kalloorani , Kalloorani",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-228": {
       "votes": [
@@ -8690,9 +7220,7 @@
       ],
       "total": 489,
       "rejected": 0,
-      "name": "SBK Higher Secondary School",
-      "address": "SBK Higher Secondary School ,West building Room No 19 Kalloorani - 626105 Kalloorani , Kalloorani",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-229": {
       "votes": [
@@ -8723,9 +7251,7 @@
       ],
       "total": 462,
       "rejected": 0,
-      "name": "SBK Higher Secondary School",
-      "address": "SBK Higher Secondary School,Administrative Building Room No. 24, 25 Kalloorani - 626 105",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-230": {
       "votes": [
@@ -8756,9 +7282,7 @@
       ],
       "total": 677,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New building south portion Meelakurunaikulam-626105",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-231": {
       "votes": [
@@ -8789,9 +7313,7 @@
       ],
       "total": 383,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North Portion Keelakurunaikulam- 626105",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-232": {
       "votes": [
@@ -8822,55 +7344,20 @@
       ],
       "total": 849,
       "rejected": 0,
-      "name": "Government Higher Secondary School",
-      "address": "Government Higher Secondary School ,Western building East Side Muthuramalingapuram - 626105",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-233A(W)": {
+    "TN-208-233": {
       "votes": [
-        50,
-        46,
-        7,
-        5,
+        99,
+        91,
+        14,
+        9,
         0,
         1,
         0,
         0,
-        2,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 112,
-      "rejected": 0,
-      "name": "Government Higher Secondary School",
-      "address": "Government Higher Secondary School ,Western building west Side Muthuramalingapuram - 626105",
-      "area": "All Voters"
-    },
-    "TN-208-233M": {
-      "votes": [
-        49,
-        45,
-        7,
         4,
-        0,
-        0,
-        0,
-        0,
-        2,
-        0,
+        1,
         0,
         0,
         0,
@@ -8886,11 +7373,9 @@
         0,
         0
       ],
-      "total": 107,
+      "total": 219,
       "rejected": 0,
-      "name": "Government Higher Secondary School",
-      "address": "Government Higher Secondary School ,Western building west Side Muthuramalingapuram - 626105",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-234": {
       "votes": [
@@ -8911,8 +7396,8 @@
         0,
         2,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -8921,9 +7406,7 @@
       ],
       "total": 273,
       "rejected": 0,
-      "name": "Hindu Primary School Main Building",
-      "address": "Hindu Primary School Main Building ,Bommakottai - 626106",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-235": {
       "votes": [
@@ -8944,8 +7427,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         1,
         0,
         0,
@@ -8954,9 +7437,7 @@
       ],
       "total": 582,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,West Building, West Portion, Kalaiyarkarisalkulam -626105",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-236": {
       "votes": [
@@ -8977,8 +7458,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -8987,9 +7468,7 @@
       ],
       "total": 522,
       "rejected": 0,
-      "name": "CSI Primary School, East Building",
-      "address": "CSI Primary School ,East Building, south portion, Kalaiyarkarisalkulam -626105",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-237": {
       "votes": [
@@ -9010,8 +7489,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         1,
@@ -9020,9 +7499,7 @@
       ],
       "total": 990,
       "rejected": 0,
-      "name": "CSI Primary School, East Building South side Kalaiyarkarisalkulam - 626105",
-      "address": "CSI Primary School ,East Building South side Kalaiyarkarisalkulam - 626105",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-238": {
       "votes": [
@@ -9053,29 +7530,27 @@
       ],
       "total": 692,
       "rejected": 0,
-      "name": "Aided Primary School",
-      "address": "Aided Primary School ,North Portion, R.Kallumadam-626118 Kalyanasundarapuram , 2.R. kallumadam R. kallumadam R. Kallumadam , 3.R. kallumadam R. kallumadam Kattalampatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-239A(W)": {
+    "TN-208-239": {
       "votes": [
-        123,
-        75,
+        245,
+        150,
+        92,
         46,
-        23,
         0,
-        13,
+        26,
+        3,
+        4,
+        1,
         2,
         2,
         1,
-        1,
-        1,
-        1,
-        1,
+        2,
         1,
         0,
         1,
-        2,
+        3,
         0,
         0,
         0,
@@ -9084,110 +7559,40 @@
         0,
         1
       ],
-      "total": 295,
+      "total": 581,
       "rejected": 0,
-      "name": "Aided Primary School",
-      "address": "Aided Primary School ,South Portion R.Kallumadam-626118 1.R. kallumadam R. kallumadam R. Kallumadam , 2.R. kallumadam R. kallumadam Kathdalampatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-239M": {
+    "TN-208-240": {
       "votes": [
-        122,
-        75,
-        46,
-        23,
+        276,
+        274,
+        81,
+        37,
+        2,
+        6,
+        4,
         0,
-        13,
-        1,
         2,
         0,
-        1,
-        1,
-        0,
-        1,
+        3,
         0,
         0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 286,
-      "rejected": 0,
-      "name": "Aided Primary School",
-      "address": "Aided Primary School ,South Portion R.Kallumadam-626118 1.R. kallumadam R. kallumadam R. Kallumadam , 2.R. kallumadam R. kallumadam Kathdalampatti",
-      "area": "All Voters"
-    },
-    "TN-208-240A(W)": {
-      "votes": [
-        138,
-        137,
-        41,
-        19,
         1,
         3,
+        1,
+        0,
+        0,
+        0,
+        0,
         2,
-        0,
-        1,
-        0,
-        2,
-        0,
-        0,
-        1,
-        2,
-        1,
-        0,
-        0,
-        0,
-        0,
-        1,
         0,
         0,
         0
       ],
-      "total": 349,
+      "total": 692,
       "rejected": 0,
-      "name": "Kamavar Primary School",
-      "address": "Kamavar Primary School ,New building East Portion Vedanatham- 626118 Thamanaickanpatti Vedanattam ,4 Parattanattam, Thamanaickanpatti",
-      "area": "All Voters"
-    },
-    "TN-208-240M": {
-      "votes": [
-        138,
-        137,
-        40,
-        18,
-        1,
-        3,
-        2,
-        0,
-        1,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0
-      ],
-      "total": 343,
-      "rejected": 0,
-      "name": "Kamavar Primary School",
-      "address": "Kamavar Primary School ,New building East Portion Vedanatham- 626118 Thamanaickanpatti Vedanattam ,4 Parattanattam, Thamanaickanpatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-241": {
       "votes": [
@@ -9208,8 +7613,8 @@
         0,
         0,
         1,
-        1,
         0,
+        1,
         0,
         0,
         0,
@@ -9218,49 +7623,22 @@
       ],
       "total": 582,
       "rejected": 0,
-      "name": "CSI Primary School, Mandapasalai - 626118",
-      "address": "CSI Primary School ,Mandapasalai - 626118",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-242A(W)": {
+    "TN-208-242": {
       "votes": [
-        123,
-        119,
-        60,
-        28,
-        1,
-        0,
-        1,
+        246,
+        238,
+        120,
+        56,
         2,
         0,
-        0,
         1,
-        0,
-        1,
-        0,
-        0,
-        1,
-        0,
-        1,
-        0,
-        1,
+        4,
         0,
         0,
-        1,
-        0
-      ],
-      "total": 340,
-      "rejected": 0,
-      "name": "Government Higher Secondary School",
-      "address": "Government Higher Secondary School, West Portion, South Side Facing East, M.Reddiapatti - 626118 Silukkapatti , Pudur , Lakshmipuram",
-      "area": "All Voters"
-    },
-    "TN-208-242M": {
-      "votes": [
-        123,
-        119,
-        60,
-        28,
+        2,
+        0,
         1,
         0,
         0,
@@ -9268,37 +7646,27 @@
         0,
         0,
         1,
-        0,
-        0,
-        0,
-        0,
         1,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
         0
       ],
-      "total": 335,
+      "total": 675,
       "rejected": 0,
-      "name": "Government Higher Secondary School",
-      "address": "Government Higher Secondary School, West Portion, South Side Facing East, M.Reddiapatti - 626118 Silukkapatti , Pudur , Lakshmipuram",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-243A(W)": {
+    "TN-208-243": {
       "votes": [
-        88,
-        87,
-        29,
-        20,
+        176,
+        173,
+        57,
+        39,
         1,
         1,
         1,
         0,
-        2,
+        3,
         1,
         1,
         0,
@@ -9307,52 +7675,17 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 232,
+      "total": 454,
       "rejected": 0,
-      "name": "Government Higher Secondary School",
-      "address": "Government Higher Secondary School,West Portion,North Side,Facing East M.Reddiapatti - 626118 Lakshmipuram , Lakshmipuram",
-      "area": "All Voters"
-    },
-    "TN-208-243M": {
-      "votes": [
-        88,
-        86,
-        28,
-        19,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 222,
-      "rejected": 0,
-      "name": "Government Higher Secondary School",
-      "address": "Government Higher Secondary School,West Portion,North Side,Facing East M.Reddiapatti - 626118 Lakshmipuram , Lakshmipuram",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-244": {
       "votes": [
@@ -9373,8 +7706,8 @@
         3,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         3,
@@ -9383,9 +7716,7 @@
       ],
       "total": 786,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North Building East Portion M. Reddiapatti - 626118 Rettiyapatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-245": {
       "votes": [
@@ -9406,8 +7737,8 @@
         1,
         0,
         0,
-        3,
         0,
+        3,
         0,
         0,
         0,
@@ -9416,75 +7747,69 @@
       ],
       "total": 715,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North Building East side North Portion M. Reddiapatti - 626118",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-247A(W)": {
+    "TN-208-246": {
       "votes": [
-        152,
-        131,
-        74,
-        38,
+        179,
+        178,
+        51,
+        26,
+        12,
+        0,
+        0,
+        4,
+        1,
         3,
-        7,
+        2,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
         0,
         1,
         1,
-        1,
+        0
+      ],
+      "total": 461,
+      "rejected": 0,
+      "sourceNote": "official_form20_pdf"
+    },
+    "TN-208-247": {
+      "votes": [
+        303,
+        262,
+        148,
+        76,
+        6,
+        14,
         0,
         1,
         2,
-        1,
-        1,
-        1,
+        2,
         0,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 416,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,East Portion, South Side, Facing Wes, Maravarperungudi - 626118 Maravar perungudi , Maravar perungudi , Maravar perungudi , Maravar perungudi",
-      "area": "All Voters"
-    },
-    "TN-208-247M": {
-      "votes": [
-        151,
-        131,
-        74,
-        38,
+        2,
         3,
-        7,
-        0,
-        0,
+        1,
         1,
         1,
         0,
         1,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         0,
         0,
         0,
         0,
         0
       ],
-      "total": 408,
+      "total": 824,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,East Portion, South Side, Facing Wes, Maravarperungudi - 626118 Maravar perungudi , Maravar perungudi , Maravar perungudi , Maravar perungudi",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-248": {
       "votes": [
@@ -9505,8 +7830,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         1,
         0,
@@ -9515,9 +7840,7 @@
       ],
       "total": 357,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,West Side Suthamadam - 626114 Suddamadam Ward No.1, Suddamadam , Suddamadam , Suddamadam , Suddamadam , Suddamadam , Suddamadam , Krishnapuram",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-249": {
       "votes": [
@@ -9548,9 +7871,7 @@
       ],
       "total": 744,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Thirumalaipuram - 626114 Suddamadam , Thirumalaipuram , Suddamadam Ward No.3, Thirumalaipuram",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-250": {
       "votes": [
@@ -9581,9 +7902,7 @@
       ],
       "total": 891,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,West Portion Salukkuvarpatti - 626118 Salukkuvarpatti , Kallupatti , Pungamarathupatti , Salukkuvarpatti , Salukkuvarpatti , Salukkuvarpatti Salukkuvarpatti , Salaukkuvarpatti Kanjampatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-251": {
       "votes": [
@@ -9614,9 +7933,7 @@
       ],
       "total": 479,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,East Side Thummuchinnampatti - 626118 Thummusinnampatti , Thummusinnampatti , Thummusinnampatti , Thummusinnampatti , Thummusinnampatti , Thummusinnampatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-252": {
       "votes": [
@@ -9637,8 +7954,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -9647,9 +7964,7 @@
       ],
       "total": 546,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,West Side Thummuchinnampatti - 626118 Thummusinnampatti Thummusinnampatti , Thummusinnampatti Thummusinnampatti , Thummusinnampatti , Thummusinnampatti , Thummusinnampatti , Thummusinnampatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-253": {
       "votes": [
@@ -9680,9 +7995,7 @@
       ],
       "total": 344,
       "rejected": 0,
-      "name": "Sermathai Vasan Middle School",
-      "address": "Sermathai Vasan Middle School ,New Building Thooppalakarai - 626114 Thoppalakarai , Thoppalakarai , Thoppalakarai , Thoppalakarai",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-254": {
       "votes": [
@@ -9713,28 +8026,26 @@
       ],
       "total": 497,
       "rejected": 0,
-      "name": "Sermathai Vasan Middle School",
-      "address": "Sermathai Vasan Middle School ,New Building Thooppalakarai - 626114 Thoppalakarai , Thoppalakarai , Thoppalakarai , Thoppalakarai , Thoppalakarai , Thoppalakarai",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-255A(W)": {
+    "TN-208-255": {
       "votes": [
-        115,
-        194,
-        54,
+        229,
+        388,
+        108,
+        8,
+        3,
+        0,
         4,
         2,
+        5,
         0,
+        1,
+        1,
+        1,
+        0,
+        5,
         2,
-        1,
-        3,
-        0,
-        1,
-        1,
-        1,
-        0,
-        3,
-        1,
         1,
         1,
         1,
@@ -9744,44 +8055,9 @@
         0,
         0
       ],
-      "total": 387,
+      "total": 762,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Rajagopalapuram - 626114 Rajagopalapuram , Rajagopalapuram , Rajagopalapuram , Rajagopalapuram , Rajagopalapuram , Pothampatti",
-      "area": "All Voters"
-    },
-    "TN-208-255M": {
-      "votes": [
-        114,
-        194,
-        54,
-        4,
-        1,
-        0,
-        2,
-        1,
-        2,
-        0,
-        0,
-        0,
-        0,
-        0,
-        2,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 375,
-      "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Rajagopalapuram - 626114 Rajagopalapuram , Rajagopalapuram , Rajagopalapuram , Rajagopalapuram , Rajagopalapuram , Pothampatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-256": {
       "votes": [
@@ -9802,8 +8078,8 @@
         2,
         1,
         1,
-        1,
         0,
+        1,
         0,
         1,
         1,
@@ -9812,9 +8088,7 @@
       ],
       "total": 945,
       "rejected": 0,
-      "name": "Hindu Nadar Sathiriya Vidyasala Primary School",
-      "address": "Hindu Nadar Sathiriya Vidyasala Primary School ,South side Pullanaickenpatti - 626114 Ranisethupuram Ranisethupuram , Pullanaickanpatti Pullanaickanpatti , Pullanaickanpatti Pommanaickanpatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-257": {
       "votes": [
@@ -9845,22 +8119,20 @@
       ],
       "total": 854,
       "rejected": 0,
-      "name": "Hindu Nadar Sathiriya Vidyasala Primary School",
-      "address": "Hindu Nadar Sathiriya Vidyasala Primary School ,East side Middle Portion Pullanaickenpatti - 626114 Pullanaickanpatti , Pullanaickanpatti , Pullanaickanpatti , Pullanaickanpatti , Pullanaickanpatti , Bommanaickanpatti",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-258A(W)": {
+    "TN-208-258": {
       "votes": [
-        149,
-        74,
-        40,
+        297,
+        148,
+        79,
+        25,
+        2,
+        16,
         13,
+        2,
         1,
-        8,
-        7,
-        1,
-        1,
-        1,
+        2,
         0,
         0,
         1,
@@ -9870,94 +8142,34 @@
         0,
         0,
         0,
-        1,
+        2,
         0,
         0,
         0,
         1
       ],
-      "total": 300,
+      "total": 591,
       "rejected": 0,
-      "name": "Govt High School, New Building Vadakunatham - 626114 Vadakku nattam",
-      "address": "Govt High School ,New Building Vadakunatham - 626114 Vadakku nattam , Vadakku nattam , Vadakku nattam , Vadakku nattam , Vadakku nattam . Vadakku nattam , Vadakku nattam , Therkku nattam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-258M": {
+    "TN-208-259": {
       "votes": [
-        148,
-        74,
-        39,
-        12,
+        351,
+        280,
+        130,
+        37,
         1,
-        8,
-        6,
-        1,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 291,
-      "rejected": 0,
-      "name": "Govt High School, New Building Vadakunatham - 626114 Vadakku nattam",
-      "address": "Govt High School ,New Building Vadakunatham - 626114 Vadakku nattam , Vadakku nattam , Vadakku nattam , Vadakku nattam , Vadakku nattam . Vadakku nattam , Vadakku nattam , Therkku nattam",
-      "area": "All Voters"
-    },
-    "TN-208-259A(W)": {
-      "votes": [
-        176,
-        140,
-        65,
-        19,
-        1,
-        8,
-        3,
+        15,
+        5,
         1,
         1,
         1,
         0,
-        1,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 418,
-      "rejected": 0,
-      "name": "Government Higher Secondary School",
-      "address": "Government Higher Secondary School ,Main Building Class Room 11 Melaparalachi - 626114 Mailaiyur Ward no.1 Mailaiyur , Mailaiyur , Mailaiyur , Mailaiyur , Mailaiyur",
-      "area": "All Voters"
-    },
-    "TN-208-259M": {
-      "votes": [
-        175,
-        140,
-        65,
-        18,
-        0,
-        7,
         2,
         0,
+        1,
+        0,
+        0,
         0,
         0,
         0,
@@ -9965,21 +8177,11 @@
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         0
       ],
-      "total": 408,
+      "total": 826,
       "rejected": 0,
-      "name": "Government Higher Secondary School",
-      "address": "Government Higher Secondary School ,Main Building Class Room 11 Melaparalachi - 626114 Mailaiyur Ward no.1 Mailaiyur , Mailaiyur , Mailaiyur , Mailaiyur , Mailaiyur",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-260": {
       "votes": [
@@ -10010,9 +8212,7 @@
       ],
       "total": 820,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,north new building, east portion facing south Nallankulam Nallankulam Nallankulam , Nallankulam Vannathiyandal",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-261": {
       "votes": [
@@ -10043,9 +8243,7 @@
       ],
       "total": 517,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North portion K. Chettikulam - 626114 1.K. chettikulam, K. chettikulam , K. Chettikulam",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-262": {
       "votes": [
@@ -10066,8 +8264,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -10076,9 +8274,7 @@
       ],
       "total": 508,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building Middle portion K. Chettikulam - 626114 1.K. Chettikulam, K. Chettikulam , Nedunkulam , 2.K. Chettikulam, K. Chettikulam , Melaparaikulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-263": {
       "votes": [
@@ -10109,9 +8305,7 @@
       ],
       "total": 441,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,K. Chettikulam - 626114 K. Chettikulam , Kilaparaikulam , K. Chettikulam Kanakki , 3.K. Chettikulam, K. Chettikulam , Udaiyanathapuram , K. Chettikulam , Usilankulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-264": {
       "votes": [
@@ -10132,8 +8326,8 @@
         1,
         0,
         0,
-        2,
         0,
+        2,
         0,
         0,
         0,
@@ -10142,9 +8336,7 @@
       ],
       "total": 887,
       "rejected": 0,
-      "name": "CSI Primary School, East Portion Paralachi - 626114 Paralachi",
-      "address": "CSI Primary School ,East Portion Paralachi - 626114 Paralachi , Paralachi , Paralachi , Paralachi",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-265": {
       "votes": [
@@ -10175,9 +8367,7 @@
       ],
       "total": 512,
       "rejected": 0,
-      "name": "CSI Primary School, West Portion Paralachi - 626114 Paralachi",
-      "address": "CSI Primary School ,West Portion Paralachi - 626114 Paralachi , Paralachi",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-266": {
       "votes": [
@@ -10198,8 +8388,8 @@
         0,
         0,
         0,
-        5,
         0,
+        5,
         1,
         0,
         0,
@@ -10208,9 +8398,7 @@
       ],
       "total": 447,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building West side K. Vagaikulam - 626114 K. Vagaikulam Vadaku K.Vagaikulam , K. Vagaikulam Therkku Vagaikulam , K. Vagaikulam Pasikulam , K. Vagaikulam Periyasolandi , K. Vagaikulam Purasaloor",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-267": {
       "votes": [
@@ -10231,8 +8419,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         1,
         0,
         1,
@@ -10241,20 +8429,18 @@
       ],
       "total": 683,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building East side K. Vagaikulam - 626114 K. Vagaikulam , K Vagaikulam , K. Vagaikulam , Purasaloor",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-268A(W)": {
+    "TN-208-268": {
       "votes": [
-        188,
-        132,
-        79,
-        17,
-        6,
-        6,
+        376,
+        263,
+        157,
+        33,
+        11,
+        11,
         0,
-        3,
+        5,
         1,
         0,
         0,
@@ -10272,110 +8458,40 @@
         0,
         1
       ],
-      "total": 437,
+      "total": 862,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Sengulam - 626114 Senkulam , Senkulam , Senkulam , P. Vagaikulam , Senkulam , Senkulam",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-268M": {
+    "TN-208-269": {
       "votes": [
-        188,
-        131,
-        78,
-        16,
-        5,
-        5,
+        310,
+        303,
+        185,
+        32,
+        0,
+        2,
+        2,
+        2,
+        1,
+        0,
         0,
         2,
         0,
         0,
+        1,
+        1,
+        2,
+        1,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
+        1,
+        2,
+        1,
+        2
       ],
-      "total": 425,
+      "total": 850,
       "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Sengulam - 626114 Senkulam , Senkulam , Senkulam , P. Vagaikulam , Senkulam , Senkulam",
-      "area": "All Voters"
-    },
-    "TN-208-269A(W)": {
-      "votes": [
-        155,
-        152,
-        93,
-        16,
-        0,
-        1,
-        1,
-        1,
-        1,
-        0,
-        0,
-        1,
-        0,
-        0,
-        1,
-        1,
-        1,
-        0,
-        1,
-        0,
-        1,
-        1,
-        1,
-        1
-      ],
-      "total": 429,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,South Side New Building Poolangal - 626114 Poolankal , Poolankal , Pulankal , Pulankal",
-      "area": "All Voters"
-    },
-    "TN-208-269M": {
-      "votes": [
-        155,
-        151,
-        92,
-        16,
-        0,
-        1,
-        1,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        1
-      ],
-      "total": 421,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,South Side New Building Poolangal - 626114 Poolankal , Poolankal , Pulankal , Pulankal",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-270": {
       "votes": [
@@ -10396,8 +8512,8 @@
         0,
         2,
         1,
-        0,
         1,
+        0,
         0,
         0,
         1,
@@ -10406,19 +8522,17 @@
       ],
       "total": 611,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,North Side New Building Poolangal - 626114 Pulankal , Pulankal",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
-    "TN-208-271A(W)": {
+    "TN-208-271": {
       "votes": [
-        131,
-        51,
-        21,
-        20,
-        4,
-        16,
-        1,
+        262,
+        101,
+        41,
+        39,
+        8,
+        31,
+        2,
         0,
         0,
         0,
@@ -10435,46 +8549,11 @@
         0,
         1,
         0,
-        1
+        2
       ],
-      "total": 249,
+      "total": 490,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building Poolangal - 626114 Poolankal , Pudukiramam , Pulankal , Pallappatti , Pulankal , Vamapuram , Pulankal , Pulankal",
-      "area": "All Voters"
-    },
-    "TN-208-271M": {
-      "votes": [
-        131,
-        50,
-        20,
-        19,
-        4,
-        15,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1
-      ],
-      "total": 241,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,New Building Poolangal - 626114 Poolankal , Pudukiramam , Pulankal , Pallappatti , Pulankal , Vamapuram , Pulankal , Pulankal",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-272": {
       "votes": [
@@ -10505,9 +8584,7 @@
       ],
       "total": 837,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,South Building Keelgudi - 626114 K. Vagaikulam , Keelgudi , K. Vagaikulam , Ettikulam , K. Vagaikulam , Kilakallakkari",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-273": {
       "votes": [
@@ -10538,9 +8615,7 @@
       ],
       "total": 228,
       "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,Additional Building Keelgudi - 626114 K. Vagaikulam , Melakallakkari , K. Vagaikulam ,4, Keelgudi",
-      "area": "All Voters"
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-274": {
       "votes": [
@@ -10571,9 +8646,7 @@
       ],
       "total": 381,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-275": {
       "votes": [
@@ -10604,9 +8677,7 @@
       ],
       "total": 873,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-276": {
       "votes": [
@@ -10627,8 +8698,8 @@
         0,
         0,
         0,
-        0,
         3,
+        0,
         0,
         1,
         1,
@@ -10637,9 +8708,7 @@
       ],
       "total": 744,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-277": {
       "votes": [
@@ -10660,8 +8729,8 @@
         0,
         0,
         1,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -10670,9 +8739,7 @@
       ],
       "total": 574,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-278": {
       "votes": [
@@ -10693,8 +8760,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -10703,9 +8770,7 @@
       ],
       "total": 387,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-279": {
       "votes": [
@@ -10736,9 +8801,7 @@
       ],
       "total": 563,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-280": {
       "votes": [
@@ -10769,9 +8832,7 @@
       ],
       "total": 646,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-281": {
       "votes": [
@@ -10802,9 +8863,7 @@
       ],
       "total": 412,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-282": {
       "votes": [
@@ -10835,9 +8894,7 @@
       ],
       "total": 423,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-283": {
       "votes": [
@@ -10858,8 +8915,8 @@
         0,
         1,
         0,
-        1,
         0,
+        1,
         1,
         1,
         2,
@@ -10868,9 +8925,7 @@
       ],
       "total": 776,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-284": {
       "votes": [
@@ -10901,9 +8956,7 @@
       ],
       "total": 277,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-285": {
       "votes": [
@@ -10934,9 +8987,7 @@
       ],
       "total": 660,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-286": {
       "votes": [
@@ -10967,9 +9018,7 @@
       ],
       "total": 338,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-287": {
       "votes": [
@@ -11000,9 +9049,7 @@
       ],
       "total": 838,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-288": {
       "votes": [
@@ -11033,9 +9080,7 @@
       ],
       "total": 598,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-289": {
       "votes": [
@@ -11066,9 +9111,7 @@
       ],
       "total": 468,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-290": {
       "votes": [
@@ -11089,8 +9132,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         0,
         1,
@@ -11099,9 +9142,7 @@
       ],
       "total": 466,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-291": {
       "votes": [
@@ -11132,9 +9173,7 @@
       ],
       "total": 555,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
+      "sourceNote": "official_form20_pdf"
     },
     "TN-208-292": {
       "votes": [
@@ -11165,145 +9204,7 @@
       ],
       "total": 549,
       "rejected": 0,
-      "name": "",
-      "address": "",
-      "area": ""
-    },
-    "TN-208-164A(W)": {
-      "votes": [
-        305,
-        364,
-        149,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 818,
-      "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Minnakulam - 623601",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
-    },
-    "TN-208-164M": {
-      "votes": [
-        305,
-        364,
-        149,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 818,
-      "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Minnakulam - 623601",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
-    },
-    "TN-208-246": {
-      "votes": [
-        304,
-        364,
-        149,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 817,
-      "rejected": 0,
-      "name": "Panchayat Union Primary School",
-      "address": "Panchayat Union Primary School ,East Portion, North Side, Facing Wes, Maravarperungudi - 626118 Meenachipuram , Vellaiyapuram",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
-    },
-    "TN-208-82": {
-      "votes": [
-        304,
-        364,
-        148,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "total": 816,
-      "rejected": 0,
-      "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School ,Chokkampatti-626129 2",
-      "area": "All Voters",
-      "sourceNote": "unmapped_booth_fill"
+      "sourceNote": "official_form20_pdf"
     }
   },
   "summary": {
@@ -11323,49 +9224,48 @@
     "margin": 13485,
     "marginPercent": 7.44
   },
-  "totalBooths": 337,
   "postal": {
     "candidates": [
       {
         "name": "THANGAM THENARASU",
         "party": "DMK",
-        "postal": 376,
-        "booth": 74709,
+        "postal": 787,
+        "booth": 74298,
         "total": 75085
       },
       {
         "name": "SAMAYAN.S",
         "party": "TVK",
-        "postal": 10,
-        "booth": 61590,
+        "postal": 688,
+        "booth": 60912,
         "total": 61600
       },
       {
         "name": "RAJAVARMAN.M.S.R",
         "party": "AIADMK",
-        "postal": 0,
-        "booth": 25581,
+        "postal": 376,
+        "booth": 25205,
         "total": 25581
       },
       {
         "name": "AVARANGADU KARTHIK RAJA",
         "party": "NTK",
-        "postal": 368,
-        "booth": 12395,
+        "postal": 241,
+        "booth": 12522,
         "total": 12763
       },
       {
         "name": "GUNASEKARAN.G",
         "party": "PT",
-        "postal": 41,
-        "booth": 1207,
+        "postal": 26,
+        "booth": 1222,
         "total": 1248
       },
       {
         "name": "MURUGESAPANDIAN.T",
         "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
-        "postal": 0,
-        "booth": 1107,
+        "postal": 10,
+        "booth": 1097,
         "total": 1107
       },
       {
@@ -11378,8 +9278,8 @@
       {
         "name": "ADVOCATE THANGAPANDIAN",
         "party": "IND",
-        "postal": 0,
-        "booth": 525,
+        "postal": 7,
+        "booth": 518,
         "total": 525
       },
       {
@@ -11399,43 +9299,43 @@
       {
         "name": "KANNAN.G",
         "party": "Ezhuchi Tamilargal Munnetra Kazhagam",
-        "postal": 3,
-        "booth": 278,
+        "postal": 0,
+        "booth": 281,
         "total": 281
       },
       {
         "name": "SETHURAMALINGAM.S",
         "party": "IND",
-        "postal": 1,
-        "booth": 244,
+        "postal": 0,
+        "booth": 245,
         "total": 245
       },
       {
         "name": "PALANIYANDI.M",
         "party": "IND",
-        "postal": 0,
-        "booth": 195,
+        "postal": 1,
+        "booth": 194,
         "total": 195
       },
       {
         "name": "NALLAMARUTHU.K",
         "party": "IND",
-        "postal": 1,
-        "booth": 163,
+        "postal": 0,
+        "booth": 164,
         "total": 164
       },
       {
         "name": "RAJANGAM.C",
         "party": "IND",
-        "postal": 2,
-        "booth": 160,
+        "postal": 0,
+        "booth": 162,
         "total": 162
       },
       {
         "name": "KALIMUTHU.S",
         "party": "IND",
-        "postal": 1,
-        "booth": 123,
+        "postal": 0,
+        "booth": 124,
         "total": 124
       },
       {
@@ -11448,8 +9348,8 @@
       {
         "name": "GURUSAMY.T",
         "party": "IND",
-        "postal": 3,
-        "booth": 111,
+        "postal": 6,
+        "booth": 108,
         "total": 114
       },
       {
@@ -11462,15 +9362,15 @@
       {
         "name": "JEYACHITRA",
         "party": "IND",
-        "postal": 4,
-        "booth": 84,
+        "postal": 2,
+        "booth": 86,
         "total": 88
       },
       {
         "name": "CHENNA KESAVAN.P",
         "party": "IND",
-        "postal": 0,
-        "booth": 85,
+        "postal": 3,
+        "booth": 82,
         "total": 85
       },
       {
@@ -11495,218 +9395,25 @@
         "total": 65
       }
     ],
-    "source": "form20"
+    "totalValid": 2165,
+    "rejected": 0,
+    "nota": 18,
+    "total": 2165,
+    "source": "official AC residual"
   },
-  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "partial",
-    "totalBooths": 337,
-    "form20ParsedBooths": 305,
-    "estimatedBooths": 32,
+    "tier": "verified",
+    "totalBooths": 292,
+    "form20ParsedBooths": 292,
+    "estimatedBooths": 0,
     "missingBooths": 0,
-    "form20ParsedPct": 90.5,
-    "postalVotes": 828,
-    "postalPct": 0.5,
+    "form20ParsedPct": 100.0,
+    "postalVotes": 2165,
+    "postalPct": 1.19,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
     "acTotalsReconciled": true
   },
-  "unmapped": {
-    "candidates": [
-      {
-        "name": "THANGAM THENARASU",
-        "party": "DMK",
-        "unmapped": 0,
-        "booth": 74709,
-        "postal": 376,
-        "total": 75085
-      },
-      {
-        "name": "SAMAYAN.S",
-        "party": "TVK",
-        "unmapped": 0,
-        "booth": 61590,
-        "postal": 10,
-        "total": 61600
-      },
-      {
-        "name": "RAJAVARMAN.M.S.R",
-        "party": "AIADMK",
-        "unmapped": 0,
-        "booth": 25581,
-        "postal": 0,
-        "total": 25581
-      },
-      {
-        "name": "AVARANGADU KARTHIK RAJA",
-        "party": "NTK",
-        "unmapped": 0,
-        "booth": 12395,
-        "postal": 368,
-        "total": 12763
-      },
-      {
-        "name": "GUNASEKARAN.G",
-        "party": "PT",
-        "unmapped": 0,
-        "booth": 1207,
-        "postal": 41,
-        "total": 1248
-      },
-      {
-        "name": "MURUGESAPANDIAN.T",
-        "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
-        "unmapped": 0,
-        "booth": 1107,
-        "postal": 0,
-        "total": 1107
-      },
-      {
-        "name": "MALAI ALAGU.M",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 631,
-        "postal": 0,
-        "total": 631
-      },
-      {
-        "name": "ADVOCATE THANGAPANDIAN",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 525,
-        "postal": 0,
-        "total": 525
-      },
-      {
-        "name": "NOTA",
-        "party": "NOTA",
-        "unmapped": 0,
-        "booth": 407,
-        "postal": 18,
-        "total": 425
-      },
-      {
-        "name": "MARIMUTHU.M",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 392,
-        "postal": 0,
-        "total": 392
-      },
-      {
-        "name": "KANNAN.G",
-        "party": "Ezhuchi Tamilargal Munnetra Kazhagam",
-        "unmapped": 0,
-        "booth": 278,
-        "postal": 3,
-        "total": 281
-      },
-      {
-        "name": "SETHURAMALINGAM.S",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 244,
-        "postal": 1,
-        "total": 245
-      },
-      {
-        "name": "PALANIYANDI.M",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 195,
-        "postal": 0,
-        "total": 195
-      },
-      {
-        "name": "NALLAMARUTHU.K",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 163,
-        "postal": 1,
-        "total": 164
-      },
-      {
-        "name": "RAJANGAM.C",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 160,
-        "postal": 2,
-        "total": 162
-      },
-      {
-        "name": "KALIMUTHU.S",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 123,
-        "postal": 1,
-        "total": 124
-      },
-      {
-        "name": "RAJKUMAR.D",
-        "party": "TNLK",
-        "unmapped": 0,
-        "booth": 119,
-        "postal": 0,
-        "total": 119
-      },
-      {
-        "name": "GURUSAMY.T",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 111,
-        "postal": 3,
-        "total": 114
-      },
-      {
-        "name": "VELLAISAMY.P",
-        "party": "Ahimsa Socialist Party",
-        "unmapped": 0,
-        "booth": 108,
-        "postal": 0,
-        "total": 108
-      },
-      {
-        "name": "JEYACHITRA",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 84,
-        "postal": 4,
-        "total": 88
-      },
-      {
-        "name": "CHENNA KESAVAN.P",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 85,
-        "postal": 0,
-        "total": 85
-      },
-      {
-        "name": "MUNIYASAMY.R",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 77,
-        "postal": 0,
-        "total": 77
-      },
-      {
-        "name": "MARNADU.M",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 66,
-        "postal": 0,
-        "total": 66
-      },
-      {
-        "name": "ARAVINTHASAMY.J",
-        "party": "IND",
-        "unmapped": 0,
-        "booth": 65,
-        "postal": 0,
-        "total": 65
-      }
-    ],
-    "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  },
-  "validationNote": "Booth plus postal totals reconcile to the official AC result, but some booth rows are estimated or missing. Booth-level analysis is partial until Form 20 re-extraction is complete."
+  "reconciledToElections": true,
+  "sourcePdf": "/Users/p0s097d/Desktop/archive/boothwise_dataset/208-Tiruchuli/208-Tiruchuli_Form_20.pdf"
 }
