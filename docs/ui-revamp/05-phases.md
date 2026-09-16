@@ -72,10 +72,26 @@ rules byte-for-byte, which is stronger than a screenshot comparison.
 ### Phase 2 — Shared selection + responsive panel width (4–5 days)
 The structural change. **Read §2 and §3 first.**
 
-- [ ] **`selectLocation()` as the single selection entry point.** One async function that
+- [x] **`selectLocation()` as the single selection entry point.** One async function that
       awaits geography then commits selection; map clicks, browse-list clicks, search
       results and data-nav rows all call it. **Fixes B9** and removes the 300ms guess.
       Everything else in this phase depends on it.
+      <br>**Landed in `6588ff24`** (`src/hooks/useSelectLocation.ts`). This was not merely
+      tidying — the duplicated paths had *drifted*, so search was carrying real bugs the
+      map-click path did not:
+
+      | target | step missing from search |
+      |---|---|
+      | state | `clearElectionResult`, `clearPCElectionResult`, PC-year repair |
+      | pc | `selectAssembly(null)`, `clearElectionResult`, `getPCResult` |
+      | district | `selectAssembly(null)` |
+
+      All also skipped analytics. Net effect: searching a PC left the previous AC
+      highlighted with its panel open and showed no PC results at all. `SelectionTarget`
+      is a discriminated union so the compiler rejects half-specified targets;
+      `ensureAssembliesView` is an explicit caller decision because search must load the
+      statewide layer while a map click inside a PC must not. Browser-verified that both
+      routes now produce identical panel content and identical URLs. App.tsx −135 lines.
 - [ ] **Panel width modes.** `--panel-w` token driving 360 / 520 / ~900px, switched by
       *navigation mode* (§2), animated, with a user override that sticks. Below 1152px
       viewport, stay at 360px.
