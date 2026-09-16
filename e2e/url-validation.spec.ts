@@ -179,7 +179,7 @@ test.describe('URL Validation - PC Samples (Panel Must Show)', () => {
 });
 
 test.describe('URL Validation - Persisted panel tabs', () => {
-  test('opens analysis for Madurantakam 2026 while exposing partial-data quality', async ({ page }) => {
+  test('opens complete analysis for Madurantakam 2026 from the official Form 20 extraction', async ({ page }) => {
     await page.goto('/tamil-nadu/ac/madurantakam-(sc)?tab=analysis&year=2026', {
       waitUntil: 'load',
       timeout: 60000,
@@ -202,7 +202,7 @@ test.describe('URL Validation - Persisted panel tabs', () => {
         ),
       { timeout: 30000 }
     ).toMatch(/^analysis$/i);
-    await expect(page.locator('.booth-quality-banner').first()).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.booth-quality-banner')).toHaveCount(0);
   });
 });
 test.describe('URL Validation - Year Fallback', () => {
