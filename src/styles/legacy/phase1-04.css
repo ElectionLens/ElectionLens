@@ -162,7 +162,7 @@ button.state-map-summary-row {
 }
 
 .left-pane-btn--chrome:focus-visible {
-  outline: 2px solid color-mix(in srgb, #2563eb 70%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--legacy-blue) 70%, transparent);
   outline-offset: 2px;
 }
 
@@ -177,13 +177,13 @@ button.state-map-summary-row {
 }
 
 .left-pane-btn--inline:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--legacy-blue);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 .left-pane-btn--row:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--legacy-blue);
   outline-offset: 2px;
 }
 
@@ -303,7 +303,7 @@ button.state-map-summary-row {
 }
 
 .party-candidate-outcome--won {
-  color: #059669;
+  color: var(--legacy-success);
 }
 
 .party-candidate-outcome--lost {
@@ -352,7 +352,7 @@ button.state-map-summary-row {
   top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  background: linear-gradient(135deg, var(--legacy-success) 0%, #047857 100%);
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
@@ -382,7 +382,7 @@ button.state-map-summary-row {
   align-items: flex-start;
   justify-content: flex-start;
   padding: 16px 20px;
-  background: linear-gradient(135deg, #1e3a5f 0%, #0f2744 100%);
+  background: linear-gradient(135deg, var(--legacy-navy) 0%, #0f2744 100%);
   color: white;
 }
 
@@ -513,8 +513,8 @@ button.state-map-summary-row {
 }
 
 .year-btn.active {
-  background: #1e3a5f;
-  border-color: #1e3a5f;
+  background: var(--legacy-navy);
+  border-color: var(--legacy-navy);
   color: white;
 }
 
@@ -529,8 +529,8 @@ button.state-map-summary-row {
 }
 
 .year-btn.parliament-year.active {
-  background: #1e3a5f;
-  border-color: #1e3a5f;
+  background: var(--legacy-navy);
+  border-color: var(--legacy-navy);
   color: white;
 }
 
@@ -568,7 +568,7 @@ button.state-map-summary-row {
 }
 
 .panel-tab.active {
-  background: #1e3a5f;
+  background: var(--legacy-navy);
   color: white;
 }
 

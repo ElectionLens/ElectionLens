@@ -36,9 +36,11 @@ No visual change intended. Pure groundwork. Behaviour-preserving.
 - [ ] Codemod the 278 hex literals → tokens. Party colors are the exception: they stay literal in `partyData.ts`, which is correct and should be the single source.
 - [x] Split `index.css` into 14 ordered chunks under `src/styles/legacy/` (all <=591 lines), imported by the stable `index.css` entrypoint. The chunks are intentionally mechanical to preserve cascade order; semantic surface renaming (`tokens`, `sidebar`, `map`, etc.) is a later cleanup, not mixed into a behaviour-preserving split.
 
-**Phase 1 progress on `fix/ui-phase-0`:** the duplicate root token block is merged and the
-new scales are available. Literal codemodding and CSS splitting remain intentionally
-separate follow-up commits so each can be visually reviewed.
+**Phase 1 progress on `feat/phase-1-css-tokens`:** the duplicate root token block is merged,
+the new scales are available, the stylesheet is split into cascade-preserving chunks, and a
+conservative first colour pass aliases repeated semantic literals. Full literal codemodding
+and semantic surface renaming remain separate follow-up work; party colours and alpha
+suffixes were deliberately not touched.
 
 **Exit:** `grep -c '#[0-9a-f]\{3,6\}' src/styles/*.css` ≈ 0 outside `tokens.css`. Visual diff via Playwright screenshots shows no unintended change.
 

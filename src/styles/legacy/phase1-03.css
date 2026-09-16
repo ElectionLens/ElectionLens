@@ -28,7 +28,7 @@
 .constituency-item {
   padding: var(--row-padding-y) var(--row-padding-x);
   padding-left: var(--row-padding-x);
-  background: linear-gradient(135deg, #f8f9fa 0%, #f5f3ff 100%);
+  background: linear-gradient(135deg, var(--legacy-surface-muted) 0%, #f5f3ff 100%);
   margin-bottom: 5px;
   font-size: 0.85rem;
   border-left: var(--row-accent-border-width) solid
@@ -82,7 +82,7 @@
 .assembly-item {
   padding: var(--row-padding-y) var(--row-padding-x);
   padding-left: var(--row-padding-x);
-  background: linear-gradient(135deg, #f8f9fa 0%, #ecfdf5 100%);
+  background: linear-gradient(135deg, var(--legacy-surface-muted) 0%, #ecfdf5 100%);
   margin-bottom: 5px;
   font-size: 0.85rem;
   transition:
@@ -172,9 +172,9 @@
 /* No data message */
 .no-data-message {
   padding: 20px;
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  background: linear-gradient(135deg, var(--legacy-warning-soft) 0%, #fde68a 100%);
   border-radius: 10px;
-  color: #92400e;
+  color: var(--legacy-warning-text);
   font-size: 0.9rem;
   text-align: center;
 }
@@ -200,7 +200,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: linear-gradient(135deg, var(--legacy-ink) 0%, #16213e 100%);
   color: white;
   border: none;
   font-size: 1.5rem;
@@ -219,7 +219,7 @@
 }
 
 /*
- * Active = sidebar is open, so this closes it. Previously #ef4444 (destructive red),
+ * Active = sidebar is open, so this closes it. Previously var(--legacy-danger) (destructive red),
  * which read as "delete" for a harmless toggle. Keep the same family as the resting
  * state and signal "active" with a lighter tint instead of a different semantic colour.
  */

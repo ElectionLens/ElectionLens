@@ -238,7 +238,7 @@
 
 .booth-year-btn:hover {
   background: var(--ui-surface-tint);
-  border-color: #d1d5db;
+  border-color: var(--legacy-border);
 }
 
 .booth-year-btn.active {
@@ -309,7 +309,7 @@
   width: 100%;
   padding: 10px 32px 10px 12px;
   font-size: 13px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--legacy-border);
   border-radius: 6px;
   background: white;
   cursor: pointer;
@@ -336,7 +336,7 @@
   display: flex;
   gap: 12px;
   padding: 10px;
-  background: #f0fdf4;
+  background: var(--legacy-success-soft);
   border-radius: 8px;
 }
 
@@ -367,7 +367,7 @@
 
 .selected-booth-details .booth-header {
   padding: 12px;
-  background: linear-gradient(135deg, var(--ui-assembly), #059669);
+  background: linear-gradient(135deg, var(--ui-assembly), var(--legacy-success));
   color: white;
 }
 
@@ -501,7 +501,7 @@
 }
 
 .booth-candidate-row.winner {
-  background: #f0fdf4;
+  background: var(--legacy-success-soft);
 }
 
 .booth-candidate-row .candidate-info {

@@ -59,7 +59,7 @@
 .booth-quality-warning {
   border-color: rgba(217, 119, 6, 0.45);
   background: rgba(255, 251, 235, 0.95);
-  color: #92400e;
+  color: var(--legacy-warning-text);
 }
 
 .booth-quality-ok {
@@ -90,7 +90,7 @@
 
 .booth-source-estimated {
   background: rgba(254, 243, 199, 0.9);
-  color: #92400e;
+  color: var(--legacy-warning-text);
   border: 1px solid rgba(251, 191, 36, 0.5);
 }
 
@@ -103,7 +103,7 @@
   border-radius: 8px;
   border: 1px solid rgba(217, 119, 6, 0.35);
   background: rgba(255, 251, 235, 0.9);
-  color: #92400e;
+  color: var(--legacy-warning-text);
   font-size: 13px;
   line-height: 1.45;
 }
@@ -136,7 +136,7 @@
 /* Compact Winner Card */
 .winner-card-compact {
   padding: 12px;
-  background: linear-gradient(135deg, var(--ui-surface) 0%, #f0fdf4 100%);
+  background: linear-gradient(135deg, var(--ui-surface) 0%, var(--legacy-success-soft) 100%);
   border-radius: 10px;
   border: 2px solid;
   border-left-width: 4px;
@@ -165,7 +165,7 @@
   font-size: 0.6rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: #059669;
+  color: var(--legacy-success);
 }
 
 .winner-card-compact .winner-name {
@@ -202,7 +202,7 @@
 
 .stat-compact.highlight {
   font-weight: 700;
-  color: #059669;
+  color: var(--legacy-success);
 }
 
 .stat-compact.margin {
@@ -238,11 +238,11 @@
 }
 
 .stat-inline.nota {
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  background: linear-gradient(135deg, var(--legacy-warning-soft) 0%, #fde68a 100%);
 }
 
 .stat-inline.nota .label {
-  color: #92400e;
+  color: var(--legacy-warning-text);
 }
 
 .stat-inline.nota .value {
@@ -353,7 +353,7 @@
   width: 40px;
   text-align: right;
   font-weight: 700;
-  color: #059669;
+  color: var(--legacy-success);
 }
 
 .candidate-row-compact .bar {
@@ -443,7 +443,7 @@
   width: 40px;
   text-align: right;
   font-weight: 700;
-  color: #059669;
+  color: var(--legacy-success);
 }
 
 /* Full Candidates View */
@@ -474,7 +474,7 @@
 .winner-card {
   margin: 16px;
   padding: 16px;
-  background: linear-gradient(135deg, var(--ui-surface) 0%, #f0fdf4 100%);
+  background: linear-gradient(135deg, var(--ui-surface) 0%, var(--legacy-success-soft) 100%);
   border-radius: 12px;
   border: 2px solid;
   border-left-width: 5px;
@@ -488,7 +488,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #059669;
+  color: var(--legacy-success);
   margin-bottom: 8px;
 }
 
@@ -556,7 +556,7 @@
 }
 
 .winner-stats .stat.margin .stat-value {
-  color: #059669;
+  color: var(--legacy-success);
 }
 
 /* Constituency stats */

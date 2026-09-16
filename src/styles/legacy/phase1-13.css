@@ -22,6 +22,19 @@
    ======================================== */
 
 :root {
+  /* Phase 1 semantic aliases for repeated legacy literals. */
+  --legacy-navy: var(--legacy-navy);
+  --legacy-success: var(--legacy-success);
+  --legacy-ink: var(--legacy-ink);
+  --legacy-warning-soft: var(--legacy-warning-soft);
+  --legacy-border: var(--legacy-border);
+  --legacy-success-soft: var(--legacy-success-soft);
+  --legacy-surface-muted: var(--legacy-surface-muted);
+  --legacy-warning-text: var(--legacy-warning-text);
+  --legacy-danger: var(--legacy-danger);
+  --legacy-blue: var(--legacy-blue);
+  --legacy-white: #ffffff;
+  --legacy-indigo: var(--legacy-indigo);
   --ui-font-sans:
     'Inter', 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;

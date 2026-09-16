@@ -176,7 +176,7 @@
 }
 
 .result-badge-state {
-  background: #fef3c7;
+  background: var(--legacy-warning-soft);
   color: #b45309;
 }
 
@@ -218,7 +218,7 @@
 }
 
 .interactive-row:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--legacy-blue);
   outline-offset: 2px;
 }
 
@@ -336,7 +336,7 @@
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  color: #1a1a2e;
+  color: var(--legacy-ink);
   font-weight: 600;
   font-size: 12px;
   text-shadow:
@@ -539,12 +539,12 @@ path:focus {
 
 .toggle-btn.active {
   background: #fff;
-  color: #1a1a2e;
+  color: var(--legacy-ink);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .toggle-btn:hover:not(.active) {
-  color: #1a1a2e;
+  color: var(--legacy-ink);
 }
 
 /* District/Constituency list in sidebar */
@@ -561,7 +561,7 @@ path:focus {
 .district-item {
   padding: var(--row-padding-y) var(--row-padding-x);
   padding-left: var(--row-padding-x);
-  background: linear-gradient(135deg, #f8f9fa 0%, var(--ui-surface-soft) 100%);
+  background: linear-gradient(135deg, var(--legacy-surface-muted) 0%, var(--ui-surface-soft) 100%);
   margin-bottom: 5px;
   font-size: 0.85rem;
   transition:
@@ -575,7 +575,7 @@ path:focus {
 }
 
 .district-item:hover {
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  background: linear-gradient(135deg, #fffbeb 0%, var(--legacy-warning-soft) 100%);
 }
 
 .district-item.state-item {

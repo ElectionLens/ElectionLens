@@ -7,7 +7,7 @@
 }
 
 .party-booth-card.expanded {
-  border-color: #d1d5db;
+  border-color: var(--legacy-border);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
@@ -111,7 +111,7 @@
 }
 
 .booth-list-item:hover {
-  background: #f0fdf4;
+  background: var(--legacy-success-soft);
 }
 
 .booth-list-item .col-booth {
@@ -192,7 +192,7 @@
 }
 
 .postal-summary {
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  background: linear-gradient(135deg, var(--legacy-success-soft) 0%, #dcfce7 100%);
   border-radius: 12px;
   padding: 16px;
   border: 1px solid #86efac;
@@ -298,7 +298,7 @@
 }
 
 .postal-candidate-row.winner {
-  background: #f0fdf4;
+  background: var(--legacy-success-soft);
 }
 
 .postal-candidate-row .col-rank {
@@ -359,10 +359,10 @@
   align-items: flex-start;
   gap: 8px;
   padding: 12px;
-  background: #fef3c7;
+  background: var(--legacy-warning-soft);
   border-radius: 8px;
   font-size: 11px;
-  color: #92400e;
+  color: var(--legacy-warning-text);
   line-height: 1.4;
 }
 

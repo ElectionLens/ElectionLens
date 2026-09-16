@@ -82,7 +82,7 @@ body {
 
 .sidebar-header {
   padding: 20px;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: linear-gradient(135deg, var(--legacy-ink) 0%, #16213e 100%);
   color: white;
 }
 
@@ -115,7 +115,7 @@ body {
 
 .info-title {
   font-size: 1.5rem;
-  color: #1a1a2e;
+  color: var(--legacy-ink);
   margin-bottom: 8px;
   padding-bottom: 10px;
   border-bottom: 2px solid var(--ui-border);
@@ -162,7 +162,7 @@ body {
 }
 
 .stat-card {
-  background: #f8f9fa;
+  background: var(--legacy-surface-muted);
   padding: 15px;
   border-radius: 8px;
   text-align: center;
@@ -171,7 +171,7 @@ body {
 .stat-value {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #1a1a2e;
+  color: var(--legacy-ink);
 }
 
 .stat-label {
@@ -184,7 +184,7 @@ body {
 /* Breadcrumb */
 .breadcrumb {
   padding: 10px 20px;
-  background: #f8f9fa;
+  background: var(--legacy-surface-muted);
   border-bottom: 1px solid var(--ui-border);
   font-size: 0.85rem;
   display: flex;
@@ -233,7 +233,7 @@ body {
 }
 
 .share-btn.copied {
-  color: #059669;
+  color: var(--legacy-success);
   background: rgba(5, 150, 105, 0.1);
 }
 
@@ -317,7 +317,7 @@ body {
 }
 
 .toolbar-btn.toolbar-toggle.active {
-  background: #1a1a2e;
+  background: var(--legacy-ink);
   color: white;
 }
 
@@ -358,8 +358,8 @@ body {
 }
 
 .toolbar-year-btn.active {
-  background: #1e3a5f;
-  border-color: #1e3a5f;
+  background: var(--legacy-navy);
+  border-color: var(--legacy-navy);
   color: white;
 }
 
@@ -373,8 +373,8 @@ body {
 }
 
 .toolbar-year-btn.parliament-year.active {
-  background: #1e3a5f;
-  border-color: #1e3a5f;
+  background: var(--legacy-navy);
+  border-color: var(--legacy-navy);
   color: white;
 }
 
@@ -456,7 +456,7 @@ body {
 }
 
 .toolbar-dropdown-item.active {
-  background: #1a1a2e;
+  background: var(--legacy-ink);
   color: white;
   box-shadow: none;
 }

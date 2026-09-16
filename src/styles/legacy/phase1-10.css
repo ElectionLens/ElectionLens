@@ -205,7 +205,7 @@
 }
 
 .insight-card:hover {
-  border-color: #d1d5db;
+  border-color: var(--legacy-border);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -214,7 +214,7 @@
 }
 
 .insight-card.weakness {
-  border-left: 3px solid #ef4444;
+  border-left: 3px solid var(--legacy-danger);
 }
 
 .insight-card.opportunity {
@@ -240,7 +240,7 @@
 }
 
 .insight-card.weakness .insight-icon {
-  color: #ef4444;
+  color: var(--legacy-danger);
 }
 
 .insight-card.opportunity .insight-icon {
@@ -280,7 +280,7 @@
 }
 
 .insight-card.weakness .insight-value {
-  color: #ef4444;
+  color: var(--legacy-danger);
   background: #ef444415;
 }
 
@@ -371,7 +371,7 @@
 
 .booth-link:hover {
   background: var(--ui-border);
-  border-color: #d1d5db;
+  border-color: var(--legacy-border);
   color: #111827;
 }
 
@@ -400,15 +400,15 @@
 
 .insight-card.weakness .booth-link:hover {
   background: #fee2e2;
-  border-color: #ef4444;
+  border-color: var(--legacy-danger);
 }
 
 .insight-card.weakness .booth-link svg {
-  color: #ef4444;
+  color: var(--legacy-danger);
 }
 
 .insight-card.opportunity .booth-link:hover {
-  background: #fef3c7;
+  background: var(--legacy-warning-soft);
   border-color: var(--ui-state);
 }
 
@@ -458,7 +458,7 @@
 }
 
 .quick-stat.highlight-nota {
-  background: #fef3c7;
+  background: var(--legacy-warning-soft);
 }
 
 .quick-stat.highlight-nota .stat-number {

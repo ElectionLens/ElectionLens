@@ -164,7 +164,7 @@
   justify-content: space-between;
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--ui-border);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--legacy-indigo) 0%, #764ba2 100%);
   color: white;
 }
 
@@ -243,17 +243,17 @@
 }
 
 .feedback-type-btn:hover {
-  border-color: #667eea;
+  border-color: var(--legacy-indigo);
   background: #f0f4ff;
 }
 
 .feedback-type-btn.selected {
-  border-color: #667eea;
+  border-color: var(--legacy-indigo);
   background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
 }
 
 .feedback-type-icon {
-  color: #667eea;
+  color: var(--legacy-indigo);
 }
 
 .feedback-type-label {
@@ -282,7 +282,7 @@
 
 .feedback-textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--legacy-indigo);
 }
 
 .feedback-textarea::placeholder {
@@ -301,7 +301,7 @@
 
 .feedback-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--legacy-indigo);
 }
 
 .feedback-input::placeholder {
@@ -355,7 +355,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.6rem 1.25rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--legacy-indigo) 0%, #764ba2 100%);
   border: none;
   border-radius: 8px;
   font-size: 0.875rem;
@@ -386,7 +386,7 @@
   justify-content: center;
   padding: 2rem;
   text-align: center;
-  color: #059669;
+  color: var(--legacy-success);
 }
 
 .feedback-success h3 {
@@ -420,7 +420,7 @@
 
 /* Toolbar feedback button */
 .toolbar-btn.feedback-btn {
-  color: #667eea;
+  color: var(--legacy-indigo);
 }
 
 .toolbar-btn.feedback-btn:hover {

@@ -49,7 +49,7 @@
 
 .blog-share-btn:hover {
   background: var(--ui-surface-soft);
-  border-color: #d1d5db;
+  border-color: var(--legacy-border);
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -443,7 +443,7 @@
 }
 
 .booth-col-admk {
-  color: #059669;
+  color: var(--legacy-success);
   font-weight: 500;
 }
 
