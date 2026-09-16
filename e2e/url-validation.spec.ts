@@ -195,13 +195,17 @@ test.describe('URL Validation - Year Fallback', () => {
     await expectPanelDataVisible(panel, page, '.winner-info, .winner-card-compact, .candidate-row');
 
     // Panel should show election data; year selector may be in panel or sidebar map controls
-    const yearSelect = page
+    const yearControl = page
       .locator(
-        '.election-year-selector select.year-dropdown, select#sidebar-map-year-proxy, select#sidebar-map-year'
+        '.election-year-selector select.year-dropdown:visible, .election-year-selector .year-dropdown-trigger, select#sidebar-map-year:visible, #sidebar-map-year-trigger'
       )
       .first();
-    await expect(yearSelect).toBeVisible({ timeout: 5000 });
-    const selectedValue = await yearSelect.inputValue();
+    await expect(yearControl).toBeVisible({ timeout: 5000 });
+    const tagName = await yearControl.evaluate((element) => element.tagName);
+    const selectedValue =
+      tagName === 'SELECT'
+        ? await yearControl.inputValue()
+        : (await yearControl.textContent())?.trim() ?? '';
     expect(selectedValue).not.toContain('2022');
   });
 

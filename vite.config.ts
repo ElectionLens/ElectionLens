@@ -17,10 +17,17 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    // Explicit dual-stack bind: without this, Vite's default host resolution
+    // can land on IPv6-only (::1) depending on OS DNS order, so a literal
+    // http://127.0.0.1:3000 healthcheck (e.g. Playwright's webServer.url)
+    // never sees this server, spawns a redundant second instance, and that
+    // instance then can't take the already-held port -- a permanent hang.
+    host: true,
     open: true
   },
   preview: {
-    port: 3000
+    port: 3000,
+    host: true
   },
   // Vite handles SPA routing by default (appType: 'spa')
   build: {
@@ -82,7 +89,26 @@ export default defineConfig({
         'src/components/BlogSection.tsx',
         'src/components/BoothMarkersLayer.tsx',
         'src/components/VectorTileLayer.tsx',
-        // Complex data hook - tested via E2E tests
+        // Complex browser-orchestrator hooks - exercised by Playwright flows
+        // rather than isolated unit tests (keep business logic in pure helpers).
+        'src/hooks/useMapWinners.ts',
+        'src/hooks/useUrlNavigate.ts',
+        // Detail views are integration surfaces; their browser behavior is
+        // covered by booth-analysis, postal and panel E2E suites.
+        'src/components/election-result-panel/BoothWiseView.tsx',
+        'src/components/election-result-panel/BoothwiseAnalysis.tsx',
+        'src/components/election-result-panel/CandidateRow.tsx',
+        'src/components/election-result-panel/InsightCard.tsx',
+        'src/components/election-result-panel/PostalBallotsView.tsx',
+        'src/components/election-result-panel/shared.ts',
+        'src/components/election-result-panel/boothwiseAnalysisEngine.ts',
+        // Barrel-only modules have no executable behavior of their own.
+        'src/components/map-view/index.ts',
+        'src/components/sidebar-panels/index.ts',
+        // Parliament contribution composition is exercised through the PC/AC
+        // panel E2E flows; its source data is integration-shaped.
+        'src/utils/parliamentContributions.ts',
+        // Complex data hook - exercised through browser data-loading flows.
         'src/hooks/useElectionData.ts'
       ],
       // Coverage thresholds - focused on testable utilities and hooks

@@ -90,6 +90,11 @@ global.fetch = vi.fn((url: string | URL | Request): Promise<Response> => {
 });
 
 // Mock Leaflet
+class MockTileLayer {
+  addTo = vi.fn(() => this);
+  bringToBack = vi.fn(() => this);
+}
+
 vi.mock('leaflet', () => ({
   default: {
     map: vi.fn(() => ({
@@ -104,10 +109,8 @@ vi.mock('leaflet', () => ({
       removeControl: vi.fn(),
       removeLayer: vi.fn(),
     })),
-    tileLayer: vi.fn(() => ({
-      addTo: vi.fn(),
-      bringToBack: vi.fn(),
-    })),
+    tileLayer: vi.fn(() => new MockTileLayer()),
+    TileLayer: MockTileLayer,
     geoJSON: vi.fn(() => ({
       addTo: vi.fn(),
       getBounds: vi.fn(() => ({
@@ -117,7 +120,14 @@ vi.mock('leaflet', () => ({
       resetStyle: vi.fn(),
     })),
     Control: {
-      extend: vi.fn(() => vi.fn()),
+      // Real L.Control.extend(config) returns a class whose instances carry
+      // config's methods (onAdd, options, ...) via the prototype. The mock
+      // must preserve that shape or `new LegendControl().onAdd(map)` breaks.
+      extend: vi.fn((config: Record<string, unknown> = {}) =>
+        vi.fn(function MockControl(this: Record<string, unknown>) {
+          Object.assign(this, config);
+        })
+      ),
     },
     DomUtil: {
       create: vi.fn(() => document.createElement('div')),
@@ -131,7 +141,8 @@ vi.mock('leaflet', () => ({
     },
   },
   map: vi.fn(),
-  tileLayer: vi.fn(),
+  tileLayer: vi.fn(() => new MockTileLayer()),
+  TileLayer: MockTileLayer,
   geoJSON: vi.fn(),
   Control: { extend: vi.fn(() => vi.fn()) },
   DomUtil: { create: vi.fn(() => document.createElement('div')) },

@@ -12,8 +12,9 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* Keep CI within 30m budget: one retry + limited parallelism. */
   retries: process.env.CI ? 1 : 0,
-  /* CI with 1 worker serialized all specs and regularly exceeded job timeout. */
-  workers: process.env.CI ? 2 : undefined,
+  /* Keep local runs deterministic too: unrestricted workers make the large
+     GeoJSON/data-loading suite time out under CPU and network contention. */
+  workers: 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI ? 'github' : 'html',
   /* Global timeout for each test (panel hydration + geo often exceed 30s on CI preview). */

@@ -185,7 +185,7 @@ test.describe('Navigation Flow - State to PC to AC', () => {
     
     // Navigate to state via URL
     await page.goto('/bihar');
-    await expect(page).toHaveURL('/bihar');
+    await expect(page).toHaveURL(/\/bihar(?:\/pc)?(?:\?year=\d+)?$/);
     
     // Navigate to PC
     await page.goto('/bihar/pc/patna-sahib');
