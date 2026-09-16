@@ -71,6 +71,10 @@ import {
   LAYER_URLS,
   createBackgroundLayerHandler,
   BACKGROUND_LAYER_BASE_STYLE,
+  createStandardHoverHandlers,
+  SELECTED_ASSEMBLY_STYLE,
+  SELECTED_ASSEMBLY_WEIGHT,
+  partyFillStyle,
   toStateSummaryPanelData,
   type FeatureLayer,
   type LayerName,
@@ -1034,12 +1038,7 @@ export function MapView({
         });
 
       if (isSelected) {
-        typedLayer.setStyle({
-          weight: 4,
-          color: '#065f46',
-          fillOpacity: 0.75,
-          opacity: 1,
-        });
+        typedLayer.setStyle(SELECTED_ASSEMBLY_STYLE);
         typedLayer.bringToFront();
       }
 
@@ -1067,82 +1066,24 @@ export function MapView({
         }
       };
 
-      if (level === 'states') {
-        const hoverStyle = getHoverStyle('states');
-        const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
-        typedLayer.on({
-          mouseover: (): void => {
-            const prev = lastHoveredLayerRef.current;
-            if (prev && prev !== typedLayer) {
-              const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
-              if (baseStyle) prev.setStyle(baseStyle);
-            }
-            lastHoveredLayerRef.current = typedLayer;
-            const opts = layerWithOpts.options;
-            const isAlreadyHover =
-              opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
-            if (!isAlreadyHover) {
-              const stored = {
-                fillColor: opts.fillColor,
-                fillOpacity: opts.fillOpacity,
-                color: opts.color,
-                weight: opts.weight,
-                opacity: opts.opacity,
-              };
-              (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle = stored;
-            }
-            typedLayer.setStyle(hoverStyle);
-            typedLayer.bringToFront();
-          },
-          mouseout: (): void => {
-            const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
-            if (baseStyle) typedLayer.setStyle(baseStyle);
-            if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
-          },
-          click: clickHandler,
-        });
-      } else if (level === 'assemblies') {
+      if (level === 'assemblies') {
         const hoverStyle = getHoverStyle('assemblies');
-        const selectedGreenWeight = 4;
-        const greenStyle = {
-          weight: 4,
-          color: '#065f46',
-          fillOpacity: 0.75,
-          opacity: 1,
-        };
+        const greenStyle = SELECTED_ASSEMBLY_STYLE;
         const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
+        // Assemblies hover exactly like every other focused layer, then add
+        // two rules of their own: the selected AC never hovers, and it must
+        // stay green even if another code path repainted it.
+        const shared = createStandardHoverHandlers(typedLayer, hoverStyle, lastHoveredLayerRef);
         typedLayer.on({
           mouseover: (): void => {
             if (isSelected) return;
-            const prev = lastHoveredLayerRef.current;
-            if (prev && prev !== typedLayer) {
-              const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
-              if (baseStyle) prev.setStyle(baseStyle);
-            }
-            lastHoveredLayerRef.current = typedLayer;
-            const opts = layerWithOpts.options;
-            const isAlreadyHover =
-              opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
-            if (!isAlreadyHover) {
-              const stored = {
-                fillColor: opts.fillColor,
-                fillOpacity: opts.fillOpacity,
-                color: opts.color,
-                weight: opts.weight,
-                opacity: opts.opacity,
-              };
-              (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle = stored;
-            }
-            typedLayer.setStyle(hoverStyle);
-            typedLayer.bringToFront();
+            shared.mouseover();
           },
           mouseout: (): void => {
             if (isSelected) return;
             // Don't restore if layer has selected (green) style — weight 4 is unique to selected in assemblies
-            if (layerWithOpts.options.weight === selectedGreenWeight) return;
-            const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
-            if (baseStyle) typedLayer.setStyle(baseStyle);
-            if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
+            if (layerWithOpts.options.weight === SELECTED_ASSEMBLY_WEIGHT) return;
+            shared.mouseout();
             // Re-apply green to selected AC so it stays green even if another code path overwrote it
             const sel =
               selectedAssembly ?? selectedAssemblyRef.current ?? pendingSelectedAssembly.current;
@@ -1175,74 +1116,14 @@ export function MapView({
           },
           click: clickHandler,
         });
-      } else if (level === 'districts') {
-        const hoverStyle = getHoverStyle('districts');
-        const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
-        typedLayer.on({
-          mouseover: (): void => {
-            const prev = lastHoveredLayerRef.current;
-            if (prev && prev !== typedLayer) {
-              const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
-              if (baseStyle) prev.setStyle(baseStyle);
-            }
-            lastHoveredLayerRef.current = typedLayer;
-            const opts = layerWithOpts.options;
-            const isAlreadyHover =
-              opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
-            if (!isAlreadyHover) {
-              const stored = {
-                fillColor: opts.fillColor,
-                fillOpacity: opts.fillOpacity,
-                color: opts.color,
-                weight: opts.weight,
-                opacity: opts.opacity,
-              };
-              (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle = stored;
-            }
-            typedLayer.setStyle(hoverStyle);
-            typedLayer.bringToFront();
-          },
-          mouseout: (): void => {
-            const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
-            if (baseStyle) typedLayer.setStyle(baseStyle);
-            if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
-          },
-          click: clickHandler,
-        });
-      } else if (level === 'constituencies') {
-        const hoverStyle = getHoverStyle('constituencies');
-        const layerWithOpts = typedLayer as unknown as { options: L.PathOptions };
-        typedLayer.on({
-          mouseover: (): void => {
-            const prev = lastHoveredLayerRef.current;
-            if (prev && prev !== typedLayer) {
-              const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
-              if (baseStyle) prev.setStyle(baseStyle);
-            }
-            lastHoveredLayerRef.current = typedLayer;
-            const opts = layerWithOpts.options;
-            const isAlreadyHover =
-              opts.weight === hoverStyle.weight && opts.color === hoverStyle.color;
-            if (!isAlreadyHover) {
-              const stored = {
-                fillColor: opts.fillColor,
-                fillOpacity: opts.fillOpacity,
-                color: opts.color,
-                weight: opts.weight,
-                opacity: opts.opacity,
-              };
-              (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle = stored;
-            }
-            typedLayer.setStyle(hoverStyle);
-            typedLayer.bringToFront();
-          },
-          mouseout: (): void => {
-            const baseStyle = (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
-            if (baseStyle) typedLayer.setStyle(baseStyle);
-            if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
-          },
-          click: clickHandler,
-        });
+      } else if (level === 'states' || level === 'districts' || level === 'constituencies') {
+        // Identical hover for all three - only the level's border colour differs.
+        const shared = createStandardHoverHandlers(
+          typedLayer,
+          getHoverStyle(level),
+          lastHoveredLayerRef
+        );
+        typedLayer.on({ ...shared, click: clickHandler });
       } else {
         typedLayer.on({ click: clickHandler });
       }
@@ -1299,12 +1180,7 @@ export function MapView({
               assemblyNameCounts,
             });
             if (shouldSelect) {
-              typedLayer.setStyle({
-                weight: 4,
-                color: '#065f46',
-                fillOpacity: 0.75,
-                opacity: 1,
-              });
+              typedLayer.setStyle(SELECTED_ASSEMBLY_STYLE);
               typedLayer.bringToFront();
             }
           }
@@ -1353,13 +1229,7 @@ export function MapView({
         const stateId = stateIdFromSchema ?? (stateName ? getStateId(stateName) : '');
         const winner = stateId ? stateWinners[stateId] : undefined;
         if (winner) {
-          baseStyle = {
-            fillColor: getPartyColor(winner.party ?? ''),
-            fillOpacity: 0.7,
-            color: '#fff',
-            weight: 1.5,
-            opacity: 1,
-          };
+          baseStyle = partyFillStyle(winner.party ?? '');
         }
       }
 
@@ -1376,13 +1246,7 @@ export function MapView({
           suppressPartyColors: suppressAssemblyFilePartyMapColors,
         });
         if (party && !suppressAssemblyFilePartyMapColors) {
-          baseStyle = {
-            fillColor: getPartyColor(party),
-            fillOpacity: 0.7,
-            color: '#fff',
-            weight: 1.5,
-            opacity: 1,
-          };
+          baseStyle = partyFillStyle(party);
         }
       }
 
@@ -1402,13 +1266,7 @@ export function MapView({
           resolveDistrictName,
         });
         if (asmWinner && !suppressAssemblyPartyMapColorsLocal) {
-          baseStyle = {
-            fillColor: getPartyColor(asmWinner.party ?? ''),
-            fillOpacity: 0.7,
-            color: '#fff',
-            weight: 1.5,
-            opacity: 1,
-          };
+          baseStyle = partyFillStyle(asmWinner.party ?? '');
         }
         if (
           selectedSummaryParty &&
@@ -1439,13 +1297,7 @@ export function MapView({
           dominantPCParty,
         });
         if (pcWinner) {
-          baseStyle = {
-            fillColor: getPartyColor(pcWinner.party ?? ''),
-            fillOpacity: 0.7,
-            color: '#fff',
-            weight: 1.5,
-            opacity: 1,
-          };
+          baseStyle = partyFillStyle(pcWinner.party ?? '');
         }
         if (
           selectedSummaryParty &&
@@ -1471,13 +1323,7 @@ export function MapView({
           assemblyNameCounts,
         });
         if (shouldSelect) {
-          return {
-            ...baseStyle,
-            weight: 4,
-            color: '#065f46',
-            fillOpacity: 0.75,
-            opacity: 1,
-          };
+          return { ...baseStyle, ...SELECTED_ASSEMBLY_STYLE };
         }
       }
 
@@ -1530,12 +1376,7 @@ export function MapView({
     });
     // Re-apply selected assembly green so it is not overwritten by the loop above (effect order: selectedAssembly effect runs first, then this one)
     if (level === 'assemblies' && selectedAssembly && geo) {
-      const greenStyle = {
-        weight: 4,
-        color: '#065f46',
-        fillOpacity: 0.75,
-        opacity: 1,
-      };
+      const greenStyle = SELECTED_ASSEMBLY_STYLE;
       const selectedNo = electionResult?.constituencyNo;
       const selectedId = electionResult?.schemaId ?? '';
       geo.eachLayer((layer) => {

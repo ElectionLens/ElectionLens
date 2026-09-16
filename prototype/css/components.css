@@ -1,0 +1,393 @@
+/* ==========================================================================
+   Components: podium, KPI strip, ranked bars, candidate rows, data-nav
+   ========================================================================== */
+
+/* --- Podium: 2x2, NOT their 1x4. At 520px this gives ~236px cards. --- */
+.podium {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+
+/* At 360px a 2x2 podium would give 156px cards - too cramped, so collapse
+   to a single winner summary. The podium earns its space only in Analyse. */
+.panel:not([data-mode='analyse']):not([data-mode='deep']) .podium {
+  grid-template-columns: 1fr;
+}
+
+.panel:not([data-mode='analyse']):not([data-mode='deep']) .podium-card:not(.is-winner) {
+  display: none;
+}
+
+.podium-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--pc, var(--border-strong));
+  border-radius: var(--r-md);
+  padding: var(--sp-3);
+  min-width: 0;
+}
+
+.podium-role {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-2);
+}
+
+.podium-votes {
+  font-size: var(--t-xl);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--pc, var(--text));
+  font-variant-numeric: tabular-nums;
+}
+
+.podium-name {
+  font-size: var(--t-sm);
+  font-weight: 600;
+  margin-top: var(--sp-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.podium-sub {
+  font-size: var(--t-xs);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.party-pill {
+  display: inline-block;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  padding: 1px var(--sp-2);
+  border-radius: var(--r-pill);
+  background: var(--pc, var(--surface-tint));
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* --- KPI strip: WRAPS. Never 7 across - that needs 42px/cell at 360px. --- */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+
+.kpi {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-2) var(--sp-3);
+  min-width: 0;
+}
+
+.kpi-label {
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kpi-value {
+  font-size: var(--t-md);
+  font-weight: 700;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Section headings --- */
+.section {
+  margin-bottom: var(--sp-5);
+}
+
+.section > h3 {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: var(--sp-3);
+}
+
+/* --- Ranked candidate bars (their S4, hand-rolled - no Chart.js) --- */
+.cand-row {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: var(--sp-2);
+  align-items: center;
+  min-height: 44px;
+  padding: var(--sp-2) var(--sp-1);
+  border-radius: var(--r-sm);
+  border-bottom: 1px solid var(--border);
+  transition: background 150ms var(--ease);
+}
+
+.cand-row:last-child {
+  border-bottom: none;
+}
+
+.cand-row:hover,
+.cand-row.is-linked {
+  background: var(--accent-soft);
+}
+
+.cand-rank {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  color: var(--text-soft);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.cand-main {
+  min-width: 0;
+}
+
+.cand-name {
+  font-size: var(--t-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cand-bar-track {
+  height: 6px;
+  background: var(--surface-tint);
+  border-radius: var(--r-pill);
+  margin-top: var(--sp-1);
+  overflow: hidden;
+}
+
+.cand-bar {
+  height: 100%;
+  background: var(--pc, var(--text-soft));
+  border-radius: var(--r-pill);
+}
+
+.cand-figs {
+  text-align: right;
+  font-size: var(--t-xs);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.cand-votes {
+  font-weight: 700;
+  display: block;
+}
+
+.cand-share {
+  color: var(--text-soft);
+}
+
+/* --- Vote-share donut (SVG, accessible, no canvas) --- */
+.donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+.donut {
+  flex-shrink: 0;
+  transform: rotate(-90deg);
+}
+
+.donut circle {
+  fill: none;
+  stroke-width: 14;
+}
+
+.donut-legend {
+  flex: 1;
+  min-width: 130px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--t-xs);
+}
+
+.legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  background: var(--pc);
+}
+
+.legend-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.legend-val {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Data-nav: the half we under-built --- */
+.data-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+
+.data-controls label {
+  font-size: var(--t-xs);
+  font-weight: 600;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.data-controls select,
+.data-controls input {
+  width: 100%;
+  font-size: var(--t-sm);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  min-height: 40px;
+}
+
+.control-pair {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.control-pair > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.result-count {
+  font-size: var(--t-xs);
+  color: var(--text-soft);
+  margin-bottom: var(--sp-2);
+}
+
+/* Ranked list rows - each one is map-linked */
+.rank-row {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  gap: var(--sp-2);
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  min-height: 48px;
+  padding: var(--sp-2);
+  border-radius: var(--r-md);
+  border-bottom: 1px solid var(--border);
+  transition: background 150ms var(--ease);
+}
+
+.rank-row:hover,
+.rank-row.is-linked {
+  background: var(--accent-soft);
+}
+
+.rank-row .rank-no {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.rank-ac {
+  font-size: var(--t-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rank-meta {
+  font-size: var(--t-xs);
+  color: var(--text-soft);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+
+.rank-metric {
+  text-align: right;
+  font-size: var(--t-sm);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.rank-metric small {
+  display: block;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  color: var(--text-soft);
+}
+
+/* --- Tabs: real tablist at >=520px --- */
+.tabs {
+  display: flex;
+  gap: var(--sp-1);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-4);
+  overflow-x: auto;
+}
+
+.tabs button {
+  font-size: var(--t-sm);
+  font-weight: 600;
+  padding: var(--sp-2) var(--sp-3);
+  color: var(--text-soft);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  min-height: 42px;
+}
+
+.tabs button[aria-selected='true'] {
+  color: var(--accent-strong);
+  border-bottom-color: var(--accent);
+}
+
+/* --- Leaflet overrides --- */
+.leaflet-container {
+  font-family: var(--font);
+  background: var(--surface-tint);
+}
+
+.ac-tooltip {
+  font-size: var(--t-xs);
+  font-weight: 600;
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  box-shadow: var(--elev-2);
+}

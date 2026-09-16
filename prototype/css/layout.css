@@ -1,0 +1,208 @@
+/* ==========================================================================
+   Layout shell - map is primary, panel width follows navigation mode
+   ========================================================================== */
+
+.app {
+  display: flex;
+  height: 100vh;
+  position: relative;
+}
+
+/* --- Map: the primary surface. Always present, never replaced. --- */
+.map-wrap {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  background: var(--surface-tint);
+}
+
+/* Desaturate the basemap so party colour is the only saturated thing.
+   Production stacks 0.6-0.75 opacity party fills over full-colour Voyager. */
+.map-tiles-muted {
+  filter: saturate(0.25) brightness(1.06);
+}
+
+.map-badge {
+  position: absolute;
+  top: var(--sp-3);
+  left: var(--sp-3);
+  z-index: 500;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--elev-2);
+  padding: var(--sp-2) var(--sp-3);
+  font-size: var(--t-xs);
+  color: var(--text-muted);
+  max-width: 260px;
+}
+
+.map-badge strong {
+  display: block;
+  font-size: var(--t-sm);
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+/* --- Panel: width driven by --panel-w --- */
+.panel {
+  width: var(--panel-w);
+  flex-shrink: 0;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  box-shadow: var(--elev-3);
+  display: flex;
+  flex-direction: column;
+  transition: width var(--speed) var(--ease);
+  overflow: hidden;
+  z-index: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    transition: none;
+  }
+}
+
+.panel-header {
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+
+.brand h1 {
+  font-size: var(--t-md);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.brand .year-pick {
+  font-size: var(--t-xs);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: var(--sp-1) var(--sp-2);
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* --- Mode switch: map-nav vs data-nav --- */
+.mode-switch {
+  display: flex;
+  gap: 2px;
+  background: var(--surface-tint);
+  border-radius: var(--r-md);
+  padding: 3px;
+}
+
+.mode-switch button {
+  flex: 1;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  padding: var(--sp-2);
+  border-radius: var(--r-sm);
+  color: var(--text-muted);
+  transition: background var(--speed) var(--ease);
+  min-height: 34px;
+}
+
+.mode-switch button[aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--accent-strong);
+  box-shadow: var(--elev-1);
+}
+
+.panel-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--sp-4);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: var(--t-xs);
+  color: var(--text-soft);
+  padding: var(--sp-2) var(--sp-4);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  background: var(--surface-soft);
+}
+
+.breadcrumb button {
+  color: var(--accent);
+  font-size: var(--t-xs);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.empty {
+  padding: var(--sp-6) var(--sp-4);
+  text-align: center;
+  color: var(--text-soft);
+  font-size: var(--t-sm);
+  line-height: 1.6;
+}
+
+/* --- Mobile: default inverts to data-nav; panel becomes a sheet --- */
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .map-wrap {
+    height: 100%;
+  }
+
+  .panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 62vh;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    transition: transform var(--speed) var(--ease);
+  }
+
+  .panel[data-sheet='peek'] {
+    transform: translateY(calc(62vh - 132px));
+  }
+
+  .panel[data-sheet='full'] {
+    height: 92vh;
+    transform: translateY(0);
+  }
+
+  .sheet-handle {
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: var(--r-pill);
+    background: var(--border-strong);
+    margin: var(--sp-2) auto;
+    flex-shrink: 0;
+  }
+}
+
+.sheet-handle {
+  display: none;
+}

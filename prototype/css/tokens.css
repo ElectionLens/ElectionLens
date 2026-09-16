@@ -1,0 +1,118 @@
+/* ==========================================================================
+   ElectionLens prototype - design tokens
+   Demonstrates Phase 1 of the revamp: ONE :root, no hardcoded hexes below
+   this block, and the scales the production CSS is missing.
+   Production today: 3 :root blocks, 278 stray hexes, 12 radii, 14 font sizes.
+   ========================================================================== */
+
+:root {
+  /* Civic Editorial palette - lifted from the existing (unfinished) token
+     layer at index.css:6929 so the prototype matches the intended direction */
+  --bg: #f7f5f1;
+  --surface: #ffffff;
+  --surface-soft: #faf8f4;
+  --surface-tint: #f0ece3;
+  --border: #e4ddd0;
+  --border-strong: #cfc4ae;
+  --text: #1c1a16;
+  --text-muted: #4a453a;
+  --text-soft: #6b6456;
+  --accent: #0f5c5c;
+  --accent-strong: #0b4646;
+  --accent-soft: #e3efed;
+
+  /* Spacing scale - production has none, hence 14 ad-hoc font sizes */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+
+  /* Radius scale - collapses production's 12 distinct values to 4 */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-pill: 999px;
+
+  /* Type scale - FLOOR AT 12px. Production ships 9px, 10px and 11px text. */
+  --t-xs: 12px;
+  --t-sm: 13px;
+  --t-base: 14px;
+  --t-md: 16px;
+  --t-lg: 20px;
+  --t-xl: 28px;
+  --t-2xl: 34px;
+
+  /* Elevation - 3 levels replacing 93 ad-hoc box-shadows */
+  --elev-1: 0 1px 2px rgba(28, 26, 22, 0.06);
+  --elev-2: 0 2px 8px rgba(28, 26, 22, 0.08);
+  --elev-3: 0 8px 24px rgba(28, 26, 22, 0.12);
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --speed: 260ms;
+
+  /* Panel width - THE mechanism from plan section 3.
+     Switched by navigation mode, not drill-down depth. */
+  --panel-w: 360px;
+}
+
+[data-mode='analyse'] {
+  --panel-w: 520px;
+}
+
+[data-mode='deep'] {
+  --panel-w: 900px;
+}
+
+/* Below 1152px there is not enough room to widen without starving the map */
+@media (max-width: 1151px) {
+  :root,
+  [data-mode='analyse'],
+  [data-mode='deep'] {
+    --panel-w: 360px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Global focus ring - production defines this for ONE class only */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
