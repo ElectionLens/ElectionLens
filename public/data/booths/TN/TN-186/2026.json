@@ -2073,7 +2073,7 @@
       "rejected": 0,
       "name": "ST.FRANCIS MIDDLE SCHOOL, BISHAPS HOUSE KAMARAJNAGAR WEST WING ,EAST WING",
       "address": "ST.FRANCIS MIDDLE SCHOOL, BISHAPS HOUSE KAMARAJNAGAR WEST WING ,EAST WING",
-      "area": "1.Kanjirankal (P) (R V) ¸Sanjai Nagar, 2.Kanjirankal (P) (R V) Ajiis nagar , 3.Kanjirankal (P) (R V) Pudhuvazlvu nagar , 4.Kanjirankal (R V) Ajisnagar , 99.OVERSEAS ELECTORS",
+      "area": "1.Kanjirankal (P) (R V) \u00b8Sanjai Nagar, 2.Kanjirankal (P) (R V) Ajiis nagar , 3.Kanjirankal (P) (R V) Pudhuvazlvu nagar , 4.Kanjirankal (R V) Ajisnagar , 99.OVERSEAS ELECTORS",
       "sourceNote": "unmapped_booth_fill"
     },
     "TN-186-71": {
@@ -11123,20 +11123,20 @@
   },
   "summary": {
     "totalVoters": 304788,
-    "totalVotes": 211385,
-    "turnoutPercent": 69.35,
+    "totalVotes": 214067,
+    "turnoutPercent": 70.23,
     "winner": {
-      "name": "MARIMUTHU K",
-      "party": "BSP",
-      "votes": 72917
+      "name": "KULANTHAI RANI A",
+      "party": "TVK",
+      "votes": 73737
     },
     "runnerUp": {
-      "name": "KARUNAAS S",
-      "party": "DMK",
-      "votes": 57987
+      "name": "SENTHILNATHAN PR",
+      "party": "AIADMK",
+      "votes": 58656
     },
-    "margin": 14930,
-    "marginPercent": 7.06
+    "margin": 15081,
+    "marginPercent": 7.04
   },
   "totalBooths": 393,
   "postal": {
@@ -11270,9 +11270,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 393,
     "form20ParsedBooths": 0,
     "estimatedBooths": 393,
@@ -11282,7 +11282,7 @@
     "postalPct": 1.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -11432,5 +11432,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

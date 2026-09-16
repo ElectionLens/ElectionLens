@@ -11363,9 +11363,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 267,
     "form20ParsedBooths": 267,
     "estimatedBooths": 0,
@@ -11375,6 +11375,24 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 216203,
+    "totalVotes": 181078,
+    "turnoutPercent": 83.75,
+    "winner": {
+      "name": "ELANGO. R",
+      "party": "DMK",
+      "votes": 70827
+    },
+    "runnerUp": {
+      "name": "KARTHIKEYAN. P",
+      "party": "TVK",
+      "votes": 51445
+    },
+    "margin": 19382,
+    "marginPercent": 10.7
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

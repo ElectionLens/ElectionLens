@@ -12043,9 +12043,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 367,
     "form20ParsedBooths": 367,
     "estimatedBooths": 0,
@@ -12055,6 +12055,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 315482,
+    "totalVotes": 254985,
+    "turnoutPercent": 80.82,
+    "winner": {
+      "name": "RAMESH",
+      "party": "TVK",
+      "votes": 103235
+    },
+    "runnerUp": {
+      "name": "S. DURAIRAJ",
+      "party": "DMK",
+      "votes": 69645
+    },
+    "margin": 33590,
+    "marginPercent": 13.17
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -7533,9 +7533,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 293,
     "form20ParsedBooths": 293,
     "estimatedBooths": 0,
@@ -7545,6 +7545,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 232740,
+    "totalVotes": 196026,
+    "turnoutPercent": 84.23,
+    "winner": {
+      "name": "VANNI ARASU",
+      "party": "VCK",
+      "votes": 63833
+    },
+    "runnerUp": {
+      "name": "ARJUNAN. P",
+      "party": "AIADMK",
+      "votes": 63099
+    },
+    "margin": 734,
+    "marginPercent": 0.37
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

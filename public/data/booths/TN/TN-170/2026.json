@@ -9546,20 +9546,20 @@
   },
   "summary": {
     "totalVoters": 261940,
-    "totalVotes": 214764,
-    "turnoutPercent": 81.99,
+    "totalVotes": 208944,
+    "turnoutPercent": 79.77,
     "winner": {
       "name": "GOVI.CHEZHIAAN",
       "party": "DMK",
-      "votes": 80826
+      "votes": 79951
     },
     "runnerUp": {
       "name": "S.PRABAKARAN",
       "party": "TVK",
-      "votes": 65882
+      "votes": 65835
     },
-    "margin": 14944,
-    "marginPercent": 6.96
+    "margin": 14116,
+    "marginPercent": 6.76
   },
   "totalBooths": 390,
   "postal": {
@@ -9672,9 +9672,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 390,
     "form20ParsedBooths": 305,
     "estimatedBooths": 85,
@@ -9684,7 +9684,7 @@
     "postalPct": 0.3,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9810,5 +9810,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

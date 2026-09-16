@@ -7203,9 +7203,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 292,
     "form20ParsedBooths": 292,
     "estimatedBooths": 0,
@@ -7215,6 +7215,24 @@
     "postalPct": 1.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 229834,
+    "totalVotes": 200686,
+    "turnoutPercent": 87.32,
+    "winner": {
+      "name": "JAYAKUMAR. S",
+      "party": "AIADMK",
+      "votes": 70302
+    },
+    "runnerUp": {
+      "name": "THOPPU VENKATACHALAM (ALIAS) N.D. VENKATACHALAM",
+      "party": "DMK",
+      "votes": 60609
+    },
+    "margin": 9693,
+    "marginPercent": 4.83
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

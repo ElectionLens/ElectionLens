@@ -8048,9 +8048,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 342,
     "form20ParsedBooths": 342,
     "estimatedBooths": 0,
@@ -8060,6 +8060,24 @@
     "postalPct": 1.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 287879,
+    "totalVotes": 224048,
+    "turnoutPercent": 77.83,
+    "winner": {
+      "name": "VIJAY. M",
+      "party": "TVK",
+      "votes": 65743
+    },
+    "runnerUp": {
+      "name": "MAHENDRAN. I",
+      "party": "AIADMK",
+      "votes": 63938
+    },
+    "margin": 1805,
+    "marginPercent": 0.81
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

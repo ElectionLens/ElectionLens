@@ -10993,20 +10993,20 @@
   },
   "summary": {
     "totalVoters": 269012,
-    "totalVotes": 283193,
-    "turnoutPercent": 105.27,
+    "totalVotes": 236621,
+    "turnoutPercent": 87.96,
     "winner": {
-      "name": "ARCHANA TAMILARUVI",
-      "party": "NTK",
-      "votes": 100096
+      "name": "MARAGATHAM VETRIVEL",
+      "party": "AIADMK",
+      "votes": 101829
     },
     "runnerUp": {
-      "name": "THILAGAVATHI. S",
-      "party": "TVK",
-      "votes": 66830
+      "name": "PALANIAPPAN. P",
+      "party": "DMK",
+      "votes": 68715
     },
-    "margin": 33266,
-    "marginPercent": 11.75
+    "margin": 33114,
+    "marginPercent": 13.99
   },
   "totalBooths": 442,
   "postal": {
@@ -11119,9 +11119,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 442,
     "form20ParsedBooths": 158,
     "estimatedBooths": 284,
@@ -11131,7 +11131,7 @@
     "postalPct": 1.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -11257,5 +11257,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

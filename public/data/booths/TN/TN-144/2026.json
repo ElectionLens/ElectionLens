@@ -10113,9 +10113,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 297,
     "form20ParsedBooths": 297,
     "estimatedBooths": 0,
@@ -10125,6 +10125,24 @@
     "postalPct": 1.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 247041,
+    "totalVotes": 209780,
+    "turnoutPercent": 84.92,
+    "winner": {
+      "name": "KATHIRAVAN. S",
+      "party": "DMK",
+      "votes": 81447
+    },
+    "runnerUp": {
+      "name": "V.SARAVANAN",
+      "party": "TVK",
+      "votes": 69083
+    },
+    "margin": 12364,
+    "marginPercent": 5.89
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

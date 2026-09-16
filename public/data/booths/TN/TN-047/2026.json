@@ -1893,8 +1893,8 @@
       ],
       "total": 675,
       "rejected": 0,
-      "name": "Facing South Periyapettai, Vaniyambadi    , 2.Vaniyambadi (M) Ward-8-È Pandithar Jawaharlal Nehru (annanagar) ,    ALL VOTERS",
-      "address": "Facing South Periyapettai, Vaniyambadi    , 2.Vaniyambadi (M) Ward-8-È Pandithar Jawaharlal Nehru (annanagar) ,    ALL VOTERS",
+      "name": "Facing South Periyapettai, Vaniyambadi    , 2.Vaniyambadi (M) Ward-8-\u00c8 Pandithar Jawaharlal Nehru (annanagar) ,    ALL VOTERS",
+      "address": "Facing South Periyapettai, Vaniyambadi    , 2.Vaniyambadi (M) Ward-8-\u00c8 Pandithar Jawaharlal Nehru (annanagar) ,    ALL VOTERS",
       "area": "",
       "sourceNote": "archive2_form20"
     },
@@ -2283,8 +2283,8 @@
       ],
       "total": 605,
       "rejected": 0,
-      "name": "Building, Room No.11, Facing West      Ward-15, 5Ôth K.K.Street Starting , 999.OVERSEAS ELECTORS                   ALL VOTERS",
-      "address": "Building, Room No.11, Facing West      Ward-15, 5Ôth K.K.Street Starting , 999.OVERSEAS ELECTORS                   ALL VOTERS",
+      "name": "Building, Room No.11, Facing West      Ward-15, 5\u00d4th K.K.Street Starting , 999.OVERSEAS ELECTORS                   ALL VOTERS",
+      "address": "Building, Room No.11, Facing West      Ward-15, 5\u00d4th K.K.Street Starting , 999.OVERSEAS ELECTORS                   ALL VOTERS",
       "area": "",
       "sourceNote": "archive2_form20"
     },
@@ -2751,8 +2751,8 @@
       ],
       "total": 947,
       "rejected": 0,
-      "name": "class room, North Facing Muslimpur,       25-¸ÛSiddikpath !st Street , 8.Vaniyambadi (M) Ward-25 Siddikpath 2nd   ALL VOTERS",
-      "address": "class room, North Facing Muslimpur,       25-¸ÛSiddikpath !st Street , 8.Vaniyambadi (M) Ward-25 Siddikpath 2nd   ALL VOTERS",
+      "name": "class room, North Facing Muslimpur,       25-\u00b8\u00dbSiddikpath !st Street , 8.Vaniyambadi (M) Ward-25 Siddikpath 2nd   ALL VOTERS",
+      "address": "class room, North Facing Muslimpur,       25-\u00b8\u00dbSiddikpath !st Street , 8.Vaniyambadi (M) Ward-25 Siddikpath 2nd   ALL VOTERS",
       "area": "",
       "sourceNote": "archive2_form20"
     },
@@ -2881,8 +2881,8 @@
       ],
       "total": 686,
       "rejected": 0,
-      "name": "5.Vaniyambadi (M) Ward-27ÈÝPutha Nagar 4th Street , 6.Vaniyambadi (M)      ALL VOTERS",
-      "address": "5.Vaniyambadi (M) Ward-27ÈÝPutha Nagar 4th Street , 6.Vaniyambadi (M)      ALL VOTERS",
+      "name": "5.Vaniyambadi (M) Ward-27\u00c8\u00ddPutha Nagar 4th Street , 6.Vaniyambadi (M)      ALL VOTERS",
+      "address": "5.Vaniyambadi (M) Ward-27\u00c8\u00ddPutha Nagar 4th Street , 6.Vaniyambadi (M)      ALL VOTERS",
       "area": "",
       "sourceNote": "archive2_form20"
     },
@@ -8333,9 +8333,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 312,
     "form20ParsedBooths": 312,
     "estimatedBooths": 0,
@@ -8345,6 +8345,24 @@
     "postalPct": 0.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 251485,
+    "totalVotes": 212534,
+    "turnoutPercent": 84.51,
+    "winner": {
+      "name": "SYED FAROOQ BASHA SSB",
+      "party": "Indian Union Muslim League",
+      "votes": 73181
+    },
+    "runnerUp": {
+      "name": "SYED BHURHANUDEEN",
+      "party": "TVK",
+      "votes": 70199
+    },
+    "margin": 2982,
+    "marginPercent": 1.4
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

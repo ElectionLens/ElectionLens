@@ -9799,20 +9799,20 @@
   },
   "summary": {
     "totalVoters": 244442,
-    "totalVotes": 469780,
-    "turnoutPercent": 192.18,
+    "totalVotes": 214127,
+    "turnoutPercent": 87.6,
     "winner": {
-      "name": "SARAVANAN. P.S.T",
-      "party": "DMK",
-      "votes": 222963
+      "name": "AGRI KRISHNAMURTHY. S S",
+      "party": "AIADMK",
+      "votes": 89629
     },
     "runnerUp": {
-      "name": "ELUMALAI. P",
-      "party": "TVK",
-      "votes": 83877
+      "name": "SARAVANAN. P.S.T",
+      "party": "DMK",
+      "votes": 62889
     },
-    "margin": 139086,
-    "marginPercent": 29.61
+    "margin": 26740,
+    "marginPercent": 12.49
   },
   "totalBooths": 302,
   "postal": {
@@ -9974,9 +9974,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 302,
     "form20ParsedBooths": 8,
     "estimatedBooths": 294,
@@ -9986,7 +9986,7 @@
     "postalPct": 0.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -10168,5 +10168,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -10500,20 +10500,20 @@
   },
   "summary": {
     "totalVoters": 289545,
-    "totalVotes": 197949,
-    "turnoutPercent": 68.37,
+    "totalVotes": 204712,
+    "turnoutPercent": 70.7,
     "winner": {
       "name": "SRINATH",
       "party": "TVK",
-      "votes": 97529
+      "votes": 100536
     },
     "runnerUp": {
       "name": "P. GEETHA JEEVAN",
       "party": "DMK",
-      "votes": 60487
+      "votes": 62805
     },
-    "margin": 37042,
-    "marginPercent": 18.71
+    "margin": 37731,
+    "marginPercent": 18.43
   },
   "totalBooths": 260,
   "postal": {
@@ -10633,9 +10633,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 405,
     "form20ParsedBooths": 137,
     "estimatedBooths": 268,
@@ -10645,7 +10645,7 @@
     "postalPct": 0.3,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -10779,5 +10779,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

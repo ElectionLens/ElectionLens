@@ -231,8 +231,8 @@
       ],
       "total": 842,
       "rejected": 0,
-      "name": "Panchayat Union Elementay School, New Building , Facing North Protion , Pattukudi – 614203",
-      "address": "Panchayat Union Elementay School, New Building , Facing North Protion , Pattukudi – 614203",
+      "name": "Panchayat Union Elementay School, New Building , Facing North Protion , Pattukudi \u2013 614203",
+      "address": "Panchayat Union Elementay School, New Building , Facing North Protion , Pattukudi \u2013 614203",
       "area": "1. Govinthanattucheri (R.V) AND (P), Koodalur,pudukandiyur wd 3, 2. Govinthanattucheri (R.V) AND (P), Koodalur therukutheru wd 3, 3. Govinthanattucheri (R.V) AND (P), Pattukudi Adhidravidar street ward 3, 4. Govinthanattucheri (R.V) AND (P), Therkkuadithiravidartheru wd 3, 5. Govinthanattucheri (R.V) AND (P), Melatheru wd 3, 6. Govinthanattucheri (R.V) AND (P), Nadutheru wd 3, 7. Govinthanattucheri (R.V) AND (P), Vadakku theru wd 3, 8. Govinthanattucheri (R.V) AND (P), Pattukudi kudiyanatheru wd 3, 9. Govinthanattucheri (R.V) AND (P), Keezhatheru wd 3, 10. Govinthanattucheri (R.V) AND (P), Therkkutheru wd 3, 11. Govinthanattucheri (R.V) AND (P), Main raod wd 3, 12. Govinthanattucheri (R.V) AND (P), Nadutheru wd 3, 13. Govinthanattucheri (R.V) AND (P), Sivankoil theru wd 3",
       "sourceNote": "archive2_form20"
     },
@@ -7755,9 +7755,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 315,
     "form20ParsedBooths": 315,
     "estimatedBooths": 0,
@@ -7767,6 +7767,24 @@
     "postalPct": 0.8,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 263485,
+    "totalVotes": 207723,
+    "turnoutPercent": 78.84,
+    "winner": {
+      "name": "A.M. SHAHJAHAN",
+      "party": "Indian Union Muslim League",
+      "votes": 69284
+    },
+    "runnerUp": {
+      "name": "AZARUDEEN UDUMAN ALI",
+      "party": "TVK",
+      "votes": 68219
+    },
+    "margin": 1065,
+    "marginPercent": 0.51
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

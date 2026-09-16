@@ -8446,20 +8446,20 @@
   },
   "summary": {
     "totalVoters": 258050,
-    "totalVotes": 195544,
-    "turnoutPercent": 75.78,
+    "totalVotes": 189753,
+    "turnoutPercent": 73.53,
     "winner": {
       "name": "ADVOCATE. KATHIRAVAN. K.K",
       "party": "DMK",
-      "votes": 57729
+      "votes": 59161
     },
     "runnerUp": {
       "name": "GOPIRAJAN. G",
       "party": "TVK",
-      "votes": 55682
+      "votes": 55613
     },
-    "margin": 2047,
-    "marginPercent": 1.05
+    "margin": 3548,
+    "marginPercent": 1.87
   },
   "totalBooths": 377,
   "postal": {
@@ -8558,9 +8558,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 377,
     "form20ParsedBooths": 314,
     "estimatedBooths": 63,
@@ -8570,7 +8570,7 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -8680,5 +8680,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

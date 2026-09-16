@@ -10268,9 +10268,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 322,
     "form20ParsedBooths": 322,
     "estimatedBooths": 0,
@@ -10280,6 +10280,24 @@
     "postalPct": 1.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 274657,
+    "totalVotes": 196280,
+    "turnoutPercent": 71.46,
+    "winner": {
+      "name": "AUSTIN",
+      "party": "DMK",
+      "votes": 69880
+    },
+    "runnerUp": {
+      "name": "BERVIN KINGS G",
+      "party": "TVK",
+      "votes": 62310
+    },
+    "margin": 7570,
+    "marginPercent": 3.86
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

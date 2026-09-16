@@ -6733,9 +6733,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 261,
     "form20ParsedBooths": 261,
     "estimatedBooths": 0,
@@ -6745,6 +6745,24 @@
     "postalPct": 1.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 220607,
+    "totalVotes": 189080,
+    "turnoutPercent": 85.71,
+    "winner": {
+      "name": "KARUPPAIAH.M.V",
+      "party": "TVK",
+      "votes": 63907
+    },
+    "runnerUp": {
+      "name": "VENKATESAN.A",
+      "party": "DMK",
+      "votes": 61229
+    },
+    "margin": 2678,
+    "marginPercent": 1.42
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

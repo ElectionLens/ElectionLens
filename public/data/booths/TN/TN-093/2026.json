@@ -196,8 +196,8 @@
       ],
       "total": 528,
       "rejected": 0,
-      "name": "Block Eduction oﬃce       (1) - Seerappalli(T.P), Seerappalli kaspa Ward-13    All Voters",
-      "address": "Block Eduction oﬃce       (1) - Seerappalli(T.P), Seerappalli kaspa Ward-13    All Voters",
+      "name": "Block Eduction o\ufb03ce       (1) - Seerappalli(T.P), Seerappalli kaspa Ward-13    All Voters",
+      "address": "Block Eduction o\ufb03ce       (1) - Seerappalli(T.P), Seerappalli kaspa Ward-13    All Voters",
       "area": "",
       "sourceNote": "archive2_form20"
     },
@@ -7174,9 +7174,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 304,
     "form20ParsedBooths": 304,
     "estimatedBooths": 0,
@@ -7186,6 +7186,24 @@
     "postalPct": 1.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 246181,
+    "totalVotes": 209687,
+    "turnoutPercent": 85.18,
+    "winner": {
+      "name": "P CHANDRASEKAR",
+      "party": "TVK",
+      "votes": 68815
+    },
+    "runnerUp": {
+      "name": "C CHANDRASEKARAN",
+      "party": "AIADMK",
+      "votes": 66160
+    },
+    "margin": 2655,
+    "marginPercent": 1.27
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

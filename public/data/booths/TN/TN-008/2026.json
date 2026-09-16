@@ -12735,9 +12735,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 365,
     "form20ParsedBooths": 365,
     "estimatedBooths": 0,
@@ -12747,6 +12747,24 @@
     "postalPct": 0.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 387516,
+    "totalVotes": 259986,
+    "turnoutPercent": 67.09,
+    "winner": {
+      "name": "BALAMURUGAN.G",
+      "party": "TVK",
+      "votes": 133339
+    },
+    "runnerUp": {
+      "name": "DR A.P. POORNIMA",
+      "party": "DMK",
+      "votes": 74558
+    },
+    "margin": 58781,
+    "marginPercent": 22.61
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

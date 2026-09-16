@@ -10242,20 +10242,20 @@
   },
   "summary": {
     "totalVoters": 250941,
-    "totalVotes": 471526,
-    "turnoutPercent": 187.9,
+    "totalVotes": 207310,
+    "turnoutPercent": 82.61,
     "winner": {
-      "name": "SARAVANAN. DURAI . K",
-      "party": "DMK",
-      "votes": 143993
-    },
-    "runnerUp": {
       "name": "ARUNMOZHITHEVAN . A",
       "party": "AIADMK",
-      "votes": 58849
+      "votes": 75707
     },
-    "margin": 85144,
-    "marginPercent": 18.06
+    "runnerUp": {
+      "name": "SARAVANAN. DURAI . K",
+      "party": "DMK",
+      "votes": 73220
+    },
+    "margin": 2487,
+    "marginPercent": 1.2
   },
   "totalBooths": 434,
   "postal": {
@@ -10361,9 +10361,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 434,
     "form20ParsedBooths": 269,
     "estimatedBooths": 165,
@@ -10373,7 +10373,7 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -10491,5 +10491,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

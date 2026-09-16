@@ -1200,8 +1200,8 @@
       ],
       "total": 633,
       "rejected": 0,
-      "name": "Panchayat Union Primary School (Terraced Building) West Facing. Kuppasamuthiram Aandankovil – Melavidayal",
-      "address": "Panchayat Union Primary School (Terraced Building) West Facing. Kuppasamuthiram Aandankovil – Melavidayal",
+      "name": "Panchayat Union Primary School (Terraced Building) West Facing. Kuppasamuthiram Aandankovil \u2013 Melavidayal",
+      "address": "Panchayat Union Primary School (Terraced Building) West Facing. Kuppasamuthiram Aandankovil \u2013 Melavidayal",
       "area": "1..Melavidaiyal (R.V) and (P) Mancheritheru wd-4 ,2.Melavidaiyal (R.V) and (P) Kalaingar nagar wd-1, 3.Melavidaiyal (R.V) and (P) Kuppasumuthiram wd-1"
     },
     "TN-169-47": {
@@ -6533,8 +6533,8 @@
       ],
       "total": 750,
       "rejected": 0,
-      "name": "Government Higher Secondary School, Poonthottam Terraced Building Northern Wing – Facing East II nd Hall From South.",
-      "address": "Government Higher Secondary School, Poonthottam Terraced Building Northern Wing – Facing East II nd Hall From South.",
+      "name": "Government Higher Secondary School, Poonthottam Terraced Building Northern Wing \u2013 Facing East II nd Hall From South.",
+      "address": "Government Higher Secondary School, Poonthottam Terraced Building Northern Wing \u2013 Facing East II nd Hall From South.",
       "area": "1.Agarathirumalam (R.V.) and (P) Veeravadi Adi dravidar Street Ward-4 2.Agarathirumalam (R.V.) and (P) Mottathur Ward-4 3.Agarathirumalam (R.V.) and (P) Railway Station Road, Kamarajar Colony, Surya Nagar"
     },
     "TN-169-269": {
@@ -9482,7 +9482,7 @@
       "total": 15,
       "rejected": 0,
       "name": "Peralam Govt. Hr. Sec. School",
-      "address": "Peralam Govt. Hr. Sec. School, Peralam, Facing North Western wing, ( Building Constructed by M.P’s Fund)",
+      "address": "Peralam Govt. Hr. Sec. School, Peralam, Facing North Western wing, ( Building Constructed by M.P\u2019s Fund)",
       "area": "All Voters",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -9507,7 +9507,7 @@
       "total": 15,
       "rejected": 0,
       "name": "Peralam Govt. Hr. Sec. School",
-      "address": "Peralam Govt. Hr. Sec. School, Peralam, Facing North Western wing, ( Building Constructed by M.P’s Fund)",
+      "address": "Peralam Govt. Hr. Sec. School, Peralam, Facing North Western wing, ( Building Constructed by M.P\u2019s Fund)",
       "area": "All Voters",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -9632,7 +9632,7 @@
       "total": 15,
       "rejected": 0,
       "name": "Agarathirumalam Govt. Hr. Sec. Scchool",
-      "address": "Agarathirumalam Govt. Hr. Sec. Scchool, Poonthottam Terraced Building Northern wing – Facing East II nd Hall From South",
+      "address": "Agarathirumalam Govt. Hr. Sec. Scchool, Poonthottam Terraced Building Northern wing \u2013 Facing East II nd Hall From South",
       "area": "All Voters",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -9657,7 +9657,7 @@
       "total": 15,
       "rejected": 0,
       "name": "Agarathirumalam Govt. Hr. Sec. Scchool",
-      "address": "Agarathirumalam Govt. Hr. Sec. Scchool, Poonthottam Terraced Building Northern wing – Facing East II nd Hall From South",
+      "address": "Agarathirumalam Govt. Hr. Sec. Scchool, Poonthottam Terraced Building Northern wing \u2013 Facing East II nd Hall From South",
       "area": "All Voters",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -11789,20 +11789,20 @@
   },
   "summary": {
     "totalVoters": 273734,
-    "totalVotes": 234438,
-    "turnoutPercent": 85.64,
+    "totalVotes": 231444,
+    "turnoutPercent": 84.55,
     "winner": {
       "name": "KAMARAJ. R",
       "party": "AIADMK",
-      "votes": 103183
+      "votes": 103462
     },
     "runnerUp": {
       "name": "MOHAMED MUBARAK",
       "party": "DMK",
-      "votes": 60424
+      "votes": 61738
     },
-    "margin": 42759,
-    "marginPercent": 18.24
+    "margin": 41724,
+    "marginPercent": 18.03
   },
   "totalBooths": 481,
   "postal": {
@@ -11915,9 +11915,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 481,
     "form20ParsedBooths": 337,
     "estimatedBooths": 144,
@@ -11927,7 +11927,7 @@
     "postalPct": 0.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12053,5 +12053,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

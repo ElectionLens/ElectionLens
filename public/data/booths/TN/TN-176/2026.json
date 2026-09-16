@@ -8228,20 +8228,20 @@
   },
   "summary": {
     "totalVoters": 247278,
-    "totalVotes": 177608,
-    "turnoutPercent": 71.83,
+    "totalVotes": 183745,
+    "turnoutPercent": 74.31,
     "winner": {
       "name": "ANNADURAI K",
       "party": "DMK",
-      "votes": 63698
+      "votes": 65963
     },
     "runnerUp": {
       "name": "MATHAN C",
       "party": "TVK",
-      "votes": 50701
+      "votes": 52209
     },
-    "margin": 12997,
-    "marginPercent": 7.32
+    "margin": 13754,
+    "marginPercent": 7.49
   },
   "totalBooths": 383,
   "postal": {
@@ -8333,9 +8333,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 383,
     "form20ParsedBooths": 281,
     "estimatedBooths": 102,
@@ -8345,7 +8345,7 @@
     "postalPct": 0.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -8447,5 +8447,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

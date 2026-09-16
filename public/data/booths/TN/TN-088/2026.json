@@ -23670,20 +23670,20 @@
   },
   "summary": {
     "totalVoters": 301668,
-    "totalVotes": 234267,
-    "turnoutPercent": 77.66,
+    "totalVotes": 234407,
+    "turnoutPercent": 77.7,
     "winner": {
       "name": "LAKSHMANAN.S",
       "party": "TVK",
-      "votes": 119591
+      "votes": 120407
     },
     "runnerUp": {
       "name": "KARTHE.M",
       "party": "PMK",
-      "votes": 45100
+      "votes": 45540
     },
-    "margin": 74491,
-    "marginPercent": 31.8
+    "margin": 74867,
+    "marginPercent": 31.94
   },
   "totalBooths": 566,
   "postal": {
@@ -23915,9 +23915,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 566,
     "form20ParsedBooths": 305,
     "estimatedBooths": 261,
@@ -23927,7 +23927,7 @@
     "postalPct": 0.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -24189,5 +24189,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

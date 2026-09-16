@@ -10052,20 +10052,20 @@
   },
   "summary": {
     "totalVoters": 281513,
-    "totalVotes": 277083,
-    "turnoutPercent": 98.43,
+    "totalVotes": 220628,
+    "turnoutPercent": 78.37,
     "winner": {
-      "name": "KALAIARASU.S",
-      "party": "NTK",
-      "votes": 84228
+      "name": "PANNEERSELVAM.O",
+      "party": "DMK",
+      "votes": 85206
     },
     "runnerUp": {
-      "name": "SELVAMURUGAN.P",
-      "party": "IND",
-      "votes": 77571
+      "name": "PRAKASH.S",
+      "party": "TVK",
+      "votes": 78401
     },
-    "margin": 6657,
-    "marginPercent": 2.4
+    "margin": 6805,
+    "marginPercent": 3.08
   },
   "totalBooths": 383,
   "postal": {
@@ -10185,9 +10185,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 383,
     "form20ParsedBooths": 13,
     "estimatedBooths": 370,
@@ -10197,7 +10197,7 @@
     "postalPct": 0.8,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -10331,5 +10331,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

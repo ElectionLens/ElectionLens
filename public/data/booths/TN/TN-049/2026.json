@@ -2343,8 +2343,8 @@
       ],
       "total": 865,
       "rejected": 0,
-      "name": "Facing,South Building,Mandalavadi –                                                                                   All Voters",
-      "address": "Facing,South Building,Mandalavadi –                                                                                   All Voters",
+      "name": "Facing,South Building,Mandalavadi \u2013                                                                                   All Voters",
+      "address": "Facing,South Building,Mandalavadi \u2013                                                                                   All Voters",
       "area": "",
       "sourceNote": "archive2_form20"
     },
@@ -3063,8 +3063,8 @@
       ],
       "total": 950,
       "rejected": 0,
-      "name": "Building, Reddiyur – 635853          3.Ponneri (R.V), Reddiyur (P) Ward 2 Adidravidar Colony",
-      "address": "Building, Reddiyur – 635853          3.Ponneri (R.V), Reddiyur (P) Ward 2 Adidravidar Colony",
+      "name": "Building, Reddiyur \u2013 635853          3.Ponneri (R.V), Reddiyur (P) Ward 2 Adidravidar Colony",
+      "address": "Building, Reddiyur \u2013 635853          3.Ponneri (R.V), Reddiyur (P) Ward 2 Adidravidar Colony",
       "area": "",
       "sourceNote": "archive2_form20"
     },
@@ -8883,9 +8883,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 287,
     "form20ParsedBooths": 287,
     "estimatedBooths": 0,
@@ -8895,6 +8895,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 242477,
+    "totalVotes": 213042,
+    "turnoutPercent": 87.86,
+    "winner": {
+      "name": "VEERAMANI K.C.",
+      "party": "AIADMK",
+      "votes": 78633
+    },
+    "runnerUp": {
+      "name": "MUNISAMY C",
+      "party": "TVK",
+      "votes": 62550
+    },
+    "margin": 16083,
+    "marginPercent": 7.55
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

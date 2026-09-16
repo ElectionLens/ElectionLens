@@ -6579,9 +6579,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 266,
     "form20ParsedBooths": 266,
     "estimatedBooths": 0,
@@ -6591,6 +6591,24 @@
     "postalPct": 1.3,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 246157,
+    "totalVotes": 161801,
+    "turnoutPercent": 65.73,
+    "winner": {
+      "name": "A.KALLANAI",
+      "party": "TVK",
+      "votes": 72853
+    },
+    "runnerUp": {
+      "name": "G.THALAPATHI",
+      "party": "DMK",
+      "votes": 54815
+    },
+    "margin": 18038,
+    "marginPercent": 11.15
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

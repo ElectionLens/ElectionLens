@@ -13064,20 +13064,20 @@
   },
   "summary": {
     "totalVoters": 275132,
-    "totalVotes": 197567,
-    "turnoutPercent": 71.81,
+    "totalVotes": 199931,
+    "turnoutPercent": 72.67,
     "winner": {
       "name": "DR.SATHISH CHRISTOPHER",
       "party": "TVK",
-      "votes": 69400
+      "votes": 69947
     },
     "runnerUp": {
       "name": "APPAVU.M",
       "party": "DMK",
-      "votes": 56640
+      "votes": 57634
     },
-    "margin": 12760,
-    "marginPercent": 6.46
+    "margin": 12313,
+    "marginPercent": 6.16
   },
   "totalBooths": 389,
   "postal": {
@@ -13253,9 +13253,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 389,
     "form20ParsedBooths": 317,
     "estimatedBooths": 72,
@@ -13265,7 +13265,7 @@
     "postalPct": 0.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -13463,5 +13463,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

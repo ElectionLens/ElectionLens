@@ -12164,20 +12164,20 @@
   },
   "summary": {
     "totalVoters": 271077,
-    "totalVotes": 151430,
-    "turnoutPercent": 55.86,
+    "totalVotes": 150594,
+    "turnoutPercent": 55.55,
     "winner": {
       "name": "VENKATARAMANAN. P",
       "party": "TVK",
-      "votes": 68671
+      "votes": 70070
     },
     "runnerUp": {
       "name": "VELU. DHA",
       "party": "DMK",
-      "votes": 40220
+      "votes": 41098
     },
-    "margin": 28451,
-    "marginPercent": 18.79
+    "margin": 28972,
+    "marginPercent": 19.24
   },
   "totalBooths": 410,
   "postal": {
@@ -12325,9 +12325,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 410,
     "form20ParsedBooths": 267,
     "estimatedBooths": 143,
@@ -12337,7 +12337,7 @@
     "postalPct": 0.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12503,5 +12503,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

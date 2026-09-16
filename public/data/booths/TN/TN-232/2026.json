@@ -7545,20 +7545,20 @@
   },
   "summary": {
     "totalVoters": 242802,
-    "totalVotes": 251566,
-    "turnoutPercent": 103.61,
+    "totalVotes": 180555,
+    "turnoutPercent": 74.36,
     "winner": {
-      "name": "KRISHNA KUMAR. S",
-      "party": "TVK",
-      "votes": 37374
+      "name": "CHELLASWAMY. R",
+      "party": "CPM",
+      "votes": 68938
     },
     "runnerUp": {
-      "name": "RAMESH. P",
-      "party": "BJP",
-      "votes": 35400
+      "name": "KRISHNA KUMAR. S",
+      "party": "TVK",
+      "votes": 53369
     },
-    "margin": 1974,
-    "marginPercent": 0.78
+    "margin": 15569,
+    "marginPercent": 8.62
   },
   "totalBooths": 348,
   "postal": {
@@ -7751,9 +7751,9 @@
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 348,
     "form20ParsedBooths": 194,
     "estimatedBooths": 154,
@@ -7763,6 +7763,7 @@
     "postalPct": 1.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

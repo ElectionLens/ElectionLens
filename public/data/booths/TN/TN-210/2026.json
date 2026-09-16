@@ -12395,9 +12395,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 378,
     "form20ParsedBooths": 378,
     "estimatedBooths": 0,
@@ -12407,6 +12407,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 293677,
+    "totalVotes": 220278,
+    "turnoutPercent": 75.01,
+    "winner": {
+      "name": "RAJEEV",
+      "party": "TVK",
+      "votes": 69551
+    },
+    "runnerUp": {
+      "name": "RM. KARUMANICKAM",
+      "party": "INC",
+      "votes": 67038
+    },
+    "margin": 2513,
+    "marginPercent": 1.14
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

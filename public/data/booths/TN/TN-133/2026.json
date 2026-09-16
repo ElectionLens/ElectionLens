@@ -8723,9 +8723,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 327,
     "form20ParsedBooths": 327,
     "estimatedBooths": 0,
@@ -8735,6 +8735,24 @@
     "postalPct": 0.8,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 265818,
+    "totalVotes": 226554,
+    "turnoutPercent": 85.23,
+    "winner": {
+      "name": "SAMINATHAN. T",
+      "party": "DMK",
+      "votes": 84948
+    },
+    "runnerUp": {
+      "name": "PARAMASIVAM. V.P.B.",
+      "party": "AIADMK",
+      "votes": 74885
+    },
+    "margin": 10063,
+    "marginPercent": 4.44
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

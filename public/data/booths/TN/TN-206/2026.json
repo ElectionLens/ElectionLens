@@ -6444,7 +6444,7 @@
       "total": 546,
       "rejected": 0,
       "name": "School, East Building T T Krishnamaachari Road Virudhunagar-626001 1.Allampatti(R.V)",
-      "address": "School,East Building T T Krishnamaachari Road Virudhunagar-626001 1.Allampatti(R.V), Kooraikundu (P) Ward 3 Kottaipatti, Allampatti 2nd Street All Voters 34 விருதுநகர் Parliamentary Constituency station No. Location and name of building in which Polling Station located Polling Areas Whether for All Voters or Men only or Women",
+      "address": "School,East Building T T Krishnamaachari Road Virudhunagar-626001 1.Allampatti(R.V), Kooraikundu (P) Ward 3 Kottaipatti, Allampatti 2nd Street All Voters 34 \u0bb5\u0bbf\u0bb0\u0bc1\u0ba4\u0bc1\u0ba8\u0b95\u0bb0\u0bcd Parliamentary Constituency station No. Location and name of building in which Polling Station located Polling Areas Whether for All Voters or Men only or Women",
       "area": ""
     },
     "TN-206-203A(W)": {
@@ -9005,20 +9005,20 @@
   },
   "summary": {
     "totalVoters": 226907,
-    "totalVotes": 162743,
-    "turnoutPercent": 71.72,
+    "totalVotes": 167832,
+    "turnoutPercent": 73.97,
     "winner": {
       "name": "SELVAM P",
       "party": "TVK",
-      "votes": 61797
+      "votes": 63653
     },
     "runnerUp": {
       "name": "VIJAYAPRABHAKAR",
       "party": "DMDK",
-      "votes": 52633
+      "votes": 54262
     },
-    "margin": 9164,
-    "marginPercent": 5.63
+    "margin": 9391,
+    "marginPercent": 5.6
   },
   "totalBooths": 350,
   "postal": {
@@ -9138,9 +9138,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 350,
     "form20ParsedBooths": 202,
     "estimatedBooths": 148,
@@ -9150,7 +9150,7 @@
     "postalPct": 0.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9284,5 +9284,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

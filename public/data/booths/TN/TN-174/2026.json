@@ -7011,9 +7011,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 311,
     "form20ParsedBooths": 311,
     "estimatedBooths": 0,
@@ -7023,6 +7023,24 @@
     "postalPct": 1.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 296498,
+    "totalVotes": 198798,
+    "turnoutPercent": 67.05,
+    "winner": {
+      "name": "R. VIJAYSARAVANAN",
+      "party": "TVK",
+      "votes": 87705
+    },
+    "runnerUp": {
+      "name": "SHAN. RAMANATHAN",
+      "party": "DMK",
+      "votes": 70750
+    },
+    "margin": 16955,
+    "marginPercent": 8.53
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

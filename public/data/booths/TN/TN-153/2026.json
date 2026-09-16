@@ -9435,20 +9435,20 @@
   },
   "summary": {
     "totalVoters": 221050,
-    "totalVotes": 416638,
-    "turnoutPercent": 188.48,
+    "totalVotes": 168780,
+    "turnoutPercent": 76.35,
     "winner": {
-      "name": "SABA.RAJENDRAN",
-      "party": "DMK",
-      "votes": 105841
-    },
-    "runnerUp": {
       "name": "RAJENDRAN.R",
       "party": "AIADMK",
-      "votes": 86948
+      "votes": 63731
     },
-    "margin": 18893,
-    "marginPercent": 4.53
+    "runnerUp": {
+      "name": "SABA.RAJENDRAN",
+      "party": "DMK",
+      "votes": 52769
+    },
+    "margin": 10962,
+    "marginPercent": 6.49
   },
   "totalBooths": 438,
   "postal": {
@@ -9540,9 +9540,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 438,
     "form20ParsedBooths": 284,
     "estimatedBooths": 0,
@@ -9552,7 +9552,7 @@
     "postalPct": 0.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9654,5 +9654,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

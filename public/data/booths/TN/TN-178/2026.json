@@ -553,7 +553,7 @@
       "total": 291,
       "rejected": 0,
       "name": "Themmavur, Karadi vayal Muthuraja theru",
-      "address": "Themmavur , Karadi vayal Muthuraja theru, Themmavur , karadivayal AthiDravida Theru, Themmavur , Vaduthavayal, Themmavur , Vaduthavadi, Themmavur , Vidani Vayal,999) , 28 Panchayat Union Middle School New Building, North Building, East Facing, I – III Standard Kunnandarkoil 622502",
+      "address": "Themmavur , Karadi vayal Muthuraja theru, Themmavur , karadivayal AthiDravida Theru, Themmavur , Vaduthavayal, Themmavur , Vaduthavadi, Themmavur , Vidani Vayal,999) , 28 Panchayat Union Middle School New Building, North Building, East Facing, I \u2013 III Standard Kunnandarkoil 622502",
       "area": ""
     },
     "TN-178-23M": {
@@ -712,8 +712,8 @@
       ],
       "total": 412,
       "rejected": 0,
-      "name": "Panchayat Union Middle School New Building, North Building, East Facing, I – III Standard, Kunnandarkoil 622502",
-      "address": "Panchayat Union Middle School New Building, North Building, East Facing, I – III Standard, Kunnandarkoil 622502",
+      "name": "Panchayat Union Middle School New Building, North Building, East Facing, I \u2013 III Standard, Kunnandarkoil 622502",
+      "address": "Panchayat Union Middle School New Building, North Building, East Facing, I \u2013 III Standard, Kunnandarkoil 622502",
       "area": "1) KunnandarKoil (R.V) KunnandarKoil (P), Ward-1 Ankurapatti,2) KunnandarKoil (R.V) KunnandarKoil (P), Ward-1 BalaPatti,3) KunnandarKoil (R.V) KunnandarKoil (P), Ward-1 Kogoor,4) KunnandarKoil (R.V) KunnandarKoil (P), Ward-1 Millathupatti,999) OVERSEAS ELECTORS, OVERSEAS ELECTORS"
     },
     "TN-178-31": {
@@ -6165,20 +6165,20 @@
   },
   "summary": {
     "totalVoters": 211712,
-    "totalVotes": 251819,
-    "turnoutPercent": 118.94,
+    "totalVotes": 167618,
+    "turnoutPercent": 79.17,
     "winner": {
-      "name": "NOTA",
-      "party": "NOTA",
-      "votes": 56333
+      "name": "N. SUBRAMANIAN",
+      "party": "TVK",
+      "votes": 58795
     },
     "runnerUp": {
-      "name": "M. CHINNADURAI",
-      "party": "CPM",
-      "votes": 47428
+      "name": "C. UTHAYAKUMAR",
+      "party": "BJP",
+      "votes": 47756
     },
-    "margin": 8905,
-    "marginPercent": 3.54
+    "margin": 11039,
+    "marginPercent": 6.59
   },
   "totalBooths": 302,
   "postal": {
@@ -6263,9 +6263,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 302,
     "form20ParsedBooths": 254,
     "estimatedBooths": 48,
@@ -6275,7 +6275,7 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -6369,5 +6369,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

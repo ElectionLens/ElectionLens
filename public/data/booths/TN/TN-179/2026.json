@@ -12006,20 +12006,20 @@
   },
   "summary": {
     "totalVoters": 226411,
-    "totalVotes": 238248,
-    "turnoutPercent": 105.23,
+    "totalVotes": 203921,
+    "turnoutPercent": 90.07,
     "winner": {
-      "name": "SATHYALAKSHMI. K",
-      "party": "NTK",
-      "votes": 91351
-    },
-    "runnerUp": {
       "name": "VIJAYABASKAR. C",
       "party": "AIADMK",
-      "votes": 38138
+      "votes": 105773
     },
-    "margin": 53213,
-    "marginPercent": 22.34
+    "runnerUp": {
+      "name": "MURUGESAN. P",
+      "party": "TVK",
+      "votes": 43700
+    },
+    "margin": 62073,
+    "marginPercent": 30.44
   },
   "totalBooths": 326,
   "postal": {
@@ -12216,9 +12216,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 326,
     "form20ParsedBooths": 229,
     "estimatedBooths": 97,
@@ -12228,7 +12228,7 @@
     "postalPct": 0.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12450,5 +12450,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -10964,20 +10964,20 @@
   },
   "summary": {
     "totalVoters": 236459,
-    "totalVotes": 270013,
-    "turnoutPercent": 114.19,
+    "totalVotes": 225257,
+    "turnoutPercent": 95.26,
     "winner": {
-      "name": "GOPI. R.",
-      "party": "TVK",
-      "votes": 101533
+      "name": "ANBALAGAN. K.P.",
+      "party": "AIADMK",
+      "votes": 102807
     },
     "runnerUp": {
-      "name": "NOTA",
-      "party": "NOTA",
-      "votes": 63211
+      "name": "GOPI. R.",
+      "party": "TVK",
+      "votes": 63765
     },
-    "margin": 38322,
-    "marginPercent": 14.19
+    "margin": 39042,
+    "marginPercent": 17.33
   },
   "totalBooths": 441,
   "postal": {
@@ -11090,9 +11090,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 441,
     "form20ParsedBooths": 162,
     "estimatedBooths": 279,
@@ -11102,7 +11102,7 @@
     "postalPct": 0.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -11228,5 +11228,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

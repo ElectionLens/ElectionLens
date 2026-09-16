@@ -8043,9 +8043,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 327,
     "form20ParsedBooths": 327,
     "estimatedBooths": 0,
@@ -8055,6 +8055,24 @@
     "postalPct": 0.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 268994,
+    "totalVotes": 226819,
+    "turnoutPercent": 84.32,
+    "winner": {
+      "name": "DR.RAVI.M.S",
+      "party": "TVK",
+      "votes": 110439
+    },
+    "runnerUp": {
+      "name": "DURAI CHANDRASEKAR",
+      "party": "INC",
+      "votes": 54671
+    },
+    "margin": 55768,
+    "marginPercent": 24.59
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -8512,7 +8512,7 @@
       "total": 511,
       "rejected": 0,
       "name": "R. Veerachamy Pri, School",
-      "address": "R. Veerachamy Pri, School, Muthusubbiahpuram – 626111. Entrance Building, North Portion",
+      "address": "R. Veerachamy Pri, School, Muthusubbiahpuram \u2013 626111. Entrance Building, North Portion",
       "area": "All Voters"
     },
     "TN-202-199": {
@@ -11339,20 +11339,20 @@
   },
   "summary": {
     "totalVoters": 241856,
-    "totalVotes": 178702,
-    "turnoutPercent": 73.89,
+    "totalVotes": 183020,
+    "turnoutPercent": 75.67,
     "winner": {
       "name": "JEGADESHWARI. K",
       "party": "TVK",
-      "votes": 64245
+      "votes": 65548
     },
     "runnerUp": {
       "name": "THANGAPANDIAN. S",
       "party": "DMK",
-      "votes": 53551
+      "votes": 54943
     },
-    "margin": 10694,
-    "marginPercent": 5.98
+    "margin": 10605,
+    "marginPercent": 5.79
   },
   "totalBooths": 348,
   "postal": {
@@ -11521,9 +11521,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 348,
     "form20ParsedBooths": 294,
     "estimatedBooths": 54,
@@ -11533,7 +11533,7 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -11723,5 +11723,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

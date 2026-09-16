@@ -12343,20 +12343,20 @@
   },
   "summary": {
     "totalVoters": 269181,
-    "totalVotes": 280517,
-    "turnoutPercent": 104.21,
+    "totalVotes": 228548,
+    "turnoutPercent": 84.9,
     "winner": {
-      "name": "JAYABALAN G.",
-      "party": "Vada Tamil Nadu Munnetra Katchi",
-      "votes": 87852
+      "name": "VAITHILINGAM G.",
+      "party": "PMK",
+      "votes": 88992
     },
     "runnerUp": {
       "name": "KANNAN KA.SO.KA.",
       "party": "DMK",
-      "votes": 70726
+      "votes": 70502
     },
-    "margin": 17126,
-    "marginPercent": 6.11
+    "margin": 18490,
+    "marginPercent": 8.09
   },
   "totalBooths": 408,
   "postal": {
@@ -12504,9 +12504,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 408,
     "form20ParsedBooths": 28,
     "estimatedBooths": 380,
@@ -12516,7 +12516,7 @@
     "postalPct": 0.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12682,5 +12682,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

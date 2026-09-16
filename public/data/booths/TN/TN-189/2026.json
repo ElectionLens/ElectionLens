@@ -10621,9 +10621,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 400,
     "form20ParsedBooths": 400,
     "estimatedBooths": 0,
@@ -10633,6 +10633,24 @@
     "postalPct": 1.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 333462,
+    "totalVotes": 271566,
+    "turnoutPercent": 81.44,
+    "winner": {
+      "name": "KARTHIKEYAN S",
+      "party": "TVK",
+      "votes": 118777
+    },
+    "runnerUp": {
+      "name": "MOORTHY P",
+      "party": "DMK",
+      "votes": 102230
+    },
+    "margin": 16547,
+    "marginPercent": 6.09
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

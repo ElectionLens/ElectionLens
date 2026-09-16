@@ -17053,20 +17053,20 @@
   },
   "summary": {
     "totalVoters": 246630,
-    "totalVotes": 412233,
-    "turnoutPercent": 167.15,
+    "totalVotes": 190378,
+    "turnoutPercent": 77.19,
     "winner": {
-      "name": "N. RAMACHANDRAN",
-      "party": "BJP",
-      "votes": 97511
+      "name": "V. MUTHURAJA",
+      "party": "DMK",
+      "votes": 66825
     },
     "runnerUp": {
       "name": "K.M. SHARIFF",
       "party": "TVK",
-      "votes": 78128
+      "votes": 64958
     },
-    "margin": 19383,
-    "marginPercent": 4.7
+    "margin": 1867,
+    "marginPercent": 0.98
   },
   "totalBooths": 418,
   "postal": {
@@ -17291,9 +17291,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 418,
     "form20ParsedBooths": 282,
     "estimatedBooths": 136,
@@ -17303,7 +17303,7 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -17557,5 +17557,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

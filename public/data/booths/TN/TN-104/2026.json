@@ -7858,9 +7858,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 306,
     "form20ParsedBooths": 306,
     "estimatedBooths": 0,
@@ -7870,6 +7870,24 @@
     "postalPct": 1.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 241179,
+    "totalVotes": 208323,
+    "turnoutPercent": 86.38,
+    "winner": {
+      "name": "KARUPPANAN. K.C",
+      "party": "AIADMK",
+      "votes": 75577
+    },
+    "runnerUp": {
+      "name": "BALAKRISHNAN",
+      "party": "TVK",
+      "votes": 68181
+    },
+    "margin": 7396,
+    "marginPercent": 3.55
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

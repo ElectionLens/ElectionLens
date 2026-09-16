@@ -9153,20 +9153,20 @@
   },
   "summary": {
     "totalVoters": 229441,
-    "totalVotes": 246790,
-    "turnoutPercent": 107.56,
+    "totalVotes": 182612,
+    "turnoutPercent": 79.59,
     "winner": {
-      "name": "CHINTHAMANI.C",
-      "party": "TVK",
-      "votes": 55592
+      "name": "REGUPATHY.S",
+      "party": "DMK",
+      "votes": 58201
     },
     "runnerUp": {
-      "name": "NOTA",
-      "party": "NOTA",
-      "votes": 54416
+      "name": "CHINTHAMANI.C",
+      "party": "TVK",
+      "votes": 56709
     },
-    "margin": 1176,
-    "marginPercent": 0.48
+    "margin": 1492,
+    "marginPercent": 0.82
   },
   "totalBooths": 374,
   "postal": {
@@ -9279,9 +9279,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 374,
     "form20ParsedBooths": 298,
     "estimatedBooths": 76,
@@ -9291,7 +9291,7 @@
     "postalPct": 0.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9417,5 +9417,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

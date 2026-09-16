@@ -8745,20 +8745,20 @@
   },
   "summary": {
     "totalVoters": 288968,
-    "totalVotes": 584909,
-    "turnoutPercent": 202.41,
+    "totalVotes": 249626,
+    "turnoutPercent": 86.39,
     "winner": {
-      "name": "RAJEEVGANDHI S",
-      "party": "AIADMK",
-      "votes": 273496
+      "name": "ARUL VIGNESH C",
+      "party": "TVK",
+      "votes": 81132
     },
     "runnerUp": {
-      "name": "VIGNESH G",
-      "party": "IND",
-      "votes": 78771
+      "name": "RAJEEVGANDHI S",
+      "party": "AIADMK",
+      "votes": 80334
     },
-    "margin": 194725,
-    "marginPercent": 33.29
+    "margin": 798,
+    "marginPercent": 0.32
   },
   "totalBooths": 402,
   "postal": {
@@ -8850,9 +8850,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 402,
     "form20ParsedBooths": 182,
     "estimatedBooths": 220,
@@ -8862,7 +8862,7 @@
     "postalPct": 0.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -8964,5 +8964,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

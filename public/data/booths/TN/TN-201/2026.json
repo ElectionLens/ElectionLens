@@ -11825,20 +11825,20 @@
   },
   "summary": {
     "totalVoters": 291001,
-    "totalVotes": 268130,
-    "turnoutPercent": 92.14,
+    "totalVotes": 210574,
+    "turnoutPercent": 72.36,
     "winner": {
-      "name": "RAJAMOHAMMED T",
-      "party": "IND",
-      "votes": 84340
+      "name": "JEGANATHMISHRA PLA",
+      "party": "TVK",
+      "votes": 85394
     },
     "runnerUp": {
-      "name": "JAKKAIYAN S.T.K.",
-      "party": "AIADMK",
-      "votes": 83596
+      "name": "ERAMAKRISHNAN N",
+      "party": "DMK",
+      "votes": 84643
     },
-    "margin": 744,
-    "marginPercent": 0.28
+    "margin": 751,
+    "marginPercent": 0.36
   },
   "totalBooths": 392,
   "postal": {
@@ -11986,9 +11986,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 392,
     "form20ParsedBooths": 66,
     "estimatedBooths": 326,
@@ -11998,7 +11998,7 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12164,5 +12164,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -5327,7 +5327,7 @@
       "rejected": 0,
       "name": "Vandipalayam, 607004 Govt, Higher sec School, NABARD Building East Side Room, Vandipalayam -607 004",
       "address": "Vandipalayam, 607004 Govt, Higher sec School, NABARD Building East Side Room, Vandipalayam -607 004",
-      "area": "1. Cuddalore ©,Ward 31, singaram Mudali Street 2. Cuddalore (C)Ward 31, Thoppa Mudhali Street , 3. Cuddalore (C)Ward 30 Kannagi Nagar."
+      "area": "1. Cuddalore \u00a9,Ward 31, singaram Mudali Street 2. Cuddalore (C)Ward 31, Thoppa Mudhali Street , 3. Cuddalore (C)Ward 30 Kannagi Nagar."
     },
     "TN-155-210": {
       "votes": [
@@ -12617,20 +12617,20 @@
   },
   "summary": {
     "totalVoters": 243414,
-    "totalVotes": 482974,
-    "turnoutPercent": 198.42,
+    "totalVotes": 190378,
+    "turnoutPercent": 78.21,
     "winner": {
-      "name": "A.S.CHANDARASEKARAN",
-      "party": "INC",
-      "votes": 175448
+      "name": "B.RAJKUMAR",
+      "party": "TVK",
+      "votes": 70856
     },
     "runnerUp": {
-      "name": "M.C.SAMPATH",
-      "party": "AIADMK",
-      "votes": 73165
+      "name": "A.S.CHANDARASEKARAN",
+      "party": "INC",
+      "votes": 55337
     },
-    "margin": 102283,
-    "marginPercent": 21.18
+    "margin": 15519,
+    "marginPercent": 8.15
   },
   "totalBooths": 490,
   "postal": {
@@ -12750,9 +12750,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 490,
     "form20ParsedBooths": 230,
     "estimatedBooths": 260,
@@ -12762,7 +12762,7 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12896,5 +12896,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

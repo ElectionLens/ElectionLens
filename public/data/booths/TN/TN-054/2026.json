@@ -8427,9 +8427,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 343,
     "form20ParsedBooths": 343,
     "estimatedBooths": 0,
@@ -8439,6 +8439,24 @@
     "postalPct": 1.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 252294,
+    "totalVotes": 222608,
+    "turnoutPercent": 88.23,
+    "winner": {
+      "name": "SRINIVASAN.P.S",
+      "party": "DMK",
+      "votes": 74691
+    },
+    "runnerUp": {
+      "name": "MUNUSAMY.K.P",
+      "party": "AIADMK",
+      "votes": 74553
+    },
+    "margin": 138,
+    "marginPercent": 0.06
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

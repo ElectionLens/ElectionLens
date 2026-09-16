@@ -9633,9 +9633,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 362,
     "form20ParsedBooths": 362,
     "estimatedBooths": 0,
@@ -9645,6 +9645,24 @@
     "postalPct": 1.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 299023,
+    "totalVotes": 271119,
+    "turnoutPercent": 90.67,
+    "winner": {
+      "name": "MANI. R",
+      "party": "AIADMK",
+      "votes": 112246
+    },
+    "runnerUp": {
+      "name": "ADHIYAMAAN. R.V",
+      "party": "TVK",
+      "votes": 97707
+    },
+    "margin": 14539,
+    "marginPercent": 5.36
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

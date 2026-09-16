@@ -8209,20 +8209,20 @@
   },
   "summary": {
     "totalVoters": 227613,
-    "totalVotes": 187843,
-    "turnoutPercent": 82.53,
+    "totalVotes": 189892,
+    "turnoutPercent": 83.43,
     "winner": {
-      "name": "ANANDALAI THANGARAJ. M",
-      "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
-      "votes": 73649
+      "name": "THENRAL KUMAR. E",
+      "party": "TVK",
+      "votes": 74305
     },
     "runnerUp": {
-      "name": "DR. RAJESWARI. R",
-      "party": "DMK",
-      "votes": 53465
+      "name": "JEGAN MOORTHY. M",
+      "party": "AIADMK",
+      "votes": 54050
     },
-    "margin": 20184,
-    "marginPercent": 10.75
+    "margin": 20255,
+    "marginPercent": 10.67
   },
   "totalBooths": 377,
   "postal": {
@@ -8314,9 +8314,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 377,
     "form20ParsedBooths": 168,
     "estimatedBooths": 209,
@@ -8326,7 +8326,7 @@
     "postalPct": 0.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -8428,5 +8428,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

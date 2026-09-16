@@ -8265,8 +8265,8 @@
       ],
       "total": 485,
       "rejected": 0,
-      "name": "SBM High School           (1) - Namakkal (M), Ganesapuram ﬁrst Street        All Voters",
-      "address": "SBM High School           (1) - Namakkal (M), Ganesapuram ﬁrst Street        All Voters",
+      "name": "SBM High School           (1) - Namakkal (M), Ganesapuram \ufb01rst Street        All Voters",
+      "address": "SBM High School           (1) - Namakkal (M), Ganesapuram \ufb01rst Street        All Voters",
       "area": "",
       "sourceNote": "archive2_form20"
     },
@@ -12157,9 +12157,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 310,
     "form20ParsedBooths": 310,
     "estimatedBooths": 0,
@@ -12169,6 +12169,24 @@
     "postalPct": 1.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 263152,
+    "totalVotes": 212283,
+    "turnoutPercent": 80.67,
+    "winner": {
+      "name": "DILIP C S",
+      "party": "TVK",
+      "votes": 79744
+    },
+    "runnerUp": {
+      "name": "SRIDEVI MOHAN P S",
+      "party": "AIADMK",
+      "votes": 68736
+    },
+    "margin": 11008,
+    "marginPercent": 5.19
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -9873,9 +9873,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 320,
     "form20ParsedBooths": 320,
     "estimatedBooths": 0,
@@ -9885,6 +9885,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 264518,
+    "totalVotes": 216652,
+    "turnoutPercent": 81.9,
+    "winner": {
+      "name": "GANESHKUMAR A",
+      "party": "PMK",
+      "votes": 78201
+    },
+    "runnerUp": {
+      "name": "GINGEE MASTHAN K S",
+      "party": "DMK",
+      "votes": 65556
+    },
+    "margin": 12645,
+    "marginPercent": 5.84
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -9743,9 +9743,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 327,
     "form20ParsedBooths": 327,
     "estimatedBooths": 0,
@@ -9755,6 +9755,24 @@
     "postalPct": 1.3,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 291217,
+    "totalVotes": 231105,
+    "turnoutPercent": 79.36,
+    "winner": {
+      "name": "VENKATACHALAM. G",
+      "party": "AIADMK",
+      "votes": 86498
+    },
+    "runnerUp": {
+      "name": "MIDHUN CHAKRAVARTHY. M",
+      "party": "DMK",
+      "votes": 67393
+    },
+    "margin": 19105,
+    "marginPercent": 8.27
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -14711,20 +14711,20 @@
   },
   "summary": {
     "totalVoters": 299551,
-    "totalVotes": 242460,
-    "turnoutPercent": 80.94,
+    "totalVotes": 244319,
+    "turnoutPercent": 81.56,
     "winner": {
       "name": "SUNILANAND",
       "party": "TVK",
-      "votes": 75392
+      "votes": 75664
     },
     "runnerUp": {
       "name": "SMT.KAVITHA KALYANASUNDARAM",
       "party": "DMK",
-      "votes": 67215
+      "votes": 67896
     },
-    "margin": 8177,
-    "marginPercent": 3.37
+    "margin": 7768,
+    "marginPercent": 3.18
   },
   "totalBooths": 452,
   "postal": {
@@ -14893,9 +14893,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 452,
     "form20ParsedBooths": 354,
     "estimatedBooths": 98,
@@ -14905,7 +14905,7 @@
     "postalPct": 0.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -15095,5 +15095,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

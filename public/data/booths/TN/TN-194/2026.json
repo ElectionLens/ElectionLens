@@ -8383,9 +8383,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 327,
     "form20ParsedBooths": 327,
     "estimatedBooths": 0,
@@ -8395,6 +8395,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 309726,
+    "totalVotes": 216403,
+    "turnoutPercent": 69.87,
+    "winner": {
+      "name": "THANGAPANDI SR",
+      "party": "TVK",
+      "votes": 88250
+    },
+    "runnerUp": {
+      "name": "BALAJI R",
+      "party": "DMK",
+      "votes": 76319
+    },
+    "margin": 11931,
+    "marginPercent": 5.51
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

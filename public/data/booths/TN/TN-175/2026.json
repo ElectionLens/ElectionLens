@@ -6423,9 +6423,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 314,
     "form20ParsedBooths": 314,
     "estimatedBooths": 0,
@@ -6435,6 +6435,24 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 245037,
+    "totalVotes": 195304,
+    "turnoutPercent": 79.7,
+    "winner": {
+      "name": "R. VAITHILINGAM",
+      "party": "DMK",
+      "votes": 86759
+    },
+    "runnerUp": {
+      "name": "DR. K. ARVIND",
+      "party": "TVK",
+      "votes": 51731
+    },
+    "margin": 35028,
+    "marginPercent": 17.94
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

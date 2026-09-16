@@ -9484,20 +9484,20 @@
   },
   "summary": {
     "totalVoters": 176353,
-    "totalVotes": 99307,
-    "turnoutPercent": 56.31,
+    "totalVotes": 99622,
+    "turnoutPercent": 56.49,
     "winner": {
       "name": "P K SEKARBABU",
       "party": "DMK",
-      "votes": 45073
+      "votes": 45254
     },
     "runnerUp": {
       "name": "SINORA P S ASHOK",
       "party": "TVK",
-      "votes": 33426
+      "votes": 33504
     },
-    "margin": 11647,
-    "marginPercent": 11.73
+    "margin": 11750,
+    "marginPercent": 11.79
   },
   "totalBooths": 280,
   "postal": {
@@ -9673,9 +9673,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 280,
     "form20ParsedBooths": 191,
     "estimatedBooths": 89,
@@ -9685,7 +9685,7 @@
     "postalPct": 0.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9883,5 +9883,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -23643,7 +23643,7 @@
       "total": 540,
       "rejected": 0,
       "name": "Karur Municipality Panchayat Union Middle School",
-      "address": "Karur Municipality Panchayat Union Middle School, (CSIDS – New Building) Western Building North Facing Western Wing Rayanur H/o Thoranakkalpatty",
+      "address": "Karur Municipality Panchayat Union Middle School, (CSIDS \u2013 New Building) Western Building North Facing Western Wing Rayanur H/o Thoranakkalpatty",
       "area": "",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -23733,7 +23733,7 @@
       "total": 505,
       "rejected": 0,
       "name": "Karur Municipality Panchayat Union Middle School",
-      "address": "Karur Municipality Panchayat Union Middle School, (CSIDS – New Building) Western Building East Facing Southen wing, Rayanur 639003 H/o Thoranakkalpatty",
+      "address": "Karur Municipality Panchayat Union Middle School, (CSIDS \u2013 New Building) Western Building East Facing Southen wing, Rayanur 639003 H/o Thoranakkalpatty",
       "area": "All Voters",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -23823,7 +23823,7 @@
       "total": 471,
       "rejected": 0,
       "name": "Karur Municipality Panchayat Union Middle School",
-      "address": "Karur Municipality Panchayat Union Middle School, (CSIDS – New Building) Western Building East facing Northen wing Rayanur 639003 H/o Thoranakkalpatty",
+      "address": "Karur Municipality Panchayat Union Middle School, (CSIDS \u2013 New Building) Western Building East facing Northen wing Rayanur 639003 H/o Thoranakkalpatty",
       "area": "All Voters",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -33097,20 +33097,20 @@
   },
   "summary": {
     "totalVoters": 248067,
-    "totalVotes": 254511,
-    "turnoutPercent": 102.6,
+    "totalVotes": 216829,
+    "turnoutPercent": 87.41,
     "winner": {
-      "name": "KARUPPAIYA. R",
-      "party": "NTK",
-      "votes": 70887
+      "name": "M.R. VIJAYABHASKAR",
+      "party": "AIADMK",
+      "votes": 71542
     },
     "runnerUp": {
-      "name": "KATHIRVEL. K",
-      "party": "IND",
-      "votes": 69333
+      "name": "MATHIYALAGAN  V.P",
+      "party": "TVK",
+      "votes": 69721
     },
-    "margin": 1554,
-    "marginPercent": 0.61
+    "margin": 1821,
+    "marginPercent": 0.84
   },
   "totalBooths": 363,
   "postal": {
@@ -33678,9 +33678,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 363,
     "form20ParsedBooths": 64,
     "estimatedBooths": 299,
@@ -33690,7 +33690,7 @@
     "postalPct": 0.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -34336,5 +34336,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

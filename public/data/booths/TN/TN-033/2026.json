@@ -9657,20 +9657,20 @@
   },
   "summary": {
     "totalVoters": 296921,
-    "totalVotes": 328665,
-    "turnoutPercent": 110.69,
+    "totalVotes": 262409,
+    "turnoutPercent": 88.38,
     "winner": {
-      "name": "DR.D.VINOTH KUMAR",
-      "party": "BSP",
-      "votes": 109205
+      "name": "B.VIJAYARAJ",
+      "party": "TVK",
+      "votes": 110095
     },
     "runnerUp": {
-      "name": "K. BALU",
-      "party": "PMK",
-      "votes": 70158
+      "name": "R. PANNEERDOSS",
+      "party": "VCK",
+      "votes": 70744
     },
-    "margin": 39047,
-    "marginPercent": 11.88
+    "margin": 39351,
+    "marginPercent": 15.0
   },
   "totalBooths": 438,
   "postal": {
@@ -9762,9 +9762,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 438,
     "form20ParsedBooths": 62,
     "estimatedBooths": 376,
@@ -9774,7 +9774,7 @@
     "postalPct": 0.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9876,5 +9876,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

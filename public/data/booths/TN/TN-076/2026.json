@@ -8907,20 +8907,20 @@
   },
   "summary": {
     "totalVoters": 257266,
-    "totalVotes": 505664,
-    "turnoutPercent": 196.55,
+    "totalVotes": 217318,
+    "turnoutPercent": 84.47,
     "winner": {
-      "name": "VIJAY R BARANIBALAAJI",
-      "party": "TVK",
-      "votes": 237681
+      "name": "PALANISAMY S",
+      "party": "AIADMK",
+      "votes": 73033
     },
     "runnerUp": {
-      "name": "RAMAKRISHNAN M",
-      "party": "IND",
-      "votes": 71808
+      "name": "VIJAY R BARANIBALAAJI",
+      "party": "TVK",
+      "votes": 72748
     },
-    "margin": 165873,
-    "marginPercent": 32.8
+    "margin": 285,
+    "marginPercent": 0.13
   },
   "totalBooths": 340,
   "postal": {
@@ -9040,9 +9040,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 340,
     "form20ParsedBooths": 40,
     "estimatedBooths": 300,
@@ -9052,7 +9052,7 @@
     "postalPct": 0.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9186,5 +9186,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

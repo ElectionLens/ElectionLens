@@ -10082,9 +10082,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 316,
     "form20ParsedBooths": 316,
     "estimatedBooths": 0,
@@ -10094,6 +10094,24 @@
     "postalPct": 1.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 281677,
+    "totalVotes": 212024,
+    "turnoutPercent": 75.27,
+    "winner": {
+      "name": "SENTHILKUMAR. I.P",
+      "party": "DMK",
+      "votes": 74489
+    },
+    "runnerUp": {
+      "name": "NAZEER RAJA. G",
+      "party": "TVK",
+      "votes": 73358
+    },
+    "margin": 1131,
+    "marginPercent": 0.53
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

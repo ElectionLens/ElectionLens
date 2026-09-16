@@ -11580,7 +11580,7 @@
       "rejected": 0,
       "name": "Panchayat Union Middle School, Attanthangal-600052",
       "address": "Panchayat Union Middle School, Attanthangal-600052",
-      "area": "[1] - Nallur(P), Attanthangal Mettu Street (Ward 1), [2] - Nallur(P), Maruthapandi Nagar (Ward 1), [3] - Nallur(P), Palaganesa Nagar கத(cid:3061) எண் 461 (cid:3034)தல் 655 (Ward 1)"
+      "area": "[1] - Nallur(P), Attanthangal Mettu Street (Ward 1), [2] - Nallur(P), Maruthapandi Nagar (Ward 1), [3] - Nallur(P), Palaganesa Nagar \u0b95\u0ba4(cid:3061) \u0b8e\u0ba3\u0bcd 461 (cid:3034)\u0ba4\u0bb2\u0bcd 655 (Ward 1)"
     },
     "TN-009-458": {
       "votes": [
@@ -15859,20 +15859,20 @@
   },
   "summary": {
     "totalVoters": 456079,
-    "totalVotes": 368511,
-    "turnoutPercent": 80.8,
+    "totalVotes": 361998,
+    "turnoutPercent": 79.37,
     "winner": {
       "name": "M.L.VIJAYPRABHU",
       "party": "TVK",
-      "votes": 186888
+      "votes": 190462
     },
     "runnerUp": {
       "name": "S.SUDHARSANAM",
       "party": "DMK",
-      "votes": 94898
+      "votes": 95477
     },
-    "margin": 91990,
-    "marginPercent": 24.96
+    "margin": 94985,
+    "marginPercent": 26.24
   },
   "totalBooths": 625,
   "postal": {
@@ -15992,9 +15992,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 625,
     "form20ParsedBooths": 498,
     "estimatedBooths": 127,
@@ -16004,7 +16004,7 @@
     "postalPct": 0.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -16138,5 +16138,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

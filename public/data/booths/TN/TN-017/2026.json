@@ -7956,9 +7956,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 194,
     "form20ParsedBooths": 194,
     "estimatedBooths": 0,
@@ -7968,6 +7968,24 @@
     "postalPct": 0.8,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 193595,
+    "totalVotes": 127356,
+    "turnoutPercent": 65.78,
+    "winner": {
+      "name": "K.V. VIJAY DAMU",
+      "party": "TVK",
+      "votes": 59091
+    },
+    "runnerUp": {
+      "name": "DR. A. SUBAIR KHAN",
+      "party": "DMK",
+      "votes": 44842
+    },
+    "margin": 14249,
+    "marginPercent": 11.19
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

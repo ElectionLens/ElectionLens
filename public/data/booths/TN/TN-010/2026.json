@@ -7031,8 +7031,8 @@
       ],
       "total": 601,
       "rejected": 0,
-      "name": "Thiruthangal Vidhyalaya School North Facing Building Class Room – ( LKG – D), T H Road Thiruvottiyur - 600 019",
-      "address": "Thiruthangal Vidhyalaya School North Facing Building Class Room – ( LKG – D), T H Road Thiruvottiyur - 600 019",
+      "name": "Thiruthangal Vidhyalaya School North Facing Building Class Room \u2013 ( LKG \u2013 D), T H Road Thiruvottiyur - 600 019",
+      "address": "Thiruthangal Vidhyalaya School North Facing Building Class Room \u2013 ( LKG \u2013 D), T H Road Thiruvottiyur - 600 019",
       "area": "[1] -Chennai CorporationThiruvottiyur, Sadhanandhapuram B, ward 14, [2] - Chennai CorporationThiruvottiyur, New Colony , ward 14"
     },
     "TN-010-278": {
@@ -11833,20 +11833,20 @@
   },
   "summary": {
     "totalVoters": 306977,
-    "totalVotes": 213895,
-    "turnoutPercent": 69.68,
+    "totalVotes": 207088,
+    "turnoutPercent": 67.46,
     "winner": {
       "name": "SENTHIL KUMAR. N",
       "party": "TVK",
-      "votes": 108187
+      "votes": 110067
     },
     "runnerUp": {
       "name": "SUNDARARAJ. L",
       "party": "CPM",
-      "votes": 55775
+      "votes": 56503
     },
-    "margin": 52412,
-    "marginPercent": 24.5
+    "margin": 53564,
+    "marginPercent": 25.87
   },
   "totalBooths": 464,
   "postal": {
@@ -11966,9 +11966,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 464,
     "form20ParsedBooths": 338,
     "estimatedBooths": 126,
@@ -11978,7 +11978,7 @@
     "postalPct": 0.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12112,5 +12112,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

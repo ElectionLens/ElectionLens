@@ -5035,9 +5035,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 309,
     "form20ParsedBooths": 309,
     "estimatedBooths": 0,
@@ -5047,6 +5047,24 @@
     "postalPct": 5.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 246676,
+    "totalVotes": 191195,
+    "turnoutPercent": 77.51,
+    "winner": {
+      "name": "DR.ESAKKI SUBAYA",
+      "party": "AIADMK",
+      "votes": 65589
+    },
+    "runnerUp": {
+      "name": "V.P.DURAI",
+      "party": "INC",
+      "votes": 55344
+    },
+    "margin": 10245,
+    "marginPercent": 5.36
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

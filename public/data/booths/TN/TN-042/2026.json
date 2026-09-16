@@ -10094,7 +10094,7 @@
       "total": 752,
       "rejected": 0,
       "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School , West facing , Chennasamuthiram – 632506",
+      "address": "Panchayat Union Middle School , West facing , Chennasamuthiram \u2013 632506",
       "area": "",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -10119,7 +10119,7 @@
       "total": 752,
       "rejected": 0,
       "name": "Panchayat Union Middle School",
-      "address": "Panchayat Union Middle School , West facing , Chennasamuthiram – 632506",
+      "address": "Panchayat Union Middle School , West facing , Chennasamuthiram \u2013 632506",
       "area": "",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -10344,7 +10344,7 @@
       "total": 751,
       "rejected": 0,
       "name": "Government Hr.sec.School",
-      "address": "Government Hr.sec.School, South facing, NABARD BUILDING – 2nd Room , Pennagar- 632518",
+      "address": "Government Hr.sec.School, South facing, NABARD BUILDING \u2013 2nd Room , Pennagar- 632518",
       "area": "",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -10369,7 +10369,7 @@
       "total": 751,
       "rejected": 0,
       "name": "Government Hr.sec.School",
-      "address": "Government Hr.sec.School, South facing, NABARD BUILDING – 2nd Room , Pennagar- 632518",
+      "address": "Government Hr.sec.School, South facing, NABARD BUILDING \u2013 2nd Room , Pennagar- 632518",
       "area": "",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -11876,20 +11876,20 @@
   },
   "summary": {
     "totalVoters": 263490,
-    "totalVotes": 225421,
-    "turnoutPercent": 85.55,
+    "totalVotes": 225786,
+    "turnoutPercent": 85.69,
     "winner": {
-      "name": "J.L.ESWARAPPAN",
-      "party": "DMK",
-      "votes": 104859
+      "name": "S.M.SUKUMAR",
+      "party": "AIADMK",
+      "votes": 105608
     },
     "runnerUp": {
-      "name": "S.P.SHANMUGAM",
-      "party": "Aanaithinthiya Jananayaka Pathukappu Kazhagam",
-      "votes": 62035
+      "name": "G.VIJAY MOHAN",
+      "party": "TVK",
+      "votes": 62888
     },
-    "margin": 42824,
-    "marginPercent": 19.0
+    "margin": 42720,
+    "marginPercent": 18.92
   },
   "totalBooths": 474,
   "postal": {
@@ -12002,9 +12002,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 474,
     "form20ParsedBooths": 75,
     "estimatedBooths": 399,
@@ -12014,7 +12014,7 @@
     "postalPct": 0.3,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12140,5 +12140,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

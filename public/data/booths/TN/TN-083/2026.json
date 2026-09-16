@@ -8259,9 +8259,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 336,
     "form20ParsedBooths": 336,
     "estimatedBooths": 0,
@@ -8271,6 +8271,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 287548,
+    "totalVotes": 253592,
+    "turnoutPercent": 88.19,
+    "winner": {
+      "name": "USHARANI. P",
+      "party": "AIADMK",
+      "votes": 87772
+    },
+    "runnerUp": {
+      "name": "LAKSHMI JANARTHANAN. J",
+      "party": "TVK",
+      "votes": 85583
+    },
+    "margin": 2189,
+    "marginPercent": 0.86
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

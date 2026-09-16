@@ -12655,20 +12655,20 @@
   },
   "summary": {
     "totalVoters": 314714,
-    "totalVotes": 225629,
-    "turnoutPercent": 71.69,
+    "totalVotes": 231373,
+    "turnoutPercent": 73.52,
     "winner": {
       "name": "R.S.RAJAKANNAPPAN",
       "party": "DMK",
-      "votes": 65929
+      "votes": 68003
     },
     "runnerUp": {
       "name": "MALARVIZHI. B",
       "party": "TVK",
-      "votes": 50328
+      "votes": 51405
     },
-    "margin": 15601,
-    "marginPercent": 6.91
+    "margin": 16598,
+    "marginPercent": 7.17
   },
   "totalBooths": 413,
   "postal": {
@@ -12823,9 +12823,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 413,
     "form20ParsedBooths": 285,
     "estimatedBooths": 128,
@@ -12835,7 +12835,7 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -13009,5 +13009,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

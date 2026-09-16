@@ -8471,20 +8471,20 @@
   },
   "summary": {
     "totalVoters": 257959,
-    "totalVotes": 281688,
-    "turnoutPercent": 109.2,
+    "totalVotes": 177534,
+    "turnoutPercent": 68.82,
     "winner": {
-      "name": "HIMLAR",
-      "party": "NTK",
-      "votes": 40446
+      "name": "RAJESH KUMAR. S",
+      "party": "INC",
+      "votes": 66434
     },
     "runnerUp": {
       "name": "SABIN. S",
       "party": "TVK",
-      "votes": 31577
+      "votes": 65123
     },
-    "margin": 8869,
-    "marginPercent": 3.15
+    "margin": 1311,
+    "marginPercent": 0.74
   },
   "totalBooths": 358,
   "postal": {
@@ -8707,9 +8707,9 @@
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 358,
     "form20ParsedBooths": 216,
     "estimatedBooths": 142,
@@ -8719,6 +8719,7 @@
     "postalPct": 1.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

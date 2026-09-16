@@ -10766,20 +10766,20 @@
   },
   "summary": {
     "totalVoters": 245000,
-    "totalVotes": 201105,
-    "turnoutPercent": 82.08,
+    "totalVotes": 202925,
+    "turnoutPercent": 82.83,
     "winner": {
       "name": "DR.THIRUPATHI. N",
       "party": "TVK",
-      "votes": 104203
+      "votes": 105098
     },
     "runnerUp": {
       "name": "NALLATHAMBI. A",
       "party": "DMK",
-      "votes": 56264
+      "votes": 56835
     },
-    "margin": 47939,
-    "marginPercent": 23.84
+    "margin": 48263,
+    "marginPercent": 23.78
   },
   "totalBooths": 303,
   "postal": {
@@ -10962,9 +10962,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 303,
     "form20ParsedBooths": 0,
     "estimatedBooths": 303,
@@ -10974,7 +10974,7 @@
     "postalPct": 0.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -11180,5 +11180,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

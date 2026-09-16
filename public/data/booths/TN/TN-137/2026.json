@@ -11843,9 +11843,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 286,
     "form20ParsedBooths": 286,
     "estimatedBooths": 0,
@@ -11855,6 +11855,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 229173,
+    "totalVotes": 209091,
+    "turnoutPercent": 91.24,
+    "winner": {
+      "name": "SURIYANUR. A. CHANDRAN",
+      "party": "DMK",
+      "votes": 68138
+    },
+    "runnerUp": {
+      "name": "G.BALASUBRAMANI",
+      "party": "TVK",
+      "votes": 67559
+    },
+    "margin": 579,
+    "marginPercent": 0.28
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

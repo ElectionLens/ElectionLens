@@ -11643,9 +11643,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 323,
     "form20ParsedBooths": 323,
     "estimatedBooths": 0,
@@ -11655,6 +11655,24 @@
     "postalPct": 1.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 277332,
+    "totalVotes": 230162,
+    "turnoutPercent": 82.99,
+    "winner": {
+      "name": "JAYASUDHA. L",
+      "party": "AIADMK",
+      "votes": 76735
+    },
+    "runnerUp": {
+      "name": "MAHALAKSHMI GOVARTHANAN",
+      "party": "DMK",
+      "votes": 71104
+    },
+    "margin": 5631,
+    "marginPercent": 2.45
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

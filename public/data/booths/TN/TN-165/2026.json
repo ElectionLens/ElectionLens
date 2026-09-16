@@ -3040,8 +3040,8 @@
       ],
       "total": 367,
       "rejected": 0,
-      "name": "Victory Primary School (Second ‘A’ Class Room) ,Voimedu East",
-      "address": "Victory Primary School (Second ‘A’ Class Room) ,Voimedu East",
+      "name": "Victory Primary School (Second \u2018A\u2019 Class Room) ,Voimedu East",
+      "address": "Victory Primary School (Second \u2018A\u2019 Class Room) ,Voimedu East",
       "area": "1.Vaimedu West (R. V) , Vaimedu (P) Senathikadu ward:1 , 2.Vaimedu West (R.V) , Vaimedu (P) Othankadu ward:2 , 99.Overseas Electors",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -3062,8 +3062,8 @@
       ],
       "total": 406,
       "rejected": 0,
-      "name": "Victory Primary School (Second ‘1B’ Class Room South Side RCC Building) ,Voimedu East",
-      "address": "Victory Primary School (Second ‘1B’ Class Room South Side RCC Building) ,Voimedu East",
+      "name": "Victory Primary School (Second \u20181B\u2019 Class Room South Side RCC Building) ,Voimedu East",
+      "address": "Victory Primary School (Second \u20181B\u2019 Class Room South Side RCC Building) ,Voimedu East",
       "area": "1. Vaimedu West (R.V) , Vaimedu (P) Kungithevankadu ward:2 , 2. Vaimedu West (R.V) , Vaimedu (P) Udaiyathevankadu ward:4 , 99.Overseas Electors",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -6911,20 +6911,20 @@
   },
   "summary": {
     "totalVoters": 196104,
-    "totalVotes": 190226,
-    "turnoutPercent": 97.0,
+    "totalVotes": 162216,
+    "turnoutPercent": 82.72,
     "winner": {
-      "name": "KARTHICK. T",
-      "party": "NTK",
-      "votes": 58235
+      "name": "MANIAN. O.S",
+      "party": "AIADMK",
+      "votes": 59172
     },
     "runnerUp": {
-      "name": "KINGSLY GERALD. A",
-      "party": "TVK",
-      "votes": 50753
+      "name": "PUGAZHENDI. M",
+      "party": "DMK",
+      "votes": 51841
     },
-    "margin": 7482,
-    "marginPercent": 3.93
+    "margin": 7331,
+    "marginPercent": 4.52
   },
   "totalBooths": 317,
   "postal": {
@@ -7016,9 +7016,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 317,
     "form20ParsedBooths": 146,
     "estimatedBooths": 171,
@@ -7028,7 +7028,7 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -7130,5 +7130,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

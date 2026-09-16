@@ -18227,20 +18227,20 @@
   },
   "summary": {
     "totalVoters": 263492,
-    "totalVotes": 181299,
-    "turnoutPercent": 68.81,
+    "totalVotes": 181206,
+    "turnoutPercent": 68.77,
     "winner": {
       "name": "N. MARIE WILSON",
       "party": "TVK",
-      "votes": 97533
+      "votes": 97800
     },
     "runnerUp": {
       "name": "J. JOHN EBENEZER",
       "party": "DMK",
-      "votes": 47930
+      "votes": 48132
     },
-    "margin": 49603,
-    "marginPercent": 27.36
+    "margin": 49668,
+    "marginPercent": 27.41
   },
   "totalBooths": 372,
   "postal": {
@@ -18521,9 +18521,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 372,
     "form20ParsedBooths": 246,
     "estimatedBooths": 126,
@@ -18533,7 +18533,7 @@
     "postalPct": 0.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -18851,5 +18851,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

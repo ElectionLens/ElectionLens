@@ -9347,9 +9347,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 351,
     "form20ParsedBooths": 351,
     "estimatedBooths": 0,
@@ -9359,6 +9359,24 @@
     "postalPct": 1.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 282215,
+    "totalVotes": 230980,
+    "turnoutPercent": 81.85,
+    "winner": {
+      "name": "MANIMARAN.M",
+      "party": "DMK",
+      "votes": 88291
+    },
+    "runnerUp": {
+      "name": "UDHAYAKUMAR.R.B",
+      "party": "AIADMK",
+      "votes": 64484
+    },
+    "margin": 23807,
+    "marginPercent": 10.31
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

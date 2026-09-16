@@ -7735,9 +7735,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 289,
     "form20ParsedBooths": 289,
     "estimatedBooths": 0,
@@ -7747,6 +7747,24 @@
     "postalPct": 3.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 228359,
+    "totalVotes": 192119,
+    "turnoutPercent": 84.13,
+    "winner": {
+      "name": "GOWTHAM D",
+      "party": "DMK",
+      "votes": 68873
+    },
+    "runnerUp": {
+      "name": "SURESH P",
+      "party": "TVK",
+      "votes": 61839
+    },
+    "margin": 7034,
+    "marginPercent": 3.66
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

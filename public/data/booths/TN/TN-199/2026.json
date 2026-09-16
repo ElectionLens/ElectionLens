@@ -9598,20 +9598,20 @@
   },
   "summary": {
     "totalVoters": 288528,
-    "totalVotes": 272191,
-    "turnoutPercent": 94.34,
+    "totalVotes": 211209,
+    "turnoutPercent": 73.2,
     "winner": {
-      "name": "NOTA",
-      "party": "NOTA",
-      "votes": 84822
+      "name": "SABARI IYNGARAN G.",
+      "party": "TVK",
+      "votes": 85656
     },
     "runnerUp": {
       "name": "SAKTHIVEL P.",
       "party": "VCK",
-      "votes": 65657
+      "votes": 66335
     },
-    "margin": 19165,
-    "marginPercent": 7.04
+    "margin": 19321,
+    "marginPercent": 9.15
   },
   "totalBooths": 398,
   "postal": {
@@ -9717,9 +9717,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 398,
     "form20ParsedBooths": 49,
     "estimatedBooths": 349,
@@ -9729,7 +9729,7 @@
     "postalPct": 0.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9847,5 +9847,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

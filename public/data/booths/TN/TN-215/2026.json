@@ -7587,9 +7587,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 308,
     "form20ParsedBooths": 308,
     "estimatedBooths": 0,
@@ -7599,6 +7599,24 @@
     "postalPct": 1.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 249194,
+    "totalVotes": 186050,
+    "turnoutPercent": 74.66,
+    "winner": {
+      "name": "ANITHA R. RADHAKRISHNAN",
+      "party": "DMK",
+      "votes": 72723
+    },
+    "runnerUp": {
+      "name": "J. MURUGAN",
+      "party": "TVK",
+      "votes": 66851
+    },
+    "margin": 5872,
+    "marginPercent": 3.16
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

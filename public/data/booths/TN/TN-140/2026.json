@@ -7833,9 +7833,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 305,
     "form20ParsedBooths": 305,
     "estimatedBooths": 0,
@@ -7845,6 +7845,24 @@
     "postalPct": 1.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 0,
+    "totalVotes": 196347,
+    "turnoutPercent": 0,
+    "winner": {
+      "name": "K.N.NEHRU",
+      "party": "DMK",
+      "votes": 88235
+    },
+    "runnerUp": {
+      "name": "G.RAMAMOORTHI",
+      "party": "TVK",
+      "votes": 83449
+    },
+    "margin": 4786,
+    "marginPercent": 2.44
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

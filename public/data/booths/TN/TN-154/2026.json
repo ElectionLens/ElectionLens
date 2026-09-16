@@ -9308,20 +9308,20 @@
   },
   "summary": {
     "totalVoters": 247548,
-    "totalVotes": 580503,
-    "turnoutPercent": 234.5,
+    "totalVotes": 210767,
+    "turnoutPercent": 85.14,
     "winner": {
-      "name": "ABDUR RAHMAN. A.R",
-      "party": "VCK",
-      "votes": 153201
-    },
-    "runnerUp": {
       "name": "MOHAN. K",
       "party": "AIADMK",
-      "votes": 145998
+      "votes": 78398
     },
-    "margin": 7203,
-    "marginPercent": 1.24
+    "runnerUp": {
+      "name": "ABDUR RAHMAN. A.R",
+      "party": "VCK",
+      "votes": 67735
+    },
+    "margin": 10663,
+    "marginPercent": 5.06
   },
   "totalBooths": 477,
   "postal": {
@@ -9399,9 +9399,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 477,
     "form20ParsedBooths": 303,
     "estimatedBooths": 174,
@@ -9411,7 +9411,7 @@
     "postalPct": 0.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9497,5 +9497,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

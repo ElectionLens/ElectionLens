@@ -6001,9 +6001,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 253,
     "form20ParsedBooths": 253,
     "estimatedBooths": 0,
@@ -6013,6 +6013,24 @@
     "postalPct": 0.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 244846,
+    "totalVotes": 148586,
+    "turnoutPercent": 60.69,
+    "winner": {
+      "name": "MADHAR BADHURUDEEN",
+      "party": "TVK",
+      "votes": 63414
+    },
+    "runnerUp": {
+      "name": "PALANIVEL THIAGA RAJAN",
+      "party": "DMK",
+      "votes": 44286
+    },
+    "margin": 19128,
+    "marginPercent": 12.87
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

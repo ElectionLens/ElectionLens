@@ -9283,9 +9283,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 363,
     "form20ParsedBooths": 363,
     "estimatedBooths": 0,
@@ -9295,6 +9295,24 @@
     "postalPct": 2.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 299074,
+    "totalVotes": 239150,
+    "turnoutPercent": 79.96,
+    "winner": {
+      "name": "THALAVAI SUNDARAM. N",
+      "party": "AIADMK",
+      "votes": 75045
+    },
+    "runnerUp": {
+      "name": "MAHESH.R",
+      "party": "DMK",
+      "votes": 74831
+    },
+    "margin": 214,
+    "marginPercent": 0.09
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

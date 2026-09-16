@@ -14002,20 +14002,20 @@
   },
   "summary": {
     "totalVoters": 279510,
-    "totalVotes": 162080,
-    "turnoutPercent": 57.99,
+    "totalVotes": 160401,
+    "turnoutPercent": 57.39,
     "winner": {
       "name": "ARUL PRAKASAM. M",
       "party": "TVK",
-      "votes": 79051
+      "votes": 81205
     },
     "runnerUp": {
       "name": "SUBRAMANIAN. MA",
       "party": "DMK",
-      "votes": 52010
+      "votes": 52691
     },
-    "margin": 27041,
-    "marginPercent": 16.68
+    "margin": 28514,
+    "marginPercent": 17.78
   },
   "totalBooths": 545,
   "postal": {
@@ -14135,9 +14135,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 545,
     "form20ParsedBooths": 275,
     "estimatedBooths": 270,
@@ -14147,7 +14147,7 @@
     "postalPct": 0.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -14281,5 +14281,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

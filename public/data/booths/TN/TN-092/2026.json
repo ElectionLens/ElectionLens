@@ -3481,8 +3481,8 @@
       ],
       "total": 744,
       "rejected": 0,
-      "name": "Municipal Middle School   (1) - Rasipuram (M), Post Oﬃce Road Ward-1           All Voters",
-      "address": "Municipal Middle School   (1) - Rasipuram (M), Post Oﬃce Road Ward-1           All Voters",
+      "name": "Municipal Middle School   (1) - Rasipuram (M), Post O\ufb03ce Road Ward-1           All Voters",
+      "address": "Municipal Middle School   (1) - Rasipuram (M), Post O\ufb03ce Road Ward-1           All Voters",
       "area": "",
       "sourceNote": "archive2_form20"
     },
@@ -8525,9 +8525,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 285,
     "form20ParsedBooths": 285,
     "estimatedBooths": 0,
@@ -8537,6 +8537,24 @@
     "postalPct": 1.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 239980,
+    "totalVotes": 204680,
+    "turnoutPercent": 85.29,
+    "winner": {
+      "name": "LOGESH TAMILSELVAN D",
+      "party": "TVK",
+      "votes": 74808
+    },
+    "runnerUp": {
+      "name": "PREMKUMAR S D",
+      "party": "BJP",
+      "votes": 60297
+    },
+    "margin": 14511,
+    "marginPercent": 7.09
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

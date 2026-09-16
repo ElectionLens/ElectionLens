@@ -9250,9 +9250,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 310,
     "form20ParsedBooths": 310,
     "estimatedBooths": 0,
@@ -9262,6 +9262,24 @@
     "postalPct": 1.8,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 244721,
+    "totalVotes": 189795,
+    "turnoutPercent": 77.56,
+    "winner": {
+      "name": "E. RAJA",
+      "party": "DMK",
+      "votes": 63045
+    },
+    "runnerUp": {
+      "name": "ANANTHAN AYYASAMY",
+      "party": "BJP",
+      "votes": 56462
+    },
+    "margin": 6583,
+    "marginPercent": 3.47
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -8151,9 +8151,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 305,
     "form20ParsedBooths": 305,
     "estimatedBooths": 0,
@@ -8163,6 +8163,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 246176,
+    "totalVotes": 197593,
+    "turnoutPercent": 80.26,
+    "winner": {
+      "name": "AYYANAR.R",
+      "party": "TVK",
+      "votes": 68580
+    },
+    "runnerUp": {
+      "name": "NAGAJOTHI.S",
+      "party": "DMK",
+      "votes": 65655
+    },
+    "margin": 2925,
+    "marginPercent": 1.48
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

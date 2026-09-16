@@ -12252,9 +12252,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 386,
     "form20ParsedBooths": 386,
     "estimatedBooths": 0,
@@ -12264,6 +12264,24 @@
     "postalPct": 1.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 295302,
+    "totalVotes": 218425,
+    "turnoutPercent": 73.97,
+    "winner": {
+      "name": "MURUGHAN.R.S.",
+      "party": "TVK",
+      "votes": 75840
+    },
+    "runnerUp": {
+      "name": "SUBRAMANIAN.S",
+      "party": "DMK",
+      "votes": 64426
+    },
+    "margin": 11414,
+    "marginPercent": 5.23
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

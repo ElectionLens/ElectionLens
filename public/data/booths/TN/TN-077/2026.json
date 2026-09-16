@@ -11659,20 +11659,20 @@
   },
   "summary": {
     "totalVoters": 296360,
-    "totalVotes": 447423,
-    "turnoutPercent": 150.97,
+    "totalVotes": 271002,
+    "turnoutPercent": 91.44,
     "winner": {
-      "name": "KUMARAGURU R",
-      "party": "AIADMK",
-      "votes": 209129
+      "name": "VASANTHAVEL G R",
+      "party": "DMK",
+      "votes": 98471
     },
     "runnerUp": {
-      "name": "NOTA",
-      "party": "NOTA",
-      "votes": 68433
+      "name": "KUMARAGURU R",
+      "party": "AIADMK",
+      "votes": 96194
     },
-    "margin": 140696,
-    "marginPercent": 31.45
+    "margin": 2277,
+    "marginPercent": 0.84
   },
   "totalBooths": 468,
   "postal": {
@@ -11785,9 +11785,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 468,
     "form20ParsedBooths": 142,
     "estimatedBooths": 326,
@@ -11797,7 +11797,7 @@
     "postalPct": 0.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -11923,5 +11923,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

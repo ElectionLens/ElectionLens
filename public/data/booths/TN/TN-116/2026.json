@@ -13356,20 +13356,20 @@
   },
   "summary": {
     "totalVoters": 319773,
-    "totalVotes": 276550,
-    "turnoutPercent": 86.48,
+    "totalVotes": 273544,
+    "turnoutPercent": 85.54,
     "winner": {
       "name": "NM.SUKUMAR",
       "party": "TVK",
-      "votes": 90440
+      "votes": 90531
     },
     "runnerUp": {
       "name": "V.P.KANDASAMY",
       "party": "AIADMK",
-      "votes": 85079
+      "votes": 85741
     },
-    "margin": 5361,
-    "marginPercent": 1.94
+    "margin": 4790,
+    "marginPercent": 1.75
   },
   "totalBooths": 524,
   "postal": {
@@ -13489,9 +13489,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 524,
     "form20ParsedBooths": 375,
     "estimatedBooths": 149,
@@ -13501,7 +13501,7 @@
     "postalPct": 0.3,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -13635,5 +13635,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

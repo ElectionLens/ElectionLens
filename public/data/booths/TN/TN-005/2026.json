@@ -10113,9 +10113,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 452,
     "form20ParsedBooths": 452,
     "estimatedBooths": 0,
@@ -10125,6 +10125,24 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 361331,
+    "totalVotes": 308894,
+    "turnoutPercent": 85.49,
+    "winner": {
+      "name": "PRAKASAM.R",
+      "party": "TVK",
+      "votes": 161309
+    },
+    "runnerUp": {
+      "name": "KRISHNASWAMY.A",
+      "party": "DMK",
+      "votes": 88569
+    },
+    "margin": 72740,
+    "marginPercent": 23.55
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

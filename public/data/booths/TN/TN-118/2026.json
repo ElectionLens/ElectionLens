@@ -21146,20 +21146,20 @@
   },
   "summary": {
     "totalVoters": 342508,
-    "totalVotes": 224278,
-    "turnoutPercent": 65.48,
+    "totalVotes": 226109,
+    "turnoutPercent": 66.02,
     "winner": {
       "name": "V. SAMPATHKUMAR",
       "party": "TVK",
-      "votes": 92136
+      "votes": 92500
     },
     "runnerUp": {
       "name": "DURAI. SENTHAMIL SELVAN B.E",
       "party": "DMK",
-      "votes": 69739
+      "votes": 70508
     },
-    "margin": 22397,
-    "marginPercent": 9.99
+    "margin": 21992,
+    "marginPercent": 9.73
   },
   "totalBooths": 546,
   "postal": {
@@ -21370,9 +21370,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 546,
     "form20ParsedBooths": 333,
     "estimatedBooths": 213,
@@ -21382,7 +21382,7 @@
     "postalPct": 0.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -21620,5 +21620,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

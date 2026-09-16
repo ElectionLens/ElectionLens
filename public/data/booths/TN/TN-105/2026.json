@@ -6983,9 +6983,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 271,
     "form20ParsedBooths": 271,
     "estimatedBooths": 0,
@@ -6995,6 +6995,24 @@
     "postalPct": 1.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 221338,
+    "totalVotes": 185775,
+    "turnoutPercent": 83.93,
+    "winner": {
+      "name": "HARIBASKAR.P",
+      "party": "AIADMK",
+      "votes": 60042
+    },
+    "runnerUp": {
+      "name": "SIVABALAN.M",
+      "party": "DMK",
+      "votes": 58782
+    },
+    "margin": 1260,
+    "marginPercent": 0.68
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

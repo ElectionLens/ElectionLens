@@ -9675,20 +9675,20 @@
   },
   "summary": {
     "totalVoters": 292811,
-    "totalVotes": 213741,
-    "turnoutPercent": 73.0,
+    "totalVotes": 215710,
+    "turnoutPercent": 73.67,
     "winner": {
-      "name": "RAJA. K.P.M",
-      "party": "IND",
-      "votes": 83010
+      "name": "SEENIVASA SETHUPATHY. R",
+      "party": "TVK",
+      "votes": 83375
     },
     "runnerUp": {
       "name": "PERIAKARUPPAN. KR",
       "party": "DMK",
-      "votes": 82191
+      "votes": 83374
     },
-    "margin": 819,
-    "marginPercent": 0.38
+    "margin": 1,
+    "marginPercent": 0.0
   },
   "totalBooths": 368,
   "postal": {
@@ -9808,9 +9808,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 368,
     "form20ParsedBooths": 0,
     "estimatedBooths": 368,
@@ -9820,7 +9820,7 @@
     "postalPct": 0.8,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9954,5 +9954,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

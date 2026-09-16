@@ -7779,9 +7779,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 316,
     "form20ParsedBooths": 316,
     "estimatedBooths": 0,
@@ -7791,6 +7791,24 @@
     "postalPct": 1.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 271991,
+    "totalVotes": 199013,
+    "turnoutPercent": 73.17,
+    "winner": {
+      "name": "THARAHAI CUTHBERT",
+      "party": "INC",
+      "votes": 66207
+    },
+    "runnerUp": {
+      "name": "PREM ALEX LAWRENCE",
+      "party": "TVK",
+      "votes": 63374
+    },
+    "margin": 2833,
+    "marginPercent": 1.42
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

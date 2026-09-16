@@ -13550,20 +13550,20 @@
   },
   "summary": {
     "totalVoters": 268278,
-    "totalVotes": 434135,
-    "turnoutPercent": 161.82,
+    "totalVotes": 244795,
+    "turnoutPercent": 91.25,
     "winner": {
-      "name": "ASHOK KUMAR G",
-      "party": "TVK",
-      "votes": 206832
+      "name": "KARTHIKEYAN K",
+      "party": "DMK",
+      "votes": 89711
     },
     "runnerUp": {
-      "name": "CHEZHIYAN P",
-      "party": "PMK",
-      "votes": 66860
+      "name": "ASHOK KUMAR G",
+      "party": "TVK",
+      "votes": 84849
     },
-    "margin": 139972,
-    "marginPercent": 32.24
+    "margin": 4862,
+    "marginPercent": 1.99
   },
   "totalBooths": 372,
   "postal": {
@@ -13753,9 +13753,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 372,
     "form20ParsedBooths": 9,
     "estimatedBooths": 363,
@@ -13765,7 +13765,7 @@
     "postalPct": 0.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -13979,5 +13979,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

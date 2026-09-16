@@ -9957,20 +9957,20 @@
   },
   "summary": {
     "totalVoters": 228885,
-    "totalVotes": 183390,
-    "turnoutPercent": 80.12,
+    "totalVotes": 182340,
+    "turnoutPercent": 79.66,
     "winner": {
-      "name": "P. SUDHAKAR",
-      "party": "BSP",
-      "votes": 73360
-    },
-    "runnerUp": {
       "name": "V. GANDHIRAJ",
       "party": "TVK",
-      "votes": 50265
+      "votes": 73776
     },
-    "margin": 23095,
-    "marginPercent": 12.59
+    "runnerUp": {
+      "name": "EZHIL CAROLINE",
+      "party": "VCK",
+      "votes": 50655
+    },
+    "margin": 23121,
+    "marginPercent": 12.68
   },
   "totalBooths": 416,
   "postal": {
@@ -10076,9 +10076,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 416,
     "form20ParsedBooths": 122,
     "estimatedBooths": 294,
@@ -10088,7 +10088,7 @@
     "postalPct": 0.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -10206,5 +10206,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

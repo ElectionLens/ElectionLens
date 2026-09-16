@@ -9958,9 +9958,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 312,
     "form20ParsedBooths": 312,
     "estimatedBooths": 0,
@@ -9970,6 +9970,24 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 261212,
+    "totalVotes": 235875,
+    "turnoutPercent": 90.3,
+    "winner": {
+      "name": "PALANIVEL. M.S",
+      "party": "TVK",
+      "votes": 79907
+    },
+    "runnerUp": {
+      "name": "SRI BALAJI SUGUMAR. S",
+      "party": "AIADMK",
+      "votes": 75836
+    },
+    "margin": 4071,
+    "marginPercent": 1.73
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -6514,7 +6514,7 @@
       "rejected": 0,
       "name": "New India Discovery Higher Secondary School, veeranam Main Road, North Facing Building West Side",
       "address": "New India Discovery Higher Secondary School, veeranam Main Road, North Facing Building West Side",
-      "area": "1.Salem ©, D.9. Sengal anai road, 2.Salem (C), D.9, Thathampatty"
+      "area": "1.Salem \u00a9, D.9. Sengal anai road, 2.Salem (C), D.9, Thathampatty"
     },
     "TN-089-268": {
       "votes": [
@@ -6610,7 +6610,7 @@
       "rejected": 0,
       "name": "SCMC Elementary School, Vaikkalpattarai Ammapet North, Salem-636003 , East Facing Building South Side",
       "address": "SCMC Elementary School, Vaikkalpattarai Ammapet North, Salem-636003 , East Facing Building South Side",
-      "area": "1. Salem ©, D.9, Ramamoorthy Pudur 999 - Overseas Elector"
+      "area": "1. Salem \u00a9, D.9, Ramamoorthy Pudur 999 - Overseas Elector"
     },
     "TN-089-272": {
       "votes": [
@@ -13425,20 +13425,20 @@
   },
   "summary": {
     "totalVoters": 280532,
-    "totalVotes": 213752,
-    "turnoutPercent": 76.2,
+    "totalVotes": 210712,
+    "turnoutPercent": 75.11,
     "winner": {
       "name": "SIVAKUMAR. K",
       "party": "TVK",
-      "votes": 85053
+      "votes": 85710
     },
     "runnerUp": {
       "name": "RAJENDRAN. R",
       "party": "DMK",
-      "votes": 70196
+      "votes": 71676
     },
-    "margin": 14857,
-    "marginPercent": 6.95
+    "margin": 14034,
+    "marginPercent": 6.66
   },
   "totalBooths": 544,
   "postal": {
@@ -13551,9 +13551,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 544,
     "form20ParsedBooths": 276,
     "estimatedBooths": 268,
@@ -13563,7 +13563,7 @@
     "postalPct": 0.3,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -13689,5 +13689,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

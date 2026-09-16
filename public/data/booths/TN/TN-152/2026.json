@@ -13130,20 +13130,20 @@
   },
   "summary": {
     "totalVoters": 255432,
-    "totalVotes": 504236,
-    "turnoutPercent": 197.41,
+    "totalVotes": 209186,
+    "turnoutPercent": 81.89,
     "winner": {
-      "name": "VIJAY.S",
-      "party": "TVK",
-      "votes": 167924
-    },
-    "runnerUp": {
       "name": "PREMALLATHA VIJAYAKANT",
       "party": "DMDK",
-      "votes": 87959
+      "votes": 69351
     },
-    "margin": 79965,
-    "marginPercent": 15.86
+    "runnerUp": {
+      "name": "VIJAY.S",
+      "party": "TVK",
+      "votes": 66964
+    },
+    "margin": 2387,
+    "marginPercent": 1.14
   },
   "totalBooths": 459,
   "postal": {
@@ -13284,9 +13284,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 459,
     "form20ParsedBooths": 306,
     "estimatedBooths": 153,
@@ -13296,7 +13296,7 @@
     "postalPct": 0.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -13454,5 +13454,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

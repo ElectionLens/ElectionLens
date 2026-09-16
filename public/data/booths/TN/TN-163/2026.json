@@ -7937,20 +7937,20 @@
   },
   "summary": {
     "totalVoters": 199472,
-    "totalVotes": 180327,
-    "turnoutPercent": 90.4,
+    "totalVotes": 151326,
+    "turnoutPercent": 75.86,
     "winner": {
-      "name": "FATHIMA FARHANA.S",
-      "party": "NTK",
-      "votes": 55442
+      "name": "M.H.JAWAHIRULLAH",
+      "party": "DMK",
+      "votes": 56305
     },
     "runnerUp": {
-      "name": "NOTA",
-      "party": "NOTA",
-      "votes": 46132
+      "name": "M.SUGUMAR",
+      "party": "TVK",
+      "votes": 46524
     },
-    "margin": 9310,
-    "marginPercent": 5.16
+    "margin": 9781,
+    "marginPercent": 6.46
   },
   "totalBooths": 335,
   "postal": {
@@ -8056,9 +8056,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 335,
     "form20ParsedBooths": 198,
     "estimatedBooths": 137,
@@ -8068,7 +8068,7 @@
     "postalPct": 0.8,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -8186,5 +8186,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

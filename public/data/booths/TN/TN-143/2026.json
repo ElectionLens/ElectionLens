@@ -9998,9 +9998,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 276,
     "form20ParsedBooths": 276,
     "estimatedBooths": 0,
@@ -10010,6 +10010,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 220565,
+    "totalVotes": 185213,
+    "turnoutPercent": 83.97,
+    "winner": {
+      "name": "LEEMAROSE MARTIN",
+      "party": "AIADMK",
+      "votes": 60795
+    },
+    "runnerUp": {
+      "name": "KU PA KRISHNAN",
+      "party": "TVK",
+      "votes": 58056
+    },
+    "margin": 2739,
+    "marginPercent": 1.48
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

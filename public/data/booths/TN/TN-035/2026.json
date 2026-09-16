@@ -1,6 +1,6 @@
 {
   "acId": "TN-035",
-  "acName": "MADURANTAKAM",
+  "acName": "MADURANTAKAM (SC)",
   "year": 2026,
   "electionType": "assembly",
   "date": "2026-05-08",
@@ -6835,5 +6835,5 @@
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
   },
-  "validationNote": "2026 booth extraction failed AC-level validation: parsed booth totals and candidate mapping do not reconcile to the official AC result. Do not use for booth-level analysis until re-extracted from Form 20."
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

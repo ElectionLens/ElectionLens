@@ -14135,20 +14135,20 @@
   },
   "summary": {
     "totalVoters": 320785,
-    "totalVotes": 226997,
-    "turnoutPercent": 70.76,
+    "totalVotes": 229267,
+    "turnoutPercent": 71.47,
     "winner": {
-      "name": "DINESH. K",
-      "party": "IND",
-      "votes": 100627
+      "name": "DR.PRABHU. TK",
+      "party": "TVK",
+      "votes": 101358
     },
     "runnerUp": {
-      "name": "DHERPOKI V.PANDI",
-      "party": "Amma Makkal Munnettra Kazagam",
-      "votes": 54417
+      "name": "MANGUDI. S",
+      "party": "INC",
+      "votes": 55284
     },
-    "margin": 46210,
-    "marginPercent": 20.36
+    "margin": 46074,
+    "marginPercent": 20.1
   },
   "totalBooths": 388,
   "postal": {
@@ -14338,9 +14338,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 388,
     "form20ParsedBooths": 0,
     "estimatedBooths": 388,
@@ -14350,7 +14350,7 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -14564,5 +14564,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

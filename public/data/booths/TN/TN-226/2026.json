@@ -5095,8 +5095,8 @@
       ],
       "total": 571,
       "rejected": 0,
-      "name": "Std ’A’Class Room south Building, N.G.O.A.     41 , 6.Tirunelveli (C) Perumalpuram Pothigai Nagar Pillaiyar Koil East St, W.No   General",
-      "address": "Std ’A’Class Room south Building, N.G.O.A.     41 , 6.Tirunelveli (C) Perumalpuram Pothigai Nagar Pillaiyar Koil East St, W.No   General",
+      "name": "Std \u2019A\u2019Class Room south Building, N.G.O.A.     41 , 6.Tirunelveli (C) Perumalpuram Pothigai Nagar Pillaiyar Koil East St, W.No   General",
+      "address": "Std \u2019A\u2019Class Room south Building, N.G.O.A.     41 , 6.Tirunelveli (C) Perumalpuram Pothigai Nagar Pillaiyar Koil East St, W.No   General",
       "area": "",
       "sourceNote": "archive2_form20"
     },
@@ -5963,8 +5963,8 @@
       ],
       "total": 761,
       "rejected": 0,
-      "name": "Eastern Building, Section 9th – A,                                                                                          General",
-      "address": "Eastern Building, Section 9th – A,                                                                                          General",
+      "name": "Eastern Building, Section 9th \u2013 A,                                                                                          General",
+      "address": "Eastern Building, Section 9th \u2013 A,                                                                                          General",
       "area": "",
       "sourceNote": "archive2_form20"
     },
@@ -8535,9 +8535,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 296,
     "form20ParsedBooths": 296,
     "estimatedBooths": 0,
@@ -8547,6 +8547,24 @@
     "postalPct": 1.8,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 278897,
+    "totalVotes": 180620,
+    "turnoutPercent": 64.76,
+    "winner": {
+      "name": "M.ABDUL WAHAB",
+      "party": "DMK",
+      "votes": 79744
+    },
+    "runnerUp": {
+      "name": "MARIA JOHN",
+      "party": "TVK",
+      "votes": 65939
+    },
+    "margin": 13805,
+    "marginPercent": 7.64
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

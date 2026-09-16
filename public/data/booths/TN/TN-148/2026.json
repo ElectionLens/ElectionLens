@@ -1955,7 +1955,7 @@
       "rejected": 0,
       "name": "ANGANWADI CENTER,NORTH SOUTH TERRACED BUILDING , EAST FACING, KIZHUMATHUR",
       "address": "ANGANWADI CENTER,NORTH SOUTH TERRACED BUILDING , EAST FACING, KIZHUMATHUR",
-      "area": "1.Kizhumathur(S), (R.V) And (P) Kizhumathur south street Ward 2 2.Kizhumathur(S), (R.V) And (P) Kizhumathur Patti Street Ward 2 3.Kizhumathur(S), (R.V) And (P) Kizhumathurè Palizaya Kalani Street Ward 2 , 4.Kizhumathur(S), (R.V) And (P) Kizhumathurè Poonga Nageer Ward 2 , 999.OVERSEAS ELECTORS",
+      "area": "1.Kizhumathur(S), (R.V) And (P) Kizhumathur south street Ward 2 2.Kizhumathur(S), (R.V) And (P) Kizhumathur Patti Street Ward 2 3.Kizhumathur(S), (R.V) And (P) Kizhumathur\u00e8 Palizaya Kalani Street Ward 2 , 4.Kizhumathur(S), (R.V) And (P) Kizhumathur\u00e8 Poonga Nageer Ward 2 , 999.OVERSEAS ELECTORS",
       "sourceNote": "unmapped_booth_fill"
     },
     "TN-148-62": {
@@ -10511,20 +10511,20 @@
   },
   "summary": {
     "totalVoters": 274677,
-    "totalVotes": 294864,
-    "turnoutPercent": 107.35,
+    "totalVotes": 230570,
+    "turnoutPercent": 83.94,
     "winner": {
-      "name": "KEERTHIVASAN. R",
-      "party": "NTK",
-      "votes": 85948
+      "name": "SIVASANKAR. S.S",
+      "party": "DMK",
+      "votes": 87237
     },
     "runnerUp": {
-      "name": "REVATHI MUTHAMILSELVAN",
-      "party": "TVK",
-      "votes": 72433
+      "name": "SARANYA. A",
+      "party": "AIADMK",
+      "votes": 71680
     },
-    "margin": 13515,
-    "marginPercent": 4.58
+    "margin": 15557,
+    "marginPercent": 6.75
   },
   "totalBooths": 346,
   "postal": {
@@ -10672,9 +10672,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 346,
     "form20ParsedBooths": 0,
     "estimatedBooths": 346,
@@ -10684,7 +10684,7 @@
     "postalPct": 0.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -10850,5 +10850,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

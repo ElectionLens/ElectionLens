@@ -8163,9 +8163,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 332,
     "form20ParsedBooths": 332,
     "estimatedBooths": 0,
@@ -8175,6 +8175,24 @@
     "postalPct": 1.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 262891,
+    "totalVotes": 220857,
+    "turnoutPercent": 84.01,
+    "winner": {
+      "name": "PAUL MANOJ PANDIAN",
+      "party": "DMK",
+      "votes": 69170
+    },
+    "runnerUp": {
+      "name": "K R P PRABAKARAN",
+      "party": "AIADMK",
+      "votes": 61372
+    },
+    "margin": 7798,
+    "marginPercent": 3.53
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

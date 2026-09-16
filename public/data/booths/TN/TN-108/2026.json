@@ -4422,9 +4422,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 254,
     "form20ParsedBooths": 254,
     "estimatedBooths": 0,
@@ -4434,6 +4434,24 @@
     "postalPct": 1.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 208053,
+    "totalVotes": 148704,
+    "turnoutPercent": 71.47,
+    "winner": {
+      "name": "BHOJARAJAN.M",
+      "party": "BJP",
+      "votes": 48488
+    },
+    "runnerUp": {
+      "name": "IBRAHIM.R",
+      "party": "TVK",
+      "votes": 47512
+    },
+    "margin": 976,
+    "marginPercent": 0.66
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

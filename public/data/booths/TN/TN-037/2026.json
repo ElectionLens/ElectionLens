@@ -430,7 +430,7 @@
       "rejected": 0,
       "name": "Panchayat Union Middle School, Musaravakkam, North Facing EaStreet side",
       "address": "Panchayat Union Middle School, Musaravakkam, North Facing EaStreet side",
-      "area": "1 - Musaravakkam (P) And (R.V), Mudhaliar 2 - Musaravakkam (P) And (R.V), Kottapuli Street 3 - Musaravakkam (P) And (R.V), EaStreet Street 4 - Musaravakkam (P) And (R.V), Vadakku Street part 5 - Musaravakkam (P) And (R.V), ÌÝ¸ÏÔÚ³è³Ìè 999. Overseas Electors"
+      "area": "1 - Musaravakkam (P) And (R.V), Mudhaliar 2 - Musaravakkam (P) And (R.V), Kottapuli Street 3 - Musaravakkam (P) And (R.V), EaStreet Street 4 - Musaravakkam (P) And (R.V), Vadakku Street part 5 - Musaravakkam (P) And (R.V), \u00cc\u00dd\u00b8\u00cf\u00d4\u00da\u00b3\u00e8\u00b3\u00cc\u00e8 999. Overseas Electors"
     },
     "TN-037-14": {
       "votes": [
@@ -11853,20 +11853,20 @@
   },
   "summary": {
     "totalVoters": 313089,
-    "totalVotes": 242761,
-    "turnoutPercent": 77.54,
+    "totalVotes": 246317,
+    "turnoutPercent": 78.67,
     "winner": {
       "name": "R.V. RANJITHKUMAR",
       "party": "TVK",
-      "votes": 90321
+      "votes": 91350
     },
     "runnerUp": {
       "name": "V. SOMASUNDARAM",
       "party": "AIADMK",
-      "votes": 74717
+      "votes": 75862
     },
-    "margin": 15604,
-    "marginPercent": 6.43
+    "margin": 15488,
+    "marginPercent": 6.29
   },
   "totalBooths": 465,
   "postal": {
@@ -11986,9 +11986,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 465,
     "form20ParsedBooths": 344,
     "estimatedBooths": 121,
@@ -11998,7 +11998,7 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12132,5 +12132,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

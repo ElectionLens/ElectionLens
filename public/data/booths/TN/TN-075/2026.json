@@ -11188,9 +11188,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 310,
     "form20ParsedBooths": 310,
     "estimatedBooths": 0,
@@ -11200,6 +11200,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 237887,
+    "totalVotes": 209231,
+    "turnoutPercent": 87.95,
+    "winner": {
+      "name": "SIVAKUMAR C",
+      "party": "PMK",
+      "votes": 69727
+    },
+    "runnerUp": {
+      "name": "VIJAI VADIVEL A",
+      "party": "TVK",
+      "votes": 68817
+    },
+    "margin": 910,
+    "marginPercent": 0.43
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

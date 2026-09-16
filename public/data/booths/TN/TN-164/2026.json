@@ -1236,8 +1236,8 @@
       ],
       "total": 288,
       "rejected": 0,
-      "name": "Panchayat Union Elementary School, Nirthanamangalam Eastern Side RCC Building –West Facing",
-      "address": "Panchayat Union Elementary School, Nirthanamangalam Eastern Side RCC Building –West Facing",
+      "name": "Panchayat Union Elementary School, Nirthanamangalam Eastern Side RCC Building \u2013West Facing",
+      "address": "Panchayat Union Elementary School, Nirthanamangalam Eastern Side RCC Building \u2013West Facing",
       "area": "1.Vadavour (R.V) And (P) Nirthanamangalam Keela Street 1st Street ward:2 , 2.Vadavour (R.V) And (P) Nirthanamangalam Keela Street 2nd Street ward:2 , 3.Vadavour (R.V) And (P) Nirthanamangalam Keela Street 3rd Street ward:2 , 4.Vadavour (R.V) And (P) Nirthanamangalam Keela Street 4th Street ward:2 , 5.Vadavour (R.V) And (P) Nirthanamangalam Keela Street 5th Street ward:2 , 6.Vadavour (R.V) And (P) Nirthanamangalam South Street ward:3 , 7.Vadavour (R.V) And (P) Nirthanamangalam North Street ward:3 , 8.Vadavour (R.V) And (P) Nirthanamangalam Mela Street 1st Street ward:3 , 9.Vadavour (R.V) And (P) Nirthanamangalam Mela Streer 2nd Street ward:3 , 10.Vadavour (R.V) And (P) Nirthanamangalam Melat Street 3rd Street ward 3 , 11.Vadavour (R.V) And (P) Nirthanamangalam Mela Street 4th Street ward 3 , 12.Vadavour (R.V) And (P) Nirthanamangalam Mela Street 5th Street ward 3"
     },
     "TN-164-70": {
@@ -5761,20 +5761,20 @@
   },
   "summary": {
     "totalVoters": 180026,
-    "totalVotes": 174754,
-    "turnoutPercent": 97.07,
+    "totalVotes": 151637,
+    "turnoutPercent": 84.23,
     "winner": {
-      "name": "VADIVEL RAVANAN. S",
-      "party": "PMK",
-      "votes": 55290
+      "name": "LATHA. T",
+      "party": "CPM",
+      "votes": 56108
     },
     "runnerUp": {
-      "name": "SURENTHAR. K",
-      "party": "PT",
-      "votes": 53207
+      "name": "SENTHIL PANDIAN. P",
+      "party": "TVK",
+      "votes": 53830
     },
-    "margin": 2083,
-    "marginPercent": 1.19
+    "margin": 2278,
+    "marginPercent": 1.5
   },
   "totalBooths": 328,
   "postal": {
@@ -5838,9 +5838,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 328,
     "form20ParsedBooths": 202,
     "estimatedBooths": 126,
@@ -5850,7 +5850,7 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -5920,5 +5920,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -7839,9 +7839,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 293,
     "form20ParsedBooths": 293,
     "estimatedBooths": 0,
@@ -7851,6 +7851,24 @@
     "postalPct": 1.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 227240,
+    "totalVotes": 176421,
+    "turnoutPercent": 77.64,
+    "winner": {
+      "name": "SARAVANAN. G",
+      "party": "TVK",
+      "votes": 58814
+    },
+    "runnerUp": {
+      "name": "SHANMUGANATHAN. S. P",
+      "party": "AIADMK",
+      "votes": 57628
+    },
+    "margin": 1186,
+    "marginPercent": 0.67
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -9165,9 +9165,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 344,
     "form20ParsedBooths": 344,
     "estimatedBooths": 0,
@@ -9177,6 +9177,24 @@
     "postalPct": 0.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 284412,
+    "totalVotes": 232522,
+    "turnoutPercent": 81.76,
+    "winner": {
+      "name": "S.VIJAYAKUMAR",
+      "party": "TVK",
+      "votes": 94320
+    },
+    "runnerUp": {
+      "name": "SUDHAKAR.V",
+      "party": "AIADMK",
+      "votes": 66375
+    },
+    "margin": 27945,
+    "marginPercent": 12.02
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -12574,20 +12574,20 @@
   },
   "summary": {
     "totalVoters": 271176,
-    "totalVotes": 491296,
-    "turnoutPercent": 181.17,
+    "totalVotes": 235528,
+    "turnoutPercent": 86.85,
     "winner": {
-      "name": "UDHAYASURIYAN T",
-      "party": "DMK",
-      "votes": 232563
+      "name": "RAKESH R",
+      "party": "AIADMK",
+      "votes": 80250
     },
     "runnerUp": {
-      "name": "MANIKANDAN P",
-      "party": "IND",
-      "votes": 68706
+      "name": "UDHAYASURIYAN T",
+      "party": "DMK",
+      "votes": 76810
     },
-    "margin": 163857,
-    "marginPercent": 33.35
+    "margin": 3440,
+    "marginPercent": 1.46
   },
   "totalBooths": 377,
   "postal": {
@@ -12756,9 +12756,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 377,
     "form20ParsedBooths": 16,
     "estimatedBooths": 361,
@@ -12768,7 +12768,7 @@
     "postalPct": 0.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12958,5 +12958,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

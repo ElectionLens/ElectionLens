@@ -9786,20 +9786,20 @@
   },
   "summary": {
     "totalVoters": 270682,
-    "totalVotes": 223487,
-    "turnoutPercent": 82.56,
+    "totalVotes": 222111,
+    "turnoutPercent": 82.06,
     "winner": {
       "name": "DURAI. CHANDRASEKARAN",
       "party": "DMK",
-      "votes": 79538
+      "votes": 80425
     },
     "runnerUp": {
       "name": "MATHI. MANIKANDAN",
       "party": "TVK",
-      "votes": 70208
+      "votes": 71870
     },
-    "margin": 9330,
-    "marginPercent": 4.17
+    "margin": 8555,
+    "marginPercent": 3.85
   },
   "totalBooths": 417,
   "postal": {
@@ -9905,9 +9905,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 417,
     "form20ParsedBooths": 317,
     "estimatedBooths": 100,
@@ -9917,7 +9917,7 @@
     "postalPct": 0.3,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -10035,5 +10035,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

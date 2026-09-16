@@ -3997,9 +3997,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 229,
     "form20ParsedBooths": 229,
     "estimatedBooths": 0,
@@ -4009,6 +4009,24 @@
     "postalPct": 5.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 191624,
+    "totalVotes": 151241,
+    "turnoutPercent": 78.93,
+    "winner": {
+      "name": "DHRAVIDAMANI.M",
+      "party": "DMK",
+      "votes": 65590
+    },
+    "runnerUp": {
+      "name": "PON.JAYASEELAN",
+      "party": "AIADMK",
+      "votes": 42757
+    },
+    "margin": 22833,
+    "marginPercent": 15.1
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

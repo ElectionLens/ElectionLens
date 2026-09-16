@@ -21564,20 +21564,20 @@
   },
   "summary": {
     "totalVoters": 284056,
-    "totalVotes": 182393,
-    "turnoutPercent": 64.21,
+    "totalVotes": 184051,
+    "turnoutPercent": 64.79,
     "winner": {
       "name": "V. S. BABU",
       "party": "TVK",
-      "votes": 82614
+      "votes": 82997
     },
     "runnerUp": {
       "name": "M. K. STALIN",
       "party": "DMK",
-      "votes": 73220
+      "votes": 74202
     },
-    "margin": 9394,
-    "marginPercent": 5.15
+    "margin": 8795,
+    "marginPercent": 4.78
   },
   "totalBooths": 470,
   "postal": {
@@ -21837,9 +21837,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 470,
     "form20ParsedBooths": 283,
     "estimatedBooths": 187,
@@ -21849,7 +21849,7 @@
     "postalPct": 0.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -22143,5 +22143,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -128,12 +128,13 @@ export function ElectionResultPanel({
   );
   const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
 
-  // Check if booth data is available
-  // For booth data to be available, we need:
-  // 1. boothResults must be loaded (not null/undefined)
-  // 2. boothResults must have results (at least one booth with results)
-  // Note: boothsWithResults can be empty if boothList is missing but boothResults exists
+  // Never expose booth analysis as trustworthy when the ingestion pipeline
+  // explicitly failed AC-level reconciliation. Raw rows remain quarantined in
+  // the data file for re-extraction, but the UI must not turn them into a
+  // confident-looking chart.
+  const boothTotalsTrusted = boothResults?.dataQuality?.acTotalsReconciled !== false;
   const hasBoothData = Boolean(
+    boothTotalsTrusted &&
     boothResults &&
     boothResults.results &&
     typeof boothResults.results === 'object' &&

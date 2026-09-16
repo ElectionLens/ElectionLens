@@ -14539,20 +14539,20 @@
   },
   "summary": {
     "totalVoters": 247417,
-    "totalVotes": 276105,
-    "turnoutPercent": 111.59,
+    "totalVotes": 228666,
+    "turnoutPercent": 92.42,
     "winner": {
-      "name": "THAVAMANI. C.",
-      "party": "TNLK",
-      "votes": 80473
+      "name": "GAJENDRAN. S.",
+      "party": "TVK",
+      "votes": 81240
     },
     "runnerUp": {
-      "name": "AJITH KUMAR. S.",
-      "party": "BSP",
-      "votes": 76737
+      "name": "SELVAM. V.",
+      "party": "PMK",
+      "votes": 78075
     },
-    "margin": 3736,
-    "marginPercent": 1.35
+    "margin": 3165,
+    "marginPercent": 1.38
   },
   "totalBooths": 439,
   "postal": {
@@ -14721,9 +14721,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 439,
     "form20ParsedBooths": 97,
     "estimatedBooths": 342,
@@ -14733,7 +14733,7 @@
     "postalPct": 0.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -14923,5 +14923,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -7708,9 +7708,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 300,
     "form20ParsedBooths": 300,
     "estimatedBooths": 0,
@@ -7720,6 +7720,24 @@
     "postalPct": 2.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 251138,
+    "totalVotes": 174927,
+    "turnoutPercent": 69.65,
+    "winner": {
+      "name": "PRAVEEN T.T",
+      "party": "INC",
+      "votes": 70755
+    },
+    "runnerUp": {
+      "name": "MICHAEL KUMAR K",
+      "party": "TVK",
+      "votes": 49785
+    },
+    "margin": 20970,
+    "marginPercent": 11.99
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

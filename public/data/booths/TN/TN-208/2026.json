@@ -11308,20 +11308,20 @@
   },
   "summary": {
     "totalVoters": 223097,
-    "totalVotes": 177088,
-    "turnoutPercent": 79.38,
+    "totalVotes": 181250,
+    "turnoutPercent": 81.24,
     "winner": {
       "name": "THANGAM THENARASU",
       "party": "DMK",
-      "votes": 73491
+      "votes": 75085
     },
     "runnerUp": {
       "name": "SAMAYAN.S",
       "party": "TVK",
-      "votes": 60134
+      "votes": 61600
     },
-    "margin": 13357,
-    "marginPercent": 7.54
+    "margin": 13485,
+    "marginPercent": 7.44
   },
   "totalBooths": 337,
   "postal": {
@@ -11497,9 +11497,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 337,
     "form20ParsedBooths": 305,
     "estimatedBooths": 32,
@@ -11509,7 +11509,7 @@
     "postalPct": 0.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -11707,5 +11707,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -14157,9 +14157,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 353,
     "form20ParsedBooths": 353,
     "estimatedBooths": 0,
@@ -14169,6 +14169,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 327265,
+    "totalVotes": 221033,
+    "turnoutPercent": 67.54,
+    "winner": {
+      "name": "K.S.SRI GIRI PRASATH",
+      "party": "TVK",
+      "votes": 84163
+    },
+    "runnerUp": {
+      "name": "V.SRINIDHI",
+      "party": "INC",
+      "votes": 65024
+    },
+    "margin": 19139,
+    "marginPercent": 8.66
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -11685,9 +11685,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 268,
     "form20ParsedBooths": 268,
     "estimatedBooths": 0,
@@ -11697,6 +11697,24 @@
     "postalPct": 2.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 226395,
+    "totalVotes": 188845,
+    "turnoutPercent": 83.41,
+    "winner": {
+      "name": "SEKAR S",
+      "party": "AIADMK",
+      "votes": 61349
+    },
+    "runnerUp": {
+      "name": "MOORTHIY K S",
+      "party": "DMK",
+      "votes": 61041
+    },
+    "margin": 308,
+    "marginPercent": 0.16
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -8541,20 +8541,20 @@
   },
   "summary": {
     "totalVoters": 239350,
-    "totalVotes": 243489,
-    "turnoutPercent": 101.73,
+    "totalVotes": 182730,
+    "turnoutPercent": 76.34,
     "winner": {
-      "name": "NAZIM KHAN. M",
-      "party": "TNLK",
-      "votes": 71620
+      "name": "MOHAMED FARVAS. J",
+      "party": "TVK",
+      "votes": 73244
     },
     "runnerUp": {
-      "name": "MUTHULAKSHMI. S",
-      "party": "NTK",
-      "votes": 62759
+      "name": "RAMACHANDRAN . T",
+      "party": "INC",
+      "votes": 63182
     },
-    "margin": 8861,
-    "marginPercent": 3.64
+    "margin": 10062,
+    "marginPercent": 5.51
   },
   "totalBooths": 336,
   "postal": {
@@ -8674,9 +8674,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 336,
     "form20ParsedBooths": 302,
     "estimatedBooths": 34,
@@ -8686,7 +8686,7 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -8820,5 +8820,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -11600,20 +11600,20 @@
   },
   "summary": {
     "totalVoters": 220547,
-    "totalVotes": 146194,
-    "turnoutPercent": 66.29,
+    "totalVotes": 143903,
+    "turnoutPercent": 65.25,
     "winner": {
       "name": "M. R. PALLAVI",
       "party": "TVK",
-      "votes": 68901
+      "votes": 69125
     },
     "runnerUp": {
       "name": "K. S. RAVICHANDRAN",
       "party": "DMK",
-      "votes": 46022
+      "votes": 46792
     },
-    "margin": 22879,
-    "marginPercent": 15.65
+    "margin": 22333,
+    "marginPercent": 15.52
   },
   "totalBooths": 343,
   "postal": {
@@ -11789,9 +11789,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 343,
     "form20ParsedBooths": 217,
     "estimatedBooths": 126,
@@ -11801,7 +11801,7 @@
     "postalPct": 0.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -11999,5 +11999,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

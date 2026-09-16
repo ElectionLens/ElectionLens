@@ -5363,8 +5363,8 @@
       ],
       "total": 379,
       "rejected": 0,
-      "name": "Holy Angel’s Girls High School, G.S.T.Road, Chrompet East Facing Room No 4",
-      "address": "Holy Angel’s Girls High School, G.S.T.Road, Chrompet East Facing Room No 4",
+      "name": "Holy Angel\u2019s Girls High School, G.S.T.Road, Chrompet East Facing Room No 4",
+      "address": "Holy Angel\u2019s Girls High School, G.S.T.Road, Chrompet East Facing Room No 4",
       "area": "1.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 41 masthan sahib street (reserve bank colony 2.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 42 Malik Street 3.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 42 reserve bank colony 4.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 42 G.S.T Road 5.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 42 E.S Colony 6.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 42 Rangasamy Street 7.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 41 Anthoniyar Koil Street 8.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 24 pudhuvai nagar g.s.t road 9.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 24 East Pudhuvai Nagar 2nd Cross Street 10.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 24 East Pudhuvai Nagar 1st Street 999.Overseas Electors",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -5397,8 +5397,8 @@
       ],
       "total": 221,
       "rejected": 0,
-      "name": "Holy Angel’s Girls High School, G.S.T.Road, ChrompetEast Facing Room No 5",
-      "address": "Holy Angel’s Girls High School, G.S.T.Road, ChrompetEast Facing Room No 5",
+      "name": "Holy Angel\u2019s Girls High School, G.S.T.Road, ChrompetEast Facing Room No 5",
+      "address": "Holy Angel\u2019s Girls High School, G.S.T.Road, ChrompetEast Facing Room No 5",
       "area": "1.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 42 Kodhandam Nagar 4th Street 2.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 42 T.S. Lakshmanan Nagar 2nd Street 3.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward 42 t.s.lakshmanan nagar 1st street 999.OVERSEAS ELECTORS",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -6451,8 +6451,8 @@
       ],
       "total": 395,
       "rejected": 0,
-      "name": "St.Mark’s Matriculation Higher secondary School, Radha Nagar, Main Road, Chrompet West Facing",
-      "address": "St.Mark’s Matriculation Higher secondary School, Radha Nagar, Main Road, Chrompet West Facing",
+      "name": "St.Mark\u2019s Matriculation Higher secondary School, Radha Nagar, Main Road, Chrompet West Facing",
+      "address": "St.Mark\u2019s Matriculation Higher secondary School, Radha Nagar, Main Road, Chrompet West Facing",
       "area": "1.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward27 school street 2.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward27 Sadagoban Street 3.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward27 Krishnamachari Street 4.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward27 Ramasamy Cross Street 5.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward27 Kalaimagal Street 6.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward27 ramasamystreet 7.Tambaram (C), Pallavaram, Zameen Pallavaram (R.V), Ward27 Subashnagar Main Road 999.Overseas Electors",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -21313,20 +21313,20 @@
   },
   "summary": {
     "totalVoters": 437387,
-    "totalVotes": 390777,
-    "turnoutPercent": 89.34,
+    "totalVotes": 283677,
+    "turnoutPercent": 64.86,
     "winner": {
-      "name": "A.THANGARAJ",
-      "party": "PT",
-      "votes": 132803
-    },
-    "runnerUp": {
       "name": "J.KAMATCHI",
       "party": "TVK",
-      "votes": 109762
+      "votes": 133611
     },
-    "margin": 23041,
-    "marginPercent": 5.9
+    "runnerUp": {
+      "name": "D.MURUGESAN",
+      "party": "DMDK",
+      "votes": 78918
+    },
+    "margin": 54693,
+    "marginPercent": 19.28
   },
   "totalBooths": 625,
   "postal": {
@@ -21502,9 +21502,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 625,
     "form20ParsedBooths": 92,
     "estimatedBooths": 533,
@@ -21514,7 +21514,7 @@
     "postalPct": 0.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -21712,5 +21712,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

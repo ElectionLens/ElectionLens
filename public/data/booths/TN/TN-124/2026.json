@@ -5275,8 +5275,8 @@
   },
   "summary": {
     "totalVoters": 207270,
-    "totalVotes": 151639,
-    "turnoutPercent": 73.16,
+    "totalVotes": 150431,
+    "turnoutPercent": 72.58,
     "winner": {
       "name": "KUTTY (ALIAS) SUDHAKAR. A",
       "party": "DMK",
@@ -5285,10 +5285,10 @@
     "runnerUp": {
       "name": "DR. SRIDHARAN. A",
       "party": "TVK",
-      "votes": 45434
+      "votes": 45300
     },
-    "margin": 9237,
-    "marginPercent": 6.09
+    "margin": 9371,
+    "marginPercent": 6.23
   },
   "totalBooths": 322,
   "postal": {
@@ -5345,9 +5345,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 322,
     "form20ParsedBooths": 252,
     "estimatedBooths": 0,
@@ -5357,7 +5357,7 @@
     "postalPct": 0.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -5419,5 +5419,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

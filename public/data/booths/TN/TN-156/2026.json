@@ -9413,20 +9413,20 @@
   },
   "summary": {
     "totalVoters": 242238,
-    "totalVotes": 464894,
-    "turnoutPercent": 191.92,
+    "totalVotes": 213965,
+    "turnoutPercent": 88.33,
     "winner": {
-      "name": "A  BHUVANENTHIRAN",
-      "party": "AIADMK",
-      "votes": 126049
-    },
-    "runnerUp": {
       "name": "M.R.K.PANNEERSELVAM",
       "party": "DMK",
-      "votes": 118753
+      "votes": 76695
     },
-    "margin": 7296,
-    "marginPercent": 1.57
+    "runnerUp": {
+      "name": "A  BHUVANENTHIRAN",
+      "party": "AIADMK",
+      "votes": 69106
+    },
+    "margin": 7589,
+    "marginPercent": 3.55
   },
   "totalBooths": 436,
   "postal": {
@@ -9518,9 +9518,9 @@
     ],
     "source": "none"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 436,
     "form20ParsedBooths": 262,
     "estimatedBooths": 174,
@@ -9530,7 +9530,7 @@
     "postalPct": 0.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9632,5 +9632,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

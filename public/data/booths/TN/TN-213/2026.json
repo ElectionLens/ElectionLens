@@ -6708,20 +6708,20 @@
   },
   "summary": {
     "totalVoters": 218464,
-    "totalVotes": 168657,
-    "turnoutPercent": 77.2,
+    "totalVotes": 174814,
+    "turnoutPercent": 80.02,
     "winner": {
       "name": "MARKANDAYAN G V",
       "party": "DMK",
-      "votes": 56410
+      "votes": 58395
     },
     "runnerUp": {
       "name": "P. KASIRAM",
       "party": "TVK",
-      "votes": 48489
+      "votes": 50167
     },
-    "margin": 7921,
-    "marginPercent": 4.7
+    "margin": 8228,
+    "marginPercent": 4.71
   },
   "totalBooths": 220,
   "postal": {
@@ -6841,9 +6841,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 258,
     "form20ParsedBooths": 107,
     "estimatedBooths": 151,
@@ -6853,7 +6853,7 @@
     "postalPct": 1.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -6987,5 +6987,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

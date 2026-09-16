@@ -9326,20 +9326,20 @@
   },
   "summary": {
     "totalVoters": 281833,
-    "totalVotes": 205207,
-    "turnoutPercent": 72.81,
+    "totalVotes": 208643,
+    "turnoutPercent": 74.03,
     "winner": {
-      "name": "THILAGARAJ.K",
-      "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
-      "votes": 68882
+      "name": "ELANGOVAN.D",
+      "party": "TVK",
+      "votes": 69971
     },
     "runnerUp": {
       "name": "TAMILARASI.A",
       "party": "DMK",
-      "votes": 67820
+      "votes": 68763
     },
-    "margin": 1062,
-    "marginPercent": 0.52
+    "margin": 1208,
+    "marginPercent": 0.58
   },
   "totalBooths": 369,
   "postal": {
@@ -9452,9 +9452,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 369,
     "form20ParsedBooths": 0,
     "estimatedBooths": 369,
@@ -9464,7 +9464,7 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -9590,5 +9590,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

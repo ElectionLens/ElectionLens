@@ -9771,9 +9771,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 399,
     "form20ParsedBooths": 399,
     "estimatedBooths": 0,
@@ -9783,6 +9783,24 @@
     "postalPct": 0.8,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 311143,
+    "totalVotes": 237576,
+    "turnoutPercent": 76.36,
+    "winner": {
+      "name": "KATHARBATCHA MUTHURAMALINGAM",
+      "party": "DMK",
+      "votes": 89137
+    },
+    "runnerUp": {
+      "name": "SHAHUL HAMEED",
+      "party": "TVK",
+      "votes": 76678
+    },
+    "margin": 12459,
+    "marginPercent": 5.24
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

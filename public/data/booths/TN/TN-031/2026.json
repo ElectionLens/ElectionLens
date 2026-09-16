@@ -1789,7 +1789,7 @@
       "rejected": 0,
       "name": "Seethadevi Garodiya Hindu Vidyalaya Mat. School, Kalamegam Street East Tambaram 600059,South Face",
       "address": "Seethadevi Garodiya Hindu Vidyalaya Mat. School, Kalamegam Street East Tambaram 600059,South Face",
-      "area": "1.Tambaram (C) Selaiyur (R.V), Ward 16 Porur Street 2.Tambaram (C) Selaiyur (R.V), Ward 16 Jevan Krishna Appartment Poroor Street 3.Tambaram (C) Selaiyur (R.V), Ward 16 Sukantha Appartment porur Street 4.Tambaram (C) Selaiyur (R.V), ÔÚÑèÌÛ³Û ÂàÏÝ 999.Overseas Electors",
+      "area": "1.Tambaram (C) Selaiyur (R.V), Ward 16 Porur Street 2.Tambaram (C) Selaiyur (R.V), Ward 16 Jevan Krishna Appartment Poroor Street 3.Tambaram (C) Selaiyur (R.V), Ward 16 Sukantha Appartment porur Street 4.Tambaram (C) Selaiyur (R.V), \u00d4\u00da\u00d1\u00e8\u00cc\u00db\u00b3\u00db \u00c2\u00e0\u00cf\u00dd 999.Overseas Electors",
       "sourceNote": "unmapped_booth_fill"
     },
     "TN-031-67": {
@@ -12297,20 +12297,20 @@
   },
   "summary": {
     "totalVoters": 418082,
-    "totalVotes": 384131,
-    "turnoutPercent": 91.88,
+    "totalVotes": 278809,
+    "turnoutPercent": 66.69,
     "winner": {
-      "name": "M.RAJA",
-      "party": "BSP",
-      "votes": 118277
-    },
-    "runnerUp": {
       "name": "D.SARATHKUMAR",
       "party": "TVK",
-      "votes": 109295
+      "votes": 118967
     },
-    "margin": 8982,
-    "marginPercent": 2.34
+    "runnerUp": {
+      "name": "R.S.KIRUTHIKA DEVI",
+      "party": "DMK",
+      "votes": 83346
+    },
+    "margin": 35621,
+    "marginPercent": 12.78
   },
   "totalBooths": 476,
   "postal": {
@@ -12430,9 +12430,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 476,
     "form20ParsedBooths": 186,
     "estimatedBooths": 290,
@@ -12442,7 +12442,7 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12576,5 +12576,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

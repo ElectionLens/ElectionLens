@@ -6120,9 +6120,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 284,
     "form20ParsedBooths": 284,
     "estimatedBooths": 0,
@@ -6132,6 +6132,24 @@
     "postalPct": 0.8,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 221825,
+    "totalVotes": 176274,
+    "turnoutPercent": 79.47,
+    "winner": {
+      "name": "ASHOKKUMAR. N",
+      "party": "DMK",
+      "votes": 60919
+    },
+    "runnerUp": {
+      "name": "GOVI.ELANGO",
+      "party": "AIADMK",
+      "votes": 57757
+    },
+    "margin": 3162,
+    "marginPercent": 1.79
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

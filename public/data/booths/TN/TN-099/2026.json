@@ -7995,9 +7995,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 325,
     "form20ParsedBooths": 324,
     "estimatedBooths": 0,
@@ -8007,6 +8007,24 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 296394,
+    "totalVotes": 221400,
+    "turnoutPercent": 74.7,
+    "winner": {
+      "name": "ANANTH MOGHAN K.K.",
+      "party": "TVK",
+      "votes": 96836
+    },
+    "runnerUp": {
+      "name": "S. MUTHUSAMY",
+      "party": "DMK",
+      "votes": 74586
+    },
+    "margin": 22250,
+    "marginPercent": 10.05
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

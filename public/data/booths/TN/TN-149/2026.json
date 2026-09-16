@@ -1472,8 +1472,8 @@
       ],
       "total": 282,
       "rejected": 0,
-      "name": "S.P.G. Elementary School, Ariyalur, Â North South Terraced Building,Facing West Middle Portion (C.S.I. Higher Secondary School Campus)",
-      "address": "S.P.G. Elementary School, Ariyalur, Â North South Terraced Building,Facing West Middle Portion (C.S.I. Higher Secondary School Campus)",
+      "name": "S.P.G. Elementary School, Ariyalur, \u00c2 North South Terraced Building,Facing West Middle Portion (C.S.I. Higher Secondary School Campus)",
+      "address": "S.P.G. Elementary School, Ariyalur, \u00c2 North South Terraced Building,Facing West Middle Portion (C.S.I. Higher Secondary School Campus)",
       "area": "1.Ariyalur (S) (R.V) and Ariyalur (M) Vandikara street 2.Ariyalur (S) (R.V) and Ariyalur (M) Singara theru 3.Ariyalur (S) (R.V) and Ariyalur (M) Asaithambi theru 4.Ariyalur (S) (R.V) and Ariyalur (M) Kaythemilath ismail street 5.Ariyalur (S) (R.V) and Ariyalur (M) Pudhu street 6.Ariyalur (S) (R.V) and Ariyalur (M) Sellamuthu street"
     },
     "TN-149-54": {
@@ -10620,20 +10620,20 @@
   },
   "summary": {
     "totalVoters": 266412,
-    "totalVotes": 287463,
-    "turnoutPercent": 107.9,
+    "totalVotes": 235858,
+    "turnoutPercent": 88.53,
     "winner": {
-      "name": "SIVAKUMAR M",
-      "party": "TVK",
-      "votes": 94072
+      "name": "RAJENDRAN S",
+      "party": "AIADMK",
+      "votes": 95219
     },
     "runnerUp": {
-      "name": "PUGAZHENDHI D",
-      "party": "NTK",
-      "votes": 69834
+      "name": "LATHA BALU",
+      "party": "DMK",
+      "votes": 70721
     },
-    "margin": 24238,
-    "marginPercent": 8.43
+    "margin": 24498,
+    "marginPercent": 10.39
   },
   "totalBooths": 405,
   "postal": {
@@ -10753,9 +10753,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 405,
     "form20ParsedBooths": 17,
     "estimatedBooths": 388,
@@ -10765,7 +10765,7 @@
     "postalPct": 0.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -10899,5 +10899,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

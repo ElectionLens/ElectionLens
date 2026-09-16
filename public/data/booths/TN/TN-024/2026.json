@@ -13838,20 +13838,20 @@
   },
   "summary": {
     "totalVoters": 246676,
-    "totalVotes": 132639,
-    "turnoutPercent": 53.77,
+    "totalVotes": 133928,
+    "turnoutPercent": 54.29,
     "winner": {
       "name": "ANAND N",
       "party": "TVK",
-      "votes": 51390
+      "votes": 51632
     },
     "runnerUp": {
       "name": "SATHIYANARAYANAN B",
       "party": "AIADMK",
-      "votes": 38048
+      "votes": 38605
     },
-    "margin": 13342,
-    "marginPercent": 10.06
+    "margin": 13027,
+    "marginPercent": 9.73
   },
   "totalBooths": 376,
   "postal": {
@@ -14048,9 +14048,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 376,
     "form20ParsedBooths": 247,
     "estimatedBooths": 129,
@@ -14060,7 +14060,7 @@
     "postalPct": 0.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -14282,5 +14282,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

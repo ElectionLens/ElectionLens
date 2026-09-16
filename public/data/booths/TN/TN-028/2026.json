@@ -24285,20 +24285,20 @@
   },
   "summary": {
     "totalVoters": 390909,
-    "totalVotes": 262546,
-    "turnoutPercent": 67.16,
+    "totalVotes": 261570,
+    "turnoutPercent": 66.91,
     "winner": {
       "name": "M.HARISH",
       "party": "TVK",
-      "votes": 111482
+      "votes": 112205
     },
     "runnerUp": {
       "name": "T.M.ANBARASAN",
       "party": "DMK",
-      "votes": 81331
+      "votes": 82596
     },
-    "margin": 30151,
-    "marginPercent": 11.48
+    "margin": 29609,
+    "marginPercent": 11.32
   },
   "totalBooths": 722,
   "postal": {
@@ -24474,9 +24474,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 722,
     "form20ParsedBooths": 418,
     "estimatedBooths": 304,
@@ -24486,7 +24486,7 @@
     "postalPct": 0.3,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -24684,5 +24684,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

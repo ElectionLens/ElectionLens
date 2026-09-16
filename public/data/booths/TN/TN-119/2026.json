@@ -16896,20 +16896,20 @@
   },
   "summary": {
     "totalVoters": 328298,
-    "totalVotes": 256723,
-    "turnoutPercent": 78.2,
+    "totalVotes": 258549,
+    "turnoutPercent": 78.75,
     "winner": {
       "name": "S.P.VELUMANI",
       "party": "AIADMK",
-      "votes": 92372
+      "votes": 93316
     },
     "runnerUp": {
       "name": "SATHISH RAJU (ALIAS) K.P.R. SATHISH",
       "party": "TVK",
-      "votes": 78365
+      "votes": 78591
     },
-    "margin": 14007,
-    "marginPercent": 5.46
+    "margin": 14725,
+    "marginPercent": 5.7
   },
   "totalBooths": 535,
   "postal": {
@@ -17071,9 +17071,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 535,
     "form20ParsedBooths": 367,
     "estimatedBooths": 168,
@@ -17083,7 +17083,7 @@
     "postalPct": 0.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -17265,5 +17265,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

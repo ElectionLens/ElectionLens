@@ -9439,7 +9439,7 @@
       "total": 409,
       "rejected": 0,
       "name": "Sathampadi P.U. MIDDLE SCHOOL",
-      "address": "Sathampadi P.U. MIDDLE SCHOOL, WESTERN SIDE NEW BUILDING SATHAMPADI – 624401",
+      "address": "Sathampadi P.U. MIDDLE SCHOOL, WESTERN SIDE NEW BUILDING SATHAMPADI \u2013 624401",
       "area": "",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -9567,7 +9567,7 @@
       "total": 379,
       "rejected": 0,
       "name": "Sathampadi PANCHAYAT UNION MIDDLE SCHOOL",
-      "address": "Sathampadi PANCHAYAT UNION MIDDLE SCHOOL, SOUTH SIDE BUILDING VILAMPATTI – 624401",
+      "address": "Sathampadi PANCHAYAT UNION MIDDLE SCHOOL, SOUTH SIDE BUILDING VILAMPATTI \u2013 624401",
       "area": "All Voters",
       "sourceNote": "unmapped_booth_fill"
     },
@@ -14468,20 +14468,20 @@
   },
   "summary": {
     "totalVoters": 285299,
-    "totalVotes": 301658,
-    "turnoutPercent": 105.73,
+    "totalVotes": 239140,
+    "turnoutPercent": 83.82,
     "winner": {
-      "name": "ALAGAMMAL A",
-      "party": "NTK",
-      "votes": 85215
+      "name": "NATHAM VISWANATHAN R",
+      "party": "AIADMK",
+      "votes": 85708
     },
     "runnerUp": {
-      "name": "RAMESH L N",
-      "party": "TVK",
-      "votes": 73336
+      "name": "SELVAKUMAR K",
+      "party": "DMK",
+      "votes": 73839
     },
-    "margin": 11879,
-    "marginPercent": 3.94
+    "margin": 11869,
+    "marginPercent": 4.96
   },
   "totalBooths": 448,
   "postal": {
@@ -14643,9 +14643,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 448,
     "form20ParsedBooths": 11,
     "estimatedBooths": 437,
@@ -14655,7 +14655,7 @@
     "postalPct": 0.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -14837,5 +14837,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

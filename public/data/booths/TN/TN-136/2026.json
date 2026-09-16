@@ -11115,9 +11115,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 275,
     "form20ParsedBooths": 275,
     "estimatedBooths": 0,
@@ -11127,6 +11127,24 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 214924,
+    "totalVotes": 189357,
+    "turnoutPercent": 88.1,
+    "winner": {
+      "name": "SATHYA. M",
+      "party": "TVK",
+      "votes": 62378
+    },
+    "runnerUp": {
+      "name": "DR. DHIVYA. S",
+      "party": "AIADMK",
+      "votes": 58875
+    },
+    "margin": 3503,
+    "marginPercent": 1.85
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

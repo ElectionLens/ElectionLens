@@ -12749,20 +12749,20 @@
   },
   "summary": {
     "totalVoters": 255009,
-    "totalVotes": 153740,
-    "turnoutPercent": 60.29,
+    "totalVotes": 156499,
+    "turnoutPercent": 61.37,
     "winner": {
       "name": "V SENTHILBALAJI",
       "party": "DMK",
-      "votes": 58764
+      "votes": 59724
     },
     "runnerUp": {
       "name": "V. SENTHILKUMAR",
       "party": "TVK",
-      "votes": 56686
+      "votes": 57453
     },
-    "margin": 2078,
-    "marginPercent": 1.35
+    "margin": 2271,
+    "marginPercent": 1.45
   },
   "totalBooths": 305,
   "postal": {
@@ -12994,9 +12994,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 305,
     "form20ParsedBooths": 264,
     "estimatedBooths": 41,
@@ -13006,7 +13006,7 @@
     "postalPct": 0.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -13268,5 +13268,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

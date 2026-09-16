@@ -12983,20 +12983,20 @@
   },
   "summary": {
     "totalVoters": 288768,
-    "totalVotes": 266943,
-    "turnoutPercent": 92.44,
+    "totalVotes": 258263,
+    "turnoutPercent": 89.44,
     "winner": {
       "name": "EDAPPADI PALANISWAMI. K",
       "party": "AIADMK",
-      "votes": 146445
+      "votes": 148933
     },
     "runnerUp": {
       "name": "PREMKUMAR. K",
       "party": "IND",
-      "votes": 53614
+      "votes": 50823
     },
-    "margin": 92831,
-    "marginPercent": 34.78
+    "margin": 98110,
+    "marginPercent": 37.99
   },
   "totalBooths": 508,
   "postal": {
@@ -13116,9 +13116,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 508,
     "form20ParsedBooths": 332,
     "estimatedBooths": 176,
@@ -13128,7 +13128,7 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -13262,5 +13262,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

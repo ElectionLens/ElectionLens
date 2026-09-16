@@ -8233,9 +8233,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 321,
     "form20ParsedBooths": 321,
     "estimatedBooths": 0,
@@ -8245,6 +8245,24 @@
     "postalPct": 1.5,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 262832,
+    "totalVotes": 227765,
+    "turnoutPercent": 86.66,
+    "winner": {
+      "name": "MUNIRATHINAM.J",
+      "party": "TVK",
+      "votes": 84917
+    },
+    "runnerUp": {
+      "name": "SUNDAR.K",
+      "party": "DMK",
+      "votes": 70694
+    },
+    "margin": 14223,
+    "marginPercent": 6.24
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

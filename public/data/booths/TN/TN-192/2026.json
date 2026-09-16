@@ -3963,9 +3963,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 227,
     "form20ParsedBooths": 227,
     "estimatedBooths": 0,
@@ -3975,6 +3975,24 @@
     "postalPct": 4.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 231713,
+    "totalVotes": 141503,
+    "turnoutPercent": 61.07,
+    "winner": {
+      "name": "M.M.GOPISON",
+      "party": "TVK",
+      "votes": 62415
+    },
+    "runnerUp": {
+      "name": "M.BOOMINATHAN",
+      "party": "DMK",
+      "votes": 40886
+    },
+    "margin": 21529,
+    "marginPercent": 15.21
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

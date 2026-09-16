@@ -14521,20 +14521,20 @@
   },
   "summary": {
     "totalVoters": 257675,
-    "totalVotes": 143459,
-    "turnoutPercent": 55.67,
+    "totalVotes": 141452,
+    "turnoutPercent": 54.9,
     "winner": {
       "name": "AADHAV ARJUNA",
       "party": "TVK",
-      "votes": 65968
+      "votes": 66445
     },
     "runnerUp": {
       "name": "KARTHIK MOHAN",
       "party": "DMK",
-      "votes": 48554
+      "votes": 49143
     },
-    "margin": 17414,
-    "marginPercent": 12.14
+    "margin": 17302,
+    "marginPercent": 12.23
   },
   "totalBooths": 374,
   "postal": {
@@ -14745,9 +14745,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 374,
     "form20ParsedBooths": 250,
     "estimatedBooths": 124,
@@ -14757,7 +14757,7 @@
     "postalPct": 0.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -14995,5 +14995,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

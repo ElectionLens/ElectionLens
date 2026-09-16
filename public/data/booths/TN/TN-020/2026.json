@@ -7423,9 +7423,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 247,
     "form20ParsedBooths": 247,
     "estimatedBooths": 0,
@@ -7435,6 +7435,24 @@
     "postalPct": 1.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 241671,
+    "totalVotes": 131824,
+    "turnoutPercent": 54.55,
+    "winner": {
+      "name": "PRABHAKAR.J.C.D",
+      "party": "TVK",
+      "votes": 58965
+    },
+    "runnerUp": {
+      "name": "EZHILAN NAGANATHAN",
+      "party": "DMK",
+      "votes": 43824
+    },
+    "margin": 15141,
+    "marginPercent": 11.49
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

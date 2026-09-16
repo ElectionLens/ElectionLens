@@ -8211,9 +8211,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 334,
     "form20ParsedBooths": 334,
     "estimatedBooths": 0,
@@ -8223,6 +8223,24 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 262529,
+    "totalVotes": 222570,
+    "turnoutPercent": 84.78,
+    "winner": {
+      "name": "MUKKUR N. SUBRAMANIAN",
+      "party": "AIADMK",
+      "votes": 86680
+    },
+    "runnerUp": {
+      "name": "DUSI K MOHAN",
+      "party": "TVK",
+      "votes": 65599
+    },
+    "margin": 21081,
+    "marginPercent": 9.47
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

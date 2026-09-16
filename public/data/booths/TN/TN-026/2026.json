@@ -12347,9 +12347,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 315,
     "form20ParsedBooths": 315,
     "estimatedBooths": 0,
@@ -12359,6 +12359,24 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 314549,
+    "totalVotes": 184815,
+    "turnoutPercent": 58.76,
+    "winner": {
+      "name": "KUMAR. R",
+      "party": "TVK",
+      "votes": 80430
+    },
+    "runnerUp": {
+      "name": "ASHOK. M.K",
+      "party": "AIADMK",
+      "votes": 47125
+    },
+    "margin": 33305,
+    "marginPercent": 18.02
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -11871,20 +11871,20 @@
   },
   "summary": {
     "totalVoters": 259671,
-    "totalVotes": 220104,
-    "turnoutPercent": 84.76,
+    "totalVotes": 219727,
+    "turnoutPercent": 84.62,
     "winner": {
       "name": "SENGOTTAIYAN.K.A",
       "party": "TVK",
-      "votes": 82038
+      "votes": 82612
     },
     "runnerUp": {
       "name": "NALLASIVAM.N",
       "party": "DMK",
-      "votes": 65476
+      "votes": 65992
     },
-    "margin": 16562,
-    "marginPercent": 7.52
+    "margin": 16620,
+    "marginPercent": 7.56
   },
   "totalBooths": 415,
   "postal": {
@@ -12025,9 +12025,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 415,
     "form20ParsedBooths": 289,
     "estimatedBooths": 126,
@@ -12037,7 +12037,7 @@
     "postalPct": 0.4,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -12195,5 +12195,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

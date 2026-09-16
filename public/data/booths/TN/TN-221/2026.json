@@ -14650,19 +14650,19 @@
   },
   "summary": {
     "totalVoters": 291931,
-    "totalVotes": 219192,
-    "turnoutPercent": 75.08,
+    "totalVotes": 221951,
+    "turnoutPercent": 76.03,
     "winner": {
       "name": "RAJENDRAN. T. M",
       "party": "DMK",
-      "votes": 78809
+      "votes": 79832
     },
     "runnerUp": {
       "name": "C. KRISHNAMURALI",
       "party": "AIADMK",
-      "votes": 72625
+      "votes": 73579
     },
-    "margin": 6184,
+    "margin": 6253,
     "marginPercent": 2.82
   },
   "totalBooths": 450,
@@ -14832,9 +14832,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 450,
     "form20ParsedBooths": 349,
     "estimatedBooths": 101,
@@ -14844,7 +14844,7 @@
     "postalPct": 0.6,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
+    "acTotalsReconciled": false
   },
   "unmapped": {
     "candidates": [
@@ -15034,5 +15034,6 @@
       }
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
-  }
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }

@@ -9163,9 +9163,9 @@
       }
     ]
   },
-  "reconciledToElections": true,
+  "reconciledToElections": false,
   "dataQuality": {
-    "tier": "verified",
+    "tier": "incomplete",
     "totalBooths": 277,
     "form20ParsedBooths": 277,
     "estimatedBooths": 0,
@@ -9175,6 +9175,24 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": true
-  }
+    "acTotalsReconciled": false
+  },
+  "summary": {
+    "totalVoters": 222627,
+    "totalVotes": 189221,
+    "turnoutPercent": 84.99,
+    "winner": {
+      "name": "SHANMUGAM C VE",
+      "party": "AIADMK",
+      "votes": 82353
+    },
+    "runnerUp": {
+      "name": "VIJAY NIRANJAN A",
+      "party": "TVK",
+      "votes": 52312
+    },
+    "margin": 30041,
+    "marginPercent": 15.88
+  },
+  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
 }
