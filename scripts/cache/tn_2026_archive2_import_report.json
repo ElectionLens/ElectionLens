@@ -1,0 +1,819 @@
+{
+  "summary": {
+    "ok": 118,
+    "flagged": 115,
+    "skip": 1
+  },
+  "flagged": [
+    {
+      "acNo": 3,
+      "acId": "TN-003",
+      "status": "flagged",
+      "reason": "vote mismatch (name): G.HARI: booth sum 105993 exceeds official 89169"
+    },
+    {
+      "acNo": 9,
+      "acId": "TN-009",
+      "status": "flagged",
+      "reason": "vote mismatch (name): E.KRITHIKA: booth sum 17703 exceeds official 12637"
+    },
+    {
+      "acNo": 10,
+      "acId": "TN-010",
+      "status": "flagged",
+      "reason": "vote mismatch (name): KUPPAN. K: booth sum 33590 exceeds official 28320"
+    },
+    {
+      "acNo": 11,
+      "acId": "TN-011",
+      "status": "flagged",
+      "reason": "csv shape: row 104: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 13,
+      "acId": "TN-013",
+      "status": "flagged",
+      "reason": "csv shape: row 79: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 14,
+      "acId": "TN-014",
+      "status": "flagged",
+      "reason": "csv shape: row 74: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 15,
+      "acId": "TN-015",
+      "status": "flagged",
+      "reason": "vote mismatch (name): K. S. RAVICHANDRAN: booth sum 50580 exceeds official 46792"
+    },
+    {
+      "acNo": 16,
+      "acId": "TN-016",
+      "status": "flagged",
+      "reason": "vote mismatch (name): ABISHEK. R: booth sum 20376 exceeds official 18191"
+    },
+    {
+      "acNo": 18,
+      "acId": "TN-018",
+      "status": "flagged",
+      "reason": "vote mismatch (name): M SURESH: booth sum 255 exceeds official 232"
+    },
+    {
+      "acNo": 19,
+      "acId": "TN-019",
+      "status": "flagged",
+      "reason": "vote mismatch (name): AADIRAJARAM: booth sum 16968 exceeds official 16507"
+    },
+    {
+      "acNo": 23,
+      "acId": "TN-023",
+      "status": "flagged",
+      "reason": "vote mismatch (name): KUMARAN. G.P: booth sum 770 exceeds official 571"
+    },
+    {
+      "acNo": 24,
+      "acId": "TN-024",
+      "status": "flagged",
+      "reason": "csv shape: row 69: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 25,
+      "acId": "TN-025",
+      "status": "flagged",
+      "reason": "csv shape: row 57: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 27,
+      "acId": "TN-027",
+      "status": "flagged",
+      "reason": "csv shape: row 1: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 28,
+      "acId": "TN-028",
+      "status": "flagged",
+      "reason": "vote mismatch (name): T.M.ANBARASAN: booth sum 88812 exceeds official 82596"
+    },
+    {
+      "acNo": 30,
+      "acId": "TN-030",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): RAJESH T R: booth sum 1574 exceeds official 1277"
+    },
+    {
+      "acNo": 31,
+      "acId": "TN-031",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): M.RAJA: booth sum 1497 exceeds official 290"
+    },
+    {
+      "acNo": 32,
+      "acId": "TN-032",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): S.SELVAM (A) CHELLA: booth sum 1371 exceeds official 381"
+    },
+    {
+      "acNo": 33,
+      "acId": "TN-033",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): D. PANNEERSELVAM: booth sum 1237 exceeds official 784"
+    },
+    {
+      "acNo": 34,
+      "acId": "TN-034",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): MURUGAVEL. A: booth sum 775 exceeds official 408"
+    },
+    {
+      "acNo": 35,
+      "acId": "TN-035",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): S.AMULU PONMALAR: errPct 91.82 exceeds tolerance 20.0"
+    },
+    {
+      "acNo": 37,
+      "acId": "TN-037",
+      "status": "flagged",
+      "reason": "vote mismatch (name): V. SOMASUNDARAM: errPct 20.51 exceeds tolerance 20.0"
+    },
+    {
+      "acNo": 38,
+      "acId": "TN-038",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): G. MOHAN: booth sum 50255 exceeds official 106"
+    },
+    {
+      "acNo": 39,
+      "acId": "TN-039",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): A.ASHOK KUMAR: errPct 94.19 exceeds tolerance 20.0"
+    },
+    {
+      "acNo": 40,
+      "acId": "TN-040",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): S. THIRUKKUMARAN: booth sum 61622 exceeds official 4625"
+    },
+    {
+      "acNo": 41,
+      "acId": "TN-041",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): R. GANDHI: errPct 62.76 exceeds tolerance 20.0"
+    },
+    {
+      "acNo": 42,
+      "acId": "TN-042",
+      "status": "flagged",
+      "reason": "csv shape: row 274: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 43,
+      "acId": "TN-043",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): S R K APPU: booth sum 65587 exceeds official 45458"
+    },
+    {
+      "acNo": 44,
+      "acId": "TN-044",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): A.P.NANDAKUMAR: errPct 93.31 exceeds tolerance 20.0"
+    },
+    {
+      "acNo": 45,
+      "acId": "TN-045",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): JAYA BHARATH. J: booth sum 5088 exceeds official 157"
+    },
+    {
+      "acNo": 46,
+      "acId": "TN-046",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): J.EMALAN: booth sum 63635 exceeds official 5802"
+    },
+    {
+      "acNo": 48,
+      "acId": "TN-048",
+      "status": "flagged",
+      "reason": "vote mismatch (name): AFSHIA NASRIN. S: booth sum 5523 exceeds official 4185"
+    },
+    {
+      "acNo": 50,
+      "acId": "TN-050",
+      "status": "flagged",
+      "reason": "csv shape: row 75: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 57,
+      "acId": "TN-057",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): BOOPATHI. R.: booth sum 48828 exceeds official 5598"
+    },
+    {
+      "acNo": 58,
+      "acId": "TN-058",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): PALANIYAMMAL. T.: booth sum 51360 exceeds official 7358"
+    },
+    {
+      "acNo": 59,
+      "acId": "TN-059",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): SHANTHALAKSHMI. K.: booth sum 51360 exceeds official 6758"
+    },
+    {
+      "acNo": 60,
+      "acId": "TN-060",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): ARCHANA TAMILARUVI: booth sum 52003 exceeds official 5216"
+    },
+    {
+      "acNo": 61,
+      "acId": "TN-061",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): ANITHA. A: booth sum 52003 exceeds official 5245"
+    },
+    {
+      "acNo": 62,
+      "acId": "TN-062",
+      "status": "flagged",
+      "reason": "vote mismatch (rank): P.SELVAM: errPct 22.5 exceeds tolerance 20.0"
+    },
+    {
+      "acNo": 63,
+      "acId": "TN-063",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): ELUMALAI. A S/O ARUMUGAM: booth sum 32553 exceeds official 356"
+    },
+    {
+      "acNo": 64,
+      "acId": "TN-064",
+      "status": "flagged",
+      "reason": "postal residual 6.2% exceeds ceiling 5.0% (matchedBy=rank) -- likely dropped/misattributed columns"
+    },
+    {
+      "acNo": 65,
+      "acId": "TN-065",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): KRISHNAMURTHY. R: booth sum 83314 exceeds official 576"
+    },
+    {
+      "acNo": 69,
+      "acId": "TN-069",
+      "status": "flagged",
+      "reason": "vote mismatch (rank): AMBEDKAR. T: errPct 37.5 exceeds tolerance 20.0"
+    },
+    {
+      "acNo": 76,
+      "acId": "TN-076",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): VIJAYAMOORTHI E: errPct 34.68 exceeds tolerance 20.0"
+    },
+    {
+      "acNo": 77,
+      "acId": "TN-077",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): RAMAKRISHNAN R: booth sum 95014 exceeds official 251"
+    },
+    {
+      "acNo": 78,
+      "acId": "TN-078",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): VIJAYAKUMAR G: booth sum 88871 exceeds official 141"
+    },
+    {
+      "acNo": 79,
+      "acId": "TN-079",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): HARUN RASHEETH J: booth sum 75641 exceeds official 87"
+    },
+    {
+      "acNo": 80,
+      "acId": "TN-080",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): VIGNESH G: booth sum 7379 exceeds official 653"
+    },
+    {
+      "acNo": 82,
+      "acId": "TN-082",
+      "status": "flagged",
+      "reason": "vote mismatch (name): ARTHANARI. S.K.: booth sum 68500 exceeds official 51896"
+    },
+    {
+      "acNo": 86,
+      "acId": "TN-086",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): KASI. C: booth sum 51707 exceeds official 44011"
+    },
+    {
+      "acNo": 87,
+      "acId": "TN-087",
+      "status": "flagged",
+      "reason": "vote mismatch (name): SETTUMUTHU. V: booth sum 544 exceeds official 398"
+    },
+    {
+      "acNo": 88,
+      "acId": "TN-088",
+      "status": "flagged",
+      "reason": "csv shape: row 96: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 89,
+      "acId": "TN-089",
+      "status": "flagged",
+      "reason": "csv shape: row 44: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 98,
+      "acId": "TN-098",
+      "status": "flagged",
+      "reason": "vote mismatch (name): GOPINATH PALANIYAPPAN: booth sum 51327 exceeds official 45781"
+    },
+    {
+      "acNo": 106,
+      "acId": "TN-106",
+      "status": "flagged",
+      "reason": "csv shape: row 69: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 111,
+      "acId": "TN-111",
+      "status": "flagged",
+      "reason": "csv shape: row 81: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 116,
+      "acId": "TN-116",
+      "status": "flagged",
+      "reason": "vote mismatch (name): V.P.KANDASAMY: booth sum 113040 exceeds official 85741"
+    },
+    {
+      "acNo": 118,
+      "acId": "TN-118",
+      "status": "flagged",
+      "reason": "csv shape: row 82: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 119,
+      "acId": "TN-119",
+      "status": "flagged",
+      "reason": "csv shape: row 76: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 120,
+      "acId": "TN-120",
+      "status": "flagged",
+      "reason": "csv shape: row 94: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 123,
+      "acId": "TN-123",
+      "status": "flagged",
+      "reason": "csv shape: row 43: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 124,
+      "acId": "TN-124",
+      "status": "flagged",
+      "reason": "postal residual 5.3% exceeds ceiling 5.0% (matchedBy=name) -- likely dropped/misattributed columns"
+    },
+    {
+      "acNo": 131,
+      "acId": "TN-131",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): VIJAYAKUMAR S: errPct 77.85 exceeds tolerance 20.0"
+    },
+    {
+      "acNo": 135,
+      "acId": "TN-135",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): SOUNDARA RAJAN. R: errPct 33.33 exceeds tolerance 20.0"
+    },
+    {
+      "acNo": 147,
+      "acId": "TN-147",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): ARIVAZHAGAN. D: booth sum 9312 exceeds official 678"
+    },
+    {
+      "acNo": 148,
+      "acId": "TN-148",
+      "status": "flagged",
+      "reason": "csv shape: row 14: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 149,
+      "acId": "TN-149",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): RAJENDRAN S: booth sum 233993 exceeds official 95219"
+    },
+    {
+      "acNo": 150,
+      "acId": "TN-150",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): VAITHILINGAM G.: booth sum 226204 exceeds official 88992"
+    },
+    {
+      "acNo": 151,
+      "acId": "TN-151",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): GANESAN C.V: booth sum 400435 exceeds official 63106"
+    },
+    {
+      "acNo": 152,
+      "acId": "TN-152",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): PREMALLATHA VIJAYAKANT: booth sum 238783 exceeds official 69351"
+    },
+    {
+      "acNo": 153,
+      "acId": "TN-153",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): RAJENDRAN.R: booth sum 182283 exceeds official 63731"
+    },
+    {
+      "acNo": 154,
+      "acId": "TN-154",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): MOHAN. K: booth sum 209822 exceeds official 78398"
+    },
+    {
+      "acNo": 155,
+      "acId": "TN-155",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): B.RAJKUMAR: booth sum 218533 exceeds official 70856"
+    },
+    {
+      "acNo": 156,
+      "acId": "TN-156",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): M.R.K.PANNEERSELVAM: booth sum 238189 exceeds official 76695"
+    },
+    {
+      "acNo": 158,
+      "acId": "TN-158",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): THAMIMUN ANSARI. M: booth sum 231236 exceeds official 69739"
+    },
+    {
+      "acNo": 159,
+      "acId": "TN-159",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): L.E. JOTHIMANI: booth sum 226333 exceeds official 85179"
+    },
+    {
+      "acNo": 163,
+      "acId": "TN-163",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): M.H.JAWAHIRULLAH: booth sum 149464 exceeds official 56305"
+    },
+    {
+      "acNo": 164,
+      "acId": "TN-164",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): LATHA. T: booth sum 149404 exceeds official 56108"
+    },
+    {
+      "acNo": 165,
+      "acId": "TN-165",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): MANIAN. O.S: booth sum 158835 exceeds official 59172"
+    },
+    {
+      "acNo": 167,
+      "acId": "TN-167",
+      "status": "flagged",
+      "reason": "vote mismatch (name): KAMARAJ. S: errPct 99.13 exceeds tolerance 20.0"
+    },
+    {
+      "acNo": 169,
+      "acId": "TN-169",
+      "status": "flagged",
+      "reason": "vote mismatch (name): KAMARAJ. R: booth sum 130544 exceeds official 103462"
+    },
+    {
+      "acNo": 170,
+      "acId": "TN-170",
+      "status": "flagged",
+      "reason": "vote mismatch (name): ELAMATHI SUBRAMANIAN: booth sum 73592 exceeds official 52922"
+    },
+    {
+      "acNo": 171,
+      "acId": "TN-171",
+      "status": "flagged",
+      "reason": "csv shape: row 40: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 173,
+      "acId": "TN-173",
+      "status": "flagged",
+      "reason": "csv shape: row 45: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 176,
+      "acId": "TN-176",
+      "status": "flagged",
+      "reason": "csv shape: row 32: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 178,
+      "acId": "TN-178",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): C. UTHAYAKUMAR: booth sum 58386 exceeds official 47756"
+    },
+    {
+      "acNo": 179,
+      "acId": "TN-179",
+      "status": "flagged",
+      "reason": "vote mismatch (rank): 13 candidate columns vs 26 official non-NOTA candidates"
+    },
+    {
+      "acNo": 180,
+      "acId": "TN-180",
+      "status": "flagged",
+      "reason": "vote mismatch (rank): 13 candidate columns vs 30 official non-NOTA candidates"
+    },
+    {
+      "acNo": 181,
+      "acId": "TN-181",
+      "status": "flagged",
+      "reason": "vote mismatch (rank): 13 candidate columns vs 14 official non-NOTA candidates"
+    },
+    {
+      "acNo": 182,
+      "acId": "TN-182",
+      "status": "flagged",
+      "reason": "vote mismatch (rank): 13 candidate columns vs 14 official non-NOTA candidates"
+    },
+    {
+      "acNo": 183,
+      "acId": "TN-183",
+      "status": "flagged",
+      "reason": "vote mismatch (rank): 13 candidate columns vs 15 official non-NOTA candidates"
+    },
+    {
+      "acNo": 184,
+      "acId": "TN-184",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): RAMU. M: booth sum 224 exceeds official 216"
+    },
+    {
+      "acNo": 185,
+      "acId": "TN-185",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): SETHU. P: booth sum 141 exceeds official 135"
+    },
+    {
+      "acNo": 186,
+      "acId": "TN-186",
+      "status": "flagged",
+      "reason": "vote mismatch (name+rank-residual): RAJKUMAR C: booth sum 232 exceeds official 223"
+    },
+    {
+      "acNo": 187,
+      "acId": "TN-187",
+      "status": "flagged",
+      "reason": "vote mismatch (rank): KARUPPUSAMI.V: booth sum 269 exceeds official 261"
+    },
+    {
+      "acNo": 198,
+      "acId": "TN-198",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): GOMATHI .M: booth sum 59340 exceeds official 10346"
+    },
+    {
+      "acNo": 199,
+      "acId": "TN-199",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): DR KATHIRKAMU K.: booth sum 64870 exceeds official 44521"
+    },
+    {
+      "acNo": 200,
+      "acId": "TN-200",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): NARAYANASAMY V.T.: booth sum 60031 exceeds official 41286"
+    },
+    {
+      "acNo": 201,
+      "acId": "TN-201",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): JAKKAIYAN S.T.K.: booth sum 59685 exceeds official 27307"
+    },
+    {
+      "acNo": 202,
+      "acId": "TN-202",
+      "status": "flagged",
+      "reason": "vote mismatch (name): DR. KARTHIKEYAN. T.E.: booth sum 18175 exceeds official 16972"
+    },
+    {
+      "acNo": 206,
+      "acId": "TN-206",
+      "status": "flagged",
+      "reason": "vote mismatch (name): GANESAN V.G.: booth sum 44951 exceeds official 34212"
+    },
+    {
+      "acNo": 207,
+      "acId": "TN-207",
+      "status": "flagged",
+      "reason": "vote mismatch (name): RAMACHANDRAN. K.K.S.S.R: booth sum 70484 exceeds official 65104"
+    },
+    {
+      "acNo": 208,
+      "acId": "TN-208",
+      "status": "flagged",
+      "reason": "csv shape: row 82: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 209,
+      "acId": "TN-209",
+      "status": "flagged",
+      "reason": "csv shape: row 34: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 212,
+      "acId": "TN-212",
+      "status": "flagged",
+      "reason": "csv shape: row 65: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 213,
+      "acId": "TN-213",
+      "status": "flagged",
+      "reason": "vote mismatch (name): R. SATHYA: booth sum 69461 exceeds official 48879"
+    },
+    {
+      "acNo": 214,
+      "acId": "TN-214",
+      "status": "flagged",
+      "reason": "vote mismatch (name): P. GEETHA JEEVAN: booth sum 98045 exceeds official 62805"
+    },
+    {
+      "acNo": 217,
+      "acId": "TN-217",
+      "status": "flagged",
+      "reason": "vote mismatch (name): M. ANUSIYA: booth sum 19766 exceeds official 17279"
+    },
+    {
+      "acNo": 218,
+      "acId": "TN-218",
+      "status": "flagged",
+      "reason": "csv shape: row 77: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 219,
+      "acId": "TN-219",
+      "status": "flagged",
+      "reason": "vote mismatch (name): SANGAI. GANESAN: booth sum 51269 exceeds official 42567"
+    },
+    {
+      "acNo": 221,
+      "acId": "TN-221",
+      "status": "flagged",
+      "reason": "csv shape: row 65: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 227,
+      "acId": "TN-227",
+      "status": "flagged",
+      "reason": "csv shape: row 78: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 228,
+      "acId": "TN-228",
+      "status": "flagged",
+      "reason": "csv shape: row 73: no candidate segment sums to Total Valid Votes"
+    },
+    {
+      "acNo": 232,
+      "acId": "TN-232",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): RAMESH. P: booth sum 48828 exceeds official 44293"
+    },
+    {
+      "acNo": 234,
+      "acId": "TN-234",
+      "status": "flagged",
+      "reason": "vote mismatch (rank+drop-surplus): NIVIN SIMON. J: booth sum 45527 exceeds official 31070"
+    }
+  ],
+  "written": [
+    "TN-001",
+    "TN-002",
+    "TN-004",
+    "TN-005",
+    "TN-006",
+    "TN-007",
+    "TN-008",
+    "TN-012",
+    "TN-017",
+    "TN-020",
+    "TN-021",
+    "TN-022",
+    "TN-026",
+    "TN-029",
+    "TN-036",
+    "TN-047",
+    "TN-049",
+    "TN-051",
+    "TN-052",
+    "TN-053",
+    "TN-054",
+    "TN-055",
+    "TN-056",
+    "TN-066",
+    "TN-067",
+    "TN-068",
+    "TN-070",
+    "TN-071",
+    "TN-072",
+    "TN-073",
+    "TN-074",
+    "TN-075",
+    "TN-081",
+    "TN-083",
+    "TN-084",
+    "TN-085",
+    "TN-090",
+    "TN-091",
+    "TN-092",
+    "TN-093",
+    "TN-094",
+    "TN-095",
+    "TN-096",
+    "TN-097",
+    "TN-099",
+    "TN-100",
+    "TN-101",
+    "TN-102",
+    "TN-103",
+    "TN-104",
+    "TN-105",
+    "TN-107",
+    "TN-108",
+    "TN-109",
+    "TN-110",
+    "TN-112",
+    "TN-113",
+    "TN-114",
+    "TN-115",
+    "TN-117",
+    "TN-121",
+    "TN-122",
+    "TN-125",
+    "TN-126",
+    "TN-127",
+    "TN-128",
+    "TN-129",
+    "TN-130",
+    "TN-132",
+    "TN-133",
+    "TN-134",
+    "TN-136",
+    "TN-137",
+    "TN-138",
+    "TN-139",
+    "TN-140",
+    "TN-141",
+    "TN-142",
+    "TN-143",
+    "TN-144",
+    "TN-145",
+    "TN-146",
+    "TN-160",
+    "TN-161",
+    "TN-162",
+    "TN-166",
+    "TN-168",
+    "TN-172",
+    "TN-174",
+    "TN-175",
+    "TN-177",
+    "TN-188",
+    "TN-189",
+    "TN-190",
+    "TN-191",
+    "TN-192",
+    "TN-193",
+    "TN-194",
+    "TN-195",
+    "TN-196",
+    "TN-197",
+    "TN-203",
+    "TN-204",
+    "TN-205",
+    "TN-210",
+    "TN-211",
+    "TN-215",
+    "TN-216",
+    "TN-220",
+    "TN-222",
+    "TN-223",
+    "TN-224",
+    "TN-225",
+    "TN-226",
+    "TN-229",
+    "TN-230",
+    "TN-231",
+    "TN-233"
+  ]
+}

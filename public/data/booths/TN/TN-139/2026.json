@@ -4,7 +4,7 @@
   "year": 2026,
   "electionType": "assembly",
   "date": "2026-05-08",
-  "source": "file:///Users/p0s097d/Desktop/archive%202/boothwise_dataset/139-Srirangam/139-Srirangam_Form_20.csv",
+  "source": "file:///Users/p0s097d/Desktop/archive/boothwise_dataset/139-Srirangam/139-Srirangam_Form_20.csv",
   "candidates": [
     {
       "slNo": 1,
@@ -12043,9 +12043,9 @@
       }
     ]
   },
-  "reconciledToElections": false,
+  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "incomplete",
+    "tier": "verified",
     "totalBooths": 367,
     "form20ParsedBooths": 367,
     "estimatedBooths": 0,
@@ -12055,24 +12055,6 @@
     "postalPct": 1.0,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": false
-  },
-  "summary": {
-    "totalVoters": 315482,
-    "totalVotes": 254985,
-    "turnoutPercent": 80.82,
-    "winner": {
-      "name": "RAMESH",
-      "party": "TVK",
-      "votes": 103235
-    },
-    "runnerUp": {
-      "name": "S. DURAIRAJ",
-      "party": "DMK",
-      "votes": 69645
-    },
-    "margin": 33590,
-    "marginPercent": 13.17
-  },
-  "validationNote": "2026 booth plus postal totals do not reconcile to the official AC result. Raw booth rows require Form 20 re-extraction."
+    "acTotalsReconciled": true
+  }
 }

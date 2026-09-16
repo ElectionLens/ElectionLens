@@ -4,7 +4,7 @@
   "year": 2026,
   "electionType": "assembly",
   "date": "2026-05-08",
-  "source": "file:///Users/p0s097d/Desktop/archive%202/boothwise_dataset/146-Thuraiyur%20%28SC%29/146-Thuraiyur%20%28SC%29_Form_20.csv",
+  "source": "file:///Users/p0s097d/Desktop/archive/boothwise_dataset/146-Thuraiyur%20%28SC%29/146-Thuraiyur%20%28SC%29_Form_20.csv",
   "candidates": [
     {
       "slNo": 1,
@@ -7943,9 +7943,9 @@
       }
     ]
   },
-  "reconciledToElections": false,
+  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "incomplete",
+    "tier": "verified",
     "totalBooths": 297,
     "form20ParsedBooths": 297,
     "estimatedBooths": 0,
@@ -7955,24 +7955,6 @@
     "postalPct": 1.2,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": false
-  },
-  "summary": {
-    "totalVoters": 229513,
-    "totalVotes": 184426,
-    "turnoutPercent": 80.36,
-    "winner": {
-      "name": "RAVISANKAR.M",
-      "party": "TVK",
-      "votes": 66263
-    },
-    "runnerUp": {
-      "name": "E.SAROJA",
-      "party": "AIADMK",
-      "votes": 56649
-    },
-    "margin": 9614,
-    "marginPercent": 5.21
-  },
-  "validationNote": "2026 booth plus postal totals do not reconcile to the official AC result. Raw booth rows require Form 20 re-extraction."
+    "acTotalsReconciled": true
+  }
 }

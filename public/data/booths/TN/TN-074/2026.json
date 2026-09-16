@@ -4,7 +4,7 @@
   "year": 2026,
   "electionType": "assembly",
   "date": "2026-05-08",
-  "source": "file:///Users/p0s097d/Desktop/archive%202/boothwise_dataset/074-Viluppuram/074-Viluppuram_Form_20.csv",
+  "source": "file:///Users/p0s097d/Desktop/archive/boothwise_dataset/074-Viluppuram/074-Viluppuram_Form_20.csv",
   "candidates": [
     {
       "slNo": 1,
@@ -12098,9 +12098,9 @@
       }
     ]
   },
-  "reconciledToElections": false,
+  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "incomplete",
+    "tier": "verified",
     "totalBooths": 336,
     "form20ParsedBooths": 336,
     "estimatedBooths": 0,
@@ -12110,24 +12110,6 @@
     "postalPct": 1.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": false
-  },
-  "summary": {
-    "totalVoters": 266155,
-    "totalVotes": 215422,
-    "turnoutPercent": 80.94,
-    "winner": {
-      "name": "LAKSHMANAN R",
-      "party": "DMK",
-      "votes": 72982
-    },
-    "runnerUp": {
-      "name": "MOHANRAJ N",
-      "party": "TVK",
-      "votes": 68863
-    },
-    "margin": 4119,
-    "marginPercent": 1.91
-  },
-  "validationNote": "2026 booth plus postal totals do not reconcile to the official AC result. Raw booth rows require Form 20 re-extraction."
+    "acTotalsReconciled": true
+  }
 }

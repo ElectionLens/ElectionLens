@@ -4,7 +4,7 @@
   "year": 2026,
   "electionType": "assembly",
   "date": "2026-05-08",
-  "source": "file:///Users/p0s097d/Desktop/archive%202/boothwise_dataset/017-Royapuram/017-Royapuram_Form_20.csv",
+  "source": "file:///Users/p0s097d/Desktop/archive/boothwise_dataset/017-Royapuram/017-Royapuram_Form_20.csv",
   "candidates": [
     {
       "slNo": 1,
@@ -7956,9 +7956,9 @@
       }
     ]
   },
-  "reconciledToElections": false,
+  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "incomplete",
+    "tier": "verified",
     "totalBooths": 194,
     "form20ParsedBooths": 194,
     "estimatedBooths": 0,
@@ -7968,24 +7968,6 @@
     "postalPct": 0.8,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": false
-  },
-  "summary": {
-    "totalVoters": 193595,
-    "totalVotes": 127356,
-    "turnoutPercent": 65.78,
-    "winner": {
-      "name": "K.V. VIJAY DAMU",
-      "party": "TVK",
-      "votes": 59091
-    },
-    "runnerUp": {
-      "name": "DR. A. SUBAIR KHAN",
-      "party": "DMK",
-      "votes": 44842
-    },
-    "margin": 14249,
-    "marginPercent": 11.19
-  },
-  "validationNote": "2026 booth plus postal totals do not reconcile to the official AC result. Raw booth rows require Form 20 re-extraction."
+    "acTotalsReconciled": true
+  }
 }

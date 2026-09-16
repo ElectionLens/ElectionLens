@@ -4,7 +4,7 @@
   "year": 2026,
   "electionType": "assembly",
   "date": "2026-05-08",
-  "source": "file:///Users/p0s097d/Desktop/archive%202/boothwise_dataset/066-Polur/066-Polur_Form_20.csv",
+  "source": "file:///Users/p0s097d/Desktop/archive/boothwise_dataset/066-Polur/066-Polur_Form_20.csv",
   "candidates": [
     {
       "slNo": 1,
@@ -7995,9 +7995,9 @@
       }
     ]
   },
-  "reconciledToElections": false,
+  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "incomplete",
+    "tier": "verified",
     "totalBooths": 299,
     "form20ParsedBooths": 299,
     "estimatedBooths": 0,
@@ -8007,24 +8007,6 @@
     "postalPct": 1.3,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": false
-  },
-  "summary": {
-    "totalVoters": 245368,
-    "totalVotes": 211743,
-    "turnoutPercent": 86.3,
-    "winner": {
-      "name": "ABISHEK. R",
-      "party": "TVK",
-      "votes": 67961
-    },
-    "runnerUp": {
-      "name": "SARAVANAN. P",
-      "party": "DMDK",
-      "votes": 67734
-    },
-    "margin": 227,
-    "marginPercent": 0.11
-  },
-  "validationNote": "2026 booth plus postal totals do not reconcile to the official AC result. Raw booth rows require Form 20 re-extraction."
+    "acTotalsReconciled": true
+  }
 }

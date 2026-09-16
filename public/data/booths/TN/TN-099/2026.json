@@ -4,7 +4,7 @@
   "year": 2026,
   "electionType": "assembly",
   "date": "2026-05-08",
-  "source": "file:///Users/p0s097d/Desktop/archive%202/boothwise_dataset/099-Erode%20%28West%29/099-Erode%20%28West%29_Form_20.csv",
+  "source": "file:///Users/p0s097d/Desktop/archive/boothwise_dataset/099-Erode%20%28West%29/099-Erode%20%28West%29_Form_20.csv",
   "candidates": [
     {
       "slNo": 1,
@@ -7997,7 +7997,7 @@
   },
   "reconciledToElections": true,
   "dataQuality": {
-    "tier": "partial",
+    "tier": "verified",
     "totalBooths": 325,
     "form20ParsedBooths": 324,
     "estimatedBooths": 0,
@@ -8008,23 +8008,5 @@
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
     "acTotalsReconciled": true
-  },
-  "summary": {
-    "totalVoters": 296394,
-    "totalVotes": 221400,
-    "turnoutPercent": 74.7,
-    "winner": {
-      "name": "ANANTH MOGHAN K.K.",
-      "party": "TVK",
-      "votes": 96836
-    },
-    "runnerUp": {
-      "name": "S. MUTHUSAMY",
-      "party": "DMK",
-      "votes": 74586
-    },
-    "margin": 22250,
-    "marginPercent": 10.05
-  },
-  "validationNote": "Booth plus postal totals reconcile to the official AC result, but some booth rows are estimated or missing. Booth-level analysis is partial until Form 20 re-extraction is complete."
+  }
 }

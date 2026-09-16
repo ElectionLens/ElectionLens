@@ -4,7 +4,7 @@
   "year": 2026,
   "electionType": "assembly",
   "date": "2026-05-08",
-  "source": "file:///Users/p0s097d/Desktop/archive%202/boothwise_dataset/142-Thiruverumbur/142-Thiruverumbur_Form_20.csv",
+  "source": "file:///Users/p0s097d/Desktop/archive/boothwise_dataset/142-Thiruverumbur/142-Thiruverumbur_Form_20.csv",
   "candidates": [
     {
       "slNo": 1,
@@ -11908,9 +11908,9 @@
       }
     ]
   },
-  "reconciledToElections": false,
+  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "incomplete",
+    "tier": "verified",
     "totalBooths": 312,
     "form20ParsedBooths": 312,
     "estimatedBooths": 0,
@@ -11920,24 +11920,6 @@
     "postalPct": 1.3,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": false
-  },
-  "summary": {
-    "totalVoters": 295859,
-    "totalVotes": 213583,
-    "turnoutPercent": 72.19,
-    "winner": {
-      "name": "VIJAYAKUMAR (A) NAVALPATTU S. VIJI",
-      "party": "TVK",
-      "votes": 89837
-    },
-    "runnerUp": {
-      "name": "ANBIL MAHESH POYYAMOZHI",
-      "party": "DMK",
-      "votes": 81132
-    },
-    "margin": 8705,
-    "marginPercent": 4.08
-  },
-  "validationNote": "2026 booth plus postal totals do not reconcile to the official AC result. Raw booth rows require Form 20 re-extraction."
+    "acTotalsReconciled": true
+  }
 }

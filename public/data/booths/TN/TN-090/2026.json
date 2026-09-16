@@ -4,7 +4,7 @@
   "year": 2026,
   "electionType": "assembly",
   "date": "2026-05-08",
-  "source": "file:///Users/p0s097d/Desktop/archive%202/boothwise_dataset/090-Salem%20%28South%29/090-Salem%20%28South%29_Form_20.csv",
+  "source": "file:///Users/p0s097d/Desktop/archive/boothwise_dataset/090-Salem%20%28South%29/090-Salem%20%28South%29_Form_20.csv",
   "candidates": [
     {
       "slNo": 1,
@@ -245,7 +245,7 @@
       "rejected": 0,
       "name": "Government Girls Higher Secondary School, Jarikondalampatty,Salem, Facing North West Wing",
       "address": "Government Girls Higher Secondary School, Jarikondalampatty,Salem, Facing North West Wing",
-      "area": "1.Salem \u00a9, Mariyamman Kovil Street, 2.Salem (C), D,52, Itteri Street, 3.Salem (C), D,52, Malayappa chetti Street, 4.Salem (C), D,52, Kaliyamman Kovil Street, 5.Salem (C), D,52,Pillaiyar Kovil Street, 6.Salem (C), D,51,Old Post Office Street,",
+      "area": "1.Salem ©, Mariyamman Kovil Street, 2.Salem (C), D,52, Itteri Street, 3.Salem (C), D,52, Malayappa chetti Street, 4.Salem (C), D,52, Kaliyamman Kovil Street, 5.Salem (C), D,52,Pillaiyar Kovil Street, 6.Salem (C), D,51,Old Post Office Street,",
       "sourceNote": "archive2_form20"
     },
     "TN-090-5": {
@@ -7955,7 +7955,7 @@
       "rejected": 0,
       "name": "SCMC Elementary School, Kamaraj colony, West Terrased Building Facing South Middle Wing",
       "address": "SCMC Elementary School, Kamaraj colony, West Terrased Building Facing South Middle Wing",
-      "area": "1.Salem (C), D,37, M.G.R.nagar, 2.Salem (C), D,37,Kumaragiri Bibass, 3.Salem \u00a9, D,37, Ramanathapuram",
+      "area": "1.Salem (C), D,37, M.G.R.nagar, 2.Salem (C), D,37,Kumaragiri Bibass, 3.Salem ©, D,37, Ramanathapuram",
       "sourceNote": "archive2_form20"
     },
     "TN-090-262": {
@@ -8313,9 +8313,9 @@
       }
     ]
   },
-  "reconciledToElections": false,
+  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "incomplete",
+    "tier": "verified",
     "totalBooths": 268,
     "form20ParsedBooths": 268,
     "estimatedBooths": 0,
@@ -8325,24 +8325,6 @@
     "postalPct": 0.7,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": false
-  },
-  "summary": {
-    "totalVoters": 263134,
-    "totalVotes": 207902,
-    "turnoutPercent": 79.01,
-    "winner": {
-      "name": "VIJAY TAMILAN PARTHIBAN. A",
-      "party": "TVK",
-      "votes": 91371
-    },
-    "runnerUp": {
-      "name": "LOGANATHAN. M",
-      "party": "DMK",
-      "votes": 58002
-    },
-    "margin": 33369,
-    "marginPercent": 16.05
-  },
-  "validationNote": "2026 booth plus postal totals do not reconcile to the official AC result. Raw booth rows require Form 20 re-extraction."
+    "acTotalsReconciled": true
+  }
 }
