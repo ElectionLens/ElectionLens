@@ -1,6 +1,6 @@
 # Data Platform Roadmap: Full Electoral History, Booth-Level Truth, and AI Insights
 
-> Companion to `docs/ui-revamp-plan.md`. That document is a UI facelift, ~2-3 weeks.
+> Companion to `docs/ui-revamp/` (index: `docs/ui-revamp/README.md`). That document is a UI facelift, ~2-3 weeks.
 > **This one is not that.** Modeling constituency identity across 70 years of
 > delimitation, re-validating 84,000+ booths against source documents, and building
 > a grounded AI-insights layer is a multi-quarter data platform program. Treat the
