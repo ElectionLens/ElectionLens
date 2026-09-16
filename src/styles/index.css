@@ -787,27 +787,7 @@ body {
   color: var(--ui-accent-strong);
 }
 
-/* Unified color scheme for types */
-:root {
-  --color-state: var(--ui-state); /* Amber/Saffron */
-  --color-parliament: var(--ui-parliament); /* Soft violet */
-  --color-assembly: var(--ui-assembly); /* Emerald */
-  /* Shared list/table row sizing + interaction (see `.interactive-row`) */
-  --row-min-height: 44px;
-  --row-padding-y: 10px;
-  --row-padding-x: 12px;
-  --row-gap: 8px;
-  --row-radius: 6px;
-  --row-hover-inset: rgba(15, 23, 42, 0.055);
-  --row-active-inset: rgba(15, 23, 42, 0.09);
-  --row-accent-border-width: 4px;
-  --row-font-size-primary: 0.8125rem;
-  --row-font-size-secondary: 0.625rem;
-  --row-separator: var(--ui-surface-soft);
-  /* Left-pane lists: shared row chrome (borders align across summary, search, party rows, detail tables) */
-  --left-pane-row-border: var(--ui-border);
-  --left-pane-row-gap: 6px;
-}
+/* Shared list/table row sizing + interaction (see `.interactive-row`). */
 
 /**
  * Standard row affordance: consistent min-height, padding, hover/active wash, focus ring.
@@ -7020,6 +7000,41 @@ button.state-map-summary-row {
   --color-state: var(--ui-state);
   --color-parliament: var(--ui-parliament);
   --color-assembly: var(--ui-assembly);
+
+  /* Phase 1 scales: new UI should use these instead of ad hoc values. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --elev-sm: 0 1px 2px rgba(28, 26, 22, 0.07);
+  --elev-md: 0 10px 28px rgba(28, 26, 22, 0.1);
+  --elev-lg: 0 20px 48px rgba(28, 26, 22, 0.14);
+
+  /* Shared list/table row sizing and interaction. */
+  --row-min-height: 44px;
+  --row-padding-y: 10px;
+  --row-padding-x: 12px;
+  --row-gap: 8px;
+  --row-radius: 6px;
+  --row-hover-inset: rgba(15, 23, 42, 0.055);
+  --row-active-inset: rgba(15, 23, 42, 0.09);
+  --row-accent-border-width: 4px;
+  --row-font-size-primary: 0.8125rem;
+  --row-font-size-secondary: 0.625rem;
+  --row-separator: var(--ui-surface-soft);
+  --left-pane-row-border: var(--ui-border);
+  --left-pane-row-gap: 6px;
 }
 
 body {

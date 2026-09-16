@@ -31,10 +31,14 @@ historical JSON remains untouched; the fix applies across all states and years.
 ### Phase 1 — Consolidate the token layer (1–2 days)
 No visual change intended. Pure groundwork. Behaviour-preserving.
 
-- [ ] Merge the 3 `:root` blocks into one at the top of the file.
-- [ ] Add the missing scales: `--space-*` (4/8/12/16/24/32), `--radius-*` (sm 4 / md 8 / lg 12 / pill 999 — collapse 12 values to 4), `--text-*` (**floor at 12px**), `--elev-*` (3 shadows, replacing 93 ad-hoc ones).
+- [x] Merge the 3 `:root` blocks into one at the top of the file.
+- [x] Add the missing scales: `--space-*` (4/8/12/16/24/32), `--radius-*` (sm 4 / md 8 / lg 12 / pill 999 — collapse 12 values to 4), `--text-*` (**floor at 12px**), `--elev-*` (3 shadows, replacing 93 ad-hoc ones).
 - [ ] Codemod the 278 hex literals → tokens. Party colors are the exception: they stay literal in `partyData.ts`, which is correct and should be the single source.
 - [ ] Split `index.css` (8,030 lines → ~10 files under `src/styles/`, one per surface: `tokens`, `base`, `sidebar`, `map`, `panels`, `booth`, `blog`, `mobile`). **Per house rule: no file over 600 lines.**
+
+**Phase 1 progress on `fix/ui-phase-0`:** the duplicate root token block is merged and the
+new scales are available. Literal codemodding and CSS splitting remain intentionally
+separate follow-up commits so each can be visually reviewed.
 
 **Exit:** `grep -c '#[0-9a-f]\{3,6\}' src/styles/*.css` ≈ 0 outside `tokens.css`. Visual diff via Playwright screenshots shows no unintended change.
 
