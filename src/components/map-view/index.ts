@@ -9,3 +9,9 @@ export { BackgroundPanes } from './BackgroundPanes';
 export { FitBounds } from './FitBounds';
 export { pickNonNotaAcWinner, assignAcWinnerBySchemaId } from './mapWinnerHelpers';
 export { LAYER_URLS, type LayerName } from './layerUrls';
+export {
+  createBackgroundLayerHandler,
+  BACKGROUND_LAYER_BASE_STYLE,
+  type FeatureLayer,
+} from './backgroundLayerHandlers';
+export { toStateSummaryPanelData, type LayerMapSummary } from './stateSummaryPanelData';

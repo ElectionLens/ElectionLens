@@ -69,20 +69,12 @@ import {
   BackgroundPanes,
   FitBounds,
   LAYER_URLS,
+  createBackgroundLayerHandler,
+  BACKGROUND_LAYER_BASE_STYLE,
+  toStateSummaryPanelData,
+  type FeatureLayer,
   type LayerName,
 } from './map-view';
-
-interface FeatureLayer {
-  feature?: Feature;
-  setStyle: (style: object) => void;
-  bringToFront: () => void;
-  on: (eventMap: Record<string, (e: LLeafletMouseEvent) => void>) => void;
-  bindTooltip: (content: string, options?: L.TooltipOptions) => FeatureLayer;
-  unbindTooltip: () => FeatureLayer;
-  openTooltip: () => FeatureLayer;
-  closeTooltip: () => FeatureLayer;
-  getTooltip: () => L.Tooltip | undefined;
-}
 
 /** Leaflet GeoJSON ref type */
 type GeoJSONRef = L.GeoJSON | null;
@@ -547,38 +539,25 @@ export function MapView({
   ]);
 
   useEffect(() => {
+    const stateDisplayName = normalizeName(currentState ?? 'State');
     if (assemblyLayerMapSummary && !electionResult) {
-      onStateSummaryDataChange?.({
-        variant: 'assembly',
-        stateDisplayName: normalizeName(currentState ?? 'State'),
-        subtitle: assemblyLayerMapSummary.subtitle,
-        seatRows: assemblyLayerMapSummary.seats,
-        voteRows: assemblyLayerMapSummary.voteRows,
-        ...(assemblyLayerMapSummary.partyCandidateRowsByParty
-          ? { partyCandidateRowsByParty: assemblyLayerMapSummary.partyCandidateRowsByParty }
-          : {}),
-        totalValidVotes: assemblyLayerMapSummary.totalValidVotes,
-        constituenciesCounted: assemblyLayerMapSummary.voteUnits,
-        seatUnitLabel: 'ACs',
-        suppressSummaryMessage: assemblyLayerMapSummary.suppressMsg,
-      });
+      onStateSummaryDataChange?.(
+        toStateSummaryPanelData(assemblyLayerMapSummary, {
+          variant: 'assembly',
+          stateDisplayName,
+          seatUnitLabel: 'ACs',
+        })
+      );
       return;
     }
     if (parliamentLayerMapSummary && !electionResult) {
-      onStateSummaryDataChange?.({
-        variant: 'parliament',
-        stateDisplayName: normalizeName(currentState ?? 'State'),
-        subtitle: parliamentLayerMapSummary.subtitle,
-        seatRows: parliamentLayerMapSummary.seats,
-        voteRows: parliamentLayerMapSummary.voteRows,
-        ...(parliamentLayerMapSummary.partyCandidateRowsByParty
-          ? { partyCandidateRowsByParty: parliamentLayerMapSummary.partyCandidateRowsByParty }
-          : {}),
-        totalValidVotes: parliamentLayerMapSummary.totalValidVotes,
-        constituenciesCounted: parliamentLayerMapSummary.voteUnits,
-        seatUnitLabel: 'PCs',
-        suppressSummaryMessage: null,
-      });
+      onStateSummaryDataChange?.(
+        toStateSummaryPanelData(parliamentLayerMapSummary, {
+          variant: 'parliament',
+          stateDisplayName,
+          seatUnitLabel: 'PCs',
+        })
+      );
       return;
     }
     onStateSummaryDataChange?.(null);
@@ -743,12 +722,7 @@ export function MapView({
   // Style for background states: color by state winner (party with most Lok Sabha seats) or app-wide neutral
   const backgroundStateStyle = useCallback(
     (feature?: GeoJSON.Feature): L.PathOptions => {
-      const base = {
-        fillOpacity: 0.6,
-        color: '#fff',
-        weight: 1,
-        opacity: 0.85,
-      };
+      const base = BACKGROUND_LAYER_BASE_STYLE;
       if (!feature || Object.keys(stateWinners).length === 0) {
         return {
           ...base,
@@ -826,12 +800,7 @@ export function MapView({
   // Style for background PCs: colour by PC winner (from backgroundPCWinners or constituencyWinners) or app-wide neutral
   const backgroundPCStyle = useCallback(
     (feature?: GeoJSON.Feature): L.PathOptions => {
-      const base = {
-        fillOpacity: 0.6,
-        color: '#fff',
-        weight: 1,
-        opacity: 0.85,
-      };
+      const base = BACKGROUND_LAYER_BASE_STYLE;
       if (!feature) {
         return mergeDimmedNonFocusStyle({
           ...base,
@@ -865,46 +834,18 @@ export function MapView({
   );
 
   // Click and hover handler for background PCs
-  const onBackgroundPCClick = useCallback(
-    (feature: Feature, layer: Layer): void => {
-      const typedLayer = layer as unknown as FeatureLayer;
-      const props = feature.properties as ConstituencyProperties;
-      const pcName = props.ls_seat_name ?? props.PC_NAME ?? '';
-
-      // Tooltip on hover
-      typedLayer.bindTooltip(`Go to ${pcName}`, {
-        permanent: false,
-        direction: 'center',
-        className: 'hover-tooltip background-state-tooltip',
-      });
-
-      const hoverStyle = getHoverStyle('constituencies');
-      typedLayer.on({
-        mouseover: (): void => {
-          const prev = lastHoveredLayerRef.current;
-          if (prev && prev !== typedLayer) {
-            const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
-            if (baseStyle) prev.setStyle(baseStyle);
-          }
-          lastHoveredLayerRef.current = typedLayer;
-          (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle =
-            backgroundPCStyle(feature);
-          typedLayer.setStyle(hoverStyle);
-          typedLayer.bringToFront();
+  const onBackgroundPCClick = useMemo(
+    () =>
+      createBackgroundLayerHandler<ConstituencyFeature>({
+        level: 'constituencies',
+        getName: (feature) => {
+          const props = feature.properties as ConstituencyProperties;
+          return props.ls_seat_name ?? props.PC_NAME ?? '';
         },
-        mouseout: (): void => {
-          const baseStyle = backgroundPCStyle(feature);
-          typedLayer.setStyle(baseStyle);
-          if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
-        },
-        click: (e: LLeafletMouseEvent): void => {
-          // Stop propagation to prevent other layers from receiving this click
-          L.DomEvent.stopPropagation(e);
-          // Navigate to clicked PC
-          onConstituencyClick(pcName, feature as ConstituencyFeature);
-        },
-      });
-    },
+        getStyle: backgroundPCStyle,
+        onSelect: onConstituencyClick,
+        hoveredLayerRef: lastHoveredLayerRef,
+      }),
     [onConstituencyClick, backgroundPCStyle]
   );
 
@@ -986,12 +927,7 @@ export function MapView({
   // Style for background districts: colour by dominant party in district (from AC winners) or neutral
   const backgroundDistrictStyle = useCallback(
     (feature?: GeoJSON.Feature): L.PathOptions => {
-      const base = {
-        fillOpacity: 0.6,
-        color: '#fff',
-        weight: 1,
-        opacity: 0.85,
-      };
+      const base = BACKGROUND_LAYER_BASE_STYLE;
       const neutral = {
         ...base,
         fillColor: NEUTRAL_FILL_COLOR,
@@ -1028,46 +964,18 @@ export function MapView({
   );
 
   // Click and hover handler for background districts
-  const onBackgroundDistrictClick = useCallback(
-    (feature: Feature, layer: Layer): void => {
-      const typedLayer = layer as unknown as FeatureLayer;
-      const props = feature.properties as DistrictProperties;
-      const districtName = props.district ?? props.NAME ?? props.DISTRICT ?? '';
-
-      // Tooltip on hover
-      typedLayer.bindTooltip(`Go to ${districtName}`, {
-        permanent: false,
-        direction: 'center',
-        className: 'hover-tooltip background-state-tooltip',
-      });
-
-      const hoverStyle = getHoverStyle('districts');
-      typedLayer.on({
-        mouseover: (): void => {
-          const prev = lastHoveredLayerRef.current;
-          if (prev && prev !== typedLayer) {
-            const baseStyle = (prev as unknown as { _baseStyle?: L.PathOptions })._baseStyle;
-            if (baseStyle) prev.setStyle(baseStyle);
-          }
-          lastHoveredLayerRef.current = typedLayer;
-          (typedLayer as unknown as { _baseStyle?: L.PathOptions })._baseStyle =
-            backgroundDistrictStyle(feature);
-          typedLayer.setStyle(hoverStyle);
-          typedLayer.bringToFront();
+  const onBackgroundDistrictClick = useMemo(
+    () =>
+      createBackgroundLayerHandler<DistrictFeature>({
+        level: 'districts',
+        getName: (feature) => {
+          const props = feature.properties as DistrictProperties;
+          return props.district ?? props.NAME ?? props.DISTRICT ?? '';
         },
-        mouseout: (): void => {
-          const baseStyle = backgroundDistrictStyle(feature);
-          typedLayer.setStyle(baseStyle);
-          if (lastHoveredLayerRef.current === typedLayer) lastHoveredLayerRef.current = null;
-        },
-        click: (e: LLeafletMouseEvent): void => {
-          // Stop propagation to prevent other layers from receiving this click
-          L.DomEvent.stopPropagation(e);
-          // Navigate to clicked district
-          onDistrictClick(districtName, feature as DistrictFeature);
-        },
-      });
-    },
+        getStyle: backgroundDistrictStyle,
+        onSelect: onDistrictClick,
+        hoveredLayerRef: lastHoveredLayerRef,
+      }),
     [onDistrictClick, backgroundDistrictStyle]
   );
 
