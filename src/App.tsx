@@ -13,10 +13,10 @@ import { useUrlNavigate } from './hooks/useUrlNavigate';
 import { normalizeName, normalizePcNameCompact, getStateIdFromName } from './utils/helpers';
 import { defaultAssemblyDataYearFromIndex } from './utils/electionSchedule';
 import { mergeAssamAssemblyGeoForYear, assamMapDataForYear } from './utils/assamAssemblyGeo';
-import { trackPageView, trackConstituencySelect } from './utils/firebase';
+import { trackPageView } from './utils/firebase';
 import { withUrlLocation, viewSwitchUrlLocation, type UrlLocationInput } from './utils/urlLocation';
 import { readLocation, rawYearParam, parseAssemblyYearParam } from './utils/mapUrlContext';
-import { resolveAssemblyYearSelection } from './utils/assemblyYearSelection';
+import { useSelectLocation } from './hooks/useSelectLocation';
 import {
   PARLIAMENT_YEARS,
   loadParliamentContributionsForAC,
@@ -229,6 +229,7 @@ function App(): JSX.Element {
     setBlogOpen,
     updateUrlRef,
   });
+
   const { getShareableUrl, updateUrl } = useUrlState(
     currentState,
     currentView,
@@ -472,98 +473,6 @@ function App(): JSX.Element {
   /**
    * Handle state click from map or sidebar
    */
-  const handleStateClick = useCallback(
-    async (stateName: string, _feature: StateFeature): Promise<void> => {
-      closeSidebarAfterAction();
-      clearElectionResult();
-      clearPCElectionResult();
-      const data = await navigateToState(stateName);
-      setCurrentData(data);
-      // Pre-load election index for the state (both AC and PC)
-      void loadStateIndex(stateName);
-      const pcIndex = await loadPCStateIndex(stateName);
-      // Landing on PC view: ensure valid PC year for this state so map is colored
-      if (
-        pcIndex?.availableYears?.length &&
-        (pcSelectedYear == null || !pcIndex.availableYears.includes(pcSelectedYear))
-      ) {
-        const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
-        if (latestYear !== undefined) {
-          setPCSelectedYear(latestYear);
-          updateUrlRef.current(
-            viewSwitchUrlLocation({ state: stateName, view: 'constituencies', year: latestYear })
-          );
-        }
-      }
-      // Track analytics
-      trackConstituencySelect('state', stateName);
-    },
-    [
-      navigateToState,
-      closeSidebarAfterAction,
-      loadStateIndex,
-      loadPCStateIndex,
-      clearElectionResult,
-      clearPCElectionResult,
-      pcSelectedYear,
-      setPCSelectedYear,
-    ]
-  );
-
-  /**
-   * Handle district click from map or sidebar
-   */
-  const handleDistrictClick = useCallback(
-    async (districtName: string, _feature: DistrictFeature): Promise<void> => {
-      closeSidebarAfterAction();
-      if (!currentState) return;
-      selectAssembly(null); // Clear assembly when navigating to new district
-      clearElectionResult();
-      clearPCElectionResult();
-      const data = await navigateToDistrict(districtName, currentState);
-      setCurrentData(data);
-      // Track analytics
-      trackConstituencySelect('district', districtName, currentState);
-    },
-    [
-      navigateToDistrict,
-      currentState,
-      closeSidebarAfterAction,
-      selectAssembly,
-      clearElectionResult,
-      clearPCElectionResult,
-    ]
-  );
-
-  /**
-   * Handle constituency click from map or sidebar
-   */
-  const handleConstituencyClick = useCallback(
-    async (pcName: string, _feature: ConstituencyFeature): Promise<void> => {
-      closeSidebarAfterAction();
-      if (!currentState) return;
-      selectAssembly(null); // Clear assembly when navigating to new PC
-      clearElectionResult();
-      const data = await navigateToPC(pcName, currentState);
-      setCurrentData(data);
-      // Preserve year: use pcSelectedYear, or fallback to URL (handles stale closure / state not yet updated)
-      const yearToLoad =
-        pcSelectedYear ?? parseAssemblyYearParam(readLocation()?.search ?? '') ?? undefined;
-      await getPCResult(pcName, currentState, yearToLoad);
-      // Track analytics
-      trackConstituencySelect('pc', pcName, currentState);
-    },
-    [
-      navigateToPC,
-      currentState,
-      pcSelectedYear,
-      closeSidebarAfterAction,
-      selectAssembly,
-      clearElectionResult,
-      getPCResult,
-    ]
-  );
-
   /**
    * Get related states to search (for boundary changes like AP-Telangana)
    */
@@ -579,6 +488,72 @@ function App(): JSX.Element {
       setParliamentContributions(contributions);
     },
     [resolveStateName, resolvePCName]
+  );
+
+  /**
+   * The single entry point for "the user picked a place". Map clicks, search
+   * results and summary rows all delegate here so the sequence cannot drift
+   * between surfaces the way the hand-rolled copies did.
+   */
+  const { selectLocation } = useSelectLocation({
+    navigateToState,
+    navigateToPC,
+    navigateToDistrict,
+    navigateToAssemblies,
+    selectAssembly,
+    clearElectionResult,
+    clearPCElectionResult,
+    getACResult,
+    getPCResult,
+    loadStateIndex,
+    loadPCStateIndex,
+    setPCSelectedYear,
+    setSelectedACPCYear,
+    setCurrentData,
+    setParliamentContributions,
+    loadAllParliamentContributions,
+    getAC,
+    resolveACName,
+    getStateIdFromName,
+    closeSidebarAfterAction,
+    currentState,
+    currentPC,
+    selectedYear,
+    selectedACPCYear,
+    pcSelectedYear,
+    updateUrlRef,
+  });
+
+  /**
+   * Handle state click from map or sidebar
+   */
+  const handleStateClick = useCallback(
+    async (stateName: string, _feature: StateFeature): Promise<void> => {
+      await selectLocation({ level: 'state', stateName });
+    },
+    [selectLocation]
+  );
+
+  /**
+   * Handle district click from map or sidebar
+   */
+  const handleDistrictClick = useCallback(
+    async (districtName: string, _feature: DistrictFeature): Promise<void> => {
+      if (!currentState) return;
+      await selectLocation({ level: 'district', stateName: currentState, districtName });
+    },
+    [selectLocation, currentState]
+  );
+
+  /**
+   * Handle constituency click from map or sidebar
+   */
+  const handleConstituencyClick = useCallback(
+    async (pcName: string, _feature: ConstituencyFeature): Promise<void> => {
+      if (!currentState) return;
+      await selectLocation({ level: 'pc', stateName: currentState, pcName });
+    },
+    [selectLocation, currentState]
   );
 
   /**
@@ -633,67 +608,15 @@ function App(): JSX.Element {
   ]);
 
   /**
-   * Handle assembly click - select, zoom, and show election results
+   * Handle assembly click - select, zoom, and show election results.
+   * No `ensureAssembliesView`: a click inside a PC keeps that PC's scoped layer.
    */
   const handleAssemblyClick = useCallback(
     async (acName: string, feature: AssemblyFeature): Promise<void> => {
-      closeSidebarAfterAction(); // Hide sheet so map + panel stay visible after drill-down
-      selectAssembly(acName);
-      clearPCElectionResult(); // Close PC panel to show AC panel
-      setParliamentContributions({}); // Clear previous contributions
-
-      // Preserve year parameters from URL when switching assemblies
-      // Tab parameter is automatically preserved by useUrlState's updateUrl
-      const yearSelection = resolveAssemblyYearSelection({
-        search: readLocation()?.search ?? '',
-        selectedACPCYear,
-        selectedYear,
-        currentPC,
-        pcSelectedYear,
-      });
-      if (yearSelection.selectedACPCYear !== undefined) {
-        setSelectedACPCYear(yearSelection.selectedACPCYear);
-      }
-      const yearToUse = yearSelection.yearToUse;
-
-      // Load election results for this AC - preserve year if available
-      if (currentState) {
-        // Try to use schema for direct lookup (avoids fuzzy matching)
-        const schemaId = feature.properties.schemaId;
-        const schemaAC = schemaId ? getAC(schemaId) : null;
-
-        await getACResult(acName, currentState, yearToUse, {
-          schemaId,
-          canonicalName: schemaAC?.name,
-        });
-
-        // Load all parliament contributions if we have PC info
-        const pcName = feature.properties.PC_NAME;
-        if (pcName) {
-          await loadAllParliamentContributions(acName, pcName, currentState);
-        }
-
-        // Tab parameter will be preserved automatically by useUrlState's updateUrl
-        // which reads it from the current URL when updating
-
-        // Track analytics
-        trackConstituencySelect('assembly', acName, currentState);
-      }
+      if (!currentState) return;
+      await selectLocation({ level: 'assembly', stateName: currentState, acName, feature });
     },
-    [
-      closeSidebarAfterAction,
-      selectAssembly,
-      currentState,
-      currentPC,
-      pcSelectedYear,
-      selectedACPCYear,
-      getACResult,
-      getAC,
-      clearPCElectionResult,
-      loadAllParliamentContributions,
-      selectedYear,
-      setSelectedACPCYear,
-    ]
+    [selectLocation, currentState]
   );
 
   /**
@@ -719,12 +642,9 @@ function App(): JSX.Element {
    */
   const handleSearchStateSelect = useCallback(
     async (stateName: string, _feature: StateFeature): Promise<void> => {
-      closeSidebarAfterAction();
-      const data = await navigateToState(stateName);
-      setCurrentData(data);
-      void loadStateIndex(stateName);
+      await selectLocation({ level: 'state', stateName });
     },
-    [navigateToState, closeSidebarAfterAction, loadStateIndex]
+    [selectLocation]
   );
 
   /**
@@ -732,14 +652,9 @@ function App(): JSX.Element {
    */
   const handleSearchConstituencySelect = useCallback(
     async (pcName: string, stateName: string, _feature: ConstituencyFeature): Promise<void> => {
-      closeSidebarAfterAction();
-      // First navigate to the state
-      await navigateToState(stateName);
-      // Then navigate to the PC
-      const data = await navigateToPC(pcName, stateName);
-      setCurrentData(data);
+      await selectLocation({ level: 'pc', stateName, pcName });
     },
-    [navigateToState, navigateToPC, closeSidebarAfterAction]
+    [selectLocation]
   );
 
   /**
@@ -749,58 +664,17 @@ function App(): JSX.Element {
    */
   const handleSearchAssemblySelect = useCallback(
     async (acName: string, stateName: string, feature: AssemblyFeature): Promise<void> => {
-      closeSidebarAfterAction();
-      clearPCElectionResult();
-      setParliamentContributions({});
-
-      const data = await navigateToAssemblies(stateName);
-      setCurrentData(data);
-
-      selectAssembly(acName);
-
-      const yearSelection = resolveAssemblyYearSelection({
-        search: readLocation()?.search ?? '',
-        selectedACPCYear,
-        selectedYear,
-        currentPC,
-        pcSelectedYear,
+      // Unlike a map click, search can land from anywhere, so the statewide
+      // assembly layer has to be loaded before the AC can be shown.
+      await selectLocation({
+        level: 'assembly',
+        stateName,
+        acName,
+        feature,
+        ensureAssembliesView: true,
       });
-      if (yearSelection.selectedACPCYear !== undefined) {
-        setSelectedACPCYear(yearSelection.selectedACPCYear);
-      }
-      const yearToUse = yearSelection.yearToUse;
-
-      const stateId = getStateIdFromName(stateName);
-      const schemaId = feature.properties.schemaId ?? resolveACName(acName, stateId);
-      const schemaAC = schemaId ? getAC(schemaId) : null;
-
-      await getACResult(acName, stateName, yearToUse, {
-        schemaId: schemaId ?? undefined,
-        canonicalName: schemaAC?.name,
-      });
-
-      const pcName = feature.properties.PC_NAME;
-      if (pcName) {
-        await loadAllParliamentContributions(acName, pcName, stateName);
-      }
-
-      trackConstituencySelect('assembly', acName, stateName);
     },
-    [
-      navigateToAssemblies,
-      selectAssembly,
-      getACResult,
-      closeSidebarAfterAction,
-      clearPCElectionResult,
-      resolveACName,
-      getAC,
-      currentPC,
-      pcSelectedYear,
-      selectedYear,
-      selectedACPCYear,
-      setSelectedACPCYear,
-      loadAllParliamentContributions,
-    ]
+    [selectLocation]
   );
 
   /**
@@ -810,18 +684,9 @@ function App(): JSX.Element {
    */
   const handleSearchDistrictSelect = useCallback(
     async (districtName: string, stateName: string, _feature: DistrictFeature): Promise<void> => {
-      closeSidebarAfterAction();
-      clearElectionResult();
-      clearPCElectionResult();
-
-      // Navigate to the district
-      const data = await navigateToDistrict(districtName, stateName);
-      setCurrentData(data);
-
-      // Track analytics
-      trackConstituencySelect('district', districtName, stateName);
+      await selectLocation({ level: 'district', stateName, districtName });
     },
-    [navigateToDistrict, closeSidebarAfterAction, clearElectionResult, clearPCElectionResult]
+    [selectLocation]
   );
 
   const handleSummaryCandidateSelect = useCallback(
