@@ -17,6 +17,8 @@ import { trackPageView } from './utils/firebase';
 import { withUrlLocation, viewSwitchUrlLocation, type UrlLocationInput } from './utils/urlLocation';
 import { readLocation, rawYearParam, parseAssemblyYearParam } from './utils/mapUrlContext';
 import { useSelectLocation } from './hooks/useSelectLocation';
+import { useMediaQuery } from './hooks/useMediaQuery';
+import { resolvePanelMode, PANEL_WIDEN_MIN_VIEWPORT, type PanelMode } from './utils/panelMode';
 import {
   PARLIAMENT_YEARS,
   loadParliamentContributionsForAC,
@@ -147,6 +149,10 @@ function App(): JSX.Element {
   const [leftPane, setLeftPane] = useState<LeftPane>('root');
   const [leftPaneView, setLeftPaneView] = useState<LeftPaneView>(null);
   const [leftPaneParty, setLeftPaneParty] = useState<string | null>(null);
+  /** Active result-panel tab, mirrored from the panel so width can react to it. */
+  const [panelTab, setPanelTab] = useState<string | null>(null);
+  /** Explicit user width choice; null means "infer from what I'm doing". */
+  const [panelWidthOverride, setPanelWidthOverride] = useState<PanelMode | null>(null);
 
   const handleLeftPaneChange = useCallback(
     (next: { pane: LeftPane; paneView?: LeftPaneView; paneParty?: string | null }) => {
@@ -869,6 +875,10 @@ function App(): JSX.Element {
    */
   const handleElectionPanelViewTabSync = useCallback(
     (panelTab: 'overview' | 'booths' | 'postal' | 'analysis'): void => {
+      // Mirrored into App state as well as the URL: the panel width depends on
+      // which tab is open, and reading it back out of the URL would not be
+      // reactive.
+      setPanelTab(panelTab);
       if (!currentState || !currentAssembly) return;
       const searchParams =
         typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
@@ -882,6 +892,35 @@ function App(): JSX.Element {
       );
     },
     [blogOpen, currentAssembly, currentState, urlLocation, updateUrl]
+  );
+
+  /**
+   * Panel width follows intent (UI revamp section 3): browse while picking a
+   * place, analyse once a constituency is selected, deep-dive in booth and
+   * analysis tables. `resolvePanelMode` owns the rules so the CSS selectors and
+   * any future card surface cannot disagree about the answer.
+   */
+  const canWidenPanel = useMediaQuery(`(min-width: ${PANEL_WIDEN_MIN_VIEWPORT}px)`);
+
+  // Selecting a different place starts a fresh panel on its default tab, so a
+  // stale 'booths' must not linger and hold the panel at deep-dive width. The
+  // width override is dropped too: it was a decision about the previous place,
+  // and silently carrying it forward would make the next selection open at a
+  // width the user never asked for.
+  useEffect(() => {
+    setPanelTab(null);
+    setPanelWidthOverride(null);
+  }, [currentAssembly, currentPC]);
+
+  const panelMode = useMemo(
+    () =>
+      resolvePanelMode({
+        hasSelection: Boolean(currentAssembly ?? currentPC),
+        activeTab: panelTab,
+        canWiden: canWidenPanel,
+        override: panelWidthOverride,
+      }),
+    [currentAssembly, currentPC, panelTab, canWidenPanel, panelWidthOverride]
   );
 
   /**
@@ -1168,7 +1207,7 @@ function App(): JSX.Element {
         {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      <div className="container">
+      <div className="container" data-panel-mode={panelMode}>
         <Sidebar
           statesGeoJSON={statesGeoJSON}
           parliamentGeoJSON={parliamentGeoJSON}
@@ -1195,6 +1234,9 @@ function App(): JSX.Element {
           isOpen={sidebarOpen}
           onClose={closeSidebar}
           onBlogClick={handleBlogToggle}
+          panelMode={panelMode}
+          onPanelWidthOverrideChange={setPanelWidthOverride}
+          canWidenPanel={canWidenPanel}
           selectedSummaryParty={selectedSummaryParty}
           onSummaryPartyChange={setSelectedSummaryParty}
           onSummaryCandidateSelect={handleSummaryCandidateSelect}

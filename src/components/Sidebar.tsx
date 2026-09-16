@@ -2,6 +2,9 @@ import { useState, useCallback, useEffect, useMemo } from 'react';
 import { Map, Building2, Landmark, Database, Check, Link2, BookOpen } from 'lucide-react';
 import { normalizeName } from '../utils/helpers';
 import { LeftPaneButton } from './LeftPaneButton';
+import { PanelWidthToggle } from './PanelWidthToggle';
+import { useMediaQuery } from '../hooks/useMediaQuery';
+import type { PanelMode } from '../utils/panelMode';
 import { DataProvenanceFooter, DataProvenanceNotice } from './DataProvenanceNotice';
 import { SearchBox } from './SearchBox';
 import { YearSelector, type YearOption } from './YearSelector';
@@ -72,6 +75,12 @@ interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
   onBlogClick?: () => void;
+  /** Current panel width mode, for the width toggle. */
+  panelMode?: PanelMode;
+  /** Set/clear the user's explicit width preference. */
+  onPanelWidthOverrideChange?: (override: PanelMode | null) => void;
+  /** Whether the viewport can afford a wider panel. */
+  canWidenPanel?: boolean;
   selectedSummaryParty?: string | null;
   onSummaryPartyChange?: (party: string | null) => void;
   onSummaryCandidateSelect?: (row: PartyCandidateRow) => void;
@@ -173,6 +182,9 @@ export function Sidebar({
   isOpen,
   onClose,
   onBlogClick,
+  panelMode,
+  onPanelWidthOverrideChange,
+  canWidenPanel = false,
   selectedSummaryParty = null,
   onSummaryPartyChange,
   onSummaryCandidateSelect,
@@ -209,18 +221,7 @@ export function Sidebar({
   getDistrict,
 }: SidebarProps): JSX.Element {
   const { boothResults, boothsWithResults, loadBoothData, loadBoothResults } = useBoothData();
-  const [isMobileSidebar, setIsMobileSidebar] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
-    return window.innerWidth <= 768;
-  });
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const onResize = () => setIsMobileSidebar(window.innerWidth <= 768);
-    onResize();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+  const isMobileSidebar = useMediaQuery('(max-width: 768px)');
 
   useEffect(() => {
     if (!electionResult?.schemaId?.startsWith('TN-')) return;
@@ -569,6 +570,13 @@ export function Sidebar({
           </h1>
           <div className="sidebar-header-actions">
             <p>India Electoral Map</p>
+            {panelMode && onPanelWidthOverrideChange && (
+              <PanelWidthToggle
+                mode={panelMode}
+                onOverrideChange={onPanelWidthOverrideChange}
+                canWiden={canWidenPanel}
+              />
+            )}
             {onBlogClick && (
               <LeftPaneButton
                 variant="chrome"

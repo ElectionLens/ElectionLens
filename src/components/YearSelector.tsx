@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { useMediaQuery } from '../hooks/useMediaQuery';
+
 export interface YearOption {
   id: string;
   label: string;
@@ -28,19 +30,8 @@ export function YearSelector({
   variant = 'default',
 }: YearSelectorProps): JSX.Element | null {
   const rootRef = useRef<HTMLDivElement | null>(null);
-  const [isMobileViewport, setIsMobileViewport] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
-    return window.innerWidth <= 768;
-  });
+  const isMobileViewport = useMediaQuery('(max-width: 768px)');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const onResize = () => setIsMobileViewport(window.innerWidth <= 768);
-    onResize();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
 
   useEffect(() => {
     if (!isMenuOpen) return;

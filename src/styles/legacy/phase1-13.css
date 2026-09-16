@@ -131,6 +131,16 @@
   --elev-md: 0 10px 28px rgba(28, 26, 22, 0.1);
   --elev-lg: 0 20px 48px rgba(28, 26, 22, 0.14);
 
+  /* Panel width modes (UI revamp section 3). The sidebar width follows what the
+     user is doing: browse a place (map is the interface), analyse a selected
+     constituency (podium + KPIs need ~520px), or deep-dive into booth tables
+     (the map has nothing left to say). `--panel-w` is the single knob; the
+     `.container[data-panel-mode]` rules below just pick a value for it. */
+  --panel-w-browse: 360px;
+  --panel-w-analyse: 520px;
+  --panel-w-deep-dive: 900px;
+  --panel-w: var(--panel-w-browse);
+
   /* Shared list/table row sizing and interaction. */
   --row-min-height: 44px;
   --row-padding-y: 10px;
@@ -163,7 +173,7 @@ body {
     position: relative;
     left: auto;
     top: auto;
-    width: 360px;
+    width: var(--panel-w);
     max-width: none;
     height: 100%;
     z-index: 1000;
@@ -207,6 +217,35 @@ body {
     border-right: 1px solid var(--ui-border);
     box-shadow: var(--ui-shadow-md);
   }
+}
+
+/* Panel width modes.
+
+   Gated at 1152px rather than the 769px desktop breakpoint: widening to 520px
+   only makes sense once the map can still keep roughly its 720px working
+   minimum. Below that the panel stays at browse width, which is what
+   resolvePanelMode() independently returns, so CSS and JS agree.
+
+   deep-dive is clamped against the viewport so the map never collapses to a
+   sliver on a 1280px screen: min(900px, 62vw) yields 794px there and the full
+   900px from ~1452px up. */
+@media (min-width: 1152px) {
+  .container[data-panel-mode='analyse'] {
+    --panel-w: var(--panel-w-analyse);
+  }
+
+  .container[data-panel-mode='deep-dive'] {
+    --panel-w: min(var(--panel-w-deep-dive), 62vw);
+  }
+}
+
+/* The width toggle sits with the other header chrome. It is hidden below the
+   widening breakpoint by the component itself, not by CSS, so it never leaves
+   an invisible-but-focusable target in the tab order. */
+.panel-width-toggle {
+  flex-shrink: 0;
+  padding: 6px;
+  line-height: 0;
 }
 
 @media (max-width: 768px) {

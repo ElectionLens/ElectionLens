@@ -189,3 +189,44 @@ console.warn = (...args: unknown[]): void => {
   if (typeof firstArg === 'string' && firstArg.includes('IndexedDB')) return;
   originalWarn(...args);
 };
+
+/**
+ * jsdom ships no `matchMedia` implementation, and the stub it is often given
+ * returns a constant. Components use `useMediaQuery`, so tests need a version
+ * that actually evaluates the query - and that agrees with `window.innerWidth`,
+ * since that is the knob existing tests already turn to simulate a viewport.
+ *
+ * Supports the `(min-width: Npx)` / `(max-width: Npx)` forms the app uses.
+ */
+if (typeof window !== 'undefined') {
+  const evaluate = (query: string): boolean => {
+    const width = window.innerWidth;
+    let result = true;
+    for (const [, feature, value] of query.matchAll(/\((min|max)-width:\s*(\d+)px\)/g)) {
+      // matchAll gives [full, feature, value]; destructuring above skips [0].
+      const px = Number(value);
+      result &&= feature === 'min' ? width >= px : width <= px;
+    }
+    return result;
+  };
+
+  window.matchMedia = (query: string): MediaQueryList => {
+    const listeners = new Set<(event: MediaQueryListEvent) => void>();
+    return {
+      get matches() {
+        return evaluate(query);
+      },
+      media: query,
+      onchange: null,
+      addEventListener: (_type: string, listener: (event: MediaQueryListEvent) => void) => {
+        listeners.add(listener);
+      },
+      removeEventListener: (_type: string, listener: (event: MediaQueryListEvent) => void) => {
+        listeners.delete(listener);
+      },
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => false,
+    } as unknown as MediaQueryList;
+  };
+}
