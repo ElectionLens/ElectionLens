@@ -155,15 +155,18 @@ export function ElectionResultPanel({
     return () => window.removeEventListener('popstate', handlePopState);
   }, [getTabFromUrl]);
 
-  // Reset to overview tab if booth data becomes unavailable while on booths/postal/analysis tab
+  // Reset only after booth loading has resolved. `boothResults === null` is
+  // also the initial loading state; resetting here would erase a valid
+  // `?tab=analysis` deep link before the async booth request completes.
   useEffect(() => {
     if (
+      boothResults !== null &&
       !hasBoothData &&
       (activeTab === 'booths' || activeTab === 'postal' || activeTab === 'analysis')
     ) {
       setActiveTab('overview');
     }
-  }, [hasBoothData, activeTab]);
+  }, [boothResults, hasBoothData, activeTab]);
 
   // Get selected booth details
   const selectedBooth = useMemo(() => {
@@ -209,15 +212,12 @@ export function ElectionResultPanel({
   const inParliamentYearMode = Boolean(selectedPCYear && currentPCContribution);
   const isFutureAssemblySidebar = !inParliamentYearMode && (acResultsLoading || resultsPending);
   const showBoothTabs = !isFutureAssemblySidebar && hasBoothData;
-
-  useEffect(() => {
-    if (
-      isFutureAssemblySidebar &&
-      (activeTab === 'booths' || activeTab === 'postal' || activeTab === 'analysis')
-    ) {
-      setActiveTab('overview');
-    }
-  }, [isFutureAssemblySidebar, activeTab]);
+  // Preserve a persisted deep-linked sub-view while booth data is loading so
+  // the visible selector does not jump back to Overview during hydration.
+  const requestedTab =
+    typeof window === 'undefined' ? 'overview' : parseTabFromSearch(window.location.search);
+  const showRequestedTabWhileLoading =
+    requestedTab === activeTab && activeTab !== 'overview' && boothResults === null;
 
   // Generate share URL with current tab
   const shareUrlWithTab = useMemo(() => {
@@ -266,7 +266,7 @@ export function ElectionResultPanel({
       },
     ];
 
-    if (showBoothTabs) {
+    if (showBoothTabs || showRequestedTabWhileLoading) {
       options.push({
         id: 'booths',
         label: 'Booths',
@@ -275,7 +275,7 @@ export function ElectionResultPanel({
       });
     }
     if (
-      showBoothTabs &&
+      (showBoothTabs || (showRequestedTabWhileLoading && requestedTab === 'postal')) &&
       shouldShowPostalTab(boothResults?.postal, boothResults?.dataQuality, boothResults?.unmapped)
     ) {
       options.push({
@@ -285,7 +285,7 @@ export function ElectionResultPanel({
         onClick: () => setActiveTab('postal'),
       });
     }
-    if (showBoothTabs) {
+    if (showBoothTabs || (showRequestedTabWhileLoading && requestedTab === 'analysis')) {
       options.push({
         id: 'analysis',
         label: 'Analysis',
@@ -297,6 +297,8 @@ export function ElectionResultPanel({
   }, [
     activeTab,
     showBoothTabs,
+    showRequestedTabWhileLoading,
+    requestedTab,
     boothResults?.postal,
     boothResults?.dataQuality,
     boothResults?.unmapped,

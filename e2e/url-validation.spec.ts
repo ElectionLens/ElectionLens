@@ -178,6 +178,32 @@ test.describe('URL Validation - PC Samples (Panel Must Show)', () => {
   }
 });
 
+test.describe('URL Validation - Persisted panel tabs', () => {
+  test('opens the analysis view from the Dharapuram 2026 deep link', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac/dharapuram-(sc)?tab=analysis&year=2026', {
+      waitUntil: 'load',
+      timeout: 60000,
+    });
+
+    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 60000 });
+    await ensureElectionPanelVisible(page);
+
+    // YearSelector uses a native select on desktop and a hidden native proxy
+    // behind a visible custom trigger on mobile. The selected value is the
+    // stable contract across both renderings.
+    const viewSelect = page.locator('#ac-panel-view');
+    await expect(viewSelect).toBeAttached({ timeout: 30000 });
+    await expect.poll(
+      () =>
+        viewSelect.evaluate((element) =>
+          element instanceof HTMLSelectElement
+            ? element.value
+            : element.textContent?.trim() ?? ''
+        ),
+      { timeout: 30000 }
+    ).toMatch(/^analysis$/i);
+  });
+});
 test.describe('URL Validation - Year Fallback', () => {
   test('falls back to valid year when invalid year specified', async ({ page }) => {
     // 2022 is not a valid year for Rajasthan (has 2008, 2013, 2018, 2023)
