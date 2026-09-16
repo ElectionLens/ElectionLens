@@ -15,6 +15,8 @@ import { defaultAssemblyDataYearFromIndex } from './utils/electionSchedule';
 import { mergeAssamAssemblyGeoForYear, assamMapDataForYear } from './utils/assamAssemblyGeo';
 import { trackPageView, trackConstituencySelect } from './utils/firebase';
 import { withUrlLocation, type UrlLocationInput } from './utils/urlLocation';
+import { readLocation, rawYearParam, parseAssemblyYearParam } from './utils/mapUrlContext';
+import { resolveAssemblyYearSelection } from './utils/assemblyYearSelection';
 import {
   PARLIAMENT_YEARS,
   loadParliamentContributionsForAC,
@@ -304,11 +306,8 @@ function App(): JSX.Element {
     ) {
       return;
     }
-    const params = new URLSearchParams(window.location.search);
-    const yearParam = params.get('year');
-    if (!yearParam || yearParam.startsWith('pc-')) return;
-    const urlYear = parseInt(yearParam, 10);
-    if (isNaN(urlYear)) return;
+    const urlYear = parseAssemblyYearParam(readLocation()?.search ?? '');
+    if (urlYear == null) return;
     if (selectedYear !== urlYear) {
       setSelectedYear(urlYear);
       setSelectedACPCYear(null);
@@ -335,13 +334,10 @@ function App(): JSX.Element {
     const schemaId = resolveACName(currentAssembly, stateId);
     if (!schemaId) return;
 
-    const params = new URLSearchParams(window.location.search);
-    const rawYearParam = params.get('year');
-    const parsedAsmYear =
-      rawYearParam && !rawYearParam.startsWith('pc-') ? parseInt(rawYearParam, 10) : NaN;
-    const yearForACResult = !Number.isNaN(parsedAsmYear) ? parsedAsmYear : undefined;
+    const search = readLocation()?.search ?? '';
+    const yearForACResult = parseAssemblyYearParam(search) ?? undefined;
 
-    const fetchKey = `${currentState}|${currentAssembly}|${schemaId}|${rawYearParam ?? ''}`;
+    const fetchKey = `${currentState}|${currentAssembly}|${schemaId}|${rawYearParam(search) ?? ''}`;
     if (assemblySchemaPanelFetchRef.current === fetchKey) return;
     assemblySchemaPanelFetchRef.current = fetchKey;
 
@@ -560,14 +556,8 @@ function App(): JSX.Element {
       const data = await navigateToPC(pcName, currentState);
       setCurrentData(data);
       // Preserve year: use pcSelectedYear, or fallback to URL (handles stale closure / state not yet updated)
-      let yearToLoad = pcSelectedYear ?? undefined;
-      if (yearToLoad == null && typeof window !== 'undefined') {
-        const yearParam = new URLSearchParams(window.location.search).get('year');
-        if (yearParam && !yearParam.startsWith('pc-')) {
-          const parsed = parseInt(yearParam, 10);
-          if (!isNaN(parsed)) yearToLoad = parsed;
-        }
-      }
+      const yearToLoad =
+        pcSelectedYear ?? parseAssemblyYearParam(readLocation()?.search ?? '') ?? undefined;
       await getPCResult(pcName, currentState, yearToLoad);
       // Track analytics
       trackConstituencySelect('pc', pcName, currentState);
@@ -663,48 +653,17 @@ function App(): JSX.Element {
 
       // Preserve year parameters from URL when switching assemblies
       // Tab parameter is automatically preserved by useUrlState's updateUrl
-      const urlParams = new URLSearchParams(window.location.search);
-      const yearParam = urlParams.get('year');
-      let yearToUse: number | undefined = undefined;
-
-      // When toolbar is already in PC contribution mode, keep it — do not let a stale ?year=2021
-      // (or a stale closure missing selectedACPCYear in deps) clear PC coloring after sidebar click/search.
-      if (selectedACPCYear != null) {
-        if (selectedYear !== null) {
-          yearToUse = selectedYear;
-        }
-      } else if (yearParam) {
-        if (yearParam.startsWith('pc-')) {
-          // Parliament contribution year: year=pc-2024
-          const parsed = parseInt(yearParam.slice(3), 10);
-          if (!isNaN(parsed)) {
-            setSelectedACPCYear(parsed);
-          }
-        } else {
-          // Regular year (assembly or, in PC view, the PC year)
-          const parsed = parseInt(yearParam, 10);
-          if (!isNaN(parsed)) {
-            yearToUse = parsed;
-            // In PC view, show AC contribution to PC for this year; in district/AC view, show assembly result (clear PC year)
-            if (currentPC && pcSelectedYear != null) {
-              setSelectedACPCYear(pcSelectedYear);
-            } else {
-              setSelectedACPCYear(null); // Assembly year in URL — panel shows AC result, not PC contribution
-            }
-          }
-        }
-      } else if (currentPC && pcSelectedYear != null) {
-        // PC view but no year in URL: use current PC year so panel shows AC contribution to PC
-        setSelectedACPCYear(pcSelectedYear);
-      } else {
-        // District or state AC view, no year in URL — ensure panel shows assembly result, not stale PC year
-        setSelectedACPCYear(null);
+      const yearSelection = resolveAssemblyYearSelection({
+        search: readLocation()?.search ?? '',
+        selectedACPCYear,
+        selectedYear,
+        currentPC,
+        pcSelectedYear,
+      });
+      if (yearSelection.selectedACPCYear !== undefined) {
+        setSelectedACPCYear(yearSelection.selectedACPCYear);
       }
-
-      // If no year in URL, preserve current selectedYear if it exists
-      if (yearToUse === undefined && selectedYear !== null) {
-        yearToUse = selectedYear;
-      }
+      const yearToUse = yearSelection.yearToUse;
 
       // Load election results for this AC - preserve year if available
       if (currentState) {
@@ -808,42 +767,17 @@ function App(): JSX.Element {
 
       selectAssembly(acName);
 
-      const urlParams = new URLSearchParams(
-        typeof window !== 'undefined' ? window.location.search : ''
-      );
-      const yearParam = urlParams.get('year');
-      let yearToUse: number | undefined = undefined;
-
-      if (selectedACPCYear != null) {
-        if (selectedYear !== null) {
-          yearToUse = selectedYear;
-        }
-      } else if (yearParam) {
-        if (yearParam.startsWith('pc-')) {
-          const parsed = parseInt(yearParam.slice(3), 10);
-          if (!isNaN(parsed)) {
-            setSelectedACPCYear(parsed);
-          }
-        } else {
-          const parsed = parseInt(yearParam, 10);
-          if (!isNaN(parsed)) {
-            yearToUse = parsed;
-            if (currentPC && pcSelectedYear != null) {
-              setSelectedACPCYear(pcSelectedYear);
-            } else {
-              setSelectedACPCYear(null);
-            }
-          }
-        }
-      } else if (currentPC && pcSelectedYear != null) {
-        setSelectedACPCYear(pcSelectedYear);
-      } else {
-        setSelectedACPCYear(null);
+      const yearSelection = resolveAssemblyYearSelection({
+        search: readLocation()?.search ?? '',
+        selectedACPCYear,
+        selectedYear,
+        currentPC,
+        pcSelectedYear,
+      });
+      if (yearSelection.selectedACPCYear !== undefined) {
+        setSelectedACPCYear(yearSelection.selectedACPCYear);
       }
-
-      if (yearToUse === undefined && selectedYear !== null) {
-        yearToUse = selectedYear;
-      }
+      const yearToUse = yearSelection.yearToUse;
 
       const stateId = getStateIdFromName(stateName);
       const schemaId = feature.properties.schemaId ?? resolveACName(acName, stateId);
