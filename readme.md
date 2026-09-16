@@ -156,7 +156,7 @@ npm run e2e:chromium  # Chromium only
 │   │   ├── performance.ts        # Performance utilities
 │   │   └── helpers.ts            # Utility functions
 │   ├── styles/
-│   │   └── index.css             # Tailwind + custom styles
+│   │   └── index.css             # Hand-written CSS (no framework)
 │   └── types/
 │       └── index.ts              # TypeScript types
 ├── public/
@@ -188,7 +188,7 @@ npm run e2e:chromium  # Chromium only
 | Build Tool | Vite 5 |
 | Mapping | Leaflet + React-Leaflet |
 | Icons | Lucide React |
-| Styling | Tailwind CSS v4 |
+| Styling | Hand-written CSS with custom properties |
 | Storage | IndexedDB |
 | Unit Testing | Vitest + Testing Library |
 | E2E Testing | Playwright |

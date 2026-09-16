@@ -3,6 +3,7 @@ import L from 'leaflet';
 import { useMap } from 'react-leaflet';
 import type { BoothWithResult } from '../hooks/useBoothData';
 import { getPartyColor } from '../utils/partyData';
+import { formatNumber } from '../utils/formatNumber';
 
 interface BoothMarkersLayerProps {
   booths: BoothWithResult[];
@@ -79,7 +80,7 @@ export function BoothMarkersLayer({
                 ${booth.winner.party} - ${booth.winner.percent.toFixed(1)}%
               </div>
               <div style="color: #4b5563; margin-top: 2px;">
-                ${booth.result ? `Total: ${booth.result.total.toLocaleString()} votes` : ''}
+                ${booth.result ? `Total: ${formatNumber(booth.result.total)} votes` : ''}
               </div>
             </div>
           `

@@ -5,6 +5,10 @@
  */
 import type { CSSProperties } from 'react';
 import type { ACElectionResult, ElectionCandidate } from '../../types';
+import { formatNumber } from '../../utils/formatNumber';
+
+/** Re-exported so panel sub-views can keep importing from one place. */
+export { formatNumber };
 
 /** Softer outline chips for the embedded sidebar election panel */
 export function embeddedPartyChipStyle(hex: string): CSSProperties {
@@ -23,11 +27,6 @@ export function solidPartyChipStyle(hex: string): CSSProperties {
 
 export function winnerPartyChipStyle(hex: string, embedded: boolean): CSSProperties {
   return embedded ? embeddedPartyChipStyle(hex) : solidPartyChipStyle(hex);
-}
-
-export function formatNumber(num: number | undefined | null): string {
-  if (num === undefined || num === null) return '—';
-  return num.toLocaleString('en-IN');
 }
 
 /** Placeholder rows while AC JSON is fetching (votes/shares shown as 0). */

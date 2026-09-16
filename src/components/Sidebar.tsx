@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useMemo } from 'react';
 import { Map, Building2, Landmark, Database, Check, Link2, BookOpen } from 'lucide-react';
 import { normalizeName } from '../utils/helpers';
 import { LeftPaneButton } from './LeftPaneButton';
+import { DataProvenanceFooter, DataProvenanceNotice } from './DataProvenanceNotice';
 import { SearchBox } from './SearchBox';
 import { YearSelector, type YearOption } from './YearSelector';
 import { buildMapYearDropdownOptions } from '../utils/mapYearOptions';
@@ -583,6 +584,7 @@ export function Sidebar({
         </div>
 
         <div className="sidebar-scroll">
+          <DataProvenanceNotice />
           <div className="breadcrumb pane-section pane-section-tight">
             <div className="breadcrumb-nav">
               {Breadcrumb({
@@ -783,20 +785,24 @@ export function Sidebar({
             </div>
           </div>
 
-          <div className="cache-status">
-            <Database size={12} className="cache-icon" />
-            <strong> DB:</strong> {cacheStats.dbCount}
-            {' | '}
-            <Map size={12} className="cache-icon state-icon" /> {cacheStats.memCount}/
-            {cacheStats.totalStates}
-            {' | '}
-            <Building2 size={12} className="cache-icon pc-icon" /> {cacheStats.pcCount}
-            {' | '}
-            <Landmark size={11} className="cache-icon ac-icon" /> {cacheStats.acCount}
-            {cacheStats.memCount >= (cacheStats.totalStates ?? 0) &&
-              cacheStats.pcCount > 0 &&
-              cacheStats.acCount > 0 && <Check size={14} className="cache-check" />}
-          </div>
+          {/* Debug-only cache counters: internal diagnostics, never shipped to users. */}
+          {import.meta.env.DEV && (
+            <div className="cache-status">
+              <Database size={12} className="cache-icon" />
+              <strong> DB:</strong> {cacheStats.dbCount}
+              {' | '}
+              <Map size={12} className="cache-icon state-icon" /> {cacheStats.memCount}/
+              {cacheStats.totalStates}
+              {' | '}
+              <Building2 size={12} className="cache-icon pc-icon" /> {cacheStats.pcCount}
+              {' | '}
+              <Landmark size={11} className="cache-icon ac-icon" /> {cacheStats.acCount}
+              {cacheStats.memCount >= (cacheStats.totalStates ?? 0) &&
+                cacheStats.pcCount > 0 &&
+                cacheStats.acCount > 0 && <Check size={14} className="cache-check" />}
+            </div>
+          )}
+          <DataProvenanceFooter />
         </div>
       </div>
 

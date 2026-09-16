@@ -11,6 +11,7 @@ export const CandidateRow = memo(function CandidateRow({
   hideVoteStats = false,
   partyShortNames = false,
   embeddedPanel = false,
+  displayRank,
 }: {
   candidate: ElectionCandidate;
   isWinner: boolean;
@@ -18,6 +19,12 @@ export const CandidateRow = memo(function CandidateRow({
   hideVoteStats?: boolean;
   partyShortNames?: boolean;
   embeddedPanel?: boolean;
+  /**
+   * Rank to show in the `#` column. Supplied by the list so ranks stay contiguous:
+   * `candidate.position` comes from source data where NOTA was removed *after*
+   * ranking, leaving gaps (1,2,3,4,6...). Falls back to `position` when omitted.
+   */
+  displayRank?: number;
 }): JSX.Element {
   const partyColor = getPartyColor(candidate.party);
   const partyText = partyShortNames ? getPartyShortName(candidate.party) : candidate.party;
@@ -36,7 +43,7 @@ export const CandidateRow = memo(function CandidateRow({
     <div
       className={`candidate-row interactive-row ${isWinner ? 'winner' : ''} ${isRunnerUp ? 'runner-up' : ''}`}
     >
-      <span className="col-pos">{candidate.position}</span>
+      <span className="col-pos">{displayRank ?? candidate.position}</span>
       <span className="col-name" title={candidate.name}>
         {candidate.name}
         {candidate.sex && <span className="sex-badge">{candidate.sex}</span>}

@@ -315,6 +315,18 @@ export function ElectionResultPanel({
   }, [pcContributionShareUrl, copyLink]);
 
   const panelRef = useRef<HTMLDivElement>(null);
+  const candidatesScrollRef = useRef<HTMLDivElement>(null);
+
+  /**
+   * Reset the candidate list to the top whenever the constituency or year changes.
+   * The scroll container is reused across selections, so without this the next AC
+   * opens at the previous scroll offset and the rank-1 winner is clipped out of view.
+   */
+  const scrollIdentity = `${result.constituencyName ?? result.name ?? ''}|${result.year ?? ''}`;
+  useEffect(() => {
+    const el = candidatesScrollRef.current;
+    if (el) el.scrollTop = 0;
+  }, [scrollIdentity, activeTab]);
 
   const handleShareToX = useCallback(() => {
     if (acResultsLoading) return;
@@ -733,11 +745,12 @@ export function ElectionResultPanel({
                     <span className="col-votes">Votes</span>
                     <span className="col-share">%</span>
                   </div>
-                  <div className="candidates-scroll">
+                  <div className="candidates-scroll" ref={candidatesScrollRef}>
                     {displayCandidates.map((candidate, idx) => (
                       <CandidateRow
                         key={idx}
                         candidate={candidate}
+                        displayRank={idx + 1}
                         isWinner={!resultsPending && !acResultsLoading && idx === 0}
                         isRunnerUp={!resultsPending && !acResultsLoading && idx === 1}
                         hideVoteStats={hideAssemblyVoteFigures}

@@ -14,6 +14,7 @@ import type { AssemblyFeature } from '../types';
 import type { BoothResults } from '../hooks/useBoothData';
 import { trackShare } from '../utils/firebase';
 import { useCopyLinkToClipboard } from '../hooks/useCopyLinkToClipboard';
+import { formatNumber } from '../utils/formatNumber';
 
 interface BlogPost {
   id: string;
@@ -193,17 +194,18 @@ export function BlogSection({
       // Close blog first
       onClose();
 
-      // Navigate to Tamil Nadu first if not already there
+      // Navigate to Tamil Nadu first if not already there.
+      // This await is the real synchronisation point: the handler resolves only after
+      // state + assembly geometry have loaded. A previous version additionally waited
+      // 300ms before selecting the AC, which guessed at load time and silently missed
+      // on a cold cache or slow network, producing a dead click.
       if (onNavigateToState) {
         await onNavigateToState('Tamil Nadu');
       }
 
       // Then select the assembly
       if (onAssemblyClick) {
-        // Small delay to ensure state navigation completes
-        setTimeout(() => {
-          onAssemblyClick(acName.toUpperCase(), mockFeature);
-        }, 300);
+        onAssemblyClick(acName.toUpperCase(), mockFeature);
       }
     },
     [onAssemblyClick, onClose, onNavigateToState]
@@ -429,7 +431,7 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
                   <span className="margin-winner">({increase.current_winner})</span>
                 </div>
                 <span className="margin-value">
-                  +{increase.margin_increase.toLocaleString()} votes
+                  +{formatNumber(increase.margin_increase)} votes
                 </span>
               </div>
             ))}
@@ -465,15 +467,13 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
             </li>
             <li>
               The largest flip would be <strong>{data.flips[0]?.ac_name}</strong> with a margin of{' '}
-              {data.flips[0]?.margin.toLocaleString()} votes.
+              {formatNumber(data.flips[0]?.margin)} votes.
             </li>
             <li>
               NDA&apos;s existing seats (ADMK: 66, BJP: 4, PMK: 5) would see margin increases
               totaling{' '}
               <strong>
-                {data.margin_increases
-                  .reduce((sum, m) => sum + m.margin_increase, 0)
-                  .toLocaleString()}
+                {formatNumber(data.margin_increases.reduce((sum, m) => sum + m.margin_increase, 0))}
               </strong>{' '}
               additional votes.
             </li>
@@ -599,19 +599,19 @@ function FlipItemWithBooths({ flip, idx, onACClick }: FlipItemWithBoothsProps): 
           <div className="flip-current">
             <span className="label">Current Winner:</span>
             <span className="value winner">{flip.current_winner}</span>
-            <span className="votes">({flip.current_winner_votes.toLocaleString()} votes)</span>
+            <span className="votes">({formatNumber(flip.current_winner_votes)} votes)</span>
           </div>
           <div className="flip-new">
             <span className="label">NDA Combined:</span>
-            <span className="value combined">{flip.combined_votes.toLocaleString()} votes</span>
-            <span className="margin">(Margin: +{flip.margin.toLocaleString()})</span>
+            <span className="value combined">{formatNumber(flip.combined_votes)} votes</span>
+            <span className="margin">(Margin: +{formatNumber(flip.margin)})</span>
           </div>
           <div className="flip-breakdown">
-            <span>ADMK: {flip.admk_votes.toLocaleString()}</span>
-            {flip.bjp_votes > 0 && <span>+ BJP: {flip.bjp_votes.toLocaleString()}</span>}
-            {flip.pmk_votes > 0 && <span>+ PMK: {flip.pmk_votes.toLocaleString()}</span>}
-            {flip.ammk_votes > 0 && <span>+ AMMK: {flip.ammk_votes.toLocaleString()}</span>}
-            <span>= {flip.combined_votes.toLocaleString()}</span>
+            <span>ADMK: {formatNumber(flip.admk_votes)}</span>
+            {flip.bjp_votes > 0 && <span>+ BJP: {formatNumber(flip.bjp_votes)}</span>}
+            {flip.pmk_votes > 0 && <span>+ PMK: {formatNumber(flip.pmk_votes)}</span>}
+            {flip.ammk_votes > 0 && <span>+ AMMK: {formatNumber(flip.ammk_votes)}</span>}
+            <span>= {formatNumber(flip.combined_votes)}</span>
           </div>
         </div>
         <div className="flip-actions">
@@ -660,14 +660,14 @@ function FlipItemWithBooths({ flip, idx, onACClick }: FlipItemWithBoothsProps): 
                   {boothTotals.map((booth) => (
                     <div key={booth.boothId} className="booth-row">
                       <div className="booth-col-id">{booth.boothId}</div>
-                      <div className="booth-col-admk">{booth.admkVotes.toLocaleString()}</div>
-                      <div className="booth-col-bjp">{booth.bjpVotes.toLocaleString()}</div>
-                      <div className="booth-col-pmk">{booth.pmkVotes.toLocaleString()}</div>
-                      <div className="booth-col-ammk">{booth.ammkVotes.toLocaleString()}</div>
+                      <div className="booth-col-admk">{formatNumber(booth.admkVotes)}</div>
+                      <div className="booth-col-bjp">{formatNumber(booth.bjpVotes)}</div>
+                      <div className="booth-col-pmk">{formatNumber(booth.pmkVotes)}</div>
+                      <div className="booth-col-ammk">{formatNumber(booth.ammkVotes)}</div>
                       <div className="booth-col-combined">
-                        <strong>{booth.combined.toLocaleString()}</strong>
+                        <strong>{formatNumber(booth.combined)}</strong>
                       </div>
-                      <div className="booth-col-total">{booth.total.toLocaleString()}</div>
+                      <div className="booth-col-total">{formatNumber(booth.total)}</div>
                     </div>
                   ))}
                 </div>

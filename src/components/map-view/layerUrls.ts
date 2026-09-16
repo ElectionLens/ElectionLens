@@ -9,9 +9,8 @@ export const LAYER_URLS: Record<
   { url: string; maxZoom: number; subdomains?: string; isVector?: boolean; attribution?: string }
 > = {
   Streets: {
-    // CARTO's public raster endpoint now returns an API-key watermark.
-    // OpenStreetMap is keyless and keeps the default map usable offline after
-    // tiles have been cached by the browser.
+    // OpenStreetMap is keyless and avoids the API-key watermark that made the
+    // previous CARTO default look broken. Tiles can still be cached by the browser.
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     maxZoom: 19,
     subdomains: 'abc',

@@ -6,10 +6,7 @@ import { shouldUseShortPartyLabelsPC } from '../utils/partyDisplay';
 import { trackShare } from '../utils/firebase';
 import { useCopyLinkToClipboard } from '../hooks/useCopyLinkToClipboard';
 import { YearSelector, type YearOption } from './YearSelector';
-
-function formatNumber(num: number): string {
-  return num.toLocaleString('en-IN');
-}
+import { formatNumber } from './election-result-panel/shared';
 
 interface PCElectionResultPanelProps {
   result: PCElectionResult;

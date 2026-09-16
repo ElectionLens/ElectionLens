@@ -1,5 +1,7 @@
 /** Booth-wise data provenance for TN Form20 extraction. */
 
+import { formatNumber } from './formatNumber';
+
 export type BoothDataTier = 'verified' | 'mostly_verified' | 'partial' | 'incomplete';
 
 export type BoothVoteSource = 'form20' | 'estimated' | 'missing';
@@ -97,7 +99,7 @@ export function tierDescription(quality: BoothDataQuality): string {
   const parts: string[] = [];
   parts.push(`${form20ParsedPct.toFixed(0)}% of booths have Form20-extracted votes.`);
   if (missingBooths > 0) {
-    parts.push(`${missingBooths.toLocaleString()} booths have no booth-level votes yet.`);
+    parts.push(`${formatNumber(missingBooths)} booths have no booth-level votes yet.`);
   }
   if (postalPct > 0) {
     parts.push(`${postalPct.toFixed(1)}% postal ballots (from Form20 summary row).`);

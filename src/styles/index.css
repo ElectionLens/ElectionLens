@@ -15,10 +15,48 @@ body {
   height: 100vh;
 }
 
-.container {
+/* Phase 0: provenance is visible, concise, and never relies on colour alone. */
+.data-disclaimer {
   display: flex;
-  position: relative;
-  height: 100vh;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 10px 12px 0;
+  padding: 9px 10px;
+  border: 1px solid #f2cf8a;
+  border-radius: 8px;
+  background: #fff8e7;
+  color: #5f4518;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.data-disclaimer p,
+.data-provenance-footer p {
+  margin: 0;
+}
+
+.data-provenance-footer {
+  margin: 14px 12px 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ui-border, #e5e7eb);
+  color: var(--ui-text-muted, #64748b);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.data-provenance-footer a {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  margin-top: 5px;
+  color: var(--ui-accent, #1d4ed8);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.data-provenance-footer a:hover,
+.data-provenance-footer a:focus-visible {
+  text-decoration: underline;
 }
 
 /* Desktop/web: sidebar docked beside map; width animates to 0 when `.open` removed (FAB toggles). */
@@ -1370,8 +1408,13 @@ path:focus {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
+/*
+ * Active = sidebar is open, so this closes it. Previously #ef4444 (destructive red),
+ * which read as "delete" for a harmless toggle. Keep the same family as the resting
+ * state and signal "active" with a lighter tint instead of a different semantic colour.
+ */
 .mobile-toggle.active {
-  background: #ef4444;
+  background: linear-gradient(135deg, #2d3561 0%, #1f2d4d 100%);
 }
 
 /* Mobile overlay */

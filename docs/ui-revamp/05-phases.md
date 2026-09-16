@@ -5,21 +5,28 @@
 ### Phase 0 — Stop the bleeding (½ day)
 Highest value-per-hour in this document.
 
-- [ ] **B2**: Get a CARTO API key, or switch default basemap to an unkeyed provider
+- [x] **B2**: Get a CARTO API key, or switch default basemap to an unkeyed provider
       (OSM raster / Stadia). Non-negotiable — everything else is lipstick while
       `API KEY REQUIRED` is tiled 40× across the screen.
-- [ ] **B1**: Gate `.cache-status` behind `import.meta.env.DEV`.
-- [ ] **B3 + B4**: Delete the two duplicate `formatNumber`s, export one from
+- [x] **B1**: Gate `.cache-status` behind `import.meta.env.DEV`.
+- [x] **B3 + B4**: Delete the two duplicate `formatNumber`s, export one from
       `shared.ts` using `'en-IN'`, replace all 18 bare `.toLocaleString()` calls.
       One function, one locale, one place.
-- [ ] **B5**: Rank candidates after filtering NOTA.
-- [ ] **B6**: Reset panel scroll to top on selection change.
-- [ ] **T4/T5** (from [§2d](./02d-tnmla-benchmark.md)): Add a "not an official ECI /
+- [x] **B5**: Rank candidates after filtering NOTA.
+- [x] **B6**: Reset panel scroll to top on selection change.
+- [x] **B7**: Use a non-destructive active colour for the sidebar toggle.
+- [x] **B8**: Correct README's styling documentation to match the hand-written CSS codebase.
+- [x] **B9**: Remove the fixed 300ms Blog → AC navigation delay; await the real load promise.
+- [x] **T4/T5** (from [§2d](./02d-tnmla-benchmark.md)): Add a "not an official ECI /
       Government source" line plus footer data-provenance and a correction contact.
       Hours of work, and it is the honest counterpart to our booth data being only
       ~71% source-extracted. Credibility asset, not an apology.
 
 **Exit:** app stops looking broken. Ship this alone if the rest gets deprioritized.
+
+**Completed on `fix/ui-phase-0`:** lint, TypeScript, production build, and focused
+`formatNumber` tests pass. B5's source-data position gap is handled at display time so
+historical JSON remains untouched; the fix applies across all states and years.
 
 ### Phase 1 — Consolidate the token layer (1–2 days)
 No visual change intended. Pure groundwork. Behaviour-preserving.

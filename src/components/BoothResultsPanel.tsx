@@ -2,10 +2,7 @@ import { useState, useMemo } from 'react';
 import { X, MapPin, Users, Search, ChevronDown, ChevronUp, Award } from 'lucide-react';
 import type { BoothList, BoothResults, BoothWithResult, Candidate } from '../hooks/useBoothData';
 import { getPartyColor } from '../utils/partyData';
-
-function formatNumber(num: number): string {
-  return num.toLocaleString('en-IN');
-}
+import { formatNumber } from './election-result-panel/shared';
 
 interface BoothResultsPanelProps {
   acName: string;
