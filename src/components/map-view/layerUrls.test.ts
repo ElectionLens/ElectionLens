@@ -22,6 +22,6 @@ describe('LAYER_URLS', () => {
 
   it('uses {s}/{z}/{x}/{y} placeholders for subdomain-sharded raster providers', () => {
     expect(LAYER_URLS['Streets']?.url).toContain('{s}');
-    expect(LAYER_URLS['Streets']?.subdomains).toBe('abcd');
+    expect(LAYER_URLS['Streets']?.subdomains).toBe('abc');
   });
 });

@@ -1453,11 +1453,12 @@ export function MapView({
             key={baseLayer}
             url={
               LAYER_URLS[baseLayer]?.url ||
-              'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
+              LAYER_URLS['Streets']?.url ||
+              'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             }
-            maxZoom={LAYER_URLS[baseLayer]?.maxZoom || 19}
-            subdomains={LAYER_URLS[baseLayer]?.subdomains || 'abcd'}
-            attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+            maxZoom={LAYER_URLS[baseLayer]?.maxZoom || LAYER_URLS['Streets']?.maxZoom || 19}
+            subdomains={LAYER_URLS[baseLayer]?.subdomains || 'abc'}
+            attribution={LAYER_URLS[baseLayer]?.attribution || LAYER_URLS['Streets']?.attribution}
           />
         )}
 
