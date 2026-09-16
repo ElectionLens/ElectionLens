@@ -11270,9 +11270,9 @@
     ],
     "source": "form20"
   },
-  "reconciledToElections": false,
+  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "incomplete",
+    "tier": "partial",
     "totalBooths": 393,
     "form20ParsedBooths": 0,
     "estimatedBooths": 393,
@@ -11282,7 +11282,7 @@
     "postalPct": 1.1,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": false
+    "acTotalsReconciled": true
   },
   "unmapped": {
     "candidates": [
@@ -11433,5 +11433,5 @@
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
   },
-  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
+  "validationNote": "Booth plus postal totals reconcile to the official AC result, but some booth rows are estimated or missing. Booth-level analysis is partial until Form 20 re-extraction is complete."
 }

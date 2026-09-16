@@ -9958,9 +9958,9 @@
       }
     ]
   },
-  "reconciledToElections": false,
+  "reconciledToElections": true,
   "dataQuality": {
-    "tier": "incomplete",
+    "tier": "verified",
     "totalBooths": 312,
     "form20ParsedBooths": 312,
     "estimatedBooths": 0,
@@ -9970,7 +9970,7 @@
     "postalPct": 0.9,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
-    "acTotalsReconciled": false
+    "acTotalsReconciled": true
   },
   "summary": {
     "totalVoters": 261212,
@@ -9988,6 +9988,5 @@
     },
     "margin": 4071,
     "marginPercent": 1.73
-  },
-  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
+  }
 }

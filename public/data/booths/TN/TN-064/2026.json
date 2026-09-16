@@ -12722,5 +12722,5 @@
     ],
     "note": "Votes not yet extracted from Form20 booth rows (not postal ballots)"
   },
-  "validationNote": "2026 booth extraction failed independent AC-level validation. Raw booth rows must not be used for booth analysis until Form 20 is re-extracted and cross-validated."
+  "validationNote": "2026 booth plus postal totals do not reconcile to the official AC result. Raw booth rows require Form 20 re-extraction."
 }

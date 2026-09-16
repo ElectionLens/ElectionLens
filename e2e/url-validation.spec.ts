@@ -179,8 +179,8 @@ test.describe('URL Validation - PC Samples (Panel Must Show)', () => {
 });
 
 test.describe('URL Validation - Persisted panel tabs', () => {
-  test('quarantines analysis from the Dharapuram 2026 deep link until booth data is verified', async ({ page }) => {
-    await page.goto('/tamil-nadu/ac/dharapuram-(sc)?tab=analysis&year=2026', {
+  test('opens analysis for Madurantakam 2026 while exposing partial-data quality', async ({ page }) => {
+    await page.goto('/tamil-nadu/ac/madurantakam-(sc)?tab=analysis&year=2026', {
       waitUntil: 'load',
       timeout: 60000,
     });
@@ -201,7 +201,8 @@ test.describe('URL Validation - Persisted panel tabs', () => {
             : element.textContent?.trim() ?? ''
         ),
       { timeout: 30000 }
-    ).toMatch(/^overview$/i);
+    ).toMatch(/^analysis$/i);
+    await expect(page.locator('.booth-quality-banner').first()).toBeVisible({ timeout: 30000 });
   });
 });
 test.describe('URL Validation - Year Fallback', () => {

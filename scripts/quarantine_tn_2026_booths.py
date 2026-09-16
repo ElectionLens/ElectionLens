@@ -50,15 +50,27 @@ def official_summary(ac: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def booth_diff(booth: dict[str, Any], ac: dict[str, Any]) -> int:
+def booth_and_postal_totals(booth: dict[str, Any]) -> dict[str, int]:
     names = [candidate.get("name", "") for candidate in booth.get("candidates", [])]
     sums = [0] * len(names)
     for row in booth.get("results", {}).values():
         for index, value in enumerate(row.get("votes", [])):
             if index < len(sums):
                 sums[index] += value or 0
-    extracted = dict(zip(names, sums))
-    return sum(abs(extracted.get(candidate["name"], 0) - candidate.get("votes", 0)) for candidate in ac["candidates"])
+
+    totals = dict(zip(names, sums))
+    for candidate in booth.get("postal", {}).get("candidates", []):
+        name = candidate.get("name", "")
+        totals[name] = totals.get(name, 0) + (candidate.get("postal", 0) or 0)
+    return totals
+
+
+def booth_diff(booth: dict[str, Any], ac: dict[str, Any]) -> int:
+    extracted = booth_and_postal_totals(booth)
+    return sum(
+        abs(extracted.get(candidate["name"], 0) - candidate.get("votes", 0))
+        for candidate in ac["candidates"]
+    )
 
 
 def audit_one(path: Path, ac: dict[str, Any], schema_ac: dict[str, Any], write: bool) -> dict[str, Any]:
@@ -67,22 +79,31 @@ def audit_one(path: Path, ac: dict[str, Any], schema_ac: dict[str, Any], write: 
     quality = booth.setdefault("dataQuality", {})
     has_estimates = quality.get("estimatedBooths", 0) > 0
     missing = quality.get("missingBooths", 0) > 0
-    invalid = diff != 0 or has_estimates or missing
+    totals_reconcile = diff == 0
+    invalid = not totals_reconcile
+    incomplete_source = has_estimates or missing
 
     if write:
         # The summary is display metadata, so it must agree with the official
         # AC result even while the booth rows are quarantined.
         booth["summary"] = official_summary(ac)
         booth["acName"] = ac.get("constituencyName", booth.get("acName"))
-        quality["tier"] = "incomplete" if invalid else "partial"
-        quality["acTotalsReconciled"] = not invalid
-        booth["reconciledToElections"] = not invalid
+        quality["tier"] = "incomplete" if invalid else ("partial" if incomplete_source else "verified")
+        quality["acTotalsReconciled"] = totals_reconcile
+        booth["reconciledToElections"] = totals_reconcile
         if invalid:
             booth["validationNote"] = (
-                "2026 booth extraction failed independent AC-level validation. "
-                "Raw booth rows must not be used for booth analysis until Form 20 "
-                "is re-extracted and cross-validated."
+                "2026 booth plus postal totals do not reconcile to the official "
+                "AC result. Raw booth rows require Form 20 re-extraction."
             )
+        elif incomplete_source:
+            booth["validationNote"] = (
+                "Booth plus postal totals reconcile to the official AC result, "
+                "but some booth rows are estimated or missing. Booth-level "
+                "analysis is partial until Form 20 re-extraction is complete."
+            )
+        else:
+            booth.pop("validationNote", None)
         path.write_text(json.dumps(booth, indent=2) + "\n")
 
     # Keep reservation metadata authoritative in the election result file; the

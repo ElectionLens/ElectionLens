@@ -128,10 +128,9 @@ export function ElectionResultPanel({
   );
   const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
 
-  // Never expose booth analysis as trustworthy when the ingestion pipeline
-  // explicitly failed AC-level reconciliation. Raw rows remain quarantined in
-  // the data file for re-extraction, but the UI must not turn them into a
-  // confident-looking chart.
+  // A failed AC reconciliation means the raw booth layer is not safe to
+  // expose as analysis. Partial rows remain available only when their
+  // aggregate booth+postal totals reconcile to the official AC result.
   const boothTotalsTrusted = boothResults?.dataQuality?.acTotalsReconciled !== false;
   const hasBoothData = Boolean(
     boothTotalsTrusted &&
