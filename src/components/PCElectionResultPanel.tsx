@@ -1,9 +1,10 @@
 import { Award, TrendingUp, Vote, Link2, Check, Twitter, Users, Camera } from 'lucide-react';
-import { useState, useCallback, memo, useEffect, useMemo, useRef } from 'react';
+import { useCallback, memo, useEffect, useMemo, useRef } from 'react';
 import type { PCElectionResult, PCElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName, getPartyShortName } from '../utils/partyData';
 import { shouldUseShortPartyLabelsPC } from '../utils/partyDisplay';
 import { trackShare } from '../utils/firebase';
+import { useCopyLinkToClipboard } from '../hooks/useCopyLinkToClipboard';
 import { YearSelector, type YearOption } from './YearSelector';
 
 function formatNumber(num: number): string {
@@ -66,7 +67,7 @@ export function PCElectionResultPanel({
   layerOptions = [],
   omitConstituencyHeading = false,
 }: PCElectionResultPanelProps): JSX.Element {
-  const [copied, setCopied] = useState(false);
+  const { copied, copyLink } = useCopyLinkToClipboard();
 
   const isMobilePortrait =
     typeof window !== 'undefined' &&
@@ -101,16 +102,8 @@ export function PCElectionResultPanel({
   }, []);
 
   const handleCopyLink = useCallback(async () => {
-    const url = shareUrl ?? window.location.href;
-    try {
-      await navigator.clipboard.writeText(url);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-      trackShare('copy_link', 'parliament');
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
-  }, [shareUrl]);
+    await copyLink(shareUrl ?? window.location.href, 'parliament');
+  }, [shareUrl, copyLink]);
 
   const panelRef = useRef<HTMLDivElement>(null);
 

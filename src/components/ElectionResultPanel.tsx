@@ -15,6 +15,7 @@ import type { ACElectionResult } from '../types';
 import { getPartyColor, getPartyFullName, getPartyShortName } from '../utils/partyData';
 import { shouldUseShortPartyLabelsAssembly } from '../utils/partyDisplay';
 import { trackShare } from '../utils/firebase';
+import { useCopyLinkToClipboard } from '../hooks/useCopyLinkToClipboard';
 import type { BoothResults, BoothWithResult } from '../hooks/useBoothData';
 import { BoothDataQualityBanner } from './BoothDataQualityBanner';
 import { shouldShowPostalTab, shouldShowUnmappedInPostalTab } from '../utils/boothDataQuality';
@@ -77,6 +78,23 @@ interface ElectionResultPanelProps {
 
 type TabType = 'overview' | 'booths' | 'postal' | 'analysis';
 
+/**
+ * Reads the panel's active tab out of `?tab=`.
+ *
+ * Was written out twice - once as the useState lazy initializer, once as
+ * the useCallback used on popstate - with the useState copy quietly
+ * missing the `typeof window` guard the callback had (harmless today only
+ * because this component never renders during SSR).
+ */
+export function parseTabFromSearch(search: string): TabType {
+  const tabParam = new URLSearchParams(search).get('tab');
+  if (!tabParam) return 'overview';
+  /** Legacy deeplinks merged into Overview */
+  if (tabParam === 'candidates') return 'overview';
+  const validTabs: TabType[] = ['overview', 'booths', 'postal', 'analysis'];
+  return validTabs.includes(tabParam as TabType) ? (tabParam as TabType) : 'overview';
+}
+
 export function ElectionResultPanel({
   result,
   onClose: _onClose,
@@ -102,29 +120,12 @@ export function ElectionResultPanel({
   // Read tab from URL on mount
   const getTabFromUrl = useCallback((): TabType => {
     if (typeof window === 'undefined') return 'overview';
-    const searchParams = new URLSearchParams(window.location.search);
-    const tabParam = searchParams.get('tab');
-    if (!tabParam) return 'overview';
-    /** Legacy deeplinks merged into Overview */
-    if (tabParam === 'candidates') return 'overview';
-    const validTabs: TabType[] = ['overview', 'booths', 'postal', 'analysis'];
-    if (validTabs.includes(tabParam as TabType)) {
-      return tabParam as TabType;
-    }
-    return 'overview';
+    return parseTabFromSearch(window.location.search);
   }, []);
 
-  const [activeTab, setActiveTab] = useState<TabType>(() => {
-    if (typeof window === 'undefined') return 'overview';
-    const tabParam = new URLSearchParams(window.location.search).get('tab');
-    if (!tabParam) return 'overview';
-    if (tabParam === 'candidates') return 'overview';
-    const validTabs: TabType[] = ['overview', 'booths', 'postal', 'analysis'];
-    if (validTabs.includes(tabParam as TabType)) {
-      return tabParam as TabType;
-    }
-    return 'overview';
-  });
+  const [activeTab, setActiveTab] = useState<TabType>(() =>
+    typeof window === 'undefined' ? 'overview' : parseTabFromSearch(window.location.search)
+  );
   const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
 
   // Check if booth data is available
@@ -169,7 +170,7 @@ export function ElectionResultPanel({
     if (!selectedBoothId) return null;
     return boothsWithResults.find((b) => b.id === selectedBoothId) ?? null;
   }, [selectedBoothId, boothsWithResults]);
-  const [copied, setCopied] = useState(false);
+  const { copied, copyLink } = useCopyLinkToClipboard();
   const [selectedPCYearInternal, setSelectedPCYearInternal] = useState<number | null>(null);
 
   // Mobile portrait: single expanded sheet (full height class); no peek/half cycling
@@ -304,27 +305,12 @@ export function ElectionResultPanel({
   const handleCopyLink = useCallback(async () => {
     if (acResultsLoading) return;
     const urlToShare = shareUrlWithTab ?? shareUrl ?? window.location.href;
-    try {
-      await navigator.clipboard.writeText(urlToShare);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-      trackShare('copy_link', 'assembly');
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
-  }, [shareUrlWithTab, shareUrl, acResultsLoading]);
+    await copyLink(urlToShare, 'assembly');
+  }, [shareUrlWithTab, shareUrl, acResultsLoading, copyLink]);
 
   const handleCopyPCLink = useCallback(async () => {
-    if (!pcContributionShareUrl) return;
-    try {
-      await navigator.clipboard.writeText(pcContributionShareUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-      trackShare('copy_link', 'parliament');
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
-  }, [pcContributionShareUrl]);
+    await copyLink(pcContributionShareUrl, 'parliament');
+  }, [pcContributionShareUrl, copyLink]);
 
   const panelRef = useRef<HTMLDivElement>(null);
 

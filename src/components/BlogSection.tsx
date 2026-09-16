@@ -13,6 +13,7 @@ import {
 import type { AssemblyFeature } from '../types';
 import type { BoothResults } from '../hooks/useBoothData';
 import { trackShare } from '../utils/firebase';
+import { useCopyLinkToClipboard } from '../hooks/useCopyLinkToClipboard';
 
 interface BlogPost {
   id: string;
@@ -278,7 +279,7 @@ interface AlliancePostContentProps {
 }
 
 function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX.Element {
-  const [copied, setCopied] = useState(false);
+  const { copied, copyLink } = useCopyLinkToClipboard();
   const [showAllMarginIncreases, setShowAllMarginIncreases] = useState(false);
 
   // Get current share URL
@@ -300,15 +301,8 @@ function AlliancePostContent({ data, onACClick }: AlliancePostContentProps): JSX
   }, [data]);
 
   const handleCopyLink = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-      trackShare('copy_link', 'blog');
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
-  }, [shareUrl]);
+    await copyLink(shareUrl, 'blog');
+  }, [shareUrl, copyLink]);
 
   const handleShareToX = useCallback(() => {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
