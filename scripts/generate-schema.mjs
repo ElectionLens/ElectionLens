@@ -165,6 +165,32 @@ function loadElectionIndices() {
   return indices;
 }
 
+/**
+ * Parliament (Lok Sabha) index per state, keyed the same way as
+ * loadElectionIndices() (by the elections/pc/{stateDir} directory name).
+ *
+ * Assembly and parliament elections are NOT mutually exclusive for a given
+ * state-year -- AP, Odisha, Arunachal Pradesh, Jharkhand, Maharashtra and
+ * others have historically held them simultaneously. Loading this
+ * separately (rather than assuming one array covers both) is what lets
+ * buildStates() populate elections.parliament instead of hardcoding [].
+ */
+function loadParliamentIndices() {
+  const pcDir = path.join(DATA_DIR, 'elections/pc');
+  const indices = {};
+
+  if (fs.existsSync(pcDir)) {
+    for (const stateDir of fs.readdirSync(pcDir)) {
+      const indexPath = path.join(pcDir, stateDir, 'index.json');
+      if (fs.existsSync(indexPath)) {
+        indices[stateDir] = loadJSON(indexPath);
+      }
+    }
+  }
+
+  return indices;
+}
+
 // ============================================================================
 // SCHEMA BUILDERS
 // ============================================================================
@@ -181,7 +207,7 @@ const STATE_NAME_ALIASES = {
   JK: ['jammu and kashmir', 'jammu kashmir'],
 };
 
-function buildStates(boundariesGeo, electionIndices) {
+function buildStates(boundariesGeo, electionIndices, parliamentIndices) {
   const states = {};
   const stateByName = {};
 
@@ -193,9 +219,13 @@ function buildStates(boundariesGeo, electionIndices) {
 
     const normalized = normalizeName(name);
 
-    // Find election index for this state
-    const slugName = normalized.replace(/\s+/g, '-');
-    const electionIndex = electionIndices[slugName];
+    // Find election indices for this state. Both elections/ac/{dir} and
+    // elections/pc/{dir} are keyed by the same 2-letter code as `id` (e.g.
+    // "AP") -- NOT by a name slug. This previously looked up `slugName`
+    // ("andhra-pradesh"), which never matched any directory name, so
+    // elections.assembly silently came back empty for every state.
+    const electionIndex = electionIndices[id];
+    const parliamentIndex = parliamentIndices[id];
 
     // Get all aliases for this state
     const baseAliases = [name, normalized, name.toUpperCase()];
@@ -213,9 +243,13 @@ function buildStates(boundariesGeo, electionIndices) {
       loksabhaSeats: 0, // Will be filled from PC data
       assemblySeats: electionIndex?.totalConstituencies || null,
       delimitation: electionIndex?.delimitation || null,
+      // Two independent arrays, not one: a state-year can have BOTH an
+      // assembly and a parliament election (AP, Odisha, Arunachal Pradesh,
+      // Jharkhand, Maharashtra and others hold them simultaneously), so
+      // this must never collapse to a single "election year" list.
       elections: {
         assembly: electionIndex?.availableYears || [],
-        parliament: [],
+        parliament: parliamentIndex?.availableYears || [],
       },
     };
 
@@ -381,15 +415,16 @@ async function main() {
   const assemblyGeo = loadAssemblyGeo();
   const parliamentGeo = loadParliamentGeo();
   const electionIndices = loadElectionIndices();
+  const parliamentIndices = loadParliamentIndices();
 
   console.log(`   Found ${boundariesGeo.length} states`);
   console.log(`   Found ${parliamentGeo.length} PCs`);
   console.log(`   Found ${assemblyGeo.length} ACs`);
 
-  console.log('\n📦 Building schema...');
+  console.log('\n Building schema...');
 
   // Build states first
-  const { states, stateByName } = buildStates(boundariesGeo, electionIndices);
+  const { states, stateByName } = buildStates(boundariesGeo, electionIndices, parliamentIndices);
   console.log(`   ${Object.keys(states).length} states`);
 
   // Build PCs
