@@ -14,6 +14,10 @@ Highest value-per-hour in this document.
       One function, one locale, one place.
 - [ ] **B5**: Rank candidates after filtering NOTA.
 - [ ] **B6**: Reset panel scroll to top on selection change.
+- [ ] **T4/T5** (from [§2d](./02d-tnmla-benchmark.md)): Add a "not an official ECI /
+      Government source" line plus footer data-provenance and a correction contact.
+      Hours of work, and it is the honest counterpart to our booth data being only
+      ~71% source-extracted. Credibility asset, not an apology.
 
 **Exit:** app stops looking broken. Ship this alone if the rest gets deprioritized.
 

@@ -109,15 +109,19 @@ Also note `Analyze Results` wraps to two lines at 390px. Short labels for card a
 width (~145px tall) keeping candidate photos; KPI strip reflows from one row to a grid.
 Stacking rather than shrinking the podium is the right call — adopt it.
 
-### Gap: tnmla.in not analysed
+### Gap: tnmla.in not measured
 
 `https://tnmla.in/` is **blocked by the corporate web gateway** ("Blocked by URL Filter
-Database", reputation: Unverified), both via browser and direct fetch. None of the above
-reflects tnmla.in, and nothing here should be attributed to it.
+Database", reputation: Unverified), both via browser and direct fetch. None of the
+measurements above reflect tnmla.in, and nothing here should be attributed to it.
 
-To include it: request access at `https://puppy.walmart.com/url-allowlist` (auto-approved,
-~5 min), then re-run this analysis. Worth doing — a second reference would tell us which
-patterns are genuinely conventional for Indian election UIs versus one team's choices.
-The single-benchmark risk is real: several decisions above rest on one site's opinion.
+Its *structure* is now captured from a user-supplied description in
+[§2d](./02d-tnmla-benchmark.md) — which independently confirms this section's main
+criticism (directory cards must carry real content, and 234 records need filtering).
+But §2d has **no verified pixel values**, so every hard number in this plan still comes
+from a single site.
+
+To close it properly: request access at `https://puppy.walmart.com/url-allowlist`
+(auto-approved, ~5 min), then re-run the measurement pass.
 
 ---
