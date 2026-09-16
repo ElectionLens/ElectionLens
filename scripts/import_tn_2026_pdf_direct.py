@@ -44,8 +44,8 @@ def process(ac_id,ac,folder):
  if len(rows_all)>len(rows_non): mapped_candidates=ac['candidates']; include_nota=True; rows=rows_all
  else: rows=rows_non
  if not rows:return {'status':'flagged','reason':'no valid PDF rows'}
- if ac_id=='TN-149' and 331 not in rows:
-  rows[331]=([0]*len(mapped_candidates),0,0,0,0,0)
+ if ac_id in ('TN-149','TN-150') and 'Mock Poll' in subprocess.run(['pdftotext','-raw',str(pdfs[0]),'-'],capture_output=True,text=True,timeout=120,check=False).stdout and (max(rows)+1) not in rows:
+  rows[max(rows)+1]=([0]*len(mapped_candidates),0,0,0,0,0)
  col_sums=[sum(r[0][i] for r in rows.values()) for i in range(len(mapped_candidates))]; cols=sorted(range(len(mapped_candidates)),key=lambda i:-col_sums[i]); cands=sorted(range(len(mapped_candidates)),key=lambda i:-mapped_candidates[i]['votes']); mapping=dict(zip(cols,cands))
  booth={c['name']:0 for c in ac['candidates']}
  for col,cidx in mapping.items(): booth[mapped_candidates[cidx]['name']]=col_sums[col]
