@@ -364,19 +364,41 @@ This is a program, not a sprint. Rough phase order, each gated on the previous
 because §2 (identity crosswalk) is a load-bearing prerequisite for §5, §6, and
 honest year-over-year comparison generally:
 
-| Phase | Scope | Depends on |
-|---|---|---|
-| A | Fix the false assumption in the schema: allow simultaneous AC+PC per state-year | — |
-| B | District validation methodology generalized to all 36 states (§3) | — |
-| C | Booth accuracy: add independent-re-extraction cross-check + sampling audit + provenance badges (§4) | — |
-| D | `deriveApproxPCFromAC()` for gap-filling, clearly labeled as estimated (§1) | — |
-| E | **Constituency lineage graph** — research + encode 2008/1976 delimitation orders first (§2) | — |
-| F | Booth-level swing/neighbor/correlation analysis surfaced in UI, "what changed" only (§6) | C |
-| G | Historical backfill 1976-2007 (geometry stable, results need adding) | E |
-| H | News/context annotation layer, curated + cited (§8) | — |
-| I | AI insights layer via AI Innovation Lab, grounded + cited + guardrailed (§9) | C, F, H |
-| J | Historical backfill pre-1976 (research spike, may be partially unrecoverable) | E, G |
-| — | **Caste data: district-level, officially-sourced only, if approved as a product decision (§7)** | explicit sign-off |
+| Phase | Scope | Depends on | Status |
+|---|---|---|---|
+| A | Fix the false assumption in the schema: allow simultaneous AC+PC per state-year | — | **Done** (`5993ebef`) |
+| B | District validation methodology generalized to all 36 states (§3) | — | |
+| C | Booth accuracy: add independent-re-extraction cross-check + sampling audit + provenance badges (§4) | — | |
+| D | `deriveApproxPCFromAC()` for gap-filling, clearly labeled as estimated (§1) | — | |
+| E | **Constituency lineage graph** — research + encode 2008/1976 delimitation orders first (§2) | — | |
+| F | Booth-level swing/neighbor/correlation analysis surfaced in UI, "what changed" only (§6) | C | |
+| G | Historical backfill 1976-2007 (geometry stable, results need adding) | E | |
+| H | News/context annotation layer, curated + cited (§8) | — | |
+| I | AI insights layer via AI Innovation Lab, grounded + cited + guardrailed (§9) | C, F, H | |
+| J | Historical backfill pre-1976 (research spike, may be partially unrecoverable) | E, G | |
+| — | **Caste data: district-level, officially-sourced only, if approved as a product decision (§7)** | explicit sign-off | |
+
+### Phase A — what actually shipped
+
+Turned out to be two bugs in `scripts/generate-schema.mjs`, not a type-level
+schema change — the `MasterSchema` type already modeled
+`elections: { assembly: number[], parliament: number[] }` as two independent
+arrays (checked before touching anything; good instinct to verify rather than
+assume the type needed redesigning).
+
+1. `parliament: []` was a hardcoded literal. No code path read PC data at all
+   when building the schema.
+2. The assembly lookup was *also* silently broken, for an unrelated reason:
+   `electionIndices[slugName]` (a name-slug key, `'andhra-pradesh'`) never
+   matched the map's actual keys (2-letter directory codes, `'AP'`) for any of
+   the 36 states. `elections.assembly` and `assemblySeats` were both empty
+   before parliament was even considered.
+
+Regenerated `schema.json`: 8 states (MH, SK, OD, AP, AR, JH and others) now
+visibly carry an overlapping assembly+parliament year in the same entry — the
+concrete, checkable form of "the schema can represent a simultaneous
+election." Zero behavior change today (nothing in `src` reads those fields
+yet), 535/535 tests pass. Full writeup in the commit message.
 
 A, B, D are independently shippable in weeks. C and E are the two multi-month
 foundations everything valuable (F, G, I, J) sits on top of — resource those first
