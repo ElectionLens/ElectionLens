@@ -17,9 +17,21 @@ def pdf_rows(pdf, non_nota, max_booth=2000):
    for tail_len in (5,4):
     if len(nums)<start+non_nota+tail_len: continue
     cand=nums[start:start+non_nota]; tail=nums[start+non_nota:start+non_nota+tail_len]
-    if tail_len==5: valid,rejected,nota,total,tendered=tail
-    else: valid,rejected,nota,total=tail; tendered=0
-    if sum(cand)==valid and valid+rejected+nota==total:
+    if tail_len==5:
+     valid,rejected,nota,total,tendered=tail
+     checks=sum(cand)==valid and valid+rejected+nota==total
+    else:
+     valid,a,b,c=tail
+     if sum(cand)!=valid: continue
+     # Four-field exports occur in two forms: rejected is present (0) or
+     # rejected is blank and the tail is valid, NOTA, total, tendered.
+     if valid+a==b:
+      rejected,nota,total,tendered=0,a,b,c
+     elif valid+a+b==c:
+      rejected,nota,total,tendered=a,b,c,0
+     else: continue
+     checks=True
+    if checks:
      if booth not in found: found[booth]=(cand,valid,rejected,nota,total,tendered)
      break
  return found
