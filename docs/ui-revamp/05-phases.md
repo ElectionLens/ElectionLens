@@ -92,9 +92,21 @@ The structural change. **Read §2 and §3 first.**
       `ensureAssembliesView` is an explicit caller decision because search must load the
       statewide layer while a map click inside a PC must not. Browser-verified that both
       routes now produce identical panel content and identical URLs. App.tsx −135 lines.
-- [ ] **Panel width modes.** `--panel-w` token driving 360 / 520 / ~900px, switched by
+- [x] **Panel width modes.** `--panel-w` token driving 360 / 520 / ~900px, switched by
       *navigation mode* (§2), animated, with a user override that sticks. Below 1152px
       viewport, stay at 360px.
+      <br>**Landed in `745664a2`.** `resolvePanelMode()` (`src/utils/panelMode.ts`) is a
+      pure function, so the CSS selectors and any future card surface cannot disagree
+      about the answer. Two deliberate refinements to the spec:
+      <br>• deep-dive is `min(900px, 62vw)`, not a flat 900px — on a 1280px screen a flat
+      value would leave the map a sliver. Measured 892.797px at 1440px.
+      <br>• the 1152px floor **outranks the user override**, because it is a hard
+      constraint rather than a preference; honouring an override there would squeeze the
+      map below its usable minimum.
+      <br>The override ships as a real control (`PanelWidthToggle`, `aria-pressed`,
+      hidden rather than disabled below the breakpoint). Tab and override both reset on
+      selection change so a stale `booths` cannot hold the next constituency at full
+      width. Verified in-browser at all three widths, the floor, and the toggle.
 - [ ] `<ResultPodium>` — **2×2 grid** (Winner/Runner-up/3rd/Margin), party-coloured left
       border, vote count dominant, share % secondary. Collapses to one row at 360px. (S1)
 - [ ] `<KpiStrip>` — Total / Valid / NOTA / Rejected / Winner-led / Runner-led / Booths,
