@@ -234,23 +234,23 @@
     },
     "TN-205-7": {
       "votes": [
-        66,
-        33,
-        36,
-        7,
+        268,
+        250,
+        229,
+        42,
+        10,
+        22,
+        4,
         1,
-        6,
+        0,
+        1,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
+        1,
+        1,
+        1
       ],
-      "total": 149,
+      "total": 830,
       "rejected": 0,
       "sourceNote": "official_form20_pdf"
     },
@@ -850,23 +850,23 @@
     },
     "TN-205-35": {
       "votes": [
-        172,
-        145,
-        163,
-        26,
-        4,
+        224,
+        150,
+        132,
+        29,
         0,
         2,
-        0,
-        0,
-        1,
         2,
         0,
         0,
         0,
-        1
+        0,
+        0,
+        0,
+        0,
+        0
       ],
-      "total": 516,
+      "total": 539,
       "rejected": 0,
       "sourceNote": "official_form20_pdf"
     },
@@ -6459,57 +6459,57 @@
       {
         "name": "KEERTHANA S",
         "party": "TVK",
-        "postal": 928,
-        "booth": 67781,
+        "postal": 674,
+        "booth": 68035,
         "total": 68709
       },
       {
         "name": "ASHOKAN G",
         "party": "INC",
-        "postal": 843,
-        "booth": 56196,
+        "postal": 621,
+        "booth": 56418,
         "total": 57039
       },
       {
         "name": "RAJENTHRABHALAJI K T",
         "party": "AIADMK",
-        "postal": 844,
-        "booth": 50234,
+        "postal": 682,
+        "booth": 50396,
         "total": 51078
       },
       {
         "name": "ESTHER MARY DIANA A",
         "party": "NTK",
-        "postal": 175,
-        "booth": 10016,
+        "postal": 137,
+        "booth": 10054,
         "total": 10191
       },
       {
         "name": "KANIPANDI M",
         "party": "PT",
-        "postal": 39,
-        "booth": 2474,
+        "postal": 34,
+        "booth": 2479,
         "total": 2513
       },
       {
         "name": "GANESAN M",
         "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam",
-        "postal": 58,
-        "booth": 1671,
+        "postal": 40,
+        "booth": 1689,
         "total": 1729
       },
       {
         "name": "NOTA",
         "party": "NOTA",
-        "postal": 21,
-        "booth": 927,
+        "postal": 17,
+        "booth": 931,
         "total": 948
       },
       {
         "name": "SURESH K",
         "party": "BSP",
-        "postal": 1,
-        "booth": 228,
+        "postal": 0,
+        "booth": 229,
         "total": 229
       },
       {
@@ -6529,8 +6529,8 @@
       {
         "name": "VENKATESH V",
         "party": "IND",
-        "postal": 4,
-        "booth": 195,
+        "postal": 6,
+        "booth": 193,
         "total": 199
       },
       {
@@ -6543,15 +6543,15 @@
       {
         "name": "MURUGAN M",
         "party": "IND",
-        "postal": 1,
-        "booth": 119,
+        "postal": 0,
+        "booth": 120,
         "total": 120
       },
       {
         "name": "GANESAN S",
         "party": "IND",
-        "postal": 1,
-        "booth": 101,
+        "postal": 0,
+        "booth": 102,
         "total": 102
       },
       {
@@ -6562,10 +6562,10 @@
         "total": 80
       }
     ],
-    "totalValid": 2921,
+    "totalValid": 2217,
     "rejected": 0,
-    "nota": 21,
-    "total": 2921,
+    "nota": 17,
+    "total": 2217,
     "source": "official AC residual"
   },
   "dataQuality": {
@@ -6575,8 +6575,8 @@
     "estimatedBooths": 0,
     "missingBooths": 0,
     "form20ParsedPct": 100.0,
-    "postalVotes": 2921,
-    "postalPct": 1.51,
+    "postalVotes": 2217,
+    "postalPct": 1.15,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
     "acTotalsReconciled": true

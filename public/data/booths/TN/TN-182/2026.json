@@ -2610,23 +2610,23 @@
     },
     "TN-182-115": {
       "votes": [
-        234,
-        207,
-        232,
-        67,
-        3,
         0,
-        5,
         0,
-        1,
-        1,
-        1,
-        1,
         0,
-        1,
-        1
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
-      "total": 754,
+      "total": 0,
       "rejected": 0,
       "sourceNote": "official_form20_pdf"
     },
@@ -5799,36 +5799,36 @@
       {
         "name": "SIVA.V.MEYYANATHAN",
         "party": "DMK",
-        "postal": 767,
-        "booth": 64162,
+        "postal": 1001,
+        "booth": 63928,
         "total": 64929
       },
       {
         "name": "KANDASAMY",
         "party": "TVK",
-        "postal": 375,
-        "booth": 51577,
+        "postal": 582,
+        "booth": 51370,
         "total": 51952
       },
       {
         "name": "DHANA VIMAL",
         "party": "AIADMK",
-        "postal": 269,
-        "booth": 49794,
+        "postal": 501,
+        "booth": 49562,
         "total": 50063
       },
       {
         "name": "R.RAJARAM",
         "party": "NTK",
-        "postal": 121,
-        "booth": 10531,
+        "postal": 188,
+        "booth": 10464,
         "total": 10652
       },
       {
         "name": "NOTA",
         "party": "NOTA",
-        "postal": 9,
-        "booth": 664,
+        "postal": 12,
+        "booth": 661,
         "total": 673
       },
       {
@@ -5841,8 +5841,8 @@
       {
         "name": "R.SURESH",
         "party": "Party for the Rights of Other backward Classes",
-        "postal": 0,
-        "booth": 530,
+        "postal": 5,
+        "booth": 525,
         "total": 530
       },
       {
@@ -5855,29 +5855,29 @@
       {
         "name": "K.MURUGESAN",
         "party": "IND",
-        "postal": 0,
-        "booth": 174,
+        "postal": 1,
+        "booth": 173,
         "total": 174
       },
       {
         "name": "SASIKUMAR.P",
         "party": "IND",
-        "postal": 3,
-        "booth": 155,
+        "postal": 4,
+        "booth": 154,
         "total": 158
       },
       {
         "name": "B.SELVAM",
         "party": "IND",
-        "postal": 5,
-        "booth": 131,
+        "postal": 6,
+        "booth": 130,
         "total": 136
       },
       {
         "name": "S.VANMEGANADHAN",
         "party": "IND",
-        "postal": 1,
-        "booth": 131,
+        "postal": 2,
+        "booth": 130,
         "total": 132
       },
       {
@@ -5890,22 +5890,22 @@
       {
         "name": "T.THIRUMARAN",
         "party": "IND",
-        "postal": 1,
-        "booth": 90,
+        "postal": 2,
+        "booth": 89,
         "total": 91
       },
       {
         "name": "V.KANNADASSAN",
         "party": "IND",
-        "postal": 0,
-        "booth": 66,
+        "postal": 1,
+        "booth": 65,
         "total": 66
       }
     ],
-    "totalValid": 1569,
+    "totalValid": 2323,
     "rejected": 0,
-    "nota": 9,
-    "total": 1569,
+    "nota": 12,
+    "total": 2323,
     "source": "official AC residual"
   },
   "dataQuality": {
@@ -5915,8 +5915,8 @@
     "estimatedBooths": 0,
     "missingBooths": 0,
     "form20ParsedPct": 100.0,
-    "postalVotes": 1569,
-    "postalPct": 0.87,
+    "postalVotes": 2323,
+    "postalPct": 1.29,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
     "acTotalsReconciled": true

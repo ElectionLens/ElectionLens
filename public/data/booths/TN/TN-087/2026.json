@@ -4198,29 +4198,29 @@
     },
     "TN-087-146": {
       "votes": [
-        136,
-        272,
-        161,
-        21,
+        198,
+        171,
+        147,
+        10,
+        3,
+        3,
+        1,
+        3,
         3,
         1,
         0,
         1,
-        2,
-        0,
-        1,
         0,
         0,
-        1,
+        0,
         0,
         0,
         1,
         0,
         0,
-        0,
-        1
+        0
       ],
-      "total": 601,
+      "total": 542,
       "rejected": 0,
       "sourceNote": "official_form20_pdf"
     },
@@ -9651,29 +9651,29 @@
       {
         "name": "VETRIVEL. S",
         "party": "AIADMK",
-        "postal": 1340,
-        "booth": 86002,
+        "postal": 1278,
+        "booth": 86064,
         "total": 87342
       },
       {
         "name": "SENTHILKUMAR. K",
         "party": "TVK",
-        "postal": 606,
-        "booth": 77219,
+        "postal": 707,
+        "booth": 77118,
         "total": 77825
       },
       {
         "name": "MANIKANDAN. M",
         "party": "DMK",
-        "postal": 1111,
-        "booth": 64605,
+        "postal": 1125,
+        "booth": 64591,
         "total": 65716
       },
       {
         "name": "NITHYA. A",
         "party": "NTK",
-        "postal": 109,
-        "booth": 7425,
+        "postal": 120,
+        "booth": 7414,
         "total": 7534
       },
       {
@@ -9686,50 +9686,50 @@
       {
         "name": "NOTA",
         "party": "NOTA",
-        "postal": 15,
-        "booth": 696,
+        "postal": 13,
+        "booth": 698,
         "total": 711
       },
       {
         "name": "PARAMASIVAM. R",
         "party": "IND",
-        "postal": 4,
-        "booth": 469,
+        "postal": 3,
+        "booth": 470,
         "total": 473
       },
       {
         "name": "SETTUMUTHU. V",
         "party": "BSP",
-        "postal": 7,
-        "booth": 391,
+        "postal": 5,
+        "booth": 393,
         "total": 398
       },
       {
         "name": "MANIKANDAN. D",
         "party": "IND",
-        "postal": 6,
-        "booth": 389,
+        "postal": 5,
+        "booth": 390,
         "total": 395
       },
       {
         "name": "MAYILKUMAR. M",
         "party": "IND",
-        "postal": 3,
-        "booth": 337,
+        "postal": 2,
+        "booth": 338,
         "total": 340
       },
       {
         "name": "VIGNESH. A",
         "party": "IND",
-        "postal": 0,
-        "booth": 289,
+        "postal": 1,
+        "booth": 288,
         "total": 289
       },
       {
         "name": "SENTHILKUMAR. R.S.",
         "party": "TNLK",
-        "postal": 4,
-        "booth": 283,
+        "postal": 3,
+        "booth": 284,
         "total": 287
       },
       {
@@ -9742,8 +9742,8 @@
       {
         "name": "DURAIRAJ. C",
         "party": "IND",
-        "postal": 1,
-        "booth": 259,
+        "postal": 2,
+        "booth": 258,
         "total": 260
       },
       {
@@ -9763,15 +9763,15 @@
       {
         "name": "SAKTHIVEL. D",
         "party": "IND",
-        "postal": 1,
-        "booth": 139,
+        "postal": 2,
+        "booth": 138,
         "total": 140
       },
       {
         "name": "MANIKANDAN. P",
         "party": "IND",
-        "postal": 2,
-        "booth": 134,
+        "postal": 1,
+        "booth": 135,
         "total": 136
       },
       {
@@ -9791,15 +9791,15 @@
       {
         "name": "RAMESHKUMAR. V",
         "party": "IND",
-        "postal": 0,
-        "booth": 83,
+        "postal": 1,
+        "booth": 82,
         "total": 83
       }
     ],
-    "totalValid": 3224,
+    "totalValid": 3283,
     "rejected": 0,
-    "nota": 15,
-    "total": 3224,
+    "nota": 13,
+    "total": 3283,
     "source": "official AC residual"
   },
   "dataQuality": {
@@ -9809,8 +9809,8 @@
     "estimatedBooths": 0,
     "missingBooths": 0,
     "form20ParsedPct": 100.0,
-    "postalVotes": 3224,
-    "postalPct": 1.32,
+    "postalVotes": 3283,
+    "postalPct": 1.35,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
     "acTotalsReconciled": true

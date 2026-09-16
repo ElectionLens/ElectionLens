@@ -15,6 +15,12 @@ body {
   height: 100vh;
 }
 
+.container {
+  display: flex;
+  position: relative;
+  height: 100vh;
+}
+
 /* Phase 0: provenance is visible, concise, and never relies on colour alone. */
 .data-disclaimer {
   display: flex;

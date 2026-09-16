@@ -798,24 +798,24 @@
     },
     "TN-189-31": {
       "votes": [
-        301,
-        198,
-        42,
-        40,
+        276,
+        224,
+        39,
+        10,
         4,
-        3,
-        0,
+        2,
         1,
         1,
-        0,
-        0,
         1,
         0,
         1,
+        0,
+        0,
+        0,
         0,
         0
       ],
-      "total": 592,
+      "total": 559,
       "rejected": 0,
       "sourceNote": "official_form20_pdf"
     },
@@ -2408,24 +2408,24 @@
     },
     "TN-189-101": {
       "votes": [
-        261,
-        192,
-        58,
-        27,
+        241,
+        176,
+        70,
+        23,
         4,
-        1,
-        1,
-        1,
-        1,
-        0,
-        0,
-        1,
+        2,
+        3,
+        2,
+        3,
         1,
         0,
         0,
-        0
+        0,
+        0,
+        0,
+        1
       ],
-      "total": 548,
+      "total": 526,
       "rejected": 0,
       "sourceNote": "official_form20_pdf"
     },
@@ -9283,29 +9283,29 @@
       {
         "name": "KARTHIKEYAN S",
         "party": "TVK",
-        "postal": 1580,
-        "booth": 117197,
+        "postal": 1625,
+        "booth": 117152,
         "total": 118777
       },
       {
         "name": "MOORTHY P",
         "party": "DMK",
-        "postal": 1774,
-        "booth": 100456,
+        "postal": 1764,
+        "booth": 100466,
         "total": 102230
       },
       {
         "name": "MAHENDRAN K",
         "party": "AIADMK",
-        "postal": 614,
-        "booth": 30402,
+        "postal": 605,
+        "booth": 30411,
         "total": 31016
       },
       {
         "name": "SELVAM K",
         "party": "NTK",
-        "postal": 216,
-        "booth": 13413,
+        "postal": 250,
+        "booth": 13379,
         "total": 13629
       },
       {
@@ -9325,57 +9325,57 @@
       {
         "name": "KARTHIKEYAN G",
         "party": "IND",
-        "postal": 24,
-        "booth": 726,
+        "postal": 21,
+        "booth": 729,
         "total": 750
       },
       {
         "name": "BHARATHIRAJA A",
         "party": "PT",
-        "postal": 17,
-        "booth": 577,
+        "postal": 16,
+        "booth": 578,
         "total": 594
       },
       {
         "name": "MUGESHKUMAR M",
         "party": "IND",
-        "postal": 5,
-        "booth": 556,
+        "postal": 3,
+        "booth": 558,
         "total": 561
       },
       {
         "name": "PITCHAI V",
         "party": "IND",
-        "postal": 1,
-        "booth": 239,
+        "postal": 0,
+        "booth": 240,
         "total": 240
       },
       {
         "name": "ARUN PANDIAN A J",
         "party": "IND",
-        "postal": 1,
-        "booth": 216,
+        "postal": 0,
+        "booth": 217,
         "total": 217
       },
       {
         "name": "ARASU S",
         "party": "IND",
-        "postal": 2,
-        "booth": 194,
+        "postal": 4,
+        "booth": 192,
         "total": 196
       },
       {
         "name": "AJAY KANNAN A",
         "party": "IND",
-        "postal": 0,
-        "booth": 163,
+        "postal": 1,
+        "booth": 162,
         "total": 163
       },
       {
         "name": "BOOMIRAJAN K",
         "party": "TNLK",
-        "postal": 6,
-        "booth": 153,
+        "postal": 7,
+        "booth": 152,
         "total": 159
       },
       {
@@ -9388,15 +9388,15 @@
       {
         "name": "CHANDRA MOULISWARAN A",
         "party": "IND",
-        "postal": 8,
-        "booth": 113,
+        "postal": 7,
+        "booth": 114,
         "total": 121
       }
     ],
-    "totalValid": 4339,
+    "totalValid": 4394,
     "rejected": 0,
     "nota": 35,
-    "total": 4339,
+    "total": 4394,
     "source": "official AC residual"
   },
   "dataQuality": {
@@ -9406,8 +9406,8 @@
     "estimatedBooths": 0,
     "missingBooths": 0,
     "form20ParsedPct": 100.0,
-    "postalVotes": 4339,
-    "postalPct": 1.6,
+    "postalVotes": 4394,
+    "postalPct": 1.62,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
     "acTotalsReconciled": true

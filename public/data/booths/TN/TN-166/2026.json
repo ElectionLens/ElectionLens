@@ -3574,18 +3574,18 @@
     },
     "TN-166-207": {
       "votes": [
-        186,
-        158,
-        148,
-        17,
+        275,
+        123,
+        123,
+        19,
+        1,
         0,
-        3,
-        2,
-        0,
+        1,
+        1,
         2,
         0
       ],
-      "total": 516,
+      "total": 545,
       "rejected": 0,
       "sourceNote": "official_form20_pdf"
     },
@@ -5074,57 +5074,57 @@
       {
         "name": "MARIMUTHU.K",
         "party": "CPI",
-        "postal": 1198,
-        "booth": 72864,
+        "postal": 1109,
+        "booth": 72953,
         "total": 74062
       },
       {
         "name": "PANDIYAN.S",
         "party": "TVK",
-        "postal": 492,
-        "booth": 60648,
+        "postal": 527,
+        "booth": 60613,
         "total": 61140
       },
       {
         "name": "BALATHANDAYUTHAM.U",
         "party": "AIADMK",
-        "postal": 464,
-        "booth": 42609,
+        "postal": 489,
+        "booth": 42584,
         "total": 43073
       },
       {
         "name": "VINOTHINI.R",
         "party": "NTK",
-        "postal": 148,
-        "booth": 10028,
+        "postal": 146,
+        "booth": 10030,
         "total": 10176
       },
       {
         "name": "NOTA",
         "party": "NOTA",
-        "postal": 23,
-        "booth": 774,
+        "postal": 22,
+        "booth": 775,
         "total": 797
       },
       {
         "name": "VIMALA.A",
         "party": "BSP",
-        "postal": 13,
-        "booth": 512,
+        "postal": 16,
+        "booth": 509,
         "total": 525
       },
       {
         "name": "ARUMUGAM.N",
         "party": "TNLK",
-        "postal": 6,
-        "booth": 444,
+        "postal": 7,
+        "booth": 443,
         "total": 450
       },
       {
         "name": "JAYASANGAR.A",
         "party": "IND",
-        "postal": 6,
-        "booth": 359,
+        "postal": 5,
+        "booth": 360,
         "total": 365
       },
       {
@@ -5142,10 +5142,10 @@
         "total": 164
       }
     ],
-    "totalValid": 2355,
+    "totalValid": 2326,
     "rejected": 0,
-    "nota": 23,
-    "total": 2355,
+    "nota": 22,
+    "total": 2326,
     "source": "official AC residual"
   },
   "dataQuality": {
@@ -5155,8 +5155,8 @@
     "estimatedBooths": 0,
     "missingBooths": 0,
     "form20ParsedPct": 100.0,
-    "postalVotes": 2355,
-    "postalPct": 1.23,
+    "postalVotes": 2326,
+    "postalPct": 1.22,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,
     "acTotalsReconciled": true

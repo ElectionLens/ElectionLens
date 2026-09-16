@@ -2770,11 +2770,17 @@
     },
     "TN-006-95": {
       "votes": [
-        267,
-        116,
-        60,
-        46,
-        2,
+        322,
+        164,
+        63,
+        22,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         1,
         0,
         0,
@@ -2784,15 +2790,9 @@
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1
+        0
       ],
-      "total": 493,
+      "total": 576,
       "rejected": 0,
       "sourceNote": "official_form20_pdf"
     },
@@ -9126,29 +9126,29 @@
     },
     "TN-006-322": {
       "votes": [
-        301,
-        127,
-        118,
-        23,
-        3,
+        281,
+        158,
+        96,
+        31,
+        4,
         0,
+        1,
         2,
         0,
         0,
+        1,
+        1,
         0,
         0,
         0,
         0,
+        1,
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        1
+        0
       ],
-      "total": 575,
+      "total": 576,
       "rejected": 0,
       "sourceNote": "official_form20_pdf"
     },
@@ -13046,19 +13046,13 @@
     },
     "TN-006-462": {
       "votes": [
-        244,
-        133,
-        94,
-        32,
-        2,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        215,
+        105,
+        86,
+        27,
+        4,
+        1,
+        1,
         0,
         0,
         0,
@@ -13066,9 +13060,15 @@
         0,
         1,
         0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
         0
       ],
-      "total": 506,
+      "total": 441,
       "rejected": 0,
       "sourceNote": "official_form20_pdf"
     },
@@ -14131,36 +14131,36 @@
       {
         "name": "R.RAMESH KUMAR",
         "party": "TVK",
-        "postal": 1730,
-        "booth": 178654,
+        "postal": 1724,
+        "booth": 178660,
         "total": 180384
       },
       {
         "name": "S.M.NASAR",
         "party": "DMK",
-        "postal": 1385,
-        "booth": 102688,
+        "postal": 1334,
+        "booth": 102739,
         "total": 104073
       },
       {
         "name": "RAJASIMHA MAHENDRA",
         "party": "BJP",
-        "postal": 680,
-        "booth": 38925,
+        "postal": 707,
+        "booth": 38898,
         "total": 39605
       },
       {
         "name": "PUNITHA SHANMUGAM",
         "party": "NTK",
-        "postal": 225,
-        "booth": 16110,
+        "postal": 246,
+        "booth": 16089,
         "total": 16335
       },
       {
         "name": "NOTA",
         "party": "NOTA",
-        "postal": 26,
-        "booth": 1507,
+        "postal": 21,
+        "booth": 1512,
         "total": 1533
       },
       {
@@ -14180,8 +14180,8 @@
       {
         "name": "R.EDMUND JAYENDREN",
         "party": "TNLK",
-        "postal": 9,
-        "booth": 469,
+        "postal": 7,
+        "booth": 471,
         "total": 478
       },
       {
@@ -14201,22 +14201,22 @@
       {
         "name": "C.S. KARNAN",
         "party": "Anti Corruption Dynamic Party",
-        "postal": 3,
-        "booth": 221,
+        "postal": 2,
+        "booth": 222,
         "total": 224
       },
       {
         "name": "G.D. ARUNKUMAR",
         "party": "IND",
-        "postal": 2,
-        "booth": 203,
+        "postal": 0,
+        "booth": 205,
         "total": 205
       },
       {
         "name": "R. MANIKANDAN",
         "party": "IND",
-        "postal": 1,
-        "booth": 194,
+        "postal": 0,
+        "booth": 195,
         "total": 195
       },
       {
@@ -14236,15 +14236,15 @@
       {
         "name": "SENTHILKUMAR. S",
         "party": "Anna Puratchi Thalaivar Amma Dravida Munnetra Kazhagam",
-        "postal": 1,
-        "booth": 155,
+        "postal": 0,
+        "booth": 156,
         "total": 156
       },
       {
         "name": "K. BALAKRISHNAN",
         "party": "IND",
-        "postal": 1,
-        "booth": 140,
+        "postal": 0,
+        "booth": 141,
         "total": 141
       },
       {
@@ -14257,8 +14257,8 @@
       {
         "name": "RAJASEKAR. R",
         "party": "IND",
-        "postal": 0,
-        "booth": 105,
+        "postal": 1,
+        "booth": 104,
         "total": 105
       },
       {
@@ -14271,15 +14271,15 @@
       {
         "name": "K. ANNAMALAI",
         "party": "IND",
-        "postal": 0,
-        "booth": 77,
+        "postal": 2,
+        "booth": 75,
         "total": 77
       }
     ],
-    "totalValid": 4088,
+    "totalValid": 4069,
     "rejected": 0,
-    "nota": 26,
-    "total": 4088,
+    "nota": 21,
+    "total": 4069,
     "source": "official AC residual"
   },
   "dataQuality": {
@@ -14289,7 +14289,7 @@
     "estimatedBooths": 0,
     "missingBooths": 0,
     "form20ParsedPct": 100.0,
-    "postalVotes": 4088,
+    "postalVotes": 4069,
     "postalPct": 1.18,
     "unmappedVotes": 0,
     "unmappedPct": 0.0,

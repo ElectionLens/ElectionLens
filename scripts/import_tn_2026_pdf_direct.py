@@ -8,13 +8,14 @@ def pdf_rows(pdf, non_nota, max_booth=2000):
  text=subprocess.run(['pdftotext','-raw',str(pdf),'-'],capture_output=True,text=True,timeout=120,check=False).stdout; found={}
  for line in text.splitlines():
   nums=[int(x) for x in re.findall(r'(?<![A-Za-z])\d+',line)]
-  for start in (1,2):
+  starts=(2,1) if len(nums)>1 and nums[0]==nums[1] else (1,2)
+  for start in starts:
    if len(nums)<start+non_nota+5: continue
    booth=nums[0]
    if start==2 and nums[0]==nums[1]: booth=nums[1]
    if not 1<=booth<=max_booth: continue
    cand=nums[start:start+non_nota]; valid,rejected,nota,total,tendered=nums[start+non_nota:start+non_nota+5]
-   if sum(cand)==valid and valid+rejected+nota==total: found[booth]=(cand,valid,rejected,nota,total,tendered); break
+   if sum(cand)==valid and valid+rejected+nota==total and booth not in found: found[booth]=(cand,valid,rejected,nota,total,tendered); break
  return found
 
 def process(ac_id,ac,folder):
