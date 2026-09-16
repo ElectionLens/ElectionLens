@@ -20,10 +20,6 @@ export function DataProvenanceNotice(): JSX.Element {
 export function DataProvenanceFooter(): JSX.Element {
   return (
     <div className="data-provenance-footer">
-      <p>
-        Sources: Election Commission Form 20 files, polling-station lists, and ElectionLens
-        extraction and reconciliation pipelines.
-      </p>
       <a
         href="https://github.com/ElectionLens/ElectionLens/issues"
         target="_blank"
