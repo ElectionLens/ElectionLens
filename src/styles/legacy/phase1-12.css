@@ -166,7 +166,7 @@
 
 .summary-card {
   padding: 20px;
-  background: linear-gradient(135deg, var(--ui-parliament) 0%, #5b21b6 100%);
+  background: linear-gradient(135deg, var(--ui-parliament) 0%, var(--legacy-parliament-deep) 100%);
   border-radius: 12px;
   color: white;
   text-align: center;
@@ -284,13 +284,13 @@
 }
 
 .flip-current .value.winner {
-  background: #fee2e2;
-  color: #dc2626;
+  background: var(--legacy-danger-soft);
+  color: var(--legacy-danger-strong);
 }
 
 .flip-new .value.combined {
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--legacy-success-tint-strong);
+  color: var(--legacy-success-mid);
 }
 
 .flip-current .votes,
@@ -342,7 +342,7 @@
 }
 
 .flip-toggle-booths:hover {
-  background: #6d28d9;
+  background: var(--legacy-parliament-strong);
   transform: translateY(-1px);
 }
 
@@ -363,7 +363,7 @@
 }
 
 .booth-error {
-  color: #dc2626;
+  color: var(--legacy-danger-strong);
 }
 
 .booth-list {
@@ -458,7 +458,7 @@
 }
 
 .booth-col-ammk {
-  color: #dc2626;
+  color: var(--legacy-danger-strong);
   font-weight: 500;
 }
 
@@ -523,7 +523,7 @@
 
 .margin-value {
   font-weight: 700;
-  color: #16a34a;
+  color: var(--legacy-success-mid);
   font-size: 14px;
 }
 
@@ -540,7 +540,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: linear-gradient(135deg, var(--ui-parliament) 0%, #5b21b6 100%);
+  background: linear-gradient(135deg, var(--ui-parliament) 0%, var(--legacy-parliament-deep) 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -551,7 +551,11 @@
 }
 
 .show-more-btn:hover {
-  background: linear-gradient(135deg, var(--ui-parliament) 0%, #6d28d9 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ui-parliament) 0%,
+    var(--legacy-parliament-strong) 100%
+  );
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
 }

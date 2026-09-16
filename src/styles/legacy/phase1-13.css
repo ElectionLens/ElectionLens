@@ -38,6 +38,34 @@
   --legacy-blue: #2563eb;
   --legacy-white: #ffffff;
   --legacy-indigo: #667eea;
+
+  /* Phase 1 codemod: role-based names for repeated legacy literals.
+     Grouped by the job the colour does, not by its hue, so call sites read as
+     intent. One-offs, party colours and third-party brand colours are
+     deliberately left as literals. */
+  --legacy-text-strong: #111827;
+  --legacy-text: #334155;
+  --legacy-text-muted: #475569;
+  --legacy-text-soft: #666666;
+  --legacy-border-strong: #cbd5e1;
+  --legacy-danger-strong: #dc2626;
+  --legacy-danger-soft: #fee2e2;
+  --legacy-success-strong: #047857;
+  --legacy-success-mid: #16a34a;
+  --legacy-success-text: #166534;
+  --legacy-success-wash: #ecfdf5;
+  --legacy-success-tint: #d1fae5;
+  --legacy-success-tint-strong: #dcfce7;
+  --legacy-success-tint-deep: #bbf7d0;
+  --legacy-info-soft: #dbeafe;
+  --legacy-info-border: #bfdbfe;
+  --legacy-indigo-mid: #6366f1;
+  --legacy-indigo-strong: #4f46e5;
+  --legacy-indigo-soft: #c7d2fe;
+  --legacy-indigo-border: #a5b4fc;
+  --legacy-parliament-strong: #6d28d9;
+  --legacy-parliament-deep: #5b21b6;
+  --legacy-warning-strong: #b45309;
   --ui-font-sans:
     'Inter', 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;

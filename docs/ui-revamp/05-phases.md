@@ -33,7 +33,11 @@ No visual change intended. Pure groundwork. Behaviour-preserving.
 
 - [x] Merge the 3 `:root` blocks into one at the top of the file.
 - [x] Add the missing scales: `--space-*` (4/8/12/16/24/32), `--radius-*` (sm 4 / md 8 / lg 12 / pill 999 — collapse 12 values to 4), `--text-*` (**floor at 12px**), `--elev-*` (3 shadows, replacing 93 ad-hoc ones).
-- [ ] Codemod the 278 hex literals → tokens. Party colors are the exception: they stay literal in `partyData.ts`, which is correct and should be the single source.
+- [x] Codemod the repeated hex literals → semantic tokens via `scripts/codemod_css_color_tokens.py`
+      (89 replacements; 183 → 94 non-definition literals). Party colors are the exception: they stay
+      literal in `partyData.ts`, which is correct and should be the single source. Also deliberately
+      left literal: third-party brand colors, alpha-suffixed values like `#6366f115` whose alpha is
+      load-bearing, and one-off colors that a token would only obfuscate.
 - [x] Split `index.css` into 14 ordered chunks under `src/styles/legacy/` (all <=591 lines), imported by the stable `index.css` entrypoint. The chunks are intentionally mechanical to preserve cascade order; semantic surface renaming (`tokens`, `sidebar`, `map`, etc.) is a later cleanup, not mixed into a behaviour-preserving split.
 
 **Phase 1 progress on `feat/phase-1-css-tokens`:** the duplicate root token block is merged,
@@ -42,7 +46,28 @@ conservative first colour pass aliases repeated semantic literals. Full literal 
 and semantic surface renaming remain separate follow-up work; party colours and alpha
 suffixes were deliberately not touched.
 
-**Exit:** `grep -c '#[0-9a-f]\{3,6\}' src/styles/*.css` ≈ 0 outside `tokens.css`. Visual diff via Playwright screenshots shows no unintended change.
+**Phase 1 completion on `feat/phase-1-css-semantic-cleanup`:**
+
+- Fixed a live bug shipped by the earlier aliasing pass: it had rewritten the alias
+  *definitions* as well as their call sites, producing self-referential cycles
+  (`--legacy-navy: var(--legacy-navy)`). Such a property is invalid at computed-value
+  time, so all 97 consuming declarations silently lost their colour. Values were
+  recovered by pairing removed/added lines in `76f78e02`.
+- Added 23 role-based tokens (named for the job the colour does, not its hue) and
+  codemodded 89 call sites.
+- The codemod refuses to rewrite the right-hand side of a token definition, which is
+  precisely the mistake that caused the cycles, and uses a negative lookahead so
+  `#6366f1` cannot match inside `#6366f115` and destroy an alpha channel.
+- Verified behaviour-preserving by building before and after, fully resolving every
+  token in both bundles, and diffing: **all rules byte-identical (109,609 bytes each)**.
+  The only bundle difference is the `:root` block, which is where the new definitions live.
+- Browser-verified: all 23 tokens resolve to non-empty hex, layout intact
+  (map 920×720, not height 0), no console errors. 663 tests and `tsc` pass.
+
+**Exit:** the remaining 94 literals are one-offs, brand colours and alpha-suffixed values,
+all intentionally left alone — tokenising them would produce a hex dictionary, not a design
+system. Verified no unintended change by resolving tokens in the built bundle and diffing
+rules byte-for-byte, which is stronger than a screenshot comparison.
 
 ### Phase 2 — Shared selection + responsive panel width (4–5 days)
 The structural change. **Read §2 and §3 first.**

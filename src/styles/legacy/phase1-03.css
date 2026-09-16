@@ -82,7 +82,11 @@
 .assembly-item {
   padding: var(--row-padding-y) var(--row-padding-x);
   padding-left: var(--row-padding-x);
-  background: linear-gradient(135deg, var(--legacy-surface-muted) 0%, #ecfdf5 100%);
+  background: linear-gradient(
+    135deg,
+    var(--legacy-surface-muted) 0%,
+    var(--legacy-success-wash) 100%
+  );
   margin-bottom: 5px;
   font-size: 0.85rem;
   transition:
@@ -97,7 +101,11 @@
 }
 
 .assembly-item:hover {
-  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  background: linear-gradient(
+    135deg,
+    var(--legacy-success-wash) 0%,
+    var(--legacy-success-tint) 100%
+  );
 }
 
 .assembly-item .item-icon {

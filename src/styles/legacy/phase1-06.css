@@ -17,7 +17,7 @@
 }
 
 .stat-item.highlight {
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  background: linear-gradient(135deg, var(--legacy-info-soft) 0%, var(--legacy-info-border) 100%);
 }
 
 .stat-item.highlight .value {
@@ -78,7 +78,7 @@
 }
 
 .candidate-row.winner {
-  background: linear-gradient(90deg, #ecfdf5 0%, var(--ui-surface) 100%);
+  background: linear-gradient(90deg, var(--legacy-success-wash) 0%, var(--ui-surface) 100%);
 }
 
 .candidate-row.runner-up {

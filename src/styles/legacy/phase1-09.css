@@ -355,7 +355,7 @@
 .booth-stats-summary .stat-value {
   font-size: 14px;
   font-weight: 600;
-  color: #047857;
+  color: var(--legacy-success-strong);
 }
 
 .selected-booth-details {
@@ -403,7 +403,7 @@
 .address-name {
   font-weight: 600;
   font-size: 13px;
-  color: #111827;
+  color: var(--legacy-text-strong);
 }
 
 .address-area {
@@ -440,7 +440,7 @@
 .booth-vote-summary .value {
   font-size: 14px;
   font-weight: 600;
-  color: #111827;
+  color: var(--legacy-text-strong);
 }
 
 .booth-vote-summary .value.party-badge {
@@ -540,7 +540,7 @@
 
 .booth-candidate-row .votes {
   font-weight: 600;
-  color: #111827;
+  color: var(--legacy-text-strong);
   min-width: 50px;
 }
 

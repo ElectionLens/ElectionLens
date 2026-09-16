@@ -222,7 +222,7 @@
 }
 
 .insight-card.insight {
-  border-left: 3px solid #6366f1;
+  border-left: 3px solid var(--legacy-indigo-mid);
 }
 
 .insight-icon {
@@ -248,7 +248,7 @@
 }
 
 .insight-card.insight .insight-icon {
-  color: #6366f1;
+  color: var(--legacy-indigo-mid);
 }
 
 .insight-content {
@@ -290,7 +290,7 @@
 }
 
 .insight-card.insight .insight-value {
-  color: #6366f1;
+  color: var(--legacy-indigo-mid);
   background: #6366f115;
 }
 
@@ -315,18 +315,18 @@
   gap: 4px;
   padding: 4px 10px;
   background: #e0e7ff;
-  border: 1px solid #c7d2fe;
+  border: 1px solid var(--legacy-indigo-soft);
   border-radius: 4px;
   font-size: 11px;
   font-weight: 500;
-  color: #4f46e5;
+  color: var(--legacy-indigo-strong);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .expand-collapse-btn:hover {
-  background: #c7d2fe;
-  border-color: #a5b4fc;
+  background: var(--legacy-indigo-soft);
+  border-color: var(--legacy-indigo-border);
 }
 
 .expand-collapse-btn svg {
@@ -372,7 +372,7 @@
 .booth-link:hover {
   background: var(--ui-border);
   border-color: var(--legacy-border);
-  color: #111827;
+  color: var(--legacy-text-strong);
 }
 
 .booth-link:active {
@@ -394,12 +394,12 @@
 }
 
 .insight-card.strength .booth-link:hover {
-  background: #d1fae5;
+  background: var(--legacy-success-tint);
   border-color: var(--ui-assembly);
 }
 
 .insight-card.weakness .booth-link:hover {
-  background: #fee2e2;
+  background: var(--legacy-danger-soft);
   border-color: var(--legacy-danger);
 }
 
@@ -418,11 +418,11 @@
 
 .insight-card.insight .booth-link:hover {
   background: #e0e7ff;
-  border-color: #6366f1;
+  border-color: var(--legacy-indigo-mid);
 }
 
 .insight-card.insight .booth-link svg {
-  color: #6366f1;
+  color: var(--legacy-indigo-mid);
 }
 
 /* Quick Stats */
@@ -466,11 +466,11 @@
 }
 
 .quick-stat.highlight-zero {
-  background: #fee2e2;
+  background: var(--legacy-danger-soft);
 }
 
 .quick-stat.highlight-zero .stat-number {
-  color: #dc2626;
+  color: var(--legacy-danger-strong);
 }
 
 /* Strike Rate Table */
@@ -507,7 +507,7 @@
 }
 
 .strike-rate-row.winner {
-  background: #ecfdf5;
+  background: var(--legacy-success-wash);
   border: 1px solid var(--ui-assembly);
 }
 

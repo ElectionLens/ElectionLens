@@ -37,7 +37,7 @@
 }
 
 .search-clear:hover {
-  background: #cbd5e1;
+  background: var(--legacy-border-strong);
   color: var(--ui-text);
 }
 
@@ -125,11 +125,15 @@
 }
 
 .search-result-item[data-type='constituency'] .result-icon {
-  background: linear-gradient(135deg, var(--ui-parliament) 0%, #6d28d9 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ui-parliament) 0%,
+    var(--legacy-parliament-strong) 100%
+  );
 }
 
 .search-result-item[data-type='assembly'] .result-icon {
-  background: linear-gradient(135deg, var(--ui-assembly) 0%, #047857 100%);
+  background: linear-gradient(135deg, var(--ui-assembly) 0%, var(--legacy-success-strong) 100%);
 }
 
 .search-result-item[data-type='district'] .result-icon {
@@ -177,17 +181,17 @@
 
 .result-badge-state {
   background: var(--legacy-warning-soft);
-  color: #b45309;
+  color: var(--legacy-warning-strong);
 }
 
 .result-badge-constituency {
   background: #ede9fe;
-  color: #6d28d9;
+  color: var(--legacy-parliament-strong);
 }
 
 .result-badge-assembly {
-  background: #d1fae5;
-  color: #047857;
+  background: var(--legacy-success-tint);
+  color: var(--legacy-success-strong);
 }
 
 .result-badge-district {
@@ -488,7 +492,7 @@ path:focus {
   gap: 8px;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #334155;
+  color: var(--legacy-text);
   cursor: pointer;
   user-select: none;
 }
@@ -554,7 +558,7 @@ path:focus {
 
 .district-list h3 {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--legacy-text-soft);
   margin-bottom: 10px;
 }
 

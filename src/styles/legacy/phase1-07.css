@@ -29,8 +29,8 @@
   gap: 8px;
   margin: 0 16px 12px;
   padding: 10px 14px;
-  background: linear-gradient(135deg, var(--ui-accent-soft) 0%, #dbeafe 100%);
-  border: 1px solid #bfdbfe;
+  background: linear-gradient(135deg, var(--ui-accent-soft) 0%, var(--legacy-info-soft) 100%);
+  border: 1px solid var(--legacy-info-border);
   border-radius: 8px;
   font-size: 0.8rem;
   color: var(--ui-accent-strong);
@@ -54,7 +54,7 @@
   gap: 6px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--legacy-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 10px;
@@ -72,7 +72,7 @@
   background: white;
   border: 1px solid var(--ui-border);
   border-radius: 12px;
-  color: #475569;
+  color: var(--legacy-text-muted);
   white-space: nowrap;
   transition: all 0.2s;
 }
@@ -98,8 +98,8 @@
 .parliament-contribution-section {
   margin: 0 16px 12px;
   padding: 12px;
-  background: linear-gradient(135deg, var(--ui-accent-soft) 0%, #dbeafe 100%);
-  border: 1px solid #bfdbfe;
+  background: linear-gradient(135deg, var(--ui-accent-soft) 0%, var(--legacy-info-soft) 100%);
+  border: 1px solid var(--legacy-info-border);
   border-radius: 8px;
 }
 
@@ -214,7 +214,7 @@
 }
 
 .feedback-label .required {
-  color: #dc2626;
+  color: var(--legacy-danger-strong);
 }
 
 .feedback-label .optional {
@@ -316,7 +316,7 @@
 
 .feedback-error {
   background: #fef2f2;
-  color: #dc2626;
+  color: var(--legacy-danger-strong);
   padding: 0.75rem;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -449,7 +449,7 @@
   display: none;
   width: 40px;
   height: 5px;
-  background: #cbd5e1;
+  background: var(--legacy-border-strong);
   border-radius: 3px;
   margin: 10px auto 2px;
   cursor: pointer;

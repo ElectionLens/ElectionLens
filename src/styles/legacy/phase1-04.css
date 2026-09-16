@@ -123,12 +123,12 @@ button.state-map-summary-row {
 }
 
 .state-map-summary-footer.share-bar .share-bar-info {
-  color: #475569;
+  color: var(--legacy-text-muted);
 }
 
 .state-map-summary-footer.share-bar .share-bar-info .district-label,
 .state-map-summary-footer.share-bar .share-bar-info .district-name {
-  color: #334155;
+  color: var(--legacy-text);
 }
 
 .party-candidates-panel {
@@ -242,7 +242,7 @@ button.state-map-summary-row {
 
 .party-candidates-controls input,
 .party-candidates-controls select {
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--legacy-border-strong);
   border-radius: 8px;
   background: #fff;
   color: var(--ui-text);
@@ -342,7 +342,7 @@ button.state-map-summary-row {
   gap: 2px;
   flex-shrink: 0;
   font-size: 0.75rem;
-  color: #334155;
+  color: var(--legacy-text);
   font-variant-numeric: tabular-nums;
 }
 
@@ -352,7 +352,7 @@ button.state-map-summary-row {
   top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, var(--legacy-success) 0%, #047857 100%);
+  background: linear-gradient(135deg, var(--legacy-success) 0%, var(--legacy-success-strong) 100%);
   color: white;
   padding: 8px 16px;
   border-radius: 20px;

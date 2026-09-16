@@ -23,7 +23,7 @@
 .prepoll-banner svg {
   flex-shrink: 0;
   margin-top: 2px;
-  color: #b45309;
+  color: var(--legacy-warning-strong);
 }
 
 .prepoll-banner-body {
@@ -65,7 +65,7 @@
 .booth-quality-ok {
   border-color: rgba(22, 163, 74, 0.35);
   background: rgba(240, 253, 244, 0.95);
-  color: #166534;
+  color: var(--legacy-success-text);
 }
 
 .booth-quality-body {
@@ -130,7 +130,7 @@
 }
 
 .postal-stat.unmapped-stat .stat-value {
-  color: #b45309;
+  color: var(--legacy-warning-strong);
 }
 
 /* Compact Winner Card */
@@ -197,7 +197,7 @@
   align-items: center;
   gap: 4px;
   font-size: 0.75rem;
-  color: #475569;
+  color: var(--legacy-text-muted);
 }
 
 .stat-compact.highlight {
@@ -234,7 +234,7 @@
 }
 
 .stat-inline.highlight {
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  background: linear-gradient(135deg, var(--legacy-info-soft) 0%, var(--legacy-info-border) 100%);
 }
 
 .stat-inline.nota {
@@ -269,22 +269,26 @@
 /* Share PC Link button in stats-inline */
 .stat-inline.share-pc-btn {
   cursor: pointer;
-  background: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 100%);
+  background: linear-gradient(
+    135deg,
+    var(--legacy-indigo-soft) 0%,
+    var(--legacy-indigo-border) 100%
+  );
   border: none;
   transition: all 0.2s ease;
 }
 
 .stat-inline.share-pc-btn:hover {
-  background: linear-gradient(135deg, #a5b4fc 0%, #818cf8 100%);
+  background: linear-gradient(135deg, var(--legacy-indigo-border) 0%, #818cf8 100%);
   transform: translateY(-1px);
 }
 
 .stat-inline.share-pc-btn svg {
-  color: #4f46e5;
+  color: var(--legacy-indigo-strong);
 }
 
 .stat-inline.share-pc-btn .label {
-  color: #4f46e5;
+  color: var(--legacy-indigo-strong);
 }
 
 /* Candidates Preview */
@@ -317,7 +321,11 @@
 }
 
 .candidate-row-compact.winner {
-  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  background: linear-gradient(
+    135deg,
+    var(--legacy-success-tint-strong) 0%,
+    var(--legacy-success-tint-deep) 100%
+  );
 }
 
 .candidate-row-compact .pos {
@@ -368,7 +376,7 @@
   width: 100%;
   padding: 8px;
   background: var(--ui-surface-soft);
-  border: 1px dashed #cbd5e1;
+  border: 1px dashed var(--legacy-border-strong);
   border-radius: 6px;
   font-size: 0.7rem;
   font-weight: 600;
@@ -386,8 +394,8 @@
 /* Parliament Contribution Compact */
 .parliament-contribution-compact {
   padding: 10px;
-  background: linear-gradient(135deg, var(--ui-accent-soft) 0%, #dbeafe 100%);
-  border: 1px solid #bfdbfe;
+  background: linear-gradient(135deg, var(--ui-accent-soft) 0%, var(--legacy-info-soft) 100%);
+  border: 1px solid var(--legacy-info-border);
   border-radius: 8px;
 }
 
@@ -414,7 +422,11 @@
 }
 
 .parliament-row-compact.winner {
-  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  background: linear-gradient(
+    135deg,
+    var(--legacy-success-tint-strong) 0%,
+    var(--legacy-success-tint-deep) 100%
+  );
 }
 
 .parliament-row-compact .pos {
@@ -529,7 +541,7 @@
   align-items: center;
   gap: 4px;
   font-size: 0.8rem;
-  color: #475569;
+  color: var(--legacy-text-muted);
 }
 
 .winner-stats .stat svg {
@@ -550,7 +562,7 @@
 }
 
 .winner-stats .stat.margin {
-  background: #ecfdf5;
+  background: var(--legacy-success-wash);
   padding: 4px 8px;
   border-radius: 6px;
 }

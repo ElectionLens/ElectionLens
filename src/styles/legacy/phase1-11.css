@@ -192,7 +192,11 @@
 }
 
 .postal-summary {
-  background: linear-gradient(135deg, var(--legacy-success-soft) 0%, #dcfce7 100%);
+  background: linear-gradient(
+    135deg,
+    var(--legacy-success-soft) 0%,
+    var(--legacy-success-tint-strong) 100%
+  );
   border-radius: 12px;
   padding: 16px;
   border: 1px solid #86efac;
@@ -203,7 +207,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 12px;
-  color: #166534;
+  color: var(--legacy-success-text);
 }
 
 .postal-summary-header h3 {
@@ -233,7 +237,7 @@
 
 .postal-stat .stat-label {
   font-size: 11px;
-  color: #166534;
+  color: var(--legacy-success-text);
   margin-top: 4px;
 }
 
@@ -307,7 +311,7 @@
 }
 
 .postal-candidate-row.winner .col-rank {
-  color: #16a34a;
+  color: var(--legacy-success-mid);
 }
 
 .postal-candidate-row .col-name {
@@ -407,7 +411,7 @@
   align-items: center;
   gap: 6px;
   padding: 8px 12px;
-  background: linear-gradient(135deg, var(--ui-parliament) 0%, #5b21b6 100%);
+  background: linear-gradient(135deg, var(--ui-parliament) 0%, var(--legacy-parliament-deep) 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -419,7 +423,11 @@
 }
 
 .blog-btn:hover {
-  background: linear-gradient(135deg, var(--ui-parliament) 0%, #6d28d9 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ui-parliament) 0%,
+    var(--legacy-parliament-strong) 100%
+  );
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
 }
@@ -455,7 +463,7 @@
   justify-content: space-between;
   padding: 20px 24px;
   border-bottom: 1px solid var(--ui-border);
-  background: linear-gradient(135deg, var(--ui-parliament) 0%, #5b21b6 100%);
+  background: linear-gradient(135deg, var(--ui-parliament) 0%, var(--legacy-parliament-deep) 100%);
   color: white;
 }
 

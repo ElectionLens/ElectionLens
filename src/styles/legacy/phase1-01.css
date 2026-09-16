@@ -176,7 +176,7 @@ body {
 
 .stat-label {
   font-size: 0.75rem;
-  color: #666;
+  color: var(--legacy-text-soft);
   text-transform: uppercase;
   margin-top: 5px;
 }
@@ -211,7 +211,7 @@ body {
 }
 
 .breadcrumb span {
-  color: #666;
+  color: var(--legacy-text-soft);
 }
 
 .share-btn {
@@ -306,7 +306,7 @@ body {
 }
 
 .toolbar-btn:active {
-  background: #cbd5e1;
+  background: var(--legacy-border-strong);
   transform: scale(0.95);
 }
 
