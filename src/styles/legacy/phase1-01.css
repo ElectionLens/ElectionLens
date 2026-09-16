@@ -1,0 +1,591 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f5f5;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  position: relative;
+  height: 100vh;
+}
+
+/* Phase 0: provenance is visible, concise, and never relies on colour alone. */
+.data-disclaimer {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 10px 12px 0;
+  padding: 9px 10px;
+  border: 1px solid #f2cf8a;
+  border-radius: 8px;
+  background: #fff8e7;
+  color: #5f4518;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.data-disclaimer p,
+.data-provenance-footer p {
+  margin: 0;
+}
+
+.data-provenance-footer {
+  margin: 14px 12px 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ui-border, #e5e7eb);
+  color: var(--ui-text-muted, #64748b);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.data-provenance-footer a {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  margin-top: 5px;
+  color: var(--ui-accent, #1d4ed8);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.data-provenance-footer a:hover,
+.data-provenance-footer a:focus-visible {
+  text-decoration: underline;
+}
+
+/* Desktop/web: sidebar docked beside map; width animates to 0 when `.open` removed (FAB toggles). */
+.sidebar {
+  position: relative;
+  flex-shrink: 0;
+  width: 360px;
+  height: 100%;
+  min-height: 0;
+  background: #fff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  overflow-x: visible;
+}
+
+.sidebar-header {
+  padding: 20px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+}
+
+.sidebar-header h1 {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.2;
+}
+
+.sidebar-header h1 img {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.sidebar-header p {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.info-panel {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.info-title {
+  font-size: 1.5rem;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--ui-border);
+}
+
+.info-title.info-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  row-gap: 4px;
+}
+
+.info-title-row .info-title-text {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.info-title-row .constituency-type,
+.info-title-row .pc-badge {
+  flex-shrink: 0;
+}
+
+/* GEN pill: default .type-gen assumes dark panel header; sidebar info row is light */
+.info-title-row .constituency-type.type-gen {
+  background: var(--ui-border);
+  color: var(--ui-text);
+}
+
+.info-meta-line {
+  margin-bottom: 14px;
+  font-size: 0.82rem;
+  color: var(--ui-text-muted);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+.info-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #1a1a2e;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  padding: 10px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid var(--ui-border);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.breadcrumb-nav {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.breadcrumb a {
+  color: var(--ui-accent);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #666;
+}
+
+.share-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  flex-shrink: 0;
+  margin-top: -2px;
+}
+
+.share-btn:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.share-btn.copied {
+  color: #059669;
+  background: rgba(5, 150, 105, 0.1);
+}
+
+/* Map container */
+.map-container {
+  flex: 1;
+  position: relative;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.map-container .leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Map Toolbar - Top Center (React overlay) */
+.map-toolbar {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  padding: 6px 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  pointer-events: auto;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+}
+
+.toolbar-section {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar-section.toolbar-center {
+  flex-direction: column;
+  align-items: center;
+}
+
+.toolbar-section:not(:last-child) {
+  padding-right: 8px;
+  border-right: 1px solid var(--ui-border);
+}
+
+.toolbar-btn {
+  background: var(--ui-surface-soft);
+  color: var(--ui-text);
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+}
+
+.toolbar-btn:hover {
+  background: var(--ui-border);
+}
+
+.toolbar-btn:active {
+  background: #cbd5e1;
+  transform: scale(0.95);
+}
+
+.toolbar-btn.toolbar-toggle {
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  gap: 4px;
+}
+
+.toolbar-btn.toolbar-toggle.active {
+  background: #1a1a2e;
+  color: white;
+}
+
+.toolbar-view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar-year-selector {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--ui-border);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.toolbar-year-btn {
+  background: white;
+  color: var(--ui-text-soft);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--ui-border);
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.15s;
+  min-width: auto;
+  height: auto;
+}
+
+.toolbar-year-btn:hover {
+  border-color: var(--ui-accent);
+  color: var(--ui-accent);
+}
+
+.toolbar-year-btn.active {
+  background: #1e3a5f;
+  border-color: #1e3a5f;
+  color: white;
+}
+
+.toolbar-year-btn.parliament-year {
+  /* Same styling as regular year buttons when not active */
+}
+
+.toolbar-year-btn.parliament-year:hover {
+  border-color: var(--ui-accent);
+  color: var(--ui-accent);
+}
+
+.toolbar-year-btn.parliament-year.active {
+  background: #1e3a5f;
+  border-color: #1e3a5f;
+  color: white;
+}
+
+/* Show ACs checkbox (when viewing a specific PC) */
+.toolbar-show-acs {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 10px;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  color: var(--ui-text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toolbar-show-acs input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--ui-assembly);
+  cursor: pointer;
+}
+
+.toolbar-show-acs span {
+  white-space: nowrap;
+}
+
+/* Layer dropdown */
+.toolbar-dropdown {
+  position: relative;
+}
+
+.toolbar-dropdown-btn {
+  min-width: 38px;
+}
+
+.toolbar-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 6px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s;
+  min-width: 100px;
+}
+
+.toolbar-dropdown-menu.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.toolbar-dropdown-item {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: var(--row-min-height);
+  padding: var(--row-padding-y) var(--row-padding-x);
+  border: none;
+  background: white;
+  color: var(--ui-text);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.toolbar-dropdown-item:hover:not(.active) {
+  background: transparent;
+  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
+}
+
+.toolbar-dropdown-item.active {
+  background: #1a1a2e;
+  color: white;
+  box-shadow: none;
+}
+
+.toolbar-dropdown-item .layer-badge {
+  font-size: 0.65rem;
+  background: var(--ui-assembly);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.toolbar-dropdown-item.active .layer-badge {
+  background: #34d399;
+}
+
+/* Coordinates display */
+/* Map legend */
+.map-legend {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  font-size: 0.8rem;
+  min-width: 120px;
+  max-width: 160px;
+  margin-bottom: 10px !important;
+  margin-left: 10px !important;
+}
+
+.map-legend h4 {
+  margin: 0 0 4px 0;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-label {
+  color: var(--ui-text);
+  font-size: 0.75rem;
+}
+
+/* Scale control styling */
+.leaflet-control-scale-line {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: var(--ui-text-soft) !important;
+  color: var(--ui-text) !important;
+  font-size: 0.7rem !important;
+  padding: 2px 6px !important;
+}
+
+/* Zoom control styling */
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+}
+
+/* Controls visible on desktop - positioned on map area (right of sidebar) */
+.container .leaflet-control-zoom {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.container .map-toolbar {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.leaflet-control-zoom a {
+  background: white !important;
+  color: var(--ui-text) !important;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  font-size: 16px !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: var(--ui-surface-soft) !important;
+}
+
+/* Attribution styling */
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.8) !important;
+  font-size: 0.65rem !important;
+  padding: 2px 6px !important;
+}
+
+/* Search Box */
+.search-box {
+  position: relative;
+  margin: 15px 20px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 0.9rem;
+  pointer-events: none;
+  z-index: 1;
+}

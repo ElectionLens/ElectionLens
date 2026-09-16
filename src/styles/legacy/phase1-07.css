@@ -1,0 +1,528 @@
+.pc-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.pc-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  background: linear-gradient(135deg, var(--ui-accent-strong) 0%, var(--ui-accent) 100%);
+  color: white;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* AC Contribution Notice */
+.ac-contribution-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 16px 12px;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, var(--ui-accent-soft) 0%, #dbeafe 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--ui-accent-strong);
+}
+
+.ac-contribution-notice svg {
+  flex-shrink: 0;
+}
+
+/* AC List Section */
+.ac-list-section {
+  margin: 0 16px 12px;
+  padding: 12px;
+  background: var(--ui-surface-soft);
+  border-radius: 8px;
+}
+
+.ac-list-section h4 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.ac-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ac-chip {
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  background: white;
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
+  color: #475569;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.ac-chip.selected {
+  background: var(--ui-accent-strong);
+  color: white;
+  border-color: var(--ui-accent-strong);
+}
+
+.show-more-btn.compact {
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  margin-top: 8px;
+}
+
+.show-more-btn.compact svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Parliament Contribution Section in Assembly Panel */
+.parliament-contribution-section {
+  margin: 0 16px 12px;
+  padding: 12px;
+  background: linear-gradient(135deg, var(--ui-accent-soft) 0%, #dbeafe 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+}
+
+.parliament-contribution-section h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ui-accent-strong);
+  margin-bottom: 10px;
+}
+
+.pc-badge-small {
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  background: linear-gradient(135deg, var(--ui-accent-strong) 0%, var(--ui-accent) 100%);
+  color: white;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.parliament-contribution-table {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ===========================================
+   Feedback Modal Styles
+   =========================================== */
+
+.feedback-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 1rem;
+  backdrop-filter: blur(2px);
+}
+
+.feedback-modal {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--ui-border);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.feedback-modal-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.feedback-modal-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 0.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: background 0.2s;
+}
+
+.feedback-modal-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.feedback-modal-content {
+  padding: 1.25rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.feedback-section {
+  margin-bottom: 1.25rem;
+}
+
+.feedback-section:last-child {
+  margin-bottom: 0;
+}
+
+.feedback-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ui-text);
+  margin-bottom: 0.5rem;
+}
+
+.feedback-label .required {
+  color: #dc2626;
+}
+
+.feedback-label .optional {
+  font-weight: 400;
+  color: var(--ui-text-soft);
+}
+
+.feedback-type-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.feedback-type-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.75rem;
+  background: var(--ui-surface-soft);
+  border: 2px solid var(--ui-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.feedback-type-btn:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+.feedback-type-btn.selected {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+}
+
+.feedback-type-icon {
+  color: #667eea;
+}
+
+.feedback-type-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ui-text);
+}
+
+.feedback-type-desc {
+  font-size: 0.65rem;
+  color: var(--ui-text-soft);
+  line-height: 1.3;
+}
+
+.feedback-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--ui-border);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.2s;
+}
+
+.feedback-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.feedback-textarea::placeholder {
+  color: var(--ui-text-soft);
+}
+
+.feedback-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--ui-border);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.feedback-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.feedback-input::placeholder {
+  color: var(--ui-text-soft);
+}
+
+.feedback-hint {
+  font-size: 0.75rem;
+  color: var(--ui-text-soft);
+  margin-top: 0.35rem;
+}
+
+.feedback-error {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  border: 1px solid #fecaca;
+}
+
+.feedback-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ui-border);
+  margin-top: 1rem;
+}
+
+.feedback-cancel-btn {
+  padding: 0.6rem 1.25rem;
+  background: var(--ui-surface-soft);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ui-text-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.feedback-cancel-btn:hover {
+  background: var(--ui-border);
+  color: var(--ui-text);
+}
+
+.feedback-submit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.feedback-submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.feedback-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.feedback-submit-btn .spinner {
+  animation: spin 1s linear infinite;
+}
+
+.feedback-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: #059669;
+}
+
+.feedback-success h3 {
+  margin: 1rem 0 0.5rem;
+  color: var(--ui-text);
+}
+
+.feedback-success p {
+  margin: 0;
+  color: var(--ui-text-soft);
+}
+
+.feedback-unavailable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: var(--ui-text-soft);
+}
+
+.feedback-unavailable p {
+  margin: 1rem 0 0;
+}
+
+.feedback-unavailable-hint {
+  font-size: 0.85rem;
+  color: var(--ui-text-soft);
+}
+
+/* Toolbar feedback button */
+.toolbar-btn.feedback-btn {
+  color: #667eea;
+}
+
+.toolbar-btn.feedback-btn:hover {
+  background: rgba(102, 126, 234, 0.1);
+  color: #5a67d8;
+}
+
+@media (max-width: 768px) {
+  .feedback-modal {
+    max-width: none;
+    margin: 0.5rem;
+    max-height: calc(100vh - 1rem);
+  }
+
+  .feedback-type-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   ENHANCED MOBILE EXPERIENCE
+   ============================================ */
+
+/* Bottom Sheet Drag Handle */
+.bottom-sheet-handle {
+  display: none;
+  width: 40px;
+  height: 5px;
+  background: #cbd5e1;
+  border-radius: 3px;
+  margin: 10px auto 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.bottom-sheet-handle:hover {
+  background: var(--ui-text-soft);
+}
+
+.bottom-sheet-handle:active {
+  background: var(--ui-text-soft);
+  transform: scaleX(1.1);
+}
+
+/* Show drag handle ONLY on mobile portrait */
+@media (max-width: 768px) and (orientation: portrait) {
+  .bottom-sheet-handle {
+    display: block;
+    width: 48px;
+    height: 5px;
+    background: var(--ui-text-soft);
+    margin: 8px auto 4px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Compact mobile header */
+  .election-panel-header {
+    padding: 8px 14px 10px;
+  }
+
+  .election-panel-title h3 {
+    font-size: 1.05rem;
+    line-height: 1.2;
+  }
+
+  .election-panel-actions {
+    gap: 4px;
+  }
+
+  .election-panel-btn {
+    padding: 8px;
+  }
+
+  .election-panel-close {
+    padding: 8px;
+  }
+}
+
+/* Safe Area Insets for Notched Devices */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  @media (max-width: 768px) {
+    .election-panel {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .mobile-toggle {
+      bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+
+    .map-legend {
+      bottom: calc(20px + env(safe-area-inset-bottom)) !important;
+    }
+
+    .leaflet-control-scale {
+      margin-bottom: calc(70px + env(safe-area-inset-bottom)) !important;
+    }
+
+    .sidebar {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+}

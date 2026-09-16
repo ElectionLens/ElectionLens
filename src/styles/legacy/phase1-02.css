@@ -1,0 +1,583 @@
+.search-input {
+  width: 100%;
+  padding: 12px 36px;
+  border: 2px solid var(--ui-border);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  background: var(--ui-surface-soft);
+  transition: all 0.2s;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--ui-accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.search-input::placeholder {
+  color: var(--ui-text-soft);
+}
+
+.search-clear {
+  position: absolute;
+  right: 8px;
+  background: var(--ui-border);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ui-text-soft);
+  transition: all 0.2s;
+}
+
+.search-clear:hover {
+  background: #cbd5e1;
+  color: var(--ui-text);
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--left-pane-row-gap);
+  padding: 6px;
+  background: linear-gradient(180deg, var(--ui-surface) 0%, var(--ui-surface-soft) 100%);
+  border: 1px solid var(--ui-border);
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  max-height: 320px;
+  overflow-y: auto;
+  z-index: 1001;
+  margin-top: 6px;
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: var(--row-gap);
+  padding: var(--row-padding-y) calc(var(--row-padding-x) + 2px);
+  padding-left: var(--row-padding-x);
+  box-sizing: border-box;
+  border: 1px solid var(--left-pane-row-border);
+  border-left-width: var(--row-accent-border-width);
+  border-radius: var(--row-radius);
+  background: var(--ui-surface);
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* Inset wash from `.interactive-row`; keep neutral base so hover reads like other left-pane cards. */
+.search-result-item[data-type='state']:hover,
+.search-result-item[data-type='state'].selected {
+  background: var(--ui-surface);
+}
+
+.search-result-item[data-type='constituency']:hover,
+.search-result-item[data-type='constituency'].selected {
+  background: var(--ui-surface);
+}
+
+.search-result-item[data-type='assembly']:hover,
+.search-result-item[data-type='assembly'].selected {
+  background: var(--ui-surface);
+}
+
+.search-result-item[data-type='district']:hover,
+.search-result-item[data-type='district'].selected {
+  background: var(--ui-surface);
+}
+
+.search-result-item.selected {
+  border-color: color-mix(in srgb, var(--left-pane-row-border) 55%, var(--ui-accent) 45%);
+}
+
+/* Result icon box - matching sidebar item icons */
+.result-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  color: white;
+  transition: all 0.2s;
+}
+
+.result-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.search-result-item[data-type='state'] .result-icon {
+  background: linear-gradient(135deg, var(--ui-state) 0%, #d97706 100%);
+}
+
+.search-result-item[data-type='constituency'] .result-icon {
+  background: linear-gradient(135deg, var(--ui-parliament) 0%, #6d28d9 100%);
+}
+
+.search-result-item[data-type='assembly'] .result-icon {
+  background: linear-gradient(135deg, var(--ui-assembly) 0%, #047857 100%);
+}
+
+.search-result-item[data-type='district'] .result-icon {
+  background: linear-gradient(135deg, var(--ui-accent) 0%, var(--ui-accent-strong) 100%);
+}
+
+.search-result-item:hover .result-icon {
+  filter: brightness(1.1);
+}
+
+.result-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.result-name {
+  font-weight: 500;
+  color: var(--ui-text);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result-state {
+  font-size: 0.75rem;
+  color: var(--ui-text-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.result-badge-state {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.result-badge-constituency {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.result-badge-assembly {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.result-badge-district {
+  background: var(--ui-accent-soft);
+  color: var(--ui-accent-strong);
+}
+
+/* Shared list/table row sizing + interaction (see `.interactive-row`). */
+
+/**
+ * Standard row affordance: consistent min-height, padding, hover/active wash, focus ring.
+ * Pair with list-specific classes (e.g. `.district-item.interactive-row`).
+ */
+.interactive-row {
+  box-sizing: border-box;
+  min-height: var(--row-min-height);
+  cursor: pointer;
+  border-radius: var(--row-radius);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    filter 0.15s ease;
+}
+
+.interactive-row:focus {
+  outline: none;
+}
+
+.interactive-row:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.interactive-row:hover {
+  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
+}
+
+.interactive-row:active {
+  box-shadow: inset 0 0 0 9999px var(--row-active-inset);
+}
+
+/* Search rows: match press feedback (options are div[role=option], not focusable buttons). */
+.search-result-item.interactive-row:active {
+  box-shadow: inset 0 0 0 9999px var(--row-active-inset);
+}
+
+/* Summary party rows: full row is the button; flatter active press (no dark inset). */
+.state-map-summary-row.interactive-row:active {
+  box-shadow: none;
+}
+
+/**
+ * Tabular/list rows without primary click action: same inset hover rhythm as `.interactive-row`.
+ */
+.data-row {
+  box-sizing: border-box;
+  min-height: var(--row-min-height);
+  cursor: default;
+  border-radius: var(--row-radius);
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.data-row:hover {
+  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
+}
+
+/* Search: typed left accent (full box border set on `.search-result-item`) */
+.search-result-item[data-type='state'] {
+  border-left-color: var(--ui-state);
+}
+
+.search-result-item[data-type='constituency'] {
+  border-left-color: var(--color-parliament);
+}
+
+.search-result-item[data-type='assembly'] {
+  border-left-color: var(--color-assembly);
+}
+
+.search-result-item[data-type='district'] {
+  border-left-color: var(--ui-accent);
+}
+
+.search-no-results {
+  padding: 16px;
+  text-align: center;
+  color: var(--ui-text-soft);
+  font-size: 0.9rem;
+}
+
+/* Keyboard shortcut hint */
+.search-hint {
+  font-size: 0.7rem;
+  color: var(--ui-text-soft);
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* Cache status */
+.cache-status {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fc 100%);
+  border-top: 1px solid var(--ui-border);
+  font-size: 0.75rem;
+  color: #555;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.cache-status strong {
+  color: var(--ui-text-soft);
+}
+
+.cache-icon {
+  display: inline;
+  vertical-align: middle;
+}
+
+.cache-icon.state-icon {
+  color: var(--color-state);
+}
+
+.cache-icon.pc-icon {
+  color: var(--color-parliament);
+}
+
+.cache-icon.ac-icon {
+  color: var(--color-assembly);
+}
+
+.cache-check {
+  color: var(--color-assembly);
+  display: inline;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+/* Tooltip styling */
+.leaflet-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #1a1a2e;
+  font-weight: 600;
+  font-size: 12px;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 0 8px rgba(255, 255, 255, 0.9);
+  padding: 0 !important;
+  white-space: nowrap;
+}
+
+/* Selected assembly tooltip - permanent with green styling */
+.leaflet-tooltip.selected-tooltip {
+  background: #065f46 !important;
+  color: white !important;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  border: 2px solid var(--ui-assembly) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  text-shadow: none !important;
+}
+
+/* Hover tooltip styling */
+.leaflet-tooltip.hover-tooltip {
+  background: rgba(31, 41, 55, 0.95) !important;
+  color: white !important;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 4px 10px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  text-shadow: none !important;
+}
+
+/* Background state tooltip - subtle purple for context states */
+.leaflet-tooltip.background-state-tooltip {
+  background: rgba(99, 102, 241, 0.95) !important;
+  color: white !important;
+  font-weight: 600;
+  font-size: 11px;
+  padding: 4px 10px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3) !important;
+}
+
+.leaflet-tooltip-pane {
+  z-index: 650;
+}
+
+/* Remove default focus outline on map */
+.leaflet-container:focus {
+  outline: none;
+}
+
+.leaflet-container a {
+  color: inherit;
+}
+
+.leaflet-interactive:focus {
+  outline: none !important;
+}
+
+.leaflet-container path:focus {
+  outline: none !important;
+}
+
+.leaflet-container *:focus {
+  outline: none !important;
+}
+
+svg:focus,
+path:focus {
+  outline: none !important;
+}
+
+.leaflet-pane svg {
+  outline: none !important;
+}
+
+.leaflet-overlay-pane svg path {
+  outline: none !important;
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.loading-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--ui-border);
+  border-top-color: var(--ui-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* View toggle */
+.view-toggle {
+  display: flex;
+  gap: 0;
+  margin: 15px 0;
+  background: var(--ui-surface-soft);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+/** Layer, year, Show ACs (former map toolbar center) */
+.sidebar-map-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0 12px;
+}
+
+.sidebar-map-controls .sidebar-view-selector-wrap {
+  margin: 0;
+}
+
+.sidebar-show-acs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sidebar-show-acs input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/** Map / Seats won / Vote share — same control pattern as election year dropdown */
+.sidebar-view-selector-wrap {
+  margin: 10px 0 12px;
+}
+
+.sidebar-view-selector-wrap .sidebar-view-selector {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-view-selector-wrap .sidebar-view-selector .year-dropdown {
+  flex: 1;
+  min-width: 0;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  color: var(--ui-text-soft);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.toggle-btn .toggle-icon {
+  flex-shrink: 0;
+}
+
+.toggle-btn.active {
+  background: #fff;
+  color: #1a1a2e;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-btn:hover:not(.active) {
+  color: #1a1a2e;
+}
+
+/* District/Constituency list in sidebar */
+.district-list {
+  margin-top: 15px;
+}
+
+.district-list h3 {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.district-item {
+  padding: var(--row-padding-y) var(--row-padding-x);
+  padding-left: var(--row-padding-x);
+  background: linear-gradient(135deg, #f8f9fa 0%, var(--ui-surface-soft) 100%);
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+  transition:
+    box-shadow 0.15s ease,
+    background 0.2s ease,
+    filter 0.2s ease;
+  border-left: var(--row-accent-border-width) solid var(--item-color, var(--ui-text-muted));
+  display: flex;
+  align-items: center;
+  gap: var(--row-gap);
+}
+
+.district-item:hover {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.district-item.state-item {
+  border-left-color: var(--item-color, var(--color-state));
+}

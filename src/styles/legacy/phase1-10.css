@@ -1,0 +1,586 @@
+/* ========================================
+   Boothwise Analysis Styles
+   ======================================== */
+
+.boothwise-analysis {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Consistent section heading style */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-heading svg {
+  color: var(--ui-text-muted);
+  flex-shrink: 0;
+}
+
+.analysis-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--ui-text-soft);
+}
+
+.analysis-empty svg {
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.analysis-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.analysis-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ui-text);
+}
+
+.analysis-title h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.analysis-title svg {
+  color: var(--ui-state);
+}
+
+.analysis-summary-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.summary-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary-stat.winner {
+  font-weight: 600;
+}
+
+.summary-stat .party {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+.summary-stat .count {
+  font-size: 13px;
+  color: var(--ui-text-muted);
+}
+
+.summary-stat.winner .count {
+  color: var(--ui-text);
+  font-weight: 500;
+}
+
+.analysis-summary-stats .vs {
+  font-size: 11px;
+  color: var(--ui-text-soft);
+  text-transform: uppercase;
+}
+
+/* Booth Distribution Bar */
+.booth-distribution {
+  background: var(--ui-surface-soft);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.distribution-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ui-text-muted);
+  margin-bottom: 8px;
+}
+
+.distribution-bar {
+  display: flex;
+  height: 28px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--ui-border);
+}
+
+.distribution-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.distribution-segment:hover {
+  filter: brightness(1.1);
+}
+
+.segment-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.distribution-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.legend-party {
+  color: var(--ui-text);
+  font-weight: 500;
+}
+
+.legend-count {
+  color: var(--ui-text-soft);
+}
+
+/* Key Insights */
+.analysis-insights h5 {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ui-text-muted);
+}
+
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insight-card {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid var(--ui-border);
+  transition: all 0.2s ease;
+}
+
+.insight-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.insight-card.strength {
+  border-left: 3px solid var(--ui-assembly);
+}
+
+.insight-card.weakness {
+  border-left: 3px solid #ef4444;
+}
+
+.insight-card.opportunity {
+  border-left: 3px solid var(--ui-state);
+}
+
+.insight-card.insight {
+  border-left: 3px solid #6366f1;
+}
+
+.insight-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.insight-card.strength .insight-icon {
+  color: var(--ui-assembly);
+}
+
+.insight-card.weakness .insight-icon {
+  color: #ef4444;
+}
+
+.insight-card.opportunity .insight-icon {
+  color: var(--ui-state);
+}
+
+.insight-card.insight .insight-icon {
+  color: #6366f1;
+}
+
+.insight-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.insight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.insight-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-text);
+}
+
+.insight-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ui-assembly);
+  background: #10b98115;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.insight-card.weakness .insight-value {
+  color: #ef4444;
+  background: #ef444415;
+}
+
+.insight-card.opportunity .insight-value {
+  color: var(--ui-state);
+  background: #f59e0b15;
+}
+
+.insight-card.insight .insight-value {
+  color: #6366f1;
+  background: #6366f115;
+}
+
+.insight-description {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ui-text-muted);
+}
+
+/* Linked Booths in Insights */
+.insight-booths {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.expand-collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #e0e7ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #4f46e5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.expand-collapse-btn:hover {
+  background: #c7d2fe;
+  border-color: #a5b4fc;
+}
+
+.expand-collapse-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.expand-collapse-btn svg.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.insight-booths-unused::-webkit-scrollbar {
+  width: 4px;
+}
+
+.insight-booths::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.insight-booths::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+.insight-booths::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+.booth-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: var(--ui-surface-tint);
+  border: 1px solid var(--ui-border);
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--ui-text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.booth-link:hover {
+  background: var(--ui-border);
+  border-color: #d1d5db;
+  color: #111827;
+}
+
+.booth-link:active {
+  transform: scale(0.98);
+}
+
+.booth-link svg {
+  color: var(--ui-assembly);
+  flex-shrink: 0;
+}
+
+.booth-link-name {
+  font-weight: 600;
+}
+
+.booth-link-detail {
+  color: var(--ui-text-muted);
+  font-size: 10px;
+}
+
+.insight-card.strength .booth-link:hover {
+  background: #d1fae5;
+  border-color: var(--ui-assembly);
+}
+
+.insight-card.weakness .booth-link:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+}
+
+.insight-card.weakness .booth-link svg {
+  color: #ef4444;
+}
+
+.insight-card.opportunity .booth-link:hover {
+  background: #fef3c7;
+  border-color: var(--ui-state);
+}
+
+.insight-card.opportunity .booth-link svg {
+  color: var(--ui-state);
+}
+
+.insight-card.insight .booth-link:hover {
+  background: #e0e7ff;
+  border-color: #6366f1;
+}
+
+.insight-card.insight .booth-link svg {
+  color: #6366f1;
+}
+
+/* Quick Stats */
+.analysis-quick-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--ui-border);
+}
+
+.quick-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 12px 8px;
+  background: var(--ui-surface-soft);
+  border-radius: 8px;
+}
+
+.quick-stat .stat-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ui-text);
+}
+
+.quick-stat .stat-label {
+  font-size: 10px;
+  color: var(--ui-text-soft);
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+.quick-stat.highlight-nota {
+  background: #fef3c7;
+}
+
+.quick-stat.highlight-nota .stat-number {
+  color: #d97706;
+}
+
+.quick-stat.highlight-zero {
+  background: #fee2e2;
+}
+
+.quick-stat.highlight-zero .stat-number {
+  color: #dc2626;
+}
+
+/* Strike Rate Table */
+.strike-rate-table {
+  background: var(--ui-surface-soft);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.strike-rate-table h5 {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ui-text-muted);
+}
+
+.strike-rate-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.strike-rate-row {
+  display: grid;
+  grid-template-columns: 20px 50px 70px 45px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: white;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.strike-rate-row.winner {
+  background: #ecfdf5;
+  border: 1px solid var(--ui-assembly);
+}
+
+.sr-rank {
+  font-weight: 600;
+  color: var(--ui-text-soft);
+  text-align: center;
+}
+
+.strike-rate-row.winner .sr-rank {
+  color: var(--ui-assembly);
+}
+
+.sr-party {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sr-booths {
+  color: var(--ui-text-muted);
+  font-size: 11px;
+}
+
+.sr-rate {
+  font-weight: 700;
+  color: var(--ui-text);
+  text-align: right;
+}
+
+.strike-rate-row.winner .sr-rate {
+  color: var(--ui-assembly);
+}
+
+.sr-bar {
+  height: 6px;
+  background: var(--ui-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.sr-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* Party Booth Breakdown - NEW */
+.party-booth-breakdown {
+  background: var(--ui-surface-soft);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 16px;
+}
+
+.party-booth-breakdown h5 {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.party-booth-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

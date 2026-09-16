@@ -1,0 +1,571 @@
+/* Row tokens + inset hover (same rhythm as `.interactive-row`); pills use `--row-radius`. */
+.year-dropdown-option {
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--ui-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  min-height: var(--row-min-height);
+  padding: var(--row-padding-y) var(--row-padding-x);
+  border-radius: var(--row-radius);
+  cursor: pointer;
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.year-dropdown-option:hover:not(.active) {
+  background: transparent;
+  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
+}
+
+.year-dropdown-option.active {
+  background: color-mix(in srgb, var(--ui-accent) 85%, white 15%);
+  color: var(--ui-surface);
+  box-shadow: none;
+}
+
+.year-chip {
+  border: 1px solid var(--ui-border);
+  border-radius: 999px;
+  color: var(--ui-text-muted);
+  background: var(--ui-surface);
+  transition: all var(--ui-speed-fast) var(--ui-ease);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 10px 22px;
+  min-height: 46px;
+}
+
+.year-chip:hover {
+  border-color: var(--ui-accent);
+  color: var(--ui-accent);
+  background: color-mix(in srgb, var(--ui-surface) 80%, var(--ui-accent-soft) 20%);
+}
+
+.year-chip.active,
+.year-chip.parliament-year.active {
+  background: var(--ui-accent);
+  border-color: var(--ui-accent);
+  color: var(--ui-surface);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.28);
+}
+
+.year-chip.parliament-year:not(.active) {
+  color: color-mix(in srgb, var(--ui-accent) 70%, var(--ui-text-muted));
+  border-color: color-mix(in srgb, var(--ui-accent) 24%, var(--ui-border));
+}
+
+.panel-tabs {
+  background: var(--ui-surface);
+  border-bottom: 1px solid var(--ui-border);
+  gap: 8px;
+  padding: 8px 12px;
+}
+
+.sidebar-map-controls {
+  padding: 10px 12px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.sidebar-view-selector-wrap {
+  margin: 0;
+}
+
+.sidebar-view-selector-wrap + .sidebar-view-selector-wrap {
+  margin-top: 8px;
+}
+
+.sidebar-view-selector-wrap .sidebar-view-selector .year-chip-group {
+  width: 100%;
+}
+
+.sidebar-view-selector-wrap .sidebar-view-selector .year-dropdown {
+  width: 100%;
+}
+
+.year-chip-group[data-variant='stacked'] {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.year-chip-group[data-variant='stacked'] .year-dropdown-label {
+  margin: 0;
+}
+
+.year-chip-group[data-variant='stacked'] .year-dropdown {
+  width: 100%;
+}
+
+.election-view-selector {
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+.election-panel {
+  background: var(--ui-surface);
+  border-left: 1px solid var(--ui-border);
+}
+
+.sidebar-detail-host .election-panel {
+  border-color: var(--ui-border);
+  box-shadow: none;
+  overflow: visible;
+  overflow-y: visible;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+}
+
+/* Mobile: keep embedded AC/PC panels in sidebar column (scroll via .sidebar-scroll), not fixed bottom-sheet */
+@media (max-width: 768px) {
+  .sidebar-detail-host .election-panel,
+  .sidebar-detail-host .election-panel.panel-half,
+  .sidebar-detail-host .election-panel.panel-full {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    animation: none !important;
+    overflow: visible !important;
+    overflow-y: visible !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .sidebar-detail-host .election-panel.panel-half .panel-tab-content,
+  .sidebar-detail-host .election-panel.panel-full .panel-tab-content {
+    flex: none !important;
+    min-height: 0;
+    overflow-y: visible !important;
+  }
+}
+
+.sidebar-detail-host .panel-tab-content,
+.sidebar-detail-host .candidates-scroll,
+.sidebar-detail-host .state-map-summary-section {
+  overflow: visible;
+  max-height: none;
+}
+
+.sidebar-summary {
+  max-height: none;
+  overflow: visible;
+}
+
+.sidebar-detail-host .controls-card {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar-detail-host .panel-tab-content {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* Soften detail panel cards and candidate section chrome to blend with pane background. */
+.sidebar-detail-host .winner-card-compact {
+  background: color-mix(in srgb, var(--ui-surface) 94%, var(--ui-surface-soft) 6%);
+  border: 1px solid color-mix(in srgb, var(--ui-border) 80%, transparent);
+  border-left-width: 3px;
+  box-shadow: none;
+}
+
+.sidebar-detail-host .stat-card {
+  background: color-mix(in srgb, var(--ui-surface) 92%, var(--ui-surface-soft) 8%);
+  border-color: color-mix(in srgb, var(--ui-border) 70%, transparent);
+  box-shadow: none;
+}
+
+.sidebar-detail-host .candidates-header {
+  border-bottom: 1px solid color-mix(in srgb, var(--ui-border) 75%, transparent);
+}
+
+.sidebar-detail-host .candidate-row {
+  border-bottom: 1px solid color-mix(in srgb, var(--ui-border) 45%, transparent);
+}
+
+.sidebar-detail-host .candidate-row:last-child {
+  border-bottom: none;
+}
+
+.election-panel-header {
+  background: transparent;
+  border: none;
+  padding: 2px 0 0;
+}
+
+.election-panel-title h3 {
+  color: var(--ui-text);
+  font-size: 1.18rem;
+  font-weight: 800;
+}
+
+.election-panel-title .constituency-type,
+.election-panel-title .title-badges {
+  margin-top: 6px;
+}
+
+.share-bar {
+  background: var(--ui-surface-soft);
+  border-top: 1px solid var(--ui-border);
+}
+
+.share-bar-info .district-label {
+  color: var(--ui-text-soft);
+}
+
+.share-bar-info .district-name {
+  color: var(--ui-text);
+}
+
+/* Light share-bar inside sidebar: footer was built for navy gradient panel */
+.sidebar-detail-host .share-bar-info {
+  color: var(--ui-text-soft);
+}
+
+.sidebar-detail-host .share-bar-actions .election-panel-btn {
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  border: 1px solid var(--ui-border);
+}
+
+.sidebar-detail-host .share-bar-actions .election-panel-btn:hover {
+  background: color-mix(in srgb, var(--ui-accent) 10%, var(--ui-surface));
+  color: var(--ui-text);
+}
+
+.sidebar-detail-host .election-panel-btn.twitter-btn {
+  color: #1da1f2;
+}
+
+.sidebar-detail-host .election-panel-btn.twitter-btn:hover {
+  background: rgba(29, 161, 242, 0.12);
+  color: #1a8cd8;
+}
+
+.sidebar-detail-host .election-panel-btn.screenshot-btn {
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  border: 1px solid var(--ui-border);
+}
+
+.sidebar-detail-host .election-panel-btn.screenshot-btn:hover {
+  background: color-mix(in srgb, var(--ui-accent) 10%, var(--ui-surface));
+  color: var(--ui-text);
+}
+
+.sidebar-detail-host .election-panel-btn.copied {
+  color: var(--ui-assembly-strong);
+  background: color-mix(in srgb, var(--ui-assembly) 14%, var(--ui-surface));
+  border-color: color-mix(in srgb, var(--ui-assembly) 35%, var(--ui-border));
+}
+
+.candidates-table-full {
+  overflow-x: visible;
+  border: none;
+  box-shadow: none;
+}
+
+.candidates-header,
+.candidate-row {
+  min-width: 0;
+}
+
+.candidates-header {
+  background: color-mix(in srgb, var(--ui-surface-soft) 88%, var(--ui-surface-soft) 12%);
+  border-color: color-mix(in srgb, var(--ui-border) 70%, var(--left-pane-row-border));
+}
+
+.candidate-row {
+  border-color: color-mix(in srgb, var(--ui-border) 55%, var(--left-pane-row-border));
+}
+
+.col-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  line-height: 1.35;
+}
+
+.col-party {
+  width: 50px;
+  margin: 0 2px;
+}
+
+.col-votes {
+  width: 60px;
+  font-size: 0.68rem;
+}
+
+.col-share {
+  width: 40px;
+  font-size: 0.68rem;
+}
+
+.vote-bar {
+  left: 10px;
+  max-width: calc(100% - 20px);
+}
+
+@media (max-width: 480px) {
+  .candidates-header,
+  .candidate-row {
+    min-width: 0;
+  }
+
+  .candidates-header {
+    padding: 9px 10px;
+    font-size: 0.64rem;
+    letter-spacing: 0.2px;
+  }
+
+  .candidate-row {
+    padding: 9px 10px;
+  }
+
+  .col-name {
+    font-size: 0.74rem;
+    line-height: 1.18;
+  }
+
+  .col-party {
+    width: 46px;
+    font-size: 0.56rem;
+    margin: 0 2px;
+  }
+
+  .col-votes {
+    width: 56px;
+    font-size: 0.66rem;
+  }
+
+  .col-share {
+    width: 38px;
+    font-size: 0.66rem;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   Embedded sidebar election panel — full names, compact party chips, softer chrome
+   ----------------------------------------------------------------------------- */
+
+.election-panel--embed .col-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.election-panel--embed .col-party {
+  width: auto;
+  min-width: 48px;
+  max-width: 88px;
+  font-size: 0.56rem;
+  font-weight: 600;
+  margin: 0 4px;
+  border-radius: 999px;
+}
+
+.election-panel--embed .candidate-row .col-party {
+  max-width: 92px;
+}
+
+.election-panel--embed .winner-card-compact {
+  border-left-width: 2px;
+  box-shadow: none;
+}
+
+.election-panel--embed .winner-card-compact .winner-party {
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.election-panel--embed .postal-candidates {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.election-panel--embed .postal-candidates-header {
+  background: color-mix(in srgb, var(--ui-surface-soft) 88%, transparent);
+  border-color: color-mix(in srgb, var(--ui-border) 65%, var(--left-pane-row-border));
+}
+
+.election-panel--embed .postal-candidate-row .col-party {
+  border-radius: 999px;
+  padding: 2px 6px;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.election-panel--embed .booth-candidate-row {
+  border-color: color-mix(in srgb, var(--ui-border) 55%, var(--left-pane-row-border));
+}
+
+.election-panel--embed .booth-candidate-row.winner {
+  background: color-mix(in srgb, var(--ui-assembly-soft) 55%, transparent);
+}
+
+.election-panel--embed .postal-candidate-row {
+  border-color: color-mix(in srgb, var(--ui-border) 50%, var(--left-pane-row-border));
+}
+
+.election-panel--embed .postal-candidate-row.winner {
+  background: color-mix(in srgb, var(--ui-assembly-soft) 50%, transparent);
+}
+
+.election-panel--embed .booth-list-item .col-booth {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  line-height: 1.3;
+}
+
+.election-panel--embed .boothwise-analysis {
+  gap: 14px;
+  padding: 12px 2px;
+}
+
+.election-panel--embed .booth-distribution,
+.election-panel--embed .party-booth-breakdown,
+.election-panel--embed .strike-rate-table,
+.election-panel--embed .analysis-quick-stats-section {
+  background: color-mix(in srgb, var(--ui-surface) 96%, var(--ui-surface-soft) 4%);
+  border: 1px solid color-mix(in srgb, var(--ui-border) 65%, transparent);
+  box-shadow: none;
+}
+
+.election-panel--embed .party-booth-card {
+  border-color: color-mix(in srgb, var(--ui-border) 70%, transparent);
+  box-shadow: none;
+}
+
+.election-panel--embed .section-heading {
+  font-size: 11px;
+  letter-spacing: 0.35px;
+  color: var(--ui-text-muted);
+}
+
+.election-panel--embed .segment-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-shadow: none;
+}
+
+.election-panel--embed .party-tag {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 999px;
+  min-width: 0;
+}
+
+.election-panel--embed .insight-card {
+  background: color-mix(in srgb, var(--ui-surface) 97%, var(--ui-surface-soft) 3%);
+  border-color: color-mix(in srgb, var(--ui-border) 62%, transparent);
+  box-shadow: none;
+}
+
+.election-panel--embed .insight-card:hover {
+  box-shadow: none;
+  border-color: color-mix(in srgb, var(--ui-border) 78%, transparent);
+}
+
+.panel-tab {
+  border-radius: 10px;
+  border: 1px solid transparent;
+  color: var(--ui-text-muted);
+  transition: all var(--ui-speed-fast) var(--ui-ease);
+}
+
+.panel-tab:hover {
+  background: var(--ui-surface-soft);
+  color: var(--ui-text);
+}
+
+.panel-tab.active {
+  background: var(--ui-accent-soft);
+  border-color: var(--ui-accent);
+  color: var(--ui-accent-strong);
+}
+
+.copy-toast {
+  background: linear-gradient(140deg, var(--ui-assembly-strong) 0%, var(--ui-assembly) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  box-shadow: var(--ui-shadow-md);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 92%;
+    max-width: 390px;
+    box-shadow: 14px 0 42px rgba(15, 23, 42, 0.24);
+  }
+
+  .sidebar-overlay {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(3px);
+  }
+
+  .map-toolbar {
+    border-radius: var(--ui-radius-lg);
+  }
+
+  .election-panel.panel-peek,
+  .election-panel.panel-half,
+  .election-panel.panel-full {
+    border-top: 1px solid var(--ui-border);
+    box-shadow: 0 -12px 32px rgba(15, 23, 42, 0.16);
+  }
+
+  .bottom-sheet-handle {
+    background: color-mix(in srgb, var(--ui-text-soft) 40%, transparent);
+    border-radius: 999px;
+  }
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[role='button']:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.8);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

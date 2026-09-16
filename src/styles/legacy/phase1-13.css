@@ -1,0 +1,588 @@
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .blog-section {
+    max-width: 100%;
+  }
+
+  .analysis-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .flip-header {
+    flex-wrap: wrap;
+  }
+
+  .flip-ac-name {
+    font-size: 16px;
+  }
+}
+
+/* ========================================
+   Modern Apple-like UI Refresh Overrides
+   ======================================== */
+
+:root {
+  --ui-font-sans:
+    'Inter', 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  /* ------------------------------------------------------------------
+     "Civic Editorial" palette - reimagined from the prior cool-gray/blue
+     "Apple-like" refresh. Warm paper background instead of generic SaaS
+     gray, deep teal as the primary accent (distinct from any dominant
+     party color, reads institutional/trustworthy), terracotta/plum/forest
+     as the state/parliament/assembly trio. All text-on-surface and
+     white-on-accent pairings below are WCAG AA checked (>=4.5:1 for text,
+     >=3:1 for large text/UI elements).
+     ------------------------------------------------------------------ */
+  --ui-bg: #f7f5f1;
+  --ui-surface: #ffffff;
+  --ui-surface-soft: #faf8f4;
+  --ui-surface-tint: #f0ece3;
+  --ui-border: #e4ddd0;
+  --ui-border-strong: #cfc4ae;
+  --ui-text: #1c1a16;
+  --ui-text-muted: #4a453a;
+  --ui-text-soft: #6b6558; /* ~5.95:1 on white - AA safe with margin */
+  --ui-accent: #0f6e63;
+  --ui-accent-strong: #0b544c; /* hover/active depth for accent-colored interactive elements */
+  --ui-accent-soft: #d7ece8;
+  --ui-state: #a85f30; /* ~5.0:1 with white text */
+  --ui-parliament: #6b4c9a;
+  --ui-assembly: #1f7a5c;
+  --ui-assembly-strong: #145a44; /* darker forest green - hover/gradient-dark-stop, ~8.1:1 as text on white */
+  --ui-assembly-soft: #e3f3ec; /* light mint tint - winner-row/success backgrounds */
+  --ui-radius-sm: 8px;
+  --ui-radius-md: 12px;
+  --ui-radius-lg: 18px;
+  --ui-radius-xl: 26px;
+  --ui-shadow-sm: 0 1px 2px rgba(28, 26, 22, 0.07);
+  --ui-shadow-md: 0 10px 28px rgba(28, 26, 22, 0.1);
+  --ui-shadow-lg: 0 20px 48px rgba(28, 26, 22, 0.14);
+  --ui-speed-fast: 140ms;
+  --ui-speed: 220ms;
+  --ui-speed-slow: 360ms;
+  --ui-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --color-state: var(--ui-state);
+  --color-parliament: var(--ui-parliament);
+  --color-assembly: var(--ui-assembly);
+
+  /* Phase 1 scales: new UI should use these instead of ad hoc values. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --elev-sm: 0 1px 2px rgba(28, 26, 22, 0.07);
+  --elev-md: 0 10px 28px rgba(28, 26, 22, 0.1);
+  --elev-lg: 0 20px 48px rgba(28, 26, 22, 0.14);
+
+  /* Shared list/table row sizing and interaction. */
+  --row-min-height: 44px;
+  --row-padding-y: 10px;
+  --row-padding-x: 12px;
+  --row-gap: 8px;
+  --row-radius: 6px;
+  --row-hover-inset: rgba(15, 23, 42, 0.055);
+  --row-active-inset: rgba(15, 23, 42, 0.09);
+  --row-accent-border-width: 4px;
+  --row-font-size-primary: 0.8125rem;
+  --row-font-size-secondary: 0.625rem;
+  --row-separator: var(--ui-surface-soft);
+  --left-pane-row-border: var(--ui-border);
+  --left-pane-row-gap: 6px;
+}
+
+body {
+  font-family: var(--ui-font-sans);
+  background: var(--ui-bg);
+  color: var(--ui-text);
+}
+
+.container {
+  background: transparent;
+  position: relative;
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 360px;
+    max-width: none;
+    height: 100%;
+    z-index: 1000;
+    isolation: isolate;
+    background: color-mix(in srgb, var(--ui-surface) 94%, var(--ui-surface) 6%);
+    border-right: 1px solid var(--ui-border);
+    box-shadow: var(--ui-shadow-md);
+    backdrop-filter: blur(14px) saturate(130%);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow-x: visible;
+    overflow-y: hidden;
+    overscroll-behavior: contain;
+    transition:
+      width var(--ui-speed-slow) var(--ui-ease),
+      opacity 0.22s ease,
+      transform var(--ui-speed-slow) var(--ui-ease);
+  }
+
+  /* Collapses in-flow so the map expands; leaflet controls stay visible (unlike mobile). */
+  .sidebar:not(.open) {
+    width: 0 !important;
+    min-width: 0;
+    max-width: 0;
+    overflow: hidden !important;
+    overflow-y: hidden;
+    opacity: 0;
+    pointer-events: none;
+    border-right-width: 0;
+    border-right-color: transparent;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .sidebar.open {
+    opacity: 1;
+    pointer-events: auto;
+    overflow-x: visible;
+    overflow-y: hidden;
+    border-right: 1px solid var(--ui-border);
+    box-shadow: var(--ui-shadow-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: min(360px, 92vw);
+    max-width: 390px;
+    height: 100%;
+    z-index: 1000;
+    isolation: isolate;
+    background: color-mix(in srgb, var(--ui-surface) 94%, var(--ui-surface) 6%);
+    border-right: 1px solid var(--ui-border);
+    box-shadow: var(--ui-shadow-md);
+    backdrop-filter: blur(14px) saturate(130%);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow-x: visible;
+    overflow-y: hidden;
+    overscroll-behavior: contain;
+    transition:
+      left var(--ui-speed-slow) var(--ui-ease),
+      transform var(--ui-speed-slow) var(--ui-ease);
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+}
+
+/* Scroll region below fixed header only */
+.sidebar-scroll {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+  z-index: 0;
+  overflow-x: visible;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.sidebar-header {
+  background: linear-gradient(180deg, var(--ui-accent-strong) 0%, var(--ui-accent) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.info-panel {
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  overflow: visible;
+}
+
+.pane-content {
+  padding: 12px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pane-section {
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface-soft);
+}
+
+.pane-section-tight {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.pane-section-header {
+  margin: 0;
+  padding: 2px 0 0;
+}
+
+.pane-control-stack {
+  padding: 10px 12px;
+}
+
+.controls-card {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pane-content-body {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.info-title {
+  color: var(--ui-text);
+  border-bottom-color: var(--ui-border);
+  letter-spacing: -0.01em;
+}
+
+.info-meta-line {
+  color: var(--ui-text-soft);
+}
+
+.info-title-row .constituency-type.type-gen {
+  background: color-mix(in srgb, var(--ui-text-soft) 12%, var(--ui-surface-soft));
+  color: var(--ui-text);
+}
+
+.stat-card {
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-sm);
+}
+
+.stat-value {
+  color: var(--ui-text);
+}
+
+.stat-label {
+  color: var(--ui-text-soft);
+  letter-spacing: 0.04em;
+}
+
+.breadcrumb {
+  background: var(--ui-surface-soft);
+  border-bottom: 1px solid var(--ui-border);
+}
+
+.breadcrumb a {
+  color: var(--ui-accent);
+  text-underline-offset: 2px;
+  transition: color var(--ui-speed-fast) var(--ui-ease);
+}
+
+.breadcrumb a:hover {
+  color: var(--ui-accent-strong);
+}
+
+.breadcrumb span {
+  color: var(--ui-text-muted);
+}
+
+.share-btn {
+  border-radius: var(--ui-radius-sm);
+  color: var(--ui-text-muted);
+  transition: all var(--ui-speed-fast) var(--ui-ease);
+}
+
+.share-btn:hover {
+  background: var(--ui-accent-soft);
+  color: var(--ui-accent);
+}
+
+.map-toolbar {
+  background: color-mix(in srgb, var(--ui-surface) 84%, var(--ui-surface) 16%);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-xl);
+  box-shadow: var(--ui-shadow-lg);
+  backdrop-filter: blur(16px) saturate(135%);
+}
+
+.toolbar-section:not(:last-child) {
+  border-right-color: var(--ui-border);
+}
+
+.toolbar-btn {
+  background: var(--ui-surface-soft);
+  color: var(--ui-text-muted);
+  border: 1px solid transparent;
+  border-radius: 11px;
+  transition: all var(--ui-speed-fast) var(--ui-ease);
+}
+
+.toolbar-btn:hover {
+  background: var(--ui-surface);
+  border-color: var(--ui-border);
+  color: var(--ui-text);
+}
+
+.toolbar-btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.toolbar-btn.toolbar-toggle.active {
+  background: linear-gradient(140deg, var(--ui-accent) 0%, var(--ui-accent-strong) 100%);
+  border-color: transparent;
+}
+
+.toolbar-year-selector {
+  border-top-color: var(--ui-border);
+}
+
+.toolbar-year-btn {
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  color: var(--ui-text-muted);
+  border-radius: 999px;
+}
+
+.toolbar-year-btn:hover {
+  border-color: var(--ui-accent);
+  color: var(--ui-accent);
+}
+
+.toolbar-year-btn.active,
+.toolbar-year-btn.parliament-year.active {
+  background: var(--ui-accent);
+  border-color: var(--ui-accent);
+  color: var(--ui-surface);
+}
+
+.toolbar-dropdown-menu {
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-md);
+}
+
+.toolbar-dropdown-item {
+  box-sizing: border-box;
+  min-height: var(--row-min-height);
+  padding: var(--row-padding-y) var(--row-padding-x);
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.toolbar-dropdown-item:hover:not(.active) {
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: inset 0 0 0 9999px var(--row-hover-inset);
+}
+
+.toolbar-dropdown-item.active {
+  background: var(--ui-accent-strong);
+  box-shadow: none;
+  color: var(--ui-surface);
+}
+
+.map-legend {
+  background: color-mix(in srgb, var(--ui-surface) 86%, var(--ui-surface) 14%);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-md);
+  backdrop-filter: blur(10px) saturate(125%);
+}
+
+.search-input {
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: var(--ui-shadow-sm);
+  transition: all var(--ui-speed) var(--ui-ease);
+}
+
+.search-input::placeholder {
+  color: var(--ui-text-soft);
+}
+
+.search-input:focus {
+  border-color: color-mix(in srgb, var(--ui-accent) 50%, white);
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.14),
+    var(--ui-shadow-md);
+}
+
+.search-icon {
+  color: var(--ui-text-soft);
+}
+
+.search-clear {
+  background: var(--ui-surface-tint);
+  color: var(--ui-text-muted);
+}
+
+.search-clear:hover {
+  background: var(--ui-border);
+  color: var(--ui-text);
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--left-pane-row-gap);
+  padding: 6px;
+  background: color-mix(in srgb, var(--ui-surface) 94%, var(--ui-surface-soft) 6%);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-lg);
+  backdrop-filter: blur(8px);
+}
+
+.sidebar-header-actions p {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.82rem;
+}
+
+.blog-btn {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.blog-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: none;
+  transform: none;
+}
+
+.search-result-item {
+  border-color: color-mix(in srgb, var(--ui-border) 78%, var(--left-pane-row-border));
+  background: var(--ui-surface);
+  transition:
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.search-result-item.selected {
+  border-color: color-mix(in srgb, var(--left-pane-row-border) 45%, var(--ui-accent) 55%);
+}
+
+.result-name {
+  color: var(--ui-text);
+}
+
+.result-state {
+  color: var(--ui-text-soft);
+}
+
+.election-panel {
+  background: linear-gradient(180deg, var(--ui-surface) 0%, var(--ui-surface-soft) 100%);
+  border-left: 1px solid var(--ui-border);
+  box-shadow: -12px 0 42px rgba(28, 26, 22, 0.16);
+}
+
+.election-panel-header {
+  background:
+    linear-gradient(145deg, var(--ui-text) 0%, var(--ui-accent-strong) 72%, var(--ui-accent) 100%),
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.2), transparent 40%);
+}
+
+.election-panel-close {
+  border-radius: 10px;
+}
+
+.election-year-selector {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.year-chip-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  position: relative;
+}
+
+.year-dropdown-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ui-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.year-dropdown {
+  min-width: 0;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 12px;
+  outline: none;
+  transition: border-color var(--ui-speed-fast) var(--ui-ease);
+}
+
+.year-dropdown:hover,
+.year-dropdown:focus {
+  border-color: var(--ui-accent);
+}
+
+.year-dropdown-native-proxy {
+  display: none;
+}
+
+.year-dropdown-trigger {
+  text-align: left;
+  cursor: pointer;
+}
+
+.year-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow-md);
+  max-height: min(260px, 42vh);
+  overflow-y: auto;
+}
