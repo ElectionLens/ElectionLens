@@ -14,7 +14,7 @@ import { normalizeName, normalizePcNameCompact, getStateIdFromName } from './uti
 import { defaultAssemblyDataYearFromIndex } from './utils/electionSchedule';
 import { mergeAssamAssemblyGeoForYear, assamMapDataForYear } from './utils/assamAssemblyGeo';
 import { trackPageView, trackConstituencySelect } from './utils/firebase';
-import { withUrlLocation, type UrlLocationInput } from './utils/urlLocation';
+import { withUrlLocation, viewSwitchUrlLocation, type UrlLocationInput } from './utils/urlLocation';
 import { readLocation, rawYearParam, parseAssemblyYearParam } from './utils/mapUrlContext';
 import { resolveAssemblyYearSelection } from './utils/assemblyYearSelection';
 import {
@@ -490,18 +490,9 @@ function App(): JSX.Element {
         const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
         if (latestYear !== undefined) {
           setPCSelectedYear(latestYear);
-          updateUrlRef.current({
-            state: stateName,
-            view: 'constituencies',
-            pc: null,
-            district: null,
-            assembly: null,
-            year: latestYear,
-            pcYear: null,
-            showACs: null,
-            blog: false,
-            blogPost: null,
-          });
+          updateUrlRef.current(
+            viewSwitchUrlLocation({ state: stateName, view: 'constituencies', year: latestYear })
+          );
         }
       }
       // Track analytics
@@ -914,18 +905,15 @@ function App(): JSX.Element {
       setSelectedYear(year);
       // Sync year to URL in assemblies or state districts map view (with or without assembly selected)
       if (currentState && (currentView === 'assemblies' || currentView === 'districts')) {
-        updateUrlRef.current({
-          state: currentState,
-          view: currentView,
-          pc: currentPC,
-          district: currentDistrict,
-          assembly: currentAssembly,
-          year,
-          pcYear: null,
-          showACs: currentPC ? (showACsWithinPC ?? true) : null,
-          blog: false,
-          blogPost: null,
-        });
+        updateUrlRef.current(
+          withUrlLocation(urlLocation, {
+            tab: null,
+            blogPost: null,
+            year,
+            pcYear: null,
+            blog: false,
+          })
+        );
       }
       if (currentAssembly && currentState) {
         const stateId = getStateIdFromName(currentState);
@@ -939,14 +927,12 @@ function App(): JSX.Element {
     [
       setSelectedYear,
       currentAssembly,
-      currentPC,
       currentState,
       currentView,
-      currentDistrict,
       getACResult,
       resolveACName,
       getAC,
-      showACsWithinPC,
+      urlLocation,
     ]
   );
 
@@ -968,27 +954,24 @@ function App(): JSX.Element {
           currentView === 'districts' ||
           (currentPC != null && currentAssembly != null));
       if (!shouldSyncPcYearToUrl) return;
-      updateUrlRef.current({
-        state: currentState,
-        view: currentView,
-        pc: currentPC,
-        district: currentDistrict,
-        assembly: currentAssembly,
-        year: null,
-        pcYear: year,
-        showACs: currentPC ? (showACsWithinPC ?? true) : null,
-        blog: false,
-        blogPost: null,
-      });
+      updateUrlRef.current(
+        withUrlLocation(urlLocation, {
+          tab: null,
+          blogPost: null,
+          year: null,
+          pcYear: year,
+          blog: false,
+        })
+      );
     },
     [
       currentAssembly,
       currentState,
       currentView,
       currentPC,
-      currentDistrict,
+      setSelectedACPCYear,
       setPCSelectedYear,
-      showACsWithinPC,
+      urlLocation,
     ]
   );
 
@@ -999,33 +982,21 @@ function App(): JSX.Element {
     async (year: number): Promise<void> => {
       setPCSelectedYear(year);
       if (currentState && (currentPC || currentView === 'constituencies')) {
-        updateUrlRef.current({
-          state: currentState,
-          view: currentView,
-          pc: currentPC,
-          district: currentDistrict,
-          assembly: currentAssembly,
-          year,
-          pcYear: null,
-          showACs: currentPC ? (showACsWithinPC ?? true) : null,
-          blog: false,
-          blogPost: null,
-        });
+        updateUrlRef.current(
+          withUrlLocation(urlLocation, {
+            tab: null,
+            blogPost: null,
+            year,
+            pcYear: null,
+            blog: false,
+          })
+        );
       }
       if (currentPC && currentState) {
         await getPCResult(currentPC, currentState, year);
       }
     },
-    [
-      setPCSelectedYear,
-      currentPC,
-      currentState,
-      currentView,
-      currentDistrict,
-      currentAssembly,
-      getPCResult,
-      showACsWithinPC,
-    ]
+    [setPCSelectedYear, currentPC, currentState, currentView, getPCResult, urlLocation]
   );
 
   /**
@@ -1109,18 +1080,13 @@ function App(): JSX.Element {
           const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
           if (latestYear !== undefined) {
             setPCSelectedYear(latestYear);
-            updateUrlRef.current({
-              state: currentState,
-              view: 'constituencies',
-              pc: null,
-              district: null,
-              assembly: null,
-              year: latestYear,
-              pcYear: null,
-              showACs: null,
-              blog: false,
-              blogPost: null,
-            });
+            updateUrlRef.current(
+              viewSwitchUrlLocation({
+                state: currentState,
+                view: 'constituencies',
+                year: latestYear,
+              })
+            );
           }
         }
       } else if (view === 'assemblies') {
@@ -1141,18 +1107,14 @@ function App(): JSX.Element {
             yearForUrl = latestYear;
           }
         }
-        updateUrlRef.current({
-          state: currentState,
-          view: 'assemblies',
-          pc: null,
-          district: null,
-          assembly: currentAssembly,
-          year: yearForUrl,
-          pcYear: null,
-          showACs: null,
-          blog: false,
-          blogPost: null,
-        });
+        updateUrlRef.current(
+          viewSwitchUrlLocation({
+            state: currentState,
+            view: 'assemblies',
+            year: yearForUrl,
+            assembly: currentAssembly,
+          })
+        );
       } else if (view === 'districts') {
         const data = await loadDistrictsForState(currentState);
         setCurrentData(data);
@@ -1164,18 +1126,9 @@ function App(): JSX.Element {
           latestYear != null && (selectedYear == null || !acYears.includes(selectedYear));
         if (needsCorrection) {
           setSelectedYear(latestYear);
-          updateUrlRef.current({
-            state: currentState,
-            view: 'districts',
-            pc: null,
-            district: null,
-            assembly: null,
-            year: latestYear,
-            pcYear: null,
-            showACs: null,
-            blog: false,
-            blogPost: null,
-          });
+          updateUrlRef.current(
+            viewSwitchUrlLocation({ state: currentState, view: 'districts', year: latestYear })
+          );
         }
       }
     },

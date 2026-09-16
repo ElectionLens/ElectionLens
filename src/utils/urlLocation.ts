@@ -77,3 +77,34 @@ export function withUrlLocation(
 ): UrlState {
   return { ...currentUrlLocation(input), ...overrides };
 }
+
+/**
+ * URL shape for switching to a different top-level view (constituencies /
+ * assemblies / districts) of the SAME state.
+ *
+ * Deliberately not built from {@link currentUrlLocation}: moving to a
+ * different map layer resets PC/district scoping, any panel tab, and the
+ * blog overlay, rather than carrying them over the way refining a position
+ * within the current layer would.
+ */
+export function viewSwitchUrlLocation(params: {
+  state: string | null;
+  view: ViewMode;
+  year: number | null;
+  /** Assembly stays selected across a switch into the assemblies view; every other switch clears it. */
+  assembly?: string | null;
+}): UrlState {
+  return {
+    state: params.state,
+    view: params.view,
+    pc: null,
+    district: null,
+    assembly: params.assembly ?? null,
+    year: params.year,
+    pcYear: null,
+    tab: null,
+    showACs: null,
+    blog: false,
+    blogPost: null,
+  };
+}

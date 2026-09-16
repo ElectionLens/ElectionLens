@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { currentUrlLocation, withUrlLocation, type UrlLocationInput } from './urlLocation';
+import {
+  currentUrlLocation,
+  withUrlLocation,
+  viewSwitchUrlLocation,
+  type UrlLocationInput,
+} from './urlLocation';
 
 const base: UrlLocationInput = {
   currentState: 'Tamil Nadu',
@@ -91,5 +96,44 @@ describe('withUrlLocation', () => {
       { tab: null, blogPost: null, district: null }
     );
     expect(out.district).toBeNull();
+  });
+});
+
+describe('viewSwitchUrlLocation', () => {
+  it('resets pc/district/tab/blog, whatever they currently are', () => {
+    expect(viewSwitchUrlLocation({ state: 'Kerala', view: 'districts', year: 2021 })).toMatchObject(
+      {
+        pc: null,
+        district: null,
+        assembly: null,
+        pcYear: null,
+        tab: null,
+        showACs: null,
+        blog: false,
+        blogPost: null,
+      }
+    );
+  });
+
+  it('carries the state, view and year through unchanged', () => {
+    const out = viewSwitchUrlLocation({ state: 'Kerala', view: 'districts', year: 2021 });
+    expect(out.state).toBe('Kerala');
+    expect(out.view).toBe('districts');
+    expect(out.year).toBe(2021);
+  });
+
+  it('keeps the assembly only when explicitly passed (switching into assemblies view)', () => {
+    const out = viewSwitchUrlLocation({
+      state: 'Kerala',
+      view: 'assemblies',
+      year: 2021,
+      assembly: 'Kollam',
+    });
+    expect(out.assembly).toBe('Kollam');
+  });
+
+  it('defaults assembly to null when not passed', () => {
+    const out = viewSwitchUrlLocation({ state: 'Kerala', view: 'constituencies', year: 2024 });
+    expect(out.assembly).toBeNull();
   });
 });
