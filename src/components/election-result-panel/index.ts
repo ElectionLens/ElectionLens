@@ -9,6 +9,8 @@ export { BoothWiseView } from './BoothWiseView';
 export { BoothwiseAnalysis } from './BoothwiseAnalysis';
 export { ResultPodium } from './ResultPodium';
 export { KpiStrip } from './KpiStrip';
+export { PanelTabs, type TabItem } from './PanelTabs';
+export { CandidateBar } from './CandidateBar';
 export {
   computeBoothwiseAnalysis,
   type AnalysisInsight,

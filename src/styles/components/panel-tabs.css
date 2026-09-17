@@ -1,0 +1,110 @@
+/* ============================================================================
+   Panel tab bar + candidate bars  (UI revamp S4/S5)
+   ============================================================================ */
+
+/* ---------------------------------------------------------------------------
+   Tab bar (S5). Replaces a <select> that hid its siblings behind a click.
+   --------------------------------------------------------------------------- */
+
+.panel-tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--ui-border);
+  /* Labels are short and the bar only renders above 460px, but a stray long
+     label should scroll rather than wrap into a ragged second row. */
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.panel-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.panel-tab {
+  flex: 0 0 auto;
+  padding: 8px 14px;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-text-soft);
+  cursor: pointer;
+  white-space: nowrap;
+  /* Reserve the active underline on every tab so selecting one does not shift
+     the row by 2px. */
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition:
+    color var(--ui-speed-fast) var(--ui-ease),
+    border-color var(--ui-speed-fast) var(--ui-ease);
+}
+
+.panel-tab:hover {
+  color: var(--ui-text);
+  background: var(--ui-surface-tint);
+}
+
+.panel-tab--active {
+  color: var(--ui-accent);
+  border-bottom-color: var(--ui-accent);
+}
+
+/* Keyboard focus must stay obvious: with a roving tabindex the active tab is
+   the only Tab stop, so losing this ring would strand keyboard users. */
+.panel-tab:focus-visible {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: -2px;
+  border-radius: var(--ui-radius-sm);
+}
+
+.panel-tab-content:focus-visible {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-tab {
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Candidate bars (S4). The old .vote-bar was a 3px 50%-opacity underline -
+   present but visually inert. This gives the row real weight, while the exact
+   numbers stay in the adjacent columns: scan and precision together.
+   --------------------------------------------------------------------------- */
+
+.candidate-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  /* Behind the text, which sits in normal flow above it. */
+  z-index: 0;
+  /* Low alpha so dark party colours never fight the row text for contrast;
+     the bar conveys magnitude, the columns convey the number. */
+  opacity: 0.16;
+  pointer-events: none;
+  transition: width var(--ui-speed) var(--ui-ease);
+}
+
+/* The row establishes the stacking context; lift the content above the fill. */
+.candidate-row > span,
+.candidate-row > .sex-badge {
+  position: relative;
+  z-index: 1;
+}
+
+/* Winner and runner-up already carry a gradient background; a full-strength
+   bar on top of it muddies both, so soften it slightly. */
+.candidate-row.winner .candidate-bar,
+.candidate-row.runner-up .candidate-bar {
+  opacity: 0.13;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .candidate-bar {
+    transition: none;
+  }
+}

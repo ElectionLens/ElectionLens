@@ -26,8 +26,17 @@ import {
   BoothwiseAnalysis,
   ResultPodium,
   KpiStrip,
+  PanelTabs,
+  CandidateBar,
 } from './election-result-panel';
 import { selectResultSummary, selectKpiValues } from '../utils/resultSummary';
+import { useElementWidth } from '../hooks/useElementWidth';
+
+/**
+ * Below this panel width the four view labels cannot sit side by side without
+ * truncating, so the select remains the honest control.
+ */
+const TAB_BAR_MIN_WIDTH = 460;
 import {
   embeddedPartyChipStyle,
   winnerPartyChipStyle,
@@ -224,6 +233,35 @@ export function ElectionResultPanel({
     () => selectKpiValues(result, boothResults, boothsWithResults, podiumSummary),
     [result, boothResults, boothsWithResults, podiumSummary]
   );
+
+  /** Bars scale to the leader, so a 38-vs-35 race reads as the near-tie it is. */
+  const leaderShare = useMemo(
+    () =>
+      displayCandidates.reduce(
+        (max, c) => (Number.isFinite(c.voteShare) && c.voteShare > max ? c.voteShare : max),
+        0
+      ),
+    [displayCandidates]
+  );
+
+  /** Same, for the parliament-contribution list rendered under a PC year. */
+  const pcLeaderShare = useMemo(
+    () =>
+      (currentPCContribution?.candidates ?? []).reduce(
+        (max, c) => (Number.isFinite(c.voteShare) && c.voteShare > max ? c.voteShare : max),
+        0
+      ),
+    [currentPCContribution]
+  );
+
+  /**
+   * A real tab bar needs room for every label; below that the select is the
+   * honest control. Measured on the panel itself rather than the viewport,
+   * because the panel-mode token and the user's width override both change it
+   * independently of the window.
+   */
+  const [tabBarRef, panelWidth] = useElementWidth<HTMLDivElement>();
+  const useTabBar = panelWidth != null && panelWidth >= TAB_BAR_MIN_WIDTH && !isMobilePortrait;
 
   /** Parliament-year panel: Overview (full assembly + PC breakdown) plus Booths / Postal / Analysis when data exists. Assembly list always on Overview (no separate Candidates tab). */
   const inParliamentYearMode = Boolean(selectedPCYear && currentPCContribution);
@@ -484,17 +522,49 @@ export function ElectionResultPanel({
           />
         )}
 
-        <YearSelector
-          label="View"
-          fieldId="ac-panel-view"
-          className="election-view-selector pane-section-tight"
-          variant="stacked"
-          options={viewOptions}
-        />
+        {/* A real tablist where it fits, the select where it does not (S5).
+            The ref stays mounted on the wrapper so the width is measured even
+            while the select is showing - otherwise we could never learn that
+            the panel had grown enough to switch. */}
+        <div ref={tabBarRef} className="panel-view-control">
+          {useTabBar ? (
+            <PanelTabs
+              tabs={viewOptions.map((option) => ({
+                id: option.id,
+                label: option.label,
+                title: option.title,
+              }))}
+              activeId={activeTab}
+              onSelect={(id) => setActiveTab(id as TabType)}
+              panelId="ac-panel-tabpanel"
+              label="Result view"
+            />
+          ) : (
+            <YearSelector
+              label="View"
+              fieldId="ac-panel-view"
+              className="election-view-selector pane-section-tight"
+              variant="stacked"
+              options={viewOptions}
+            />
+          )}
+        </div>
       </div>
 
       {/* Tab content */}
-      <div className="panel-tab-content">
+      <div
+        className="panel-tab-content"
+        id="ac-panel-tabpanel"
+        // Only a tabpanel when a tablist is actually driving it; with the
+        // select showing, the role would reference a tab that is not rendered.
+        {...(useTabBar
+          ? {
+              role: 'tabpanel',
+              'aria-labelledby': `ac-panel-tabpanel-tab-${activeTab}`,
+              tabIndex: 0,
+            }
+          : {})}
+      >
         {selectedPCYear && currentPCContribution ? (
           /* Parliament year: overview (full PC candidate list) + booths / postal / analysis */
           activeTab === 'booths' ? (
@@ -625,12 +695,10 @@ export function ElectionResultPanel({
                         </span>
                         <span className="col-votes">{formatNumber(c.votes)}</span>
                         <span className="col-share">{c.voteShare.toFixed(1)}%</span>
-                        <div
-                          className="vote-bar"
-                          style={{
-                            width: `${Math.min(c.voteShare, 100)}%`,
-                            backgroundColor: getPartyColor(c.party),
-                          }}
+                        <CandidateBar
+                          voteShare={c.voteShare}
+                          party={c.party}
+                          leaderShare={pcLeaderShare}
                         />
                       </div>
                     ))}
@@ -709,6 +777,7 @@ export function ElectionResultPanel({
                         hideVoteStats={hideAssemblyVoteFigures}
                         partyShortNames={shortPartyUi}
                         embeddedPanel={omitConstituencyHeading}
+                        leaderShare={leaderShare}
                       />
                     ))}
                   </div>

@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react';
 import type { ElectionCandidate } from '../../types';
 import { getPartyColor, getPartyFullName, getPartyShortName } from '../../utils/partyData';
 import { embeddedPartyChipStyle, formatNumber } from './shared';
+import { CandidateBar } from './CandidateBar';
 
 export const CandidateRow = memo(function CandidateRow({
   candidate,
@@ -12,6 +13,7 @@ export const CandidateRow = memo(function CandidateRow({
   partyShortNames = false,
   embeddedPanel = false,
   displayRank,
+  leaderShare = 0,
 }: {
   candidate: ElectionCandidate;
   isWinner: boolean;
@@ -25,6 +27,11 @@ export const CandidateRow = memo(function CandidateRow({
    * ranking, leaving gaps (1,2,3,4,6...). Falls back to `position` when omitted.
    */
   displayRank?: number;
+  /**
+   * Largest vote share in the field, so bars can be drawn relative to the
+   * leader. Omitted (or 0) falls back to an absolute 0-100 scale.
+   */
+  leaderShare?: number;
 }): JSX.Element {
   const partyColor = getPartyColor(candidate.party);
   const partyText = partyShortNames ? getPartyShortName(candidate.party) : candidate.party;
@@ -56,12 +63,10 @@ export const CandidateRow = memo(function CandidateRow({
         {hideVoteStats ? '—' : `${candidate.voteShare.toFixed(1)}%`}
       </span>
       {!hideVoteStats && (
-        <div
-          className="vote-bar"
-          style={{
-            width: `${Math.min(candidate.voteShare, 100)}%`,
-            backgroundColor: partyColor,
-          }}
+        <CandidateBar
+          voteShare={candidate.voteShare}
+          party={candidate.party}
+          leaderShare={leaderShare}
         />
       )}
     </div>
