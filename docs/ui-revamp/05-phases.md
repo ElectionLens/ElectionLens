@@ -107,11 +107,37 @@ The structural change. **Read §2 and §3 first.**
       hidden rather than disabled below the breakpoint). Tab and override both reset on
       selection change so a stale `booths` cannot hold the next constituency at full
       width. Verified in-browser at all three widths, the floor, and the toggle.
-- [ ] `<ResultPodium>` — **2×2 grid** (Winner/Runner-up/3rd/Margin), party-coloured left
+- [x] `<ResultPodium>` — **2×2 grid** (Winner/Runner-up/3rd/Margin), party-coloured left
       border, vote count dominant, share % secondary. Collapses to one row at 360px. (S1)
-- [ ] `<KpiStrip>` — Total / Valid / NOTA / Rejected / Winner-led / Runner-led / Booths,
-      **wrapping to 2 rows**, never 7 across. Data already in
-      `boothwiseAnalysisEngine.ts`. (S1, S2)
+      <br>**Landed in `10bacc35`.** Explicit 2×2 rather than `auto-fit`: auto-fit gave
+      3-across at 520px, orphaning Margin onto its own row and breaking the paired
+      Winner/Runner-up reading.
+- [x] `<KpiStrip>` — Total / Valid / NOTA / Rejected / Winner-led / Runner-led / Booths,
+      **wrapping to 2 rows**, never 7 across. (S1, S2)
+      <br>**Landed in `10bacc35`.** Unknown values render as an *absent cell*, never a
+      fabricated `0`. Booth-lead counts reuse `computeBoothwiseAnalysis` so the strip and
+      the Analysis tab cannot disagree about the same number.
+      <br>** Data bug found and worked around — needs a real fix upstream.** Four TN 2021
+      booth files record the runner-up's per-booth votes as a few hundred against an
+      official total in the tens of thousands:
+
+      | AC | party | official | booth-sum |
+      |---|---|---:|---:|
+      | Bargur | ADMK | 84,642 | 107 |
+      | Gummidipundi | PMK | 75,514 | 196 |
+      | Kalasapakkam | ADMK | 84,912 | 239 |
+      | Singanallur | DMK | 70,390 | 135 |
+
+      Summed booth leads therefore claimed the winner led **350 of 350** booths in a race
+      won 49.2–42.8. `dataQuality.acTotalsReconciled` does *not* catch these — it is absent
+      on exactly these files. `selectKpiValues` now cross-checks the top two candidates'
+      booth columns against the official totals and suppresses the lead cells on
+      disagreement (7 of 234 TN 2021 ACs; the other 227 are unaffected). **This is a UI
+      guard, not a data fix** — the underlying booth files are still wrong and the Booths
+      and Analysis tabs still read from them.
+- [ ] **Fix the corrupt booth columns at source** for the 7 affected TN 2021 ACs, then
+      consider whether the `selectKpiValues` guard should become a shared data-quality
+      check rather than a KPI-strip concern.
 - [ ] `<CandidateBars>` — ranked horizontal bars beside the table. (S4)
 - [ ] Reorder: **Podium → KPI strip → charts → full candidate table.**
 - [ ] Real tab bar at ≥520px (`role="tablist"`/`tab`/`tabpanel`, arrow-key nav), keeping
