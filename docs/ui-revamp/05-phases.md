@@ -159,10 +159,35 @@ The structural change. **Read §2 and §3 first.**
       by the `selectKpiValues` guard. Needs its own investigation.
 - [ ] Consider promoting the `selectKpiValues` trust check into a shared data-quality
       helper, now that it has caught a real fault `dataQuality.acTotalsReconciled` missed.
-- [ ] `<CandidateBars>` — ranked horizontal bars beside the table. (S4)
-- [ ] Reorder: **Podium → KPI strip → charts → full candidate table.**
-- [ ] Real tab bar at ≥520px (`role="tablist"`/`tab`/`tabpanel`, arrow-key nav), keeping
+- [x] `<CandidateBars>` — ranked horizontal bars beside the table. (S4)
+      <br>**Landed in `436762b4`, corrected in `ae3b8167`.** Implemented as a background
+      fill *behind* each row rather than a separate column: the panel is 360px in browse
+      mode and a second column would squeeze the candidate names. Bars scale **relative to
+      the leader**, so a 38-vs-35 race reads as the near-tie it is rather than two stubs.
+      <br>Three defects the DOM assertions passed over, caught only by reading the
+      rendered screenshot:
+      <br>• every candidate got a bar, down to **0.45px** — a smudge behind the 24px rank
+      column. 11 of 14 Bargur rows were narrower than that column. Bars under 6% are now
+      dropped (the `%` column is still exact); deliberately *not* rounded up to a visible
+      minimum, which would overstate small candidates.
+      <br>• bars started at `x=0`, behind the rank digit, reading as a selection
+      highlight. They now start after the rank column on a common origin.
+      <br>• that inset forced `width%` → `scaleX` inside a fixed track, since a percentage
+      width still measures the whole row and would have silently overstated every bar.
+      Ratios verified intact afterwards (ADMK/DMK `0.87045` vs expected `0.86992`).
+- [x] Reorder: **Podium → KPI strip → charts → full candidate table.**
+      <br>Done as part of `10bacc35`; bars are integrated into the table rather than
+      sitting as a separate chart block between the strip and the table.
+- [x] Real tab bar at ≥520px (`role="tablist"`/`tab`/`tabpanel`, arrow-key nav), keeping
       `<select>` at 360px and mobile.
+      <br>**Landed in `436762b4`.** Full APG pattern: arrow keys move and wrap, Home/End
+      jump to the ends, roving `tabindex` keeps only the active tab in the page tab order.
+      <br>Threshold is **460px measured on the panel itself** via `ResizeObserver`, not
+      ≥520px on the viewport — panel width is set by the panel-mode token *and* the user's
+      width override, so a viewport query would offer tabs while the user has deliberately
+      narrowed the panel. Unknown width degrades to the select. `role="tabpanel"` is
+      applied only while the tablist is rendered, or `aria-labelledby` would point at a
+      tab that does not exist.
 - [ ] Bidirectional hover-link between candidate/booth rows and map geography.
 
 ### Phase 2.5 — Data-based navigation as a first-class mode (3–4 days)
