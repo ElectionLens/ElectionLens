@@ -69,17 +69,29 @@ from lib.archive2_parsers import (
     try_int,
     validate_candidate_columns,
 )
+from lib.form20_pdf import parse_form20_pdf_rows
 
-DEFAULT_ARCHIVE_DIR = Path("/Users/p0s097d/Desktop/archive 2")
+DEFAULT_ARCHIVE_DIR = Path.home() / "Desktop" / "archive 2"
 RESERVED_TRAILING = ["Total Valid Votes", "Rejected Votes", "NOTA", "Total", "Tendered Votes"]
 
 
 def find_dataset_root(archive_dir: Path) -> Path:
-    """Accept either the archive root or the boothwise_dataset dir directly."""
-    if (archive_dir / "boothwise_dataset").is_dir():
-        return archive_dir / "boothwise_dataset"
-    if archive_dir.name == "boothwise_dataset":
-        return archive_dir
+    """Accept either archive root or boothwise_dataset directly.
+
+    The supplied archive has appeared under both ``archive`` and ``archive 2``
+    on developer machines. If the requested path is absent, accept the sibling
+    archive directory only when it contains the expected dataset shape. This is
+    a convenience for local source discovery, never a reason to silently choose
+    a different dataset once a path exists.
+    """
+    candidates = [archive_dir]
+    if not archive_dir.exists() and archive_dir.name == "archive 2":
+        candidates.append(archive_dir.with_name("archive"))
+    for candidate in candidates:
+        if (candidate / "boothwise_dataset").is_dir():
+            return candidate / "boothwise_dataset"
+        if candidate.name == "boothwise_dataset" and candidate.is_dir():
+            return candidate
     raise FileNotFoundError(f"No boothwise_dataset under {archive_dir}")
 
 
@@ -370,6 +382,7 @@ def process_ac(
 
     header, rows = read_form20_csv(csv_path)
     non_nota_count = sum(1 for c in econ_candidates if c.get("party") != "NOTA")
+    pdf_fallback = False
     ok, reason, candidate_cols, parsed_rows = validate_candidate_columns(header, rows, RESERVED_TRAILING)
     if not ok:
         # Retry with arithmetic layout recovery for address/elector columns and OCR-shifted
@@ -378,10 +391,52 @@ def process_ac(
             header, rows, non_nota_count
         )
     if not ok:
-        return {"acNo": ac_no, "acId": ac_id, "status": "flagged", "reason": f"csv shape: {reason}"}
+        # Some archive CSVs are structurally unusable even though their paired PDF
+        # is perfectly parseable (rotated headers, alternate tail names, inserted
+        # elector columns). Use the PDF only when every accepted booth is present
+        # and sequential; otherwise keep the AC flagged instead of guessing IDs.
+        form20_pdfs = list(folder.glob("*_Form_20.pdf"))
+        pdf_rows = (
+            parse_form20_pdf_rows(form20_pdfs[0], non_nota_count)
+            if form20_pdfs
+            else {}
+        )
+        expected_numbers = list(range(1, len(pdf_rows) + 1))
+        if pdf_rows and sorted(pdf_rows) == expected_numbers:
+            candidate_cols = [f"Candidate_{i + 1}" for i in range(non_nota_count)]
+            parsed_rows = [
+                [*pdf_rows[number][0], *pdf_rows[number][1:]]
+                for number in expected_numbers
+            ]
+            ok = True
+            pdf_fallback = True
+        else:
+            return {"acNo": ac_no, "acId": ac_id, "status": "flagged", "reason": f"csv/pdf shape: {reason}"}
 
     col_to_econ, matched_by, diagnostics = build_column_candidate_map(candidate_cols, parsed_rows, econ_candidates)
     valid, reason = validate_diagnostics(diagnostics, tolerance_pct)
+    if not valid and not pdf_fallback:
+        # A CSV can have valid arithmetic while its headers/columns are shifted.
+        # Retry the paired PDF before flagging: its row arithmetic is independent
+        # of the CSV header semantics. This is still fail-closed; the same vote
+        # diagnostics must pass after the fallback mapping.
+        form20_pdfs = list(folder.glob("*_Form_20.pdf"))
+        pdf_rows = (
+            parse_form20_pdf_rows(form20_pdfs[0], non_nota_count)
+            if form20_pdfs
+            else {}
+        )
+        expected_numbers = list(range(1, len(pdf_rows) + 1))
+        if pdf_rows and sorted(pdf_rows) == expected_numbers:
+            candidate_cols = [f"Candidate_{i + 1}" for i in range(non_nota_count)]
+            parsed_rows = [[*pdf_rows[number][0], *pdf_rows[number][1:]] for number in expected_numbers]
+            col_to_econ, matched_by, diagnostics = build_column_candidate_map(
+                candidate_cols, parsed_rows, econ_candidates
+            )
+            valid, reason = validate_diagnostics(diagnostics, tolerance_pct)
+            pdf_fallback = valid
+            if valid:
+                ok = True
     if not valid:
         return {
             "acNo": ac_no,
@@ -472,6 +527,7 @@ def process_ac(
         "acId": ac_id,
         "status": "ok",
         "matchedBy": matched_by,
+        "inputSource": "form20_pdf_fallback" if pdf_fallback else "form20_csv",
         "boothSource": booth_source,
         "boothCount": len(booths),
         "strictOk": strict_ok,
