@@ -4,6 +4,7 @@ import { normalizeName } from '../utils/helpers';
 import { LeftPaneButton } from './LeftPaneButton';
 import { PanelWidthToggle } from './PanelWidthToggle';
 import { useMediaQuery } from '../hooks/useMediaQuery';
+import type { HoveredFeature } from '../utils/mapHoverLink';
 import type { PanelMode } from '../utils/panelMode';
 import { DataProvenanceFooter, DataProvenanceNotice } from './DataProvenanceNotice';
 import { SearchBox } from './SearchBox';
@@ -56,6 +57,8 @@ interface SidebarProps {
   onDistrictClick: (districtName: string, feature: DistrictFeature) => void;
   onConstituencyClick: (pcName: string, feature: ConstituencyFeature) => void;
   onAssemblyClick?: (acName: string, feature: AssemblyFeature) => void;
+  onRowEnter?: (feature: HoveredFeature) => void;
+  onRowLeave?: () => void;
   onSwitchView: (view: ViewMode) => void;
   onReset: () => void;
   onGoBackToState: () => void;
@@ -171,6 +174,8 @@ export function Sidebar({
   onDistrictClick,
   onConstituencyClick,
   onAssemblyClick,
+  onRowEnter,
+  onRowLeave,
   onSwitchView,
   onReset,
   onGoBackToState,
@@ -788,6 +793,8 @@ export function Sidebar({
                   onDistrictClick={onDistrictClick}
                   onConstituencyClick={onConstituencyClick}
                   onAssemblyClick={onAssemblyClick}
+                  onRowEnter={onRowEnter}
+                  onRowLeave={onRowLeave}
                 />
               )}
             </div>

@@ -456,6 +456,13 @@ export interface MapViewProps {
   onStateSummaryDataChange?: (summary: StateSummaryPanelData | null) => void;
   /** Push winner maps for sidebar list row accent colors (aligned with map layers). */
   onBrowseListWinnersContext?: (ctx: BrowseListWinnersContext | null) => void;
+  /** Sidebar row currently hovered/focused; used for map↔list linking. */
+  hoveredFeature?: {
+    level: MapLevel;
+    name: string;
+    no?: number | undefined;
+    schemaId?: string | undefined;
+  } | null;
 }
 
 export interface StateSummaryPanelData {

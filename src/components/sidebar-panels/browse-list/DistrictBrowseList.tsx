@@ -10,9 +10,14 @@ import type {
   Feature,
   HexColor,
 } from '../../../types';
-import { sidebarListRowKeyDown, type ExtendedCSSProperties } from '../shared';
+import {
+  sidebarListRowKeyDown,
+  rowHoverProps,
+  type ExtendedCSSProperties,
+  type RowHoverHandlers,
+} from '../shared';
 
-export interface DistrictBrowseListProps {
+export interface DistrictBrowseListProps extends RowHoverHandlers {
   features: Feature[];
   browseListWinnersContext: BrowseListWinnersContext | null;
   currentState: string | null;
@@ -29,6 +34,8 @@ export function DistrictBrowseList({
   resolveDistrictName,
   getDistrict,
   onDistrictClick,
+  onRowEnter,
+  onRowLeave,
 }: DistrictBrowseListProps): ReactNode {
   if (!features.length) {
     return (
@@ -77,6 +84,7 @@ export function DistrictBrowseList({
             className="district-item interactive-row"
             style={style}
             onClick={() => onDistrictClick(name, feature as DistrictFeature)}
+            {...rowHoverProps({ onRowEnter, onRowLeave }, { level: 'districts', name })}
             onKeyDown={(e) =>
               sidebarListRowKeyDown(e, () => onDistrictClick(name, feature as DistrictFeature))
             }

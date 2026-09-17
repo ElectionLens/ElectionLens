@@ -18,6 +18,7 @@ import { withUrlLocation, viewSwitchUrlLocation, type UrlLocationInput } from '.
 import { readLocation, rawYearParam, parseAssemblyYearParam } from './utils/mapUrlContext';
 import { useSelectLocation } from './hooks/useSelectLocation';
 import { useMediaQuery } from './hooks/useMediaQuery';
+import { useHoverLink } from './hooks/useHoverLink';
 import { resolvePanelMode, PANEL_WIDEN_MIN_VIEWPORT, type PanelMode } from './utils/panelMode';
 import {
   PARLIAMENT_YEARS,
@@ -145,6 +146,7 @@ function App(): JSX.Element {
   // Blog section state (declared before useUrlState so the hook can sync `blog=` with other query params)
   const [blogOpen, setBlogOpen] = useState<boolean>(false);
   const [selectedSummaryParty, setSelectedSummaryParty] = useState<string | null>(null);
+  const { hovered: hoveredFeature, onRowEnter, onRowLeave } = useHoverLink();
   const [stateSummaryData, setStateSummaryData] = useState<StateSummaryPanelData | null>(null);
   const [leftPane, setLeftPane] = useState<LeftPane>('root');
   const [leftPaneView, setLeftPaneView] = useState<LeftPaneView>(null);
@@ -1223,6 +1225,8 @@ function App(): JSX.Element {
           onDistrictClick={handleDistrictClick}
           onConstituencyClick={handleConstituencyClick}
           onAssemblyClick={handleAssemblyClick}
+          onRowEnter={onRowEnter}
+          onRowLeave={onRowLeave}
           onSwitchView={handleSwitchView}
           onReset={handleReset}
           onGoBackToState={handleGoBackToState}
@@ -1284,6 +1288,7 @@ function App(): JSX.Element {
           currentPC={currentPC}
           currentDistrict={currentDistrict}
           selectedAssembly={currentAssembly}
+          hoveredFeature={hoveredFeature}
           electionResult={electionResult}
           acResultsLoading={acResultsLoading}
           acResultsLoadError={acResultsLoadError}

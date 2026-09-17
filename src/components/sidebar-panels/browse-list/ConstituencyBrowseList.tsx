@@ -10,9 +10,14 @@ import type {
   Feature,
   HexColor,
 } from '../../../types';
-import { sidebarListRowKeyDown, type ExtendedCSSProperties } from '../shared';
+import {
+  sidebarListRowKeyDown,
+  rowHoverProps,
+  type ExtendedCSSProperties,
+  type RowHoverHandlers,
+} from '../shared';
 
-export interface ConstituencyBrowseListProps {
+export interface ConstituencyBrowseListProps extends RowHoverHandlers {
   features: Feature[];
   browseListWinnersContext: BrowseListWinnersContext | null;
   onConstituencyClick: (pcName: string, feature: ConstituencyFeature) => void;
@@ -23,6 +28,8 @@ export function ConstituencyBrowseList({
   features,
   browseListWinnersContext,
   onConstituencyClick,
+  onRowEnter,
+  onRowLeave,
 }: ConstituencyBrowseListProps): ReactNode {
   if (!features.length) {
     return (
@@ -75,6 +82,14 @@ export function ConstituencyBrowseList({
             className="constituency-item interactive-row"
             style={style}
             onClick={() => onConstituencyClick(name, feature as ConstituencyFeature)}
+            {...rowHoverProps(
+              { onRowEnter, onRowLeave },
+              {
+                level: 'constituencies',
+                name,
+                no: Number.isFinite(parseInt(pcNo, 10)) ? parseInt(pcNo, 10) : undefined,
+              }
+            )}
             onKeyDown={(e) =>
               sidebarListRowKeyDown(e, () =>
                 onConstituencyClick(name, feature as ConstituencyFeature)

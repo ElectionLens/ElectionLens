@@ -10,7 +10,12 @@ import type {
   Feature,
   HexColor,
 } from '../../../types';
-import { sidebarListRowKeyDown, type ExtendedCSSProperties } from '../shared';
+import {
+  sidebarListRowKeyDown,
+  rowHoverProps,
+  type ExtendedCSSProperties,
+  type RowHoverHandlers,
+} from '../shared';
 
 /**
  * Check if features are assembly data (have valid AC_NAME) vs constituency data (have ls_seat_name).
@@ -32,7 +37,7 @@ export function isAssemblyData(features: Feature[]): boolean {
   return hasAssemblyProps && !hasConstituencyProps;
 }
 
-export interface AssemblyBrowseListProps {
+export interface AssemblyBrowseListProps extends RowHoverHandlers {
   /** Raw features for the current level - may be empty or still constituency-shaped mid-transition. */
   features: Feature[];
   /** Shown when `features` is empty (message differs by caller context). */
@@ -55,6 +60,8 @@ export function AssemblyBrowseList({
   currentState,
   resolveDistrictName,
   onAssemblyClick,
+  onRowEnter,
+  onRowLeave,
 }: AssemblyBrowseListProps): ReactNode {
   if (!features.length) {
     return emptyState;
@@ -119,6 +126,17 @@ export function AssemblyBrowseList({
             className="assembly-item interactive-row"
             style={style}
             onClick={() => onAssemblyClick?.(name, feature as AssemblyFeature)}
+            {...rowHoverProps(
+              { onRowEnter, onRowLeave },
+              {
+                level: 'assemblies',
+                name,
+                // AC_NO disambiguates same-named ACs (TN has two
+                // Tiruppatturs); without it the matcher refuses to guess.
+                no: Number.isFinite(parseInt(acNo, 10)) ? parseInt(acNo, 10) : undefined,
+                schemaId: (feature.properties as { schemaId?: string }).schemaId,
+              }
+            )}
             onKeyDown={(e) =>
               sidebarListRowKeyDown(e, () => onAssemblyClick?.(name, feature as AssemblyFeature))
             }

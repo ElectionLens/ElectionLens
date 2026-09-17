@@ -12,6 +12,7 @@ import type {
   ViewMode,
 } from '../../../types';
 import { AssemblyBrowseList } from './AssemblyBrowseList';
+import type { HoveredFeature } from '../../../utils/mapHoverLink';
 import { ConstituencyBrowseList } from './ConstituencyBrowseList';
 import { DistrictBrowseList } from './DistrictBrowseList';
 import { StateBrowseList } from './StateBrowseList';
@@ -30,6 +31,8 @@ export interface BrowseListProps {
   onDistrictClick: (districtName: string, feature: DistrictFeature) => void;
   onConstituencyClick: (pcName: string, feature: ConstituencyFeature) => void;
   onAssemblyClick?: ((acName: string, feature: AssemblyFeature) => void) | undefined;
+  onRowEnter?: ((feature: HoveredFeature) => void) | undefined;
+  onRowLeave?: (() => void) | undefined;
 }
 
 /**
@@ -50,6 +53,8 @@ export function BrowseList({
   onDistrictClick,
   onConstituencyClick,
   onAssemblyClick,
+  onRowEnter,
+  onRowLeave,
 }: BrowseListProps): ReactNode {
   // Assembly constituencies nested under a selected PC or district
   if (currentPC ?? currentDistrict) {
@@ -62,6 +67,8 @@ export function BrowseList({
         currentState={currentState}
         resolveDistrictName={resolveDistrictName}
         onAssemblyClick={onAssemblyClick}
+        onRowEnter={onRowEnter}
+        onRowLeave={onRowLeave}
         emptyState={
           <div className="district-list">
             <h3>Assembly Constituencies</h3>
@@ -89,6 +96,8 @@ export function BrowseList({
         features={(currentData?.features ?? []) as Feature[]}
         browseListWinnersContext={browseListWinnersContext}
         onConstituencyClick={onConstituencyClick}
+        onRowEnter={onRowEnter}
+        onRowLeave={onRowLeave}
       />
     );
   }
@@ -103,6 +112,8 @@ export function BrowseList({
         resolveDistrictName={resolveDistrictName}
         getDistrict={getDistrict}
         onDistrictClick={onDistrictClick}
+        onRowEnter={onRowEnter}
+        onRowLeave={onRowLeave}
       />
     );
   }
@@ -118,6 +129,8 @@ export function BrowseList({
         currentState={currentState}
         resolveDistrictName={resolveDistrictName}
         onAssemblyClick={onAssemblyClick}
+        onRowEnter={onRowEnter}
+        onRowLeave={onRowLeave}
         emptyState={
           <div className="district-list">
             <h3>Assembly Constituencies</h3>
@@ -140,6 +153,8 @@ export function BrowseList({
         statesGeoJSON={statesGeoJSON}
         browseListWinnersContext={browseListWinnersContext}
         onStateClick={onStateClick}
+        onRowEnter={onRowEnter}
+        onRowLeave={onRowLeave}
       />
     );
   }

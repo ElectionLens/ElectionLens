@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, GeoJSON, ScaleControl } from 'react-leaflet';
 import L from 'leaflet';
 import type { Layer, LeafletMouseEvent as LLeafletMouseEvent } from 'leaflet';
 import { getFeatureStyle, getHoverStyle, normalizeName, getStateFileName } from '../utils/helpers';
+import { matchesHoveredFeature } from '../utils/mapHoverLink';
 
 /** Resolved stroke/fill strings for Leaflet paths (avoid `!` on `L.PathOptions` optional fields). */
 const NEUTRAL_FILL_COLOR = '#9ca3af';
@@ -94,6 +95,7 @@ export function MapView({
   currentPC,
   currentDistrict,
   selectedAssembly,
+  hoveredFeature,
   electionResult,
   availableYears,
   selectedYear,
@@ -1308,6 +1310,21 @@ export function MapView({
         }
       }
 
+      // Sidebar row ↔ map polygon link. Apply after party/dimming styles so
+      // hover is visible without losing the underlying winner colour.
+      if (
+        hoveredFeature &&
+        feature &&
+        matchesHoveredFeature({
+          hovered: hoveredFeature,
+          level,
+          props: feature.properties as Record<string, unknown>,
+          assemblyNameCounts,
+        })
+      ) {
+        baseStyle = { ...baseStyle, ...getHoverStyle(level) };
+      }
+
       // Highlight selected assembly with dark green border (same normalization as onEachFeature/reapply so name variants match)
       if (selectedAssembly && level === 'assemblies' && feature) {
         const props = feature.properties as AssemblyProperties & { schemaId?: string };
@@ -1347,6 +1364,7 @@ export function MapView({
       resolveDistrictName,
       suppressAssemblyFilePartyMapColors,
       selectedSummaryParty,
+      hoveredFeature,
       assemblyLayerMapSummary,
       parliamentLayerMapSummary,
     ]

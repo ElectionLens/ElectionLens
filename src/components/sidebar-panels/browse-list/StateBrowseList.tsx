@@ -10,9 +10,14 @@ import type {
   StateProperties,
   StatesGeoJSON,
 } from '../../../types';
-import { sidebarListRowKeyDown, type ExtendedCSSProperties } from '../shared';
+import {
+  rowHoverProps,
+  sidebarListRowKeyDown,
+  type ExtendedCSSProperties,
+  type RowHoverHandlers,
+} from '../shared';
 
-export interface StateBrowseListProps {
+export interface StateBrowseListProps extends RowHoverHandlers {
   statesGeoJSON: StatesGeoJSON | null;
   browseListWinnersContext: BrowseListWinnersContext | null;
   onStateClick: (stateName: string, feature: StateFeature) => void;
@@ -23,6 +28,8 @@ export function StateBrowseList({
   statesGeoJSON,
   browseListWinnersContext,
   onStateClick,
+  onRowEnter,
+  onRowLeave,
 }: StateBrowseListProps): ReactNode {
   if (!statesGeoJSON?.features) return null;
 
@@ -54,6 +61,7 @@ export function StateBrowseList({
             key={`state-${index}`}
             className="district-item state-item interactive-row"
             onClick={() => onStateClick(name, feature as StateFeature)}
+            {...rowHoverProps({ onRowEnter, onRowLeave }, { level: 'states', name })}
             onKeyDown={(e) =>
               sidebarListRowKeyDown(e, () => onStateClick(name, feature as StateFeature))
             }

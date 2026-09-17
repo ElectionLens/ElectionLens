@@ -188,7 +188,17 @@ The structural change. **Read §2 and §3 first.**
       narrowed the panel. Unknown width degrades to the select. `role="tabpanel"` is
       applied only while the tablist is rendered, or `aria-labelledby` would point at a
       tab that does not exist.
-- [ ] Bidirectional hover-link between candidate/booth rows and map geography.
+- [x] Bidirectional hover-link between candidate/booth rows and map geography.
+      <br>**Available geography is implemented in this change.** State, district, PC, and AC browse-list
+      rows now highlight their matching polygon on mouse hover *and keyboard focus*;
+      leaving restores the base party-coloured style. AC matching reuses the same
+      identity matcher as selection, including AC number/schema ID disambiguation for
+      duplicate names such as Tamil Nadu's two Tiruppatturs.
+      <br>**Booth limitation:** booth result records currently contain votes, totals,
+      names, addresses, and areas but no coordinates or booth geometry. A booth row
+      therefore cannot honestly highlight geography yet; this item needs a future
+      booth-location extraction/enrichment step (likely from polling-station source
+      PDFs or a geocoded reference dataset).
 
 ### Phase 2.5 — Data-based navigation as a first-class mode (3–4 days)
 Depends on `selectLocation()` landing in Phase 2. See §2.
