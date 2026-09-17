@@ -5,7 +5,6 @@ import {
   Link2,
   Check,
   Twitter,
-  Users,
   Share2,
   AlertTriangle,
   Camera,
@@ -25,7 +24,10 @@ import {
   PostalBallotsView,
   BoothWiseView,
   BoothwiseAnalysis,
+  ResultPodium,
+  KpiStrip,
 } from './election-result-panel';
+import { selectResultSummary, selectKpiValues } from '../utils/resultSummary';
 import {
   embeddedPartyChipStyle,
   winnerPartyChipStyle,
@@ -197,7 +199,6 @@ export function ElectionResultPanel({
   );
 
   const resultsPending = Boolean(result.resultsPending);
-  const winner = resultsPending || acResultsLoading ? undefined : result.candidates[0];
   const assemblyCandidates = result.candidates;
   const hasAnnouncedCandidates = assemblyCandidates.length > 0;
   const displayCandidates = acResultsLoading ? loadingSkeletonCandidates() : assemblyCandidates;
@@ -207,6 +208,22 @@ export function ElectionResultPanel({
   const pcWinner = currentPCContribution?.candidates[0];
   const shortPartyUi = shouldUseShortPartyLabelsAssembly(result, stateName);
   const pl = (p: string) => (shortPartyUi ? getPartyShortName(p) : p);
+
+  /**
+   * Headline figures for the podium + KPI strip (UI revamp S1/S2).
+   *
+   * Memoised because selectKpiValues runs the booth-wise analysis engine, which
+   * walks every booth - cheap once, wasteful on every keystroke elsewhere in
+   * the panel.
+   */
+  const podiumSummary = useMemo(
+    () => selectResultSummary(acResultsLoading ? null : result),
+    [result, acResultsLoading]
+  );
+  const kpiValues = useMemo(
+    () => selectKpiValues(result, boothResults, boothsWithResults, podiumSummary),
+    [result, boothResults, boothsWithResults, podiumSummary]
+  );
 
   /** Parliament-year panel: Overview (full assembly + PC breakdown) plus Booths / Postal / Analysis when data exists. Assembly list always on Overview (no separate Candidates tab). */
   const inParliamentYearMode = Boolean(selectedPCYear && currentPCContribution);
@@ -653,82 +670,18 @@ export function ElectionResultPanel({
             {boothResults?.dataQuality && (
               <BoothDataQualityBanner quality={boothResults.dataQuality} />
             )}
-            {/* Compact Winner card */}
-            {winner && (
-              <div
-                className="winner-card-compact"
-                style={{ borderColor: getPartyColor(winner.party) }}
-              >
-                <div className="winner-main">
-                  <div className="winner-badge-small">
-                    <Award size={14} />
-                    Winner
-                  </div>
-                  <div className="winner-name">{winner.name}</div>
-                  <div
-                    className="winner-party"
-                    style={winnerPartyChipStyle(
-                      getPartyColor(winner.party),
-                      omitConstituencyHeading
-                    )}
-                    title={getPartyFullName(winner.party)}
-                  >
-                    {pl(winner.party)}
-                  </div>
-                </div>
-                <div className="winner-stats-compact">
-                  <div className="stat-compact">
-                    <Vote size={12} />
-                    <span>{formatNumber(winner.votes)}</span>
-                  </div>
-                  <div className="stat-compact highlight">
-                    <TrendingUp size={12} />
-                    <span>{winner.voteShare?.toFixed(1) ?? '0.0'}%</span>
-                  </div>
-                  {winner.margin && (
-                    <div className="stat-compact margin">
-                      <span>+{formatNumber(winner.margin)}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
+            {/* Podium -> KPI strip -> candidate table (UI revamp S1/S2).
+                Previously a single winner card sat above a raw table, so the
+                runner-up, third place and margin all required reading rows. */}
+            <ResultPodium summary={podiumSummary} partyShortNames={shortPartyUi} />
 
-            {/* Inline stats */}
-            <div className="stats-inline">
-              <div className="stat-inline">
-                <Users size={12} />
-                <span className="label">Voters</span>
-                <span className="value">
-                  {result.electors > 0 ? formatNumber(result.electors) : '—'}
-                </span>
-              </div>
-              <div className="stat-inline">
-                <Vote size={12} />
-                <span className="label">Polled</span>
-                <span className="value">
-                  {resultsPending ? '—' : formatNumber(result.validVotes)}
-                </span>
-              </div>
-              <div className="stat-inline highlight">
-                <span className="label">Turnout</span>
-                <span className="value">
-                  {resultsPending || result.turnout <= 0 ? '—' : `${result.turnout.toFixed(1)}%`}
-                </span>
-              </div>
-              {(() => {
-                const notaCandidate = boothResults?.postal?.candidates?.find(
-                  (c) => c.party === 'NOTA' || c.name === 'NOTA'
-                );
-                const notaVotes = notaCandidate?.total ?? 0;
-                return notaVotes > 0 ? (
-                  <div className="stat-inline nota">
-                    <span className="label">NOTA</span>
-                    <span className="value">{formatNumber(notaVotes)}</span>
-                  </div>
-                ) : null;
-              })()}
-            </div>
+            <KpiStrip
+              kpis={kpiValues}
+              winnerPartyLabel={podiumSummary.winner ? pl(podiumSummary.winner.party) : undefined}
+              runnerPartyLabel={
+                podiumSummary.runnerUp ? pl(podiumSummary.runnerUp.party) : undefined
+              }
+            />
 
             <div className="candidates-preview">
               <h4>Candidates</h4>

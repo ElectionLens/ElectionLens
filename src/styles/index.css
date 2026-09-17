@@ -12,3 +12,8 @@
 @import './legacy/phase1-12.css';
 @import './legacy/phase1-13.css';
 @import './legacy/phase1-14.css';
+
+/* Component-scoped styles for post-Phase-1 work. New rules belong here rather
+   than in the legacy/phase1-* chunks, which are a migration artefact. Imported
+   last so they win ties against legacy rules of equal specificity. */
+@import './components/result-podium.css';

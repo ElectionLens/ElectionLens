@@ -1,0 +1,160 @@
+/* ============================================================================
+   Result podium + KPI strip  (UI revamp S1/S2)
+
+   First file outside styles/legacy/: new work belongs in a component-scoped
+   sheet rather than growing the phase1-* chunks, which are a migration
+   artefact and already large.
+   ============================================================================ */
+
+/* Explicitly 2x2 rather than auto-fit: the spec calls for a 2x2 block, and
+   auto-fit gave 3-across at 520px, which orphaned Margin onto its own row and
+   lost the paired Winner/Runner-up reading. Single column at browse width,
+   where two cards would be ~170px each and clip every candidate name. */
+.result-podium {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+/* container queries would be truer to intent, but the panel is not a
+   containment context; the panel-mode attribute is the same signal. */
+.container[data-panel-mode='analyse'] .result-podium,
+.container[data-panel-mode='deep-dive'] .result-podium {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.podium-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  /* Party colour is set inline per card; this establishes the width so the
+     border does not jump when the colour arrives. */
+  border-left: 4px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  min-width: 0;
+}
+
+.podium-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ui-text-muted);
+}
+
+.podium-card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ui-text);
+  /* Candidate names are long and unpredictable; clamp rather than let a card
+     grow taller than its neighbours and break the grid's rhythm. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.podium-card-party {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--ui-text-muted);
+  min-width: 0;
+}
+
+.podium-party-swatch {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.podium-card-figures {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+/* Votes dominant, share secondary - the count is the fact. */
+.podium-card-votes {
+  font-size: 16px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ui-text);
+}
+
+.podium-card-share {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ui-text-muted);
+}
+
+.podium-card--margin {
+  justify-content: space-between;
+  background: var(--ui-surface-soft);
+  border-left-color: var(--ui-text-muted);
+}
+
+.podium-card-margin-detail {
+  font-size: 11px;
+  color: var(--ui-text-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   KPI strip
+   --------------------------------------------------------------------------- */
+
+/* Never a fixed 7 columns: at 360px that is 51px per cell, too narrow for
+   "2,32,630". auto-fit wraps to as many rows as the width demands. */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 1px;
+  margin: 0 0 12px;
+  padding: 0;
+  background: var(--ui-border);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  overflow: hidden;
+}
+
+.kpi-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  background: var(--ui-surface);
+  min-width: 0;
+}
+
+.kpi-cell-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ui-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kpi-cell-value {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ui-text);
+}
+
+.kpi-cell--nota .kpi-cell-value {
+  color: var(--legacy-warning-strong);
+}
+
+.kpi-cell--lead .kpi-cell-value {
+  color: var(--ui-accent-strong);
+}

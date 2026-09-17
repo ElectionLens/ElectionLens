@@ -7,6 +7,8 @@ export { CandidateRow } from './CandidateRow';
 export { PostalBallotsView } from './PostalBallotsView';
 export { BoothWiseView } from './BoothWiseView';
 export { BoothwiseAnalysis } from './BoothwiseAnalysis';
+export { ResultPodium } from './ResultPodium';
+export { KpiStrip } from './KpiStrip';
 export {
   computeBoothwiseAnalysis,
   type AnalysisInsight,
