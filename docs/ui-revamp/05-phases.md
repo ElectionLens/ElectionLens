@@ -134,10 +134,31 @@ The structural change. **Read §2 and §3 first.**
       booth columns against the official totals and suppresses the lead cells on
       disagreement (7 of 234 TN 2021 ACs; the other 227 are unaffected). **This is a UI
       guard, not a data fix** — the underlying booth files are still wrong and the Booths
-      and Analysis tabs still read from them.
-- [ ] **Fix the corrupt booth columns at source** for the 7 affected TN 2021 ACs, then
-      consider whether the `selectKpiValues` guard should become a shared data-quality
-      check rather than a KPI-strip concern.
+      and Analysis tabs still read from them. **Fixed at source in `8c72e4c4`, below.**
+- [x] **Fix the corrupt booth columns at source.** **Done in `8c72e4c4`.**
+      <br>Root cause: `scripts/fix-final-postal-booth-100-percent-2021.py` (commit
+      `eba47f73`, "Achieve 100% match rate") keyed its official-results lookup by
+      candidate *name*:
+
+      ```python
+      official_candidates = {c['name']: c for c in ac_data['candidates']}
+      ```
+
+      Thirteen TN 2021 ACs ran two candidates with the same normalised name, so the later
+      overwrote the earlier. The script then "corrected" the real candidate's booth column
+      down to the namesake's total and rescaled every row total to suit — reconciling
+      perfectly against the wrong target, which is why it self-reported 100% success.
+      <br>`scripts/restore_2021_duplicate_name_columns.py` restores the columns from
+      `6b6dd162`, rescaling for the differing postal convention (that commit stores
+      `column == official`; current files store `column + postal == official`). Only
+      genuinely clobbered columns are touched; 3 of 12 eligible ACs proved healthy and
+      were left alone. Bargur went from `350 / 0` to `211 / 139` of 350 booths. ACs
+      passing the trust check: 227 → 233.
+- [ ] **TN-181 Thirumayam**: its 2021 booth file holds **TN-234's** booth IDs and a
+      different candidate list entirely. Excluded from the restore above and still covered
+      by the `selectKpiValues` guard. Needs its own investigation.
+- [ ] Consider promoting the `selectKpiValues` trust check into a shared data-quality
+      helper, now that it has caught a real fault `dataQuality.acTotalsReconciled` missed.
 - [ ] `<CandidateBars>` — ranked horizontal bars beside the table. (S4)
 - [ ] Reorder: **Podium → KPI strip → charts → full candidate table.**
 - [ ] Real tab bar at ≥520px (`role="tablist"`/`tab`/`tabpanel`, arrow-key nav), keeping
