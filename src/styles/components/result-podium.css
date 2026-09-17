@@ -117,7 +117,7 @@
   gap: 1px;
   margin: 0 0 12px;
   padding: 0;
-  background: var(--ui-border);
+  background: var(--ui-surface);
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-md);
   overflow: hidden;
@@ -129,6 +129,10 @@
   gap: 2px;
   padding: 8px 10px;
   background: var(--ui-surface);
+  /* Draw the grid lines per-cell instead of letting the container's background
+     show through the gaps; an incomplete final row would otherwise leave a
+     coloured block beside the last cell. */
+  box-shadow: 0 0 0 1px var(--ui-border);
   min-width: 0;
 }
 
@@ -138,9 +142,10 @@
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--ui-text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* Wrap rather than ellipsize. "DMK-LED BOO..." tells the reader nothing
+     about which number they are looking at, and these labels are the only
+     thing distinguishing two adjacent booth-lead counts. */
+  overflow-wrap: anywhere;
 }
 
 .kpi-cell-value {

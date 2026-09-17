@@ -77,7 +77,13 @@
 
 .candidate-bar {
   position: absolute;
-  left: 0;
+  /* The bar occupies a fixed track - from just after the rank column to the
+     row's right edge - and is scaled within it. Anchoring at x=0 instead made
+     short bars sit entirely behind the rank digit, reading as a selection
+     highlight; and a percentage *width* would be measured against the whole
+     row, so insetting the left edge alone would have overstated every bar. */
+  left: calc(var(--row-padding-x, 12px) + 24px);
+  right: var(--row-padding-x, 12px);
   top: 0;
   bottom: 0;
   /* Behind the text, which sits in normal flow above it. */
@@ -86,7 +92,8 @@
      the bar conveys magnitude, the columns convey the number. */
   opacity: 0.16;
   pointer-events: none;
-  transition: width var(--ui-speed) var(--ui-ease);
+  transform-origin: left center;
+  transition: transform var(--ui-speed) var(--ui-ease);
 }
 
 /* The row establishes the stacking context; lift the content above the fill. */

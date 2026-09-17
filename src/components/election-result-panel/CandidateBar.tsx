@@ -17,6 +17,15 @@ export interface CandidateBarProps {
 }
 
 /**
+ * Sub-pixel bars are not bars. Below this width the fill reads as a coloured
+ * smudge behind the rank digit rather than a magnitude, so tiny shares are
+ * dropped entirely - the `%` column already states them precisely. Measured
+ * against the real panel: the rank column is 24px, and anything under it looks
+ * like a badge rather than a bar.
+ */
+const MIN_VISIBLE_PERCENT = 6;
+
+/**
  * A ranked horizontal bar sitting behind the candidate row (UI revamp S4).
  *
  * The old `.vote-bar` was a 3px, 50%-opacity underline - technically present,
@@ -40,10 +49,20 @@ export const CandidateBar = memo(function CandidateBar({
   const denominator = leaderShare > 0 ? leaderShare : 100;
   const relative = Math.min((voteShare / denominator) * 100, 100);
 
+  // A 0.45px fill is not a bar. Rather than round tiny shares up to a visible
+  // width - which would overstate them - drop them; the % column is exact.
+  if (relative < MIN_VISIBLE_PERCENT) return null;
+
   return (
     <div
       className="candidate-bar"
-      style={{ width: `${relative}%`, backgroundColor: getPartyColor(party) }}
+      // scaleX rather than width: the CSS pins the bar to a track that starts
+      // after the rank column, so a percentage width would be measured against
+      // the wrong box. Scaling also animates on the compositor.
+      style={{
+        transform: `scaleX(${relative / 100})`,
+        backgroundColor: getPartyColor(party),
+      }}
       // Decorative: the adjacent columns already state the votes and share,
       // so announcing this again would just be noise for a screen reader.
       aria-hidden
