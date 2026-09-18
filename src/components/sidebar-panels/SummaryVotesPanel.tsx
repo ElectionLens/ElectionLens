@@ -4,6 +4,7 @@ import { LeftPaneButton } from '../LeftPaneButton';
 import type { StateSummaryPanelData } from '../../types';
 import { formatIn } from './shared';
 import { SummaryFooter } from './SummaryFooter';
+import { SeatSummaryList } from './SeatSummaryList';
 
 export interface SummaryVotesPanelProps {
   stateSummaryData: StateSummaryPanelData | null;
@@ -67,6 +68,17 @@ export function SummaryVotesPanel({
               );
             })}
           </ul>
+        )}
+        {stateSummaryData.suppressSummaryMessage?.includes('not a separate Parliament') && (
+          <section className="state-map-summary-seats-derived" aria-label="Seats by party">
+            <h3>Seats</h3>
+            <SeatSummaryList
+              rows={stateSummaryData.seatRows}
+              selectedParty={selectedSummaryParty}
+              onPartyChange={onSummaryPartyChange}
+              onPartyOpen={(party) => openPartyCandidates(party, 'seats')}
+            />
+          </section>
         )}
       </div>
 

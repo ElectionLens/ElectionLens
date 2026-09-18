@@ -12,6 +12,21 @@
   overflow: hidden;
 }
 
+.state-map-summary-seats-derived {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--ui-border);
+}
+
+.state-map-summary-seats-derived h3 {
+  margin: 0 0 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ui-text-soft);
+}
+
 .state-map-summary-section {
   flex: 1 1 auto;
   padding: 0 16px 14px;
