@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useEffect, useRef, useState } from 'react';
 
 import { useMediaQuery } from '../hooks/useMediaQuery';
 
@@ -30,8 +30,41 @@ export function YearSelector({
   variant = 'default',
 }: YearSelectorProps): JSX.Element | null {
   const rootRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
   const isMobileViewport = useMediaQuery('(max-width: 768px)');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuStyle, setMenuStyle] = useState<React.CSSProperties | undefined>(undefined);
+
+  useLayoutEffect(() => {
+    if (!isMenuOpen || !isMobileViewport || !triggerRef.current) return;
+
+    const reposition = (): void => {
+      const rect = triggerRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const preferredHeight = Math.min(260, Math.max(120, options.length * 44 + 8));
+      const roomBelow = window.innerHeight - rect.bottom - 12;
+      const opensBelow = roomBelow >= preferredHeight;
+      const maxHeight = Math.max(120, opensBelow ? roomBelow : rect.top - 12);
+      const visibleHeight = Math.min(preferredHeight, maxHeight);
+      const top = opensBelow ? rect.bottom + 4 : Math.max(8, rect.top - visibleHeight - 4);
+      setMenuStyle({
+        position: 'fixed',
+        top,
+        left: rect.left,
+        width: rect.width,
+        maxHeight,
+        zIndex: 2000,
+      });
+    };
+
+    reposition();
+    window.addEventListener('resize', reposition);
+    window.addEventListener('scroll', reposition, true);
+    return () => {
+      window.removeEventListener('resize', reposition);
+      window.removeEventListener('scroll', reposition, true);
+    };
+  }, [isMenuOpen, isMobileViewport, options.length]);
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -75,6 +108,7 @@ export function YearSelector({
           {label}
         </label>
         <button
+          ref={triggerRef}
           id={selectId}
           type="button"
           className="year-dropdown year-dropdown-trigger"
@@ -104,7 +138,13 @@ export function YearSelector({
           ))}
         </select>
         {isMenuOpen && (
-          <ul id={listboxId} className="year-dropdown-menu" role="listbox" aria-label={label}>
+          <ul
+            id={listboxId}
+            className="year-dropdown-menu"
+            style={menuStyle}
+            role="listbox"
+            aria-label={label}
+          >
             {options.map((option) => (
               <li key={option.id} role="option" aria-selected={option.isActive}>
                 <button
