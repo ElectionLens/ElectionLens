@@ -132,6 +132,8 @@ body {
 .info-title-row .info-title-text {
   flex: 1;
   min-width: 0;
+  margin: 0;
+  font: inherit;
   line-height: 1.25;
 }
 

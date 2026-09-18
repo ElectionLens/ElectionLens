@@ -1434,11 +1434,11 @@ export function MapView({
 
   if (!displayData) {
     return (
-      <div className="map-container">
+      <main className="map-container" aria-label="Interactive election map">
         <div className="loading-overlay active">
           <div className="spinner"></div>
         </div>
-      </div>
+      </main>
     );
   }
 
@@ -1446,7 +1446,7 @@ export function MapView({
   const hasPanelOpen = false;
 
   return (
-    <div className="map-container">
+    <main className="map-container" aria-label="Interactive election map">
       {/* Top center toolbar */}
       <MapToolbar
         showBackButton={showBackButton}
@@ -1614,6 +1614,6 @@ export function MapView({
 
       {/* Feedback Modal */}
       <FeedbackModal isOpen={feedbackModalOpen} onClose={() => setFeedbackModalOpen(false)} />
-    </div>
+    </main>
   );
 }

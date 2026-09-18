@@ -468,12 +468,12 @@ export function ElectionResultPanel({
         {showElectionPanelHeader && (
           <div className="election-panel-header">
             <div className="election-panel-title">
-              <h3>
+              <h2>
                 {result.constituencyNameOriginal ??
                   result.name ??
                   result.constituencyName ??
                   'Unknown'}
-              </h3>
+              </h2>
               <span className={`constituency-type type-${constituencyType.toLowerCase()}`}>
                 {constituencyType}
               </span>

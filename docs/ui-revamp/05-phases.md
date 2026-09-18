@@ -222,8 +222,13 @@ Depends on `selectLocation()` landing in Phase 2. See §2.
 ### Phase 3 — Accessibility to WCAG 2.2 AA (2 days)
 Mandatory, not optional.
 
-- [ ] Landmarks: `<main>`, `<nav>`, `<aside>`, `<footer>`.
-- [ ] Heading hierarchy `h1→h2→h3`; constituency name becomes the `h2`.
+- [x] Landmarks: `<main>`, `<nav>`, `<aside>`, `<footer>`.
+      <br>**Landed on `feat/phase-3-booth-geography-ocr`.** The sidebar is an `<aside>`
+      with a labelled breadcrumb `<nav>`, the interactive map is a labelled `<main>`,
+      and the correction/contribution link is a `<footer>`.
+- [ ] Heading hierarchy `h1→h2→h3`.
+      <br>Constituency name is now an `h2`; browse-list and panel subheads still need the
+      complete hierarchy audit.
 - [ ] Global `:focus-visible` using a palette token, not the orphaned `#2563eb`.
 - [ ] Contrast-audit every token pair; kill remaining sub-12px text.
 - [ ] Charts get accessible text equivalents (their gap too — a chance to be *better*, not equal).

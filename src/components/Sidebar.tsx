@@ -567,8 +567,8 @@ export function Sidebar({
 
   return (
     <>
-      <div className={`sidebar ${effectiveOpen ? 'open' : ''}`}>
-        <div className="sidebar-header">
+      <aside className={`sidebar ${effectiveOpen ? 'open' : ''}`} aria-label="Election navigation">
+        <header className="sidebar-header">
           <h1>
             <img src="/favicon.svg" alt="" width={24} height={24} />
             Election Lens
@@ -594,11 +594,11 @@ export function Sidebar({
               </LeftPaneButton>
             )}
           </div>
-        </div>
+        </header>
 
         <div className="sidebar-scroll">
           <DataProvenanceNotice />
-          <div className="breadcrumb pane-section pane-section-tight">
+          <nav className="breadcrumb pane-section pane-section-tight" aria-label="Breadcrumb">
             <div className="breadcrumb-nav">
               {Breadcrumb({
                 currentState,
@@ -611,6 +611,7 @@ export function Sidebar({
                 onGoBackToState,
               })}
             </div>
+
             {currentState && (
               <LeftPaneButton
                 variant="chrome"
@@ -621,7 +622,7 @@ export function Sidebar({
                 {copied ? <Check size={16} /> : <Link2 size={16} />}
               </LeftPaneButton>
             )}
-          </div>
+          </nav>
 
           <div className="pane-section pane-section-tight">
             <SearchBox
@@ -648,7 +649,7 @@ export function Sidebar({
               onClosePCElectionPanel={onClosePCElectionPanel}
             />
             <div className="info-title info-title-row pane-section-header">
-              <span className="info-title-text">{info.title}</span>
+              <h2 className="info-title-text">{info.title}</h2>
               {acDetailForBadge && (
                 <span
                   className={`constituency-type type-${(acDetailForBadge.constituencyType ?? 'GEN').toLowerCase()}`}
@@ -819,7 +820,7 @@ export function Sidebar({
           )}
           <DataProvenanceFooter />
         </div>
-      </div>
+      </aside>
 
       <div
         className={`sidebar-overlay ${showSidebarOverlay ? 'visible' : ''}`}

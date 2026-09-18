@@ -19,7 +19,7 @@ export function DataProvenanceNotice(): JSX.Element {
 
 export function DataProvenanceFooter(): JSX.Element {
   return (
-    <div className="data-provenance-footer">
+    <footer className="data-provenance-footer">
       <a
         href="https://github.com/ElectionLens/ElectionLens/issues"
         target="_blank"
@@ -27,6 +27,6 @@ export function DataProvenanceFooter(): JSX.Element {
       >
         Report a correction or contribute <ExternalLink size={12} aria-hidden="true" />
       </a>
-    </div>
+    </footer>
   );
 }
