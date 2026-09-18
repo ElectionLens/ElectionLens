@@ -125,6 +125,8 @@ export interface UseParliamentResultsReturn {
     stateName: string,
     year?: number
   ) => Promise<ACContributionToPC | null>;
+  /** Clear the selected Parliament year when the shared selector switches to AC data. */
+  clearSelectedYear: () => void;
   /** Set selected year */
   setSelectedYear: (year: number) => void;
   /** Clear current result */
@@ -431,6 +433,7 @@ export function useParliamentResults(): UseParliamentResultsReturn {
     getPCResult,
     getACContribution,
     setSelectedYear,
+    clearSelectedYear: () => setSelectedYear(null),
     clearResult,
   };
 }

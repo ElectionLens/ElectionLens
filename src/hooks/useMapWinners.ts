@@ -39,7 +39,11 @@ import { getElectionStateId, normalizeName, normalizePcNameCompact } from '../ut
 import { defaultAssemblyDataYearFromIndex } from '../utils/electionSchedule';
 import { isAssemblyResultEntry, skipAssemblyWinnerColoring } from '../utils/electionResults';
 import { pickNonNotaAcWinner, assignAcWinnerBySchemaId } from '../components/map-view';
-import { assignWinnerNameKeys, buildPcWinnersFromResults } from '../utils/mapPolygonWinners';
+import {
+  assignWinnerNameKeys,
+  buildPcWinnersFromResults,
+  buildPcWinnersFromAssemblyResults,
+} from '../utils/mapPolygonWinners';
 import {
   readLocation,
   rawYearParam,
@@ -455,9 +459,36 @@ export function useMapWinners({
         const urlYear = parseAssemblyYearParam(readLocation()?.search ?? '');
         // `year=pc-2024` is the Lok Sabha year for map coloring / acWiseVotes — urlYear above skips pc-* (assembly-only slot).
         // urlDerivedPcYear is parsed at loadResults start; selectedACPCYear mirrors URL pc year before parliament hook syncs.
+        const assemblyYearInPcView =
+          selectedYear != null &&
+          availableYears?.includes(selectedYear) === true &&
+          pcSelectedYear == null &&
+          selectedACPCYear == null;
         const yearToLoad = pcSelectedYear ?? selectedACPCYear ?? urlYear ?? urlDerivedPcYear;
         let hadPCResultForSelectedPC = false; // true when selected PC exists in PC file (so we have acWiseResults)
-        if (yearToLoad) {
+        if (assemblyYearInPcView && schema) {
+          try {
+            const response = await fetch(
+              assemblyElectionFetchUrl(ELECTIONS.getYearPath(stateId, selectedYear))
+            );
+            if (response.ok) {
+              const results = (await response.json()) as ElectionResultsByConstituency;
+              if (loadResultsRunIdRef.current === runId) {
+                setPersistedAssemblyElections({
+                  stateId,
+                  year: selectedYear,
+                  data: results,
+                });
+              }
+              Object.assign(
+                winners,
+                buildPcWinnersFromAssemblyResults(results, schema, stateId, resolvePCName)
+              );
+            }
+          } catch {
+            // Keep the map neutral rather than falling back to a different election year.
+          }
+        } else if (yearToLoad) {
           try {
             const response = await fetch(PC_ELECTIONS.getYearPath(stateId, yearToLoad));
             if (response.ok) {

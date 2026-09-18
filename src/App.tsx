@@ -74,6 +74,7 @@ function App(): JSX.Element {
     selectedYear,
     getACResult,
     setSelectedYear,
+    clearSelectedYear,
     clearResult: clearElectionResult,
     loadStateIndex,
     loading: acResultsLoading,
@@ -87,6 +88,7 @@ function App(): JSX.Element {
     selectedYear: pcSelectedYear,
     getPCResult,
     setSelectedYear: setPCSelectedYear,
+    clearSelectedYear: clearPCSelectedYear,
     clearResult: clearPCElectionResult,
     loadStateIndex: loadPCStateIndex,
   } = useParliamentResults();
@@ -168,7 +170,9 @@ function App(): JSX.Element {
   // - For AC view (assemblies) or districts: use assembly year (selectedYear) or pcYear (selectedACPCYear)
   // - For PC view (constituencies): use parliament year (pcSelectedYear)
   const urlYear =
-    currentView === 'assemblies' || currentView === 'districts' ? selectedYear : pcSelectedYear;
+    currentView === 'assemblies' || currentView === 'districts'
+      ? selectedYear
+      : (pcSelectedYear ?? selectedYear);
 
   /**
    * Where the user currently is, as the URL layer wants it. Every updateUrl /
@@ -205,6 +209,32 @@ function App(): JSX.Element {
     string,
     { party: string; candidate: string }
   > | null>(null);
+  // PC routes can carry a plain `year=` for Assembly-election coloring.
+  // Keep the shared selector aligned after the async result hooks finish their
+  // own default-year initialization; otherwise a direct `?year=2026` deep link
+  // can display the latest AC year such as 2021.
+  useEffect(() => {
+    if (typeof window === 'undefined' || currentView !== 'constituencies' || !currentState) {
+      return;
+    }
+    const urlYear = parseAssemblyYearParam(readLocation()?.search ?? '');
+    if (urlYear == null || !availableYears.includes(urlYear)) return;
+    if (selectedYear !== urlYear || pcSelectedYear != null) {
+      setSelectedYear(urlYear);
+      clearPCSelectedYear();
+      setSelectedACPCYear(null);
+    }
+  }, [
+    currentView,
+    currentState,
+    availableYears,
+    selectedYear,
+    pcSelectedYear,
+    setSelectedYear,
+    clearPCSelectedYear,
+    setSelectedACPCYear,
+  ]);
+
   // Ref to store updateUrl for use in handleUrlNavigate (placeholder until useUrlState below assigns the real function via effect)
   const updateUrlRef = useRef<(state: UrlUpdateInput) => void>(() => {});
   const { handleUrlNavigate } = useUrlNavigate({
@@ -225,7 +255,9 @@ function App(): JSX.Element {
     getAC,
     schema,
     setSelectedYear,
+    clearSelectedYear,
     setPCSelectedYear,
+    clearPCSelectedYear,
     setSelectedACPCYear,
     setShowACsWithinPC,
     setCurrentData,
@@ -776,6 +808,8 @@ function App(): JSX.Element {
   const handleYearChange = useCallback(
     async (year: number): Promise<void> => {
       setSelectedYear(year);
+      clearPCSelectedYear();
+      setSelectedACPCYear(null);
       // Sync year to URL in assemblies or state districts map view (with or without assembly selected)
       if (
         currentState &&
@@ -804,6 +838,8 @@ function App(): JSX.Element {
     },
     [
       setSelectedYear,
+      clearPCSelectedYear,
+      setSelectedACPCYear,
       currentAssembly,
       currentState,
       currentView,

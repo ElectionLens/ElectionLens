@@ -47,7 +47,7 @@ export function buildMapYearDropdownOptions(p: BuildMapYearDropdownOptionsParams
       id: `ac-${year}`,
       label: `${year}`,
       title: `Assembly Election ${year}`,
-      isActive: p.selectedYear === year && p.selectedPCYear === null,
+      isActive: p.selectedYear === year && p.selectedPCYear === null && p.pcSelectedYear === null,
       onClick: () => {
         if (p.onPCYearChange) {
           (p.onPCYearChange as (year: number | null) => void)(null);

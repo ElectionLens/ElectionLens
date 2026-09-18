@@ -34,11 +34,15 @@ export interface UseUrlNavigateParams
       | 'resetView'
       | 'selectAssembly'
     >,
-    Pick<UseElectionResultsReturn, 'getACResult' | 'loadStateIndex' | 'setSelectedYear'>,
+    Pick<
+      UseElectionResultsReturn,
+      'getACResult' | 'loadStateIndex' | 'setSelectedYear' | 'clearSelectedYear'
+    >,
     Pick<UseSchemaReturn, 'resolvePCName' | 'resolveACName' | 'getAC' | 'schema'> {
   getPCResult: UseParliamentResultsReturn['getPCResult'];
   loadPCStateIndex: UseParliamentResultsReturn['loadStateIndex'];
   setPCSelectedYear: UseParliamentResultsReturn['setSelectedYear'];
+  clearPCSelectedYear: UseParliamentResultsReturn['clearSelectedYear'];
   setSelectedACPCYear: Dispatch<SetStateAction<number | null>>;
   setShowACsWithinPC: Dispatch<SetStateAction<boolean>>;
   setCurrentData: Dispatch<SetStateAction<GeoJSONData | null>>;
@@ -82,7 +86,9 @@ export function useUrlNavigate(params: UseUrlNavigateParams): {
     getAC,
     schema,
     setSelectedYear,
+    clearSelectedYear,
     setPCSelectedYear,
+    clearPCSelectedYear,
     setSelectedACPCYear,
     setShowACsWithinPC,
     setCurrentData,
@@ -550,19 +556,30 @@ export function useUrlNavigate(params: UseUrlNavigateParams): {
         setCurrentData(data);
         if (pcWinners) setInitialPCWinners(pcWinners);
         // Pre-load election index for the state (both AC and PC)
-        void loadStateIndex(matchedState);
+        const acIndex = await loadStateIndex(matchedState);
         const pcIndex = await loadPCStateIndex(matchedState);
 
-        // If year in URL, set pcSelectedYear so toolbar and PC-click preserve it (fix: year no longer jumps to 2024)
         if (urlState.year != null) {
-          setPCSelectedYear(urlState.year);
+          if (acIndex?.availableYears.includes(urlState.year)) {
+            // Prefer a real Assembly year when both indexes expose the same
+            // future slot (e.g. the 2026 PC placeholder alongside 2026 AC data).
+            clearPCSelectedYear();
+            setSelectedYear(urlState.year);
+          } else if (pcIndex && pcIndex.availableYears.includes(urlState.year)) {
+            setPCSelectedYear(urlState.year);
+            clearSelectedYear();
+          } else {
+            clearPCSelectedYear();
+            setSelectedYear(urlState.year);
+          }
         }
         // If year in URL is not available for this state's PC data, correct to latest so map is colored
         if (
           urlState.year != null &&
           pcIndex &&
           pcIndex.availableYears.length > 0 &&
-          !pcIndex.availableYears.includes(urlState.year)
+          !pcIndex.availableYears.includes(urlState.year) &&
+          !acIndex?.availableYears.includes(urlState.year)
         ) {
           const latestYear = pcIndex.availableYears[pcIndex.availableYears.length - 1];
           if (latestYear !== undefined) {
@@ -631,7 +648,9 @@ export function useUrlNavigate(params: UseUrlNavigateParams): {
       getAC,
       resolveACName,
       setSelectedYear,
+      clearSelectedYear,
       setPCSelectedYear,
+      clearPCSelectedYear,
       setSelectedACPCYear,
       // Stable React setState setters + a ref - included to satisfy exhaustive-deps now that
       // they arrive as hook parameters rather than being visibly destructured from useState().

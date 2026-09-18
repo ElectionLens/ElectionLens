@@ -3,6 +3,7 @@
  */
 import { normalizeName } from './helpers';
 import type { AssemblyProperties, ConstituencyProperties, DistrictProperties } from '../types';
+import type { MasterSchema } from '../types/schema';
 
 /** AC name spelling variants for style lookup (GeoJSON vs election data) */
 export const AC_STYLE_VARIANTS: Record<string, string[]> = {
@@ -122,6 +123,43 @@ export function buildPcWinnersFromResults(
   return winners;
 }
 
+export function buildPcWinnersFromAssemblyResults(
+  results: Record<string, unknown>,
+  schema: MasterSchema,
+  stateId: string,
+  resolvePCName: (pcName: string, stateId: string) => string | null
+): ConstituencyWinnersMap {
+  const partyCountsByPc: Record<string, Record<string, { count: number; candidate: string }>> = {};
+
+  for (const [acId, result] of Object.entries(results)) {
+    const row = result as { candidates?: { party: string; name: string }[] } | null;
+    const ac = schema.assemblyConstituencies[acId];
+    const winner = row?.candidates?.[0];
+    if (!ac || ac.stateId !== stateId || !winner?.party) continue;
+    const byParty = (partyCountsByPc[ac.pcId] ??= {});
+    const current = byParty[winner.party] ?? { count: 0, candidate: winner.name };
+    byParty[winner.party] = {
+      count: current.count + 1,
+      candidate: current.candidate || winner.name,
+    };
+  }
+
+  const winners: ConstituencyWinnersMap = {};
+  for (const [pcId, byParty] of Object.entries(partyCountsByPc)) {
+    const dominant = Object.entries(byParty).sort(([, a], [, b]) => b.count - a.count)[0];
+    const pc = schema.parliamentaryConstituencies[pcId];
+    if (!dominant || !pc || pc.stateId !== stateId) continue;
+    const entry = { party: dominant[0], candidate: dominant[1].candidate };
+    winners[pcId] = entry;
+    assignWinnerNameKeys(winners, pc.name, entry, { style: 'pcSeatSuffix' });
+    for (const alias of pc.aliases ?? []) {
+      assignWinnerNameKeys(winners, alias, entry, { style: 'pcSeatSuffix' });
+    }
+    const resolvedId = resolvePCName(pc.name, stateId);
+    if (resolvedId) winners[resolvedId] = entry;
+  }
+  return winners;
+}
 export function normalizeAssemblyPolygonNames(props: Pick<AssemblyProperties, 'AC_NAME'>): {
   constituencyName: string | null;
   normalizedConstituencyName: string | null;

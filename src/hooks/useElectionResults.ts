@@ -156,6 +156,8 @@ export interface UseElectionResultsReturn {
     options?: GetACResultOptions
   ) => Promise<ACElectionResult | null>;
   /** Set selected year */
+  /** Clear the selected Assembly year when a shared selector switches to PC data. */
+  clearSelectedYear: () => void;
   setSelectedYear: (year: number) => void;
   /** Clear current result */
   clearResult: () => void;
@@ -498,6 +500,7 @@ export function useElectionResults(): UseElectionResultsReturn {
     loadStateIndex,
     getACResult,
     setSelectedYear,
+    clearSelectedYear: () => setSelectedYear(null),
     clearResult,
   };
 }
