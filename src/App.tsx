@@ -777,7 +777,12 @@ function App(): JSX.Element {
     async (year: number): Promise<void> => {
       setSelectedYear(year);
       // Sync year to URL in assemblies or state districts map view (with or without assembly selected)
-      if (currentState && (currentView === 'assemblies' || currentView === 'districts')) {
+      if (
+        currentState &&
+        (currentView === 'assemblies' ||
+          currentView === 'districts' ||
+          currentView === 'constituencies')
+      ) {
         updateUrlRef.current(
           withUrlLocation(urlLocation, {
             tab: null,

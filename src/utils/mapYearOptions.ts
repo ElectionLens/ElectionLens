@@ -23,66 +23,47 @@ export interface BuildMapYearDropdownOptionsParams {
  * Builds year dropdown options for the sidebar (same behavior as the legacy map toolbar).
  */
 export function buildMapYearDropdownOptions(p: BuildMapYearDropdownOptionsParams): YearOption[] {
-  let yearOptions: YearOption[] = [];
+  const assemblyYears = [...new Set(p.availableYears ?? [])].sort((a, b) => a - b);
+  const parliamentYears = [
+    ...new Set([...(p.availablePCYears ?? []), ...(p.pcAvailableYears ?? [])]),
+  ].sort((a, b) => a - b);
 
-  if (p.currentView === 'assemblies' && p.showACCheckbox) {
-    yearOptions = (p.pcAvailableYears?.length ? p.pcAvailableYears : p.availablePCYears || []).map(
-      (year) => ({
-        id: `pc-${year}`,
-        label: `${year}`,
-        title: `Parliament Election ${year}`,
-        isActive: p.selectedPCYear === year,
-        onClick: () => p.onPCYearChange?.(year),
-      })
-    );
-  } else if (p.currentView === 'assemblies' || p.currentView === 'districts') {
-    type YearItem = { year: number; type: 'assembly' | 'parliament' };
-    const allYearItems: YearItem[] = [
-      ...(p.availableYears || []).map((y) => ({ year: y, type: 'assembly' as const })),
-      ...(p.availablePCYears || []).map((y) => ({
-        year: y,
-        type: 'parliament' as const,
-      })),
-    ].sort((a, b) => a.year - b.year);
+  const onParliamentYearChange = (year: number): void => {
+    if (p.showACCheckbox && p.selectedAssembly != null) {
+      p.onPCYearChange?.(year);
+      return;
+    }
+    if (p.currentView === 'constituencies') {
+      if (p.onPCYearChangeForPC) p.onPCYearChangeForPC(year);
+      else p.onPCYearChange?.(year);
+      return;
+    }
+    if (p.onPCYearChange) p.onPCYearChange(year);
+    else p.onPCYearChangeForPC?.(year);
+  };
 
-    yearOptions = allYearItems.map((item) =>
-      item.type === 'assembly'
-        ? {
-            id: `ac-${item.year}`,
-            label: `${item.year}`,
-            title: `Assembly Election ${item.year}`,
-            isActive: p.selectedYear === item.year && p.selectedPCYear === null,
-            onClick: () => {
-              if (p.onPCYearChange) {
-                (p.onPCYearChange as (year: number | null) => void)(null);
-              }
-              p.onYearChange?.(item.year);
-            },
-          }
-        : {
-            id: `pc-${item.year}`,
-            label: `${item.year}-PC`,
-            title: `Parliament Election ${item.year}`,
-            isActive: p.selectedPCYear === item.year,
-            onClick: () => p.onPCYearChange?.(item.year),
-            tone: 'parliament' as const,
-          }
-    );
-  } else if (p.pcAvailableYears && p.pcAvailableYears.length > 0) {
-    const isACWithinPC = p.showACCheckbox && p.selectedAssembly != null;
-    const displayYear = isACWithinPC ? p.selectedPCYear : p.pcSelectedYear;
-    const onYearClick = isACWithinPC
-      ? (y: number) => p.onPCYearChange?.(y)
-      : (y: number) => p.onPCYearChangeForPC?.(y);
-
-    yearOptions = p.pcAvailableYears.map((year) => ({
-      id: `pc-${year}`,
+  const yearOptions: YearOption[] = [
+    ...assemblyYears.map((year) => ({
+      id: `ac-${year}`,
       label: `${year}`,
+      title: `Assembly Election ${year}`,
+      isActive: p.selectedYear === year && p.selectedPCYear === null,
+      onClick: () => {
+        if (p.onPCYearChange) {
+          (p.onPCYearChange as (year: number | null) => void)(null);
+        }
+        p.onYearChange?.(year);
+      },
+    })),
+    ...parliamentYears.map((year) => ({
+      id: `pc-${year}`,
+      label: `${year}-PC`,
       title: `Parliament Election ${year}`,
-      isActive: displayYear === year,
-      onClick: () => onYearClick(year),
-    }));
-  }
+      isActive: p.selectedPCYear === year || p.pcSelectedYear === year,
+      onClick: () => onParliamentYearChange(year),
+      tone: 'parliament' as const,
+    })),
+  ];
 
   return yearOptions;
 }

@@ -200,6 +200,12 @@ The structural change. **Read §2 and §3 first.**
       booth-location extraction/enrichment step (likely from polling-station source
       PDFs or a geocoded reference dataset).
 
+- [x] **Unify AC / PC / district year selectors.** All three map views now expose the
+      same union of available Assembly years and Parliament years (`2011`, `2016`,
+      `2021`, `2026`, `2009-PC`, `2014-PC`, `2019-PC`, `2024-PC` in Tamil Nadu). The
+      selector keeps AC/PC labels distinct and routes cross-type changes to the correct
+      URL/state callback.
+
 - [x] **Unify AC / PC / district side-panel language.** **Landed on the Phase 3 branch.**
       Assembly and Parliament detail panels now share the same semantic `h2` title,
       header/badge treatment, 2×2 `ResultPodium`, KPI strip, candidate bars, and

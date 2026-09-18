@@ -24,7 +24,8 @@ describe('buildMapYearDropdownOptions', () => {
     expect(opts.some((o) => o.id === 'pc-2024')).toBe(true);
   });
 
-  it('uses pc-only years when assemblies + showACCheckbox (AC-within-PC)', () => {
+  it('keeps both AC and PC years in assemblies + AC-within-PC mode', () => {
+    const onAC = vi.fn();
     const onPC = vi.fn();
     const opts = buildMapYearDropdownOptions({
       currentView: 'assemblies',
@@ -36,32 +37,33 @@ describe('buildMapYearDropdownOptions', () => {
       availablePCYears: [2019, 2024],
       pcAvailableYears: [2019, 2024],
       pcSelectedYear: null,
+      onYearChange: onAC,
       onPCYearChange: onPC,
     });
 
-    expect(opts.every((o) => o.id.startsWith('pc-'))).toBe(true);
-    const active = opts.find((o) => o.isActive);
-    expect(active?.id).toBe('pc-2024');
-    active?.onClick();
+    expect(opts.map((o) => o.id)).toEqual(['ac-2021', 'pc-2019', 'pc-2024']);
+    opts.find((o) => o.id === 'ac-2021')?.onClick();
+    expect(onAC).toHaveBeenCalledWith(2021);
+    opts.find((o) => o.id === 'pc-2024')?.onClick();
     expect(onPC).toHaveBeenCalledWith(2024);
   });
 
-  it('falls back to availablePCYears when pcAvailableYears is empty in AC-within-PC mode', () => {
+  it('keeps both AC and PC years when only an AC year is available', () => {
     const opts = buildMapYearDropdownOptions({
       currentView: 'assemblies',
       showACCheckbox: true,
       selectedAssembly: 'x',
-      availableYears: [],
+      availableYears: [2021],
       selectedYear: null,
       selectedPCYear: null,
       availablePCYears: [2024],
       pcAvailableYears: [],
       pcSelectedYear: null,
     });
-    expect(opts.map((o) => o.id)).toEqual(['pc-2024']);
+    expect(opts.map((o) => o.id)).toEqual(['ac-2021', 'pc-2024']);
   });
 
-  it('merges years for districts view like assemblies', () => {
+  it('merges years for districts view like every other map view', () => {
     const opts = buildMapYearDropdownOptions({
       currentView: 'districts',
       showACCheckbox: false,
@@ -98,21 +100,18 @@ describe('buildMapYearDropdownOptions', () => {
     expect(onYearChange).toHaveBeenCalledWith(2021);
   });
 
-  it('constituencies view uses pcAvailableYears for PC map year control', () => {
+  it('merges years in parliamentary view too', () => {
     const onForPC = vi.fn();
     const opts = buildMapYearDropdownOptions({
       currentView: 'constituencies',
       showACCheckbox: false,
       selectedAssembly: null,
-      availableYears: [],
-      selectedYear: null,
-      selectedPCYear: null,
-      availablePCYears: [],
+      availableYears: [2021],
       pcAvailableYears: [2019, 2024],
       pcSelectedYear: 2019,
       onPCYearChangeForPC: onForPC,
     });
-    expect(opts.map((o) => o.id)).toEqual(['pc-2019', 'pc-2024']);
+    expect(opts.map((o) => o.id)).toEqual(['ac-2021', 'pc-2019', 'pc-2024']);
     opts.find((o) => o.id === 'pc-2024')?.onClick();
     expect(onForPC).toHaveBeenCalledWith(2024);
   });
