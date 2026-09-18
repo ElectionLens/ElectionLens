@@ -26,6 +26,7 @@ export function SummarySeatsPanel({
       data-summary-pane="seats"
     >
       <div className="state-map-summary-section">
+        <p className="state-map-summary-subtitle">{stateSummaryData.subtitle}</p>
         {stateSummaryData.suppressSummaryMessage ? (
           <p className="state-map-summary-muted">{stateSummaryData.suppressSummaryMessage}</p>
         ) : stateSummaryData.seatRows.length === 0 ? (

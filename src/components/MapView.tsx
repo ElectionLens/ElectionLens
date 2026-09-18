@@ -38,6 +38,7 @@ import {
 import type { PartyVoteRow } from '../utils/aggregateStateMapElectionStats';
 import {
   aggregateAssemblyVotesForMappedFeatures,
+  aggregateAssemblyVotesForMappedPcFeatures,
   aggregateAssemblyPartyCandidatesForMappedFeatures,
   aggregateParliamentVotesStatewide,
   aggregatePcPartyCandidatesForMappedFeatures,
@@ -473,15 +474,26 @@ export function MapView({
     const seats = aggregateSeatsFromPartyList(parties);
     const featureCount = parties.length;
 
+    const isAssemblyDerived =
+      persistedAssemblyElections?.stateId === stateId && pcSelectedYear == null;
+    const assemblyVotesAgg = isAssemblyDerived
+      ? aggregateAssemblyVotesForMappedPcFeatures({
+          results: persistedAssemblyElections?.data ?? null,
+          features: currentData.features,
+          schema,
+          stateId,
+        })
+      : null;
     const votesAgg =
-      persistedParliamentElections?.stateId === stateId
+      assemblyVotesAgg ??
+      (persistedParliamentElections?.stateId === stateId
         ? aggregatePcVotesForMappedFeatures({
             results: persistedParliamentElections.data,
             features: currentData.features,
             stateId,
             resolvePCName,
           })
-        : null;
+        : null);
     const partyCandidateRowsByParty =
       persistedParliamentElections?.stateId === stateId
         ? aggregatePcPartyCandidatesForMappedFeatures({
@@ -504,9 +516,17 @@ export function MapView({
       voteRows: votesAgg?.voteRows ?? null,
       totalValidVotes: votesAgg?.totalValidVotes ?? 0,
       voteUnits: votesAgg?.mappedConstituencies ?? featureCount,
-      subtitle: pcYearHint != null ? `Lok Sabha ${pcYearHint}` : 'Parliament constituencies',
+      subtitle:
+        assemblyVotesAgg && selectedYear != null
+          ? `Assembly ${selectedYear} · derived from AC totals`
+          : pcYearHint != null
+            ? `Lok Sabha ${pcYearHint}`
+            : 'Parliament constituencies',
       stateId,
       partyCandidateRowsByParty: partyCandidateRowsByParty ?? undefined,
+      suppressMsg: assemblyVotesAgg
+        ? 'Derived from Assembly constituency totals; not a separate Parliament election.'
+        : null,
     };
   }, [
     level,
@@ -518,7 +538,10 @@ export function MapView({
     effectiveConstituencyWinners,
     dominantPCParty,
     persistedParliamentElections,
+    persistedAssemblyElections,
     pcSelectedYear,
+    selectedYear,
+    schema,
     resolvePCName,
     getStateId,
   ]);

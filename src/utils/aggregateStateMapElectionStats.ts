@@ -15,6 +15,7 @@ import type {
 import { isAssemblyResultEntry, skipAssemblyWinnerColoring } from './electionResults';
 import { normalizeName } from './helpers';
 import { normalizeAssemblyPolygonNames, normalizePcPolygonNames } from './mapPolygonWinners';
+import type { MasterSchema } from '../types/schema';
 
 export type PartySeatRow = { party: string; seats: number };
 
@@ -239,6 +240,52 @@ export function aggregateAssemblyVotesForMappedFeatures(params: {
   };
 }
 
+export function aggregateAssemblyVotesForMappedPcFeatures(params: {
+  results: ElectionResultsByConstituency | null;
+  features: Feature[] | undefined | null;
+  schema: MasterSchema | null;
+  stateId: string;
+}): {
+  voteRows: PartyVoteRow[];
+  totalValidVotes: number;
+  mappedConstituencies: number;
+} | null {
+  const { results, features, schema, stateId } = params;
+  if (!results || !features?.length || !schema) return null;
+
+  const partyVotes: Record<string, number> = {};
+  let totalValidVotes = 0;
+  let mapped = 0;
+
+  for (const feature of features) {
+    const pcId = (feature.properties as ConstituencyProperties).schemaId;
+    const pc = pcId ? schema.parliamentaryConstituencies[pcId] : undefined;
+    if (!pc || pc.stateId !== stateId) continue;
+
+    let mappedAcCount = 0;
+    for (const acId of pc.assemblyIds) {
+      const row = results[acId];
+      if (!isAssemblyResultEntry(acId, row) || skipAssemblyWinnerColoring(row, results._meta)) {
+        continue;
+      }
+      mappedAcCount += 1;
+      totalValidVotes += row.validVotes > 0 ? row.validVotes : 0;
+      for (const candidate of row.candidates) {
+        const party = candidate.party?.trim() || 'Unknown';
+        partyVotes[party] = (partyVotes[party] ?? 0) + (candidate.votes || 0);
+      }
+    }
+    if (mappedAcCount > 0) mapped += 1;
+  }
+
+  if (mapped === 0) return null;
+  if (totalValidVotes <= 0) totalValidVotes = Object.values(partyVotes).reduce((a, b) => a + b, 0);
+  return {
+    voteRows: rowsFromCounts(partyVotes, totalValidVotes),
+    totalValidVotes,
+    mappedConstituencies: mapped,
+  };
+}
 export function aggregatePcVotesForMappedFeatures(params: {
   results: PCElectionResultsByConstituency | null;
   features: Feature[] | undefined | null;

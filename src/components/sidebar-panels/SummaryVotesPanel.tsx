@@ -27,10 +27,15 @@ export function SummaryVotesPanel({
       data-summary-pane="votes"
     >
       <div className="state-map-summary-section">
+        <p className="state-map-summary-subtitle">{stateSummaryData.subtitle}</p>
+        {stateSummaryData.suppressSummaryMessage && (
+          <p className="state-map-summary-muted state-map-summary-warning">
+            {stateSummaryData.suppressSummaryMessage}
+          </p>
+        )}
         {!stateSummaryData.voteRows?.length ? (
           <p className="state-map-summary-muted">
-            {stateSummaryData.suppressSummaryMessage ??
-              'Loading or no result file matched to the map.'}
+            {'Loading or no result file matched to the map.'}
           </p>
         ) : (
           <ul className="state-map-summary-list">
