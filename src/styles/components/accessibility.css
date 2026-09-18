@@ -1,0 +1,23 @@
+/* Phase 3 accessibility foundations ---------------------------------------
+   One focus language across map controls, list rows, selects, links, and
+   buttons. Component-specific focus styles may still add shape/offset, but
+   the color must come from the shared semantic token. */
+
+:where(a, button, input, select, textarea, summary, [role='button'], [role='tab']):focus-visible {
+  outline: 2px solid var(--ui-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Mouse users should not get a persistent ring, while keyboard users keep a
+   visible indicator. Do not suppress focus itself - only the visual outline. */
+:where(a, button, input, select, textarea, summary, [role='button'], [role='tab']):focus:not(
+    :focus-visible
+  ) {
+  outline: none;
+}
+
+@media (forced-colors: active) {
+  :where(a, button, input, select, textarea, summary, [role='button'], [role='tab']):focus-visible {
+    outline: 2px solid Highlight;
+  }
+}

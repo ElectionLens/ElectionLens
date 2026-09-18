@@ -53,13 +53,13 @@
 /* Keyboard focus must stay obvious: with a roving tabindex the active tab is
    the only Tab stop, so losing this ring would strand keyboard users. */
 .panel-tab:focus-visible {
-  outline: 2px solid var(--ui-accent);
-  outline-offset: -2px;
+  outline: 2px solid var(--ui-focus-ring);
+  outline-offset: 2px;
   border-radius: var(--ui-radius-sm);
 }
 
 .panel-tab-content:focus-visible {
-  outline: 2px solid var(--ui-accent);
+  outline: 2px solid var(--ui-focus-ring);
   outline-offset: -2px;
 }
 

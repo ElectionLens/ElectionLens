@@ -234,7 +234,13 @@ Mandatory, not optional.
 - [ ] Heading hierarchy `h1→h2→h3`.
       <br>Constituency name is now an `h2`; browse-list and panel subheads still need the
       complete hierarchy audit.
-- [ ] Global `:focus-visible` using a palette token, not the orphaned `#2563eb`.
+- [x] Global `:focus-visible` using a palette token, not the orphaned `#2563eb`.
+      <br>**Landed on the Phase 3 branch.** `--ui-focus-ring` now drives the late-loaded
+      global focus rule, with forced-colors support; bespoke row/button/tab outlines were
+      moved off the legacy blue literal. Browser QA confirmed the Overview tab and Back
+      button use the semantic teal ring at 2px/2px; browse rows retain the explicit
+      `:focus-visible` rule and require a real keyboard-tab assertion in the forthcoming
+      Playwright accessibility suite.
 - [ ] Contrast-audit every token pair; kill remaining sub-12px text.
 - [ ] Charts get accessible text equivalents (their gap too — a chance to be *better*, not equal).
 - [ ] Verify 44×44px touch targets. `--row-min-height: 44px` is already right; audit icon buttons.

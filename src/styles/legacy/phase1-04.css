@@ -162,7 +162,7 @@ button.state-map-summary-row {
 }
 
 .left-pane-btn--chrome:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--legacy-blue) 70%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--ui-focus-ring) 70%, transparent);
   outline-offset: 2px;
 }
 
@@ -177,13 +177,13 @@ button.state-map-summary-row {
 }
 
 .left-pane-btn--inline:focus-visible {
-  outline: 2px solid var(--legacy-blue);
+  outline: 2px solid var(--ui-focus-ring);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 .left-pane-btn--row:focus-visible {
-  outline: 2px solid var(--legacy-blue);
+  outline: 2px solid var(--ui-focus-ring);
   outline-offset: 2px;
 }
 
