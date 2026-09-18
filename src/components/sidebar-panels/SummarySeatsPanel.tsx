@@ -26,18 +26,17 @@ export function SummarySeatsPanel({
     >
       <div className="state-map-summary-section">
         <p className="state-map-summary-subtitle">{stateSummaryData.subtitle}</p>
-        {stateSummaryData.suppressSummaryMessage ? (
-          <p className="state-map-summary-muted">{stateSummaryData.suppressSummaryMessage}</p>
-        ) : stateSummaryData.seatRows.length === 0 ? (
-          <p className="state-map-summary-muted">No seat data mapped yet.</p>
-        ) : (
-          <SeatSummaryList
-            rows={stateSummaryData.seatRows}
-            selectedParty={selectedSummaryParty}
-            onPartyChange={onSummaryPartyChange}
-            onPartyOpen={(party) => openPartyCandidates(party, 'seats')}
-          />
+        {stateSummaryData.suppressSummaryMessage && (
+          <p className="state-map-summary-muted state-map-summary-warning">
+            {stateSummaryData.suppressSummaryMessage}
+          </p>
         )}
+        <SeatSummaryList
+          rows={stateSummaryData.seatRows}
+          selectedParty={selectedSummaryParty}
+          onPartyChange={onSummaryPartyChange}
+          onPartyOpen={(party) => openPartyCandidates(party, 'seats')}
+        />
       </div>
 
       <SummaryFooter stateSummaryData={stateSummaryData} />
