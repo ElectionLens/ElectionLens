@@ -250,7 +250,13 @@ Mandatory, not optional.
 - [ ] Contrast-audit every token pair; kill remaining sub-12px text.
 - [ ] Charts get accessible text equivalents (their gap too — a chance to be *better*, not equal).
 - [ ] Verify 44×44px touch targets. `--row-min-height: 44px` is already right; audit icon buttons.
-- [ ] Add `@axe-core/playwright` to the e2e suite so this can't regress.
+- [x] Add a focused Playwright accessibility regression spec for landmarks, the
+      constituency `h2`, browse-row `:focus-visible`, and APG tab keyboard navigation.
+      <br>**Landed on `feat/phase-3-accessibility-qa`.** The browse-row test establishes
+      real keyboard modality with Tab before asserting the semantic teal ring; synthetic
+      `.focus()` alone was explicitly rejected because Chromium does not treat it as
+      keyboard-visible focus.
+- [ ] Add `@axe-core/playwright` to the e2e suite so automated WCAG scans cannot regress.
 
 ### Phase 4 — Map & mobile polish (2–3 days)
 Mostly **wiring up CSS that already exists** — see §3.
