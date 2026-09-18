@@ -1,4 +1,4 @@
-import { Award, TrendingUp, Vote, Link2, Check, Twitter, Users, Camera } from 'lucide-react';
+import { Link2, Check, Twitter, Camera } from 'lucide-react';
 import { useCallback, memo, useEffect, useMemo, useRef } from 'react';
 import type { PCElectionResult, PCElectionCandidate } from '../types';
 import { getPartyColor, getPartyFullName, getPartyShortName } from '../utils/partyData';
@@ -6,6 +6,8 @@ import { shouldUseShortPartyLabelsPC } from '../utils/partyDisplay';
 import { trackShare } from '../utils/firebase';
 import { useCopyLinkToClipboard } from '../hooks/useCopyLinkToClipboard';
 import { YearSelector, type YearOption } from './YearSelector';
+import { ResultPodium, KpiStrip, CandidateBar } from './election-result-panel';
+import { selectBasicKpiValues, selectResultSummary } from '../utils/resultSummary';
 import { formatNumber } from './election-result-panel/shared';
 
 interface PCElectionResultPanelProps {
@@ -71,7 +73,8 @@ export function PCElectionResultPanel({
     window.innerWidth <= 768 &&
     window.innerHeight > window.innerWidth;
 
-  const winner = result.candidates[0];
+  const podiumSummary = useMemo(() => selectResultSummary(result), [result]);
+  const kpiValues = useMemo(() => selectBasicKpiValues(result), [result]);
   const shortPartyUi = shouldUseShortPartyLabelsPC(result, stateName);
   const pl = (p: string) => (shortPartyUi ? getPartyShortName(p) : p);
   const viewOptions = useMemo<YearOption[]>(
@@ -181,7 +184,7 @@ export function PCElectionResultPanel({
         {showElectionPanelHeader && (
           <div className="election-panel-header">
             <div className="election-panel-title">
-              <h3>{result.constituencyNameOriginal || result.constituencyName}</h3>
+              <h2>{result.constituencyNameOriginal || result.constituencyName}</h2>
               <div className="title-badges">
                 <span className="pc-badge">Parliament</span>
                 <span
@@ -232,63 +235,13 @@ export function PCElectionResultPanel({
 
       <div className="panel-tab-content">
         <div className="overview-view">
-          {winner && (
-            <div
-              className="winner-card-compact"
-              style={{ borderColor: getPartyColor(winner.party) }}
-            >
-              <div className="winner-main">
-                <div className="winner-badge-small">
-                  <Award size={14} />
-                  Winner
-                </div>
-                <div className="winner-name">{winner.name}</div>
-                <div
-                  className="winner-party"
-                  style={{ backgroundColor: getPartyColor(winner.party) }}
-                  title={getPartyFullName(winner.party)}
-                >
-                  {pl(winner.party)}
-                </div>
-              </div>
-              <div className="winner-stats-compact">
-                <div className="stat-compact">
-                  <Vote size={12} />
-                  <span>{formatNumber(winner.votes)}</span>
-                </div>
-                <div className="stat-compact highlight">
-                  <TrendingUp size={12} />
-                  <span>{winner.voteShare.toFixed(1)}%</span>
-                </div>
-                {winner.margin && (
-                  <div className="stat-compact margin">
-                    <span>+{formatNumber(winner.margin)}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+          <ResultPodium summary={podiumSummary} partyShortNames={shortPartyUi} />
 
-          <div className="stats-inline">
-            <div className="stat-inline">
-              <Users size={12} />
-              <span className="label">Voters</span>
-              <span className="value">
-                {result.electors > 0 ? formatNumber(result.electors) : '—'}
-              </span>
-            </div>
-            <div className="stat-inline">
-              <Vote size={12} />
-              <span className="label">Polled</span>
-              <span className="value">{formatNumber(result.validVotes)}</span>
-            </div>
-            <div className="stat-inline highlight">
-              <span className="label">Turnout</span>
-              <span className="value">
-                {result.turnout > 0 ? `${result.turnout.toFixed(1)}%` : '—'}
-              </span>
-            </div>
-          </div>
+          <KpiStrip
+            kpis={kpiValues}
+            winnerPartyLabel={podiumSummary.winner ? pl(podiumSummary.winner.party) : undefined}
+            runnerPartyLabel={podiumSummary.runnerUp ? pl(podiumSummary.runnerUp.party) : undefined}
+          />
 
           <div className="candidates-preview">
             <h4>Candidates</h4>
@@ -308,6 +261,7 @@ export function PCElectionResultPanel({
                     isWinner={idx === 0}
                     isRunnerUp={idx === 1}
                     partyShortNames={shortPartyUi}
+                    leaderShare={podiumSummary.winner?.voteShare ?? 0}
                   />
                 ))}
               </div>
@@ -359,11 +313,13 @@ const PCCandidateRow = memo(function PCCandidateRow({
   isWinner,
   isRunnerUp,
   partyShortNames = false,
+  leaderShare,
 }: {
   candidate: PCElectionCandidate;
   isWinner: boolean;
   isRunnerUp: boolean;
   partyShortNames?: boolean;
+  leaderShare: number;
 }): JSX.Element {
   const partyColor = getPartyColor(candidate.party);
   const partyText = partyShortNames ? getPartyShortName(candidate.party) : candidate.party;
@@ -390,12 +346,10 @@ const PCCandidateRow = memo(function PCCandidateRow({
       </span>
       <span className="col-votes">{formatNumber(candidate.votes)}</span>
       <span className="col-share">{candidate.voteShare.toFixed(1)}%</span>
-      <div
-        className="vote-bar"
-        style={{
-          width: `${Math.min(candidate.voteShare, 100)}%`,
-          backgroundColor: partyColor,
-        }}
+      <CandidateBar
+        voteShare={candidate.voteShare}
+        party={candidate.party}
+        leaderShare={leaderShare}
       />
     </div>
   );

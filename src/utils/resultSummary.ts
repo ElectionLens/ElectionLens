@@ -94,9 +94,20 @@ function boothColumnsAreTrustworthy(boothResults: BoothResults, summary: ResultS
  * mis-ordered source file would otherwise crown the wrong candidate, which is
  * the most damaging error this app could make.
  */
-export function selectResultSummary(
-  result: Pick<ACElectionResult, 'candidates' | 'validVotes' | 'resultsPending'> | null | undefined
-): ResultSummary {
+export interface ResultCandidateLike {
+  name: string;
+  party: string;
+  votes: number;
+  voteShare?: number | null | undefined;
+}
+
+export interface ResultSummaryInput {
+  candidates: ResultCandidateLike[];
+  validVotes: number;
+  resultsPending?: boolean | undefined;
+}
+
+export function selectResultSummary(result: ResultSummaryInput | null | undefined): ResultSummary {
   const empty: ResultSummary = {
     winner: null,
     runnerUp: null,
@@ -118,7 +129,10 @@ export function selectResultSummary(
       name: candidate.name,
       party: candidate.party,
       votes: candidate.votes,
-      voteShare: Number.isFinite(candidate.voteShare) ? candidate.voteShare : null,
+      voteShare:
+        candidate.voteShare != null && Number.isFinite(candidate.voteShare)
+          ? candidate.voteShare
+          : null,
     };
   };
 
@@ -132,6 +146,27 @@ export function selectResultSummary(
   const marginPct = margin != null && validVotes ? (margin / validVotes) * 100 : null;
 
   return { winner, runnerUp, third: toEntry(2), margin, marginPct };
+}
+
+export function selectBasicKpiValues(
+  result:
+    | (Pick<ResultSummaryInput, 'validVotes'> & {
+        electors?: number | null | undefined;
+        turnout?: number | null | undefined;
+      })
+    | null
+    | undefined
+): KpiValues {
+  return {
+    electors: positiveOrNull(result?.electors),
+    validVotes: positiveOrNull(result?.validVotes),
+    turnout: positiveOrNull(result?.turnout),
+    nota: null,
+    rejected: null,
+    winnerLedBooths: null,
+    runnerLedBooths: null,
+    totalBooths: null,
+  };
 }
 
 /**

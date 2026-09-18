@@ -200,8 +200,13 @@ The structural change. **Read §2 and §3 first.**
       booth-location extraction/enrichment step (likely from polling-station source
       PDFs or a geocoded reference dataset).
 
-### Phase 2.5 — Data-based navigation as a first-class mode (3–4 days)
-Depends on `selectLocation()` landing in Phase 2. See §2.
+- [x] **Unify AC / PC / district side-panel language.** **Landed on the Phase 3 branch.**
+      Assembly and Parliament detail panels now share the same semantic `h2` title,
+      header/badge treatment, 2×2 `ResultPodium`, KPI strip, candidate bars, and
+      candidate-table spacing. PC intentionally omits booth-only KPI cells rather than
+      inventing values. District browse remains list-only, but uses the same sidebar
+      shell, breadcrumb, search, controls, and heading rhythm without election-detail
+      content.
 
 - [ ] **Promote the analytical views out of `BlogSection`.** Its flip/margin
       leaderboards are already real data-nav — extract them into a reusable
