@@ -300,4 +300,9 @@ Mostly **wiring up CSS that already exists** — see §3.
 ### Phase 5 — Dark mode (1–2 days, optional)
 Nearly free once Phase 1 lands — add a `[data-theme="dark"]` token block. **They don't have this.** Differentiator, and it matters for an app people use on phones at night on election day.
 
+- [x] Add a persisted light/dark theme toggle using semantic tokens. `ThemeToggle` stores
+      `election-lens-theme`, applies `data-theme`, and keeps party/map data colours intact.
+      Desktop and 390×844 browser QA found readable panel text, no white-on-white regions,
+      and no horizontal overflow; reload persistence verified.
+
 ---

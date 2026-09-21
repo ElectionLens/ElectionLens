@@ -1,0 +1,70 @@
+/* Phase 5: semantic dark theme. Party colours and map fills stay data-driven. */
+[data-theme='dark'] {
+  color-scheme: dark;
+  --ui-surface: #17211f;
+  --ui-surface-soft: #202d2a;
+  --ui-surface-tint: #2a3935;
+  --ui-text: #edf5f1;
+  --ui-text-soft: #b5c6bf;
+  --ui-border: #49635a;
+  --ui-border-soft: #344a42;
+  --ui-focus-ring: #7be0bd;
+  --row-separator: #30453d;
+  --legacy-panel-bg: #17211f;
+  --legacy-border: #49635a;
+  --legacy-border-strong: #688277;
+  --legacy-shadow: rgba(0, 0, 0, 0.45);
+}
+
+[data-theme='dark'] body {
+  background: #0e1513;
+  color: var(--ui-text);
+}
+
+[data-theme='dark'] .sidebar,
+[data-theme='dark'] .election-panel,
+[data-theme='dark'] .map-toolbar,
+[data-theme='dark'] .year-selector-menu,
+[data-theme='dark'] .search-results,
+[data-theme='dark'] .map-legend {
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  border-color: var(--ui-border);
+}
+
+[data-theme='dark'] .sidebar-header,
+[data-theme='dark'] .pane-section,
+[data-theme='dark'] .sidebar-footer,
+[data-theme='dark'] .election-panel-header {
+  border-color: var(--ui-border-soft);
+}
+
+[data-theme='dark'] input,
+[data-theme='dark'] select,
+[data-theme='dark'] button:not(.toolbar-btn) {
+  color: var(--ui-text);
+}
+
+[data-theme='dark'] .theme-toggle {
+  background: var(--ui-surface-soft);
+  color: var(--ui-text);
+  border-color: var(--ui-border);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 36px;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.theme-toggle:hover {
+  background: var(--ui-surface-soft);
+}

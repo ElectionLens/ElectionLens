@@ -3,6 +3,7 @@ import { Map, Building2, Landmark, Database, Check, Link2, BookOpen } from 'luci
 import { normalizeName } from '../utils/helpers';
 import { LeftPaneButton } from './LeftPaneButton';
 import { PanelWidthToggle } from './PanelWidthToggle';
+import { ThemeToggle } from './ThemeToggle';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import type { HoveredFeature } from '../utils/mapHoverLink';
 import type { PanelMode } from '../utils/panelMode';
@@ -575,6 +576,7 @@ export function Sidebar({
           </h1>
           <div className="sidebar-header-actions">
             <p>India Electoral Map</p>
+            <ThemeToggle />
             {panelMode && onPanelWidthOverrideChange && (
               <PanelWidthToggle
                 mode={panelMode}
