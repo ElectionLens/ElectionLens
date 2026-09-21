@@ -1,10 +1,28 @@
 /* Phase 4 map polish -------------------------------------------------------
    Party fills should be the saturated visual signal. Desaturate the raster
-   basemap only while a thematic winner layer is actually present; plain
-   geographic browsing keeps the full-color context map. */
+   basemap on state maps; India-wide browse keeps the full-color context map. */
 
 .map-container--thematic .leaflet-tile-pane {
   filter: saturate(0.38) grayscale(0.28);
+}
+
+/* The mobile sidebar is a bottom/left sheet. A bottom-left Leaflet legend
+   underneath it is neither useful nor reachable, so hide it while the sheet is
+   open; it returns when the map is the active surface again. */
+@media (max-width: 768px) {
+  .container:has(.sidebar.open) .map-legend {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .map-toolbar {
+    top: 10px;
+    right: 10px;
+    left: auto;
+    max-width: calc(100vw - 84px);
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
