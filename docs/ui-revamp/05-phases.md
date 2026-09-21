@@ -302,7 +302,10 @@ Nearly free once Phase 1 lands — add a `[data-theme="dark"]` token block. **Th
 
 - [x] Add a persisted light/dark theme toggle using semantic tokens. `ThemeToggle` stores
       `election-lens-theme`, applies `data-theme`, and keeps party/map data colours intact.
-      Desktop and 390×844 browser QA found readable panel text, no white-on-white regions,
-      and no horizontal overflow; reload persistence verified.
+      Reload persistence and light/dark switching verified in browser QA.
+- [x] Audit dark-mode surface leaks and contrast. Repeated legacy white card/row surfaces
+      now map to dark semantic surfaces for panels, podiums, candidates, booth rows, search,
+      forms, and controls. QA at desktop and 390×844 found no light-surface/light-text
+      failures, no horizontal overflow, and no runtime errors.
 
 ---

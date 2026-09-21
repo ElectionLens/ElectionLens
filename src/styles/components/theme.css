@@ -32,16 +32,51 @@
   border-color: var(--ui-border);
 }
 
+/* These are the repeated card/row surfaces that legacy chunks still paint
+   white. Keep them readable without rewriting the historical CSS in bulk. */
+[data-theme='dark'] .info-panel,
+[data-theme='dark'] .stat-card,
+[data-theme='dark'] .podium-card,
+[data-theme='dark'] .insight-card,
+[data-theme='dark'] .controls-card,
+[data-theme='dark'] .skeleton-card,
+[data-theme='dark'] .candidate-row,
+[data-theme='dark'] .candidate-row-compact,
+[data-theme='dark'] .party-candidate-row,
+[data-theme='dark'] .booth-row,
+[data-theme='dark'] .postal-candidate-row,
+[data-theme='dark'] .parliament-row-compact,
+[data-theme='dark'] .search-result-item,
+[data-theme='dark'] .search-input-wrapper {
+  background: var(--ui-surface-soft);
+  color: var(--ui-text);
+  border-color: var(--ui-border-soft);
+}
+
 [data-theme='dark'] .sidebar-header,
 [data-theme='dark'] .pane-section,
 [data-theme='dark'] .sidebar-footer,
-[data-theme='dark'] .election-panel-header {
+[data-theme='dark'] .election-panel-header,
+[data-theme='dark'] .panel-tabs {
   border-color: var(--ui-border-soft);
 }
 
 [data-theme='dark'] input,
 [data-theme='dark'] select,
+[data-theme='dark'] textarea,
 [data-theme='dark'] button:not(.toolbar-btn) {
+  color: var(--ui-text);
+}
+
+[data-theme='dark'] input,
+[data-theme='dark'] select,
+[data-theme='dark'] textarea {
+  background: var(--ui-surface-soft);
+  border-color: var(--ui-border);
+}
+
+[data-theme='dark'] option {
+  background: var(--ui-surface);
   color: var(--ui-text);
 }
 
@@ -49,6 +84,14 @@
   background: var(--ui-surface-soft);
   color: var(--ui-text);
   border-color: var(--ui-border);
+}
+
+[data-theme='dark'] .ui-muted,
+[data-theme='dark'] .search-hint,
+[data-theme='dark'] .info-meta-line,
+[data-theme='dark'] .candidate-votes,
+[data-theme='dark'] .podium-card-share {
+  color: var(--ui-text-soft);
 }
 
 .theme-toggle {
