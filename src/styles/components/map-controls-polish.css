@@ -1,0 +1,30 @@
+/* Width-aware controls -----------------------------------------------------
+   The map is the flex sibling of the responsive sidebar, so these controls
+   must size against the map itself rather than the viewport. This matters in
+   deep-dive mode where the map can be ~547px wide. */
+.map-toolbar {
+  max-width: calc(100% - 24px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.map-toolbar::-webkit-scrollbar {
+  display: none;
+}
+
+.map-toolbar > * {
+  flex: 0 0 auto;
+}
+
+.map-legend {
+  box-sizing: border-box;
+  max-width: min(160px, calc(100% - 24px));
+  margin-left: 12px !important;
+  margin-bottom: 12px !important;
+}
+
+@media (max-width: 768px) {
+  .map-toolbar {
+    max-width: calc(100vw - 84px);
+  }
+}
