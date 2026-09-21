@@ -1,0 +1,29 @@
+/* Phase 4 B7: the open-state control attaches to the sheet edge instead of
+   floating over the map like a destructive red FAB. */
+@media (max-width: 768px) {
+  .mobile-toggle.active {
+    top: 50%;
+    right: 8%;
+    bottom: auto;
+    left: auto;
+    width: 40px;
+    height: 64px;
+    transform: translate(50%, -50%);
+    border-radius: 0 12px 12px 0;
+    background: var(--ui-surface);
+    color: var(--ui-text);
+    border: 1px solid var(--ui-border);
+    border-left: 0;
+    box-shadow: 4px 0 14px rgba(0, 0, 0, 0.18);
+  }
+
+  .mobile-toggle.active:hover {
+    transform: translate(50%, -50%);
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-toggle.active {
+    border-radius: 0 10px 10px 0;
+  }
+}

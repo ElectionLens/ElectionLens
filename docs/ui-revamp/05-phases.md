@@ -287,7 +287,11 @@ Mostly **wiring up CSS that already exists** — see §3.
       restrained tile-pane saturation/grayscale treatment; India-wide browse retains the
       full-color geographic context. The class is deterministic from navigation state,
       not async winner hydration, so it cannot flicker while election data loads.
-- [ ] Replace the floating red × with an edge-anchored drawer handle (B7).
+- [x] Replace the floating red × with an edge-anchored drawer handle (B7). On mobile,
+      the closed state remains a bottom-left menu FAB; the open state attaches a 40×64px
+      handle to the sidebar edge, preserving the map and removing destructive-red affordance.
+      Browser QA at 390×844 verified attachment, close/reopen behavior, no overflow, and
+      restored legend visibility.
 - [ ] Width-aware placement for `map-legend` / `map-toolbar` so they never sit under the
       panel or the toggle.
 - [x] **Wire up or delete the existing `panel-peek` / `panel-half` / `panel-full` bottom
