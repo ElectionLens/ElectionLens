@@ -290,9 +290,11 @@ Mostly **wiring up CSS that already exists** — see §3.
 - [ ] Replace the floating red × with an edge-anchored drawer handle (B7).
 - [ ] Width-aware placement for `map-legend` / `map-toolbar` so they never sit under the
       panel or the toggle.
-- [ ] **Wire up the existing `panel-peek` / `panel-half` / `panel-full` bottom sheet** —
-      ~40 rules of finished CSS with zero TSX usage. Add the snap-point state + drag
-      handling, or delete it. Do not leave it dead.
+- [x] **Wire up or delete the existing `panel-peek` / `panel-half` / `panel-full` bottom
+      sheet.** **Deleted as dead CSS on `feat/phase-4-map-mobile-polish`.** React already
+      renders portrait detail panels as `panel-full`, has no drag handle, and the e2e
+      suite explicitly expects that contract; keeping unreachable peek/half rules was
+      misleading maintenance debt.
 - [ ] Booth mini-cards on marker click, virtualized (S6).
 
 ### Phase 5 — Dark mode (1–2 days, optional)

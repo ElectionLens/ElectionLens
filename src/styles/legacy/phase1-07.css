@@ -444,40 +444,6 @@
    ENHANCED MOBILE EXPERIENCE
    ============================================ */
 
-/* Bottom Sheet Drag Handle */
-.bottom-sheet-handle {
-  display: none;
-  width: 40px;
-  height: 5px;
-  background: var(--legacy-border-strong);
-  border-radius: 3px;
-  margin: 10px auto 2px;
-  cursor: pointer;
-  flex-shrink: 0;
-  position: relative;
-  transition: background 0.2s;
-}
-
-.bottom-sheet-handle:hover {
-  background: var(--ui-text-soft);
-}
-
-.bottom-sheet-handle:active {
-  background: var(--ui-text-soft);
-  transform: scaleX(1.1);
-}
-
-/* Show drag handle ONLY on mobile portrait */
-@media (max-width: 768px) and (orientation: portrait) {
-  .bottom-sheet-handle {
-    display: block;
-    width: 48px;
-    height: 5px;
-    background: var(--ui-text-soft);
-    margin: 8px auto 4px;
-  }
-}
-
 @media (max-width: 768px) {
   /* Compact mobile header */
   .election-panel-header {

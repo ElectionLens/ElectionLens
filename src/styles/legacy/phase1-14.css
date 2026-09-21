@@ -537,18 +537,6 @@
   .map-toolbar {
     border-radius: var(--ui-radius-lg);
   }
-
-  .election-panel.panel-peek,
-  .election-panel.panel-half,
-  .election-panel.panel-full {
-    border-top: 1px solid var(--ui-border);
-    box-shadow: 0 -12px 32px rgba(15, 23, 42, 0.16);
-  }
-
-  .bottom-sheet-handle {
-    background: color-mix(in srgb, var(--ui-text-soft) 40%, transparent);
-    border-radius: 999px;
-  }
 }
 
 button:focus-visible,
