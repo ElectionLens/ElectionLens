@@ -1,0 +1,25 @@
+/* WCAG 2.2 / mobile touch target audit. Keep compact labels, enlarge the
+   actual hit area so controls are usable with a thumb. */
+.toolbar-btn,
+.toolbar-dropdown-btn,
+.toolbar-year-btn {
+  min-height: 44px;
+}
+
+.toolbar-btn,
+.toolbar-dropdown-btn {
+  min-width: 44px;
+}
+
+.leaflet-control-zoom a {
+  width: 44px !important;
+  height: 44px !important;
+  line-height: 44px !important;
+}
+
+@media (max-width: 768px) {
+  .toolbar-year-btn {
+    min-width: 44px;
+    padding-inline: 12px;
+  }
+}

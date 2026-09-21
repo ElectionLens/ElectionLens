@@ -268,7 +268,9 @@ Mandatory, not optional.
       Playwright accessibility suite.
 - [ ] Contrast-audit every token pair; kill remaining sub-12px text.
 - [ ] Charts get accessible text equivalents (their gap too — a chance to be *better*, not equal).
-- [ ] Verify 44×44px touch targets. `--row-min-height: 44px` is already right; audit icon buttons.
+- [x] Verify 44×44px touch targets. `--row-min-height: 44px` is already right; icon
+      toolbar buttons, year buttons, dropdown controls, and Leaflet zoom controls now all
+      expose at least a 44px hit area. Mobile QA keeps the toolbar horizontally usable.
 - [x] Add a focused Playwright accessibility regression spec for landmarks, the
       constituency `h2`, browse-row `:focus-visible`, and APG tab keyboard navigation.
       <br>**Landed on `feat/phase-3-accessibility-qa`.** The browse-row test establishes
