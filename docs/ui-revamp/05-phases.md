@@ -267,7 +267,10 @@ Mandatory, not optional.
       `:focus-visible` rule and require a real keyboard-tab assertion in the forthcoming
       Playwright accessibility suite.
 - [ ] Contrast-audit every token pair; kill remaining sub-12px text.
-- [ ] Charts get accessible text equivalents (their gap too — a chance to be *better*, not equal).
+- [x] Charts get accessible text equivalents (their gap too — a chance to be *better*, not equal).
+      The visual result podium now exposes a labelled region with a concise winner/vote/margin
+      summary; candidate bars remain decorative because their adjacent text columns already
+      expose the exact values.
 - [x] Verify 44×44px touch targets. `--row-min-height: 44px` is already right; icon
       toolbar buttons, year buttons, dropdown controls, and Leaflet zoom controls now all
       expose at least a 44px hit area. Mobile QA keeps the toolbar horizontally usable.

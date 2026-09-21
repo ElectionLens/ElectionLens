@@ -33,6 +33,13 @@ describe('ResultPodium', () => {
     expect(screen.getByText('Margin')).toBeInTheDocument();
   });
 
+  it('provides a concise accessible result summary for the visual podium', () => {
+    render(<ResultPodium summary={summary} />);
+    expect(
+      screen.getByRole('region', { name: /winner Alpha, DMK, 1,00,000 votes/i })
+    ).toBeInTheDocument();
+  });
+
   it('formats votes with Indian digit grouping', () => {
     render(<ResultPodium summary={summary} />);
     // 1,00,000 not 100,000 - see steal-list S3.
