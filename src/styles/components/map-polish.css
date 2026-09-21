@@ -1,0 +1,14 @@
+/* Phase 4 map polish -------------------------------------------------------
+   Party fills should be the saturated visual signal. Desaturate the raster
+   basemap only while a thematic winner layer is actually present; plain
+   geographic browsing keeps the full-color context map. */
+
+.map-container--thematic .leaflet-tile-pane {
+  filter: saturate(0.38) grayscale(0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-container--thematic .leaflet-tile-pane {
+    transition: none;
+  }
+}

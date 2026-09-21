@@ -1455,9 +1455,14 @@ export function MapView({
   // Show back button when not at home (India) level
   const showBackButton = Boolean(currentState);
 
+  const hasThematicFills = Boolean(currentState);
+
   if (!displayData) {
     return (
-      <main className="map-container" aria-label="Interactive election map">
+      <main
+        className={`map-container${hasThematicFills ? ' map-container--thematic' : ''}`}
+        aria-label="Interactive election map"
+      >
         <div className="loading-overlay active">
           <div className="spinner"></div>
         </div>

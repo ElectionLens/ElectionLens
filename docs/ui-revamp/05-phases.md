@@ -280,9 +280,13 @@ Mandatory, not optional.
 ### Phase 4 — Map & mobile polish (2–3 days)
 Mostly **wiring up CSS that already exists** — see §3.
 
-- [ ] Desaturate/greyscale the basemap under thematic fills so party colour is the only
+- [x] Desaturate/greyscale the basemap under thematic fills so party colour is the only
       saturated thing on screen (we currently stack 0.6–0.75 opacity party fills over a
       full-colour Voyager basemap).
+      <br>**Started on `feat/phase-4-map-mobile-polish`.** State-selected maps now apply a
+      restrained tile-pane saturation/grayscale treatment; India-wide browse retains the
+      full-color geographic context. The class is deterministic from navigation state,
+      not async winner hydration, so it cannot flicker while election data loads.
 - [ ] Replace the floating red × with an edge-anchored drawer handle (B7).
 - [ ] Width-aware placement for `map-legend` / `map-toolbar` so they never sit under the
       panel or the toggle.
