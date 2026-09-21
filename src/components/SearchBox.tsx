@@ -313,6 +313,7 @@ export function SearchBox({
           }}
           onKeyDown={handleKeyDown}
           aria-label="Search regions"
+          role="combobox"
           aria-expanded={isOpen}
           aria-autocomplete="list"
         />

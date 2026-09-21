@@ -244,7 +244,7 @@ export function PCElectionResultPanel({
           />
 
           <div className="candidates-preview">
-            <h4>Candidates</h4>
+            <h3>Candidates</h3>
             <div className="candidates-table-full">
               <div className="candidates-header">
                 <span className="col-pos">#</span>

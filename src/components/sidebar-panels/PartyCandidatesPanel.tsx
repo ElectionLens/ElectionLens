@@ -47,7 +47,7 @@ export function PartyCandidatesPanel({
   return (
     <div className="sidebar-summary party-candidates-panel" data-summary-pane="party-candidates">
       <div className="party-candidates-header">
-        <h4>{getPartyShortName(party)} candidates</h4>
+        <h3>{getPartyShortName(party)} candidates</h3>
         <p aria-live="polite">
           {rows.length} of {sourceRows.length} shown
         </p>
