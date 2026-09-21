@@ -17,7 +17,7 @@ It is deliberately fail-closed:
 3. Match candidates by normalized name, reversed OCR name, or cyclic rotation.
 4. For generic headers, match column totals to official AC candidate totals by rank.
 5. Require booth-column sums not to exceed official totals and keep postal residual below a ceiling.
-6. Require Form20 and polling-station row counts to agree.
+6. Require Form20 and polling-station row counts to agree; a mismatch is review-queue red, never synthetic booth IDs.
 7. Write only validated ACs; emit a report for manual review instead of guessing.
 
 The first safe run imported 118 ACs after adding arithmetic layout recovery and a `pdftotext -layout` polling-station fallback. The remaining ACs are retained in the report as flagged and one archive AC is absent. This is intentional: “100% reconciled” must mean every booth value is traceable to a source row, not that a residual was distributed into synthetic booths.

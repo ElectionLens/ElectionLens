@@ -333,16 +333,12 @@ def build_booths_from_pdf_or_synthetic(
             ]
             return booths, "archive2_ps_text"
         if rows:
-            print(
-                f"WARN {ac_id}: Poll_Station_Details.pdf has {len(rows)} rows, "
-                f"Form20 has {n_booths} -- using synthetic numeric booth ids",
-                file=sys.stderr,
-            )
-    booths = [
-        {"id": f"{ac_id}-{n}", "boothNo": str(n), "num": n, "type": "regular", "name": "", "address": "", "area": ""}
-        for n in range(1, n_booths + 1)
-    ]
-    return booths, "synthetic_numeric"
+            # Never manufacture booth identities when the polling-station source
+            # has a different row count. Synthetic IDs make data look complete
+            # while severing the vote from its source station; the caller will
+            # place this AC in the review queue instead.
+            return [], "unresolved_polling_station_count"
+    return [], "missing_polling_station_source"
 
 
 def build_doc_candidates(econ_candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
