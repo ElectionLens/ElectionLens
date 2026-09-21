@@ -27,3 +27,14 @@ today but is trapped inside a blog modal, hardcoded to one state, and wired thro
 300ms `setTimeout` race. Fix the shared selection, promote data-nav out of the blog, and
 keep every row map-linked. **Hover a candidate, light up the geography — that is the
 thing they structurally cannot copy, and it is worth more than the podium.**
+
+The next analytical layer should borrow one more pattern from the stock-picker benchmark:
+**separate narrowing from ranking**. Hard filters must say why records are excluded;
+sorting must only reorder survivors. Add live facet counts where data supports them,
+removable filter chips, explicit `matching → shown` accounting, and evidence-linked
+“why” details. Pair that with a dense, virtualized **Excel-like table per election year**
+for researchers who need sortable columns, frozen constituency identity, column selection,
+and metadata-aware export—not just cards. Save the full query and data snapshot in the
+URL/preset so a shared view means the same thing tomorrow. An agent, if added later, may
+translate natural language into this structured state, but it must remain an explanation
+layer—not the source of truth.

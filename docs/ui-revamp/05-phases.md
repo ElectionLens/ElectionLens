@@ -214,6 +214,25 @@ The structural change. **Read §2 and §3 first.**
       shell, breadcrumb, search, controls, and heading rhythm without election-detail
       content.
 
+- [ ] **Filter → rank pipeline**: separate hard eligibility (year, level, geography,
+      party/candidate, turnout, margin, data quality) from sort/rank (closest contest,
+      largest swing, turnout, NOTA, party turnover). Keep the matching count unchanged
+      when sort changes; never treat missing numeric data as zero. See [§9](./09-filtering-and-ranking.md).
+- [ ] **Filter facets and chips**: context-aware facet groups with live counts where
+      supported, explicit `0 matching` / `No data` / `Not applicable` states, removable
+      accessible chips, grouped clear actions, and a mobile `+N filters` drawer.
+- [ ] **Result accounting and evidence**: show `total → matching → shown`, exclusion
+      reasons, metric-labelled rankings, and a “Why included/ranked here?” detail with
+      calculation definition and source path. Do not add booth geography until booth
+      records have coordinates or geometry.
+- [ ] **Saved, shareable runs**: serialize filters, ranking, display state, comparison,
+      data snapshot, and methodology version into query params/URLs; add presets only
+      after query state is stable.
+- [ ] **Election-year table view**: add a dedicated dense, Excel-like table for each
+      election year, sharing filter/rank state with the map and cards. Include sticky
+      identity columns, virtualized rows, column chooser, type-aware Indian formatting,
+      accessible sort/header semantics, responsive mobile detail drawers, and metadata-
+      carrying export. Unsupported fields stay unavailable rather than becoming zero.
 - [ ] **Promote the analytical views out of `BlogSection`.** Its flip/margin
       leaderboards are already real data-nav — extract them into a reusable
       `<RankedConstituencyList>` driven by a metric prop, not a hardcoded TN-2021 post.

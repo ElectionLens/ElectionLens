@@ -7,13 +7,16 @@
 | 0 — Stop the bleeding | **0.5 d** | Very low | **Huge** |
 | 1 — Token consolidation | 1–2 d | Low (no visual change) | None (enables rest) |
 | 2 — Shared selection + panel width + podium | 4–5 d | Medium | **Huge** |
-| 2.5 — Data-based navigation | 3–4 d | Medium | **High** (new capability) |
+| 2.5 — Filtered data navigation + year tables | 4–6 d | Medium | **High** (discoverability + research depth) |
 | 3 — WCAG 2.2 AA | 2 d | Low | Low visually, mandatory |
 | 4 — Map & mobile | 2–3 d | Medium | High |
 | 5 — Dark mode | 1–2 d | Low | Medium |
-| | **~14–19 d** | | |
+| | **~18–25 d** | | |
 
-**Ship Phase 0 today.** Phases 1→2 are the real revamp. 3 is non-negotiable before any public push. 4–5 are polish.
+**Ship Phase 0 today.** Phases 1→2 are the real revamp. Phase 2.5 makes the analytical
+surface genuinely discoverable and useful for research: build hard filters before ranking,
+then chips/accounting, then the shared virtualized election-year table, then saved runs.
+3 is non-negotiable before any public push. 4–5 are polish.
 
 ### Guardrails
 - Every phase ends green: `npm run validate` (typecheck + lint + 494 unit tests) and the 113 Playwright e2e tests.

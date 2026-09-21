@@ -30,6 +30,16 @@ repeated cards with 3 mini-bars instead of 344 charts. Good pattern for our 84k 
 **S7. Their restraint with chart types.** Doughnut + bar. That's it. No chart that
 needs a legend to decode.
 
+**S8. Explicit filter → rank pipeline.** The stock-picker article separates hard eligibility
+filters from ranking survivors. Copy that interaction model: show active filters as
+removable chips, show live facet counts where data exists, expose exclusion reasons, and
+label the ranking metric. Details and acceptance criteria live in [§9](./09-filtering-and-ranking.md).
+
+**S9. Research-grade dense tables.** Add a dedicated table surface per election year:
+sticky identity columns, virtualization, sortable typed fields, column selection, and
+metadata-aware export. Cards remain for overview; the table is for broad comparison.
+The table must share state with map/list views rather than becoming a second query system.
+
 ### Do not steal
 - **Their homepage.** A 234-card unpaginated scroll wall. Our map *is* the better index.
 - **Their flat card grid as primary navigation.** We have geography; they don't. Don't throw away our biggest differentiator to imitate a site that lacks it.

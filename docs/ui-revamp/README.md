@@ -27,11 +27,12 @@ unchanged; only the packaging is different.
 | 2c | [Decided model](./02c-decided-model.md) | **Card mode replaces the map; map returns as a leaf inset** |
 | 2d | [tnmla.in benchmark](./02d-tnmla-benchmark.md) | Member-centric model; what we can and cannot copy |
 | 3 | [Coexistence](./03-coexistence.md) | Width math for map + panel (largely dissolved by 2c) |
-| 4 | [Steal list](./04-steal-list.md) | S1–S7 worth copying, and what to refuse |
+| 4 | [Steal list](./04-steal-list.md) | S1–S9 worth copying, and what to refuse |
 | 5 | [Phased plan](./05-phases.md) | Phase 0–5 with exit criteria |
 | 6 | [Charting](./06-charting.md) | Chart library decision |
 | 7 | [Sequencing](./07-sequencing.md) | Effort estimates and order |
 | 8 | [Summary](./08-summary.md) | The one-paragraph version |
+| 9 | [Filtering & ranking](./09-filtering-and-ranking.md) | Hard filters, transparent ranking, facets, chips, and saved runs |
 
 ## If you only read three things
 
