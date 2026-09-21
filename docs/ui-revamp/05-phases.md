@@ -256,9 +256,10 @@ Mandatory, not optional.
       <br>**Landed on `feat/phase-3-booth-geography-ocr`.** The sidebar is an `<aside>`
       with a labelled breadcrumb `<nav>`, the interactive map is a labelled `<main>`,
       and the correction/contribution link is a `<footer>`.
-- [ ] Heading hierarchy `h1→h2→h3`.
-      <br>Constituency name is now an `h2`; browse-list and panel subheads still need the
-      complete hierarchy audit.
+- [x] Heading hierarchy `h1→h2→h3`.
+      <br>Constituency and panel titles remain `h2`; browse sections and result subsections
+      now use `h3`, with deeper booth detail retained at `h4`. Removed skipped `h4/h5`
+      headings from the primary election-result flows.
 - [x] Global `:focus-visible` using a palette token, not the orphaned `#2563eb`.
       <br>**Landed on the Phase 3 branch.** `--ui-focus-ring` now drives the late-loaded
       global focus rule, with forced-colors support; bespoke row/button/tab outlines were

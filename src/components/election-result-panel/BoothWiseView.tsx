@@ -91,13 +91,13 @@ export function BoothWiseView({
       {selectedBooth ? (
         <div className="selected-booth-details">
           <div className="booth-header">
-            <h4>
+            <h3>
               Booth {selectedBooth.boothNo}
               {selectedBooth.type === 'women' && (
                 <span className="women-badge">{'\u{1F469}'} Women</span>
               )}
               {selectedBooth.voteSource && <BoothSourceBadge source={selectedBooth.voteSource} />}
-            </h4>
+            </h3>
           </div>
 
           <div className="booth-address">
@@ -155,7 +155,7 @@ export function BoothWiseView({
 
               {/* Candidate-wise votes for this booth */}
               <div className="booth-candidates">
-                <h5>Candidate-wise Votes</h5>
+                <h4>Candidate-wise Votes</h4>
                 <div className="booth-candidates-scroll">
                   {boothResults.candidates
                     .map((candidate, idx) => ({
