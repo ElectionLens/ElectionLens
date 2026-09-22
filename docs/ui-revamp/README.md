@@ -33,6 +33,7 @@ unchanged; only the packaging is different.
 | 7 | [Sequencing](./07-sequencing.md) | Effort estimates and order |
 | 8 | [Summary](./08-summary.md) | The one-paragraph version |
 | 9 | [Filtering & ranking](./09-filtering-and-ranking.md) | Hard filters, transparent ranking, facets, chips, and saved runs |
+| 10 | [Phase 2.5 implementation plan](./10-phase-2.5-plan.md) | Sub-phased build-out of §9, grounded in what's actually in the codebase |
 
 ## If you only read three things
 

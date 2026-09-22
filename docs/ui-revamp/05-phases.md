@@ -218,6 +218,13 @@ The structural change. **Read §2 and §3 first.**
       party/candidate, turnout, margin, data quality) from sort/rank (closest contest,
       largest swing, turnout, NOTA, party turnover). Keep the matching count unchanged
       when sort changes; never treat missing numeric data as zero. See [§9](./09-filtering-and-ranking.md).
+      <br>**This whole block (through the compare stretch goal below) is sequenced in
+      detail in [§10](./10-phase-2.5-plan.md)**, written after finding it has no `###`
+      heading of its own and had been mistakenly reported complete alongside the rest of
+      Phase 2. Key finding from that pass: state-scoped filtering/ranking needs **no new
+      data pipeline** - the full state-year result set is already one cached fetch
+      (`public/data/elections/ac/TN/2021.json` = all 234 TN constituencies, one file).
+      National cross-state ranking is the part that would need new data-platform work.
 - [ ] **Filter facets and chips**: context-aware facet groups with live counts where
       supported, explicit `0 matching` / `No data` / `Not applicable` states, removable
       accessible chips, grouped clear actions, and a mobile `+N filters` drawer.
