@@ -294,7 +294,21 @@ Mandatory, not optional.
       real keyboard modality with Tab before asserting the semantic teal ring; synthetic
       `.focus()` alone was explicitly rejected because Chromium does not treat it as
       keyboard-visible focus.
-- [ ] Add `@axe-core/playwright` to the e2e suite so automated WCAG scans cannot regress.
+- [x] Add `@axe-core/playwright` to the e2e suite so automated WCAG scans cannot regress.
+      <br>Added `e2e/axe-scan.spec.ts`, a separate file from the hand-written
+      `accessibility.spec.ts` since axe's static analysis and manual focus/keyboard
+      checks catch different things. Scans one page per distinct app "mode" (India
+      browse, state seats-won, AC detail, AC detail in dark theme, mobile sidebar
+      sheet) against wcag2a/2aa/21aa/22aa tags, asserting zero violations. The first
+      run caught two real, previously-unnoticed bugs: (1) `index.html`'s viewport
+      meta disabled pinch-zoom (`user-scalable=no, maximum-scale=1.0`), a WCAG 1.4.4
+      violation on every page; (2) the search input used `aria-expanded` without a
+      role that allows it — fixed by completing the combobox pattern it already
+      half-implemented (`role="combobox"`, `aria-controls`, `aria-haspopup`,
+      `aria-activedescendant` wired to the existing listbox/option markup) rather than
+      just deleting the attribute. Both fixes are real, not suppressions. All 5 axe
+      scans pass; 751 unit tests, tsc, eslint clean; existing search e2e suite (7
+      tests) still green.
 
 ### Phase 4 — Map & mobile polish (2–3 days)
 Mostly **wiring up CSS that already exists** — see §3.
