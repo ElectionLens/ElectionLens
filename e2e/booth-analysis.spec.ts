@@ -167,6 +167,34 @@ test.describe('Postal Ballots View', () => {
   });
 });
 
+test.describe('Booth Data View — mini-card grid (S6)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/tamil-nadu/ac/gummidipundi?year=2021');
+    await waitForAcPanelReady(page);
+  });
+
+  test('shows scannable booth mini-cards alongside the dropdown', async ({ page }) => {
+    await acPanelViewNative(page).selectOption('booths', { force: true });
+
+    const grid = page.locator('.booth-mini-card-grid');
+    await expect(grid).toBeVisible({ timeout: 10000 });
+    await expect(grid.locator('.booth-mini-card').first()).toBeVisible();
+  });
+
+  test('clicking a mini-card selects that booth and shows its candidate rows', async ({
+    page,
+  }) => {
+    await acPanelViewNative(page).selectOption('booths', { force: true });
+
+    const firstCard = page.locator('.booth-mini-card').first();
+    await expect(firstCard).toBeVisible({ timeout: 10000 });
+    await firstCard.click();
+
+    await expect(firstCard).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.booth-candidate-row').first()).toBeVisible({ timeout: 20000 });
+  });
+});
+
 test.describe('Booth Data View — candidate cards', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/tamil-nadu/ac/gummidipundi?year=2021');

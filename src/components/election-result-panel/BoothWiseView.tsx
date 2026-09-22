@@ -2,6 +2,7 @@ import { ChevronDown, MapPin, AlertTriangle } from 'lucide-react';
 import type { BoothResults, BoothWithResult } from '../../hooks/useBoothData';
 import { getPartyColor, getPartyShortName } from '../../utils/partyData';
 import { BoothDataQualityBanner, BoothSourceBadge } from '../BoothDataQualityBanner';
+import { BoothMiniCardGrid } from './BoothMiniCardGrid';
 import { embeddedPartyChipStyle, solidPartyChipStyle, formatNumber } from './shared';
 
 interface BoothWiseViewProps {
@@ -86,6 +87,16 @@ export function BoothWiseView({
           </div>
         )}
       </div>
+
+      {/* Scannable, virtualized card grid - see BoothMiniCardGrid's docstring
+          for why this replaces "one booth at a time" as the main browsing
+          surface, and why it isn't triggered from a map marker. */}
+      <BoothMiniCardGrid
+        booths={boothsWithResults}
+        selectedBoothId={selectedBoothId}
+        onBoothSelect={onBoothSelect}
+        embeddedPanel={embeddedPanel}
+      />
 
       {/* Selected booth details */}
       {selectedBooth ? (

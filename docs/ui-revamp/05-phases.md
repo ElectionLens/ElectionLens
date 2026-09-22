@@ -353,7 +353,39 @@ Mostly **wiring up CSS that already exists** — see §3.
       renders portrait detail panels as `panel-full`, has no drag handle, and the e2e
       suite explicitly expects that contract; keeping unreachable peek/half rules was
       misleading maintenance debt.
-- [ ] Booth mini-cards on marker click, virtualized (S6).
+- [x] Booth mini-cards on marker click, virtualized (S6).
+      <br>The "on marker click" trigger isn't honest to build: every booth JSON file
+      under `public/data/booths` (all 234 Tamil Nadu ACs checked) has `location`
+      always absent - there is no lat/lng for any polling station in the dataset, so
+      there is no map marker to click. This had already been attempted and
+      abandoned: `BoothMarkersLayer.tsx` existed, correctly guarded on
+      `if (!booth.location) return`, and rendered zero markers in every real build
+      because that guard always fired - it was never imported anywhere. Deleted it,
+      along with a second orphan, `BoothResultsPanel.tsx` (a whole standalone booth
+      panel superseded by `BoothWiseView.tsx`, referenced only by its own test).
+      Left the `Booth.location?: {lat,lng}` type field in place as honest
+      forward-compatible schema for when OCR/polling-station enrichment can
+      actually populate it.
+      <br>Delivered the real value behind S6 instead, in the one place it's
+      achievable today: the existing Booths tab. Before this, browsing booths meant
+      a single `<select>` dropdown showing one booth at a time with no way to scan
+      the rest. Added `BoothMiniCardGrid` - booth number, women-booth badge, winner
+      party chip, and a vote-share bar per card, click-to-select feeding the same
+      `selectedBoothId` state the dropdown already drove (both stay in sync; the
+      dropdown stays too, since it's already keyboard/typeahead-friendly).
+      Virtualized above 60 cards via a new dependency-free `useVirtualList` hook
+      (fixed 56px row height, windowed by scrollTop with overscan) rather than
+      pulling in a library for one call site - TN-027 has 909 booths, the largest
+      in the dataset, and only the rows near the viewport ever become real DOM
+      nodes. `computeVisibleRange` is pure and unit-tested in isolation (including
+      the stale-scrollTop-after-a-shorter-list-loads edge case, which the tests
+      caught as a real bug in the first draft - `start` needed clamping against
+      `itemCount`, not just `0`). Cards are native `<button>`s with an
+      `aria-pressed`/`aria-label` pair carrying booth number, winner and vote total,
+      matching the sidebar browse-list convention rather than reinventing a listbox
+      pattern. 15 new unit tests (hook + component), 2 new e2e tests. 749 unit
+      tests, tsc, eslint all clean; full booth-analysis.spec.ts (17 tests) and all 5
+      axe scans still pass.
 
 ### Phase 5 — Dark mode (1–2 days, optional)
 Nearly free once Phase 1 lands — add a `[data-theme="dark"]` token block. **They don't have this.** Differentiator, and it matters for an app people use on phones at night on election day.
