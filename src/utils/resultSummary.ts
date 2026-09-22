@@ -40,7 +40,7 @@ export interface KpiValues {
 }
 
 /** Treat non-finite and non-positive counts as unknown rather than real zeros. */
-function positiveOrNull(value: number | null | undefined): number | null {
+export function positiveOrNull(value: number | null | undefined): number | null {
   if (value == null || !Number.isFinite(value) || value <= 0) return null;
   return value;
 }

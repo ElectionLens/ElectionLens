@@ -66,7 +66,7 @@ Each sub-phase is sized to be one branch/PR, ends green (`tsc`, `eslint`,
 `npm run validate`, relevant e2e), and is independently shippable — later sub-phases
 depend on earlier ones, but nothing here is a big-bang rewrite.
 
-#### 2.5a — Metrics module (no UI)
+#### 2.5a — Metrics module (no UI) — done
 **Effort: 0.5–1 d. Risk: very low (pure functions).**
 
 New `src/utils/constituencyMetrics.ts`:
@@ -84,6 +84,15 @@ New `src/utils/constituencyMetrics.ts`:
 - Exit: unit tests for every metric including the "prior year missing/incompatible"
   branches of swing — this is the exact kind of edge case this session's `useVirtualList`
   work showed tests catch and manual QA doesn't.
+
+Shipped as `src/utils/constituencyMetrics.ts` + `constituencyMetrics.test.ts` (22 tests).
+`computeMargin` wraps the already-tested `selectResultSummary` rather than re-deriving
+margin (that function is exported and now shared, was previously private to
+`resultSummary.ts`). `listRankableConstituencies` reuses `skipAssemblyWinnerColoring` to
+decide what's real vs pending/announced-only, rather than re-deriving that too.
+`rankConstituencies` is generic over item type (works for margin, turnout, NOTA%, or
+swing alike from one implementation) and always sorts nulls last regardless of
+direction, per §9's own null-vs-zero rule.
 
 #### 2.5b — Generalize `BlogSection`'s ranked list
 **Effort: 1–1.5 d. Risk: low-medium (real component extraction).**
@@ -213,7 +222,7 @@ New `src/utils/constituencyMetrics.ts`:
 
 | Sub-phase | Effort |
 |---|---|
-| 2.5a Metrics module | 0.5–1 d |
+| 2.5a Metrics module | 0.5-1 d - done |
 | 2.5b Generalize ranked list | 1–1.5 d |
 | 2.5c Hard filters + URL | 1–1.5 d |
 | 2.5d Chips + accounting | 1 d |
