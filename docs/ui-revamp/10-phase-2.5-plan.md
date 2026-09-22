@@ -102,12 +102,12 @@ direction, per §9's own null-vs-zero rule.
   state+year's already-loaded `ACElectionResult[]` — not a bespoke alliance JSON.
 - Wire it into the sidebar as a real data-nav surface (not the blog modal). This is the
   literal "promote the analytical views out of `BlogSection`" checklist item.
-- **Decision needed from you:** does the existing NDA-alliance blog post
-  (`ammk-admk-alliance-2026.json`, hardcoded TN-2026 alliance math) stay as its own blog
-  post using the new list component for its row rendering, or does it retire once the
-  general margin/turnout rankings ship? It's bespoke analysis (combined alliance vote
-  totals), not a metric `computeMargin` etc. can produce, so it can't just disappear into
-  the new component automatically either way.
+- **Decided:** the NDA-alliance blog post retires once general rankings ship (see the
+  open-decisions section below for the full answer and the URL-contract scoping finding
+  that comes with it - retiring it is bundled into the same follow-up pass as the sidebar
+  wiring below, not a separate step). It's bespoke analysis (combined alliance vote
+  totals), not a metric `computeMargin` etc. can produce, so nothing in it survives into
+  the new component automatically - it's a clean removal, not a migration.
 - Exit: `<RankedConstituencyList>` renders correctly for at least two states/years in
   Storybook-less browser QA (screenshot, not just DOM assertions — per this session's own
   lesson that DOM-correct bars can still read wrong visually); e2e test clicking a row
@@ -257,13 +257,29 @@ table alone is the biggest single surface in the whole revamp plan after `MapVie
 
 ### Open decisions before starting 2.5a
 
-1. Does the NDA-alliance blog post retire once general rankings ship, or keep existing
-   alongside them (see 2.5b)?
+1. ~~Does the NDA-alliance blog post retire once general rankings ship, or keep existing
+   alongside them~~ **Decided: retire**, once `<RankedConstituencyList>` is actually live
+   and replaces its function - not before, since pulling the post with nothing live in its
+   place would be a straight regression.
+
+   **Scoping finding (this pass):** retiring it is a bigger cut than "delete
+   `BlogSection.tsx`." `blogOpen`/`blogPost` are wired into the URL contract itself, not a
+   local UI toggle - they're threaded through `App.tsx`, `useUrlState.ts`,
+   `useUrlNavigate.ts`, and `urlLocation.ts` (each with existing tests), with their own
+   `?blog=true&blogPost=...` query params and a dedicated `popstate` handler. So "wire
+   `RankedConstituencyList` into the live sidebar" and "retire `BlogSection` + its URL
+   params, cleanly" are really one combined follow-up task, not two independent ones - do
+   them together, in one focused pass, rather than half-swapping the feature and leaving
+   dead URL-contract code behind. Deliberately not started in this session: the risk of
+   touching a 1,400+ line `App.tsx` plus three URL-state files carelessly at the end of a
+   long session outweighs finishing it tonight.
+
 2. Is state-scoped filtering/ranking/table an acceptable v1, with national cross-state
-   ranking explicitly deferred to a data-platform follow-up — or is national ranking a
-   launch requirement that changes the sequencing above?
+   ranking explicitly deferred to a data-platform follow-up - or is national ranking a
+   launch requirement that changes the sequencing above? **Still open.**
 3. Sequencing preference: ship 2.5a→2.5h in order as separate branches (matches this
    repo's established one-branch-per-checklist-item-cluster habit), or batch a few
    together (e.g. 2.5a+2.5b as one branch, since 2.5b has nothing to render without 2.5a)?
+   **Still open** (this session in practice did 2.5a and 2.5b as separate branches).
 
 ---
