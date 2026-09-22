@@ -23,7 +23,29 @@
 }
 
 @media (min-width: 769px) {
+  /* Desktop: the sidebar is permanently docked, not a sheet, so the base fixed
+     bottom:20/left:20 position (meant for a closed mobile FAB) would float over
+     whatever sidebar content happens to render in that corner - confirmed
+     visually colliding with the "Back" button at short viewport heights. Dock
+     it to the sidebar/map boundary instead, reading the same `--panel-w` the
+     sidebar's own width comes from so it tracks browse/analyse/deep-dive
+     without three separate breakpoints. */
   .mobile-toggle.active {
+    top: 50%;
+    left: var(--panel-w);
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 64px;
     border-radius: 0 10px 10px 0;
+    background: var(--ui-surface);
+    color: var(--ui-text);
+    border: 1px solid var(--ui-border);
+    border-left: 0;
+    box-shadow: 4px 0 14px rgba(0, 0, 0, 0.18);
+  }
+
+  .mobile-toggle.active:hover {
+    transform: translate(-50%, -50%);
   }
 }

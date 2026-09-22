@@ -1,0 +1,132 @@
+/* Phase 4 S6: booth mini-card grid ------------------------------------------
+   Scannable card list replacing "pick one booth from a dropdown, see nothing
+   else" as the way to browse an AC's booths. Virtualized above
+   VIRTUALIZE_THRESHOLD (see BoothMiniCardGrid.tsx) so a 909-booth
+   constituency (TN-027, the largest in the dataset) stays smooth - only the
+   rows near the viewport become real DOM nodes. */
+
+.booth-mini-card-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid var(--ui-border);
+  border-radius: 8px;
+  padding: 4px;
+  background: var(--ui-surface-soft);
+}
+
+.booth-mini-card-grid--virtualized {
+  /* The spacer child carries the real scrollable height; this element is
+     just the viewport/scroll container. */
+  position: relative;
+}
+
+.booth-mini-card-grid-spacer {
+  position: relative;
+  width: 100%;
+}
+
+.booth-mini-card-slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2px 0;
+  box-sizing: border-box;
+}
+
+.booth-mini-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--ui-border);
+  border-left: 3px solid var(--item-color, var(--ui-border));
+  border-radius: 6px;
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  height: 44px;
+  box-sizing: border-box;
+  transition:
+    background var(--ui-speed-fast, 0.15s) var(--ui-ease, ease),
+    border-color var(--ui-speed-fast, 0.15s) var(--ui-ease, ease);
+}
+
+.booth-mini-card:hover {
+  background: var(--ui-surface-tint);
+}
+
+.booth-mini-card:focus-visible {
+  outline: 2px solid var(--ui-focus-ring);
+  outline-offset: 2px;
+}
+
+.booth-mini-card.selected {
+  background: var(--ui-accent-soft);
+  border-color: var(--item-color, var(--ui-accent));
+}
+
+.booth-mini-card-no {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 44px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.booth-mini-card-women-icon {
+  color: #ec4899;
+}
+
+.booth-mini-card-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.booth-mini-card-party {
+  flex: 0 0 auto;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.booth-mini-card-bar-track {
+  flex: 1 1 auto;
+  min-width: 24px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--ui-border-soft, var(--ui-border));
+  overflow: hidden;
+}
+
+.booth-mini-card-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+}
+
+.booth-mini-card-percent {
+  flex: 0 0 auto;
+  font-size: var(--text-xs);
+  color: var(--ui-text-muted);
+  min-width: 28px;
+  text-align: right;
+}
+
+.booth-mini-card-no-data {
+  font-size: var(--text-xs);
+  color: var(--ui-text-soft);
+}

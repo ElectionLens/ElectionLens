@@ -325,14 +325,67 @@ Mostly **wiring up CSS that already exists** — see §3.
       handle to the sidebar edge, preserving the map and removing destructive-red affordance.
       Browser QA at 390×844 verified attachment, close/reopen behavior, no overflow, and
       restored legend visibility.
-- [ ] Width-aware placement for `map-legend` / `map-toolbar` so they never sit under the
+- [x] Width-aware placement for `map-legend` / `map-toolbar` so they never sit under the
       panel or the toggle.
+      <br>Audited every panel-width state (browse/analyse/deep-dive, 360-900px docked
+      sidebar) plus mobile portrait/landscape at multiple device heights, measuring real
+      DOM rects rather than eyeballing screenshots. `map-toolbar`/`map-legend` already
+      live inside `.map-container` (a flex sibling of the sidebar), so they structurally
+      cannot render on top of the panel - confirmed no overlap at any width, including
+      the narrowest deep-dive map (~438px) where the toolbar keeps a healthy ~29px clear
+      of the zoom control in a production build (a tighter dev-only reading was an
+      artifact of the extra localhost-only cache-clear button, not a real bug - left
+      alone per YAGNI). Found one **real, reproducible** toggle collision instead: at
+      docked-sidebar widths with a short viewport (e.g. 844×390 landscape), the sidebar
+      toggle FAB sat at its always-on fixed `bottom:20/left:20`, landing directly on top
+      of the sidebar's own "Back" button - an unfinished edge case from the B7 mobile
+      edge-handle fix, evidenced by a `@media (min-width: 769px)` rule that already set
+      the desktop handle's border-radius but never its position. Fixed by moving the
+      toggle button into `.container` (a `position:fixed` element still inherits CSS
+      custom properties from DOM ancestors regardless of its containing block) and
+      docking `.mobile-toggle.active` to `left: var(--panel-w)` at desktop widths - the
+      same variable the sidebar's own width comes from, so it tracks browse/analyse/
+      deep-dive without new breakpoints. Added a Playwright regression asserting the
+      toggle and Back button never overlap. 751 unit tests, tsc, eslint all clean; new
+      e2e regression passing alongside the existing mobile/accessibility/axe suites.
 - [x] **Wire up or delete the existing `panel-peek` / `panel-half` / `panel-full` bottom
       sheet.** **Deleted as dead CSS on `feat/phase-4-map-mobile-polish`.** React already
       renders portrait detail panels as `panel-full`, has no drag handle, and the e2e
       suite explicitly expects that contract; keeping unreachable peek/half rules was
       misleading maintenance debt.
-- [ ] Booth mini-cards on marker click, virtualized (S6).
+- [x] Booth mini-cards on marker click, virtualized (S6).
+      <br>The "on marker click" trigger isn't honest to build: every booth JSON file
+      under `public/data/booths` (all 234 Tamil Nadu ACs checked) has `location`
+      always absent - there is no lat/lng for any polling station in the dataset, so
+      there is no map marker to click. This had already been attempted and
+      abandoned: `BoothMarkersLayer.tsx` existed, correctly guarded on
+      `if (!booth.location) return`, and rendered zero markers in every real build
+      because that guard always fired - it was never imported anywhere. Deleted it,
+      along with a second orphan, `BoothResultsPanel.tsx` (a whole standalone booth
+      panel superseded by `BoothWiseView.tsx`, referenced only by its own test).
+      Left the `Booth.location?: {lat,lng}` type field in place as honest
+      forward-compatible schema for when OCR/polling-station enrichment can
+      actually populate it.
+      <br>Delivered the real value behind S6 instead, in the one place it's
+      achievable today: the existing Booths tab. Before this, browsing booths meant
+      a single `<select>` dropdown showing one booth at a time with no way to scan
+      the rest. Added `BoothMiniCardGrid` - booth number, women-booth badge, winner
+      party chip, and a vote-share bar per card, click-to-select feeding the same
+      `selectedBoothId` state the dropdown already drove (both stay in sync; the
+      dropdown stays too, since it's already keyboard/typeahead-friendly).
+      Virtualized above 60 cards via a new dependency-free `useVirtualList` hook
+      (fixed 56px row height, windowed by scrollTop with overscan) rather than
+      pulling in a library for one call site - TN-027 has 909 booths, the largest
+      in the dataset, and only the rows near the viewport ever become real DOM
+      nodes. `computeVisibleRange` is pure and unit-tested in isolation (including
+      the stale-scrollTop-after-a-shorter-list-loads edge case, which the tests
+      caught as a real bug in the first draft - `start` needed clamping against
+      `itemCount`, not just `0`). Cards are native `<button>`s with an
+      `aria-pressed`/`aria-label` pair carrying booth number, winner and vote total,
+      matching the sidebar browse-list convention rather than reinventing a listbox
+      pattern. 15 new unit tests (hook + component), 2 new e2e tests. 749 unit
+      tests, tsc, eslint all clean; full booth-analysis.spec.ts (17 tests) and all 5
+      axe scans still pass.
 
 ### Phase 5 — Dark mode (1–2 days, optional)
 Nearly free once Phase 1 lands — add a `[data-theme="dark"]` token block. **They don't have this.** Differentiator, and it matters for an app people use on phones at night on election day.

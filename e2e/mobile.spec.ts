@@ -251,6 +251,36 @@ test.describe('Mobile Landscape - Right Sidebar Layout', () => {
     await expect(yearSelector).toBeVisible();
   });
 
+  test('sidebar toggle handle should not overlap docked sidebar content', async ({ page }) => {
+    // Regression: at this width the sidebar is a permanently docked column (not a
+    // mobile sheet), so the toggle FAB used to sit at its always-on fixed
+    // bottom:20/left:20 spot regardless of dock width - directly on top of the
+    // sidebar's own "Back" button. It should instead dock to the sidebar/map
+    // boundary as an edge handle, matching the treatment mobile sheets already got.
+    await page.goto('/tamil-nadu/ac/bargur?year=2021');
+    await waitForMapReady(page);
+
+    const backButton = page.locator('.left-pane-btn--back');
+    await expect(backButton).toBeVisible({ timeout: 15000 });
+
+    const toggle = page.locator('.mobile-toggle');
+    await expect(toggle).toBeVisible();
+
+    const [backBox, toggleBox] = await Promise.all([
+      backButton.boundingBox(),
+      toggle.boundingBox(),
+    ]);
+    expect(backBox).not.toBeNull();
+    expect(toggleBox).not.toBeNull();
+
+    const overlaps =
+      backBox!.x < toggleBox!.x + toggleBox!.width &&
+      backBox!.x + backBox!.width > toggleBox!.x &&
+      backBox!.y < toggleBox!.y + toggleBox!.height &&
+      backBox!.y + backBox!.height > toggleBox!.y;
+    expect(overlaps).toBe(false);
+  });
+
   test('should keep map visible alongside panel in landscape', async ({ page }) => {
     await page.goto('/tamil-nadu/pc/salem/ac/omalur?year=2021');
     await waitForMapReady(page);
