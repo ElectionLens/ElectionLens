@@ -1240,17 +1240,21 @@ function App(): JSX.Element {
 
   return (
     <>
-      {/* Menu / close — toggles docked sidebar on web; slide-over sheet on narrow viewports */}
-      <button
-        className={`mobile-toggle ${sidebarOpen ? 'active' : ''}`}
-        onClick={toggleSidebar}
-        type="button"
-        aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
-      >
-        {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-
       <div className="container" data-panel-mode={panelMode}>
+        {/* Menu / close — toggles docked sidebar on web; slide-over sheet on narrow
+            viewports. Lives inside `.container` (rather than as a page-level sibling)
+            so its docked/edge-handle position can read `--panel-w` off the same
+            element the sidebar width comes from — a fixed-position element still
+            inherits custom properties from DOM ancestors regardless of its
+            containing block for layout. */}
+        <button
+          className={`mobile-toggle ${sidebarOpen ? 'active' : ''}`}
+          onClick={toggleSidebar}
+          type="button"
+          aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+        >
+          {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
         <Sidebar
           statesGeoJSON={statesGeoJSON}
           parliamentGeoJSON={parliamentGeoJSON}

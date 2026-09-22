@@ -325,8 +325,29 @@ Mostly **wiring up CSS that already exists** — see §3.
       handle to the sidebar edge, preserving the map and removing destructive-red affordance.
       Browser QA at 390×844 verified attachment, close/reopen behavior, no overflow, and
       restored legend visibility.
-- [ ] Width-aware placement for `map-legend` / `map-toolbar` so they never sit under the
+- [x] Width-aware placement for `map-legend` / `map-toolbar` so they never sit under the
       panel or the toggle.
+      <br>Audited every panel-width state (browse/analyse/deep-dive, 360-900px docked
+      sidebar) plus mobile portrait/landscape at multiple device heights, measuring real
+      DOM rects rather than eyeballing screenshots. `map-toolbar`/`map-legend` already
+      live inside `.map-container` (a flex sibling of the sidebar), so they structurally
+      cannot render on top of the panel - confirmed no overlap at any width, including
+      the narrowest deep-dive map (~438px) where the toolbar keeps a healthy ~29px clear
+      of the zoom control in a production build (a tighter dev-only reading was an
+      artifact of the extra localhost-only cache-clear button, not a real bug - left
+      alone per YAGNI). Found one **real, reproducible** toggle collision instead: at
+      docked-sidebar widths with a short viewport (e.g. 844×390 landscape), the sidebar
+      toggle FAB sat at its always-on fixed `bottom:20/left:20`, landing directly on top
+      of the sidebar's own "Back" button - an unfinished edge case from the B7 mobile
+      edge-handle fix, evidenced by a `@media (min-width: 769px)` rule that already set
+      the desktop handle's border-radius but never its position. Fixed by moving the
+      toggle button into `.container` (a `position:fixed` element still inherits CSS
+      custom properties from DOM ancestors regardless of its containing block) and
+      docking `.mobile-toggle.active` to `left: var(--panel-w)` at desktop widths - the
+      same variable the sidebar's own width comes from, so it tracks browse/analyse/
+      deep-dive without new breakpoints. Added a Playwright regression asserting the
+      toggle and Back button never overlap. 751 unit tests, tsc, eslint all clean; new
+      e2e regression passing alongside the existing mobile/accessibility/axe suites.
 - [x] **Wire up or delete the existing `panel-peek` / `panel-half` / `panel-full` bottom
       sheet.** **Deleted as dead CSS on `feat/phase-4-map-mobile-polish`.** React already
       renders portrait detail panels as `panel-full`, has no drag handle, and the e2e
