@@ -94,7 +94,7 @@ decide what's real vs pending/announced-only, rather than re-deriving that too.
 swing alike from one implementation) and always sorts nulls last regardless of
 direction, per §9's own null-vs-zero rule.
 
-#### 2.5b — Generalize `BlogSection`'s ranked list
+#### 2.5b — Generalize `BlogSection`'s ranked list — component done, sidebar wiring pending
 **Effort: 1–1.5 d. Risk: low-medium (real component extraction).**
 
 - New `<RankedConstituencyList>` in `src/components/`, driven by
@@ -113,6 +113,24 @@ direction, per §9's own null-vs-zero rule.
   lesson that DOM-correct bars can still read wrong visually); e2e test clicking a row
   selects that AC through `selectLocation()` (the Phase 2 single entry point), not a
   parallel path.
+
+Shipped so far: `src/components/RankedConstituencyList.tsx` + tests (10 tests), reading
+directly from the already-cached `ElectionResultsByConstituency` map via the 2.5a metrics
+module, matching `AssemblyBrowseList`'s interactive-row/keyboard/hover-link conventions
+exactly (same `rowHoverProps`/`sidebarListRowKeyDown` helpers, so a ranked row behaves
+identically to a plain browse-list row). Every metric option carries an explicit label
+("Closest contests - smallest winning margin", never a bare "Top 20"), and a visible note
+when constituencies are excluded for missing data.
+
+**Deliberately not done in this pass:** mounting it inside `App.tsx`/the sidebar's real
+tab/pane routing (`DetailPanelHost` is single-constituency-only; a ranked list is a new
+browse-surface alongside `AssemblyBrowseList`, gated by wherever the "real tab bar" from
+Phase 2 ends up living). That wiring - plus the resulting screenshot QA and the
+row-click-through-`selectLocation()` e2e test above - needs its own pass once the tab/pane
+architecture is reviewed properly, rather than bolted on half-informed in the same commit
+that built the component. The alliance-blog-post decision from the box above still applies
+to that follow-up pass, not to this one - the component built here doesn't touch
+`BlogSection.tsx` at all yet.
 
 #### 2.5c — Hard-filter state + URL serialization
 **Effort: 1–1.5 d. Risk: medium (touches `UrlState`).**

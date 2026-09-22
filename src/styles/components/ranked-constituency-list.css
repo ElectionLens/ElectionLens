@@ -1,0 +1,88 @@
+/* Phase 2.5b: generalized ranked-constituency list -------------------------
+   Same interactive-row conventions as AssemblyBrowseList (see
+   sidebar-panels/browse-list/AssemblyBrowseList.tsx and its shared.ts
+   helpers) so a row here behaves identically to a plain browse-list row -
+   this file only adds the extra rank/value columns a ranked list needs. */
+
+.ranked-constituency-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ranked-list-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ui-text-muted);
+  margin: 0 0 4px;
+}
+
+.ranked-list-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--ui-border);
+  border-left: 3px solid var(--item-color, var(--ui-border));
+  border-radius: 6px;
+  background: var(--ui-surface);
+  cursor: pointer;
+  transition:
+    background var(--ui-speed-fast, 0.15s) var(--ui-ease, ease),
+    border-color var(--ui-speed-fast, 0.15s) var(--ui-ease, ease);
+}
+
+.ranked-list-row:hover {
+  background: var(--ui-surface-tint);
+}
+
+.ranked-list-row:focus-visible {
+  outline: 2px solid var(--ui-focus-ring);
+  outline-offset: 2px;
+}
+
+.ranked-list-rank {
+  flex: 0 0 auto;
+  min-width: 28px;
+  font-weight: 700;
+  color: var(--ui-text-muted);
+}
+
+.ranked-list-info {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.ranked-list-name {
+  font-weight: 600;
+  color: var(--ui-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranked-list-district,
+.ranked-list-winner {
+  font-size: var(--text-xs);
+  color: var(--ui-text-muted);
+}
+
+.ranked-list-value {
+  flex: 0 0 auto;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.ranked-list-missing-note {
+  font-size: var(--text-xs);
+  color: var(--ui-text-soft);
+  margin: 4px 2px 0;
+}
