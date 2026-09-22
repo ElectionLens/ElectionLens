@@ -16,6 +16,19 @@
   --legacy-border: #49635a;
   --legacy-border-strong: #688277;
   --legacy-shadow: rgba(0, 0, 0, 0.45);
+
+  /* "Soft" status-tint tokens (accent/success) had no dark value at all, so
+     every card/row/badge that used them - selected states, winner rows,
+     postal summary cards - stayed a bright light-mode card floating in an
+     otherwise dark UI. Found via the booth mini-card grid's own `.selected`
+     state (S6) reusing --ui-accent-soft, which led to grepping for every
+     other "-soft"/"-tint" token with the same gap. Scoped to the tokens
+     confirmed live across postal/booth views and this app's own selected-row
+     styling; --legacy-warning-soft/-danger-soft/-info-soft/-indigo-soft are a
+     known remaining gap in components not yet confirmed reachable. */
+  --ui-accent-soft: #1c3d36;
+  --legacy-success-soft: #16301f;
+  --legacy-success-tint-strong: #1d4029;
 }
 
 [data-theme='dark'] body {
