@@ -133,7 +133,7 @@ export function PostalBallotsView({
 
       {showUnmapped && totalUnmapped > 0 && unmapped?.candidates && (
         <div className="unmapped-votes-section">
-          <h4>Unmapped votes (not postal)</h4>
+          <h3>Unmapped votes (not postal)</h3>
           <p className="unmapped-note">{unmapped.note}</p>
           <div className="postal-candidates-list">
             {unmapped.candidates

@@ -60,8 +60,18 @@ export function ResultPodium({
   const { winner, runnerUp, third, margin, marginPct } = summary;
   if (!winner) return null;
 
+  const winnerParty = partyShortNames ? getPartyShortName(winner.party) : winner.party;
+  const resultLabel = `Result summary: winner ${winner.name}, ${winnerParty}, ${formatNumber(winner.votes)} votes${
+    margin != null ? `, margin ${formatNumber(margin)} votes` : ''
+  }`;
+
   return (
-    <div className="result-podium" data-testid="result-podium">
+    <div
+      className="result-podium"
+      data-testid="result-podium"
+      role="region"
+      aria-label={resultLabel}
+    >
       <PodiumCard label="Winner" entry={winner} rank={1} partyShortNames={partyShortNames} />
       {runnerUp && (
         <PodiumCard label="Runner-up" entry={runnerUp} rank={2} partyShortNames={partyShortNames} />

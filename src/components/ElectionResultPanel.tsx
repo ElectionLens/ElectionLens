@@ -657,7 +657,7 @@ export function ElectionResultPanel({
               </div>
 
               <div className="candidates-preview">
-                <h4>Parliament {currentPCContribution.year} — candidates</h4>
+                <h3>Parliament {currentPCContribution.year} — candidates</h3>
                 <div className="candidates-table-full">
                   <div className="candidates-header">
                     <span className="col-pos">#</span>
@@ -752,7 +752,7 @@ export function ElectionResultPanel({
             />
 
             <div className="candidates-preview">
-              <h4>Candidates</h4>
+              <h3>Candidates</h3>
               {!acResultsLoading && !hasAnnouncedCandidates && resultsPending ? (
                 <p style={{ fontSize: 13, margin: 0, color: 'var(--muted-foreground, #64748b)' }}>
                   No sourced candidate names for this constituency yet.

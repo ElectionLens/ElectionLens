@@ -24,6 +24,13 @@ interface SearchResult {
   feature: StateFeature | ConstituencyFeature | AssemblyFeature | DistrictFeature;
 }
 
+/** Single instance rendered at a time (Sidebar), so a static id pair is safe and
+   avoids plumbing a generated id through props just for ARIA wiring. */
+const SEARCH_RESULTS_LISTBOX_ID = 'search-results-listbox';
+function searchResultOptionId(index: number): string {
+  return `search-result-option-${index}`;
+}
+
 /** SearchBox props */
 interface SearchBoxProps {
   statesGeoJSON: StatesGeoJSON | null;
@@ -312,9 +319,15 @@ export function SearchBox({
             if (query.trim()) setIsOpen(true);
           }}
           onKeyDown={handleKeyDown}
+          role="combobox"
           aria-label="Search regions"
           aria-expanded={isOpen}
           aria-autocomplete="list"
+          aria-haspopup="listbox"
+          aria-controls={SEARCH_RESULTS_LISTBOX_ID}
+          aria-activedescendant={
+            isOpen && filteredResults.length > 0 ? searchResultOptionId(selectedIndex) : undefined
+          }
         />
         {query && (
           <LeftPaneButton
@@ -333,10 +346,16 @@ export function SearchBox({
       </div>
 
       {isOpen && filteredResults.length > 0 && (
-        <div className="search-results" ref={resultsRef} role="listbox">
+        <div
+          className="search-results"
+          ref={resultsRef}
+          id={SEARCH_RESULTS_LISTBOX_ID}
+          role="listbox"
+        >
           {filteredResults.map((result, index) => (
             <div
               key={`${result.type}-${result.name}-${result.state ?? ''}`}
+              id={searchResultOptionId(index)}
               className={`search-result-item interactive-row ${index === selectedIndex ? 'selected' : ''}`}
               data-type={result.type}
               onClick={() => handleSelect(result)}

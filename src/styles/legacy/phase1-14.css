@@ -402,7 +402,7 @@
 .election-panel--embed .winner-card-compact .winner-party {
   border-radius: 999px;
   padding: 2px 8px;
-  font-size: 0.6rem;
+  font-size: var(--text-xs);
   font-weight: 600;
 }
 
@@ -421,7 +421,7 @@
 .election-panel--embed .postal-candidate-row .col-party {
   border-radius: 999px;
   padding: 2px 6px;
-  font-size: 9px;
+  font-size: var(--text-xs);
   font-weight: 600;
 }
 
@@ -468,19 +468,19 @@
 }
 
 .election-panel--embed .section-heading {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.35px;
   color: var(--ui-text-muted);
 }
 
 .election-panel--embed .segment-label {
-  font-size: 9px;
+  font-size: var(--text-xs);
   font-weight: 600;
   text-shadow: none;
 }
 
 .election-panel--embed .party-tag {
-  font-size: 9px;
+  font-size: var(--text-xs);
   font-weight: 600;
   padding: 2px 6px;
   border-radius: 999px;

@@ -43,7 +43,7 @@
   }
 
   .constituency-type {
-    font-size: 0.6rem;
+    font-size: var(--text-xs);
     padding: 2px 6px;
   }
 
@@ -58,7 +58,7 @@
   .year-btn {
     min-height: 26px;
     padding: 4px 10px;
-    font-size: 0.65rem;
+    font-size: var(--text-xs);
     flex-shrink: 0;
   }
 
@@ -71,7 +71,7 @@
   .panel-tab {
     min-height: 26px;
     padding: 4px 10px;
-    font-size: 0.65rem;
+    font-size: var(--text-xs);
   }
 
   /* Scrollable content */
@@ -92,7 +92,7 @@
   }
 
   .winner-stats-compact {
-    font-size: 0.7rem;
+    font-size: var(--text-xs);
   }
 
   /* Compact stats */
@@ -102,18 +102,18 @@
   }
 
   .stat-inline {
-    font-size: 0.6rem;
+    font-size: var(--text-xs);
     padding: 6px;
   }
 
   /* Compact candidates */
   .candidates-preview h4 {
-    font-size: 0.7rem;
+    font-size: var(--text-xs);
   }
 
   .candidate-row-compact {
     padding: 6px 8px;
-    font-size: 0.65rem;
+    font-size: var(--text-xs);
   }
 
   /* Hide non-essential */
@@ -260,7 +260,7 @@
 }
 
 .booth-year-label .election-type {
-  font-size: 11px;
+  font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   background: var(--ui-surface-tint);
@@ -342,7 +342,7 @@
 }
 
 .booth-stats-summary .stat-label {
-  font-size: 10px;
+  font-size: var(--text-xs);
   color: var(--ui-text-muted);
   text-transform: uppercase;
 }
@@ -408,7 +408,7 @@
 }
 
 .address-locality {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--ui-text-soft);
   margin-top: 2px;
 }
@@ -427,7 +427,7 @@
 }
 
 .booth-vote-summary .label {
-  font-size: 10px;
+  font-size: var(--text-xs);
   color: var(--ui-text-muted);
   text-transform: uppercase;
 }

@@ -115,10 +115,10 @@ export function MapControls({ level, name, count }: MapControlsProps): null {
     const countLabel = countLabels[level] ?? 'areas';
 
     legend.innerHTML = `
-      <h4 style="color: ${color}; margin: 0 0 4px 0; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;">${label}</h4>
+      <h4 style="color: ${color}; margin: 0 0 4px 0; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">${label}</h4>
       <div class="legend-content">
         <div style="font-weight: 600; color: #1f2937; font-size: 0.85rem;">${name}</div>
-        ${count ? `<div style="font-size: 0.7rem; color: #6b7280; margin: 2px 0 4px;">${count} ${countLabel}</div>` : '<div style="margin-bottom: 4px;"></div>'}
+        ${count ? `<div style="font-size: 0.75rem; color: #6b7280; margin: 2px 0 4px;">${count} ${countLabel}</div>` : '<div style="margin-bottom: 4px;"></div>'}
         <div style="display: flex; gap: 2px; margin-top: 4px;">
           ${sampleColors.map((c) => `<div style="background: ${c}; width: 14px; height: 14px; border-radius: 2px;"></div>`).join('')}
         </div>

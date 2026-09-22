@@ -256,9 +256,10 @@ Mandatory, not optional.
       <br>**Landed on `feat/phase-3-booth-geography-ocr`.** The sidebar is an `<aside>`
       with a labelled breadcrumb `<nav>`, the interactive map is a labelled `<main>`,
       and the correction/contribution link is a `<footer>`.
-- [ ] Heading hierarchy `h1→h2→h3`.
-      <br>Constituency name is now an `h2`; browse-list and panel subheads still need the
-      complete hierarchy audit.
+- [x] Heading hierarchy `h1→h2→h3`.
+      <br>Constituency and panel titles remain `h2`; browse sections and result subsections
+      now use `h3`, with deeper booth detail retained at `h4`. Removed skipped `h4/h5`
+      headings from the primary election-result flows.
 - [x] Global `:focus-visible` using a palette token, not the orphaned `#2563eb`.
       <br>**Landed on the Phase 3 branch.** `--ui-focus-ring` now drives the late-loaded
       global focus rule, with forced-colors support; bespoke row/button/tab outlines were
@@ -266,8 +267,24 @@ Mandatory, not optional.
       button use the semantic teal ring at 2px/2px; browse rows retain the explicit
       `:focus-visible` rule and require a real keyboard-tab assertion in the forthcoming
       Playwright accessibility suite.
-- [ ] Contrast-audit every token pair; kill remaining sub-12px text.
-- [ ] Charts get accessible text equivalents (their gap too — a chance to be *better*, not equal).
+- [x] Contrast-audit every token pair; kill remaining sub-12px text.
+      <br>Every sub-12px `font-size` (9–11px, plus rem equivalents like 0.6–0.74rem)
+      across `styles/legacy/*` and `styles/components/*` now resolves to `var(--text-xs)`
+      (12px), including the compact `--embed` overrides. Wrote a small WCAG contrast
+      script and swept every light/dark token pair actually used as text-on-surface,
+      white-on-accent, and focus-ring-on-surface — all already cleared 4.5:1 (text) or
+      3:1 (UI) with real margin. The one real finding: `--ui-border` / `--ui-border-strong`
+      (light) and `--ui-border` / `--ui-border-soft` (dark) failed the 3:1 non-text
+      contrast requirement (1.35:1–2.52:1) — and since card surfaces sit at ~1.05:1
+      against the page background, that border is often the *only* signal of a
+      component's edge, not a decorative extra. Darkened all four tokens to clear 3:1
+      (2.98–4.87:1) while staying in the same warm/teal families. Verified visually at
+      browse, state, and PC-detail views in both themes — borders read clearly, podium
+      labels and party badges are crisp, no overflow. 751 tests, tsc, eslint all clean.
+- [x] Charts get accessible text equivalents (their gap too — a chance to be *better*, not equal).
+      The visual result podium now exposes a labelled region with a concise winner/vote/margin
+      summary; candidate bars remain decorative because their adjacent text columns already
+      expose the exact values.
 - [x] Verify 44×44px touch targets. `--row-min-height: 44px` is already right; icon
       toolbar buttons, year buttons, dropdown controls, and Leaflet zoom controls now all
       expose at least a 44px hit area. Mobile QA keeps the toolbar horizontally usable.
@@ -277,7 +294,21 @@ Mandatory, not optional.
       real keyboard modality with Tab before asserting the semantic teal ring; synthetic
       `.focus()` alone was explicitly rejected because Chromium does not treat it as
       keyboard-visible focus.
-- [ ] Add `@axe-core/playwright` to the e2e suite so automated WCAG scans cannot regress.
+- [x] Add `@axe-core/playwright` to the e2e suite so automated WCAG scans cannot regress.
+      <br>Added `e2e/axe-scan.spec.ts`, a separate file from the hand-written
+      `accessibility.spec.ts` since axe's static analysis and manual focus/keyboard
+      checks catch different things. Scans one page per distinct app "mode" (India
+      browse, state seats-won, AC detail, AC detail in dark theme, mobile sidebar
+      sheet) against wcag2a/2aa/21aa/22aa tags, asserting zero violations. The first
+      run caught two real, previously-unnoticed bugs: (1) `index.html`'s viewport
+      meta disabled pinch-zoom (`user-scalable=no, maximum-scale=1.0`), a WCAG 1.4.4
+      violation on every page; (2) the search input used `aria-expanded` without a
+      role that allows it — fixed by completing the combobox pattern it already
+      half-implemented (`role="combobox"`, `aria-controls`, `aria-haspopup`,
+      `aria-activedescendant` wired to the existing listbox/option markup) rather than
+      just deleting the attribute. Both fixes are real, not suppressions. All 5 axe
+      scans pass; 751 unit tests, tsc, eslint clean; existing search e2e suite (7
+      tests) still green.
 
 ### Phase 4 — Map & mobile polish (2–3 days)
 Mostly **wiring up CSS that already exists** — see §3.
