@@ -6,8 +6,10 @@
   --ui-surface-tint: #2a3935;
   --ui-text: #edf5f1;
   --ui-text-soft: #b5c6bf;
-  --ui-border: #49635a;
-  --ui-border-soft: #344a42;
+  --ui-border: #5c7c70; /* darkened from #49635a for WCAG 1.4.11 (3.59:1 on dark surface,
+     was 2.52:1) - dark surfaces are similarly close in luminance to the page background,
+     so borders are load-bearing for perceiving component edges. */
+  --ui-border-soft: #527164; /* darkened from #344a42 (was 1.73:1) to clear 3:1 (3.07:1). */
   --ui-focus-ring: #7be0bd;
   --row-separator: #30453d;
   --legacy-panel-bg: #17211f;

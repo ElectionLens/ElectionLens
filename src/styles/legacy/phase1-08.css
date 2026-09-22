@@ -47,7 +47,7 @@
   /* District footer - more compact */
   .district-info {
     padding: 8px 12px;
-    font-size: 0.7rem;
+    font-size: var(--text-xs);
   }
 
   .election-panel-close {

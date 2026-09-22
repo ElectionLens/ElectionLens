@@ -12,7 +12,7 @@
 }
 
 .pc-badge {
-  font-size: 0.65rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   padding: 3px 8px;
   background: linear-gradient(135deg, var(--ui-accent-strong) 0%, var(--ui-accent) 100%);
@@ -67,7 +67,7 @@
 }
 
 .ac-chip {
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   padding: 4px 10px;
   background: white;
   border: 1px solid var(--ui-border);
@@ -84,7 +84,7 @@
 }
 
 .show-more-btn.compact {
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   padding: 4px 10px;
   margin-top: 8px;
 }
@@ -114,7 +114,7 @@
 }
 
 .pc-badge-small {
-  font-size: 0.6rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   padding: 2px 6px;
   background: linear-gradient(135deg, var(--ui-accent-strong) 0%, var(--ui-accent) 100%);
@@ -263,7 +263,7 @@
 }
 
 .feedback-type-desc {
-  font-size: 0.65rem;
+  font-size: var(--text-xs);
   color: var(--ui-text-soft);
   line-height: 1.3;
 }

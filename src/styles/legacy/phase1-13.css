@@ -84,8 +84,11 @@
   --ui-surface: #ffffff;
   --ui-surface-soft: #faf8f4;
   --ui-surface-tint: #f0ece3;
-  --ui-border: #e4ddd0;
-  --ui-border-strong: #cfc4ae;
+  --ui-border: #9c8e70; /* darkened from #e4ddd0 for WCAG 1.4.11: cards share near-identical
+     luminance with the page background (~1.09:1), so the border is often the *only* signal
+     of a component boundary and must clear 3:1 on its own. 3.22:1 on white. */
+  --ui-border-strong: #7d7052; /* darkened from #cfc4ae to stay visibly stronger than
+     --ui-border while also clearing 3:1 (4.87:1 on white). */
   --ui-text: #1c1a16;
   --ui-text-muted: #4a453a;
   --ui-text-soft: #6b6558; /* ~5.95:1 on white - AA safe with margin */

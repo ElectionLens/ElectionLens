@@ -267,7 +267,20 @@ Mandatory, not optional.
       button use the semantic teal ring at 2px/2px; browse rows retain the explicit
       `:focus-visible` rule and require a real keyboard-tab assertion in the forthcoming
       Playwright accessibility suite.
-- [ ] Contrast-audit every token pair; kill remaining sub-12px text.
+- [x] Contrast-audit every token pair; kill remaining sub-12px text.
+      <br>Every sub-12px `font-size` (9–11px, plus rem equivalents like 0.6–0.74rem)
+      across `styles/legacy/*` and `styles/components/*` now resolves to `var(--text-xs)`
+      (12px), including the compact `--embed` overrides. Wrote a small WCAG contrast
+      script and swept every light/dark token pair actually used as text-on-surface,
+      white-on-accent, and focus-ring-on-surface — all already cleared 4.5:1 (text) or
+      3:1 (UI) with real margin. The one real finding: `--ui-border` / `--ui-border-strong`
+      (light) and `--ui-border` / `--ui-border-soft` (dark) failed the 3:1 non-text
+      contrast requirement (1.35:1–2.52:1) — and since card surfaces sit at ~1.05:1
+      against the page background, that border is often the *only* signal of a
+      component's edge, not a decorative extra. Darkened all four tokens to clear 3:1
+      (2.98–4.87:1) while staying in the same warm/teal families. Verified visually at
+      browse, state, and PC-detail views in both themes — borders read clearly, podium
+      labels and party badges are crisp, no overflow. 751 tests, tsc, eslint all clean.
 - [x] Charts get accessible text equivalents (their gap too — a chance to be *better*, not equal).
       The visual result podium now exposes a labelled region with a concise winner/vote/margin
       summary; candidate bars remain decorative because their adjacent text columns already

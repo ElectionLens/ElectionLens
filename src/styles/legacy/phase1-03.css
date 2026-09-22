@@ -70,7 +70,7 @@
 }
 
 .constituency-item .pc-number {
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   background: var(--item-color, var(--color-parliament, var(--ui-parliament)));
   color: white;
   padding: 2px 6px;
@@ -131,7 +131,7 @@
 }
 
 .assembly-item .ac-number {
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   background: var(--item-color, var(--color-assembly, var(--ui-assembly)));
   color: white;
   padding: 2px 6px;
@@ -302,7 +302,7 @@
   }
 
   .toolbar-btn.toolbar-toggle {
-    font-size: 0.7rem;
+    font-size: var(--text-xs);
     padding: 6px 8px;
   }
 
@@ -322,7 +322,7 @@
   }
 
   .map-legend h4 {
-    font-size: 0.65rem;
+    font-size: var(--text-xs);
   }
 
   /* Touch-friendly list items */
